@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{MFFStyle}							% Import stylu
+
+
+
+\begin{document}
+	\lipsum[10]
+	\section{TODO}
+	\subsection{TODO2}
+
+	\begin{veta}[O dlouhém širokém a slepém]
+		Ahoj
+		\lipsum[10]
+		\begin{dukazin}
+			\lipsum[10]
+		\end{dukazin}
+		\begin{poznamkain}
+			\lipsum[10]
+		\end{poznamkain}
+	\end{veta}
+
+	\begin{definice}[Algebra]
+		\lipsum[10]
+	\end{definice}
+
+	\begin{lemma}
+		\lipsum[10]
+	\end{lemma}
+
+	\begin{dukaz}
+		\lipsum[10]
+	\end{dukaz}
+
+	\begin{poznamka}
+		\lipsum[10]
+	\end{poznamka}
+
+	$ A \bigcap_{i \in I} A_i $
+	$ \sum $
+    
+	
+	\newpage
+	\appendix
+	\addcontentsline{toc}{part}{Apendix}
+	\nocite{*}
+    \printbibliography					% Vytvoří seznam literatury
+	\addcontentsline{toc}{chapter}{Bibliografie}
+    \printglossary[title={Zkratky}]		% Vytvoří seznam zkratek
+    \listoffigures						% Vytvoří seznam obrázků
+    \listoftables						% Vytvoří seznam tabulek
+
+\end{document}

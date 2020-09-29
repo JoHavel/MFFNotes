@@ -1,0 +1,205 @@
+\usepackage{inputenc}
+\usepackage{polyglossia}
+\setmainlanguage{czech}
+\usepackage{csquotes}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{newunicodechar}
+\usepackage{fontspec}
+
+\usepackage{graphicx, tabularx}
+\usepackage[dvipsnames]{xcolor}
+\graphicspath{{images/}}									% Přidání složky images do složek, kde se hledají obrázky
+
+\usepackage[hidelinks]{hyperref}							% Počítačová verze umí odkazy
+\usepackage{lipsum}											% Lorem ipsum text
+
+
+\usepackage{listings}										% Balíček pro zvýraznění a formátování kódu
+\usepackage{lstautogobble}									% Doplňující balíček k listings
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{codegray},
+	numbers=left, 
+	tabsize=2
+}
+\lstset{style=mystyle}
+
+
+\usepackage[automake,toc]{glossaries}						% Balíček pro zkratky
+\makeglossaries												% Aktivování zkratek
+\loadglsentries{Zkratky}									% Načtení zkratek
+
+\usepackage[sorting=none, backend=bibtex, maxcitenames=2]{biblatex}
+															% Balíček pro citace
+\addbibresource{Bibliografie.bib}							% Import zdrojů
+
+
+\renewcommand{\sfdefault}{lmr}
+
+\setlength{\parskip}{1em}
+%\renewcommand{\baselinestretch}{1.5}						% Řádkování 1.5
+\usepackage[a4paper,%										% Formát A4
+            left=35mm,%										% Levý okraj 35 mm
+            right=10mm,%									% Pravý okraj 10 mm
+            top=25mm,%										% Horní okraj 25 mm
+            bottom=15mm,%									% Dolní okraj 15 mm
+            includefoot,%									% Posunutí zápatí nad okraj, děkuji https://tex.stackexchange.com/a/49856
+            heightrounded%									% Vylepšení sázení stránky, děkuji https://tex.stackexchange.com/a/49856
+            ]{geometry}				
+
+\newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
+\def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
+\eToSet X Y C N R Z P ;
+
+\newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
+\def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
+\eToMath x y n m k l i \varepsilon ;
+
+\renewcommand{\O}{\emptyset}
+
+\newcommand{\QED}{\square}
+
+\newcommand{\nin}{\ensuremath{n \in \N}}
+
+\newunicodechar{≠}{\neq}
+\newunicodechar{≥}{\geq}
+\newunicodechar{≤}{\leq}
+\newunicodechar{…}{\ldots}
+\newunicodechar{·}{\cdot}
+\newunicodechar{µ}{\mu}
+\newunicodechar{≐}{\doteq}
+\newunicodechar{»}{\Rightarrow}
+\newunicodechar{«}{\Leftarrow}
+\newunicodechar{›}{\rightarrow}
+\newunicodechar{‹}{\leftarrow}
+\newunicodechar{≈}{\approx}
+\newunicodechar{π}{\pi}
+\newunicodechar{≡}{\equiv}
+\newunicodechar{∑}{\sum}
+%\newunicodechar{∞}{\infty} ???
+
+
+%\newunicodechar{√}{\sqrt{}}
+%\newunicodechar{∛}{\sqrt[3]{}}
+
+\catcode`\√=\active
+\catcode`\∛=\active
+
+\def√{\sqrt}
+\def∛{\sqrt[3]}
+
+\let\epsilon\varepsilon
+\let\rho\varrho
+\let\phi\varphi
+\let\theta\vartheta
+
+\DeclareMathOperator{\Int}{Int}
+
+\renewcommand{\(}{\left(}
+\renewcommand{\)}{\right)}
+\renewcommand{\{}{\left\lbrace}
+\renewcommand{\}}{\right\rbrace}
+\renewcommand{\[}{\left[}
+\renewcommand{\]}{\right]}
+\newcommand{\<}{\left\langle}
+\renewcommand{\>}{\right\rangle}
+
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\lx}{\left[}
+\newcommand{\px}{\right]}
+
+\usepackage{sectsty} % Balíček pro změnu velikosti nadpisů
+\sectionfont{\raggedright\LARGE} 
+\subsectionfont{\raggedright\Large}
+
+
+\usepackage[framemethod=TikZ, xcolor]{mdframed}
+\usepackage{etoolbox}
+
+\newlength{\topskipp}
+\setlength{\topskipp}{\topskip}
+
+%https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\vspace{-0.7em}\bfseries\large}%Thm head font
+  {\newline\rule{\textwidth}{0.4pt}}%Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+
+%https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+\newtheoremstyle{definitionbreak}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\vspace{-0.7em}\bfseries\large}%Thm head font
+  {\newline\rule{\textwidth}{0.4pt}}%Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+%https://tex.stackexchange.com/questions/88467/how-does-one-framebox-a-proof?noredirect=1&lq=1
+\mdfdefinestyle{proofstyle}{%
+	%linecolor=red,
+	middlelinewidth=1pt,%
+	frametitlerule=true,%
+	%apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={%
+	%shade,left color=white, right color=blue!20}}},
+	%frametitlerulecolor=green!60,
+	frametitlerulewidth=.2pt,
+	innertopmargin=\topskipp,
+	}
+
+%https://latex.org/forum/viewtopic.php?t=22592
+\mdfdefinestyle{proof}{
+	   skipabove         = .5\baselineskip ,
+	   skipbelow         = .5\baselineskip ,
+	   leftmargin        = 0pt ,
+	   rightmargin       = 0pt ,
+	   innermargin       = 0pt ,
+	   innertopmargin    = 1em ,
+	   innerleftmargin   = .5em ,
+	   innerrightmargin  = 0pt ,
+	   innerbottommargin = .5em ,
+	   hidealllines      = true ,
+	   singleextra       = {
+		   \draw (O) -- ++(0,.675em) (O) -- ++(.675em,0) ;
+		   \draw (P-|O) -- ++(0,-.675em) (P-|O) -- ++(.675em,0) ;
+		   },
+	   firstextra        = {
+		   \draw (P-|O) -- ++(0,-.675em) (P-|O) -- ++(.675em,0) ;									         },
+	   secondextra       = {
+		   \draw (O) -- ++(0,.675em) (O) -- ++(.675em,0) ;
+           },
+}
+
+\theoremstyle{break}
+\newtheorem{veta}{Věta}[section]
+\newtheorem{lemma}[veta]{Lemma}
+\let\oldproofname=\proofname
+\renewcommand{\proofname}{\oldproofname[Důkaz]}
+\renewcommand\qedsymbol{$\QED$}
+\theoremstyle{definitionbreak}
+\newtheorem{definice}{Definice}[section]
+\theoremstyle{remark}
+\newtheorem*{poznamka}{Poznámka}
+\newtheorem*{poznamkain}{Poznámka}
+\newtheorem*{dukaz}{Důkaz}
+\newtheorem*{dukazin}{Důkaz}
+
+\surroundwithmdframed{veta}
+\surroundwithmdframed{lemma}
+\surroundwithmdframed{definice}
+
+\surroundwithmdframed[style=proofstyle]{poznamka}
+\surroundwithmdframed[style=proofstyle]{dukaz}
+\surroundwithmdframed[style=proof]{dukazin}
+\surroundwithmdframed[style=proof]{poznamkain}
+
+\AtEndEnvironment{dukaz}{\qed}
+\AtEndEnvironment{dukazin}{\qed}
