@@ -1,0 +1,195 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+	
+\section*{Organizační úvod}
+    \begin{poznamka}[složení předmětu]
+        Předmět má přednášku, cvičení a proseminář z Matematické analýzy.
+    \end{poznamka}
+
+
+    \begin{poznamka}[Motivace]
+        TODO  
+    \end{poznamka}
+
+    \begin{poznamka}[Jak studovat]
+        Studujte průběžně, ptejte se…   
+    \end{poznamka}
+
+    \begin{poznamka}[Literatura]
+        \ 
+        \begin{itemize}
+            \item skripta -- viz homepage
+            \item příklady -- Koláček \&\ spol. -- Příklady z matematické analýzy pro fyziky 1, 2, 3
+            \item další příklady -- viz homepage
+        \end{itemize}        
+    \end{poznamka}
+
+\section*{Motivace}
+    \begin{poznamka}[Používá se v]
+        \ 
+        \begin{itemize}
+            \item Fyzice (viz pohyb planet, např. Proč obíhají planety po elipsách?)
+            \item Ekonomii (viz úroky, např. Lze předpovědět změny úroků v ekonomice a na burze?)
+            \item Meteorologii (např. Jak ovlivňují teplé mořské proudy počasí v Evropě?)
+            \item Lékařství (např. Jak dlouho bude koncentrace léku v krvi na účinné úrovni?)
+            \item Epidemiologie (např. Proč se epidemie šíří nejprve rychle a potom pomalu?)
+            \item Architektura (viz mosty (vibrace), např. Jak se ujistit, že most nespadne v bouři?)
+            \item Inženýrství (viz letadla, např. Jak zkonstruovat nové křídlo pro letadlo? (Většina peněz i času při konstrukci jsou simulace.))
+            \item Informatika (viz MP3, JPEG, např. Jak uchovat informaci o dané funkci v co nejmenším počtu čísel? (Používá se Fourierova transformace = převod funkce na siny a cosiny))
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{poznamka}[Proč se analýzu učíme my?]
+        \ 
+        \begin{itemize}
+            \item Abychom uměli látku (hledat extrémy funkcí, umět integrovat)
+            \item Měli solidní matematické základy
+            \item Přečíst návod, jak používat nějaké matematické modely (např. Uplatnění v bance -- MFF nese mnoho peněz (nejvíce žádané práce jsou práce stylu statistik))
+            \item Myslet, analyzovat, nedělat chyby (nezapomínat na další možnosti)
+            \item Abychom se naučili způsob myšlení -- matematici / matematičky dělají činnosti lépe (ze dvou lidí, co ji neumí, je matematik ten, kdo ji zvládne lépe, nikoliv ten druhý.)
+        \end{itemize}
+    \end{poznamka}
+
+\section{Úvod}
+    Dosti možná spíše opakování střední
+    \subsection{Výroky}
+        \begin{definice}[Výrok]
+            Tvrzení, o kterém má smysl říct, že je pravdivé, či ne.
+            \begin{prikladyin}
+                „Obloha je modrá.“\\
+                „Vídeň je hlavní město ČR.“
+            \end{prikladyin}
+        \end{definice}
+        \begin{poznamka}[Vytváření nových výroků]
+            Děje se pomocí spojek a, nebo, implikací, ekvivalencí, atd.
+            
+                 \begin{tabular}{ccccccc}
+                            $A$ & $B$ & \begin{tabular}[c]{@{}c@{}}konjunkce\\ $A\&B$\end{tabular} & \begin{tabular}[c]{@{}c@{}}disjunkce\\ $AvB$\end{tabular} & \begin{tabular}[c]{@{}c@{}}implikace\\ $A\implies B$\end{tabular} & \begin{tabular}[c]{@{}c@{}}ekvivalence\\ $A\Leftrightarrow B$\end{tabular} & \begin{tabular}[c]{@{}c@{}}negace $A$\\ $\neg A$\end{tabular} \\
+                            0 & 0 & 0 & 0 & 1! & 1 & 1 \\
+                            0 & 1 & 0 & 1 & 1! & 0 & 1 \\
+                            1 & 0 & 0 & 1 & 0 & 0 & 0 \\
+                            1 & 1 & 1 & 1 & 1 & 1 & 0
+                \end{tabular}
+
+            $A \implies B$ = $A$ je postačující podmínka pro $B$ = $B$ je nutná podmínka pro $A$.
+            \begin{prikladyin}[Pravdivé výroky]
+                $ 1=2 \implies 2=3 $\\
+                já jsem papež $ \implies $ všechna letadla jsou modrá \\
+            \end{prikladyin}
+
+            \begin{prikladin}
+                \ 
+                \begin{itemize}
+                    \item $$ (A \implies B) \Leftrightarrow (\neg B \implies \neg B $$
+                    \item $$ (A \implies B) \Leftrightarrow (\neg (A \& \neg B)) $$ 
+                    \item $$ \neg (A \& B) \Leftrightarrow (\neg A \lor \neg B) $$
+                    \item $$ \neg (A \lor B) \Leftrightarrow (\neg A \& \neg B) $$                    
+                    \item $$ (A \Leftrightarrow B) \Leftrightarrow ((A \implies B) \& (B \implies A) $$ 
+                \end{itemize}
+            \end{prikladin}
+        \end{poznamka}
+        \begin{definice}[Kvantifikátory]
+            Dále existují tzv. kvantifikátory: Obecný (= pro všechna) $\forall$ a Existenční (= existuje) $\exists$.
+        \end{definice}
+            
+        \begin{umluva}
+            $\forall x \in \N, x>10 \ A(x)$ značí  $\forall x \in \N (x>10 \implies A(x))$
+        \end{umluva}
+        \begin{priklady}
+            \ 
+            \begin{itemize}
+                \item Pro všechna $x \in M$ platí $A(x)$ je: $\forall x \in M: A(x)$ 
+                \item Existuje $x \in M$ tak, že platí $A(x)$ je $\exists x \in M: A(x)$
+                \item $ \forall n \in \N\ \forall m \in \N\ \exists k \in \N: k> n+m $
+            \end{itemize}
+        \end{priklady}
+
+        \begin{priklady}[Negace výroků]
+            \ 
+            \begin{itemize}
+                \item $\neg (\forall x \in M: A(x)) \Leftrightarrow \exists x \in M: \neg A(x)$
+                \item $ \neg (\exists x \in M: A(x) \Leftrightarrow \forall x \in M: \neg A(x)$
+                \item $\neg$(Nikdo mě nemá rád.) $\Leftrightarrow$ Existuje alespoň jeden člověk, který mě má rád. 
+                \item $\neg(\forall n \in \N\ \forall m \in \N\ \exists k \in \N: k > n+m)$
+                    $$ \exists n \in \N\ \neg(\forall m \in \N\ \exists k \in \N: k > n+m) $$
+                    $$ \exists n \in \N\ \exists m \in \N\ \neg(\exists k \in \N: k > n+m) $$
+                    $$ \exists n \in \N\ \exists m \in \N\ \forall k \in \N: k \leq n+m) $$ 
+
+
+            \end{itemize}
+        \end{priklady}
+
+        \begin{upozorneni}
+            Na pořadí kvantifikátorů záleží!
+            \begin{prikladyin}
+                M…Muži\\
+                Ž…Ženy\\
+                L(m, ž)…muži m se líbí žena ž
+                $$ \forall m \in M\ \exists ž \in Ž: L(m, ž) $$
+                $$ \exists ž \in Ž\ \forall m \in M: L(m, ž) $$
+                První je, že pro každého muže existuje nějaká žena, která se mu líbí, naopak druhá říká, že existuje žena, která se líbí všem mužům.
+            \end{prikladyin}
+        \end{upozorneni}
+
+    \subsection{Metody důkazů tvrzení}
+        \begin{definice}[Důkaz sporem]
+            $$ (A \implies B) \Leftrightarrow \neg(A \& \neg B) $$
+            \begin{prikladyin}[$\sqrt{2} \notin \Q$]
+                ($A: x = \sqrt{2}$, $B: x \notin \Q$)
+                \begin{dukazin}[Důkaz sporem:]
+                    Nechť $x = \sqrt{2}$ a $x \in \Q$. $x \in \Q \implies x = \frac{p}{q}, p,q \in \N$, nesoudělná.\\
+                $x^2 = 2$,  $2 = x^2 = \frac{p^2}{q^2} \implies 2q^2 = p^2 \implies p = 2k \implies 2q^2 = 4k^2 \implies q^2 = 2k^2 \implies q = 2l$\\
+                    $p=2k\ \&\ q=2l \implies$ $p$ a $q$ soudělná. \lightning 
+                \end{dukazin}
+                    
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Přímý důkaz]
+                $$ (A \implies B) \Leftrightarrow (A \implies C_1 \implies C_2 \implies … \implies C_n \implies B) $$ 
+            \begin{prikladyin}
+                $$ n^2 \text{liché} \implies n \text{liché} $$
+                \begin{dukazin}
+                    $$ n = p_1 \cdot … \cdot p_k \implies n^2 = p_1^2 \cdot … \cdot p_k^2 $$
+                    $$ n^2 \text{liché} \implies 2\nmid p_1\ \&\ …\ \&\ 2\nmid p_k \implies n \text{liché} $$ 
+                \end{dukazin}
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Nepřímý důkaz]
+            $$ (A \implies B) \Leftrightarrow (\neg B \implies \neg A) $$
+            \begin{prikladyin}
+                $$ n^2 \text{liché} \implies n \text{liché} $$ 
+                \begin{dukazin}
+                    $$ n \text{sudé} \Leftrightarrow n = 2k \implies n^2 = 4k^2 \implies n^2 \text{sudé} $$         
+                \end{dukazin}
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Matematická indukce]
+            $$ (\forall n \in \N: V(n)) \Leftrightarrow (V(1)\ \&\ \forall n \in \N: V(n) \implies V(n+1)) $$ 
+            \begin{prikladyin}
+                $$ \sum_{k=1}^n k = 1+2+…+n = \frac{1}{2}n\cdot(n+1) $$
+                \begin{dukaz}
+                    1. $n = 1$: $1 = \frac{1}{2}1 \cdot 2$\\
+                    2. 
+                    $$ \sum_{k=1}^n k = 1+2+…+n = \frac{1}{2}n\cdot(n+1) \implies \sum_{k=1}^{n+1} k = \frac{1}{2}n\cdot(n+1) + (n + 1) = \frac{1}{2}(n+1)\cdot(n+2) $$ 
+                \end{dukaz}
+            \end{prikladyin}
+            
+            \begin{prikladin}
+                Všechna auta mají stejnou barvu.
+                \begin{dukazin}
+                    1. $n = 1$: Jedno auto má stejnou barvu jako ono samo.\\
+                    2. $n \rightarrow n+1$: vezmu prvních $n$ aut, ty mají stejnou barvu, vezmu posledních $n$ aut, ty mají také stejnou barvu. Tedy dohromady mají stejnou barvu.
+                \end{dukazin}
+                (Spoiler: $n = 2$)
+            \end{priklady}
+        \end{definice}
+
+
+\end{document}

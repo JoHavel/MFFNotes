@@ -3,6 +3,7 @@
 \setmainlanguage{czech}
 \usepackage{csquotes}
 \usepackage{amsmath, amsthm, amssymb}
+\usepackage{wasysym}
 \usepackage{newunicodechar}
 \usepackage{fontspec}
 
@@ -25,13 +26,13 @@
 \lstset{style=mystyle}
 
 
-\usepackage[automake,toc]{glossaries}						% Balíček pro zkratky
-\makeglossaries												% Aktivování zkratek
-\loadglsentries{Zkratky}									% Načtení zkratek
+%\usepackage[automake,toc]{glossaries}						% Balíček pro zkratky
+%\makeglossaries												% Aktivování zkratek
+%\loadglsentries{Zkratky}									% Načtení zkratek
 
-\usepackage[sorting=none, backend=bibtex, maxcitenames=2]{biblatex}
+%\usepackage[sorting=none, backend=bibtex, maxcitenames=2]{biblatex}
 															% Balíček pro citace
-\addbibresource{Bibliografie.bib}							% Import zdrojů
+%\addbibresource{Bibliografie.bib}							% Import zdrojů
 
 
 \renewcommand{\sfdefault}{lmr}
@@ -49,7 +50,7 @@
 
 \newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
 \def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
-\eToSet X Y C N R Z P ;
+\eToSet X Y C N R Z P Q ;
 
 \newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
 \def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
@@ -143,6 +144,17 @@
   {\newline}% Space after thm head: \newline = linebreak
   {}%         Thm head spec
 
+%https://tex.stackexchange.com/questions/37797/theorem-environment-line-break-after-label
+\newtheoremstyle{remarkbreak}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\itshape}% Thm head font
+  {}%         Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
 %https://tex.stackexchange.com/questions/88467/how-does-one-framebox-a-proof?noredirect=1&lq=1
 \mdfdefinestyle{proofstyle}{%
 	%linecolor=red,
@@ -155,6 +167,18 @@
 	innertopmargin=\topskipp,
 	}
 
+%https://tex.stackexchange.com/questions/88467/how-does-one-framebox-a-proof?noredirect=1&lq=1
+\mdfdefinestyle{warningstyle}{%
+    linecolor=red,
+    middlelinewidth=1pt,%
+    frametitlerule=true,%
+    apptotikzsetting={\tikzset{mdfframetitlebackground/.append style={%
+                        shade,left color=white, right color=blue!20}}},
+    frametitlerulecolor=green!60,
+    frametitlerulewidth=.2pt,
+    innertopmargin=\topskipp,
+}
+
 %https://latex.org/forum/viewtopic.php?t=22592
 \mdfdefinestyle{proof}{
 	   skipabove         = .5\baselineskip ,
@@ -163,7 +187,7 @@
 	   rightmargin       = 0pt ,
 	   innermargin       = 0pt ,
 	   innertopmargin    = 1em ,
-	   innerleftmargin   = .5em ,
+       innerleftmargin   = .5em ,
 	   innerrightmargin  = 0pt ,
 	   innerbottommargin = .5em ,
 	   hidealllines      = true ,
@@ -186,11 +210,20 @@
 \renewcommand\qedsymbol{$\QED$}
 \theoremstyle{definitionbreak}
 \newtheorem{definice}{Definice}[section]
-\theoremstyle{remark}
+\theoremstyle{remarkbreak}
 \newtheorem*{poznamka}{Poznámka}
 \newtheorem*{poznamkain}{Poznámka}
 \newtheorem*{dukaz}{Důkaz}
 \newtheorem*{dukazin}{Důkaz}
+\newtheorem*{priklady}{Například}
+\newtheorem*{prikladyin}{Například}
+\newtheorem*{priklad}{Příklad}
+\newtheorem*{prikladin}{Příklad}
+\newtheorem*{umluva}{Úmluva}
+\newtheorem*{umluvain}{Úmluva}
+\newtheorem*{reseni}{Řešení}
+\newtheorem*{upozorneni}{Pozor}
+
 
 \surroundwithmdframed{veta}
 \surroundwithmdframed{lemma}
@@ -198,8 +231,17 @@
 
 \surroundwithmdframed[style=proofstyle]{poznamka}
 \surroundwithmdframed[style=proofstyle]{dukaz}
-\surroundwithmdframed[style=proof]{dukazin}
+\surroundwithmdframed[style=proofstyle]{priklady}
+\surroundwithmdframed[style=proofstyle]{priklad}
+\surroundwithmdframed[style=proofstyle]{umluva}
 \surroundwithmdframed[style=proof]{poznamkain}
+\surroundwithmdframed[style=proof]{dukazin}
+\surroundwithmdframed[style=proof]{prikladyin}
+\surroundwithmdframed[style=proof]{prikladin}
+\surroundwithmdframed[style=proof]{umluvain}
+\surroundwithmdframed[style=proof]{reseni}
+
+\surroundwithmdframed[style=warningstyle]{upozorneni}
 
 \AtEndEnvironment{dukaz}{\qed}
 \AtEndEnvironment{dukazin}{\qed}

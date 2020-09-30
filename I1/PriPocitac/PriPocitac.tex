@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+\section{Organizační úvod}
+    Budeme se zabývat hlavně hardwarem + Operační systémy v letním semestru tím zbytkem. Volně navazuje i architektura počítačů v LS 2. ročníku. Chce se po nás umět souvislosti a termíny (občas budou české, ale vždy i s anglickou variantou). Budeme si lhát sofistikovaně.
+
+\section{Harvardská architektura}
+    Podle univerzity
+    \begin{itemize}
+        \item procesor (CPU) -- základní výpočetní jednotka
+        \item kódová paměť (code memory) -- paměť
+        \item propojení -- CPU přes něj čte data z paměti (měnit program (tedy to, co je v této paměti) neumí)
+        \item datová paměť (data memory) -- proměnné, lze do ni zapisovat (W) i z ní číst (R)
+        \item input / output (I/O, tzv. periferie) -- komunikace s okolím
+    \end{itemize}
+    Anglický (chudý) matematik Charles Babbage navrhl \emph{Analytical engine} (1837, pohonem byl parní stroj, měl počítat daně), který měl tuto architekturu.
+    
+    Ada Lovelace jeho manželka napsala manuál k Analytical engine (jako matematik to moc nepopsal). Zároveň vymyslela, že kromě čísel by šlo předávat i zakódovaná písmena, noty, atd.
+    
+\section{Reprezentace (celých) čísel}
+    \subsection{přenos}
+        \begin{itemize}
+            \item Můžeme reprezentovat analogově 1 jedním voltem, 2 dvěma, $10^6$milionů.
+            \item Můžeme použít i jinak naškálovanou hodnotu, 1 tisícinou voltu, 2 dvěma tisícinami $10^6$ 1000 voltů. Vodiče ale nejsou ideální vodiče, mění odpor / proud podle délky, tepla a elektromagnetického pole v okolí.
+            \item Můžeme používat digitální (číslicový) přenos, třeba (někdy je to opačně): napětí nad nějakou hodnotou jako 1 a napětí pod tu hodnotou jako 0 (většinou je ta mez širší jen bod). Jedna taková hodnota je 1 bit (b). Přenášíme tzv. sériovým přenosem, každý bit chvíli (diagram zobrazující tenhle přenos je tzv. timing diagram).
+            \item 1 a 0 jde i jinak, přes dva vodiče, podle směru jejich rozdílu (kladný vs. záporný rozdíl), což má navíc výhodu, že jsou šumem ovlivněny téměř stejně. Tzv. diferenciální přenos (např. USB).
+        \end{itemize}
+        \begin{upozorneni}
+                Napětí je relativní! (Musíme, krom diferenciálního přenosu, měřit oproti nějaké „nule“, tzv. zemi (ground).)
+        \end{upozorneni}
+        \begin{upozorneni}
+            Zdroj pracuje jen v uzavřeném obvodu!
+        \end{upozorneni}
+        \begin{poznamka}[Mocniny 2]
+            Hodí se naučit se mocniny 2: $2^4 = 64; 2^8 = 256; 2^10 = 1024; 2^12 = 4096; 2^16 = 65536; 2^20 \approx 10^6; 2^30 \approx 4,2\cdot 10^9$
+        \end{poznamka}
+        \begin{definice}[Most significant bit (MSb)]
+            Bit s nejvyšší hodnotou (nejvyšší mocninou 2).
+        \end{definice}
+        \begin{definice}[Least significant bit (LSb)]
+            Bit s nejnižší hodnotou (nejnižší mocninou 2, typicky $2^0$).
+        \end{definice}
+        \begin{definice}[Bitorder]
+            Pořadí, v jakém se bity posílají (MSb-first / LSb-first)
+        \end{definice}
+        \begin{definice}[Přenosová rychlost (transfer rate)]
+            Rychlost, udává se v b / s nebo bauds (=symbols) / s.
+        \end{definice}
+        
+
+
+
+\end{document}
