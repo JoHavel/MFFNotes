@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\section{Cvičení 29.9.2020}
+\section{Cvičení 29. 9. 2020}
     Zápočet bude za 2 zápočtové písemky + docházka (připojení se k cvičení / odpověď na mail, alespoň 50\%), scan přes mobil např. přes Adobe scan, nebo Clear scanner.
 
     \subsection{Rovnice a nerovnice}
@@ -117,6 +117,35 @@
                  Nedořešeno
             \end{reseni}
                 
+        \end{priklad}
+
+
+\section{Cvičení 2. 10. 2020}
+    \subsection{Výroky + formální důkazy}
+        \begin{priklad}
+            Máme formuli:
+            $$ \forall x \in \M \exists y \in \M \exists z \in \M: x = y + z $$ 
+            Je splněna pro $\M = \N$? Dokažte.
+            \begin{dukazin}
+                $$ \text{platí} \Leftrightarrow \forall x \in \M \exists y \in \M: x - y \in\M $$
+                Tvrdíme: výraz neplatí. Dokazujeme negaci:
+                $$ \neg\text{platí} \Leftrightarrow \exists x \in \N \forall y \in \N: x - y \notin\M $$
+                Zvolme $x = 1$. Víme, že $\forall n \in \N: n>0$. Ale $\forall y \in \N: x-y ≤ 1-1 = 0 \implies x-y \notin \N$.
+            \end{dukazin}
+        \end{priklad}
+
+        \begin{priklad}
+            Je formule z předchozího příkladu splněna pro $\M = (0,1)$?
+            \begin{dukazin}
+                Tvrdím, že je. Zafixuji $x \in (0, 1)$, zvolím $y = z = \frac{x}{2}$. Jistě $y, z \in (0,1)$ a $x = y + z = \frac{x}{2} + \frac{x}{2} = x$.
+            \end{dukazin}
+        \end{priklad}
+
+        \begin{priklad}
+            $$  \forall x \in \R \forall \epsilon>0 \exists \delta>0 \forall y\in\R (|y-x|<\delta \implies y < x + \frac{\epsilon}{3}) $$
+            \begin{dukazin}
+                Zafixujeme $x \in \R, \epsilon > 0$. Položme $\delta = \frac{\epsilon}{100}$. Zafixujeme $y \in \R$, že $|y-x|<\delta$ (jinak implikace platí). Tj. $x - \delta < y < x + \delta$. Pak $y < x + \delta = x + \frac{\epsilon}{100} < x + \frac{\epsilon}{3}$.
+            \end{dukazin}
         \end{priklad}
 
 

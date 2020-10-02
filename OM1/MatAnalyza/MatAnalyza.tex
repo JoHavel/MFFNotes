@@ -188,8 +188,70 @@
                     2. $n \rightarrow n+1$: vezmu prvních $n$ aut, ty mají stejnou barvu, vezmu posledních $n$ aut, ty mají také stejnou barvu. Tedy dohromady mají stejnou barvu.
                 \end{dukazin}
                 (Spoiler: $n = 2$)
-            \end{priklady}
+            \end{prikladin}
         \end{definice}
+
+    \subsection{Množina reálných čísel}
+        \begin{poznamka}[Množiny čísel]
+            $$ \N = \{1, 2, 3, …\} $$ 
+            $$ \Z = \{… , -3, -2, -1, 0, 1, 2, 3, …\} $$ 
+            $$ \Q = \{\frac{p}{q}, q\in \N, p \in \Z\} $$ 
+        \end{poznamka}
+
+        \begin{definice}[Omezená množina]
+                Nechť $\M \subset \R$. Řekněme, že $\M$ je omezená shora (omezená zdola), jestliže existuje $a \in \R$ = horní (dolní) závora tak, že pro všechna $x \in \M$ platí $x ≤ a$ ($x≥a$).
+        \end{definice}
+
+        \begin{definice}[Supremum a infimum]
+                Nechť $\M \subset \R$ je shora (zdola) omezená. Číslo $s \in R$ nazýváme supremem (infimem) $\M$, pokud:
+                $$ \forall x \in \M: x≤s (s≥x) $$
+                $$ \forall y \in \R, y<s (y>s) \exists x \in \M, y<x (x>y) $$ 
+            \begin{prikladyin}
+                \begin{itemize}
+                        \item $\sup\[0,1\]=1$ (dokázat obě podmínky pro 1 ($x$ z druhé podmínky volím 1)…)
+                        \item $\sup(0,1)=1$ (taktéž dokázat obě podmínky pro 1 (pozor na záporná y) ($x$ z druhé podmínky zvolíme často $\frac{s+y}{2}$))
+                \end{itemize}
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Reálná čísla]
+            Na množině \R je dána relace $≤$ ($\subset \R \times \R$), operace sčítání $+$ a operace násobení $\cdot$ a množina \R obsahuje prvky 0 a 1 tak, že platí:
+            
+            Viz skripta (takové ty tělesové / grupové podmínky, podmínky uspořádání a \emph{existence suprema})
+        \end{definice}
+
+        \begin{veta}[o existenci infima]
+            Nechť $\M \subset \R$ je neprázdná zdola omezená množina. Pak existuje $\inf\M$.
+            \begin{dukazin}
+                    Označme $-\M = \{x\in\R:-x\in\M\}$. Zřejmě $\M \neq \O$. $\M$ je zdola omezená $\implies$ $-\M$ je shora omezená. ($\exists K \in \R \forall x \in \M x>K \implies \exists K \in \R \forall x \in -\M x<-K$). Z axiomů \R tedy existuje $s = \sup -\M$. Položme $i = -s$. Tvrdím $i = \inf M$. (Dokážeme z definice suprema a infima, viz skripta).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Archimedova vlastnost]
+            Ke každému $x \in \R$ existuje $n \in \N$ tak, že $x < n$
+            \begin{dukazin}[Sporem]
+                $$ \exists x \in \R \forall n \in \N x≥n $$
+                Tedy $\N$ je omezená podmnožina \R. Tedy existuje $x'\R x" = \sup\N$. Tedy $\forall n \in \N: n≤x'$. Pak také $\forall n \in \N: n+1 ≤ x'$. To ale tvrdí, že $x'-1$ je také $\sup\N$. To je ale spor, protože můžeme zvolit $y = x' - \frac{1}{2}$, pak $y<x'$, tedy z druhé vlastnosti suprema $\exists n \in \N: x' - \frac{1}{2} < n$, ale zároveň už víme, že $\forall n \in \N: n<x'-1$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Hustota \Q a $\R\\\Q$]
+            Nechť $a, b \in\R, a<b$. Pak existují $q\in\Q$ a $\r\in\R\\\Q$ tak, že $q\in(a, b)$ a $r\in(a, b)$.
+            \begin{dukaz}
+                Podle \label{Archimedova vlastnost} $\exists n \in \N$ tak, že $\frac{1}{b-a}<n$, tedy $\frac{1}{n}<b-a$. Zvolme $q = \frac{\lceil an\rceil + 1}{n}$, pak jistě $a<q<b$ a $q\in\Q$. 
+
+                Poté použijeme $q_1 \in (a, b)$ a $q_2 \in (q_1, b)$. Zvolme $r = q_1 + \frac{q_2-q_1}{\sqrt{2}}$. Pak (jelikož druhá část je kladná) $r>q_1$. A $r<q_2 \Leftrightarrow q_1 + \frac{q_2-q_1}{\sqrt{2}}< q_2 \Leftrightarrow \frac{q_2-q_1}{\sqrt{2}}<q_2 - q_1$.
+
+                Tedy $r \in (a, b)$ a $r \in \R\\\Q$, jelikož $r = q_1 + \frac{q_2-q_1}{\sqrt{2}} = p \in\Q \implies \sqrt{2} = \frac{q_2-q_1}{p-q_1}$, ale levá strana je jistě iracionální a pravá racionální. Spor.
+            \end{dukaz}
+        \end{veta}
+
+        \begin{veta}[O $n$-té odmocnině (BD = bez důkazu)]
+            Nechť $n \in \N$ a $x \in \[0, \infty\)$, pak existuje právě jedno $y \in \[0,\infty\)$ tak, že $y^n = x$.
+            \begin{dukaz}
+                Idea: Položme $\M = \{z \in \R\}$. Ukážeme, že $\M \neq \O$ shora omezená $\implies$ $\exists s = \sup\M$. Nyní ukážeme $s^n = x$.
+            \end{dukaz}
+        \end{veta}
 
 
 \end{document}
