@@ -49,7 +49,7 @@
     \begin{poznamka}[Co je lineární algebra]
         Abstraktní studium rovných útvarů a hezkých zobrazení mezi nimi.
 
-        Rovný útvar: Přímka, rovina, 3D prostor $\R^3 \equiv \{(x, y, z)\in \R^3\}$.
+        Rovný útvar: Přímka, rovina, 3D prostor $\R^3 \equiv \{(x, y, z): x, y, z \in \R\}$.
 
         Hezkých zobrazení: 
         \begin{align}
@@ -83,6 +83,84 @@
                 \item Souřadnicové systémy (často nejsou kartézské)
             \end{itemize}
         \end{poznamka}
+
+        \begin{poznamka}[Jak zadat přímku v $\R^2$]
+            \begin{itemize}
+                \item Bod a směrový vektor (parametricky)
+                \item 2 různé body
+                \item Rovnicí přímky: $L = \{(x, y)\in \R^2: ax + by = c\}\ \ a, b, c \in \R$ (implicitně)
+            \end{itemize}
+        \end{poznamka}
+
+        \begin{poznamka}[Jak zadat rovinu v $\R^3$]
+            \begin{itemize}
+                \item Bod a 2 vektory s jiným směrem (parametricky)
+                \item 3 různé body
+                \item přímka a bod, který na ní neleží
+                \item Rovnicí roviny: $P = {(x, y, z)\in \R^3: ax + by + cz = d}  a, b, c, d \in \R$  (implicitně)
+            \end{itemize}
+        \end{poznamka}
+
+        \begin{poznamka}[Jak zadat rovinu v $\R^3$]
+            \begin{itemize}
+                \item Bod a směrový vektor
+                \item 2 různé body
+                \item 2 roviny (soustava 2 lineárních rovnic)
+            \end{itemize}
+        \end{poznamka}
+
+    \subsection{Zobrazení}
+        $\X, \Y$ množiny\\
+        $f: \X \longrightarrow \Y$ $x \in \X \longrightarrow |f| \longrightarrow f(x) \in \Y$
+
+        \begin{priklady}
+            $$ \X = \{\text{Různé symboly}\}, \Y = \{A, B, …, Z\}$$
+            \begin{itemize}
+                \item Zadání pomocí definice: $f(x):= \text{První písmeno tvaru} x$
+                \item Zadání pomocí tabulky: tabulka (jeden řádek symboly ($x$), druhý písmena ($f(x)$))
+                \item Zadání pomocí grafu: Graf (jedna osa symboly, druhá písmena)
+            \end{itemize}
+        \end{priklady}
+
+        \begin{definice}[Rovnost zobrazení]  
+            $$ f: \X \longrightarrow \Y = g: \M \longrightarrow \Y \Leftrightarrow$$
+            $$  $$ 
+        \end{definice}
+
+        \begin{definice}[Prosté (= injektivní)]
+            $$ \forall x,y \in \X, x \neq y: f(x) \neq f(y) $$ 
+        \end{definice}
+
+        \begin{definice}[Na (= surjektivní)]
+            $$ \forall y \in \Y \exists x \in \X: f(x) = y $$ 
+        \end{definice}
+
+        \begin{definice}[Vzájemně jednoznačné (= bijektivní)]
+            Prosté a na.
+        \end{definice}
+
+        \begin{definice}[Skládání]
+                $$ \X \stackrel{\longrightarrow}{f} \Y \stackrel{\longrightarrow}{g}: \X \stackrel{\longrightarrow}{g\circ f} \Z, g\circ f(x) = g(f(x)) $$ 
+        \end{definice}
+
+        Dále obraz zobrazení je množina NA kterou se zobrazuje, obraz množiny v zobrazení je množina, na kterou zobrazí zobrazení prvky dané množiny. Vzor obdobně (z které zobrazuje, ).
+
+        \begin{definice}[Inverze]
+            $f: \X \longrightarrow \Y$ má inverzi $g: \Y \longrightarrow \Y$, pokud $ f \circ g = id_Y$ (identita na Y)
+        \end{definice}
+
+        \begin{veta}
+            $f$ má inverzi, právě když je bijektivní
+            \begin{dukazin}
+                Nechť má inverzi, když není na, tak v \Y přebývají prvky, které se nikam nezobrazují, když není prosté, tak chybí (TODO zlepšit popis).
+
+                Nechť je bijektivní, pak zřejmě má inverzi.
+            \end{dukazin}
+        \end{veta}
+        
+
+
+
     
 
 \end{document}

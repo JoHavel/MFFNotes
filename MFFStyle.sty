@@ -1,6 +1,7 @@
 \usepackage{inputenc}
 \usepackage{polyglossia}
 \setmainlanguage{czech}
+
 \usepackage{csquotes}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{wasysym}
@@ -50,7 +51,7 @@
 
 \newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
 \def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
-\eToSet X Y C N R Z P Q ;
+\eToSet X Y C N R Z P Q M ;
 
 \newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
 \def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
@@ -95,6 +96,7 @@
 \let\theta\vartheta
 
 \DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\rank}{rank}
 
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}
@@ -204,12 +206,17 @@
 
 \theoremstyle{break}
 \newtheorem{veta}{Věta}[section]
+\newtheorem{vetain}[veta]{Věta}
 \newtheorem{lemma}[veta]{Lemma}
+\newtheorem{lemmain}[veta]{Lemma}
+\newtheorem{tvrzeni}[veta]{Tvrzení}
+\newtheorem{tvrzeniin}[veta]{Tvrzení}
 \let\oldproofname=\proofname
 \renewcommand{\proofname}{\oldproofname[Důkaz]}
 \renewcommand\qedsymbol{$\QED$}
 \theoremstyle{definitionbreak}
 \newtheorem{definice}{Definice}[section]
+\newtheorem{definicein}[definice]{Definice}
 \theoremstyle{remarkbreak}
 \newtheorem*{poznamka}{Poznámka}
 \newtheorem*{poznamkain}{Poznámka}
@@ -226,8 +233,13 @@
 
 
 \surroundwithmdframed{veta}
+\surroundwithmdframed{vetain}
 \surroundwithmdframed{lemma}
+\surroundwithmdframed{lemmain}
 \surroundwithmdframed{definice}
+\surroundwithmdframed{definicein}
+\surroundwithmdframed{tvrzeni}
+\surroundwithmdframed{tvrzeniin}
 
 \surroundwithmdframed[style=proofstyle]{poznamka}
 \surroundwithmdframed[style=proofstyle]{dukaz}

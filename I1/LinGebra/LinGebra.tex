@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+\section{Úvod}
+    \begin{definice}[Matice]
+            Reálná matice typu $ m \times n$ je obdélníkové schéma (tabulka) reálných čísel. Prvek na pozici $(i,\ j)$ matice $A$ značíme $a_{ij}$ nebo $A_{ij}$. A $i$-tý řádek matice $A$ značíme $A_{i*}$ a $j$-tý řádek matice $A$ značíme $A_{*j}$.
+    \end{definice}
+
+    \begin{definice}[Vektor]
+        Reálný $n$-rozměrný aritmetický sloupcový vektor (standardní) je matice typu $n \times 1$ a řádkový $1 \times n$.
+    \end{definice}
+
+    \begin{definice}[Soustava lineárních rovnic]
+        Lineární = neznámé jsou v 1. mocnině.\\
+        Soustava = více rovnic.\\
+        Rovnice výraz z neznámých (bez absolutního členu) a koeficientů rovný konstantě.
+        \begin{definicein}[Řešení]
+            Řešením rozumíme každý vektor hodnot neznámých vyhovující všem rovnicím.
+        \end{definicein}
+
+        \begin{definicein}[Matice soustavy]
+            Matice soustavy je matice koeficientů u neznámých.\\
+            Rozšířená matice soustavy je matice soustavy „následována“ vektorem hodnot konstant jednotlivých rovnic.
+        \end{definicein}
+
+        \begin{poznamkain}[Geometrický význam]
+            Průsečík $n$ „přímek“ v $n$ rozměrném prostoru
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Elementární řádkové úpravy]
+        \ 
+        \begin{itemize}
+            \item Vynásobení řádku nenulovým reálným číslem.
+            \item Přičtení jednoho řádku k druhému.
+            \item Výměna dvou řádků. (Není elementární, protože jde vytvořit pomocí prvních dvou.)
+        \end{itemize}
+
+        \begin{tvrzeniin}
+            Elementární řádkové operace zachovávají množinu řešení soustavy.
+            \begin{dukazin}
+                Elementární úpravou neztratíme žádné řešení, protože pokud je $x$ řešením před úpravou, je i po úpravě. A naopak ho lze invertovat, takže žádné řešení ani nepřibude.
+            \end{dukazin}
+        \end{tvrzeniin}
+    \end{definice}
+
+    \begin{definice}[Odsupňovaný tvar matice REF]
+        Matice $A \in \R^{m\times n}$ je v řádkově odstupňovaném tvaru, pokud existuje $r$ takové, že platí: řádky $1,…,r$ (tzv. bazické) jsou nenulové (obsahují alespoň 1 nenulový prvek), řádky $r+1,…,m$ jsou nulové, a navíc označíme-li jako $p_i=min{j; a_{ij}\neq 0}$ (tzv. pivot) pozici prvního nenulového prvku v $i$-tém řádku, tak platí: $p_1<p_2<\cdots<p_r$.
+        \begin{prikladyin}
+            Matice, které jsou, a matice, které nejsou.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{definice}[Hodnost matice]
+            Počet nenulových řádků po převodu do odstupňovaného tvaru (nebo libovolného s maximálním počtem nulových řádků) značený $\rank(A)$.
+    \end{definice}
+
+    Dále jsme dělali Gaussovu eliminaci (nemá řešení ($\rank(A) \neq \rank(A|b)$), má 1 řešení ($\rank(A|b) = n$), má mnoho řešení (pak bazické proměnné vyjádřím pomocí nebazických)).
+
+
+
+\end{document}
