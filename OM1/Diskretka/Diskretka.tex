@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\section{Úvod}
+    \begin{poznamka}[Co je diskrétní matematika]
+        Zkoumá struktury z oddělených částí (protipólem je spojitá matematika).
+        \begin{itemize}
+            \item Množiny, relace
+            \item Kombinatorika
+            \item Teorie grafů
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{definice}[Značení]
+        \begin{itemize}
+            \item \N -- přirozená čísla od 1
+            \item $\N_0$ -- přirozená čísla od 0
+            \item \Z -- celá čísla
+            \item \R -- reálná čísla
+            \item $\(a_1; a_2; …; a_k\)$ -- uspořádaná $k$-tice
+            \item $\{a_1; a_2; …; a_k\}$ -- množina s prvky $a_1; …; a_k$
+        \end{itemize}
+    \end{definice}
+
+    \subsection{Množiny}
+        \begin{poznamka}[Shodnost množin]
+                $$ \X = \Y \Leftrightarrow (\forall z) (z \in \X \Leftrightarrow z \in \Y) $$ 
+        \end{poznamka}
+
+        \begin{poznamka}[Historie teorie množin]
+            70. léta 19. století G. Cantor (zavedl např. porovnávání velikostí množin, viz bijekce, také přišel na to, že ne všechny nekonečné množiny jsou spočetné (stejně velké jako \N)).
+
+            1901 Russelův paradox (B. Russel, rozbil naivní teorii množin, která platila do té doby) -- množina všech množin, které neobsahují sami sebe (ke každé vlastnosti by měla existovat množina všeho, co ji splňuje, ale to očividně nelze).
+
+            Axiomatická teorie množin (opravuje teorii množin, aby zůstali výsledky, ale zmizel R. paradox) -- např. Zermelo-Frankelovy axiomy: všechny objekty jsou množiny, existuje predikát náležení ($x \in \X$ -- $x$ je prvkem \X), pomocí něhož lze definovat další predikáty, jako $\subseteq$. Axiomy jsou definované tak, aby $\X \notin \X$ (dokonce ani nemohou vznikat cykly $\in$). Také zajišťují, že výsledky klasických operací ($\cup$, $\cap$, $\\$, …) a klasické množiny (\N, \Z, \R, …) jsou množiny.
+
+            Nikdo však ještě nedokázal, že další paradox neexistuje. Zároveň se nedařilo dokázat, zda některá tvrzení (např. axiom výběru) platí, nebo ne (dnes je často dokázáno, že se nedají dokázat).
+
+            30. léta C. Gödel dokázal, že každá teorie má tvrzení, které v ní nelze dokázat.
+        \end{poznamka}
+
+        \begin{definice}[Operace s množinami]
+            $$ \Z \in (\X \cup \Y) \Leftrightarrow (\Z \in \X) \lor (\Z \in \Y) $$
+            $$ \Z \in (\X \cup \Y) \Leftrightarrow (\Z \in \X) \land (\Z \in \Y) $$
+
+            Obě operace lze udělat s libovolným počtem (i nespočetným) množin.
+
+            $$ \Z \in (\X \\ \Y) \Leftrightarrow (\Z \in \X \land \Z \notin \Y) $$
+
+            Doplněk \Y, značený $\overline{Y}$ je zkratka pro $\X \\ \Y$, kde \X musí být jasná z kontextu.
+
+            Kartézský součin $\X\times\Y = \{(a,b): a\in\X \land b\in\Y\}$.
+
+            Potenční množina množiny \X : $2^\X - \P(\X) = \{\Y : \Y \subseteq \X\}$
+        \end{definice}
+
+
+
+
+\end{document}
+
