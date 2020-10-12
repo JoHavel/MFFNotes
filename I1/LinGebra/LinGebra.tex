@@ -60,6 +60,73 @@
 
     Dále jsme dělali Gaussovu eliminaci (nemá řešení ($\rank(A) \neq \rank(A|b)$), má 1 řešení ($\rank(A|b) = n$), má mnoho řešení (pak bazické proměnné vyjádřím pomocí nebazických)).
 
+    \begin{definice}[Redukovaný odstupňovaný tvar matice RREF]
+        Matice v odstupňovaném tvaru je v redukovaném OT, jestliže $\forall 0≤i≤r, i \in \N: a_{ip_i} = 1 \land \forall i>x \in \R a_{xp_i} = 0$.
+    \end{definice}
+
+    \begin{poznamka}
+        Tento tvar je jednoznačný.
+    \end{poznamka}
+
+    \begin{definice}[Rovnost matic]
+        Dvě matice se rovnají, pokud mají stejné rozměry a stejné prvky na stejných souřadnicích.
+    \end{definice}
+
+    \begin{definice}[Součet matic]
+        Pro součet musí mít matice stejné rozměry a poté sčítáme po složkách.
+
+        \begin{poznamkain}[Vlastnosti]
+            Komutativita (pokud jsou prvky matice komutativní).
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Násobení skalárem]
+        Násobíme po složkách.
+    \end{definice}
+
+    \begin{definice}[Součin matic]
+        Nechť $A \in \R^{m\times n}$ a $B \in \R^{n \times o}$ jsou matice. Potom matice $C \in \R^{m \times o}$ definovaná jako $c_{ij} = a_{i*}\cdot b_{*j}$ je jejich součinem.
+
+        \begin{poznamkain}[Vlastnosti]
+            Komutativita neplatí.
+
+            Asociativita, distributivita zleva a distributivita z prava platí. Stejně tak „asociativita“ násobení skalárem.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Transpozice]
+        Buď $A\in\R^{m \times n}$. Potom $A^T\in \R^{n \times m}$ definována jako $(A^T)_{ij} = a_{ji}$ je transponovaná matice $A$.
+        \begin{poznamka}[Vlastnosti]
+            Je sama sobě inverzním zobrazením. Distributivita pro všechny operace (pozor u násobení je antisymetrická).
+
+            $$ (A^T)^T = A $$
+            $$ (A + B)^T = A^T + B^T $$
+            $$ (\alpha A)^T = \alpha A^T $$
+            $$ (AB)^T = B^TA^T $$
+        \end{poznamka}
+    \end{definice}
+
+    \begin{definice}[Symetrická a antisymetrická matice]
+        Matice $A$ je symetrická, pokud $A = A^T$, a antisymetrická $A = -A^T$.
+
+        \begin{poznamka}[Vlastnosti]
+            Symetrické matice jsou uzavřené na součet, ale na součin ne.
+        \end{poznamka}
+    \end{definice}
+
+    \begin{definice}[Jednotkový vektor]
+        $e_j$ definovaný jako $\(e_j\)_j = 1$ a $\forall i\neq j \(e_j\)_i = 0$ je $j$-tý jednotkový vektor.
+        \begin{poznamkain}[Vlastnosti]
+            $$  Ae_i = A_{*i} $$
+            $$  e_i^T = A_{i*} $$
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Skalární součin vektorů]
+        $ u\cdot v = u^Tv $ je skalární součin vektorů $u$ a $v$.
+
+        $ uv^T $ je ? součin vektorů $u$ a $v$
+    \end{definice}
 
 
 \end{document}

@@ -7,4 +7,89 @@
 \section{Úvod}
     Bude se pracovat v Matlabu, v moodle je skupina.
 
+% 7. 10. 2020
+
+    \begin{poznamka}[Úkoly počítačového vidění]
+        Detekovat, najít a určit věci (tváře, jestli se smějí, nádory, znaky jako znaky na SPZ, biometrika jako oko, tvář, podpis, budovy, lidi, auta, …) na obrázku
+    \end{poznamka}
+
+    \begin{poznamka}[Rozpoznávání objektu tradičním náhledem]
+        pixely -> určení feature (např. rozdělení oblastí podle tvarů, důležitých bodů, barev, umístění hledaného objektu) expertem -> učení klasifikátoru -> rozpoznávání
+    \end{poznamka}
+    
+    \begin{definice}[Feature vektor]
+        Univerzální převedení obrázku do důležitých věcí.    
+
+        Měl by být invariantní (měl by být stejný při rotaci a škálování), diskriminační (dobře rozdělovat objekty), kompaktní (co nejmenší)
+    \end{definice}
+
+    \begin{definice}[Rozpoznávání]
+        Feature vektory tvoří prostor, kde se algoritmus naučí najít hranici, která odděluje objekty, co jsou nějaké a co jsou jinaké.
+    \end{definice}
+
+    \begin{poznamka}[Klasifikace může být za pomocí]
+        Statistiky -- Bayesova teorie rozhodování
+
+        Pravidel -- Rozhodovací strom
+
+        Metriky -- Technika nejbližšího souseda, diskriminační analýza?, podpůrné vektorové stroje?
+
+        Biologické inspirace -- Neuronové sítě
+    \end{poznamka}
+
+    \begin{definice}[Učení s učitelem]
+        Na training setu víme správné odpovědi.
+    \end{definice}
+
+    \begin{definice}[Naivní Bayesův klasifikátor]
+        Vychází z podmíněné pravděpodobnosti na základě věcí, co víme.
+        \begin{prikladyin}
+            Rozeznávání falešného úsměvu. 91,3\%.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{definice}[Rozhodovací stromy]
+        Pravidly určíme, kterou větví se vydáme. Výhodou je, že nepotřebujeme koncept vzdálenosti.
+        \begin{prikladyin}
+            Rozpoznávání, co se děje na videu (např. vražda). 70\% - 100\%.
+        \end{prikladyin}
+    \end{definice}
+    
+    \begin{definice}[K nejbližších sousedů]
+        Podíváme se na nejbližší známé objekty a rozhodneme se podle nich.
+        \begin{prikladyin}
+            Čtení znaků. 99\% čísla, 94\% velká a 89\% malá písmena.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{definice}[Lineární klasifikace]
+        Rozdělení prostoru nadrovinou. Zlepšením je tzv. podpůrné vektorové stroje? (support vector machines)
+        \begin{prikladyin}
+            Rozpoznávání lidí a věku. 66,9 - 80\% lidi, 63,8 - 75,7\% věk.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{definice}[Umělé neuronové sítě]
+        Sítě z neuronů, které jsou velmi jednoduše simulovány, viz moje maturitní práce. (Na GitHubu pod uživatelem JoHavel).
+        \begin{prikladyin}
+            Rozpoznávání tváře. 90\%. (80\% na portrétech.)
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{poznamka}[Hluboké učení]
+        pixely -> učení se včetně feature -> rozpoznávání
+
+        \begin{prikladyin}
+            AlexNet (top 5 error cca. 16\%)
+
+            Každoročně se pořádá ILSVRC (Imagenet Large Scale Visual Recognition Challenge), kde už se dosáhlo méně než 4\% chyby (152 vrstev NN)…
+        \end{prikladyin}
+    \end{poznamka}
+
+    \begin{poznamka}[Kombinovaný přístup]
+        pixely -> featury nalezené NN -> trénování klasifikátoru -> rozpoznávání
+
+        Hluboké učení se ale zdá účinnější.
+    \end{poznamka}
+
 \end{document}

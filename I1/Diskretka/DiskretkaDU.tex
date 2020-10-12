@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+    
+\begin{priklad}[1]
+    V daleké zemi mají mince v hodnotě 3 koruny a 5 korun. Dokažte, že pomocí těchto mincí lze zaplatit libovolnou částku vyšší než 7 korun. 
+    \begin{dukazin}[přímý]
+        Částky 8, 9, 10 zaplatím jako $3+5$, $3+3+3$, $5+5$. Libovolnou vyšší částku mohu zapsat jako $3k-1$, $3k$, nebo $3k + 1$, $k \in \N - \{1, 2, 3\}$ (jelikož částky jsou celé a větší než $3\cdot 3 + 1$). Tyto částky zaplatím jako:
+        $$3k-1 = 3 + 5 + 3(k-3)$$
+        $$ 3k = 3 + 3 + 3 + 3(k-3) $$ 
+        $$ 3k + 1 = 5 + 5 + 3(k-3) $$ 
+
+        Tedy pro libovolnou částku větší než 7 jsem ukázal konstrukci zaplacení mincemi v hodnotách 3 a 5 korun a tedy všechny tyto částky zaplatit lze.
+    \end{dukazin}
+\end{priklad}
+
+\newpage
+
+\begin{priklad}[2]
+    Dokažte, že lze tabulku o $2^n \times 2^n$ čtvercových políčkách, kde jedno rohové pole chybí, pro každé přirozené $n$ vydláždit kostkami ze 3 čtverečků ve tvaru písmene L. 
+
+
+        \begin{lemmain*}
+            Z kostičky tvaru L s 3 čtverečky $k\times k$ ($k \in \N$) jsem schopen vyrobit kostičku tvaru L s 3 čtverečky $2k\times 2k$.
+            \begin{dukazin}[Konstrukcí]
+                \noindent AABB\\
+                ACCB\\
+                DC\\
+                DD
+            \end{dukazin}
+        \end{lemmain*}
+
+    \begin{dukazin}[Matematickou indukcí]
+        Pro $n = 1$ odpovídá tabulka bez rohového políčka kostičce tvaru L. Zároveň mám kostičku ve tvaru L s 3 čtverečky $2^{n-1}\times 2^{n-1} = 1\times 1$.
+
+        Nechť tedy pro nějaké $n \in \N$ platí, že tabulku o velikosti $2^n \times 2^n$ bez r. políčka umím vyplnit a mám k dispozici kostičku tvaru L s 3 čtverečky $2^{n-1}\times 2^{n-1}$.
+
+        Nyní vezmu tabulku $2^{n+1}\times 2^{n+1}$ bez r. políčka. Vím, že čtverec $2^n\times 2^n$ BRP umím vyplnit, tedy se zaměřím na zbývající část tabulky, tedy tabulku tvaru L skládající se ze 3 čtverečků velikosti $2^n\times 2^n$. Z lemma vidím, že si z kostičky tvaru L s 3 čtverečky $2^{n-1}\times 2^{n-1}$ umím vyrobit kostičku tLs3č $2^n\times 2^n$, kterou pokryji tento zbytek tabulky.
+
+        Tedy jsem dokázal, že nejenom, že pro $n+1$ jsem schopen tabulku vyplnit, ale i sestrojit kostičku nutnou pro pokračování indukce.
+    \end{dukazin}
+\end{priklad}
+
+\newpage
+
+\begin{priklad}
+    Dokažte následující rovnosti: 
+    \begin{align}
+            \sum_{i=1}^n (6i-7) &= 3n^2 - 4n\\
+            \prod_{i=2}^n \frac{i-1}{i} &= \frac{1}{n}
+    \end{align}
+    \begin{dukazin}[(1) matematickou indukcí]
+        Pro $n = 1$ jistě $6 - 7 = -1 = 3 - 4$.
+        
+        Nechť tedy pro nějaké $n \in \N$ rovnost platí. Potom:
+        $$ \sum_{i=1}^{n+1}(6i - 7) = \sum_{i=1}^{n}(6i - 7) + 6(n+1) - 7 = 3n^2 - 4n + 6(n+1) - 7 = $$
+        $$ = 3(n^2 + 2n + 1) - 4n - 4 = 3(n+1)^2 - 4(n+1) $$
+        Tedy výraz rovnost i pro $n+1$, čímž je důkaz matematickou indukcí hotov.
+    \end{dukazin}
+
+    \begin{dukazin}[(2) přímý]
+            $$ \prod_{i=2}^n \frac{i-1}{i} = \prod_{i=2}^n (i-1)\cdot\frac{1}{i} = 1\cdot \frac{1}{2}\cdot 2 \cdot\frac{1}{3} \cdots (n-1) \cdot \frac{1}{n} = 1\cdot 1 \cdots 1 \cdot \frac{1}{n} = \frac{1}{n} $$
+    \end{dukazin}
+
+\end{priklad}
+
+
+\end{document}

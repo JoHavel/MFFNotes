@@ -1,0 +1,233 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\section{Organizační úvod}
+    Přesun nebyl odhlasován.
+
+    \begin{poznamka}[Literatura]
+        \ 
+        \begin{itemize}
+            \item Engelking: General Topology (spíš taková příručka, hodně obtížná)
+            \item Čech: Bodová topologie
+            \item Kelley: General Topology
+            \item Willard: General Topology
+        \end{itemize}
+        Doporučené jsou poslední dvě.
+    \end{poznamka}
+
+    \begin{poznamka}[Podmíny zakončení]
+        Zkouška (ústní) + úkoly ze cvičení (a účast na cvičení)
+    \end{poznamka}
+
+\section{Úvod}
+
+    \begin{poznamka}[Historie]
+        \ 
+        \begin{itemize}
+            \item Euler: mosty ve městě Královec (7 mostů, Eulerovský tah)
+            \item Listing (1847): pojem topologie (bez rigorózních definic)
+            \item Poincaré (1895): Analysis Situs (Poincarého hypotéza )
+            \item Fréchet (1906): definuje metrický prostor (až dodnes)
+            \item Hausdorff (1914): tzv. Hausdorffův TP
+            \item Kuratowski (1922): TP, jak jej známe dnes (formálně)
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{poznamka}[TOPOSYM]
+        V Praze se každých 5 let koná významná konference topologů -- TOPOSYM.
+    \end{poznamka}
+
+
+
+\section{Základní pojmy}
+    Topos = umístění (řečtina).
+
+    \subsection{Topologický prostor, báze, subbáze, váha, charakter}
+
+    \begin{definice}[Topologický prostor (TP)]
+        Uspořádaná dvojice $(\X, \tau)$ se nazývá topologický prostor, pokud ®X je množina, $\tau \subseteq ©P(®X)$ a platí:\\
+        (T1) $\O, ®X \in \tau$\\
+        (T2) jsou-li $®U, ®V \in \tau$, pak $®U \cap ®V \in \tau$\\
+        (T3) je-li $©U \in \tau$, pak $\bigcup ©U \in \tau$.
+    \end{definice}
+
+    \begin{definice}[Topologie]
+        Systém $\tau$ se nazývá topologie na ®X. Prvky množiny ®X se nazývají body. Prvky $\tau$ se nazývají otevřené množiny.
+    \end{definice}
+
+    \begin{definice}[Okolí bodu]
+        Množina $®V \subseteq ®X$ se nazývá okolí bodu $x$, pokud existuje $®U \in \tau$, že $x \in ®U \subseteq ®V$. Množina všech okolí bodu $x$ značíme $©U(x) = ©U_\tau(x)$.
+    \end{definice}
+
+    \begin{definice}[Báze a subbáze]
+        Soubor množin $©B \subseteq \tau$ se nazývá báze topologie $\tau$, pokud pro každé $®U\in \tau$ existuje $©U \subseteq ®B: \bigcup ©U = ®U$. Soubor $©S \subseteq \tau$ se nazývá subbáze topologie $\tau$, pokud $\{\bigcap ©F: ©F \subseteq ©S \text{konečná}\}$ je báze topologie $\tau$.
+    \end{definice}
+
+    \begin{tvrzeni}[Charakterizace otevřené množiny pomocí okolí]
+        Ať $(®X, \tau)$ je TP a $®U \in ®X$. Pak $®U \in \tau$, právě když $\forall x \in ®U \exists ®V\in ©U(x): ®V \subseteq ®U$
+        \begin{dukazin}
+            Důkaz ($\implies$) vidíme $®U = ®V$.
+
+            Opačně víme $\forall x \in ®U \exists ®V_x\in©U(x): ®V_x \subseteq ®U$. $\exists ®W_x \in \tau: x\in ®W_x \subseteq ®U_x$. $®U = \bigcup_{x\in ®U}®W_x \in \tau$. Tedy $®U \in \tau$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{priklad}
+        Je-li $(®X, \rho)$ metrický prostor (MP), pak soubor všech $\rho$-otevřených množin tvoří topologii na množině ®X.
+    \end{priklad}
+
+    \begin{definice}[Metrizovatelný TP]
+        TP $(®X, \tau)$ se nazývá metrizovatelný, pokud na množině ®X existuje metrika $\rho$ tak, že topologie odvozené z $(®X, \rho)$ splývá s topologií $\tau$.
+    \end{definice}
+
+    \begin{priklad}
+        Je-li $(®X, \rho)$ MP, pak systém všech otevřených koulí tvoří bázi topologie $\tau_\rho$.
+        \begin{prikladyin}
+            Všechny otevřené intervaly tvoří bázi topologie na ®R.
+            
+            Systém $\{(-\infty, b), (a, \infty): a,b \in ®R\}$ je subbáze topologie na ®R.
+        \end{prikladyin}
+    \end{priklad}
+
+    \begin{priklad}[Diskrétní a indiskrétní TP]
+        Je-li ®X množina, pak $(®X, ©P(®X))$ je TP, nazývá se diskrétní TP (a vždy je metrizovatelný). Naopak $(®X, \{\O, ®X\})$ se nazývá indiskrétní TP. (Pokud $|®X| ≥ 2$, pak indiskrétní TP není metrizovatelný.)
+    \end{priklad}
+
+    \begin{tvrzeni}[Vlastnosti báze]
+        Je-li $(®X, \tau)$ TP a ©B jeho báze, pak\\
+        (B1) $\forall ®U, ®V \in ©B \forall x \in ®U \cap ®V \exists ®W \in ®B: x \in ®W \subseteq ®U \cap ®V$,\\
+        (B2) $\bigcup ©B = ®X$.
+
+        Je-li ®X libovolná množina a $©B \subseteq ®P(®X)$ splňuje podmínky (B1), (B2), pak na ®X existuje jediná topologie, jejíž báze je $®B$.
+
+        \begin{dukazin}
+            První část je snadná (průnik 2 množin báze je otevřený, tj. prvkem topologie, tedy se dá zapsat jako sjednocení podmnožiny báze).
+
+            Druhá část: Mějme tedy ®X a ©B z věty splňující obě podmínky. Definujme $\tau := \{\bigcup ©U: ©U \subseteq ©B\}$. $\tau$ je topologie na ®X (ověříme, že $\tau$ splňuje podmínky topologie).
+
+            Zároveň volba $\tau$ je jediná množná, jelikož každý její prvek se musí dát vyjádřit jako sjednocení báze a opačně.
+        \end{dukazin}
+
+        \begin{dusledekin}
+            Je-li ®X množina, $©S \subseteq ©P(®X)$ a $\bigcup©S=®X$, pak $©S$ je subbáze jednoznačně určené topologie na ®X.
+            \begin{dukazin}
+                    $ ©B = \{\cap ©F: ©F \subseteq ©S \text{konečná}\} $ splňuje podmínky (B1) a (B2) předchozího tvrzení (B2 \ definice ©S, B1 protože $®U, ®V \in ©B, ®U = \bigcup ©F_1, ®V = \bigcap ©F_2, ©F_1, ©F_2 \subseteq ©S \text{konečné}$. $ ®U \cap ®V = \bigcap (©F_1 \cup ©F_2) \in ©B $. (Dokonce celý průnik je prvkem ©B, nejenom pro každý prvek existuje množina, která ho obsahuje, je podmnožinou průniku a je v ©B).
+            \end{dukazin}
+        \end{dusledekin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Vlastnosti systému všech okolí]
+        Je-li $(®X, \tau)$ TP, pak soubory všech okolí $©U_\tau(x), x \in ®X$ splňují\\
+        (U1) $ \forall x \in ®X: ©U(x) ≠ \O, x \in \bigcap©U(x)$,\\
+        (U2) $\forall ®U \in ©U(x) \forall ®V: ®U \subseteq ®V \subseteq ®X \implies ®V \in ©U(x)$,\\
+        (U3) $\forall ®U, ®V \in ©U(x): ®U \cap ®V \in ©U(x)$,\\
+        (U4) $\forall ®U \in ©U(x) \exists ®V \in ©U(x) \forall y \in ®V: ®U \in ©U(y)$
+
+        Je-li ®X množina a systémy množin $©U(x) \subseteq ©P(®X), x \in ®X$ splňující podmínky (U1-4), pak na množině ®X existuje jediná topologie $\tau$, že $©U(x) = ©U_\tau(x), x \in ®X$.
+        \begin{dukazin}
+            První část snadná. (Domácí cvičení.)
+
+            Položme $\tau = \{®U \in ©P(®X): \forall x \in ®U, ®U\in©U(x)\}$. $\tau$ je topologie na $®X$. Z (U1) a (U2) vyplyne (T1). Atd…
+        
+        \end{dukazin}
+    \end{tvrzeni}
+    
+    \begin{definice}[Báze okolí]
+        Ať $(®X, \tau)$ je TP. Systém množin $©B(x) \subseteq ©P(®X)$ se nazývá báze okolí v bodě $x$, pokud $©B(x) \subseteq ©U_\tau(x)$ a pro každé $®V \in ©U_\tau(x)$ existuje $®U \in ©B(x)$, že $®U \in V$???. Indexovaný soubor $\{©B(x): x \in ®X\}$ se nazývá báze okolí prostoru $®X$, pokud $\forall x \in ®X: ©B(x)$ je báze okolí v bodě $x$.
+    \end{definice}
+
+    \begin{tvrzeni}[Vlastnosti báze okolí]
+        Je-li $(®X, \tau)$ TP a $\{©B(x): x \in ®X\}$ báze okolí, pak\\
+        (O1) $©B(x) ≠ \O, x \in \bigcap ©B(x), x \in ®X$,\\
+        (O2) $\forall ®U, ®V \in ©B(x) \exists ®W \in ©B(x): ®W \subseteq ®U \cap ®V$,\\
+        (O3) $\forall ®U \in ©B(x) \exists ©B(x) \forall y \in ®V \exists ®W \in ©B(y): ®W \subseteq ®U$.
+
+        Je-li ®X množina a $©B(x)\subseteq ©P(®X), x \in ®X$ soubory splňující (O1), (O2), (O3), pak na množině ®X existuje jediná topologie, jejíž báze okolí je $\{©B(x): x \in ®X\}$.
+
+        \begin{dukazin}
+            První část je snadná. 
+
+            Položme $©U(x) = \{®U \in ©P(x): \exists ®B \in ©B(x): ®B \subseteq ®U\}, x \in ®X$. Ověříme, že splňuje (U1-4). (U1) z (O1). (U2) z definice $©U$. (U3) z (O2), (U4) z (O3).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Váha prostoru]
+        Ať $(®X, \tau)$ je TP. Pak váha prostoru $(®X, \tau)$ je nejmenší mohutnost báze prostoru $(®X, \tau)$. Značíme ji $\weight(®X) = \weight(®X, \tau)$
+
+        Charakter v bodě $x$ je nejmenší mohutnost báze okolí bodu $x$. Značíme ho $\chi(x, ®X)$.
+
+        Charakter prostoru ®X je $\sup\{\chi(x, ®X): x \in ®X\}$.
+
+        \begin{prikladyin}
+            $\weight(®R) = \omega$ (®R má spočetnou bázi).
+
+            $\weight(®X, ©P(®X)) = |®X|$ ($\{\{x\}: x \in ®X\}$ je báze $(®X, ©P(®X))$)
+
+            $ \weight(®X, \{\O,\{®X\}\}) = 1 $
+        \end{prikladyin}
+
+        \begin{prikladyin}
+            Je-li $(®X, \tau)$ metrizovatelný, pak $\chi(x, ®X) ≤ \omega$
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{tvrzeni}
+            Ať $(®X, \tau)$ je TP a $x \in ®X$. Pak $\chi(x, ®X)≤\weight(®X)$
+        \begin{dukazin}
+            Ať ©B je báze $(®X, \tau)$, že $|©B| = \weight(®X)$. Položme $©B(x):=\{®U \in ©B: x \in ®U\}$. $©B(x)$ je báze okolí v bodě $x$.
+
+            $|©B(x)|≤|©B|$, protože $©B(x) \subseteq ©B$. $\chi(x, ®X)≤|©B(x)|≤|©B|=\weight(®X)$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \subsection{Vnitřek, Uzávěr, hranice}
+        \begin{definice}[Uzavřená množina]
+            Ať $(®X, \tau)$ je TP. Množina $®F \subseteq ®X$ se nazývá uzavřená, pokud její doplněk je otevřená množina (neboli $\x \setminus ®F \in \tau$).
+        \end{definice}
+
+        \begin{definice}[Obojetná množina (clopen set)]
+            Množina se nazývá obojetná, pokud je uzavřená a otevřená zároveň.
+        \end{definice}
+
+        \begin{definice}[Uzávěr]
+            Je-li $®A \subseteq ®X$, pak uzávěr ®A je $\cl(®A) = \overline{®A} = \bigcap\{®F \subseteq ®X, ®A \subseteq ®F, ®F \text{je uzavřená}\}$.
+        \end{definice}
+
+        \begin{definice}[Vnitřek množiny]
+            Vnitřek množiny $®A$ je $\Int®A = ®A^0 = \bigcup\{®U \in \tau: ®U \subseteq ®A\}$.
+        \end{definice}
+
+        \begin{definice}[Hranice množiny]
+                Hranice množiny ®A je $\delta ®A = \overline{®A} \cap \overline{®X \setminus ®A}$
+        \end{definice}
+
+        \begin{tvrzeni}[Vztah vnitřku a uzávěru]
+                Ať $(®X, \tau)$ je TP, $®A\subseteq®X$, pak $®X \setminus \overline{®A} = \Int(®X \setminus ®A)$ a $®X \setminus \Int®A = \overline{®X \setminus ®A}$.
+
+            \begin{dukazin}
+                $® \setminus \overline{®A}$ je otevřená, navíc $®X \setminus \overline{®A} \subseteq ®X \setminus ®A$. Tedy $®X \setminus \overline{®A} \subseteq \Int(®X\setminus ®A)$. $\Int(®X \setminus ®A)®X \setminus ®A$, přechodem k doplňku $®A \subseteq ®X \setminus \Int(®X \setminus ®A)$. Tedy $\overline{®A} \subseteq ®X \setminus \Int(®X)???$. Přechodem k doplňku: $\Int(®X \setminus ®A) \subseteq ®X \setminus \overline{®A}$.
+
+                Druhou část můžeme dokázat přechodem k doplňku a převedením na první část.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Charakterizace uzávěru]
+                Buď $(®X, \tau)$ TP, $x \in ®X, ®A \subseteq ®X$ a $©B(x)$ báze okolí v bodě $x$. Pak následující podmínky jsou ekvivalentní\\
+            1) $x \in \overline{®A}$,\\
+            2) $\forall ®U \in ©U(x): ®U\cap ®A ≠ \O$,\\
+            3) $\forall ®U \in ©B(x): ®U\cap ®A ≠ \O$.
+
+            \begin{dukazin}
+                1) -> 2) sporem: Kdyby pro nějaké $®U \in ©U(x): ®U \cap ®A = \O$, pak existuje ®V otevřené: $x \in ®V \subseteq ®U$. $®V \cap®A = \O$. $®X \setminus ®V$ je uzavřená a $®A \subseteq ®X \setminus ®V$. Pak $x \in \overline{®A} \subseteq ®X \setminus ®V$, neobsahuje $x$. $\lightning$.
+
+                2) -> 3) triviální
+
+                3) -> 1) sporem: $x \notin \overline{®A}$ pak $x \in ®X\setminus \overline{®A}$. Pak existuje $®U \in ©B(x): x \in ®U \subseteq ®X \setminus \overline{®A}$. Pak ???
+            \end{dukazin}
+        \end{tvrzeni}
+
+\end{document}

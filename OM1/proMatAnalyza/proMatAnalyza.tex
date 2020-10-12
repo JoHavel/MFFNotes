@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\section*{Organizační úvod}
+   Přednášky budou nahrávány, referáty ne.
+
+   Kontaktovat přes e-mail slavikova@karlin.mff.cuni.cz
+
+   Teoretické příklady odevzdávat přes Moodle.
+
+\section{Prvočísla}
+    \begin{definice}[Dělitel]
+        Číslo $d \in \Z$ nazýváme dělitelem čísla $n \in \Z$, značeno $d\div n$, pokud existuje $k \in \Z$ splňující $n = kd$.
+    \end{definice}
+    
+    \begin{definice}[Prvočíslo]
+        Řekněme, že $n \in \N$ je prvočíslo, pokud $n>1$ a jeho jediní kladní dělitelné jsou $1≥n$.
+        \begin{prikladyin}[Několik prvních prvočísel]
+            2, 3, 5, 7, 11, 13, 17, …
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{veta}[Základní věta aritmetiky]
+        Každé přirozené číslo $n≥2$ lze zapsat právě jedním způsobem jako součin prvočísel ve tvaru:
+        $$ n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k} $$ 
+        $$ k \in N, p_1<p_2<\cdots<p_k \text{jsou prvočísla}, \alpha_1,…,\alpha_k \in \N$$
+        \begin{prikladyin}
+                $$ 2020 = 2^2 \cdot 5 \cdot 101 (k = 3, p_1 = 2, p_2 = 5, p_3 = 101, \alpha_1 = 2, \alpha_2 = 1, \alpha_3 = 1) $$ 
+        \end{prikladyin}
+        \begin{dukazin}
+            1. krok = existence rozkladu (indukcí):
+            
+            Pro $n = 2$ zjevně platí $2 = 2^1$ ($k = 1, p_1 = 2, \alpha_1 = 1$).
+
+            Předpokládejme, že tvrzení platí pro všechna $2≤x≤n$. Pokud je $n+1$ prvočíslo, pak $n+1 = (n+1)^1$ ($ k = 1, p_1 = n+1, \alpha_1 = 1$). Pokud není, pak $n+1 = a\cdot b$, kde $1 < a ≤ b < n+1$. Podle indukčního předpokladu lze $a$ i $b$ rozložit na prvočísla. Zápis rozkladu $n+1$ pak bude sjednocením všech prvočísel a součtem příslušných $\alpha$, pokud se prvočísla vyskytují v $a$ i $b$. (V přednášce byl zaveden zápis bez mocnin, kde prvočísla nemusí být různá, a pak proveden součin.)
+
+            2. krok = jednoznačnost rozkladu:
+
+            \begin{lemmain}[Euklidovo lemma (bez důkazu)]
+                Nechť $a, b \in \Z$ a nechť $p$ je prvočíslo takové, že $p\mid ab$. Pak $p\mid a$ nebo $p\mid b$.
+            \end{lemmain}
+
+            Použijeme důkaz sporem. Předpokládejme, že tvrzení neplatí. Vybereme nejmenší z přirozených čísel, pro které rozklad není jednoznačný. Označme ho $n$.
+            $$ n = q_1\cdots q_l = r_1 \cdot r_m\ (q_1,…,q_l,r_1,…,r_m \text{prvočísla}) $$
+            A není pravda, že $(r_1,…,r_m)$ je permutací $(q_1,…,q_l)$.
+
+            Protože $q_1\mid n$, pak $q_1 \mid r_1 \cdots r_m$ a podle Euklidova lemmatu $q_1$ dělí alespoň jedno z čísel $r_1,…r_m$. BÚNO $q_1 | r_1$, tedy $q_1 = r_1$. Vydělením $n$ číslem $q_1$ dostaneme menší přirozené číslo, které nemá jednoznačný rozklad. ($\frac{n}{q_1} = q_2\cdots q_l = r_2 \cdots r_m$). $\lightning$
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Prvočísel je nekonečně mnoho.
+        \begin{dukazin}
+            Důkaz sporem. Předpokládejme, že prvočísel je konečně mnoho, a  označme $p$ největší prvočíslo. Definujeme:
+            $$ n_p = 2\cdot 3\cdot 5 \cdot\cdots\cdot p + 1 $$
+            Pak $n_p > p$ a $n_p$ dává zbytek 1 po dělení všemi prvočísly, tedy není ani jedním dělitelné. Tedy $n_p$ nemá prvočíselný rozklad. $\lightning$ se základní větou aritmetiky.
+        \end{dukazin}
+
+        \begin{poznamkain}
+            Důkaz nedává konstrukci vyššího prvočísla, pouze dokazuje jeho existenci.
+        \end{poznamkain}
+    \end{veta}
+
+    \begin{veta}[Hustota prvočísel (bez důkazu), Legendre 1896]
+        \begin{prikladyin}
+            Mezi 1 a 100 je 25 prvočísel.
+
+            Mezi $10^7$ a $10^7 + 100$ jsou pouze 2 prvočísla.
+        \end{prikladyin}
+
+        Označme $\Pi(N)$ počet prvočísel $≤N$.
+
+        Existují konstanty $c_1, c_2>0$ takové, že
+        $$ \frac{c_1}{\log N} ≤ \frac{\Pi(N)}{N} ≤ \frac{c_2}{\log N} $$ 
+        \begin{poznamkain}
+            Prvočísel je nekonečně mnoho, ale „řídnou“. Musí tedy existovat dlouhé úseky bez prvočísel.
+            \begin{prikladyin}
+                Interval $\[n! + 2, …, n! + n\]$ neobsahuje žádné prvočíslo. (Jelikož $k$-té číslo je dělitelné $k+1$.)
+            \end{prikladyin}
+        \end{poznamkain}
+    \end{veta}
+
+\section{Čísla racionální a iracionální}
+    \begin{definice}[Racionální a iracionální číslo]
+        Číslo $x \in \R$ je racionální, pokud ho lze zapsat ve tvaru $x = \frac{p}{q},\ q \in \N,\ p \in \Z$.
+
+        Číslo $y \in \R$ je iracionální, pokud není racionální.
+    \end{definice}
+
+    \begin{priklady}[Z přednášky]
+        $\sqrt{2}$ je iracionální.
+    \end{priklady}
+
+    \begin{veta}
+            Nechť $n \in \N$ je taková, že $\sqrt{n} \notin \N$ (tedy $n$ není druhou mocninou přirozeného čísla). Pak $\sqrt{n}$ je iracionální.
+    \end{veta}
+
+    \begin{veta}[Referát 1]
+            Existují iracionální čísla a,b taková, že $a^b$ je racionální. (Text: skripta z MA, str. 14-15.)
+    \end{veta}
+
+    \begin{priklad}[Teoretický příklad 1]
+        Nechť $n \in \N$ a nechť $a_1, …, a_n$ jsou kladná reálná čísla, taková, že $a_1 \cdot\cdots\cdot a_n = 1$.
+
+        Dokažte, že
+        $$ (1+a_1) \cdot\cdots\cdot (1+a_n) ≥ 2^n. $$ 
+    \end{priklad}
+
+\end{document}

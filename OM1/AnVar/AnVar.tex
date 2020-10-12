@@ -32,11 +32,143 @@
 
 
 \section{Stokesova věta v $\R^n$, diferenciální formy v $\R^n$}
-    \begin{veta}[Moderní (= obecná) formulace Stokesovy věty]
+\begin{veta}[Moderní (= obecná) formulace Stokesovy věty = Cíl (Cartan 1945)]
         $$ \int_{S} {d\omega} = \int_{\delta S}\omega $$
         Kde S je buď 'singulární' \k-plocha v $R^n$ (tato část) nebo \k-varieta s okrajem (3. část).
           
     \end{veta}
+
+% 7. 10. 2020
+
+    \subsection{Vnější algebra vektorového prostoru}
+        Motivace: Jak násobit vektory z $\R^n$?
+
+        \begin{poznamka}
+                Násobení na $\R^n$ zachovává Eklidovskou normu (tzn. $||x\cdot y = ||x|| \cdot ||y||$) pouze v dimenzích 1, 2, 4, 8 (= \R, \C, kvaterniony, oktocosi).
+        \end{poznamka}
+
+        \begin{definice}[Algebra]
+            Algebra nad tělesem k (= \R) je vektorový prostor $\A$ nad k s bilineárním zobrazením ….
+
+            Algebra je asociativní, jestliže co asi.
+
+            Algebra má jednotku, jestliže existuje co asi ;)
+        \end{definice}
+
+        \begin{definice}[]
+            Nechť $\Lambda$ je vektorový prostor nad $\R$
+        \end{definice}
+
+% od 7. 10. 2020 nestihnuto spoustu věcí!
+
+        \begin{poznamka}[Vlastnosti vnější algebry]
+            $\dim \Lambda*(\V) = 2^n$, protože každý vektor je určen bázovými vektory, kterých je jako podmnožin $n$ prvkové množiny
+
+            TODO
+
+            \begin{align*}
+                e_I \land e_J &= 0, \text{je-li} I \cap J \neq \O
+                          &= sgn(\text{permutace})e_{I\cup J}, \text{je-li} I \cap J = \O
+            \end{align*}
+            
+            Je-li $\omega \in \Lambda^k(\V)$ a $\tau \in \Lambda^l(\V)$, potom $\omega\land\tau = (-1)^{kl}\tau\land\omega \in \Lambda{k+l}(\V)$.
+            \begin{dukazin}
+                (Dokázat, že prohození je právě $k\cdot l$, následně z linearity násobení)
+            \end{dukazin}
+        \end{poznamka}
+
+        \begin{veta}
+            Nechť \V je vektorový prostor s bází $e_1,…e_n$. Nechť $v_1, v_2, … v_k \in \V$, kde $1≤k≤n$. Potom $v_i = \sum_{j=1}^n v_i^j e_j$ a označme $\W = \(v_i^j\)_{j = 1,…,n; i = 1,…,k}$ je matice $n \times k$ jejich souřadnice (sloupec $i$ je vektor $i$).
+            Je-li $J$ k-prvková podmnožina $\{1,…,n\}$, označ $W_j:=(v^j_i)_{j \in I; i=1,…,k}$ (minor $k\times k$). Potom $v_1 \land v_2 \land … \v_k = \sum_{|J| = k}(\det(W_j))e_J$.
+            \begin{dukazin}
+                Posčítáním. A dokázáním, že to je definice determinantu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Skalární součin na $\Lambda*(\V)$]
+            Nechť \V je vektorový prostor se skalárním součinem (?, symetrický) $<\cdot,\cdot>$ a $e_1,…,e_n$ je ortonormální báze \V.
+
+            Definujeme skalární součin ve $\Lambda*(\V)$ jako:
+            $$ \left\lbrace…\right\rbrace $$ 
+            TODO!
+        \end{definice}
+
+        \begin{umluva}
+            $\R^n$ chápeme jako Euklidovský prostor se standardní bází $e_1, … e_n$ a TODO!
+        \end{umluva}
+
+        \begin{priklady}
+            Nechť $R$ je rovnoběžnostěn v $\R^n$ určený vektory $v_1,…,v_k$, kde $1≤k≤n$. Potom $k$-dimenzionální objem $R$ je roven:
+            $$ \vol_k(R) = ||v_1\land …\land v_k||, $$
+            kde $||x||$ je euklidovská norma.
+            \begin{dukazin}
+                TODO!
+            \end{dukazin}
+        \end{priklady}
+
+        TODO TODO!
+
+        \begin{definice}[Vektorový součin v $\R^n$]
+            Nechť $v_1,…,v_{n-1} \in \R^n$. Potom jejich vektorový součin $v_1 \times v_2 \times\cdots\times v_{n-1} \in \R^n$ je definován jako $*(v_1 \times \cdots \times v_{n-1}) = v_1 \land v_2 \land … \land v_{n-1}$
+            \begin{poznamkain}
+                Ve skriptech označeno $\[v_1,…,v_{n-1}\]$.
+            \end{poznamkain}
+            \begin{poznamkain}[Platí]
+                $$v_1 \times \cdots \times v_{n-1} = (-1)^{n-1}*(v_1\land … \land v_{n-1}) (z Cv.2 TODO)$$
+
+            $$ \forall \omega \in \R^n: \<\omega, v_1 \times \cdots \times v_{n-1}\> = \det(\omega|v_1|cdots|v_{n-1}) $$
+            \end{poznamkain}
+        \end{definice}
+    
+
+    \subsection{Rozložitelné $k$-vektory}
+        Nechť \V je vektorový prostor. Nechť $\omega \in \Lambda^k(\V)$. Položme
+        $$ \ker\omega:= \{v\in\V|\omega\land v = 0\}. $$
+        Platí 1. $\ker\omega$ je podprostor
+        
+        \begin{definice}[Rozložitelné $k$-vektory]
+            $\omega \in \Lambda^k(\V)$ je rozložitelný, pokud existují $v_1,…,v_k\in\V$ takové, že $\omega = v_1\land …\land v_k$.
+        \end{definice}
+
+        Platí 2. $v_1 \land … \land v_k \neq 0 \Leftrightarrow$ vektory $v_1,…,v_k$ jsou lineárně nezávislé.
+
+        Platí 3. Nechť $\omega = v_1\land … \land v_k \neq 0$. Potom
+        $$ \ker\omega = \LO(v_1,…,v_k) $$ 
+
+        \begin{definice}
+            $$ R_k(\V) := \{\omega \in \Lambda^k(\V)| \omega \neq 0 \text{rozložitelný}\}$$
+            $$G_k(\V) := \{L|L k\text{- dimenzionální podprostor \V}\} (\text{tzv. Grassmannian})$$
+        \end{definice}
+
+        Platí 4. Zobrazení $\phi: R_k(\V) \rightarrow G_k(\V)$: $\omega \rightarrow \ker\omega$ je na, ale není prosté. Skutečně máme
+        $$ \ker\omega = \ker\omega' \Leftrightarrow \exists\alpha\in\R\\?: \omega' = \alpha\omega. $$
+
+        \begin{priklady}[Nerozložitelné $k$-vektory]
+            Platí 5. Pro $\V = \R^n$ jsou všechny $1$-vektory, $n$-vektory i $(n-1)$-vektory rozložitelné.
+            \begin{prikladin}
+                Rozložte $e_{123} + e_{124} + e_{234} \in \Lambda^3(\R^4)$, kde $e_{123} = e_{\{ 1, 2, 3 \}}$.
+            \end{prikladin}
+
+            Musíme tedy hledat v $\R^4$ a „výše“.
+            \begin{prikladin}
+                Najděte nerozložitelný 2-vektor $\omega \in \Lambda^2(\R^4)$
+            \end{prikladin}
+        \end{priklady}
+
+        \begin{poznamka}[Projektivní prostor]
+            Mezi nejdůležitější Grassmanniany patří projektivní prostor:
+
+            Nechť \V je vektorový prostor. Polož $P(V) := \{1\text{-dimenzionální podprostor \V}\}$.
+
+            Tvrdíme $P(\V) = G_1(\V)$.
+
+            TODO?
+
+        \end{poznamka}
+
+        \begin{veta}[Plückerovo vnoření]
+            $$ G_k(\V) \rightarrow ? P(\R^{(n nad k)}) $$, je-li $\dim\V = n$
+        \end{veta}
 
 
 \section{Variety, Stokesova věta na varietách}

@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\section*{Organizační úvod}
+    Bude odevzdávací systém, zatím odevzdávat domácí úkoly. (Musíme splnit něco jako 7 domácích úkolů).
+
+\section{Úvod}
+    .tex + .tfm (tex font metric = rozměry písmen) $\leftarrow$ TEX $\leftarrow$ DVI (formát nezávislý na OS) $\leftarrow$ DVI moduly = DVI drivery (dvips, xdvi, pdftex (ten navíc potřebuje .tfm a fonty)).
+
+    \TeX umí primitiva. V tom se ale sázení řídí špatně, tedy existují nadstavby (plain\TeX, nadstavba od autora, nad nim jsou postavené con\TeX t, opmac a \LaTeX) a nadstavby mimo, jako AMS\TeX, Xe\TeX, Bib\TeX.
+
+    tex nebo pdftex spouští plain\TeX nebo s přepínačem -ini ini\TeX, který umí zkompilovat makra do formatu.
+
+    Literatura:
+    \begin{itemize}
+        \item Knuth: The \TeX book: nejdřív je to takový tutoriál, potom \TeX uvnitř
+        \item Olšák: \TeX book naruby: v opačném pořadí, česky
+        \item Knuth: \TeX the program (popsaný zdroják \TeX u)
+    \end{itemize}
+
+    \subsection{Sazba odstavce}
+        Vstup = horizontální seznam $\rightarrow$ (proces předělání se spouští příkazem par) zalámaný odstavec
+
+        Horizontální seznam obsahuje:
+        \begin{itemize}
+            \item box (h, d, w): písmenko, slitek (ligatura), hbox / vbox
+            \item linka (h, d, w): hrule, vrule (liší se tím, kde se mohou vyskytnout, tedy hrule nepatří do horizontálního seznamu)
+            \item discretionary break (pevné šířky): nobreak (stav bez rozdělení) pre-break (na konci řádku) post-break (na začátku dalšího)
+
+            \item whatsit (?): přepínač jazyka, …
+            \item vertikální materiál (nemá vliv na horizontální sazbu, při zlomu vypadne do vertikálního seznamu), objeví se například po řádku s \verb'\vadjust{…}'
+            \item lepidlo (= glue) (= pružné výplňky) -- věc s fixní šířkou, roztažitelností a stlačitelností (ty se udávají buď přímo v jednotkách jako px apod, nebo v jednom ze 3 nekonečen (také jednotka) fil, fill, filll).
+            \item kern (= pevné výplňky) -- věc pouze s fixní šířkou, automaticky vzniká například pro oddálení kulatých písmen / přiblížení plochých…
+            \item penalty (= trest) -- číslo, které říká, jak moc chceme / nechceme zlomit
+            \item math on/off -- zapíná a vypíná matematiku
+
+        \end{itemize}
+        Prvních 5 je non-discardable (jsou vidět). Ostatní discardable.
+
+        Možná místa zlomu jsou:
+        \begin{itemize}
+            \item glue (když před sebou má něco non-disc. a není uvnitř math)
+            \item před kernem (když za ním je glue a není uvnitř math)
+            \item math off (následovaný glue)
+            \item v penaltě (ne větší než 10000)
+            \item v discretionary breaku (ten se ale přidává až při druhém průchodu = když se nezalomí bez něho)
+        \end{itemize}
+
+        V zlomu se z předchozích věcí stane box řádku, u kterého se spočítají rozměry a spočítá se, jak moc je tento zlom špatný (badness), tím se vybere ten nejlepší zlom a vysází se „jeho“ řádek. Následně se zahodí všechny discardable věci a pokračuje se na dalším řádku.
+
+        Badness boxu se počítá (pokud součet nekonečných roztažitelností není nula, pak je badness 0):
+        $$ \left\lceil 100 \cdot \(\frac{\text{deformace}}{\text{pružnost(součet roztažitelností / stlačitelností)}}\)^3 \right\rceil $$
+
+        Roztahuje (stlačuje) se v nejvyšším nenulovém nekonečnu a to v poměru hodnot roztažnosti.
+
+        Nestlačuje se o více jak 100\% (dá badness ∞).
+
+        \verb|\hbadness| říká badness, při které už se vypisuje, že se \TeX pokusí (už ho dělá, nevybírá) vysázet box s touto badness.
+
+        \verb|\tolerance| (při prvním průchodu \verb|\pretolerance|, která je zpravidla o dost nižší) říká, že větší badness už se zahazuje. Při třetím průchodu už se používá, že roztažnost zvýšíme o \verb|\emergencystretch|
+
+        Lámání odstavce funguje tak, že se prohledají zlomy (každý bod zlomu se dá považovat za vrchol grafu, hrany jsou ohodnoceny tzv. demerits (počítá se z badness a dalších věcí)).
+
+        Demerits:
+        $$ (l + b)^2 \pm p^2 + extras $$ (l = \verb|\linepenalty| -- přidává se vždy (aby se nelámalo všude, kde lze), b = badness, p = penalta na níž se láme resp. \verb|\hyphenpenalty| nebo \verb|\exhyphenpenalty|, extras = \verb|\adjdemerits| (10000, přidává se, když typ řádku není sousední -- aby nebyl velmi roztažen, když předchozí byl stlačen) + \verb|\doublehyphendemerits| (10000, přidává se, když vyjdou 2 neprázdné pre-breaky za sebou) + \verb|\finaldemerits| (5000, neláme se na předposledním řádku odstavce))
+
+        Typ řádku: 0 (roztažení o více jak 100\%), 1 (roztažení o 50-100\%), 2 (změna max. o 50\%), 3 (stlačení o  více jak 50\%)
+
+
+    \begin{priklad}[Domácí úkol]
+        Zkuste vymyslet, co naskládat do horizontálního seznamu, aby se mezera dala zlomit, ale zůstala na dalším řádku.
+    \end{priklad}
+
+    Příště tvar odstavce (left / right)skip, jak vzniká hor. seznam, algoritmus na pakování boxů.
+    
+\end{document}

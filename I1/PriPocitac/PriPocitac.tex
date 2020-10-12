@@ -47,10 +47,41 @@
             Pořadí, v jakém se bity posílají (MSb-first / LSb-first)
         \end{definice}
         \begin{definice}[Přenosová rychlost (transfer rate)]
-            Rychlost, udává se v b / s nebo bauds (=symbols) / s.
+                Rychlost, udává se v b / s (bps) nebo bauds (=symbols=včetně nedatových věcí jako mezery mezi „pakety“) / s.
         \end{definice}
         
+        \begin{definice}[Idle stav linky]
+                Když se nic nepřenáší (lze vytvořit stavem vysoké impedance, nebo tím, že definujeme 1 / 0 jako idle stav a přenos je započat  tzv. start condition = změna na 0 / 1 (jelikož je lepší start condition mít delší, tak se vysílá délkou 1 bit tzv. startbit)).
+            \begin{definice}[stav Vysoké impedance = high Z]
+                Místo zapojení do 1 / do 0 vypojíme vysílací linku. Tento stav pak lze detekovat u přijímajícího).
+            \end{definice}
+        \end{definice}
 
+        \begin{poznamka}[Hodiny a synchronizace]
+             Start condition (začátek start condition je tzv. raising edge, na ní se právě synchronizuje) může dokonce synchronizovat čas.
+
+             Navíc hodiny nejsou přesné, takže po nějaké době budou rozsynchronizované. To lze vyřešit buď omezením délky přenosu. Většinou se však definuje délka, protože posílat end znak je těžké, tedy se dohodlo 8 bitů = 1 byte = 8b = 1B. (Avšak starší počítače měli i jinou velikost 1B).
+
+             Po 1 přenosu však musí být pauza, aby se mohli zase synchronizovat hodiny, tedy se přenáší stopbity (začínají falling edge) (musí se dohodnout jejich počet, často 1).
+
+             To už začíná být moc zbytečných bitů, proto se přidává další signál -- hodinový (střídající se 1 a 0, na hranách (ať už vzestupných nebo sestupných podle dohody, výjimečně ddr = double data rate = obojí) je střed bitu). Hodinový signál může vycházet buď od odesílatele, nebo z vnějšího zdroje pro oba.
+
+             Ten má ale problém, že se může (třeba různými délkami drátu) rozladit. Proto existuje 3 řešení: pravidelná synchronizace na hranách přenášeného signálu (clock recovery = obnovování hodin), aby se to nerozbíjelo na dlouhých shodných úsecích, existuje zakódování 8 bitů do 10 (nebo jiné, podle dohody), aby se nestalo, že všech 8 (nyní 10) bude jen 1 nebo jen 0 (např. USB, nebo RS232).
+        \end{poznamka}
+
+        \begin{poznamka}[Duplexní přenos]
+            Zatím jsme řešili jen jednostrannou komunikaci (= simplexní přenos), ale v mnoha reálných situacích chceme tzv. duplexní přenos.
+
+            Nejjednodušší je halfduplex = přenáší se oběma směry po jedné lince.
+
+            Fullduplex jsou naopak 2 nezávislé jednosměrné (simplexní) linky (mohou mít společný ground) (např. RS232). Např. v RS232 je navíc linka pro tzv. out of bend signály (většinou buď 1 = pravda nebo 0 = nepravda, resp. tzv. inverzní logika značená overline) jako třeba warning nebo error (třeba 1 kabel pro informaci dochází baterka…).
+        \end{poznamka}
+
+        \begin{definice}[Řadič]
+            Dále je nutné definovat komunikační protokol, který může definovat různorodé pakety. Přijímání (tzn. třeba přechod z 7b na 8b byte, nebo LSb-first / MSb-first) má na starost tzv. řadič (= controller), paměti v řadiči se říká registr (= register).
+
+            Registry jsou podle funkce pojmenovány např. datový, buffer, konfigurační (pro konfiguraci např. rychlosti linky…), …
+        \end{definice}
 
 
 \end{document}

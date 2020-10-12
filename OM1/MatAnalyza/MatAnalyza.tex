@@ -253,5 +253,152 @@
             \end{dukaz}
         \end{veta}
 
+% 6. 10. 2020
+
+    \subsection{Krátký výlet do nekonečna}
+        \begin{definice}[Mohutnost množin]
+            Řekněme, že množiny \A a \B mají stejnou mohutnost, pokud existuje bijekce $\A \rightarrow \B$. Značíme $\A \approx \B$.
+
+            Řekněme, že množina \A má mohutnost menší, nebo rovnu mohutnosti \B, pokud existuje prosté zobrazení $\A \rightarrow \B$. Značíme $\A \preceq \B$.
+
+            Řekněme, že množina \A má menší mohutnost než \B, pokud $\A \preceq \B$, ale neplatí $\B \preceq \A$. Značíme $\A \prec \B$
+
+            \begin{prikladyin}
+                    1) \N, \Z: $\N \approx \Z$ (prosté z \N do \Z je triviální, opačně si očísluji \Z)\\
+                    2) \N, \Q: $\N \approx \Q$ (obdobně, čísluji diagonálně)\\
+                    3) \N, \R: $\N \prec \R$ (důkaz sporem, přes diagonálu, vezmu první desetinou cifru z $f(1)$, druhou z $f(2)$… a pozměním je…)
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{tvrzeni}[Viz proseminář]
+            $\A \preceq \B \land \B \preceq \A \implies \A \approx \B$
+        \end{tvrzeni}
+
+        \begin{definice}
+            Řekněme, že množina \A je konečná, má-li konečný počet prvků.
+
+            Řekněme, že \A je spočetná, jestliže $\A \approx \N$, nebo je \A konečná.
+
+            Řekněme, že \A je nespočetná, jestliže $\N \prec \A$.
+        \end{definice}
+
+        \begin{tvrzeni}[Cantor]
+            Nechť \X je množina, pak $\X \prec \P(\X)$, kde $\P(\X)$ je množina všech podmnožin \X.
+            \begin{dukazin}
+                Zobrazení $\phi: \X \rightarrow \P(\X)$ definované $\phi(x) = \{x\}$ je prosté.
+
+                Tvrdím, že neplatí, že $\X \approx \P(\X)$. Důkaz sporem: Nechť existuje bijekce $\phi: \X \rightarrow \P(\X)$. Označme $\A = \{x \in \X: x \notin \phi(x)\}$. $\phi$ je bijekce $\implies \exists a \in \X: \phi(a) = \A$.
+
+                        Nyní buď a) $a \in \A \implies a \notin \phi(a) = \A \lightning$ nebo b) $a \notin \A \implies a \in \phi(a) = \A \lightning$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}[„Nebrali jsme“ Hypotéza kontinua]
+            Otázka: Existuje $\A \subset \R$, že $\N \prec \A$ a $\A \prec \R$?
+
+            Odpověď: Může a nemusí. (Hypotéza kontinua je ze standardních axiomů teorie množin tzv. nerozhodnutelná.)
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Nechť $\A_n, n \in \N$, jsou spočetné množiny, pak:
+            $$ \A = \bigcup_{n=1}^∞ \A_n = \A_1\cup\A_2\cup … $$
+            je spočetná.
+            \begin{dukazin}
+                Napíšu si množiny $\A_i$ do matice a očísluji po diagonálách. Tím získám $\N \succeq \A$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Posloupnost}
+    \subsection{Úvod}
+        \begin{definice}
+            Jestliže ke každému $n \in \N$ je přiřazeno $a_n \in \R$, pak říkáme, že $\{a_n\}_{n=1}^∞ = \{a_1, a_2, a_3, …\}$ je posloupnost reálných čísel.
+            \begin{prikladyin}
+                \begin{itemize}
+                    \item $\{\frac{1}{n}\}_{n = 1}^∞ = \{1, \frac{1}{2}, \frac{1}{3}, …\}$
+                    \item $\{2^n\}_{n=1}^∞ = \{2, 4, 8, …\}$
+                    \item $a_1 = 1$, $a_{n+1} = a_n^2 + 1$ (rekurentně zadaná posloupnost)
+                \end{itemize}
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}
+            Řekněme, že posloupnost $\{a_n\}_{n=1}^∞$ je:
+            \begin{itemize}
+                \item neklesající, jestliže $\forall n \in \N: a_n ≤ a_{n+1}$
+                \item nerostoucí, jestliže $\forall n \in \N: a_n ≥ a_{n+1}$
+                \item klesající, jestliže $\forall n \in \N: a_n < a_{n+1}$
+                \item rostoucí, jestliže $\forall n \in \N: a_n < a_{n+1}$
+            \end{itemize}
+            \begin{prikladyin}
+                $\{\frac{1}{n}\}$ je klesající a nerostoucí\\
+                $\{2^n\}$ je rostoucí a neklesající
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}
+            Řekněme, že posloupnost $\{a_n\}_{n = 1}^∞$ je omezená, jestliže množina členů posloupnosti $\{a_n\}_{n = 1}^∞$ je omezená podmnožina \R. Analogicky definujeme omezenost shora a omezenost zdola.
+            \begin{prikladyin}
+                $\{\frac{1}{n}\}$ je omezená\\
+                $\{2^n\}$ je pouze omezená zdola
+            \end{prikladyin}
+        \end{definice}
+
+    \subsection{Vlastní limita posloupnosti}
+        \begin{definice}[Limita]
+            Nechť $A \in \R$ a $\{a_n\}_{n = 1}^∞$ je posloupnost. Řekněme, že $A$ je (vlastní) limitou posloupnosti $\{a_n\}$, jestliže:
+            $$ \forall \epsilon > 0\ \exists n_0 \in \N\ \forall n≥ n_0, n \in \N: |a_n - A|<\epsilon $$ 
+            Značíme $\lim_{n \rightarrow ∞} a_n = A$.
+
+            \begin{prikladyin}
+                Ve videu, při pochopení limity nejsou moc zajímavé.
+            \end{prikladyin}
+        \end{definice}
+
+% 9. 10. 2020
+
+        \begin{priklad}[$\lim_{n \rightarrow ∞}$ \hbox{$\sqrt[n]{n}$} $= 1$]
+                $$ \sqrt[n]{n} = 1+a_n \Leftrightarrow n = \(1+a_n\)^n = 1+ na_n + \frac{n\cdot(n-1)}{2} + … ≥ 1 + \frac{n\cdot(n-1)}{2}a_n^2 $$
+
+                $$ \frac{2(n-1)}{n\cdot(n-1)} ≥ a_n^2 \implies \frac{\sqrt{2}}{\sqrt{n}} ≥ a_n ≥ 0 $$
+        \end{priklad}
+
+        \begin{veta}[Jednoznačnost vlastní limity (2.1)]
+            Každá posloupnost má nejvýše jednu limitu.
+            \begin{dukazin}[Sporem]
+                    Nechť tedy existuje více limit. Dvě z nich označme $\lim_{n \rightarrow ∞} a_n = A$ a $\lim_{n \rightarrow ∞} a_n = B$, $A>B$. Zvolme $\epsilon = \frac{A-B}{3}$. Z definice limity k našemu $\epsilon$ existují $n_A, n_B \in \N$ tak, že $\forall n≥n_A |a_n-A|<\epsilon$ a $\forall n≥n_B |b_n-B|<\epsilon$. Položme $n_0 = \max\{n_A, n_B\}$. Z trojúhelníkové nerovnosti\footnote{$\forall x,y \in \R: |x+y| ≤ |x| + |y|$} $|A - B| = |(A-a_{n_0}) + (a_{n_0} - B)|≤ |A-a_{n_0}| + |a_{n_0} - B|<\epsilon + \epsilon = \frac{2}{3} (A-B)$. $\lightning$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O omezenosti konvergentní posloupnosti]
+            Nechť $\{a_n\}_{n = 1}^∞$ má vlastní limitu. Pak $\{a_n\}_{n = 1}^∞$ je omezená.
+            \begin{dukazin}
+                    Nechť $\lim_{n \rightarrow ∞} a_n = A \in \R$. Položme $\epsilon = 1$. K tomuto $\epsilon = 1 \\exists n_0 \in \N \forall n≥n_0: |a_n - A| < \epsilon \Leftrightarrow a_n \in \(A - \epsilon, A + \epsilon\) = \(A-1, A+1\)$. Množina $\{a_n| n = 1, 2, …, n_0\}$ je konečná, tedy omezená. Položme $K = \max\{|a_1|, |a_2|, …, |a_{n_0}|, |A| + 1\}$. Potom jistě $\forall n \in \N |a_n| ≤ K$ (protože $\forall n≤n_0 |a_n| ≤ \max\{|a_i|; i≤n_0\}$ a $\forall n > n_0 a_n \in \(A-1, A+1\)\implies |a_n| ≤ |A| + 1≤K$).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklad}
+            $$ \exists \lim_{n \rightarrow ∞} a_n = A \in \R \implies \exists n_0 \forall n > n_0 a_n\text{ je monotónní} $$
+        \end{priklad}
+
+        \begin{definice}[Vybraná podposloupnost]
+                Řekněme, že posloupnost $\{b_n\}_{n = 1}^∞$ je vybraná z posloupnosti $\{a_n\}_{n = 1}^∞$, jestliže existuje rostoucí posloupnost přirozených čísel $\{k_n\}_{n = 1}^∞$ tak, že $b_n = a_{k_n}$
+        \end{definice}
+
+        \begin{veta}[o limitě vybrané podposloupnosti]
+            Nechť $\lim_{n \rightarrow ∞} a_n = A\in \R$ a nechť $\{b_n\}_{n = 1}^∞$ je vybraná z $\{a_n\}_{n = 1}^∞$. Pak $\lim_{n \rightarrow ∞} b_n = A$
+            \begin{dukazin}
+                K $\epsilon > 0 \exists n \in \N \forall n ≥ n_0: |a_n - A|<\epsilon$. Chceme dokázat $\lim_{n \rightarrow ∞} b_n = A$.
+
+                K $\epsilon > 0$ zvolme $k_0$, kde $n_0$ je z definice $\lim_{n \rightarrow ∞}a_n$. Nechť $k≥k_0$, pak $n_k≥k≥k_0≥n_0$. Tedy $|b_k - A| = |a_{n_k}-A|<\epsilon$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Aritmetika limit]
+            Nechť $\lim_{n \rightarrow ∞} a_n \in \R$ a $\lim_{n \rightarrow ∞} b_n = B\in\R$. Pak platí:
+
+            $$ \lim_{n \rightarrow ∞} a_n + b_n = A + B $$
+            $$ \lim_{n \rightarrow ∞} a_n b_n = A\cdot B $$
+            $$ \forall b_n \neq 0 \land B \neq 0 \implies \lim_{n \rightarrow ∞} \frac{a_n}{b_n} = \frac{A}{B} $$
+        \end{veta}
 
 \end{document}

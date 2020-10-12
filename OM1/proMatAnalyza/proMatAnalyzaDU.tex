@@ -1,0 +1,23 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+    Nechť $n \in \N$ a nechť $a_1, … a_n$ jsou kladná reálná čísla splňující $a_1 \cdot a_2 \cdot … \cdot a_n = 1$ Dokažte, že:
+    $$ (1+a_1)\cdot(1+a_2)\cdot … \cdot(1+a_n)≥2^n. $$
+
+    \begin{dukazin}
+        Myšlenkově roznásobme výraz. Zjistíme, že člen složený z každé podmnožiny\footnote{$\A = \{a_i; i \in \N \land i ≤ n\}$} \A\ se ve výsledku vyskytuje právě jednou s koeficientem 1.
+
+        Dále můžeme tyto členy napárovat tak, že člen složený z nějaké podmnožiny \A\ spárujeme s členem složeným z doplňku. Toto párování je jednoznačné (doplněk je jednoznačný) a zároveň součin těchto členů je dle zadání 1.
+
+        Nyní označme jeden člen z dvojice $x$ a druhý je tím pádem $x^{-1}$. Z AG nerovnosti (jelikož je $x$ kladné) plyne, že součet této dvojice ($x + \frac{1}{x}$) je větší roven 2.
+
+        Dvojic máme polovinu toho co členů a těch máme $2^n$ (roznásobili jsme $n$ dvojčlenných výrazů), tedy dvojic máme $2^{n-1}$. Tudíž součet všech součtů dvojic (tj. roznásobený výraz) je větší roven $2 \cdot 2^{n-1} = 2^n$.
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

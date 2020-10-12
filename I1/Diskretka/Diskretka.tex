@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+\section{Úvod}
+    \begin{poznamka}[Co je diskrétní matematika]
+        Protipól matematiky spojité. Souhrnný název pro matematické disciplíny, zabývající se diskrétními objekty.
+    \end{poznamka}
+
+    \begin{poznamka}[Co je potřeba]
+        Cvičení + zkouška z věcí z přednášky.
+    \end{poznamka}
+
+    \begin{poznamka}[literatura]
+        Kapitoly z diskrétní matematiky od Matouška.
+    \end{poznamka}
+
+    \begin{definice}[Důkaz (neformální)]
+        Rozebírání tvrzení na tvrzení, která už jsou zřejmá.
+    \end{definice}
+
+    \begin{definice}[Definice (neformální)]
+        Definujeme objekty pomocí jednodušších a jednodušších, až axiomů.
+    \end{definice}
+    
+    \begin{definice}[Důkaz sporem]
+        Dokážeme $\phi$ tím, že vyvrátíme $\phi$
+    \end{definice}
+
+    \begin{definice}[Důkaz matematickou indukcí]
+            Dokážeme $\phi(n), \forall n \in \N$ tak, že dokážeme $\phi(0)\land(\forall n \in \N)(\phi(n)\implies\phi(n+1))$
+    \end{definice}
+
+    \begin{definice}[Dolní a horní celá část]
+        $\left\lceil x\right\rceil$ je nejbližší nižší celé číslo k $x$
+
+        $\left\lfloor x\right\rfloor$ je nejbližší vyšší celé číslo k $x$
+    \end{definice}
+
+    \begin{definice}[Sčítání mnoha čísel]
+        $\sum_{i=13}^n x_i = x_{13} + x_{14} + … + x_n$ = Sčítání $x$ od indexu 13 do indexu $n$
+
+        $\sum_\O = 0$
+    \end{definice}
+
+    \begin{definice}[Sčítání mnoha čísel]
+        $\prod_{i=13}^n x_i = x_{13} \cdot x_{14} \cdot … \cdot x_n$ = Násobení $x$ od indexu 13 do indexu $n$
+
+        $\prod_\O = 1$
+    \end{definice}
+
+    \begin{poznamka}[Klasické množiny]
+        \N \Z \Q \R \C
+    \end{poznamka}
+
+    \begin{poznamka}[Klasické množinové operace]
+        $$ x \in \A $$
+        $$ \A \subseteq \B $$
+        $$ \A \cap \B $$
+        $$ \A \cup \B $$ 
+        $$ \A \\ \B $$
+        $$ \A\triangle\B = (\A\\B)\cup(\B\\\A) = \text{disperze} $$
+        $$ 2^\A = \P(\A) $$
+    \end{poznamka}
+\end{document}

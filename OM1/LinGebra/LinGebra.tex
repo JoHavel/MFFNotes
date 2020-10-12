@@ -157,10 +157,124 @@
                 Nechť je bijektivní, pak zřejmě má inverzi.
             \end{dukazin}
         \end{veta}
+
+% 6. 10. 2020
+
         
+\section{Soustavy lineárních rovnic}
+    6 motivačních příkladů v části 2.1 skript
 
+    \begin{definice}[lineární rovnice]
+        Lineární rovnice o $n$ neznámých s reálnými koeficienty je rovnice tvaru $a_1 x_1 + a_2 x_2 + … + a_n x_n = b$, kde $a_1, …, a_n, b \in \R$ jsou koeficienty a $x_1, …, x_n$ jsou neznámé.
+    \end{definice}
 
+    \begin{upozorneni}[Jak vypadá definice]
+        \ 
+        \begin{itemize}
+            \item Psát celé věty!
+            \item Vysvětlit použité symboly!
+            \item Nezahlcovat definice balastem!
+        \end{itemize}
+    \end{upozorneni}
 
+    \begin{definice}[Soustava lineárních rovnic (SLR)]
+        Soustavou $m$ lineárních rovnic o $n$ neznámých (s reálnými koeficienty) je soustava tvaru:
+        \begin{align*}
+                a_{11} x_1 + … + a_{1n} \cdot x_n &= b_1\\
+                a_{21} x_2 + … + a_{2n} \cdot x_n &= b_2\\
+                … … + … + …\cdot … &= …
+                a_{m1} x_1 + a_{m2} x_2 + … + a_{mn} \cdot x_n &= b_m, 
+        \end{align*}
+        kde každý řádek je ve smyslu předchozí definice.
+    \end{definice}
+
+    \begin{definice}[Aritmetické vektory (nad \R)]
+        Aritmetickým vektorem rozumíme uspořádanou $n$-tici reálných čísel. Zapisujeme ho jako:
+        $$
+            \begin{pmatrix}
+                x_1\\x_2\\\vdots\\x_n 
+            \end{pmatrix} \in \R^n
+        $$
+    \end{definice}
+
+    \begin{definice}[Množina řešení SLR]
+        Množina řešení SLR ve smyslu definice výše je množina:
+        $$
+            \{
+                \begin{pmatrix}
+                    x_1\\x_2\\\vdots\\x_n
+                \end{pmatrix}
+            \in \R^n: a_i1 x_1 + … + a_{in} x_n = b_i \forall 1≤i≤m\}
+        $$
+    \end{definice}
+
+    \begin{definice}[Operace s (aritm.) vektory ($n$ fixní)]
+        $v, w \in \R^n$ $\longrightarrow$ $v + w$ sčítání po složkách\\
+        $t \in \R$ $\longrightarrow$ $t \cdot w$ násobení po složkách\\
+        $-v := (-1) \cdot v$\\
+        $v - w := v + (-w)$\\
+        $ 0 = \begin{pmatrix} 0\\ \vdots \\ 0 \end{pmatrix} \in \R^n$
+    \end{definice}
+
+    \begin{definice}[Elementární úpravy SLR]
+        Elementární úpravy dané SLR jsou:
+        \begin{enumerate}
+            \item Prohození pořadí 2 rovnic
+            \item Vynásobíme jednu rovnici číslem $t \in \R - \{0\}$
+            \item Přičteme $t$-násobek jedné rovnice ($t \in \R$) k jiné rovnici.
+        \end{enumerate}
+    \end{definice}
+
+    \begin{tvrzeni}
+        Elementární úpravy jsou ekvivalentními úpravami.
+        \begin{dukazin}
+            Skripta
+        \end{dukazin}
+        
+        \begin{poznamka}
+            1. lze nahradit kombinací druhých dvou.
+        \end{poznamka}
+    \end{tvrzeni}
+
+    \begin{upozorneni}
+        V přednášce jsou tvrzení (věty, lemmata, …). Typicky mají strukturu: Pokud platí …předpoklad…, pak platí …závěr….
+    \end{upozorneni}
+
+% 8. 10 .2020
+
+    \begin{definice}[Gaussova eliminace]
+        Algoritmus na úpravu matice do odstupňovaného tvaru za pomoci elementárních úprav.
+    \end{definice}
+
+    \begin{definice}[Pivot]
+        První nenulový prvek v řádku v odstupňovaném tvaru.
+
+        Pokud je pivot až ve „vektoru“?, SLR nemá řešení. 
+
+        Počet pivotů je počet bázových proměnných, počet neznámých - počet pivotů je počet volných proměnných (neboli parametrů).
+    \end{definice}
+
+    \begin{definice}[Odstupňovaný tvar matice]
+        Matice $m\times n$ je v odstupňovaném tvaru, jestliže
+        $$ \exists r \in \N, r<m\text{, že řádky }r+1,…,m\text{ jsou nulové a} $$
+        $$ k_1 < k_2 < \cdots < k_r\text{, kde }k_i\text{ je index prvního nenulového prvku v }i\text{-tém řádku.} $$
+    \end{definice}
+
+    \begin{definice}[Hodnost matice]
+        Buď $A = (a_{ij})_{m\times n}$ matice. Potom $\rank(A) = \text{r}(A)$ je tzv. hodnost matice, tedy počet nenulových řádků v odstupňovaném tvaru matice.
+    \end{definice}
+
+    \begin{upozorneni}
+        Počet nenulových řádků v odstupňovaném tvaru nezáleží na volbě algoritmu, kterým jsme se do OT dostali.
+    \end{upozorneni}
+
+    \begin{poznamka}
+        $\rank(A)≤m$ a $\rank(A)≤n$
+    \end{poznamka}
+
+    \begin{poznamka}[Geometrický význam]
+        Řádky popisují jednotlivé rovnice, netriviální rovnice má za množinu řešení nadrovinu v $\R^n$, řádky popisují proměnné, významově jsou lineárními kombinacemi.
+    \end{poznamka}
     
 
 \end{document}

@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+    \begin{priklad}
+        Pro která $a \in \R$ je zobrazení $f_a:\R^2 \rightarrow \R^2$ na?
+        $$ f_a\(x, y\) = \(ax + y, \(3a+4\)x +ay\) $$
+
+        \begin{reseni}
+            Aby zobrazení bylo na, musí ke každé dvojici $\(B, C\) \in \R^2$ existovat dvojice $(x, y) \in \R^2$. Tedy dostáváme SLR:
+            \begin{alignat*}{2}
+                ax &+ y\ &=\ B\\
+                (3a+4)x &+ ay\ &=\ C
+            \end{alignat*}
+
+            V případě $a = 0$ se $\(x, y\) = \(\frac{C}{4}, B\)$, tedy pro $a = 0$ je na. Jinak upravíme do odstupňovaného tvaru:
+            \begin{alignat*}{3}
+                ax &+\ &y\ &=&\ B\\
+                0x &+ \(a-3-\frac{4}{a}\)&y\ &=&\ C - \(3+\frac{4}{a}\)B
+            \end{alignat*}
+
+            Nutnou podmínkou nekonečně mnoha řešení SLR je, když $C - \(3\frac{4}{a}\)B = 0$, avšak když např. zvýšíme $C$ o jedna a $B$ nechám, výraz nulový už nebude (a naopak by SLR neměla řešení, pokud koeficient u $y$ v druhém řádku bude 0), tedy tudy cesta nevede.
+
+            Jak víme, tato SLR bude mít 1 řešení, pokud koeficient u $y$ v druhé rovnici bude nenulový. To nebude právě když:
+            $$ a - 3 - \frac{4}{a} = 0 $$
+            $$ a^2 - 3a - 4 = 0 $$
+            $$ a = \frac{3 \pm \sqrt{9 + 16}}{2} = \{4, -1\} $$
+
+            Tedy zobrazení je na pro $a \in \R - \{4, -1\}$
+        \end{reseni}
+    \end{priklad}
+
+    \newpage
+
+    \begin{priklad}
+        Označme $O_p: \R^2 \rightarrow \R^2$ osovou symetrii podle přímky $p$ a $O_q: \R^2 \rightarrow \R^2$ osovou symetrii podle přímky $q$.
+        $$ p = \{\(0, 1\) + t\(1, 0\)| t \in \R\}, q = \{\(x, y\) \in R^2| − x + y = 1\} $$
+
+        \begin{prikladin}[a)]
+            Najděte obraz bodu $\(x, y\)$ při zobrazení $O_p$ a při zobrazení $O_q$. (Zde stačí geometrický argument.)
+            \begin{reseni}
+                Zobrazení $O_p$ je osová symetrie podle přímky $y = 1$, tedy každý bod posuneme o $(0, -1)$ zobrazíme v osové symetrii podle osy $x$ ($(x, y) \rightarrow (x, -y)$) a posuneme zpět = o $(0, 1)$. Tj. výsledné zobrazení je $(x, y) \rightarrow (x, y-1) \rightarrow (x, -y+1) \rightarrow (x, -y + 2)$.
+
+                Zobrazení $O_q$ je osová symetrie podle přímky, která je přímkou $x = y$ posunutou o $(0, 1)$, tedy každý bod posuneme o $(0, -1)$ překlopíme podle $x = y$ ($(x, y) \rightarrow (y, x)$)\footnote{Osová souměrnost podle $x = y$ zobrazuje osu $x$ na osu $y$.} a posuneme zpět = o $(0, 1)$. Tj. výsledné zobrazení je $(x, y) \rightarrow (x, y-1) \rightarrow (y-1, x) \rightarrow (y-1, x+1)$.
+            \end{reseni}
+        \end{prikladin}
+
+        \begin{prikladin}[b)]
+            Najděte obraz bodu $(x, y)$ při složených zobrazení $O_q \circ O_p$ a $O_p \circ O_q$.
+
+            \begin{reseni}
+                Zobrazení prostě složíme:
+                $$ (O_q \circ O_p)(x, y) = O_q(O_p(x, y)) = O_q(x, -y+2) = (-y+2-1, x+1) = (1-y, x+1) $$
+                $$ (O_p \circ O_q)(x, y) = O_p(O_q(x, y)) = O_p(y-1, x+1) = (y-1, -x-1+2) = (y-1, 1-x) $$
+            \end{reseni}
+        \end{prikladin}
+
+        \begin{prikladin}[b)*]
+            Zkuste také (mimo soutěž) uhádnout, o jaká zobrazení se jedná, a odhad dokázat.
+            \begin{reseni}
+                Protože obě přímky prochází bodem $(0, 1)$ tipl bych si, že složené zobrazení je rotace kolem bodu $(0, 1)$ (a podle úhlu svíraného přímkami, že je o $\frac{\pi}{2}$). Dokážu to tím, že si převedu rovinu do komplexní roviny: $(x, y) \rightarrow x + iy$, posunu bod $(0, 1)$ do počátku ($-i$), orotuji o $\frac{\pi}{2}$ ($\cdot (\pm i)$) a vrátím počátek o bodu $(0, 1)$ ($+i$):
+
+                $$ (x, y) \rightarrow x + iy \rightarrow x + i(y-1) \rightarrow ix + (-(y-1)) \rightarrow i(x+1) + (1-y) \rightarrow (1-y, x+1) $$
+                $$ (x, y) \rightarrow x + iy \rightarrow x + i(y-1) \rightarrow -ix + (-(-(y-1))) \rightarrow i(-x+1) + (y-1) \rightarrow (y-1, 1-x) $$
+
+                A opravdu, dostanu obě složená zobrazení.
+            \end{reseni}
+        \end{prikladin}
+
+    \end{priklad}
+
+\end{document}

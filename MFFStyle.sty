@@ -51,13 +51,22 @@
 
 \newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
 \def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
-\eToSet X Y C N R Z P Q M ;
+\eToSet X Y C N R Z Q M U V A B W F ;
 
 \newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
 \def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
 \eToMath x y n m k l i \varepsilon ;
 
+\renewcommand{\P}{\ensuremath{\mathcal{P}}}
 \renewcommand{\O}{\emptyset}
+
+\catcode`\©=\active
+\catcode`\®=\active
+
+\def®#1{\ensuremath{\mathbb{#1}} }
+\def©#1{\ensuremath{\mathcal{#1}} }
+
+
 
 \newcommand{\QED}{\square}
 
@@ -95,8 +104,12 @@
 \let\phi\varphi
 \let\theta\vartheta
 
+\DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\weight}{w}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\LO}{LO}
 
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}
@@ -206,11 +219,17 @@
 
 \theoremstyle{break}
 \newtheorem{veta}{Věta}[section]
+\newtheorem*{veta*}{Věta}
 \newtheorem{vetain}[veta]{Věta}
+\newtheorem*{vetain*}{Věta}
 \newtheorem{lemma}[veta]{Lemma}
+\newtheorem*{lemma*}{Lemma}
 \newtheorem{lemmain}[veta]{Lemma}
+\newtheorem*{lemmain*}{Lemma}
 \newtheorem{tvrzeni}[veta]{Tvrzení}
+\newtheorem*{tvrzeni*}{Tvrzení}
 \newtheorem{tvrzeniin}[veta]{Tvrzení}
+\newtheorem*{tvrzeniin*}{Tvrzení}
 \let\oldproofname=\proofname
 \renewcommand{\proofname}{\oldproofname[Důkaz]}
 \renewcommand\qedsymbol{$\QED$}
@@ -220,6 +239,8 @@
 \theoremstyle{remarkbreak}
 \newtheorem*{poznamka}{Poznámka}
 \newtheorem*{poznamkain}{Poznámka}
+\newtheorem*{dusledek}{Důsledek}
+\newtheorem*{dusledekin}{Důsledek}
 \newtheorem*{dukaz}{Důkaz}
 \newtheorem*{dukazin}{Důkaz}
 \newtheorem*{priklady}{Například}
@@ -233,20 +254,30 @@
 
 
 \surroundwithmdframed{veta}
+\surroundwithmdframed{veta*}
 \surroundwithmdframed{vetain}
+\surroundwithmdframed{vetain*}
 \surroundwithmdframed{lemma}
+\surroundwithmdframed{lemma*}
 \surroundwithmdframed{lemmain}
+\surroundwithmdframed{lemmain*}
 \surroundwithmdframed{definice}
+\surroundwithmdframed{definice*}
 \surroundwithmdframed{definicein}
+\surroundwithmdframed{definicein*}
 \surroundwithmdframed{tvrzeni}
+\surroundwithmdframed{tvrzeni*}
 \surroundwithmdframed{tvrzeniin}
+\surroundwithmdframed{tvrzeniin*}
 
 \surroundwithmdframed[style=proofstyle]{poznamka}
+\surroundwithmdframed[style=proofstyle]{dusledek}
 \surroundwithmdframed[style=proofstyle]{dukaz}
 \surroundwithmdframed[style=proofstyle]{priklady}
 \surroundwithmdframed[style=proofstyle]{priklad}
 \surroundwithmdframed[style=proofstyle]{umluva}
 \surroundwithmdframed[style=proof]{poznamkain}
+\surroundwithmdframed[style=proof]{dusledekin}
 \surroundwithmdframed[style=proof]{dukazin}
 \surroundwithmdframed[style=proof]{prikladyin}
 \surroundwithmdframed[style=proof]{prikladin}
