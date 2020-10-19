@@ -128,5 +128,161 @@
         $ uv^T $ je ? součin vektorů $u$ a $v$
     \end{definice}
 
+% 15. 10. 2020
+
+    \begin{poznamka}[Zápis SLR jako maticové násovení]
+        SLR lze zapsat jako $Ax = b$.
+    \end{poznamka}
+
+    \begin{poznamka}[Matice a lineární zobrazení $x \rightarrow Ax$]
+        Je užitečné se na matici $A \in ®R^{m \times n}$ jako na určité zobrazení z $®R^n$ do $®R^m$ definované předpisem $x \rightarrow Ax$.
+
+        Na řešení SLR se lze pak dívat jako na vzor $b$ v zobrazení dané $A$.
+
+        Zároveň na maticový součin se lze dívat na skládání $(BA)x = B(Ax)$. (Základní motivace, aby se součin definoval tak, jak je.)
+    \end{poznamka}
+
+    TODO?
+
+    \begin{definice}[Regulární matice]
+        Buď $A \in ®R^{n\times n}$. Pak následující tvrzení jsou ekvivalentní:
+        \begin{enumerate}
+            \item $A$ je regulární,
+            \item $\RREF(A) = ©I_n$,
+            \item $\rank(A) = n$
+            \item pro nějaké $b \in ®R^n$ má soustava $Ax = b$ jediné řešení,
+            \item pro všechna $b \in ®R^n$ má soustava $Ax = b$ jediné řešení.
+        \end{enumerate}
+
+        Matice $A$ nesplňující tvrzení je singulární.
+    \end{definice}
+
+    \begin{tvrzeni}[Uzavřenost na součin]
+        Buďte $A, B \in ®R^{n\times n}$ regulární matice. Pak $AB$ je také regulární.
+        \begin{dukazin}
+            Buď $x$ řešení soustavy $ABx = 0$. Chceme ukázat, že $x$ musí být nulový vektor. Z předchozího tvrzení $\forall y Ay=0$ má jediné řešení. Zároveň $\forall y Bx = y$ má jediné řešení.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Je-li alespoň jedna z matic $A, B \in ®R^{n \times n}$, pak $AB$ je také singulární.
+
+        \begin{dukazin}
+            Je-li matice $B$ singulární, pak $Bx = 0$ pro nějaké $x ≠ 0$. Z toho ale plyne $(AB)x = A(Bx) = A(0)=0$, tedy i $AB$ je singulární.
+
+            Nyní předpokládejme, že matice $B$ je regulární, tedy matice $A$ singulární a existuje $y≠0$ takové, že $Ay = 0$. Z regularity matice $B$ existuje $x≠0$ takové, že $Bx=y$. Celkem dostáváme $(AB)x = A(Bx) = Ay = 0$, tedy $AB$ je singulární.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Matice elementárních úprav]
+        Elementární úpravy jdou reprezentovat násobením tzv. elementární maticí zleva: $E_i(\alpha)$ jako násobení řádku $i$ číslem $\alpha$ je jednotková matice s $\alpha$ místo $i$-té jedničky. $E_{ij}$ jako prohození řádků $i, j$ je jednotková matice s prohozeným $i$-tým a $j$-tým řádkem, …
+
+        Tyto matice jsou regulární.
+    \end{definice}
+
+    \begin{veta}
+        Buď $A \in ®R^{m\times n}$. Pak $\RREF(A) = QA$ pro nějakou regulární matici $Q \in ®R^{m \times m}$.
+        \begin{dukazin}
+            $\RREF(A)$ získáme aplikací konečně mnoha elementárních řádkových úprav a součin regulárních matic je regulární matice.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}
+        Každá regulární matice $A \in ®R^{n\times n}$ se dá vyjádřit jako součin konečně mnoha elementárních matic.
+        \begin{dukazin}
+            Elementární úpravy lze invertovat elementárními úpravami, tedy i inverze úprav regulární matice na ©I je regulární (a ©I je také regulární).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Inverzní matice]
+        Buď $A \in ®R^{n\times n}$. Pak $A^{-1}$ je inverzní maticí k A, pokud splňuje $AA^{-1} = A^{-1}A = ©I_n$.
+
+        \begin{prikladyin}
+            $©I_n^{-1} = ©I_n$, $0_n^{-1}$ neexistuje.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{veta}[O existenci inverzní matice]
+        Buď $A \in ®R^{n\times n}$. Je-li $A$ regulární, pak k ní existuje inverzní matice a je určená jednoznačně. Naopak, existuje-li $A^{-1}$, pak $A$ je regulární.
+
+        \begin{dukazin}
+                Existence: $A$ je regulární, tedy soustava $Ax = e_j$ má řešení $x_j$ pro každé $j$. Ukážeme, že $A^{-1} = (x_1 | x_2 | … | x_n)$ je hledaná inverze. (Porovnáním po sloupcích: $(AA^{-1})_{*j} = Ax_j = e_j = ©I_{*j}$. Komutativní výraz dokážeme $A(A^{-1}A - ©I) = AA^{-1}A - A = ©IA - A = 0$, $A^{-1}A - ©I$ je vektor, který je jednoznačně určen tím, že $A$ je regulární.)
+
+                Jednoznačnost. Nechť pro nějakou matici $B$ platí $AB = BA = ©I$. Pak
+                $$ B = B©I = B(AA^{-1}) = (BA)A^{-1} = ©IA^{-1} - A^{-1}. $$ 
+
+                Naopak. Nechť pro $A$ existuje inverzní matice. Buď $x$ řešení soustavy $Ax = 0$. Pak
+                $$ x = ©Ix = (A^{-1}A)x = A^{-1}(Ax) = A^{-1}0 = 0, $$ 
+                tedy $A$ je regulární.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Vlastnosti inverzní matice]
+        Je-li $A$ regulární, pak $A^T$ je regulární.
+        \begin{dukazin}
+            Je-li $A$ regulární, pak existuje inverze a platí $AA^{-1} = A^{-1}A = ©I_n$. Po transponování všech stran dostaneme
+            $$(AA^{-1})^T = (A^{-1}A)^T = ©I_n^T,$$
+            neboli
+            $$ (A^{-1})^TA^T = A^T(A^{-1})^T = ©I_n. $$ 
+            Matice $A^T$ má inverzi a je tudíž regulární. (Navíc $(A^T)^{-1} = (A^{-1})^T$, občas se značí $A^{-T}$).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Jedna rovnost stačí]
+        Buďte $A, B \in ®R^{n\times n}$. Je-li $BA = I_n$, pak obě matice $A, B$ jsou regulární a navzájem k sobě inverzní, to jest $B = A^{-1}$ a $A = B^{-1}$.
+        \begin{dukazin}
+                Regularita vyplývá z dřívějšího tvrzení vzhledem k regularitě $©I_n$. Tudíž existují inverze $A^{-1}$, $B^{-1}$. Odvodíme
+                $$ B = B©I_n = B(AA^{-1}) = (BA)A^{-1} = ©I_nA^{-1} = A^{-1}. $$
+                Úplně stejně druhá rovnost.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Výpočet inverzní matice]
+        Důkaz věty ukázal návod: $j$-tý sloupec $A^{-1}$ je řešením soustavy $Ax = e_j$.
+    \end{poznamka}
+
+    \begin{veta}[Výpočet inverzní matice]
+        Buď $A \in ®R^{n\times n}$. Je-li $\RREF(A|©I_n) = (I_n|B)$, pak $B = A^{-1}$, jinak je $A$ singulární.
+        \begin{dukazin}
+            Je-li $\RREF(A| ©I_n) = (©I_n | B)$, potom existuje regulární $Q$ tak, že $(©I_n|B) = Q(A|©I_n)$. Po roztržení na dvě části $©I_n = QA$ tj. $Q = A^{-1}$ a $B = Q©I_n = Q = A^{-1}$.
+
+            Pokud není toho tvaru, pak z definice $A$ není regulární.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Vlastnosti inverzní matice]
+        Buďte $A, B \in ®R^{n\times n}$ regulární. Pak:
+        \begin{enumerate}
+            \item $(A^{-1})^{-1} = A$
+            \item $(A^{-1})^T = (A^T)^{-1}$
+            \item $(\alpha A)^{-1} = \frac{1}{\alpha} A^{-1}\ …\ (\alpha≠0)$
+            \item $(AB)^{-1} = B^{-1}A^{-1}$
+        \end{enumerate}
+        \begin{dukazin}
+            1., 2. triviální, 3. vynásobím $A\alpha$, 4. přezávorkuji.
+        \end{dukazin}
+        \begin{poznamkain}
+            Pro $(A+B)^{-1}$ žádný jednoduchý vzoreček není.
+        \end{poznamkain}
+    \end{tvrzeni}
+    
+    \begin{poznamka}[Inverzní matice a soustava rovnic]
+        Buď $Q$ regulární. Pak soustava $Ax = b$ je ekvivalentní s (QA)x = (Qb).
+        \begin{dukazin}
+            Žádné řešení neztratíme, zpět se dostaneme přednásobením $Q^{-1}$ zleva.
+        \end{dukazin}
+    \end{poznamka}
+
+    \begin{veta}[Soustava rovnic a inverzní matice]
+        Buď $A\in ®R^{n\times n}$ regulářní. Pak řešení soustavy $Ax = b$ je dáno vzorcem $A^{-1}b = x$.
+    \end{veta}
+
+    \begin{poznamka}[Inverzní matice - geometrie]
+        Buď $A \in ®R^{n\times n}$ regulární matice. Pro každé $y \in ®R^n$ existuje právě jedno $x \in ®R^n$ takové, že $Ax = y$, zobrazení je tedy bijekcí.
+    \end{poznamka}
+
+    \begin{poznamka}
+        Skládání zobrazení nám může dát i vhled do toho, jak funguje inverze součinu matic.
+    \end{poznamka}
 
 \end{document}

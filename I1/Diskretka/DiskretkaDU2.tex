@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+    
+\begin{priklad}
+    Dokažte výroky "Má-li relace $R$ na konečné množině vlastnost $X$, pak má inverzní relace $R^{-1}$ už nutně také vlastnost $X$," kde $X \in \{ \text{reflexivita, tranzitivita, symetrie, antisymetrie}\}$. Pokud nevíte jak na to, nebojte – podobné příklady budeme dělat na začátku příštího cvika.
+
+    Zapišme si definici $R^{-1}$ takto: $ \forall x,y: xRy \Leftrightarrow yR^{-1}x$. A pomocí ní dokážeme, že definice vlastnosti $X$ pro $R$ je ekvivalentní definici vlastnosti $X$ pro $R^{-1}$.
+
+    \begin{dukazin}[Reflexivita]
+            $$ (\forall x: xRx) \overset{\raise 3pt \hbox{\framebox{\text{\tiny Z definice $R^{-1}$ $xRx \Leftrightarrow xR^{-1}x$}}}}{\Leftrightarrow} (\forall x: xR^{-1}x) $$
+    \end{dukazin}
+
+    \begin{dukazin}[Tranzitivita]
+            $$ \forall x, y, z: xRy \land yRz \implies xRz \overset{\raise 3pt \hbox{\framebox{\text{\tiny Z definice $R^{-1}$}}}}{\Leftrightarrow} \forall x, y, z: yR^{-1}x \land zR^{-1}y \implies zR^{-1}xi $$
+    $$ \overset{\raise 3pt \hbox{\framebox{\text{\tiny Přeznačíme $x \leftrightarrow z$}}}}{\Leftrightarrow} \forall x, y, z: yR^{-1}z \land xR^{-1}y \implies xR^{-1}z $$
+    \end{dukazin}
+
+    \begin{dukazin}[Symetrie]
+            $$ \forall x, y: xRy \implies yRx \overset{\raise 3pt \hbox{\framebox{\text{\tiny Z definice $R^{-1}$}}}}{\Leftrightarrow} \forall x, y: yR^{-1}x \implies xR^{-1}y $$
+        $$ \overset{\raise 3pt \hbox{\framebox{\text{\tiny Přeznačíme $x \leftrightarrow y$}}}}{\Leftrightarrow} \forall x, y: xR^{-1}y \implies yR^{-1}x$$ 
+    \end{dukazin}
+
+    \begin{dukazin}[Antisymetrie]
+            $$ \forall x, y: xRy \land yRx \implies x = y \overset{\text{\raise 3pt \hbox{\framebox{\tiny Z definice $R^{-1}$}}}}{\Leftrightarrow} \forall x, y: yR^{-1}x \land xR^{-1}y \implies x = y$$
+    \end{dukazin}
+\end{priklad}
+
+
+\end{document}

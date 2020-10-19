@@ -96,11 +96,24 @@
     \end{priklady}
 
     \begin{veta}
-            Nechť $n \in \N$ je taková, že $\sqrt{n} \notin \N$ (tedy $n$ není druhou mocninou přirozeného čísla). Pak $\sqrt{n}$ je iracionální.
+        Nechť $n \in \N$ je taková, že $\sqrt{n} \notin \N$ (tedy $n$ není druhou mocninou přirozeného čísla). Pak $\sqrt{n}$ je iracionální.
+        \begin{lemmain}
+            Jsou-li $p, q$ nesoudělná, pak $p^2,\ q^2$ jsou také nesoudělná.
+            \begin{dukazin}
+                Dle základní věty aritmetiky každé přirozené číslo lze rozložit na součin prvočísel. Rozložíme a dokážeme.
+            \end{dukazin}
+        \end{lemmain}
+
+        \begin{dukazin}[Sporem]
+            Předpokládejme, že $\sqrt{n}$ je racionální, ale není to celé číslo. Pak $\sqrt{n} = \frac{p}{q}$, kde $p, q$ jsou nesoudělná přirozená čísla ($q≥2$). Umocníme: $n = \frac{p^2}{q^2}$. $q|p$ $lightning$.
+        \end{dukazin}
     \end{veta}
 
     \begin{veta}[Referát 1]
-            Existují iracionální čísla a,b taková, že $a^b$ je racionální. (Text: skripta z MA, str. 14-15.)
+        Existují iracionální čísla a,b taková, že $a^b$ je racionální. (Text: skripta z MA, str. 14-15.)
+        \begin{dukazin}
+            Buď $\sqrt{2}^{\sqrt{2}}$ nebo $(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = {\sqrt{2}}^2 = 2$
+        \end{dukazin}
     \end{veta}
 
     \begin{priklad}[Teoretický příklad 1]
@@ -109,5 +122,25 @@
         Dokažte, že
         $$ (1+a_1) \cdot\cdots\cdot (1+a_n) ≥ 2^n. $$ 
     \end{priklad}
+
+% 12. 10. 2020
+
+    \begin{priklad}[Teoretický příklad 2]
+        Nalezněte supremum a infimum množiny
+        $$ \{\sqrt{n} - \lfloor\sqrt{n}\rfloor : n \in ®N\} $$ 
+    \end{priklad}
+
+\section{Mohutnost množin}
+    \begin{definice}
+        Množiny ®X, ®Y mají stejnou mohutnost, pokud existuje bijekce ®X na ®Y. Značíme $®X ≈ ®Y$.
+
+        Množina ®X má mohutnost menši nebo rovnu mohutnosti ®Y, pokud existuje prosté zobrazení ®X do ®Y. Značíme $®X \preceq ®Y$.
+
+        Množina ®X má menší mohutnost než ®Y, pokud $®X \preceq ®Y$, ale neplatí $®Y \preceq ®X$. Značíme $®X \prec ®Y$.
+    \end{definice}
+
+    \begin{veta}(Cantor-Bernstein)
+        Nechť ®X a ®Y jsou množiny splňující $®X \preceq ®Y$ a $®Y \preceq ®X$, pak $®X ≈ ®Y$.
+    \end{veta}
 
 \end{document}

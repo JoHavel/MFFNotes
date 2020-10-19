@@ -230,4 +230,153 @@
             \end{dukazin}
         \end{tvrzeni}
 
+        Jako speciální důsledky dostáváme následující. Je-li ®U otevřená, pak $®U \cap ®A = \O$ právě když $®U \cap \overline{®A} = \O$. Jsou-li ®U, ®V otevřené disjunktní množiny, pak $®U \cap \overline{®V} = \O = \overline{®U} \cap ®V$.
+
+        \begin{tvrzeni}[Vlastnosti uzávěru]
+            Pro množiny ®A, ®B v TP $(®X, \tau)$ platí\\
+            (C1) $\overline{\O} = \O$,\\
+            (C2) $®A \subseteq \overline{®A}$,\\
+            (C3) $\overline{\overline{®A}} = \overline{®A}$
+            (C4) $\overline{®A \cup ®B} = \overline{®A} \cup \overline{®B}$,\\
+            (C5) $\overline{®A \cap ®B} \subseteq \overline{®A} \cap \overline{®B}$.
+
+            \begin{dukazin}
+                První dvě jsou jednoduché, 3. plyne z uzavřenosti uzávěru. 4. dokážeme inkluzemi. Shrnutím dostaneme (C5).
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{priklad}
+                Zobrazení z podmnožin do podmnožin, které splňuje podmínky (C1-C4) jednoznačně určuje topologii.
+        \end{priklad}
+
+        \begin{tvrzeni}[Vlastnosti vnitřku]
+            Obdobně jako vlastnosti uzávěru.
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Charakterizace hranice]
+            Ať $®A \subseteq ®X$ a $x \in ®X$. Pak $x \in \delta ®A$, právě když každé okolí bodu $x$ protíná jak ®A, tak $®X \setminus ®A$.
+            \begin{dukazin}
+                Plyne okamžitě z definice hranice $\delta ®A = \overline{®A} \cap \overline{®X \setminus ®A}$ a charakterizace uzávěru.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Vlastnosti hranice]
+            12. bodů viz skripta. Stejně tak důkaz.
+        \end{tvrzeni}
+    
+    \subsection{Husté a řídké množiny, hromadné a izolované body}
+        \begin{definice}[Hustá a řídká množina, hustota, separabilní prostor]
+                Ať ®X je TP. Množina $®A \subseteq ®X$ se nazývá hustá (v ®X), pokud $\overline{®A} = ®X$. ®A se nazývá řídká, pokud $®X \setminus \overline{®A}$ je hustá.
+
+                Hustota prostoru ®X je nejmenší mohutnost husté podmnožiny, značí se $\d(®X)$ (d…density). Prostor se spočetnou hustotou se nazývá separabilní.
+        \end{definice}
+
+        \begin{tvrzeni}[Charakterizace hustých a řídkých množin]
+            Ať ®X je TP. Množina $®A \subseteq ®X$ je hustá v ®X, právě když $\forall ®U$ otevřená neprázdná v ®X protíná ®A. Množina ®A je řídká (v ®X), právě když $\forall ®V$ otevřená neprázdná $\exists ®U$ otevřená neprázdná, že $®U \subseteq ®V \setminus ®A$, což je právě když $\Int(\overline{®A}) = \O$.
+            \begin{dukazin}
+                Označme $\tau* = \tau \setminus \O$. Z charakterizace uzávěru: $\overline{®A} = ®X \Leftrightarrow \forall x \in ®X \forall ®V \in ©U(x): ®V\cap ®A ≠ \O$. $A$ je řídká $\Leftrightarrow$ $®X\setminus \overline{®A}$ je hustá $\Leftrightarrow \forall ®U \in \tau*: ®U \cap (®X \setminus \overline{®A}) ≠ \O \Leftrightarrow \forall ®U \in \tau*: ®U \setminus \overline{®A} ≠ \O$.
+
+                První část dostaneme ekvivalencí z předchozího: $ \forall ®U \in \tau* \exists ®V \in \tau*: ®V \subseteq ®U \setminus \overline{®A}$.
+
+                Druhá část pak plyne z $\Int \overline{A} = \O$
+            \end{dukazin}
+        \end{tvrzeni}
+        
+        \begin{tvrzeni}[Vztah váhy a hustoty]
+            Ať ®X je TP. Pak $\d(®X) ≤ \weight(®X)$. Speciálně každý prostor se spočetnou bází je separabilní.
+            \begin{dukazin}
+                Ať ©B je báze TP ®X. (BÚNO $\O \notin ©B$). $forall ®B \in ©B$ fixujeme $x_B \in B, ®D:=\{x_B : B \in ©B\}$. Zřejmě $|®D|≤|©B|$, ®D je hustá v ®X. (Když tedy volíme $©B$ nejmenší, získáme výraz.)
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Pro metrizovatelný TP ®X platí $\d(®X) = \weight(®X)$.
+        \end{poznamka}
+
+        \begin{definice}[Izolovaný a hromadný bod]
+            Ať ®X je TP. Bod $x \in ®A \subseteq ®X$ se nazývá izolovaným bodem množiny $A$, pokud existuje otevřená množina $®U \subseteq ®X$, že $®U\cap ®A = \{x\}$. Bod $x$ se nazývá hromadným bodem množiny ®A, pokud každé okolí bodu $x$ protíná množinu $®A\subseteq \{x\}$
+            \begin{prikladyin}
+                V diskrétním prostoru jsou všechny body izolované. Naopak je-li $®X = ®R$ a $®A = ®Q$, pak každý bod ®X je hromadným bodem množiny ®A. Žádný bod z ®A není izolovaným bodem ®A.
+            \end{prikladyin}
+
+        \end{definice}
+
+        \begin{definice}[Derivace množiny]
+            Množina hromadných bodů množiny ®A se značí $®A'$. Někdy se nazývá derivace ®A.
+        \end{definice}
+
+        \begin{tvrzeni}[Vlastnosti derivace]
+            $\overline{®A} = ®A \cup ®A'$, $(®A \cup ®B)' = ®A' \cup ®B'$
+            \begin{dukazin}
+                Domácí cvičení (je jednoduchý).
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Spojitá zobrazení}
+        \begin{definice}[Spojité zobrazení, homeomorfizmus a spojitost v bodě]
+            Ať $(®X, \tau)$ a $(®Y, \sigma)$ jsou TP. Ať $f: ®X \rightarrow ®Y$. Zobrazení $f$ se nazývá spojité, pokud $\forall ®U \in \sigma: f^{-1}(®U) \in \tau$.
+
+            $f$ se nazývá homeomorfizmus, pokud $f$ je bijekce a $f$ i $f^{-1}$ jsou spojitá.
+
+            $f$ je spojité v bodě $x$, pokud $\forall ®V \in ©U_\sigma(f(x)) \exists ®U \in ©U_\tau(x): f(U) \subseteq ®V$.
+        \end{definice}
+
+        \begin{priklady}
+            ®R, $(0, 1)$ jsou homeomorfní (ale nejsou izometrické)
+        \end{priklady}
+
+        \begin{poznamka}
+            Vlastnosti, TP, které se zachovávají homeomorfizmem se nazývají topologické vlastnosti.
+
+            (Úplnost není topologický pojem.)
+        \end{poznamka}
+
+        \begin{prikladyin}
+            Zobrazení z diskrétního prostoru je vždy spojité.
+
+            Zobrazení do indiskrétního prostoru je taktéž vždy spojité.
+        \end{prikladyin}
+
+        \begin{tvrzeni}[Charakterizace spojitých zobrazení]
+            Ať $(®X, \tau)$, $(®Y, \sigma)$ jsou TP, $f: ®X \rightarrow ®Y$ zobrazení. Pak následující je ekvivalentní:\\
+            1) $f$ je spojité\\
+            2) vzory množin z nějaké subbáze jsou otevřené\\
+            3) vzory množin z nějaké báze jsou otevřené\\
+            4) $f$ je spojité v každém bodě\\
+            5) vzory uzavřených množin jsou uzavřené\\
+            6) $\forall ®A \subseteq ®X: f(\overline{®A}) \subseteq f(®A)$\\
+            7) $\forall ®B \subseteq ®Y: \overline{f^{-1}(®B)} \subseteq f^{-1}(\overline{®B})$\\
+            8) $\forall ®B \subseteq ®Y: f^{-1}(\Int ®B) \subseteq \Int\(f^{-1}(®B)\)$
+
+            \begin{dukazin}
+                1->2 Triviální (z definice).
+
+                2->3 Ať $©B$ je nějaká báze. Dle 2 pro nějakou subbázi ©S toho $(®Y, \sigma)$ platí, že $f^{-1}(®S)$ je otevřená pro $®S \in ©S$. Ať $®B \in ©B$. ®B lze vyjádřit jako sjednocení konečných průniků prvků ©S. (Vzor průniku je průnik vzorů, vzor sjednocení je sjednocení vzorů.) $f^{-1}(®B)$ je sjednocením konečných průniků prvků tvaru $f^{-1}(®S), ®S \in ©S$. Tedy $f^{-1}(®B)$ je otevřená.
+
+                3->4 Ať $x \in ®X$, ®V okolí bodu $f(x)$. ©B báze z 3. podmínky. $\exists ®B \in ©B$, že $f(x) \in ©B \subseteq ®V$. $®U = f^{-1}(®B)$ otevřená, $x \in ®U f(®U) \subseteq ®B \subseteq ®V$.
+
+                4->5 Ať $®F \subseteq ®Y$ je uzavřená. Ať $x \in \overline{f^{-1}(F)}$. Chceme, že $x \in f^{-1}(®F)$ (tj. že $f(x) \in ®F$). Z 4 pro každé okolí ®V bodu $f(x)$ existuje ®U okolí $x$, že $f(x) \subseteq V$. Z definice uzávěru platí, že každé takové ®U protíná $f^{-1}(®F)$, tedy $f(®U) \cap ®F ≠ \O$, tedy $®V \cap ®F ≠ \O$. Tedy podle charakterizace uzávěru $f(x) \in \overline{®F} = ®F$.
+
+                5->6 $f^{-1}(\overline{f(®A)})$ je uzavřená dle 5 a obsahuje ®A, tedy obsahuje i $\overline{®A}$. Pak $f(\overline{®A}) \subseteq f\(f^{-1}(\overline{f(®A)})\)\subseteq \overline{f(®A)}$.
+
+                6->7 Ať $®B \subseteq Y$, $A := f^{-1}(®B)$. Dle 6 $f(\overline{f^{-1}(®B)}) \subseteq \overline{f(f^{-1}(®B))}\subseteq \overline{®B}$. $f^{-1}(®B) \subseteq f^{-1}(\overline{®B})$ (aplikováním vzoru? na předchozí).
+
+                7->8 Vztah vnitřku a uzávěru. $f^{-1}(\Int ®B) = f^{-1}(®Y \setminus \overline{®Y \setminus ®B}) = ®X \setminus f^{-1}(\overline{®Y \setminus ®B}) \stackrel{\text{dle 7}}{\subseteq} ®X \setminus \overline{®Y \setminus ®B} = ®X \setminus \overline{®X \setminus f^{-1}(®B)} = ®X \setminus \(®X \setminus \Int f^{-1}(®B)\) = \Int f^{-1}(®B)$.
+
+                8->1 Je-li $®V \subseteq ®Y$ otevřená, pak ze 7: $f^{-1}(®V) \subseteq \Int(f^{-1}(®V))$. Triviálně $\Int f^{-1}(®V) \subseteq f^{-1}(®U)$. Tedy $f^{-1}(®V) = \Int f^{-1}(®V)$, tedy $f^{-1}(®V)$ je otevřená.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Skládání spojitých zobrazení]
+            Ať $®X, ®Y, ®Z$ jsou TP, $f: ®X \rightarrow ®Y, g: ®Y \rightarrow ®Z$ zobrazení. Jsou li $f, g$ spojitá, pak $g \circ f: ®X \rightarrow ®Z$ je spojité.
+
+            Pokud $f$ je spojité v bodě $x$ a $g$ spojité v $f(x)$, pak $g \circ f$ je spojité v $x$.
+
+            \begin{dukazin}
+                $(g\circ f)^{-1}(®V) = f^{-1}(g^{-1}(®V))$
+
+                Je-li ®V okolí $gf(x)$, pak $g^{-1}(®V)$
+            \end{dukazin}
+        \end{tvrzeni}
+
 \end{document}

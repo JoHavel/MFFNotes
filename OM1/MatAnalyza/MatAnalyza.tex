@@ -399,6 +399,118 @@
             $$ \lim_{n \rightarrow ∞} a_n + b_n = A + B $$
             $$ \lim_{n \rightarrow ∞} a_n b_n = A\cdot B $$
             $$ \forall b_n \neq 0 \land B \neq 0 \implies \lim_{n \rightarrow ∞} \frac{a_n}{b_n} = \frac{A}{B} $$
+
+% 13. 10. 2020
+
+            \begin{dukazin}
+                Nechť $\epsilon > 0$. Z $\lim_{n \rightarrow ∞} a_n = A\exists n_A \in ®N \forall n>n_A |a_n - A| < \epsilon$, z $\lim_{n \rightarrow ∞} b_n = B\exists n_B \in ®N \forall n>n_B |b_n - B| < \epsilon$. Zvolme $n_0 = \max\{n_A, n_B\}$. Pak $\forall n≥ n_0$ platí $|(a_n + b_n) - (A + B)| = |(a_n - A) + (b_n - B)| ≤ |a_n - A| + |b_n - B| < \epsilon + \epsilon = 2\epsilon$. (A tady se použije lemmátko, které jsem ani nepsal a které je o tom, že $\epsilon$ můžeme na konci definice limity vynásobit libovolnou konstantou.)
+
+                $\exists \lim_{n \rightarrow ∞} b_n = B \stackrel{\text{V2.2}}{\implies}$ b je omezená, tedy $\exists K \in ®R \forall n \in ®N |b_n|≤K$. Nechť $\epsilon > 0$. Z $\lim_{n \rightarrow ∞} a_n = A\exists n_A \in ®N \forall n>n_A |a_n - A| < \epsilon$, z $\lim_{n \rightarrow ∞} b_n = B\exists n_B \in ®N \forall n>n_B |b_n - B| < \epsilon$. Zvolme $n_0 = \max{n_A, n_B}$. Pak $\forall n>n_0$ platí $|a_nb_n - AB| = |a_nb_n - b_nA + b_nA - AB|≤|a_nb_n-b_nA| + |b_nA - AB|≤|a_n - A||b_n| + |b_n - B||A|≤\epsilon \cdot K + \epsilon \cdot |A| = \epsilon \cdot (K + |A|)$.
+
+                K $\epsilon_1 = \frac{|B|}{2}$ z $\exists \lim_{n \rightarrow ∞} b_n = B \exists n_1 \in ®N \forall n>n_A |a_n - A| < \epsilon_1 = \frac{|B|}{2} \implies |b_n| > \frac{|B|}{2}$. Nechť $\epsilon > 0$. Z $\lim_{n \rightarrow ∞} a_n = A\exists n_A \in ®N \forall n>n_A |a_n - A| < \epsilon$, z $\lim_{n \rightarrow ∞} b_n = B\exists n_B \in ®N \forall n>n_B |b_n - B| < \epsilon$. Zvolme $n_0 = \max{n_A, n_B, n_1}$. Pak $\forall n>n_0$ platí $|\frac{a_n}{b_n} - \frac{A}{B}| = \frac{|a_nB - AB + AB - b_nA|}{|b_n|\cdot|B|} ≤ \frac{|a_nB - AB|}{|b_n|\cdot |B|} + \frac{|A-B-b_nA|}{|b_n| - |B|} = \frac{|a_n - A|\cdot |B|}{|b_n|\cdot |B|} + \frac{|A|\cdot |B-b_n|}{|b_n|\cdot |B|} < \epsilon \cdot (\frac{2}{|B|} + \frac{|A|}{|B|}\cdot\frac{2}{|B|})$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Limita a uspořádání]
+            Nechť $\lim_{n \rightarrow ∞} a_n = A \in ®R$, $\lim_{n \rightarrow ∞} b_n = B \in ®R$. 
+
+            Jestliže $A<B$, pak existuje $n_0 \in ®N \forall n≥n_0 a_n < b_n$.
+
+            Jestliže $\exists n_0 \in ®N$ tak, že $\forall n > n_0$ platí $a_n≥b_n$, pak $A≥B$
+            \begin{dukazin}
+                Položme $\epsilon = \frac{B-A}{2}$. Z existence limit vyplývá $\exists n_A \forall n≥n_A |a_n - A| < \epsilon \implies a_n < A + \epsilon = A + \frac{B-A}{2} = \frac{B+A}{2}$ a $\exists n_B \forall n≥n_B |b_n - B| < \epsilon \implies b_n > B - \epsilon = B - \frac{B-A}{2} = \frac{B+A}{2}$. Zvolme $n_0 = \max\{n_A, n_B\}$. Pak $\forall n ≥ n_0$ platí $b_n > \frac{A+B}{2} > a_n$.
+                
+                Sporem. Nechť $A<B$. Pak podle předchozí části $\exists n_1 \forall n>n_1 a_n < b_n$. Zároveň z předpokladu $\forall n≥n_0 a_n≥b_n$. Pak pro libovolné $n≥n_1$ a $n≥n_0$ platí $(a_n<b_n) \land (b_n<a_n) \lightning$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O dvou strážnících]
+            Nechť $\{a_n\}_{n = 1}^∞, \{b_n\}_{n = 1}^∞, \{c_n\}_{n = 1}^∞$ jsou posloupnosti splňující $\exists n_0 \in ®N \forall n \in ®N n≥n_0: a_n ≤ c_n ≤ b_n$ a $\lim_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} b_n = A \in ®R$.
+
+            Pak $\lim_{n \rightarrow ∞} c_n = A$.
+            
+% 16. 10. 2020
+
+            \begin{dukazin}
+                Nechť $\epsilon$ je kladné. Potom $\exists n_A \forall n≥n_A |a_n - A| < \epsilon$ a $\exists n_B \forall n≥n_B |b_n - A| < \epsilon$, tedy zvolme $n_C = \max\{n_A, n_B\}$, tudíž $\forall n≥n_C c_n \in (a_n, b_n) \subseteq (A-\epsilon, A+\epsilon)$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O limitě součinu omezené a mizející posloupnosti]
+            Nechť $\lim_{n \rightarrow ∞} a_n = 0$ a $\{b_n\}$ je omezená. Pak $\lim_{n \rightarrow ∞} a_n\cdot b_n = 0$.
+            \begin{dukazin}
+                Posloupnost $\{b_n\}$ je omezená $\implies \exists K > 0 \forall n \in ®N |b_n|≤K$. Z $\lim_{n \rightarrow ∞} a_n = 0$ k zadanému $\epsilon > 0 \exists n_0 \forall n≥n_0 |a_0 - 0| < \epsilon$. K tomuto $\epsilon > 0$ volme stejné $n_0$, pak $\forall n≥n_0 |a_n \c· b_n-0| = |a_n\cdot b_n|≤|a_n|\cdot |b_n| ≤ \epsilon · K$
+            \end{dukazin}
+
+            \begin{prikladyin}
+                $$ \lim_{n \rightarrow ∞} \frac{\sin(n)}{n} = 0 $$ 
+            \end{prikladyin}
+        \end{veta}
+
+    \subsection{Nevlastní limita posloupnosti}
+        \begin{definice}[Nevlastní limita]
+            Řekneme, že posloupnost $\{a_n\}_{n = 1}^∞$, má (nevlastní) limitu $+∞$ (respektive $-∞$), pokud
+            $$ \forall K \in ®R \exists n_0 \in ®N \forall n≥n_0, n \in ®N: a_n > K $$ 
+            ($$ \forall K \in ®R \exists n_0 \in ®N \forall n≥n_0, n \in ®N: a_n < K $$)
+            \begin{prikladyin}
+                $$ \lim_{n \rightarrow ∞} n = +∞ $$ 
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{tvrzeni}
+            Věty: jednoznačnost limity (2.1), limita vybrané posloupnosti (2.3), limita a uspořádání (2.5), o dvou strážnících (2.6, stačí jeden z nich).
+            \begin{dukazin}
+                Analogicky
+            \end{dukazin}
+        \end{tvrzeni}
+        
+        \begin{definice}[Rozšířená reálná osa]
+            Rozšířená reálná osa je množina $®R = ®R\cup\{+∞, -∞\}$. S následujícími vlastnostmi:
+            \begin{itemize}
+                \item Uspořádání: $\forall a \in ®R: -∞<a<+∞$
+                \item Absolutní hodnota: $|+∞| = |-∞| = +∞$
+                \item Sčítání: $\forall a \in ®R*\setminus \{-∞\}: +∞ +a = +∞$\\$\forall a \in ®R*\setminus \{+∞\}: -∞ +a = -∞$
+                \item Násobení: $\forall a \in ®R* a>0: a(±∞) = ±∞$\\
+                        $\forall a \in ®R* a<0: a(±∞) = \mp∞$
+                \item Dělení: $\forall a \in ®R: \frac{a}{±∞} = 0$.
+                \item Výrazy $-∞+∞, 0(±∞), \frac{±∞}{±∞}, \frac{\text{cokoliv}}{0}$ nejsou definovány (z dobrého důvodu!).
+            \end{itemize}
+        \end{definice}
+
+        \begin{poznamka}[Rozšířená definice suprema a infima]
+            Je-li $®A≠\O$ shora neomezená, pak definujeme $\sup®A = +∞$.
+
+            Je-li $®A≠\O$ zdola neomezená, pak definujeme $\inf®A = -∞$.
+
+            $\sup\O = -∞, \inf\O = +∞$
+        \end{poznamka}
+
+        \begin{veta}[Aritmetika limit podruhé (L2.4)]
+            Nechť $\lim_{n \rightarrow ∞} a_n = A\in ®R*$ a $\lim_{n \rightarrow ∞} b_n = B \in ®R*$. Pak platí:
+            \begin{enumerate}
+                \item $\lim_{n \rightarrow ∞} a_n + b_n = A + B$, pokud je výraz $A+B$ definován.
+                \item $\lim_{n \rightarrow ∞} a_n · b_n = A·B$, pokud je výraz $A·B$ definován.
+                \item Pokud $b_n ≠ 0, \forall n \in ®N$ a $B ≠ 0$, pak $\lim_{n \rightarrow ∞}\frac{a_n}{b_n} = \frac{A}{B}$, pokud je výraz $\frac{A}{B}$ definován.
+            \end{enumerate}
+
+            \begin{dukazin}[Část]
+                 1. $A, B \in ®R$ víme. $A = +∞, B \in ®R$. Zvolme $K \in ®R$ libovolně. Z toho, že $\lim_{n \rightarrow ∞} = B \in ®R$ k $\epsilon = 1 \exists n_1 \forall n≥n_1 |b_n - B|<1 \implies b_n > B-1$. Z $\lim_{n \rightarrow ∞} a_n = +∞$ plyne, že k $K' = K - B + 1 \exists n_0 \forall n≥n_0: a_n > K'=K-B+1$. Pak $\forall n≥n_0'=\max\{n_0, n_1\}: a_n + b_n > K-B+1+B-1 = K$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Limita typu $\frac{A}{0}$]
+            Nechť $\lim_{n \rightarrow ∞} a_n = A\in ®R*, A>0$, $\lim_{n \rightarrow ∞} b_n = 0$ a $\exists n_0 \forall n ≥ n_0$ platí $b_n>0$. Pak $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = +∞$
+            \begin{dukazin}
+                Zvolme $K \in ®R$.
+                $$ \lim_{n \rightarrow ∞} a_n = A \< \begin{array}{l}
+                    A = +∞:\exists n_1 \forall n≥n_1 a_n > 1\\
+                    A \in ®R: \epsilon = \frac{A}{2} \exists n_1 \forall n≥ n_1 |a_n - A|<\epsilon = \frac{A}{2} \implies a_n > \frac{A}{2}
+                    \end{array} \right. $$ 
+                    Tedy položme $\tilde{A} = \min\{1, \frac{A}{2}\}$. Pak $\forall n≥ n_1: a_n > \tilde{A}$. Z $\lim_{n \rightarrow ∞} b_n = 0$ k $\epsilon = \frac{\tilde{A}}{K} \exists n_2 \forall n≥n_2 |b_n - 0|< \frac{\tilde{A}}{K} \implies 0<b_n<\frac{\tilde{A}}{K}$.
+
+                    Položme $n_3 = \max\{n_0, n_1, n_2\}$ pak
+                    $$ \forall n≥n_3 \frac{a_n}{b_n} > \tilde{A}·\frac{K}{\tilde{A}} = K $$ 
+            \end{dukazin}
         \end{veta}
 
 \end{document}

@@ -275,6 +275,161 @@
     \begin{poznamka}[Geometrický význam]
         Řádky popisují jednotlivé rovnice, netriviální rovnice má za množinu řešení nadrovinu v $\R^n$, řádky popisují proměnné, významově jsou lineárními kombinacemi.
     \end{poznamka}
-    
 
+% 13. 10. 2020
+
+\section{Tělesa}
+    Otázka: V jakých číselných oborech můžeme řešit soustavy lineárních rovnic?
+
+    \begin{poznamka}[Těleso budeme zavádět jako]
+        Uvažujme množinu „čísel“ ®T s binárními operacemi +, $\cdot$. $+, \cdot: ®T \times ®T \rightarrow ®T$.
+
+        Pak $(®T, +, \cdot)$ je těleso, pokud splňuje:…
+
+    \end{poznamka}
+    
+    \begin{poznamka}[Co musí splňovat?]
+        Uvažujme množinu ®T s jednou binární operací $\triangle: ®T\times ®T \rightarrow ®T$.
+
+        Budeme požadovat tyto vlastnosti:\\
+        (H1) $\forall a, b, c \in ®T: (a\triangle b)\triangle c = a\triangle (b\triangle c)$ (Asociativita)\\
+        (H2) $\exists 0 \in ®T \forall a \in ®T: 0 \triangle a = a = a\triangle 0$ (Existence neutrálního prvku)\\
+        (H3) $\forall a \in ®T \exists (-a) \in ®T: a\triangle (-a) = 0 = (-a) \triangle a$ (Existence opačného / inverzního prvku)
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Ať $(®T, \triangle)$ splňuje axiomy (H1), (H2), (H3). Pak pro každé $a \in ®T$ je prvek $(-1)$ z (H3) určen jednoznačně.
+
+        \begin{dukazin}
+            Předpokládejme, že pro prvek $a \in ®T$ existují prvky $b, c \in ®T$ splňující:
+            $$ a\triangle b = 0 = b\triangle a \land a\triangle c = 0 = c = c \triangle a $$
+            Pak:
+            $$ (b\triangle a)\triangle c \stackrel{\text{(H1)}}{=} b \triangle (a\triangle c) $$
+            $$ c \stackrel{\text{(H2)}}{=} 0 \triangle c = b \triangle 0 \stackrel{\text{(H2)}}{=} b $$
+            $$ b = c \lightning $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}[Ještě často doplňujeme]
+        (H4) $\forall a, b \in ®T: a\triangle b = b\triangle a$
+    \end{poznamka}
+
+    \begin{definice}[Těleso]
+        Tělesem (angl. field) rozumíme množinu $®T$ s binárními operacemi $+, \cdot : ®T\times ®T \rightarrow ®T$, které splňují tyto axiomy:\\
+        (S1) $\forall a, b, c \in ®T: (a+b)+c = a+(b+c)$\\
+        (S2) $\exists 0\in ®T \forall a \in ®T: a+0 = a$\\
+        (S3) $\forall a \in ®T \exists (-a) \in ®T: a+(-1) = 0$\\
+        (S4) $\forall a, b \in ®TL a+b = b+a$\\
+        (N1) $\forall a, b, c \in ®T: (a\cdot b)\cdot c = a\cdot (b\cdot c)$\\
+        (N2) $\exists 1 \in ®T: a\cdot 1 = a$\\
+        (N3) $\forall a \in ®T, a≠0 \exists a^{-1}\in®T: a\cdot a^{-1} = 1$\\
+        (N4) $\forall a,b \in ®T: a\cdot b = b\cdot a$\\
+        (D) $\forall a,b,c \in ®T: (a+b)\cdot c = a\cdot c + b\cdot c$\\
+        ($\neg$T) $|®T|>1$ (jinými slovy $0 ≠ 1$)
+
+    \end{definice}
+    
+    \begin{priklady}
+        $(®R, +, \cdot), (\Q, +, \cdot), (\C, +, \cdot), (\{0, 1\}, XOR, AND)$
+    \end{priklady}
+
+    \begin{tvrzeni}[Další vlastnosti těles]
+        Je-li $a, b \in ®T, a≠0$, pak $a\cdot x+b = 0$ má v ®T právě jedno řešení $(x = \frac{-b}{a})$.
+
+        $\forall a\in ®T: a\cdot 0 = 0$ ($a\cdot 0 + a\cdot 0 \stackrel{\text{(D)}}{=} a\cdot(0+0) \stackrel{\text(S2)}{=} a\cdot 0$, odečteme dvakrát pomocí (S2))
+
+        $a\cdot b = 0 \implies a = 0 \lor b=0$
+
+        $0 ≠ 1$ (Vezměme libovolné $a \in ®T$. Kdyby $0=1$, pak $0 = 0\cdot a = 1\cdot a = a \lightning$)
+    \end{tvrzeni}
+
+    \begin{priklady}
+        Buď $n>2$ a $®Z_n = \{0,1,…,n-1\}$. Uvažujme násobení a dělení modulo. Potom $®Z_n$ splňuje všechny axiomy kromě (4N), které splňuje pokud $n$ je prvočíslo.
+    \end{priklady}
+
+% 15. 10. 2020
+
+    \begin{definice}[Charakteristika tělesa]
+        Nechť ®T je těleso, čísly $1, 2, 3, 4, …$ budeme značit součty $1, 1+1, 1+1+1, 1+1+1+1, …$. Charakteristikou tělesa budeme značit nejmenší číslo z $1, 2, 3, 4, …$, které je rovno 0. Pokud takové neexistuje je charakteristika rovna 0.
+
+        \begin{prikladyin}
+            Char. ®R, ®C, ®Q je 0. Char. $®Z_p$ je $p$.
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{tvrzeni}
+        Je-li ®T těleso, pak charakteristika ®T je buď 0 nebo prvočíslo.
+        \begin{dukazin}[Sporem]
+                Předpokládejme, že char. ®T je $n≠0$ a $n$ je složené číslo, tj. $n = k\cdot l$, $1<k, l<n$. Všimněme si\footnote{$n$, $k$ a $l$ jedniček.} $(1+…+1) = (1+…+1) \cdot(1+…+1)\ \ (n=k\cdot l\text{ v }®T)$. Z předpokladu $n=0$ v ®T, tak $0=k\cdot l$ v ®T, $k,l ≠ 0$ a z vlastnosti těles $\lightning$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \subsection{Matice a operace s nimi}
+        \begin{definice}[Matice nad tělesem]
+            Matice typu $m \times n$ nad tělesem ®T je obdélníhové schéma prvků ®T, $m$ řádků, $n$ sloupců.
+        \end{definice}
+
+        \begin{poznamka}[Speciální případy]
+            $n=1$ -- sloupcový aritmetický vektor.
+
+            $m=1$ -- řádkový vektor.
+        \end{poznamka}
+
+        \begin{poznamka}[Operace]
+            Podobně jako vektory lze matice sčítat a násobit prvkem z ®T.
+        \end{poznamka}
+
+        \begin{veta}[Vlastnosti operace]
+            $$(A+B)+C = A+(B+C) \text{Má-li jedna strana smysl ($A, b, c$ stejného typu)}$$
+            $$ A+B = B+A, 0+A=A $$ 
+            $$ (s+t)\cdot A = s\cdot A + t\cdot A, (s\cdot t)\cdot A = s\cdot (t\cdot A), s\cdot (A+B) = s\cdot A + s\cdot B $$ 
+        \end{veta}
+
+        \begin{definice}[Čtvercová matice]
+            Matice je čtvercová, pokud je typu $n\times n$, $n≥1$.
+
+            \begin{prikladyin}
+                Jednotková matice $©I = \begin{pmatrix}1 & 0 & …\\0 & 1 & …\\ \vdots & \vdots & \ddots\end{pmatrix}$.
+
+                Trojúhelníkové matice (horní tj. $a_{ij} = 0 \forall i>j$ a dolní tj. $a_{ij} = 0 \forall j>i$).
+
+                Diagonální (horní a dolní trojúhelníková zároveň) $a_{ij} = 0 \forall j≠i$.
+
+                Permutační tj. v každém řádku a v každém sloupci je právě jedna 1, jinak 0.
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Transponovaná matice]
+            Je-li $A = (a_{ij})_{m\times n}$, pak $A^T = (b_{ij})_{n\times m}$, kde $b_{ij} := a_{ji}$, je matice transponovaná.
+        \end{definice}
+
+        \begin{definice}[Symetrická matice]
+            Matice $A$ je symetrická, pokud je čtvercová a $A = A^T$.
+        \end{definice}
+
+        \begin{definice}[Násobení matic]
+            Ať $A, B$ jsou matice nad tělesem ®T, $A=(a_{ij})_{m\times n}, B = (b_{jk})_{n\times p})$. Potom $AB = (\sum_{j=1}^n a_{ij} \cdot b_{jk})_{m\times p}$
+        \end{definice}
+
+        \begin{poznamka}[Proč násobení matic]
+            Uvažujme SLR. Dá se zapsat jako $Ax = b$
+        \end{poznamka}
+
+        \begin{poznamka}[Další pohledy na součin matic]
+            Sloupcový: sloupce výsledné matice jsou lineární kombinace sloupců první matice s koeficienty ze sloupců v druhé matici.
+
+            Řádkový pohled: totéž transponovaně.
+
+            Blokové násobení: můžeme násobit matice v maticích!
+        \end{poznamka}
+
+        \begin{poznamka}[Vlastnosti násobení matic]
+            \begin{upozorneni}
+                $$ AB ≠ BA $$
+            \end{upozorneni}
+            $$ (AB)C = A(BC) \text{Má-li jedna strana smysl.} $$
+            $$ (A+B)C = AC + BC, C(E+F) = CE + CF $$ 
+            $$ ©IA = A = A©I $$ 
+            $$ s\in ®T, s(AB) = (aA)B = A(sB) $$ 
+        \end{poznamka}
 \end{document}

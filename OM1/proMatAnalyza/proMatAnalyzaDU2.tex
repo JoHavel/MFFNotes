@@ -1,0 +1,32 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 2]
+    Nalezněte supremum a infimum množiny
+    $$ \{ √{n}\ −\left\lfloor√{n}\right\rfloor: n \in ®N \}. $$
+
+    \begin{reseni}[Infimum]
+        Infimum je zřejmé, jelikož odčítané číslo je z definice menší rovno druhému, všechny prvky jsou tedy nezáporné a $0$ jako hodnota $√{n}\ −\left\lfloor√{n}\right\rfloor: n=1$ je tudíž infimum dané množiny.
+    \end{reseni}
+
+    \begin{reseni}[Supremum]
+        Všechna čísla v této množině jsou očividně menší než $1$, jelikož celá čísla mezi sebou mají interval velikosti $1$, dolní celá část tak nemůže být o 1 a více menší než dané reálné číslo. Tvrdím, že $1$ je hledaným supremem.
+
+        První část definice suprema (všechny prvky množiny jsou menší) jsme dokázali minulým odstavcem. Druhá část říká, že pro každé menší číslo (označme ho $1-\epsilon$, $\epsilon > 0$) existuje prvek množiny větší než toto číslo. Nechť je $\epsilon ≤ 1$, protože jinak můžeme za prvek množiny vybrat i již zmíněnou nulu.
+
+        Dosaďme $o^2 - 1$ za $n$ pro nějaké $1≠o \in ®N$. Potom chceme $√{o^2-1}\ −\left\lfloor√{o^2-1}\right\rfloor > 1-\epsilon$, to můžeme (jelikož $o = \left\lfloor√{o^2 - 1}\right\rfloor + 1$) přepsat jako $o > √{o^2-1} > o - \epsilon$. Nerovnost $o > √{o^2 - 1}$ je zřejmá (umocníme na druhou). Druhá nerovnost\footnote{Výrazy jsou nezáporné, tedy je lze umocnit, $\epsilon$ kladné, tedy s ním lze dělit}:
+        $$ o-\epsilon < √{o^2 - 1} $$
+        $$ o^2 - 2o\epsilon + \epsilon^2 < o^2 - 1 $$ 
+        $$ \frac{\epsilon^2 + 1}{2\epsilon} < o $$
+
+        Pokud za $o$ zvolíme $\left\lceil\frac{\epsilon^2 + 1}{2\epsilon}\right\rceil$, opravdu je
+        $$ √{o^2-1} - \left\lfloor√{o^2-1}\right\rfloor > 1-\epsilon, $$
+        takže $1$ splňuje definici suprema.
+    \end{reseni}
+\end{priklad}
+
+\end{document}

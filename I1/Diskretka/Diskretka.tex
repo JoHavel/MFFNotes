@@ -30,7 +30,7 @@
     \end{definice}
 
     \begin{definice}[Důkaz matematickou indukcí]
-            Dokážeme $\phi(n), \forall n \in \N$ tak, že dokážeme $\phi(0)\land(\forall n \in \N)(\phi(n)\implies\phi(n+1))$
+            Dokážeme $\phi(n), \forall n \in ®N$ tak, že dokážeme $\phi(0)\land(\forall n \in ®N)(\phi(n)\implies\phi(n+1))$
     \end{definice}
 
     \begin{definice}[Dolní a horní celá část]
@@ -52,16 +52,88 @@
     \end{definice}
 
     \begin{poznamka}[Klasické množiny]
-        \N \Z \Q \R \C
+        ®N ®Z ®Q ®R ®C
     \end{poznamka}
 
     \begin{poznamka}[Klasické množinové operace]
-        $$ x \in \A $$
-        $$ \A \subseteq \B $$
-        $$ \A \cap \B $$
-        $$ \A \cup \B $$ 
-        $$ \A \\ \B $$
-        $$ \A\triangle\B = (\A\\B)\cup(\B\\\A) = \text{disperze} $$
-        $$ 2^\A = \P(\A) $$
+        $$ x \in ®A $$
+        $$ ®A \subseteq ®B $$
+        $$ ®A \cap ®B $$
+        $$ ®A \cup ®B $$ 
+        $$ ®A \setminus ®B $$
+        $$ ®A\triangle®B = (®A\setminus ®B)\cup(®B\setminus ®A) = \text{disperze} $$
+        $$ 2^®A = ©P(®A) $$
     \end{poznamka}
+
+    \begin{definice}[Uspořádaná dvojice]
+        Uspořádaná dvojice je $(x, y)$ nebo $\{\{x\},\{x, y\}\}$.
+
+        Vytváří se např. kartézským součinem $®A\times ®B := \{(a,b)|a\in ®A, b \in ®B\}$.
+
+        Uspořádaná trojice je $(x, y, z) = ((x, y), z) = (x, (y, z))$. Atd. pro n-tice.
+    \end{definice}
+
+    \begin{definice}[Relace]
+        ®A je relace (binární) mezi množinami ®X a ®Y $≡ ®A \subseteq ®X \times ®Y.$
+
+        ®A je relace (binární) na množině ®X $≡$ mezi ®X a ®X.
+
+        Inverze je relace mezi ®Y a ®X: $R^{-1} := \{(y, x) | (x, y) \in R\}$.
+
+        Skládání $T = R \circ S = \{(x, z)| \exists y: xRy \land ySz\}$
+
+        Diagonála = diagonální relace: $\triangle x := \{(x, x) \in ®X\}$
+    \end{definice}
+
+    \begin{definice}[Funkce = zobrazení]
+        Funkce z množiny ®X do množiny ®Y je relace $A$ mezi ®X a ®Y taková, že $\forall x \in ®X \exists! y\in ®Y: xAy$    
+    \end{definice}
+
+    \begin{definice}[Vlastnosti funkcí]
+        Funkce $f: ®X \rightarrow ®Y$ je:
+        \begin{itemize}
+            \item prostá (injektivní) $≡ \not\exists x, x' \in ®X: x≠x' \land f(x) = f(x')$
+            \item na ®Y (surjektivní) $≡ \forall y \in ®Y \exists x \in ®X: f(x) = y$
+            \item vzájemně jednoznačná (bijektivní, 1-1 (jedna ku jedné)) $\forall y \in ®Y \exists! x \in ®X: f(x) = y$
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}[Vlastnoti relací]
+        Relace $R$ na ®X je:
+        \begin{itemize}
+            \item reflexivní $≡ \forall x \in ®X: xRx$
+            \item symetrická $≡ \forall x, y \in ®X: xRy \implies yRx (\Leftrightarrow R = R^{-1})$
+            \item antisymetrická $≡ \forall x, y \in ®X: xRy \land yRx \implies x = y$
+            \item tranzitivní $≡ \forall x, y, z \in ®X: xRy \land yRz \implies xRz$
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}[Ekvivalence]
+        Relace se nazývá ekvivalence, pokud je tranzitivní, reflexivní a symetrická.
+    \end{definice}
+
+    \begin{definice}[Ekvivalenční třídy]
+        $$ R[x] = \{y \in ®X | xRy\} $$
+    \end{definice}
+
+    \begin{veta}
+        $$ 1) \forall x \in ®X R[x] ≠ \O $$
+        $$ 2) \forall x, y \in ®X: R[x] = R[Y] XOR R[x]\cap R[y] = \O $$
+        $$ 3) \{R[x]| x \in ®X\} \text{určuje ekvivalenci $R$ jednoznačně} $$ 
+        \begin{dukazin}
+            1) triviální
+
+            2) Dokážeme: pokud $R[x] \cap R[y] ≠ \O$, pak $R[x] = R[y]$. (Tranzitivita).
+
+            3)
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Rozklad množiny]
+        Množinový systém $©S \subseteq 2^{®X}$ je rozklad množiny ®X tehdy, když\\
+        (R1) $\forall ®A \in ©S: ®A ≠ \O$,\\
+        (R2) $\forall ®A, ®B \in ©S: ®A ≠ ®B \implies ®A\cap ®B = \O$,\\
+        (R3) $\bigcup_{®A \in ©S} = ®X$.
+    \end{definice}
+
 \end{document}

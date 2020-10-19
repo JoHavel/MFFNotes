@@ -33,7 +33,7 @@
 
 \section{Stokesova věta v $\R^n$, diferenciální formy v $\R^n$}
 \begin{veta}[Moderní (= obecná) formulace Stokesovy věty = Cíl (Cartan 1945)]
-        $$ \int_{S} {d\omega} = \int_{\delta S}\omega $$
+        $$ \int_{S} {d\omega} = \int_{\partial S}\omega $$
         Kde S je buď 'singulární' \k-plocha v $R^n$ (tato část) nebo \k-varieta s okrajem (3. část).
           
     \end{veta}
@@ -170,6 +170,144 @@
             $$ G_k(\V) \rightarrow ? P(\R^{(n nad k)}) $$, je-li $\dim\V = n$
         \end{veta}
 
+% 14. 10. 2020
+
+    \subsection{Diferenciální formy}
+        $$x \in ®R^n = \(x_1, …, x_n\)$$
+        Označme $T*(®R^n)$ reálný vektorový prostor, jehož bázi tvoří symboly $dx_1, …, dx_n$ tj.
+        $$ T*(®R^4) = \{\sum_{i=1}^n\alpha_i\,dx_i|\alpha_i \in ®R\} $$ 
+        \begin{definice}[Diferenciální fomrma]
+            Diferenciální forma $\omega$ na otevřené množině $\Omega \subset ®R^n$ je zobrazení $\omega: \Omega \rightarrow \Lambda*(T*(®R^n))$ třídy $©S^∞$ (= je hladké).
+
+            Označme $©E*(\Omega)$ vektorový prostor všech diferenciálních forem na $\Omega$. Každé $a \in ©E*(\Omega)$ laze jednoznačně psát jako
+            \begin{equation}
+                \omega(x) = \sum_{I}\omega_I(x)\,dx_I, 
+            \end{equation}
+            kde součet je přes všechny $I\subset\{1, …, n\}$, $\omega_I \in ©S^∞(\Omega)$ a $dx_I = dx_{i_1}\lor … \lor dx_{i_k}$ jsou-li prvky $i_1, …, i_k$ množiny $I$ uspořádány postupně
+        \end{definice}
+
+        \begin{definice}[Stupeň diferenciální formy]
+            Dále $\omega \in ©E*(\Omega)$ má stupeň $k$ (tzv. $k$-forma), pokud $\omega : \Omega \rightarrow \Lambda^k(T*(®R^n))$ je hladké zobrazení. Označme $©E^k(\Lambda)$ vektorový prostor všech $k$-forem na $\Omega$.
+            \begin{poznamkain}
+                Každá $\omega \in ©E^k(\Omega)$ má tvar (1), kde je součet přes všechny $|I| = k$.
+
+                Zřejmě $©E*(\Omega) = \bigoplus_{k=0}^n ©E^k(\Omega)$ a $©E^0(\Omega) = ©S^∞(\Omega)$.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{definice}[Vnější násobení]
+            Na $©E*(\Omega)$ definujeme vnější násobení
+            $$(\omega \lor \tau)(x):= \omega(x)\lor \tau(x), x\in \Omega, \omega, \tau \in ©E*(\Omega).$$
+        \end{definice}
+
+        \begin{definice}[Vnější (de Rhammův) diferenciál]
+            Nechť $\Omega \subset ®R^n$ je otevřená. Potom definujeme zobrazení $d: ©E*(\Omega) \rightarrow ©E(\Omega)$ následovně:
+            (i)Je-li $f \in ©E^0(\Omega)$, potom
+            $$ (df)(x) := \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(x)\,dx_i, x \in \Omega $$
+
+            (ii) Nechť $\omega \in ©E*(\Omega)$ je tvaru (1). Potom
+            $$ dw := \sum_{I} (d\omega_I)\lor dx_I $$
+
+            \begin{prikladyin}
+                $$ \omega = e^{xy}\,dx + \cos(x+y)\,dy $$
+                $$ d(e^{xy}) = e^{xy}y\,dx + e^{xy}x\,dy $$ 
+                $$ (\cos(x+y)) = -\sin(x+y)\,dx - \sin(x+y)\,dy $$ 
+                $$ d\omega = e^{xy}x \,dy\lor dx - sin(x+y)dx \lor dy = -(xe^{xy} + \sin(x+y))\,dx\lor dy $$ 
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{poznamka}
+            Nechť $\phi_i: ®R^n \rightarrow ®R$ je $i$-tá souřadnice funkce, tzn. $\phi_i(x) := x_i$, $x=(x_1, …, x_n)\in ®R^n$. Potom
+            $$ d\phi_i = \sum_{j=1}^n \frac{\partial \phi_i}{\partial x_j}\, dx_j = dx_i. $$
+        \end{poznamka}
+
+        \begin{poznamka}
+            V „rovném“ prostoru $®R^n$:
+            \begin{itemize}
+                \item tečný prostor $T_x(®R^n) \simeq ®R^n$.
+                \item kotečný prostor $T_x*(®R^n) := (T_x(®R^n))* \simeq (®R^n)*$
+            \end{itemize}
+        \end{poznamka}
+
+        \begin{veta}
+            Nechť $\Omega \subset ®R^n$ je otevřená, $\omega, \tau \in ©E*(\Omega)$ a $p = 0, …, n$. Potom platí
+            \begin{itemize}
+                \item[(i)] $d(\omega + \tau) = d\omega + d\tau$ a $\forall \omega \in ©E^p(\Omega): d\omega \in ©E^{p+1}(\Omega)$, kde $©E^{n+1}(\Omega) := \O$.
+                \item[(ii)] Je-li $\omega \in ©E^p(\Omega)$, potom $d(\omega \lor \tau) = d\omega \lor \tau + (-1)^p\omega\lor d\tau$.
+                \item[(iii)] $d(d\omega) = 0$.
+            \end{itemize}
+            
+            \begin{dukazin}
+                \begin{itemize}
+                    \item[(i)] plyne z linearity $\lor$ a definice.
+                    \item[(ii)] Vzhledem k (i) stačí dokázat pro $\omega = \omega_I\,dx_I$ a $\tau = \tau_J\,dx_J$, kde $I, J \subset \{1, …, n\}$, $I$ je $p$-prvková a $I \cap J = \O$.
+
+                            Potom $d(\omega \lor \tau) = d(\omega_I\tau_J)\lor dx_I \lor dx_J.$ Dále $d(\omega_I\tau_J) = \sum_{i=1}^n \frac{\partial(\omega_I\tau_J)}{\partial x_i}\,dx_i = \sum_{i=1}^n\(\frac{\partial\omega_I}{\partial x_i}\tau_J + \omega_I\frac{\partial \tau_J}{}\partial x_i\)\,dx_i$.
+
+                            Tedy $d(\omega \lor \tau) = \sum_{i=1}^n\frac{\partial \omega_I}{\partial x_i}\tau_J\,dx_i\lor dx_I \lor dx_J + \sum_{i=1}^n\omega_I\frac{\partial \tau_J}{\partial x_i}\,dx_i\lor dx_I \lor dx_J$, kde musím v druhém členu posunout „$d\tau$“, k jeho $dx_J$
+
+                    \item[(iii)] Pro $f\in ©E^0(\Omega)$ si to roznásobím a popáruji prohozené bázové vektory.
+
+                            Díky (i) stačí rozbrat pro $\omega = \omega_I\,dx_I$, kde $I \subset\{1, …, n\}$. Potom $d(d\omega) = d(\omega_I\,dx_I)$, (dvojkou rozepíšu) a z první části a $d1 = 0$ je to rovno 0.
+                \end{itemize}
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Přenášení diferenciálních forem pomocí zobrazení}
+        $x = (x_1, …, x_n) \in ®R^n$ a $u = (u_1, …, u_k) \in ®R^k$. V této části předpokládejme, že $\Omega \subset ®R^n$ je otevřená, $U \subset ®R^k$ je otevřená a $\phi: U \rightarrow \Omega$ je hladké zobrazení.
+
+        Je tedy $x = \phi(u), u \in U$ a $x_i = \phi_i(u_1, …, u_k)$, kde $\phi_i$ je $i$-tá složka $\phi$.
+
+        \begin{definice}
+            Za předpokladů výše definujeme zobrazení $\phi*:©E*(\Omega) \rightarrow ©E*(U)$ předpisem $\phi*(\omega) := \sum_I (\omega_I \circ \phi)\,d\phi_I$, kde $\omega = \sum_I \omega_I\,dx_I$ je tvaru (1) a $d\phi_I = d\phi_{i_1}\lor … \lor d\phi_{i_k}$, jsou-li prvky $i_1, …, i_k$ uvnitř $I$ uspořádány vzestupně.
+
+            \begin{poznamkain}
+                V souladu s definicí plošného integrálu 2. druhu.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{veta}
+            Nechť $\phi$ je jako výše a $\omega, \tau \in ©E*(\Omega)$. Potom:
+            \begin{itemize}
+                \item[(i)] $\phi*(\omega + \tau) = \phi*(\omega) + \phi*(\tau)$,
+                \item[(ii)] $\phi*(\omega \lor \tau) = \phi*(\omega) \lor \phi*(\tau)$,
+                \item[(iii)] $\phi*(d\omega) = d(\phi*(\omega))$.
+                \item[(iv)] Je-li $V \subset ®R^l$ otevřená a $\psi: V \rightarrow U$ je hladká, potom $(\phi\circ\psi)*(\omega) = (\psi*\circ\phi*)(\omega)$.
+                \item[v] Je-li $k=n$, $\omega \in ©E^n(\Omega)$ a $\omega = f\,dx_1\lor …\lor dx_n$, potom $\phi*(\omega) = (f\circ \phi) \det(\Jac\phi)\, du_1 \lor … \lor du_n$, kde $\Jac\phi=\(\frac{\partial\phi_i}{\partial u_j}\)_{i, j = 1,…,n}$ je Jacobiho matice $x = \phi(u)$.
+            \end{itemize}
+
+            \begin{dukazin}
+                Jednoduchý.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Uzavřené a exaktní formy]
+            Formule $\omega \in ©E^k(\Omega)$ se nazývá uzavřená, je-li $d\omega = 0$ a exaktní, existuje-li $\tau \in ©E^{k-1}(\Omega)$ takové, že $d\tau = \omega$.
+        \end{definice}
+
+        \begin{poznamka}[Platí]
+            Je-li $\omega$ exaktní, potom je uzavřená.
+        \end{poznamka}
+
+        \begin{lemma}[Poincarého lemma]
+            Nechť $\Omega$ je otevřená koule v $®R^n$. Potom pro $k>0$ každé $\omega \in ©E^k(\Omega)$, která je uzavřená, je i exaktní.
+            
+            \begin{poznamkain}
+                    Platí i pro hvězdovité (znáte z analýzy) nebo jednoduše souvislé (dá se stáhnout do bodu) oblasti $\Omega \subset ®R^n$
+            \end{poznamkain}
+        \end{lemma}
+
+        \begin{poznamka}[Poncarého lemma platí pouze pro dané oblasti]
+            Nechť $\Omega := ®R^2 \setminus \{(0, 0)\}$. Potom $\omega := \frac{x}{x^2 + y^2}\,dy - \frac{y}{x^2 + y^2}\,dx \in ©E^1(\Omega)$ je uzavřená, ale není exaktní.
+        \end{poznamka}
+
+        \begin{definice}[De Rhanův komplex]
+            Nechť $\Omega \subset ®R^n$ je otevřená, potom
+            $$ ©E^0(\Omega) \overset{d}{\rightarrow} ©E^1(\Omega) \overset{d}{\rightarrow} … \overset{d}{\rightarrow} ©E^n(\Omega) $$
+            je komplex (tzn. posloupnost vektorových prostorů a lineární zobrazení mezi nimi s vlastností, že každá složka dvou po sobě jdoucích zobrazení je triviální (zde, $d\circ d = 0$, splněno))
+        \end{definice}
+
+        TODO!
 
 \section{Variety, Stokesova věta na varietách}
 

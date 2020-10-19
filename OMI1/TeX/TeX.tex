@@ -29,7 +29,7 @@
         \begin{itemize}
             \item box (h, d, w): písmenko, slitek (ligatura), hbox / vbox
             \item linka (h, d, w): hrule, vrule (liší se tím, kde se mohou vyskytnout, tedy hrule nepatří do horizontálního seznamu)
-            \item discretionary break (pevné šířky): nobreak (stav bez rozdělení) pre-break (na konci řádku) post-break (na začátku dalšího)
+            \item discretionary break (pevné šířky): nobreak (stav bez rozdělení) pre-break (na konci řádku) post-break (na začátku dalšího), nesmí obsahovat pružné věci
 
             \item whatsit (?): přepínač jazyka, …
             \item vertikální materiál (nemá vliv na horizontální sazbu, při zlomu vypadne do vertikálního seznamu), objeví se například po řádku s \verb'\vadjust{…}'
@@ -76,5 +76,69 @@
     \end{priklad}
 
     Příště tvar odstavce (left / right)skip, jak vzniká hor. seznam, algoritmus na pakování boxů.
+
+% 12. 10. 2020
+
+    \begin{poznamka}[Vzniky horizontálních věcí]
+        Boxy (znaky, ligatury, \verb|\hbox to 10cm {…}|, \verb|\vbox spread 5mm{…}| (podle v/h se skládá obsah uvnitř boxu, to nastavuje velikost, spread zvětšuje velikost))
+
+        Linky (\verb|\vrule width 3pt height 10pt depth 1pt|)
+
+        Kerny (\verb|\kern 30pt|)
+
+        Glue (\verb|\hskip 10pt plus 2pt minus 1fil|, \verb|hfil|, \verb|hfill|, \verb|hss|)
+
+        Penalty (\verb|penalty 100|, \verb|\nobreak|, \verb|break|, \verb|\allowbreak|)
+
+        Discr. break (\verb|\discretionary{pre}{post}{no}|)
+
+        Etc.
+    \end{poznamka}
+
+    \begin{definice}[Box packing]
+        Spočítáme výsledné rozměry a deformace, pokládám věci na baseline, pomocí výšky a hloubky (příkazy \verb|\raise 10pt \hbox{…}| a \verb|\lower| se dají posunovat boxy vůči baseline).
+
+        Deformujeme glue.
+
+        Určí se neurčité rozměry linek.
+
+        Vertikálně se naopak pokládají referenčními body na jednu linku vlevo (zase existuje \verb|\moveleft| a \verb|\moveright|). Výška se pak určuje jako součet výšek a hloubek boxů uvnitř. Hloubka se počítá podle posledního boxu a pak se minimuje na \verb|\boxmaxdepth| u explicitních \verb|\maxdepth| u stránkových zlomů.
+
+        \begin{poznamkain}
+            Na určování rozměrů se hodí tzv. podpěry (linky nulové šířky s nenulovou výškou nebo hloubkou).
+        \end{poznamkain}
+
+        \begin{poznamkain}
+            Lze získat rozměry před i po deformaci.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Sázení písmenek]
+        Font dimen: sklon std.mezera, roztažnost, smrštitelnost, ex, em, extra mezera…
+
+        Spacefaktor je na počátku 1000. Pokud sf znaku $≠ 0$: přenastavýme (leda že by sf znaku > 1000 a my jsme < 1000, pak nastavíme na 1000). Mezera: velikost: std.mezera + extramezera (pokud $sf≥1000$), roztažnost: $fd3 \cdot sf/1000$, smrštitelnost: $fd4 \cdot 1000/sf$.
+
+        \begin{poznamka}[Nastavení pro angličitnu]
+                A-Z: 999, a-z: 1000, .!?: 3000, ,: 1250, (): 0
+        \end{poznamka}
+
+        Existuje i explicitní \verb|\spacefactor 1234|, \verb|\frenchspacing| (nastavuje češtinu), \verb|\nonfrenchspacing| (nastavuje angličtinu), \verb|\spaceskip=5mm| (spaceskip překřičí font dimen aktuálního fontu) a \verb|\xspace=3mm| (použije se, když je moc velký sf).
+    \end{definice}
+
+    \begin{poznamka}[Některé příkazy]
+        \verb|\line{…} = \hbox to \hsize{…}|
+
+        \verb|\centerline{…} = \line{\hss…\hss}|
+
+        \verb|\rlap{…} = \hbox to 0pt{…\hss}| (Box nulové šířky s vyčuhujícím materiálem doleva)
+
+        \verb|\llap{…} = \hbox to 0pt{\hss…}| (Box nulové šířky s vyčuhujícím materiálem doprava)
+    \end{poznamka}
+
+    \begin{definice}[Dělení slov]
+        Pro každý jazyk má \TeX trie, jak slovo dělit.
+
+        Existuje makro \verb|\chyph|, které přepne do češtiny.
+    \end{definice}
     
 \end{document}
