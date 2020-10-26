@@ -236,7 +236,7 @@
         \end{veta}
 
         \begin{veta}[Hustota \Q a $\R\\\Q$]
-            Nechť $a, b \in\R, a<b$. Pak existují $q\in\Q$ a $\r\in\R\\\Q$ tak, že $q\in(a, b)$ a $r\in(a, b)$.
+            Nechť $a, b \in®R, a<b$. Pak existují $q\in®Q$ a $r\in®R\setminus®Q$ tak, že $q\in(a, b)$ a $r\in(a, b)$.
             \begin{dukaz}
                 Podle \label{Archimedova vlastnost} $\exists n \in \N$ tak, že $\frac{1}{b-a}<n$, tedy $\frac{1}{n}<b-a$. Zvolme $q = \frac{\lceil an\rceil + 1}{n}$, pak jistě $a<q<b$ a $q\in\Q$. 
 
@@ -439,7 +439,7 @@
         \begin{veta}[O limitě součinu omezené a mizející posloupnosti]
             Nechť $\lim_{n \rightarrow ∞} a_n = 0$ a $\{b_n\}$ je omezená. Pak $\lim_{n \rightarrow ∞} a_n\cdot b_n = 0$.
             \begin{dukazin}
-                Posloupnost $\{b_n\}$ je omezená $\implies \exists K > 0 \forall n \in ®N |b_n|≤K$. Z $\lim_{n \rightarrow ∞} a_n = 0$ k zadanému $\epsilon > 0 \exists n_0 \forall n≥n_0 |a_0 - 0| < \epsilon$. K tomuto $\epsilon > 0$ volme stejné $n_0$, pak $\forall n≥n_0 |a_n \c· b_n-0| = |a_n\cdot b_n|≤|a_n|\cdot |b_n| ≤ \epsilon · K$
+                Posloupnost $\{b_n\}$ je omezená $\implies \exists K > 0 \forall n \in ®N |b_n|≤K$. Z $\lim_{n \rightarrow ∞} a_n = 0$ k zadanému $\epsilon > 0 \exists n_0 \forall n≥n_0 |a_0 - 0| < \epsilon$. K tomuto $\epsilon > 0$ volme stejné $n_0$, pak $\forall n≥n_0 |a_n · b_n-0| = |a_n · b_n|≤|a_n| · |b_n| ≤ \epsilon · K$
             \end{dukazin}
 
             \begin{prikladyin}
@@ -512,5 +512,129 @@
                     $$ \forall n≥n_3 \frac{a_n}{b_n} > \tilde{A}·\frac{K}{\tilde{A}} = K $$ 
             \end{dukazin}
         \end{veta}
+
+% 20. 10. 2020
+
+    \subsection{Hlubší věty o limitách}
+        \begin{veta}[O limitě monotónní posloupnosti (L2.9)]
+            Každá monotónní posloupnost má limitu.
+
+            \begin{dukazin}
+                BÚNO $a_n$ je neklesající. Označme $A = \sup_{n\in®N}\{a_n\}$.
+
+                1. $A = +∞$. Nechť $K \in ®R$, $\sup\{a_n\} = +∞ \implies a_n$ není shora omezená $\implies \exists n_0 a_{n_0}>K$. $a_n$ je neklesající $\implies \forall n ≥ n_0 a_n ≥ a_{n_0} > K$. To je ale definice $\lim_{n \rightarrow ∞} a_n = +∞$
+
+                2. $A \in ®R$. Nechť $\epsilon > 0 A-\epsilon < A$. Z definice suprema musí existovat $n_0: a_{n_0} > A-\epsilon$. Jelikož $a_n$ je neklesající, je $\forall n≥n_0 a_n≥a_{n_0}>A-\epsilon$. Z definice suprema $a_n ≤ A < A+\epsilon$, tedy $\forall n≥ n_0 |a_n - A| < \epsilon$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Monotónní posloupnost: neklesající (shora omezená = vlastní limita, shora neomezená = limita $+∞$), nerostoucí (sdola omezená = vlastní limita, sdola neomezená = limita $-∞$).
+        \end{poznamka}
+
+        \begin{priklad}
+            $$a_1 = 10, a_{n+1} = 6-\frac{5}{a_n}$$
+            \begin{reseni}
+                Napíšu prvních pár členů a tipneme, že je klesající a $a_n≥5$. Pak vše dokážeme. A použijeme aritmetiku limit.
+            \end{reseni}
+        \end{priklad}
+
+        \begin{upozorneni}
+            V předchozím příkladu je použití věty 2.9 nutné!.
+        \end{upozorneni}
+
+        \begin{veta}[Cantorův princip vložených intervalů]
+            Nechť $\{\[a_n, b_n\]\}_{n=1}^∞$ je posloupnost uzavřených intervalů splňující $\[a_{n+1}, b_{n+1}\] \subset \[a_n, b_n\]$ a $\lim_{n \rightarrow ∞} b_n - a_n = 0$. Pak je množina $\bigcap_{n=1}^∞\[a_n, b_n\]$ jednobodová.
+
+            \begin{dukazin}
+                Z první podmínky na interval vidíme $a_{n+1}≥a_n$ a $b_{n+1} ≤ b_n$. Navíc $a_n$ je shora omezená $b_1$ a $b_n$ je sdola omezená $a_1$. Podle $V2.9 \exists \lim_{n \rightarrow ∞}a_n = A \in ®R$ a $\exists \lim_{n \rightarrow ∞} b_n = B \in ®R$.
+                $$ 0 = \lim_{n \rightarrow ∞} b_n - a_n \overset{?}{=} \lim_{n \rightarrow ∞} b_n - \lim_{n \rightarrow ∞} a_n = B-A \implies A=B $$
+                Tedy $\bigcap_{n=1}^∞ \[a_n, b_n\] = \{A\}$.
+            \end{dukazin}    
+        \end{veta}
+
+        \begin{veta}[Bolzano-Weirstrass]
+            Z každé omezené posloupnosti lze vybrat konvergentní podposloupnost.
+
+            \begin{dukazin}[Tzv. půlením intervalu]
+                $\{a_n\}$ je omezená, tedy $\exists c_1, d_1 \in ®R \forall n \in ®N c_1 ≤ a_n ≤ d_1$. Zvolme $a_{n_1} \in \[c_1, d_1\}$ libovolně. Rozdělme $\[c_1, d_1\]$ na $\[c_1, \frac{c_1 + d_1}{2}\]$ a $\[\frac{c_1 + d_1}{2}, d_1\]$. V alespoň jednom tomto intervalu je $∞$ mnoho $a_n$. Pokud $\#\{n: a_n \in \[c_1, \frac{c_1 + d_1}{2}\]\} = +∞$, položme $c_2 = c_1, d_2 = \frac{c_1 + d_1}{2}$. Jinak $\#\{n: a_n \in \[\frac{c_1 + d_1}{2}, d_1\]\} = +∞$, položme $c_2 = \frac{c_1 + d_1}{2}, d_2 = d_1$. Nalezneme $n_2 > n_1$ a $a_{n_2} \in [c_2, d_2]$. Dále pokračujeme indukcí.
+
+                Nechť $\#\{n: a_n \in \[c_k, d_k\]\} = +∞$. Rozdělme $\[c_k, d_k\]$ na $\[c_k, \frac{c_k + d_k}{2}\]$ a $\[\frac{c_k + d_k}{2}, d_k\]$. V alespoň jednom tomto intervalu je $∞$ mnoho $a_n$. Pokud $\#\{n: a_n \in \[c_k, \frac{c_k + d_k}{2}\]\} = +∞$, položme $c_{k+1} = c_k, d_{k+1} = \frac{c_k + d_k}{2}$. Jinak $\#\{n: a_n \in \[\frac{c_k + d_k}{2}, d_k\]\} = +∞$, položme $c_{k+1} = \frac{c_k + d_k}{2}, d_{k+1} = d_k$. Nalezneme $n_{k+1} > n_k$ a $a_{n_{k+1}} \in [c_{k+1}, d_{k+1}]$.
+
+                Nyní máme posloupnost intervalů $\[c_k, d_k\]$ a $a_{n_k} \in \[c_k, d_k\]$. Víme, že $\[c_{k+1}, d_{k+1}\] \subset \[c_k, d_k\]$ a $d_{k+1} - c_{k+1} = \frac{d_k-c_k}{2} = \frac{d_1-c_1}{2^k}$, tedy $\lim_{k \rightarrow ∞} d_k - c_k = 0$.
+
+                Podle V2.10 $\exists A = \bigcap_{k=1}^∞\[c_k, d_k\]$ a $\lim_{k \rightarrow ∞} c_k = A = \lim_{k \rightarrow ∞} d_k$. Nyní $n_k$ je  rostoucí posloupnost, tedy $a_{n_k}$ je vybraná podposloupnost z $\{a_n\}$. Víme, že $a_{n_k}\in\[c_k, d_k\] \Leftrightarrow c_k ≤ a_{n_k} ≤ d_k$ a podle Věty o dvou strážnících je $\lim_{k \rightarrow ∞} a_{n_k} = A \in ®R$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Limes superior]
+            Nechť $\{a_n\}$ je posloupnost a označme $b_n = \sup\{a_k: k≥n\}$ a $c_n = \inf\{a_k: k≥n\}$. (Pak $b_n$ je nerostoucí a $c_n$ je neklesající.)
+
+            Je-li $\{a_n\}$ shora neomezená, pak klademe $\lim_{n \rightarrow ∞} b_n = +∞$. Je-li $\{a_n\}$ sdola neomezená, pak klademe $\lim_{n \rightarrow ∞} c_n = -∞$.
+
+            Číslo $\lim_{n \rightarrow ∞} b_n$ nazýváme limes superior posloupnosti $\{a_n\}$ a značíme $\limsup\limits_{n \rightarrow ∞} a_n$. Číslo $\lim_{n \rightarrow ∞} c_n$ nazýváme limes inferior posloupnosti $\{a_n\}$ a značíme $\liminf\limits_{n \rightarrow ∞} a_n$.
+            \begin{dukazin}
+                Existence limit je zaručena V 2.9 (o limitě monotónní posloupnosti).
+            \end{dukazin}
+
+            \begin{poznamkain}
+                Zřejmě $\forall c_n ≤ a_n ≤ b_n$.
+            \end{poznamkain}
+
+            \begin{prikladyin}
+                $$ \limsup\limits_{n \rightarrow ∞} (-1)^n = 1 $$
+                $$ \liminf\limits_{n \rightarrow ∞} (-1)^n = -1 $$
+            \end{prikladyin}
+        \end{definice}
+
+% 23. 10. 2020
+
+        \begin{veta}[Vztah limity, limes superior a limes inferior (T2.12)]
+            Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel a $A \in ®R*$. Pak
+            $$ \lim_{n \rightarrow ∞} a_n = A \Leftrightarrow \limsup\limits_{n \rightarrow ∞} a_n = \liminf\limits_{n \rightarrow ∞} a_n = A. $$
+
+            \begin{dukazin}
+                Důkaz jen pro $A \in ®R$. Jinak by byl podobný.
+
+                $\implies$ $\lim_{n \rightarrow ∞} a_n = A$, tedy posloupnost je omezená dle věty 2.2. Můžeme tedy definovat $b_n$ a $c_n \in ®R$. Posloupnosti $b_n$ a $c_n$ jsou monotónní a platí $c_n ≤ b_n$. Nechť $\epsilon > 0$. Z definice $\lim_{n \rightarrow ∞} a_n \exists n_0 \in \N \forall n≥n_0 |a_n - A| < \epsilon$, tj. $\forall n_0 b_n = \sup\{a_n, a_{n+1}, …\}≤ A + \epsilon$ a $\forall n_0 c_n = \inf\{a_n, a_{n+1}, …\} ≥ A - \epsilon$.
+
+                Podle V 2.5 o limitě a uspořádání $\lim_{n \rightarrow ∞} c_n \in \[A - \epsilon, A + \epsilon\]$, $\lim_{n \rightarrow ∞} b_n \in \[A - \epsilon, A + \epsilon\]$, pro libovolné $\epsilon$.
+
+                $\Leftarrow$ Podle definice $b_n$ a $c_n$ je $\{a_n\}_{n = 1}^∞$ omezená, tedy můžeme definovat $b_n$ a $c_n$. Z poznámky víme, že $c_n≤a_n≤b_n$ a podle věty o dvou strážnících tedy $\exists \lim_{n \rightarrow ∞} a_n = A$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklad}
+            $$\liminf\limits_{n \rightarrow ∞} a_n ≤ \limsup\limits_{n \rightarrow ∞} a_n$$
+
+            $$ \liminf\limits_{n \rightarrow ∞} a_n + \liminf\limits_{n \rightarrow ∞} b_n ≤ \liminf\limits_{n \rightarrow ∞} (a_n + b_n) ≤ \limsup\limits_{n \rightarrow ∞} (a_n + b_n) ≤ \limsup\limits_{n \rightarrow ∞} a_n + \limsup\limits_{n \rightarrow ∞} b_n $$
+        \end{priklad}
+
+        \begin{definice}[Hromadná hodnota]
+            Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel a $A \in ®R*$. Řekněme, že $A$ je hromadná hodnota posloupnosti $\{a_n\}$, jestliže existuje vybraná podposloupnost $\{a_{n_k}\}_{k = 1}^∞$ z $\{a_n\}_{n = 1}^∞$ tak, že $\lim_{k \rightarrow ∞} a_{n_k} = A$. Množinu hromadných hodnot značíme $H(\{a_n\})$.
+
+            \begin{prikladyin}
+                $H(\{(-1)^n\} = \{0, 1\})$
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{veta}[O hromadných hodnotách posloupnosti]
+            Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel, potom $\limsup\limits_{n \rightarrow ∞} a_n$ a $\liminf\limits_{n \rightarrow ∞} a_n$ jsou hromadnými hodnotami posloupnosti $\{a_n\}_{n = 1}^∞$ a pro každou hromadnou hodnotu $A \in ®R*$ této posloupnosti platí $\liminf\limits_{n \rightarrow ∞} a_n ≤ A ≤ \limsup\limits_{n \rightarrow ∞} a_n$.
+            \begin{dukazin}
+                Opět pouze pro $\limsup\limits_{n \rightarrow ∞} a_n = A \in ®R$. Pak $a_n$ je shora omezená. Označme $b_n$ jako vždy, $b_n$ je nerostoucí a $\lim_{n \rightarrow ∞} b_n = A$.
+
+                Z $\lim_{n \rightarrow ∞} b_n = A$ $\epsilon = 1 \exists m_1$ tak, že $|b_{m_1} - A|<1$. Nyní z $b_{m_1} = \sup\{a_{m_1}, a_{m_1 + 1}, …\}$ existuje $n_1 ≥ m_1$ tak, že $b_{m_1} - 1 < a_{n_1} ≤ b_{m_1} \implies |a_{n_1} - b_{m_1}| < 1 \implies |a_{n_{1}} - A|≤|a_{n_1} - b_{n_1}| + |b_{m_1} - A| < 2$. Dále indukcí.
+
+                Mějme $m_1, …, m_k$ a $n_1, …, n_k$. Z $\lim_{n \rightarrow ∞} b_n = A, \epsilon = \frac{1}{k+1} \exists m_k > n_k |b_{m_k} - A| < \frac{1}{n+1}$. Z $b_{m_{k+1}} = \sup\{ a_{m_{k+1}}, … \} \exists n_{k+1} ≥ m_{k+1}$ tak, že $b_{m_{k+1}} - \frac{1}{k+1} < a_{n_{k+1}} ≤ b_{m_{k+1}} \implies |a_{n_{k+1} - b_{m_{k+1}}}|<\frac{1}{k+1} \implies |a_{n_{k+1}} - A|≤|a_{n_{k+1}} - b_{m_{k+1}}| + |b_{m_{k+1}}-A| < \frac{2}{k+1}$.
+                
+                Tedy jsme dostali rostoucí posloupnost $n_k$ tak že $|a_{n_k} - A| < \frac{2}{k} \implies \lim_{k \rightarrow ∞} a_{n_k} = A$. Tedy $\limsup\limits_{n \rightarrow ∞} a_n = A \in H(\{a_n\})$.
+
+                Úplně stejně pro $\liminf\limits_{n \rightarrow ∞} a_n$.
+
+                Stačí dokázat $\forall A \in H(\{a_n\})$ $\liminf\limits_{n \rightarrow ∞} a_n ≤ A ≤ \limsup\limits_{n \rightarrow ∞} a_n$. Nechť $n_k$ je rostoucí posloupnost taková, že $\lim_{k \rightarrow ∞} a_{n_k} = A$. Z poznámky víme $c_{n_k} ≤ a_{n_k} ≤ b_{n_k}$, tedy podle V2.5 $\liminf\limits_{n \rightarrow ∞} a_n ≤ \lim_{k \rightarrow ∞} a_{n_k} ≤ \limsup\limits_{n \rightarrow ∞} a_n$.
+
+            \end{dukazin}
+        \end{veta}
+
 
 \end{document}

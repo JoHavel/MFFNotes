@@ -92,4 +92,33 @@
         Hluboké učení se ale zdá účinnější.
     \end{poznamka}
 
+% 12. 10. 2020 Vyučování nebylo z důvodu výpadku proudu
+
+% 19. 10. 2020
+    
+    \begin{definice}[Klasifikační pipeline]
+        Features -> {Výběr featur, jejich normalizace, …} -> klasifikace (výběr klasifikátoru, trénování klasifikátoru a následná klasifikace) -> evaluace -> features (respektive výstup, pokud jsme spokojeni).
+    \end{definice}
+
+    \begin{definice}[Features]
+        Vlastnosti objektu, spojují nějakým způsobem podobné objekty. Musí být diskriminativní (pokud nejsou dostatečně diskriminativní, jakože často nejsou, dá se ještě hledat rozdělení s nejmenší chybou). Měly by být kompaktní (co nejmenší, protože s příliš featurami nelze ve stejném čase dostatečně naučit klasifikátor).
+    \end{definice}
+
+    \begin{definice}[Normalizace feature]
+        Aby nenastával problém např. s odlišnými jednotkami, nebo s různě naškálovanými featury, normalizuje se vydělením referenční hodnotou, respektive různými statistickými metodami, např. standardizací $\(\tilde x_i = \frac{x_i - \mu}{\sigma}\)$, nebo $3\sigma$ škálováním $\(\tilde x_i = \frac{\frac{x_i - \mu}{3\sigma}+1}{2}\)$.
+    \end{definice}
+
+    \begin{poznamka}
+        Rozhodovací stromy (a náhodné lesy), naivní bayesova metoda atd. nepotřebují normalizaci.
+    \end{poznamka}
+
+    \begin{definice}[Výběr featur]
+        Některé featury můžou být totožné, některé zas redudantní.
+
+        Takže vybereme nějakou podmnožinu featur a vyzkoušíme. Nebo se naopak podíváme na jednotlivé, ohodnotíme je a vybereme $K$ nejlepších. Další možnost je přidávat je po jedné a testovat je ne samotné, ale s již vybranými. Nebo můžeme začít se všemi a odstraňovat nejhorší (zase oběma způsoby, sekvenčním $1$ i jednokrokovým $K$ ). Existuje i kombinovaný, který udělá nejdříve jedno a pak druhé. Pak existují i genetické a další algoritmy.
+
+        Podle čeho měřit: konzistence (jestli shodné hodnoty jsou ve shodné třídě, viz vzorec v prezentaci), nezávislost na ostatních featurách (opak tzv. korelace) + korelace s třídami, množství informace ($©I = -\log(P(A = a_i))$, $E(©I) = -\sum P(A = a)·\log_2(P(A=a))$), co nám dá, vzdálenost mezi třídami po použití dané featury, …
+    \end{definice}
+
+
 \end{document}

@@ -344,7 +344,7 @@
             3) vzory množin z nějaké báze jsou otevřené\\
             4) $f$ je spojité v každém bodě\\
             5) vzory uzavřených množin jsou uzavřené\\
-            6) $\forall ®A \subseteq ®X: f(\overline{®A}) \subseteq f(®A)$\\
+            6) $\forall ®A \subseteq ®X: f(\overline{®A}) \subseteq \overline{f(®A)}$\\
             7) $\forall ®B \subseteq ®Y: \overline{f^{-1}(®B)} \subseteq f^{-1}(\overline{®B})$\\
             8) $\forall ®B \subseteq ®Y: f^{-1}(\Int ®B) \subseteq \Int\(f^{-1}(®B)\)$
 
@@ -359,7 +359,7 @@
 
                 5->6 $f^{-1}(\overline{f(®A)})$ je uzavřená dle 5 a obsahuje ®A, tedy obsahuje i $\overline{®A}$. Pak $f(\overline{®A}) \subseteq f\(f^{-1}(\overline{f(®A)})\)\subseteq \overline{f(®A)}$.
 
-                6->7 Ať $®B \subseteq Y$, $A := f^{-1}(®B)$. Dle 6 $f(\overline{f^{-1}(®B)}) \subseteq \overline{f(f^{-1}(®B))}\subseteq \overline{®B}$. $f^{-1}(®B) \subseteq f^{-1}(\overline{®B})$ (aplikováním vzoru? na předchozí).
+                6->7 Ať $®B \subseteq Y$, $A := f^{-1}(®B)$. Dle 6 $f(\overline{f^{-1}(®B)}) \subseteq \overline{f(f^{-1}(®B))}\subseteq \overline{®B}$. $\overline{f^{-1}(®B)} \subseteq f^{-1}(\overline{®B})$ (aplikováním vzoru? na předchozí).
 
                 7->8 Vztah vnitřku a uzávěru. $f^{-1}(\Int ®B) = f^{-1}(®Y \setminus \overline{®Y \setminus ®B}) = ®X \setminus f^{-1}(\overline{®Y \setminus ®B}) \stackrel{\text{dle 7}}{\subseteq} ®X \setminus \overline{®Y \setminus ®B} = ®X \setminus \overline{®X \setminus f^{-1}(®B)} = ®X \setminus \(®X \setminus \Int f^{-1}(®B)\) = \Int f^{-1}(®B)$.
 
@@ -378,5 +378,102 @@
                 Je-li ®V okolí $gf(x)$, pak $g^{-1}(®V)$
             \end{dukazin}
         \end{tvrzeni}
+
+% 19. 10. 2020
+
+    \subsection{Oddělovací axiomy}
+        \begin{definice}
+            TP ®X se nazývá:
+            \begin{itemize}
+                \item $T_0$, pokud $\forall x, y \in ®X \exists ®U \text{otevřená} : |U \cap \{x, y\}| = 1$.
+                \item $T_1$, pokud $\forall x, y \in ®X, x≠y \exists ®U \text{otevřená} : x\in ®U, y\notin ®U$.
+                \item $T_2$ (Hausdorffův), pokud $\forall x, y \in ®X \exists ®U, V \text{otevřené disjunktní} : x \in ®U, y \in ®V $.
+                \item regulární, pokud $\forall ®F \subseteq ®X$ uzavřenou $\forall \in ®X \setminus ®F \exists ®U, ®V$ otevřené disjunktní: $x \in ®U, ®F \subseteq ®V$.
+                \item normální, pokud $\forall ®E, ®F$ uzavřené disjunktní $\exists ®U, ®V$ otevřené disjunktní: $®E \subseteq ®U, ®F \subseteq ®V$.
+                \item úplně regulární, pokud $\forall ®F \subseteq ®X$ uzavřenou $\forall x \in ®X \setminus ®F \exists f: ®X \rightarrow \[0, 1\]$ spojitá, že $f(x) = 0, f(®F)\subseteq \{1\}$.
+                \item $T_3$, pokud je regulární a $T_1$.
+                \item $T_{3\frac{1}{2}}$ nebo $T_\pi$ (Tichonovův), pokud je úplně regulární a $T_1$.
+                \item $T_4$, pokud je normální a $T_1$.
+            \end{itemize}
+
+            \begin{poznamka}
+                $$ \text{normální} \implies \text{úplně regulární} \overset{\text{rozpůlení intervalu $\[0, 1\]$}}{\implies} \text{regulární} $$ 
+                $$ T_4 \implies T_\pi \implies T_3 \implies T_2 \implies T_1 \implies T_0 $$ 
+                (Platí pouze tímto směrem, ne opačně!)
+                $$ T_0 \not\implies T_1: \(\{0, 1\}, \{\O, \{0, 1\}, \{0\}\}\) … (\text{Sierpinského TP}) $$
+                $$ T_1 \not\implies T_2: \(®N, \{\O\} \cup \{®N \setminus K: K \text{je konečná}\}\) (\text{Topologie kokonečných (doplněk konečných) množin}) $$
+            \end{poznamka}
+        \end{definice}
+
+        \begin{tvrzeni}[Metrizovatelné prostory jsou $T_4$]
+            Je-li ®X metrizovatelný prostor a $®E, ®F \subseteq ®X$ uzavřené disjunktní množiny, pak existuje spojitá funkce $f: ®X \rightarrow \[0, 1\]$, že $f(®E) \subseteq \{0\}, f(®F) \subseteq \{1\}$.
+
+            \begin{dukazin}
+                    ®X je metrizovatelný, tedy existuje metrika $\rho$ kompatibilní s topologií na ®X. Položme $f(x) = \frac{\rho(x, ®E)}{\rho(x, ®E) + \rho(x, ®F)}, x \in ®X$. $f$ je dobře definovaná a jistě spojitá. $f(x) = 0, x \in ®E$, $f(x) = 1, x \in ®F$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{lemma}
+            Ať ®X je TP. Pak
+            \begin{itemize}
+                \item[a)] ®X je $T_1 \Leftrightarrow$ každá jednoprvková množina je uzavřená $\Leftrightarrow$ každá konečná množina je uzavřená.
+                \item[b)] ®X je $T_2$ $\implies \forall x, y \in ®X, x≠y \exists ®U \in ©U(x): y\notin \overline{®U}$.
+                \item[c)] ®X je regulární $\Leftrightarrow \forall x \in ®X \forall ®U \in ©U(x) \exists ®V \in ©U(x): \overline{®V} \subseteq ®U$.
+                \item ®X je normální $\Leftrightarrow \forall ®V \subseteq ®X \text{otevřenou} \forall ®E \in ®V \text{uzavřenou} \exists U \subseteq ®X \text{otevřená}: ®E \subseteq ®U \subseteq \overline{®U} \subseteq V$.
+            \end{itemize}
+
+            \begin{dukazin}
+                Jednoduché.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[Urysohnovo lemma]
+            TP ®X je normální $\Leftrightarrow$ pro každé dvě disjunktní uzavřené ®E, ®F existuje spojitá funkce $f:®X \rightarrow [0, 1]$, že $f(®E) \subseteq \{0\}, f(®F) \subseteq \{1\}$
+            
+            \begin{dukazin}
+                Implikace zprava doleva je snadná -- uvažujeme $\{x \in ®X: f(x) < \frac{1}{2}\}$ a $\{x \in ®X: f(x)>\frac{1}{2}\}$.
+
+                $\implies$ Označme $D:=®Q \cap \[0, 1\]$, $D= \{r_n: n \in ®N \cup \{0\}\}$, $r_0 = 0, r_1 = 1$ ($r_n$) prostá posloupnost. Indukcí najdeme otevřené množiny $®V_q: q \in D$, že pro $p, q \in D, p<q \implies ®V_p \subseteq ®V_q$ a navíc $®E \subseteq ®V_0, ®V_1 \subseteq ®X \setminus ®F$.
+
+                Z normality najdeme otevřenou množinu ®U, že $®E \subseteq ®U \subseteq \overline{®U}\subseteq ®X \setminus \overline{r}$. Položíme $®V_0 = ®U$, $®V_1 = ®X \setminus ®F$.
+
+                Nyní předpokládejme, že $®V_{r_0}, ®V_{r_1}, …, ®V_{r_n}, n≥1$. Už známe a platí, že pro $p, q \in \{r_0, …, r_n\}: p<q \implies \overline{®V_p} \subseteq ®V_q$. Chceme najít $®V_{r_{n+1}}$. Ať $i,j≤n$ jsou taková, že $r_i = \max\{r_k: r_k < r_{n+1}\}$ a $r_j = \min\{r_k: r_k > r_{n+1}\}$. TODO! Z normality existuje otevřená $®V_{r_{n+1}}$, že $\overline{®V_{r_i}} \subseteq ®V_{r_{n+1}} \subseteq \overline{®V_{r_{n+1}}} \subseteq ®V_{r_j}$.
+
+                Položme $f(x) = 1, x \in ®X \setminus ®V_1| f(x) = \inf{r\in D: x \in ®V_r}, x \in ®V_1$. $f:®X \rightarrow \[0, 1\]$. Nyní stačí ověřit spojitost: vzory subbázových (nějaké subbáze) podmnožin jsou otevřené. Zvolím si subbázi $\{\[0, b\), \(a,1\], a, b \in \(0, 1\)\}$. $f^{-1}(\[0, b\)) = \{x \in ®X: f(x)<b\} = \{x \in ®X: \exists r< b: x \in ®V_r\} = \bigcap_{r<b}®V_r…\text{otevřené}$. $f^{-1}(\(a, 1\]) = \{x \in ®X: f(x) > a\} = \{x \in ®X: \exists r>a: x\notin ®V_r\} = \{x \in ®X: \exists s>a: x \notin \overline{®V_s}\} = \bigcup_{s>a}®X \setminus \overline{®V_s}…\text{otevřené}$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[$T_4 \implies T_{3.5}$, normalita $\implies$ úplná regularita]
+        
+        \end{poznamka}
+    
+
+    \subsection{Konvergence v topologických prostorech}
+        \begin{definice}[Usměrněné množiny]
+            Dvojice $(®I, ≤)$ se nazývá usměrněná množina, pokud ®I je množina a $≤$ je binární relace na ®I, která je reflexivní, tranzitivní a pro $i, j \in ®I$, pak existuje $k\in ®I$, že $i≤k, j≤k$.
+
+            \begin{prikladyin}
+                $(®N, ≤)$
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Net]
+            Net v TP ®X je libovolné zobrazení z usměrněné množiny do ®X.
+        \end{definice}
+
+        \begin{definice}[Konvergence netu]
+            Řekneme, že net $(x_i)_{i \in ®I}$ konverguje k bodu $x$, pokud $\forall ®U \in ©U(x) \exists i_0 \in ®I \forall i \in ®I, i≥ i_0: x_i \in ®U$. Pokud existuje právě jeden, značíme $x= \lim_{i\in®I}x_i$.
+
+            Bod $x$ se nazývá hromadným bodem netu $(x_i)_{i \in ®I}$, pokud $\forall ®U \in ©U(x) \forall i \in ®I \exists j≥i: x_j \in ®U$.
+        \end{definice}
+
+        \begin{tvrzeni}[Jednoznačnost limity netu]
+            Prostor ®X je Hausdorffův $\Leftrightarrow$ každý net má nejvýše jednu limitu.
+        \end{tvrzeni}
+
+
+
+
+
 
 \end{document}

@@ -136,4 +136,84 @@
         (R3) $\bigcup_{®A \in ©S} = ®X$.
     \end{definice}
 
+    \begin{definice}[Uspořádání]
+        Relace $R$ na množině $®X$ je uspořádání $≡ R$ je reflexivní, antisymetrická a tranzitivní.
+
+        \begin{poznamkain}
+            Někdy se říká částečné uspořádání a částečně uspořádaná množina (čum), aby se zdůraznilo, že nemusí být lineární.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Uspořádaná množina]
+        Dvojice $(X, R)$, kde $X$ je množina a $R$ je uspořádání na ní.
+    \end{definice}
+
+    \begin{definice}[Porovnatelné prvky a lineární uspořádání]
+        $xy \in X$ jsou porovnatelné $≡ xRy \lor yRx$
+
+        Uspořádání $R$ je lineární $≡ \forall x,y \in X$ porovnatelné.
+    \end{definice}
+
+    \begin{definice}[Ostrá nerovnost]
+        $(X, ≤)$ ČUM $\rightarrow (X, <): x<y≡x≤y \land x≠y$
+    \end{definice}
+
+    \begin{definice}[Hasseův diagram]
+        \ 
+        \begin{poznamkain}
+            Splňuje následující:
+            1. To, co je nahoře je větší než to, co je dole\\
+            2. Nezakreslujeme tranzitivitu\\
+        \end{poznamkain}
+        \ 
+        \begin{definicein}[Bezprostřední předchůdce ($x \triangleleft y$)]
+                $x$ je bezprostřední předchůdce $y$ v uspořádání $≤ ≡ x<y \land (\not\exists z: x<z \land z<y)$
+        \end{definicein}
+
+        V hasseově diagramu jsou mezi vrcholy (prvky množiny) hrany pouze, pokud dolní vrchol je bezprostředním předchůdcem toho nahoře.
+    \end{definice}
+    
+    \begin{definice}[Nejmenší, minimální, největší a maximální prvek]
+        \ 
+        \begin{itemize}
+            \item $x \in ®X$ je nemenší $≡ \forall y \in ®X: x≤y$
+            \item $x \in ®X$ je minimální $≡ \nexists y \in ®X: y<x$
+            \item největší a maximální obdobně
+        \end{itemize}
+    \end{definice}
+
+    \begin{lemma}
+        Každá konečná neprázdná ČUM má minimální prvek.
+        \begin{dukazin}[Důkazík]
+            $x_1 \in ®X$ zvolíme libovolně, pokud $x_1$ není minimální $\exists x_2 < x_1$… $\exists k \in ®N x_k$ je minimální.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Řetězec]
+        Pro $(X, ≤)$ ČUM $A \subseteq X$ je řetězec $≡ \forall a, b \in A: a,b$ jsou porovnatelné.
+
+        Naopak $A \subseteq X$ je antiřetězec (nezávislá množina) $≡ \nexists a, b \in A$ různé a porovnatelné.
+    \end{definice}
+
+    \begin{definice}[Délka nejdelšího řetězce]
+            $$ \omega(X, ≤) := \text{maximum z délek řetězců („výška uspořádání“)} $$
+            $$ \alpha(X, ≤) := \text{maximum z „délek“ (velikostí) antiřetězců („šířka uspořádání“)} $$
+    \end{definice}
+
+    \begin{veta}[O dlouhém a Širokém]
+        $$ \forall (X, ≤) \text{ČUM}: \alpha(X, ≤)·\omega(X, ≤) ≥ |X| $$ 
+        (Neboli buď $\alpha ≥ \sqrt{|X|}$ nebo $\omega ≥ \sqrt{|X|}$.)
+
+        \begin{dukazin}
+            Sestrojíme $X_1:= \{x \in X|x \text{je minimální}\}$.
+
+            Když máme $X_1, …, X_i$, $Z_i:= X\setminus \(\bigcup_{j=1}^i x_j\)$. Pokud $Z_i = \O$, tak jsme skončili, jinak $X_{i+1} := \{x\in Z_i | x \text{je minimální v} Z_i\}$.
+
+            Přitom $\forall i$ $X_i$ je antiřetězec, $\{X_1, …, X_k\}$ tvoří rozklad $X$ a $\exists \{r_j \in X_j\}_{j = 1}^k$, $\{r_j\}_{j=1}^k$ je řetězec. ($r_k \in X_k$ zvolíme libovolně, $r_j \notin X_{j-1} \implies \exists r_{j-1} \in X_{j-1}: r_{j-1}<r_j$.)
+
+            $$ |X| = \sum_{i=1}^k |X_i| ≤ k·\max_{1≤i≤k}|X_i| ≤ \omega·\alpha. $$ 
+
+        \end{dukazin}
+    \end{veta}
+
 \end{document}

@@ -432,4 +432,110 @@
             $$ ©IA = A = A©I $$ 
             $$ s\in ®T, s(AB) = (aA)B = A(sB) $$ 
         \end{poznamka}
+
+% 20. 10. 2020
+
+    \subsection{Matice jako zobrazení}
+        Budeme se zabývat speciálním případem maticového násobení, kdy druhá matice má šířku 1 (je to sloupcový vektor).
+
+        \begin{definice}[Zobrazení určené maticí]
+            Buď $A$ pevně zvolená matice typu $m\times n$ nad $T$. Zobrazením určeným maticí $A$ rozumíme $f_A : T^n \rightarrow T^m$, $x \rightarrow A · x$
+        \end{definice}
+
+        \begin{priklad}
+            Jak popsat zobrazení rotace $r: ®R^2 \rightarrow ®R^2$.
+            \begin{reseni}
+                Nejdříve vyzkoušíme na speciálních vektorech, např. vektorech tzv. kanonické báze $®R^2: e_1 = (1 0)^T, e_2 = (0 1)^T$:
+                $$ r_\alpha(e_1) = (\cos\alpha\ \sin\alpha)^T $$ 
+                $$ r_\alpha(e_2) = (-\sin\alpha\ \cos\alpha)^T $$ 
+
+                Následuje pozorování, že $r_\alpha$ je tzv. lineární zobrazení:
+                $$ \forall v \in ®R^2 \forall t \in ®R: r_\alpha(t·v) = t·r_\alpha(v) $$
+                $$ \forall u, v \in ®R^2: r_\alpha(u+v) = r_\alpha(u) + r_\alpha(v) $$ 
+
+                Je-li $u = (u_1, u_2)^T \in ®R$ obecný vektor, pak $u = u_1·e_1 + u_2·e_2$. Tedy $r_\alpha(u) = u_1·r_\alpha(e_1) + u_2·r_\alpha(e_2) = u_1·(\cos\alpha\ \sin\alpha)^T + u_2·(-\sin\alpha\ \cos\alpha) =\begin{pmatrix} \cos\alpha & -\sin\alpha\\ \sin\alpha & \cos\alpha \end{pmatrix} (u_1 u_2)^T$
+            \end{reseni}
+        \end{priklad}
+
+        \begin{tvrzeni}[Vlastnosti zobrazení určeného maticí]
+            Buď $A$ matice $n\times m$ nad $T$, $f_A: T^n \rightarrow T^m$ jako výše, $x, y \in T^n, s\in T$. Pak platí
+            $$ f_A(s·x) = s·f_A(x), $$ 
+            $$ f_A(x+y) = f_A(x) + f_A(y) $$ 
+            \begin{dukazin}
+                $$f_A(s·x) \overset{\text{DEF}}{=} A·(s·x) = x·(A·x) \overset{\text{DEF}}{=} s·f_A(x) $$
+
+                $$ f_A(x+y) \overset{\text{DEF}}{=} A·(x+y) = A·x + A·y \overset{\text{DEF}}{=} f_A(x) + f_A(y) $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Prvky kanonické báze $T^n$]
+            Prvky kanonické báze $T^n$ jsou vektory $e_i = (0 … 0 1 0 … 0)^T \in T^n, i \in \{1, …, n\}$.
+        \end{definice}
+
+        \begin{dusledek}
+            $$ f_A((x_1 … x_n)^T) = x_1·f_A(e_1) + … + x_n·f_A(e_n) = (f_A(e_1)|…|f_A(e_n))·(x_1 … x_n)^T $$
+
+            Tedy pro $A, B$ matice $m \times n$ nad $T$ platí $(f_A = f_B) \Leftrightarrow (A = B)$.
+        \end{dusledek}
+
+        \begin{poznamka}[Další pozorování]
+            Splňuje-li nějaké zobrazení $f: T^n \rightarrow T^m$ vlastnosti zobrazení daného maticí, pak je to zobrazení určené maticí.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Skládání zobrazení určených maticí]
+            Mějme zobrazení $f_A: T^n \rightarrow T^m$ a $f_B: T^p \rightarrow T^p$, dané maticemi $A$ a $B$. Potom zobrazení $f_A \circ f_B$ je dáno maticí $A\times B$.
+
+            \begin{dukazin}
+                Totiž pro libovolné $x \in T^p$ platí
+                $$ f_A \circ f_B (x) = f_A(f_B(x)) = f_A(B·x) = A·(B·x) = (A·B)·x = f_{A·B}(x) $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{priklad}
+            Složení otočení o úhly $\alpha$ a $\beta$.
+        \end{priklad}
+
+% 22.10. 2020
+
+    \subsection{Soustavy lineárních rovnic podruhé (oddíl 4.5.1, skripta)}
+        Zvolme těleso $T$.
+
+        \begin{poznamka}[Vztah dvou řešení SLR]
+            $Ax = b$, $Ay = b$, potom
+            $$ A(x-y) = Ax - ay = b - b = 0 $$
+        \end{poznamka}
+
+        \begin{definice}[Homogenní SLR]
+            Soustava rovnic tvaru $A·x = o$ se nazývá homogenní.
+        \end{definice}
+
+        \begin{poznamka}
+            SLR budeme řešit tak, že najdeme jedno řešení (nebo zjistíme, že žádné neexistuje) a poté budeme hledat řešení homogenní SLR, čímž můžeme podle poznámky výše už jednoduše získat všechna řešení původní rovnice.
+        \end{poznamka}
+
+        \begin{definice}[Jádro / nulový prostor]
+            Je-li $A$ matice typu $m \times n$, pak
+            $$ \{v \in T^n: A·v = 0\} \(=f^{-1}_A(0) = \{v:v \text{řeší} A·x = 0\}\) $$
+            se nazývá jádrem (anglicky Kerner), nebo též nulovým prostorem, a značí se $\Ker A$.
+        \end{definice}
+
+        \begin{veta}
+            Máme-li SLR $A·x = b$ a známe-li jedno řešení $v \in T^n$, pak množina všech řešení je tvaru $v + \Ker A := \{v + w: w \in \Ker A\}$.
+            \begin{dukazin}
+                Označme $S = \{u \in T^n: A·u = b\}$. Chceme ukázat $S = \{v+w: w \in \Ker A\}$.
+
+                $S \subseteq v + \Ker A$: Vezměme libovolné $u \in S$, tj. $A·u = b$. Pak $A·(u-v) = 0$ (poznámka výše), $w := u-v \in \Ker A$, tj. $u = vv+w \in v + \Ker A$.
+
+                $v + \Ker A \subseteq S$: Vezměme libovolné $u \in v + \Ker A$, tj. $u = v + w, w \in \Ker A$. Pak $A·u = A·(v+w) = A·v + A·w = b + 0 = b$, tj. $u \in S$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklad}
+            Ukazovalo se jedno řešení SLR pomocí jádra. Jádro má tu výhodu, že má bázi (vektory s 1 v jedné proměnné a nulami jinde).
+        \end{priklad}
+
+        \begin{definice}[Elementární matice]
+            SKRIPTA oddíl 4.2.3
+        \end{definice}
+
 \end{document}

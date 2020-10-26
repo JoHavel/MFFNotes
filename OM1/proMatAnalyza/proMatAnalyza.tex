@@ -141,6 +141,62 @@
 
     \begin{veta}(Cantor-Bernstein)
         Nechť ®X a ®Y jsou množiny splňující $®X \preceq ®Y$ a $®Y \preceq ®X$, pak $®X ≈ ®Y$.
+
+% 19. 10. 2020
+
+        \begin{lemmain}
+            Nechť $®X$ je množina a $H: ©P(®X) \rightarrow ©P(®X)$ je zobrazení splňující podmínku $\forall ®A, ®B \in ©P(®X): ®A \subset ®B \implies H(®A) \subset H(®B)$. Pak existuje $®C \subset ®X$ takové, že $H(C) = C$.
+            \begin{dukazin}
+                Položme $©C = \{®A \in ©P(®X): ®A \subset H(®A)\}$. Ukážeme, že $®C = \bigcap ©C$ je hledanou množinou. $C \subset ®X$ je zřejmé, $C \subset H(C):$ Pokud $®A \in ©C$, pak $®A \subset C$, pak z vlastnosti zobrazení plyne $H(®A) \subset H(®C)$. Tedy $®A \subset H(®A) \subset H(®C)$. Z definice ®C dostáváme $C \subset H(®C)$. Nakonec musíme ještě dokázat $H(®C) \subset ®C$. Z $®C \subset H(®C)$ a z vlastnosti zobrazení $H(®C)\subset H(H(®C))$ TODO! $H(®C) \subset ®C$.
+            \end{dukazin}
+        \end{lemmain}
+        \begin{dukaz}
+            Předpokládáme $®X \preceq ®Y \implies$ existuje prosté zobrazení $f: ®X \rightarrow ®Y$ a  $®Y \preceq X \implies$ existuje prosté zobrazení $f: ®Y \rightarrow ®X$.
+
+            Definujeme $H: ©P(®X) \rightarrow ©P(®X)$ předpisem $H(®A) = ®X \setminus g(®Y \setminus f(®A))$. (Pozorování, jestliže $f = g^{-1}$ je prosté a na, tak $H$ je identita.) Nyní ověříme předpoklady Lemmatu.
+
+            Nechť $®U \subset ®V \subset ®X$. Pak $f(®U) \subset f(®V) \implies ®Y \setminus f(®V) \subset ®Y \setminus f(®U) \implies g(®Y \setminus f(®V)) \subset g(®Y \setminus f(®U)) \implies ®X \setminus g(®Y \setminus f(®U)) \subset ®X \setminus g(®Y \setminus f(®V)) \implies H(®U) \subset H(®V)$.
+
+            Dle lemmatu existuje $®C \subset ®X$ takové, že $H(®C) = ®C$. Pak $®C = H(®C) = ®X \setminus g(®Y\setminus f(®C)), g(®Y \setminus f(®C)) = ®X \setminus ®C$. Tedy $g|_{®Y \setminus f(®C)}$ je prosté zobrazení $®Y\setminus f(®C)$ ne $®X|®C$, a tedy $g^{-1}|_{®X \setminus ®C}$ je prosté zobrazení $®X\setminus ®C$ na $®Y\setminus f(®C)$. Navíc jistě $f|_{®C}$ je prosté zobrazení $®C$ na $f(®C)$
+
+            Definujeme $h(a) = f(a), a\in®C|h(a) = g^{-1}(a), a\in ®X\setminus ®C$. Potom $h$ je prosté zobrazení ®X na ®Y.
+        \end{dukaz}
     \end{veta}
+
+\section{Aritmetický, geometrický a harmonický průměr}
+    \begin{definice}
+        Nechť $x_1, …, x_n > 0$. Definujeme jejich
+        \begin{itemize}
+            \item aritmetický průměr jako $A_n = \frac{x_1 + … + x_n}{n}$.
+            \item geometrický průměr jako $G_n = \sqrt[n]{x_1\cdot \cdots \cdot x_n}$
+            \item harmonický průměr jako $H_n = \frac{n}{\frac{1}{x_1}+…+\frac{1}{x_n}}$
+        \end{itemize}
+    \end{definice}
+
+    \begin{veta}[AGH nerovnost]
+        $$ A_n ≥ G_n ≥ H_n $$
+        \begin{poznamkain}[Pozorování]
+            Nerovnost $G_n≥H_n$ snadno plyne z $A_n ≥ G_N$, stačí dosadit $x_i = \frac{1}{y_i}$. Stačí ukázat nerovnost $A_n ≥ G_n$.
+        \end{poznamkain}
+
+        \begin{dukazin}[1. Zpětnou indukcí]
+            Dokážeme pro mocniny 2. Následně dosadíme za jedno $x$ geometrický průměr těch ostatních a budeme „indukovat“ zpět.
+        \end{dukazin}
+
+        \begin{dukazin}[2. Indukcí]
+            Dokážeme pro 1.
+
+            Chceme odhadnout aritmetický průměr $n+1$ čísel. Použijeme indukční předpoklad pro $n$ čísel, jejichž aritmetický průměr je stejný. Za tato čísla zvolíme $x_1, …, x_{n-1}, x_n'$, kde $x_n'$ je doplnění, aby byly shodné aritmetické průměry. $x_n'$ vyjádříme. Upravíme, řekneme, že $x_n$ a $x_{n+1}$ jsme zvolili, že budou nejmenší a největší číslo.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[2. referát]
+        Existuje i aritmeticko-geometrický průměr a aritmeticko-harmonický průměr (je roven geometrickému).
+    \end{poznamka}
+
+    \begin{priklad}[3. teoretický]
+        Najděte všechna celá čísla $m$ splňující
+        $$ (1+m)^n ≥ 1+mn, \forall n \in ®N $$ 
+    \end{priklad}
 
 \end{document}

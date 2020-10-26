@@ -285,4 +285,165 @@
         Skládání zobrazení nám může dát i vhled do toho, jak funguje inverze součinu matic.
     \end{poznamka}
 
+% 22. 10. 2020
+
+\section{Grupy}
+    Abstraktní algebraické struktury k popisu symetrií.
+
+    \begin{definice}[Grupa]
+        Grupa je dvojicí $(G, \circ)$, kde $G$ je množina a $\circ : G^2 \rightarrow G$ je binární operace na množině splňující
+        $$ \forall a, b, c \in G: a\circ(b\circ c) = (a\circ b) \circ c, (\text{asociativita}) $$ 
+        $$ \exists e \in G \forall a \in G: e\circ a = a \circ e = a, \text{neutrální prvek} $$ 
+        $$ \forall a \in G \exists b \in G: a \circ b = b \circ a = e. (\text{inverzní prvek}) $$ 
+    \end{definice}
+
+    \begin{definice}[Abelova grupa]
+        Abelova grupa je grupa, která splňuje
+        $$ \forall a, b \in G: a\circ b = b\circ a.   (\text{komutativita}) $$ 
+    \end{definice}
+
+    \begin{poznamka}
+        Je-li operací sčítání, pak neutrální prvek značíme 0 a opačný $-a$.
+
+        Je-li operací sčítání, pak neutrální prvek značíme 1 a opačný $\frac{1}{a}$.
+    \end{poznamka}
+
+    \begin{priklady}
+        Abelovy grupy: $(®Z, +), (®Q, +), (®R, +), (®C, +), (®Q \setminus \{0\}, ·), (®R \setminus \{0\}, ·), (®C \setminus \{0\}, ·), \text{grupa matic} \(®R^{m\times n}, +\), (®Z_m, +), (®Z_p, ·), …$
+
+        Ne nutně abelovy grupy: množina všech zobrazení na množině s operací skládání, množina regulárních matic řádu n s násobením, …
+
+        Negrupy: $(®N, +), (®Z, -), (®Z \setminus \{0\}, ·), (®R \setminus \{0\}, :), …$
+    \end{priklady}
+
+    \begin{tvrzeni}[Vlastnosti grup]
+        Prvky grupy $(G, \circ)$ splňují následující vlastnosti
+        \begin{enumerate}
+                \item $a\circ c = b\circ c$ implikuje $a = b$ (krácení),
+            \item neutrální prvek je jednoznačně určen,
+            \item $\forall a \in G$ je jeho inverzní prvek určen jednoznačně,
+            \item rovnice $a\circ x = b$ má právě jedno řešení $\forall a, b \in G$,
+            \item $(a^{-1})^{-1} = a,$
+            \item $(a \circ b)^{-1} = b^{-1} \circ a^{-1}$
+        \end{enumerate}
+
+        \begin{dukazin}
+            \ 
+            \begin{enumerate}
+                \item $ a \circ c = b \circ c \implies a\circ(c \circ c^{-1}) = b\circ (c \circ c^{-1}) \implies a\circ e = b\circ e \implies a = b $.
+                \item Nechť $e_1$, $e_2$ jsou neutrální prvky $\implies e_1 = e_1 \circ e_2 = e_2 $.
+                \item Inverzní prvky $a_1$ a $a_2$ k $a$ $\implies a_1 \circ a = e = a_2 \circ a \implies a_2 = a_1$.
+                \item Vynásobením rovnice prvkem $a^{-1}$ zleva dává $x = a^{-1} \circ b$.
+                \item $e = e \implies (a^{-1})^{-1}\circ a^{-1} = a\circ a^{-1}$.
+                \item $e = e \implies (a\circ b)^{-1}\circ (a\circ b) = b^{-1} \circ b = b^{-1} \circ e \circ b = (b^{-1} \circ a^{-1}) \circ (a \circ b)$.
+
+            \end{enumerate}
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Podgrupa]
+        Podgrupa grupy $(G, \circ)$ je grupa $(H, \circ_H)$ taková, že platí $H \subseteq G$ a pro všechna $a, b \in H$ platí $a\circ b = a \circ_H b$.
+
+        Neboli v $H$ platí uzavřenost TODO.
+    \end{definice}
+
+    \subsection{permutace}
+        \begin{definice}[Vzájemně jednoznačné]
+            Zobrazení je vzájemně jednoznačné (bijekce), pokud je prosté a na.
+        \end{definice}
+
+        \begin{definice}[Permutace]
+            Permutace je vzájemně jednoznačné zobrazení množiny na sebe samu.
+        \end{definice}
+
+        \begin{poznamka}[Možné zápisy permutací]
+            Tabulkou (nahoře vzory, dole obrazy), grafem (šipka vede ze vzoru do obrazu), rozložením na cykly (v závorce jsou ve skupinkách čísla, které se postupně zobrazují na sebe, prvky které se zobrazují sami na sebe, tak se nemusí psát)
+        \end{poznamka}
+
+        \begin{definice}[Identita, transpozice, inverzní permutace]
+            Permutace zobrazující každý prvek na sebe se nazývá identita ($id$).
+
+            Transpozice je permutace, která prohazuje dva prvky. (Permutace s jediným „nejednotkovým“ cyklem, který má 2 prvky).
+
+            Pro permutace $p, q$ je složená permutace $p \circ q$ daná předpisem $(p \circ q)(i) = p(q(i))$.
+
+            Inverzní permutace $\(p^{-1}\)$ k permutaci $p$ je daná předpisem $p \circ p^{-1} = id$. (Např transpozice sama k sobě.)
+        \end{definice}
+
+
+        \begin{definice}[Znaménko pemutace]
+            Pokud se permutace $p \in S_n$ skládá z $k$ cyklů, pak znaménkem permutace je číslo $\sgn(p) = (-1)^{n-k}$.
+
+            \begin{prikladyin}
+                $\sgn(id) = 1, \sgn((i, j)) = -1, \sgn((1, 3, 4)(2, 5)) = -1$
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{veta}[O znaménku složení permutace s transpozicí]
+            Buď $p \in S_n$ permutace a $t = (i, j) \in S_n$ transpozice. Pak
+            $$ \sgn(p) = -\sgn(t\circ p) = -\sgn(p\circ t) $$
+            \begin{dukazin}
+                Stačí dokázat jednu rovnost, druhá je analogicky. Rozlišíme dva případy, pokud jsou $i, j$ ve stejném cyklu, pak se transpozicí rozpadne, pokud jsou v jiném, tak se naopak spojí, tedy se v obou případech změní počet cyklů o 1 a znaménko tedy na $-$ původní.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}
+            Každou permutaci lze rozložit na složení transpozic.
+            \begin{dukazin}
+                Postupně na transpozice rozložíme všechny cykly.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Platí $\sgn(p) = (-1)^r$, kde $r$ je počet transpozic v rozkladu permutace $p$.
+
+            Pro $p, q \in S_n$ platí $\sgn(p \circ q) = \sgn(p)·\sgn(q)$.
+
+            Pro $p \in S_n$ platí $\sgn(p) = \sgn(p^{-1})$.
+        \end{dusledek}
+
+        \begin{definice}[Symetrická grupa]
+            Množina permutací $S_n$ tvoří s operací skládání $\circ$ takzvanou symetrickou grupu $(S_n, \circ)$.
+        \end{definice}
+
+        \begin{poznamka}
+            Symetrické grupy popisují symetrie různých objektů.
+
+            Každá grupa je isomorfní nějaké podgrupě symetrické grupy (např. rubikova grupa (popisující r. kostku) je isomorfní $S_{48}$).
+        \end{poznamka}
+    
+    \subsection{Algebraická tělesa}
+        Zobecnění číselných oborů jako např. ®R.
+
+        \begin{definice}[Těleso]
+                Těleso je množina ®T spolu se dvěma komutativními binárními operacemi $+$ a $·$ splňujícími: $(®T, +)$ je Abelova grupa (neutrální prvek 0, inverzním k $a$ je $-a$), $(®T \subseteq \{0\}, ·)$ je Abelova grupa (neutrální prvek 1, inverzním k $a$ je $a^{-1}$), $\forall a, b, c \in ®T: a·(b + c) = a·b + a·c$ (distributivita).
+        \end{definice}
+
+        \begin{poznamka}
+            Operace nemusí představovat klasické sčítání a násobení.
+
+            Budeme psát $ab$ místo $a·b$.
+
+            Každé těleso má alespoň dva prvky, protože $0 ≠ 1$
+
+            Zavedeme značení pro inverzní operace, jak je známe.
+        \end{poznamka}
+
+        \begin{priklady}
+            Tělesa jsou ®Q, ®R, ®C, $®Z_p$ (např nejmenší možný těleso $®Z_2$), kvaterniony (pokud definujeme těleso jako ne nutně komutativní).
+
+            ®Z ne.
+        \end{priklady}
+
+        \begin{tvrzeni}[Vlastnosti těles]
+            $0a = 0, ab = 0$ implikuje $a = 0$ nebo $b = 0$, $-a = (-1)a$.
+
+            \begin{dukazin}
+                Jednoduchý, podobný vlastnostem grup.
+            \end{dukazin}
+        \end{tvrzeni}
+
+
+
+
 \end{document}

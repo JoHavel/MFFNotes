@@ -140,5 +140,84 @@
 
         Existuje makro \verb|\chyph|, které přepne do češtiny.
     \end{definice}
+
+% 19. 10. 2020
+
+    \begin{definice}[Módy fungování v \TeX u]
+        (Přesněji řečeno módy hlavního procesoru)
+        \begin{itemize}
+            \item Vertikální hlavní (stránkový)
+            \item Vertikální vnitřní (\verb|\vbox|)
+            \item Horizontální odstavcový (zalamování)
+            \item Horizontální vnitřní / restricted (\verb|\vbox|)
+            \item Matematický vnitřní (\verb|$|)
+            \item Matematický display (\verb|$$|)
+        \end{itemize}
+
+        Na začátku je \TeX v hlavním vertikálním módu. Teprve ve chvíli, kdy najde něco, co by mělo být v odstavci (písmenko, \verb|\noindent|, \verb|\indent|, \verb|\leavevmode| (jako písmenko), \verb|\hskip|, \verb|\vrule|), tak se \TeX přesune do odstavcového horizontálního.
+
+        Zpět se přesouvá příkazy (\verb|\par| (tj. i 2 odřádkování), vertikálními povely: \verb|\par|, \verb|\vskip|, …, \verb|}| ukončující \verb|\vbox|), což vyvolá odstavcový zlom a vrácení se do hlavního vertikálního.
+
+        Obdobně ostatní přechody (pozor, lze přecházet i z Vertikálního vnitřního do odstavcového, naopak nelze přecházet z vertikálních do matematických, tam se automaticky přechází přes horizontální).
+    \end{definice}
     
+    \begin{poznamka}[Co dostane lámací algoritmus]
+        Na začátku prázdný \emph{box} šířky \verb|\parindent|. Následuje horizontální materiál odstavce a „ocásek“, ve kterém je \verb|\unskip| (odstranění poslední mezery), \verb|\nobreak|, glue velikosti \verb|\parfillskip = 0 plus 1 fil|, \verb|\break|. 
+        
+        \begin{poznamkain}[Co lze]
+            Přenastavit \verb|\parfillskip = \parindent| (pak bude odstavec, když to vyjde, symetrické).
+
+            Přenastavit \verb|\parfillspi = 1cm plus 1fil| (např. když máme malou mezeru mezi odstavci a chceme uživatele upozornit na konec odstavce, i když vychází do konce řádku).
+        \end{poznamkain}
+    \end{poznamka}
+
+    \begin{poznamka}[Sestavení řádku]
+        Horizontální materiál řádku se obalí \verb|\leftskip = 0pt| zleva a \verb|\rihtskip = 0pt| zprava a zavře se do \verb|\hbox| velikosti \verb|\hsize|.
+
+        Sázení na praporek lze vytvořit tím, že nastavíme \verb|\rightskip = 0pt plus 1 fil|, ale pak se budou řádky snadno lámat (nebudou se rozdělovat slova, budou kratší řádky). Správně na to existuje makro \verb|\raggedright|, které udělá \verb|\rightskip 0pt plus 4em\spaceskip=…\xspaceskip=…| (nastaví mezislovní a písmenné mezery na pevné, aby se neroztahovali podle smršťování a roztahování té mezery na konci).
+
+        Centrování \verb|\leftskip = \rightskip = 0,4 plus 2em\parfillskip = 0pt|.
+    \end{poznamka}
+
+    \begin{poznamka}[Tvar odstavce]
+        Vykousnutí se nastavuje \verb|\handindent| (rozměr, o kolik se odsadí) a \verb|\hadgafter| (číslo, kolik řádků se odsadí), když se nastaví záporné hodnoty, vykusují se intuitivně ostatní rohy odstavce. Na konci odstavce se nuluje.
+
+        Následuje \verb|\parshape = n p1 w1 … pn wn| (kolik se má odsadit, o kolik které, poslední se opakuje do nekonečna). Také se nuluje.
+
+        Když zrovna nejsme ve vertikálním módu, tak se v \verb|\prevgraf| uchovává počet řádků v předchozím odstavci.
+
+        Existuje makro \verb|\everypar|, které spustí nastavený kód každý odstavec.
+
+        Můžeme si objednat zmenšení / zvětšení počtu řádků \verb|\looseness = n| (- je kratší, pokud nelze vyplnit, bude ignorováno). 
+    \end{poznamka}
+
+    \begin{poznamka}[Výsledek lámání odstavce: vertikální materiál]
+        \begin{itemize}
+            \item $\forall$ řádek jako box + posunutí referenčního bodu (žádné glue).
+            \item Dále z boxů vypadají vertikální věci (\verb|vadjust|, \verb|mark|).
+            \item Penalty mezi řádky (\verb|\interlinepenalty = 0| + \verb|clubpenalty = 150| (po prvním řádku) + \verb|widowpenalty = 150| (před posledním řádkem) + \verb|\brokenpenalty = 100| (po pre-break) + \verb|\displaywidowpenalty| (aby nebyla osamocená display matematika)).
+            \item Ještě se objeví vertikální (zde řádkové) mezery, ale ty probereme zvlášť.
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{definice}[Řádkování]
+        Algoritmus, aby se pokud možno dodrželo řádkování (ale řádky mohou být různě široké). Řídí se 3 parametry: \verb|\baselineskip| (glue), \verb|lineskiplimit = 0pt| (dimen) a \verb|lineskip = 1pt| (glue).
+
+        Vypočítá mezeru jako $skip = bls - d_{horni} - h_{spodni}$. Pokud vyjde $skip < lsl$, nastaví se $skip = ls$. (Při více stránkách není dobré nastavovat pružnost těchto mezer).
+
+        vskip, kern, penalty ignorujeme, hrule algoritmus potlačí.
+
+        \begin{poznamkain}[Jak je to doopravdy]
+                V registru \verb|\prevdepth| = hloubka posledního boxu (\verb|-1000pt|: algoritmus potlačen), linka nastaví právě ten dolní limit.
+
+                \verb|\nointerlineskip| je \verb|\prevdepth = -1000pt|. \verb|\offinterlineskip| úplně zastaví tento algoritmus \verb|\baselineskip = -1000pt, \lineskip = 0, \lineskiplimit = \maxdimen|
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{poznamka}[Usazení 1. řádku na stránce (pouze hlavní vertikální mód)]
+        Snažíme se spočítat glue tak, aby výška mezery + výška 1. řádku vyšla \verb|\topskip|, ale není nikdy záporný.
+
+        Rozdíl proti řádkovému: nemáme limit (vždy je 0pt) a uvažujeme linky.
+    \end{poznamka}
+
 \end{document}
