@@ -120,5 +120,52 @@
         Podle čeho měřit: konzistence (jestli shodné hodnoty jsou ve shodné třídě, viz vzorec v prezentaci), nezávislost na ostatních featurách (opak tzv. korelace) + korelace s třídami, množství informace ($©I = -\log(P(A = a_i))$, $E(©I) = -\sum P(A = a)·\log_2(P(A=a))$), co nám dá, vzdálenost mezi třídami po použití dané featury, …
     \end{definice}
 
+% 29. 10. 2020
+
+    \begin{definice}[Transformace featur]
+        Unsupervised (minimalizována je ztráta informací): Principal Component Analysis (PCA), Latent Semantic Indexing (LSI), Independent Component Analysis (ICA), …
+
+        Supervised (maximalizuje se vzdálenost mezi třídami): Linear Discriminant Analysis (LDA), Canonical Correlation Analysis (CCA), Partial Least Squares (PLS), …
+    \end{definice}
+
+    \begin{definice}[PCA]
+        Také Kaurhunen-Loeve (K-L) method. Hledá v rotacích a deformacích os největší varianci ($b_1^T \Sigma b_1$, kde $b_1$ je vektor projekce, $\Sigma$ je matice kovariance). Maximum se najde Lagrangeovy multiplikátory jako místo, kde $b^T_1 \Sigma b_1 = \lambda$, kde $\lambda$ je vlastní číslo $\Sigma$, je největší. Pro druhý vektor dostaneme totéž.
+
+        $$ \Sigma = \frac{1}{N}XX^T (X =\text{ rozdíl od průměru}) $$ 
+        $$ \Sigma b_j = \lambda b_j (b_j = \text{ vlastní vektory}) $$
+        $$ X' = B^TX (B = \[b_j\])$$ 
+    \end{definice}
+
+    \begin{definice}[SVD (singular value decomposition)]
+        Hledáme $USV^T$ tak, že $U$ a $V$ jsou vlastní vektory $A^TA$ a $AA^T$ a $V^T$ je poté diagonální matice vlastních čísel.
+
+        $$ Y = \frac{1}{\sqrt{N}}X^T \implies Y^TY = \Sigma $$
+        $$ Y = USV^T $$
+        $$ V = \text{ vlastní čísla matice } Y^TY = \Sigma $$
+    \end{definice}
+
+    \begin{definice}[ICA]
+        Báze nejsou kolmé. Je potřeba aby data byla nezávislá, tedy vycentrujeme odečtením průměru, a vyčistíme tím, že vynásobíme odmocninami vlastních čísel. Počítá se přes entropii (viz prezentace).
+    \end{definice}
+
+    \begin{poznamka}
+        Unsupervised transformace featur může vést ke ztrátě oddělení tříd.
+    \end{poznamka}
+
+    \begin{definice}[LDA]
+        Snažíme se dostat průměr každé třídy co nejdále od průměru všeho.
+
+%        $\omega_j$ jsou prvky třídy $j$.
+        Hodně vzorců, viz prezentace. Hledáme tolikarozměrnou projekční nadrovinu (v prezentaci její báze označena $w^T$), kolik máme tříd - 1. 
+    \end{definice}
+
+    \begin{poznamka}
+        Lze použít nejdříve LDA, abychom snížili rozměry a následně použít LDA.
+    \end{poznamka}
+
+    \begin{poznamka}
+        Na LDA potřebujeme hodně tréninkových dat. I při hodně dat jsou situace, kdy PCA je lepší (hlavně, když se třídy překrývají).
+    \end{poznamka}
+
 
 \end{document}

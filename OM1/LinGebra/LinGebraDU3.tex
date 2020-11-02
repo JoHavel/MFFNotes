@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+\let\a\alpha
+\let\b\beta
+\let\c\gamma
+\let\d\delta
+
+\begin{document}
+
+    \begin{priklad}[3.1]
+        Těleso $\mathbf{T}$, kde $T=\{\a, \b, \c, \d\}$, je definováno následujícími tabulkami operací.
+
+                \begin{tabular}{|c||c|c|c|c|}
+                        \hline
+                        $+$  & $\a$ & $\b$ & $\c$ & $\d$ \\ \hline\hline
+                        $\a$ & $\c$ & $\d$ & $\a$ & $\b$ \\ \hline
+                        $\b$ & $\d$ & $\c$ & $\b$ & $\a$ \\ \hline
+                        $\c$ & $\a$ & $\b$ & $\c$ & $\d$ \\ \hline
+                        $\d$ & $\b$ & $\a$ & $\d$ & $\c$ \\ \hline
+                \end{tabular}
+
+                \begin{tabular}{|c||c|c|c|c|}
+                        \hline
+                        $+$  & $\a$ & $\b$ & $\c$ & $\d$ \\ \hline\hline
+                        $\a$ & $\d$ & $\a$ & $\c$ & $\b$ \\ \hline
+                        $\b$ & $\a$ & $\b$ & $\c$ & $\d$ \\ \hline
+                        $\c$ & $\a$ & $\b$ & $\c$ & $\c$ \\ \hline
+                        $\d$ & $\b$ & $\d$ & $\c$ & $\a$ \\ \hline
+                \end{tabular}
+
+        Vyřešte nad tímto tělesem následující soustavu rovnic a určete počet řešení.
+
+        $$ \(\begin{array}{ccccc|c}\a & \b & \b & \d & \b & \a\\\d & \d & \b & \c & \d & \b\\\a & \c & \d & \b & \d & \a\end{array}\) $$
+
+        \begin{reseni}
+            Upravíme Gaussovou eliminací ($0 = \c, \b = 1 = -\b, \a = -\a, \d = -\d, \a = \d^{-1}$):
+            $$ \(\begin{array}{ccccc|c}\a & \b & \b & \d & \b & \a\\\d & \d & \b & \c & \d & \b\\\a & \c & \d & \b & \d & \a\end{array}\) \sim \(\begin{array}{ccccc|c}\a & \b & \b & \d & \b & \a\\\a & \a & \d & \c & \a & \d\\\c & \b & \a & \a & \a & \c\end{array}\) \sim \(\begin{array}{ccccc|c}\b & \d & \d & \a & \d & \b\\\c & \d & \a & \d & \d & \b\\\c & \d & \b & \b & \b & \c\end{array}\) \sim $$
+            $$ \sim \(\begin{array}{ccccc|c}\b & \c & \b & \b & \c & \c\\\c & \b & \d & \b & \b & \a\\\c & \c & \d & \a & \a & \b\end{array}\) \sim \(\begin{array}{ccccc|c}\b & \c & \b & \b & \c & \c\\\c & \b & \c & \d & \d & \d\\\c & \c & \b & \d & \d & \a\end{array}\) \sim \(\begin{array}{ccccc|c}\b & \c & \c & \a & \d & \a\\\c & \b & \c & \d & \d & \d\\\c & \c & \b & \d & \d & \a\end{array}\) $$ 
+
+            Z tohoto tvaru už je zřejmý (z řešení homogenní SLR a řešení s nulovými volnými proměnnými) tvar řešení
+            $$ \{ \begin{pmatrix} \a \\ \d \\ \a \\ \c \\ \c \end{pmatrix} +u\begin{pmatrix} \a \\ \d \\ \d \\ \b \\ \c \end{pmatrix} + v\begin{pmatrix} \d \\ \d \\ \d \\ \c \\ \b \end{pmatrix} : u, v \in \mathbf{T} \}. $$ 
+
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[3.2]
+        Řekneme, že matice $X, A$ spolu komutují, pokud splňují rovnost $XA = AX$. Najděte všechny matice $X$ typu $2\times 2$ nad tělesem $®Z_5$, které komutují s maticí
+        $$ A = \begin{pmatrix} 1 & 1 \\ 2 & 3 \end{pmatrix} $$ 
+        
+        \begin{reseni}
+            Zapíšeme zadání: $XA = AX$ tj.
+            \begin{align*}
+                1·x_{11} + 2·x_{12} &= 1·x_{11} + 1·x_{21},\\
+                1·x_{11} + 3·x_{12} &= 1·x_{12} + 1·x_{22},\\
+                1·x_{21} + 2·x_{22} &= 2·x_{11} + 3·x_{21},\\
+                1·x_{21} + 3·x_{22} &= 2·x_{12} + 3·x_{22}.
+            \end{align*}
+
+            Ekvivalentními úpravami rovnic získáme:
+            \begin{align*}
+                2·x_{12} &= x_{21},\\
+                x_{11} + 2·x_{12} &= x_{22},\\
+                x_{22} &= x_{11} + x_{21},\\
+                x_{21} &= 2·x_{12}.
+            \end{align*}
+
+            Zřejmě první dvojice rovnic je ta samá jako druhá, tedy máme
+            \begin{align*}
+                x_{21} &= 2·x_{12},\\
+                x_{22} &= x_{11} + 2·x_{12}.
+            \end{align*}
+
+            Zvolíme $s=x_{11}$ a $t=x_{12}$ jako volné proměnné a dostaneme množinu všech řešení
+            $$ \{\begin{pmatrix} s & t \\ 2t & t + 2s \end{pmatrix}: s, t \in ®Z_5 \}. $$
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

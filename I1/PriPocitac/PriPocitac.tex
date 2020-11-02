@@ -93,4 +93,52 @@
             Dále jsme probírali dvojkovou a 16kovou soustavu + bitwise operace.
         \end{poznamka}
 
+% 27. 10. 2020
+
+        \begin{poznamka}
+            Včetně bitového posunu (shl = shift left = posouvá k MSb, ne doleva, …). A bitových rotací.
+        \end{poznamka}
+
+        \begin{poznamka}
+            Dále jsme řešili reprezentaci záporných čísel (nejdříve 1 znaménkový bit, následně bitový doplněk a nakonec dvojkový doplněk).
+        \end{poznamka}
+
+        \begin{upozorneni}
+            Čísla v Pythonu jsou divná. Proto jsme si ukazovali knihovnu NumPy, kde si můžeme požádat o konkrétně dlouhé číslo (abychom nepřišli o nulu na začátku).
+        \end{upozorneni}
+
+% 3. 11. 2020
+
+        \begin{definice}[Master / slave]
+            Zařízením na jedné lince se říká master a slave, podle toho, kdo požaduje věci od koho. V počítači je často procesor master a slave budou tzv. zařízení (device).
+        \end{definice}
+
+        \begin{definice}[Multigroup linka = bus (sběrnice)]
+            Procesor by musel mít zadrátováno mnoho linek, ale to je nepraktické, takže existují sběrnice (často se ale sběrnice říká i linkám). Na sběrnici je napojeno mnoho zařízení a v podstatě každé má tzv. adresu (masteři nemusí, ale také mohou). Každé zařízení musí být rozděleno na 2 části: r (receiver) a t (transmitter).
+
+            Aby nebyla sběrnice v nedefinovaném stavu, dělá se, že se na sběrnici připojí pull-up rezistor (napětí, tj. 1, připojené přes velký rezistor). Sběrnice se pak chová k vysílajícím signálům jako AND.
+        \end{definice}
+
+        \begin{definice}[$I^2 C$ = Inter Integrated Circuit]
+            Pomalá. Ideální na krátká propojení integrovaných obvodů. Řadič SDA (serial data). Má vestavěný hodinový signál SCL (serial clock) (v 0 se data mění, v 1 platí) (tiká pouze při komunikaci, generuje ho konkrétní master, který komunikuje).
+
+            Tzv. multimaster (může být více materů). Narozdíl třeba od USB sběrnice, která je singlemaster.
+
+            Přenos se startuje a ukončuje změnou stavu z jedné na nulu a z nuly na jedničku, když je hodinový signál 1 (neměl by se měnit).
+
+            Je devítibitový byte (8 data + 1 bit tzv. acknowledgement (= ACK = potvrzeno) (NACK = odmítnuto), potvrzení generuje přijímající). MSb-first. 1 = NACK, 0 = ACK, 1 se používá třeba pro ukončení přenosu, když má proměnnou délku, zároveň první potvrzuje, zda se zde zařízení, které je oslovováno, nachází. 100 kHz - 5 MHz.
+
+            Po sběrnici se přenáší pakety složené z management části (7bitová adresa + bit read = not write) a tzv. payloadu (dat, co chceme přenést).
+
+            Když slave nestíhá, může udržet hodinový signál v nule (tzv. clock stretching).
+        \end{definice}
+
+        \begin{priklady}[ALS = Ambient Light Sensor (konkrétní od everlight)]
+            (Detekuje intenzitu světla.) Má cca registr (ADC registr = analog digital converter = analog digitální převodník), který se při každém průletu fotonu zvýší o 1 (začátek = vynulování a konec si volíme sami při komunikaci).
+
+            Registr 2 bytový, 15 bitů číslo, 1 bit měří / neměří. Má adresu 0x29 danou od výrobce. Má pouze 1 read only (R/O) registr (počítací), má 1 write only (W/O) registr (příkazový), nemá žádný read write (R/W) registr.
+
+            Data se posílají LSB (sběrnice je MSb, zařízení LSB).
+        \end{priklady}
+
 \end{document}

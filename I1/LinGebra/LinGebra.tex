@@ -443,7 +443,116 @@
             \end{dukazin}
         \end{tvrzeni}
 
+% 29. 10. 2020
 
+        \begin{poznamka}[Konečná tělesa]
+            Na množině $®Z_n$ uvažme operace $+$ a $·$ modulo $n$. Pak $®Z_2$ a $®Z_3$ tělesy jsou, ale $®Z_4$ ne ($\nexists 2^{-1}$).
+        \end{poznamka}
+
+        \begin{lemma}
+            Pro prvočíslo $n$ a nenulové $a \in ®Z_n$ při násobení modulo $n$ platí
+            $$ \{0, 1, …, n-1\} = \{00a, 1a, …, (n-1)a\}. $$
+
+            \begin{dukazin}
+                Sporem, nechť $ka≡la (\mod n)$ pro nějaká různá $k, l \in ®Z_n$. Pak $(k-l)a≡0 (\mod n)$. Protože $n$ je prvočíslo, $n$ dělí $a$ nebo $k-l$. $\lightning$
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            Množina $®Z_n$ tvoří těleso právě tehdy, když $n$ je prvočíslo.
+
+            \begin{dukazin}
+                Pokud $n=pq$ pro $1<p, q<n$, pak je-li $®Z_n$ těleso, pak $pq≡0 (\mod n)$ implikuje $p=0$ a $q=0$, $\lightning$.
+
+                Pro $n$ je prvočíslo stačí ověřit axiomy tělesa. (Existence inverze $a^{-1}$ plyne z lemmatu výše.)
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O velikosti konečných těles]
+            Konečná tělesa existují právě o velikostech $p^n$, kde $p$ je prvočíslo a $n≥1$.
+
+            \begin{dukaz}[Pouze jedním směrem, druhým si ho nebudeme ukazovat]
+                $$ GF(p^n) = \{a_{n-1}x^{n-1} + \cdots + a_1 x + a_0: a_0,…,a_{n-1} \in ®Z_p\}. $$
+                Sčítání je definováno jako pro běžné polynomy (modulo $p$). Násobení je definováno jako násobení pro běžné polynomy (modulo $p$) modulo ireducibilní (= nerozložitelný) polynom stupně $n$.
+            \end{dukaz}
+        \end{veta}
+
+        \begin{poznamka}
+            GF, protože Galois field (Galoisova těles). Každé konečné těleso je izomorfní s nějakým GF.
+        \end{poznamka}
+
+        \begin{definice}[Charakteristika tělesa]
+            Charakteristika tělesa ¦T je nejmenší $n \in ®N$ takové, že $1 + \cdots + 1 = 0$ (1 je tam $n$kráť). Pokud takové $n$ neexistuje, pak ji definujeme jako 0.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Charakteristika každého tělesa je buď nula, nebo prvočíslo.
+            \begin{dukazin}
+                Protože $0≠1$, tak charakteristika nemůže být 1.
+
+                Sporem: pokud by charakteristika byla složené číslo $n=pq$, tak $0 = n (n\text{ jedniček}) = p (p\text{ jedniček})·q (q \text{jedniček})$, tedy $p = 0$ nebo $q = 0$ (vlastnosti tělesa), $lightning$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}[Malá fermatova věta]
+            Pro každé prvočíslo $p$ a nenulové $a \in ®Z_p$ platí $a^{p-1} = 1$.
+
+            \begin{dukazin}
+                Z prvočíselnosti $p$ již víme, že platí lemma výše.
+
+                Protože $0a = 0$, tak $\{1, …, p-1\} = \{1a, …, (p-1)a\}$.
+
+                Tedy $1 · 2 ·…· (p-1) = (1a)·(2a)·…·((p-1)a)$. Zkrátím a vyjde $1 = a^{p-1}$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+                Následně jsme si ukazovali použití v samoopravných kódech (nejdříve pouze zdvojení a ztrojení bitů, poté tzv. Hammingův kód(…), kde se násobí maticemi $®Z_2^{3\times 7}$).
+        \end{poznamka}
+
+\section{Vektorové prostory}
+    \begin{definice}[Vektorový prostor]
+        Buď ¦T těleso s neutrálními prvky 0 a 1 pro sčítání a násobení. Vektorový prostor nad ¦T je množina $V$ s operacemi sčítání vektorů $+: V^2 \rightarrow V$ a násobení vektoru skalárem $·: ¦T \times V \rightarrow V$ splňující pro každé $\alpha, \beta \in ¦T$ a $¦u, ¦v \in V$: TODO!
+
+    \end{definice}
+
+    \begin{priklady}
+        Aritmetický prostor $¦T^n$ ¦T. Prostor matic $¦T^{m\times n}$ nad ¦T. Prostor ©P všech reálných polynomů proměnné $x$ nad tělesem ®R. Prostor $©P^n$ všech reálných polynomů proměnné $x ≤ n$ stupně nad tělesem ®R. Prostor ©F všech reálných funkcí. Prostor ©C všech spojitých reálných funkcí, …
+    \end{priklady}
+
+    \begin{tvrzeni}[Základní vlastnosti vektorových prostorů]
+        V prostoru $V$ nad tělesem ¦T platí pro každý skalár $\alpha \in ¦T$ a vektor $¦v \in V$
+        $$ 0¦v = ¦o, $$
+        $$ \alpha ¦o = ¦o $$ 
+        $$ \alpha v = ¦o \implies v = ¦o \lor \alpha = 0 $$
+        $$ -¦v = (-1)¦v $$
+        \begin{dukazin}
+            Stejný jako u ostatních vlastností.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Vektorové podprostory]
+        Podmnožina $U$ vektorového prostoru $V$ nad tělesem ¦T je podprostorem $V$ právě tehdy, když platí:
+        $$ ¦o \in U, $$
+        $$ \forall ¦u, ¦v \in U: ¦u+¦v \in U, $$
+        $$ \forall \alpha \in ¦T \forall ¦u \in U: \alpha ¦u \in U. $$ 
+
+        \begin{dukazin}
+            Jednoduchý?
+        \end{dukazin}
+    \end{definice}
+
+    \begin{prikladyin}
+        Triviální podprostory $V$ jsou $V$ a $\{¦o\}$.
+
+        Každá přímka procházející počátkem je podprostorem $®R^2$.
+
+        $©P^n, ©P, ©C, ©F$ jsou v tomto pořadí podprostory dalších.
+
+        Množina symetrických reálných matic řádu $n$ je podprostorem $®R^{n\times n}$.
+
+        Množina $®Q^n$ nad ®Q je podprostorem $®R^n$ nad ®Q, ale není podprostorem $®R^n$ nad ®R.
+    \end{prikladyin}
 
 
 \end{document}

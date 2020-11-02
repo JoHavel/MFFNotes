@@ -538,4 +538,106 @@
             SKRIPTA oddíl 4.2.3
         \end{definice}
 
+% 27. 10. 2020
+
+    \subsection{Inverzní matice}
+
+        \begin{poznamka}[Motivace]
+            $$ A·x = b \rightarrow x = A^{-1}·b $$
+
+            Inverzní zobrazení (tedy $f_A$ musí být prosté / na / bijekce).
+        \end{poznamka}
+
+        \begin{definice}[]
+            Buď $A$ matice typu $m\times n$ nad $T$. Pak:
+            \begin{itemize}
+                \item $A$ je zprava invertovatelná, pokud $\exists X \in T^{n \times m}: A·X = I_m$.
+                \item $A$ je zleva invertovatelná, pokud $\exists Y \in T^{n\times m}: Y·A = I_n$.
+                \item $A$ je invertovatelná, pokud $n = m$ a existuje $X \in T^{n\times n}: A·X = I_n = X·A$.
+            \end{itemize}
+            
+            \begin{poznamkain}
+                V posledním případě značíme $X = A^{-1}$ a jednoduše se dokáže, že existuje nejvýše jedna $A^{-1}$.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{tvrzeni}[(T4.67)]
+            Buď $A$ matice typu $m\times n$ nad $T$. Potom následující je ekvivalentní:
+            \begin{itemize}
+                \item[a)] $A$ je zprava invertovatelná.
+                \item[b)] $f_A: T^n \rightarrow T^m$ je na.
+                \item[c)] Matice $C$, kterou dostaneme z $A$ Gaussovou eliminací, má všechny řádky nenulové.
+                \item[d)] $\rank(A) = m$
+            \end{itemize}
+
+            \begin{dukazin}
+                $1 \implies 2$: Předpoklad $\exists X: A·X = I_m$. Vezměme $b \in T^m$, pak $A(X·b) = (AX)b = I_m · b = b$
+
+                $2 \implies 3$: Předpoklad $f_A$ je na ($Ax=b$ má řešení $\forall b$). Kdyby $C$ měla nulový $i$-tý řádek, pak $C·x = e_i$ nemá řešení $\implies Ax=e_i$ nemá řešení, $\lightning$.
+
+                $3 \implies 1$: Předpokládáme (3). Hledáme $X$: $A·X = I_m$, čili $A·(x_1|…|x_m) = (e_1|…|e_m)$, čili řešíme SLR. SLR upravíme $(A|e_j) \sim … \sim (C|d_j) \implies C·x_j = d_j$ má podle (3) řešení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Pokud je $A \in T^{m\times n}$ invertovatelná zprava, pak $n ≥ \rank{A} = m$.
+
+            Pokud je navíc čtvercová, pak $(A|I_n) \sim … \sim (I_n|A^{-1})$, tedy $A$ je invertovatelná.
+        \end{dusledek}
+
+% 29. 10. 2020
+
+        \begin{tvrzeni}[Čtvercové matice a inverze]
+            Buď $A$ čtvercová matice řádu $n$ nad $T$. Pak následující je ekvivalentní: $A$ je invertovatelná zprava, $A$ je invertovatelná zleva, $A$ je invertovatelná.
+            \begin{dukazin}
+                $(1\implies 3)$: Viz důsledek výše.
+                
+                $(3 \implies 2)$: Triviální.
+
+                $(2 \implies 1)$: Transpozice. ($1 \implies 3$). A transpozice znovu.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}[Jak najdeme inveri zleva]
+            Matici transponujeme a hledáme inverzi z prava. Nebo použijeme EŘÚ podobně jako u čtvercových.
+        \end{poznamka}
+
+        \begin{tvrzeni}[(4.70)]
+                Buď $A$ matice typu $m\times n$ nad ¦T. pak NPJE (následující podmínky jsou ekvivalentní):
+            \begin{itemize}
+                \item[1] $A$ je invertovatelná zleva,
+                \item[2] $f_A: ¦T^n \rightarrow ¦T^m$ je prosté,
+                \item[3] $Ax = 0$ má právě jedno řešení $x=0$,
+                \item[4] Matice $C$ vzniklá z $A$ Gaussovou eliminací má všechny sloupce bázové,
+                \item[5] $\rank(A) = n$.
+            \end{itemize}
+
+            \begin{dukazin}
+                ($1\implies 2$): Předpoklad: $\exists Y: Y·A = I_n$. Vezměme $x, y \in ¦T^n$ takové, že $f_A(x) = f_A(y)$. Vynásobíme $Y$ zleva: $x=y$.
+
+                ($2 \implies 3$): (3) je speciální případ (2).
+
+                ($3 \implies 4$): Předpokládejme, že neplatí (4). Pak dostáváme více řešení $Ax=Cx=0$ (pokud je $i$-tý sloupec nulový, pak za $i$-tou proměnnou lze dosadit cokoliv).
+
+                ($4\implies 1 (5)$) $C$ má čtvercovou „podmatici“ řádu $n$, můžeme doupravovat tak, aby podmaticí $C$ byla $I_n$. Součin elementárních matic měnících $A$ na $I_n$ je inverze zleva (s několika řádky navíc, je to přesně postup na hledání inverze zleva).
+
+                ($5\implies 4$) Necháno na rozmyšlení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Regulární matice}
+        \begin{definice}[Regulární matice]
+            Matice $A$ nad ¦T je regulární, pokud $f_A: ¦T^n \rightarrow ¦T^m$ je bijekce.
+        \end{definice}
+
+        \begin{veta}[V4.81 (+ T4.88)]
+            10 (+1) ekvivalentních podmínek pro Regulární matice, viz skripta.
+        \end{veta}
+
+    \subsection{Inverzní matice k horním a dolním trojúhelníkovým maticím}
+        \begin{tvrzeni}[T4.98]
+            Buď $A$ dolní trojúhelníková matice (tj. čtvercová) s nenulovými prvky na diagonále. Pak $A$ je regulární a $A^{-1}$ je dolní trojúhelníková. Měla-li na diagonále samé 1, pak $A^{-1}$, pak $A^{-1}$ je má také. Podobně pro horní trojúhelníkové rovnice.
+        \end{tvrzeni}
+
+
 \end{document}

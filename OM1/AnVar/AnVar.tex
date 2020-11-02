@@ -313,31 +313,40 @@
     
     \subsection{Stokesova věta pro řetězce}
         \begin{poznamka}[Cíl]
-                $$ \int_{C\text{ $k$-dim. řet. v $®R^n$}} d\omega = \int_{\partial C\text{ $(k-1)$-dim.}} \omega $$ 
+            $$ \int_{C\text{ $k$-dim. řet. v $®R^n$}} d\omega = \int_{\partial C\text{ $(k-1)$-dim.}} \omega $$ 
         \end{poznamka}
 
         \begin{definice}
-            Nechť $E \in ®R^k$ (je libovolná). Potom zobrazení $\phi: E \rightarrow ®R^k$ nazvěme hladké, pokud existuje otevřená $O \subset ®R^k$ a $\Phi \rightarrow R®k$ hladké zobrazení takové, že $E \subset O$ a $\Phi = \phi|_E$. TODO!
+                Nechť $E \in ®R^k$ (je libovolná). Potom zobrazení $\phi: E \rightarrow ®R^k$ nazvěme hladké, pokud existuje otevřená $O \subset ®R^k$ a $\Phi \rightarrow R®k$ hladké zobrazení takové, že $E \subset O$ a $\phi = \Phi|_E$. Navíc $\Phi$ nazveme hladkým rozšířením $\phi$. ($\leftarrow$ Whitneyho rozšiřovací věta.)
         \end{definice}
 
         \begin{definice}
-            Nechť $I_k = \[0, 1\]^k \subset ®R^k$. Potom k-dimenzionální singulární krychle v $®^n$ rozumíme hladké zobrazení $I_k \rightarrow ®R^n$. Píšeme $\<\phi\> = \phi(I_k)$.
+            Nechť $I_k = \[0, 1\]^k \subset ®R^k$. Potom k-dimenzionální singulární krychle v $®R^n$ rozumíme hladké zobrazení $I_k \rightarrow ®R^n$. Píšeme $\<\phi\> = \phi(I_k)$.
         \end{definice}
 
         \begin{poznamka}
-            $\<\phi\>$ je 'hladká deformace' $k$-dimenzionální krychle, může být singulární, např. bod.
+            $\<\phi\>$ je 'hladká deformace' $k$-dimenzionální krychle, může být singulární, např. bod (je-li $\phi$ konet).
         \end{poznamka}
 
         \begin{definice}
-            Nechť $\Omega \subset ®R^n$ je otevřená. Nechť $\omega \in É^n(\Omega)$ a $\omega = f\, dx_1 \land … \land dx_n$, kde $f \in Č^∞(\Omega)$. Je-li $E \subset \Omega$, potom definujeme TODO!
+            Nechť $\Omega \subset ®R^n$ je otevřená.
+
+            (i) Nechť $\omega \in É^n(\Omega)$ a $\omega = f\, dx_1 \land … \land dx_n$, kde $f \in Č^∞(\Omega)$. Je-li $E \subset \Omega$, potom definujeme
+            $$ \int_E \omega = \int_E fd\lambda^n, $$
+            pokud int. vpravo existuje jako Lebesgueův vůči Lebesgueově míře $\lambda^n$ na $®R^n$.
 
             Pro $n=0$ definujeme $\int f = 0$
 
-            TODO! Položme $\int_\phi \omega := \int_{I_k}\Phi*(\omega)$, je-li $\Phi: O \rightarrow \Omega$ hladké rozšíření $\phi$.
+            (ii) Nechť $k = 0, …, n$ a $\omega \in ©E^k(\Omega)$. Nechť $\phi$ je $k$-dimenzionální supul? krychle v $\Omega$ (tzn. $\<\phi\> \in \Omega$).
+
+            Položme $\int_\phi \omega := \int_{I_k}\Phi*(\omega)$, je-li $\Phi: O \rightarrow \Omega$ hladké rozšíření $\phi$.
         \end{definice}
 
         \begin{poznamka}
-            Definice (ii) je v pořádku, protože takové $\psi$ vždy existuje (jinak ?) a hodnota $\int_\phi \omega$ nezávisí na hladkém rozšíření $\phi$. Skutečně TODO!
+            Definice (ii) je v pořádku, protože takové $\Phi$ vždy existuje (jinak $\phi|_{\sigma_n\Phi_{-1}(\Omega)}$) a hodnota $\int_\phi \omega$ nezávisí na hladkém rozšíření $\phi$. Skutečně pro jiné takové hladké rozšíření $\Phi$ mějmé?, že
+            $$ \Phi = \phi = \psi \text{na} I_k^0 $$ 
+            $$ \Phi*(\omega) = \psi*(\omega) \text{na} I^0_k $$
+            $$ \Phi*(\omega) = \psi*(\omega) \text{na} I_k \text{ze spojitosti funkcí $\Phi, \psi$ a jejich 1. parciálních derivací.} $$ 
         \end{poznamka}
 
         \begin{umluva}
@@ -347,12 +356,15 @@
         \begin{veta}[Integrál nezávisí na parametrizaci, jen na orientaci]
             Nechť $\Omega \subset ®R^n$ je otevřená a $\omega \in ©E^k(\Omega)$. Nechť $I_k \subset O, O' \subset ®R^n$ jsou otevřené a $\alpha: O' \rightarrow O$ (na) je hladký difomorfismus (tzn. $\alpha$ i $\alpha_{-1}$ jsou hladká zobrazení), $\alpha(I_k) = I_k$. Nechť $\phi: O \rightarrow \Omega$ je hladké a $\phi' := \phi\circ\alpha$.
 
-            Potom $\int_{\phi'}\omega = $TODO!
+            Potom $\int_{\phi'}\omega = \Theta \int_{\phi}\omega$, kde $\Theta = +1$, je-li $J_\alpha := \det(\Jac(\alpha)) > 0 \text{na} I_k$, $\Theta = -1$, je-li $J_\alpha := \det(\Jac(\alpha)) < 0 \text{na} I_k$.
 
             \begin{dukazin}
-                Víme, že $J_\alpha ≠ 0$ na $O'$. Tedy $J_\alpha$ TODO!
+                    Víme, že $J_\alpha ≠ 0$ na $O'$. Tedy $J_\alpha$ (spojité funkce) nemění na $I_k$ znaménko.
+                    TODO!
             \end{dukazin}
         \end{veta}
+
+        TODO!
 
         \begin{veta}[Stokes]
             Nechť $\Omega \subset ®R^n$
@@ -360,7 +372,7 @@
             \begin{dukaz}
                 Nechť $k = n$ a $C = I_n$. Potom $\omega \in ©E^{n-1}(\Omega)$ má tvar $\omega = \sum_{i=1}^n\omega_i$, kde $\omega_i = (-1)^{i+1} f_i dx_1 \land … \land dx_{i-1} \land dx_{i+1} \land … \land dx_n$ a $f_i\in ©C^∞(\Omega)$.
 
-                Potom $d\omega_i = \frac{\partial f_i}{\partial x_i} dx_1 \land … \dx_n$ a
+                Potom $d\omega_i = \frac{\partial f_i}{\partial x_i} dx_1 \land … \,dx_n$ a
                 $$\int_{I_n} d\omega_i = \int_{\[0, 1\]^n}\frac{\partial f_i}{\partial x_i}\, dx_1 … dx_n \overset{\text{Fubki (věta) + newtonův vzorec v $x_i$}}{=}$$
                 $$ = \int_{\[0, 1\]^{n-1}} (f_i(x_1, …, x_{i-1}, 1, x_{i+1}, …, x_n) - f_i(x_1, …, x_{i-1}, 0, x_{i+1}, …, x_n))\, dx_1 … dx_{i-1} dx_{i+1} … dx_n = $$
                 $$ (-1)^{i+1}(\int_{I^n_{(i, 1)}}\omega_i - \int_{I^n_{(i, 0)}}\omega_i) = \int_{\partial I_n}\omega_i, $$ 
@@ -388,12 +400,18 @@
             $$ Z_k(\Omega) := \{c \in C_k(\Omega) | \partial c = 0\} \text{tzv. k-cykly} $$
         \end{veta}
 
-        \begin{poznamka}
-                Nechť $S$ je libovolná množina (i nekonečná). Potom volnou Abelovou grupou $®Z(S)$ generovanou $S$ rozumíme grupu
-                $$ ®Z(S) := \{f': S\rightarrow ®Z| f(s)≠0 \text{pro konečně mnoho $s\in S$}\} $$
-                s operací $(f + g)(s) := f(s) + g(s)$, $s \in S$.
+        \begin{poznamka}[Ze cvičení]
+            Nechť $S$ je libovolná množina (i nekonečná). Potom volnou Abelovou grupou $®Z(S)$ generovanou $S$ rozumíme grupu
+            $$ ®Z(S) := \{f': S\rightarrow ®Z| f(s)≠0 \text{pro konečně mnoho $s\in S$}\} $$
+            s operací $(f + g)(s) := f(s) + g(s)$, $s \in S$.
 
-                Zřejmě každá $f \in ®Z(S)$ lze jednoznačně psát jako $f = \sum_{s \in S}n_s z_s$, kde $n_s \in ®Z$, $n_s ≠ 0$ pro konečně $s\in S$ a $z_s(t):=1, t=s$ $z_s(t):= 0, t≠s$. 
+            Zřejmě každá $f \in ®Z(S)$ lze jednoznačně psát jako $f = \sum_{s \in S}n_s z_s$, kde $n_s \in ®Z$, $n_s ≠ 0$ pro konečně $s\in S$ a $z_s(t):=1, t=s$ $z_s(t):= 0, t≠s$. Píšeme často $s$ místo $z_s$
+        \end{poznamka}
+
+        \begin{poznamka}[Ze cvičení]
+            Nechť $S$ je libovolná množina. Položme $®R(S) := \{f: S \rightarrow ®R| f(s) ≠ 0 \text{pro konečně $s\in S$}\}$. Potom $®R(S)$ je vektorový prostor nad ®R s operacemi $(f+g)(s) := f(s) + g(s)$ a $(r·f)(s) := r·f(s), f, g \in ®R(S), s\in S \text{a} r\in ®R$.
+
+            Dále $®R(S)$ má bázi $\{z_s | s \in S\}$, kde $z_s(t) := 1, t=s; z_s(t) ;= 0, t≠s$. 
         \end{poznamka}
 
 \section{Variety, Stokesova věta na varietách}

@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+\begin{document}
+
+\begin{priklad}[1]
+    Na množině $\[20\]$ mějme následující uspořádání $\preccurlyeq$: Na číslech od 1 do 10 a na číslech od 11 do 20 se 4 chová jako $≤$, libovolná dvojice $x, y$ čísel taková, že jedno je větší než 10 a druhé nejvýše rovno 10 je ale neporovnatelná. Kolika způsoby lze toto částečné uspořádání rozšířit na lineární?
+
+    \begin{reseni}
+        Naším cílem je tedy spočítat možnosti, jak zvolit, kolik z čísel 11-20 bude menších než 1 (pak už bude vzhledem k $≤$ definováno, která to budou), kolik bude větších než 1, ale menších než 2, atd. Tedy mezi (v „mezerách“ mezi a za 20 a před 11) čísly 11-20 volíme 10 „zarážek“ (čísla před první zarážkou budou menší než jedna, čísla mezi první a druhou budou mezi 1 a 2, …). Tedy volíme 10 zarážek z 11 míst (v každém může být i více zarážek), tedy jsou to kombinace s opakováním, tj.
+        $$ C'_{10}{11} = \binom{11 + 10 - 1}{10} = \binom{20}{10} = 184756 \text{ možností.}$$
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[2]
+    Kombinatorickou úvahou dokažte rovnost
+    $$ \binom{n}{m}·\binom{m}{r} = \binom{n}{r}·\binom{n-r}{m-r}. $$
+
+    \begin{reseni}
+        Výběr nejdříve $m$ prvků a potom $r$ z těchto $m$ prvků je totéž, jako vybrat rovnou těch $r$ a potom zbytek do $m$ prvků, který jsme původně „zahodili“ (byli mezi prvně vybranými, ale nebyli mezi $m$ nejvybranějšími). (V obou případech jsme vybrali 2 disjunktní podmnožiny velikosti $r$ a $m-r$ z původních $n$ prvků.)
+    \end{reseni}
+\end{priklad}
+
+
+\end{document}

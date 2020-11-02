@@ -437,7 +437,7 @@
 
                 Z normality najdeme otevřenou množinu ®U, že $®E \subseteq ®U \subseteq \overline{®U}\subseteq ®X \setminus \overline{r}$. Položíme $®V_0 = ®U$, $®V_1 = ®X \setminus ®F$.
 
-                Nyní předpokládejme, že $®V_{r_0}, ®V_{r_1}, …, ®V_{r_n}, n≥1$. Už známe a platí, že pro $p, q \in \{r_0, …, r_n\}: p<q \implies \overline{®V_p} \subseteq ®V_q$. Chceme najít $®V_{r_{n+1}}$. Ať $i,j≤n$ jsou taková, že $r_i = \max\{r_k: r_k < r_{n+1}\}$ a $r_j = \min\{r_k: r_k > r_{n+1}\}$. TODO! Z normality existuje otevřená $®V_{r_{n+1}}$, že $\overline{®V_{r_i}} \subseteq ®V_{r_{n+1}} \subseteq \overline{®V_{r_{n+1}}} \subseteq ®V_{r_j}$.
+                Nyní předpokládejme, že $®V_{r_0}, ®V_{r_1}, …, ®V_{r_n}, n≥1$. Už známe a platí, že pro $p, q \in \{r_0, …, r_n\}: p<q \implies \overline{®V_p} \subseteq ®V_q$. Chceme najít $®V_{r_{n+1}}$. Ať $i,j≤n$ jsou taková, že $r_i = \max\{r_k: r_k < r_{n+1}\}$ a $r_j = \min\{r_k: r_k > r_{n+1}\}$. $r_i < r_j$. Z 1P: $\overline{V_{r_i}} \subseteq V_{r_j}$. Z normality existuje otevřená $®V_{r_{n+1}}$, že $\overline{®V_{r_i}} \subseteq ®V_{r_{n+1}} \subseteq \overline{®V_{r_{n+1}}} \subseteq ®V_{r_j}$.
 
                 Položme $f(x) = 1, x \in ®X \setminus ®V_1| f(x) = \inf{r\in D: x \in ®V_r}, x \in ®V_1$. $f:®X \rightarrow \[0, 1\]$. Nyní stačí ověřit spojitost: vzory subbázových (nějaké subbáze) podmnožin jsou otevřené. Zvolím si subbázi $\{\[0, b\), \(a,1\], a, b \in \(0, 1\)\}$. $f^{-1}(\[0, b\)) = \{x \in ®X: f(x)<b\} = \{x \in ®X: \exists r< b: x \in ®V_r\} = \bigcap_{r<b}®V_r…\text{otevřené}$. $f^{-1}(\(a, 1\]) = \{x \in ®X: f(x) > a\} = \{x \in ®X: \exists r>a: x\notin ®V_r\} = \{x \in ®X: \exists s>a: x \notin \overline{®V_s}\} = \bigcup_{s>a}®X \setminus \overline{®V_s}…\text{otevřené}$
             \end{dukazin}
@@ -469,10 +469,108 @@
 
         \begin{tvrzeni}[Jednoznačnost limity netu]
             Prostor ®X je Hausdorffův $\Leftrightarrow$ každý net má nejvýše jednu limitu.
+
+% 26. 10. 2020
+
+            \begin{dukazin}
+                $(\implies)$: Ať $(x_i)_{i \in I}$ je net mající dvě různé limity $x, y \in ®X$. ®X je Hausdorffův, tedy existuje disjunktní okolí $U, V$ bodů $x, y$. Pak existuje $i \in I$, že $\forall j\in I, j≥i: x_j \int ®U$ a existuje $k \in I$, že $\forall j\in I, j≥k: x_j \int ®V$. $(I, ≤)$ je usměrněná množina, tedy existuje $l \in I$, že $l≥i$, $l≥k$. $x_l \in ®U \cap ®V$. $\lightning$.
+
+                Opačně: Ať ®X není Hausdorffův. Ať $x, y \in ®X$ je dvojice různých bodů, které nejdou oddělit otevřenými disjunktními množinami. Uvažme otevřenou množinu $\(©U(x)\times ©V(y), ≤\)$, kde $(®A, ®B) ≤ (®U, ®V) ≡ (®U\subseteq ®U \land ®V \subseteq ®B)$. Pro každé $(®U, ®V) \in ©U(x)\times ©V(y)$ vezměme nějaký bod $x_{(®U, ®V)} \in ®U \cap ®V$. $\(x_{(®U, ®V)}\)_{(®U, ®V)\in ©U(x) \times ©U(y)}$ je net v $X$, který konverguje k $x$ a zároveň konverguje k $y$.
+            \end{dukazin}
         \end{tvrzeni}
 
+        \begin{tvrzeni}[Charakterizace uzávěru pomocí konvergence netů]
+            Ať ®X je TP a $®A \subseteq ®X$. Pak $x\in \overline{®A}$, právě když existuje net $(x_i)_{i \in I}$ tvořený body z $®A$, který konverguje k $x$.
 
+            \begin{dukazin}
+                ($\implies$): Ať $x \in \overline{A}$. $\forall ®U\in ©U(x): ®U\cap ®A ≠ \O$. Fixujme $x_{®U}\in ®U \cap ®A$, pro $®U \in ©U(x)$. $\(©U, \supseteq\)$ je usměrněná množina. $(x_{®U})_{®U \in ©U(x)}$ je net tvořený prvky z ®A, který konverguje k $x$.
 
+                ($\Rightarrow$): Ať $x\in ®X, (x_i)_{i\in I}$ je net z prvků $®A$, který konverguje k $x$. Chceme, $x\in \overline{®A}$. Ať ®U je okolí $x$. Chceme, že $U\cap®A ≠ \O$. $(x_i)$ konverguje k $x$, tedy existuje $j \in I: x_j \in ®U$. Navíc $x_j \in ®A$. $x_j \in ®A \cap ®U$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Charakterizace spojitosti pomocí netů]
+            Ať ®X, ®Y jsou TP. $f: ®X \rightarrow Y$ je zobrazení, $x \in ®X$. Pak $f$ je spojité v bodě $x$ právě tehdy, když pro každý net $(x_i)_{i \in I}$ konvergující k bodu $x \in ®X$ konverguje net $(f(x_i))_{i\in I}$ k bodu $f(x)$.
+
+            \begin{dukazin}
+                ($\implies$): Ať $®V \in ©U(f(x))$. Pak ze spojitosti $\exists ®U \in ©U(x): f(®U)\subseteq ®V$. Net $(x_i)$ konverguje k $x$, tedy existuje $i_0 \in I$, že pro $i≥i_0: x_i \in ®U$. Pak zřejmě pro $i ≥ i_0: f(x_i)\in ®V$.
+
+                ($\Rightarrow$): Ať $f$ není spojité v bodě $x$. Tedy existuje $®V \in ©U(f(x))$, že $\forall ®U \in ©U(x): f(®U)\setminus ®V ≠ \O$. Zvolme $x_{®U} \in ®U$, že $f(x_{®U}) \notin ®V$. $(x_{®U})_{®U \in ©U(x)}$ je net v ®X, zřejmě $(x_{®U})$ konverguje k $x$. $(f(x_{®U}))_{®U \in ©U(x)}$ zřejmě tedy nekonverguje k bodu $f(x)$. $\lightning$
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Operace s TP a zobrazeními}
+    \subsection{Obecné konstrukce}
+        \begin{definice}[Větší a menší topologie]
+            Ať ®X je množina, $\tau, \sigma$ dvě topologie na ®X. Řekněme, že $\tau$ je větší (jemnější, silnější) než $\sigma$, pokud $\tau \supseteq \sigma$. Topologie $\sigma$ se pak nazývá menší (hrubší, slabší).
+        \end{definice}
+
+        \begin{poznamka}
+            Topologie $\tau$ je větší než $\sigma$ $\Leftrightarrow$ $id_{®X}: (®X, \tau) \rightarrow (®X, \sigma)$ je otevřená.
+
+            Jsou-li $\tau_i: i \in I$ topologie na ®X, pak $\bigcap_{i \in I}\tau_i$ je opět topologie na ®X. Navíc je největší topologií, která je menší než všechny $\tau_i$. $\bigcap_{i \in I} \tau_i$ je subbáze nějaké topologie, která je nejmenší topologie, která je větší než všechny $\tau_i$.
+        \end{poznamka}
+
+        \begin{definice}[Projektivní a induktivní vytváření]
+            Ať ®X je množina a $(®X_i, \tau_i), i \in I$, jsou TP a $f_i: ®X \rightarrow ®X_i$ zobrazení.
+
+            Topologie $\tau$ na množině ®X se nazývá projektivně vytvořená, pokud $\tau$ je nejmenší topologie, při níž jsou všechna zobrazení $f_i: (®X, \tau) \rightarrow (®X_i, \tau_i)$ spojitá.
+
+            Jsou-li $f_i:®X_i \rightarrow ®X$ zobrazení, topologie $\tau$ na ®X se nazývá induktivně vytvořená, pokud $\tau$ je největší topologie na ®X, při které jsou všechna $f_i: (®X_i, \tau_i) \rightarrow (®X, \tau)$ spojitá.
+        \end{definice}
+
+        \begin{veta}[Charakterizace spojitosti zobrazení do projektivně definovaného TP]
+            Ať $(®X, \tau)$ je projektivně vytvořen souborem zobrazení $f_i: ®X \rightarrow (®X_i, \tau_i)$. Zobrazení $g: (®Y, \sigma) \rightarrow (®X, \tau)$ je spojité $\Leftrightarrow \forall i \in I: f_i \circ g: (®Y, \sigma) \rightarrow (®X_i, \tau_i)$ je spojité.
+
+            \begin{dukazin}
+                Doprava je jednoduché, složení spojitých zobrazení je spojité.
+
+                Opačně: Ať $\tau'$ je největší topologie na ®X, při které je zobrazení $g$ spojité: $\tau' = \{ ®U \subseteq ®X: g^{-1}(®U) \in \sigma\}$. Stačí, že $\tau \subseteq \tau'$. $\tau$ je nejmenší topologie, která obsahuje množiny $f^{-1}_i (®V), ®V \in \tau_i, i \in I$. Tedy stačí ukázat, že $f^{-1}_i (®V) \in \tau'$ pro $®V \in \tau_i, i \in I$. $g^{-1}(f^{-1}(®V)) = (f_i \circ g)^{-1}(®V)\in \sigma$. Tedy opravdu $f_i^{-1} \in \tau'$.
+            \end{dukazin}
+        \end{veta}
+        
+    \subsection{Podprostor, suma, součin, kvocient}
+        \begin{definice}
+            Je-li $(®X, \tau)$ TP a $A \subseteq ®X$, pak $(A, \sigma)$ se nazývá podprostor $(®X, \tau)$, pokud topologie $\sigma$ je projektivně vytvořená zobrazením identitou na $A$.
+
+            Jsou-li $(®X_i, \tau_i)$ TP, pak je jejich součin TP $(®X, \tau)$, kde $X = \prod_{i \in I} ®X_i$ a $\tau$ je projektivně vytvořená zobrazeními $\pi_i: ®X \rightarrow ®X_i, \pi_i(…) = x_i$
+
+            Zobrazení $f: (®X, \tau) \rightarrow (®Y, \sigma)$ se nazývá vnořené zobrazení, pokud $f$ je prosté a topologie $\tau$ na ®X je projektivně vytvořená zobrazením $f$.
+        \end{definice}
+
+        \begin{poznamka}
+            Ať $(®X, \tau)$ je TP. $A\subseteq X$. $\tau_A := \{®U \cap A: ®U \in \tau\}$ je topologie podprostoru na $A$.
+
+            Ať $(®X_i, \tau_i)$ jsou TP, $i \in I$. Ať $®X = \prod_{i \in I} ®X_i$, součinová topologie na ®X má subbázi: $©S := \{\pi^{-1}(®U): i \in I, ®U \in \tau_i\}$. 
+
+            Konvergence netú v součinové topologii: Net $(x_j)_{j \in J}$ konverguje k $x \in X \Leftrightarrow \forall i \in I: (\pi_i(x_j))_{j \in J}$ konverguje k $\pi_i (c)$.
+
+            Jsou-li $A_i \subseteq X_i$, pak $\overline{\prod A_i} = \prod \overline{A_i}$.
+        \end{poznamka}
+
+        \begin{priklad}
+            $C(\[0, 1\], ®R) \subseteq ®R^{\[0, 1\]} := \{f:[0, 1] \rightarrow ®R, f \text{zobrazení}\}$.
+
+            Topologie podprostoru $C…$ = „topologie bodové konvergence“.
+        \end{priklad}
+
+        \begin{definice}
+            Ať $(®X, \tau)$ je TP, $E \subseteq ®X \times ®X$ ekvivalence. Uvažme $®X \setminus E = \{\[x\]_E : x \subseteq ®X\}$, $\pi: ®X \rightarrow ®X \setminus E, x\rightarrow [x]_E$. Kvocientová topologie na $®X \setminus E$ je induktivně vytvořená zobrazením $\pi$.
+
+            Jsou-li $(®X_i, \tau_i)$ TP, $i \in I$, ($®X_i$ jsou po dvou disjunktní) pak topologie sumy na $\bigcap_{i \in I} ®X_i$ je topologie, která je induktivně vytvořena zobrazeními $j_i: ®X_i \rightarrow \bigcup_{k \in I}®X_k, j_i(x) = x$. Sumu TP značíme $\bigoplus_{i \in I}®X_i$.
+
+            Zobrazení $f: (®X, \tau) \rightarrow (®Y, \sigma)$ se nazývá kvocientové, pokud je na a topologie $\sigma$ je induktivně vytvořená zobrazením $f$.
+        \end{definice}
+
+        \begin{priklad}
+            $®X = ®R, E: xEy \Leftrightarrow x-y \in ®Z$. $®R \setminus E$ homeomorfní s kružnicí.
+        \end{priklad}
+
+        \begin{poznamka}
+            Množina ®U v kvocientovém prostoru $®X \setminus E$ je otevřená $\Leftrightarrow \pi^{-1}(®U)$ je otevřená v ®X.
+
+            $®X = \bigoplus ®X_i, ®U \subseteq ®X$. ®U je otevřená $\Leftrightarrow ®U \cap ®X_i$ je otevřená v $®X_i$.
+        \end{poznamka}
 
 
 

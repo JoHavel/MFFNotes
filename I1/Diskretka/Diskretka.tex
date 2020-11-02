@@ -216,4 +216,84 @@
         \end{dukazin}
     \end{veta}
 
+% 26. 10. 2020
+
+    \begin{veta}
+        $\# f: N \rightarrow M = m^n, |N| = n, |M| = m, m > 0, n > 0$
+
+        \begin{dukazin}[Indukcí]
+            $$ n=1: \# f = m = m^1 $$
+            $$ n \rightarrow n+1: f \text{jednoznačně určena} f(x) \text{a} f':N\setminus \{x\} \rightarrow M \implies \# f = m · m^n = m^{n+1} $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Je-li $N$ $n$-prvková množina, pak $|2^N| = 2^n$.
+
+        \begin{dukazin}
+            $$ \text{charakteristická funkce: } A \subseteq N \rightarrow C_A: N \rightarrow \{0, 1\} C_A(x) = 0, x \notin A, C_A(x) = 1, x \in A $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Nechť $X ≠ \O$ je konečná množina, $©S := \{S \subseteq X| |S| \text{je sudá}\}$, $©L := \{L \subseteq X| |L| \text{je lichá}\}$. Potom $|©S| = |©L| = 2^{n-1}$.
+        
+        \begin{dukazin}
+            Víme, že $©S \cup ©L = 2^X$. Stačí tedy $|©S| = |©L|$. Zvolíme si $a \in X$. Pak $f(S):= S \triangle \{a\}$ je bijekce z ©S do ©L.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Nechť $N$ je $n$ prvková, $M$ je $m$-prvková. Potom $\# f: N \rightarrow M$ prostých $= m·(m-1)·…·(m-n+1)$.
+
+        \begin{poznamka}[Možná značení]
+            $$ \[n\]:= \{0, 1, …, \} $$
+            $$ m^{\underline{n}} = \frac{m!}{(m-n)!} \text{($m$ na $n$ klesající)} $$ 
+        \end{poznamka}
+    \end{veta}
+
+    \begin{poznamka}[Kódování funkcemi]
+        \ 
+        \begin{itemize}
+            \item $X \rightarrow \{0, 1\} … 2^X$
+            \item $\{1, 2\} \rightarrow X … (x, y)\in X^2$
+            \item $\{1, …, k\} \rightarrow X … \text{uspořádané $k$-tice … $X^k$}$
+            \item $®N \rightarrow X$ … nekonečné posloupnosti prvků $X$
+            \item permutace na $X$, tj. počet bijekcí nebo počet lineárních uspořádání na konečném $X$ … $|X|!$ ($0!=1$)
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{definice}[Kombinační číslo]
+        Kombinační číslo / binomický koeficient ($n$ nad $k$) je $\binom{n}{k} := \frac{n^{\underline{k}}}{k!} = \frac{n!}{k!(n-k)!}$.
+    \end{definice}
+
+    \begin{definice}
+        Pro množinu $X$ a $k≥0$ definujeme $\binom{X}{k}:= \{A \subseteq X: |A| = k\}$.
+    \end{definice}
+
+    \begin{veta}
+        Pro každou množinu $X$ a $k≥0$: $\left|\binom{X}{k}\right| = \binom{|X|}{k}$.
+    \end{veta}
+
+    \begin{poznamka}[Vlastnosti kombinačních čísel]
+        $$ \binom{n}{0} = \binom{n}{n} = 1 $$ 
+        $$ \binom{n}{1} = \binom{n}{n-1} = n $$ 
+        $$ \binom{n}{k} = \binom{n}{n-k} $$
+        $$ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} \text{ (Lze upočítat / nebo rozdělit na případ vybereme / nevybereme konkrétní prvek.}$$
+        $$ \sum_{k=0}^n \binom{n}{k} = 2^n \text{ BV $A=1$, $B=1$} $$ 
+        $$ \sum_{k=0}^n (-1)^k \binom{n}{k} = 0 \text{ BV $A=1$, $B=-11$} $$
+    \end{poznamka}
+
+    \begin{poznamka}
+        Vlastnosti se dají vykoukat v tzv. Pascalově trojúhelníku.
+    \end{poznamka}
+
+    \begin{veta}[Binomická]
+        $$ (A + B)^n = \sum_{k=0}^n A^k·B^{n-k}·\binom{n}{k} $$
+
+        \begin{dukazin}
+            Vybírá se $k$ z $n$ členů, ze kterých bude $A$…
+        \end{dukazin}
+    \end{veta}
+
 \end{document}

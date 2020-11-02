@@ -1,0 +1,20 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 4]
+        Dokažte, že z každé prosté posloupnosti přirozených čísel $\{a_n\}_{n = 1}^∞$ lze vybrat (nekonečnou) rostoucí posloupnost.
+
+    \begin{reseni}
+            Za $k_1$ zvolím 1. $\{a_{k_j}\}_{j=1}^1$ je zřejmě rostoucí. Pokračuji indukcí.
+
+        Nechť mám již vybráno $k_i$ a posloupnost $\{a_{k_j}\}_{j = 1}^i$ je rostoucí. Z toho, že je podposloupnost prostá, jistě existuje nejvýše $a_{k_i}$ indexů $x$, pro které $a_x$ nejsou větší než $a_{k_i}$. Jelikož $a_{k_i}$ je konečné, mohu zvolit $k_{i+1}=\max\{x: a_x ≤ a_{k_i}\} + 1$, tedy $a_{k_{i+1}}> a_{k_i}$.
+
+        Takto zkonstruovaná posloupnost $\{a_{k_j}\}_{j=1}^∞$ je rostoucí a nekonečná podposloupnost $\{a_n\}_{n = 1}^∞$, tedy ta, kterou hledáme.
+    \end{reseni}
+\end{priklad}
+
+\end{document}

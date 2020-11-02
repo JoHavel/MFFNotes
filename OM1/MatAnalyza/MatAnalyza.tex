@@ -97,14 +97,14 @@
         \end{definice}
             
         \begin{umluva}
-            $\forall x \in \N, x>10 \ A(x)$ značí  $\forall x \in \N (x>10 \implies A(x))$
+            $\forall x \in ®N, x>10 \ A(x)$ značí  $\forall x \in ®N (x>10 \implies A(x))$
         \end{umluva}
         \begin{priklady}
             \ 
             \begin{itemize}
                 \item Pro všechna $x \in M$ platí $A(x)$ je: $\forall x \in M: A(x)$ 
                 \item Existuje $x \in M$ tak, že platí $A(x)$ je $\exists x \in M: A(x)$
-                \item $ \forall n \in \N\ \forall m \in \N\ \exists k \in \N: k> n+m $
+                \item $ \forall n \in ®N\ \forall m \in ®N\ \exists k \in ®N: k> n+m $
             \end{itemize}
         \end{priklady}
 
@@ -114,10 +114,10 @@
                 \item $\neg (\forall x \in M: A(x)) \Leftrightarrow \exists x \in M: \neg A(x)$
                 \item $ \neg (\exists x \in M: A(x) \Leftrightarrow \forall x \in M: \neg A(x)$
                 \item $\neg$(Nikdo mě nemá rád.) $\Leftrightarrow$ Existuje alespoň jeden člověk, který mě má rád. 
-                \item $\neg(\forall n \in \N\ \forall m \in \N\ \exists k \in \N: k > n+m)$
-                    $$ \exists n \in \N\ \neg(\forall m \in \N\ \exists k \in \N: k > n+m) $$
-                    $$ \exists n \in \N\ \exists m \in \N\ \neg(\exists k \in \N: k > n+m) $$
-                    $$ \exists n \in \N\ \exists m \in \N\ \forall k \in \N: k \leq n+m) $$ 
+                \item $\neg(\forall n \in ®N\ \forall m \in ®N\ \exists k \in ®N: k > n+m)$
+                    $$ \exists n \in ®N\ \neg(\forall m \in ®N\ \exists k \in ®N: k > n+m) $$
+                    $$ \exists n \in ®N\ \exists m \in ®N\ \neg(\exists k \in ®N: k > n+m) $$
+                    $$ \exists n \in ®N\ \exists m \in ®N\ \forall k \in ®N: k \leq n+m) $$ 
 
 
             \end{itemize}
@@ -138,10 +138,10 @@
     \subsection{Metody důkazů tvrzení}
         \begin{definice}[Důkaz sporem]
             $$ (A \implies B) \Leftrightarrow \neg(A \& \neg B) $$
-            \begin{prikladyin}[$\sqrt{2} \notin \Q$]
-                ($A: x = \sqrt{2}$, $B: x \notin \Q$)
+            \begin{prikladyin}[$\sqrt{2} \notin ®Q$]
+                ($A: x = \sqrt{2}$, $B: x \notin ®Q$)
                 \begin{dukazin}[Důkaz sporem:]
-                    Nechť $x = \sqrt{2}$ a $x \in \Q$. $x \in \Q \implies x = \frac{p}{q}, p,q \in \N$, nesoudělná.\\
+                    Nechť $x = \sqrt{2}$ a $x \in ®Q$. $x \in ®Q \implies x = \frac{p}{q}, p,q \in ®N$, nesoudělná.\\
                 $x^2 = 2$,  $2 = x^2 = \frac{p^2}{q^2} \implies 2q^2 = p^2 \implies p = 2k \implies 2q^2 = 4k^2 \implies q^2 = 2k^2 \implies q = 2l$\\
                     $p=2k\ \&\ q=2l \implies$ $p$ a $q$ soudělná. \lightning 
                 \end{dukazin}
@@ -171,7 +171,7 @@
         \end{definice}
 
         \begin{definice}[Matematická indukce]
-            $$ (\forall n \in \N: V(n)) \Leftrightarrow (V(1)\ \&\ \forall n \in \N: V(n) \implies V(n+1)) $$ 
+            $$ (\forall n \in ®N: V(n)) \Leftrightarrow (V(1)\ \&\ \forall n \in ®N: V(n) \implies V(n+1)) $$ 
             \begin{prikladyin}
                 $$ \sum_{k=1}^n k = 1+2+…+n = \frac{1}{2}n\cdot(n+1) $$
                 \begin{dukaz}
@@ -193,19 +193,19 @@
 
     \subsection{Množina reálných čísel}
         \begin{poznamka}[Množiny čísel]
-            $$ \N = \{1, 2, 3, …\} $$ 
-            $$ \Z = \{… , -3, -2, -1, 0, 1, 2, 3, …\} $$ 
-            $$ \Q = \{\frac{p}{q}, q\in \N, p \in \Z\} $$ 
+            $$ ®N = \{1, 2, 3, …\} $$ 
+            $$ ®Z = \{… , -3, -2, -1, 0, 1, 2, 3, …\} $$ 
+            $$ ®Q = \{\frac{p}{q}, q\in ®N, p \in ®Z\} $$ 
         \end{poznamka}
 
         \begin{definice}[Omezená množina]
-                Nechť $\M \subset \R$. Řekněme, že $\M$ je omezená shora (omezená zdola), jestliže existuje $a \in \R$ = horní (dolní) závora tak, že pro všechna $x \in \M$ platí $x ≤ a$ ($x≥a$).
+            Nechť $M \subset ®R$. Řekněme, že $M$ je omezená shora (omezená zdola), jestliže existuje $a \in ®R$ = horní (dolní) závora tak, že pro všechna $x \in M$ platí $x ≤ a$ ($x≥a$).
         \end{definice}
 
         \begin{definice}[Supremum a infimum]
-                Nechť $\M \subset \R$ je shora (zdola) omezená. Číslo $s \in R$ nazýváme supremem (infimem) $\M$, pokud:
-                $$ \forall x \in \M: x≤s (s≥x) $$
-                $$ \forall y \in \R, y<s (y>s) \exists x \in \M, y<x (x>y) $$ 
+                Nechť $M \subset ®R$ je shora (zdola) omezená. Číslo $s \in ®R$ nazýváme supremem (infimem) $M$, pokud:
+                $$ \forall x \in M: x≤s (s≥x) $$
+                $$ \forall y \in ®R, y<s (y>s) \exists x \in M, y<x (x>y) $$ 
             \begin{prikladyin}
                 \begin{itemize}
                         \item $\sup\[0,1\]=1$ (dokázat obě podmínky pro 1 ($x$ z druhé podmínky volím 1)…)
@@ -215,41 +215,41 @@
         \end{definice}
 
         \begin{definice}[Reálná čísla]
-            Na množině \R je dána relace $≤$ ($\subset \R \times \R$), operace sčítání $+$ a operace násobení $\cdot$ a množina \R obsahuje prvky 0 a 1 tak, že platí:
+            Na množině ®R je dána relace $≤$ ($\subset ®R \times ®R$), operace sčítání $+$ a operace násobení $\cdot$ a množina ®R obsahuje prvky 0 a 1 tak, že platí:
             
             Viz skripta (takové ty tělesové / grupové podmínky, podmínky uspořádání a \emph{existence suprema})
         \end{definice}
 
         \begin{veta}[o existenci infima]
-            Nechť $\M \subset \R$ je neprázdná zdola omezená množina. Pak existuje $\inf\M$.
+            Nechť $M \subset ®R$ je neprázdná zdola omezená množina. Pak existuje $\inf M$.
             \begin{dukazin}
-                    Označme $-\M = \{x\in\R:-x\in\M\}$. Zřejmě $\M \neq \O$. $\M$ je zdola omezená $\implies$ $-\M$ je shora omezená. ($\exists K \in \R \forall x \in \M x>K \implies \exists K \in \R \forall x \in -\M x<-K$). Z axiomů \R tedy existuje $s = \sup -\M$. Položme $i = -s$. Tvrdím $i = \inf M$. (Dokážeme z definice suprema a infima, viz skripta).
+                Označme $-M = \{x\in®R:-x\in M\}$. Zřejmě $M \neq \O$. $M$ je zdola omezená $\implies$ $-M$ je shora omezená. ($\exists K \in ®R \forall x \in M x>K \implies \exists K \in ®R \forall x \in -M x<-K$). Z axiomů ®R tedy existuje $s = \sup -M$. Položme $i = -s$. Tvrdím $i = \inf M$. (Dokážeme z definice suprema a infima, viz skripta).
             \end{dukazin}
         \end{veta}
 
         \begin{veta}[Archimedova vlastnost]
-            Ke každému $x \in \R$ existuje $n \in \N$ tak, že $x < n$
+            Ke každému $x \in ®R$ existuje $n \in ®N$ tak, že $x < n$
             \begin{dukazin}[Sporem]
-                $$ \exists x \in \R \forall n \in \N x≥n $$
-                Tedy $\N$ je omezená podmnožina \R. Tedy existuje $x'\R x" = \sup\N$. Tedy $\forall n \in \N: n≤x'$. Pak také $\forall n \in \N: n+1 ≤ x'$. To ale tvrdí, že $x'-1$ je také $\sup\N$. To je ale spor, protože můžeme zvolit $y = x' - \frac{1}{2}$, pak $y<x'$, tedy z druhé vlastnosti suprema $\exists n \in \N: x' - \frac{1}{2} < n$, ale zároveň už víme, že $\forall n \in \N: n<x'-1$.
+                $$ \exists x \in ®R \forall n \in ®N x≥n $$
+                Tedy $®N$ je omezená podmnožina ®R. Tedy existuje $x' \in ®R, x' = \sup®N$. Tedy $\forall n \in ®N: n≤x'$. Pak také $\forall n \in ®N: n+1 ≤ x'$. To ale tvrdí, že $x'-1$ je také $\sup®N$. To je ale spor, protože můžeme zvolit $y = x' - \frac{1}{2}$, pak $y<x'$, tedy z druhé vlastnosti suprema $\exists n \in ®N: x' - \frac{1}{2} < n$, ale zároveň už víme, že $\forall n \in ®N: n<x'-1$.
             \end{dukazin}
         \end{veta}
 
-        \begin{veta}[Hustota \Q a $\R\\\Q$]
+        \begin{veta}[Hustota ®Q a $®R\setminus ®Q$]
             Nechť $a, b \in®R, a<b$. Pak existují $q\in®Q$ a $r\in®R\setminus®Q$ tak, že $q\in(a, b)$ a $r\in(a, b)$.
             \begin{dukaz}
-                Podle \label{Archimedova vlastnost} $\exists n \in \N$ tak, že $\frac{1}{b-a}<n$, tedy $\frac{1}{n}<b-a$. Zvolme $q = \frac{\lceil an\rceil + 1}{n}$, pak jistě $a<q<b$ a $q\in\Q$. 
+                Podle \label{Archimedova vlastnost} $\exists n \in ®N$ tak, že $\frac{1}{b-a}<n$, tedy $\frac{1}{n}<b-a$. Zvolme $q = \frac{\lceil an\rceil + 1}{n}$, pak jistě $a<q<b$ a $q\in®Q$. 
 
                 Poté použijeme $q_1 \in (a, b)$ a $q_2 \in (q_1, b)$. Zvolme $r = q_1 + \frac{q_2-q_1}{\sqrt{2}}$. Pak (jelikož druhá část je kladná) $r>q_1$. A $r<q_2 \Leftrightarrow q_1 + \frac{q_2-q_1}{\sqrt{2}}< q_2 \Leftrightarrow \frac{q_2-q_1}{\sqrt{2}}<q_2 - q_1$.
 
-                Tedy $r \in (a, b)$ a $r \in \R\\\Q$, jelikož $r = q_1 + \frac{q_2-q_1}{\sqrt{2}} = p \in\Q \implies \sqrt{2} = \frac{q_2-q_1}{p-q_1}$, ale levá strana je jistě iracionální a pravá racionální. Spor.
+                Tedy $r \in (a, b)$ a $r \in ®R\setminus ®Q$, jelikož $r = q_1 + \frac{q_2-q_1}{\sqrt{2}} = p \in®Q \implies \sqrt{2} = \frac{q_2-q_1}{p-q_1}$, ale levá strana je jistě iracionální a pravá racionální. Spor.
             \end{dukaz}
         \end{veta}
 
         \begin{veta}[O $n$-té odmocnině (BD = bez důkazu)]
-            Nechť $n \in \N$ a $x \in \[0, \infty\)$, pak existuje právě jedno $y \in \[0,\infty\)$ tak, že $y^n = x$.
+            Nechť $n \in ®N$ a $x \in \[0, \infty\)$, pak existuje právě jedno $y \in \[0,\infty\)$ tak, že $y^n = x$.
             \begin{dukaz}
-                Idea: Položme $\M = \{z \in \R\}$. Ukážeme, že $\M \neq \O$ shora omezená $\implies$ $\exists s = \sup\M$. Nyní ukážeme $s^n = x$.
+                Idea: Položme $M = \{z \in ®R\}$. Ukážeme, že $M \neq \O$ shora omezená $\implies$ $\exists s = \sup M$. Nyní ukážeme $s^n = x$.
             \end{dukaz}
         \end{veta}
 
@@ -257,61 +257,61 @@
 
     \subsection{Krátký výlet do nekonečna}
         \begin{definice}[Mohutnost množin]
-            Řekněme, že množiny \A a \B mají stejnou mohutnost, pokud existuje bijekce $\A \rightarrow \B$. Značíme $\A \approx \B$.
+            Řekněme, že množiny ®A a ®B mají stejnou mohutnost, pokud existuje bijekce $®A \rightarrow ®B$. Značíme $®A \approx ®B$.
 
-            Řekněme, že množina \A má mohutnost menší, nebo rovnu mohutnosti \B, pokud existuje prosté zobrazení $\A \rightarrow \B$. Značíme $\A \preceq \B$.
+            Řekněme, že množina ®A má mohutnost menší, nebo rovnu mohutnosti ®B, pokud existuje prosté zobrazení $®A \rightarrow ®B$. Značíme $®A \preceq ®B$.
 
-            Řekněme, že množina \A má menší mohutnost než \B, pokud $\A \preceq \B$, ale neplatí $\B \preceq \A$. Značíme $\A \prec \B$
+            Řekněme, že množina ®A má menší mohutnost než ®B, pokud $®A \preceq ®B$, ale neplatí $®B \preceq ®A$. Značíme $®A \prec ®B$.
 
             \begin{prikladyin}
-                    1) \N, \Z: $\N \approx \Z$ (prosté z \N do \Z je triviální, opačně si očísluji \Z)\\
-                    2) \N, \Q: $\N \approx \Q$ (obdobně, čísluji diagonálně)\\
-                    3) \N, \R: $\N \prec \R$ (důkaz sporem, přes diagonálu, vezmu první desetinou cifru z $f(1)$, druhou z $f(2)$… a pozměním je…)
+                    1) ®N, ®Z: $®N \approx ®Z$ (prosté z ®N do ®Z je triviální, opačně si očísluji ®Z)\\
+                    2) ®N, ®Q: $®N \approx ®Q$ (obdobně, čísluji diagonálně)\\
+                    3) ®N, ®R: $®N \prec ®R$ (důkaz sporem, přes diagonálu, vezmu první desetinou cifru z $f(1)$, druhou z $f(2)$… a pozměním je…)
             \end{prikladyin}
         \end{definice}
 
         \begin{tvrzeni}[Viz proseminář]
-            $\A \preceq \B \land \B \preceq \A \implies \A \approx \B$
+            $®A \preceq ®B \land ®B \preceq ®A \implies ®A \approx ®B$
         \end{tvrzeni}
 
         \begin{definice}
-            Řekněme, že množina \A je konečná, má-li konečný počet prvků.
+            Řekněme, že množina ®A je konečná, má-li konečný počet prvků.
 
-            Řekněme, že \A je spočetná, jestliže $\A \approx \N$, nebo je \A konečná.
+            Řekněme, že ®A je spočetná, jestliže $®A \approx ®N$, nebo je ®A konečná.
 
-            Řekněme, že \A je nespočetná, jestliže $\N \prec \A$.
+            Řekněme, že ®A je nespočetná, jestliže $®N \prec ®A$.
         \end{definice}
 
         \begin{tvrzeni}[Cantor]
-            Nechť \X je množina, pak $\X \prec \P(\X)$, kde $\P(\X)$ je množina všech podmnožin \X.
+            Nechť $X$ je množina, pak $X \prec ©P(X)$, kde $@P(X)$ je množina všech podmnožin $X$.
             \begin{dukazin}
-                Zobrazení $\phi: \X \rightarrow \P(\X)$ definované $\phi(x) = \{x\}$ je prosté.
+                Zobrazení $\phi: X \rightarrow ©P(X)$ definované $\phi(x) = \{x\}$ je prosté.
 
-                Tvrdím, že neplatí, že $\X \approx \P(\X)$. Důkaz sporem: Nechť existuje bijekce $\phi: \X \rightarrow \P(\X)$. Označme $\A = \{x \in \X: x \notin \phi(x)\}$. $\phi$ je bijekce $\implies \exists a \in \X: \phi(a) = \A$.
+                Tvrdím, že neplatí, že $X \approx ©P(X)$. Důkaz sporem: Nechť existuje bijekce $\phi: X \rightarrow \P(X)$. Označme $A = \{x \in X: x \notin \phi(x)\}$. $\phi$ je bijekce $\implies \exists a \in X: \phi(a) = A$.
 
-                        Nyní buď a) $a \in \A \implies a \notin \phi(a) = \A \lightning$ nebo b) $a \notin \A \implies a \in \phi(a) = \A \lightning$.
+                        Nyní buď a) $a \in A \implies a \notin \phi(a) = A \lightning$ nebo b) $a \notin A \implies a \in \phi(a) = A \lightning$.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{poznamka}[„Nebrali jsme“ Hypotéza kontinua]
-            Otázka: Existuje $\A \subset \R$, že $\N \prec \A$ a $\A \prec \R$?
+            Otázka: Existuje $A \subset ®R$, že $®N \prec A$ a $A \prec ®R$?
 
             Odpověď: Může a nemusí. (Hypotéza kontinua je ze standardních axiomů teorie množin tzv. nerozhodnutelná.)
         \end{poznamka}
 
         \begin{tvrzeni}
-            Nechť $\A_n, n \in \N$, jsou spočetné množiny, pak:
-            $$ \A = \bigcup_{n=1}^∞ \A_n = \A_1\cup\A_2\cup … $$
+            Nechť $A_n, n \in ®N$, jsou spočetné množiny, pak:
+            $$ A = \bigcup_{n=1}^∞ A_n = A_1\cup A_2\cup … $$
             je spočetná.
             \begin{dukazin}
-                Napíšu si množiny $\A_i$ do matice a očísluji po diagonálách. Tím získám $\N \succeq \A$.
+                Napíšu si množiny $A_i$ do matice a očísluji po diagonálách. Tím získám $®N \succeq A$.
             \end{dukazin}
         \end{tvrzeni}
 
 \section{Posloupnost}
     \subsection{Úvod}
         \begin{definice}
-            Jestliže ke každému $n \in \N$ je přiřazeno $a_n \in \R$, pak říkáme, že $\{a_n\}_{n=1}^∞ = \{a_1, a_2, a_3, …\}$ je posloupnost reálných čísel.
+            Jestliže ke každému $n \in ®N$ je přiřazeno $a_n \in ®R$, pak říkáme, že $\{a_n\}_{n=1}^∞ = \{a_1, a_2, a_3, …\}$ je posloupnost reálných čísel.
             \begin{prikladyin}
                 \begin{itemize}
                     \item $\{\frac{1}{n}\}_{n = 1}^∞ = \{1, \frac{1}{2}, \frac{1}{3}, …\}$
@@ -324,10 +324,10 @@
         \begin{definice}
             Řekněme, že posloupnost $\{a_n\}_{n=1}^∞$ je:
             \begin{itemize}
-                \item neklesající, jestliže $\forall n \in \N: a_n ≤ a_{n+1}$
-                \item nerostoucí, jestliže $\forall n \in \N: a_n ≥ a_{n+1}$
-                \item klesající, jestliže $\forall n \in \N: a_n < a_{n+1}$
-                \item rostoucí, jestliže $\forall n \in \N: a_n < a_{n+1}$
+                \item neklesající, jestliže $\forall n \in ®N: a_n ≤ a_{n+1}$
+                \item nerostoucí, jestliže $\forall n \in ®N: a_n ≥ a_{n+1}$
+                \item klesající, jestliže $\forall n \in ®N: a_n < a_{n+1}$
+                \item rostoucí, jestliže $\forall n \in ®N: a_n < a_{n+1}$
             \end{itemize}
             \begin{prikladyin}
                 $\{\frac{1}{n}\}$ je klesající a nerostoucí\\
@@ -336,7 +336,7 @@
         \end{definice}
 
         \begin{definice}
-            Řekněme, že posloupnost $\{a_n\}_{n = 1}^∞$ je omezená, jestliže množina členů posloupnosti $\{a_n\}_{n = 1}^∞$ je omezená podmnožina \R. Analogicky definujeme omezenost shora a omezenost zdola.
+            Řekněme, že posloupnost $\{a_n\}_{n = 1}^∞$ je omezená, jestliže množina členů posloupnosti $\{a_n\}_{n = 1}^∞$ je omezená podmnožina ®R. Analogicky definujeme omezenost shora a omezenost zdola.
             \begin{prikladyin}
                 $\{\frac{1}{n}\}$ je omezená\\
                 $\{2^n\}$ je pouze omezená zdola
@@ -345,8 +345,8 @@
 
     \subsection{Vlastní limita posloupnosti}
         \begin{definice}[Limita]
-            Nechť $A \in \R$ a $\{a_n\}_{n = 1}^∞$ je posloupnost. Řekněme, že $A$ je (vlastní) limitou posloupnosti $\{a_n\}$, jestliže:
-            $$ \forall \epsilon > 0\ \exists n_0 \in \N\ \forall n≥ n_0, n \in \N: |a_n - A|<\epsilon $$ 
+            Nechť $A \in ®R$ a $\{a_n\}_{n = 1}^∞$ je posloupnost. Řekněme, že $A$ je (vlastní) limitou posloupnosti $\{a_n\}$, jestliže:
+            $$ \forall \epsilon > 0\ \exists n_0 \in ®N\ \forall n≥ n_0, n \in ®N: |a_n - A|<\epsilon $$ 
             Značíme $\lim_{n \rightarrow ∞} a_n = A$.
 
             \begin{prikladyin}
@@ -365,19 +365,19 @@
         \begin{veta}[Jednoznačnost vlastní limity (2.1)]
             Každá posloupnost má nejvýše jednu limitu.
             \begin{dukazin}[Sporem]
-                    Nechť tedy existuje více limit. Dvě z nich označme $\lim_{n \rightarrow ∞} a_n = A$ a $\lim_{n \rightarrow ∞} a_n = B$, $A>B$. Zvolme $\epsilon = \frac{A-B}{3}$. Z definice limity k našemu $\epsilon$ existují $n_A, n_B \in \N$ tak, že $\forall n≥n_A |a_n-A|<\epsilon$ a $\forall n≥n_B |b_n-B|<\epsilon$. Položme $n_0 = \max\{n_A, n_B\}$. Z trojúhelníkové nerovnosti\footnote{$\forall x,y \in \R: |x+y| ≤ |x| + |y|$} $|A - B| = |(A-a_{n_0}) + (a_{n_0} - B)|≤ |A-a_{n_0}| + |a_{n_0} - B|<\epsilon + \epsilon = \frac{2}{3} (A-B)$. $\lightning$
+                    Nechť tedy existuje více limit. Dvě z nich označme $\lim_{n \rightarrow ∞} a_n = A$ a $\lim_{n \rightarrow ∞} a_n = B$, $A>B$. Zvolme $\epsilon = \frac{A-B}{3}$. Z definice limity k našemu $\epsilon$ existují $n_A, n_B \in ®N$ tak, že $\forall n≥n_A |a_n-A|<\epsilon$ a $\forall n≥n_B |b_n-B|<\epsilon$. Položme $n_0 = \max\{n_A, n_B\}$. Z trojúhelníkové nerovnosti\footnote{$\forall x,y \in ®R: |x+y| ≤ |x| + |y|$} $|A - B| = |(A-a_{n_0}) + (a_{n_0} - B)|≤ |A-a_{n_0}| + |a_{n_0} - B|<\epsilon + \epsilon = \frac{2}{3} (A-B)$. $\lightning$
             \end{dukazin}
         \end{veta}
 
         \begin{veta}[O omezenosti konvergentní posloupnosti]
             Nechť $\{a_n\}_{n = 1}^∞$ má vlastní limitu. Pak $\{a_n\}_{n = 1}^∞$ je omezená.
             \begin{dukazin}
-                    Nechť $\lim_{n \rightarrow ∞} a_n = A \in \R$. Položme $\epsilon = 1$. K tomuto $\epsilon = 1 \\exists n_0 \in \N \forall n≥n_0: |a_n - A| < \epsilon \Leftrightarrow a_n \in \(A - \epsilon, A + \epsilon\) = \(A-1, A+1\)$. Množina $\{a_n| n = 1, 2, …, n_0\}$ je konečná, tedy omezená. Položme $K = \max\{|a_1|, |a_2|, …, |a_{n_0}|, |A| + 1\}$. Potom jistě $\forall n \in \N |a_n| ≤ K$ (protože $\forall n≤n_0 |a_n| ≤ \max\{|a_i|; i≤n_0\}$ a $\forall n > n_0 a_n \in \(A-1, A+1\)\implies |a_n| ≤ |A| + 1≤K$).
+                Nechť $\lim_{n \rightarrow ∞} a_n = A \in ®R$. Položme $\epsilon = 1$. K tomuto $\epsilon = 1 \exists n_0 \in ®N \forall n≥n_0: |a_n - A| < \epsilon \Leftrightarrow a_n \in \(A - \epsilon, A + \epsilon\) = \(A-1, A+1\)$. Množina $\{a_n| n = 1, 2, …, n_0\}$ je konečná, tedy omezená. Položme $K = \max\{|a_1|, |a_2|, …, |a_{n_0}|, |A| + 1\}$. Potom jistě $\forall n \in ®N |a_n| ≤ K$ (protože $\forall n≤n_0 |a_n| ≤ \max\{|a_i|; i≤n_0\}$ a $\forall n > n_0 a_n \in \(A-1, A+1\)\implies |a_n| ≤ |A| + 1≤K$).
             \end{dukazin}
         \end{veta}
 
         \begin{priklad}
-            $$ \exists \lim_{n \rightarrow ∞} a_n = A \in \R \implies \exists n_0 \forall n > n_0 a_n\text{ je monotónní} $$
+            $$ \exists \lim_{n \rightarrow ∞} a_n = A \in ®R \implies \exists n_0 \forall n > n_0 a_n\text{ je monotónní} $$
         \end{priklad}
 
         \begin{definice}[Vybraná podposloupnost]
@@ -385,16 +385,16 @@
         \end{definice}
 
         \begin{veta}[o limitě vybrané podposloupnosti]
-            Nechť $\lim_{n \rightarrow ∞} a_n = A\in \R$ a nechť $\{b_n\}_{n = 1}^∞$ je vybraná z $\{a_n\}_{n = 1}^∞$. Pak $\lim_{n \rightarrow ∞} b_n = A$
+            Nechť $\lim_{n \rightarrow ∞} a_n = A\in ®R$ a nechť $\{b_n\}_{n = 1}^∞$ je vybraná z $\{a_n\}_{n = 1}^∞$. Pak $\lim_{n \rightarrow ∞} b_n = A$
             \begin{dukazin}
-                K $\epsilon > 0 \exists n \in \N \forall n ≥ n_0: |a_n - A|<\epsilon$. Chceme dokázat $\lim_{n \rightarrow ∞} b_n = A$.
+                K $\epsilon > 0 \exists n \in ®N \forall n ≥ n_0: |a_n - A|<\epsilon$. Chceme dokázat $\lim_{n \rightarrow ∞} b_n = A$.
 
                 K $\epsilon > 0$ zvolme $k_0$, kde $n_0$ je z definice $\lim_{n \rightarrow ∞}a_n$. Nechť $k≥k_0$, pak $n_k≥k≥k_0≥n_0$. Tedy $|b_k - A| = |a_{n_k}-A|<\epsilon$
             \end{dukazin}
         \end{veta}
 
         \begin{veta}[Aritmetika limit]
-            Nechť $\lim_{n \rightarrow ∞} a_n \in \R$ a $\lim_{n \rightarrow ∞} b_n = B\in\R$. Pak platí:
+            Nechť $\lim_{n \rightarrow ∞} a_n \in ®R$ a $\lim_{n \rightarrow ∞} b_n = B\in®R$. Pak platí:
 
             $$ \lim_{n \rightarrow ∞} a_n + b_n = A + B $$
             $$ \lim_{n \rightarrow ∞} a_n b_n = A\cdot B $$
@@ -596,7 +596,7 @@
             \begin{dukazin}
                 Důkaz jen pro $A \in ®R$. Jinak by byl podobný.
 
-                $\implies$ $\lim_{n \rightarrow ∞} a_n = A$, tedy posloupnost je omezená dle věty 2.2. Můžeme tedy definovat $b_n$ a $c_n \in ®R$. Posloupnosti $b_n$ a $c_n$ jsou monotónní a platí $c_n ≤ b_n$. Nechť $\epsilon > 0$. Z definice $\lim_{n \rightarrow ∞} a_n \exists n_0 \in \N \forall n≥n_0 |a_n - A| < \epsilon$, tj. $\forall n_0 b_n = \sup\{a_n, a_{n+1}, …\}≤ A + \epsilon$ a $\forall n_0 c_n = \inf\{a_n, a_{n+1}, …\} ≥ A - \epsilon$.
+                $\implies$ $\lim_{n \rightarrow ∞} a_n = A$, tedy posloupnost je omezená dle věty 2.2. Můžeme tedy definovat $b_n$ a $c_n \in ®R$. Posloupnosti $b_n$ a $c_n$ jsou monotónní a platí $c_n ≤ b_n$. Nechť $\epsilon > 0$. Z definice $\lim_{n \rightarrow ∞} a_n \exists n_0 \in ®N \forall n≥n_0 |a_n - A| < \epsilon$, tj. $\forall n_0 b_n = \sup\{a_n, a_{n+1}, …\}≤ A + \epsilon$ a $\forall n_0 c_n = \inf\{a_n, a_{n+1}, …\} ≥ A - \epsilon$.
 
                 Podle V 2.5 o limitě a uspořádání $\lim_{n \rightarrow ∞} c_n \in \[A - \epsilon, A + \epsilon\]$, $\lim_{n \rightarrow ∞} b_n \in \[A - \epsilon, A + \epsilon\]$, pro libovolné $\epsilon$.
 
@@ -635,6 +635,115 @@
 
             \end{dukazin}
         \end{veta}
+
+% 27. 10. 2020
+
+        \begin{dusledek}
+            Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel a $A \in ®R$. Pak
+            \begin{itemize}
+                \item $H(\{a_n\})≠\O$,
+                \item $\liminf\limits_{n \rightarrow ∞} a_n = \min H(\{a_n\}_{n = 1}^∞), \limsup\limits_{n \rightarrow ∞} a_n = \max H(\{a_n\}_{n = 1}^∞)$,
+                \item Je-li $\lim_{n \rightarrow ∞}a_n = A$, pak $H(\{a_n\}_{n = 1}^∞) = \{A\}$.
+            \end{itemize}
+        \end{dusledek}
+
+        \begin{veta}[Bolzano-Cauchyova podmínka (T2.14)]
+            Posloupnost $\{a_n\}_{n = 1}^∞$ má vlastní limitu právě tehdy, když splňuje Bolzano-Cauchyovu podmínku, tedy
+            $$ \forall \epsilon > 0 \exists n_0 \in ®N \forall m, n ≥ n_0: |a_n - a_m| < \epsilon $$
+
+            \begin{dukazin}
+                $\implies$: Z $\lim_{n \rightarrow ∞} a_n = A \in ®R$ vyplývá $\frac{\epsilon}{2} > 0 \exists n_0 \in ®N \forall n≥n_0: |a_n - A| < \frac{\epsilon}{2}$. Tedy $\forall m,n \in ®N, m≥n_0, n≥n_0$ platí $|a_m - a_n| ≤ |a_m - A| + |a_n - A| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
+
+                Opačná implikace: Nechť $\{a_n\}$ splňuje Bolzano-Cauchyovu podmínku. Nechť $\epsilon > 0$. Pak $\exists n_0 \in ®N \forall m, n ≥ n_0: |a_n - a_m| < \epsilon$. Toto použiji pro $m = n_0$ a dostanu $a_{n_0} - \epsilon < a_n < a_{n_0} + \epsilon$. Tedy $a_n$ je omezená posloupnost a definujeme $b_n = \sup\{a_n, a_{n+1}, …\}$ a $c_n = \inf\{a_n, a_{n+1}, …\}$. Z definice $b_n$ a $c_n$ dostaneme $\forall n > n_0:$ $a_{n_0} - \epsilon ≤ c_n ≤ b_n ≤ a_{n_0} + \epsilon$. Tedy podle věty o uspořádání a …, $a_{n_0} - \epsilon ≤ \liminf\limits_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} c_n ≤ \lim_{n \rightarrow ∞} b_n = \limsup\limits_{n \rightarrow ∞} a_n ≤ a_{n_0} + \epsilon$.
+
+                Odtud $\limsup\limits_{n \rightarrow ∞} a_n - \liminf\limits_{n \rightarrow ∞} a_n ≤ 2\epsilon$. Toto platí $\forall \epsilon > 0$, tedy $\limsup\limits_{n \rightarrow ∞} a_n = \liminf\limits_{n \rightarrow ∞} a_n \in ®R$. Podle V2.12 $\exists \lim_{n \rightarrow ∞} a_n \in ®R$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Organizační věci ke zkoušce]
+                Písemná část (příklady, stačí udělat jednou i na více pokusů, 50b, minimum 25, libovolná literatura, žádná elektronika) $\rightarrow$ ústní část (teoretická, 40b (+10 pro jedničkáře), minimum 25b, lze se na ni dostat nejenom s úspěšnou písemnou částí, ale i s 3 neúspěšnými písemnými částmi).
+
+                3 pokusy. (Jeden termín i v září.) Nezapomenout si s sebou doklad totožnosti.
+
+                RADA 1 (písemná): Začněte příklady 1 (limita posloupnosti 10b), 2 (limita funkce 10b), 3 (průběh funkce 20b), až potom udělat 4 (teoretický příklad, 10b).
+
+                Ústní část = klíčový pojem (0b), 3 definice nebo znění vět ($3\times 4$b = 12b), LV+důkaz (4+8b = 12b), TV+důkaz(4+12 = 16b). Nemá časový limit.
+
+                RADA 2 (ústní): Musím umět důkazy? ANO! Stačí lehké? ANO!
+
+                $<50$b :(, $\[50, 59\)$ (3), $≥60$b (bonusová otázka 10b): $≥70$b (2), $≥ 85$b (1). 
+        \end{poznamka}
+
+\section{Funkce jedné reálné proměnné - limita a spojitost}
+    \subsection{Základní definice}
+        \begin{definice}[Funkce jedné reálné proměnné]
+            Funkcí jedné reálné proměnné rozumíme zobrazení $f: M \rightarrow ®R$, kde $M \subseteq ®R$.
+        \end{definice}
+
+        \begin{definice}[Sudá, lichá a periodická funkce]
+                Řekněme, že funkce $f: M \rightarrow ®R, M\subseteq ®R$ je sudá, jestliže $\forall x \in M: (-x \in M) \land (f(x) = f(-x))$, je lichá, jestliže $\forall x \in M: (-x \in M) \land (f(x) = -f(-x))$, je periodická, jestliže $\exists p>0, \forall x \in M: (x+p \in M) \land (f(x) = f(x+p))$.
+        \end{definice}
+
+        \begin{definice}[Funkce omezená, omezená shora, omezená zdola]
+            Řekněme, že funkce $f: M \rightarrow ®R$, $M \subseteq ®R$, je omezená (omezená shora, omezená zdola), jestliže $f(M)$ je omezená (omezená shora, omezená zdola).
+        \end{definice}
+
+% 30. 10. 2020
+
+        \begin{definice}[Prstencové okolí bodu, okolí bodu (+ levé a pravé)]
+            Nechť $\delta > 0$ a $a \in ®R$. Prstencové okolí bodu $\P(a, \delta) = (a-\delta, a+\delta) \setminus \{a\}$, $\P(+∞, \delta) = \(\frac{1}{\delta}, +∞\)$, $\P(-∞, \delta) = \(-∞, -\frac{1}{\delta}\)$.
+            
+            Pravé a levé prstencové okolí bodu $a$ je $\P_+(a, \delta) = (a, a+\delta), \P_-(a, \delta) = (a-\delta, a)$.
+
+
+            Okolí bodu $\B(a, \delta) = (a-\delta, a+\delta)$, $\B(+∞, \delta) = \(\frac{1}{\delta}, +∞\)$, $\B(-∞, \delta) = \(-∞, -\frac{1}{\delta}\)$.
+
+            Pravé a levé okolí bodu $a$ je $\B_+(a, \delta) = \[a, a+\delta\), \B_-(a, \delta) = \(a-\delta, a\]$.
+        \end{definice}
+
+        \begin{definice}[Limita funkce]
+            Nechť $f: M \rightarrow ®R, M \subseteq ®R$. Řekneme, že $f$ má v bodě $a \in ®R*$ limitu rovnou $A \in ®R*$, jestliže platí
+            $$ \forall \epsilon > 0 \exists \delta > 0 \forall x \in \P(a, \delta): f(x) \in \B(A, \epsilon),  $$
+            značíme $\lim_{x \rightarrow a} f(x) = A$.
+
+            \begin{poznamkain}
+                Pro reálné $a$ lze zapsat definici podobně jako limitu posloupnosti.
+
+                Definici lze také zapsat jako $\lim_{x \rightarrow a}f(x) = A ≡ \forall \epsilon > 0 \exists \delta > 0: f(\P(a, \delta)) \subseteq \B(A, \epsilon)$.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{definice}[Limita zprava / zleva]
+            Nechť $f: M \rightarrow ®R, M \subseteq ®R$. Řekneme, že $f$ má v bodě $a \in ®R$ limitu zprava (zleva) rovnou $A \in ®R*$, jestliže platí
+            $$ \forall \epsilon > 0, \exists \delta > 0 \forall x \in \P_{+ (-)}: f(x) \in B(A, \epsilon), $$
+            značíme $\lim_{x \rightarrow a_{+ (-)}} f(x) = A$.
+        \end{definice}
+
+        \begin{poznamka}
+            $$ \lim_{x \rightarrow a} f(x) = A \Leftrightarrow \lim_{x \rightarrow a+} f(x) = A \land \lim_{x \rightarrow a-} f(x) = A $$
+        \end{poznamka}
+
+        \begin{definice}[Spojitost v bodě (+ zprava a zleva)]
+            Nechť $f: M \rightarrow ®R, M \subseteq ®R, a \in M$. Řekneme, že $f$ je v bodě $a \in ®R$ spojitá (spojitá zprava, spojitá zleva), jestliže
+            $$ \lim_{x \rightarrow a} f(x) = f(a) \(\lim_{x \rightarrow a+} f(x) = f(a), \lim_{x \rightarrow a-} f(x) = f(a)\) $$
+            
+            \begin{prikladyin}
+                    $f(x) = x$ je spojitá. Dirichletova funkce (D($x$) je 1 pro $x \in ®Q$, je 0 pro $x \in ®R \setminus ®Q$) není spojitá (a nemá nikde limitu). Riemanova funkce ((R($x$) je $\frac{1}{q}$ pro $x \in ®Q, x = \frac{p}{q}, p \in ®Z, q \in ®N$ nesoudělná, je 0 pro $x \in ®R \setminus ®Q$) je spojitá v každém iracionálním čísle a nespojitá v každém racionálním.
+            \end{prikladyin}
+        \end{definice}
+
+    \subsection{Věty o limitách}
+        \begin{veta}[Heineho věta (T3.1)]
+            Nechť $A \in ®R*, f: M \rightarrow ®R$ a $f$ je definována na prstencovém okolí bodu $a \in ®R*$. Následující podmínky jsou ekvivalentní (NPJE):\\
+            (i) $\lim_{x \rightarrow a} = A$,\\
+            (ii) pro každou posloupnost $\{x_n\}_{n = 1}^∞$ takovou, že $x_n \in M, \forall n \in ®N, x_n ≠ a, \lim_{n \rightarrow ∞} = a$ platí $\lim_{n \rightarrow ∞} f(x_n) = A$.
+
+            \begin{dukazin}
+                ($\implies$): Mějme posloupnost $\{x_n\}_{n = 1}^∞$ splňující předpoklady bodu (ii). Nechť $\epsilon > 0$ Podle (i) $\exists \delta > 0 \forall x \in \P(a, \delta): f(x) \in B(A, \epsilon)$. $\lim_{n \rightarrow ∞} x_n = a$, tedy k tomuto $\delta > 0 \exists n_0 \forall n≥ n_0: x_n \in \B(c, \delta)$. Dále $x_n ≠ a$, tedy $x_n \in \P(a, \delta)$. Tudíž dostáváme $f(x_n) \in B(A, \epsilon)$.
+                ($\Leftarrow$): Dokažme $\neg (i) \implies \neg (ii)$. $\neg(i): \exists \epsilon > 0 \forall \delta > 0 \exists x \in \P(a, \delta): \neg(f(x) \in B(A, \epsilon))$. Toto použijeme pro $\delta_n = \frac{1}{n}, n \in ®N$. Dostaneme $\exists x_n \in \P(a, \frac{1}{n}): f(x_n) \notin B(A, \epsilon)$. Nyní $x_n \rightarrow a$, $\forall n \in ®N: x_n ≠ a \implies \{x_n\}$ splňuje podmínky (ii) a dostaneme $\lim_{n \rightarrow ∞} = A$. Toto je spor s $f(x_n) \notin \B(A, \epsilon)$.
+            \end{dukazin}
+        \end{veta}
+
 
 
 \end{document}

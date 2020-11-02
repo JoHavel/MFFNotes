@@ -220,4 +220,85 @@
         Rozdíl proti řádkovému: nemáme limit (vždy je 0pt) a uvažujeme linky.
     \end{poznamka}
 
+% 26. 10. 2020
+
+    \begin{poznamka}[Ještě k předchozímu]
+        Na začátku odstavce se vloží \verb|\parskip|.
+    \end{poznamka}
+
+\section{registry}
+    \begin{definice}
+        Registry jsou zabudované (konkrétní počet; pojmenované; spousta nastavení, o kterých jsme mluvili) a uživatelské (0…255 každého typu, často (u dalších „TeXů“) i více).
+
+        Typy:
+        \begin{itemize}
+            \item \verb|\count| -- číslo (31 bitů + znaménko)
+            \item \verb|\dimen| -- rozměr (30 bitů + znaménko ve sp $= 2^{-16}$ pt\footnote{pt = 1in/72,27}, tj. 14 celá část, 16 desetinná)
+            \item \verb|\skip| -- roztažnost (13+16 bitů)
+            \item \verb|\muskip| -- matematický (speciální jednotky)
+            \item toks, box, …
+        \end{itemize}
+
+        Registry se obnovují po konci grupy na začínající stav.
+
+        Použití: lze do nich dosazovat (\verb|\count74=32|\footnote{Číslo lze napsat číslicemi s desetinnou tečkou, apostrof a osmičková soustava, 2 apostrofy a šestnáctková ve velkých písmenech, obrácený apostrof znak resp lomítko znak, hodnota registru a backslash pojmenovaný znak (pomocí *chardef*ch=kód (*=lomítko) to však \TeX užívá spíše uvnitř).}, \verb|\parskip=10pt| (rovnítka lze vyměnit za mezeru, či vynechat)), lze ho použít jako jednotky, vypsat ho (\verb|\the\count5|) (do pdf), vypsat ho (\verb|\showthe\count5|) (do logu), použít jako pointer (\verb|\count\count5|), automaticky konvertovat dimen $\rightarrow$ skip nebo skip $\rightarrow$ dimen $\rightarrow$ count. 
+    \end{definice}
+
+    \begin{definice}[Aritmetika]
+        \verb|\advanced registr by hodnota| (by lze vynechat nebo napsat BY)\\
+        \verb|\multiply| (pouze celými čísly)\\
+        \verb|\divide| (pouze celými čísly), zaokrouhluje se k nule
+    \end{definice}
+
+    \begin{definice}[Alokace registrů]
+        \ 
+        \begin{itemize}
+            \item count 0…9 = číslo stránky
+            \item box 255 = přenos obsahu do output rutiny
+            \item reg. 0…9 = pracovní (krom čísel stránek)
+            \item \verb|\countdef\jmeno=cislo| -- nastavuje přezdívku za registr s číslem cislo
+            \item \verb|\newcount\pocitadlo| -- (plain) alokuje nějaký registr (interně \verb|\countdef\pocitadlo|)
+            \item \verb|\newinsert\…| -- (plain) alokuje vše, co potřebuje na insert, viz dále 
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}[Boxový registr]
+        Obsahuje nic, hbox nebo vbox.
+
+        Lze ho nastavit (\verb|\setbox0=\hbox{…}|), přemístit na aktuální místo (\verb|\box0|), vložit na aktuální místo (\verb|\copy0|), přemístit / vložit jejich obsah na aktuální místo (\verb|\unhbox0|, \verb|unvbox|, \verb|unhcopy|, \verb|\unvcopy|), měřit / měnit rozměry (\verb|\wd0|, \verb|\ht0|, \verb|\dp0|)\footnote{toho využívají plainová makra *phantom$\{…\}$, *hphantom$\{…\}$, *vphantom$\{…\}$ (*=lomítko), které vytvoří prázdné boxy velikosti jejich obsahů.}, (\verb|\showbox0|), (\verb|\newbox\cs|).
+    \end{definice}
+
+\section{Stránkový zlom}
+
+    \begin{definice}[Obsah vertikálního seznamu]
+        \ 
+        \begin{itemize}
+            \item box
+            \item linka
+            \item odkaz na insert (plovoucí obsah)
+            \item mark
+            \item whatsit (třeba zápis do souboru \verb|\write|, \verb|\special| viz dále)
+            \item glue
+            \item kern
+            \item penalty
+        \end{itemize}
+
+        Prvních 5 je non-discardable.
+    \end{definice}
+
+    \begin{definice}[Stránkový zlom]
+        Místa zlomu: glue, před nímž je non-disc., kern za glue, penalta $< 10000$.
+
+        Nebyl dostatek pamětí na obtížnější, tedy se postupně přidávají prvky, počítá se cost ta je na začátku 100000, protože by se obsah moc roztáhl, pak jsou rozumné a někdy dojde na nekonečno, kde algoritmus najde zpětně nejlepší zlom (pamatuje si ho, ze stejných vybere ten poslední = nejplnější) a tam zlomí.
+
+        Cost\footnote{c = cost, b = badness, p = penalta, q = dodatečná penalta}: 1) $b<∞, p≤-10000, q<1000: c := p$, 2) $b < 10000, p \in \(-10000,10000\), q < 10000: c:= b+p+q$, 3) $b=10000 (underfull), \text{ostatní konečné jako v 2)}: c:=100000$, 4) jinak: $c:=+∞$.
+
+        Pamatuje si \verb|\pagetotal|, kde si pamatuje, co už má na stránce, \verb|\pagestretch…|, kde si pamatuje počty roztažností, a \verb|\pagegoal|, kde si pamatuje výšku (bez plovoucích tedy \verb|\vsize|).
+    
+    \end{definice}
+
+    \begin{priklad}
+        Plain má makro \verb|\raggedbottom|, který nechá vlát dole (pružný konec stránk), vytvořte ho.
+    \end{priklad}
+
 \end{document}

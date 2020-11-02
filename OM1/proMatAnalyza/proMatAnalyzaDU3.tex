@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 3]
+    Najděte všechna čísla $m$ splňující
+    $$ (1+m)^n ≥ 1+mn, \forall n \in ®N. $$
+
+    \begin{reseni}
+        Pro kladná čísla je zřejmě (z binomické věty) $(1+m)^n = 1 + n·m + z$, kde $z$ je pro všechna $n \in ®N$ nezáporné, tedy $(1+m)^n ≥ 1+nm$, tudíž všechna kladná $m$ podmínku splňují.
+
+        Nula též, protože $1^n ≥ 1$, stejně tak čísla $-1$, protože $0^n≥1-n$, a -2, protože $(-1)^n≥-1≥1-2n$. $-3$ už ne, jelikož $(1-3)^5 = -32 < -14 = 1-3·5$.
+
+        Pro záporná čísla stačí zvolit $n=3$ a dokázat, že pro toto $n$ nemůže při $m$ záporném, menším než -3, (označme $k = -m \in ®N$) být splněno:
+        $$ (1-k)^3 = 1-3k+3k^2-k^3 ≥ 1 - 3k \Leftrightarrow $$
+        $$ \Leftrightarrow 3k^2-k^3 ≥ 0 \overset{k > 0}{\Leftrightarrow} $$
+        $$ \Leftrightarrow 3 - k ≥ 0. \Leftrightarrow $$
+        $$ \Leftrightarrow -k ≥ -3 \Leftrightarrow m ≥ -3$$ 
+
+        Tedy řešením je $m \in ®N \cup \{0, -1, -2\}$.
+        
+    \end{reseni}
+\end{priklad}
+
+\end{document}

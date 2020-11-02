@@ -49,22 +49,24 @@
             heightrounded%									% Vylepšení sázení stránky, děkuji https://tex.stackexchange.com/a/49856
             ]{geometry}				
 
-\newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
-\def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
-\eToSet X Y C N R Z Q M U V A B W F ;
+%\newcommand\toSet[1]{\expandafter\gdef\csname\string#1\endcsname{\ensuremath{\mathbb{#1}}}}
+%\def\eToSet #1{\if ;#1\else\toSet{#1}\expandafter\eToSet\fi}
+%\eToSet X Y C N R Z Q M U V A B W F ;
 
-\newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
-\def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
-\eToMath x y n m k l i \varepsilon ;
+%\newcommand\toMath[1]{\expandafter\gdef\csname\string#1\endcsname{$#1$}}
+%\def\eToMath #1{\if ;#1\else\toMath{#1}\expandafter\eToSet\fi}
+%\eToMath x y n m k l i \varepsilon ;
 
-\renewcommand{\P}{\ensuremath{\mathcal{P}}}
+%\renewcommand{\P}{\ensuremath{\mathcal{P}}}
 \renewcommand{\O}{\emptyset}
 
 \catcode`\©=\active
 \catcode`\®=\active
+\catcode`\¦=\active
 
 \def®#1{\ensuremath{\mathbb{#1}}}
 \def©#1{\ensuremath{\mathcal{#1}}}
+\def¦#1{\ensuremath{\mathbf{#1}}}
 
 
 
@@ -114,6 +116,9 @@
 \DeclareMathOperator{\Jac}{Jac}
 \DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\B}{B}
+\let\P\undefined
+\DeclareMathOperator{\P}{P}
 
 \renewcommand{\(}{\left(}
 \renewcommand{\)}{\right)}

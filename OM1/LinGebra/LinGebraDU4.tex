@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\renewcommand{\baselinestretch}{0.9}
+
+\begin{document}
+
+    \begin{priklad}[4.1]
+        Najděte všechny matice $A$ typu $2\times 3$ nad tělesem $®Z_7$ takové, že pro příslušné zobrazení $f_A$ platí zároveň následující dvě podmínky.
+        \begin{align}
+            \{¦x\in ®Z_7^3: f_A(¦x) = ¦o\} &= \{s(2; 1; 1)^T + t(0; 2; 1)^T: s,t \in ®Z_7\}\\
+            \{f_A(¦x): ¦x \in ®Z_7^3\} &= \{t(1; 3)^T: t\in ®Z_7\}
+        \end{align}
+
+        \begin{reseni}
+                První rovnici budeme prozatím uvažovat pouze pro bázové vektory LO, který je na pravé straně, tedy dostáváme $f\((2; 1; 1)^T\) = ¦o$ a $f\((0; 2; 1)^T\) = ¦o$. Z druhé rovnice zas vezmeme to, že pravá strana $\subseteq$ levá strana (pravá strana $\subseteq$ levá využijeme později), tedy (když si rovnici rozebereme po řádcích) druhý řádek je trojnásobkem prvního. Tudíž když označíme prvky matice
+                $$  \begin{pmatrix} a & b & c \\ d & e & f \end{pmatrix}, $$
+                dostaneme
+                $$ 3a = d,\ 3b = e,\ 3c = f,\ $$
+                $$ 2a + b + c = 0,\ 2d + e + f = 0, $$
+                $$ 0 + 2b + c = 0,\ 0 + 2e + f = 0. $$
+
+                Zvolme $c$ jako bázovou proměnnou. Potom rovnice (v opačném pořadí, než jsou zapsány) dávají:
+                $$ b = -\frac{1}{2}c = 3c $$ 
+                $$ a = -\frac{1}{2}(b+c) = -\frac{1}{2}(3c+c) = -2c = 5c $$
+                $$ f = 3c $$
+                $$ e = 3b = 3·3c = 2c $$
+                $$ d = 3a = 3·5c = c $$
+
+                Tedy hledané matice jsou tvaru:
+                $$ \begin{pmatrix} 5c & 3c & c \\ c & 2c & 3c  \end{pmatrix}. $$
+
+                V první rovnici jsme jistě mohli uvažovat jen bázové vektory, protože pro ostatní můžeme $f_A(¦x)$ díky distributivitě rozepsat jako $A$ krát báze + $A$ krát báze + $A$ krát báze atd., což není nic jiného než $¦o+¦o+¦o+… = ¦o$. Naopak v druhé rovnici si musíme uvědomit, že druhý směr inkluze nám říká, že musíme mít řešení rovnice $(a, b, c)·¦x = (5c, 3c, c)·¦x = t$ pro všechna $t \in ®Z_7$, což očividně máme (jelikož máme jednu bázovou proměnnou a tři volné), pokud koeficienty nejsou všechny nulové, tedy $c≠0$.
+
+                Řešení je tudíž:
+                $$ \{ \begin{pmatrix} 5c & 3c & c \\ c & 2c & 3c  \end{pmatrix}: c\in ®Z_7 \setminus \{0\}\} $$ 
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[4.2]
+        Najděte reálnou čtvercovou matici $A$ řádu 3 takovou, aby příslušné zobrazení $f_A$ bylo kolmou projekcí na přímku $\{t(1, 2, 3)^T: t\in ®R\}$.
+
+        \begin{reseni}
+            Z toho, že $f_A$ je projekcí na zadanou přímku, víme, že $\forall ¦x \in ®R^3: A¦x = t(1, 2, 3)^T$. Tedy když se na rovnost podíváme po řádcích, zjistíme, že druhý řádek $A$ musí být dvojnásobkem prvního a třetí trojnásobkem. Navíc můžeme využít, že kolmé vektory mají skalární součin 0, tedy $A¦x - ¦x = t(1, 2, 3)^T - ¦x$, jako vektor projekce, musí mít nulový skalární součin se směrovým vektorem přímky:
+            $$ \(t(1, 2, 3) - ¦x\)·(1, 2, 3)^T = 1·(1t - x_1) + 2·(2t - x_2) + 3·(3t - x_3) = 0 $$
+            Tudíž
+            $$ 14t = x_1 + 2x_2 + 3x_3. $$
+
+            Dosadíme do prvního řádku první rovnice v řešení,
+            $$ a_{1*} ¦x = t·1, $$
+            $$ 14·(a_{11} x_1 + a_{12} x_2 + a_{13} x_3) = (x_1 + 2x_2 + 3x_3)·1. $$
+            A z toho, že rovnice musí být splněna pro libovolné $¦x$ dostáváme, že $a_{11} = \frac{1}{14}, a_{12} = \frac{2}{14}$ a $a_{13} = \frac{3}{14}$, tudíž hledaná matice je
+            $$ A = \frac{1}{14} \begin{pmatrix} 1 & 2 & 3 \\ 2 & 4 & 6 \\ 3 & 6 & 9 \end{pmatrix}. $$ 
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[4.*]
+        Najděte matici $P$ odpovídající projekci na rovinu $r: ax+by+cz = 0$ podél přímky se směrovým vektorem $¦v = (d, e, f)^T$.
+
+        \begin{reseni}
+            Projekce podél přímky znamená, že rozdíl obrazu a vzoru je násobek jejího směrového vektoru. Tedy $P¦x - ¦x = t¦v,\ t\in ®R$, což díky distributivitě můžeme elegantně zapsat jako $(P-I)¦x = t¦v$. Když tuto rovnost rozdělíme po řádcích, zjistíme, že první řádek po vydělení $d$, druhý po vydělení $e$ a třetí po vydělení $f$ mají stejnou hodnotu a liší se pouze řádkem matice $(P - I)$ vyděleným příslušným číslem, tedy když přijdeme na hodnoty jednoho řádku, jsme schopni najít jednoduše hodnoty ostatních (protože rovnosti musí platit zase pro všechna ¦x).
+
+            Dále si můžeme rozmyslet, že zobrazení se k prvkům v $r$ chová z definice jako identita a bod daný vektorem ¦v zobrazí do počátku. Tedy zobrazíme ¦v, $(-b, a, 0)^T$ a $(0, -c, b)^T$ a podíváme se na první řádek:
+            \begin{align*}
+                p_{11}·d+p_{12}·e+p_{13}·f&=0\\
+                p_{11}·(-b)+p_{12}·a+0&=-b\\
+                0 +p_{12}·(-c)+p_{13}·b&=0
+            \end{align*}
+
+            Řešením této rovnice je:
+            \begin{align*}
+                p_{11} = -\frac{ad}{be+da+fc}+1\\
+                p_{11} = -\frac{bd}{be+da+fc}\\
+                p_{11} = -\frac{cd}{be+da+fc}
+            \end{align*}
+
+           Z rovnice $(P-I)¦x = t¦v$ pak můžeme dopočítat zbytek a výsledná matice je tvaru:
+           $$ \begin{pmatrix} -\frac{ad}{be+da+fc}+1 & -\frac{bd}{be+da+fc} & -\frac{cd}{be+da+fc} \\ -\frac{ae}{be+da+fc} & -\frac{be}{be+da+fc}+1 & -\frac{ce}{be+da+fc} \\ -\frac{af}{be+da+fc} & -\frac{bf}{be+da+fc} & -\frac{cf}{be+da+fc} + 1 \end{pmatrix} = $$
+           $$ = I - \frac{1}{¦v^T¦r}· ¦v¦r^T,\text{ kde } ¦r = \begin{pmatrix} a \\ b \\ c \end{pmatrix}\text{ je normálový vektor roviny}. $$ 
+        \end{reseni}
+
+    \end{priklad}
+
+\end{document}
