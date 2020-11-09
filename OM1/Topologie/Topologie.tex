@@ -49,7 +49,7 @@
     \subsection{Topologický prostor, báze, subbáze, váha, charakter}
 
     \begin{definice}[Topologický prostor (TP)]
-        Uspořádaná dvojice $(\X, \tau)$ se nazývá topologický prostor, pokud ®X je množina, $\tau \subseteq ©P(®X)$ a platí:\\
+        Uspořádaná dvojice $(®X, \tau)$ se nazývá topologický prostor, pokud ®X je množina, $\tau \subseteq ©P(®X)$ a platí:\\
         (T1) $\O, ®X \in \tau$\\
         (T2) jsou-li $®U, ®V \in \tau$, pak $®U \cap ®V \in \tau$\\
         (T3) je-li $©U \in \tau$, pak $\bigcup ©U \in \tau$.
@@ -186,7 +186,7 @@
 
     \subsection{Vnitřek, Uzávěr, hranice}
         \begin{definice}[Uzavřená množina]
-            Ať $(®X, \tau)$ je TP. Množina $®F \subseteq ®X$ se nazývá uzavřená, pokud její doplněk je otevřená množina (neboli $\x \setminus ®F \in \tau$).
+            Ať $(®X, \tau)$ je TP. Množina $®F \subseteq ®X$ se nazývá uzavřená, pokud její doplněk je otevřená množina (neboli $®X \setminus ®F \in \tau$).
         \end{definice}
 
         \begin{definice}[Obojetná množina (clopen set)]
@@ -571,6 +571,117 @@
 
             $®X = \bigoplus ®X_i, ®U \subseteq ®X$. ®U je otevřená $\Leftrightarrow ®U \cap ®X_i$ je otevřená v $®X_i$.
         \end{poznamka}
+
+% 2.11.2020
+
+        \begin{priklad}
+            Je-li $®X$ TP a $®Y \subseteq ®X$, $®M \subseteq ®Y$, pak $\overline{®M}^{®Y} = \overline{®M}^{®X}\cap ®Y$.
+        \end{priklad}
+
+        \begin{tvrzeni}[Charakterizace vnoření a kvocientových zobrazení]
+            Ať $(®X, \tau)$ a $(®Y, \sigma)$ jsou TP a $f:®X \rightarrow ®Y$ zobrazení. Zobrazení $f:(®X, \tau) \rightarrow (®Y, \sigma)$ je vnoření $\Leftrightarrow f:(®X, \tau) \rightarrow (f(®X), \sigma|_{f(®X)})$ je homeomorfizmus. Zobrazení $f:(®X, \tau) \rightarrow (®Y, \sigma)$ je kvocientové zobrazení $\Leftrightarrow f$ je na a $\forall V \subseteq ®Y: V \in \sigma \Leftrightarrow f^{-1}(V) \in \tau$.
+
+            \begin{dukazin}
+                $f$ je vnoření $\Leftrightarrow$ $f$ je prosté a $\tau$ je projektivně vytvořená zobrazením $f: ®X \rightarrow (®Y, \sigma) \Leftrightarrow f: ®X \rightarrow f(®X)$ je bijekce a obě zobrazení $f: (®X, \tau) \rightarrow (f(®X), \sigma|_{f(®X)})$ a $f^{-1}: (f(x), \sigma|_{f(®X)}) \rightarrow (®X, \tau)$ jsou spojitá $\Leftrightarrow f:(®X, \tau) \rightarrow (f(®X), \sigma|_{f(®X)})$ je homeomorfismus.
+
+                $f$ je kvocientové zobrazení $\Leftrightarrow$ $f$ je na a $\sigma = \sigma' \rightarrow (f$ je na a $\forall V \subseteq ®Y: V \in \sigma \Leftrightarrow f^{-1}(V)\in \tau)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Postačující podmínka pro kvocientové zobrazení]
+            Je-li $f: ®X \rightarrow ®Y$ spojité a otevřené (tj. obraz otevřené je otevřená) (nebo uzavřené, tj. obraz uzavřené je uzavřená) a na, pak $f$ je kvocientové zobrazení.
+
+            \begin{dukazin}
+                Použijeme přechozí charakterizaci kvocientového zobrazení. Ať $V \subseteq ®Y$. Pak 1) $V$ je otevřená v $®Y$, pak $f^{-1}$ je otevřená v ®X ze spojitosti. 2) $f^{-1}(V)$ otevřená v ®X. Pak z otevřenosti zobrazení $f$ máme, že $f(f^{-1}(V))$ (= $V$, protože $f$ je na) je otevřená v ®Y.
+
+                Pro uzavřená zobrazení přes doplňky.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Jsou-li ®X, ®Y Banachovy prostory a $f: ®X \rightarrow ®Y$ lineární spojité a na, pak $f$ je otevřené.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Charakterizace Hausdorffových prostorů]
+            TP ®X je Hausdorffův $\Leftrightarrow \{(x, x) \in ®X\times ®X, x \in ®X\}$ je uzavřená v $®X \times ®X$.
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Operace s TP jsou tranzitivní (součet, součin, kvocient, podprostor, …).
+        \end{poznamka}
+
+    \subsection{Zachovávání konstrukcemi}
+        \begin{definice}
+            Jsou-li $®X_i$ a $®Y_i$ TP, $i \in I$ a $f_i: ®X_i \rightarrow ®Y_i$ zobrazení, pak definujeme
+            $$ \bigoplus_{i \in I}f_i : \bigoplus_{i \in I} ®X_i \rightarrow \bigoplus_{i \in I} ®Y_i, x \rightarrow f_i(x), \text{ pokud } x \in ®X. $$
+            $$ \prod_{i \in I}f_i : \prod_{i \in I} ®X_i \rightarrow \prod_{i \in I} ®Y_i, \(x_i\)_{i \in I} \rightarrow \(f_i(x_i)\)_{i \in I}. $$
+            Jsou-li $®X_i = ®X$, $i \in I$, pak definujeme tzv. diagonální zobrazení
+            $$ \triangle_{i \in I} f_i: ®X \rightarrow \prod_{i \in I} ®Y_i, x \rightarrow \(f_i(x)\)_{i \in I}. $$ 
+        \end{definice}
+
+        \begin{tvrzeni}
+            Součinové, součtové a diagonální zobrazení odvozené od spojitých je spojité.
+
+            \begin{dukazin}
+                Plyne z charakterizace spojitého zobrazení do projektivně vytvořeného prostoru.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Ať ®X je TP a $f, g: ®X \rightarrow ®R$ spojité, pak $f+g, f-g, f·g, \max\{f, g\}, \min\{f, g\}, |f|, \frac{f}{g} (g≠0)$ jsou spojitá.
+
+            \begin{dukazin}
+                $f\triangle g: ®X \rightarrow ®R^2, (f \triangle g)(x) = (f(x), g(x))$ je spojité. Následně toto zobrazení spojíme s $+, -, …$, která jsou spojitá, tedy i výsledek je spojitý.
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+                               & $T_0$ & $T_1$ & $T_2$ & $T_3$ & $T_\pi$ & $T_4$ & Separabilní & Spoč. báze & Spoč. charakter & Metrizovatelnost \\ \hline
+                podprostor     & Ano   & Ano   & Ano   & Ano   & Ano     & Ne    & Ne          & Ano        & Ano             & Ano              \\ \hline
+                (spoč.) suma   & Ano   & Ano   & Ano   & Ano   & Ano     & Ano   & (Ano) Ne    & (Ano) Ne   & Ano             & Ano              \\ \hline
+                kvocient       & Ne    & Ne    & Ne    & Ne    & Ne      & Ne    & Ano         & Ne         & Ne              & Ne               \\ \hline
+                (spoč.) součin & Ano   & Ano   & Ano   & Ano   & Ano     & Ne    & (Ano) Ne    & (Ano) Ne   & (Ano) Ne        & (Ano) Ne         \\ \hline
+        \end{tabular}
+
+        \begin{tvrzeni}[(Úplná) regularita se zachovává součinem]
+            Jsou-li TP $X_i,\ i\in I$ (úplně) regulární, pak $\prod_{i \in I} X_i$ je (úplně) regulární.
+
+            \begin{dukazin}
+                $X:= \prod_{i \in I} X_i$. Ať $F \subseteq X$ je uzavřená a $x \in X \setminus F$. Z definice součinové topologie existuje $K \setminus I$ konečná a otevřené $U_i \subseteq X_i,\ i \in K$, že $x \in \cap_{i \in K} \pi_i^{-1} (U_i) \subseteq X \setminus F$.
+
+                Tedy $x_i \in U_i,\ i \in K$. $X_i$ regulární, tedy existuje $G_i \subseteq X_i$ otevřená, že $x_i \in G_i \subseteq \overline{G_i} \subseteq U_i$. TODO dlouhý vzorec.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Rozšiřování spojitých funkcí}
+        \begin{tvrzeni}
+            Ať $X, Y$ jsou TP, $f, g: X \rightarrow Y$ spojitá. Pokud $Y$ je Hausdorffův, pak $M:=\{x\in X: f(x) = g(x)\}$ je uzavřená v $X$.
+
+            \begin{dukazin}
+                Ať $x \in X\setminus M$. Pak $f(x)≠g(x) \in Y$. $Y$ je Hausdorffův, tedy existují otevřené disjunktní $U, V$, že $f(x) \in U, g(x) \in V$. Ať $W := f^{-1}(U) \cap g^{-1}(V)$ je otevřená množina a $x \in W$. $W \cap M = \O$, protože $U$ a $V$ jsou disjunktní, tedy $X \setminus M$ je otevřená, $M$ je uzavřená.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Je-li $f: X \rightarrow Y$ spoj., $Y$ Hausdorffův a $S \subseteq X$ hustá, pak $fcosiS$ má  jediné spojité rozšíření.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Je-li $X$ TP a $f_n: X \rightarrow ®R$ spoj. zobrazení $(f_n)$ konverguje stejnoměrně k $f: X \rightarrow ®R$, pak $f$ je spojité.
+
+            \begin{dukazin}
+                TODO!
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}[Tietze-Urysohnova]
+            Je-li $X$ normální TP a $F \subseteq X$ uzavřená, pak lze každou spojitou funkci $f: F \rightarrow ®R$ spojitě rozšířit na celé $X$, tedy existuje spojitá funkce $\overline{f}: X\rightarrow ®R$, že $\overline{f}cosiF = f$.
+
+            \begin{dukazin}
+            
+            \end{dukazin}
+        \end{veta}
 
 
 

@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+\usepackage{cancel}
+
+\newcommand{\its}{\item[$\square\ \square\ \square$]}
+
+\makeatother%
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or *\or \dagger\or \ddagger\or%
+\mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger%
+\or \ddagger\ddagger \else\@ctrerr\fi}}%
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+\makeatletter%
+
+\begin{document}
+
+\section*{\hfill Zápočtová písemka 3. 11. 2020 \hfill\ }
+
+\noindent\kern -1em\kern 1.4pt 1\ \ 2\ \ 3\\[-2.2em]
+\begin{itemize}
+    \its Přečíst si zadání.
+    \its Přečíst si zadání.
+    \its Znovu a pořádně přečíst zadání.
+    \its Odhadnout výsledek.
+    \its Zamyslet se nad podmínkami.
+    \its Vyřešit příklad.
+    \its Znovu si přečíst zadání a zkontrolovat, zda jsem opravdu řešil úlohu ze zadání.
+    \its Zkontrolovat, že je všude $\lim_{n \rightarrow ∞}$.
+    \its Doplniti vše tam, kde má být\footnote{AL, RŠ, věta o Spojitosti, \cancel{L'Hopital}, POLICIE (strážníci), (Anděl), (Ďábel), omezená krát nulová = nulová, bezejmenná věta o dělení nulou, limita a uspořádání, Bolzano-Cauchyova podmínka, limita vybrané posloupnosti, \cancel{známé limity}, věta o monotónní posloupnosti, věty o hromadných bodech a limsup s liminf.}.
+    \its Nezapomenout udělat všechny domácí úkoly a naučit se na topologii a analýzu na varietách, už v nich příliš plavu.
+
+
+\end{itemize}
+
+\noindent\kern -1em Co nedělat:\\[-2.2em]
+
+\begin{itemize}
+    \item Nel'hopitalit.
+    \item Nezkracovat zápisy.
+    \item Nedělat více kroků najednou.
+    \item Nepoužívat známé limity, které nejsou známé\footnote{Vždy pamatuj, že žádná limita, o které víme, že platí, není nedokazatelná!}.
+    \item Vyhnout se částečnému limitění.
+\end{itemize}
+
+\end{document}

@@ -301,4 +301,67 @@
         Plain má makro \verb|\raggedbottom|, který nechá vlát dole (pružný konec stránk), vytvořte ho.
     \end{priklad}
 
+% 2. 11. 2020
+
+    Algoritmus na lámání stránky lze vyvolat i explicitně pomocí \verb|\vsplit (číslo boxu s vertikálním materiálem) to rozměr|, jež se pokusí vysázet vertikální materiál na stránku výšky rozměr (na konci se poslední hloubka „minimalizuje“ s rozměrem \verb|\splitmaxdepth|), odstraní všechno discardable a na začátek „druhé poloviny“ vloží \verb|\splittopskip|. Nedozvíme se však, jak moc se to povedlo (krom zařvání do logu při přetečení).
+
+    \begin{poznamka}[Motivace k inzertům]
+        Chceme sázet plovoucí věci (poznámky pod čarou, figury, …), navíc chceme zajistit, aby se např. poznámky mohly lámat (např při omezení zabraného místa poznámkami, nebo když značka (odkaz na poznámku) vyjde na úplný konec řádky). Navíc se musí zajistit třeba vytvoření místa pro čáru nad poznámkami.
+    \end{poznamka}
+
+    \begin{definice}[Inzerty]
+        \verb|\newinsert\footins| zarezervuje (vše s jedním číslem \verb|N| a aliasem \verb|\footins|) box \verb|\box N| (Tam se skladuje vertikální materiál k tomuto insertu), \verb|\count N| (nějaké promile udávající kolik místa zabere vertikální materiál (např. pro tři sloupečky by to bylo 333)), \verb|\dimen N| (maximální zabraná výška tímto insertem), \verb|\skip N| (místo před prvním objektem daného typu na stránce).
+
+        Insert vložíme \verb|\insert N{vertikální materiál}|, kterýžto vloží značku do vertikálního módu (v horizontálním pomocí \verb|\vadjust|), pozor značka nevypadne z boxu.
+
+        Inserty se řadí ke třídám podle čísla, kterým se rezervuje.
+    \end{definice}
+
+    \begin{definice}[Algoritmus]
+            Na vstupu je insert třídy \verb|N| (odkaz na).
+
+
+        \begin{enumerate}
+            \item Jestliže zatím nebyl žádný insert této třídy, snížíme \verb|\pagegoal| o (výška + hloubka (toho co tam zůstalo z minule)) \verb|\count N|/1000 + velikost \verb|\skip N| (další rozměry \verb|skip N| se přidají do \verb|\pagestretch| a spol.).
+            \item Jestliže byl předchozí insert třídy \verb|N| rozdělen (skončíme): \verb|\insertpenalties += \floatingpenalty|.
+            \item Vejde se na stránku vcelku? (a) výška + hloubka insertů třídy \verb|N| po vložení $<$ \verb|\dimen N|. (b) \verb|x| = (výška + hloubka) \verb|\count N|/1000 $≤$ 0 nebo \verb|\pagetotal + \pagedepth + x - \pageshrink| $≤$ \verb|pagegoal|. Pokud ano, \verb|\pagegoal -= x| a materiál se přesune do aktuálního obsahu insertů třídy N.
+            \item Pokud se nevešlo: spočteme maximální výšku \verb|h|, která neporuší (a) ani (b) bez \verb|\pageshrink|, a zavolá se \verb|\vsplit to h| (vršek se připraví na přidání na stránku a \verb|\pagegoal| se sníží o jeho výšku + hloubku, spodek se pošle zpět do tzv. přípravné oblasti, penalta ze zlom -> přičteme k \verb|\insertpenalties|)
+        \end{enumerate}
+    \end{definice}
+
+%    \begin{definice}[Neví ani Medvěd, jak to má fungovat]
+%        \verb|\holdinginserts| > 0 (inserty zůstávají na původních místech), ≤0 ()
+%    \end{definice}
+
+\section{Output rutina}
+    Lze ji předefinovat \verb|\output={…}| (tj. přiřazení do registru \verb|\tokens|).
+
+    \begin{definice}
+        Vstup = box 255 (hlavní obsah strany), box N (inserty, které se vešly), značky(TODO), \verb|\outputpenalty| (penalta, na které se zlomilo, jinak 10000).
+
+        Výstup \verb|\shipout{box}| (vysypání boxu do výstupního souboru (dvi / pdf)), vertikální materiál (vrací se zpět do přípravné oblasti).
+
+        \begin{upozorneni}
+            Output rutina běží uvnitř implicitních složených závorek (ve vlastní grupě, lze obejít nastavováním věcí přes \verb|\global|).
+
+            Nepředvídatelný stav \TeX{}u (nemůžeme vědět, jak jsou nastavené parametry, které v dokumentu měníme).
+        \end{upozorneni}
+
+        Kde je následný \verb|\shipout| usazen nastavují parametry \verb|\hoffset| a \verb|\voffset|, které jsou zřejmé, až na to, že jejich měření začíná palec od okraje stránky. PdfTeX má navíc (\verb|\pdfvorigin| a \verb|\pdfhorigin|, kterými lze změnit ten palec a \verb|\pdfpageheight| a \verb|\pdfpagewidth|).
+    \end{definice}
+
+    (Přípravná oblast obsahuje zbytky rozlomených insertů, vertikální materiál z output rutiny, element, na kterém se lámalo (resp. penalta 10000, pokud se lámalo na penaltě), materiál za místem zlomu, zbytek předchozí přípravné oblasti.)
+
+    \begin{definice}[Plain output rutina]
+        \verb|\headline={…}| a \verb|\footline={…}|, kde si můžeme nastavit obsah hlavičky a patičky, sází se s \verb|\line| roztažený na \verb|\hsize|.
+
+        Čísla stránek: \verb|\folio| (záporné \verb|\pageno| způsobí (ve \verb|\folio|) vysázení římského čísla a snížení \verb|\pageno| o jedna).
+
+        \verb|\footnote{odkaz}{poznamka}|, \verb|\topinsert| (vloží materiál na začátek některé z dalších stránek) + \verb|\midinsert| (spočítá, jestli se to ještě vejde, když ano, vysází na aktuální místo, když ne, chová se jako \verb|\topinsert|) + \verb|\pageinsert| (podobné jako \verb|\topinsert|, jen se to roztáhne na celou stranu) = (ukončuje se \verb|\endinsert|), \verb|\raggedbottom| (udělá pružný \verb|\topskip| a nastaví output rutinu na to, aby ho přesunula dolu).
+
+        \verb|\eject| (přechod do vertikálního módu a \verb|\break|, tedy ukončí stránku (pozor stránka se roztáhne na celou výšku, tedy je potřeba buď \verb|\raggedbottom| nebo přidat \verb|\vfill| před)), \verb|\supereject| (ukončí stránku a navíc vysype (klidně i na další stránky) všechny inserty) a \verb|\bye| (= \verb|\vfill\supereject\end|).
+    \end{definice}
+
+
+
 \end{document}

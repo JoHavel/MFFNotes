@@ -554,5 +554,72 @@
         Množina $®Q^n$ nad ®Q je podprostorem $®R^n$ nad ®Q, ale není podprostorem $®R^n$ nad ®R.
     \end{prikladyin}
 
+% 5. 11. 2020
+
+    \begin{tvrzeni}
+        Nechť ¦V je vektorový prostor nad tělesem ®T. Pak průnik libovolného systému $\{¦V_i\}_{i \in I}$ vektorových podprostorů prostoru ¦V je vektorový podprostor ¦V.
+
+        \begin{dukazin}
+            Podle tvrzení výše stačí ověřit uzavřenost a obsažení nulového prvku. Obojí je zřejmé z toho, že prvek je v průniku právě tehdy, když je prvkem všeho, přes co děláme průnik.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[LO]
+        Pro vektorový prostor ¦V nad tělesem ®T a $W \subseteq ¦V$ je průnik všech podprostorů obsahujících $W$ lineárním obalem množiny ¦W. Značíme $\span (W)$.
+    \end{definice}
+
+    \begin{definice}[Generátory a množiny generátorů]
+        Nechť $¦U = \span(W)$, pak říkáme, že $W$ generuje prostor ¦U a prvky množiny $W$ jsou generátory prostoru ¦U.
+
+        Pokud ¦U je generovaný nějakou konečnou množinou, pak je konečně generovaný.
+    \end{definice}
+
+    \begin{definice}[Lineární kombinace]
+        Viz definice v OM1!
+    \end{definice}
+
+    \begin{veta}
+        Lineární obal je roven podprostoru generovaného stejnou množinou vektorů.
+
+        \begin{dukazin}
+            Inkluze jedním směrem se dokáže z uzavřenosti, druhým směrem to dokážeme tak, že LO je uzavřený na operace ¦V a obsahuje všechny „generující vektorový“.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Lineárně závislé a lineárně nezávislé]
+        Nechť ¦V je vektorový prostor nad ®T a nechť $¦v_1, …, ¦v_n \in ¦V$. Pak vektory $¦v_1, …, ¦v_n$ jsou lineárně nezávislé, pokud $\sum_{i=1}^n \alpha_i ¦v_i = ¦o$ nastane pouze pro $\alpha_1 = … = \alpha_n = 0$. V opačném případě jsou lineárně závislé.
+    \end{definice}
+
+    \begin{definice}
+        Nekonečná množina vektorů je nezávislá, pokud je každá její konečná podmnožina nezávislá.
+    \end{definice}
+
+    \begin{veta}
+        Nechť ¦V je vektorový prostor nad ®T a nechť $¦v_1, …, ¦v_n \in ¦V$. Pak jsou tyto vektory lineárně závislé právě tehdy, když nějaký z nich patří do lineárního obalu zbytku. (Lze jeden z nich vyjádřit jako lineární kombinaci zbylých vektorů.)
+        \begin{dukazin}
+            Úpravami rovnic z definicí.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}
+        Nechť ¦V je vektorový prostor nad ®T. Pak bází je jakýkoliv lineárně nezávislý systém generátorů prostoru ¦V.
+    \end{definice}
+
+    \begin{veta}
+        Nechť báze ¦V je konečná. Pak každý vektor z ¦V lze jednoznačně vyjádřit jako lineární kombinaci báze.
+        \begin{dukazin}
+            Snadný.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Každý vektorový prostor má bázi.
+
+        \begin{dukazin}
+            Dokážeme jen pro konečně generované: systém generátorů buď je lineárně nezávislý (a tím pádem báze), nebo z něj postupně můžeme odebírat prvky pomocí jedné z předchozích vět, až zbudou jen lineárně nezávislé - báze.
+        \end{dukazin}
+    \end{veta}
+
+
 
 \end{document}

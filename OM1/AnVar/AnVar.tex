@@ -416,5 +416,71 @@
 
 \section{Variety, Stokesova věta na varietách}
 
+% 4. 11. 2020
+
+    \subsection{Tenzory}
+        \begin{umluva}
+            Všechny vektorové prostory budou nad reálnými čísly a konečnědimenzionální.
+        \end{umluva}
+
+        \begin{definice}[]
+            Nechť ¦V je vektorový prostor.
+
+            Jeho $k$-tou tenzorovou mocninou $¦V^k$ definujeme jako $¦V^k:=©L(¦V*, …, ¦V*)$, kde položíme $¦V^0 = ®R$ a ztotožňujeme $¦V^1 = ¦V**$ s ¦V.
+
+            Jeho tenzorovou algebru definujeme jako $T(¦V) := \bigoplus_{k=0}^∞ ¦V^k$. Násobení $\otimes$ na $T(¦V)$ definujeme následovně:
+
+            a) Je-li $\alpha \in ¦V^k$ a $\beta \in ¦V^m$, TODO
+
+            b) násobení $\otimes$ rozšíříme na $T(¦V)$ bilineárně TODO
+        \end{definice}
+
+        \begin{tvrzeni}[Vlastnosti $T(¦V)$]
+            Je to $∞$-dimenzionální, nekomutativní, asociativní algebra s jednotkou $1\in ¦V^0 = ®R$.
+
+            Nechť ¦V má bázi $e_1, …, e_n$. Pottom $¦V^k$ má bázi $e_A:= e_{a_1} \otimes … \otimes e_{a_k}$, kde $A = \(a_1, …, a_k\) \in \{1, 2, …, n\}^k$. Speciálně $\dim ¦V^k = (\dim ¦V)^k = n^k$.
+
+            \begin{dukazin}
+                Triviální.
+
+                Nechť $\epsilon^1, …, \epsilon^n$ je duální báze $¦V*$, tzn. $\epsilon^i(e_j) = \delta_j^i = 1, i = j; = 0, i≠j$.
+
+                Nechť $\sum_A \alpha^Ae_A = ¦o$ s $\alpha^A \in ®R$. Potom $¦o = \sum_A \alpha_A (\epsilon^{b_1}, …, \epsilon^{b_k}) = \alpha_B$ TODO.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{umluva}[Einsteinova sumační konvence]
+            V tenzorovém počtu vynecháváme symbol $\sum$ pro každý index od 1 do $n$, který je „nahoře i dole“. Ale příliš ji nebudeme používat.
+        \end{umluva}
+
+        \begin{tvrzeni}[Změna souřadnic tenzoru při změně báze]
+            Nechť $e_1', …, e_n'$ je jiná báze ¦V a nechť $E = (E_b^a)$ je matice přechodu od $e_1, …, e_n$ k $e_1', …, e_n'$, tzn.
+            $$ e_b' = E_b^a e_a. $$ 
+
+            \begin{dukazin}
+                Dosadíme (1) a (2) do
+                $$ \alpha'_{b_1, …, b_r}^{a_1, …, a_s} = \alpha(\epsilon'^{a_1}, …, \epsilon'^{a_s}, e_{b_1}', …, e_{b_r}') $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Symetrická a vnější algebra]
+            Nechť ¦V je vektorový prostor. Nechť $S_k$ je grupa permutací $\{1, 2, …, k\}$.
+
+            Potom $\alpha \in ¦V^k$ je symetrický, resp. antisymetrický, pokud $\forall f^1, …, f^k \in ¦V* \forall \pi \in S_k: \alpha(f^{\pi(1)}, …, f^{\pi(k)}) = \alpha(f^1, …, f^k)$ (resp. přenásobené $\sgn\pi$). Označme $Sym_k$ TODO.
+        \end{definice}
+
+        \begin{definice}[Symetrická algebra]
+            Symetrickou algebrou vektorového prostoru ¦V rozumíme algebru $\Sym(¦V) = \bigoplus_{k=0}^∞ \Sym^k(¦V)$ s násobením definovaným následovně:
+
+            Je … TODO
+        \end{definice}
+
+        \begin{definice}[Vnější algebra podruhé]
+            TODO
+        \end{definice}
+
+    \subsection{Topologické prostory}
+    \subsection{Variety}
+
     
 \end{document}

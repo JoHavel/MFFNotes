@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+\begin{document}
+
+\begin{priklad}[1]
+    Na konferenci potkal matematik 5 svých dobrých známých. Jelikož program byl bohatý, setkávali se pouze u obědů. Kolik dní trvala konference, pokud:
+        
+    \begin{enumerate}
+        \item s každým jednotlivcem obědval 10 krát,
+        \item s každou dvojicí 5 krát,
+        \item s každou trojicí 3 krát,
+        \item s každou čtvericí 2 krát,
+        \item s celou pěticí právě jednou,
+        \item vždy obědval alespoň s jedním z těchto pěti kamarádů.
+    \end{enumerate}
+
+    \begin{reseni}
+        Rozmyslíme si, kolikrát obědval přesně s 1, 2, 3, 4, 5 lidmi (s více nemohl, protože jich tam více není, s 0 nemohl podle bodu 6.). Začal bych s pěticí, protože s pěticí se mohl setkat jen jedním způsobem. Nechť se tedy 1 den setkal se všemi 5 (1 den).
+
+        Následně mě zajímá, kolikrát se setkal se čtveřicí. S každou čtveřicí už se setkal, když se setkal se všemi, tedy s každými právě 4 se potká 1 (5 dní).
+
+        S každou trojicí se setkal již jednou při setkání s pěticí a dvakrát ve čtveřici (s každým z dalších dvou jednou), tedy s právě 3 neobědval (0 dní).
+
+        S dvěma obědval jednou za pětici a třikrát za čtveřici (za každého chybějícího z ostatních jednou), tedy s každými přesně 2 obědval 1 ($\frac{5·4}{2}=10$ dní).
+
+        Ve všech předchozích případech se dohromady potkal s $1·5 + 5·4 + 0·3 + 10 · 2 = 45$ obědolidmi. Ale s každým obědval desetkrát, což je 50 obědolidí, tedy musel ještě 5 krát obědvat s právě jedním člověkem (5 dní).
+
+        Dohromady tedy $1+5+0+10+5 = 21$ dní.
+    \end{reseni}
+
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2]
+    Ve volbách se o post prezidenta ucházeli Alice, Bob a Charlie. Dezinformační web přinesl zprávu, že:
+
+    \begin{enumerate}
+        \item 65 procent voličů by bylo spokojeno, kdyby byla zvolena Alice,
+        \item 57 procent voličů by bylo spokojeno, kdyby byl zvolena Bob,
+        \item 58 procent voličů by bylo spokojeno, kdyby byl zvolena Charlie,
+        \item 28 procent voličů by bylo spokojeno, kdyby byl zvolen kdokoli z dvojice Alice, Bob,
+        \item 30 procent voličů by bylo spokojeno, kdyby byl zvolen kdokoli z dvojice Alice, Charlie,
+        \item 27 procent voličů by bylo spokojeno, kdyby byl zvolen kdokoli z dvojice Bob, Charlie,
+        \item 12 procent voličů bude s prezidentem spokojeno, ať bude zvolen kterýkoli kandidát.
+    \end{enumerate}
+
+    David chtěl spočítat, kolik procent voličů nebude spokojeno s žádným z možných výsledků voleb, ale dospěl k názoru, že neumí počítat. Ukažte, že chyba nebyla (jen) na jeho straně a že web, který tuto zprávu přinesl, je skutečně dezinformační. 
+
+
+    \begin{reseni}
+        „spokojeno, kdyby byl zvolen kdokoli z dvojice / kterýkoli“ značí přesně průnik voličů jednotlivých lidí. Tedy počet voličů, kteří budou spokojeni z nějakého výsledku voleb je podle PIE: $$\underbrace{65 + 57 + 58}_\text{Voliči jednotlivých lidí.} \underbrace{- 28 - 30 - 27}_\text{Průniky voličů 2 lidí.} \underbrace{+ 12}_\text{Průnik voličů 3 lidí.} = \underbrace{107\%}_\text{Sjednocení lidí.}$$, což je jaksi více než kolik je voličů. Tudíž web je jistě dezinformační (nebo idnes.cz).
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3]
+    Nechť $M$ je množina přirozených čísel menších nebo rovných 4200, která jsou dělitelná 2, 3 nebo 7. Každý z vás si jistě dokáže programem na pět řádků včetně výpisu spočítat, že součet čísel v množině $M$ je 6302100. Dokážete to ale spočítat i bez počítače pomocí PIE?
+
+    \begin{reseni}
+        Ano.
+
+        \baselineskip=1.5em
+
+        Důkaz: Čísel dělitelných 2 menších než 4200 je $\frac{4200}{2} = 2100$, tedy jejich součet je $2·\frac{2100·2101}{2}$, dělitelných 3 je $\frac{4200}{3} = 1400$, tedy součet $3·\frac{1400 · 1401}{2}$, dělitelných 7 je $\frac{4200}{7} = 600$, součet $7·\frac{600·601}{2}$.
+
+        Pokud je ale sečteme, tak jsme všechna dělitelná 6, 14 nebo 21 započítali dvakrát, tedy odečteme $\frac{4200}{6} = 700$, součet $6·\frac{700·701}{2}$, $\frac{4200}{14} = 300$, součet $14·\frac{300·301}{2}$, a $\frac{4200}{21} = 200$, součet $21·\frac{200·201}{2}$.
+
+        Nyní ale zase nepočítáme ty dělitelná 42, tedy přičteme $\frac{4200}{42} = 100$, součet $42·\frac{100·101}{2}$. Tedy výsledek je:
+$$ \frac{2·2100·2101 + 3·1400·1401 + 7·600·601}{2} +$$  $$ + \frac{- 6·700·701 - 14·300·301 - 21·200·201 + 100·101·42}{2} = 6302100.$$ 
+        
+    \end{reseni}
+
+\end{priklad}
+
+
+\end{document}

@@ -141,4 +141,39 @@
             Data se posílají LSB (sběrnice je MSb, zařízení LSB).
         \end{priklady}
 
+% 10. 11. 2020
+
+        \begin{priklady}[256 bytová RAM (PCF8570)]
+            V paměti potřebujeme tzv. paměťové adresy (= memory adress), které jsou v tzv. paměťovém adresovém prostoru (= rozsah adres v bitech, nemusí být plně využit). Občas se používá, že adresový prostor je o dost větší (8 bitů místo 16 bitů), protože uživatel časem může chtít upgradovat paměť a musel by přepisovat programy…
+
+            Základ paměti jsou tzv. Letche (4-6 tranzistorů pamatujících si 1bit), takovým pamětem se říká SRAM (Static Random Access Memory). 2 možnosti chápání random: 1.) Umíme číst odkudkoliv bez toho, abychom přečetli celou paměť. 2.) Umíme to pro všechny místa stejně rychle.
+
+            Důležitou vlastností RAM je, že nejsou RA. SRAM má sekvenční (od nejmenší adresy po největší) přístup (nejvíc jí „chutná“ čtení a zápis v adresách postupně, ale trochu zvládá i opačný směr, zato náhodný přístup jí nechutná). Hlavní vlastností tedy není RA, ale to, že z ní můžeme číst, můžeme do ní i zapisovat a je tzv. volatile (při odpojení napájení se data smažou).
+
+            SRAM (10-100 GB/s sekvenční čtení, přistupový čas (hledání náhodných adres, acces time) <1 ns) jsou drahé a velké (na stejnou paměť), takže existuje DRAM (podobné vlastnosti rychlosti přístupů, 1 tranzistor a 1 kondenzátor, takže jsou pomalejší (kondenzátor se vybíjí / nabíjí pomaleji), 1-10 GB/s, >1 ns).
+
+            DRAM navíc zapomínají obsah i při zapnutém napětí (řádově zapomínají v milisekundách), jelikož náboj se vybíjí z kondenzátoru do okolních kondenzátorů. Proto se provádí tzv. refresh (přečte se paměť a uloží se zase zpět), na což je v počítači sice součástka (aby to nedělal procesor), ale stejně z ní v té době nelze číst…
+
+
+        \end{priklady}
+
+        \begin{definice}[kB, MB, GB, TB]
+            $$ 1TB = 2^{10}GB = 2^{20}MB = 2^{30}kB = 2^{40}B $$
+            Krom výrobců disku (marketingový tah).
+
+            Aby se to však odlišilo od fyzikálních jednotek, zavedla se jednotka KiB (KibiByte), MiB (MibiByte), …, ale moc se nepoužívá.
+        \end{definice}
+
+        \begin{definice}[Word]
+            1 slovo (word) je délka jednoho přenosu.
+
+            Zařízení nazýváme n-bitové, podle délky slova.
+
+            Špatná definice 1 slovo = 16b.
+
+            Existuje i dword = dvojslovo a qword = čtyřslovo.
+        \end{definice}
+
+        Paměť obsahuje tzv. bus interface (část, která komunikuje se sběrnicí) a v ní je např. address register, ze kterého čte logika tahající a ukládající data z a v paměti.
+
 \end{document}

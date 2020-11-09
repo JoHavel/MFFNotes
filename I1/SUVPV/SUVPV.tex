@@ -167,5 +167,40 @@
         Na LDA potřebujeme hodně tréninkových dat. I při hodně dat jsou situace, kdy PCA je lepší (hlavně, když se třídy překrývají).
     \end{poznamka}
 
+% 2. 11. 2020
+
+    \begin{definice}[Rozhodovací hranice (decision boundaries)]
+        Rozděluje prostor na jednotlivé třídy.
+
+        Cílem je najít rozhodovací funkci, která bude správně přiřazovat třídy, nebo najít funkci rozumně definující hranice tříd.
+    \end{definice}
+
+    \begin{definice}[Pravděpodobnostní klasifikace]
+        Mějme $M$ tříd  $\{\omega_i\}_{i=1}^M$. Potom pravděpodobnost, že objekt patří do třídy $\omega_i$, za předpokladu, že vektor je $¦x$, je
+        $$ P(\omega_i|¦x) = \frac{P(¦x|\omega_i)·P(\omega_i)}{\sum_{j=1}^M P(¦x|\omega_j)·P(\omega_j)}. $$ 
+
+        Objekt tedy zařadíme do nejpravděpodobnější třídy. Jelikož jmenovatel je všude stejný, tak počítáme
+        $$ \omega_i, \text{, kde } i = \argmax_j P(¦x|\omega_j)·P(\omega_j). $$ 
+
+        Hodí se zvláště, když matice kovariance je diagonální (třídy nejsou kovariantní).
+    \end{definice}
+
+    \begin{definice}[Naivní Bayesvův klasifikátor]
+        Předpokládáme, že každá souřadnice feature vektoru je nezávislá:
+        $$ P(x_1, x_2, …, x_D|\omega_i) = P(x_1|\omega_i) · P(x_2|\omega_i) · … · P(x_D|\omega_i). $$
+
+        Tedy vytvoříme frekvenční tabulku tříd v závislosti na jednotlivých dimenzích a spočítáme pravděpodobnosti. Může se nám ale stát, že při mnoha dimenzích už bude násobení tolika pravděpodobností mimo přesnost, proto se používají logaritmy pravděpodobností.
+
+        Navíc pokud nemáme dostatek dat, snadno se nám může (na „nespojité dimenzi“) stát, že pravděpodobnost nějaké třídy bude nula, tedy „přidáme“ 1 ke všem výskytům ve frekvenční tabulce.
+
+        Abychom odhadli pravděpodobnost „spojité proměnné“, používáme standardní funkce hustoty, tedy např ($\overline{x}_{ij}$ je průměr vzorku, $\sigma^2_{ij}$ je variance vzorku): 
+        $$ P(x_i = x|\omega_j) = \frac{1}{\sigma_{ij}\sqrt{2\pi}}e^{\frac{-(x-\overline{x}_{ij})}{2\sigma^2_{ij}}}. $$
+
+        Pokud máme rozložení, kde jsou třeba 2 „hrby“, můžeme rozdělit prvky do „podtříd“ a rovnici výše doplnit o sumu a váhy, které se sečtou na 1 (GMM):
+        $$ P(x_i = x|\omega_j) = \sum_{m}\frac{w_m}{\sigma_{ijm}\sqrt{2\pi}}e^{\frac{-(x-\overline{x}_{ijm})}{2\sigma^2_{ijm}}}. $$ 
+        Na spočítání rozdělení do podtříd a vah se používá metoda EM (expectation, Maximization), kde se několikrát zopakuje rozdělení na základě aktuálních vah (v podstatě klasifikaci) a updatování průměru a variance.
+    \end{definice}
+
+
 
 \end{document}

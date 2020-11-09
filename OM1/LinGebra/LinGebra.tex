@@ -49,15 +49,15 @@
     \begin{poznamka}[Co je lineární algebra]
         Abstraktní studium rovných útvarů a hezkých zobrazení mezi nimi.
 
-        Rovný útvar: Přímka, rovina, 3D prostor $\R^3 \equiv \{(x, y, z): x, y, z \in \R\}$.
+        Rovný útvar: Přímka, rovina, 3D prostor $®R^3 \equiv \{(x, y, z): x, y, z \in ®R\}$.
 
         Hezkých zobrazení: 
         \begin{align}
-            \R^2 & \longrightarrow \R^2 \\
+            ®R^2 & \longrightarrow ®R^2 \\
             (x, y) & \longrightarrow \text{otočení }(x, y)\text{ o }\frac{\pi}{6}
         \end{align}
 
-        $$ \R^2 \longrightarrow \R $$
+        $$ ®R^2 \longrightarrow ®R $$
 
         Abstraktní: Časem dojdeme k tomu, že nás zajímají pouze vlastnosti.
     \end{poznamka}
@@ -84,24 +84,24 @@
             \end{itemize}
         \end{poznamka}
 
-        \begin{poznamka}[Jak zadat přímku v $\R^2$]
+        \begin{poznamka}[Jak zadat přímku v $®R^2$]
             \begin{itemize}
                 \item Bod a směrový vektor (parametricky)
                 \item 2 různé body
-                \item Rovnicí přímky: $L = \{(x, y)\in \R^2: ax + by = c\}\ \ a, b, c \in \R$ (implicitně)
+                \item Rovnicí přímky: $L = \{(x, y)\in ®R^2: ax + by = c\}\ \ a, b, c \in ®R$ (implicitně)
             \end{itemize}
         \end{poznamka}
 
-        \begin{poznamka}[Jak zadat rovinu v $\R^3$]
+        \begin{poznamka}[Jak zadat rovinu v $®R^3$]
             \begin{itemize}
                 \item Bod a 2 vektory s jiným směrem (parametricky)
                 \item 3 různé body
                 \item přímka a bod, který na ní neleží
-                \item Rovnicí roviny: $P = {(x, y, z)\in \R^3: ax + by + cz = d}  a, b, c, d \in \R$  (implicitně)
+                \item Rovnicí roviny: $P = {(x, y, z)\in ®R^3: ax + by + cz = d}  a, b, c, d \in ®R$  (implicitně)
             \end{itemize}
         \end{poznamka}
 
-        \begin{poznamka}[Jak zadat rovinu v $\R^3$]
+        \begin{poznamka}[Jak zadat rovinu v $®R^3$]
             \begin{itemize}
                 \item Bod a směrový vektor
                 \item 2 různé body
@@ -110,11 +110,11 @@
         \end{poznamka}
 
     \subsection{Zobrazení}
-        $\X, \Y$ množiny\\
-        $f: \X \longrightarrow \Y$ $x \in \X \longrightarrow |f| \longrightarrow f(x) \in \Y$
+        $X, Y$ množiny\\
+        $f: X \longrightarrow Y$ $x \in X \longrightarrow |f| \longrightarrow f(x) \in Y$
 
         \begin{priklady}
-            $$ \X = \{\text{Různé symboly}\}, \Y = \{A, B, …, Z\}$$
+            $$ X = \{\text{Různé symboly}\}, Y = \{A, B, …, Z\}$$
             \begin{itemize}
                 \item Zadání pomocí definice: $f(x):= \text{První písmeno tvaru} x$
                 \item Zadání pomocí tabulky: tabulka (jeden řádek symboly ($x$), druhý písmena ($f(x)$))
@@ -123,16 +123,16 @@
         \end{priklady}
 
         \begin{definice}[Rovnost zobrazení]  
-            $$ f: \X \longrightarrow \Y = g: \M \longrightarrow \Y \Leftrightarrow$$
+            $$ f: X \longrightarrow Y = g: M \longrightarrow Y \Leftrightarrow$$
             $$  $$ 
         \end{definice}
 
         \begin{definice}[Prosté (= injektivní)]
-            $$ \forall x,y \in \X, x \neq y: f(x) \neq f(y) $$ 
+            $$ \forall x,y \in X, x \neq y: f(x) \neq f(y) $$ 
         \end{definice}
 
         \begin{definice}[Na (= surjektivní)]
-            $$ \forall y \in \Y \exists x \in \X: f(x) = y $$ 
+            $$ \forall y \in Y \exists x \in X: f(x) = y $$ 
         \end{definice}
 
         \begin{definice}[Vzájemně jednoznačné (= bijektivní)]
@@ -140,19 +140,19 @@
         \end{definice}
 
         \begin{definice}[Skládání]
-                $$ \X \stackrel{\longrightarrow}{f} \Y \stackrel{\longrightarrow}{g}: \X \stackrel{\longrightarrow}{g\circ f} \Z, g\circ f(x) = g(f(x)) $$ 
+            $$ X \stackrel{\longrightarrow}{f} Y \stackrel{\longrightarrow}{g}: X \stackrel{\longrightarrow}{g\circ f} Z, g\circ f(x) = g(f(x)) $$ 
         \end{definice}
 
         Dále obraz zobrazení je množina NA kterou se zobrazuje, obraz množiny v zobrazení je množina, na kterou zobrazí zobrazení prvky dané množiny. Vzor obdobně (z které zobrazuje, ).
 
         \begin{definice}[Inverze]
-            $f: \X \longrightarrow \Y$ má inverzi $g: \Y \longrightarrow \Y$, pokud $ f \circ g = id_Y$ (identita na Y)
+            $f: X \longrightarrow Y$ má inverzi $g: Y \longrightarrow Y$, pokud $ f \circ g = id_Y$ (identita na $Y$)
         \end{definice}
 
         \begin{veta}
             $f$ má inverzi, právě když je bijektivní
             \begin{dukazin}
-                Nechť má inverzi, když není na, tak v \Y přebývají prvky, které se nikam nezobrazují, když není prosté, tak chybí (TODO zlepšit popis).
+                Nechť má inverzi, když není na, tak v $Y$ přebývají prvky, které se nikam nezobrazují, když není prosté, tak chybí (TODO zlepšit popis).
 
                 Nechť je bijektivní, pak zřejmě má inverzi.
             \end{dukazin}
@@ -165,7 +165,7 @@
     6 motivačních příkladů v části 2.1 skript
 
     \begin{definice}[lineární rovnice]
-        Lineární rovnice o $n$ neznámých s reálnými koeficienty je rovnice tvaru $a_1 x_1 + a_2 x_2 + … + a_n x_n = b$, kde $a_1, …, a_n, b \in \R$ jsou koeficienty a $x_1, …, x_n$ jsou neznámé.
+        Lineární rovnice o $n$ neznámých s reálnými koeficienty je rovnice tvaru $a_1 x_1 + a_2 x_2 + … + a_n x_n = b$, kde $a_1, …, a_n, b \in ®R$ jsou koeficienty a $x_1, …, x_n$ jsou neznámé.
     \end{definice}
 
     \begin{upozorneni}[Jak vypadá definice]
@@ -188,12 +188,12 @@
         kde každý řádek je ve smyslu předchozí definice.
     \end{definice}
 
-    \begin{definice}[Aritmetické vektory (nad \R)]
+    \begin{definice}[Aritmetické vektory (nad ®R)]
         Aritmetickým vektorem rozumíme uspořádanou $n$-tici reálných čísel. Zapisujeme ho jako:
         $$
             \begin{pmatrix}
                 x_1\\x_2\\\vdots\\x_n 
-            \end{pmatrix} \in \R^n
+            \end{pmatrix} \in ®R^n
         $$
     \end{definice}
 
@@ -204,24 +204,24 @@
                 \begin{pmatrix}
                     x_1\\x_2\\\vdots\\x_n
                 \end{pmatrix}
-            \in \R^n: a_i1 x_1 + … + a_{in} x_n = b_i \forall 1≤i≤m\}
+            \in ®R^n: a_i1 x_1 + … + a_{in} x_n = b_i \forall 1≤i≤m\}
         $$
     \end{definice}
 
     \begin{definice}[Operace s (aritm.) vektory ($n$ fixní)]
-        $v, w \in \R^n$ $\longrightarrow$ $v + w$ sčítání po složkách\\
-        $t \in \R$ $\longrightarrow$ $t \cdot w$ násobení po složkách\\
+        $v, w \in ®R^n$ $\longrightarrow$ $v + w$ sčítání po složkách\\
+        $t \in ®R$ $\longrightarrow$ $t \cdot w$ násobení po složkách\\
         $-v := (-1) \cdot v$\\
         $v - w := v + (-w)$\\
-        $ 0 = \begin{pmatrix} 0\\ \vdots \\ 0 \end{pmatrix} \in \R^n$
+        $ 0 = \begin{pmatrix} 0\\ \vdots \\ 0 \end{pmatrix} \in ®R^n$
     \end{definice}
 
     \begin{definice}[Elementární úpravy SLR]
         Elementární úpravy dané SLR jsou:
         \begin{enumerate}
             \item Prohození pořadí 2 rovnic
-            \item Vynásobíme jednu rovnici číslem $t \in \R - \{0\}$
-            \item Přičteme $t$-násobek jedné rovnice ($t \in \R$) k jiné rovnici.
+            \item Vynásobíme jednu rovnici číslem $t \in ®R - \{0\}$
+            \item Přičteme $t$-násobek jedné rovnice ($t \in ®R$) k jiné rovnici.
         \end{enumerate}
     \end{definice}
 
@@ -256,7 +256,7 @@
 
     \begin{definice}[Odstupňovaný tvar matice]
         Matice $m\times n$ je v odstupňovaném tvaru, jestliže
-        $$ \exists r \in \N, r<m\text{, že řádky }r+1,…,m\text{ jsou nulové a} $$
+        $$ \exists r \in ®N, r<m\text{, že řádky }r+1,…,m\text{ jsou nulové a} $$
         $$ k_1 < k_2 < \cdots < k_r\text{, kde }k_i\text{ je index prvního nenulového prvku v }i\text{-tém řádku.} $$
     \end{definice}
 
@@ -273,7 +273,7 @@
     \end{poznamka}
 
     \begin{poznamka}[Geometrický význam]
-        Řádky popisují jednotlivé rovnice, netriviální rovnice má za množinu řešení nadrovinu v $\R^n$, řádky popisují proměnné, významově jsou lineárními kombinacemi.
+        Řádky popisují jednotlivé rovnice, netriviální rovnice má za množinu řešení nadrovinu v $®R^n$, řádky popisují proměnné, významově jsou lineárními kombinacemi.
     \end{poznamka}
 
 % 13. 10. 2020
@@ -330,7 +330,7 @@
     \end{definice}
     
     \begin{priklady}
-        $(®R, +, \cdot), (\Q, +, \cdot), (\C, +, \cdot), (\{0, 1\}, XOR, AND)$
+        $(®R, +, \cdot), (®Q, +, \cdot), (®C, +, \cdot), (\{0, 1\}, XOR, AND)$
     \end{priklady}
 
     \begin{tvrzeni}[Další vlastnosti těles]
@@ -639,5 +639,80 @@
             Buď $A$ dolní trojúhelníková matice (tj. čtvercová) s nenulovými prvky na diagonále. Pak $A$ je regulární a $A^{-1}$ je dolní trojúhelníková. Měla-li na diagonále samé 1, pak $A^{-1}$, pak $A^{-1}$ je má také. Podobně pro horní trojúhelníkové rovnice.
         \end{tvrzeni}
 
+% 3. 11. 2020
+
+        \begin{definice}[Vektorový prostor]
+            Buď ®T těleso. Vektorový prostor nad tělesem ®T je množina ¦V (množina vektorů) s operací sčítání na ¦V ($¦V\times ¦V \rightarrow ¦V$) a operací násobení skalárem ($®T\times ¦V \rightarrow ¦V$), které splňují tyto axiomy:
+            \begin{itemize}
+                \item[vS1] $\forall ¦u, ¦v, ¦w \in ¦V: (¦u + ¦v) + ¦w = ¦u + (¦v + ¦w)$,
+                \item[vS2] $\exists ¦o \in ¦V \forall ¦v \in ¦V: ¦o + ¦v = v$,
+                \item[vS3] $\forall ¦v \in ¦V \exists (-¦v) \in ¦V: ¦v+(-¦v) = ¦o$,
+                \item[vS4] $\forall ¦u, ¦v \in ¦V: ¦u + ¦v = ¦v + ¦u$,
+                \item[vN1] $\forall a, b \in ®T \forall ¦v \in ¦V: (a·b)·¦c = a·(b·¦v)$,
+                \item[vN2] $\forall ¦v \in ¦V: 1·¦v = ¦v$,
+                \item[vD1] $\forall a, b \in ®T \forall ¦v \in ¦V: (a+b)·¦v = a·¦v + b·¦v$,
+                \item[vD2] $\forall a \in ®T \forall ¦u, ¦v \in ¦V: a·(¦u + ¦v) = a·¦u + a·¦v$.
+            \end{itemize}
+        \end{definice}
+
+        \begin{priklady}
+            ®T těleso, $n≥0$, $¦V = ®T^n$ s běžnými operacemi na aritmetických vektorech tvoří vektorový prostor.
+
+            ®T těleso, $¦V = \{(x, y, z)^T \in ®T^3: x+y+z = 0\} \subseteq ®T^3$. Operace z $®T^3$ zúžené na ¦V.
+        \end{priklady}
+
+        \begin{tvrzeni}[Vlastnosti vektorových prostorů]
+            \ 
+            \begin{itemize}
+                \item Nulový vektor je určen jednoznačně.
+                \item Opačný vektor je určen jednoznačně.
+                \item Vektorový prostor nikdy není prázdný, ale existuje tzv. nulový vektorový prostor.
+                \item Pro $¦v \in ¦V: 0·¦v = ¦o$.
+            \end{itemize}
+        \end{tvrzeni}
+
+        \begin{definice}[Vektorový podprostor]
+            Buď ®T těleso a ¦V vektorový prostor nad ®T. Podprostorem rozumíme množinu $®U \subseteq ®V$ takovou, že operace lze zúžit na ¦U a ¦U s těmito operacemi tvoří samo V. P. nad ®T.
+        \end{definice}
+
+        \begin{tvrzeni}[T5.12]
+            Vezměme ®T a ¦V jako výše. Pak $¦U \subseteq ¦V$ tvoří podprostor právě tehdy, když je uzavřený na sčítání a násobení skalárem.
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Prostor ¦U je podprostorem ¦V značíme $¦U ≤ ¦V$.
+
+            Nulový vektorový prostor a prostor sám sobě je podprostorem (tzv. triviální nebo nevlastní podprostory).
+        \end{poznamka}
+
+% 5. 11. 2020
+
+        \begin{priklady}
+            Prostor všech polynomů stupně $n$ je podprostor všech polynomů stupně $n+1$ je podprostor všech polynomů.
+
+            Prostor všech spojitých funkcí (spolu s bodovým sčítáním a násobením konstantou, $®R^2 \rightarrow ®R$) je podprostorem všech zobrazení nad ®R. Prostor polynomiálních funkcí je podprostorem spojitých funkcí…
+
+            $®R ≤ ®C$ se sčítáním na ®C a násobením zúženým na $®R\times ®C \rightarrow ®C$.
+        \end{priklady}
+
+        \begin{definice}
+            Buď ¦V vektorový prostor nad ®T. Vezměme $¦v_1, …, ¦v_k \in ¦V$, $t_1, …, t_k \in ®T$. Pak vektor
+            $$ t_1·¦v + … + t_k·¦v_k $$ 
+            se nazývá lineární kombinace vektorů $¦v_1, …, ¦v_k$ (s koeficienty $t_1, …, t_k$).
+        \end{definice}
+
+        \begin{definice}
+            Buď ¦V V.P. nad ®T, vezměme $X \subseteq ¦V$. Pak
+            $$ \LO X = \{t_1·¦v_1 + … + t_k · ¦v_k : k \in ®N_0, ¦v_1, …, ¦v_k \in X, t_1, …, t_k \in T \} \subseteq ¦V $$
+            se nazývá lineární obal $X$ (v prostoru ¦V).
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $x \subseteq ¦V$. Pak $\LO X ≤ ¦V$.
+        \end{tvrzeni}
+
+        \begin{definice}
+            Buď ¦V vektorový prostor nad ®T a $X \in ¦V$. pak řekneme, že $X$ generuje ¦V ($X$ je množina generátorů ¦V), pokud $\LO X = ¦V$
+        \end{definice}
 
 \end{document}

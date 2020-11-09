@@ -14,11 +14,11 @@
 
 \section{Prvočísla}
     \begin{definice}[Dělitel]
-        Číslo $d \in \Z$ nazýváme dělitelem čísla $n \in \Z$, značeno $d\div n$, pokud existuje $k \in \Z$ splňující $n = kd$.
+        Číslo $d \in ®Z$ nazýváme dělitelem čísla $n \in ®Z$, značeno $d\div n$, pokud existuje $k \in ®Z$ splňující $n = kd$.
     \end{definice}
     
     \begin{definice}[Prvočíslo]
-        Řekněme, že $n \in \N$ je prvočíslo, pokud $n>1$ a jeho jediní kladní dělitelné jsou $1≥n$.
+        Řekněme, že $n \in ®N$ je prvočíslo, pokud $n>1$ a jeho jediní kladní dělitelné jsou $1≥n$.
         \begin{prikladyin}[Několik prvních prvočísel]
             2, 3, 5, 7, 11, 13, 17, …
         \end{prikladyin}
@@ -27,7 +27,7 @@
     \begin{veta}[Základní věta aritmetiky]
         Každé přirozené číslo $n≥2$ lze zapsat právě jedním způsobem jako součin prvočísel ve tvaru:
         $$ n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_k^{\alpha_k} $$ 
-        $$ k \in N, p_1<p_2<\cdots<p_k \text{jsou prvočísla}, \alpha_1,…,\alpha_k \in \N$$
+        $$ k \in N, p_1<p_2<\cdots<p_k \text{jsou prvočísla}, \alpha_1,…,\alpha_k \in ®N$$
         \begin{prikladyin}
                 $$ 2020 = 2^2 \cdot 5 \cdot 101 (k = 3, p_1 = 2, p_2 = 5, p_3 = 101, \alpha_1 = 2, \alpha_2 = 1, \alpha_3 = 1) $$ 
         \end{prikladyin}
@@ -41,7 +41,7 @@
             2. krok = jednoznačnost rozkladu:
 
             \begin{lemmain}[Euklidovo lemma (bez důkazu)]
-                Nechť $a, b \in \Z$ a nechť $p$ je prvočíslo takové, že $p\mid ab$. Pak $p\mid a$ nebo $p\mid b$.
+                Nechť $a, b \in ®Z$ a nechť $p$ je prvočíslo takové, že $p\mid ab$. Pak $p\mid a$ nebo $p\mid b$.
             \end{lemmain}
 
             Použijeme důkaz sporem. Předpokládejme, že tvrzení neplatí. Vybereme nejmenší z přirozených čísel, pro které rozklad není jednoznačný. Označme ho $n$.
@@ -86,9 +86,9 @@
 
 \section{Čísla racionální a iracionální}
     \begin{definice}[Racionální a iracionální číslo]
-        Číslo $x \in \R$ je racionální, pokud ho lze zapsat ve tvaru $x = \frac{p}{q},\ q \in \N,\ p \in \Z$.
+        Číslo $x \in ®R$ je racionální, pokud ho lze zapsat ve tvaru $x = \frac{p}{q},\ q \in ®N,\ p \in ®Z$.
 
-        Číslo $y \in \R$ je iracionální, pokud není racionální.
+        Číslo $y \in ®R$ je iracionální, pokud není racionální.
     \end{definice}
 
     \begin{priklady}[Z přednášky]
@@ -96,7 +96,7 @@
     \end{priklady}
 
     \begin{veta}
-        Nechť $n \in \N$ je taková, že $\sqrt{n} \notin \N$ (tedy $n$ není druhou mocninou přirozeného čísla). Pak $\sqrt{n}$ je iracionální.
+        Nechť $n \in ®N$ je taková, že $\sqrt{n} \notin ®N$ (tedy $n$ není druhou mocninou přirozeného čísla). Pak $\sqrt{n}$ je iracionální.
         \begin{lemmain}
             Jsou-li $p, q$ nesoudělná, pak $p^2,\ q^2$ jsou také nesoudělná.
             \begin{dukazin}
@@ -117,7 +117,7 @@
     \end{veta}
 
     \begin{priklad}[Teoretický příklad 1]
-        Nechť $n \in \N$ a nechť $a_1, …, a_n$ jsou kladná reálná čísla, taková, že $a_1 \cdot\cdots\cdot a_n = 1$.
+        Nechť $n \in ®N$ a nechť $a_1, …, a_n$ jsou kladná reálná čísla, taková, že $a_1 \cdot\cdots\cdot a_n = 1$.
 
         Dokažte, že
         $$ (1+a_1) \cdot\cdots\cdot (1+a_n) ≥ 2^n. $$ 
@@ -198,5 +198,89 @@
         Najděte všechna celá čísla $m$ splňující
         $$ (1+m)^n ≥ 1+mn, \forall n \in ®N $$ 
     \end{priklad}
+    
+    TODO? (Posloupnost $(1+\frac{1}{n})^n$ je rostoucí a shora omezená číslem 3, posloupnost $(1+\frac{1}{n})^{n+1}$ je naopak klesající).
+
+% 2. 11. 2020
+
+    \begin{definice}[Aritmeticko-geometrický průměr]
+        Nechť $0 < b_1 < a_1$. $a_{n+1} = \frac{a_n + b_n}{2}$ a $b_{n+1} = \sqrt{a_n·b_n}$. Limita těchto posloupností se nazývá aritmeticko-geometrický průměr.
+
+        \begin{dukazin}[Shodnost a existence limit]
+            $a_n ≥ b_n$ z AG nerovnosti. Dokáže se monotónnost, z toho plyne existence limit. Pak z AL $A = \frac{A+B}{2}$, tedy $A = B$.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{definice}[Aritmeticko-harmonický průměr]
+        Definujeme a dokazujeme obdobně jako výše.
+    \end{definice}
+
+    \begin{veta}
+        Aritmeticko-harmonický průměr je roven geometrickému.
+        \begin{dukazin}
+            Součin členů se stejným indexem je roven součinu prvních členů, z toho limita součinu je součin prvních členů, z toho vyplývá, že limita činitelů (jelikož je shodná) je odmocninou ze součinu prvních členů (geometrický průměr).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Referáty]
+        Z množiny hromadných bodů nelze „vykonvergovat“.
+
+        O množině hromadných bodů posloupnosti $\{a_n\}$ splňující $\lim_{n \rightarrow ∞} (a_{n+1} - a_n)$.
+    \end{veta}
+
+    \begin{priklad}[Teoretický příklad 5]
+        Nechť $\{a_n\}_{n = 1}^∞$ je omezená posloupnost splňující
+        $$ a_{n+1} ≥ a_n - \frac{1}{2^n}. $$
+        Dokažte, že posloupnost $\{a_n\}$ je konvergentní.
+    \end{priklad}
+
+\section{Odhady faktoriálu}
+    \begin{tvrzeni}
+        $$ \(\frac{n}{3}\)^n < n! < \(\frac{n+1}{2}\) $$
+
+        \begin{dukazin}[První nerovnost]
+            Označme $\beta_n = \(\frac{n}{3}\)^n, n \in ®N$. Pak $\(\frac{n}{3}\)^n = \beta_n = \beta_1 · \frac{\beta_2}{\beta_1} · … ·\frac{\beta_n}{\beta_{n-1}}$. Odhadneme $\frac{\beta_k}{\beta_{k-1}}<k$. Tedy $\beta_n < 1·2·3·…·n = n!$.
+        \end{dukazin}
+
+        \begin{dukazin}[Druhá nerovnost]
+            AG.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    Horní odhad lze zlepšit:
+    \begin{tvrzeni}
+        $$ n! < \(\frac{n}{2}\)^n,\ n≥6. $$
+        \begin{dukazin}[Indukcí]
+            $n = 6: 6! = 720 = 9·80 < 9·81 = 3^6$.
+
+            $(n+1)! = (n+1)n! < (n+1) \(\frac{n}{2}\)^n \overset{?}{<} \(\frac{n+1}{2}\)^{n+1}$. Stačí ukázat $\frac{n^n}{2^n} < \frac{(n+1)^n}{2^{n+1}}$, tedy $2<\(\frac{n+1}{n}\)^n = \(1+\frac{1}{n}\)^n$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[e]
+        $$ \lim_{n \rightarrow ∞} (1+\frac{1}{n})^n = e. $$
+    \end{definice}
+
+    \begin{tvrzeni}
+        $$ \lim_{n \rightarrow ∞} (1+\frac{1}{n})^{n+1} = e. $$
+        
+        \begin{dukazin}
+            Z AL: $ \lim_{n \rightarrow ∞} (1+\frac{1}{n})^{n+1} = \lim_{n \rightarrow ∞} (1+\frac{1}{n})^{n} · \lim_{n \rightarrow ∞} \(1+\frac{1}{n}\) = e·1 = e $.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        $$ \(\frac{n}{e}\)^n < n! < \(\frac{n}{e}\)^{n+1},\ n≥2. $$ 
+
+        \begin{dukazin}
+            1. nerovnost stejně jako výše s 3 místo e. Druhá nerovnost indukcí.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}[Stirlingova formule (odhad fakotriálu)]
+        $$ n!≈\sqrt{2\pi} \(\frac{n}{e}\)^n \sqrt{n}. $$
+
+        (Ve smyslu $\lim_{n \rightarrow ∞} \frac{n!}{\sqrt{2\pi} \(\frac{n}{e}\)^n \sqrt{n}} = 1$.)
+    \end{poznamka}
 
 \end{document}

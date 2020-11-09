@@ -744,6 +744,97 @@
             \end{dukazin}
         \end{veta}
 
+% 3. 11. 2020
+
+        \begin{poznamka}
+            Existují i varianty pro limitu zprava a zleva a pro Spojitost
+        \end{poznamka}
+
+        \begin{veta}[O jednoznačnosti limity]
+            Funkce $f$ má v bodě $a$ nejvýše jednu limitu.
+
+            \begin{dukazin}
+                    Sporem. Nechť $\lim_{x \rightarrow a} f(x) = A$ a $\lim_{x \rightarrow a} f(x) = B$, $A≠B$. Podle Heineho věty $\lim_{n \rightarrow ∞} f(x_n) = A$ a $\lim_{n \rightarrow ∞} f(x_n) = B$. Toto je spor s jednoznačností limity posloupnosti. $\lightning$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[limita a omezenost]
+            Nechť $f$ má vlastní limitu v bodě $a \in ®R$. Pak existuje $\delta > 0$ tak, že $f$ je na $\P(a, \delta)$ omezená.
+
+            \begin{dukazin}
+                Označme $A = \lim_{x \rightarrow a} f(x)$. Víme $A \in ®R$. Pro $\epsilon = 1$ nalezneme $\delta > 0$ tak, že
+                $$ \forall x \in \P(a, \delta) : f(x) \in \B(A, 1) = (A-1, A+1). $$
+                Tedy $f(\P(a, \delta)) \subseteq (A-1, A+1)$. Z toho plyne, že $f$ je na $\P(a, \delta)$ omezená.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O aritmetice limit]
+            Nechť $a \in ®R*$, $\lim_{x \rightarrow a} f(x) = A \in ®R*$ a $\lim_{x \rightarrow a} g(x) = B \in ®R*$. Pak platí (má li pravá strana smysl):
+            $$ \lim_{x \rightarrow a} (f(x) + g(x)) = A+B $$
+            $$ \\lim_{x \rightarrow a} f(x)·g(x) = A·B $$ 
+            $$ \lim_{x \rightarrow a} \frac{f(x)}{g(x)} = \frac{A}{B} $$ 
+            $$  $$ 
+            \begin{dukazin}
+                Heineho věta.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Nechť jsou funkce $f$ a $g$ spojité v bodě $a \in ®R$. Pak jsou funkce $f+g, f·g$ spojité v $a$. Pokud navíc $g(a) ≠ 0$, pak $f/g$ je spojitá v $a$.
+
+            Speciálně polynomy jsou spojité na ®R a racionální lomené funkce $\frac{P(x)}{Q(q)}$ jsou spojité ve všech $x: Q(x)≠0$.
+        \end{dusledek}
+
+        \begin{veta}[O limitě a uspořádání a o dvou policajtech]
+            Nechť $a \in ®R*$. Nechť $\lim_{x \rightarrow a} f(x) > \lim_{x \rightarrow a} g(x)$. Pak existuje prstencové okolí $\P(a, \delta)$ tak, že $\forall x \in \P(a, \delta): f(x) > g(x)$.
+
+            Nechť existuje prstencové okolí bodu $\P(a, \delta)$ tak, že $\forall x \in \P(a, \delta): f(x)≤g(x)$. Nechť existují $\lim_{x \rightarrow a} f(x), \lim_{x \rightarrow a} g(x)$. Potom platí $\lim_{x \rightarrow a} f(x) ≤ \lim_{x \rightarrow a} g(x)$.
+
+            Nechť na nějakém prstencovém okolí $\P(a, \eta)$ platí $f(x)≤ h(x) ≤ g(x)$. Nechť $\lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)$. Pak existuje $\lim_{x \rightarrow a} h(x)$ a rovná se jim.
+
+            \begin{dukazin}
+                $\lim_{x \rightarrow a} f(x) > \lim_{x \rightarrow a} g(x) \implies f(x) > g(x)$ na $\P(a, \delta)$. Označme $A = \lim_{x \rightarrow a} f(x)$ a $B = \lim_{x \rightarrow a} g(x)$. Víme $A > B$. Nalezneme $\epsilon > 0$ tak, aby $\B(A, \epsilon) \cap \B(B, \epsilon) = \O$. Navíc $\forall c \in \B(A, \epsilon) \forall d \in \B(B, \epsilon)$ platí $c>d$. K tomuto $\epsilon$ nalezneme $\delta_1>0$ a $\delta_2>0$ tak, že $\forall x \in \P(c, \delta_1): f(x) \in \B(A, \epsilon)$ a $\forall x \in \P(c, \delta_2): g(x) \in \B(B, \epsilon)$. Položme $\delta = \min\{\delta_1, \delta_2\}$. Pak $\forall x \in \P(c, \delta): f(x) \in \B(A, \epsilon) \ land g(x) \in \B(B, \epsilon) \implies f(x) > g(x)$.
+
+                Sporem z první části.
+
+                Označme $A = \lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} g(x)$. Nechť nejprve $A \in ®R$. Nechť $\epsilon > 0$. Nalezneme $\delta_1 > 0$ tak, že $\forall x \in \P(a, \delta_1)$ platí $A - \epsilon < f(x) < A + \epsilon$, $A - \epsilon < g(x) < A + \epsilon$. Nechť $\delta = \min\{\delta_1, \eta\}$. Pak $\forall x \in \P(a, \delta): h(x) \in \B(a, \epsilon)$.
+
+                Pro $A = ±∞$ obdobně.
+            \end{dukazin}
+        \end{veta}
+
+% 6. 11. 2020
+
+        \begin{veta}[Limita složené funkce]
+            Nechť funkce $f$ a $g$ splňují $\lim_{x \rightarrow a} g(x) = A$ a $\lim_{y \rightarrow A} f(x) = B$. Je-li navíc splněna alespoň jedna z podmínek: (S) $f$ je spojitá v $A$, (P) $\exists \eta > 0 \forall x \in \P(a, \eta): g(x)≠A$. Pak platí $\lim_{x \rightarrow a} f(g(x)) = B$.
+
+            \begin{dukazin}
+                (S) Nechť $\epsilon > 0$. Z $\lim_{y \rightarrow A} f(x) = B$. $\exists \psi > 0$ tak, že $f(\P(A, \psi)) \subseteq \B(B, \epsilon)$. $f$ je spojitá v $A \implies B = \lim_{y \rightarrow A} f(x) = f(A) \implies$ dokonce $f(\B(A, \psi)) \subseteq \B(B, \epsilon)$.
+
+                K našemu $\psi > 0$ z $\lim_{x \rightarrow a} g(x) = A \exists \delta > 0: g(\P(a, \delta)) \subseteq \B(A, \psi)$. Nyní $f(g(\P(a, \delta))) \subseteq f(\B(A, \psi)) \subseteq \B(B, \epsilon) \implies \lim_{x \rightarrow a} f(g(x)) = B$.
+
+                (P) Nechť $\epsilon > 0$. Z $\lim_{y \rightarrow A} f(x) = B$. $\exists \psi > 0$ tak, že $f(\P(A, \psi)) \subseteq \B(B, \epsilon)$. K $\psi>0$ z $\lim_{x \rightarrow a} g(x) = A \exists \delta > 0: g(\P(a, \delta)) \B(A, \psi)$. BÚNO $\delta < \eta$. Z (P) $g(x)≠A \forall x \in \P(a, \delta) \subseteq \P(a, \eta)$. Tedy dokonce $g(P(a, \delta)) \subseteq \P(A, \psi)$.
+
+                Nyní $f(g(\P(a, \delta))) \subseteq f(\P(A, \psi)) \subseteq \B(B, \epsilon) \implies \lim_{x \rightarrow a} f(g(x)) = B$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Limita monotónní funkce]
+            Nechť $f$ je monotónní na intervalu $(a, b)$, $a, b \in ®R*$. Potom existuje $\lim_{x \rightarrow a+} f(x)$ a $\lim_{x \rightarrow b-} f(x)$.
+
+            \begin{dukazin}
+                Nechť $f$ je neklesající, pro nerostoucí je důkaz analogický. Označme $m = \inf_{x\in (a, b)} f(x)$. Dokážeme $\lim_{x \rightarrow a+} f(x) = m$ v případě $m \in ®R$. Případ $m = -∞$ a důkaz pro $\lim_{x \rightarrow b-} f(x) = \sup_{x \in (a, b)}$ je analogický.
+
+                Nechť $\epsilon > 0$. Z vlastnosti infima $\exists y \in f((a, b))$ tak, že $y < m+\epsilon$. Z definice $f((a, b)) \exists x' \in (a, b): f(x') = y$. $f$ je neklesající, a proto $\forall x \in (a, x'): f(x)≤f(x') = y < m + \epsilon$. $m$ je také dolní závora $f((a, b))$  tedy $\forall x \in (a, b): m-\epsilon < m ≤ f(x)$.
+
+                Celkem $\forall x \in (a, x'): m-\epsilon < f(x) < m + \epsilon$. Tedy $\lim_{x \rightarrow a+} f(x) = m$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[3.8, Bolzano-Cauchyova podmínka pro funkce]
+            Nechť $a \in ®R*$ a $\delta_0 > 0$. Nechť $f$ je funkce definovaná alespoň na $\P(a, \delta_0)$. Potom existuje vlastní $\lim_{x \rightarrow a} f(x)$ právě tehdy, když je splněna následující (tzv. Bolzano-Cauchyova) podmínka:
+            $$ \forall \epsilon > 0 \exists \delta > 0 \forall x, y \in \P(a, \delta): |f(x) - f(y)| < \epsilon.$$ 
+        \end{veta}
 
 
 \end{document}
