@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+% \renewcommand{\baselinestretch}{0.9}
+
+\begin{document}
+
+    \begin{priklad}[6.1]
+        Uvažujme množinu $V$ všech reálných čtvercových matic řádu 3, které zároveň splňují podmínky
+        \begin{itemize}
+            \item součet prvního a posledního sloupce je vektor $(0, 0, 0)^T$;
+            \item součet prvků na hlavní diagonále je 0.
+        \end{itemize}
+        Dokažte, že $V$ (s operacemi sčítání matic a násobení matice reálným číslem) je podprostorem prostoru $R^{3\times3}$ a najděte nějakou pětiprvkovou množinu generátorů tohoto podprostoru.
+
+        \begin{reseni}
+            Označme prvky libovolné matice z $V$ jako
+            $$ \begin{pmatrix} a & b & c \\ d & e & f \\  g & h & i \end{pmatrix}. $$
+
+            Podmínky nám potom říkají, že $a + e + i = 0$ (druhá) a $(a, d, g)^T + (c, f, i)^T = ¦o \Leftrightarrow (c, f, i)^T = -(a, d, g)^T = (-a, -d, -g)$ (první). Pokud se dva aritmetické vektory rovnají, pak se rovnají i jejich složky, tedy $c = -a$, $f = -d$, $i = -g$. Druhou podmínku pak můžeme přepsat jako $a + e - g = 0$, tj. $g = a + e$ a $i = -g = -(a + e)$. Tedy dostáváme matici
+            $$ \begin{pmatrix} a & b & -a \\ d & e & -d \\ a + e & h & -(a + e)  \end{pmatrix} = $$ $$ = a\begin{pmatrix} 1 & 0 & -1 \\ 0 & 0 & 0 \\ 1 & 0 & -1  \end{pmatrix} + b\begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + d\begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & -1 \\ 0 & 0 & 0 \end{pmatrix} + e\begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 0 & -1  \end{pmatrix} + h\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}. $$
+            
+            Ale jelikož další podmínky nejsou a taková matice oběma vyhovuje pro všechna $a$, $b$, $c$, $d$, $e$, není $V$ nic jiného než
+            $$ \LO\{\begin{pmatrix} 1 & 0 & -1 \\ 0 & 0 & 0 \\ 1 & 0 & -1  \end{pmatrix} + \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 \\ 1 & 0 & -1 \\ 0 & 0 & 0 \end{pmatrix} + \begin{pmatrix} 0 & 0 & 0 \\ 0 & 1 & 0 \\ 1 & 0 & -1  \end{pmatrix}, \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}\}. $$
+
+            A triviálně (třeba podle bodu (4) klíčových znalostí z páté kapitoly, skripta\_la6 strana 218) je lineární obal podprostorem prostoru $R^{3 \times 3}$ (prostor, ze kterého bereme operace a prvky, o kterých jsme se tu bavili).
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[6.2]
+        Najděte matici $A$ nad tělesem $Z_3$ s co nejmenším počtem řádků tak, aby $\Ker A = \Im B$, kde $B$ je následující matice nad $Z_3$.
+        $$ B = \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 2 \\ 2 & 1 & 0 \\ 0 & 2 & 2 \end{pmatrix}. $$
+
+        \begin{reseni}
+            $\Ker A$ je množina těch vektorů, jejichž obrazem v zobrazení $f_A$ je ¦o a $\Im B$ je množina všech obrazů zobrazení $f_B$. Tedy $\Ker A = \Im B$ odpovídá $f_A(f_B(*)) = ¦o, * \in ®Z_3^4$. Tudíž $A·B$ musí být nulová matice.
+
+            Zároveň obraz matice $B$ je 3dimenzionální vektorový prostor, jelikož sloupce $B$ jsou nezávislé. Nezávislost dokážeme tím, že ukážeme, že rovnice
+            $$ k_1·\begin{pmatrix} 1 \\ 0 \\ 2 \\ 0 \end{pmatrix} + k_2·\begin{pmatrix} 1 \\ 1 \\ 1 \\ 2 \end{pmatrix} + k_3 · \begin{pmatrix} 1 \\ 2 \\ 0 \\ 2 \end{pmatrix} = ¦o, $$
+            $$ k_1 + k_2 + k_3 = 0 + k_2 + 2k_3 = 2k_1 + k_2 + 0 = 0 + 2k_2 + 2k_3 = 0$$
+            má jediné řešení $k_1 = k_2 = k_3 = 0$ \footnote{Sečteme první a poslední: $k_1 = 0$, ze třetí pak $k_2 = 0$ a ze čtvrté $k_3 = 0$.} Tedy hledáme matici hodnosti $4 - 3 = 1$, tudíž nám stačí jen jeden řádek.
+
+            $$ A·B = \begin{pmatrix} a & b & c & d \end{pmatrix}·\(\begin{array}{rrr} 1 & 1 & 1 \\ 0 & 1 & -1 \\ -1 & 1 & 0 \\ 0 & -1 & -1 \end{array}\) = \begin{pmatrix} 0 & 0 & 0 \end{pmatrix}. $$
+            $$ a + 0 - c + 0 = a + b + c - d = a - b + 0 - d = 0 $$
+            Sečtením dostáváme $-2d = 0$, tedy $d = 0$. První rovnice nám pak říká $a = c$, třetí $a = b$, tedy matice $A$ může být např. $A = \begin{pmatrix} 1 & 1 & 1 & 0 \end{pmatrix}$. Jádro této matice je jistě nadmnožinou $\Im B$, jelikož $A·B = 0$, a jelikož tato matice $A$ má hodnost 1, tak její jádro je 3 dimenzionální, tedy nemůže být „ostře“ nadmnožinou, tedy $\Im B = \Ker A$.
+
+            Naopak $A$ nemůže mít nula řádků (protože pak by to nebyla matice), protože matice $T^{n\times 4}$ má jádro $4 - $hodnost-dimenzionální, tedy pro hodnost 0 by mělo jádro 4 dimenze a bylo by „ostře“ nadmnožinou $\Im B$, tedy $\Im B ≠ \Ker A$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[6.bonus]
+            Najděte nějakou dvouprvkovou množinu generátorů prostoru reálných posloupností $\(a_n\)_{n=1}^∞$ splňujících $2a_{n+2} = −3a_{n+1} − 1a_n$. Řešte stejnou úlohu pro posloupnosti $\(b_n\)_{n=1}^∞$ splňující $2b_{n+2} = −3b_{n+1} − 2b_n$.
+
+        \begin{reseni}
+            Posloupnosti si zapíšeme maticovým tvarem (samozřejmě pro $n=1$ by chtělo dokázat, že dané matice mají inverzi):
+            $$ a_{n} = \begin{pmatrix} 1 & 0 \end{pmatrix}·\begin{pmatrix} -\frac{3}{2} & -\frac{1}{2} \\ 1 & 0 \end{pmatrix}^{n-2}·\begin{pmatrix} a_2 \\ a_1 \end{pmatrix},\ \ b_{n} = \begin{pmatrix} 1 & 0 \end{pmatrix}·\(\begin{array}{rr} -\frac{3}{2} & -1 \\ 1 & 0 \end{array}\)^{n-2}·\begin{pmatrix} b_2 \\ b_1 \end{pmatrix}. $$
+
+            Nyní můžu vektory distributivitou násobení matic rozdělit na ($a_i = a_{i1} + a_{i2}$, $b_i = b_{i1} + b_{i2}$):
+            $$ a_{n} = \begin{pmatrix} 1 & 0 \end{pmatrix}·\begin{pmatrix} -\frac{3}{2} & -\frac{1}{2} \\ 1 & 0 \end{pmatrix}^{n-2}·\begin{pmatrix} a_{21} \\ a_{11} \end{pmatrix} + \begin{pmatrix} 1 & 0 \end{pmatrix}·\begin{pmatrix} -\frac{3}{2} & -\frac{1}{2} \\ 1 & 0 \end{pmatrix}^{n-2}·\begin{pmatrix} a_{22} \\ a_{12} \end{pmatrix},$$
+            $$b_{n} = \begin{pmatrix} 1 & 0 \end{pmatrix}·\(\begin{array}{rr} -\frac{3}{2} & -1 \\ 1 & 0 \end{array}\)^{n-2}·\begin{pmatrix} b_{21} \\ b_{11} \end{pmatrix} + \begin{pmatrix} 1 & 0 \end{pmatrix}·\(\begin{array}{rr} -\frac{3}{2} & -1 \\ 1 & 0 \end{array}\)^{n-2}·\begin{pmatrix} b_{22} \\ b_{12} \end{pmatrix}. $$
+
+            Teď už je docela jasně vidět, že si mohu zvolit libovolné 2 nezávislé vektory $(a_{11}, a_{21})^T$ a $(a_{12}, a_{22})^T$ (resp. $b$), např. $(1, 0)^T$ a $(0, 1)^T$, které odpovídají 2 posloupnostem, které generují posloupnost $a_n$ (resp. $b_n$).
+
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

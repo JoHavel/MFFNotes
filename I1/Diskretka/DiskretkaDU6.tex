@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+\begin{document}
+
+\begin{priklad}[1]
+    Rozhodněte, zda existuje graf, jehož skóre je $1, 3, 3, 4, 5, 5, 6, 7$. Pokud takový graf existuje, umíte něco říci o tom, zda může nebo nemusí být souvislý?
+
+    \begin{reseni}[Existence]
+        Z věty o skóre víme, že takový graf existuje právě tehdy, když existuje graf se skóre $0, 2, 2, 3, 4, 4, 5$, a ten existuje právě tehdy, když existuje graf se skóre $0, 1, 1, 2, 3, 3$, …, $0, 1, 0, 1, 2$, což (buď už vidíme, že existuje, nebo) upravíme do $0, 0, 1, 1, 2$, …, $0, 0, 0, 0$ a ten existuje, jelikož jsou to 4 vrcholy bez hran. Tedy graf ze zadání existuje.
+    \end{reseni}
+
+    \begin{reseni}[Souvislost]
+        Jelikož v běžné definici grafu dovolujeme nejvýše jednu hranu mezi 2 vrcholy, tak víme, že z vrcholu stupně 7 musí vést hrana do dalších 7 různých vrcholů. A jelikož máme pouze $7+1 = 8$ vrcholů, musí z vrcholu se stupněm 7 vést hrana do všech ostatních, takže graf souvislý je, jelikož z každého do každého vrcholu se lze „dostat“ přes ten se stupněm 7.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2]
+    Mějme souvislý graf a dvě různé nejdelší cesty v něm. Dokažte, že tyto dvě cesty mají alespoň jeden společný vrchol.
+
+    \begin{dukaz}[Sporem]
+        Nechť $A$ a $B$ jsou dvě různé nejdelší cesty v tomto grafu, které nemají společný bod. Z definice souvislosti existuje mezi libovolnými body cesta, tedy zvolme vrcholy $v_a \in A$ a $v_b \in B$ a označme cestu mezi nimi $C$. Zvolme „poslední“ vrchol $v_a' \in C$, který leží v $A$ a někde „po něm následuje první“ vrchol $v_b' \in B \cap C$. Označme $C'$ „část“ cesty $C$ „mezi“ vrcholy $v_a'$ a $v_b'$. Nyní víme, že $A \cap C' = \{v_a'\}$ a $B \cap C' = \{v_b'\}$.
+
+        Odstraněním $v_a'$ z $A$ vytvoříme dvě cesty, z nichž jedna ($A'$) má zjevně alespoň polovinu vrcholů, co má $A \setminus \{v_a'\}$, tedy $\left\lceil\frac{|A|-1}{2}\right\rceil$. Stejně tak odstraněním $v_b'$ z $B$ vytvoříme cestu $B'$, kde $|B'| ≥ \left\lceil\frac{|B|-1}{2}\right\rceil$. Sjednocení $A'$, $B'$ a $C'$ je jistě cesta, jelikož vrcholy se v ní neopakují, jelikož jsou z toho, jak jsme si je definovali, disjunktní, a navíc existuje hrana mezi krajním bodem $A'$ a $C'$, jelikož daný bod z $A'$ a $v_a'$ (jako krajní bod $C'$) byly původně „vedle sebe“ v cestě $A$, podobně pro hranu mezi $B'$ a $C'$.
+
+        Tato cesta ($A'\cup B' \cup C'$) má navíc velikost minimálně ($A$, $B$ jsou disjunktní, tedy $C$ obsahuje alespoň dva body: $v_a'$ a $v_b'$) $\left\lceil\frac{|A|-1}{2}\right\rceil + \left\lceil\frac{|B|-1}{2}\right\rceil + 2 ≤ \frac{|A|-1}{2} + \frac{|B|-1}{2} + 2 \overset{|A|=|B|}{=} |A| + 1 > |A|$. To je ale spor s tím, že $A$ byla nejdelší cestou, protože $A' \cup C' \cup B'$ je očividně větší. $\lightning$
+    \end{dukaz}
+\end{priklad}
+
+
+\end{document}

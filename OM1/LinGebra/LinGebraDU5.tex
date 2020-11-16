@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-% \renewcommand{\baselinestretch}{0.7}
+\renewcommand{\baselinestretch}{0.9}
 
 \begin{document}
 
@@ -10,13 +10,13 @@
         $$ G = \begin{pmatrix} n & n & \cdots & n & n \\ n-1 & n-1 & \cdots & n-1 & 0 \\ \vdots & & & & \vdots \\ 2 & 2 & 0 & \cdots & 0 \\ 1 & 0 & 0 & \cdots & 0  \end{pmatrix}. $$
 
         \begin{reseni}
-            Jsou dvě možnosti. Buď budeme hledat inverzní matici přes řádkové úpravy\footnote{Což je docela přímočaré, stačí každý řádek vydělit tak, abychom dostali jen samé jedničky a následně druhý řádek odečteme od prvního, třetí od druhého, …, $n$-tý od $n-1$-tého. Následně si docela snadno rozmyslíme, že tato matice bude vypadat jako ta výše.} nebo si představíme, jak probíhá maticové násobení.
+            Jsou dvě možnosti. Buď budeme hledat inverzní matici přes řádkové úpravy\footnote{Což je docela přímočaré, stačí každý řádek vydělit tak, abychom dostali jen samé jedničky a následně druhý řádek odečteme od prvního, třetí od druhého, …, $n$-tý od $n-1$-tého. Následně si docela snadno rozmyslíme, že po „propermutování“ maticí která má jedničky na diagonále $g_{i, n+1-i}$ tato matice bude vypadat jako ta výše.} nebo si představíme, jak probíhá maticové násobení.
 
             Chceme, aby vyšla jednotková matice. Tedy v „pravém dolním rohu“ musí vyjít jednička a matice $G$ má v posledním řádku jen  jedničku v prvním sloupci, jinak jsou tam nuly. Tedy $G^{-1}$ musí mít v „pravém horním rohu“ jedničku.
 
             Nad jedničkou v jednotkové matici je nula. Kdežto v předposledním řádku matice $G$ jsou v prvních dvou sloupcích dvojky a v ostatních nuly. Abychom dostali chtěnou jedničku, musíme na druhý řádek posledního sloupce matice $G^{-1}$ dosadit takové $x$, aby výsledek skalárního součinu posledního sloupce matice $G^{-1}$ s předposledním řádkem matice $G$ (tedy z definice maticového násobení poslední sloupec předposlední řádek matice $GG^{-1}$) byl 0. Tedy $2·1 + 2·x + 0·\_ + 0·\_ + … = 0$, tj. $x=-1$.
 
-            Můžeme si všimnout, že zbytek tohoto sloupce již můžeme vyplnit nulami, jelikož $i·1 + i·(-1) + i·0 + i·0 + … + 0·0 + … = i-i=0$. Navíc, abychom v matici $GG^{-1}$ v posledním řádku dostali nuly, nesmí již jednička z matice $G$ ovlivňovat výsledek, tj. v prvním řádku matice $G^{-1}$ budou v ostatních sloupcích nuly. Tím dostáváme matici:
+            Můžeme si všimnout, že zbytek tohoto sloupce již můžeme vyplnit nulami, jelikož $i·1 + i·(-1) + i·0 + i·0 + … + 0·0 + … = i-i=0$. Navíc, abychom v matici $GG^{-1}$ v posledním řádku dostali nuly, nesmí již jednička z matice $G$ ovlivňovat výsledek, tj.~v~prvním řádku matice $G^{-1}$ budou v ostatních sloupcích nuly. Tím dostáváme matici:
             $$ G^{-1} = \(\begin{array}{rrrrrr} 0 & 0 & 0 & \cdots & 0 & 1 \\ \_ & \_ & \_ & \cdots & \_ & -1 \\ \_ & \_ & \_ & \cdots & \_ & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\ \_ & \_ & \_ & \cdots & \_ & 0 \\ \_ & \_ & \_ & \cdots & \_ & 0 \end{array}\). $$
 
             Nyní si můžeme uvědomit, že když zapomeneme na první sloupec matice (násobí se v následujícím postupu jen nulami) a poslední řádek (kde už jsou jen nuly) $G$, na poslední sloupec a první řádek matice $G^{-1}$ a poslední řádek a poslední sloupec matice $GG^{-1}$, dostaneme podobnou úlohu, jen v posledním řádku bude 2, tedy nám místo $1$ a $-1$ vyjde $\frac{1}{2}$ a $-\frac{1}{2}$. Můžeme takhle pokračovat a v každém $i$-tém kroku nám vyjdou samé nuly krom $\frac{1}{i}$ a $-\frac{1}{i}$.
@@ -33,9 +33,9 @@
         $$ R = \begin{pmatrix} 1 & 1 & 1 \\ x & y & z \\ x^2 & y^2 & z^2 \end{pmatrix}. $$
 
         \begin{reseni}
-            (Čtvercová) matice je regulární právě tehdy, když po úpravě do odstupňovaného tvaru má alespoň jeden nulový řádek. Budeme tedy postupovat standardně Gaussovou eliminační metodou. Nejdříve odečteme $x$násobek druhého řádku od třetího a $x$násobek prvního řádku od druhého. To můžeme udělat pouze tehdy, je-li $x≠0$. Tedy vyřešme případ $x=0$: odečteme $y$násobek druhého řádku od třetího. To můžeme udělat pouze tehdy, když není $y≠0$. Nechť tedy je $y = 0$. Potom matice $R$ není regulární, jelikož buď $z=0$, tedy má nulový řádek bez úprav, nebo odečtu $z$násobek druhého řádku od třetího, načež třetí řádek bude nulový, tedy $R není regulární$.
+            (Čtvercová) matice je regulární právě tehdy, když po úpravě do odstupňovaného tvaru má alespoň jeden nulový řádek. Budeme tedy postupovat standardně Gaussovou eliminační metodou. Nejdříve odečteme $x$násobek druhého řádku od třetího a $x$násobek prvního řádku od druhého. To můžeme udělat pouze tehdy, je-li $x≠0$. Tedy vyřešme případ $x=0$: odečteme $y$násobek druhého řádku od třetího. To můžeme udělat pouze tehdy, když není $y≠0$. Nechť tedy je $y = 0$. Potom matice $R$ není regulární, jelikož buď $z=0$, tedy má nulový řádek bez úprav, nebo odečtu $z$násobek druhého řádku od třetího, načež třetí řádek bude nulový, tedy $R$ není regulární.
 
-            Nyní už můžeme při $x=0$ odečíst $y$násobek druhého řádku od třetího. První řádek je jistě nenulový (obsahuje jedničky), druhý řádek je nenulový, jelikož $y≠0$ a na třetím řádku je $(0 0 z(z-y))$, tedy (jelikož pokud by bylo $z=0$, pak můžeme prohodit sloupce s $y$ a se $z$, čímž se regularita nezmění a dostaneme již probíraný případ) při $x = 0$ a $y ≠ 0$ je matice regulární právě tehdy, když $0 ≠ z ≠ y$.
+            Nyní už můžeme při $x=0$ odečíst $y$násobek druhého řádku od třetího. První řádek je jistě nenulový (obsahuje jedničky), druhý řádek je nenulový, jelikož $y≠0$ a na třetím řádku je $(0\ 0\ z(z-y))$, tedy (jelikož pokud by bylo $z=0$, pak můžeme prohodit sloupce s $y$ a se $z$, čímž se regularita nezmění a dostaneme již probíraný případ) při $x = 0$ a $y ≠ 0$ je matice regulární právě tehdy, když $0 ≠ z ≠ y$.
 
             V tuto chvíli už můžeme předpokládat $x ≠ 0$. Úpravou matice získáme:
             $$ \begin{pmatrix} 1 & 1 & 1 \\ 0 & y-x & z-x \\ 0 & y·(y-x) & z·(z-x) \end{pmatrix}. $$

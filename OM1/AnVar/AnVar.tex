@@ -479,8 +479,48 @@
             TODO
         \end{definice}
 
-    \subsection{Topologické prostory}
-    \subsection{Variety}
+% 11. 11. 2020
 
+    \subsection{Topologické prostory}
+        Viz Topologie: Definice topologie, topologie generovaná metrikou, uzavřená množina, okolí, vnitřek, uzávěr, hranice, topologický podprostor, Hausdorffův prostor (a to, že metrický prostor je Hausdorffův), indiskrétní $\tau_0$ a diskrétní $\tau_1$ topologie, $\tau_0$ není pro více jak jednoprvkovou množinu hausdorffova, báze, spojité zobrazení, homeomorfismus, kompaktnost, souvislost, spojitost funkce v bodě, spojitý obraz kompaktního (resp. souvislý) prostoru je kompaktní (resp. souvislý)
+
+    \subsection{Variety}
+        \begin{definice}[Varieta]
+            TODO jestliže
+            \begin{enumerate}
+                \item ®X je lokálně homeomorfní s $®R^n$, tzn. pro každé $x \in ®X$ existuje otevřená $x \in U \subset ®X$ a homeomorfismus $\phi$ množiny $U$ na $\phi(U) \subset ®R^n$
+                \item ®X je Hausdorffův a
+                \item ®X má spočetnou bázi a TODO.
+            \end{enumerate}
+        \end{definice}
+
+    \begin{priklady}
+        
+        Tvorba základních dvourozměrných variet: viz témátko Topologie v M\&M.
+    \end{priklady}
+
+    \begin{definice}[Mapa]
+        Nechť $(®X, \tau)$ je topologická varieta dimenze $n$. Potom mapou (lokálním souřadnicovým systémem) na $(®X, \tau)$ nazveme $(U, \phi)$, kde $U \subset ®X$ je otevřené a $\phi$ homeomorfizmus? TODO.
+
+        Nechť $(V, \psi)$ je jiná mapa na ®X. Potom buď $U \cap V = \O$, nebo $U \cap V ≠ \O$ a tzv. přechodové funkce $\psi \circ \phi^{-1}$ TODO
+    \end{definice}
+
+    \begin{definice}[Atlas]
+        Systém map $©A = \{\}$ TODO
+    \end{definice}
+
+    TODO
+
+    \begin{poznamka}
+        Každý topologický prostor ®X, který se dá pokrýt spočetně mnoha mapami, má spočetnou bázi otevřených množin.
+
+        Obecněji: Nechť $(®X, ©A)$ je varieta dimenze $n$. Je-li $Y \subset ®X$ otevřená, potom
+        $$ ©A_Y := \{(U \cap Y, \phi|_{U \cap Y})| (U, \phi) \in ©A\} $$
+        je atlas na $Y$ a $(Y, ©A_Y)$ je varieta dimenze $n$.
+    \end{poznamka}
+
+    \begin{priklad}
+        Rozmysli si, že 2rozměrné plochy v $®R^3$ zavedené a studované v přednášce z Geometrie v LS jsou příklady hladkých variet dimenze 2. (Ale s trochu jiným pojmem mapy.)
+    \end{priklad}
     
 \end{document}

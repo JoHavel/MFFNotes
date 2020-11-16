@@ -676,12 +676,81 @@
         \end{tvrzeni}
 
         \begin{veta}[Tietze-Urysohnova]
-            Je-li $X$ normální TP a $F \subseteq X$ uzavřená, pak lze každou spojitou funkci $f: F \rightarrow ®R$ spojitě rozšířit na celé $X$, tedy existuje spojitá funkce $\overline{f}: X\rightarrow ®R$, že $\overline{f}cosiF = f$.
+            Je-li $®X$ normální TP a $F \subseteq ®X$ uzavřená, pak lze každou spojitou funkci $f: F \rightarrow ®R$ spojitě rozšířit na celé $®X$, tedy existuje spojitá funkce $\overline{f}: ®X\rightarrow ®R$, že $\overline{f}cosiF = f$.
+
+% 9. 11. 2020
 
             \begin{dukazin}
-            
+                Pozorování: Ke každé spojité funkci $g: F \rightarrow \[-c, c\]$ existuje spojitá funkce $\overline{g}: X \rightarrow \[-\frac{c}{3}, \frac{c}{3}\]$, že $|g(x) - \overline{g}(x)|≤ \frac{2}{3}c$ pro každé $x \in F$.
+
+                Důkaz pozorování: Ať $E := \{x \in F: g(x)≤-\frac{c}{3}\}$ a $H := \{x \in F: g(x)≥\frac{c}{3}\}$. $E, H$ uzavřené v $F$ a disjunktní. Tedy $E, H$ uzavřené v $®X$. Tedy z Urysohnova lemmatu existuje spojitá $h: ®X \rightarrow \[-1, 1\]$, že $h(E) \subseteq \{-1\}, h(H) \subseteq \{1\}$. Položme $\overline{g} := \frac{c}{3}·h$. Jednoduše nahlédneme, že vzdálenosti z pozorování teď fungují.
+
+                Nejprve dokažme pro $f: F \rightarrow \[-1, 1\]$ (a rozšíříme jí na spoj. $\overline{f}: ®X \rightarrow \[-1, 1\]$). Indukcí najdeme posloupnost spojitých funkcí $g_n: ®X \rightarrow ®R$, že $||g_n|| ≤ \frac{1}{3}·\(\frac{2}{3}\)^{n-1}$ a pro každé $x \in F$ a $n \in ®N: |f(x) - \sum_{i=1}^n g_i(x)| ≤ \(\frac{2}{3}\)^n$.
+
+                Položme $g_1 = \overline{f}$ z pozorování, tedy $g_1: ®X \rightarrow \[-\frac{1}{3}, \frac{1}{3}\]$. Máme-li $g_1, …, g_n$ zkonstruované a splňující předpoklady indukce, pak uvažujme funkci $f' := f - \sum_{i = 1}^n g_i: F \rightarrow \[-\(\frac{2}{3}\)^n, \(\frac{2}{3}\)^n\]$ a aplikujeme na ni pozorování, tedy existuje spojitá funkce $g_{n+1}: ®X \rightarrow \[-\frac{1}{3}\(\frac{2}{3}\)^n, \frac{1}{3}\(\frac{2}{3}\)^n\]$, že $|f'(x) - g_{n+1}(x)|≤ \frac{2}{3}\(\frac{2}{3}\)^n = \(\frac{2}{3}\)^{n+1},\ x\in F$. Položme $\tilde{f_n}:= \sum_{i = 1}^n g_i(x)$ a $\tilde{f} := \sum_{i=1}^∞ g_i(x) = \lim_{n \rightarrow ∞}\tilde{f_n}(x)$. Stejnoměrná konvergence zachovává spojitost. A jelikož $\tilde{f_n}$ z Waierstrassova kriteria konverguje stejnoměrně, tak $\tilde{f}$ je spojitá. Zároveň $|\tilde{f}(x) - f(x)| = 0$, tedy $\tilde{f}$ je rozšířením $f$.
+
+                Ať nyní $f: F \rightarrow ®R$. Ať $h: ®R \rightarrow (-1, 1)$ je homeomorfismus. $h\circ f: F\rightarrow (-1, 1) \subseteq \[-1, 1\]$ podle předchozí části existuje spojité $v: ®X \rightarrow \[-1, 1\]$, že pro $x \in F$ je $v(x) = h \circ f(x)$. Ať $E := v^{-1}(\{-1, 1\})$ uzavřená v ®X. $E$ je disjunktní s $F$. Z Urysohnova lemmatu existuje spojité $m: ®X \rightarrow \[0, 1\], m(E) \subseteq \{0\}, m(F)\subseteq \{1\}$. $m \circ v: ®X \rightarrow (-1, 1)$. Tudíž $h^{-1} \circ (m \circ v): ®X \rightarrow ®R$ je spojité a navíc $(h^{-1}\circ (m \circ v))(x) = f(x)$ pro $x \in F$.
             \end{dukazin}
         \end{veta}
+
+\section{Kompaktnost}
+    \begin{definice}
+        Systém množin ©S se nazývá pokrytí ®X, pokud $\bigcup ©S = ®X$. Každý podsystém ©S, který je také pokrytí, se nazývá podpokrytí.
+
+        Pokrytí se nazývá otevřené, pokud všechny jeho prvky jsou otevřené množiny.
+
+        TP ®X se nazývá kompaktní, pokud každé jeho otevřené pokrytí má konečné podpokrytí.
+
+        TP ®X se nazývá spočetně kompaktní, pokud každé spočetné pokrytí má konečné podpokrytí.
+
+        TP ®X se nazývá Lindelöfův, pokud každé otevřené pokrytí má spočetné pokrytí.
+
+        Řekneme, že systém $©F \subseteq ©P(®X)$ je centrovaný, pokud pro každé $n \in ®N$ a $F_1, …, F_n \in ©F$ je $F_1 \cap … \cap F_n ≠ \O$.
+    \end{definice}
+
+    \begin{veta}[Charakterizace kompaktnosti]
+        Pro TP ®X je ekvivalentní: a) ®X je kompaktní. b) Každý centrovaný systém sestávající z uzavřené množiny má neprázdný průnik. c) Každý net má limitu? TODO
+
+        \begin{dukazin}
+            $(a \implies b)$ Ať $©F \subseteq ©P(®X)$ sestává z uzavřených množin a je centrovaný. Položme $©U := \{®X \setminus F: F \in ©F\}$ (systém otevřených množin). Ať pro spor $\bigcap ©F = \O$. Pak ©U je pokrytí ®X. ®X je kompaktní, tedy existuje $U_1, …, U_n \in ©U$, že $U_1\cup … \cup U_n = ®X$. $U_i = ®X \setminus F_i$ pro něj $F_i \in ©F$. Pak $\bigcup_{i = 1}^n F_i = \O$. Tedy $©F$ není centrovaný, $\lightning$.
+
+            $(b \implies c)$ Ať $(x_i)_{i \in I}$ je net v ®X, $(I, ≤)$ usměrněná množina. Položme $F_i = \{x_j: j ≥ i\}$ je uzavřená, $i \in I$. $©F = \{F_i| i \in I\}$ je centrovaný. Tedy dle b) $\bigcap ©F ≠ \O$. Ať $x_0 \in \bigcap ©F$. Pak $x_0$ je hromadným bodem netu $(x_i)_{i \in I}$.
+
+            $(c \implies a)$. Ať ©U je otevřená podmnožina ®X. Předpokládejme pro spor, že neexistuje konečné pokrytí. Tedy pro $©F \subseteq ©U$ konečnou existuje bod $x_{©F} \in ®X \setminus \bigcup ©F$. $(x_{©F})_{©F \subseteq ©U}$ je net v ®X. Podle c) existuje hromadný bod $x$ tohoto netu. Existuje $U \in ©U: x \in U$. Z definice hromedného bodu existuje $©F \subseteq ©U$ konečné, že $©F \supseteq \{U\}$ a $x_{®F} \in U$. Ale $x_{®F} \notin \bigcup ©F. To je spor.$
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Zachovávání vlastností]
+        Kompaktnost, spočetná kompaktnost i lindelöfovost se dědí na uzavřené podprostory a spojité obrazy.
+
+        \begin{dukazin}
+            Ukážeme pouze pro kompaktnost: Ať ®X je kompaktní a $F \subseteq ®X$ uzavřená. Ať tedy ©U je otevřené pokrytí $F$. Pro každé $U \in ©U$ existuje $\tilde{U}$ otevřená v ®X, že $\tilde{U} \cap F = U$. Označme $\tilde{©U} = \{\tilde{U}: U \in ©U\} \cup \{X \setminus F\}$. $\tilde{©U}$ otevřené pokrytí ®X, tedy z kompaktnosti ®X existuje konečné podpokrytí $\{\tilde{U_1}, …, \tilde{U_n}, ®X \setminus F\}$. Pak $\{U_1, …, U_n\}$ je pokrytí $F$ vybrané z ©U. Tedy $F$ je kompaktní.
+
+            Ať $f: ®X \rightarrow ®Y$ na, spojité a ®X kompaktní. Ať ©U je otevřené pokrytí ®Y. TODO otevřené pokrytí ®X. ®X je kompaktní, tedy existuje TODO. Pak TODO pokrývá ®Y.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}[Nabývání extrému]
+        Spojitá reálná funkce na (spočetně) kompaktním neprázdném prostoru nabývá maxima a minima.
+
+        \begin{dukazin}
+            $f: ®X \rightarrow ®R$, spojitá, ®X spočetně kompaktní. $f(®X)$ je spočetně kompaktní $\Leftrightarrow$ kompaktní (v metrických prostorech). Tedy $f(®X)$ uzavřená omezená v ®R, tedy má minimum a maximum.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{veta}[Postačující podmínky pro normalitu]
+        Regulární Lindelöfův TP je normální.
+
+        Hausdorffův kompaktní TP je normální (tedy $T_4$).
+
+        \begin{dukazin}
+                a) Ať $E$, $F$ jsou uzavřené disjunktní. $\forall x \in E \exists$ otevřené $U_x \in ©U(x)$, že $\overline{U_x} \cap F = \O$. $\{U_x: x\in ®X\}$ je otevřené pokrytí $E$. Z lindelöfovosti $E$ (uzavřený podprostor ®X) existuje $C \subseteq ®X$ spočetné, že $\{U_c: c \in C\}$ pokrývá $E$. Přeindexujeme systém $\{U_c: c \in C\}$ na $\{U_i: i \in ®N\}$. Analogicky najdeme $\{V_j: j \in ®N\}$ systém otevřených množin pokrývající $F$, $\overline{V_j} \cap E = \O,\ k \in ®N$. TODO
+
+                $U := \bigcup_{i \in ®N} U_i*, $ otevřené. Kdyby $x \in U \cap V$, pak existují $i, j \in …®N: x \in U_i*\cap V_j*$. Búno: $i ≥ j: x \in U_i \setminus \bigcup_{k ≤ i} \overline{V_k}$, $x \notin \overline{V_j}, x \notin V_j* \lightning$. Tedy ®X je normální.
+
+                b) Ať ®X je Hausdorffův kompaktní. Stačí ukázat, že ®X je regulární a použít a). Ať $F \subseteq ®X$ je uzavřená, $x \in ®X \setminus F$. Pro $y \in F$ existují otevřené disjunktní $V_y$, $U_y$, že $x \in U_y, y \in V_y$. $F$ je kompaktní, $\{V_y : y \in F\}$ je otevřená podmnožina $F$. Tedy existuje konečné podpokrytí $\{V_{y_1}, …, V_{y_n}\}$. $U := \bigcap_{i = 1}^n U_{y_i}$, $V := \bigcap_{i = 1}^n V_{y_i}$ otevřené, tedy ®X regulární.
+        \end{dukazin}
+    \end{veta}
 
 
 

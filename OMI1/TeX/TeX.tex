@@ -362,6 +362,69 @@
         \verb|\eject| (přechod do vertikálního módu a \verb|\break|, tedy ukončí stránku (pozor stránka se roztáhne na celou výšku, tedy je potřeba buď \verb|\raggedbottom| nebo přidat \verb|\vfill| před)), \verb|\supereject| (ukončí stránku a navíc vysype (klidně i na další stránky) všechny inserty) a \verb|\bye| (= \verb|\vfill\supereject\end|).
     \end{definice}
 
+% 9. 11. 2020
 
+    \begin{definice}[Značky]
+        \verb|\mark{…}| udělá to, že vloží tzv. značku (nemá žádný vizuální význam). Output rutina se může ptát na \verb|\firstmark| (první značka na stránce), \verb|\botmark| (poslední značka na stránce) a \verb|\topmark| (vrací poslední značku předchozí stránky). Pokud na stránce nejsou značky, zůstávají značky z předchozí strany.
+
+        Lze je použít například na slovník. (Většinou se používá poslední heslo této a poslední heslo minulé strany (protože přetéká na aktuální), proto top + bot).
+    \end{definice}
+
+\section{Rozebírání \TeX{}u}
+    Input procesor - řádky -> token procesor - tokeny -> expand procesor - tokeny -> hlavní procesor (celé to řídí hlavní procesor, může expand procesoru říct, dej mi následující token neexpandovaný, nebo naopak expand procesoru vrátit poslední token. Zároveň přenastavuje parametry (protože přiřazuje do registrů), kterými se řídí ostatní procesory).
+
+    \begin{definice}[Token]
+        2 typy: dvojice (znak, kategorie) a řídící sekvence.
+    \end{definice}
+
+    \begin{definice}[Input procesor]
+        Dostane pokyn přečti řádek a načte 1 řádek do řádkového bufferu. Převede kódování znaků do ASCII (rozšířeného o 1 bit). Následně odstraní konec řádku a mezery před ním (pozor, ne tabulátory apod., pouze mezery, pravděpodobně přežitek z konstatně dlouhých řádků na děrných štítcích) a na konec se přidá (pokud je mezi 0 a 255) \verb|\endlinechar| defaultně nastavený na 13.
+    \end{definice}
+
+    \begin{definice}[Kategorie]
+        0-15:
+
+        0 = \verb|\|, 1 = \verb|{|, 2 = \verb|}|, 3 = \verb|$|, 4 = \verb|&|, 5 = \verb|newline|, 6 = \verb|#|, 7 \verb|^|, 8 \verb|_|, 9 = \verb|ignored|, 10 = \verb|space|, 11 = \verb|písmeno|, 12 = \verb|ostatní|, 13 = \verb|aktivní (~)|, 14 = \verb|%|, 15 = \verb|invalid|.
+
+        0, 5, 9, (10), 14, 15 „nevylezou“ z token procesoru, 10 vyjde jako ASCII mezera (ať to bylo cokoliv).
+
+        \verb|\catcode64=14| změnilo zavináč na vlastnost komentáře (procento se nezměnilo) (to je to samé jako \verb|\catcode`@| nebo \verb|\catcode`\@|). Viz plain makro \verb|\makeatletter| a \verb|\makeatother| nebo to, že čísla jsou zapisována římsky (nesjsou písmena).
+    \end{definice}
+
+    \begin{definice}[Token procesor]
+        3 režimy: N (newline), M (middle of line), S (shipping spaces)
+
+        Kategorie 9 se vždy ignoruje, kategorie 15 se ignoruje a seřve tě.
+
+        N = čte, dokud je to kategorie 10. Jakmile přečte něco jiného přemístí se na M. Když přijde náhodou newline, tak pošle dál token \verb|\par|.
+
+        M = čte, doku nenačte kategorii 10. Jakmile se narazí na mezeru, přemístí se na S. Když přijde newline, pošle mezeru a přesune se na N. (Tedy od komentáře se liší jen mezerou.)
+
+        S = čte, dokud je to kategorie 10. Jakmile přečte něco jiného přemístí se zpět na M. Když přijde newline, nic se nestane a přemístí se na N.
+
+        Při potkání (kategoricky) \verb|^^xy| $x, y \in \{0-9, a-f\}$ vyrobí znak s tímto kódem a znovu se podívá na kategorie, pokud potká \verb|^^z| $z \in ASCII$, překlopí 6. bit (např. \verb|^^M…13…CR|, …).
+
+        Pokud narazí (kategoricky) na \verb|\|, pokud následuje newline, tak vznikne token s prázdným názvem (a asi přejde do N), pokud následuje jiné nepísmeno, tak pošle token s jedním znakem (po mezeře přejde do S, po zbytku do M), pokud následují písmena, tak dočte do konce písmenek a přejde do (S).
+
+        Po načtení \verb|%| zahodí zbytek řádku a přesune se do stavu N.
+    \end{definice}
+
+    \begin{priklady}
+        \verb|\def\ahoj{Ahoooój!}| (token \verb|\ahoj| se nahradí Ahoooój!).
+
+        \verb|\def\cara{\the\count0}| (se expanduje dvakrát).
+
+        \verb|\def\b#{{\bf #1}}| (se při zavolání expanduje na \verb|{\bf …}| tedy na 3+? tokenů).
+
+        \verb|\def\claim#1.{{\bf #1.}}|.
+    \end{priklady}
+
+    \begin{definice}[Expand procesor]
+        U každého makra si pamatujeme seznam parametrů (separátory (jiné znaky) + čísla parametrů (předcházené \verb|#|) v pořadí (1, 2, …, 9)) a seznam náhrady (pravá strana definice = tokeny + placeholdery za parametry \verb|#|, musí být správně uzávorkováno kategoriemi).
+
+        Expanze makra: ověříme separátory (před \verb|#1|), další parametry můžou být separované (v definici) parametr je pak do prvního výskytu separátoru na správné úrovni uzávorkování (pokud je správně uzávorkovaný, tak se odeberou krajní závorky (\verb|{}{} -> {}{}| ale \verb|{abc} -> abc|)), nebo neseparované, pak se smažou mezery a vezme se nejkratší neprázdný správně uzávorkovaný text s odebranými vnějšími závorkami (nebo jako samostatný znak, pokud to byl jen 1 znak) jako parametr.
+
+        Výjimka, \verb|#{| značí, že \verb|{| je separátor, ale zůstane i po použití makra (\verb|\def\a#1#{<#1>}| se po zavolání \verb|\a123{456}| expanduje na \verb|<123>{456}| místo \verb|<1>23{456}|).
+    \end{definice}
 
 \end{document}

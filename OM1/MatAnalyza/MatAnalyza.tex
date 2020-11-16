@@ -831,10 +831,166 @@
             \end{dukazin}
         \end{veta}
 
-        \begin{veta}[3.8, Bolzano-Cauchyova podmínka pro funkce]
+        \begin{veta}[T3.8, Bolzano-Cauchyova podmínka pro funkce]
             Nechť $a \in ®R*$ a $\delta_0 > 0$. Nechť $f$ je funkce definovaná alespoň na $\P(a, \delta_0)$. Potom existuje vlastní $\lim_{x \rightarrow a} f(x)$ právě tehdy, když je splněna následující (tzv. Bolzano-Cauchyova) podmínka:
             $$ \forall \epsilon > 0 \exists \delta > 0 \forall x, y \in \P(a, \delta): |f(x) - f(y)| < \epsilon.$$ 
+
+% 10. 11. 2020
+
+            \begin{dukazin}
+                $(\implies)$ Nechť $\epsilon > 0$ a $\lim_{x \rightarrow a} f(x) = A \in ®R$. Z definice limity $\exists \delta > 0 \forall x \in \P(o, \delta): f(x) \in \B(A, \epsilon)$. Toto $\delta$ použijeme pro BC podmínku a $\forall x, y \in \P(a, \delta): |f(x) - f(y)| ≤ |f(x) - A| + |A - f(x)| < \epsilon + \epsilon = 2\epsilon$. Toto je ekvivalentní BC podmínce.
+
+                $(\Leftarrow)$ Použijeme BC podmínku pro posloupnosti a Heineho větu. Víme BC a chceme $\exists A \in ®R: \lim_{x \rightarrow a} f(x) = A$. Z heineho věty je tato „limita“ ekvivalentní s $\forall x_n \rightarrow a, x_n ≠ a: \lim_{n \rightarrow ∞} f(x_n) = A$. Nechť tedy $x_n \rightarrow a, x_n ≠ a$. Tvrdím, že $a_n = f(x_n)$ splňuje BC podmínku pro posloupnost. Nechť $\epsilon > 0$, nalezneme $\delta > 0$ z BC podmínky pro funkci. K tomuto $\delta > 0 \exists n_0 \forall n ≥ n_0: x_n \in \P(a, \delta)$, neboť $\lim_{n \rightarrow ∞} x_n = a$, tedy $\forall m, n ≥ n_0: |a_n - a_m| = |f(x_n) - f(x_m)| \overset{\text{z BC podmínky}}{<} \epsilon$. Tedy $a_n = f(x_n)$ splňuje BC podmínku pro posloupnosti, tedy $\exists \lim_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} f(x_n) \in ®R$.
+
+                Nyní nechť $x_n \rightarrow a, x_n≠a$ a $y_n \rightarrow a, y_n ≠ a$. Podle předchozího $\exists A, B \in ®R: \lim_{n \rightarrow ∞} f(x_n) = A \land \lim_{n \rightarrow ∞} b(y_n) = B$. Nechť $x_1, y_1, x_2, y_2, …$ je nová posloupnost splňující podmínky. Pak existuje její limita $\implies A=B$ podle věty o limitě podposloupnost.
+            \end{dukazin}
         \end{veta}
 
+    \subsection{Funkce spojité na intervalu (3.3)}
+        \begin{definice}[Vnitřní body]
+            Vnitřními pody intervalu $J$ rozumíme ty body $J$, které nejsou krajními.
+        \end{definice}
+
+        \begin{definice}[Funkce spojitá na intervalu]
+            Nechť $f$ je funkce a $J$ je interval. Řekneme, že $f$ je spojitá na $J$, jestliže je spojitá v každém vnitřním bodě. Je-li počáteční bod $J$ prvkem $J$, tak požadujeme i spojitost zprava v tomto bodě. Analogicky pro koncový bod požadujeme spojitost zleva.
+        \end{definice}
+
+        \begin{definice}[Darboux]
+            Nechť $f$ je spojitá na intervalu $\[a, b\]$ a platí $f(a) < f(b)$. Pak pro každé $y \in \(f(a), f(b)\)$ existuje $x_0 \in (a, b)$ tak, že $f\(x_0\) = y$.
+
+            \begin{poznamkain}
+                Pro $f(a) > f(b)$ platí analogie.
+            \end{poznamkain}
+
+            \begin{dukazin}
+                Nechť $y \in (f(a), f(b))$ a položme $M = \{z \in \[a, b\]: f(z) < y\}$. Množina $M$ je neprázdná (obsahuje např. $a$), shora omezená ($b$), tedy existuje $x_0 = \sup M$. Zřejmě $x_0 \in \[a, b\]$. Dokážeme, že $f(x_0) = y$ vyloučením případů:
+
+                $f(x_0) > y$, potom ze spojitosti ($\lim_{x \rightarrow x_0} f(x) = f(x_0) > y$) plyne $\exists \delta > 0 \forall x \in \(x_0 - \delta, x_0\): f(x) > y$ ($0 < \epsilon < f(x_0) - y$). Tedy z definice $M$, že $(x_0-\delta, x_0)$ neleží v $M \implies x_0$ není nejmenší horní závora $M$, $\lightning$.
+
+                $f(x_0) < y$, potom ze spojitosti plyne $\exists \delta \forall x \in \(x_0 - \delta, x_0 + \delta\): f(x) < y$, tedy $\exists x>x_0: f(x) < y$, tedy $x$ není horní závora, $\lightning$.
+
+                Tedy $f(x_0) = y$ (zřejmě $b ≠ x_0 ≠ a$, tedy $x_0 \in \[a, b\]$).
+            \end{dukazin}
+        \end{definice}
+
+        \begin{dusledek}
+            Nechť $J$ je interval a funkce $f: J \rightarrow ®R$ je spojitá. Pak je $f(J)$ interval.
+        \end{dusledek}
+
+        \begin{definice}[Maximum (minimum)]
+            Nechť $f: M \rightarrow ®R, m \subseteq ®R$. Řekneme, že funkce $f$ nabývá v bodě $a \in M$ maxima (resp. minima, ostrého maxima, ostrého minima) na $M$, jestliže $forall x \in M: f(x) \overset{(≥, <, >)}{≤} f(a)$ (samozřejmě při ostrých $x≠a$).
+
+            Řekneme, že $f$ nabývá v bodě $a \in M$ lokálního maxima (ostrého lokálního maxima, ostrého likoálního minima, lokálního minima), jestliže $\exists \delta > 0$ tak, že $f$ nabývá na $M \cap \B(a, \delta)$ svého maxima (…).
+        \end{definice}
+
+        \begin{veta}[Spojitost funkce a nabývání extrémů]
+            Nechť $f$ je spojitá na $\[a, b\]$. Pak $f$ nabývá na $\[a, b\]$ svého maxima a minima.
+
+% 13. 11. 2020
+
+            \begin{dukazin}
+                Použijeme Bolzano-Weirstrassovu větu a Heineho větu pro spojitost.
+
+                Označme $G = \sup f([a, b])$. Z definice suprema $\exists y_n \in f(\[a, b\])$ tak, že $y_n \rightarrow G$. Z definice $f(\[a, b\]) \exists x_n \in \[a, b\]: f(x_n) = y_n$. Podle Bolzano-Weirstrass $\exists x_{n_k} \rightarrow x* \in [a, b]$ (díky strážníkům). Podle Heineho věty (pro spojitost) $x_{n_k} \rightarrow x* \implies f(x_{n_k}) = y_{n_k} \rightarrow f(x*)$. Ale $y_n \rightarrow G \implies y_{n_k} \rightarrow G$.
+
+                Tedy $G = f(x*) \implies$ v $x*$ je nabyto maximum. Minimum lze dokázat analogicky.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Nechť $f$ je spojitá funkce na intervalu $\[a, b\]$. Pak funkce $f$ je na $\[a, b\]$ omezená.
+        \end{dusledek}
+
+        \begin{definice}[Prostá a inverzní funkce na intervalu]
+            Nechť $f$ je funkce a $J$ je interval. Řekneme, že $f$ je prostá na $J$, jestliže pro všechna $x, y \in J$ platí $x≠y \implies f(x) ≠ f(y)$.
+
+            Pro prostou funkci $f: J \rightarrow ®R$ definujeme funkci $f^{-1}: f(J) \rightarrow ®R$ předpisem $f^{-1}(y) = x \Leftrightarrow f(x) = y$.
+        \end{definice}
+
+        \begin{veta}[O inverzní funkci]
+            Nechť $f$ je spojitá a rostoucí (klesající) funkce na intervalu $J$. Potom je $f^{-1}$ spojitá a rostoucí (klesající) na intervalu $f(J)$.
+
+            \begin{dukazin}
+                BÚNO $f$ je spojitá a rostoucí. Víme, že $f^{-1}$ je definováno na $f(J)$. Tvrdím, že $f^{-1}$ je rostoucí: Sporem: Nechť $y_1 = f(x_1) < y_2 = f(x_2)$, ale $f^{-1}(y_1) = x_1 ≥ f^{-1}(y_2) = x_2$. Pak ale $x_1 ≥ x_2 \overset{\text{$f$ rostoucí}}{\implies} f(x_1) = y_1 ≥ f(x_2) = y_2 \lightning$.
+
+                $y_0 \in f(J)$ vnitřní bod: spojitost: Víme, že $f^{-1}(y_0) = x_0$ a $x_0$ je vnitřní bod $J$. Nechť $\epsilon > 0$. Existují $x_1, x_2 \in \(x_0 - \epsilon, x_0 + \epsilon\) \cap J$. Pak $f(x_1) < f(x_0) = y_0 < f(x_2)$. Zvolme $\delta = \min \{f(x_2) - f(x_0), f(x_0) - f(x_1)\}$. Pak $\B(f(x_0), \delta) = \B(y_0, \delta) \subseteq (f(x_1), f(x_2))$. Nyní $f^{-1}(\B(y_0, \delta)) \subseteq (x_1, x_2) \subseteq (x_0 - \epsilon, x_0 + \epsilon) \implies \lim_{y \rightarrow y_0} f^{-1}(y) = f^{-1}(y_0)$.
+
+                $y_0 \in f(J)$ levý krajní bod: spojitost zprava: $f^{-1}(y_0) = x_0$ a $x_0$ je levý krajní bod $J$. Nechť $\epsilon > 0$. Existuje $x_1 \in (x_0, x_0 + \epsilon)$ tak, že $x_0 < x_1 \implies f(x_0) < f(x_1)$. Položme $\delta = f(x_1) - f(x_0)$, pak $\B_+(y_0, \delta) = \[y_0, y_0 + \delta\) = \[y_0, f(x_1)\)$. Nyní $f^{-1}\(\B_+(y_0, \delta)\) = \[x_0, x_1\) \subset (x_0 - \epsilon, x_0 + \epsilon)$.
+
+                $y_0 \in f(J)$ pravý krajní bod: spojitost zleva: Analogicky.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklady}
+            Funkce $x \rightarrow x^n$ je spojitá a rostoucí na $\[0, ∞\)$, proto je i funkce $x \rightarrow \sqrt[n]{x}$ spojitá a rostoucí na $\[0, ∞\)$.
+        \end{priklady}
+
+    \subsection{Elementární funkce (3.4)}
+        \begin{veta}[Zavedení exponenciely]
+            Existuje funkce $\exp : ®R \rightarrow ®R$ splňující: a) $\exp(x)$ je rostoucí na ®R, b) $\forall x, y \in ®R: \exp(x+y) = \exp(x)·\exp(y)$, c) $\exp(0) = 1$, d) $\lim_{x \rightarrow 0} \frac{\exp(x) - 1}{x} = 1$, e) $\exp(x)$ je spojitá na ®R.
+
+            \begin{poznamkain}[Další možnosti zavedení]
+                $$ e^x = \lim_{n \rightarrow ∞}\(1+\frac{x}{n}\)^n $$ 
+                $$ \log x = \int_1^x \frac{1}{y}\, dy $$
+                $$ e^x = \lim_{k \rightarrow ∞} \sum_{n=1}^k \frac{x^n}{n!} = \sum_{n=0}^∞ \frac{x^n}{n!} $$ 
+            \end{poznamkain}
+
+% 20. 11. 2020
+
+            \begin{dukazin}
+                Položme $\exp x = \lim_{k \rightarrow ∞} \sum_{n = 0}^k \frac{x^n}{n!}$. Nejdříve chceme ukázat $\exists \lim_{k \rightarrow ∞} \sum_{n=0}^k \frac{x^n}{n!} \in ®R$ pro každé $x \in ®R$. Nechť $x$ je pevné.\footnote{$\exists \lim_{k \rightarrow ∞} \frac{1}{n·(n-1)} = \lim_{k \rightarrow ∞} 1 - \frac{1}{k} = 1$. Pak existuje $k_0 > |x|$ ($k_0 = \lfloor x \rfloor + 1$). $\forall n ≥ 2k_0$ platí
+                        $$ \left|\frac{x^n}{n!}\right| = |x|^{k_0}·\frac{1}{k_0!} · \frac{|x|}{k_0 + 1} · … · \frac{|x|}{n} ≤ |x|^{k_0}\frac{|x|^2}{(n-1)·n}. $$}
+
+                Podle věty Bolzano-Cauchyova podmínka pro posloupnost stačí ověřit BC podmínku. Nechť $\epsilon > 0$, zvolme $n_0 ≥ 2k_0 \land \frac{1}{n_0} < \epsilon$, kde $k_0 = \lfloor|x|\rfloor + 1$. Nechť $m, k ≥ n_0$. BÚNO $m > k$:
+                $$ \left| \sum_{n=0}^m \frac{x^n}{n!} - \sum_{n = 0}^k \frac{x^n}{n!} \right| = \left| \sum_{n=k+1}^m \frac{x^n}{n!} \right| ≤ \sum_{n=k+1}^m \left| \frac{x^n}{n!} \right| ≤ \sum_{n=k+1}^m |x|^{k_0 + 2} · \frac{1}{n·(n-1)} = |x|^{k_0+2} · \frac{1}{k} < |x|^{k_0 + 2} · \epsilon, $$
+                což je přesně BC podmínka, tedy naše posloupnost je dobře definována.
+
+                a) $0 ≤ x ≤ y \implies \frac{x^n}{n!} ≤ \frac{y^n}{n!} \implies \sum_{n = 0}^k \frac{x^n}{n!} ≤ \sum_{n = 0}^k \frac{y^n}{n!} \implies \lim_{k \rightarrow ∞} \sum_{n = 0}^k \frac{x^n}{n!} ≤ \lim_{k \rightarrow ∞} \sum_{n = 0}^k \frac{y^n}{n!} \implies \exp x ≤ \exp y$.
+
+                $x ≤ y ≤ 0 \implies -x ≥ -y ≥ 0 \implies \exp(-x)  ≥ \exp(-y) \overset{\text{z b), viz dále}}{\implies} \exp x = \frac{1}{\exp (-x)} ≤ \frac{1}{\exp(-y)} = \exp y$.
+                
+                $x ≤ 0 ≤ y \implies \exp x ≤ \exp 0 ≤ \exp y$
+
+                b)\footnote{Myšlenka: $$ \exp (x + y) = \sum_{k=0}^∞ \frac{1}{k!}·(x+y)^k = \sum_{k=0}^∞ \frac{1}{k!}· \sum_{j=0}^k \binom{k}{j}·x^{k-j}·y^j = \sum_{k=0}^∞ \sum_{j=0}^k \frac{x^{k-j}}{(k-j)!}·\frac{y^j}{j!} \overset{\text{chceme}}{=} \(\sum_{i=0}^∞ \frac{x^i}{i!}\) · \(\sum_{j=0}^∞ \frac{y^j}{j!}\), $$ ale poslední rovnost nemůžeme, protože nekonečně mnoho členů nemůžeme přeuspořádat.} Označme $s_n = \sum_{i=0}^n \frac{1}{i!}x^i \overset{n\rightarrow ∞}{\rightarrow} s = \exp x$, $\sigma_n = \sum_{j=0}^n \frac{1}{j!}y^j \overset{n\rightarrow ∞}{\rightarrow} \sigma = \exp y$, $\rho_n = \sum_{k=0}^n \frac{(x+y)^k}{k!} = \sum_{k=0}^n \sum_{j=0}^k \frac{x^{k-j}}{(k-j)!}·\frac{y^j}{j!} \overset{n\rightarrow ∞}{\rightarrow} \rho = \exp (x + y)$.
+
+                Nechť $\epsilon > 0$. Pak z BC podmínky $\exists n_0$, že $\sum_{i = n_0}^∞ \frac{|x|^i}{i!} < \epsilon$, $\sum_{j = n_0}^∞ \frac{|y|^j}{j!} < \epsilon$ a zároveň $|s_{n_0}·\sigma_{n_0} - s·\sigma| < \epsilon$. Nechť $n ≥ 2n_0$, pak
+                $$|\rho_n - s·\sigma| ≤ |\rho_n - s_{n_0}\sigma_{n_0}| + |s_{n_0}\sigma_{n_0} - s·\sigma| ≤ \sum_{j=0}^∞ \sum_{i=n_0}^∞ \frac{|x|^j}{j!}·\frac{|y|^i}{i!} + \sum_{j=n_0}^∞ \sum_{i=0}^∞ \frac{|x|^j}{j!}·\frac{|y|^i}{i!} + \epsilon ≤, $$
+                jelikož všechny členy, které se neodečetly, mají alespoň jeden index $≥ n_0$ jinak se vyskytují v $s_{n_o}\sigma_{n_0}$. Pokračujeme:
+                $$ ≤ \sum_{j=0}^∞ \frac{|x|^j}{j!}· \sum_{i=n_0}^∞ \frac{|y|^i}{i!} + \sum_{j=n_0}^∞ \frac{|x|^j}{j!}· \sum_{i=0}^∞ \frac{|y|^i}{i!} + \epsilon < e^{|x|}·\epsilon + \epsilon e^{|y|} + \epsilon. $$ 
+
+                c) $\exp 0 = \lim_{k \rightarrow ∞} \sum_{n=0}^k \frac{0^n}{n!} = \lim_{k \rightarrow ∞} 1 = 1$.
+
+                d) $\lim_{x \rightarrow 0} \frac{\exp x - 1}{x} = \lim_{x \rightarrow 0} \frac{\sum_{n=1}^∞ \frac{x^n}{n!}}{x} = \lim_{x \rightarrow 0} 1 + x\(\sum_{n=2}^∞ \frac{x^{n-2}}{n!}\) \overset{\text{další rovnost}}{=} 1$
+                $$ \left|x·\sum_{n=2}^∞ \frac{x^{n-2}}{n!}\right| \overset{|x|≤1}{≤} |x|·\sum_{n=2}^∞ \frac{1}{n!} ≤ |x|·e \rightarrow 0 $$
+
+                e) Chceme $ \lim_{h \rightarrow 0} \exp (x + h) = \exp x $ (tj. spojitost v $x$).
+                $$ \lim_{h \rightarrow 0} \exp (x + h) - \exp x + \exp x = \lim_{h \rightarrow 0} \frac{\exp (x)·\exp(h) - \exp x}{h}·h + \exp x = \lim_{h \rightarrow 0} \exp(x)·\frac{\exp(h) - 1}{h}·h + \exp x \overset{\text{AL}}{=} \exp (x)·1·0 + \exp x = \exp x. $$ 
+            \end{dukazin}
+        \end{veta}
+
+% 13. 11. 2020
+
+        \begin{poznamka}[Vlastnosti exp]
+            \ 
+            \begin{itemize}
+                \item $\exp(n·x) = (\exp x)^n$ (Matematická indukce).
+                \item $\exp x > 0 \forall x \in ®R$ ($\exp x = \(\exp \frac{x}{2}\)^2 ≥ 0$, kdyby $\exp x = 0$, pak $\exp \frac{x}{2^i} = 0 \implies \exp 0 = 0 \lightning$).
+                \item Z a) je exponenciela rostoucí rostoucí $\implies \lim_{x \rightarrow ∞} \exp x$ existuje. $\lim_{n \rightarrow ∞} \exp(n) = \lim_{n \rightarrow ∞} \(\exp 1\)^n = +∞ \implies \lim_{x \rightarrow a} \exp(x) = +∞$.
+                \item $\lim_{x \rightarrow -∞} \exp(x) = 0$ ($ = \lim_{x \rightarrow -∞} \exp(x)·\frac{\exp -x}{\exp -x} = \lim_{x \rightarrow -∞} \frac{\exp 0}{\exp -x} = \frac{1}{+∞} = 0$).
+                \item $\exp ®R = \(0, ∞\)$ (funkce nabývá mezihodnot).
+            \end{itemize}
+        \end{poznamka}
+
+% 20. 11. 2020
+
+        \begin{priklad}[$e$ je iracionální]
+            \begin{reseni}
+                Nechť pro spor $e = \frac{p}{q}$, kde $p, q \in ®N$ nesoudělná.
+                $$ \sum_{n=0}^q \frac{1}{n!} < e = \frac{p}{q} = \sum_{n=0}^q \frac{1}{n!} + \sum_{n=q+1}^∞ \frac{1}{n!}. $$
+                $$ \sum_{n=q+1}^∞ \frac{1}{n!} ≤ \sum_{n=q+1}^∞ \frac{1}{(q+1)!}·\frac{1}{(q+1)^{n-(q+1)}} = \frac{1}{(q+1)!} · \sum_{j=0}^∞ \frac{1}{(q+1)^j} = \frac{1}{(q+1)!}·\frac{1}{1-\frac{1}{q+1}} = \sum_{n=0}^q \frac{1}{n!} + \frac{1}{q!·q}. (/·q!q) $$ 
+                $$ m < pq! < m+1,\ \ m \in ®N, \lightning. $$
+            \end{reseni}
+            $$  $$ 
+        \end{priklad}
 
 \end{document}

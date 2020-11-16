@@ -715,4 +715,101 @@
             Buď ¦V vektorový prostor nad ®T a $X \in ¦V$. pak řekneme, že $X$ generuje ¦V ($X$ je množina generátorů ¦V), pokud $\LO X = ¦V$
         \end{definice}
 
+% 10. 11. 2020
+
+        \begin{upozorneni}[MIDTERMY]
+            Budou! První bude 24. 11. 2020. Druhý 15. 12. 2020.
+        \end{upozorneni}
+
+        \begin{definice}[S maticí $A$ jsou spojeny 4 vektorové prostory]
+            Jádro: $\ker A$.
+
+            Jádro transponované: $\ker A^T$.
+
+            Obraz (= LO sloupců = sloupcový prostor matice): $\Im A$.
+
+            Obraz transponované (= LO řádků = řádkový prostor matice): $\Im A^T$.
+        \end{definice}
+
+        \begin{poznamka}
+            Sloupcové úpravy nemění obraz, řádkové nemění jádro (u transponovaných opačně).
+        \end{poznamka}
+
+        \begin{tvrzeni}[Prostory spojené s maticí a elementární úpravy]
+            $A$ typu $m \times n$ nad ¦T. Posloupnost EŘÚ $A \sim … \sim RA$. Posloupnost sloupcových úprav $A \sim … \sim AQ$.
+
+            $$ \ker A = \ker RA $$
+            \begin{dukazin}
+                $f_R$ je lineární a bijekce, tedy zobrazuje nulu na nulu. Tedy $Ax=0 \implies f_R(Ax) = 0$. Opačně $RAx = 0 \implies f_R^{-1}(RAx) = Ax = 0$.
+            \end{dukazin}
+
+            $$ \Im AQ = \Im A $$ 
+            \begin{dukazin}
+                $f_Q$ je bijekce, tedy $\exists ¦x : A¦x = ¦y \implies AQ(Q^-1¦x) = ¦y \implies ¦y \in \Im(AQ)$ a $\exists ¦x: AQ¦x = ¦y \implies A(Q¦x) = ¦y \implies ¦y \in \Im(A)$
+            \end{dukazin}
+        \end{tvrzeni}
+
+        $$ \(A = \(¦a_1|…|¦a_n\)\) $$ 
+        $$ \Im RA = \LO {R¦a_1, …, R¦a_n} $$
+        \begin{dukazin}
+                Přímo z maticového násobení. $RA¦x = R¦a_1x_1+…+R¦a_nx_n$
+        \end{dukazin}
+
+        \begin{definice}[Lineární (ne)závislost]
+            Buď ¦V vektorový prostor nad ®T a $(¦v_1, …, ¦v_k)$ posloupnost vektorů z ¦V. Řekněme, že posloupnost vektorů je lineárně nezávislá, pokud žádný vektor $¦v_i$ z posloupnosti nelze vyjádřit jako lineární kombinaci zbývajících. Tj. neplatí:
+            $$ ¦v_i = t_1 ¦v_1 + … +t_{i-1}¦v_{i-1} +t_{i+1}¦v_{i+1} +… + t_k¦v_k $$
+            pro žádné $1≤i≤k$ a žádná $t_i \in T$. Ekvivalentně lze psát
+            $$ \forall 1≤i≤k: v_i \notin \LO\{¦v_1 + … + ¦v_{i-1} + ¦v_{i+1} + … + ¦v_k\} $$ 
+
+            V opačném případě je posloupnost lineárně závislá.
+        \end{definice}
+
+        \begin{poznamka}
+            Lineární (ne)závislost se nezmění permutací posloupnosti.
+        \end{poznamka}
+
+        \begin{definice}[Zkratky]
+            LN = lineárně nezávislá, LZ = lineárně závislá.
+        \end{definice}
+
+        \begin{priklady}
+            $k=0$ je posloupnost LN. $k = 1$ je posloupnost vždy LN, pokud není nulovým vektorem. $k=2$ je posloupnost LZ právě tehdy, když je jeden vektor násobkem druhého.
+
+            Podposloupnost LN posloupnosti je LN.
+
+            Posloupnost je vždy LZ, pokud je nějaký vektor nulový, nebo pokud se dva vektory rovnají, ale LZ je v mnoha dalších případech.
+        \end{priklady}
+
+        \begin{tvrzeni}
+            ¦V vektorový prostor nad ®T, $()$ posloupnost vektorů z ¦V. Pak NPJE:
+            \begin{itemize}
+                \item $()$ je LN.
+                \item $\forall 1 ≤ i ≤ k: ¦v_i \notin \LO \{¦v_1, …, ¦v_{i-1}\}$
+                \item $¦v_1·t_1 + … +¦v_k·t_k = 0$ pouze triviálně (pro všechna $t_i$ nulová).
+                \item Máme-li $¦b \in ¦V$, pak existuje nejvýše 1 $k$-tice $(t_1, …, t_k)$ prvků ®T taková, že
+                        $$ ¦b = t_1·¦v_1 + … + t_k · ¦v_k. $$ 
+            \end{itemize}
+
+% 12. 11. 2020
+
+            \begin{dukazin}
+                $(1) \implies (2):$ Triviální.
+
+                $(2) \implies (3):$ Předpokládejme negaci (3), tj. máme vyjádření $¦o = t_1 · ¦v_1 + … + t_k · ¦v_k$ takové, že $t_i ≠ 0$ pro nějaké $1≤i≤k$. Zvolíme největší takové $i$, tj. $¦o = t_1·¦v_1 + … + t_i · ¦v_i \implies v_i = (-t_i^{-1}t_1)·¦v_1 + … + (-t_i^{-1}t_{i-1})·¦v_{i-1} \implies$ negace (2).
+
+                $(3) \implies (4):$ Předpokládejme negaci (4) 2 vyjádření $b$ následně od sebe odečteme a dostaneme negaci (3).
+
+                $(4) \implies (3):$ Speciální případ.
+
+                $(3) \implies (1):$ Předpokládejme $\neg (1)$, tj. posloupnost je LZ, tj. existuje $1≤i≤k$, tak že $¦v_i$ lze vyjádřit za pomoci lineární kombinace ostatních vektorů. Odečteme $¦v_i$ a hned dostáváme netriviální LK rovnou 0, jelikož $t_i = -1$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Vezměme matici $A = (a_1|…|a_n)$ typu $m \times n$ nad $T$. Buď $R$ regulární matice řádu $m$ a $Q$ regulární matice řádu $n$. Pak NTJE: a) sloupce $A$ jsou LN, b) sloupce $R·A$ jsou LN, c) sloupce $A·Q$ jsou LN.
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buď $A$ matice typu $m \times n$. Pak řádky $A$ jsou LN, právě když matice $C$, která vznikne Gaussovou eliminací z $A$, má všechny řádky nenulové.
+        \end{tvrzeni}
 \end{document}

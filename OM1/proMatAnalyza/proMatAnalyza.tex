@@ -283,4 +283,62 @@
         (Ve smyslu $\lim_{n \rightarrow ∞} \frac{n!}{\sqrt{2\pi} \(\frac{n}{e}\)^n \sqrt{n}} = 1$.)
     \end{poznamka}
 
+% 9. 11. 2020
+
+    \begin{definice}[Toeplitzova transformace]
+        $\{c_{n, k}\}_{n=1, k=1}^{∞, \ n}$ reálná čísla splňující: a) $\lim_{n \rightarrow ∞} c_{n, k} = 0$ pro každé $k \in N$, b) $\lim_{n \rightarrow ∞} \sum_{k=1}^n c_{n, k} = 1$, c) existuje $C>0$ takové, že pro všechna $n \in ®N: \sum_{k=1}^n |c_{n, k}| ≤ C$.
+
+        Nechť $\{a_n\}$ je konvergentní posloupnost. Zadefinujme novou posloupnost $\{b_n\}$ vztahem
+        $$ b_n = \sum_{k=1}^n c_{n, k} a_k, n \in ®N. $$
+        Pak $\lim_{n \rightarrow ∞} b_n = \lim_{n \rightarrow ∞} a_n.$
+    \end{definice}
+
+    \begin{priklady}[Matice (pouze dolní trojúhelník) splňující podmínky TT]
+        Jednotková matice.
+
+        Matice mající na $i$-tém řádku $\frac{1}{i}$, tedy $c_{n, k} = \frac{1}{n}$. Taková matice zřejmě splňuje podmínky TT a způsobí, že TT převede posloupnost na průměry prvních $n$ členů. (Tj. pokud posloupnost konverguje, tak i průměry prvních $n$ členů konvergují ke stejné limitě).
+    \end{priklady}
+
+    \begin{dukaz}[Toeplitzovy věty]
+        1. krok (konstantní posloupnost): Nechť $a_n = a, n \in ®N$. Pak $\lim_{n \rightarrow ∞} b_n = \lim_{n \rightarrow ∞} \sum_{k=1}^n c_{n, k} a_k = \lim_{n \rightarrow ∞} a\sum_{k=1}^n c_{n, k} \overset{\text{z b)}}{=} a$.
+
+        2. krok: Nechť $\lim_{n \rightarrow ∞} a_n = a \in ®R$. Lze psát $a_n = (a_n - a) + (a)$. Víme, že pro posloupnost $a$ tvrzení platí, stačí tedy dokázat tvrzení pro posloupnost $a_n - a$, která má limitu 0.
+
+        3. krok (nulová limita): Nechť $\lim_{n \rightarrow ∞} a_n = 0$. Pak $\forall m > 1, n≥m$ platí $|b_n| = |b_n - 0| = |\sum_{k=1}^n c_{n, k} a_k| ≤ \sum_{k=1}^{m-1} |c_{n, k}|·|a_k| + \sum_{k=m}^n |c_{n, k}|·|a_k|$.
+
+        Nechť $\epsilon > 0$. Protože $a_n \rightarrow 0$, pak $\exists n_1 \in ®N \forall n ≥ n_1, |a_n| < \frac{\epsilon}{2C}$, kde $C$ je konstanta z c). $\{a_n\}$ je konvergentní $\implies \{a_n\}$ je omezená $\implies |a_n| ≤ D \forall n \in ®N$. Z podmínky a) plyne, že $\exists n_2 \in ®N \forall n ≥ n_2 \sum_{k=1}^{n_1-1}|c_n, k| < \frac{\epsilon}{2D}$.
+
+        Nyní použijeme nerovnost výše s $m = n_1$, pro $n ≥ \max\{n_1, n_2\}$:
+        $$ |b_n| ≤ \sum_{k=1}^{n_1-1} |c_{n, k}|·|a_k| + \sum_{k=n_1}^n |c_{n, k}|·|a_k| ≤ D\sum_{k=1}^{n_1-1} |c_{n, k}| + \frac{\epsilon}{2C}\sum_{k=n_1}^n |c_{n, k}| < D·\frac{\epsilon}{2D} + \frac{\epsilon}{2C}·C = \epsilon. $$
+        Tedy $\lim_{n \rightarrow ∞} b_n = 0$.
+    \end{dukaz}
+
+    \begin{priklad}
+        Nechť $\{a_n\}$ je posloupnost kladných čísel a $\lim_{n \rightarrow ∞} a_n = a$. Pak $\lim_{n \rightarrow ∞} \sqrt[n]{a_1·…·a_n} = a$.
+        \begin{reseni}
+            AGH nerovnost a věta o dvou strážnících (Výše jsme dokázali, že A konverguje k $a$ a obdobně se dokáže, že převrácená hodnota H konverguje k $\frac{1}{a}$, tedy H konverguje také k $a$, tedy G konverguje k $a$).
+        \end{reseni}
+    \end{priklad}
+
+    \begin{dusledek}
+        Nechť $\{a_n\}$ je posloupnost kladných čísel, pro kterou $\lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} = a$. Dokažte, že potom $\lim_{n \rightarrow ∞} \sqrt[n]{a_n} = a$.
+        \begin{reseni}
+            $$ \sqrt[n]{a_n} = \sqrt[n]{\frac{a_n}{a_{n-1}} · \frac{a_{n-1}}{a_{n-2}} · \frac{a_{n-2}}{a_{n-3}} · … · \frac{a_2}{a_1} · a_1}, $$
+            což je geometrický průměr posloupnosti $\frac{a_n}{a_n-1} \rightarrow a$ rozšířené o 1 člen $a_1$, tedy má dle předchozího případu limitu $\lim_{n \rightarrow ∞} \sqrt[n]{a_n} = a$.
+        \end{reseni}
+    \end{dusledek}
+
+    \begin{priklad}[Teoretický příklad 6]
+        Platí implikace v předchozím případě i opačně?
+    \end{priklad}
+
+    \begin{priklad}
+        $$ \lim_{n \rightarrow ∞} \frac{n}{\sqrt[n]{n!}}. $$ 
+        \begin{reseni}
+            $$ a_n = \frac{n^n}{n!} $$ 
+            $$ \lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} = \lim_{n \rightarrow ∞} \frac{(n+1)^{n+1}}{(n+1)!} · \frac{n!}{n^n} = \lim_{n \rightarrow ∞} \frac{(n+1)^n}{n^n} = \lim_{n \rightarrow ∞}(1+\frac{1}{n})^n = e $$
+            Tedy $\frac{n}{\sqrt[n]{n}} \rightarrow e$ podle předchozího důsledku.
+        \end{reseni}
+    \end{priklad}
+
 \end{document}

@@ -1,0 +1,25 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 5]
+        Nechť $\{a_n\}^∞_{n=1}$ je omezená posloupnost splňující
+        $$ a_{n+1} ≥ a_n−\frac{1}{2^n}, \ \ n \in ®N. $$
+        Dokažte, že posloupnost $\{a_n\}^∞_{n=1}$ je konvergentní.
+
+    \begin{reseni}
+        Aplikujeme Bolzano-Cauchyovu podmínku pro konvergenci posloupnosti. Pro to musíme dokázat, co platí pro $a_m, n<m, n \in ®N$. Jelikož posloupnost je omezená, pro každé $n \in ®N$ a $\epsilon > 0$ existuje $K = \frac{\epsilon}{3} + \sup_{i ≥ n} a_i $, tedy $a_m < K$ a $a_n < K$. Navíc
+        $$ a_n ≤ a_{n+1} + \frac{1}{2^n} ≤ a_{n+2} + \frac{1}{2^n} + \frac{1}{2^{n+1}} ≤ … ≤ a_m + \sum_{i=n}^{m-1}\frac{1}{2^i} < a_m + \sum_{i=n}^∞ \frac{1}{2^i} = a_m + \frac{1}{2^n}, $$
+        $$ a_n - \frac{1}{2^n} < a_m, $$
+        takže\footnote{$\B(x, y)$ je okolí bodu $x$ s poloměrem $y$.} $a_m \in \(a_n - \frac{1}{2^n}, K\) = \(a_n - \frac{1}{2^n}, a_n + \(K-a_n\)\)$.
+
+        Nechť máme $\epsilon > 0$. Potom zvolme $n_1$ tak, aby $\frac{1}{2^{n_1}} < \frac{\epsilon}{3}$, např. $n_1 = \max\{0, \left\lceil\log_2 \frac{3}{\epsilon}\right\rceil\}$. Nyní mějme $K = \frac{\epsilon}{3} + \sup_{i ≥ n_1} a_i $ jako výše (pro toto $n_1$ a $\epsilon$). Z definice suprema existuje $n_2 ≥ n_1$ tak, že $\sup{i ≥ n_1} a_i - \frac{\epsilon}{3} < a_{n_2}$, tedy $K - a_{n_2} < \frac{\epsilon}{3} + \frac{\epsilon}{3}$.
+
+        Tedy pro každé $i > n_2$ platí, že $a_i \in \(a_{n_2} - \frac{1}{2^{n_2}}, a_{n_2} + \(K - a_n\)\) \subseteq \(a_n - \frac{\epsilon}{3}, a_n + 2\frac{\epsilon}{3}\)$. Tedy $\forall j, k > n_2: |a_j - a_k| < \left|a_n + 2\frac{\epsilon}{3} - (a_n - \frac{\epsilon}{3})\right| = \epsilon$, což je přesně BC podmínka, tedy $a_n$ konverguje.
+    \end{reseni}
+\end{priklad}
+
+\end{document}

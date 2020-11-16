@@ -346,5 +346,74 @@
         $$ * \frac{4^n}{2\sqrt{n}} ≤ \binom{2n}{n} ≤ \frac{4^n}{\sqrt{2n}} $$ 
     \end{priklady}
 
+% 9. 11. 2020
+
+\section{Grafy}
+    \begin{definice}[Graf, vrcholy, hrany]
+        Graf je uspořádaná dvojice $(V, E)$, kde: $V$ je konečná neprázdná množina vrcholů (vertices) a $E \subseteq \binom{V}{2}$ je množina hran (edges).
+    \end{definice}
+
+    \begin{poznamka}[Rozšíření]
+        Orientované, se smyčkami, multigrafy, nekonečné.
+    \end{poznamka}
+
+    \begin{priklady}
+        Úplný graf ($K_n$): $V(K_n) := \{1, …, n\}$ a $E(K_n) := \binom{V(K_n)}{2}$.
+
+        Prázdný graf ($E_n$): $V(E_n) := \{1, …, n\}$ a $E(E_n) := \O$.
+
+        Cesta ($P_n$): $V(P_n) := \{0, 1, …, n\}$ a $E(P_n) := \{\{i, i+1\}|0≤i<n\}$.
+        
+        Kružnice ($C_n$): $V(C_n) := \{0, 1, …, n-1\}$ a $E(C_n) := \{\{i, i+1 \mod n\}|0≤i≤n\}$.
+
+        Úplný bipartitní graf ($K_{m, n}$): $V(K_n) := \{a_1, …, a_n\} \cup \{b_1, …, b_n\}$ a $E(K_n) := \{\{a_i, b_j\}|1≤i≤m, 1≤j≤n\}$.
+    \end{priklady}
+
+    \begin{definice}[Bipartitní graf]
+        Graf $G$ je bipartitní $≡ \exists$ rozklad množiny $V(G)$ na $X, Y$ (= partity) tak, že $E(G) \subseteq \{\{x, y\} | x\in X, y \in Y\}$. (Lze zapsat i jako $\forall e \in e(G): |e\cap X| = 1$.)
+    \end{definice}
+
+    \begin{definice}[Isomorfismus grafů]
+        Grafy $G$ a $H$ jsou isomorfní (značme $G \cong H$) $≡ \exists f: V(G) \rightarrow V(H)$ bijekce tak, že $\forall u, v \in V(G):(\{u, v\} \in E(g) \Leftrightarrow \{f(u), f(v)\} \in E(H))$.
+    \end{definice}
+
+    \begin{poznamka}[K nahlédnutí]
+        Na libovolné množině grafů je $\cong$ ekvivalence.
+    \end{poznamka}
+
+    \begin{definice}[Stupeň vrcholu]
+        Stupeň vrcholu $v$ v grafu $G$ je $\deg_G(v) := \left|\{u \in V(G)|\{u, v\} \in E(G)\}\right|$.
+    \end{definice}
+
+    \begin{definice}[Regulární graf]
+        Graf je $k$-regulární (pro $k \in ®N$) $≡ \forall u \in V(G): \deg_G(u) = k$.
+
+        Graf $G$ je regulární $≡ \exists k: G$ je $k$-regulární.
+    \end{definice}
+
+    \begin{definice}[Skóre grafu]
+        Skóre grafu $G$ je posloupnost stupňů všech vrcholů (až na uspořádání).
+    \end{definice}
+
+    \begin{veta}
+        Pro každý graf $(V, E)$ platí:
+        $$ \sum_{v\in V} \deg(v) = 2·|E| $$ 
+    \end{veta}
+
+    \begin{dusledek}[Princip sudosti]
+        $\sum_v \deg(v)$ je sudé číslo $\implies (\#v\in V \text{ lichého stupně})$ je sudý.
+    \end{dusledek}
+
+    \begin{veta}[O skóre]
+        Posloupnost $D = d_1 ≤ … ≤ d_n$ pro $n≥2$ je skóre grafu $\Leftrightarrow$ $D' = d'_1, …, d'_{n-1}$ je skóre grafui a $0≤d_n≤n-1$. ($d'_i = d_i$ pro $i < n-d_n$ a $d'_i = d_i - 1$ pro $i ≥ n-d_n$.)
+
+        \begin{dukazin}
+            $(\Leftarrow)$ nechť $G'$ je graf se skóre $D'$ a vrcholy $v_1, …, v_{n-1}$ tak, že $\forall i \deg_{G'}(v_i)=d'_i$. Vytvořím $G$ doplněním vrcholu $v_n$ a hran $\{v_i, v_n\}$ pro $i \in \{n-d_n, …, n-1\}$. $G$ má skóre $D$.
+
+            $(\implies)$ Lemma: Nechť ©G je množina všech grafů se skóre $D$, $©G ≠ \O$. Potom $\exists G \in ©G: \{v_n, v_i\}\in E(G)$ pro všechna $i \in \{n-d_n, …, n-1\}$.
+
+            Důkaz lemmatu: (Kdyby $d_n = n-1$, pak zřejmě každý $G \in ©G$ splňuje lemma.) Pro $G \in ©G$ definujeme $j(G) := \max\{j|\{v_j, v_n\} \notin E(G)\}$ (kdyby $j(g) = n-d_ni-1$, pak jsme vyhráli, jinak $G$ nesplňuje lemma). Najdeme $G \in ©G$, jehož $j(G)$ je minimální. Pokračujeme sporem: Kdyby $j(G) > n - d_n - 1$, musí $\exists i < j: \{v_i, v_n\} \in E(G)$. Následně chceme ukázat, že $\exists k: \{v_i, v_k\}\notin E(G) \land \{v_j, v_k\} \in E(G)$, to ukážeme na základě toho, že posloupnost je seřazena, tedy $d_i ≤ d_j$ a vrchol $v_i$ je spojen minimálně s jedním vrcholem, se kterým není spojené $v_j$ ($v_n$). Upravíme graf $G$ na $G_\lightning: V(G_\lightning) := V(G), E(G_\lightning) := E(G) \cup \{\{v_i, v_k\}, \{v_j, v_n\}\} \setminus \{\{v_i, v_n\}, \{v_j, v_k\}\}$. Ale jelikož jsme vrcholům odstranili stejný počet hran, jako přidali, $G_\lightning \in ©G$. Navíc zřejmě $j(G_\lightning) < j(G)$, $\lightning$.
+        \end{dukazin}
+    \end{veta}
 
 \end{document}

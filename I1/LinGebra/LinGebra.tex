@@ -620,6 +620,92 @@
         \end{dukazin}
     \end{veta}
 
+% 12. 11. 2020
 
+    \begin{lemma}[O výměně]
+        Nechť $¦y_1, …, ¦y_n$ je systémem generátorů vektorového prostoru ¦V a nechť $¦x \in ¦V$ má vyjádření $x = \sum_{i = 1}^n \alpha_i · ¦y_i$. Pak pro libovolné $k$ takové, že $\alpha_k ≠ 0$ je $¦y_1, …, ¦y_{k-1}, ¦x, ¦y_{k+1}, …, ¦y_n$ systémem generátorů prostoru ¦V.
+        \begin{dukazin}
+            Jelikož $\alpha_k ≠ 0$, tak můžeme vyjádřit $¦y_k$ z ostatních vektorů a ¦x. Následně ukážeme, že nová množina generuje celé ¦V, protože do původního vyjádření $¦z \in ¦V$ dosadíme za $¦y_k$ a výsledek bude lineární kombinace ¦x a ostatních vektorů (bez $y_k$).
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Steinitzova věta o výměně]
+        Nechť ¦V je vektorový prostor, $¦x_1, …, ¦x_m$ je lineárně nezávislý systém ve ¦V a nechť $¦y_1, …, ¦y_n$ je systém generátorů ¦V. Pak platí: a) $m≤n$, b) existují navzájem různé indexy $k_1, …, k_{n-m}$ takové, že vektory $¦x_1, …, ¦x_m, ¦y_{k_1}, …, y_{k_{n-m}}$ tvoří systém generátorů prostoru ¦V.
+
+        \begin{dukazin}
+            Postupujme indukcí podle $m$. Pro $m=0$ věta platí triviálně. Nechť tedy věta platí pro $m-1$. Pokud $m-1 = n$, pak z předpokladu $¦x_1, …, ¦x_{m-1}$ generují ¦V. Tedy $¦x_m \in \span \{¦x_1, …, ¦x_{m-1}\}$, což je spor s lineární nezávislostí, tedy $m ≤ n$. Tj. a) platí.
+
+            Protože z předpokladu $¦x_1, …, ¦x_{m-1}, ¦y_{l_1}, …, y_{l_{n-m+1}}$ generují ¦V, tak lze $¦x_m$ vyjádřit jako jejich lineární kombinaci a použít Lemma o výměně. Tím jsme dokázali část b).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Všechny báze konečně generovaného vektorového prostoru ¦V jsou stejně velké.
+
+        \begin{dukazin}
+            Nechť $¦x$ka a $¦y$ka jsou dvě báze prostoru ¦V. Potom $¦x$ je nezávislé a $¦y$ generuje, tedy použijeme Steinitzovu větu a ukážeme, že kdyby byly jinak velké, tak dojdeme ke sporu.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{definice}[Dimenze]
+        Dimenze konečně generovaného prostoru je velikost nějaké jeho báze. Dimenze prostoru, který není konečně generovaný, je ∞. Značíme ji $\dim ¦V$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pro ¦V platí:
+
+        Jsou-li $¦x_1, …, ¦x_m \in ¦V$ LZ, pak $m ≤ \dim ¦V$. Pokud $m = \dim ¦V$, pak je $¦x_1, …, x_m$ bází prostoru ¦V.
+
+        Jsou-li $¦y_1, …, ¦y_n$ generátory, pak $n ≥ \dim V$. Pokud $n = \dim ¦V$, pak $¦y_1, …, ¦y_n$ je bází prostoru ¦V.
+
+        \begin{dukazin}
+            Vyplývá ze Steinitzovy věty o výměně (uvažuji nějakou bázi a vyměním ji za dané vektory).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}
+        Každý lineárně nezávislý systém vektorového prostoru ¦V lze rozšířit na bázi prostoru ¦V.
+
+        \begin{dukazin}
+            Vezmu si bázi a vyměním jejich prvky za tyto lineárně nezávislé vektory.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Dimenze podprostoru je menší rovna dimenzi prostoru.
+
+        \begin{dukazin}
+            Dokážeme, že existuje báze podprostoru a tím pádem (jelikož je nezávislá) podle tvrzení výše je dimenze menší rovna 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Spojení podprostorů]
+        Spojení podprostorů ¦U a ¦V ($¦U + ¦V$) vektorového prostoru ¦W (odtud operace + dále) je definováno jako $\{¦u + ¦v: ¦u \in ¦U, ¦v \in ¦V\}$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pro podprostory ¦U a ¦V VP ¦W platí $¦U + ¦V = \span (¦U \cup ¦V)$.
+
+        \begin{dukazin}
+            Inkluze $\subseteq$ je triviální z uzavřenosti na součty prostoru $\span (¦U \cup ¦V)$.
+
+            Inkluze $\supseteq$ se dokáže jako $¦U + ¦V \supseteq ¦U \cup ¦V$ a $¦U + ¦V$ je podprostor ¦W.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[O dimenzi spojení a průniku]
+        Pro podprostory ¦U a ¦V VP ¦W platí:
+        $$ \dim (¦U + ¦V) + \dim (¦U \cap ¦V) = \dim ¦U + \dim ¦V. $$ 
+
+        \begin{dukazin}
+            Přes báze.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Direktní součet]
+        Pokud $¦U \cap ¦V = \{¦o\}$, pak spojení $¦U + ¦V$ nazýváme direktním součtem podprostorů a značíme $¦U \oplus ¦V$.
+
+        Podle předchozí věty platí $\dim (¦U \oplus ¦V) = \dim ¦U + \dim ¦V$. Navíc každý prvek direktního součinu lze zapsat jednoznačně jako součet vektoru z ¦U a vektoru z ¦V.
+    \end{definice}
 
 \end{document}

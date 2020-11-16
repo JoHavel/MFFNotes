@@ -1,0 +1,23 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 6]
+    Nechť $\{a_n\}^∞_{n=1}$ je posloupnost kladných reálných čísel splňující
+    $$ \lim_{n \rightarrow ∞} \sqrt[n]{a_n} = a $$
+    pro nějaké $a \in ®R$. Musí potom platit, že
+    $$ \lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} = a. $$ 
+
+    \begin{reseni}
+        Nemusí. Nechť $a_n = 2^{\lceil \log n \rceil} a^n$. Potom protože
+        $$ \lim_{n \rightarrow ∞} \sqrt[n]{2^{1+\log n} a^n} \overset{\text{AL}}{=} \(\lim_{n \rightarrow ∞} \sqrt[n]{2}\) · \(\lim_{n \rightarrow ∞} \sqrt[n]{n}\) · \(\lim_{n \rightarrow ∞} \sqrt[n]{a^n}\) = 1 · 1 · a = a, $$ 
+        $$ \lim_{n \rightarrow ∞} \sqrt[n]{2^{\log n} a^n} \overset{\text{AL}}{=} \(\lim_{n \rightarrow ∞} \sqrt[n]{n}\) · \(\lim_{n \rightarrow ∞} \sqrt[n]{a^n}\) = 1 · a = a, $$
+        $$ 2^{1 + \log n} a^n ≥ 2^{\lceil \log n \rceil} a^n ≥ 2^{\log n} a^n, $$
+        tak $\lim_{n \rightarrow ∞} a_n = a$ podle věty o dvou strážnících. Ale můžeme si všimnout, že pro každé $0 ≠ n = 2^k - 1, k \in ®N$ je $\frac{a_{n+1}}{a_n} = 2a$, tedy $\lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n}$ nemůže být $a$, pro všechna $a≠0$ (dokonce tato limita vůbec nebude existovat). Jestli to pro $a = 0$ platí je ještě na dlouho, ale předmětem příkladu bylo vyvrátit tvrzení pro obecné $a$.
+    \end{reseni}
+\end{priklad}
+
+\end{document}
