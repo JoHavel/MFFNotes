@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 6]
+    Pro dané $k \in ®N$ spočtěte limitu
+    $$ \lim_{n \rightarrow ∞} \(\frac{1^k + 2^k + … + n^k}{n^k} - \frac{n}{k+1}\). $$
+
+    \begin{reseni}
+        Upravíme odečtením zlomků:
+        $$ \lim_{n \rightarrow ∞} \(\frac{1^k + 2^k + … + n^k}{n^k} - \frac{n}{k+1}\) = \lim_{n \rightarrow ∞} \(\frac{\(1^k + 2^k + … + n^k\)·(k+1) - n^{k+1}}{n^k·(k+1)}\). $$
+
+        Nyní vidíme, že bychom si chtěli použít $x_n = \(1^k + 2^k + … + n^k\)·(k+1) - n^{k+1}$ a $y_n = n^k·(k+1)$ a použít Stolzovu větu. Na $x_n$ nejsou kladeny žádné podmínky, $y_n$ musí být rostoucí (to je, protože $k≥1$) a limita $y_n$ jde k $+∞$ (jelikož $n^k$ jde zjevně k nekonečnu a $k+1$ je konstanta).
+
+        $$ \lim_{n \rightarrow ∞} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n \rightarrow ∞} \frac{n^k·(k+1) - n^{k+1} - 0 + (n-1)^{k + 1}}{n^k·(k+1) - (n-1)^k·(k+1)} \overset{\text{Binom. věta}}{=} $$
+        $$ \overset{\text{Binom. věta}}{=} \lim_{n \rightarrow ∞} \frac{n^k·(k+1) - n^{k+1} + n^{k+1} - (k+1)·n^k + \binom{k+1}{2}n^{k-1} + P(n)}{n^k·(k+1) - n^k·(k+1) + k·n^{k-1}·(k+1) + Q(n)} = $$
+        $$ \lim_{n \rightarrow ∞} \frac{\binom{k+1}{2}n^{k-1} + P(n)}{k·n^{k-1}·(k+1) + Q(n)} = \lim_{n \rightarrow ∞} \frac{\frac{(k+1)·k}{2} + \frac{P(n)}{n^{k-1}}}{k·(k+1) - \frac{Q(n)}{n^{k-1}}} \overset{\text{AL}}{=} \frac{\frac{(k+1)·k}{2} + 0}{(k+1)·k + 0} = \frac{1}{2} $$
+        Kde $P(n)$ a $Q(n)$ jsou polynomy stupně $k-2$. Tedy podle Stolzovy věty je
+        $$ \lim_{n \rightarrow ∞} \(\frac{1^k + 2^k + … + n^k}{n^k} - \frac{n}{k+1}\) = \lim_{n \rightarrow ∞} \frac{x_n}{y_n} = \frac{1}{2}. $$
+    \end{reseni}
+\end{priklad}
+
+\end{document}

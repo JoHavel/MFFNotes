@@ -708,4 +708,65 @@
         Podle předchozí věty platí $\dim (¦U \oplus ¦V) = \dim ¦U + \dim ¦V$. Navíc každý prvek direktního součinu lze zapsat jednoznačně jako součet vektoru z ¦U a vektoru z ¦V.
     \end{definice}
 
+% 19. 11. 2020
+
+    \begin{definice}[Maticové prostory]
+        Pro matici $A$ definujeme sloupcový prostor $S(A) = \span \{\text{sloupců matice}\}$, řádkový prostor $R(A) = \span\{\text{řádků matice}\}$, jádro $\Ker(A) = \{¦x: A¦X = ¦o\}$.
+
+        \begin{poznamka}
+            Všechny 3 prostory jsou podprostory příslušných VP. (2 jsou lineární obaly, jádro jistě obsahuje ¦o, protože $A¦o = ¦o$, uzavřenosti poté dokážeme z distributivity a komutativity)
+        \end{poznamka}
+    \end{definice}
+
+    \begin{tvrzeni}
+        $$ S(A) = \{A¦x\},\ \ R(A) = \{A^T¦x\} $$ 
+        \begin{dukazin}
+            Plyne z definice součinu při řádkovém pohledu.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Pro každý ¦V podprostor $®T^n$ existují matice tak, že $¦V = S(A)$, $¦V = R(B)$, $¦V = \Ker(C)$.
+        \begin{dukazin}
+            Veden přes generátory. Jádro si ukážeme později.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        $R(QA)$ je podprostorem $R(A)$ a pokud lze vyjádřit $k$-tý sloupec $A$ pomocí lineární kombinace ostatních, tak lze i $k$-tý sloupec $QA$ vyjádřit pomocí stejné lineární kombinace ostatních sloupců $QA$.
+        \begin{dukazin}
+            Přes transpozice ukážeme $\forall x \in R(QA): x = (QA)^Ty = A^T(Q^Ty) \in R(A)$. 
+
+            $$ (QA)_{*k} = QA_{*k} = Q(\sum_{j≠k}\alpha_jA_{*j}) = \sum_{j≠k}\alpha_j (QA)_{*j}. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{upozorneni}
+        Pro sloupcové první část předchozího tvrzení neplatí pro násobení zleva, protože se neshodují vektorové „nadprostory“.
+    \end{upozorneni}
+
+    \begin{veta}
+        Pro matici $A$ a její RREF tvar $A^R$ platí, že nenulové řádky RREF tvaru tvoří bázi $R(A)$, že bázové (v RREF) sloupce původní matice tvoří bázi $S(A)$ a že $\dim R(A) = \dim S(A) = \rank(A)$.
+
+        \begin{dukazin}
+            $A^R = QA$, tedy podle tvrzení výše je $R(A) = R(QA) = R(A^R)$. 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        $$ \rank(A) = \rank(A^T) $$
+    \end{dusledek}
+
+    \begin{veta}
+        Pro každou matici $A\in ®T^{m \times n}$ platí $\dim\Ker(A) + \rank(A) = n$.
+        \begin{dukazin}
+            Viz přednáška.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Dále jsme si zmiňovali eigenfaces a Lagrangeův interpolační polynom.
+    \end{poznamka}
+
+
 \end{document}

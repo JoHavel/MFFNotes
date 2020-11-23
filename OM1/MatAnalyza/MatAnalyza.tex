@@ -990,7 +990,63 @@
                 $$ \sum_{n=q+1}^∞ \frac{1}{n!} ≤ \sum_{n=q+1}^∞ \frac{1}{(q+1)!}·\frac{1}{(q+1)^{n-(q+1)}} = \frac{1}{(q+1)!} · \sum_{j=0}^∞ \frac{1}{(q+1)^j} = \frac{1}{(q+1)!}·\frac{1}{1-\frac{1}{q+1}} = \sum_{n=0}^q \frac{1}{n!} + \frac{1}{q!·q}. (/·q!q) $$ 
                 $$ m < pq! < m+1,\ \ m \in ®N, \lightning. $$
             \end{reseni}
-            $$  $$ 
         \end{priklad}
+
+% 24. 11. 2020
+
+        \begin{definice}[Logaritmus]
+            Funkci inverzní k exponenciele ($\exp$) je logaritmus ($\log$)
+        \end{definice}
+
+        \begin{veta}[Vlastnosti logaritmu]
+            Funkce $\log$ splňuje: a) $\log: \(0, ∞\) \rightarrow ®R$ je spojitá a rostoucí funkce, b) $\forall x, y > 0: \log(x·y) = \log x + \log y$, c) $\lim_{x \rightarrow 1} \frac{\log x}{x-1} = 1$.
+            \begin{dukazin}
+                a) $\exp$ je spojitá a rostoucí $\implies$ existuje inverzní funkce, $\exp: ®R \rightarrow (0, ∞) \implies \log (0, ∞) \rightarrow ®R$. Podle věty o inverzní funkci je $\log$ spojitá a rostoucí funkce.
+
+                b) $\log x = A, \log y = B \Leftrightarrow \exp A = x, \exp B = y$. Z definice exponenciely $x·y = \exp A · \exp B = \exp(A + B) \implies \log(x·y) = A + B = \log x + \log y$.
+
+                c) označme $f(y) = \frac{\exp y - 1}{y}, y ≠ 0$ a $g(x) = \log x$, pak $g(x) ≠ 0 \forall x ≠ 1$ víme $\lim_{y \rightarrow 0} f(y) = 1$ z definice exponenciely $\lim_{x \rightarrow 1} g(x) = 0$. Podle VOLSF (P) dostaneme $1 = \lim_{x \rightarrow 1} f(g(x)) = \lim_{x \rightarrow 1} \frac{\exp(\log x) - 1}{\log x} = \lim_{x \rightarrow 1} \frac{x-1}{\log x}$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            Nechť $a>0$ a $b \in ®R$. Pak definujeme $a^b = \exp(b\log(a))$. Je-li $b>0$, pak definujeme $\log_b a = \frac{\log a}{\log b}$.
+            \begin{poznamkain}
+                $x·x = x^2 = x^2 = \exp(2·\log x) = \exp(\log x)·\exp(\log x) = x·x$. Obdobně pro $x^n, n \in ®N$.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{priklad}
+            $\lim_{n \rightarrow ∞} \(1 + \frac{1}{n}\)^n \overset{\text{Heine}}{=} \lim_{x \rightarrow 0} (1+x)^{\frac{1}{x}} = \lim_{x \rightarrow 0} e^{\frac{1}{x}\log(1+x)} \overset{\text{VOLSF (S)}}{=} e^1 = e$.
+        \end{priklad}
+
+        \begin{veta}[Zavedení sinu a cosinu]
+            Existují funkce $\sin: ®R \rightarrow ®R$ a $\cos: ®R \rightarrow ®R$ splňující: a) $\forall x, y \in ®R: \sin(x+y) = \sin x · \cos y + \cos x · \sin y$, $\cos(x+y) = \cos x · \cos y - \sin x · \sin y$, $\cos(-x) = \cos x$, $\sin(-x) = - \sin x$, b) existuje kladné číslo $\pi$ tak, že $\sin$ je rostoucí na $\[0, \frac{\pi}{2}\]$ a $\sin\(\frac{\pi}{2}\) = 1$, c) $\lim_{x \rightarrow 0} \frac{\sin x}{x} = 1$.
+
+            \begin{dukazin}[Bez důkazu, jen nástřel]
+                $\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + … = \sum_{n=0}^∞ \frac{x^{2n+1}}{(2n+1)!}·(-1)^n$.
+                $\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + … = \sum_{n=0}^∞ \frac{x^{2n}}{(2n)!}·(-1)^n$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[tan a cotg]
+            Pro $x \in ®R \setminus \{\frac{\pi}{2} + k \pi, k \in ®Z\}$ a $y \in ®R \setminus \{k \pi, k \in ®Z\}$ definujeme funkce tangens a cotangens předpisem
+            $$ \tan x = \frac{\sin x}{\cos x},\ \cotg x = \frac{\cos y}{\sin y}. $$ 
+        \end{definice}
+
+        \begin{veta}[Spojitost sinu a cosinu]
+            Funkce $\sin$, $\cos$, $\tan$, $\cotg$ jsou spojité na svém definičním oboru.
+            \begin{dukazin}
+                a) $\sin$, pak b) $\cos x = \sin\(\frac{\pi}{2} - x\)$ a složení spojitých funkcí je spojitá funkce, c) $\tan x = \frac{\sin x}{\cos x}$ a $\cotg x = \frac{\cos x}{\sin x}$ jsou spojité z aritmetiky limit.
+
+                a) $\lim_{x \rightarrow a} \sin x = \sin a$: 1. v 0: $\lim_{x \rightarrow 0} \sin x = \lim_{x \rightarrow 0} \frac{\sin x}{x} · x \overset{\text{AL}}{=} 1·0 = \sin 0$. 2. $\lim_{x \rightarrow a} (\sin x - \sin a) = \lim_{x \rightarrow a} f(x) 2· \sin \frac{x-a}{2} · \cos \frac{x+a}{2} \overset{\text{AL}}{=} 2· \lim_{x \rightarrow a} \frac{\sin \frac{x-a}{2}}{\frac{x-a}{2}} · \lim_{x \rightarrow a} \cos \frac{x+a}{2} \overset{\text{VOLSF (P)}}{=} 2 · 0 · \cos a = 0$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Inverzní funkce]
+            Nechť $\sin* x = \sin x$ pro $x \in \[-\frac{\pi}{2}, \frac{\pi}{2}\]$. Nechť $\cos* x = \cos x$ pro $x \in \[0, \pi\]$. Nechť $\tan* x = \tan x$ pro $x \in \(-\frac{\pi}{2}, \frac{\pi}{2}\)$. Nechť $\cotg* x = \cotg x$ pro $x \in \(0, \pi\)$.
+
+            Definujeme $\arcsin$ (respektive $\arccos$, $\arctan$, $\arccotg$) jako inverzní funkce k $\sin*$ (respektive $\cos*$, $\tan*$, $\cotg*$).
+        \end{definice}
 
 \end{document}

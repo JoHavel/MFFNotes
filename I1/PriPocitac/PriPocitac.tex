@@ -176,4 +176,57 @@
 
         Paměť obsahuje tzv. bus interface (část, která komunikuje se sběrnicí) a v ní je např. address register, ze kterého čte logika tahající a ukládající data z a v paměti.
 
+% 24. 11. 2020
+
+\section{Zpět k základům}
+    \section{Procesor}
+        \begin{definice}[Instrukce]
+            Základní příkaz pro procesor. Tzv. instrukční sada procesoru je množina instrukcí, které procesor umí.
+
+            „Seznam“ instrukcí (program) je strojový kód (machine code).
+
+            Identifikátoru instrukce se říká OP code (operační kód), zbytek jsou argumenty / parametry (vzhledem k velikosti argumentům je omezena velikost paměti).
+        \end{definice}
+
+        \begin{definice}[Procesorové registry]
+            Procesor má také registry, aby mohl ukládat svůj stav. Například existuje registr Instruction pointer ( = IP = někdy Program counter = PC), který ukládá, která instrukce se vykonává. (Více bytové instrukce reprezentuji ukazatelem na první byte.) Velikost PC bude taková, aby obsáhla code memory. (Proto je velikost code memory omezena podle procesoru.)
+        \end{definice}
+
+        \begin{definice}[Programování]
+            Když programujeme, tak v code memory je uložené např. Visual Studio a v normální paměti je uložen program v textu. V tuto chvíli program nemůžeme na Harvardské architektuře tento program spustit. Proto máme tzv. překladač, který přeloží kód z Pythonu do strojového kódu. Stále se to však v H. architektuře nemůže běžet, ale procesory mají v sobě „magii“, která umí nakopírovat data z paměti do kódové paměti. Pak už daný program může běžet…
+
+            Ve skutečnosti Python běží v interpretru (interpreter), který umí číst kód v Pythonu a rovnou se podle něho chovat. Dělá se to kvůli tomu, že napsat interpreter je jednodušší než napsat překladač. Zase na druhou stranu, přeložený kód je daleko rychlejší.
+
+            Little endian (LE) a Big endian je inspirované příběhem s vajíčkem z Gulliverových cest a značí „LSB-first“ a „MSB-first“. Instrukce musí mít danou endianitu, proto každý procesor má dáno, zda je little endian (dnes převažují) nebo big endian (dost často třeba mobilní procesory). Endianitu musíme znát kvůli dalším zařízením připojeným k našemu procesoru.
+        \end{definice}
+        
+        \begin{poznamka}
+                Harvardskou architekturu (musíme code memory mít non-volatile) už nebudeme mít rádi. 
+        \end{poznamka}
+
+    \section{Von Neumannova architektura}
+        \begin{definice}
+            Procesor je spojen pouze s jednou pamětí, kde na začátku je kód, který se vykonává.
+        \end{definice}
+        
+        \begin{poznamka}[Historie]
+            Počítače začali jako UNIVAC (1951, obrovský drahý, počítal mzdy). Následně pro použití studentům (potřebovali menší verzi) existoval altair 8800 (1974, začátek Basicu). Následoval Apple I (1976) pro širokou veřejnost (1976, Steeve Jobs to prodal, cena 666 dolarů), o rok později Apple II za dvojnásobnou cenu (prodávali to s VisiCalc = předchůdce excelu = počítání daňových přiznání). Následuje obrovské množství počítačů jako např. Atari 2600 (1977), Atari 1979 (1979), …
+
+            Procesor 6503 (pro příklad): 8bitový (slovo = 8 b), Von Neumannovská architektura, 16b adresový prostor, little endian. Úspěchu tohoto procesoru si všimla IBM $\rightarrow$ intel: 16bitový, 20b adresový prostor, little endian (později se velmi ukázala výhoda velikosti adresového prostoru). AMD a následně Intel pak vytvořili 32b procesory, které mají i instrukce pro staré procesory, aby byly zpětně kompatibilní.
+        \end{poznamka}
+
+        \begin{definice}[Seznam běžných instrukcí]
+            Instrukce „nedělej nic“. Jump / branch instrukce (včetně podmíněného skoku). 
+
+            Strojový kód se dá zapisovat v tzv. assembleru (NOP, JMP). Překladači z assembleru se říká assembler ;)
+
+            Konstanta = immediate $\rightarrow$ immediate instrukce pracují s konstantami (značené často \#).
+        \end{definice}
+
+        \begin{definice}[Speciální / jiné registry]
+            Aritmetické instrukce většinou moc neumí pracovat s pamětí a existují proto registry, ze kterých se pak čísla, se kterými se má provést operace, berou. Navíc proto existují instrukce LOAD a STORE, které načtou číslo z paměti do registru a uloží ho zpět.
+
+            Speciální jsou např. IP.
+        \end{definice}
+
 \end{document}

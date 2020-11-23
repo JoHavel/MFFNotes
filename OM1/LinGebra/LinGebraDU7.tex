@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+% \renewcommand{\baselinestretch}{0.9}
+
+\begin{document}
+
+    \begin{priklad}[7.1]
+        Určete počet
+        \begin{itemize}
+            \item[i] dvoučlenných posloupností vektorů (tj. posloupností tvaru $(¦v_1, v_2)$) v prostoru $®Z_5^2$, které jsou lineárně nezávislé.
+            \item[ii] trojčlenných posloupností vektorů (tj. posloupností tvaru $(¦v_1, v_2, v_3)$) v prostoru $®Z_2^3$, které jsou lineárně nezávislé.
+        \end{itemize}
+
+        \begin{reseni}[i]
+            Dva vektory jsou lineárně nezávislé, když jeden není násobkem druhého. Tedy za první vektor vezmeme libovolný vektor\footnote{$®Z_i^j$ má zřejmě $i^j$ prvků, protože $j$ krát vybíráme jeden z $i$ prvků $®Z_i$} kromě nulového (ten je násobkem libovolného vektoru), tj. máme $5^2 - 1 = 24$ možností. Vektor nad $®Z_5$ má 5 násobků, tedy za druhý vektor vybíráme jeden z $5^2 - 5 = 20$. Dohromady máme tedy $24·20 = 480$ posloupností. Počet posloupností až na permutace získáme vydělením počtem permutací (protože prvky posloupnosti nejsou násobky jeden druhého, tak nejsou ani totožné), tedy těch je $\frac{480}{2!} = 240$, to po nás ale zadání nechce.
+        \end{reseni}
+
+        \begin{reseni}
+            Nejdříve zjistíme, kolik je dvojčlenných nezávislých posloupností a následně spočítáme kolik vektorů můžeme ke každé takové posloupnosti přidat. Stejně jako výše, vezmeme libovolný vektor (krom nulového) a jeho „nenásobek“, tedy máme $(2^3-1)·(2^3-2) = 42$. Třetí vektor nemůže být lineární kombinací předchozích dvou, což nad $®Z_2$ znamená, že nemůže být nulový, nemůže to být ani jeden z nich a nemůže to být jejich součet. Tedy máme $2^3 - 4 = 4$ možností, jak volit třetí vektor, nezávisle na tom, jaké jsme zvolili předchozí. Tj. dohromady máme $42·4 = 168$ možných trojčlenných posloupností. ($\frac{168}{3!} = 28$ až na permutace.)
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[7.2]
+        Předpokládejme, že ve vektorovém prostoru ¦V nad tělesem $®Z_5$ je $(¦u, ¦v, ¦w, ¦z)$ lineárně nezávislá posloupnost. Dokažte, že posloupnost $(¦u + ¦v + ¦w + ¦z, ¦u + 2¦v + 3¦w + ¦z, ¦u + 3¦v + ¦w + 2¦z)$ je také lineárně nezávislá posloupnost ve ¦V.
+
+        \begin{dukazin}
+            Vyjdeme z jedné z ekvivalentních definicí lineární nezávislosti, a to té, že vektory jsou lineárně nezávislé, pokud pouze jejich triviální lineární kombinace je nulový vektor:
+            $$ k_1·(¦u + ¦v + ¦w + ¦z) + k_2·(¦u + 2¦v + 3¦w + ¦z) + k_3·(u + 3v + w + 2z) = ¦o, $$ 
+            $$ ¦u·(k_1 + k_2 + k_3) + ¦v·(k_1 + 2k_2 + 3k_3) + ¦w·(k_1 + 3k_2 + k_3) + ¦z·(k_1 + k_2 + 2k_3) = ¦o. $$ 
+            A jelikož víme, že jediná lineární kombinace $\{¦u, ¦v, ¦w, ¦z\}$ dávající ¦o byla ta triviální, tak koeficienty u vektorů v tomto výrazu musí být rovny 0:
+            $$ k_1 + k_2 + k_3 = 0,\ k_1 + 2k_2 + 3k_3 = 0,\ k_1 + 3k_2 + k_3 = 0,\ k_1 + k_2 + 2k_3 = 0. $$
+            Z těchto rovnic dostáváme $k_1 = k_2 = k_3 = 0$\footnote{Třeba „přičtením“ čtyřnásobku první rovnice ke čtvrté dostaneme $k_3 = 0$, „přičtením“ čtyřnásobku první rovnice ke třetí dostaneme $2k_2 = 0$, tedy $k_2 = 0$ a následně z libovolné rovnice $k_1 = 0$.}. Tedy trojčlenná posloupnost ze zadání je lineárně nezávislá.
+        \end{dukazin}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[7.bonus]
+        Najděte počet $l$-členných lineárně nezávislých posloupností v prostoru $®Z^k_p$.
+        \begin{reseni}
+                Lineární kombinace $i$ nezávislých vektorů na $®Z_p$ má $p^i$ členů, jelikož každá (= pro všechny koeficienty $j_1, j_2, …, j_i$ ze $®Z_p$) lineární kombinace je jiným vektorem (z definice nezávislosti). Tedy první člen posloupnosti vybíráme z $\left|®Z^k_p\right| - 1$ prvků, druhý z $\left|®Z^k_p\right| - p$, … , $l$-tý z $\left|®Z^k_p\right| - p^{l-1}$, jelikož nemůžeme vybrat ty, které jsou lineární kombinací předchozích. Tedy počet nezávislých $l$-člených posloupností je
+                $$ \prod_{i=1}^{l} (p^k - p^{i-1}). $$ 
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

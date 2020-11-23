@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+\begin{document}
+
+\begin{priklad}[1]
+    Pro která $n$ existuje graf na $n$ vrcholech takový, že on i jeho doplněk jsou bipartitní.
+    
+    \begin{reseni}
+        Nechť $A, B$ jsou partiti dané tím, že hledaný graf je bipartitní. Nechť $C, D$ jsou partiti dané tím, že doplněk hledaného grafu je bipartitní. Potom dokážu, že $|A \cap C| ≤ 1$, $|A \cap D| ≤ 1$, $|B \cap C| ≤ 1$, $|B \cap D| ≤ 1$. Kdyby totiž nějaká taková podmnožina měla alespoň dva vrcholy, pak mezi nimi buď v hledaném grafu, nebo doplňku existuje hrana, to je ale spor s tím, že oba vrcholy patří do jedné partity. Tedy $n ≤ 4$. Na 4 a 3 existuje, např. $(\[4\], \{\{1, 2\}, \{3, 4\}\})$ a $(\[3\], \{\{1, 2\}\})$, na 2 vrcholech jsou zjevně všechny grafy bipartitní. Naopak pro $n=1$ už neexistuje rozdělení na 2 množiny, tedy odpověď je $n \in \{2, 3, 4\}$.
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[2]
+    Kolik existuje na $\[n\]$ různých (ale ne nutně neizomorfních):
+    \begin{enumerate}
+        \item Úplných bipartitních grafů?
+        \item Kružnic?
+    \end{enumerate}
+
+    \begin{reseni}[Úplných bipartitních grafů]
+        Úplné bipartitní grafy jsou určené partitou. Tedy počet úplných bipartitních grafů můžeme zjistit pomocí počtu podmnožin, kterých je $2^n$. Nesmíme však zapomenout, že každý takový graf jsme započítali 2krát, jednou „za podmnožinu“, jednou „za její doplněk“. Navíc jsme započítali i bipartitní graf sestávající z prázdné a úplné podmnožiny, tedy ještě musíme odečíst 1. Odpovědí je tedy $2^{n-1} - 1$.
+    \end{reseni}
+
+    \begin{reseni}[Kružnic]
+        První vrchol můžeme spojit s jedním z $n-1$ zbylých vrcholů, ten zas nezávisle na tom s jedním z $n-2$, …, „předposlední“ vrchol spojujeme s jedním dalším vrcholem a „poslední“ vrchol s prvním. Tím jsme napočítali $(n-1)!$ grafů, ale každý jsme započítali dvakrát, protože jsme určili orientaci kružnice tím, s kterým vrcholem jsme spojili první vrchol. Tedy odpověď je $\frac{(n-1)!}{2}$.
+
+        Druhá možnost je, že kružnice budeme počítat jako cesty, které spojíme v koncových bodech. Podle toho, spojením kterých vrcholů vznikla kružnice, mohla daná kružnice vzniknout z $n$ cest (kružnice má $n$ hran a jednu z nich odebereme). Tedy počet kružnic je $\frac{\text{počet cest}}{n} = \frac{n!}{2·n} = \frac{(n-1)!}{2}$.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3]
+    V grafu na 15 vrcholech má každý vrchol stupeň nejméně 7. Je tento graf už nutně souvislý?
+
+    \begin{reseni}[Sporem]
+        Nechť existují dva vrcholy, mezi nimiž neexistuje cesta. Potom množiny jejich sousedů musí být disjunktní a jelikož mají stupeň nejméně 7, tak množiny sousedů musí být minimálně velikosti 7. Tedy dohromady máme nejméně 14 vrcholů mezi sousedy. Zároveň vrchol nemůže sousedit se sebou samým a z toho, jak jsme si dané 2 vrcholy definovali, tak nemohou sousedit ani tyto dva vrcholy. Tedy k těmto 14 vrcholům máme ještě další 2. Tudíž dohromady minimálně 16 vrcholů. \lightning. Tedy graf musí být spojitý.
+    \end{reseni}
+\end{priklad}
+
+
+\end{document}

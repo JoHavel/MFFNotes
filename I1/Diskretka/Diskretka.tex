@@ -416,4 +416,122 @@
         \end{dukazin}
     \end{veta}
 
+% 16. 11. 2020
+
+    \begin{priklad}[Kolik je grafů na $n$ vrcholech? Kolik je neizomorfních?]
+        Grafů je tolik, kolik je podmnožin množiny všech hran, tedy $2^{\binom{n}{2}}$.
+
+        Izomorfních grafů jednomu grafu nemůže být více než $n!$, tedy neizomorfních bude více jak
+        $$ \frac{2^{\binom{n}{2}}}{n!} $$ 
+    \end{priklad}
+
+    \begin{definice}[Podgraf a indukovaný graf]
+        Graf $G' = (V', E')$ je podgrafem (značíme $G' \subseteq G$) grafu $G = (V, E) ≡ V' \subseteq V \land E' \subseteq E$.
+
+        Graf $G' = (V', E')$ je indukovaným (množinou $V'$, značíme $G\[V'\]$) podgrafem grafu $G = (V, E) ≡ V' \subseteq V \land E' = E \cap \binom{V'}{2}$.
+    \end{definice}
+
+    \begin{definice}[Cesta v grafu]
+        Cesta v grafu $G$ je:
+
+        1.) $G' \subseteq G: G' \cong P_n$ pro nějaké $n$.
+
+        2.) $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou navzájem různé vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+    \end{definice}
+
+    \begin{definice}[Kružnice (cyklus) v grafu]
+    
+
+        1.) $G' \subseteq G: G' \cong C_n$ pro nějaké $n$.
+
+        2.) $(v_0, e_0, v_1, e_1, v_2, …, v_{n-1}, e_{n-1}, v_0)$, kde $v_0, …, v_{n-1}$ jsou navzájem různé vrcholy, $e_1, …, e_{n-1}$ jsou hrany, $\forall i e_i = \{v_{i}, v_{(i+1) \mod n}\}$.
+    \end{definice}
+
+    \begin{definice}[Souvislý graf]
+        Graf $G$ je souvislý $≡ \forall u, v \in V(G) \exists$ cesta v $G$ s krajními vrcholy $u, v$.
+    \end{definice}
+
+    \begin{definice}[Dosažitelnost]
+        Dosažitelnost v $G$ je binární relace $\sim$ na $V(G)$ taková, že $u \sim v ≡ \exists$ cesta v $G$ s krajními vrcholy $u, v$.
+    \end{definice}
+
+    \begin{lemma}
+        Relace $\sim$ je ekvivalence.
+        \begin{dukazin}
+            Reflexivita: $u \sim u$ (existuje triviální cesta).
+
+            Symetrie: $u \sim v \Leftarrow v \sim u$ (koncové vrcholy cesty jsou neuspořádaná dvojice).
+
+            Tranzitivita: $u \sim v \land v \sim w \implies u \sim w$ (definice a lemmátko viz dále, $\sim$ můžeme definovat i pomocí sledů, které už lze „slepovat“).
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Komponenty souvislosti]
+        Komponenty souvislosti jsou podgrafy indukované třídami ekvivalence.
+    \end{definice}
+
+    \begin{dusledek}
+        Graf je souvislý $\Leftarrow$ má 1 komponentu.
+    \end{dusledek}
+
+    \begin{definice}[Sled, tah]
+        Sled (walk) je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+
+        Tah je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou navzájem různé hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+    \end{definice}
+
+    \begin{lemma}[Lemmátko]
+        $\exists$ cesta mezi $u, v$ $\Leftrightarrow \exists$ sled mezi $u, v$.
+        \begin{dukazin}
+            $(\implies)$ triviální. $(\Leftarrow)$ Uvažujme sled $S$. Kdyby se v $S$ neopakovaly vrcholy, je to cesta. Pokud $v_k = v_l$, potom $(v_0, e_1, v_1, …, e_k, (v_k = v_l), e_{l+1}, v_{l+1}, …, e_n, v_n)$ je kratší sled, označme ho $S$. Opakujeme dokud $S$ není cesta.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Matice sousednosti]
+            Matice sousednosti $A(G)$ grafu $G$ při očíslování vrcholů $v_1, …, v_n \in V(G)$ je
+            $$ A_{ij} := \[{v_i, v_j} \in E\] $$ 
+    \end{definice}
+
+    \begin{poznamka}[Značení výše]
+        $[\phi]$ dává 1, pokud $\phi$ platí, a 0, pokud $\phi$ neplatí.
+    \end{poznamka}
+
+    \begin{poznamka}[Matice sousednosti]
+        Je symetrická.
+
+        Součty řádků / sloupců jsou stupně vrcholů.
+
+        $t$-tá mocnina udává kolik sledů délky $t$ existuje mezi danými vrcholy. (Důkaz indukcí.)
+    \end{poznamka}
+
+    \begin{priklad}
+        Počet trojúhelníků v grafu.
+
+        \begin{reseni}
+            Uzavřený sled délky 3 je trojúhelník. Tedy umocníme $A$ na třetí a podíváme se na diagonálu (sečteme a vydělíme 6).
+        \end{reseni}
+    \end{priklad}
+
+    \begin{definice}[Vzdálenost (grafová metrika)]
+        $d_G: V^2 \rightarrow ®N$. $d_G (u, v) :=$ minimum z délek všech cest mezi $u, v$.
+
+        \begin{dukazin}[Metrika]
+            $d(u, v) ≥ 0$ (velikosti nezáporné).
+
+            $d(u, v) = 0 \Leftrightarrow u = v$ (když jsou totožné, tak cesta neobsahuje žádnou hranu, když nejsou, tak naopak musí obsahovat nějakou hranu).
+
+            $d(u, v) = d(v, u)$ (cesta není orientovaná).
+
+            $d(u, v) ≤ d(u, w) + d(w, v)$ (slepením dvou cest dostanu sled a ten lze \emph{zmenšit} na cestu)
+        \end{dukazin}
+    \end{definice}
+
+    \begin{definice}[Grafové operace]
+        $G+v$, $G+e$ je přidání vrcholu či hrany. $G - v$, $G-e$ je naopak smazání (v případě mazání vrcholu vytváříme indukovaný podgraf = mažeme i hrany z tohoto vrcholu). $G\% e$ je dělení hrany (vytvořím vrchol „uprostřed“ = hrana $e = \{u, v\} \rightarrow$ hrany $\{u, x\}$ a $\{x, v\}$ a vrchol $x$). $G.e$ je kontrakce hrany („slepíme“ vrcholy hrany).
+    \end{definice}
+
+    \begin{poznamka}[Pozorování]
+        Cesty (resp. vrcholy) jde vyrábět postupným dělením $P_1$ (resp. $C_3$) a libovolnou cestu (kružnice) lze „zkontrahovat“ do $P_1$ ($C_3$).
+    \end{poznamka}
+
 \end{document}

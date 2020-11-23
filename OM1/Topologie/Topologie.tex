@@ -752,6 +752,83 @@
         \end{dukazin}
     \end{veta}
 
+% 16. 11. 2020
+
+    \begin{tvrzeni}
+            Kompaktní podprostory (®K) jsou uzavřené v Hausdorffových prostorech (®X).
+        \begin{dukazin}
+                Pro $x \in ®X \setminus ®K$ fixované a $y \in ®K$ existují disjunktní $U_y$ a $V_y$ v ®x, že $x \in U_y$ a $y \in V_y$. $\{V_y: y \in ®K\}$ je otevřené pokrytí ®K. ®K je kompaktní, tedy $exists y_1, …, y_n \subseteq ®K$, že $V_{y_1} \cup … \cup V_{y_n} \supseteq ®K$. $x \in \bigcap_{i=1}^n U_{y_i}$ otevřené je disjunktním s $\bigcup V_{y_i}$, tedy i disjunktní s ®K. Tedy $®X \setminus ®K$ je otevřená, tj. ®K je uzavřená.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Automatický homeomorfismus]
+        Ať ®X, ®Y jsou kompaktní Hausdorffovy TP a $f: ®X \rightarrow ®Y$ spojitá. a) Pokud je $f$ na, pak $f$ je kvocientové. b) Pokud je $f$ bijekce, pak $f$ je homeomorfismus.
+
+        \begin{dukazin}
+            a) Stačí ukázat, že $f$ je uzavřené zobrazení. Ať $F \subseteq ®X$ je uzavřená. Pak $F$ je kompaktní, $f$ spojitá, tedy $f(F)$ je kompaktní. Podle předchozího tvrzení je $f(F)$ uzavřená v ®Y.
+
+            b) Okamžitý důsledek a).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Ať $\tau$ je kompaktní Hausdorffova topologie na ®X. Pak $\tau$ je maximální kompaktní topologie a minimální Hausdorffova.
+    \end{poznamka}
+
+    \begin{lemma}[Alexandrovo]
+        Ať ®X je TP a ©S jeho subbáze. Předpokládejme, že z každého pokrytí $©U \subseteq ©S$ lze vybrat konečné podpokrytí. Pak ®X je kompaktní.
+        \begin{dukazin}[Sporem]
+            Předpokládejme pro spor, že existuje otevřené pokrytí ®X, které nemá konečné podpokrytí. Označme $©P$ množinu všech takových pokrytí. $©P ≠ \O$. Ať $©L \subseteq ©P$ je řetězec vzhledem k $\subseteq$. Pak $\bigcup ©L \in ©P:$ Zřejmě $\bigcup ©L$ je otevřené pokrytí ®X. Kdyby existovalo $©F \subseteq \bigcup ©L$ konečné podpokrytí, pak existuje $©U \in ©L$, že $©F \subseteq ©U$. Tedy ©U má konečné podpokrytí $\lightning$.
+
+            Tedy podle Zormova lemmatu existuje maximální prvek $©U \in ©P$. Ukážeme, že $©U \cap ©S$ je pokrytí ®X: Ať $x \in ®X$. Pak existuje $U \in ©U: x \in U$. Zároveň existuje $S_1, …, S_n, n \in ®N$, že $x \in S_1 \cap … \cap S_n \subseteq U$. Tvrdíme, že pro nějaké $i ≤ n: S_i \in ©U$: Kdyby ne, pak $\forall i ≤ n: S_i \notin ©U$. Tedy $©U \cup \{S_i\} \notin ©P$ (©U byl maximální prvek ©P). Tedy existuje $©F_i \subseteq ©U$ konečná, že $©F_i \cap \{S_i\}$ je pokrytí ®X. Pak $\bigcup_{i ≤ n} ©F_i \cup \{U\}$ je pokrytí ®X, je konečné, je to podpokrytí ©U. Spor.
+
+            Tedy $x \in S_i \in ©S \cap ©U$. Tedy $©U \cap ©S$ je pokrytí ®X. Podle předpokladu má $©S \cap ©U$ konečné podpokrytí, tedy ©U má konečné podpokrytí. Spor s volbou ©U.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Tichonova]
+        Součin kompaktních prostorů je kompaktní.
+
+        \begin{dukazin}
+            Ať $(®X_i, \tau_i)$, $i \in I$, jsou kompaktní TP. Ať $®X = \prod ®X_i$. $\tau$ součinová topologie na ®X. Ať $©S := \{\pi_i^{-1}(U): U \in \tau_i, i \in I\}$. ©S je subbáze $\tau$. Ověříme, že ©S splňuje předpoklady Alexandrova lemmatu. Ať $©U \subseteq ©S$ je pokrytí ®X. Pro $i \in I$ označme $©U_i = \{U \in \tau_i: \pi_i^{-1}(U) \in ©U\}$. Tvrdíme, že existuje $i \in I$, že $©U_i$ je pokrytí $®X_i$: Kdyby ne, pak $\forall i \in IL ©U_i$ nepokrývá $®X_i$, tedy existuje $x_i \in ®X_i \setminus \bigcup \{V: V \in ©U_i\}$. Nyní $x:=(x_i)_{i \in I} \in ®X$, ale $x\notin \bigcup ©U$. Tedy ©U nepokrývá ®X, spor.
+
+            $®X_i$ je kompaktní, tedy existuje $©K \subseteq ©U_i$ konečná, že $\bigcup ©K = ®X_i$. Zřejmě $\{\pi_i^{-1}(U): U \in ©K\}$ je konečné podpokrytí ®X prvky z ®U. Podle Alexandrova lemmatu je ®X kompaktní.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Spojitý obraz kompaktu nezvýší váhu]
+        Ať ®X je kompaktní a ®Y Hausdorffův. Ať $f: ®X \rightarrow ®Y$ je spojité a na. Potom $\weight(®Y) ≤ \weight(®X)$.
+        
+        \begin{dukazin}
+            Ať ©B je báze ®X. Můžeme předpokládat, že ©B je uzavřená na konečné sjednocení (tím nezvýšíme mohutnost nekonečné báze). Definujeme $©C:=\{®Y \setminus f\(®X \setminus B\): B \in ©B\}$. ©C sestává z otevřené množiny. Ukážeme, že ©C je báze ®Y. Ukážeme, že ©C je báze ®Y: Ať $y \in ®Y$ a $V \in ©U(y)$ otevřená, pak $f^{-1}(y) \subseteq f^{-1}(V)$. ©B je báze, tedy $\forall x \in f^{-1}(y) \exists B_x \in ©B: x \in B_x \subseteq f^{-1}(V)$. $f^{-1}(y)$ je kompaktní a $\{B_x: x \in f^{-1}(y)\}$  je otevřené pokrytí $f^{-1}(y)$. Tedy existuje $x_1, …, x_n \in f^{-1}(y): B_{x_1} \cup … \cup B_{x_n} \supseteq f^{-1}(y)$.
+
+            Navíc $B \subseteq TODO$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+\section{Prostory spojitých funkcí na kompaktech}
+    \begin{definice}
+        Pro TP ®X, ®Y značíme symbolem $C(®X, ®Y)$ množinu všech spojitých funkcí ®x do ®Y. Pokud $®Y = ®R$, pak píšeme pouze $C(®X)$.
+
+        Topologie bodové konvergence: $C(®X, ®Y) \subseteq ®Y^{®X}$ se součinovou topologií.
+
+        Pro ®X kompaktní je $C(X)$ se supremovou normou Banachův prostor.
+    \end{definice}
+
+    \begin{tvrzeni}[Diniho kriterium pro stejnoměrnou konvergenci]
+        Ať ®X je kompaktní TP a $f_n: ®X \rightarrow ®R$ spojitá, že $f_{n+1} ≥ f_n, n \in ®N$ a $f_n$ bodově konverguje ke spojité funkci $f$. Pak $f_n$ konverguje stejnoměrně k $f$.
+        \begin{dukazin}
+                Ať $\epsilon > 0$ ať $D_n = \{x \in ®X: f(x) - f_n(x) < \epsilon\}$. Pak $D_n$ je otevřená pro $n \in ®N$. Navíc z monotonie $D_1 \subseteq D_2 \subseteq …$. $\bigcup_{n=1}^∞ = ®X$. ®X kompaktní, tedy existuje $n_0$, že $D_{n_0} = ®X$. Tedy $|f(x) - f_{n_0}(x)| < \epsilon$ pro libovolné $x \in ®X$. Pak pro $n ≥ n_0: f(x) - f_n(x) ≤ f(x) - f_{n_0}(x) < \epsilon$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{lemma}[O odmocnině]
+        Existuje posloupnost polynomů, která na intervalu $\[0, 1\]$ konverguje stejnoměrně k $\sqrt{t}$.
+
+        \begin{dukazin}
+                Položme $p_0(t) = 0$, $p_{n+1}(t) = p_n(t) + \frac{t - p_n^2(t)}{2}, n≥0$. Každé $p_n$ je polynom v proměnné $t$. $\forall n \in ®N: p_n(t) ≤ \sqrt{t}$ a $p_1(t) ≤ p_{n+1}(t), t \in \[0, 1\]$ (dokazatelné indukcí). Tedy pro každé $t \in \[0, 1\]$ je posloupnost $(p_n(t))_{n=1}^∞$ neklesající a shora omezená, tedy má vlastní limitu $L = L + \frac{t - L^2}{2} \implies L = \sqrt{t}$.
+        \end{dukazin}
+    \end{lemma}
 
 
 \end{document}

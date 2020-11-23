@@ -341,4 +341,66 @@
         \end{reseni}
     \end{priklad}
 
+% 16. 11. 2020
+
+    \begin{veta}[Stolzova]
+        Nechť $\{x_n\}$, $\{y_n\}$ jsou posloupnosti splňující: a) $y_n$ je rostoucí a $\lim_{n \rightarrow ∞} y_n = ∞$; b) $\lim_{n \rightarrow ∞} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = A$.
+
+        Pak $\lim_{n \rightarrow ∞} \frac{x_n}{y_n} = A$.
+
+        \begin{dukazin}
+            1. Dokážeme pomocné tvrzení: Nechť $\{a_n\}$, $\{b_n\}$ jsou posloupnosti splňující: a) $b_n > 0$, $n \in ®N$, $\lim_{n \rightarrow ∞} (b_1 + … + b_n) = ∞$; b) $\lim_{n \rightarrow ∞} a_n = a$.
+            $$ \text{Pak } \lim_{n \rightarrow ∞} \frac{a_1b_1 + … + a_nb_n}{b_1 + … + b_n} = a. $$
+            Důkaz: Položme $c_{n, k} = \frac{b_k}{b_1 + … + b_n}$. Ověříme předpoklady Toeplitzovy věty (předpoklad 1 díky podmínce 1, předpoklad 2 vychází automaticky z definice $c_{n, k}$, stejně tak 3, jelikož $c_{n,k} ≥ 0$). Pak limita výše je přesně výsledek TV.
+
+            2. krok: Předpokládejme, že $y_1 > 0$. Definujme $a_n = \frac{x_n - x_{n-1}}{y_n - y_{y-1}}$, $b_n = y_n - y_{n-1}$, $n≥2$, $a_1 = \frac{x_1}{y_1}$, $b_1 = y_1$. Následuje ověření předpokladů 1. kroku.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{priklad}
+        Nechť $\lim_{n \rightarrow ∞}(a_{n+1} - a_n) = a \in ®R$. Spočtěte $\lim_{n \rightarrow ∞} \frac{a_n}{n}$.
+        \begin{reseni}
+            Stolzova věta pro $x_n = a_n, y_n = n$. Výsledek $a$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}
+        $\lim_{n \rightarrow ∞} \frac{1^k + 2^k + … + n^k}{n^{k+1}}, k \in ®N$
+        \begin{reseni}
+            $$ x_n = 1^k + 2^k + … + n^k, y_n = n^{k+1} $$
+            $$ \lim_{n \rightarrow ∞} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n \rightarrow ∞} \frac{n^k}{n^{k+1} - (n-1)^{k+1}} = \frac{1}{k+1} $$ 
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[Teoretický příklad 7:]
+        Pro dané $k \in ®N$ spočtěte limitu
+        $$ \lim_{n \rightarrow ∞} \(\frac{1^k + 2^k + … + n^k}{n^k} - \frac{n}{k+1}\). $$ 
+    \end{priklad}
+
+    \begin{priklad}
+        Nechť $\lim_{n \rightarrow ∞} a_n = a$. Spočtěte
+        $$ \lim_{n \rightarrow ∞} \frac{1}{\sqrt{n}}\(a_1 + \frac{a_2}{\sqrt{2}} + … + \frac{a_n}{\sqrt{n}}\). $$
+        \begin{reseni}
+            Stolzova věta s $x_n = a_1 + \frac{a_2}{\sqrt{2}} + … + \frac{a_n}{\sqrt{n}},\ \ y_n = \sqrt{n}$.
+            $$ \lim_{n \rightarrow ∞} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n \rightarrow ∞} \frac{\frac{a_n}{\sqrt{n}}}{\sqrt{n} - \sqrt{n-1}} = a· \lim_{n \rightarrow ∞} \frac{1}{\sqrt{n}(\sqrt{n} - \sqrt{n-1})} = a · 2 = 2a. $$ 
+        \end{reseni}
+
+        \begin{poznamkain}[Speciálně $a=1$]
+            $$ \lim_{n \rightarrow ∞} \frac{1}{\sqrt{n}}·\(\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + … + \frac{1}{\sqrt{n}}\) = 2 $$ 
+        \end{poznamkain}
+    \end{priklad}
+
+    \begin{priklad}
+        Nechť $\lim_{n \rightarrow ∞} a_n = a$. Spočtěte
+        $$ \lim_{n \rightarrow ∞} \frac{1}{\log n}\(\frac{a_1}{1} + \frac{a_2}{2} + … + \frac{a_n}{n}\). $$ 
+        \begin{reseni}
+            Stolzova věta s $x_n = \frac{a_1}{1} + … + \frac{a_n}{n}, y_n = \log n$.
+            $$ \lim_{n \rightarrow ∞} \frac{x_n - x_{n-1}}{y_n - y_{n-1}} = \lim_{n \rightarrow ∞} \frac{\frac{a_n}{n}}{\log n - \log (n - 1)} = \lim_{n \rightarrow ∞} a_n · \lim_{n \rightarrow ∞} \frac{1}{n\(\log \frac{n}{n-1} \)} = a·1 = a $$ 
+        \end{reseni}
+
+        \begin{poznamkain}[Speciálně]
+                $$ \lim_{n \rightarrow ∞} \frac{1}{\log n} (1 + \frac{1}{2} + … + \frac{1}{n}) = 1 $$ 
+        \end{poznamkain}
+    \end{priklad}
+
 \end{document}

@@ -425,6 +425,34 @@
         Expanze makra: ověříme separátory (před \verb|#1|), další parametry můžou být separované (v definici) parametr je pak do prvního výskytu separátoru na správné úrovni uzávorkování (pokud je správně uzávorkovaný, tak se odeberou krajní závorky (\verb|{}{} -> {}{}| ale \verb|{abc} -> abc|)), nebo neseparované, pak se smažou mezery a vezme se nejkratší neprázdný správně uzávorkovaný text s odebranými vnějšími závorkami (nebo jako samostatný znak, pokud to byl jen 1 znak) jako parametr.
 
         Výjimka, \verb|#{| značí, že \verb|{| je separátor, ale zůstane i po použití makra (\verb|\def\a#1#{<#1>}| se po zavolání \verb|\a123{456}| expanduje na \verb|<123>{456}| místo \verb|<1>23{456}|).
+
+% 16. 11. 2020
+
+        Při definici pomocí \verb|\def\xyz…{tělo}| se neexpanduje nic, při zavolání makra se volání s parametry nahradí tělem s doplněnými parametry, expand procesor se „vrátí“ (vytvoří nový input kanál, který se po projití zavře) a projde „znovu“ tělo.
+
+        \verb|\def| je lokální, tedy se občas musí použít \verb|\global\def| nebo zkráceně \verb|\gdef|. Při definici se může expandovat i tělo příkazem \verb|\edef|, např. \verb|\edef\x{\the\pageno}| uloží do \verb|\x| číslice „aktuální“ (pozor na vracení se při zlomu) stránky. Dalším příkladem je \verb|\def\seznam{}    \def\pridej#1{\edef\seznam{\seznam #1}}| (ne moc dobrá definice, nevýhody jsou kvadratická složitost přidání a expandující se vložené prvky (lze opravit \verb|\noexpand|, ale expanduje se příště)). Globální \verb|\edef| je \verb|\xdef|.
+
+        Existuje ochrana, že v parametrech běžně definovaných maker nemůže být \verb|\par| (pro lepší hlášení chyb), ta se dá vypnout \verb|\long\def…|. Naopak můžeme o makru říct, že nelze volat uvnitř skupiny, a to makrem \verb|\outer\def…| (lze odstranit přenastavením \verb|\outer| na \verb|\relax| před kompilací).
+
+        \TeX  si pamatuje definice ve dvou tabulkách: table of meanings (řídící sekvence (cs) -> primitiva, registry, makra, znak, token typu dvojice) a definice maker. Makro \verb|\let cs [=] token| přiřazuje řídící sekvenci meaning daného tokenu. Meaning lze vypsat příkazem \verb|\meaning|.
+
+        \verb|\noexpand token| zabrání (jednou) expanzi tokenu. \verb|\expandafter token1 token2| expanduje token2 a token1 „vrátí“ před něj a pokračuje expanzí od token1. Pomocí makra \verb|\number registr| (podobně jako \verb|the|) lze dostat číslice čísla v registru. Dále existují \verb|\romannumeral, \string^^A = ^_12 ^_12 A_12 |, pro velká římská čísla lze použít makro (zpracovávající se v hlavním procesoru) \verb|\uppercase{…}| (pozor, vnitřek neexpanduje, posílá ho zpět expand procesoru, takže to chce \verb|[\expandafter]\uppercase\expandafter{\romannumeral\pageno}|, první nemusí být, protože \verb|\uppercase| expanduje, aby „našel“ parametry), podobně \verb|\lowercase|, \verb|\jobname| vypíše název souboru, ze kterého \TeX aktuálně běží? \verb|\csname a_12 b_12 c_12\endcsname| vyrobí krabičku označenou ASCII hodnotami \verb|abc|. Takováto krabička se netestuje při expanzi (třeba na existenci, nebo právě jestli smí obsahovat \verb|\par|, nebo zda není \verb|outer|).
+    \end{definice}
+
+    \begin{priklad}
+        \verb|{\catcode`@=\active\expandafter}\expandafter\def\noexpand @ \{tělo @\}| definuje @ jako aktivní znak, pak mu nadefinuje meaning, pak zavře skupinu a dodefinuje meaning zase se správnou kategorií.
+    \end{priklad}
+
+    \begin{poznamka}[Debug]
+        Existuje makro \verb|\showbox N|, které do logu vypíše registr \verb|\box N|. Modifikovat (jak moc toho bude vypisovat) se dá pomocí hodnot „countů“ \verb|\showboxbreath| a \verb|\showboxdepth|.
+    \end{poznamka}
+
+    \begin{definice}[Podmínky]
+        Podmínky se vyhodnocují v expand procesoru.
+        
+        \verb|\if…, YES[\else NO]\fi|
+
+        \verb|\ifnmum \count 0 < 100|, \verb|\ifdim|, \verb|\ifhmode|
     \end{definice}
 
 \end{document}

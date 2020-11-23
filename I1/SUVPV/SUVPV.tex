@@ -201,6 +201,27 @@
         Na spočítání rozdělení do podtříd a vah se používá metoda EM (expectation, Maximization), kde se několikrát zopakuje rozdělení na základě aktuálních vah (v podstatě klasifikaci) a updatování průměru a variance.
     \end{definice}
 
+% 9. 11. 2020
 
+\section{Hodnocení klasifikátoru}
+    \begin{definice}[Matice zaměňování - binární klasifikace]
+        4 hodnoty TP, FN, FP, TN (True / False = klasifikováno správně nebo špatně, Positive / Negative = klasifikováno pozitivně nebo negativně).
+        
+        $ Accuracy = \frac{TP + TN}{P + N} $ má problém, když není dataset rovnoměrný (např. klasifikátor klasifikuje vždy negativně a v setu je jen 1 pozitivní, tak je accuracy 99\%). Místo toho lze použít $Error rate = 1 - Accuracy$ a jiné „rates“, např $Recall = \frac{TP}{P}$ a $Precision = \frac{TP}{TP + FP}$ (používají se pro sledování thresholdu v grafu křivky Recall -- Precision), $true positiv rate = TPR = \frac{TP}{P}$ a $FPR = \frac{FP}{N}$ (dohromady tzv. ROC křivka).
+    \end{definice}
+
+    \begin{definice}[F skore]
+        Zkombinovaný recall a precision, má 1 parametr ($t$ je threshold)
+        $$ F_\beta (t) = \frac{(1+\beta^2)p(t)r(t)}{r(t)+\beta^2p(t)}. $$
+
+        Pro balancovaný model chceme maximalizovat $F_1$.
+    \end{definice}
+
+    \begin{definice}[Loss funkce]
+        Znázorňuje cenu za špatné rozhodnutí.
+
+        Zero-one loss je standardní loss funkce (1, když klasifikoval špatně, 0 když dobře).
+
+    \end{definice}
 
 \end{document}
