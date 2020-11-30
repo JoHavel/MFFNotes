@@ -534,4 +534,98 @@
         Cesty (resp. vrcholy) jde vyrábět postupným dělením $P_1$ (resp. $C_3$) a libovolnou cestu (kružnice) lze „zkontrahovat“ do $P_1$ ($C_3$).
     \end{poznamka}
 
+% 23. 11. 2020
+
+    \begin{definice}[Eulerovský tah]
+        Eulerovský tah je takový tah, který obsahuje všechny vrcholy a hrany grafu.
+    \end{definice}
+
+    \begin{definice}[Uzavřený tah]
+        Tah, ve kterém je první a poslední vrchol totožný.
+    \end{definice}
+
+    \begin{definice}[Eulerovský graf]
+        Graf je eulerovský $≡$ existuje v něm uzavřený eulerovský tah.
+    \end{definice}
+
+    \begin{veta}[O eulerovských tazích]
+        Graf $G$ je eulerovský $\Leftrightarrow G$ je souvislý $\land \forall v \in V(G): \deg_G(v)$ je sudý.
+        \begin{dukazin}
+            $(\implies)$ Zřejmé z toho, že mezi každými vrcholy vede tah a že musí do vrcholu „vstupovat“ a „vystupovat“ z něho.
+
+            $(\Leftarrow)$ Uvažme $T := $ libovolný nejdelší tah. 1. $T$ je uzavřený (sporem: Krajní vrchol má „použito“ lichý počet hran, tedy existuje ještě jedna hrana jdoucí z tohoto vrcholu. Tu ale můžeme přidat do $T$, tedy nebyl nejdelší $\lightning$.) 2. $T$ je eulerovský: a) $\{u, v\} \in E(G),\ u, v \in T \implies \{u, v\} \in T$ (Sporem, kdyby ne, tak při některém „průchodu“ vrcholem $u$ tah $T$ „rozpojíme“ a na konec přidáme $\{u, v\}$, čímž dostaneme větší graf, $\lightning$.) b) $T$ obsahuje všechny vrcholy (Kdyby $\exists u \in V(E) \land u \notin T:$ zvolíme $v \in T$ libovolně a ze souvislosti $G$ víme, že existuje cesta $C$ mezi $u, v$. $\exists r, s \in C: r\in T, s \notin T, \{r, s\}\in E(C)$, tedy $T$ „rozpojíme“ v $R$ a prodloužíme o $\{r, s\}$, tedy $T$ není nejdelší $\lightning$.)
+        \end{dukazin}
+    \end{veta}
+
+    \begin{priklad}
+        $G$ obsahuje otevřený eulerovský tah $\Leftrightarrow$ $G$ je souvislý $\land$ právě dva vrcholy mají lichý stupeň.
+    \end{priklad}
+
+    \begin{poznamka}
+        Věta o eulerovských tazích platí i pro multigrafy. (Smyčky musíme do stupně vrcholu počítat dvakrát. To už musíme pro paritu součtu stupňů.)
+    \end{poznamka}
+
+    \subsection{Orientované grafy}
+        \begin{poznamka}[Co se změnilo]
+            Sledy, tahy, cesty, kružnice jsou orientované. Hranám se říká šipky. Matice sousednosti není symetrická. Hlavně se změní souvislost.
+        \end{poznamka}
+
+        \begin{definice}[Podkladový graf, slabá a silná souvislost]
+            Pro orientovaný graf $G=(V, E)$ nazveme $G^0 = (V, E^0)$, kde $\{u, v\} \in E^0 ≡ (u, v) \in E \lor (v, u) \in E$, podkladovým grafem.
+
+            Graf je slabě souvislý právě tehdy, když jeho podkladový graf je souvislý. Slabě souvislá komponenta je slabě souvislý podgraf / komponenta souvislosti podkladového grafu.
+
+            Graf je silně souvislý $≡ \forall u, v \in V(G)\ \exists$ orientovaná cesta z $u$ do $v$. Silně souvislá komponenta je silně souvislý podgraf.
+
+            *Graf je polosouvislý $≡ \forall u, v \in V(G)\ \exists$ cesta z $u$ do $v$ nebo z $v$ do $u$.
+        \end{definice}
+
+        \begin{definice}[Stupně]
+                $\deg^{in}(v) := \#u: (u, v) \in E$, $\deg^{out}(v) := \#v: (u, v) \in E$. (Občas se používá $\deg^+$ a $\deg^-$, tam se však nelze shodnout, co je co.)
+        \end{definice}
+
+        \begin{definice}
+            Graf je vyvážený $≡ \forall v \in V: \deg^{in}(v) = \deg^{out}(v)$.
+        \end{definice}
+
+        \begin{veta}
+            Následující vlastnosti orientovaného grafu $G$ jsou ekvivalentní: 1. $G$ je vyvážený a slabě souvislý, 2. $G$ je eulerovský, 3. $G$ je vyvážený a silně souvislý.
+            \begin{dukazin}
+                $(3\implies 1)$ je zřejmé, jelikož silně souvislý graf je i slabě souvislý. $(2 \implies 3)$ $\exists$ orientovaný tah $u\rightarrow v \implies \exists$ cesta $u \rightarrow v$. $(1 \implies 2)$ analogicky Větě o eulerovských tazích. 
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Stromy}
+        \begin{definice}[Strom]
+            Strom je souvislý graf bez kružnic (tzv. acyklický graf).
+        \end{definice}
+
+        \begin{definice}[Les]
+            Les je acyklický graf. (Jeho komponenty souvislosti jsou stromy.)
+        \end{definice}
+
+        \begin{definice}[List]
+            List je vrchol stupně 1.
+        \end{definice}
+
+        \begin{upozorneni}
+            Existuje právě jeden strom bez listů (jednovrcholový).
+        \end{upozorneni}
+
+        \begin{lemma}[O koncovém vrcholu]
+            Každý strom s alespoň 2 vrcholy má alespoň 2 listy.
+            \begin{dukazin}
+                Uvažme nejdelší cestu ve stromu, potom krajní vrcholy jsou listy (Sporem: kdyby krajní vrchol nebyl list, pak z něj vede hrana, která neleží na cestě a jejíž druhý vrchol buď na této cestě už leží (spor s acykličností), nebo neleží (spor s maximalitou)).
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}[Vandalské (trháme listy) a pěstovatelské (necháváme vyrůst listy)]
+            Nechť $v$ je list grafu $G$. Pak $G$ je strom $\Leftrightarrow G - v$ je strom.
+            \begin{dukazin}
+                $(\implies)$ Odebráním vrcholu nevznikne kružnice, přes list nemohla vést cesta (jelikož je stupně 1).
+
+                $(\Leftarrow)$ Přidáním vrcholu stupně 1 nevznikne kružnice, z tranzitivity dosažitelnosti vede z libovolného vrcholu do listu cesta.
+            \end{dukazin}
+        \end{lemma}
+
 \end{document}

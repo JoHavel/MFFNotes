@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+\usetikzlibrary{arrows}
+
+\begin{document}
+
+\begin{priklad}[1]
+    V 2. příkladu na cviku jsme si dokázali, že Eulerovský graf lze rozložit na hranově disjunktní sjednocení kružnic. Ukažte, že počet těchto kružnic není jednoznačně určen (tj. existuje graf, který má alespoň dva různé rozklady, a tyto rozklady mají různý počet kružnic).
+
+    \begin{reseni}
+        \definecolor{eqeqeq}{rgb}{0.8784313725490196,0.8784313725490196,0.8784313725490196}
+        \definecolor{qqqqff}{rgb}{0.,0.,1.}
+        \definecolor{ffqqqq}{rgb}{1.,0.,0.}
+        \definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+        \definecolor{qqffqq}{rgb}{0.,1.,0.}
+        \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+                \clip(-1.4407975308084586,-2.2085755673407665) rectangle (5.741259518506112,3.5404028132010747);
+                \draw [line width=2.pt] (0.,0.)-- (2.,0.);
+                \draw [line width=2.pt] (2.,0.)-- (1.,1.7320508075688776);
+                \draw [line width=2.pt] (1.,1.7320508075688776)-- (0.,0.);
+                \draw [line width=2.pt,color=qqffqq] (3.,0.)-- (4.,0.);
+                \draw [line width=2.pt,color=qqffqq] (4.,0.)-- (3.5,0.8660254037844388);
+                \draw [line width=2.pt,color=qqffqq] (3.5,0.8660254037844388)-- (3.,0.);
+                \draw [line width=2.pt,color=ffqqqq] (4.,0.)-- (5.,0.);
+                \draw [line width=2.pt,color=ffqqqq] (5.,0.)-- (4.5,0.8660254037844388);
+                \draw [line width=2.pt,color=ffqqqq] (4.5,0.8660254037844388)-- (4.,0.);
+                \draw [line width=2.pt,color=qqqqff] (3.5,0.8660254037844388)-- (4.5,0.8660254037844388);
+                \draw [line width=2.pt,color=qqqqff] (4.5,0.8660254037844388)-- (4.,1.7320508075688776);
+                \draw [line width=2.pt,color=qqqqff] (4.,1.7320508075688776)-- (3.5,0.8660254037844388);
+                \draw [line width=2.pt,color=eqeqeq] (0.5,0.8660254037844388)-- (1.5,0.8660254037844388);
+                \draw [line width=2.pt,color=eqeqeq] (1.5,0.8660254037844388)-- (1.,0.);
+                \draw [line width=2.pt,color=eqeqeq] (1.,0.)-- (0.5,0.8660254037844388);
+                \begin{scriptsize}
+                        \draw [fill=black] (0.,0.) circle (2.5pt);
+                        \draw [fill=black] (2.,0.) circle (2.5pt);
+                        \draw [fill=black] (1.,1.7320508075688776) circle (2.5pt);
+                        \draw [fill=black] (3.,0.) circle (2.5pt);
+                        \draw [fill=black] (4.,0.) circle (2.5pt);
+                        \draw [fill=black] (3.5,0.8660254037844388) circle (2.5pt);
+                        \draw [fill=black] (5.,0.) circle (2.5pt);
+                        \draw [fill=black] (4.5,0.8660254037844388) circle (2.5pt);
+                        \draw [fill=black] (4.,1.7320508075688776) circle (2.5pt);
+                        \draw [fill=black] (0.5,0.8660254037844388) circle (2.5pt);
+                        \draw [fill=black] (1.5,0.8660254037844388) circle (2.5pt);
+                        \draw [fill=black] (1.,0.) circle (2.5pt);
+                \end{scriptsize}
+        \end{tikzpicture}
+
+        Graf tvaru trojúhelníku se středními příčkami (kde vrcholy jsou vrcholy trojúhelníku a středy jeho stran a hrany vedou z vrcholů do příslušných středů stran a mezi středy stran) je eulerovský (je souvislý a má všechny vrcholy sudého stupně, 3 stupně 2 a 3 stupně 4) a lze ho rozložit buď na 3 hranově disjunktní kružnice (třikrát střední příčka a příslušné poloviny stran) nebo na 2 hranově disjunktní kružnice (kružnice tvořená stranami původního trojúhelníku a kružnice tvořená příčkami).
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2]
+    Mějme eulerovský graf $G$. Dokažte, že $G\times C_4$ je také eulerovský. 
+
+
+    \begin{reseni}[Nekonstruktivní]
+        $G\times C_4$ je souvislý, jelikož z každého vrcholu existuje cesta do každého jiného: jestliže $u, v \in V(G)$, pak z eulerovskosti $G$ plyne, že je spojitý a tedy existuje cesta mezi $u$ a $v$. Zároveň víme, že kružnice je též spojitá, tedy existuje cesta mezi libovolnými jejími vrcholy. Tedy pro $(u, x), (v, y) \in V(G\times C_4)$ existují např. cesty mezi $(u, x)$ a $(u, y)$ a mezi $(u, y)$ a $(v, y)$ (nejdříve „po“ $C_4$, následně „po“ $G$). Tedy jejich sjednocením dostanu tah (dokonce cestu) mezi $(u, x)$ a $(v, y)$.
+
+        Zároveň pokud $v \in V(G)$ a $x \in V(C_4)$, potom $\deg_G(v) + \deg_{C_4}(x) = \deg_{G\times C_4}(v, x)$ z definice hran $G\times C_4$ (protože je to sjednocení disjunktních hran „z“ $G$ a hran „z“ $C_4$ v „odpovídajících“ vrcholech). Tedy každý vrchol má sudý stupeň (sudé + sudé = sudé) a tedy graf je eulerovský.
+    \end{reseni}
+
+    \begin{reseni}[Konstruktivní]
+        Představím si, že $G\times C_4$ mám reprezentovaný jako 4 kopie $G$ nad sebou. Tah začnu v nějakém vrcholu, půjdu nejdříve o jeden vrchol po kružnici, pak projdu celé $G$ v dané vrstvě uzavřeným eulerovským tahem, pak půjdu zase o jeden vrchol po kružnici, pak projdu dané $G$, pak zas jeden vrchol a zas $G$, nakonec se po kružnici vrátím zase do bodu, kde jsem začal. Tam projdu graf $G$ v dané vrstvě, ale v každém vrcholu (do kterého „přicházím“ poprvé) „vložím“ do tahu $C_4$ „nad“ tímto vrcholem. Tím jsem prošel všechny hrany právě jednou a všechny vrcholy a skončil jsem v bodě, kde jsem začal. Tedy graf je eulerovský.
+    \end{reseni}
+\end{priklad}
+
+
+\end{document}

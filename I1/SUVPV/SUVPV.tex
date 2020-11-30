@@ -224,4 +224,78 @@
 
     \end{definice}
 
+% 23. 11. 2020
+
+\section{Další klasifikátory}
+    \subsection{Rozhodovací stromy}
+    \begin{definice}[Rozhodovací stromy]
+        Výhoda = nemusíme zavádět vzdálenosti (= můžeme klasifikovat i nominální data = data, u kterých nemá vzdálenost smysl).
+
+        V každém nelistovém vrcholu (uzel) je tzv. test, větve reprezentují výsledky testu, v listech jsou klasifikační třídy.
+
+        Bude nás zajímat, jaké všechny testy můžeme vykonat, jaký test je v každém uzlu použít a jestli je nutné ještě nějaký používat. Snažíme se snížit nečistot (množství tříd) podmnožin, na které dělíme v daném uzlu.
+
+        Každý strom lze převést na binární, tedy budeme používat pouze binární rozhodovací stromy, tedy odpověď testu bude YES / NO. Většinou (v podstatě vždy) se ptáme jen na jeden příznak, protože vybírat a následně testovat podmnožinu je těžké.
+    \end{definice}
+
+    \begin{definice}[Měření „nečistosti“]
+        Chceme, aby byla minimální, když obsahuje právě jednu třídu, naopak pokud každou třídu obsahuje ve stejném poměru a měla by být symetrická vůči výměně tříd.
+
+        Optimalizaci stromu následně budeme dělat maximalizováním úbytku nečistosti (vážený průměr (přes velikosti) podmnožin ve větvích):
+        $$ \Delta I(S, X_i) = I(S) - \sum_j \frac{|S_{ij}|}{|S|}I(S_{IJ}) $$ 
+
+        Existuje několik takových funkcí, například Gini-index (jak moc často bude náhodný objekt špatně klasifikován, když klasifikujeme náhodně podle pravděpodobnost tříd):
+        $$ p_i = \frac{|\{X|X \in \omega_i\}|}{|x_t|}, GI = \sum_{i = 1}^m p_i (1-p_i) $$
+
+        Další možností je používat entropii (tzv. IG = information gained).
+    \end{definice}
+
+    \begin{definice}[Kdy prohlásit daný vrchol za list]
+        Pokud nečistot je menší než nějaký threshold, pokud je velikost množiny dostatečně malá, pokud je vrchol čistý (moc velké stromy, tzv. přeučení $\implies$ nová data budou klasifikována špatně).
+
+        Listu následně bude přiřazena třída, která: má maximální pravděpodobnost v dané množině (nejčastější kritérium), …
+    \end{definice}
+
+    \begin{priklady}
+        Ukázáno na rozhodování, zda se bude něco hrát na základě počasí (teplota, vlhkost, vítr, …) s IG.
+    \end{priklady}
+
+    \begin{upozorneni}
+        IG preferuje hodně hodnot, tedy buď musíme penalizovat rozdělení do více podmnožin (např. vydělením počtem podmnožin, pak zase ale favorizuje nebalancované rozdělení), nebo povolit pouze binární dělení (zkontrolujeme všechny možné dvojice, resp. všechny thresholdy = prahy, v případě číselných hodnot).
+    \end{upozorneni}
+
+    \begin{definice}[Ořezávání = pruning]
+        Lze ořezávat za běhu (pre-pruning = když trénuji), nebo po přeučení (post-pruning).
+
+        Metoda ořezáváni C4.5: veeeeeelký vzorec v prezentaci (spočítá zlepšení rozdělení = zmenšení vážené (velikostí podmnožin) chyby, když uděláme nejlepší test v daném uzlu, pokud se příliš nezmění, nedejbože zhorší, tak místo testu bude uzel list). 
+    \end{definice}
+
+    \begin{poznamka}[Plusy a mínusy]
+        +: Jednoduché, málo přípravy dat, indikuje, co je nejlepší pro rozdělení.
+
+        -: NP-úplný problém, pracuje špatně pro mnoho tříd, dlouhé učení, nebezpečí přeučení.
+    \end{poznamka}
+
+    \begin{definice}[Náhodný les (Breiman 2001)]
+        Každý strom trénujeme na stejných datech, ale testy vybíráme z náhodné podmnožiny / příznak vyrobíme jako náhodnou kombinaci původních příznaků. Klasifikace pak probíhá, že uděláme klasifikaci podle každého stromu a vezmeme nejčastější.
+    \end{definice}
+
+    \subsection{Lineární klasifikátor}
+        \begin{definice}[Lineární klasifikátor]
+            Hledáme nadrovinu, která prostor rozdělí na 2 třídy (podmínkou je, že musí existovat / viz dále).
+
+            Rovina je dána normálovým vektorem $¦w^T¦x + b = 0$. Rozhodování je pak dáno tím, zda je $¦w^T¦x + b$ kladné, nebo záporné. Často to uděláme tak, že přidáme dimenzi a rovina bude procházet počátkem. Dalším trikem je jednu třídu vynásobit $-1$ a následně máme jen jednu podmínku.
+
+            Hledání lineárního klasifikátoru se dělá gradientovou metodou. Tedy iterativně: vybereme náhodný vektor a potom vždy spočítáme gradient účelové funkce, následně od vektoru odečteme learning rate krát gradient a opakujeme počítání gradientu a odčítání. Z taylorova rozvoje navíc můžeme najít přibližně nejlepší learning rate.
+        \end{definice}
+
+        \begin{definice}[Účelové funkce]
+            Nejjednodušší je spočítat, kolik dat jsme klasifikovali špatně krát jak moc špatně $O_P = \sum_{z \in Z} - ¦u^T¦z$ ($Z$ je množina špatně klasifikovaných). Není spojitá, ale dá se použít. Takovéto funkci se říká Piece-wise…
+
+            Aby byla spojitá, dá se použít tzv. kvadratická funkce $O_Q = \sum_{z \in Z}(¦u^T¦Z)^2$. Ta však často konverguje k tomu, že budou data přesně na hranici.
+        \end{definice}
+
+        \begin{definice}[Sekvenční učení]
+            Pokud víme, že daná rovina existuje, tak vezmeme vektor a následně od něj budeme sekvenčně odečítat špatně klasifikované objekt.
+        \end{definice}
 \end{document}

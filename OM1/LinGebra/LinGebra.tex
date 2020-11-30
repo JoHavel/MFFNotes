@@ -832,4 +832,51 @@
                 Přímo z definice.
             \end{dukazin}
         \end{tvrzeni}
+
+% 26. 11. 2020
+
+        \begin{definice}[Konečně generovaný VP]
+            Vektorový prostor ¦V nad tělesem ®T je konečně generovaný, pokud existuje $X \subseteq ¦V$ konečná taková, že $¦V = \LO(X)$.
+        \end{definice}
+
+        \begin{priklady}
+            ®T těleso, $n≥1$, $¦V = T^n$ je konečně generovaný (kanonická báze). $®T = ®R$, $¦V = ®R^\omega = \{(a_1, a_2, …): a_1, a_2, … \in ®R\}$ není konečně generovaný.
+        \end{priklady}
+
+        \begin{tvrzeni}
+            ¦V vektorový prostor nad ®T,() je posloupnost generátorů, která je minimální, pak () je báze ¦V.
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Z každé konečné posloupnosti, která generuje ¦V lze vybrat bázi ¦V.
+
+            Speciálně platí, že každý konečně generovaný vektorový prostor má bázi.
+        \end{dusledek}
+
+        \begin{veta}[Steinitzova věta o výměně (5.60)]
+            Buď ¦V vektorový prostor nad tělesem ®T. Mějme $N = (¦v_1, …, ¦v_k)$ LN posloupnost vektorů ¦V, $G = (¦w_1, …, ¦w_l)$ generující posloupnost vektorů. Pak $k≤l$ a navíc můzeme $G$ přeuspořádat tak, aby po zaměnění prvních $k$ prvků prvky z $N$ stále generovala ¦V.
+            \begin{dukazin}[Indukcí podle $k$]
+                    Pro $k=0$ je závěr věty triviální. Předpokládejme, že závěr věty platí pro LN posloupnost délky $k-1$, kde $k ≥ 1$. Použijeme tento indukční předpoklad na $N':=(¦v_1, …, ¦v_{k-1})$ a $G$. Tj. víme, že $k-1 ≤ l$ a můžeme přeuspořádat $G$ na $G'$. Lineární obal $G'$ s vyměněnými prvky za $N'$, značme $B$, generuje ¦V, tedy speciálně $v_k$ lze vyjádřit jako lineární kombinaci prvků $B$. Ale nedá se vyjádřit pomocí $N'$, tedy $k-1 < l$, a tudíž $k ≤ l$. Zároveň mohu upravit vyjádření této lineární kombinace, aby byl nějaký prvek z $B „\cap“ G'$ vyjádřen za pomoci $v_k$ a zbytku $B$. Takže je mohu vyměnit.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            V konečně generovaném VP mají všechny báze stejný počet prvků.
+        \end{dusledek}
+
+        \begin{definice}
+            Dimenzí konečně generovaného VP ¦V nad ®T rozumíme \#{} prvků libovolné báze ¦V. Značíme $\dim(¦V)$.
+        \end{definice}
+
+        \begin{dusledek}
+            ¦V konečně generovaný VP a $B$ je maximální LN posloupnost. Pak $B$ je báze.
+
+            Obecněji, je-li $G$ generující a $N$ LN, pak lze $N$ doplnit prvky $G$ na bázi ¦V.
+        \end{dusledek}
+
+        \begin{tvrzeni}
+            Buď ¦V konečně generovaný VP a ¦W jeho podprostor. Pak
+            $$ \dim(¦W) ≤ \dim(¦V), $$
+            $$ \dim(¦W) = \dim(¦V) \Leftrightarrow ¦V=¦W $$ 
+        \end{tvrzeni}
 \end{document}

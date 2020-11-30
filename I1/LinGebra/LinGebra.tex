@@ -768,5 +768,72 @@
         Dále jsme si zmiňovali eigenfaces a Lagrangeův interpolační polynom.
     \end{poznamka}
 
+% 26. 11. 2020
 
+    \begin{definice}[Lineární zobrazení (někdy homomorfismus)]
+        Buďte ¦U, ¦V vektorové prostory nad tělesem ®T. Zobrazení $f: ¦U \rightarrow ¦V$ je lineářní, pokud pro každé $¦x, ¦y \in ¦U$ a $\alpha \in ®T$ platí:
+        $$ f(¦x+¦y) = f(¦x) + f(¦y), $$ 
+        $$ f(\alpha x) = \alpha f(x). $$ 
+    \end{definice}
+    
+    \begin{priklady}
+        $f(¦x) = A¦x, f(¦x) = ¦o, id(¦x) = ¦x, f(A) = A^T$, derivace z prostoru reálných diferencovatelných funkcí do prostoru reálných funkcí.
+    \end{priklady}
+
+    \begin{tvrzeni}[Vlastnosti lineárních zobrazení]
+        Obraz lineární kombinace vektorů je lineární kombinace obrazů těchto vektorů.
+
+        Nulový vektor se zobrazí na nulový vektor.
+        \begin{dukazin}
+            Indukcí z definice lineárního zobrazení.
+
+            $f(¦o) = f(0·¦o) = 0·f(¦o) = ¦o$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Obraz a jádro]
+        Buď $f: ¦U \rightarrow ¦V$ lineární zobrazení. Pak definujeme 1. obraz $f(¦U) := \{f(¦x; x \in ¦U)\}$ a 2. jádro $\Ker(f) := \{¦x \in ¦U; f(¦x) = ¦o\}$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Obraz je podprostorem VP do kterého je dané lineární zobrazení, jádro je podprostorem VP ze kterého je dané lineární zobrazení.
+
+        \begin{dukazin}
+            Stačí ověřit, že obsahují $¦o$ a že jsou uzavřené na součty a násobky.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Obraz lineárního obalu je lineární obal obrazů těchto vektorů.
+        \begin{dukazin}
+            Rozdělíme na dvě inkluze. Jedno dokážeme tím, že obraz lineární kombinace je lineární kombinace obrazů. Druhou pak z toho, že obraz je podprostor, tedy s vektory obsahuje i jejich lineární obal.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Zobrazení prosté (injektivní) a na (surjektivní)]
+        Zobrazení $f: ¦U \rightarrow ¦V$ je na, pokud $f(¦U) = ¦V$ (tedy u lineárního zobrazení právě tehdy, pokud se nějaké generátory zobrazí na nějaké generátory).
+
+        Zobrazení $f$ je prosté, když $f(¦x) = f(¦y) \implies ¦x = ¦y$.
+    \end{definice}
+
+    \begin{veta}[Prosté lineární zobrazení]
+        Lineární zobrazení je prosté právě tehdy, pokud je jádro ¦o a to je právě tehdy, když obraz libovolné lineárně nezávislé množiny je lineárně nezávislá množina.
+
+        \begin{dukazin}
+            $(1 \implies 2)$ je z definice, $(2 \implies 3)$ je z toho, že obraz lineární kombinace je lineární kombinace obrazů, $(3 \implies 1)$ sporem $f(x) = f(y) \implies f(x) - f(y) = ¦o \implies f(x-y) = ¦o$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Speciálně lineární zobrazení je prosté, když se dimenze obrazu rovná dimenzi vzoru.
+    \end{dusledek}
+
+    \begin{veta}[Lineární zobrazení a jednoznačnost vůči obrazům báze]
+        Buďte ¦U, ¦V prostory nad ®T a $¦x_1, …, ¦x_n$ báze ¦U. Pak pro libovolné vektory $¦y_1, …, ¦y_n \in ¦V$ existuje právě jedno lineární zobrazení takové, že $f(¦x_i) = ¦y_i, i = 1, …, n$.
+
+        \begin{dukazin}
+            Libovolný vektor vyjádříme jako lineární kombinaci $x_i$ a zobrazíme na lineární kombinaci $y_i$. Jednoznačnost sporem přes dvě vyjádření lineární kombinací.    
+        \end{dukazin}
+    \end{veta}
+    
 \end{document}

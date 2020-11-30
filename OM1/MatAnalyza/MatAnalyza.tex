@@ -1049,4 +1049,55 @@
             Definujeme $\arcsin$ (respektive $\arccos$, $\arctan$, $\arccotg$) jako inverzní funkce k $\sin*$ (respektive $\cos*$, $\tan*$, $\cotg*$).
         \end{definice}
 
+    \subsection{Derivace a Taylorův polynom}
+        \begin{definice}[Derivace]
+            Nechť $f$ je reálná funkce a $a \in ®R$. Pak derivací $f$ v bodě $a$ budeme rozumět
+            $$ f'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h}, $$ 
+            derivací $f$ v bodě $a$ zprava budeme rozumět
+            $$ f_+'(a) = \lim_{h \rightarrow 0+} \frac{f(a+h) - f(a)}{h} $$
+            a derivací $f$ v bodě $a$ zleva budeme rozumět
+            $$ f_-'(a) = \lim_{h \rightarrow 0-} \frac{f(a+h) - f(a)}{h}. $$
+        \end{definice}
+
+        \begin{poznamka}
+            Limita buď existuje a pak je vlastní nebo nevlastní, nebo vůbec neexistuje.
+
+            Ekvivalentní definice je
+            $$ f'(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x-a}. $$
+
+            $$ f'(a) = A \Leftrightarrow (f_+'(a) = A \land f_-'(a) = A). $$ 
+        \end{poznamka}
+
+        \begin{veta}[Vztah derivace a spojitosti]
+            Nechť má funkce $f$ v bodě $a \in ®R$ derivaci $f'(a) \in ®R$. Pak je $f$ v bodě $a$ spojitá.
+            \begin{dukazin}
+                $$ \lim_{x \rightarrow a} f(x) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a} (x-a) + f(a) \overset{\text{AL}}{=} f'(a)·0 + f(a) = f(a). $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Aritmetika derivací (T4.2)]
+            Nechť $f'(a)$ a $g'(a)$ existují. Pak (pokud mají pravé strany smysl)
+            $$ (f+g)'(a) = f'(a) + g'(a). $$
+            Nechť $g$ je spojitá v $a$, pak 
+            $$(f·g)'(a) = f'(a)·g(a) + f(a)·g'(a).$$
+            Nechť je $g$ spojitá v $a$ a $g(a)≠0$, pak
+            $$ \(\frac{f}{g}\)'(a) = \frac{f'(a)·g(a) - f(a)·g'(a)}{g^2(a)}. $$
+            \begin{dukazin}
+                $$ (f+g)'(a) = \lim_{h \rightarrow 0} \frac{f(a+h) + g(a+h) - (f(a)+g(a))}{h} = \lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} = f'(a) + g'(a). $$
+
+                $$ (f·g)'(a) = \lim_{h \rightarrow 0} \frac{f(a+h)·g(a+h) - f(a)·g(a) - f(a)·g(a+h) + f(a)·g(a+h)}{h} = \lim_{h \rightarrow 0} \frac{f(a+h)·g(a+h) - f(a)·g(a+h)}{h} + \lim_{h \rightarrow 0} \frac{f(a)·g(a+h) - f(a)·g(a)}{h} = \lim_{h \rightarrow 0} g(a+h)·\lim_{h \rightarrow 0} \frac{f(a+h) - f(a)}{h} + \lim_{h \rightarrow 0} f(a)·\lim_{h \rightarrow 0} \frac{g(a+h) - g(a)}{h} \overset{g\text{ spojitá}}{=} g(a)·f'(a) + g'(a)·f(a). $$
+
+                Víme, že $g(a) ≠ 0$ a $g$ je spojitá v $a$. Tedy $\exists \delta > 0$ tak, že $g(a+h)≠0 \forall h \in \B(0, \delta)$.
+                $$ \(\frac{f}{g}\)'(a) = \lim_{h \rightarrow 0} \frac{\frac{f(a+h)}{g(a+h) - \frac{f(a)}{g(a)}}}{h} = \lim_{h \rightarrow 0} \frac{f(a+h)·g(a) - f(a)·g(a+h)}{g(a+h)·g(a)·h} \overset{\text{AL}}{=} \lim_{h \rightarrow 0} \frac{1}{g(h+a)·g(a)} · \lim_{h \rightarrow 0} \frac{f(a+h)·g(a) - f(a)·g(a+h) + f(a)·g(a) - f(a)·g(a)}{h} \overset{g\text{ spojitá}}{=} \frac{1}{g^2(a)}·(\lim_{h \rightarrow 0} g(a) · \lim_{h \rightarrow 0}\frac{f(a+h)-f(a)}{h} + \lim_{h \rightarrow 0}f(a)·\lim_{h \rightarrow 0} \frac{g(a) - g(a+h)}{h})  = \frac{f'(a)·g(a) - f(a)·g'(a)}{g^2(a)} $$  
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Derivace složené funkce]
+            Nechť má $f$ derivaci v bodě $y_0$, $g$ má derivaci v $x_0$, je v $x_0$ spojitá a $y_0 = g(x_0)$. Pak
+            $$ (f\circ g)'(x_0) = f'(y_0)·g'(x_0) = f'(g(x_0))·g'(x_0). $$ 
+            \begin{dukazin}
+                Myšlenka:
+                $$ \lim_{h \rightarrow 0} \frac{f(g(x_0 + h)) - f(g(x_0))}{h} = \lim_{h \rightarrow 0} \frac{f(g(x_0 + h)) - f(g(x_0))}{g(x_0 + h) - g(x_0)}·\frac{g(x_0 + h) - g(x_0)}{h} \overset{\text{VOLSF}}{=} \lim_{y \rightarrow y_0} \frac{f(y) - f(y_0)}{y - y_0} · g'(x_0) = f'(g(x_0)) · g'(x_0)  $$ 
+            \end{dukazin}
+        \end{veta}
 \end{document}

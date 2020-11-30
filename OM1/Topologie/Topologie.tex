@@ -830,5 +830,29 @@
         \end{dukazin}
     \end{lemma}
 
+    \begin{definice}
+        Ať ©F je systém funkcí $®X \rightarrow ®Y$. Řekneme, že ©F odděluje body, pokud pro $x, y \in ®X, x≠y$ existuje $f\in©F: f(x)≠f(y)$. Řekneme, že ©F odděluje body a uzavřené množiny, pokud $\forall F \subseteq ®X$ uzavřená $\forall x \in ®X \setminus F \exists f \in ©F: f(x) \notin \overline{f(F)}$.
+    \end{definice}
+
+    \begin{poznamka}[Připomínáme svaz a okruh.]
+        $\O ≠ A \subseteq C(K)$, $A$ je okruh $\Leftrightarrow A$ je uzavřená na násobení, sčítání a odčítání funkcí.
+
+        $A$ je svaz $\Leftrightarrow A$ je uzavřená na minimum a maximum dvou funkcí.
+    \end{poznamka}
+
+    \begin{veta}[Stone-Weierstrass]
+        Ať ®K je kompaktní TP a $©B \subseteq C(®K)$ je vektorový podprostor obsahující konstanty a oddělující body. Je-li $©B$ okruh nebo svaz, pak $©B$ je hustá v $C(®K)$ (s topologií stejnoměrné konvergence).
+
+        \begin{dukazin}[Svaz]
+            Pozorování: pro $x, y \in ®K, x≠y, a, b \in ®R$ existuje $h \in ©B: h(x) = a \land h(y) = b$. ($©B$ odděluje body, tedy $\exists u \in ©B: u(x) ≠ u(y)$. $h(z) := \frac{b-a}{u(y) - u(x)}·(u(z) - u(x)) + a \in ©B$.)
+
+            Chceme, že $©B$ je hustý. Ať $f \in C(®K)$ a $\epsilon > 0$. Pro každou dvojici $x, y \in ®K$ fixujeme $f_{x, y} \in ©B$, že $f_{x, y}(x) = f(x)$ a $f_{x, y}(y) = f(y)$ (to můžeme díky pozorování pro $x≠y$, pro $x=y$ položíme $f_{x, y} = f(x)$.) Ať $x \in ®K$ je pevné. $\forall y \in ®K\ \exists \text{otevřené} U_y \in ©U(y): |f_{x, y}(z) - f_{x, y}(y)| < \frac{\epsilon}{2}$ (ze spojitosti $f_{x, y}$) a zároveň $|f(z) - f(y)| < \frac{\epsilon}{2}$ pro $z \in U_y$ (ze spojitosti $f$). Systém $\{U_y: y \in ®K\}$ je otevřené pokrytí ®K, tedy existuje $y_1, …, y_k \in ®K: U_{y_1} \cup … \cup U_{y_k} = ®K$. Definujeme $f_x := \min\{f_{x, y_1}, …, f_{x, y_k}\} \in ©B$ (©B je svaz). Navíc $f_x ≤ f+\epsilon$ na celém $®K$ a také $f_x(x) = f(x)$. Nyní $\forall x \in ®K\ \exists\text{otevřené} V_x \in ©U(x): |f_x(z) - f_x(x)|<\frac{\epsilon}{2}$ a $|f(z) - f(x)| < \frac{\epsilon}{2}$ pro $z \in V_x$. $\{V_x: x \in ®K\}$ otevřené pokrytí ®K. Tedy existují $x_1, …, x_l: V_{x_1}\cup … \cup V_{x_l} = ®K$. $g:=\max\{f_{x_1}, …, f_{x_l}\}, g \in ©B$ a $f-\epsilon ≤ g ≤ f + \epsilon$, tj. $||f-g||≤\epsilon$.
+        \end{dukazin}
+
+        \begin{dukazin}[Okruh]
+            Ukážeme, že je-li $©A \subseteq C(®K)$ VP a okruh obsahující konstanty a oddělující body, pak $©B = \overline{©A}$ je svaz. Zřejmě $©B$ je VP obsahující konstanty a odděluje body (je nadmnožinou, proto vše obsahuje). Ukážeme, že pro $f \in ©B$ je $|f| \in ©B$: $f$ je omezená, tedy existuje $c>0$, že $c·f^2: ®K \rightarrow \[0, 1\]$. Z lemmatu o odmocnině existují polynomy $p_n: \[0, 1\] \rightarrow ®R$, že $p_n$ stejnoměrně konverguje k odmocnině. Tedy $p_n \circ (c·f^2) \in \overline{©A}$ stejnoměrně konverguje k $\sqrt{c}·|f| \in \overline{©A}$ (z uzávěru se nedá vykonvergovat). Tedy $|f|\in \overline{©A}$, tedy i $\max\{f, g\} = \frac{f+g+|f-g|}{2}$, tedy $\overline{A}$ je uzavřená na maxima (minima podobně).  Z první části $\overline{\overline{©A}} = C(®K)$, tedy $\overline{©A} = C(®K)$.
+        \end{dukazin}
+    \end{veta}
+
 
 \end{document}

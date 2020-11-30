@@ -403,4 +403,47 @@
         \end{poznamkain}
     \end{priklad}
 
+% 23. 11. 2020
+
+    \begin{priklad}
+        Nechť $\alpha \in ®R \setminus ®Q$. Uvažujme posloupnost $a_n = n \alpha - \lfloor n \alpha \rfloor$, $n \in ®N_0$. Potom $H(\{a_n\}) = \[0, 1\]$.
+
+        \begin{lemma}
+            Nechť $m \in ®N$. Pak existují $p \in ®Z, q \in ®N$, pro která platí $\left| \alpha - \frac{p}{q} \right| < \frac{1}{mq}$.
+
+            \begin{dukazin}
+                Uvažujme $\{a_n\}_{n=0}^m$. Pak $a_n \in \[0, 1\)$ a posloupnost má $m+1$ prvků. Lze psát
+                $$ \[0, 1\) = \[0, \frac{1}{m}\) \cup \[\frac{1}{m}, \frac{2}{m}\) \cup … \cup \[\frac{m-1}{m}, 1\) $$ 
+                        Tedy jeden z těchto intervalů obsahuje z dirichletova principu alespoň 2 členy posloupnosti $\{a_n\}_{n = 0}^m$. Nechť to jsou $a_i, a_j, i < j$. Pak $|a_i - a_j| < \frac{1}{m}$. Položme $p = \lfloor \alpha j \rfloor - \lfloor \alpha i \rfloor$, $q = j-i$. $\left| \alpha q - p \right| = \left| \alpha j - \alpha i - \lfloor \alpha j \rfloor + \lfloor \alpha i \rfloor \right| = \left| a_i - a_j \right| < \frac{1}{m}$, tedy $\left| \alpha - \frac{p}{q} \right| < \frac{1}{mq}$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{dukazin}
+            Nechť $\frac{1}{2} > \epsilon > 0$, $x \in \(\epsilon, 1-\epsilon\)$. Najdeme $m \in ®N$ takové, že $m > \frac{1}{\epsilon}$, a k němu $p, q$ z lemmatu. Jelikož $\alpha \notin Q$, platí $p\alpha - q ≠ 0$. Najdeme $n_0 \in ®Z$ splňující $n_0(q\alpha - p) \in (x - \epsilon, x + \epsilon)$. Pak $n_0 ≠ 0$. Dále $\lfloor n_0 (\alpha q - p)\rfloor = 0$, a tedy $\lfloor n_0 \alpha q - n_0 p)\rfloor = \lfloor n_0 \alpha q \rfloor - n_0 p = 0$.
+
+            Je-li $n_0 > 0$ zvolme $n = n_0 q$. Pak $n \in ®N$ a $a_n = \alpha n_0 q - \lfloor \alpha n_0 q \rfloor > \alpha n_0 q - n_0 p \in (x - \epsilon, x + \epsilon)$. Indukcí lze zkonstruovat podposloupnost $a_{n_k}$ takovou, že $a_{n_k} \rightarrow x$, tedy $x \in H(\{a_n\})$. Odtud $(0, 1) \subseteq H(\{a_n\})$.
+
+            Z množiny hromadných bodů nelze vykonvergovat (referát), tedy $\[0, 1\] = H$ (body $< 0$ nebo $>1$ hromadnými body nemohou být, protože $a_n \in \[0, 1\], \forall ®N$).
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[Teoretický příklad 8]
+        Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel s vlastností, že pro každé $k \in ®N, k≥2$ platí, že $\{a_{nk}\}_{n = 1}^∞$ je konvergentní. Plyne odtud, že $\{a_n\}_{n = 1}^∞$ musí být konvergentní?
+    \end{priklad}
+
+    \begin{poznamka}[Připomeňme]
+        $\limsup\limits_{n \rightarrow ∞} a_n$, značíme někdy $\overline{\lim} a_n$, je největší hromadná hodnota.
+
+        $\liminf\limits_{n \rightarrow ∞} a_n$, značíme někdy $\underline{\lim} a_n$, je největší hromadná hodnota.
+    \end{poznamka}
+
+    \begin{tvrzeni}[Trojúhelníková nerovnost]
+        $$ \liminf\limits_{n \rightarrow ∞} a_n + \liminf\limits_{n \rightarrow ∞}b_n ≤ \liminf\limits_{n \rightarrow ∞} (a_n + b_n) ≤ \limsup\limits_{n \rightarrow ∞} (a_n + b_n) ≤ \limsup\limits_{n \rightarrow ∞} a_n + \limsup\limits_{n \rightarrow ∞} b_n $$
+        \begin{dukazin}
+            Přímo z definice dokážeme vlastnosti suprem a infim.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    
+
 \end{document}

@@ -216,7 +216,7 @@
         \end{poznamka}
 
         \begin{definice}[Seznam běžných instrukcí]
-            Instrukce „nedělej nic“. Jump / branch instrukce (včetně podmíněného skoku). 
+            Instrukce „nedělej nic“. Jump / branch instrukce (včetně podmíněného skoku). STA (store acumulator), LDA. Bitwise operace. Shiftování ASL.
 
             Strojový kód se dá zapisovat v tzv. assembleru (NOP, JMP). Překladači z assembleru se říká assembler ;)
 
@@ -227,6 +227,16 @@
             Aritmetické instrukce většinou moc neumí pracovat s pamětí a existují proto registry, ze kterých se pak čísla, se kterými se má provést operace, berou. Navíc proto existují instrukce LOAD a STORE, které načtou číslo z paměti do registru a uloží ho zpět.
 
             Speciální jsou např. IP.
+        \end{definice}
+
+% 1. 12. 2020
+
+        \begin{definice}[Příznak]
+            Tzv. flag. je jednobitová hodnota.
+
+            Příznakový registr: bytový registr, kde každý bit je jiný příznak. Zároveň procesory často mají příkazy set* a clear*, kde * je zkratka příznaku, které nastavují daný příznak na 1 a 0.
+
+            Běžné příznaky: zero (byl výsledek poslední operace nula? 1 = byl, 0 = nebyl), negative (byl výsledek poslední operace záporný? 1 = byl, 0 = nebyl, nepozná ale, zda byly čísla signed, takže to dělá vždycky), carry (přenos, používá se pro aritmetické operace s vícebitovými čísly, než s kterými umíme pracovat, sčítání s přenosem se nazývá add with carry: ADC, zároveň existuje odečítání (s vypůjčením = borrow): SBB (často se zde „zneužívá“ carry jako borrow), nebo SBC (používá se negace carry))
         \end{definice}
 
 \end{document}

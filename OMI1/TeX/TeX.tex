@@ -455,4 +455,50 @@
         \verb|\ifnmum \count 0 < 100|, \verb|\ifdim|, \verb|\ifhmode|
     \end{definice}
 
+% 23. 11. 2020
+
+    \begin{poznamka}
+        I ve větvi, která se neexpanduje se počítá správné uzávorkování \verb|\if \fi| (dívá se do tabulky významů, nekontroluje text, neexpanduje).
+    \end{poznamka}
+
+    \begin{definice}[ifcase]
+        \verb|\ifcase číslo větev 0 \or větev 1 \or větev 2 \or … \or větev n \else … \fi| expanduje tolikátou větev, jaké jsme mu dali číslo (zbytek zahazuje)
+    \end{definice}
+
+    \begin{definice}[Příklady podmínek]
+        \verb|\iftrue| -- vždy pravdivý, \verb|\iffalse| -- vždy nepravdivý, \verb|\if Token1 Token2| (expanduje) -- porovnává znaky (krabiky porovnává jako znak 256 + kategorie 16), \verb|\ifcat Tok1 Tok2| (expanduje) -- porovnává kategorie, \verb|\ifx Tok1 Tok2| (neexpanduje) -- porovnává význam (makra porovnává jako seznamy, porovnává znak i kategorii, krabičky bez významu jsou shodné), \verb|ifnum Num1 Rel Num2| -- porovná celá čísla (relace jsou pouze 3: $= < >$, zbytek se dělá \verb|\else|), podobně \verb|\ifdim| pro rozměry, \verb|\ifhbox N|, \verb|\ifvbox N|, \verb|\ifvoid N| -- stav boxového registru, \verb|\ifhmode/vmode/mmode| -- v jakém jsme módu hlavního procesoru, \verb|\ifinner| -- ptá se na vnitřní mód hlavního procesoru, \verb|\ifodd Num| -- lichost čísla, \verb|\ifeof Kanál| -- ptá se na EOF na daném kanálu.
+    \end{definice}
+
+    \begin{upozorneni}
+        Definování svého if většinou strašně vybuchne.
+    \end{upozorneni}
+
+    \begin{poznamka}
+        Podmínka se správně definuje pomocí \verb|\newif\ifabc| vyrobí 3 makra \verb|\ifwide|, které se chová, jak bychom očekávali (má význam podmínky), \verb|\abctrue/\abcfalse|, což jsou přepínače, které dané if nastaví na \verb|\iftrue/\iffalse| (podmínky se pak vytvoří tak, že definujeme testovací makro, které pak spustí \verb|\abctrue/\abcfalse|).
+    \end{poznamka}
+
+    \begin{definice}[Smyčky]
+        Všechny smyčky v \TeX u jsou vytvářeny jako tail-rekurze (viz dekorátor v Kotlinu).
+
+        V Plainu \verb|\loop…\if…\repeat|, kde \verb|\iffalse| provede klasický break (\verb|\repeat| má význam \verb|\fi|). Při vnoření cyklů to chce vnitřní cyklus uzavřít do group.
+    \end{definice}
+
+    \begin{poznamka}
+        Pokud potřebujeme vyrobit nepárové uzávorkování, tak máme příkazy \verb|\begingroup| a \verb|\endgroup| na přenastavování „proměnných“. Na druhý význam uzavření parametrů lze využít \verb|\bgroup| a \verb|\egroup|, které mají významy závorek přiřazený pomocí \verb|\let|.
+    \end{poznamka}
+
+    \begin{definice}[Token-listové registry]
+        \verb|\toks0…255|, \verb|\newtoks|, jako ostatní registry.
+
+        \verb|\newtoks\t| $\rightarrow$ \verb|\t[=]{token…}| se bere bez expanze, expanze proběhne \verb|\the\t| (pozor, uvnitř \verb|\edef| se obsah neexpanduje). Toho lze využít pro definici seznamů.
+
+        Příklady (interní = možná mají záporné indexy, ale to je jedno ;) ): \verb|\output|, \verb|\everypar| -- provede se každý odstavec (po vložení \verb|\indent| nebo \verb|\noindent|) a jeho obdoby \verb|\everyhbox/vbox/math/display/cr/job|, \verb|\aftergroup token| -- spustí se po ukončení aktuální group (tyto tokeny se akumulují), \verb|\afterassignment token| -- spustí se při dalším přiřazení (tyto tokeny se ne!akumulují, hodí se na parsování dimenzí), \verb|\futurelet\cs Tok1 Tok2| -- odpovídá \verb|\let\cs=Tok2|, ale nechává Tok1 a Tok2 na místě (lze použít na nepovinné parametry).
+    \end{definice}
+
+    \begin{definice}[Rozebrání krabičky]
+        V makru \verb|\newif| se musí rozebrat krabička. To se udělá pomocí \verb|\string| (pozor, vyrábí vše s kategorií 12) a \verb|\escapechar=-1| (\verb|\| s hodnotou mimo 0…255 se přeskočí).
+
+        Existuje špinavý trik, jak vyrobit libovolný znak s libovolnou kategorií: přenastavíme tabulku \verb|\uppercase| (protože nechává kategorii, mění jen znak) pomocí \verb|\uccode`znak=`znak|.
+    \end{definice}
+
 \end{document}

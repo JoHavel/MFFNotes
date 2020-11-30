@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 8]
+        Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel s vlastností, že pro každé přirozené číslo $k > 1$ je $\{a_{nk}\}_{n = 1}^∞$ konvergentní posloupnost. Plyne odtud, že $\{a_n\}_{n = 1}^∞$ musí být konvergentní?
+
+    \begin{reseni}
+        Nechť $a_n := \{ \begin{array}{l} 1\ …\ n\text{ je prvočíslo} \\ 0\ …\ \text{jinak} \end{array}\right.$ Potom každá posloupnost $\{a_{nk}\}_{n=1}^∞$ má limitu 0, jelikož nejvýše jeden (první) člen bude 1 (protože prvočíslo nemůže být složené z $n, k>1$) a odstraněním konečného počtu prvků se limita nezmění (bez prvního členu je každá taková posloupnost konstantně 0).
+
+        Ale jelikož je prvočísel nekonečně mnoho, tak můžeme z $\{a_n\}_{n = 1}^∞$ vybrat podposloupnost $\(\{a_p\}_{p=2, p\text{ prvočíslo}}^∞\)$, která je konstantně 1, tedy má limitu 1. Ale výše jsme ukázali, že podposloupnosti tvaru $\{a_{kn}\}_{n = 1}^∞$ mají limitu 0, tedy z věty o limitě vybrané posloupnosti a jednoznačnosti limit vyplývá, že $\{a_n\}_{n = 1}^∞$ nemá limitu, tudíž není konvergentní.
+    \end{reseni}
+\end{priklad}
+
+\end{document}
