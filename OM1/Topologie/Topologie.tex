@@ -830,6 +830,8 @@
         \end{dukazin}
     \end{lemma}
 
+% 23. 11. 2020
+
     \begin{definice}
         Ať ©F je systém funkcí $®X \rightarrow ®Y$. Řekneme, že ©F odděluje body, pokud pro $x, y \in ®X, x≠y$ existuje $f\in©F: f(x)≠f(y)$. Řekneme, že ©F odděluje body a uzavřené množiny, pokud $\forall F \subseteq ®X$ uzavřená $\forall x \in ®X \setminus F \exists f \in ©F: f(x) \notin \overline{f(F)}$.
     \end{definice}
@@ -854,5 +856,145 @@
         \end{dukazin}
     \end{veta}
 
+    \begin{definice}[Kompaktifikace]
+        Ať ®X je TP. Dvojice $(j, ®Y)$ se nazývá kompaktifikací ®X, pokud ®Y je kompaktní Hausdorfův prostor a $j: ®X \rightarrow ®Y$ je vnoření a $j(®X)$ je hustá v ®Y.
+
+        Prostor ®X a $j(®X)$ se často ztotožňují, tedy pak zapomínáme na $j$ a mluvíme pouze o ®Y, jakožto kompaktifikaci.
+
+        Řekneme, že kompaktifikace $(j_1, ®Y_1)$ prostoru ®X je větší než kompaktifikace $(j_2, ®Y_2)$ prostoru ®X, pokud existuje spojité zobrazení $f: ®Y_1 \rightarrow ®Y_2$, že $f\circ j_1 = j_2$.
+
+        Řekneme, že 2 kompaktifikace $(j_1, ®Y_1)$ a $(j_2, ®Y_2)$ jsou ekvivalentní, pokud existuje homeomorfismus $h: ®Y_1 \rightarrow ®Y_2$, $h \circ j_1 = j_2$.
+    \end{definice}
+
+    \begin{poznamka}
+        Jsou-li $(j_1, ®Y_1)$, $(j_2, ®Y_2)$ kompaktifikace prostoru ®X a $(j_1, ®Y_1)$ je větší než $(j_2, ®Y_2)$ a naopak, pak jsou již ekvivalentní.
+        \begin{dukazin}
+            $(f_2 \circ f_1)\circ j_1 = f_2 \circ (f_1  \circ j_1) = f_2 \circ j_2 = j_1$. Obdobně $f_1 \circ f_2 \circ j_2$. Tedy $f_2 \circ f_1 = id$ na $j_1(®X)$ a $f_1 \circ f_2 = id$ na $j_2(®X)$. Jenže $j_1(®X)$ je hustá v $®Y_1$, tedy nutně $f_2 \circ f_1 = id$ na celém $®Y_1$. Úplně analogicky $f_1 \circ f_2 = id$ na $®Y_2$, tedy $f_1$ a $f_2$ jsou vzájemně inverzní a navíc spojité, tedy jsou homeomorfismy, tj. kompaktifikace jsou ekvivalentní.
+        \end{dukazin}
+    \end{poznamka}
+
+    \begin{priklady}
+        $®Y_1 = [0, 1]$ je kompaktifikací $®X = (0, 1)$ ($j_1: (0, 1) \rightarrow [0, 1], j_1(x) = x$). $®Y_2 = \{z \in ®C: |z| = 1\}$. $j_2: ®X \rightarrow ®Y_2, j_2(x) = e^{2 \pi i x}$. $(j_2, ®Y_2)$ je kompaktifikací $(0, 1)$. Zřejmě $(j_1, ®Y_1)$ je větší než $(j_2, ®Y_2)$. Naopak zřejmě nejsou ekvivalentní.
+    \end{priklady}
+
+    \begin{definice}[Lokální kompaktnost]
+        TP ®X se nazývá lokálně kompaktní, pokud každý jeho bod má kompaktní okolí.
+    \end{definice}
+
+    \begin{tvrzeni}[Alexandrovova kompaktifikace]
+        Každý Hausdorfův lokálně kompaktní prostor ®X má kompaktifikaci $(e, ®Y)$, při které je $®Y \setminus e(®X)$ nejvýše jednoprvková. Ta je určena jednoznačně.
+        \begin{dukazin}
+            Je-li ®X kompaktní, pak má až na ekvivalenci jedinou kompaktifikaci: nechť $(e, ®Y)$ je kompaktifikace ®X. Potom $e(®X)$ je kompaktní (spojitý obraz kompaktu), $e(x)$ je uzavřená a hustá v ®Y, tedy $e(®X) = ®Y$. Tedy $e$ je homeomorfismus a tato kompaktifikace je tedy ekvivalentní s libovolnou další.
+
+            Předpokládejme, že $®X$ není kompaktní. BÚNO $∞ \notin ®X$. Ať $\tau$ je topologie na ®X. $®Y = ®X \cup \{∞\}$. Na ®Y definujeme topologii $\sigma$:
+            $$\sigma := \tau \cup \{\{∞\} \cup (®X \setminus K): K \subseteq\text{ je kompaktní}\}.$$
+            Snadno ověříme, že $\sigma$ je topologie na ®Y. $(®Y, \sigma)$ je kompaktní: Ať ©U je otevřené pokrytí ®Y. $\exists U_0 \in ©U: ∞ \in U_0\ \exists K \subseteq ®X$ kompaktní: $U_0 = \{∞\} \cup (®x \setminus K)$. $K$ je pokryto otevřeným pokrytím $\{K \cap U: U\in ©U\}$, tedy z kompaktnosti existují $U_1, …, U_n \in ©U: K \subseteq U_1 \cup … \cup U_n$. $\{U_0, U_1, …, U_n\}$ je tedy konečné podpokrytí ®Y.
+
+            $(®Y, \sigma)$ je Hausdorffův: Pro $x, y \in ®X\ \exists U, V …$. Zajímavější je to pro $∞$ a $x \in ®X$. ®X je likálně kompaktní, tedy existuje $K \subset ®X$ kompaktní, $K \in ©U(x)$, $x \in \Int(K)$, $∞ \in \{∞\} \cup (®X\setminus K)$ (dvě disjunktní množiny).
+
+            Jednoznačnost: v Hausdorffově prostoru jsou uzavřené množiny právě ty kompaktní, tedy nebyla jiná volba $\sigma$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Jednobodová (tzn. Alexandrovova) kompaktifikace (pokud existuje) je nejmenší kompaktifikace mezi všemi kompaktifikacemi daného prostoru ®X.
+
+        Lokálně kompaktní Hausdorffovy prostory jsou právě otevřené podmnožiny Hausdorffových kompaktů.
+    \end{poznamka}
+
+% 30. 11. 2020
+
+    \begin{lemma}[Tichonovovo vnoření]
+        Ať ®X je TP, $®Y_i, i \in I$, jsou TP. Ať $©F = \{f_i: ®X \rightarrow ®Y_i: i \in I\}$ je soubor spojitých zobrazení. Pokud ©F odděluje body, pak $f:=\triangle ©F: ®X \rightarrow \prod_{i \in I}®Y_i$ ($f(x) = (f_i(x))_{i \in I}$) je prosté. Pokud navíc ©F odděluje body a uzavřené množiny, pak $f$ je vnoření.
+
+        \begin{dukazin}
+            Ať $x, y \in ®X, x≠y$. ©F odděluje body, tedy existuje $i \in I: f_i(x) ≠ f_i(y)$. $f(x) ≠ f(y)$. Tedy $f$ je prosté.
+            Chceme ukázat, že $f: ®X \rightarrow f(®X)$ je homeomorfismus. Tedy stačí, že je uzavřené. Ať $F\subseteq ®X$ je uzavřené a $x \in ®X \setminus F$. $\exists i \in I: f_i(x) \notin f_i(F) = \overline{\pi_i(f(F))} \supseteq \pi_i(\overline{f(F)})$. Tedy $f_i(x) \notin \pi_i(\overline{f(F)})$. Proto $\pi_i(f(x)) = f(x) \notin \overline f(x) \notin \overline{f(F)}$. Tedy f je uzavřené.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{tvrzeni}[Tichonovova krychle]
+        Každý Tichonovův prostor lze vnořit do nějaké Tichonovovy krychle, tj. $\[0, 1\]^I$, pro vhodnou množinu $I$.
+        
+        \begin{poznamkain}
+            Za $I$ lze volit bázy.)
+        \end{poznamkain}
+        
+        \begin{dukazin}
+            Označme jako $I:=C(®X, \[0, 1\])$ a uvažme diagonální zobrazení $e:=\triangle \{f: f\in I\}: ®X \rightarrow \[0, 1\]^I$. $I$ odděluje body a odděluje body a uzavřené množiny, protože ®X je Tichonovův. Tedy $e$ je vnoření podle předchozího lemmatu.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Každý Tichonovův prostor má nějakou kompaktifikaci.
+        \begin{dukazin}
+            Podle předchozího tvrzení existuje vnoření $e$ do Tichonovovy krychle. $(e, \overline{e(®X)})$ je kompaktifikace ®X.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{definice}
+            Kompaktifikace z důkazu předchozího důsledku (nebo kterákoliv s ní ekvivalentní) se nazývá Čechova-Stoneova (nebo beta-obal) a značí se $\beta®X$.
+    \end{definice}
+
+    \begin{veta}[Charakterizace beta obalu]
+        Ať ®X je Tichonovův TP a $Y$ kompaktifikace ®X. Pak je ekvivalentní a) $Y$ je Čechova-Stoneova kompaktifikace ®X. b) Každou spojitou funkci $f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na $Y$. c) Každou spojitou funkci $f:®X \rightarrow ®Z$ do libovolného kompaktního Hausdorffova prostoru ®Z lze spojitě rozšířit na $Y$. d) $Y$ je největší kompaktifikace ®X.
+        \begin{dukazin}
+            $a) \implies b):$ $Y = \overline{e(X)}, e = \triangle\{f: f:®X\rightarrow \[0, 1\]\text{ spojitá}\}$. $e: ®X \rightarrow \[0, 1\]^I$. Ať $f: ®X \rightarrow \[0, 1\]$ je spojité $f \in I, \pi_f:\[0, 1\]^I\rightarrow \[0, 1\], \pi_f \circ e = f$, tedy $\pi_f$ rozšiřuje $f$, $\pi_f|Y$ je hledané spojité rozšíření.
+
+            $b) \implies c)$ Podle lemmatu o Tichonovově vnoření\footnote{Z kompaktní Hausdorfův $\implies T_4 \implies T_{\pi}$} můžeme předpokládat, že $Z \subseteq [0, 1]^J$ pro nějakou množinu $J$. $\pi_j \circ f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na $g_j: Y \rightarrow \[0, 1\], j \in J$. $\triangle\{g_j: j \in J\}: Y \rightarrow \[0, 1\]^J$ je hledané spojité rozšíření toho zobrazení $f=\triangle_{j \in J}(\pi_j \circ f)$.
+
+            $c) \implies d)$ Triviální z definice uspořádání na kompaktifikaci (Je-li Z nějaká kompaktifikace ®X, pak $id_{®X}:®X \rightarrow Z$ lze podle c) spojitě rozšířit na $Y$. Tedy $Y$ je větší kompaktifikace než $Z$.)
+
+            $d) \implies a)$ $Y$ je největší, tedy je větší než Čechova-Stoneova. Zbývá ukázat, že Čechova-Stoneova kompaktifikace je větší než $Y$. To již víme z důkazu implikace $a \implies c$ volbou $f = id_{®X}$. Podle poznámky o ekvivalenci kompaktifikací jsou tyto ekvivalentní.
+        \end{dukazin}
+    \end{veta}
+    
+    \begin{poznamka}
+            Je-li ®X Tichonovův prostor a $f: ®X \rightarrow ®R$ spojitá omezená, pak $f$ lze spojitě rozšířit na $\overline{f}: \beta®X \rightarrow ®R$. Banachovy prostory $e_∞$ a $C(\beta®N, ®R)$ lze stotožnit.
+    \end{poznamka}
+
+\section{Metrizovatelnost}
+    \begin{poznamka}
+        Je-li $(®X, \rho)$ metrický prostor, tak $\sigma:=\min\{\rho, 1\}$ je opět metrika na ®X, která generuje stejnou topologii jako $\rho$.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Jsou-li $®X_n$ metrizovatelné TP, pak $\prod_{n \in ®N}®X_n$ je metrizovatelný.
+
+        \begin{dukazin}
+                Ať $\rho_n$ je metrika na $®X_n$ kompatibilní s topologií $\tau_n$. BÚNO $\rho_n ≤ 1$. $®X = \prod ®X_n$. $\tau$ součinová topologie na ®X. Definujeme $\rho$ metriku na $®X: \rho(x, y):= \sum_{n \in ®N} 2^{-n}\rho_n(x_n, y_n)$. Ověříme, že topologie generovaná metrikou $\rho$ splývá s $\tau: \pi_n: ®X \rightarrow ®X_n$ je $2^n$-lipschitzovské, tedy spojité. Tedy topologie generovaná $\rho$ je větší než $\tau$. Ať $\epsilon > 0$ a $x \in ®X$, najdeme $n \in ®N: 2·2^{-n}<\epsilon$ a ať $\delta = 2^{-n}$. $B_{\rho_1}(x_1, \delta)\times … \times B_{\rho_n}(x_n, \delta) \times \prod_{i=n+1}^∞ ®X_i$ je prvek $\tau$, navíc je podmnožinou $B_{\rho}(x, \epsilon)$. Tedy topologie generovaná, metrikou $\rho$ je menší než $\tau$.
+        \end{dukazin}
+
+        \begin{poznamkain}
+            Alternativně lze za $\rho$ brát
+            $$ \sum_{n=1}^∞ \frac{\rho_n (x_n, y_n)}{2^n (1+\rho_n(x_n, y_n))}. $$ 
+        \end{poznamkain}
+    \end{tvrzeni}
+
+    \begin{veta}[Urysohnova metrizační]
+        Každý $T_3$ prostor se spočetnou bází je metrizovatelný.
+        
+        \begin{dukazin}
+            Prostor se spočetnou bází je Lindelöfův. Každý regulární Lindelöfův prostor je normální. Tedy $®X$ je $T_4$, tedy i Tichonovův. Ať $©B$ je spočetná báze $®X$. Označme $©A = \{(U, V): \overline{U} \subseteq V, U, V \in ©B\}$. Pro $(U, V) \in ©A$ existuje spojitá funkce $f_{U, V}$ existuje spojitá funkce $f_{U, V}: ®X \rightarrow \[0, 1\]$, že $f_{U, V}|\overline{U} = 0, f_{U, V}|(®X\setminus V) = 1$ (lze z normality). $©F := \{f_{U, V}: (U, V) \in ©A\}$ odděluje body a odděluje body a uzavřené množiny. Podle lemmatu o Tichonovově vnoření je $e:= \triangle ©F: ®X \rightarrow \[0, 1\]^{©F}$ je vnoření. $\[0, 1\]^{©F}$ je metrizovatelný, protože ©F je spočetná. $e: ®X \rightarrow \[0,1\]^{©F}, e: ®X \rightarrow e(®X)$ je homeomorfismus. $e(®X)$ je metrizovatelný, tedy ®X je metrizovatelný.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Každý kompaktní Hausdorffův prostor se spočetnou bází je metrizovatelný.
+        \begin{dukazin}
+            Kompaktní Hausdorffův prostor je $T_4$, tedy je i $T_3$. Tedy podle Urysohnovy metrizační věty metrizovatelný.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{dusledek}
+        Ať $f: ®X \rightarrow ®Y$ je spojitá a na, ®X kompaktní metrizovatelný a ®Y Hausdorffův. Pak ®Y je metrizovatelné.
+        \begin{dukazin}
+            Víme, že spojitý obraz kompaktu nezvýší jeho váhu. ®X kompaktní, netriviální $\implies$ má spočetnou bázi. Tedy ®Y má spočetnou bázi. Navíc ®Y je kompakt. Podle předchozího důsledku je ®Y metrizovatelný. 
+        \end{dukazin}
+    \end{dusledek}
+    
+    \begin{poznamka}
+        Z důkazu Urysohnovy metrizační věty lze odvodit, že každý separabilní metrizovatelný prostor má metrizovatelnou kompaktifikaci a lze ho vnořit do Hilbertovy kostky $\[0, 1\]^{®N}$.
+    \end{poznamka}
 
 \end{document}

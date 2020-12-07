@@ -628,4 +628,78 @@
             \end{dukazin}
         \end{lemma}
 
+% 30. 11. 2020
+
+        \begin{veta}[O charakterizaci stromů]
+            Pro graf $G$ jsou následující tvrzení ekvivalentní:
+            \begin{enumerate}
+                \item $G$ je souvislý a acyklický.
+                \item $\forall u, v \in V(G) \exists!$ cesta mezi $u, v$ v $G$ (jednoznačně souvislý).
+                \item $G$ je souvislý a $\forall e \in E(G): G-e$ není souvislý (minimální souvislý).
+                \item $G$ je acyklický a $\forall e \in \binom{V(G)}{2} \setminus E(G): G + e$ obsahuje cyklus (maximální acyklický).
+                \item $G$ je souvislý a $|E(G)| = |V(G)| - 1$ (speciální případ Eulerovy formule).
+            \end{enumerate}
+            \begin{dukazin}
+                $G = (V, E)$
+
+                $(1 \implies 2)$ Indukcí podle $|V|$ … pro $|V| = 1$ zřejmě (2) platí. Pro $|V| = n$: Buď $G$ graf s $n$ vrcholy. Platí li (1), $G$ je strom $\implies \exists l$ list v $G$, $s$ jediný soused $l$. $G-l$ je také strom, má $n-1$ vrcholů, tedy z indukčního předpokladu $G-l$ je jednoznačně souvislý. Nechť $u, v \in V$: a) $u, v ≠ l$: $G-l$ obsahuje právě jednu cestu přidáním listu nemohla vzniknout nová, b) $u, v = l$: Triviální, c) BÚNO $u=l, v≠l$ cesta $v…l$ jde přes $s$, mezi $v, s \exists!$ cesta (z IP) a ta se dá rozšířit do $l$ právě jedním způsobem.
+
+                $(1 \implies 3)$ Jednoduchou indukcí podle $|V|$. $(1 \implies 4)$ Jednoduchou indukcí podle $|V|$. $(1 \implies 5)$ Jednoduchou indukcí podle $|V|$.
+
+                $(2 \implies 1)$ Dokážeme jako $(\neg 1 \implies \neg 2)$, tedy není souvislý nebo není acyklický, pak počet cest mezi nějakými (existují $u, v$ tak, že) $u, v$ není 1. Pokud není souvislý, tak existují vrcholy, mezi kterými nevede hrana, pokud není acyklický, tak existují vrcholy na cyklu a ty mezi sebou mají minimálně 2 cesty.
+
+                $(3 \implies 1)$ dokážeme jako není souvislý nebo obsahuje cyklus, pak není souvislý nebo $\exists e \in E: G-e$ je souvislý. $(4 \implies 1)$ dokážeme jako není souvislý nebo obsahuje cyklus, pak obsahuje cyklus nebo $\exists e: G+e$ je acyklický.
+
+                $(5 \implies 1)$ Potřebujeme dokázat lemma $(5) \land |V|≥2 \implies \exists l$ list. Poté už dokážeme indukcí podle $|V|$ odebíráním listu. Důkaz lemmatu: $\sum_{v\in V} \deg(v) = 2·|E|=2n-2$. Kdyby neexistoval list $\forall v: \deg(v) ≥ 1$ a součet stupňů by byl $≥2n>2n-2 \lightning$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Kostra grafu]
+            $T\subseteq G$ je kostra grafu $G ≡ T$ je strom $\land |V(T)| = |V(G)|$.
+        \end{definice}
+
+        \begin{veta}
+            Graf má kostru $\Leftrightarrow$ je souvislý.
+            \begin{dukazin}
+                $(\implies)$ Zřejmé. $(\Leftarrow)$ Mažeme hrany na cyklech, dokud nebude strom.
+            \end{dukazin}
+        \end{veta}
+    
+    \subsection{Kreslení do roviny}
+        \begin{definice}[Oblouk]
+            Oblouk je prosté spojité zobrazení $f: \[0, 1\]$ do $®R^2$, $f(0), f(1):$ krajní body.
+
+            Často budeme oblouk říkat obrazu tohoto zobrazení
+        \end{definice}
+
+        \begin{definice}[Topologická kružnice]
+            Topologická kružnice je spojité zobrazení $f: \[0, 1\] \rightarrow ®R^2$, které je prosté vyjma $f(0) = f(1)$.
+        \end{definice}
+
+        \begin{definice}[Nakreslení grafu do roviny]
+            Nakreslení grafu $G=(V, E)$ do roviny: a) Vrcholům $v \in V$ přiřadíme navzájem různé body $b(v) \in ®R^2$. b) Hranám $e \in E$ přiřadíme oblouky $o(e)$ tak, že je-li $e=\{u, v\}$, pak $b(u), b(v)$ jsou krajní body $o(e)$. c) $\forall v \in V\ \forall e \in E:$ pokud $b(v) \in o(e)$, pak $v \in e$. d) $\forall e, f \in E:$ pokud $o(e)$ a $o(f)$ mají společný bod, pak to je jejich krajní bod.
+        \end{definice}
+
+        \begin{poznamka}
+            Nakreslením cesty je oblouk, nakreslením kružnice je topologická kružnice.
+        \end{poznamka}
+
+        \begin{definice}[Topologický graf]
+            Topologický graf $:=$ graf + jeho nakreslení.
+        \end{definice}
+
+        \begin{definice}[Oblouková souvislost]
+            $X \subseteq ®R^2$ je obloukově souvislá $≡ \forall x, y \in X\ \exists\text{oblouk}\subseteq X$ s krajními body $x, y$.
+
+            Oblouková souvislost nám dává relaci dosažitelnosti (ekvivalence) a ekvivalenční třídy (komponenty obloukové souvislosti).
+        \end{definice}
+
+        \begin{definice}[Stěny nakreslení]
+            Stěny nakreslení $≡$ komponenty obloukové souvislosti množiny $®R^2 \setminus \bigcup_{e \in E} o(e)$.
+        \end{definice}
+
+        \begin{upozorneni}
+            Stěny nejsou vlastností grafu, ale konkrétního nakreslení (tedy též topologického grafu).
+        \end{upozorneni}
+
 \end{document}

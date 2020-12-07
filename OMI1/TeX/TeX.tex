@@ -501,4 +501,36 @@
         Existuje špinavý trik, jak vyrobit libovolný znak s libovolnou kategorií: přenastavíme tabulku \verb|\uppercase| (protože nechává kategorii, mění jen znak) pomocí \verb|\uccode`znak=`znak|.
     \end{definice}
 
+% 30. 11. 2020
+
+\section{Tabulky}
+
+    \begin{definice}[Tabulka]
+        Tabulka se vyrábí \verb|\halign[to/spread <dimen>]{šablonka\cr řádek \cr řádek \cr … \cr}|. Jednotlivé sloupce (včetně šablony) se oddělují \verb|&|. (Existuje i \verb|\valign|, které vyrobí tabulku s prohozenými řádky a sloupci). Pozor to/spread funguje pouze na glue (\verb|\tabskip|) mezi buňkami, ne na sloupce samotné.
+
+        Šablona musí vypadat \verb|a1#b1&a2#b2&…\cr| (ai a bi jsou sekvence tokenů, neexpandují se až na výjimky: makro \verb|\span|, které expanduje následující makro, a \verb|\tabskip|, kde se najde přiřazení do registru a použije se na následující mezisloupcové mezery, po \verb|\cr| ztrácí význam). Periodickou šablonu lze vyrobit \verb|X&…&Y&&Z&U\cr|, kde X až Y je předperioda a Z až U je perioda. Bez předperiody: \verb|&Z&…&U|.
+
+        Vysází se tak, že se nejdřív vygenerují všechny řádky, pak se podívá na jednotlivé sloupce a vezme maximum z jejich přirozených velikostí. Při expanzi řádku se vždy nakoukne na první token datové položky a pokud není speciální (\verb|&/\cr|) vloží se konkrétní \verb|a|. Následně se vloží datová položka a konkrétní \verb|b|. Kompletuje se to jako vnitřní horizontální mód, ale nejdřív se jen spočítá přirozená velikost. Po zjištění šířek se každá buňka zabalí do \verb|\hbox| šířky sloupce a pak se zkompletuje celý řádek jako \verb|\hbox| obsahující \verb|\hbox|y a \verb|\tabskip|y.
+
+        \verb|…\cr\noalign{vertikální materiál}| vysází za aktuálním řádkem vertikální materiál (případná \verb|\hrule| se vysází na šířku tabulky a ne zrcadla). \verb|\omit| zase nahradí šablonu v aktuální buňce pouhým \verb|#| (vysází se pouze obsah bez daného \verb|a| a \verb|b|). \verb|\span| k této buňce přilepí následující sloupec, většinou se ještě obaluje: \verb|\omit\span\omit| (plain má makro\verb|\multispan X|, které slepí (i s \verb|\omit|y) X sloupců k sobě), na toto slepení se prvně vůbec nebere ohled při výpočtu šířky sloupců, pokud se to nepovede bez ohledu, tak se nějak „hloupě“ (většinou ne tak, jak bychom chtěli) roztáhnou sloupce, aby to vyšlo, takže to chce vložit do tabulky podpěry, aby se tam sloučené buňky opravdu vešli.
+
+        Ohraničení se všechny dělají linkami.
+    \end{definice}
+
+    \begin{definice}[Leaders]
+        \verb|\leaders <box/rule> <rozměr>| (máme předdefinováno \verb|\hrulefill|, \verb|\vrulefill|, \verb|\dotfill|), leaders má ve skutečnosti 3 varianty: \verb|\leaders| (zaokrouhlí materiál, aby byl násobkem velikostně boxu, který má leaders vysázet), \verb|\cleaders| (chybu (pokud není místo celočíselný násobek boxu) dá půl na začátek, půl na konec), \verb|\xleaders| (rovnoměrně rozloží chybu do mezer mezi boxy).
+    \end{definice}
+
+\section{Práce se soubory}
+    \begin{definice}[Streamy]
+        Zápisové streamy 0…15. Zapisuje se \verb|\newwrite\soubor| následovaný \verb|\openout\soubor=jméno|, následně lze používat \verb|\write\soubor{tokeny}| a ukončuje se \verb|\closeout\soubor|. Tyto příkazy se neexpandují, pouze se ukládají a až při \verb|\shipout| a tam se expandují (včetně ukládaných tokenů). Pokud chceme tyto příkazy vykonat okamžitě, připíšeme před ně \verb|\immediate|. Zápis do zavřeného streamu píše do logu a pokud je číslo $≥$ 0 tak se dokonce vypisuje i na output, tedy speciálně \verb|\write16| se používá pro zápis do logu a terminálu.
+
+        Čtecí streamy 0…15 se používají podobně (jen se vyhodnocují okamžitě) \verb|\newread\soubor|, \verb|\openin\soubor=jméno|, \verb|\read\soubor to \xyz| (spíše se nepoužívá), \verb|\ifeof\soubor| (pomocí toho se zjišťuje, zda dokument existuje), \verb|\closein\soubor|.
+    \end{definice}
+
+    \begin{definice}[Special]
+        S tím souvisí \verb|\special|, který je také takzvané whatsit (nejsou součátstí TeXu, ale je to jen naše dohoda s konvertorem, že je použije). Jelikož \TeX neumí barvičky, obrázky a spol, tak se takové věci dají vložit \verb|\special|. Dnes jsou ale spíše zastaralé, protože se dnes spíše používají přímo pdftexy, které se o to starají už sami.
+    \end{definice}
+
+
 \end{document}

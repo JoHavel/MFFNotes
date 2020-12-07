@@ -239,4 +239,34 @@
             Běžné příznaky: zero (byl výsledek poslední operace nula? 1 = byl, 0 = nebyl), negative (byl výsledek poslední operace záporný? 1 = byl, 0 = nebyl, nepozná ale, zda byly čísla signed, takže to dělá vždycky), carry (přenos, používá se pro aritmetické operace s vícebitovými čísly, než s kterými umíme pracovat, sčítání s přenosem se nazývá add with carry: ADC, zároveň existuje odečítání (s vypůjčením = borrow): SBB (často se zde „zneužívá“ carry jako borrow), nebo SBC (používá se negace carry))
         \end{definice}
 
+% 8. 12. 2020
+        
+        \begin{poznamka}[Proč je python pomalý]
+            Čísla ukládá jako minimálně 32 bitová (a při každé operaci se musí znormalizovat na stejnou velikost, navíc musí být zmenšený rozsah, aby číslo nepřeteklo / nepodteklo), každá proměnná je pointer, reálná data proměnné obsahují vždy minimálně type a další 4 byty, kolik ukazatelů na danou proměnnou vede (pro garbage collector). Navíc se musí interpretovat.
+
+            Tedy je cca 100krát pomalejší.
+        \end{poznamka}
+
+        \begin{poznamka}[Aritmetic overflow (a underflow)]
+            Na rozdíl od Pythonu se v dalších jazycích může stát, že nám číslo tzv. přeteče (ořeže se nejvyšší bit, protože se už nevejde do paměti (např. 9. bit u 8-bitového čísla)).
+        \end{poznamka}
+
+        \begin{poznamka}[Násobení]
+            Dost počítačů (to se netýká stolních počítačů a notebooků, i mobily dost často mají násobení) nemá instrukci násobení / dělení.
+
+            Násobí / dělí se pomocí sčítání / odčítání, bitových posunů a podmíněných skoků.
+
+            U mocnin dvojky si můžeme pomoci tak, že to rovnou ručně přepíšeme do posunů. (I když dnes už jsou překladače dostatečně „chytré“, aby to nahradily samy.)
+            \begin{upozorneni}
+                Toto lze dělat jen pro bezznaménková čísla. Proto existuje ještě tzv. aritmetický posun doprava (SAR), který (při posunu) rozkopírovává nejvyšší bit. Ale stejně špatně funguje zaokrouhlování.
+
+                V Pythonu se používá pouze SHL a SAR. V javě jsou naopak SHL ($<<$), SAR ($>>$) i SHR ($>>>$). V C\# se dokonce tyto operátory chovají podle typu čísel.
+            \end{upozorneni}
+        \end{poznamka}
+
+\section{Reálná čísla}
+    \begin{definice}[Ukládání]
+        Například se uloží jako číslo před desetinnou čárkou a číslo (s pevnou délkou) za desetinnou čárkou (mezinárodně tečkou).
+    \end{definice}
+
 \end{document}

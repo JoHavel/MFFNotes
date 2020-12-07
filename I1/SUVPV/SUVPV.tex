@@ -224,9 +224,53 @@
 
     \end{definice}
 
-% 23. 11. 2020
+% 16. 11. 2020
+
+    \begin{definice}[Confidence Intervals]
+        Když spočítáme chybu, tak můžeme ještě odhadnout skutečnou chybu jako
+        $$ error(h|X) ± z_{1-\alpha/2}\sqrt{\frac{error(H|X) \(1-error(h|X)\)}{n}}, $$ 
+        kde $z_{1-\alpha/2}$ je takzvaná kritická hodnota statistického rozložení, kterou najdeme v tabulkách (často se používá hodnota 1,960 odpovídající přesnosti 95\%).
+    \end{definice}
+
+\section{Testování}
+    \begin{definice}
+        Data rozdělujeme minimálně na 3 množiny: trénovací data (tréning), validovací data (nastavení parametrů) a testovací data (testování, MUSÍ být disjunktní s ostatními množinami).
+
+        Pokud máme malou nebo nevyrovnanou množinu dat, rozdělení nemusí být reprezentativní, tedy se často generují podmnožiny tak, aby měli reprezentativní zastoupení tříd.
+    \end{definice}
+
+    \begin{definice}[Cross validace]
+        Chyba se nepočítá na jedné množině testovacích dat, ale na mnoha jejích podmnožinách a dělá se průměr.
+
+        Tyto podmnožiny dat můžeme získat buď náhodným výběrem (objekt může být zvolen vícekrát) nebo při tzv. K-fold cross validaci prostě rozdělit trénovací data na K shodně velkých podmnožin (ty zas nemají reprezentativní rozdělení v každé množině). Úprava Stratified K-fold cross validation vybírá K shodně velkých podmnožin, aby třídy byly zastoupeny reprezentativně, úprava „leave one out“ volí $K=N$.
+
+        Nejčastěji se volí K=10, nebo pro velké sety K=3, nebo pro malé K=N.
+    \end{definice}
+
+    \begin{definice}[Bootstrap]
+        Vybereme náhodně (klidně opakovaně) data na trénování a pak ty, co jsme nevybrali použijeme na testování. V trénovacích datech se objeví okolo 63,2\% dat.
+    \end{definice}
+
+\section{Porovnávání modelů}
+    \begin{definice}[Porovnávání]
+        Modely (někdy též hypotézy) můžeme porovnávat pomocí intervalu chyby, nebo třeba tzv. McNemarův test, kde se spočítají hodnoty kontingenční matice a následně se dosadí do vzorce.
+    \end{definice}
 
 \section{Další klasifikátory}
+    \begin{definice}[K nejbližších sousedů]
+        Pomocí bayesovy věty dojdeme k vzorci $p(\omega_i|¦x) = \frac{K_i}{K}$. Učení probíhá jednoduše, prostě si zapamatujeme data. Klasifikace probíhá také jednoduše, spočítáme nejbližších K objektů a klasifikujeme jako nejvíce zastoupenou třídu.
+
+        Jediné, co můžeme nastavovat, je K (menší méně odhalí šum, ale má detailnější hranice, větší naopak přestává být senzitivní), a jakou metriku použijeme.
+
+        Důležité je standardizovat data. Druhá možnost je použít vážených K nejbližších sousedů, kde každý soused (podle vzdálenosti) bude mít jinou váhu. Nebo (a to i v případě, že jsou souřadnice „deformovány jinak“) můžeme použít metriku s parametry a používat tzv. adaptivní nejbližší sousedé, kde v každé části prostoru bude metrika vypadat jinak.
+
+        Kategorická data se pro K nejbližších sousedů buď musí převést na číselná, použít speciální metriky, nebo vektorizovat (na nuly a jedničky, dimenze pro každou kategorii).
+
+        Data se dají trochu upravovat. Kromě normalizace ještě můžeme odstranit data, která by KNS klasifikoval „velmi“ špatně (mají hodně sousedů jiné třídy).
+    \end{definice}
+
+% 23. 11. 2020
+
     \subsection{Rozhodovací stromy}
     \begin{definice}[Rozhodovací stromy]
         Výhoda = nemusíme zavádět vzdálenosti (= můžeme klasifikovat i nominální data = data, u kterých nemá vzdálenost smysl).

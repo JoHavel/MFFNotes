@@ -835,5 +835,54 @@
             Libovolný vektor vyjádříme jako lineární kombinaci $x_i$ a zobrazíme na lineární kombinaci $y_i$. Jednoznačnost sporem přes dvě vyjádření lineární kombinací.    
         \end{dukazin}
     \end{veta}
+
+% 3. 11. 2020
+
+    \begin{definice}[Matice lineárního zobrazení]
+        Buď $f: ¦U \rightarrow ¦V$, $B_{¦U} = \{¦x_1, …, ¦x_n\}$ báze prostoru ¦U nad ®T a $B_{¦V} \{¦y_1, …, ¦y_m\}$ báze prostoru $¦V$ nad ®T. Nechť $f(¦x_j) = \sum_{i=1}^m a_{ij}¦y_i$. Potom matice $A \in ®T^{m \times n}$ s prvky $a_{ij}$, se nazývá matice lineárního zobrazení $f$ vzhledem k bázím $B_{¦U}, B_{¦V}$ a značí se $_{B_{¦V}}\[f\]_{B_{¦U}}$.
+    \end{definice}
+
+    \begin{veta}[Maticová reprezentace lineárního zobrazení]
+        Buď $f: ¦U \rightarrow ¦V$, $B_{¦U} = \{¦x_1, …, ¦x_n\}$ báze prostoru ¦U nad ®T a $B_{¦V} \{¦y_1, …, ¦y_m\}$ báze prostoru $¦V$ nad ®T. Pak $\forall x \in ¦U$ je
+        $$ [f(x)]_{B_{¦V}} = _{B_{¦V}}[f]_{B_{¦U}}·[x]_{B_{¦U}}. $$
+
+        \begin{dukazin}
+            Přes sumy.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Každé lineární zobrazení $f: ®T^m \rightarrow ®T^n$ se dá vyjádřit jako matice.
+    \end{dusledek}
+
+    \begin{veta}[Jednoznačnost matice lineárního zobrazení]
+        Buď $f: ¦U \rightarrow ¦V$, $B_{¦U} = \{¦x_1, …, ¦x_n\}$ báze prostoru ¦U nad ®T a $B_{¦V} \{¦y_1, …, ¦y_m\}$ báze prostoru $¦V$ nad ®T. Pak jediná matice $A$ splňující $\forall ¦x \in ¦U: [f(¦x)]_{B_{¦V}} = A·[¦x]_{B_{¦U}}$ je $A = _{B_{¦V}}[f]_{B_{¦U}}$.
+
+        \begin{dukazin}
+            Sporem. $¦A ≠ ¦A'$ jsou 2 reprezentace. Tudíž existuje vektor $¦s \in ®T^n$ takový, že $A¦s ≠ A'¦s$. Pak ale nesplňují podmínku.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Naopak každá matice představuje matici nějakého lineárního zobrazení.
+        \begin{dukazin}
+            Ve sloupcích vyčtu, kam zobrazuje $f$ bázi.
+        \end{dukazin}
+    \end{poznamka}
+
+    \begin{definice}[Matice přechodu]
+            Buď ¦V vektorový prostor a $B_1$ a $B_2$ dvě jeho báze. Pak maticí přechodu od $B_1$ k $B_2$ nazveme matici $_{B_2}[id]_{B_1}$.
+    \end{definice}
+
+    \begin{tvrzeni}[Složené lineární zobrazení]
+        Složení lineárních zobrazení je lineární.
+        \begin{dukazin}
+            Podle definice ověříme pro libovolné vektory a prvek tělesa.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Matice složeného lineárního zobrazení]
+        Matici složeného zobrazení dostaneme jako součin matic příslušných skládaným zobrazením.
+    \end{veta}
     
 \end{document}

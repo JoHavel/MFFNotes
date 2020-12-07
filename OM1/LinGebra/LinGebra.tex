@@ -641,6 +641,8 @@
 
 % 3. 11. 2020
 
+\section{Vektorové prostory}
+    \subsection{definice}
         \begin{definice}[Vektorový prostor]
             Buď ®T těleso. Vektorový prostor nad tělesem ®T je množina ¦V (množina vektorů) s operací sčítání na ¦V ($¦V\times ¦V \rightarrow ¦V$) a operací násobení skalárem ($®T\times ¦V \rightarrow ¦V$), které splňují tyto axiomy:
             \begin{itemize}
@@ -717,6 +719,7 @@
 
 % 10. 11. 2020
 
+    \subsection{Maticové VP}
         \begin{upozorneni}[MIDTERMY]
             Budou! První bude 24. 11. 2020. Druhý 15. 12. 2020.
         \end{upozorneni}
@@ -754,6 +757,8 @@
         \begin{dukazin}
                 Přímo z maticového násobení. $RA¦x = R¦a_1x_1+…+R¦a_nx_n$
         \end{dukazin}
+
+    \subsection{Lineární (ne)závislost}
 
         \begin{definice}[Lineární (ne)závislost]
             Buď ¦V vektorový prostor nad ®T a $(¦v_1, …, ¦v_k)$ posloupnost vektorů z ¦V. Řekněme, že posloupnost vektorů je lineárně nezávislá, pokud žádný vektor $¦v_i$ z posloupnosti nelze vyjádřit jako lineární kombinaci zbývajících. Tj. neplatí:
@@ -814,6 +819,8 @@
         \end{tvrzeni}
 
 % 19. 11. 2020
+
+    \subsection{Báze, dimenze}
 
         \begin{definice}[Báze]
             ¦V vektorový prostor nad ®T. Pak posloupnost vektorů je báze ¦V, pokud je lineárně nezávislá a její lineární obal je ¦V.
@@ -878,5 +885,152 @@
             Buď ¦V konečně generovaný VP a ¦W jeho podprostor. Pak
             $$ \dim(¦W) ≤ \dim(¦V), $$
             $$ \dim(¦W) = \dim(¦V) \Leftrightarrow ¦V=¦W $$ 
+
+% 1. 12. 2020
+
+            \begin{dukazin}
+                Krok 1: Ukážeme, že ¦W je konečně generovaný vektorový prostor. Označme $n:=\dim(¦V)$. Sporem $\dim(¦W) < \omega_0$: předpokládejme, že ¦W není konečně generovaný, tj. můžeme indukcí volit posloupnost vektorů z ¦W, $w_1, w_2, …$, takovou, že $\forall i≥1: w_i \notin \LO\{w_1, …, w_{i-1}\} (≤¦W, ≠¦W)$. Z T5.36 je $w_1, …, w_n, w_{n+1}$ LN ve ¦W, tedy i ve ¦V, což je spor s tím, že $\dim(¦V) = n$ (pozorování 5.67). $\lightning$
+
+                Krok 2: Argument z kroku 1 ukazoval, že posloupnost $(w_1, …, w_k)$ z ¦W, která je LN ve ¦W, je LN i ve ¦Ě, tedy $k≤\dim(¦V) \implies \dim(¦W) ≤ \dim(¦V) \land (\dim(¦W) = \dim(¦V) \implies ¦V=¦W)$. Poslední implikace druhým směrem je triviální (totožné prostory mají totožnou dimenzi).
+            \end{dukazin}
         \end{tvrzeni}
+
+    \subsection{Báze jako souřadnicový systém}
+        \begin{definice}
+                Buď ¦V VP nad tělesem ®T, $B=(¦v_1, …, ¦v_n)$ báze ¦V, $¦v \in ¦V$. Pak Souřadnicové (též vyjádření) vektoru ¦v vzhledem k $B$ je aritmetický vektor
+                $$ \[¦v\]_B = (a_1, a_2, …, a_n)^T \in T^n $$ 
+                takový, že $¦v = a_1·¦v_1 + a_2·¦v_2 + … + a_n·¦v_n$. (Vizte pozorování 5.48 pro jednoznačnost.)
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď ¦V VP nad ®T s bází $B$. Pak platí: a) $\forall ¦v, ¦w \in ¦V: [¦v+¦w]_B = [¦v]_B + [¦w]_B$ a b) $\forall ¦v \in ¦V, t\in ®T: [t·¦v]_B = t·[v]_B.$
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            V situaci T5.75 máme bijekci $f(¦v) = [¦v]_B$, která respektuje operace na VP, tzn. izomorfismus VP (tj. každý konečně generovaný VP je izomorfní aritmetickému).
+        \end{poznamka}
+
+        \begin{tvrzeni}[Matice přechodu]
+                Mějme ¦V, VP nad ®T, s bázemi $B = (¦v_1, …, ¦v_n)$ a $C = (¦w_1, …, ¦w_n)$. Potom existuje čtvercová matice $[id]_C^B$ řádu $n$ taková, že
+                $$ \forall ¦v \in ¦V: [¦v]_C = [id]_C^B·[¦v]_B. $$ 
+                Tuto matici nazýváme matice přechodu od báze $B$ k bázi $C$.
+        \end{tvrzeni}
+
+        \begin{definice}[Matice přechodu (D5.78 + T5.79)]
+            Matice z předchozího tvrzení je rovna
+            $$ [id]_C^B = \([¦v_1]_C|…|[¦v_n]_C\) \in ®T^{n\times n}. $$ 
+        \end{definice}
+
+    \subsection{Hodnost a bázové sloupce matice podruhé}
+        \begin{tvrzeni}
+            Je-li $C = \(c_1, …, c_n\)$ matice typu $m \times n$ nad ®T v odstupňovaném tvaru, pak $k$-tý sloupce $C_k$ je bázový, právě když
+            $$ C_k \notin \LO{c_1, …, c_{k-1}}. $$ 
+            \begin{dukazin}
+                Pokud $k = k_i$ je bázový, pak má v $i$-tém řádku $≠0$ prvek, ale $c_1, c_2, …, c_{k-1}$ tam mají 0. Speciálně $c_{k_i} \notin \LO\{c_1, … c_{k_i-1}\}$.
+
+                Naopak buď $c_k$ nebázový, tj. $k_i < k < k_{i+1}$ (nebo $k<k_1$ nebo $k>k_2$). Všimněme si, že SLR odpovídající hledání lineární kombinace $c_1, c_2, …, c_{k-1}$ tak, aby byla rovna $c_k$, nemá pivot v posledním sloupci, tedy má řešení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buď $A$ libovolná matice typu $m \times n$ nad ®T, buď $R$ regulární matice řádu $m$, položme $B = R·A$. Označme
+            $$ A = (a_1|…|a_n), B = (b_1|…|b_n). $$
+            Pak $\forall 1≤k≤n$ platí:
+            $$ a_k \in \LO\{a_1, …, a_{k-1}\} \Leftrightarrow b_k \in \LO\{b_1, …, b_{k-1}\}. $$
+            \begin{dukazin}
+                Přes asociativitu maticového násobení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+                Buď $A$ matice typu $m \times n$ nad T. Pak platí: a) $k$-tý sloupec $A$ je bázový $\Leftrightarrow a_k \notin \LO\{a_1, …, a_{k-1}\}$ a b) $\rank(A) = \dim(\Im(A))$.
+        \end{dusledek}
+
+        \begin{poznamka}[Pozorování]
+            Bázové sloupce matice $A$ tvoří bázi $\Im(A)$.
+            \begin{dukazin}
+                Víme totiž, že bázové sloupce jsou lineárně nezávislé, jelikož nejdou vyjádřit jako lineární kombinace předchozích. Indukcí podle $n$ se dá ukázat, že $\Im(A) = \LO\{\text{bázových vektorů}\}$
+            \end{dukazin}
+        \end{poznamka}
+
+        \begin{poznamka}[Pozorování]
+            Hodnost matice $A$ se nezmění řádkovými ani sloupcovými úpravami. Tj (a typu $m \times n$ nad ®T, $R$ regulární řádu $m$, $Q$ regulární řádu $n$): $\rank(R·A) = \rank(A) = \rank(A·Q)$.
+
+            \begin{dukazin}
+                Použije se T5.86 (bázové sloupce zůstanou bázovými) a T5.32 ($\Im(A) = \Im(A·Q)$).
+            \end{dukazin}
+        \end{poznamka}
+
+        \begin{veta}(5.88)
+            $A$ matice typu $m \times n$ nad ®T. Pak $\rank(A) = \rank(A^T)$.
+            \begin{dukazin}
+                Nechť $C = R·A$ je odstupňovaný tvar.
+                $$\rank(A) = \rank(R·A) = \rank(C) = \#\text{bázových sloupců} = $$
+                $$ = \#\text{bázových řádků} = \rank(C^T) = \rank(A^T·R^T) = \rank(A^T).$$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}
+            Buď $A$ typu $m \times n$ a $B$ typu $n \times p$. Pak $\rank(A·B) ≤ \min\{\rank(A), \rank(B)\}$.
+
+            \begin{dukazin}
+                Slupce $A·B$ jsou lineární kombinace sloupců $A$ $\implies \Im(A·B) ≤ \Im(A) \implies \rank(A·B) ≤ \rank(A)$. Dále totéž pro transponovaný součin: $\rank(A·B) ≤ \rank(B)$.
+            \end{dukazin}
+
+            \begin{poznamkain}
+                Ani v případě rovnosti $A=B$ nemusí nastat rovnost nerovnosti výše.
+            \end{poznamkain}
+        \end{tvrzeni}
+
+        \begin{poznamka}[Pozorování 5.94 (variace na 4.81 -- charakterizace regulárních matic)]
+                Buď $A$ čtvercová matice řádu $n$. Pak NPJE: a) $A$ regulární, b) $\rank(A) = n$, c) sloupce $A$ jsou LN, d) sloupce A tvoří bázi $T^n$, e) sloupce generují $T^n$, c), d) a e) znovu pro řádky.
+        \end{poznamka}
+
+    \subsection{Gaussova-jordanova eliminace}
+        \begin{definice}[Redukovaný odstupňovaný tvar]
+            Matice $A$ typu $m \times n$ nad ®T je v redukovaném (řádkově) odstupňovaném tvaru, pokud $A$ je v odstupňovaném tvaru a navíc bázové sloupce $A$ jsou kanonickými bázovými vektory.
+        \end{definice}
+
+        \begin{poznamka}[Pozorování]
+            Každou matici můžeme pomocí EŘÚ dostat do redukovaného odstupňovaného tvaru. Postup se nazývá Gaussova-Jordanova eliminace.
+        \end{poznamka}
+
+        \begin{definice}[Skeletní rozklad matice]
+            Buď $A$ typu $m \times n$ nad ®T, $r:=\rank(A)$. Skeletní rozklad $A$ je libovolné vyjádření $A=B·C$, kde $B$ je typu $m \times r$ a $C$ je typu $r \times n$.
+        \end{definice}
+
+        \begin{veta}[Jakási ze skript]
+            Říká, jak počítat skeletní rozklad pomocí G-J eliminace.
+        \end{veta}
+
+    \subsection{SLR}
+        \begin{veta}[Frobeniova]
+            SLR $A·¦x = ¦b$ je řešitelná, právě když $\rank(A) = \rank(A|¦b)$.
+
+            \begin{dukazin}
+                $\rank(A) = \rank(A|¦b) \Leftrightarrow b$ není bázový sloupec $(A|¦b) \Leftrightarrow ¦b \in \Im(A) \Leftrightarrow A·¦x = ¦b$ má řešení.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}
+            Buď $A$ matice typu $m \times n$ nad ®T. Pak 
+            $$ \dim(\Ker(A)) + \dim(\Im(A)) = n, $$
+            $$ \dim(\Ker(A^T)) + \dim(\Im(A^T)) = m. $$
+
+            \begin{dukazin}
+                Z algoritmu pro řešení SLR $A·¦x = 0$ víme, že \# parametrů řešení $= n -$ \# Bázových sloupců $= n-\rank(A) = n-\dim(\Im(A))$. Navíc \# parametrů řešení = \# volných proměnných $= \dim(\Ker(A))$
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Průnik a součet podprostorů}
+        \begin{definice}
+            Viz informatická lingebra.
+        \end{definice}
+
+        \begin{veta}
+            Buď ¦W vektorový prostor a $¦U, ¦V ≤ ¦W$. Pak
+            $$ \dim(¦U) + \dim(¦V) = \dim(¦U \cap ¦V) + \dim(¦U+¦V). $$ 
+        \end{veta}
+
+
 \end{document}

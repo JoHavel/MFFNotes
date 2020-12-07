@@ -1,0 +1,38 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+% \renewcommand{\baselinestretch}{0.9}
+
+\begin{document}
+
+    \begin{priklad}[8.1]
+        V prostoru ¦V reálných polynomů jedné proměnné $x$ stupně nejvýše 3 (s běžnými operacemi) uvažujme podprostor ¦W určený množinou
+        $$ ¦W = \{f \in ¦V : f(−2) = 0\}. $$ 
+        Najděte nějakou bázi prostoru ¦W.
+
+        \begin{reseni}
+            Každý polynom proměnné $x$ je dělitelný všemi $x - r$, kde $r$ je kořen, tedy každý náš polynom $f(x)$ můžeme vyjádřit jako $(x+2)·g(x)$, kde $g(x) = \frac{f(x)}{x+2}$ je polynom stupně nejvýše 2 (pokud by měl větší stupeň, tak po vynásobení $(x+2)$ dostaneme polynom stupně větší než 3). Prostor polynomů stupně nejvýše dva má bázi například $\(1,\ x,\ x^2\)$ (z definice polynomu), tedy každý polynom (a naopak žádné jiné) $f(x) = (x+2)·g(x)$ vyjádříme právě jedním způsobem jako lineární kombinaci prvků posloupnosti (tj. báze) $\(1(x+2),\ x(x+2),\ x^2(x + 2)\) = \(x+2,\ x^2 + 2x,\ x^3 + 2x^2\)$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[7.2]
+        Ve vektorovém prostoru $¦V ≤ ®Z^{2\times 2}_5$ máme báze $B$ a $C$. Určete bázi $C$, víte-li, že matice přechodu od báze $B$ k bázi $C$ je $A$ a platí
+        $$ B = (¦v_1,\ ¦v_2,\ ¦v_3) = \begin{pmatrix} 2 & 4 \\ 0 & 2 \end{pmatrix},\ \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix},\ \begin{pmatrix} 0 & 1 \\ 3 & 0 \end{pmatrix},\  ¦V = \LO\{¦v_1,\ ¦v_2,\ ¦v_3\},$$ 
+        $$ A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 1 & 2 \\ 3 & 2 & 4 \end{pmatrix}. $$ 
+
+        \begin{reseni}
+            Podle definice 5.78 ze skript je matice přechodu od báze $B$ k bázi $C$ definována jako $A = [id]_C^B = \([¦v_1]_C|[¦v_2]_C|[¦v_3]_C\)$. Tedy při značení $C = (¦u_1,\ ¦u_2,\ ¦u_3)$ získáváme:
+            $$ ¦v_1 = 2¦u_1 + 0¦u_2 + 3¦u_3 $$
+            $$ ¦v_2 = 1¦u_1 + 1¦u_2 + 2¦u_3 $$
+            $$ ¦v_3 = 0¦u_1 + 2¦u_2 + 4¦u_3 $$
+            Z toho již vidíme, že $¦u_3 = 2¦v_1 + 1¦v_2 + 2¦v_3$ (sečtením dvojnásobku první, druhé, a dvojnásobku třetí) a $¦u_2 = 1¦v_1 + 3¦v_2 + 4¦v_3$ a $¦u_1 = 0¦v_1 + 1¦v_2 + 2¦v_3$, tj.
+            $$ C = \(\begin{pmatrix} 0·2 + 1·2 + 2·0 & 0·4 + 1·1 + 2·1 \\ 0·0 + 1·1 + 2·3 & 0·2 + 1·1 + 2·0 \end{pmatrix},\right.$$
+            $$ \begin{pmatrix} 1·2 + 3·2 + 4·0 & 1·4 + 3·1 + 4·1 \\ 1·0 + 3·1 + 4·3 & 1·2 + 3·1 + 4·0 \end{pmatrix}, $$
+            $$ \left.\begin{pmatrix} 2·2 + 1·2 + 2·0 & 2·4 + 1·1 + 2·1 \\ 2·0 + 1·1 + 2·3 & 2·2 + 1·1 + 2·0 \end{pmatrix}\) $$
+                $$ C = \( \begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix},\ \begin{pmatrix} 3 & 1 \\ 0 & 0 \end{pmatrix},\ \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \) $$ 
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

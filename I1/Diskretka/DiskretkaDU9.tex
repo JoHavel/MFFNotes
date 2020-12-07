@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+\usetikzlibrary{arrows}
+
+\begin{document}
+
+\begin{priklad}[1]
+    Mějme 3 přirozená čísla $k$, $l$, $m$ taková, že nejvýše jedno z nich je rovno jedné. Mějme graf, který obsahuje vrcholy $u$, $v$, a 3 disjunktní cesty mezi těmito vrcholy, které mají popořadě $k$, $l$ a $m$ hran (a tento graf již neobsahuje nic dalšího). Kolik má tento graf koster?
+    
+    \begin{reseni}
+            Takový graf má $k+l+m$ hran a $k-1+l-1+m-1 + 2 = k+l+m-1$ vrcholů. Tedy z charakterizace stromu víme, že kostra musí mít o dvě hrany méně (musí mít stejně vrcholů, ale strom má počet hran o 1 menší než počet vrcholů). Tedy musíme odstranit dvě hrany. Pokud odstraníme obě hrany z jedné ze 3 cest ze zadání, druhé dvě cesty budou tvořit kružnici, tedy to nebude kostra. Naopak pokud odstraníme libovolnou hranu z jedné cesty a libovolnou z druhé, tak graf zůstane souvislý (tedy vzhledem k počtu hran to bude kostra), protože všechny vrcholy jsou zřejmě stále spojeny zbytky těchto dvou cest / třetí cestou k $u$ nebo k $v$ a mezi $u$ a $v$ stále existuje 3. cesta. Tedy počet koster je roven $k·l + k·m + l·m$ (pro každou dvojici cest všechny možnosti výběru hrany z jedné krát (nezávislý výběr) všechny možnosti výběru hrany z druhé).
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[2]
+    Mějme graf $G$, jeho kostru $K$ a jeho hranu $e$, která není součástí $K$. Dokažte, že existují alespoň 2 různé hrany $e', e'' \in K$ takové, že $K$ po přidání $e$ a odebrání libovolné z hran $e', e''$ je stále kostra $G$.
+
+
+    \begin{reseni}
+        Označme $u, v$ koncové vrcholy hrany $e$. Jelikož $K$ je kostra, tak v $K$ musí existovat cesta $P$ mezi $u, v$. A jelikož $(u, v)$ není v $K$, tak tato cesta nemůže být délky (počtu hran) 1, navíc (protože jsou to koncové vrcholy hrany) nejsou totožné, tedy délka cesty mezi nimi nemůže být ani 0. Tedy cesta mezi nimi obsahuje alespoň 2 hrany. Zvolme dvě z nich jako hrany $e'$ a $e''$. Stačí ukázat, že $K$ po odebrání $e'$ (resp. $e''$) a přidání $e$ zůstane souvislá, z čehož už bude plynout z charakterizace stromu, že je stromem (a tedy kostrou, jelikož vrcholy neměníme), neboť nezměníme počet hran a $K$ byla strom.
+
+        Mějme tedy libovolné dva vrcholy $x$, $y$, jelikož $K$ je kostra, existuje cesta $P' \subseteq K$ mezi nimi. Pokud cesta nevedla přes $e'$ (resp. $e''$), tak se nic nezměnilo a i v $K-e'+e$ (resp. $K-e''+e$) tato cesta existuje. Pokud cesta vedla přes $e'$ ($e''$), tak místo hrany $e'$ ($e''$) vložíme cestu ze správného konce $e'$ ($e''$) k $u$/$v$, dále hranu $e$ a nakonec cestu od $v$/$u$ k jejímu druhému konci. (Tyto cesty existují, protože $e'$ ($e''$) ležely na cestě z $u$ do $v$.) Sjednocení těchto cest je tah mezi $x$ a $y$, tedy $K - e'$ ($K-e''$) je spojitá, tudíž $K - e'$ ($K - 3''$) je kostra. Tedy jsme našli dvě hrany odpovídající zadání.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3]
+    Mějme souvislý graf $G$ na alespoň 3 vrcholech. Dokažte, že existují 2 vrcholy $u$, $v$, takové, že $G \setminus \{u\}$, $G \setminus \{v\}$ i $G \setminus \{u, v\}$ jsou souvislé.
+    
+    \begin{reseni}
+        Z lemmatu o koncovém vrcholu z přednášky víme, že každý strom s alespoň 2 vrcholy má alespoň 2 listy. Tedy když vezmeme kostru grafu $G$ (to můžeme, protože je souvislý), tak bude mít alespoň dva různé listy $u, v$. Dále víme (z hned dalšího lemmatu z přednášky), že když ze stromu odebereme list, tak zůstane stromem, tedy když odebereme z kostry $u$, nebo $v$, tak stále „zůstane“ kostrou grafu $G-u$ nebo $G-v$. Navíc jelikož $G-u$ má stále alespoň 2 vrcholy, tak zřejmě $v$ zůstalo listem v kostře s odebraným $u$ (v kostře nemohla být hrana $(u, v)$, jinak by byla nesouvislá, nebo by $u$ nebo $v$ nebyl list), tedy ho můžeme také odebrat a kostra „zůstane“ kostrou i pro $G - u - v$. Takže všechny tři vytvořené grafy mají kostru, tj. jsou souvislé.
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[4]
+    Najděte souvislý graf $G(V, E)$ na alespoň 4 vrcholech takový, že pro každou tříprvkovou množinu jeho vrcholů $M \subset V$, $|M| = 3$ platí, že existuje $M' \subseteq M$ taková, že $G \setminus M'$ souvislý není.
+
+    \begin{reseni}
+        Takovým grafem je například $C_4$, jelikož pro každou tříprvkovou podmnožinu jeho vrcholů platí, že obsahuje 2 protější (ty, co nejsou spojeny hranou) vrcholy. Když tyto dva vrcholy odebereme, zbývající dva vrcholy $C_4$ už nemají žádné hrany, tedy nemůže mezi nimi vést cesta, tj. vzniklý graf je nesouvislý.
+    \end{reseni}
+\end{priklad}
+
+\end{document}

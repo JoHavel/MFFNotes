@@ -1093,11 +1093,109 @@
         \end{veta}
 
         \begin{veta}[Derivace složené funkce]
-            Nechť má $f$ derivaci v bodě $y_0$, $g$ má derivaci v $x_0$, je v $x_0$ spojitá a $y_0 = g(x_0)$. Pak
+            Nechť má $f$ derivaci v bodě $y_0$, $g$ má derivaci v $x_0$, je v $x_0$ spojitá a $y_0 = g(x_0)$. Pak (je-li pravá strana definována)
             $$ (f\circ g)'(x_0) = f'(y_0)·g'(x_0) = f'(g(x_0))·g'(x_0). $$ 
             \begin{dukazin}
                 Myšlenka:
                 $$ \lim_{h \rightarrow 0} \frac{f(g(x_0 + h)) - f(g(x_0))}{h} = \lim_{h \rightarrow 0} \frac{f(g(x_0 + h)) - f(g(x_0))}{g(x_0 + h) - g(x_0)}·\frac{g(x_0 + h) - g(x_0)}{h} \overset{\text{VOLSF}}{=} \lim_{y \rightarrow y_0} \frac{f(y) - f(y_0)}{y - y_0} · g'(x_0) = f'(g(x_0)) · g'(x_0)  $$ 
+
+% 1. 12. 2020
+
+                Funkce $f$ má v bodě $y_0 \in ®R$ derivaci, a proto je $f$ definována na jistém okolí $\B(y_0, \eta)$. Funkce $g$ je spojitá v $x_0 \in ®R, g(x_0) = y_0$, a proto je funkce $f(g(x))$ definována na jistém okolí $\B(x_0, \delta$.
+
+                1. Předpokládejme nejprve, že $f'(y_0) \in ®R$. Definujeme pomocnou funkci $S(y) = f'(y_0), y=y_0$ a $S(y) = \frac{f(y) - f(y_0)}{y-y_0}, y \in D(f)\setminus\{y_0\}$. Platí $\lim_{y \rightarrow y_0} S(y) = S(y_0)$, tedy $S$ je v bodě $y_0$ spojitá. Pro $x \in D(f\circ g)$ platí
+                $$ \frac{f(g(x)) - f(g(x_0))}{x-x_0} = S(g(x))·\frac{g(x) - g(x_0)}{x_-x_0} \text{(Získáme z $0=0$ a rozšíření jinak.)}. $$ 
+                Odtud z VOLSF s podmínkou (S)
+                $$ (f\circ g)'(x_0) = \lim_{x \rightarrow x_0} \frac{f(g(x)) - f(g(x_0))}{x - x_0} = \lim_{x \rightarrow x_0} S(g(x)) · \frac{g(x) - g(x_0)}{x - x_0} = S(g(x_0))·g'(x_0) = f'(g(x_0))·g'(x_0). $$
+
+            2. Nechť nyní $f'(y_0) = \pm∞$. Pak ale $g(x_0)≠0$, aby byl výraz vpravo definován. Pak existuje $\tilde{\eta}>0$ tak, že $\forall x \in \P(x_0, \eta): \frac{g(x) - g(x_0)}{x-x_0} ≠ 0$. Takže $\forall x \in \P(x_0, \tilde{\eta} g(x)≠g(x_0)$, odtud 
+            $$ (f\circ g)'(x_0) = \lim_{x \rightarrow x_0} \frac{f(g(x)) - f(g(x_0))}{x-x_0} = \lim_{x \rightarrow x_0} S(g(x))·\frac{g(x) - g(x_0)}{x_-x_0} = f'(g(x_0))·g'(x_0), $$
+            kde jsme použili VOLSF s podmínkou (P).
             \end{dukazin}
         \end{veta}
+
+        \begin{veta}[Derivace inverzní funkce]
+            Nechť $f$ je na intervalu $(a, b)$ spojitá a rostoucí (resp. klesající). Nechť $f$ má navíc v bodě $x_0 \in (a, b)$ derivaci $f'(x_0)$ vlastní a různou od nuly. Potom má funkce $f^{-1}$ derivaci v bodě $y_0 = f(x_0)$ a platí
+            $$ (f^{-1})'(y_0) = \frac{1}{f'(f^{-1}(y_0))}. $$
+
+            \begin{poznamkain}
+                Existují i varianty pro $f'(x_0) = 0$ a $f'(x_0) = ±∞$.
+            \end{poznamkain}
+
+            \begin{dukazin}
+                Z věty o inverzní funkci víme, že $f^{-1}$ existuje a je spojitá na $f((a, b))$ a $y_0$ je vnitřní bod $f((a, b))$. Víme, že $\lim_{x \rightarrow x_0} \frac{f(x) - f(x_0)}{x-x_0} = f'(x_0)$ a $\lim_{y \rightarrow y_0} f^{-1}(y) = f^{-1}(y_0) = x_0$ + víme podmínku (P), neboť $f^{-1}$ je rostoucí. Podle VOLSF s podmínkou (P) dostaneme
+                $$f'(x_0) = \lim_{y \rightarrow y_0} \frac{f(f^{-1}(y))-y_0}{f^{-1}(y) - f^{-1}(y_0)} = \lim_{y \rightarrow y_0} \frac{y - y_0}{f^{-1}(y) - f^{-1}(y_0)}.$$
+                Odtud
+                $$ (f^{-1})'(y_0) = \lim_{y \rightarrow y_0} \frac{f^{-1}(y) - f^{-1}(y_0)}{y - y_0} = \frac{1}{\lim_{y \rightarrow y_0} \frac{y - y_0}{f^{-1}(y) - f^{-1}(y_0)}} = \frac{1}{f'(x_0)}. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Derivace elementárních funkcí]
+            \ 
+            \begin{itemize}
+                \item $(const)' = 0$
+                \item $\(x^n\)' = n·x^{n-1}, x \in ®R, n \in ®N$
+                \item $(\log x)' = \frac{1}{x}, x \in (0, ∞)$
+                \item $(\exp x)' = \exp x, x \in ®R$
+                \item $\(a^x\)' = a^x \log a, x \in ®R, a \in R^+$
+                \item $(\sin x)' = \cos x, x \in ®R$
+                \item $(\cos x)' = -\sin x, x \in ®R$
+                \item $(\tan x)' = \frac{1}{\cos^2 x}, x \in D(\tan)$
+                \item $(\cotg x)' = \frac{-1}{\sin^2 x}, x \in D(\cotg)$
+
+% 4. 12. 2020
+
+                \item $(\arcsin x)' = \frac{1}{\sqrt{1-x^2}}, x \in (-1, 1)$
+                \item $(\arctan x)' = \frac{1}{1+x^2}, x \in ®R$
+                \item $(\arccos x)' = -\frac{1}{\sqrt{1-x^2}}, x \in (-1, 1)$
+                \item $(\arccotg x)' = - \frac{1}{1+x^2}, x \in ®R$
+            \end{itemize}
+        \end{poznamka}
+
+        \begin{veta}[Fermatova (L4.5)]
+            Nechť $a \in ®R$ je bod lokálního extrému funkce $f$ ne $M$. Pak $f'(a)$ neexistuje, nebo $f'(a) = 0$.
+
+            \begin{dukazin}
+                    Sporem. Nechť $a$ je bod lokálního extrému $f$ na $M$, $\exists f'(a)$, ale $f'(a)≠0$. BÚNO $f'(a)>0$. Pak $\exists \delta > 0$ tak, že $\forall x \in \P(a, \delta): \frac{f(x) - f(a)}{x-a}>0$. Nyní $a < x \implies f(x) > f(a)$ a $a > x \implies f(x) > f(a)$ (obojí na intervalu $x \in \P(a, \delta)$). Tedy zde není ani maximum, ani minimum, tj. není zde extrém $\lightning$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Rolleova]
+            Nechť $f$ je spojitá na intervalu $[a, b]$, $f'(x)$ existuje pro každé $x \in (a, b)$ a $f(a) = f(b)$. Pak existuje $\zeta \in (a, b)$ tak, že $f'(\zeta) = 0$.
+            
+            \begin{dukazin}
+                Je-li $f(x) = f(a)$ $\forall x \in (a, b)$, volme $zeta$ libovolně v $(a, b)$.
+
+                Nechť $\exists x \in (a, b) f(x) ≠ f(a) = f(b)$. BÚNO $f(x) > f(a)$. Podle věty o spojitosti funkce a nabývání extrémů existuje bod $\zeta \in [a, b]$ tak, že $f(\zeta) = \max \{f(x), x \in [a, b]\}$ $f(x_0) > f(a) \implies \zeta ≠ a, \zeta ≠ b \implies \zeta \in (a, b)$. Víme, že $\exists f'(\zeta)$, protože $f'(x)$ existuje všude na $(a, b)$. Podle Fermatovy věty je $f'(\zeta = 0)$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Lagrangeova věta o střední hodnotě]
+            Nechť je funkce $f$ spojitá na intervalu $[a, b]$ a má derivaci v každém bodě intervalu $(a, b)$. Pak existuje $\zeta \in (a, b)$ tak, že $f'(\zeta) = \frac{f(b) - f(a)}{b-a}$.
+
+            \begin{dukazin}
+                Položme $F(x) = f(x) - f(a) - \frac{f(b) - f(a)}{b - a}·(x-a)$. Pak $F$ je spojitá na $[a, b]$ (součet spojitých funkcí) $F(a) = 0 = F(b)$. Dále $\exists F'(a) \forall x \in (a, b)$. Tudíž podle Rolleovy věty $\exists \zeta \in (a, b)$ tak, že $F'(\zeta) = 0$. Nyní $0 = F'(\zeta) = f'(\zeta) - 0 - \frac{f(b) - f(a)}{b-a} \implies f'(\zeta) = \frac{f(b) - f(a)}{b - a}$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Nechť $f'(x) = 0$ pro všechny $x \in (a, b)$. Pak je $f$ konstantní na $(a, b)$. ($\forall x, y \in (a, b) \frac{f(x) - f(y)}{x - y} = f'(\zeta) = 0$.)
+        \end{dusledek}
+
+        \begin{definice}[Vnitřek intervalu]
+            Nechť $J$ je interval. Množinu všech vnitřních bodů $J$ nazýváme vnitřek $J$ a značíme $\Int J$.
+        \end{definice}
+
+        \begin{veta}[O vztahu derivace a monotonie]
+            Nechť $J \subseteq ®R$ je interval a $f$ je spojitá na $J$ a v každém vnitřním bodě $J$ má derivaci. a) Je-li $f'(x) > 0$ na $\Int J$, pak je $f$ rostoucí na $J$. b) Je-li $f'(x) < 0$ na $\Int J$, pak je $f$ klesající na $J$. c) Je-li $f'(x) ≥ 0$ na $\Int J$, pak je $f$ neklesající na $J$. d) Je-li $f'(x) ≤ 0$ na $\Int J$, pak je $f$ nerostoucí na $J$.
+            
+            \begin{dukazin}
+                a) Nechť $a, b \in J, a < b$. Pak $f$ je na $[a, b]$ spojitá a existuje $f'(x) \forall x \in (a, b)$. Podle Lagrangeovy věty $\exists \zeta \in (a, b) \frac{f(b) - f(a)}{b - a} = f'(\zeta) > 0 \implies f(b) > f(a)$.
+
+                Ostatní body analogicky.
+            \end{dukazin}
+        \end{veta}
+
+
+
 \end{document}
