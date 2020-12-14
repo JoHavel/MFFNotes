@@ -997,4 +997,39 @@
         Z důkazu Urysohnovy metrizační věty lze odvodit, že každý separabilní metrizovatelný prostor má metrizovatelnou kompaktifikaci a lze ho vnořit do Hilbertovy kostky $\[0, 1\]^{®N}$.
     \end{poznamka}
 
+% 7. 12. 2020
+
+\section{Úplnost}
+    \begin{veta}[Cantor]
+        Metrický prostor $(X, \rho)$ je úplný $\Leftrightarrow$ pro každý centrovaný systém ©F sestávající z uzavřených množin a obsahující množiny libovolně malého (kladného) diametru je $\bigcap ©F ≠ \O$.
+    \end{veta}
+
+    \begin{tvrzeni}[O zúplnění]
+        Každý metrický prostor má zúplnění, tj. pro každý metrický prostor $(X, \rho)$ existuje metrický prostor $(Y, \sigma)$ a izometrie $j: X \rightarrow j(X) \subseteq Y$, že $(Y, \sigma)$ je úplný a $j(X)$ je hustá v $Y$.
+
+        Zúplnění je určeno jednoznačně až na ekvivalenci.
+    \end{tvrzeni}
+
+    \begin{definice}[Úplná metrizovatelnost a $G_\delta$-mnonžina]
+        TP ®X se nazývá úplně metrizovatelný, pokud na ®X existuje kompatibilní úplná metrika.
+
+        Množina $A$ v TP ®X se nazývá $G_\delta$-množina (množina typu $G_\delta$), pokud $A$ je průnikem spočetně mnoha otevřených množin.
+    \end{definice}
+
+    \begin{poznamka}
+        Úplná metrizovatelnost je topologický pojem. $(0, 1)$ je úplně metrizovatelný (ale v běžné metrice není úplný).
+    \end{poznamka}
+
+    \begin{veta}[Kuratowski]
+        Ať ®X je MP, ®Y úplně metrizovatelný. Ať $A \subseteq ®X, f: A \rightarrow ®Y$ spojité. Potom existuje $G_\delta$-množina $G \subseteq ®X$, že $A \subseteq G \subseteq \overline{A}$, a spojité $g: G \rightarrow ®Y$, které rozšiřuje $f$.
+
+        \begin{dukazin}
+            Pro $x \in \overline{A}$ definujeme oscilaci $\osc_f(x) = \inf\{\diam f(U cap A): U \text{ otevřené okolí } x\}$. Pro $x \in A: \osc_f(x)=0 \Leftrightarrow f$ je spojité v bodě $x$. $G:=\{x \in \overline{A}: \osc_f(x) = 0\}$. $G$ je $G_\delta$ v $\overline{A}$, $\overline{A}$ je $G_\delta$ v ®X. Tedy $G$ je $G_\delta$ v ®X.
+
+            Pro $x \in G$ existuje $x_1n \in A$, že $x_n \rightarrow x$. Definujeme $g(x) = \lim_{n \rightarrow ∞} f\(x_n\)$. Definice $g$ nezávisí na volbě $x_n$. $g$ rozšiřuje $f$. Spojitost $g$: Pro $U \subseteq ®X$ otevřená, že $U\cap G ≠ \O: g(U) \subseteq \overline{f(U)}$, tedy $\diam g(U) ≤ \diam \overline{f(U)} = \diam f(U) \implies \osc_g(x) ≤ \osc_f(x)$, tedy speciálně $\osc_g(x) = 0, x\in G$, tedy $g$ je spojitá.
+        \end{dukazin}
+    \end{veta}
+
+
+
 \end{document}

@@ -532,5 +532,96 @@
         S tím souvisí \verb|\special|, který je také takzvané whatsit (nejsou součátstí TeXu, ale je to jen naše dohoda s konvertorem, že je použije). Jelikož \TeX neumí barvičky, obrázky a spol, tak se takové věci dají vložit \verb|\special|. Dnes jsou ale spíše zastaralé, protože se dnes spíše používají přímo pdftexy, které se o to starají už sami.
     \end{definice}
 
+% 7. 12. 2020
+
+\section{Matematický mód}
+    \begin{definice}[abovewithdelims]
+        \verb|\abovewithdelims()xpt| vysází něco jako zlomek se zlomkovou čarou tloušťky $x$ a s delimitry (závorkami) „(“„)“, které nemusí být prázdné, mohou být dokonce „žádné“ (pouze mezera): „.“ (tam se použije mezera \verb|\nulldelimetter|).
+
+        Speciální případy jsou \verb|citatel \over jmenovatel|, \verb|n \choose 2|, \verb|n\atop k|.
+
+        Automaticky se vycentrovává pomocí \verb|\hfill|, tedy lze ho přebít \verb|\hfilll|.
+    \end{definice}
+
+    \begin{definice}[Delimeters]
+        Delimiters se dají upravit pomocí \verb|\left(…\right)|, což si změří obsah a podle toho natáhne závorky (těch existuje několik typů).
+
+        Existují i explicitní varianty (v plainu): \verb|\big( \Big( \bigg( \Bigg(\|, které jsou zkonstruované pomocí podpěr. Respektive \verb|\bcosil\bcosir\bcosim| kvůli mezerám vlevo, vpravo a ve středu.
+    \end{definice}
+
+    \begin{definice}[Odmocnina]
+        Odmocnina (\verb|\sqrt{…}|) je speciální konstrukce, $n$-tou odmocninu (\verb|\sqrt[n]{…}|) už řeší plain.
+    \end{definice}
+    
+    \begin{definice}[Akcenty]
+        
+
+        \verb|\tilde…| (resp. \verb|\widetilde{……………}|), \verb|\overline…|, \verb|\underline…|, \verb|\overbrace…|, \verb|\underbrace…| (za to se dají napsat meze, tedy \verb|\underbrace{x+(x+1)+\ldots}_\hbox{$k$ členů}$|)
+    \end{definice}
+
+    \begin{definice}[Styly]
+        4 (resp. 8): D = display (\verb|$$…$$|), T = text (\verb|$…$|), S = script (index, exponent, čitatel, jmenovatel), SS = scriptscript (vnořené S). \verb|\atop| způsobuje (nahoře / dole) D$->$T/T', T$->$S/S', S$->$SS/SS', SS$->$SS/SS'. Indexy D$->$S, T$->$S, S$->$SS, SS$->$SS.
+
+        Každý ze 4 stylů existuje ještě čárkovaná varianta, která říká: „nade mnou ještě něco je“ (tedy dolní index přesouvá do čárkovaného a z čárkovaného se jde do čárkovaného).
+
+        Lze je explicitně přepínat pomocí \verb|\displaystyle| apod. Naopak v makru mohu použít \verb|\mathchoice{D}{T}{S}{SS}|, které definuje, jak se má co vysázet (jednodušeji to nejde, jelikož styl se propaguje doprava i doleva). Existuje i plainové makro \verb|\mathpalette\t#1|, které umožní propagovat styl přes nematematický mód.
+    \end{definice}
+
+    \begin{definice}[Matematický seznam]
+        Obsahuje:
+        \begin{itemize}
+            \item atomy
+            \item dočasné značky (např. \verb|\left|)
+            \item glue / math. glue (jednotky mu) / nonscript (glue, jež se vloží jen mimo S a SS).
+            \item kern / math. kern (jednotky mu)
+            \item změny stylu
+            \item mathchoice
+            \item horizontální materiál: linky / penalty / discretionary (nobreak musí být prázdný a parametry nejsou matematické listy, ale horizontální listy)
+            \item vertikální materiál: mark / insert / vadjust
+            \item whatsit
+            \item zlomek (hned po doparsování se z něj stává atom)
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}[Atomy]
+        \ 
+        \begin{itemize}
+            \item[0] Ord (ordinaly)
+            \item[1] Op (velký operátor)
+            \item[2] Bin (binární operátor)
+            \item[3] Rel (relace, lze za ním zlomit)
+            \item[4] Open (otevírací delimetter)
+            \item[5] Close (zavírací delimetter)
+            \item[6] Punct (interpunkce, nelze za ní zlomit)
+            \item[7] Inner (mezi \verb|\left| a \verb|\right|)
+            \item[8] Over (\verb|\overline|)
+            \item[9] Under (\verb|\underline|)
+            \item[10] Acc (akcenty)
+            \item[11] Rad (\verb|\sqrt|)
+            \item[12] VCent (\verb|\vcenter{…}|)
+        \end{itemize}
+
+        Prvních 8 lze vyrobit z jiných atomů zavoláním \verb|\mathrel| apod.
+
+        Znaky v matematice mají krom \verb|\catcode| ještě \verb|\mathcode`znak="TFXY| TFXY je hexadecimální (T = typ atomu 0…7, F = typ fontu, XY = pozice znaku ve fontu). Pokud kód TFXY je 8000, tak se v matematice (a pouze tam) chová jako aktivní (makro se musí definovat tak, že se přenastaví catcode a pak se vrátí). Navíc T=7 způsobí, že se použije rodina podle \verb|\fam|$\in \{0, …, 15\}$, nebo F, pokud není v intervalu a vygeneruje se atom Ord (toho využívá napr. \verb|\bf|).
+
+        Znaky z daným kódem lze explicitně (bez žádného znaku) dají vygenerovat jako \verb|\mathchar"TFXY|. Nebo si můžeme vytvořit pojmenovaný znak \verb|\mathchardef\jmeno="TFXY|.
+
+        S delimetry je vše jinak, \verb|\delcode'(=F_1X_1Y_1F_2X_2Y_2| (1 = základní velikost a 2 = první větší). Explicitní je \verb|\delimiter"TF_1X_1Y_1F_2X_2Y_2|, kde T je typ (open / close / rel).
+
+        Stejně tak radical jde vyrobit \verb|\radical"F_1X_1Y_1F_2X_2Y_2|.
+    \end{definice}
+
+    \begin{definice}[Mezery]
+        Běžná se ignoruje, s lomítkem podle fontu, \verb|\hskip 1em| funguje normálně, \verb|\hskip 1mu|, kde zpravidla $1mu = \frac{1}{18}em$ fontu pro daný styl.
+
+        Navíc existují rozměry \verb|\thinmuskip| (\verb|\,| nebo záporná : \verb|\!|), \verb|\medmuskip| (\verb|\>|) a \verb|\thickmuskip| (\verb|\;|). Např. \verb|\int x^2 \,{\rm d}x| nebo \verb|1\,{\rm km}| nebo \verb|\int\!\int|.
+    \end{definice}
+
+    \begin{poznamka}[Lámání T modu]
+        Vkládají se automatické penalty \verb|\binoppenalty| a \verb|\relpenalty|. Jinak se láme na explicitních penaltách a discr.
+    \end{poznamka}
+
+
 
 \end{document}

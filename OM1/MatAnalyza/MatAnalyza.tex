@@ -1196,6 +1196,84 @@
             \end{dukazin}
         \end{veta}
 
+% 8. 12. 2020
 
+        \begin{veta}[Cauchyova věta o střední hodnotě]
+            Nechť $f, g$ jsou spojité funkce na intervalu $[a, b]$ takové, že $f$ má v každém bodě $(a, b)$ derivaci a $g$ má v každém bodě $(a, b)$ vlastní derivaci různou od nuly. Pak existuje $\zeta \in (a, b)$ tak, že $\frac{f'(\zeta)}{g'(\zeta)} = \frac{f(b) - f(a)}{g(b) - g(a)}$.
+
+            \begin{dukazin}
+                Tvrdíme, že $f(b) - g(a) ≠ 0$, jinak by podle Rolleovy věty $\exists \zeta \in (a, b), g'(\zeta) = 0. \lightning$.
+
+                Definujme $H(x) = [f(x) - f(a)]·[g(b) - g(a)] - [f(b) - f(a)][g(x) - g(a)]$. Pak $H$ je spojitá na $[a, b]$ a $H(a) = 0·[] - []·0$. a $H(b) = 0$. Dále $H'(x) = f'(x)·[g(b) - g(a)] - [f(b) - f(a)]·g'(x)$. Podle Rolleovy věty $\exists \zeta \in (a, b)$ tak, že $0 = H'(\zeta) = f'(\zeta)·[g(b) - g(a)] - [f(b) - f(a)]·g'(\zeta)$. Tj.
+                $$ \frac{f'(\zeta)}{g'(\zeta)} = \frac{f(b) - f(a)}{g(b) - g(a)}. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[l'Hospitalovo pravidlo]
+            1. Nechť $a \in ®R*$, $\lim_{x \rightarrow a+} f(x) = \lim_{x \rightarrow a+} g(x) = 0$ a nechť existuje $\lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)}$. Pak $\lim_{x \rightarrow a+} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)}$.
+            2. Nechť $a \in ®R*$, $\lim_{x \rightarrow a+} |g(x)| = +∞$ a nechť existuje $\lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)}$. Pak $\lim_{x \rightarrow a+} \frac{f(x)}{g(x)} = \lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)}$.
+
+            \begin{poznamkain}
+                Platí i pro $\lim_{x \rightarrow a-}$ a $\lim_{x \rightarrow a}$.
+            \end{poznamkain}
+
+            \begin{dukazin}
+                1. „$\frac{0}{0}$“, tj.  „$f(a) = g(a) = 0$“: a) $a \in ®R$. Víme $\lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)} = A$. Tedy $\exists \delta > 0\ \forall x \in P_+(a, \delta): g'(x) \in ®R \setminus \{0\}, f'(x) \in ®R$. Definujeme $f(a) = g(a) = 0$. Pak $f$ a $g$ jsou spojité na $[a, a + \delta)$ a existují tam $f'$ a $g'$. Jsou splněny předpoklady (V 4.9.) na intervalu $[a, x] \forall x \in (a, a+\delta)$. Existuje tedy $\zeta(x) \in (a, x)$ tak, že
+                $$\frac{f(x) - f(a)}{g(x) - g(a)} = \frac{f(x)}{g(x)} = \frac{f'(\zeta(x))}{g'(\zeta(x))}.$$ 
+                Nechť $\epsilon > 0$. Z $\lim_{x \rightarrow a+} \frac{f'(x)}{g'(x)} = A$ existuje $0 < \delta_0 < \delta$ tak, že $\forall y \in (a, a+\delta_0): \frac{f'(y)}{g'(y)} \in \B(A, \epsilon)$. Nyní $\forall x \in (a, a+\delta_0)$ máme $\zeta(x) \in (a, x) \subset (a, a| \delta_0)$, tedy $\frac{f'(\zeta(x))}{g'(\zeta(x))} \in \B(A, \epsilon)$, a tedy díky výrazu kus výše $\frac{f(x)}{g(x)} \in \B(A, \epsilon) \implies \lim_{x \rightarrow a+} \frac{f(x)}{g(x)} = A$.
+
+                b) $a = -∞$ ($a = +∞$ analogicky) Platí $\lim_{x \rightarrow -∞} h(x) = B \in ®R* \Leftrightarrow \lim_{y \rightarrow 0+} h\(-\frac{1}{y}\) = B$. Zavedeme pomocné funkce $F(y) = f\(-\frac{1}{y}\)$ a $G(y) = g\(-\frac{1}{y}\)$, pak na jistém $P_+(0, \delta)$ platí $F'(y) = f'\(-\frac{1}{y}\)·\frac{-1}{y^2}$ a $G'(y) = g'\(-\frac{1}{y}\)·\frac{-1}{y^2}$. Nyní $\lim_{x \rightarrow -∞} \frac{f(x)}{g(x)} = \lim_{y \rightarrow 0+} \frac{F(y)}{G(y)}$ a
+                $$ \lim_{y \rightarrow 0+} \frac{F'(y)}{G'(y)} = \lim_{y \rightarrow 0+} \frac{f'\(-\frac{1}{y}\)·\frac{-1}{y^2}}{g'\(-\frac{1}{y}\)·\frac{-1}{y^2}} = \lim_{x \rightarrow ∞} \frac{f'(x)}{g'(x)} = A. $$ 
+                Nyní z části 1. a) pro bod 0, $F$ a $G$ dostaneme $A = \lim_{y \rightarrow 0+} \frac{F(x)}{G(x)} = \lim_{x \rightarrow a} {f(x)}{g(x)}$.
+
+% 11. 12. 2020
+
+                2. Dokážeme pouze v případě $\lim_{x \rightarrow a+} f(x) = A \in ®R$. Nechť $\epsilon > 0$. Existuje $\delta_1 > 0$, že $\forall z \in \P_+(a, \delta_1): \left|\frac{f'(z)}{g'(z)} - A\right| < \epsilon$. Zafixujme si $y \in \P_+(a, \delta_1)$. Zvolme $0 < \delta_2 < \delta_1$, že $\forall x \in \P_+(a, \delta_2): \frac{1}{|g(x)|} \(|f(y)| + |g(y)|(|A|+\epsilon)\) < \epsilon$. Zvolme libovolně $x \in \P_+(a, \delta_2) \cup (a, y)$. Na intervalu $[x, y]$ jsou splněny předpoklady V4.9, tj. $\exists \zeta \in (x, y):$
+                $$ \frac{f(y) - f(x)}{g(y) - g(x)} = \frac{f'(\zeta)}{g'(\zeta)} \implies $$
+                $$ f(y) - f(x) = \frac{f'(\zeta)}{g'(\zeta)}·g(y) - \frac{f'(\zeta)}{g'(\zeta)}·g(x) \implies $$ 
+                $$ \frac{f(y)}{g(x)} - \frac{f(x)}{g(x)} = \frac{f'(\zeta)}{g'(\zeta)}·\frac{g(y)}{g(x)} - \frac{f'(\zeta)}{g'(\zeta)}  \implies $$
+                $$ \left|\frac{f(x)}{g(x)} - \frac{f'(\zeta)}{g'(\zeta)}\right| = \left| \frac{f(y)}{g(x)} - \frac{f'(\zeta)}{g'(\zeta)}·\frac{g(y)}{g(x)}\right| ≤ \frac{|f(y)|}{|g(x)|} + \left|\frac{f'(\zeta)}{g'(\zeta)}\right|·\frac{|g(y)|}{|g(x)|} ≤ \frac{|f(y)|}{|g(x)|} + (|A|+\epsilon)·\frac{|g(y)|}{|g(x)|} ≤ \epsilon. $$
+
+                Dále můžeme pokračovat v odhadech:
+                $$ \left|\frac{f(x)}{g(x)} - A\right| ≤ \left|\frac{f(x)}{g(x)} - \frac{f'(\zeta)}{g'(\zeta)}\right| + \left|\frac{f'(\zeta)}{g'(\zeta)} - A\right| < \epsilon + \epsilon. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[derivace a limita derivace]
+            Nechť je funkce $f$ spojitá zprava v $a$ a nechť existuje $\lim_{x \rightarrow a+} f'(x) = A \in ®R^*$. Pak $f'_+(a) = A$.
+            \begin{dukazin}
+                Z definice derivace
+                $$ f'_+(a) = \lim_{x \rightarrow a+} \frac{f(x)-f(a)}{x-a} \overset{\text{„0/0“}}{=} \lim_{x \rightarrow a+} \frac{f'(x)}{1} = A. $$ 
+            \end{dukazin}
+        \end{veta}
+    
+    \subsection{Konvexní a konkávní funkce}
+        \begin{definice}
+            Nechť $n \in ®N$, $a \in ®R$ a nechť $f$ má vlastní $n$-tou derivaci na okolí bodu $a$. Pak $(n+1)$-ní derivací v bodě $a$ budeme rozumět $f^{(n+1)} (a) = \lim_{h \rightarrow 0} \frac{f^{(n)}(a+h) - f^{(n)}(a)}{h}$.
+        \end{definice}
+
+        \begin{definice}
+            Funkce $f$ na intervalu $I$ nazveme konvexní (konkávní), jestliže $\forall x_1, x_2, x_3 \in I, x_1 < x_2 < x_3 \implies \frac{f(x_2) - f(x_1)}{x_2 - x_1} ≤ \frac{f(x_3) - f(x_2)}{x_3 - x_2}$ ($≥$).
+
+            Funkci nazveme ryze konvexní (ryze konkávní), jsou-li příslušné nerovnosti ostré.
+        \end{definice}
+
+        \begin{poznamka}
+            Ekvivalentně lze definovat, že funkce $f$ je na $I$ konvexní, pokud $\forall x, y \in I, x < y\ \forall \alpha \in (0, 1):$
+            $$ f(\alpha·x + (1-\alpha)y) ≤ \alpha · f(x) + (1-\alpha)·f(y). $$ 
+        \end{poznamka}
+
+        \begin{lemma}[Lemmátko]
+            Nechť je funkce $f$ na intervalu $I$ konvexní, pak
+            $$ \forall x_1, x_2, x_3 \in I, x_1 < x_2 < x_3 \implies \frac{f(x_2) - f(x_1)}{x_2 - x_1} ≤ \frac{f(x_3) - f(x_1)}{x_3 - x_1} ≤ \frac{f(x_3) - f(x_2)}{x_3 - x_2}. $$
+
+            Platí i pro ryze konvexní případ (jen s ostrými nerovnostmi).
+
+            \begin{dukazin}
+                $$ \frac{1}{x_3 - x_1}·(f(x_3) - f(x_1)) = \frac{1}{x_3 - x_1}\(f(x_3) - f(x_2) + f(x_2) - f(x_1)\) ≥ \frac{1}{x_3 - x_1}\(\frac{f(x_2) - f(x_1)}{x_2 - x_1}·(x_3 - x_2)\) + f(x_2) - f(x_1) = (f(x_3) - f(x_1))\frac{1}{x_3 - x_1}·\(\frac{x_3 - x_2 + x_2 - x_1}{x_2 - x_1}\) = \frac{f(x_2) - f(x_1)}{x_2 - x_1}. $$
+
+                Druhá nerovnost se ukáže analogicky.
+            \end{dukazin}
+        \end{lemma}
 
 \end{document}

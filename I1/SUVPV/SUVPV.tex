@@ -342,4 +342,28 @@
         \begin{definice}[Sekvenční učení]
             Pokud víme, že daná rovina existuje, tak vezmeme vektor a následně od něj budeme sekvenčně odečítat špatně klasifikované objekt.
         \end{definice}
+
+% 7. 12. 2020
+
+        TODO
+
+        \begin{definice}[Metoda pomocných vektorů]
+            Místo abychom hledali rozdělení prostoru nadrovinou, hledáme rozdělení „tlustou“ nadrovinou (budeme se snažit najít rozdělující rovinu tak, aby objekty byly od této roviny co nejdále).
+
+            V metodě hladkých okrajů navíc budeme ignorovat špatně klasifikované objekty blízko (blízko nastavíme na validačních datech) nadroviny.
+        \end{definice}
+
+        \begin{definice}[Nelineární SVM]
+            Převedeme data nějakým způsobem (např. na kužel při kruhových třídách) do vícerozměrného prostoru. Transformaci nemusíme hledat, hledáme jen jádro (skalární součin transformovaných dat). 
+
+            Klasická jádra: Polynomické $K(x, y) = (a + x^Ty)^p$, gaussovská $K(x, y) = \exp\(-\frac{||x - y||^2}{2\sigma^2}\)$.
+        \end{definice}
+
+    \section{Kombinované modely (ensemble methods)}
+        \begin{definice}
+            Dá se kombinovat homogenně (stejný klasifikátor s různými parametry / daty / začátkem) nebo homogenně (různé klasifikátory).
+
+            Dá se kombinovat průměrem, nebo hlasováním.
+        \end{definice}
+        
 \end{document}

@@ -1,0 +1,19 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 9]
+    Zkonstruujte funkci $f: ®R \rightarrow ®R$ splňující $\lim_{x \rightarrow 0} f(x)f(2x) = 0$, pro kterou $\lim_{x \rightarrow 0} f(x)$ neexistuje.
+
+
+    \begin{reseni}
+            Nechť $$\begin{cases} f(x) = 1, & \text{pro } x=2^{-2n},\ n \in ®N \\ f(x) = 0, & \text{jinak}  \end{cases}.$$ Potom je jistě $\lim_{x \rightarrow 0} f(x)f(2x) = 0$, jelikož dokonce $f(x)f(2x) = 0\ \forall x \in®R$, protože buď $x$ ani $2x$ není sudou mocninou 2, nebo $x$ (resp. $2x$) je sudou mocninou 2, ale pak dvojnásobek (polovina) je lichou mocninou 2, tedy $f(x) = 0 \lor f(2x) = 0$.
+
+            Naopak $\lim_{x \rightarrow 0} f(x)$ neexistuje, jelikož v libovolném $0<\delta$ okolí bude $f$ nabývat jak 0 (např. v alespoň jednom z bodů $\frac{\delta}{2}$ a $\frac{\delta}{4}$, ze stejného důvodu jako $f(x)f(2x) = 0$) tak 1 (volím $2^{-2n} < \delta$, tedy $$n = \max\{1, \left\lceil\frac{\log_2(\delta)}{-2}\right\rceil\},$$ potom $x = 2^{-2n} < \delta$ a $f(x)=f\(2^{-2n}\)=1$).
+     \end{reseni}
+\end{priklad}
+
+\end{document}

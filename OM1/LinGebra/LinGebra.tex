@@ -1030,7 +1030,93 @@
         \begin{veta}
             Buď ¦W vektorový prostor a $¦U, ¦V ≤ ¦W$. Pak
             $$ \dim(¦U) + \dim(¦V) = \dim(¦U \cap ¦V) + \dim(¦U+¦V). $$ 
+
+% 8. 12. 2020
+
+            \begin{dukazin}
+                Prostor $¦U \cap ¦V$ ($≤ ¦W$) má nějakou bázi $B = (¦w_1, …, ¦w_k)$ ($k = \dim(¦U \cap ¦V)$). $B$ je LN v ¦U, tedy $B$ můžeme rozšířit na bázi $C = \(¦w_1, …, ¦w_k, ¦u_1, …, ¦u_l\)$ prostoru ¦U, tj. $\dim(¦U) = k+l$, stejně tak můžeme $B$ rozšířit na bázi $D = \(¦w_1, …, ¦w_k, ¦v_1, …, ¦v_m\)$ prostoru ¦V, rj. $\dim(¦V) = k + m$. Položíme $E = \(¦w_1, …, ¦w_k, ¦u_1, …, ¦u_l, ¦v_1, …, ¦v_m\)$. Stačí dokázat, že $E$ je báze $¦U + ¦V$ (pak totiž $\dim(¦U+¦V) = k+l+m = \dim(¦U) + \dim(¦V) - \dim(¦U \cap ¦V)$).
+
+                $\LO\{¦w_1, …, ¦w_k, ¦u_1, …, ¦u_l, ¦v_1, …, ¦v_m\} = \LO\{¦w_1, …, ¦w_k, ¦u_1, …, ¦u_l\}+\LO\{¦w_1, …, ¦w_k, ¦v_1, …, ¦vm\} = ¦U + ¦V$ z definice součtu VP, tedy $E$ generuje $¦U + ¦V$.  $E$ je LN, jelikož když $\sum_{i=1}^k a_1¦w_i + \sum_{s=1}^l b_s¦u_s + \sum_{t=1}^m c_t¦v_t = 0$, kde $a_i, b_s, c_t \in ®T$ správně přepíšeme, dostaneme prvky průniku, tedy budeme moci ukázat, že jsou koeficienty nulové.
+            \end{dukazin}
         \end{veta}
+
+        \begin{definice}
+            Mějme ¦V VP nad ®T a $¦U, ¦W ≤ ¦V$. Pak ¦V je direktní součet ¦U a ¦W, pokud: a) $¦U + ¦W = ¦V$ a b) $¦U \cap ¦W = \{¦o\}$. Značíme $¦V = ¦U \oplus ¦W$.
+        \end{definice}
+
+        \begin{veta}
+            Buď ¦V VP a $¦U, ¦W ≤ ¦V$. Pak NPJE:
+            \begin{enumerate}
+                \item $¦V = ¦U \oplus ¦W$,
+                \item $\forall ¦v \in ¦V\ \exists! ¦u \in ¦U, ¦w \in ¦W: ¦V = ¦u + ¦w$,
+                \item $¦V = ¦U + ¦W$ a $\dim(¦V) = \dim(¦U) + \dim(¦W)$,
+                \item $\{¦o\} = ¦U \cap ¦W$ a $\dim(¦V) = \dim(¦U) + \dim(¦W)$.
+            \end{enumerate}
+
+            \begin{dukazin}
+                $(1 \implies 2)$: Předpokládejme 1 a buď $¦v \in ¦V \implies \exists ¦u \in ¦U, ¦v \in ¦W: ¦v = ¦u+¦w$. Pokud $¦u + ¦w = ¦v = ¦u' + ¦w'$, pak $¦u - ¦u' = ¦w' - ¦w \in ¦U \cap ¦W = \{¦o\}$.
+
+                $(2 \implies 1)$: Předpokládejme 2. Pak určitě $¦U + ¦W = ¦V$. Pokud $v \in ¦U \cap ¦W$, pak $¦v \in ¦U + ¦o \in ¦W = ¦o \in ¦U + ¦v \in ¦W = ¦v$, tj. $¦v = ¦o$.
+            \end{dukazin}
+        \end{veta}
+
+\section{Lineární zobrazení}
+    \begin{definice}[Lineární zobrazení (homomorfismus)]
+        Předpokládejme, že máme vektorové prostory ¦V, ¦W nad stejným tělesem ®T. Řekněme, že zobrazení $f: ¦V \rightarrow ¦W$ je lineární zobrazení (též homomorfismus vektorových prostorů), pokud platí:
+        $$ 1.\ \forall ¦u, ¦v \in ¦V: f(¦u + ¦v) = f(¦u) + f(¦v), $$
+        $$ 2.\ \forall ¦u \in ¦V\ \forall t \in ®T: f(t·¦u) = t·f(¦u). $$ 
+    \end{definice}
+
+    \begin{priklady}
+        Nad každým tělesem, mezi každými (každým) VP: Identita, Nulové zobrazení ($f(¦v) = ¦o$), Zobrazení (dokonce bijekce) dané zapsáním (u konečně generovaných $®T^n$) v souřadnicích vzhledem k nějaké bázi, .
+    \end{priklady}
+
+    \begin{tvrzeni}
+        Buďte ¦V, ¦W VP nad ®T a buď ¦V konečně generovaný s bází $B=(¦v_1, …, ¦v_n)$. Vezmeme-li libovolnou posloupnost $(¦w_1, …, ¦w_n)$ vektorů ¦W, pak $\exists!$ lineární zobrazení $f: ¦V \rightarrow ¦W$ takové, že $\forall i \in [n]: f(¦v_i) = ¦w_i$.
+
+        \begin{dukazin}[Jednoznačnost]
+            Uvažujme lineární $f, g: ¦V \rightarrow ¦W$ taková, že $f(¦v_i) = ¦w_i=g(¦v_i) \forall i$. Vezměme libovolné $¦v \in ¦V$, vyjádřeme jej jako $¦v = t_1¦v_1 + … + t_m¦v_m$. Pak platí
+             $$ f(¦v) = t_1·f(¦v_1) + … + t_n·f(¦v_n) = t_1·g(¦v_1) + … + t_n·g(¦v_n) = g(¦v) \implies f=g. $$
+        \end{dukazin}
+
+        \begin{dukazin}[Existence]
+            Definujeme $f: ¦V \rightarrow ¦W$ tak, že pro každé $¦v \in ¦V$ vezmeme $(t_1, …, t_n)^T = [¦v]_B$ a položíme $f(¦v) := t_1·¦w_1 + … + t_n¦w_n$. Následně ověříme, že $\forall i: f(¦v_i) = ¦w_i$ a že $f$ je lineární (např. z tvrzení 5.75, že zápis v souřadnicích daných bází je lineární).
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Matice lineárního zobrazení]
+        $f: ¦V \rightarrow ¦W$, $B$ báze ¦V, $C$ báze ¦W. Maticí lineárního zobrazení $f$ vzhledem k bázím $B$ a $C$ rozumíme matici
+        $$ [f]_C^B = \(\[f\(¦v_1\)\]_C|…|\[f\(¦v_n\)\]_C\). $$
+
+        \begin{poznamkain}
+            Ve skriptech následují T6.6 a T6.7 neboli existence a jednoznačnost.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{tvrzeni}
+        Složení lineárních zobrazení je lineární zobrazení. Pokud jsou navíc konečně generované, pak matice složení je součin matic.
+        \begin{dukazin}
+            $$ g \circ f (¦u+¦v) = g(f(¦u+¦v)) = g(f(¦u) + f(¦v)) = g(f(¦u)) + g(f(¦v)) = g\circ f(¦u) + g\circ f(¦v) $$
+            Analogicky $g\circ f (t·¦v) = t· g\circ f(¦v)$.
+
+            $$ [g\circ f]_D^B·[v]_B = [g \circ f(¦v)] [g]_D^C·[f(¦v)]_C = … $$
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Uvažujme VP ¦U, ¦V nad ®T a lineární bijekci $f: ¦U \rightarrow ¦V$. Pak $f^{-1}: ¦V \rightarrow ¦U$ je lineární.
+
+        Jsou-li navíc VP konečně generované a $B$, $C$ jsou popořadě jejich báze, pak
+        $$ [f^{-1}]_B^C = ([f]_C^B)^{-1}. $$ 
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Buď ¦V konečně generovaný VP nad ®T, $f: ¦V \rightarrow ¦V$ lineární zobrazení, $B$, $C$ báze ¦V. Označme $R = [id]_C^B$. Pak
+        $$ [f]_B^B = R^{-1}·[f]_C^C · R. $$
+        \begin{dukazin}
+            Využijeme složení a inverzi lineárních zobrazení. Triviální.
+        \end{dukazin}
+    \end{tvrzeni}
 
 
 \end{document}

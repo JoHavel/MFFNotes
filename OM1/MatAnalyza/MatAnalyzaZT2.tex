@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+    \begin{priklad}[a]
+        Spočtěte, nebo dokažte, že limita neexistuje
+        $$ \lim_{n \rightarrow ∞} n^2\(\log\(2+\frac{1}{n}\) - \frac{1}{2n} - \log 2\) $$
+
+        \begin{reseni}
+            Upravíme do tvaru
+            $$ \lim_{n \rightarrow ∞} \frac{1}{\frac{4}{(2n)^2}}\(\log\(\frac{2+\frac{1}{n}}{2}\) - \frac{1}{2n}\) = \lim_{n \rightarrow ∞} \frac{1}{4}·\frac{1}{\(\frac{1}{2n}\)^2} \(\log\(1+\frac{1}{2n}\) - \frac{1}{2n}\). $$ 
+
+            Můžeme si všimnout, že kdybychom mohli počítat s funkcí, kde bychom nahradili $\frac{1}{2n} = x (\rightarrow 0)$, tak se nám výpočet výrazně zjednoduší:
+            $$ \lim_{x \rightarrow 0} f(x) = \lim_{x \rightarrow 0} \frac{1}{4}·\frac{1}{x^2} \(\log\(1+x\) - x\) = \lim_{x \rightarrow 0} \frac{\log(1+x) - x}{4x^2}. $$
+
+            Logaritmus je v $1$ spojitý, tedy jednoduchým použitím aritmetiky limit a věty o složené funkci dostaneme $\log(1+x) - x \overset{x \rightarrow 0}{\longrightarrow} \log(1+0) - 0 = 0$, dále zřejmě $4x^2 \overset{x \rightarrow 0}{\longrightarrow} 0$, z aritmetiky derivací a známých derivací $\(4x^2\)' = 4\(x^2\)' = 8x $ a z AD, ZD a derivace složené funkce $\(\log(1+x) - x\)' = (1+x)'·\log'(1+x) - x' = 1·\frac{1}{1+x} - 1$. Tedy k tomu, abychom mohli použít l'Hospitalovo pravidlo, nám schází dokázat existenci (a spočítat) limitu:
+            $$ \lim_{x \rightarrow 0} \frac{\frac{1}{1+x} - 1}{8x} =  \lim_{x \rightarrow 0} \frac{1-(1+x)}{8x(1+x)} =  \lim_{x \rightarrow 0} \frac{-1}{8 + 8x} \overset{\text{AL}}{=} \frac{-1}{8 + 8·0} = -\frac{1}{8}. $$
+
+            Tedy podle l'Hospitalova pravidla $\lim_{x \rightarrow 0} f(x) = -\frac{1}{8}$. Tedy podle Heineho věty pro libovolnou posloupnost $(x_n)_{n=1}^∞$ nenabývající 0 a jdoucí k nule, tedy i pro naši posloupnost $0 ≠ \frac{1}{2n} \rightarrow 0$, platí $\lim_{n \rightarrow ∞} f\(x_n\) = \lim_{x \rightarrow 0} f(x) = -\frac{1}{8}$, tj.
+            $$ \lim_{n \rightarrow ∞} n^2\(\log\(2+\frac{1}{n}\) - \frac{1}{2n} - \log 2\) = \lim_{n \rightarrow ∞} f\(\frac{1}{2n}\) = -\frac{1}{8} $$ 
+
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[b]
+        Spočtěte, nebo dokažte, že limita neexistuje
+        $$ \lim_{x \rightarrow 3} (x^2 + x - 11)^{\frac{1}{x^2 - 2x - 3}}. $$ 
+
+        \begin{reseni}
+            Přepíšeme si výraz do tvaru
+            \begin{align*}
+                &\lim_{x \rightarrow 3} \exp\(\log\(x^2 + x - 11\)·\frac{1}{x^2 - 2x -3}\) =\\
+                &=\lim_{x \rightarrow 3} \exp\(\frac{\log\(\(x^2 + x - 12\) + 1\)}{x^2 + x - 12}·\frac{x^2 + x - 12}{x^2 - 2x -3}\) =\\
+                &=\lim_{x \rightarrow 3} \exp\(\frac{\log\(\(x^2 + x - 12\) + 1\)}{x^2 + x - 12}·\frac{(x + 4)(x - 3)}{(x + 1)(x - 3)}\) =\\
+                &=\lim_{x \rightarrow 3} \exp\(\frac{\log\(\(x^2 + x - 12\) + 1\)}{x^2 + x - 12}·\frac{x + 4}{x + 1}\).
+            \end{align*}
+
+            Dále můžeme zjistit, jakou limitu má „vnitřní“ funkce
+            $$ \lim_{x → 3} f(x) = \lim_{x → 3} \frac{\log\(x^2 + x - 12  + 1\)}{x^2 + x - 12}·\frac{x + 4}{x + 1}. $$
+
+            Víme, že $\frac{\log(y+1)}{y} \overset{y \rightarrow 0}{\longrightarrow} 1$, $x^2 + x - 12 \overset{x\rightarrow 3}{\longrightarrow} 0$ a $x^2 + x - 12 = 0$ právě tehdy, když $x = 3$ nebo $x = 4$ (tj. můžeme zvolit prstencové okolí $3$, na kterém $x^2 + x - 12$ nenabývá 0), tudíž můžeme použít větu o limitě složené funkce s podmínkou (P) na limitu
+            $$ \lim_{x → 3} \frac{\log\(x^2 + x - 12  + 1\)}{x^2 + x - 12} \overset{VoLSF (P)}{=} 1 $$ 
+            a triviální aritmetikou limit dostaneme
+            $$ \lim_{x → 3} \frac{x + 4}{x + 1} = \frac{3 + 4}{3 + 1} = \frac{7}{4}. $$
+            Tedy (jelikož obě limity existují a nevzniká nedefinovaný výraz) z aritmetiky limit vyplývá
+            $$ \lim_{x → 3} f(x) = \lim_{x → 3} \frac{\log\(x^2 + x - 12  + 1\)}{x^2 + x - 12} · \lim_{x → 3} \frac{x + 4}{x + 1} = 1·\frac{7}{4} = \frac{7}{4}. $$
+
+            Jelikož je exponenciela spojitá v bodě $\lim_{x \rightarrow 3} f(x) = \frac{7}{4}$, můžeme využít větu o složené funkci s podmínkou (S) a dostaneme:
+            $$ \lim_{x \rightarrow 3} \exp\(f(x)\) = \lim_{y \rightarrow 7/4} \exp(y) = \exp\(\frac{7}{4}\) = e^{\frac{7}{4}}. $$ 
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[c]
+        Nechť jsou dány funkce
+        $$ f(x) = x + \cos x \sin x,\kern 4em g(x) =e^{\sin x} (x + \cos x \sin x). $$
+        Ukažte, že $\lim_{x \rightarrow ∞} f(x) = \lim_{x \rightarrow ∞} g(x) = ∞$, ale není pravda, že
+        $$ \lim_{x \rightarrow ∞} \frac{f(x)}{g(x)} = \lim_{x \rightarrow ∞} \frac{f'(x)}{g'(x)}. $$
+        Který předpoklad l’Hospitalova pravidla není splněn?
+
+        \begin{reseni}
+            Jelikož obor hodnot $\sin x$ i $\cos x$ je interval $[-1, 1]$, obor hodnot $\sin x \cos x$ je podmnožinou $[-1, 1]$, tedy
+            $$ f(x) = x + \cos x \sin x > x - 1 \underset{\text{triviálně}}{\overset{x \rightarrow ∞}{\longrightarrow}} ∞. $$
+            Tedy podle věty o andělovi $\lim_{x \rightarrow ∞} f(x) = ∞$.
+
+            Obdobně jelikož obor hodnot $\forall x: \sin x ≥ -1$ a $\exp$ je rostoucí (a obor hodnot $\sin x \cos x$ je podmnožinou $[-1, 1]$ stejně jako výše), tak
+            $$ g(x) = e^{\sin x} (x + \cos x \sin x) ≥ e^{-1} (x - 1) \underset{\text{triviálně}}{\overset{x \rightarrow ∞}{\longrightarrow}} e^{-1}·∞ = ∞, $$
+            tedy podle věty o andělovi $\lim_{x \rightarrow ∞} g(x) = ∞$.
+
+            Nyní podle aritmetiky derivací AD, derivace složené funkce DSF, základních derivací ZD ($(\exp x)' = \exp x$, $(\sin x)' = \cos x$, $(\cos x)' = -\sin x$ a $x'=1$), spojitosti exponenciely (používané v DSF) a Pythagorovy věty PV ($\forall x: \sin^2 x + \cos^2 x = 1$)
+            \begin{align*}
+                &g'(x) \overset{\text{AD}}{=} \(e^{\sin x}\)'(x + \sin x \cos x) + e^{\sin x}(x + \sin x \cos x)' \overset{\text{AD, DSF}}{=}\\
+                &=(\sin x)' \exp'(\sin x) · (x + \sin x \cos x) + e^{\sin x}\(x' + (\sin x)' \cos x + \sin x (\cos x)'\) \overset{\text{ZD}}{=}\\
+                &=\cos(x)·e^{\sin x}(x + \sin x \cos x) + e^{\sin x}\(1 + \cos^2 x - \sin^2 x\) \overset{\text{PV}}{=}\\
+                &=\cos(x)·e^{\sin x}(x + \sin x \cos x) + e^{\sin x}·2\cos^2 x =\\
+                &=\cos(x)·e^{\sin x}(x + \sin x \cos x + 2\cos x).
+            \end{align*}
+
+            Tedy funkce $g'(x)$ nabývá na libovolném (prstencovém) okolí $∞$ hodnoty 0 (ve všech bodech $x = (2k + 1)\pi,\ k \in ®Z$ je totiž $\cos x = 0$), tudíž výraz $\frac{f'(x)}{g'(x)}$ není definován na žádném (prstencovém) okolí $∞$ a limita tohoto výrazu neexistuje (což je zároveň podmínka l'Hospitalova pravidla, která nebyla splněna).
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[derivaceZPisemek, 6.]
+        Určete derivaci a jednostranné derivace funkce $f$ ve všech bodech definičního oboru, kde existují.
+        $$ f(x) = \max\{1, e^{\sin x}\} $$
+
+        \begin{reseni}
+            Derivace konstanty je rovna 0, tj. $1' = 0$. Derivace složené funkce, spojitost $\exp$ a známé derivace ($\exp' = \exp$ a $\sin' = \cos$) nám říkají, že $\(e^{\sin x}\)' = \sin' x \exp'(\sin x) = \cos x e^{\sin x}$. Tedy nám stačí zjistit, kdy je $f(x)$ rovno které z těchto funkcí, a vyřešit „přechodové“ body.
+
+            Řešíme tedy, kdy $1 \gtreqless e^{\sin x}$, „zlogaritmováním“ ($\log$ je rostoucí, tedy nezmění operátor nerovnosti) obou stran dostaneme $0 \gtreqless \sin x$. Z vlastností $\sin$ víme, že:
+            $$ \begin{cases}
+                0 < \sin x \implies f(x) = e^{\sin x} &\text{ když } x \in \bigcup\{\(2k\pi; 2k\pi + \pi\)|k\in ®Z\}\\
+                0 = \sin x \implies f(x) = e^{\sin x} = 1 &\text{ když } x \in \{k\pi|k\in ®Z\}\\
+                0 > \sin x \implies f(x) = 1 &\text{ když } x \in \bigcup\{\(2k\pi-\pi; 2k\pi\)|k\in ®Z\}\\
+            \end{cases} $$ 
+
+            Derivace zprava a zleva v bodech $k\pi$ určíme snadno ze spojitosti obou funkcí ($\exp(\sin x)$ [složení dvou spojitých funkcí] a $1$), protože víme, že pak stačí najít limity $f'$ v daných bodech. $\forall a\in ®R: \lim_{x \rightarrow a} 0 = 0$, tedy limity derivace $f'$ v bodech $2k\pi$ zleva a v bodech $(2k-1)\pi$ zprava jsou 0.
+
+            Ze spojitosti $\cos x · \exp(\sin x)$ (spojitá krát složení spojitých) víme, že $\forall a \in ®R: \lim_{x \rightarrow a} \cos x · \exp(\sin x) = \cos a · \exp(\sin a)$, tedy v bodech $2k\pi$ zprava je limita derivace $\cos (2k\pi) · \exp(\sin(2k\pi)) = 1·\exp^0 = 1$ a v bodech $(2k+1)\pi$ zleva je $\cos ((2k+1)\pi) · \exp(\sin((2k+1)\pi)) = -1·\exp^0 = -1$.
+
+            $$\begin{cases}
+                f'(x) = \cos x e^{\sin x} &\text{ když } x \in \bigcup\{\(2k\pi; 2k\pi + \pi\)|k\in ®Z\}\\
+                f'_+(x) = 1 \land f'_-(x) = 0 &\text{ když } x \in \{2k\pi|k\in ®Z\}\\
+                f'_+(x) = 0 \land f'_-(x) = -1 &\text{ když } x \in \{2k\pi+\pi|k\in ®Z\}\\
+                f'(x) = 0 &\text{ když } x \in \bigcup\{\(2k\pi-\pi; 2k\pi\)|k\in ®Z\}\\
+            \end{cases}$$ 
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[derivaceZPisemek, 17.]
+        Určete derivaci a jednostranné derivace funkce $f$ ve všech bodech definičního oboru, kde existují.
+        $$ f(x) = \max\{x(x-1)^2 + x, x\} $$
+
+        \begin{reseni}
+            Zajímá nás tedy, kdy $x(x-1)^2 + x \gtreqless x \Leftrightarrow x(x-1)^2 \gtreqless 0$. Jelikož $(x-1)^2≥0$, tak kromě bodu $x=1$, kde, jak vidíme, nastane rovnost i v předchozí nerovnici, můžeme tímto výrazem bez změny relace vydělit předchozí rovnici: $x \gtreqless 0$:
+
+            $$ \begin{cases}
+                x < x(x-1)^2 + x \implies f(x) = x(x-1)^2 + x &\text{ když } x \in (0, 1) \cup (1, ∞)\\
+                x = x(x-1)^2 + x \implies f(x) = x(x-1)^2 + x = x &\text{ když } x = 0 \lor x = 1\\
+                x > x(x-1)^2 + x \implies f(x) = x &\text{ když } x \in (-∞, 0)\\
+            \end{cases} $$
+
+            $x' = 1$ je známá derivace a $\(x(x-1)^2 + x\)' \overset{\text{AD}}{=} x'(x-1)^2 + x\((x-1)^2\)' + x' \overset{\text{AD, ZD, DSF}}{=} (x-1)^2 + x·2(x-1)·(x-1)' + 1 \overset{\text{ZD}}{=} x^2 - 2x + 1 = 2x^2 - 2x + 1 = 3x^2 - 4x + 2$ dostaneme z aritmetiky derivací AD, derivace složené funkce DSF (+ faktu, že $x^2$ je spojitá) a známé derivace ZD $(x^n)' = n·x^{n-1}, n \in ®N$.
+
+            Jediným „přechodovým“ bodem je 0, kde ze spojitosti $x$ je $f'_-(0) = \lim_{x \rightarrow 0-} f'(x) = \lim_{x \rightarrow 0-} 1 = 1$ a ze spojitosti polynomů a věty o limitě složené funkce s podmínkou (S) $f'_+(0) = \lim_{x \rightarrow 0+} f'(x) = \lim_{x \rightarrow 0+} 3x^2 - 4x + 2 = 3·0^2 -4·0 + 2 = 2$. Tedy:
+
+            $$\begin{cases}
+                f'(x) = 3x^2 - 4x + 2 &\text{ když } x > 0\\
+                f'_+(x) = 2 \land f'_-(x) = 1 &\text{ když } x = 0\\
+                f'(x) = 1 &\text{ když } x < 0\\
+            \end{cases}$$ 
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[limityFciZPisemek, 36.]
+        Vypočtěte následující limitu.
+        $$ \lim_{x \rightarrow 1-} \frac{\sqrt{e^2 - e^{2x}}}{\arccos x} $$
+
+        \begin{reseni}
+            Převedeme funkci, ze které počítáme limitu, do tvaru (jelikož počítáme limitu zleva v 1 a rostoucí funkce ($2x$ a $e^{2x}$) nabývají na intervalu $(-∞, 1]$ svého maxima v bodě 1, nedostali jsme rozdělením odmocniny nedefinovaný výraz):
+            $$ \frac{e\sqrt{\frac{1 - e^{2x - 2}}{2 - 2x}·(2 - 2x)}}{\arccos x} = e·\sqrt{\frac{1 - e^{2x - 2}}{2 - 2x}}·\frac{\sqrt{2 - 2x}}{\arccos x} = e·\sqrt{\frac{e^{2x - 2}-1}{2x - 2}}·\frac{\sqrt{2 - 2x}}{\arccos x} $$
+
+            Víme, že $\frac{e^y - 1}{y} \overset{y \rightarrow 0}{\longrightarrow} 1$ a zřejmě $y(x) = 2x-2 \overset{x \rightarrow 1}{\longrightarrow} 0$ je prostá, tedy můžeme použít větu o limitě složené funkce s podmínkou (P) a získat
+            $$ \lim_{x \rightarrow 1} \frac{e^{2x - 2} - 1}{2x - 2} = 1, $$
+            což nám (vzhledem k spojitosti $\sqrt{\ }$ v bodě jedna) umožňuje použít znovu větu o limitě složené funkce tentokrát s podmínkou (S) a zjistit, že
+            $$ \lim_{x \rightarrow 1} \sqrt{\frac{e^{2x - 2} - 1}{2x - 2}} = \sqrt{1} = 1. $$
+            Jelikož víme, že limita v bodě existuje tehdy, pokud existují limity zprava a zleva v tomto bodě, a všechny tři limity jsou pak shodné, tak:
+            $$ \lim_{x \rightarrow 1-} \sqrt{\frac{e^{2x - 2} - 1}{2x - 2}} = \lim_{x \rightarrow 1} \sqrt{\frac{e^{2x - 2} - 1}{2x - 2}} = 1. $$
+
+            Funkce $\sqrt{2-2x}$ i $\arccos x$ jsou spojité zleva v bodě 1, tedy obě jdou zleva v 1 ke svojí funkční hodnotě $2-2·1 = \arccos 1 = 0$. Zároveň z aritmetiky derivací, derivace složené funkce a známých limit víme, že $\(\sqrt{2-2x}\)' = (2-2x)'·(2-2x)^{1/2 - 1} = -2·\frac{1}{\sqrt{2-2x}} $ a $(\arccos x)' = -\frac{1}{\sqrt{1-x^2}}$. Tudíž po spočítání
+            $$ \lim_{x \rightarrow 1-} \frac{-2·\frac{1}{\sqrt{2-2x}}}{-\frac{1}{\sqrt{1-x^2}}} = \lim_{x \rightarrow 1-} \frac{2\sqrt{1-x^2}}{\sqrt{2}·\sqrt{1-x}} = \lim_{x \rightarrow 1-} \sqrt{2}·\sqrt{\frac{(1-x)(1+x)}{1-x}} = \lim_{x \rightarrow 1-} \sqrt{2}·\sqrt{1+x}, $$
+            což můžeme (pomocí faktu, že odmocnina je spojitá v bodě 2, aritmetiky limit a faktu, že pokud existuje oboustranná limita, existuje i limita zleva a rovná se jí) dopočítat na $\lim_{x \rightarrow 1-} \sqrt{2}·\sqrt{1+x} = \sqrt{2}·\sqrt{1+1} = 2$, můžeme aplikovat l'Hospitalovo pravidlo a dostaneme
+            $$ \lim_{x \rightarrow 1-} \frac{\sqrt{2-2x}}{\arccos x} = \lim_{x \rightarrow 1-} \frac{-2·\frac{1}{\sqrt{2-2x}}}{-\frac{1}{\sqrt{1-x^2}}} = 2. $$
+
+            Nakonec tedy můžeme aritmetikou limit spočítat ($\lim_{x \rightarrow \text{cokoliv}} e = e$)
+            $$ \lim_{x \rightarrow 1-} \frac{\sqrt{e^2 - e^{2x}}}{\arccos x} = \lim_{x \rightarrow 1-} e·\sqrt{\frac{e^{2x - 2}-1}{2x - 2}}·\frac{\sqrt{2 - 2x}}{\arccos x} = e·1·2 = 2e. $$ 
+        \end{reseni}
+    \end{priklad}
+
+\end{document}
