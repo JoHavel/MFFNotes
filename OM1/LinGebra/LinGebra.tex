@@ -1118,5 +1118,71 @@
         \end{dukazin}
     \end{tvrzeni}
 
+% 17. 12. 2020
+
+    \begin{definice}[Terminologie k lineárním zobrazením]
+        Buď ®T těleso a ¦V, ¦W vektorové prostory a $f: ¦V \rightarrow ¦W$ homomorfismus. Pak $f$ je
+        \begin{itemize}
+                \item monomorfismus (též vnoření), pokud $f$ je prosté,
+            \item epimorfismus, pokud $f$ je na,
+            \item isomorfismus, pokud $f$ je bijekce,
+            \item endomorfismus, pokud $¦V = ¦W$,
+            \item automorfismus, pokud $¦V = ¦W$ a navíc $f$ je bijekce,
+            \item lineární forma, pokud $¦W = ®T$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}
+        Buď ®T těleso, ¦V, ¦W VP, $f: ¦V \rightarrow ¦W$ lineární zobrazení, pak
+        \begin{itemize}
+            \item Jádro $f$ je množina $\Ker f = \{ ¦v \in ¦V: f(¦v) = ¦o\}$
+            \item Obraz $f$ je množina $\Im f = \{f(¦v) \in ¦W : ¦v \in ¦V\}$
+        \end{itemize}
+    \end{definice}
+
+    \begin{tvrzeni}[Pozorování, část tvrzení]
+        $$ \Ker f ≤ ¦V \hskip 1cm \Im f ≤ ¦W $$
+        
+        \begin{dukazin}
+            $$ ¦u, ¦v \in \Ker \phi \Leftrightarrow f(¦u) = ¦o = f(¦v) \implies f(¦u + ¦v) = f(¦u) + f(¦v) = 0 \Leftrightarrow ¦u + ¦v \in \Ker f $$
+            Obdobně s násobením a obojím pro obraz.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        $f: ¦V \rightarrow ¦W$ lineární zobrazení. Pak $f$ je monomorfismus právě tehdy, když $\Ker f = \{¦o\}$.
+
+        \begin{dukazin}
+            $(\implies)$ triviální. $(\Leftarrow)$ $\forall ¦u, ¦v \in ¦V: f(¦u) = f(¦v) \Leftrightarrow f(¦u) - f(¦v) = ¦o \Leftrightarrow ¦u - ¦v \in \Ker f \Leftrightarrow ¦u - ¦v = ¦o \Leftrightarrow ¦u = ¦v$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Značení]
+        ¦V konečně generovaný VP, $B$ je báze ¦V, $X \subseteq v$ jeho podmnožina. Budeme značit $[X]_B = \{[¦v]_B : ¦v \in X\} \subseteq ®T^n (n = \dim ¦V)$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buďte ¦V, ¦W konečně generované VP, $B$, $C$ popořadě jejich báze, $n$, $m$ popořadě jejich dimenze. Je-li $f: ¦V \rightarrow ¦W$ lineární zobrazení, pak platí:
+        $$ [\Ker f]_B = \Ker [f]^B_C \hskip 1cm [\Im f]_C = \Im [f]^B_C. $$ 
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Buďte ¦V, ¦W VP, ¦V buďkonečně generovaný. Pak lineární zobrazení $f: ¦V \rightarrow ¦W$ je monomorfismus (epimorfismus, isomorfismus) právě tehdy, když $\forall$ LN (generující, bázi) posloupnost ve ¦V je její obraz LN (generující, báze), což je právě tehdy, když $\exists$ báze prostoru ¦V, že její obraz je LN (generující, báze).
+    \end{tvrzeni}
+
+    \begin{definice}
+        Prostory ¦V, ¦W nad ®T jsou isomorfní, pokud $\exists f: ¦V \rightarrow ¦W$ isomorfismus. Značíme $¦V\cong ¦W$.
+    \end{definice}
+
+    \begin{veta}
+        Buď ¦V, ¦W konečně generované VP nad ®T. Pak $¦V \cong ¦W \Leftrightarrow \dim ¦V = \dim ¦W$.
+    \end{veta}
+
+    \begin{veta}
+        Buď ¦V, ¦W konečně generované VP nad ®T, $f: ¦V \rightarrow ¦W$ lineární zobrazení. Pak $\dim(\Ker f) + \dim(\Im f) = \dim V$.
+    \end{veta}
+
+
+
 
 \end{document}

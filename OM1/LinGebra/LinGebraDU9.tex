@@ -1,37 +1,54 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-% \renewcommand{\baselinestretch}{0.9}
+\renewcommand{\baselinestretch}{0.7}
 
 \begin{document}
 
-    \begin{priklad}[8.1]
-        V prostoru ¦V reálných polynomů jedné proměnné $x$ stupně nejvýše 3 (s běžnými operacemi) uvažujme podprostor ¦W určený množinou
-        $$ ¦W = \{f \in ¦V : f(−2) = 0\}. $$ 
-        Najděte nějakou bázi prostoru ¦W.
+    \begin{priklad}[9.1]
+        V závislosti na parametrech $a, b \in ®Z_5$ určete dimenze prostorů prostorů $\Im A_{a, b}$, $\Im A^T_{a, b}$, $\Ker A_{a, b}$ a $\Ker A^T_{a, b}$ pro matici
+        $$ A_{a, b} = \begin{pmatrix} a+2 & b & 1 & 2 \\ 2a+1 & 2b & a+3 & 1 \\ 3a+b+3 & 3b & a+4 & b+3 \end{pmatrix} \in ®Z^{3 \times 4}_5. $$ 
 
         \begin{reseni}
-            Každý polynom proměnné $x$ je dělitelný všemi $x - r$, kde $r$ je kořen, tedy každý náš polynom $f(x)$ můžeme vyjádřit jako $(x+2)·g(x)$, kde $g(x) = \frac{f(x)}{x+2}$ je polynom stupně nejvýše 2 (pokud by měl větší stupeň, tak po vynásobení $(x+2)$ dostaneme polynom stupně větší než 3). Prostor polynomů stupně nejvýše dva má bázi například $\(1,\ x,\ x^2\)$ (z definice polynomu), tedy každý polynom (a naopak žádné jiné) $f(x) = (x+2)·g(x)$ vyjádříme právě jedním způsobem jako lineární kombinaci prvků posloupnosti (tj. báze) $\(1(x+2),\ x(x+2),\ x^2(x + 2)\) = \(x+2,\ x^2 + 2x,\ x^3 + 2x^2\)$.
+            Elementární řádkové a sloupcové úpravy nemění hodnost matice, tedy provedeme nějaké řádkové a nějaké sloupcové úpravy:
+            $$ \begin{pmatrix} a+2 & b & 1 & 2 \\ 2a+1 & 2b & a+3 & 1 \\ 3a+b+3 & 3b & a+4 & b+3 \end{pmatrix} \overset{\text{EŘÚ}}{\sim} \begin{pmatrix} a+2 & b & 1 & 2 \\ -3 & 0 & a+1 & -3 \\ b-3 & 0 & a+1 & b-3 \end{pmatrix} $$
+            $$ \overset{\text{ESÚ}}{\sim} \begin{pmatrix} a & b & 1 & 2 \\ 0 & 0 & a+1 & -3 \\ 0 & 0 & a+1 & b-3 \end{pmatrix} \overset{\text{EŘÚ}}{\sim} \begin{pmatrix} a & b & -a & 0 \\ 0 & 0 & a+1 & -3 \\ 0 & 0 & 0 & b \end{pmatrix} $$
+
+            Když řešíme hodnost matice, tak nás zajímá, které prvky budou v odstupňovaném tvaru nulové a které ne. Tedy musíme prozkoumat $a = 0$, $b = 0$ a $a = -1$.
+            \begin{itemize}
+                \item Pokud $-1≠a≠0$ a $b≠0$, pak je matice v odstupňovaném tvaru a má všechny 3~řádky nenulové, tedy má hodnost 3.
+                \item Při $a=0$ a $b ≠ 0$ nic nemění, jelikož matice bude stále v odstupňovaném tvaru a všechny řádky budou nenulové.
+                \item Pokud bude $a=0$ i $b = 0$, pak je první a poslední řádek nulový, tedy matice má zřejmě hodnost 1.
+                \item Naopak jestliže $a≠0$ a $b=0$, pak první a druhý řádek jsou nenulové na rozdíl od třetího, matice je v odstupňovaném tvaru, tedy její hodnost je 2.
+                \item Nyní schází už jen případ $b≠0 \land a = -1$, v tomto případě není matice v odstupňovaném tvaru, musíme odečíst příslušný násobek 2. řádku od 3. Potom to již bude matice v odstupňovaném tvaru s 2 nenulovými řádky, tj. hodností 2.
+            \end{itemize}
+
+            Víme $\dim(\Ker A) + \dim(\Im A) =$ \#počet sloupců a $\dim(\Ker A^T) + \dim(\Im A^T) =$ \#počet řádků. Zároveň hodnost je podle druhé definice $\dim(\Im A) = \dim(\Im A^T)$, tedy můžeme vše dopočítat z hodnosti:
+            \begin{itemize}
+                \item $b≠0 \land a≠-1 \implies \rank A_{a, b} = 3 \implies \dim(\Im A) = \dim(\Im A^T) = 3$, $\dim(\Ker A) = 4-3 = 1$ a $\dim(\Ker A^T) = 3-3 = 0$,
+                \item $a≠0 \land b=0 \lor a=-1 \implies \rank A_{a, b} = 2 \implies \dim(\Im A) = \dim(\Im A^T) = 2$, $\dim(\Ker A) = 4-2 = 2$ a $\dim(\Ker A^T) = 3-2 = 1$,
+                \item $a=b=0 \implies \rank A_{a, b} = 1 \implies \dim(\Im A) = \dim(\Im A^T) = 1$, $\dim(\Ker A) = 4-1 = 3$ a $\dim(\Ker A^T) = 3-1 = 2$.
+            \end{itemize}
         \end{reseni}
     \end{priklad}
 
 \pagebreak
 
-    \begin{priklad}[7.2]
-        Ve vektorovém prostoru $¦V ≤ ®Z^{2\times 2}_5$ máme báze $B$ a $C$. Určete bázi $C$, víte-li, že matice přechodu od báze $B$ k bázi $C$ je $A$ a platí
-        $$ B = (¦v_1,\ ¦v_2,\ ¦v_3) = \begin{pmatrix} 2 & 4 \\ 0 & 2 \end{pmatrix},\ \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix},\ \begin{pmatrix} 0 & 1 \\ 3 & 0 \end{pmatrix},\  ¦V = \LO\{¦v_1,\ ¦v_2,\ ¦v_3\},$$ 
-        $$ A = \begin{pmatrix} 2 & 1 & 0 \\ 0 & 1 & 2 \\ 3 & 2 & 4 \end{pmatrix}. $$ 
+    \begin{priklad}[9.2]
+        Najděte nějakou bázi průniku podprostorů $¦X$ a $¦Y$ prostoru $®R^4$.
+        \begin{align*}
+            ¦X &= \{\(x_1, x_2, x_3, x_4\)^T \in ®R^4: x_1 + 2x_2 - x_3 + 3x_4 = 0\}\\
+            ¦Y &= \LO\{(2, 1, 1, 0)^T, (1, -1, 1, 1)^T\}
+        \end{align*} 
 
         \begin{reseni}
-            Podle definice 5.78 ze skript je matice přechodu od báze $B$ k bázi $C$ definována jako $A = [id]_C^B = \([¦v_1]_C|[¦v_2]_C|[¦v_3]_C\)$. Tedy při značení $C = (¦u_1,\ ¦u_2,\ ¦u_3)$ získáváme:
-            $$ ¦v_1 = 2¦u_1 + 0¦u_2 + 3¦u_3 $$
-            $$ ¦v_2 = 1¦u_1 + 1¦u_2 + 2¦u_3 $$
-            $$ ¦v_3 = 0¦u_1 + 2¦u_2 + 4¦u_3 $$
-            Z toho již vidíme, že $¦u_3 = 2¦v_1 + 1¦v_2 + 2¦v_3$ (sečtením dvojnásobku první, druhé, a dvojnásobku třetí) a $¦u_2 = 1¦v_1 + 3¦v_2 + 4¦v_3$ a $¦u_1 = 0¦v_1 + 1¦v_2 + 2¦v_3$, tj.
-            $$ C = \(\begin{pmatrix} 0·2 + 1·2 + 2·0 & 0·4 + 1·1 + 2·1 \\ 0·0 + 1·1 + 2·3 & 0·2 + 1·1 + 2·0 \end{pmatrix},\right.$$
-            $$ \begin{pmatrix} 1·2 + 3·2 + 4·0 & 1·4 + 3·1 + 4·1 \\ 1·0 + 3·1 + 4·3 & 1·2 + 3·1 + 4·0 \end{pmatrix}, $$
-            $$ \left.\begin{pmatrix} 2·2 + 1·2 + 2·0 & 2·4 + 1·1 + 2·1 \\ 2·0 + 1·1 + 2·3 & 2·2 + 1·1 + 2·0 \end{pmatrix}\) $$
-                $$ C = \( \begin{pmatrix} 2 & 3 \\ 2 & 1 \end{pmatrix},\ \begin{pmatrix} 3 & 1 \\ 0 & 0 \end{pmatrix},\ \begin{pmatrix} 1 & 1 \\ 2 & 0 \end{pmatrix} \) $$ 
+            Z definice $\LO$ si libovolný prvek $¦Y$ (tím pádem i libovolný $¦Y \cap ¦X$) můžeme zapsat jako $¦y = (y_1, y_2, y_3, y_4)^T = a(2, 1, 1, 0)^T + b(1, -1, 1, 1)^T$. Pokud je tento prvek z $¦Y \cap ¦X$, tak navíc musí splňovat $y_1 + 2y_2 - y_3 + 3y_4 = 0$, tj.:
+            $$ (2a + b) + 2·(a-b) - (a + b) + 3(b) = 0 $$
+            $$ 3a + b = 0 $$
+
+            Vidíme, že řešení má jednu dimenzi (např. $a$ je volná proměnná, $b = -3a$), tj. báze má jeden prvek a to např. (libovolná jiná $a$ a $b$ splňující $b = -3a$ budou zjevně jen násobky tohoto) $a = 1, b = -3$:
+            $$ ¦X \cap ¦Y = \LO\(\begin{pmatrix} 1·2 - 3·1 \\ 1·1 - 3·(-1) \\ 1·1 - 3·1 \\ 1·0 - 3·1 \end{pmatrix}\) = \LO\(\begin{pmatrix} -1 \\ 4 \\ -2 \\ -3 \end{pmatrix}\) $$ 
+
         \end{reseni}
     \end{priklad}
 

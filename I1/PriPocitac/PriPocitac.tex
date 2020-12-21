@@ -260,7 +260,7 @@
             \begin{upozorneni}
                 Toto lze dělat jen pro bezznaménková čísla. Proto existuje ještě tzv. aritmetický posun doprava (SAR), který (při posunu) rozkopírovává nejvyšší bit. Ale stejně špatně funguje zaokrouhlování.
 
-                V Pythonu se používá pouze SHL a SAR. V javě jsou naopak SHL ($<<$), SAR ($>>$) i SHR ($>>>$). V C\# se dokonce tyto operátory chovají podle typu čísel.
+                V Pythonu se používá pouze SHL a SAR. V javě jsou naopak SHL ($<<$), SAR ($>>$) i SAR ($>>>$). V C\# se dokonce tyto operátory chovají podle typu čísel.
             \end{upozorneni}
         \end{poznamka}
 
@@ -277,6 +277,14 @@
 
     \begin{definice}[ROM paměť]
         Na rozdíl od RAM paměti na ni nelze zapisovat (nebo pokud lze, tak jen jednou, program se tam uloží tak, že se přepálí dané diody).
+    \end{definice}
+
+% 22. 12. 2020
+
+    \begin{definice}[EEPROM]
+        Electrically EPROM = už je plně Read / Write narozdíl od EPROM, kterou lze měnit jen ultrafialovým světlem (poznáme podle pásky, kterou bývá přelepená).
+
+        Spolu s FLASH mají výhodu, že jsou relativně rychlé a lze z nich libovolněkrát číst. Nelze do nich však libovolněkrát zapisovat.
     \end{definice}
 
 \end{document}

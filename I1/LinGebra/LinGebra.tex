@@ -966,4 +966,82 @@
     \begin{tvrzeni}
         $f$ je prosté $\LeftRightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky, $f$ je na $\LeftRightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky.
     \end{tvrzeni}
+
+% 17. 12. 2020
+
+    \begin{definice}[Afinní vektorový podprostor]
+        $¦U + ¦a = \{¦u + ¦a: ¦u \in ¦U\}$
+    \end{definice}
+
+    \begin{definice}
+        Afinní kombinace dvou vektorů $¦x, ¦y \in ¦V$ je výraz (vektor)
+        $$ \alpha x (1 - \alpha)y, \text{ kde } \alpha \in ®T. $$ 
+    \end{definice}
+
+    \begin{veta}[Charakterizace afinního podprostoru]
+        Buď ¦V vektorový prostor nad tělesem ®T charakteristiky různé od 2 a buď $\O ≠ M \subseteq ¦V$. Pak $M$ je afinní podprostor právě tehdy, když pro každé $x, y \in M$ a $\alpha \in ®T$ platí $\alpha x + (1-\alpha)y \in M$.
+
+        \begin{dukazin}
+            Rozepsáním.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Afinní kombinace $n$ vektorů]
+        $$ \sum_{i=1}^n \alpha_i ¦x_i, \text{ kde } \alpha_i \in ®T, \sum_{i=1}^n \alpha_i = 1 $$ 
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buď ¦V vektorový prostor nad tělesem ®T a buď $\O ≠ M \subseteq ¦V$. Pak $M$ je afinní prostor $\LeftRightarrow$ $M$ je uzavřené na afinní kombinace.
+    \end{tvrzeni}
+
+    \begin{veta}[Soustavy lineárních ]
+        TODO
+    \end{veta}
+
+    \begin{definice}
+        Dimenze afinního podprostoru $M = ¦U + ¦a$ je definována jako
+        $$ \dim(M) := \dim(¦U). $$ 
+    \end{definice}
+
+    \begin{definice}[Přímka]
+        Přímka je afinní podprostor dimenze jedna.
+    \end{definice}
+
+    \begin{definice}[Nadrovina]
+        Nadrovina v prostoru dimenze $n$ je afinní podprostor dimenze $n - 1$.
+    \end{definice}
+
+    \begin{definice}[Afinní závislost a nezávislost]
+        Vektory $¦x_0, ¦x_1, …, ¦x_n$ jsou afinně nezávislé, pokud $¦x_1 - ¦x_0, ¦x_2 - ¦x_0, …, ¦x_n - ¦x_0$ jsou nezávislé. V opačném případě jsou afinně závislé.
+    \end{definice}
+
+    \begin{poznamka}[Body v obecné poloze]
+        Body v $n$ dimenzionálním prostoru jsou v obecné poloze, pokud každá jejich podmnožina velikosti $≤n+1$ je lineárně nezávislá.
+    \end{poznamka}
+
+    \begin{definice}
+        Buď $g: ¦U \rightarrow ¦V$ lineární zobrazení a mějme pevný vektor $¦b \in ¦V$. Potom afinní zobrazení má tvar $f(¦u) = g(¦u) + ¦b$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Obraz afinního podprostoru při afinním zobrazení je afinní podprostor.
+
+        Složení dvou afinních zobrazení je opět afinní zobrazení.
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Buď $f: ¦U \rightarrow ¦V$ lineární zobrazení. Pak úplný vzor vektoru $¦v \in ¦V$, $f^{-1}(¦v) := \{¦u \in ¦U| f(¦u) = ¦v\}$, je buď prázdná množina, nebo afinní podprostor v ¦U.
+
+        \begin{dukazin}
+            Rozepsáním.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Dále jsme si ukazovali, jak kreslit fraktály tak, že zvolíme náhodně afinní zobrazení, které použijeme. Robotiku a strojové učení.
+    \end{poznamka}
+
+
+
+
 \end{document}

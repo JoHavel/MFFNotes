@@ -30,7 +30,7 @@
     \end{definice}
 
     \begin{definice}[Důkaz matematickou indukcí]
-            Dokážeme $\phi(n), \forall n \in ®N$ tak, že dokážeme $\phi(0)\land(\forall n \in ®N)(\phi(n)\implies\phi(n+1))$
+            Dokážeme $\forall n \in ®N: \phi(n)$ tak, že dokážeme $\phi(0)\land(\forall n \in ®N)(\phi(n)\implies\phi(n+1))$
     \end{definice}
 
     \begin{definice}[Dolní a horní celá část]
@@ -45,7 +45,7 @@
         $\sum_\O = 0$
     \end{definice}
 
-    \begin{definice}[Sčítání mnoha čísel]
+    \begin{definice}[Násobení mnoha čísel]
         $\prod_{i=13}^n x_i = x_{13} \cdot x_{14} \cdot … \cdot x_n$ = Násobení $x$ od indexu 13 do indexu $n$
 
         $\prod_\O = 1$
@@ -56,55 +56,55 @@
     \end{poznamka}
 
     \begin{poznamka}[Klasické množinové operace]
-        $$ x \in ®A $$
-        $$ ®A \subseteq ®B $$
-        $$ ®A \cap ®B $$
-        $$ ®A \cup ®B $$ 
-        $$ ®A \setminus ®B $$
-        $$ ®A\triangle®B = (®A\setminus ®B)\cup(®B\setminus ®A) = \text{disperze} $$
-        $$ 2^®A = ©P(®A) $$
+        $$ x \in A $$
+        $$ A \subseteq B $$
+        $$ A \cap B $$
+        $$ A \cup B $$ 
+        $$ A \setminus B $$
+        $$ A\triangle B = (A\setminus B)\cup(B\setminus A) = \text{disperze} $$
+        $$ 2^A = ©P(A) $$
     \end{poznamka}
 
     \begin{definice}[Uspořádaná dvojice]
         Uspořádaná dvojice je $(x, y)$ nebo $\{\{x\},\{x, y\}\}$.
 
-        Vytváří se např. kartézským součinem $®A\times ®B := \{(a,b)|a\in ®A, b \in ®B\}$.
+        Vytváří se např. kartézským součinem $A\times B := \{(a,b)|a\in A, b \in B\}$.
 
-        Uspořádaná trojice je $(x, y, z) = ((x, y), z) = (x, (y, z))$. Atd. pro n-tice.
+        Uspořádaná trojice je $(x, y, z) = ((x, y), z) = (x, (y, z))$. Atd. pro $n$-tice.
     \end{definice}
 
     \begin{definice}[Relace]
-        ®A je relace (binární) mezi množinami ®X a ®Y $≡ ®A \subseteq ®X \times ®Y.$
+        $A$ je (binární) relace mezi množinami $X$ a $Y$ $≡ A \subseteq X \times Y.$
 
-        ®A je relace (binární) na množině ®X $≡$ mezi ®X a ®X.
+        $A$ je (binární) relace na množině $X$ $≡$ je mezi $X$ a $X$.
 
-        Inverze je relace mezi ®Y a ®X: $R^{-1} := \{(y, x) | (x, y) \in R\}$.
+        Inverze je relace mezi $Y$ a $X$: $R^{-1} := \{(y, x) | (x, y) \in R\}$.
 
-        Skládání $T = R \circ S = \{(x, z)| \exists y: xRy \land ySz\}$
+        Skládání: $T = R \circ S := \{(x, z)| \exists y: xRy \land ySz\}$.
 
-        Diagonála = diagonální relace: $\triangle x := \{(x, x) \in ®X\}$
+        Diagonála = diagonální relace: $\triangle x := \{(x, x) \in ®X\}$.
     \end{definice}
 
     \begin{definice}[Funkce = zobrazení]
-        Funkce z množiny ®X do množiny ®Y je relace $A$ mezi ®X a ®Y taková, že $\forall x \in ®X \exists! y\in ®Y: xAy$    
+        Funkce z množiny $X$ do množiny $Y$ je relace $A$ mezi $X$ a $Y$ taková, že $\forall x \in X\ \exists! y\in Y: xAy$    
     \end{definice}
 
     \begin{definice}[Vlastnosti funkcí]
-        Funkce $f: ®X \rightarrow ®Y$ je:
+        Funkce $f: X \rightarrow Y$ je:
         \begin{itemize}
-            \item prostá (injektivní) $≡ \not\exists x, x' \in ®X: x≠x' \land f(x) = f(x')$
-            \item na ®Y (surjektivní) $≡ \forall y \in ®Y \exists x \in ®X: f(x) = y$
-            \item vzájemně jednoznačná (bijektivní, 1-1 (jedna ku jedné)) $\forall y \in ®Y \exists! x \in ®X: f(x) = y$
+            \item prostá (injektivní) $≡ \nexists x, x' \in X: x≠x' \land f(x) = f(x')$,
+            \item na $Y$ (surjektivní) $≡ \forall y \in Y\ \exists x \in X: f(x) = y$,
+            \item vzájemně jednoznačná (bijektivní, 1-1 (jedna ku jedné)) $\forall y \in Y\ \exists! x \in X: f(x) = y$.
         \end{itemize}
     \end{definice}
 
     \begin{definice}[Vlastnoti relací]
-        Relace $R$ na ®X je:
+        Relace $R$ na X je:
         \begin{itemize}
-            \item reflexivní $≡ \forall x \in ®X: xRx$
-            \item symetrická $≡ \forall x, y \in ®X: xRy \implies yRx (\Leftrightarrow R = R^{-1})$
-            \item antisymetrická $≡ \forall x, y \in ®X: xRy \land yRx \implies x = y$
-            \item tranzitivní $≡ \forall x, y, z \in ®X: xRy \land yRz \implies xRz$
+            \item reflexivní $≡ \forall x \in X: xRx$,
+            \item symetrická $≡ \forall x, y \in X: xRy \implies yRx (\Leftrightarrow R = R^{-1})$,
+            \item antisymetrická $≡ \forall x, y \in X: xRy \land yRx \implies x = y$,
+            \item tranzitivní $≡ \forall x, y, z \in X: xRy \land yRz \implies xRz$.
         \end{itemize}
     \end{definice}
 
@@ -113,34 +113,34 @@
     \end{definice}
 
     \begin{definice}[Ekvivalenční třídy]
-        $$ R[x] = \{y \in ®X | xRy\} $$
+        $$ R[x] = \{y \in X | xRy\} $$
     \end{definice}
 
     \begin{veta}
-        $$ 1) \forall x \in ®X R[x] ≠ \O $$
-        $$ 2) \forall x, y \in ®X: R[x] = R[Y] XOR R[x]\cap R[y] = \O $$
-        $$ 3) \{R[x]| x \in ®X\} \text{určuje ekvivalenci $R$ jednoznačně} $$ 
+            $$ 1)\ \forall x \in X: R[x] ≠ \O $$
+        $$ 2)\ \forall x, y \in X: R[x] = R[Y] \veebar R[x]\cap R[y] = \O $$
+        $$ 3)\ \{R[x]| x \in X\} \text{určuje ekvivalenci $R$ jednoznačně} $$ 
         \begin{dukazin}
-            1) triviální
+            1) triviální.
 
             2) Dokážeme: pokud $R[x] \cap R[y] ≠ \O$, pak $R[x] = R[y]$. (Tranzitivita).
 
-            3)
+            3) V přednášce nebyl.
         \end{dukazin}
     \end{veta}
 
     \begin{definice}[Rozklad množiny]
-        Množinový systém $©S \subseteq 2^{®X}$ je rozklad množiny ®X tehdy, když\\
-        (R1) $\forall ®A \in ©S: ®A ≠ \O$,\\
-        (R2) $\forall ®A, ®B \in ©S: ®A ≠ ®B \implies ®A\cap ®B = \O$,\\
-        (R3) $\bigcup_{®A \in ©S} = ®X$.
+        Množinový systém $©S \subseteq 2^{X}$ je rozklad množiny X tehdy, když\\
+        (R1) $\forall A \in ©S: A ≠ \O$,\\
+        (R2) $\forall A, B \in ©S: A ≠ B \implies A\cap B = \O$,\\
+        (R3) $\bigcup_{A \in ©S} = X$.
     \end{definice}
 
     \begin{definice}[Uspořádání]
-        Relace $R$ na množině $®X$ je uspořádání $≡ R$ je reflexivní, antisymetrická a tranzitivní.
+        Relace $R$ na množině $X$ je uspořádání $≡ R$ je reflexivní, antisymetrická a tranzitivní.
 
         \begin{poznamkain}
-            Někdy se říká částečné uspořádání a částečně uspořádaná množina (čum), aby se zdůraznilo, že nemusí být lineární.
+            Někdy se říká částečné uspořádání a částečně uspořádaná množina (ČUM), aby se zdůraznilo, že nemusí být lineární.
         \end{poznamkain}
     \end{definice}
 
@@ -149,9 +149,9 @@
     \end{definice}
 
     \begin{definice}[Porovnatelné prvky a lineární uspořádání]
-        $xy \in X$ jsou porovnatelné $≡ xRy \lor yRx$
+        $x, y \in X$ jsou porovnatelné $≡ xRy \lor yRx$
 
-        Uspořádání $R$ je lineární $≡ \forall x,y \in X$ porovnatelné.
+        Uspořádání $R$ je lineární $≡ \forall x,y \in X: x, y$ jsou porovnatelné.
     \end{definice}
 
     \begin{definice}[Ostrá nerovnost]
@@ -161,31 +161,32 @@
     \begin{definice}[Hasseův diagram]
         \ 
         \begin{poznamkain}
-            Splňuje následující:
-            1. To, co je nahoře je větší než to, co je dole\\
-            2. Nezakreslujeme tranzitivitu\\
+            Splňuje následující:\\
+            1. To, co je nahoře je větší než to, co je dole,\\
+            2. Nezakreslujeme tranzitivitu.
         \end{poznamkain}
-        \ 
+
         \begin{definicein}[Bezprostřední předchůdce ($x \triangleleft y$)]
-                $x$ je bezprostřední předchůdce $y$ v uspořádání $≤ ≡ x<y \land (\not\exists z: x<z \land z<y)$
+            $x$ je bezprostřední předchůdce $y$ v uspořádání $≤\,≡ x<y \land (\nexists z: x<z \land z<y)$.
         \end{definicein}
 
-        V hasseově diagramu jsou mezi vrcholy (prvky množiny) hrany pouze, pokud dolní vrchol je bezprostředním předchůdcem toho nahoře.
+        V Hasseově diagramu jsou mezi vrcholy (prvky množiny) hrany, pouze pokud dolní vrchol je bezprostředním předchůdcem toho nahoře.
     \end{definice}
     
     \begin{definice}[Nejmenší, minimální, největší a maximální prvek]
         \ 
         \begin{itemize}
-            \item $x \in ®X$ je nemenší $≡ \forall y \in ®X: x≤y$
-            \item $x \in ®X$ je minimální $≡ \nexists y \in ®X: y<x$
-            \item největší a maximální obdobně
+            \item $x \in X$ je nemenší $≡ \forall y \in X: x≤y$,
+            \item $x \in X$ je minimální $≡ \nexists y \in X: y<x$,
+            \item $x \in X$ je největší $≡ \forall y \in X: x≥y$,
+            \item $x \in X$ je maximální $≡ \nexists y \in X: y>x$.
         \end{itemize}
     \end{definice}
 
     \begin{lemma}
         Každá konečná neprázdná ČUM má minimální prvek.
         \begin{dukazin}[Důkazík]
-            $x_1 \in ®X$ zvolíme libovolně, pokud $x_1$ není minimální $\exists x_2 < x_1$… $\exists k \in ®N x_k$ je minimální.
+            $x_1 \in X$ zvolíme libovolně, pokud $x_1$ není minimální $\exists x_2 < x_1$… $\exists k \in ®N: x_k$ je minimální.
         \end{dukazin}
     \end{lemma}
 
@@ -195,7 +196,7 @@
         Naopak $A \subseteq X$ je antiřetězec (nezávislá množina) $≡ \nexists a, b \in A$ různé a porovnatelné.
     \end{definice}
 
-    \begin{definice}[Délka nejdelšího řetězce]
+    \begin{definice}[Délka nejdelšího řetězce a velikost největšího antiřetězce]
             $$ \omega(X, ≤) := \text{maximum z délek řetězců („výška uspořádání“)} $$
             $$ \alpha(X, ≤) := \text{maximum z „délek“ (velikostí) antiřetězců („šířka uspořádání“)} $$
     \end{definice}
@@ -205,9 +206,9 @@
         (Neboli buď $\alpha ≥ \sqrt{|X|}$ nebo $\omega ≥ \sqrt{|X|}$.)
 
         \begin{dukazin}
-            Sestrojíme $X_1:= \{x \in X|x \text{je minimální}\}$.
+            Sestrojíme $X_1:= \{x \in X|x \text{ je minimální}\}$.
 
-            Když máme $X_1, …, X_i$, $Z_i:= X\setminus \(\bigcup_{j=1}^i x_j\)$. Pokud $Z_i = \O$, tak jsme skončili, jinak $X_{i+1} := \{x\in Z_i | x \text{je minimální v} Z_i\}$.
+            Když máme $X_1, …, X_i$, $Z_i:= X\setminus \(\bigcup_{j=1}^i X_j\)$. Pokud $Z_i = \O$, tak jsme skončili, jinak $X_{i+1} := \{x\in Z_i | x \text{ je minimální v } Z_i\}$.
 
             Přitom $\forall i$ $X_i$ je antiřetězec, $\{X_1, …, X_k\}$ tvoří rozklad $X$ a $\exists \{r_j \in X_j\}_{j = 1}^k$, $\{r_j\}_{j=1}^k$ je řetězec. ($r_k \in X_k$ zvolíme libovolně, $r_j \notin X_{j-1} \implies \exists r_{j-1} \in X_{j-1}: r_{j-1}<r_j$.)
 
@@ -223,20 +224,21 @@
 
         \begin{dukazin}[Indukcí]
             $$ n=1: \# f = m = m^1 $$
-            $$ n \rightarrow n+1: f \text{jednoznačně určena} f(x) \text{a} f':N\setminus \{x\} \rightarrow M \implies \# f = m · m^n = m^{n+1} $$ 
+            $$ n \rightarrow n+1: f \text{ jednoznačně určena } f(x) \text{a} f':N\setminus \{x\} \rightarrow M \implies \# f = m · m^n = m^{n+1} $$ 
         \end{dukazin}
     \end{veta}
 
     \begin{veta}
-        Je-li $N$ $n$-prvková množina, pak $|2^N| = 2^n$.
+        Je-li $N$ $n$-prvková množina, pak $\left|2^N\right| = 2^n$.
 
         \begin{dukazin}
-            $$ \text{charakteristická funkce: } A \subseteq N \rightarrow C_A: N \rightarrow \{0, 1\} C_A(x) = 0, x \notin A, C_A(x) = 1, x \in A $$ 
+            Charakteristickou funkcí:
+            $$ A \subseteq N \rightarrow C_A: N \rightarrow \{0, 1\}, C_A(x) = \begin{cases} 0, & x \notin A,\\ 1, & x \in A. \end{cases}$$ 
         \end{dukazin}
     \end{veta}
 
     \begin{veta}
-        Nechť $X ≠ \O$ je konečná množina, $©S := \{S \subseteq X| |S| \text{je sudá}\}$, $©L := \{L \subseteq X| |L| \text{je lichá}\}$. Potom $|©S| = |©L| = 2^{n-1}$.
+        Nechť $X ≠ \O$ je konečná množina, $©S := \{S \subseteq X|\ |S| \text{ je sudá}\}$, $©L := \{L \subseteq X|\ |L| \text{ je lichá}\}$. Potom $|©S| = |©L| = 2^{n-1}$.
         
         \begin{dukazin}
             Víme, že $©S \cup ©L = 2^X$. Stačí tedy $|©S| = |©L|$. Zvolíme si $a \in X$. Pak $f(S):= S \triangle \{a\}$ je bijekce z ©S do ©L.
@@ -248,7 +250,7 @@
 
         \begin{poznamka}[Možná značení]
             $$ \[n\]:= \{0, 1, …, \} $$
-            $$ m^{\underline{n}} = \frac{m!}{(m-n)!} \text{($m$ na $n$ klesající)} $$ 
+            $$ m^{\underline{n}} = \frac{m!}{(m-n)!} \text{ ($m$ na $n$ klesající)} $$ 
         \end{poznamka}
     \end{veta}
 
@@ -264,7 +266,7 @@
     \end{poznamka}
 
     \begin{definice}[Kombinační číslo]
-        Kombinační číslo / binomický koeficient ($n$ nad $k$) je $\binom{n}{k} := \frac{n^{\underline{k}}}{k!} = \frac{n!}{k!(n-k)!}$.
+        Kombinační číslo = binomický koeficient ($n$ nad $k$) je $\binom{n}{k} := \frac{n^{\underline{k}}}{k!} = \frac{n!}{k!(n-k)!}$.
     \end{definice}
 
     \begin{definice}
@@ -279,9 +281,10 @@
         $$ \binom{n}{0} = \binom{n}{n} = 1 $$ 
         $$ \binom{n}{1} = \binom{n}{n-1} = n $$ 
         $$ \binom{n}{k} = \binom{n}{n-k} $$
-        $$ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} \text{ (Lze upočítat / nebo rozdělit na případ vybereme / nevybereme konkrétní prvek.}$$
-        $$ \sum_{k=0}^n \binom{n}{k} = 2^n \text{ BV $A=1$, $B=1$} $$ 
-        $$ \sum_{k=0}^n (-1)^k \binom{n}{k} = 0 \text{ BV $A=1$, $B=-11$} $$
+        $$ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} $$
+        \hfill(Lze upočítat / nebo rozdělit na případ vybereme / nevybereme konkrétní prvek.)\hfill\ 
+        $$ \sum_{k=0}^n \binom{n}{k} = 2^n \text{ (BV pro $A=1$, $B=1$.)} $$ 
+        $$ \sum_{k=0}^n (-1)^k \binom{n}{k} = 0 \text{ (BV pro $A=1$, $B=-1$.)} $$
     \end{poznamka}
 
     \begin{poznamka}
@@ -300,20 +303,20 @@
     
     \begin{veta}[Princip inkluze a exkluze]
         Pro konečné množiny $A_1-A_n$:
-        $$ \left| \bigcup_{i=1}^n \right| = \sum_k^n (-1)^{k+1} \sum_{I \in \binom{\{1, 2, …, n\}}{k}} \left|\bigcap_{i \in I} A_i\right| $$
+        $$ \left| \bigcup_{i=1}^n \right| = \sum_k^n (-1)^{k+1} \sum_{I \in \binom{\{1, 2, …, n\}}{k}} \left|\bigcap_{i \in I} A_i\right|. $$
 
         Nebo alternativně:
-        $$ \left| \bigcup_{i=1}^n A_i \right| = \sum_{\O ≠ I \subseteq \{1, …, n\}} (-1)^{|I| + 1} \left| \bigcap_{i \in I} A_i \right| $$ 
+        $$ \left| \bigcup_{i=1}^n A_i \right| = \sum_{\O ≠ I \subseteq \{1, …, n\}} (-1)^{|I| + 1} \left| \bigcap_{i \in I} A_i \right|. $$ 
 
         \begin{dukazin}
-            Pro každý prvek $x \in \bigcup_i A_i$ spočítáme příspěvky k levé (vždy 1) a k pravé straně. Nechť $x$ patří právě j množin z $A_1, …, A_n$. Průniky $k$-tic: (1) $k>j$ přispěje 0. (2) $k≤j$ přispěje $(-1)^{k+1} \binom{j}{k}$. Součet toho je alternující řada kombinačních čísel „bez 1“, tedy součet je 1.
+            Pro každý prvek $x \in \bigcup_i A_i$ spočítáme příspěvky k levé (vždy 1) a k pravé straně. Nechť $x$ patří právě $j$ množin z $A_1, …, A_n$. Průniky $k$-tic: (1) $k>j$ přispěje 0. (2) $k≤j$ přispěje $(-1)^{k+1} \binom{j}{k}$. Součet toho je alternující řada kombinačních čísel „bez 1“, tedy součet je 1.
         \end{dukazin}
 
         \begin{dukazin}[Druhý]
             Vyjdeme z
             $$ \prod_{i=1}^n (1+x_i) = \sum_{I \subseteq \{1, …, n\}} \prod_{i\in I} x_i. $$
-            Definujeme si charakteristickou funkci a zjistíme, že ch. f. průniku je součin, doplňku je 1-ch. f. původního, sjednocení je doplněk průniku doplňků a velikost je součet ch. funkce. Tedy dosadíme za $x_i$ mínus charakteristické funkce (1 nám vypadla z prázdné podmnožiny):
-            $$ 1-c_{\bigcup_i A_i} = \(\sum_{\O≠I\subseteq \{1, …, n\}} (-1)^{|I|}·c_{\bigcap_{i \in I} A_i}\) + 1 $$
+            Definujeme si charakteristickou funkci a zjistíme, že ch. f. průniku je součin, ch. f. doplňku je 1-ch. f. původního a ch. f. sjednocení je doplněk průniku doplňků a velikost je součet ch. funkce. Tedy dosadíme za $x_i$ mínus charakteristické funkce (1 nám vypadla z prázdné podmnožiny):
+            $$ 1-c_{\bigcup_i A_i} = \(\sum_{\O≠I\subseteq \{1, …, n\}} (-1)^{|I|}·c_{\bigcap_{i \in I} A_i}\) + 1. $$
             Následně ještě přeformulujeme do velikostí a získáme princip inkluze a exkluze.
         \end{dukazin}
     \end{veta}
@@ -322,15 +325,16 @@
         Šatnářka náhodně vydala klobouky gentlemanům. Jaká je pravděpodobnost, že se ani jeden klobouk nedostal k majiteli?
 
         Tj. $S_n := \{\pi | \pi \text{ permutace na } \{ 1, …, n \}\}$, $\pi(i) = i \implies i$ je pevný bod:
-        $$ \text{Š}_n := \{ \pi \in S_n | \nexists i: \pi(i) = i \}. $$ 
-        Příklad se tedy ptá na $\frac{\text{Š}_n}{n!}$.
+        $$ \check S_n := \{ \pi \in S_n | \nexists i: \pi(i) = i \}. $$ 
+        Příklad se tedy ptá na $\frac{\check S_n}{n!}$.
 
         \begin{reseni}
-            Lepší je počítat doplněk: $A := \{\pi \in S_n | \pi \text{ má pevný bod}\}$. Definujeme si $A_i := \{\pi \in S_n| \pi(i)=i\}$. Následně vypozorujeme $A = \bigcap_i A_i$. Očividně $|A_i| = (n-1)!$, $|A_i \cup A_j| = (n-2)!$ ($i≠j$), …
+            Lepší je počítat doplněk $\check S_n$: $A := \{\pi \in S_n | \pi \text{ má pevný bod}\}$. Definujeme si množiny $A_i := \{\pi \in S_n| \pi(i)=i\}$. Následně vypozorujeme $A = \bigcup_i A_i$. Očividně $|A_i| = (n-1)!$, $|A_i \cap A_j| = (n-2)!$ ($i≠j$), …
 
-            $$ |A| = \left| \bigcup_{i=1}^n \right| = \sum_{k=1}^n (-1)^{k+1}\sum_{I \in \binom{\{1, …, n\}}{k}} \left| \bigcap_{i \in I} A_i \right| = \sum_{k=1}^n (-1)^{k+1}\sum_{I \in \binom{\{1, …, n\}}{k}} (n-k)! = \sum_{k=1}^n (-1)^{k+1} \binom{n}{k}(n-k)! = \sum_{k=1}^n (-1)^{k+1} \frac{n!}{k!} $$
-            $$ |A| = n! \sum_{k=1}^n \frac{(-1)^{k+1}}{k!} = n!(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - … + \frac{(-1)^{n+1}}{n!}) $$
-            $$ \text{Š}_n = |A| ≐ n! \frac{1}{e} $$ 
+            $$ |A| = \left| \bigcup_{i=1}^n \right| = \sum_{k=1}^n (-1)^{k+1}\sum_{I \in \binom{\{1, …, n\}}{k}} \left| \bigcap_{i \in I} A_i \right| = \sum_{k=1}^n (-1)^{k+1}\sum_{I \in \binom{\{1, …, n\}}{k}} (n-k)! = $$
+            $$ = \sum_{k=1}^n (-1)^{k+1} \binom{n}{k}(n-k)! = \sum_{k=1}^n (-1)^{k+1} \frac{n!}{k!} $$
+            $$ |A| = n! \sum_{k=1}^n \frac{(-1)^{k+1}}{k!} = n!\(\frac{1}{1!} - \frac{1}{2!} + \frac{1}{3!} - … + \frac{(-1)^{n+1}}{n!}\) $$
+            $$ \check S_n = |A| \rightarrow n! \frac{1}{e} $$ 
         \end{reseni}
     \end{priklad}
 
@@ -366,7 +370,8 @@
         
         Kružnice ($C_n$): $V(C_n) := \{0, 1, …, n-1\}$ a $E(C_n) := \{\{i, i+1 \mod n\}|0≤i≤n\}$.
 
-        Úplný bipartitní graf ($K_{m, n}$): $V(K_n) := \{a_1, …, a_n\} \cup \{b_1, …, b_n\}$ a $E(K_n) := \{\{a_i, b_j\}|1≤i≤m, 1≤j≤n\}$.
+        Úplný bipartitní graf ($K_{m, n}$):
+        $$ V(K_n) := \{a_1, …, a_n\} \cup \{b_1, …, b_n\} \land E(K_n) := \{\{a_i, b_j\}|1≤i≤m, 1≤j≤n\}. $$
     \end{priklady}
 
     \begin{definice}[Bipartitní graf]
@@ -374,7 +379,7 @@
     \end{definice}
 
     \begin{definice}[Isomorfismus grafů]
-        Grafy $G$ a $H$ jsou isomorfní (značme $G \cong H$) $≡ \exists f: V(G) \rightarrow V(H)$ bijekce tak, že $\forall u, v \in V(G):(\{u, v\} \in E(g) \Leftrightarrow \{f(u), f(v)\} \in E(H))$.
+        Grafy $G$ a $H$ jsou isomorfní (značme $G \cong H$) $≡ \exists f: V(G) \rightarrow V(H)$ bijekce tak, že $\forall u, v \in V(G):(\{u, v\} \in E(G) \Leftrightarrow \{f(u), f(v)\} \in E(H))$.
     \end{definice}
 
     \begin{poznamka}[K nahlédnutí]
@@ -405,14 +410,18 @@
     \end{dusledek}
 
     \begin{veta}[O skóre]
-        Posloupnost $D = d_1 ≤ … ≤ d_n$ pro $n≥2$ je skóre grafu $\Leftrightarrow$ $D' = d'_1, …, d'_{n-1}$ je skóre grafui a $0≤d_n≤n-1$. ($d'_i = d_i$ pro $i < n-d_n$ a $d'_i = d_i - 1$ pro $i ≥ n-d_n$.)
+        Posloupnost $D = d_1 ≤ … ≤ d_n$ pro $n≥2$ je skóre grafu $\Leftrightarrow$ $D' = d'_1, …, d'_{n-1}$ je skóre grafu a $0≤d_n≤n-1$. ($d'_i = d_i$ pro $i < n-d_n$ a $d'_i = d_i - 1$ pro $i ≥ n-d_n$.)
 
         \begin{dukazin}
-            $(\Leftarrow)$ nechť $G'$ je graf se skóre $D'$ a vrcholy $v_1, …, v_{n-1}$ tak, že $\forall i \deg_{G'}(v_i)=d'_i$. Vytvořím $G$ doplněním vrcholu $v_n$ a hran $\{v_i, v_n\}$ pro $i \in \{n-d_n, …, n-1\}$. $G$ má skóre $D$.
+            $(\Leftarrow)$ nechť $G'$ je graf se skóre $D'$ a vrcholy $v_1, …, v_{n-1}$ tak, že $\forall i: \deg_{G'}(v_i)=d'_i$. Vytvořím $G$ doplněním vrcholu $v_n$ a hran $\{v_i, v_n\}$ pro $i \in \{n-d_n, …, n-1\}$. $G$ má skóre $D$.
 
             $(\implies)$ Lemma: Nechť ©G je množina všech grafů se skóre $D$, $©G ≠ \O$. Potom $\exists G \in ©G: \{v_n, v_i\}\in E(G)$ pro všechna $i \in \{n-d_n, …, n-1\}$.
 
-            Důkaz lemmatu: (Kdyby $d_n = n-1$, pak zřejmě každý $G \in ©G$ splňuje lemma.) Pro $G \in ©G$ definujeme $j(G) := \max\{j|\{v_j, v_n\} \notin E(G)\}$ (kdyby $j(g) = n-d_ni-1$, pak jsme vyhráli, jinak $G$ nesplňuje lemma). Najdeme $G \in ©G$, jehož $j(G)$ je minimální. Pokračujeme sporem: Kdyby $j(G) > n - d_n - 1$, musí $\exists i < j: \{v_i, v_n\} \in E(G)$. Následně chceme ukázat, že $\exists k: \{v_i, v_k\}\notin E(G) \land \{v_j, v_k\} \in E(G)$, to ukážeme na základě toho, že posloupnost je seřazena, tedy $d_i ≤ d_j$ a vrchol $v_i$ je spojen minimálně s jedním vrcholem, se kterým není spojené $v_j$ ($v_n$). Upravíme graf $G$ na $G_\lightning: V(G_\lightning) := V(G), E(G_\lightning) := E(G) \cup \{\{v_i, v_k\}, \{v_j, v_n\}\} \setminus \{\{v_i, v_n\}, \{v_j, v_k\}\}$. Ale jelikož jsme vrcholům odstranili stejný počet hran, jako přidali, $G_\lightning \in ©G$. Navíc zřejmě $j(G_\lightning) < j(G)$, $\lightning$.
+            Důkaz lemmatu: (Kdyby $d_n = n-1$, pak zřejmě každý $G \in ©G$ splňuje lemma.) Pro $G \in ©G$ definujeme $j(G) := \max\{j|\{v_j, v_n\} \notin E(G)\}$ (kdyby $j(g) = n-d_n-1$, pak jsme vyhráli, jinak $G$ nesplňuje lemma). Najdeme $G \in ©G$, jehož $j(G)$ je minimální. Pokračujeme sporem:
+
+    Kdyby $j(G) > n - d_n - 1$, musí $\exists i < j: \{v_i, v_n\} \in E(G)$. Následně chceme ukázat, že $\exists k: \{v_i, v_k\}\notin E(G) \land \{v_j, v_k\} \in E(G)$, to ukážeme na základě toho, že posloupnost je seřazena, tedy $d_i ≤ d_j$ a vrchol $v_i$ je spojen minimálně s jedním vrcholem, se kterým není spojené $v_j$ ($v_n$). Upravíme graf $G$ na
+    $$ G_{\text{\lightning}}: V(G_{\text{\lightning}}) := V(G), E(G_{\text{\lightning}}) := E(G) \cup \{\{v_i, v_k\}, \{v_j, v_n\}\} \setminus \{\{v_i, v_n\}, \{v_j, v_k\}\}. $$
+    Ale jelikož jsme vrcholům odstranili stejný počet hran, jako přidali, $G_{\text{\lightning}} \in ©G$. Navíc zřejmě $j(G_{\text{\lightning}}) < j(G)$, \lightning.
         \end{dukazin}
     \end{veta}
 
@@ -422,13 +431,13 @@
         Grafů je tolik, kolik je podmnožin množiny všech hran, tedy $2^{\binom{n}{2}}$.
 
         Izomorfních grafů jednomu grafu nemůže být více než $n!$, tedy neizomorfních bude více jak
-        $$ \frac{2^{\binom{n}{2}}}{n!} $$ 
+        $$ \frac{2^{\binom{n}{2}}}{n!}. $$ 
     \end{priklad}
 
     \begin{definice}[Podgraf a indukovaný graf]
         Graf $G' = (V', E')$ je podgrafem (značíme $G' \subseteq G$) grafu $G = (V, E) ≡ V' \subseteq V \land E' \subseteq E$.
 
-        Graf $G' = (V', E')$ je indukovaným (množinou $V'$, značíme $G\[V'\]$) podgrafem grafu $G = (V, E) ≡ V' \subseteq V \land E' = E \cap \binom{V'}{2}$.
+        Graf $G' = (V', E')$ je indukovaným (množinou $V'$, značíme $G' = G\[V'\]$) podgrafem grafu $G = (V, E) ≡ V' \subseteq V \land E' = E \cap \binom{V'}{2}$.
     \end{definice}
 
     \begin{definice}[Cesta v grafu]
@@ -436,7 +445,7 @@
 
         1.) $G' \subseteq G: G' \cong P_n$ pro nějaké $n$.
 
-        2.) $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou navzájem různé vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+        2.) $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou navzájem různé vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i: e_i = \{v_{i-1}, v_i\}$.
     \end{definice}
 
     \begin{definice}[Kružnice (cyklus) v grafu]
@@ -444,11 +453,11 @@
 
         1.) $G' \subseteq G: G' \cong C_n$ pro nějaké $n$.
 
-        2.) $(v_0, e_0, v_1, e_1, v_2, …, v_{n-1}, e_{n-1}, v_0)$, kde $v_0, …, v_{n-1}$ jsou navzájem různé vrcholy, $e_1, …, e_{n-1}$ jsou hrany, $\forall i e_i = \{v_{i}, v_{(i+1) \mod n}\}$.
+        2.) $(v_0, e_0, v_1, e_1, v_2, …, v_{n-1}, e_{n-1}, v_0)$, kde $v_0, …, v_{n-1}$ jsou navzájem různé vrcholy, $e_1, …, e_{n-1}$ jsou hrany, $\forall i: e_i = \{v_{i}, v_{(i+1) \mod n}\}$.
     \end{definice}
 
     \begin{definice}[Souvislý graf]
-        Graf $G$ je souvislý $≡ \forall u, v \in V(G) \exists$ cesta v $G$ s krajními vrcholy $u, v$.
+        Graf $G$ je souvislý $≡ \forall u, v \in V(G)\ \exists$ cesta v $G$ s krajními vrcholy $u, v$.
     \end{definice}
 
     \begin{definice}[Dosažitelnost]
@@ -460,7 +469,7 @@
         \begin{dukazin}
             Reflexivita: $u \sim u$ (existuje triviální cesta).
 
-            Symetrie: $u \sim v \Leftarrow v \sim u$ (koncové vrcholy cesty jsou neuspořádaná dvojice).
+            Symetrie: $u \sim v \Leftrightarrow v \sim u$ (koncové vrcholy cesty jsou neuspořádaná dvojice).
 
             Tranzitivita: $u \sim v \land v \sim w \implies u \sim w$ (definice a lemmátko viz dále, $\sim$ můžeme definovat i pomocí sledů, které už lze „slepovat“).
         \end{dukazin}
@@ -471,13 +480,13 @@
     \end{definice}
 
     \begin{dusledek}
-        Graf je souvislý $\Leftarrow$ má 1 komponentu.
+        Graf je souvislý $\Leftrightarrow$ má 1 komponentu.
     \end{dusledek}
 
     \begin{definice}[Sled, tah]
-        Sled (walk) je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+        Sled (walk) je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou hrany, $\forall i: e_i = \{v_{i-1}, v_i\}$.
 
-        Tah je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou navzájem různé hrany, $\forall i e_i = \{v_{i-1}, v_i\}$.
+        Tah je $(v_0, e_1, v_1, e_2, v_2, …, e_n, v_n)$, kde $v_0, …, v_n$ jsou vrcholy, $e_1, …, e_n$ jsou navzájem různé hrany, $\forall i: e_i = \{v_{i-1}, v_i\}$.
     \end{definice}
 
     \begin{lemma}[Lemmátko]
@@ -489,7 +498,7 @@
 
     \begin{definice}[Matice sousednosti]
             Matice sousednosti $A(G)$ grafu $G$ při očíslování vrcholů $v_1, …, v_n \in V(G)$ je
-            $$ A_{ij} := \[{v_i, v_j} \in E\] $$ 
+            $$ A_{ij} := \[{v_i, v_j} \in E\]. $$ 
     \end{definice}
 
     \begin{poznamka}[Značení výše]
@@ -549,11 +558,11 @@
     \end{definice}
 
     \begin{veta}[O eulerovských tazích]
-        Graf $G$ je eulerovský $\Leftrightarrow G$ je souvislý $\land \forall v \in V(G): \deg_G(v)$ je sudý.
+        Graf $G$ je eulerovský $\Leftrightarrow G$ je souvislý $\land\ \forall v \in V(G): \deg_G(v)$ je sudý.
         \begin{dukazin}
             $(\implies)$ Zřejmé z toho, že mezi každými vrcholy vede tah a že musí do vrcholu „vstupovat“ a „vystupovat“ z něho.
 
-            $(\Leftarrow)$ Uvažme $T := $ libovolný nejdelší tah. 1. $T$ je uzavřený (sporem: Krajní vrchol má „použito“ lichý počet hran, tedy existuje ještě jedna hrana jdoucí z tohoto vrcholu. Tu ale můžeme přidat do $T$, tedy nebyl nejdelší $\lightning$.) 2. $T$ je eulerovský: a) $\{u, v\} \in E(G),\ u, v \in T \implies \{u, v\} \in T$ (Sporem, kdyby ne, tak při některém „průchodu“ vrcholem $u$ tah $T$ „rozpojíme“ a na konec přidáme $\{u, v\}$, čímž dostaneme větší graf, $\lightning$.) b) $T$ obsahuje všechny vrcholy (Kdyby $\exists u \in V(E) \land u \notin T:$ zvolíme $v \in T$ libovolně a ze souvislosti $G$ víme, že existuje cesta $C$ mezi $u, v$. $\exists r, s \in C: r\in T, s \notin T, \{r, s\}\in E(C)$, tedy $T$ „rozpojíme“ v $R$ a prodloužíme o $\{r, s\}$, tedy $T$ není nejdelší $\lightning$.)
+            $(\Leftarrow)$ Uvažme $T := $ libovolný nejdelší tah. 1. $T$ je uzavřený (sporem: Krajní vrchol má „použito“ lichý počet hran, tedy existuje ještě jedna hrana jdoucí z tohoto vrcholu. Tu ale můžeme přidat do $T$, tedy nebyl nejdelší \lightning.) 2. $T$ je eulerovský: a) $\{u, v\} \in E(G),\ u, v \in T \implies \{u, v\} \in T$ (Sporem, kdyby ne, tak při některém „průchodu“ vrcholem $u$ tah $T$ „rozpojíme“ a na konec přidáme $\{u, v\}$, čímž dostaneme větší graf, \lightning.) b) $T$ obsahuje všechny vrcholy (Kdyby $\exists u \in V(E) \land u \notin T:$ zvolíme $v \in T$ libovolně a ze souvislosti $G$ víme, že existuje cesta $C$ mezi $u, v$. $\exists r, s \in C: r\in T, s \notin T, \{r, s\}\in E(C)$, tedy $T$ „rozpojíme“ v $R$ a prodloužíme o $\{r, s\}$, tedy $T$ není nejdelší \lightning.)
         \end{dukazin}
     \end{veta}
 
@@ -619,7 +628,7 @@
             \end{dukazin}
         \end{lemma}
 
-        \begin{lemma}[Vandalské (trháme listy) a pěstovatelské (necháváme vyrůst listy)]
+        \begin{lemma}[Vandalské (trháme listy) a pěstovatelské (necháme je vyrůst)]
             Nechť $v$ je list grafu $G$. Pak $G$ je strom $\Leftrightarrow G - v$ je strom.
             \begin{dukazin}
                 $(\implies)$ Odebráním vrcholu nevznikne kružnice, přes list nemohla vést cesta (jelikož je stupně 1).
@@ -655,7 +664,7 @@
         \end{veta}
 
         \begin{definice}[Kostra grafu]
-            $T\subseteq G$ je kostra grafu $G ≡ T$ je strom $\land |V(T)| = |V(G)|$.
+            $T\subseteq G$ je kostra grafu $G ≡ T$ je strom $\land\ |V(T)| = |V(G)|$.
         \end{definice}
 
         \begin{veta}
@@ -723,8 +732,9 @@
 
         \begin{veta}
             Hranice každé stěny souvislého topologického grafu je nakreslením uzavřeného sledu.
+
             \begin{dukazin}
-                Indukcí podle \#hran. 1. $|E| = |V|-1$, graf je strom (zřejmé). 2. Indukční krok: graf není strm. Nechť $e$ je hrana na kružnici. $e$ odděluje 2 stěny $S_1$ a $S_2$. Tyto stěny spojíme.
+                Indukcí podle \#hran. 1. $|E| = |V|-1$, graf je strom (zřejmé). 2. Indukční krok: graf není strom. Nechť $e$ je hrana na kružnici. $e$ odděluje 2 stěny $S_1$ a $S_2$. Tyto stěny spojíme.
             \end{dukazin}
         \end{veta}
 
@@ -770,16 +780,16 @@
         \begin{veta}
             V nakreslení max. rovinného grafu s min. 3 vrcholy jsou všechny stěny $\triangle$.
             \begin{dukazin}
-                Nechť $G$ je maximální rovinný s nakreslením. 1) Kdyby nebyl souvislý, pak se jedna jeho komponenta souvislosti nachází uvnitř stěny jiné (té „nejbližší“), takže lze přidat hranu mezi nimi $\lightning$. 2) kdyby existovala stěna ohraničená $C_n$ pro $n>3$, tak do ní lze vložit hranu (pozor, některé vrcholy můžou být spojeny venkem, ale lze sporem dokázat, že v rovinném grafu musí existovat na této kružnici 2, které nejsou spojeny) $\lightning$. 3) jinak jsou stěny ohraničené uzavřenými sledy. Uvažujme jeden takový, co není kružnice. Na něm se minimálně jeden vrchol opakuje, ten odebereme a musí existovat více komponent, kde můžeme zase přidat hranu mezi komponentami.
+                Nechť $G$ je maximální rovinný s nakreslením. 1) Kdyby nebyl souvislý, pak se jedna jeho komponenta souvislosti nachází uvnitř stěny jiné (té „nejbližší“), takže lze přidat hranu mezi nimi \lightning. 2) kdyby existovala stěna ohraničená $C_n$ pro $n>3$, tak do ní lze vložit hranu (pozor, některé vrcholy můžou být spojeny venkem, ale lze sporem dokázat, že v rovinném grafu musí existovat na této kružnici 2, které nejsou spojeny) \lightning. 3) jinak jsou stěny ohraničené uzavřenými sledy. Uvažujme jeden takový, co není kružnice. Na něm se minimálně jeden vrchol opakuje, ten odebereme a musí existovat více komponent, kde můžeme zase přidat hranu mezi komponentami.
             \end{dukazin}
         \end{veta}
 
         \begin{veta}
-            Nechť $G$ je rovinný graf s alespoň 3 vrcholy, $v = |V(G)|$, $e=|E(G)|$. Potom $e ≤ 3v - 6$.
+            Nechť $G$ je rovinný s min. 3 vrcholy, $v = |V(G)|$, $e=|E(G)|$. Potom $e ≤ 3v - 6$.
             \begin{dukazin}
                 Nechť $G$ je maximální, potom $3f=2e \implies 3v-6=e$
 
-                Nechť $G'$  je maximální rovinný vzniklý z $G$ přidáváním hran. Potom$e ≤ e'=3v'-6=3v-6$.
+                Nechť $G'$  je maximální vzniklý z $G$ přidáním hran. Potom $e ≤ e'=3v'-6=3v-6$.
             \end{dukazin}
         \end{veta}
 
@@ -804,4 +814,110 @@
         \begin{definice}[Duální graf]
             $G = (V, E)$ se stěnami $F \rightarrow G*=(F, E*)$, $\{f_1, f_2\} \in E* \Leftrightarrow f_1, f_2$ sousedí v $G$ (obecně definováno pouze na multigrafech).
         \end{definice}
+
+    \subsection{Barvení grafů}
+        \begin{definice}[Obarvení a barevnost]
+            Obarvení grafu $G$ $k$ barvami ($k$-obarvení) je $c: V(G) \rightarrow \{1, …, k\}$ tak, že kdykoli $\{x, y\} \in E(G)$, pak $c(x)≠c(y)$.
+
+            Barevnost (chromatické číslo, chromatičnost) $\chi(G)$ grafu $G := \min_k \exists k$-obarvení grafu $G$.
+        \end{definice}
+
+        \begin{priklady}
+            $$ \chi(E_n) = 1 $$ 
+            $$ \chi(K_n) = n $$
+            $$ \chi(P_n)=2, n≥1 $$
+            $$ \chi(C_{2n}) = 2, \chi(C_{2n+1}) = 3 $$ 
+        \end{priklady}
+
+        \begin{poznamka}[Pozorování]
+            Pokud $H \subseteq G$, pak $\chi(H)≤\chi(G)$.
+        \end{poznamka}
+
+        \begin{definice}[Klikovost]
+            Klikovost $\kappa(G)$ grafu $G := \max_k \exists H \subseteq G, H \cong K_k$.
+        \end{definice}
+
+        \begin{poznamka}[Pozorování]
+            $$ \chi(G) ≥ \kappa(G) $$
+        \end{poznamka}
+
+        \begin{lemma}[Pozorování]
+            Stromy jsou bipartitní (dají se obarvit 2 barvami).
+            \begin{dukazin}
+                Strom zakořeníme v $k$ a obarvíme $v$ barvou $1+(d(k, v) \mod 2)$. Nebo indukcí přidáváním listů.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            $\chi(G)≤2 \Leftrightarrow G$ neobsahuje lichou kružnici.
+            \begin{dukazin}
+                $(\implies):$ už víme.
+
+                $(\Leftarrow):$ barvíme po komponentách -- BÚNO $G$ je souvislý. Nechť $T$ je nějaká kostra grafu. Tu obarvíme jako v lemmatu výše.Pro libovolnou hranu mimo kostru si můžeme všimnout, že cesta jdoucí mezi těmito vrcholy po kostře musí mít lichou délku (jinak by graf obsahoval lichou kružnici), takže vrcholy mají jinou barvu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Degenerovanost]
+            Graf $G$ je $k-degenerovaný ≡ \exists$ lineární uspořádání $\prec$ na $V(G)$ tak, že $\forall v \in V(G) (\#u\in V(G): u \prec v \land \{u, v\} \in E(G)) ≤ k$.
+        \end{definice}
+
+        \begin{priklady}
+                Stromy jsou 1-degenerované, rovinné grafy jsou 5-degenerované, graf je $\triangle$-degenerovaný pro $\triangle := \max_{v \in V(G)} \deg(v)$.
+        \end{priklady}
+
+        \begin{veta}[Větička]
+            Pokud $G$ je $k$-generovaný, pak $\chi(G) ≤ k+1$.
+            \begin{dukazin}
+                Barvíme v pořadí podle $\prec$, vždy máme 1 volnou barvu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklady}[Využití]
+            Přidělování rádiových frekvencí stanicím, které se některé mezi sebou ruší.
+
+            Přidělování poslucháren přednáškám.
+        \end{priklady}
+
+        \begin{poznamka}[Barevnost rovinných grafů]
+            Už víme: $\chi ≤ 6$.
+            \begin{vetain}[o 4 barvách]
+                Pro každý rovinný graf $G$ platí $\chi(G) ≤ 4$.
+
+                \begin{dukazin}
+                    Počítačově se rozebere těžce (těžce dokázáno, že to stačí) vybraná množina omezeného počtu případů.
+                \end{dukazin}
+            \end{vetain}
+        \end{poznamka}
+
+        \begin{veta}[O 5 barvách]
+            Pro každý rovinný graf $G$ platí $\chi(G) ≤ 5$.
+            \begin{dukazin}[Tzv. Kempeho řetězce]
+                    Indukce podle \# vrcholů. a) pokud $|V(G)| ≤ 5$, tak je hotovo. b) zvolíme $v: \deg(v) ≤ 5$. Obarvíme $G' := G-v$ (obarvení $c'$). Pokud jsou sousedi $v$ obarveny (v $c'$) nejvýše 4 barvami, pak existuje volná barva pro $v$, jinak mají sousedi (po řadě v nakreslení: $a, b, c, d, e$) jiné barvy, takže sestrojíme podgraf $A:$ všech vrcholů dosažitelných z $a$ cestami přes vrcholy barev $c'(a)$, $c'(c)$. Pokud $c \notin A$, tak můžeme graf $A$ přebarvit $c'(a) \rightarrow c'(c)$ a $c'(c) \rightarrow c'(a)$, následně můžeme $v$ obarvit $c'(a)$. Jinak zkonstruujeme obdobně graf $B$ dosažitelný z $b$ po cestách „složených“ z $c'(b)$ a $c'(d)$. Nyní $d \notin B$, jelikož jinak by nebyl rovinný, tedy přebarvíme $B$ a obarvíme $v$ barvou $c'(b)$.
+            \end{dukazin}
+            
+            \begin{dukazin}[Podobná indukce, jinak vyřešíme $\deg(v) = 5$]
+                Existují 2 sousedé nespojení hranou ($x, y$). Místo $v$ přidáme hranu $\{x, y\}$ ($G':=G-v+\{x, y\}$). Následně tuto hranu zkontrahujeme, jelikož kontrakce zachovává rovinnost, ($G'':=G'.\{x, y\}$). Tento graf obarvíme dle indukčního předpokladu, obarvíme $x$ i $y$ barvou, kterou dostane vrchol vzniklý kontrakcí $\{x, y\}$, tedy mají stejnou barvu a minimálně 1 barva tak zbývá na $v$.
+            \end{dukazin}
+
+            \begin{dukazin}[Písní (Kempeho řetězce)]
+                \href{http://jankoweb.wz.cz/blog/pisnicky-odborne/veta-o-peti-barvach-hudba-ruzicka-spiritual-kvintet/}{http://jankoweb.wz.cz/blog/pisnicky-odborne/veta-o-peti-barvach-hudba-ruzicka-spiritual-kvintet/}
+            \end{dukazin}
+        \end{veta}
+
+\section{Teorie pravděpodobnosti}
+    \begin{definice}[Pravděpodobnostní prostor]
+        $\Omega :=$ množina elementárních jevů. $©F \subseteq 2^{\omega}$ množina jevů. $P: ©F \rightarrow [0, 1]$ pravděpodobnost.
+    \end{definice}
+
+    \begin{definice}[Diskrétní pravděpodobnostní prostor]
+        $(\Omega, ©F, P)$, $\Omega$ konečná nebo spočetná, $©F = 2^{\Omega}$, $P(J) = \sum_{\omega \in J} P(\{\omega\})$, $P(\Omega) = 1$
+    \end{definice}
+
+    \begin{definice}[Konečný PP]
+        DPP, kde $\Omega$ je konečný.
+    \end{definice}
+
+    \begin{definice}[Klasický PP]
+        KPP, kde $P(\{\omega\})$ je shodná $\forall \omega \in \Omega$.
+    \end{definice}
 \end{document}

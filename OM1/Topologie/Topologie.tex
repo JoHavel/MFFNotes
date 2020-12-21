@@ -1030,6 +1030,33 @@
         \end{dukazin}
     \end{veta}
 
+    \begin{veta}[Alexandrov]
+        Je-li ®X metrizovatelný a $®Y \subseteq ®X$ je úplně metrizovatelný, pak ®Y je $G_\delta$ v ®X.
+
+        Je-li ®X úplně metrizovatelný a $®Y \subseteq ®X$ je $G_{\delta}$, pak ®Y je úplně metrizovatelný.
+
+        \begin{dukazin}
+            $(®X, \rho), (®Y, \sigma)$. $\id: (®Y, \rho) \rightarrow (®Y, \sigma)$ je spojité zobrazení (dokonce homeomorfismus). Tedy podle Kuratowského věty existuje spojité rozšíření $g: G \rightarrow Y$, kde $®Y \subseteq G \subseteq \overline{®Y}$. $\id_G: G \rightarrow G$ je spojité. $g|®Y = \id = \id_G|Y$ a ®Y je hustá v G. Z jednoznačnosti zobrazení do Hausdorffova prostoru musí být $g = \id_G$. Tedy $G = ®Y$. $G$ je $G_{\delta}$, tedy i $®Y$ je $G_{\delta}$.
+
+            Druhá část: $(®X, \rho)$ úplný metrický, $®Y = \bigcap_{n \in ®N}U_n$, kde $U_n$ je otevřená, $F_n := ®X \setminus U_n$ jsou uzavřené. Definujeme novou metriku na $®Y$:
+            $$ \rho'(x, y) = \rho(x, y) + \sum_{n=1}^∞ \min\{2^{-n}, \(\frac{1}{\rho(x, F_n)} - \frac{1}{\rho(y, F_n)}\)\}. $$
+            $\rho'$ je kompatibilní s metrikou $\rho$ (cvičení). Ověříme, že $\rho'$ je úplná: Ať $(y_i)$ je cauchyovská posloupnost v $(®Y, \rho)$. Chceme ukázat, že má limitu. $\rho < \rho'$. Tedy $(y_i)$ je cauchyovská v $(®X, \rho)$. Tedy $(y_i)$ je konvergentní v $(®X, \rho)$. $y_i \rightarrow y \in ®X$. Chceme, že $y \in ®Y$ a $y_i \rightarrow y$ v $(®Y, \rho')$.
+
+            $$ \n \in ®N: \lim_{i, j \rightarrow ∞}\left| \frac{1}{\rho(y_i, F_n)} - \frac{1}{\rho(y_j, F_n)} \right| = 0 (\text{protože $(y_i)$ je $\rho'$ cauchyovská.}) $$ 
+            Tedy $\forall n \in ®N \frac{1}{\rho(y_i, F_n)}$ konvergentní a odražená od nuly (její limita není nula). Tedy $\forall n \in ®N: y \notin F_n$. Tedy $y \in ®Y$. Navíc $y_i \rightarrow y$ v $(®Y, \rho')$, protože $\rho (x, y)$ jde k 0 pro $x$ jde k $y$ a zbytek $\rho'$ je část posloupnost a zbytek konvergentní $\frac{1}{2^{-n}}$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}[O přírůstku kompaktifikací]
+        Ať ®Y a ®Z jsou kompaktifikace TP ®X. $f: ®Y \rightarrow ®Z$ spojité rozšíření $\id_{®X}$. Pak $f(®Y \setminus ®X) = ®Z \setminus ®X$.
+
+        \begin{dukazin}
+            Spojitý obraz kompaktů je kompakt, tedy $f(®Y)$ je kompaktní, tedy uzavřená v ®Z. $f(®Y) \supseteq f(®X) = ®X$, ®X hustá v ®Z, tedy $f(®Y)$ je hustá v ®Z. Nutně $f(®Y) = ®Z$. Tedy $f(®Y \setminus ®X) \supseteq ®Z \setminus ®X$.
+
+            Obrácená inkluze sporem: $\exists y \in ®Y \setminus ®X: f(y) = x \in ®X$. Existuje otevřené okolí $U$ bodu $x$, že $y \notin \overline{U}$ $(y ≠ x)$. Ze spojitosti $f: \overline{®X \setminus U} = \overline{f^{-1}(®X \seminus U)} = f^{-1}(\overline{®X \setminus U})$
+        \end{dukazin}
+    \end{lemma}
+
 
 
 \end{document}

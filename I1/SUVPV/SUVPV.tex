@@ -365,5 +365,25 @@
 
             Dá se kombinovat průměrem, nebo hlasováním.
         \end{definice}
+
+% 14. 12. 2020
+
+        Prezentace, tohle jsem nějak nezvládl zapisovat. Ve zkratce, buď se můžou klasifikátory na ensemble trénovat úplně náhodně, nebo postupně s přidáním dat, na kterých se předchozí sekly, nebo se natrénují náhodně a následně se trénuje meta klasifikátor na jejich klasifikováních (bude z nich „vybírat“).
+
+\section{Neuronové sítě}
+    \begin{poznamka}[Historie]
+        Už v roce 1943 McCulloch a Pitts vytvořili logický neuron, který měl práh, skokovou aktivační funkci a skupinu inhibitorů (stačil jediný inhibitor a výstup byl 0, tzv. absolutní inhibice) a skupinu excitorů, všude je signál pouze 0 / 1.
+
+        Lze z nich složit libovolnou logickou funkci. Absolutní inhibice je navzájem záměnná s relativní inhibicí.
         
+        Nelze tyto sítě učit, pouze modelovat, proto vznikl v roce 1949 Hebbianovo učení (síla spojení by měla být podle toho, jak spolu dané neurony souvisí).
+
+        1957 Rosenblatt vytvořil tzv. perceptron (= lineární klasifikátor, jak jsme se ho učili), který fungoval až do roku 1969 (Golden Age), kdy Minsky ukázal, že jedním perceptronem nelze řešit neseparabilní data (XOR-problem). Pro více vrstvovou síť však neexistoval učící algoritmus (Dark Age = „AI Winter“).
+
+        Ten byl vytvářen od 60. let, ale teprve od 80. byl zpopularizován. Tzv. backpropagation. Od roku 1995 existují Support Vector Machines, které umí totéž, ale jednodušeji. 2006 vznikla teorie Deep Neural Network, které se používají dodnes jako jeden z nejlepších modelů.
+    \end{poznamka}
+
+    \begin{definice}[Umělé neuronové sítě]
+        My se budeme zabývat pouze tzv. feed forward topologií, která má vrstvy a hrany jdou pouze z vrstvy do další v pořadí.
+    \end{definice}
 \end{document}

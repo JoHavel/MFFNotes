@@ -1276,4 +1276,118 @@
             \end{dukazin}
         \end{lemma}
 
+% 15. 12. 2020
+
+        \begin{veta}[Vztah druhé derivace a konvexity (konkávity)]
+            Nechť $f$ má na intervalu $(a, b)$ spojitou první derivaci.
+
+            Jestliže $\forall x \in (a, b): f''(x)>0$, pak $f$ je ryze konvexní na intervalu $(a, b)$. Jestliže $\forall x \in (a, b): f''(x)<0$, pak $f$ je ryze konkávní na intervalu $(a, b)$.
+
+            Jestliže $\forall x \in (a, b): f''(x)≥0$, pak $f$ je konvexní na intervalu $(a, b)$. Jestliže $\forall x \in (a, b): f''(x)≤0$, pak $f$ je konkávní na intervalu $(a, b)$.
+
+            \begin{dukazin}[Třetí část, zbytek analogicky]
+                    Z $f''(x)≥0$ a věty 4.8 (vztah derivace a monotonie) máme $f'$ je neklesající na $(a, b)$. Zvolme $x_1 < x_2 < x_3 \in (a, b)$. Podle věty 3.7 (Lagrange) $\exists \zeta_1 \in (x_1, x_2), \zeta_2 \in (x_2, x_3):$
+                $$ \frac{f(x_2) - f(x_1)}{x_2 - x_1} = f'(\zeta_1) \hskip 1cm  \frac{f(x_3) - f(x_2)}{x_3 - x_2} = f'(\zeta_2) $$ 
+                $\zeta_1 < \zeta_2 \overset{f'\text{ neklesající}} f'(\zeta_1)≤f'(\zeta_2) \implies \frac{f(x_2) - f(x_1)}{x_2 - x_1} ≤ \frac{f(x_3) - f(x_2)}{x_3 - x_2}$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Konvexita a jednostranné derivace]
+            Nechť $f$ je konvexní na otevřeném $J$ a $a \in \Int J$. Pak $f'_+(a) \in ®R$ a $f'_-(a) \in ®R$.
+
+            \begin{dukazin}
+                Z definice $f'_+(a) = \lim_{x \rightarrow a+} \frac{f(x) - f(a)}{x - a}$. Nechť $a < x_1 < x_2$. Z lemmatu víme, že $\frac{f(x_1) - f(a)}{x_1 - a} ≤ \frac{f(x_2) - f(a)}{x_2 - a}$. Tedy funkce $\frac{f(x) - f(a)}{x - a}$ je klesající. Podle věty 3.7 (limita monotónní funkce) tedy $\exists \lim_{x \rightarrow a+} \frac{f(x) - f(a)}{x-a} \in ®R^*$.
+
+                Zvolme $y \in J$, $y<a$, $y$ pevné. Nyní $\forall x \in J$, $x > a$, platí
+                $$ \frac{f(a) - f(y)}{a - y} ≤ \frac{f(x) - f(a)}{x - a}. $$ 
+                Tedy $\frac{f(x) - f(a)}{x - a}$ je zdola omezená na jistém $P^+(a, \delta)$ $\implies f'_+(a) \in ®R$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Konvexita a spojitost]
+            Nechť $f$ je konvexní na otevřeném intervalu $J$. Pak $f$ je spojitá na $J$.
+
+            \begin{dukazin}
+                $a \in J \implies a \in \Int J \implies \exists f'_+(a) \in ®R \(\exists f'_-(a) \in ®R\)$. Z analogie věty 4.1 pro jednostranné limity je, jelikož má vlastní derivaci v $a$, $f$ spojitá zleva (zprava) v bodě $a$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Tečna, inflexní bod]
+            Nechť $f$ má vlastní derivaci v bodě $a \in ®R$. Označme $T_a^f = \{[x, y]: x \in ®R, y  = f(a) + f'(a)(x - a)\}$.
+
+            Řekneme, že bod $[x, f(x)]$, $x \in D_f$ leží nad (pod) tečnou $T_a^f$ jestliže platí $f(x) \overset{(<)}{>} f(a) + f'(a)·(x-a)$.
+
+            Funkce $f$ má v bodě $a$ inflexi (a je inflexní bod), jestliže $f'(a) \in ®R$ a existuje $\Delta > 0$ tak, že:
+            $$ (i) \forall x \in (a - \Delta, a): [x, f(x)] \text{ leží nad tečnou}, $$
+            $$ (ii) \forall x \in (a, a + \Delta): [x, f(x)] \text{ leží pod tečnou}, $$
+            nebo
+            $$ (i) \forall x \in (a - \Delta, a): [x, f(x)] \text{ leží pod tečnou}, $$
+            $$ (ii) \forall x \in (a, a + \Delta): [x, f(x)] \text{ leží nad tečnou}, $$
+        \end{definice}
+
+        \begin{veta}[Nutná podmínka pro inflexi]
+            Nechť $f''(a) ≠ 0$. Pak $a$ není inflexní bod funkce $f$.
+            
+            \begin{dukazin}
+                BÚNO $f''(a) > 0$, tedy $f''(a) = \lim_{h \rightarrow 0} \frac{f'(a+h) - f'(a)}{h} > 0$. Standardním způsobem odvodíme $\exists \Delta > 0 \forall h \in \P(0, \Delta): \frac{f'(a+h) - f'(a)}{h} > 0$. Tj.
+                $$ \forall x \in (a, a+\Delta): f'(x) > f'(a) \hskip 1cm \forall x \in (a-\Delta, a): f'(x) < f'(a) $$ 
+
+                Pro $y \in (a, a+\Delta)$ platí podle Lagrangeovy věty 4.7 $\frac{f(y) - f(a)}{y-a} = f'(\zeta) > f'(a)$. Odtud $f(y) - f(a) > f'(a)·(y-a) \implies f(y) > f(a) + f'(a)·(y-a)$. Analogicky pro $y \in (a-\Delta, a)$ platí $f(y) > f(a) + f'(a)·(y-a)$. Tedy $a$ není inflexní bod.
+            \end{dukazin}
+        \end{veta}
+
+% 18. 12. 2020
+
+        \begin{veta}[Postačující podmínka pro inflexi]
+            Nechť $f$ má spojitou první derivaci na intervalu $(a, b)$. Nechť $z \in (a, b)$ a platí
+            $$ \forall x \in (a, z): f''(x)>0 \land \forall x \in (z, b): f''(x)<0. $$ 
+            Pak $z$ je inflexní bod.
+
+            \begin{dukazin}
+                Podle V 4.8 (derivace a monotonie) víme, že $f'$ klesá na $[z, b)$. Podle věty 4.7 (Lagrange o střední hodnotě) pro $x \in [z, b)$ nalezneme $\zeta \in (z, x): \frac{f(x) - f(z)}{x - z} = f'(\zeta)$. Tj. $f(x) = f(z) + f'(\zeta)(x-z) < f(z) + f'(z)·(x-z)$. Analogicky $\forall x \in (a, z]: f(x) > f(z) + f'(z)·(x-z)$. Tj. $z$ je inflexní bod $f$.
+            \end{dukazin}
+
+            \begin{poznamkain}
+                Platí analogicky pro  $f'' < 0$ na $(a, z)$ a $f'' > 0$ na $(z, b)$.
+            \end{poznamkain}
+        \end{veta}
+
+    \subsection{Průběh funkce}
+
+        \begin{definice}
+            Řekneme, že funkce $ax + b$, $a, b \in ®R$ je asymptota funkce $f$ v $+∞$ (resp. $-∞$) jestliže $\lim_{x \rightarrow +∞ (-∞)} [f(x) - (ax+b)]$.
+        \end{definice}
+
+        \begin{veta}[Tvar asymptoty]
+            Funkce $f$ má v $+∞$ asymptotu $ax + b \Leftrightarrow \lim_{x \rightarrow +∞} \frac{f(x)}{x} = a$ a $\lim_{x \rightarrow +∞} (f(x) - ax) = b$.
+
+            \begin{poznamkain}
+                Věta platí analogicky i pro $-∞$.
+            \end{poznamkain}
+
+            \begin{dukazin}
+                $(\implies)$
+                $$ \lim_{x \rightarrow +∞} \frac{f(x)}{a} \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} \frac{f(x) - (ax + b)}{x} + \lim_{x \rightarrow +∞} \frac{ax + b}{x} = \frac{0}{+∞} + a = a $$
+                $$ \lim_{x \rightarrow +∞} f(x) - ax \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} f(x) - (ax + b) + \lim_{x \rightarrow +∞} b = 0 + b = b $$
+
+                $(\Leftarrow)$
+                $$ \lim_{x \rightarrow +∞} [f(x) - (ax + b)] \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} (f(x) - ax) + \lim_{x \rightarrow +∞} (-b) = b + (-b) = 0 $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Průběh funkce]
+            Vyšetřujeme:
+            \begin{itemize}
+                \item Určíme definiční obor a obor spojitosti.
+                \item Zjistíme průsečíky se souřadnými osami.
+                \item Zjistíme symetrii funkce: lichost, sudost, periodicita.
+                \item Dopočítáme limity v „krajních bodech“ definičního oboru.
+                \item Spočteme první derivaci (i jednostranné v problematických bodech).
+                \item Určíme intervaly monotonie a nalezneme extrémy (lokální i globální).
+                \item Spočteme druhou derivaci a určíme intervaly, kde je funkce konvexní / konkávní, určíme inflexní body.
+                \item Vypočteme asymptoty funkce.
+                \item Načrtneme graf funkce a určíme obor hodnot.
+            \end{itemize}
+        \end{poznamka}
+
 \end{document}

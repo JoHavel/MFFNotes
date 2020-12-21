@@ -622,6 +622,100 @@
         Vkládají se automatické penalty \verb|\binoppenalty| a \verb|\relpenalty|. Jinak se láme na explicitních penaltách a discr.
     \end{poznamka}
 
+% 14. 12. 2020
+
+    \begin{poznamka}[Úplně mimo]
+        \#\# umožňuje vložit \# do expanze makra.
+    \end{poznamka}
+
+    \begin{definice}[Mezery mezi atomy]
+        V TeXbooku naruby máme tabulku. Velké mezery mizí (a malá se zmenšuje, protože je v mu) v S a SS.
+
+        Navíc Bin se ve skoro všech případech mění na Ord.
+    \end{definice}
+
+    \begin{definice}[Mathsurround]
+        Dimen, který se vkládá před a po matematickém módu (NEPOUŽÍVAT, rozbíjí to neplainová (ten si to automaticky přenastavuje) makra). Změnou v matematice se změní jen pro aktuální matematiku.
+    \end{definice}
+
+    \begin{definice}[Displayed Math]
+            \verb|$$formule[\[l]eqno formule v textové matematice]$$| Formule se centruje na šířku zrcadla - z obou stran 1em a \verb|\[l]eqno| (\verb|\[l]eqno| = číslo rovnice sázené v[levo]pravo). Nevejde-li se: 1. smršťujeme formuli, 2. centrujeme do zbylého místa (= zahodí se místo pro nesázené eqno (buď levé nebo pravé, podle toho, jestli máme pravé, nebo levé)).
+
+            \verb|\left/rightskip| se neuplatňuje, \verb|\hang/parshape| ano. Formule se počítá za 3 řádky odstavce (mezera, formule, mezera). Při spuštění (první \verb|$$|) se nastaví, v průběhu ho lze tedy měnit, při ukončení (druhých \verb|$$|) se použije.
+
+            Před se vloží \verb|\predisplaypenalty + abovedisplay[short]skip| a po se vloží \verb|\postdisplaypenalty + belowdisplay[short]skip| (short se použije, pokud předchozí řádek „končí“ (vizuálně + 2em) dřív než začíná matematika, konec odstavce = \verb|\predisplaysize|, eqno se ignoruje, když je šířky 0, nebo pokud eqno začíná \verb|\rlap|, čímž se vysází číslo místo mezery za displaymath). Následuje odstavec bez \verb|\indent|.
+    \end{definice}
+
+    \begin{definice}
+        \verb|$$ \halign{…} $$| se vysází (hlavně odsadí) jako display math, do odstavce se počítá zase jako 3 řádky.
+
+        Lze dokonce i vycentrovat: \verb|$$ \vbox{\halign{…}} $$|, pak se ale neláme stránka uvnitř (bez \verb|\vbox| ano).
+    \end{definice}
+
+    \begin{definice}
+        \verb|\eqalign{…&…\cr…&…\cr…}| sází rovnice se zarovnanou (1, jen 2 sloupce) věcí pod sebe. Sází se jako \verb|\vcenter| = nedělitelné, lze použít „kdekoliv“.
+        
+        \verb|\[l]eqalignno{…&…&n_1\cr…}| sází podobně jako výše, ale i s číslem. Dá se v něm lámat.
+    \end{definice}
+
+\section{Fonty}
+    \begin{definice}[Základní font TeXu]
+            cmr10 [at 12pt / scaled 1100] = (cm = computer modern) + (r = roman, jiné možnosti (ti = text italic), (mi = math italic), (b = bold), (bx = bold extended, \verb|\bf|), (tt = typewriter), (sl = slanted)) + (10 = design size 10pt = jak velká byla destička s daným písmenem (konvence tiskařů)) + (at 12pt = velikosti 12pt, pozor nerovná se cmr12, jiné velikosti (cmr12) písmen vypadají jinak) + (scaled 1100 = naškáluj na 1100 promile).
+
+            Nastavuje se \verb|\font\cs = cmr10 [at 12pt / scaled 1100]| a pak se dá použít (např. mimo matematiku pouhé \verb|\cs| v matematice \verb|\textfont family = \cs|).
+
+        Název aktuálního fontu získáme \verb|\fontname\font|.
+    \end{definice}
+
+    \begin{definice}[fontdimen]
+        \verb|\fontdimen číslo \cs| je registr pro daný fontdimen, kde číslo =
+        \begin{enumerate}
+            \item stant (sklon, jaká je šířka na 1pt výšky)
+            \item Mezislovní mezery
+            \item -||-
+            \item -||-
+            \item ex
+            \item em
+            \item extra mezera (viz \verb|\xspaceskip|)
+        \end{enumerate}
+    \end{definice}
+
+    \begin{poznamka}
+        Ještě se lze ptát na \verb|\hyphenchar\font| = kód rozdělítka a \verb|\skewchar\font| = matematické cosi.
+    \end{poznamka}
+
+    \begin{poznamka}
+        \verb|\magnification promile| znásobí velikost od zavolání do konce jobu (hlavně v dvi), 12truept je 12pt při ignorování magnification. Navíc existuje \verb|\magstep n| = \verb|\magnification 1000 * 1,2^n| a \verb|\maghalf| = \verb|\magnification 0.5|.
+    \end{poznamka}
+
+    \begin{definice}[Soubory]
+        Začíná se souborem .mf, ten METAFONT převede do .tfm (metriky) a .gf („obrázky“). .gf závisí na rozlišení a podobných věcech (celkově třeba tiskárně) se dále převede pomocí GFTOPK .pk („obrázky2“). TeX použije metriky (.tfm) a vyrobí .dvi. DVIPS potom vezme .dvi a .pk a vyrobí z toho .ps.
+
+        TeX už většinou umí volat METAFONT, kdyby nenašel chtěné soubory.
+
+        Pro .gf, .pk a .dvi existují programy na prohlížení (GFTYPE, PKTYPE, DVITYPE). .tfm se dá překládat tam a zpět pomocí PLTOTF a TFTOPL.
+
+        Co je TFM: základní hlavička (jméno, design size) + rozměry znaků (w/h/d + italické korekce, kódované přes omezeně velkou tabulku (pouze 64 různých šířek písmen $\rightarrow$ METAFONT dělá ztrátovou kompresy)) + program pro kerny a ligatury + seznam variant pro velké operátory a delimitery + fontdimens.
+    \end{definice}
+
+    \begin{definice}[Postscriptové fonty]
+        Type1 (= bezierovské segmenty), type3 (= PS programy), type32 (= bitmapy), type42 (= TrueType zabalený do PS), type0 (= composite fonty).
+
+        Jsou 2 soubory .pfa (častěji komprimovaná verze .pfb) a afm (adobe font metric, komprimovaně .pfm). Do TeXu: .pfm PFMTOAFM .afm AFM2TFM .tfm TEX .dvi DVIPS(+.pfa/.pfb) .ps.
+
+        Nebo (tzv. systém virtuálního fontu) AFM2TFM může ještě dostat .enc, čímž se ještě vyrobí .vpl, ze kterého se VPTOVF vytvoří .tfm pro TEX a .vf pro DVIPS. (Existuje i inverzní VFTOVP).
+
+        DVIPS navíc ještě dostává font map (jeden řádek = \verb|rptmr Times-Roman < ptur_8a.pfb| = jméno v TeXu + jméno v PostScript světě + „vlož“ (=$<$) + soubor).
+    \end{definice}
+
+    \begin{definice}[TrueType fonty]
+        Vznikly ve Windows, mají jen beziérky druhého řádu (= jsou omezené). Lze je převést .ttf TTF2AFM .afm, nebo (.tff TTF2TFM .tfm + .tff TTF2PK .pk).
+    \end{definice}
+
+    \begin{definice}[OpenType]
+        Kontejnerový obal, do kterého lze uzavřít skoro cokoliv (většinu PS a všechny TT). Existují převáděcí programy OTF2…
+    \end{definice}
+
 
 
 \end{document}
