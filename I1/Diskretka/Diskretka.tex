@@ -906,11 +906,11 @@
 
 \section{Teorie pravděpodobnosti}
     \begin{definice}[Pravděpodobnostní prostor]
-        $\Omega :=$ množina elementárních jevů. $©F \subseteq 2^{\omega}$ množina jevů. $P: ©F \rightarrow [0, 1]$ pravděpodobnost.
+            $\Omega :=$ množina elementárních jevů. $©F \subseteq 2^{\omega}$ množina jevů. $P: ©F \rightarrow [0, 1]$, $P(\Omega) = 1$ pravděpodobnost.
     \end{definice}
 
     \begin{definice}[Diskrétní pravděpodobnostní prostor]
-        $(\Omega, ©F, P)$, $\Omega$ konečná nebo spočetná, $©F = 2^{\Omega}$, $P(J) = \sum_{\omega \in J} P(\{\omega\})$, $P(\Omega) = 1$
+        $(\Omega, ©F, P)$, $\Omega$ konečná nebo spočetná, $©F = 2^{\Omega}$, $P(J) = \sum_{\omega \in J} P(\{\omega\})$.
     \end{definice}
 
     \begin{definice}[Konečný PP]
@@ -920,4 +920,76 @@
     \begin{definice}[Klasický PP]
         KPP, kde $P(\{\omega\})$ je shodná $\forall \omega \in \Omega$.
     \end{definice}
+
+% 21. 12. 2020
+
+    \begin{priklad}[Bertrandův paradox]
+        Ze tří karet (01, 11, 00) náhodně vybereme a podíváme se na horní stranu. Jaká je pravděpodobnost, že ta druhá je 1, pokud je tato 1?
+        \begin{reseni}
+            2/3
+        \end{reseni}
+    \end{priklad}
+
+    \begin{definice}
+        Pro jevy $A, B$, $P(B) ≠ 0$ definujeme podmíněnou pravděpodobnost $P[A|B] := \frac{P(A \cap B)}{P(B)}$.
+    \end{definice}
+
+    \begin{veta}[O úplné pravděpodobnosti]
+        Pro $A \subseteq \Omega$ a $B_1, …, B_k$ rozklad $\Omega$ tak, že $\forall i P(B_i) ≠ 0$,
+        $$ P(A) = \sum_i P[A|B_i]·P(B_i). $$ 
+    \end{veta}
+
+    \begin{veta}[Bayesova]
+        Pro $A \subseteq \Omega$ a $B_1, …, B_k$ rozklad $\Omega$ tak, že $\forall i P(B_i) ≠ 0$,
+        $$ P[B_i|A] = \frac{P[A|B_i]·P(B_i)}{\sum_j P[A|B_j]·P(B_j)} $$ 
+    \end{veta}
+    
+    \begin{definice}
+        Jevy $A, B$ jsou nezávislé $≡\ P(A \cap B) = P(A)·P(B)$.
+    \end{definice}
+
+    \begin{poznamka}
+        $A, B$ jsou nezávislé, pokud $P(A) = P[A/B] \lor P(B) = 0$.
+    \end{poznamka}
+
+    \begin{definice}
+        Jevy $A_1, …, A_n$ jsou po dvou nezávislé $≡\ \forall i, j, i≠j: A_i \text{a} A_j$ jsou nezávislé.
+
+        Jevy $A_1, …, A_n$ jsou nezávislé $≡ \forall I \subseteq \{1, …, n\}, I ≠ \O: P(\bigcap_{i \in I} A_i) = \prod_{i \in I}P(A_i)$.
+    \end{definice}
+
+    \begin{definice}[Součin diskrétních pravděpodobnostních prostorů]
+        $$ \(\Omega_1, 2^{\omega_1}, P_1\) \times (\Omega_2, 2^{\Omega_2}, P_2) = (\Omega_1 \times \Omega_2, 2^{\Omega_1 \times \Omega_2}, P), $$ 
+        kde $P((\omega_1, \omega_2)) = P_1(\{\omega_1\})·P_2(\{\omega_2\})$.
+        
+        \begin{dukazin}
+            $\sum P(\omega) = \sum P_1(\omega_1)·P_2(\omega_2) = \sum P_1(\omega_1)·\sum P_2(\omega_2) = \sum P_1(\omega_1)·1 = 1$
+        \end{dukazin}
+    \end{definice}
+
+    \begin{definice}[Náhodná veličina (= náhodná proměnná)]
+        Náhodná veličina je funkce $\Omega \rightarrow ®R$.
+    \end{definice}
+
+    \begin{poznamka}
+        Je-li $X$ náhodná veličina, pak $\phi(X)$ (např. $X > 5$) je jev a můžeme se ptát na $P[\phi(X)]$.
+    \end{poznamka}
+
+    \begin{definice}[Střední hodnota]
+        Střední hodnota (expected value) náhodné veličiny $X$ v diskrétním prostoru je
+        $$ ®E[X]:=\sum_{\omega \in \Omega} P(\omega)·X(\omega). $$
+
+        (V nekonečných pravděpodobnostních prostorech nemusí existovat.)
+    \end{definice}
+
+    \begin{veta}[O linearitě střední hodnoty]
+        $\forall X, Y$ náhodné veličiny $\forall \alpha \in ®R$:
+        $$ ®E[X + Y] = ®E[X] + ®E[Y], $$ 
+        $$ ®E[\alpha·X] = \alpha·®E[X]. $$
+
+        \begin{dukazin}
+            Triviální rozepsáním.
+        \end{dukazin}
+    \end{veta}
+
 \end{document}

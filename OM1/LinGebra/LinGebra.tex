@@ -1182,6 +1182,85 @@
         Buď ¦V, ¦W konečně generované VP nad ®T, $f: ¦V \rightarrow ¦W$ lineární zobrazení. Pak $\dim(\Ker f) + \dim(\Im f) = \dim V$.
     \end{veta}
 
+% 22. 12. 2020
+
+\section{Determinanty a permutace}
+    \begin{definice}
+        Buď $A$ čtvercová matice řádu 2. Potom definujeme determinant jako
+        $$ \det A := a_{11}a_{22} - a_{21}a_{12}. $$ 
+    \end{definice}
+
+    \begin{poznamka}
+        Determinant počítá až na znaménko obsah rovnoběžníku daného obrazy kanonické báze.
+    \end{poznamka}
+
+    \begin{definice}
+        Buď $A$ čtvercová matice řádu 3. Potom definujeme determinant jako
+        $$ \det A := a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32} - a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} - a_{13}a_{22}a_{31}. $$ 
+    \end{definice}
+
+    \begin{poznamka}
+        Determinant je roven orientovanému objemu rovnoběžnostěnu v $®R^3$.
+    \end{poznamka}
+
+    \begin{definice}
+        Permutace množiny $X$ je bijekce $\pi: X \rightarrow X$.
+
+        Množinu permutací na $X$ značíme $S_X$.
+
+        Pro $X=\{1, …, n\}$ značíme $S_n = S_{\{1, …, n\}}$.
+    \end{definice}
+
+    \begin{poznamka}[Vlastnosti a operace na permutacích]
+        \ 
+        \begin{itemize}
+            \item $\id_X: X \rightarrow X$ je permutace.
+            \item $\pi, \rho \in S_X$ můžeme složit na permutaci $\pi \circ \rho \in S_X$.
+            \item $\rho \in S_X$, pak $\rho^{-1} \in S_X$.
+            \item $\forall \pi, \rho, \sigma \in S_X: (\pi\rho)\sigma = \pi(\rho\sigma)$.
+            \item $\forall \pi \in S_x: \id_X \pi = \pi = \pi \id_x$.
+            \item $\forall \pi \in S_X: \pi^{-1}\pi = \id_X = \pi\pi^{-1}$.
+        \end{itemize}
+
+        (Poslední tři jsou vlastnosti operace skládání, které splňují grupové axiomy.)
+    \end{poznamka}
+
+    \begin{upozorneni}
+        $$ \pi\rho ≠ \rho\pi! $$ 
+    \end{upozorneni}
+
+    \begin{poznamka}[Zápis permutace]
+        Tabulkou (např.: $\begin{array}{cccccccc} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ 7 & 6 & 1 & 8 & 5 & 4 & 3 & 2 \end{array} \in S_8$). Obrázkem (orientovaný graf se smyčkami s $\deg_{out} = \deg_{in} = 1$).
+    \end{poznamka}
+
+    \begin{definice}[Cykly a transpozice]
+        Cyklus (délky $a$) je permutace, která obsahuje nejvýše jeden netriviální [Obrázek cyklu].
+
+        Cyklus zapisujeme jako $(x_1 x_2 … x_k)$.
+
+        Cyklus délky 2, tj. $(x_1 x_2)$, se nazývá transpozice.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Každou permutaci $\pi$ na konečné množině $X$ lze zapsat jako složení nezávislých cyklů. Tento zápis je až na pořadí a vynechání cyklů délky 1 jednoznačný.
+
+        \begin{dukazin}
+            Bez důkazu. (Důkaz ve skriptech.)
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Každou permutaci na konečné množině lze zapsat jako složení transpozic (obecně nejednoznačně!).
+
+        \begin{dukazin}
+            Stačí dokázat pro cyklus (vzhledem k předchozímu tvrzení).
+            $$ (x_1 … x_k) = (x_1 x_2)\circ(x_2 x_3)\circ(x_3 x_4). $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Parita počtu transpozic, na které rozložím permutaci, je vždy stejná.
+    \end{poznamka}
 
 
 

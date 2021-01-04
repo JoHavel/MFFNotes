@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 12]
+    Nechť $f: ®R \rightarrow ®R$ je prostá a spojitá. Dokažte, že $f$ je ryze monotónní.
+
+    \begin{dukazin}
+        Ukážeme sporem, že musí být monotónní. Pak z prostoty vyplývá, že už nutně musí být ryze monotónní:
+
+        Nechť tedy $f$ je prostá, spojitá a není monotónní, tj. existují body $a < b: f(a) < f(b)$ a $c < d: f(d) < f(c)$. Jelikož je $f$ spojitá, má Darbouxovu vlastnost. Teď rozebereme různé příklady a dokážeme, že z Darbouxovy vlastnosti plyne, že funkce není prostá:
+
+        $a = c$, $b = d$, $b = c$ nebo $a = d$. Pak z původních 4 bodů nám zbydou 3, $x < y < z$, kde $f(y) < f(x), f(z)$ nebo $f(y) > f(x), f(z)$. Ať tak či tak, z Darbouxovy vlastnosti vyplývá, že na intervalu $(x, y)$ funkce $f$ nabývá alespoň jedné stejné hodnoty jako na intervalu $(y, z)$, protože když BÚNO $f(y) < f(x), f(z)$, pak existuje $\epsilon$ pravé okolí $f(y)$, které leží jak v $(f(y), f(x))$ tak v $(f(y), f(z))$, takže všechny hodnoty z tohoto okolí musí z Darbouxovy vlastnosti nabývat jak na $(x, y)$ tak na $(y, z)$.
+
+        Pokud $f(a) > f(c) \implies f(b) > f(d)$, potom buď $d > b$ a tedy intervaly $(a, b)$ a $(b, d)$ nemají průnik, zatímco $(f(a), f(b))$ a $(f(d), f(b))$ mají -- spor s prostotou, nebo $b < d$ a tedy intervaly $(c, b)$ a $(b, d)$ nemají průnik, zatímco $(f(c), f(b))$ a $(f(d), f(b))$ mají -- spor s prostotou.
+
+        Pokud $f(a) = f(c)$, tak buď $a = c$, ale to už jsme řešili, nebo $a ≠ c$, ale pak $f$ není prostá, spor.
+
+        Pokud $f(a) < f(c)$, pak buď $a < c$ a potom intervaly $(a, c)$ a $(c, d)$ jsou disjunktní, ale $(f(a), f(c))$ a $(f(a), f(d))$ mají společné pravé okolí $f(a)$, nebo $C > a$ a potom $(c, a)$ a $(a, b)$ jsou disjunktní, ale $(f(a), f(c))$ a $(f(a), f(b))$ také nejsou disjunktní, což je ale obojí ve sporu s tím, že $f$ má být prostá.
+
+        Tedy $f$ musí být monotónní, a protože je také prostá, tak rovnost nastávat nemůže a musí být ryze monotónní.
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

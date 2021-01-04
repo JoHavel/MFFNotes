@@ -284,7 +284,66 @@
     \begin{definice}[EEPROM]
         Electrically EPROM = už je plně Read / Write narozdíl od EPROM, kterou lze měnit jen ultrafialovým světlem (poznáme podle pásky, kterou bývá přelepená).
 
+        = NVRAM = Non-volatile RAM (VR jako write read)…
+
         Spolu s FLASH mají výhodu, že jsou relativně rychlé a lze z nich libovolněkrát číst. Nelze do nich však libovolněkrát zapisovat.
+    \end{definice}
+
+    \begin{definice}[Permanentní datové úložiště]
+        Nebo také storage device je zařízení, které musí být non-volatile, protože si do něj chceme ukládat věci, které zůstanou po vypadnutí proudu.
+
+        Například Hard Disk Drive (HDD), kde se ukládají data magneticky na kruhové stopy, které jsou výsečemi rozděleny na sektory (dříve 512B, dnes 4kB). Navíc ještě často mají několik ploten (k nim ke každé čtecí hlavu, které se však po mezi stopami pohybují součastně), které se při startu roztočí a pak se prostě točí. Pokud se nepoškodí, tak mají libovolně zápisů a čtení, mají největší kapacitu a data se z nich neztrácí…
+
+        … ale jsou pomalé. Hlavně, když bychom chtěli číst náhodně, musí se čekat na otáčky i posuny hlavy. Navíc kvůli rozdělení sektorů výsečí se disk otáčí „rychleji“ na kraji, tedy se snažíme ukládat hlavně na okraj (menší indexy, je indexován zvenku dovnitř).
+
+        Podobně fungují CDčka, DVD a BlueRay. Místo magnetu fungují na principu odrazu (povrch se připraví buď v továrně, pak tam data spíše vydrží dlouho, nebo se vypálí, ale pak má materiál tendenci se vracet do vymazaného stavu). Na rozdíl od hard disku má sektory stejně dlouhé (nejsou to výseče), data mají místo kruhů ve spirále a točí se daleko pomaleji.
+
+        Adresování CHS (HDD, plotny + stopy) a LBA (CD, lineární adresní prostor)? Řadič si zpravidla bude ukládat vždy 1 sektor, tedy bude mít registr na paměť, data buffer, data registr a info registr (na parametry disku: kapacita, velikost sektoru, …). Adresuje se LBA, řadič disku si to překládá na CHS (nejdřív plotny, pak až stopy, aby se zapisovalo spíše na vnější povrch).
+
+        SSD (solid state disk) je např. flash paměť s protokolem jako u HDD. Je rychlejší, ale menší a má menší počet zápisů.
+    \end{definice}
+
+    \begin{definice}[GPIO]
+        General purpose input output = plně přístupné elektrické kontakty (piny na arduinu / RaspberryPi)
+    \end{definice}
+
+    \begin{definice}[Soubro]
+        Skupina dat (bytů). Disk o ní něm nemá ponětí, proto na něm musí být uložena i metadata (data o datech: kde jsou uloženy, co za data to je, …), protože přepisováním dat se disk tzv. fragmentuje (data nejsou kontinuálně vedle sebe).
+    \end{definice}
+
+    \begin{definice}[Souborový systém (file system)]
+        Definuje, jak jsou uložena meta data + formát uložení dat.
+
+        Aby každý nemusel implementovat čtení disku, každý programovací jazyk si umí vytáhnout tyto funkce z tzv. operačního systému.
+    \end{definice}
+
+    \begin{definice}[Otevírání souborů]
+        Pokud soubor otevřeme ve 'r', tak se zavolá funkce systému na čtení souboru a zapne se (např. Python) zpracování rovnou do znaků. Pro čtení bytů se musí nastavit 'rb'. Obdobně pro zápis.
+
+        Čtením / zápisem se posouvá offset o přečtenou / zapsanou část. Existuje i příkaz (klasicky seek, tzv. seekovat), kterým lze nastavit offset \emph{od začátku souboru!}
+    \end{definice}
+
+    \begin{definice}[Obrázky]
+        Ukládá se bgra.
+    \end{definice}
+
+    \begin{definice}[Formát, header]
+            Soubory potřebují metadata a navíc se data můžou ukládat různě, proto existují formáty souborů. Metadata jsou většinou na začátku a pak se jim říká header. Dokonce většinou obsahují konstantu (magic constant, signature), tj. první byt je v tomto formátu vždy shodný, např. BMP má BM.
+    \end{definice}
+
+\section{Reprezentace textu}
+    \begin{definice}[Kódování]
+        Bijekce mezi znaky (tj. obrázky = grafémy) a kódy (číselná reprezentace). Celý text je v 1 kódováním. Znaky se ukládají za sebou v pořadí, v jakém se čtou.
+
+        Dělí se na kódování s pevnou délkou (1 bytové, 2 bytové, …) a kódování s proměnnou délkou kódu (různé znaky mohou mít různé délky kódu).
+
+        Vniklo mnoho kódování, ale naštěstí vzniklo ASCII (American Standard Code for Information Interchange). Má několik nevýhod (vzniklo v 70 letech): je pouze 7bitové (protože tehdy byly i 7b přenosy), implementuje jenom americké znaky. Naopak má i výhody: abeceda (jak malá, tak velká) i číslice jsou uloženy za sebou (pozor, '0' $≠ 0$).
+
+        Jenom české kódování jsou 2 velmi používaná: ISO8859-2 -- Linux ([ISO] latin2, na Windowsech je značeno: 28592), (852 -- DOS (latin2)) a win1250 -- windows. Což je dost špatné, protože textové soubory nepoužívají metadata.
+    \end{definice}
+
+    \begin{definice}[Unicode]
+        Definuje pouze přechod od znaku ke kódu, ale neříká, jak se bude kód ukládat (blbci ;) ). Tedy existuje několik různých překladů kód -> uložení, například: UTF-32le (častější), UTF-32be, UTF-8, ….
     \end{definice}
 
 \end{document}

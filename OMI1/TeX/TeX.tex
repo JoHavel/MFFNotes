@@ -716,6 +716,31 @@
         Kontejnerový obal, do kterého lze uzavřít skoro cokoliv (většinu PS a všechny TT). Existují převáděcí programy OTF2…
     \end{definice}
 
+% 21. 12. 2020
 
+    \begin{definice}[Strukturovaný PostScript]
+            Nejčastěji potkávaný PostScript, který splňuje standard DSC (Document Structuring Convention). Zároveň může obsahovat EPS (Encapsulated PS) -- lze ho přidávat do PostScriptu. Z TeXu se věci z PS volají pomocí \verb|\special{…}| (… může být papersize=…mm, …mm, landscape, color … (jméno / rgb 0.…, 0.…, 0.… / push barva / pop barva), background barva, psfile=… (vloží PS, lze přidat (jednotky v PS bodech = bp v TeXu $≡ 72bp=1in$) hoffset / voffset/ hsize / vsize / hscale = …(\%) / angle = …(deg) / rhi / rwi (požadované rozměry)), header=soubor(vloží PS soubor do hlavičky PS), "… (kód obalený save / restore), ps:… (kód bez save / restore), !… (kód do hlavičky)).
+    \end{definice}
+
+\section{Rozšíření}
+    \begin{definice}[Rodokmen TeXových enginů]
+            TEX 3 -> TEX-XET (Umí sazbu doprava), MLTEX (Pro sazbu cizích jazyků (MultiLingual) -- akcenty, ty byly už v TeXu, ale usazovali se špatně a neuměl v takových slovech lámat, v MLTEXU lze použít \verb|\charsubdef{znak}{znak+akcent}|), encTEX (Petr Olšák, umí pracovat i s jinými kódováními), syncTEX (umí vygenerovat pomocný soubor, který spojuje místa na stránce a zdrojákem), pdfTEX (zcela obchází dvi, umí zabudovávat fonty, obsahuje naintegrovaný MLTEX i encTEX, …), NTS (implementace v Javě, projekt, který skončil docela fiaskem, během toho však vydali:), $\epsilon$-TEX (zahrnuje TEX-XET), $\Omega$ (projekt, modifikace TeXu na sazbu 16-bit. UniCode, nic moc zajímavého, jen rozšiřuje na 16-bit, Omega Translation Process, spíše zapomenutá, vznikl ještě:), $\Aleph$ (nadstavba $\Omega$ a $\epsilon$-TeX), XeTeX (původněna MacOS, používal knihovny OS, dnes už používá open knihovny), LuaTeX (Integrování TeXu s Luou, přičemž vidíme z Luy všechny datové struktury z TeXu, integroval pdf-$\epsilon$-TeX, $\Aleph$, už umí UTF-8 a čeká výstup pouze v PDF, vzniká:), LuaHBTEX (pokus integrování HarfBuzz (knihovnu na skládání znaků) do LuaTeXu, ve stádiu $\alpha$ verze).
+
+        Dnes běžně potkáme pdftex jako pdf-$\epsilon$-TEX, kde lze zapnout všechna rozšíření: $\epsilon$-TEX a pdfTeX. Toto se snažil ještě implementovat $\epsilon\chi$TeX jako nadstavba NTS, který však nebyl dokončen.
+    \end{definice}
+
+    \begin{upozorneni}
+        LaTeX je jen velká knihovna příkazů. pdfLaTeX je pdf-$\epsilon$-TeX, který jen načte předkompilovaná makra.
+    \end{upozorneni}
+
+    \begin{definice}[encTeX]
+        První verze definovala \verb|\xordcode i=j|, kde znak i? na vstupu se přeloží na znak j? texu. Stejně tak \verb|\xchrcode j=i| (pro výstup do souborů) a \verb|\xprncode j=10001011|. Další verze už má \verb|\mubyte znak[ ]posloupnost bajtů\endmubyte| znak může být dokonce \verb|\cs|, kde se posloupnost bytů na vstupu nepřeloží na znak, ale rovnou na řídící sekvenci (vždy se bere nejdelší posloupnost bajtů, která se může na něco přeložit), takže např. \verb|\mubyte\odoubleacute^^C5^^91\endmubyte|. Dále má \verb|\mubyte in/out/log/\special out| přepínače pro (vstup, výstup, log a zapisované special, navíc mají ještě několik stavů, ale to už si načtěte sami, stejně jako další magii encTeXu).
+    \end{definice}
+
+    \begin{definice}[$\epsilon$-TeX]
+            32768 registrů každého typu (kromě insertů). \verb|\showtokens{tokenlist}| ukáže tokenlist, \verb|\currentgrouplevel|, \verb|\currentgrouptype|, \verb|\currentiflevel|, \verb|\lastnodetype| (?, něco se seznamy). \verb|\fontcharwd\fnt znak| (šířka znaku), obdobně htt, dp, ic. \verb|\iffontchar|. \verb|\gluestretch <glue>| (dimenze roztažnosti), \verb|\gluestretchorder <glue>| (jaké nekonečno). \verb|\numexpr / \dimexpr / glueexpr / \muexpr VÝRAZ \relax| (spočítá výraz (např. (1pt + 10mm)/2) v expand procesoru, / zaokrouhluje k nejbližšímu narozdíl od \verb|\divide|, výraz $a*b/c$ má 64-bit mezivýsledek, aby se násobení vešlo). \verb|\mark -> \marks N|, \verb|\topmark -> \topmarks|. \verb|\scantokens{…}| (… neexpanduje, ale předělá na tokeny a pak předhodí expand procesoru), inverze je \verb|\detokenize{…}| a neexpanduje \verb|\unexpanded{…}|. \verb|\ifdefined\cs| a \verb|\ifcsname…\endcsname|. \verb|\unless\if…| (obrací podmínku). \verb|\protected\def…| (makro se neexpanduje v \verb|\edef, \special, \write|, hodí se například při zapisování logu názvů nadpisů, ve kterých jsou makra, LaTeX na to má \verb|\protect|). \verb|\clubpenalties, \widowpenalties a \interlinepenalties| umožňují nastavit seznamy penalt (jako parshape, jen se opakuje poslední věc do nekonečna?, spíš se nepoužívá). Do matematické sazby přidává \verb|\middle Delimiter| (může se mezi \verb|\left| a \verb|\right| nacházet i vícekrát). \verb|\lastlinefit=x| (poslední řádek má špatně roztažnost, vzhledem k tomu, že se vždy vejde, tedy toto makro nastaví deformaci $x/1000·$deformace předposledního, docela pěkně vypadá $x=500$, bohužel běžně vypíná sázení matematiky tak, aby nezasahovala do odstavce).
+
+        Existuje k němu etex.src, což je zobecněný plain (předělané alokátory a přidělané zásahy do tabulkek jazyků).
+    \end{definice}
 
 \end{document}

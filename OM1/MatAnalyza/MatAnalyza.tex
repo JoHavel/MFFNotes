@@ -1390,4 +1390,80 @@
             \end{itemize}
         \end{poznamka}
 
+% 22. 12. 2020
+
+    \subsection{Taylorův polynom}
+        \begin{definice}
+            Nechť $f$ je reálná funkce, $a \in ®R$ a existuje vlastní $n$-tá derivace $f$ v bodě $a$. Pak polynom
+            $$ T_{n}^{f, a}(x) = f(a) + f'(a)·(x-a) + f''(a)·\frac{(x-a)^2}{2!}+ … + f^{(n)}(a)\frac{(x-a)^n}{n!} $$ 
+            nazýváme Taylorovým polynomem řádu $n$ funkce $f$ v bodě $a$.
+        \end{definice}
+
+        \begin{poznamka}
+            Stupeň $T_{n}^{f, a}(x) ≤ n$.
+
+            $\(T_{n}^{f, a}\)' = T_{n-1}^{f, a}$.
+        \end{poznamka}
+
+        \begin{veta}[O nejlepší aproximaci Taylorovým polynomem]
+            Nechť $a \in ®R$, $f^{(n)}(a) \in ®R$ a $P$ je polynom stupně nejvýše $n$. Pak
+            $$ \lim_{x \rightarrow a} \frac{f(x) - P(x)}{(x-a)^n} = 0 \Leftrightarrow P(x) = T_{n}^{f, a}. $$
+
+            \begin{dukazin}
+                $(\Leftarrow)$ MI: $n = 1$: $T_1^{f, a}(x) = f(a) + f'(a)(x-a)$.
+                $$ 0 = \lim_{x \rightarrow a} \frac{f(x) - T_1^{f, a}(x)}{x-a} = \lim_{x \rightarrow a} \frac{f(x) - f(a) - f'(a)(x-a)}{x - a} = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a} - f'(a) = 0. $$ 
+
+                $n-1 \rightarrow n$:
+                $$ \lim_{x \rightarrow a} \frac{f(x) - T_n^{f, a}(x)}{(x - a)^n} \underset{\overset{\frac{0}{0}}{=}}{l'Hospital} = \lim_{x \rightarrow a} \frac{f'(x) - \(T_n^{f, a}(x)\)'}{n·(x-a)^{n-1}} = \lim_{x \rightarrow a} \frac{f'(x) - \(T_{n-1}^{f, a}(x)\)'}{n·(x-a)^{n-1}} \overset{\text{IP}}{=} 0. $$ 
+
+                    $(\implies)$ 
+                    $$ \lim_{x \rightarrow a} \frac{P(x) - T_n^{f, a}(x)}{(x-a)^n} \overset{\text{AL}}{=} \lim_{x \rightarrow a} \frac{P(x) - f(x)}{(x-a)^n} + \lim_{x \rightarrow a} \frac{f(x) - T_n^{f, a}(x)}{(x-a)^n} = 0 + 0 = 0. $$
+                    Podle následujícího lemmatu (stupeň $P - T_n^{f, a}≤n$) $P - T_n^{f, a} = 0$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{lemma}[K důkazu výše]
+            Nechť $Q$ je polynom, $a \in ®R$, $\deg(Q) ≤ n$ a $\lim_{x \rightarrow a} \frac{Q(x)}{(x-a)^n} = 0$. Pak $Q(x) = 0$.
+
+            \begin{dukazin}[Indukcí]
+                $n = 1$: $\lim_{x \rightarrow a} \frac{Q(x)}{x-a} = 0 \overset{\text{Je definováno}}{\implies} Q(a) = 0 \implies Q(x) = c(x - a)$. Nyní $\lim_{x \rightarrow a} \frac{c·(x-a)}{(x-a)} = c = 0 \implies Q(x) = 0$.
+
+                $n-1 \rightarrow n$: $\lim_{x \rightarrow a} \frac{Q(x)}{(a-x)^n} = 0 \implies Q(a) = 0 \implies Q(x) = (x-a)·R(x)$, kde stupeň $R ≤ n-1$. Tedy $\lim_{x \rightarrow a} \frac{(x-a)R(x)}{(x-a)^n} = \lim_{x \rightarrow a} \frac{R(x)}{(x-a)^{n-1}} \overset{\text{ind. předpoklad}}{\implies} R(x) = 0 \implies Q(x) = 0$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[Taylor]
+            Nechť má funkce $f$ vlastní $(n+1)$-ní derivaci v intervalu $[a, x]$ a nechť $\phi$ je spojitá funkce v $[a, x]$ a má vlastní derivaci v $(a, x)$, která je v každém bodě tohoto intervalu nenulová. Pak existuje $\zeta \in (a, x)$ tak, že
+            $$ f(x) - T_n^{f, a}(x) = \frac{1}{n!} \frac{\phi(x) - \phi(a)}{\phi'(\zeta)}·f^{(n+1)}(\zeta)·(x - \zeta)^n. $$
+        \end{veta}
+
+        \begin{definice}
+            $R_n^{f, a}(x) = f(x) - T_n^ = f(x) - T_n^{f, a}(x)$ nazýváme zbytek po Taylorově polynomu stupně $n$.
+        \end{definice}
+
+        \begin{dusledek}[Lagrangeův tvar zbytku]
+            Speciálně existuje $\zeta_1 \in (a, x)$ tak, že $f(x) - T_n^{f, a}(x) = \frac{1}{(n+1)!}·f^{(n+1)}(\zeta_1)·(x-a)^{n+1}$.
+
+            \begin{dukazin}
+                Položme $\phi(t) = (x-t)^{t+1}$, pak $\phi'(t) = (n+1)(n-t)^n(-1)$, tedy
+                $$ R_n(x) = \frac{1}{n!}·\frac{0 - (x-a)^n+1}{(n+1)(x-\zeta)^n}·f^{(n+1)}\(\zeta_1\)·\(x-\zeta_1\)^n. $$ 
+            \end{dukazin}    
+        \end{dusledek}
+
+        \begin{dusledek}[Cauchyův tvar zbytku]
+            Speciálně existuje $\zeta_2 \in (a, x)$ tak, že $f(x) - T_n^{f, a}(x) = \frac{1}{n!}·f^{(n+1)}(\zeta_2)·\(x-\zeta_2\)^n·(x-a)$.
+            \begin{dukazin}
+                Položme $\phi(t) = t$.
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{poznamka}[Taylorovy polynomy]
+            $$ e^x = \sum_{n=0}^∞ \frac{x^n}{n!} $$ 
+            $$ \sin x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n+1}}{(2n+1)!} $$ 
+            $$ \cos x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n}}{(2n)!} $$ 
+            $$ \log(1+x) = \sum_{n=0}^∞ (-1)^n \frac{x^n}{n} $$ 
+            $$ \arctan x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n+1}}{2n+1} $$ 
+            $$ (1+x)^\alpha = \sum_{n=0}^∞ \binom{\alpha}{n} x^n $$ 
+        \end{poznamka}
+
 \end{document}

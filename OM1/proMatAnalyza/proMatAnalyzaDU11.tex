@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\renewcommand{\baselinestretch}{0.7}
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 11]
+    Najděte spojitou funkci $f: ®R \rightarrow ®R$, která nabývá každé své hodnoty právě třikrát.
+
+    \begin{reseni}
+        Myšlenka za následující funkcí: Jelikož je funkce spojitá, musí být omezená na libovolném konečném intervalu. Navíc kdyby neměla lokální extrém, pak je monotónní (a jelikož každé své hodnoty nabývá). Tedy na libovolném konečném intervalu prostá. Tedy je prostá, tedy nenabývá každé své hodnoty právě třikrát. Tedy funkce musí nabývat lokálních extrémů, ale u takového lokálního extrému určitě navštívila hodnoty výše / níže 2krát / 0krát, tudíž se do tohoto bodu musí dostat znovu v opačném extrému. Tedy vytvořme 'pilu', vždy o 4 'nahoru' a o 2 'dolu'. Tím se budou minima a maxima 'ob dva extrémy' rovnat.
+
+        Nechť tedy
+        $$ f = \begin{cases} 2k+4·(x-2k) & \text{ pro } x \in (2k, 2k+1) \\ 2k+4-2(x-(2k+1)) & \text{ pro } x \in (2k+1, 2k+2) \\ 2k & \text{ pro } x = 2k \\ 2k+4 & \text{ pro } x = 2k+1 \end{cases}, k \in ®Z. $$ 
+        Tato funkce je spojitá, jelikož na intervalech mezi celými čísly je $f$ rovno lineární funkci a v bodech $2k$ má limity\footnote{$2k+4·(x-2k) \rightarrow 2k+4·(2k-2k) = 2k+0 = 2k$}\footnote{$2(k-1)+4-2(x-(2(k-1)+1)) \rightarrow 2(k-1)+4-2(2k-(2(k-1)+1)) = 2k + 2 - 2(1) = 2k$} $2k$ a $2k$, což jsou její funkční hodnoty v bodech $2k$. Stejně tak v bodech $2k + 1$ má limity\footnote{$2k+4-2(x-(2k+1)) \rightarrow 2k+4-2(2k+1-(2k+1)) = 2k + 4 -0 = 2k+4$}\footnote{$2k+4·(x-2k) \rightarrow 2k+4·(2k+1-2k) = 2k + 4$} $2k+1$ a $2k+1$, což jsou zase její funkční hodnoty v těchto bodech.
+
+        Jelikož se mezi celými čísly chová jako lineární funkce, nabývá zde všech hodnot mezi funkčními hodnotami v 'okolních' celých číslech právě jednou. Tedy jelikož 
+        $$ \forall j, k \in ®Z, j < k: f(2k+1) = 2k+4 > 2j+4 = f(2j+1) > 2j = f(2j), $$
+        $$ \forall l, k \in ®Z, l > k: f(2k) = 2k < 2l = f(2l) < 2l + 4 = f(2l + 1), $$
+        tak (v bodech $2k+1$ nabývá funkce 'zatím' nejvyšší hodnoty a v bodech $2k$ naopak nejvyšší hodnoty, které kdy 'ještě' bude nabývat).
+        $$ \forall i \in ®R, k\in ®Z, i<2k+1: f(i)<f(2k+1), $$ 
+        $$ \forall m \in ®R, k\in ®Z, m>2k: f(m)>f(2k), $$
+
+        Můžeme si tudíž všimnout, že hodnoty $2k$, pro nějaké $k \in ®Z$, nabývá právě třikrát: jednou jako $f(2(k-2)+1) = 2k$, jedno na intervalu od $f(2(k-1)) = 2(k-1) < 2k$ do $f(2(k-1)+1) = 2(k-1)+4 > 2k$. A nikde jinde už jich nabývat nemůže, z výše uvedených nerovností.
+
+        Stejně tak hodnoty $x \in (2k, 2k+2)$, pro nějaké $k \in ®Z$, může nabývat pouze na intervalu $(2(k-2)+1, 2(k+1))$\footnote{$f(2(k-2)+1) = 2k-4+4 = 2k$ a $f(2(k+1)) = 2(k+1) = 2k+2$}. A tam $x$ nabývá třikrát: jednou od $f(2(k-1)) = 2(k-1) = 2k-2$ do $f(2(k-1) + 1) = 2(k-1) + 4 = 2k+2$, podruhé od $f(2(k-1) + 1) = 2k+2$ do $f(2k) = 2k$ a potřetí od $f(2k) = 2k$ do $f(2k+1) = 2k+4$.
+
+
+    \end{reseni}
+
+    \begin{poznamkain}[Odhadnutá správná funkce\footnote{Popis toho, jak jsem došel ke správné hodnotě parametru, a argument, proč by taková funkce měla 'fungovat', vůbec není exaktní. Ale podle Geogebry jsem se asi trefil.}]
+        Existuje dokonce i hladká spojitá funkce, která nabývá každé své hodnoty třikrát, ale na té by se mi tato vlastnost hůře dokazovala. Například
+        $$ f(x) = \sin(x) + ax. $$
+        Pro správné $a$, kde $a = \arccos(b)$, kde $b$ splňuje $\tan(b) = (b - 2\pi)$, tj. $a \approx 0.22$ (k tomu se dojde přes derivaci a to, že potřebuji, aby se maximum a minimum ob dva extrémy rovnalo)\footnote{Extrémy jsou tam, kde je nulová derivace, tedy zderivujeme: $f' = \cos(x) + a = 0$. Nechť $b$ je nejmenší takové $x$, bez důkazu tvrdím, že je tam maximum $f$. Potom chci, aby $$ \sin(b) - a·b = -\sin(4\pi - b) - a·(4\pi - b), $$ tedy že toto maximum je rovno druhému minimu po něm (lze si rozmyslet, že se minima a maxima střídají a z podmínky na derivaci výše se extrémy vyskytují 2krát za periodu $\cos$, tedy lze dojít k tomu, že toto minimum je v bodě $4\pi - b$). Dosazením z podmínky na derivaci $\cos(x) = -a$, tedy upravuji: $$ \sin(b) - \cos(b)·b = -\sin(b) - \cos(b)·(4\pi - b) $$ $$ 2\sin(b) = \cos(b)(2b - 4\pi) $$ $$ \tan(b) = (b - 2\pi) $$ Následně by bylo třeba odargumentovat, že se obdobně budou rovnat i další minima a maxima (třeba přes správné posunutí). Potom by se pokračovalo přibližně podobně jako výše.}.
+    \end{poznamkain}
+\end{priklad}
+
+\end{document}

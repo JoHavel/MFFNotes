@@ -456,12 +456,52 @@
         Najděte spojitou funkci $f: ®R \rightarrow ®R$, která nabývá každé své hodnoty právě třikrát.
     \end{priklad}
 
-    \begin{definice}[Farbouxova vlastnost]
+    \begin{definice}[Darbouxova vlastnost]
         Funkce $f$ má na intervalu $I$ Darbouxovu vlastnost (vlastnost nabývání mezihodnot), pokud pro všechna $x_1 < x_2, x_1, x_2 \in I$, $f(x_1) ≠ f(x_2)$, platí, že $f$ nabývá na $(x_1, x_2)$ všech hodnot mezi $f(x_1)$ a $f(x_2)$
     \end{definice}
 
     \begin{veta}[Z přednášky]
         Každá spojitá funkce na $I$ má na $I$ Darbouxovu vlastnost.
+    \end{veta}
+
+% 21. 12. 2020
+
+    \begin{priklad}[Teoretický příklad 12]
+        Nechť $f: ®R \rightarrow ®R$ je prostá a spojitá. Dokažte, že $f$ je ryze monotónní (tj. buď rostoucí nebo klesající).
+    \end{priklad}
+
+\section{Funkcionální rovnice}
+    \begin{veta}[Cauchyova funkcionální rovnice]
+        Najděte všechny funkce $f: ®R \rightarrow ®R$ splňující
+        $$ \forall x, y \in ®R: f(x+y) = f(x) + f(y). $$
+        Nechť navíc  platí alespoň jedna z následujících podmínek. Pak $f(x) = cx$ pro nějaké $c \in ®R$.
+        
+        \begin{itemize}
+            \item $f$ je spojitá v nějakém bodě $x_0 \in ®R$.
+            \item $f$ je shora omezená na nějakém intervalu $(a, b)$.
+            \item $f$ je monotonní na ®R.
+        \end{itemize}
+
+        \begin{dukazin}
+            Důkaz $f(qx) = qf(x), q \in ®Q$ viz 10. úkol z lingebry.
+
+            \begin{itemize}
+                \item Nechť $z_n \rightarrow 0$, pak $z_n + x_0 \rightarrow x_0$ a
+                    $$ f(z_n + x_0) = f(z_n) + f(x_0). $$ 
+                    Jelikož $f$ je spojitá v $x_0$, platí 
+                    $$ \lim_{n \rightarrow ∞} f(z_n + x_0) = f(x_0) \implies \lim_{n \rightarrow ∞} f(z_n) = 0. $$
+                    Tedy $f$ je spojitá v 0 dle Heineho věty.
+
+                    Nechť $x \in ®R$, $x_n \rightarrow x$, $x_n \in ®Q$ pro každé $n \in ®N$. Pak $x_n - x \rightarrow 0$.
+                    $$ f(x_n - x) = f(x_n) - f(x) \overset{n\rightarrow ∞}{\longrightarrow} 0 \implies f(x) = \lim_{n \rightarrow ∞} f(x_n) = \lim_{n \rightarrow ∞} x_n·f(1) = x·f(1) = x·c. $$
+                
+                \item Krok 1: je-li $f$ shora omezená na $(a, b)$, pak $f$ je omezená na $(-\epsilon, \epsilon), \forall \epsilon > 0$. Důkaz: Položme $g(x) = f(x) - f(1)x, x \in ®R$. Pak
+                    $$ g(x+y) = g(x)+g(y), g(0) = f(0) - 0 = 0 \implies g(r) = rg(0) = 0, \forall r \in ®Q. $$
+                    Nechť $x \in (-\epsilon, \epsilon)$. Pak $\exists r \in ®Q, x+r \in (a, b)$. Tedy $g(r) = f(r) - f(1)r = 0$ a $g(x) = g(x) + g(r) = g(x+r) = f(x+r) - f(1)·(x+r)$. $f(x+r)$ je shora omezená z předpokladů, $f(1)·(x+r)$ zřejmě. Tedy $g$ je shora omezená na epsilonovém okolí 0, tedy i $f$ je shora omezená na epsilonovém okolí 0, a protože je lichá, tak je i sdola omezená.
+
+                    Krok 2: z definice spojitosti je tato funkce tedy spojitá v 0.
+            \end{itemize}
+        \end{dukazin}
     \end{veta}
 
 \end{document}

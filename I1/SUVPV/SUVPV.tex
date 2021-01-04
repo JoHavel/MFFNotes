@@ -386,4 +386,71 @@
     \begin{definice}[Umělé neuronové sítě]
         My se budeme zabývat pouze tzv. feed forward topologií, která má vrstvy a hrany jdou pouze z vrstvy do další v pořadí.
     \end{definice}
+
+% 21. 12. 2020
+
+    \begin{poznamka}[Kdy přestat učit?]
+        Nastavit maximální počet, nějaký cíl, nebo když dosáhneme minima chybové funkce, to však bude mít za následek overfitting, kterému ale můžeme předejít tím, že použijeme validační data a budeme sledovat chybovou funkci na nich (neznámých datech) místo testovacích.
+    \end{poznamka}
+
+    \begin{poznamka}
+        Počet vrstev: 0 = lineární klasifikátor, 1 = z libovolného konečného prostoru do libovolného konečného, 2 = libovolná hranice v prostoru, ….
+        
+        Počet neuronů ve skryté vrstvě by měl být mezi počtem ve vstupní a počtem ve výstupní (nejvýše dvojnásobek výstupní), třeba 2/3 vstupní + výstupní.
+    \end{poznamka}
+
+    \begin{definice}[Konvoluční NN]
+        Na každý „čtverec“ dat použijeme nějaký filtr, který z něho vypočítá 1 hodnotu. (Respektive z každé vrstvy filtru jednu hodnotu, tj např. $32 \times 32 \times 3 \overset{5\times 5\times 3}{\rightarrow} 30 \times 30 \times 3$.)
+
+        Hodnoty mimo data můžeme doplnit, nebo používat filtr jen tam, kam se „vejde“. Používá se i tzv. stride = kde bude následující filtr.
+
+        Na výsledky se ještě většinou použije ReLU ($f(x) = \max(0, x)$), nebo její modifikace Leaky ReLU, ELU, SReLu (aby se neztrácely záporné hodnoty);
+
+        Konvoluční vrstvy se označují feature extraktor a dají se použít nejen s touto neuronovou sítí, ale můžeme použít (natrénovat na něm) tento extraktor s jiným klasifikátorem / nacvičit na nich jinou NN.
+    \end{definice}
+
+\section{Učení bez učitele}
+    \begin{definice}[Clustering]
+        Klasifikujeme na základě blízkosti ve feature space.
+
+        Můžeme buď hierarchicky (do menších a menších množin), nebo nehierarchicky (jen na jednu skupinu tříd).
+
+        Přístup sdola / shora = spojujeme prvky do množin / rozdělujeme množinu prvků na menší.
+
+        Hard / soft = jeden objekt patří vždy do jedné třídy / jeden prvek může patřit do více tříd.
+    \end{definice}
+
+    \begin{definice}[Dendrogram]
+        Graf („binární strom“) odpovídající hierarchii.
+    \end{definice}
+
+    \begin{definice}[Splitting Process of DIANA]
+        Iterujeme: vybereme nejodlišnější objekt od ostatních, oddělíme ho a následně k němu přidáme ty objekty, které jsou v naší metrice blíže jemu než ostatním.
+    \end{definice}
+
+    \begin{definice}[Principal Directions Divise Partition]
+        Zvolím osy dat jako při změně souřadnic a podle jedné z těchto os (té s „menším“ (ve smyslu projekce) průnikem s daty) to rozdělíme.
+
+        Existují vylepšení, kde tu osu posunut tak, aby lépe oddělovala (xx|yyzz místo xxy|yzz).
+    \end{definice}
+
+    \begin{definice}[Median cut]
+        Rozděluji v nejvíce variantní osu souřadnic, objekty rozdělím podle mediánu projekce na této osu.
+    \end{definice}
+
+    \begin{definice}[Agglomerative clustering]
+        Spojování aktuálně nejbližších clusterů.
+
+        Vzdálenost může být single-link (nejbližších prvků), complete-link (nejvzdálenějších), centroid-link (těžišť), average-link (průměrná vzdálenost).
+    \end{definice}
+
+    \begin{definice}[Ward's method]
+        Spojování aktuálně nejmenší ceny za spojení (třeba podle počtu členů krát vzdálenost) clusterů. Například:
+        $$ MergeCost(A, B) = \frac{N_A·N_B}{N_A + N_B}·d(A, B) $$ 
+    \end{definice}
+
+    \begin{definice}[Iterative shrinking]
+            Iterujeme: vybereme shluk „nejlevnější“ (třeba jako v předchozím algoritmu) na rozdrobení (= rozdělíme tento shluk mezi okolní) a rozdrobíme.
+    \end{definice}
+
 \end{document}

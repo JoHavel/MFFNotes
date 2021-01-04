@@ -17,10 +17,10 @@
 
     \begin{definice}[Značení]
         \begin{itemize}
-            \item \N -- přirozená čísla od 1
-            \item $\N_0$ -- přirozená čísla od 0
-            \item \Z -- celá čísla
-            \item \R -- reálná čísla
+            \item ®N -- přirozená čísla od 1
+            \item $®N_0$ -- přirozená čísla od 0
+            \item ®Z -- celá čísla
+            \item ®R -- reálná čísla
             \item $\(a_1; a_2; …; a_k\)$ -- uspořádaná $k$-tice
             \item $\{a_1; a_2; …; a_k\}$ -- množina s prvky $a_1; …; a_k$
         \end{itemize}
@@ -28,15 +28,15 @@
 
     \subsection{Množiny}
         \begin{poznamka}[Shodnost množin]
-                $$ \X = \Y \Leftrightarrow (\forall z) (z \in \X \Leftrightarrow z \in \Y) $$ 
+                $$ X = Y \Leftrightarrow (\forall z) (z \in X \Leftrightarrow z \in Y) $$ 
         \end{poznamka}
 
         \begin{poznamka}[Historie teorie množin]
-            70. léta 19. století G. Cantor (zavedl např. porovnávání velikostí množin, viz bijekce, také přišel na to, že ne všechny nekonečné množiny jsou spočetné (stejně velké jako \N)).
+            70. léta 19. století G. Cantor (zavedl např. porovnávání velikostí množin, viz bijekce, také přišel na to, že ne všechny nekonečné množiny jsou spočetné (stejně velké jako ®N)).
 
             1901 Russelův paradox (B. Russel, rozbil naivní teorii množin, která platila do té doby) -- množina všech množin, které neobsahují sami sebe (ke každé vlastnosti by měla existovat množina všeho, co ji splňuje, ale to očividně nelze).
 
-            Axiomatická teorie množin (opravuje teorii množin, aby zůstali výsledky, ale zmizel R. paradox) -- např. Zermelo-Frankelovy axiomy: všechny objekty jsou množiny, existuje predikát náležení ($x \in \X$ -- $x$ je prvkem \X), pomocí něhož lze definovat další predikáty, jako $\subseteq$. Axiomy jsou definované tak, aby $\X \notin \X$ (dokonce ani nemohou vznikat cykly $\in$). Také zajišťují, že výsledky klasických operací ($\cup$, $\cap$, $\\$, …) a klasické množiny (\N, \Z, \R, …) jsou množiny.
+            Axiomatická teorie množin (opravuje teorii množin, aby zůstali výsledky, ale zmizel R. paradox) -- např. Zermelo-Frankelovy axiomy: všechny objekty jsou množiny, existuje predikát náležení ($x \in X$ -- $x$ je prvkem $X$), pomocí něhož lze definovat další predikáty, jako $\subseteq$. Axiomy jsou definované tak, aby $X \notin X$ (dokonce ani nemohou vznikat cykly $\in$). Také zajišťují, že výsledky klasických operací ($\cup$, $\cap$, $\setminus$, …) a klasické množiny (®N, ®Z, ®R, …) jsou množiny.
 
             Nikdo však ještě nedokázal, že další paradox neexistuje. Zároveň se nedařilo dokázat, zda některá tvrzení (např. axiom výběru) platí, nebo ne (dnes je často dokázáno, že se nedají dokázat).
 
@@ -44,22 +44,632 @@
         \end{poznamka}
 
         \begin{definice}[Operace s množinami]
-            $$ \Z \in (\X \cup \Y) \Leftrightarrow (\Z \in \X) \lor (\Z \in \Y) $$
-            $$ \Z \in (\X \cup \Y) \Leftrightarrow (\Z \in \X) \land (\Z \in \Y) $$
+            $$ Z \in (X \cup Y) \Leftrightarrow (Z \in X) \lor (Z \in Y) $$
+            $$ Z \in (X \cup Y) \Leftrightarrow (Z \in X) \land (Z \in Y) $$
 
             Obě operace lze udělat s libovolným počtem (i nespočetným) množin.
 
-            $$ \Z \in (\X \\ \Y) \Leftrightarrow (\Z \in \X \land \Z \notin \Y) $$
+            $$ Z \in (X \setminus Y) \Leftrightarrow (Z \in X \land Z \notin Y) $$
 
-            Doplněk \Y, značený $\overline{Y}$ je zkratka pro $\X \\ \Y$, kde \X musí být jasná z kontextu.
+            Doplněk $Y$, značený $\overline{Y}$ je zkratka pro $X \setminus Y$, kde $X$ musí být jasná z kontextu.
 
-            Kartézský součin $\X\times\Y = \{(a,b): a\in\X \land b\in\Y\}$.
+            Kartézský součin $X\times Y = \{(a,b): a\in X \land b\in Y\}$.
 
-            Potenční množina množiny \X : $2^\X - \P(\X) = \{\Y : \Y \subseteq \X\}$
+            Potenční množina množiny $X$ : $2^X - ©P(X) = \{Y : Y \subseteq X\}$
         \end{definice}
 
+% 9. 10. 2020
 
+\section{Relace}
+    \begin{definice}[Relace]
+        Relace (nebo binární relace) mezi množinami $A$ a $B$ je libovolná podmnožina kartézského součinu $A \times B$. Relace mezi $A$ a $A$ se též nazývá relace na $A$.
 
+        Pro relaci $R$ často místo $(x, y) \in R$ píšeme $xRy$, zejména, pokud se k pojmenování relace místo písmene použije symbol jako $\preceq$, $≡$, $\sim$, apod.
+
+        Relaci reprezentujeme jako množinu prvků, tabulku, nebo diagramem (orientovaným grafem se smyčkami).
+    \end{definice}
+
+    \begin{definice}[Operace s relacemi]
+        Nechť $R$ je relace mezi $A$ a $B$. Inverzní relace k relaci $R$, značená $R^{-1}$, je relace mezi $B$ a $A$ definovaná jako
+        $$ R^{-1} = \{(y, x) \in B \times A | (x, y) \in R\}. $$ 
+
+        Nechť $R$ je relace mezi $A$ a $B$ a nechť $S$ je relace mezi $B$ a $C$. Jejich složení, značené $R\circ S$ (nebo někdy opačně, hlavně pro funkce), je relace mezi $A$ a $C$ definovaná jako
+
+        $$ R\circ S = \{(x, z) \in A \times C | \exists y \in B: (x, y) \in R \land (y, z) \in S\}. $$ 
+
+    \end{definice}
+
+    \begin{definice}[Funkce / zobrazení]
+        Funkce (nebo zobrazení) z množiny $A$ do množiny $B$ je relace $F$ mezi $A$ a $B$ taková, že pro každé $x \in A$ existuje právě jedno $y \in B$ splňující $(x, y) \in F$. Pro funkci obvykle místo $(x, y) \in F$ píšeme $F(x) = y$.
+    \end{definice}
+
+    \begin{definice}[Funkce prostá / injektivní, na / surjektivní, bijekce]
+        Funkce $F$ z $A$ do $B$ je:
+        \begin{itemize}
+            \item prostá (neboli injektivní), pokud pro každé $y \in B$ existuje nejvýše jedno $x \in A$ splňující $F(x) = y$.
+            \item na (množinu $B$) (neboli surjektivní), pokud pro každé $y\in $ existuje alespoň jedno $x \in A$ splňující $F(x) = y$.
+            \item bijekce mezi $A$ a $B$, pokud je prostá a zároveň na.
+        \end{itemize}
+    \end{definice}
+
+    \begin{dusledek}
+        Pokud je $F$ bijekce, pak $F^{-1}$ je též bijekce.
+    \end{dusledek}
+
+    \begin{definice}[Mohutnost / kardinalita]
+        Mohutnost (neboli kardinalita) konečné množiny $A$ značená $|A|$, je počet prvků $A$.
+
+        Pro (konečné či nekonečné) množiny $A$ a $B$ definujeme následující značení: $|A| ≤ |B|$, pokud existuje prostá funkce z $A$ do $B$, $|A| = |B|$, pokud existuje bijekce mezi $A$ a $B$, $|A| < |B|$, pokud platí $|A| ≤ |B|$, ale neplatí $|A| = |B|$.
+    \end{definice}
+
+    \begin{veta}[Cantor-Bernsteinova(-Schröder)]
+        Pokud $|A| ≥ |B|$ a $|B| ≥ |A|$, potom $|A| = |B|$.
+
+        \begin{dukazin}
+            Bez důkazu (důkaz v prosemináři z matematické analýzy).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Cantor, 1891]
+        Pro jakou množinu $|M| < |©P(M)|$.
+
+        \begin{dukazin}
+            Zjevně $|M|≤ |©P(M)|$, díky prosté funkci $F: M \rightarrow ©P(M)$ definované jako $F(x) = \{x\}$ pro $x \in M$. Teď už stačí (díky Cantor-Bernsteinově větě) jen dokázat, že neexistuje prostá funkce $G: ©P(M)\rightarrow M$.
+
+            Sporem: Nechť taková funkce $G$n existuje. Řekněme, že množina $J \subseteq M$ je třeba extrovertní, pokud $G(J) \notin J$. Označme $E = \{G(J); J \text{ je extrovertní}\}$. $E$ pak nemůže být ani extrovertní, ani introvertní.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Neexistuje největší množina. Existují nespočetné množiny (dokonce celá 'hierarchie' velikostí nekonečných množin vytvořená pomocí $©P$)..
+    \end{dusledek}
+
+    \begin{poznamka}[Fakt bez důkazu]
+        $|®R| = |©P(®N)|$, tedy $®R$ je nespočetná.
+    \end{poznamka}
+
+    \begin{definice}[Relace reflexivní, symetrická, tranzitivní, antisymetrická]
+        Relace $R$ na množině $A$ je:
+        \begin{itemize}
+                \item reflexivní (na $A$), pokud $\forall x \in A: xRx$,
+            \item symetrická, pokud $R = R^{-1}$,
+            \item tranzitivní, pokud $R \circ R \subseteq R$,
+            \item (slabě) antisymetrická, pokud platí-li zároveň $xRy$ i $yRx$, potom $x = y$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{definice}[Ekvivalence, částečné uspořádání]
+        Relace $R$ na množině $A$ je ekvivalence, pokud je reflexivní, symetrická a tranzitivní.
+
+        Relace $R$ na množině $A$ je částečné uspořádání, pokud je reflexivní, antisymetrická a tranzitivní.
+    \end{definice}
+
+% 16. 10. 2020
+
+    \begin{definice}[Izomorfismus relací]
+        Relace $R$ na množině $A$ a $R'$ na množině $A'$ jsou izomorfní, pokud existuje bijekce $\phi: A \rightarrow A'$ taková, že pro všechna $x, y \in A$ platí
+        $$ (x, y) \in R \Leftrightarrow (\phi(x), \phi(y)) \in R'. $$ 
+    \end{definice}
+
+    \begin{definice}
+        Nechť $E$ je ekvivalence na množině $A$, nechť $p$ je prvek $A$. Třída ekvivalence $E$ určená prvkem $p$, značená $E[p]$ (nebo $[p]_E$, nebo jen $[p]$), je množina $\{x \in A| (x, p) \in E\}$.
+    \end{definice}
+
+    \subsection{ekvivalence}
+    \begin{veta}[O třídách ekvivalence]
+        Nechť $E$ je ekvivalence na množině $A$ a nechť $[p]$ označuje její třídu určenou prvkem $p$. Potom platí:
+        \begin{enumerate}
+            \item $\forall p \in A: p \in [p]$,
+            \item $\forall p, q \in A: (p, q) \in E \implies [p] = [q]$,
+            \item $\forall p, q \in A: (p, q) \notin E \implies [p] \cap [q] = \O$,
+            \item každý prvek $A$ patří do právě jedné třídy ekvivalence $E$.
+        \end{enumerate}
+
+        \begin{dukazin}
+            1. díky reflexivitě, 2. díky symetrii a tranzitivitě, 3. sporem ze symetrie a tranzitivity, 4. patří do svojí, ale všechny třídy jsou disjunktní, nebo se rovnají.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Množinový rozklad]
+        Množinový rozklad množiny $A$ je množina ©M neprázdných podmnožin množiny $A$ taková, že $\forall x \in A\ \exists! X \in ©M: x \in X$. Prvky ©M jsou bloky rozkladu ©M.
+    \end{definice}
+
+    \begin{poznamka}[2 pozorování]
+        Pro každou ekvivalenci $E$ na množině $A$, třídy $E$ tvoří množinový rozklad $A$.
+
+        Pro každý množinový rozklad ©M množiny $A$ existuje právě jedna ekvivalence, jejíž třídy jsou právě bloky rozkladu ©M.
+    \end{poznamka}
+
+    \begin{poznamka}[*]
+        Počet ekvivalencí / rozkladů množiny $[n]$ se nazývá Bellovo číslo a nemá rozumné vyjádření.
+    \end{poznamka}
+
+    \subsection{Částečné uspořádání}
+    \begin{definice}
+        Dvojice $(A, R)$, kde $A$ je množina a $R$ je částečné uspořádání na $A$, se nazývá částečně uspořádaná množina (ČUM, anglicky partially ordered set -- poset).
+    \end{definice}
+
+    \begin{definice}
+        Nechť $(A, \preceq)$ je částečně uspořádaná množina. Potom prvky $x, y$ jsou porovnatelné, pokud $x \preceq y \lor y \preceq x$. Prvek $x \in A$ je největší (nejmenší), pokud $\forall y \in A: y \preceq x$ ($x \preceq y$). Prvek $x \in A$ je maximální (minimální), pokud $\nexists y \in A \setminus \{x\}: x \preceq y$ ($y \preceq x$).
+    \end{definice}
+
+    \begin{poznamka}[Pozorovani]
+        Největší prvek je také maximální (dokonce jediný takový), ale maximální prvek (dokonce i jediný takový) nemusí být největší.
+
+        Každá ČUM má nejvýše jeden největší a jeden nejmenší prvek.
+
+        Každá konečná ČUM má alespoň jeden minimální a alespoň jeden maximální prvek. (Pokud je m/m jediný takový, pak je n/n.)
+    \end{poznamka}
+
+    \begin{definice}[Bezprostřední následník]
+        Nechť $(A, \preceq)$ je ČUM a $x, y$ jsou dva různé prvky $A$. Potom $x$ je bezprostředním následníkem $y ≡ y\preceq x \land \nexists z: y \preceq z \land z \preceq x$.
+    \end{definice}
+
+    \begin{definice}[Hasseho diagram]
+        Hasseho diagram ČUM $(A, \preceq)$ je obrázek, na kterém jsou prvky $A$ zobrazeny jako body a šipka z bodu $x$ do bodu $y$ znamená, že $x$ je bezprostřední předchůdce $y$.
+    \end{definice}
+
+    \begin{poznamka}[Pozorování]
+        Konečná ČUM $(A, \preceq)$ je jednoznačně určena svým Hasseho diagramem.
+    \end{poznamka}
+
+    \begin{definice}[Řetězec a antiřetězec]
+        Nechť $(A, \preceq)$ je částečné uspořádaná množina. Podmnožina $B \subseteq A$ je řetězec, pokud každé dva prvky jsou porovnatelné. Podmnožina $C \subseteq A$ je antiřetězec, pokud žádné dva různé prvky $C$ nejsou porovnatelné.
+
+        Výška $(A, \preceq)$ je velikost největšího řetězce v $(A, \preceq)$ a šířka je velikost největšího antiřetězce v $(A, \preceq)$.
+    \end{definice}
+
+    \begin{veta}[O dlouhém a širokém]
+        Jestliže $(A, \preceq)$ je konečná ČUM s výškou $k$ a šířkou $l$, potom platí $|A|≤k·l$.
+
+        \begin{dukazin}
+            Definujeme $v(x)$ pro každé $x \in A$ jako velikost největšího řetězce v $A$, jehož největší prvek je $x$. Nechť $H_i$ je množina prvků výšky $i$. Všimněte si:
+            $$ \forall x \in A: v(x) \in [k], \hskip 2em \text{pro } x≠y: x\preceq y \implies v(x) < v(y), $$
+            tedy pro každé $i \in [k]$ je množina $H_i$ antiřetězec. Takže $A$ lze rozložit na $k$ antiřetězců a každý z nich má nejvýše $l$ prvků. Tudíž $|A| ≤ k·l$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Lineární uspořádání]
+        Částečné uspořádání $\trianglelefteq$ na množině $A$ je lineární uspořádání na $A$, pokud každé dva prvky $A$ jsou porovnatelné v $\trianglelefteq$.
+
+        Lineární rozšíření částečného uspořádání $\preceq$ na množině $A$ je lineární uspořádání $\trianglelefteq$ tak, že $x \preceq y \implies x \trianglelefteq y$.
+    \end{definice}
+
+    \begin{veta}
+        Každé částečné uspořádání $\preceq$ na konečné množině $A$ má alespoň jedno lineární rozšíření.
+
+        \begin{dukazin}
+                Definujme výšku $v(x)$ jako v důkazu výše. Uspořádejme prvky $A$ do posloupnosti $a_1, a_2, …, a_n$ tak, aby platilo $v(a_1) ≤ v(a_2) ≤ … ≤ v(a_n)$. Toto uspořádání tvoří lineární rozšíření $\preceq$.
+        \end{dukazin}
+    \end{veta}
+
+% 23. 10. 2020
+
+    \begin{tvrzeni}
+        Nechť $A$ a $B$ jsou konečné množiny a označme $k = |A|$ a $n = |B|$. Potom existuje přesně $n^k$ funkcí z $A$ do $B$.
+
+        \begin{dukazin}
+            Předpokládejme $A = [k]$. Každou funkci $f: A \rightarrow B$ lze reprezentovat uspořádanou $k$-ticí prvků z $B$. Naopak každá taková $k$-tice určuje jednoznačnou funkci z $A$ do $B$. Počet funkcí z $A$ do $B$ je tedy $\left|B^k\right| = n^k$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Počet všech podmnožin $k$-prvkové množiny $A$ je $2^{k}$.
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        Nechť $A$ a $B$ jsou konečné množiny a označme $k = |A|$ a $n = |B|$. Počet prostých funkcí z $A$ do $B$ je roven $n^{\underline{k}}$.
+
+        \begin{dukazin}
+            Jednoduchý.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Permutace]
+        Permutace množiny $A$ je bijekce z $A$ na $A$.
+    \end{definice}
+
+    \begin{dusledek}
+        Permutací na množině o velikosti $n$ je $n!$.
+    \end{dusledek}
+
+    \begin{definice}[Kombinační čísla]
+        Mějme $k, n \in ®N_0$, $k ≤ n$. Kombinační číslo $n$ nad $k$ (někdy též binomický koeficient $n$ nad $k$), značené $\binom{n}{k}$, je výraz $\frac{n!}{k!(n-k)!} = \frac{n^{\underline{k}}}{k!}$.
+    \end{definice}
+
+    \begin{poznamka}[Vlastnosti kombinačních čísel]
+        $$ \binom{n}{k} = \binom{n}{n-k} $$ 
+        $$ \binom{n}{0} = \binom{n}{n} = 1 $$
+        $$ \binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1} $$ 
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Nechť $k, n \in ®N_0$, $k ≤ n$. Každá $n$-prvková množina má $\binom{n}{k}$ $k$-prvkových podmnožin.
+
+        \begin{dukazin}[Počítání (dvěma způsoby) prostých funkcí]
+            Spočítám prosté funkce z vzorce výše a následně je spočítám pomocí podmnožin a bijekcí.
+        \end{dukazin}
+
+        \begin{dukazin}[Rekurence]
+            „Indukcí“ a podle součtu sousedních kombinačních čísel.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Binomická]
+        Pro $x, y \in ®R$ a $n \in ®N_0$ platí $(x + y)^n = \sum_{k=0}^n \binom{n}{k} x^k y^{n-k}$.
+
+        \begin{dukazin}[Nudná indukce]
+            Pro $n = 0$ rovnost platí. Nyní $n > 0$ a spočítáme $(x+y)·(x+y)^{n-1}$…
+        \end{dukazin}
+
+        \begin{dukazin}[Prostě to všechno roznásobím]
+            Spočítáme kolika způsoby se lze k součtům dostat.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Pro $x = y = 1$ z binomické věty dostaneme $2^n = \sum_{k = 0}^n \binom{n}{k}$.
+
+        Pro $x = -y = 1$ a $n > 0$ dostaneme, že podmnožin sudé a liché velikosti je stejně. Tj. je jich tolik, co podmnožin množiny bez 1 prvku.
+    \end{dusledek}
+
+% 30. 10. 2020
+
+    \begin{veta}[Princip inkluze a exkluze]
+        Nechť $A_1, …, A_n$ jsou konečné množiny. Potom
+        $$ \left|\bigcup_{i = 1}^n A_i\right| = \sum_{I \subseteq [n], I ≠ \O} (-1)^{|I| - 1} \left| \bigcap_{i\in I} A_i \right| $$
+        
+        \begin{dukazin}
+            Indukcí podle $n$. Nebo viz informatická Diskrétka.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{priklad}
+        Problém šatnářky. Viz informatická Diskrétka.
+    \end{priklad}
+
+    \begin{priklad}
+        Pro $k, n \in ®N$. Kolik existuje funkcí z $[k]$ na $[n]$.
+
+        \begin{reseni}
+            PIE. $\sum_{l = 0}^n \binom{n}{l} (-1)^l(n-l)^k$
+        \end{reseni}
+    \end{priklad}
+
+% 6. 11. 2020
+
+    \begin{tvrzeni}[Odhad faktoriálu]
+        $$ n^{n/2} ≤ n! ≤ n^n $$ 
+    \end{tvrzeni}
+
+    \begin{veta}[Věta o odhadu faktoriálu]
+        Pro každé $n \in ®N$ platí $e\(\frac{n}{e}\)^n ≤ n! ≤ en \(\frac{n}{e}\)^n$
+
+        \begin{dukazin}
+            Indukcí podle $n$ (za pomoci $\forall x \in ®R: e^x ≥ 1+x$): Pro $n=1$ nerovnosti platí. Pro $n>1$:
+            $$ n! = n·(n-1)! ≤ n·e(n-1)\(\frac{n-1}{r}\)^{n-1} $$ 
+            $$ = en \(\frac{n}{e}\)· \(\frac{e}{n}\)^n · (n-1) \(\frac{n-1}{e}\)^{n-1} = en\(\frac{n}{e}\)·e\(\frac{n-1}{n}\)^n $$
+            $$ = en \(\frac{n}{e}\)·e\(1- \frac{1}{n}\)^n ≤ en \(\frac{n}{e}\)·e\(e^{-1/n}\)^n = en \(\frac{n}{e}\) $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Odhad kombinačního čísla]
+        Pro $k, n \in ®N$ splňující $0 < k ≤ n$ platí $\(\frac{n}{k}\) ≤ \binom{n}{k} ≤ \(\frac{en}{k}\)^k$.
+
+        \begin{dukazin}
+            Dolní odhad jednoduchý, horní odhad:
+            $$ \binom{n}{k} ≤ \frac{n^k}{k!} ≤ \frac{n^k}{(k/e)^k} = \(\frac{en}{k}\)^k. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Odhad součtu kombinačních čísel]
+        Pro $k, n \in ®N$ splňující $0 < k ≤ n$ platí $\sum_{j = 0}^k \binom{n}{j} ≤ \(\frac{en}{k}\)^k$.
+
+        \begin{dukazin}
+            Nechť $x \in (0, 1]$. S využitím $e^x ≥ 1 + x$ počítejme:
+            $$ e^{xn} ≥ (x+1)^n = \sum_{j=0}^n \binom{n}{j}x^j ≥ \sum_{j=0}^k \binom{n}{j}x^j ≥ \sum_{j=0}^k \binom{n}{j}x^k, $$
+            $$ \sum_{j=0}^k \binom{n}{j} ≤ \frac{e^{xn}}{x^k}. $$ 
+            Volbou $x = \frac{k}{n} \in (0, 1]$ získáme
+            $$ \sum_{j = 0}^k \binom{n}{j} ≤ \(\frac{en}{k}\)^k. $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Odhad 'prostředního' kombninačního čísla]
+        Pro každé $m \in ®N$ platí $\frac{2^{2m}}{2m+1} ≤ \binom{2m}{m} ≤ 2^{2m}$.
+
+        \begin{dukazin}
+            Oba odhady: je největší z kombinačních čísel.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Lepší odhad 'prostředního' kombinačního čisla]
+        Pro každé $m \in ®N$ platí $\frac{2^{2m}}{2\sqrt{m}} ≤ \binom{2m}{m} ≤ \frac{2^{2m}}{\sqrt{2m}}$.
+
+        \begin{dukazin}
+            Označme $P;= \frac{\binom{2m}{m}}{2^{2m}}$. Chceme dokázat $\frac{1}{2\sqrt{m}} ≤ P ≤ \frac{1}{\sqrt{2m}}$. Ve skutečnosti odhadneme $\frac{1}{4m} ≤ P^2 ≤ \frac{1}{2m}$.
+            $$ P = \frac{(2m)!}{2^{2m}m!m!} = \frac{\prod_{i = 1}^{2m} i}{2^{2m} \(\prod_{j = 1}^m j\)·\(\prod_{k = 1}^m k\)} = \frac{\prod_{i = 1}^{2m} i}{\(\prod_{j = 1}^m 2j\)·\(\prod_{k = 1}^m 2k\)} = $$
+            $$ \frac{(2m-1)!!}{2^m·(2m)!!}. $$
+            Tedy
+            $$ P^2 = \frac{1·1·3·3·…·(2m-1)·(2m-1)}{2·2·4·4·…·(2m)·(2m)}. $$ 
+            Pro každé $k ≥ 2$ platí
+            $$ \frac{(k-1)(k+1)}{k·k} = \frac{k^2 - 1}{k^2} < 1, \hskip 2em \frac{k·k}{(k-1)·(k+1)} > 1. $$
+            Odtud:
+            $$ P^2 < 1·1·1·…·1·\frac{1}{2m} = \frac{1}{2m}, \hskip 2em P^2 > \frac{1}{2}·1·1·…·1·\frac{1}{2m} = \frac{1}{4m}. $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Následovalo počítání dvěma způsoby.
+    \end{poznamka}
+
+% 13. 11. 2020
+
+\section{Grafy}
+    \begin{definice}[Graf]
+        Graf $G$ je uspořádaná dvojice $(V, E)$, kde $V$ je množina a $E \subseteq \binom{V}{2}$.
+    \end{definice}
+
+    \begin{definice}[Izomorfismus grafů]
+        Graf $(V, E)$ je izomorfní s grafem $(V', E')$, pokud existuje bijekce $f: V \rightarrow V'$ tak, že ${x, y} \in E \Leftrightarrow {f(x), f(y)} \in E'$.
+    \end{definice}
+
+    \begin{definice}
+        Úplný graf $K_n$ ($V = [n], E = \binom{V}{2}$), kružnice $C_n$ ($V = [n]$, $E = \{\{i, i+1\} | i \in [n-1]\} \cup \{\{n, 1\}\}$), cesta $P_n$ ($V = \{0\} \cup [n]$, $E = \{\{i-1, i\} | i \in [n]\}$), úplný bipartitní graf $K_{n, m}$ ($V = \{u_1, …, u_n\} \cup \{w_1, …, w_m\}, E = \{\{u_i, w_j\}| i \in [n] \land j \in [m]\}$), bipartitní graf (podgraf úplného bipartitního grafu).
+    \end{definice}
+
+    \begin{definice}[Podgraf, indukovaný podgraf]
+        Graf $H$ je podgrafem grafu $G$, pokud $V(H) \subseteq V(G)$ a $E(H) \subseteq E(G)$.
+
+        Graf $H$ je indukovaným podgrafem grafu $G$, pokud $V(H) \subseteq V(G)$ a $E(H) = E(G) \cap \binom{V(H)}{2}$.
+    \end{definice}
+
+    \begin{definice}[Cesta a kružnice v grafu]
+        Cesta (resp. kružnice) v grafu je podgraf izomorfní s cestou (resp. kružnici).
+    \end{definice}
+
+    \begin{definice}[Souvislost, komponenty souvislosti, vzdálenost]
+        Graf $G$ je souvislý, pokud pro každé dva jeho vrcholy existuje cesta z jednoho do druhého.
+
+        Definujeme relaci $\sim$ na $V(G)$: $x \sim y \Leftrightarrow \exists$ cesta z $x$ do $y$.
+
+        Komponenty souvislosti grafu $G$ jsou podgrafy generované ekvivalenčními třídami $\sim$.
+
+        Vzdálenost $d_G(u, v)$ je velikost cesty z $u$ do $v$ nebo $∞$ pokud tato cesta neexistuje.
+    \end{definice}
+
+    \begin{definice}[Matice sousednosti]
+        G je graf a $\{v_1, …, \}$ jeho (nějak seřazené) vrcholy. Matice sousednosti grafu $G$ je matice $A$ typu $n\times n$, kde $a_{i, j} = 1$ pokud $\{v_i, v_j\} \in E(G)$, 0 jinak.
+    \end{definice}
+
+    \begin{definice}[Stupeň vrcholu]
+        Nechť $u \in V(G)$. Stupeň vrcholu $u$ je $\deg_G(U) = \left| \{ \{u, v\} \in E(G) | v \in V(G) \} \right|$.
+    \end{definice}
+
+    \begin{definice}[Eulerovský graf]
+        Eulerovský tah je posloupnost na sebe navazujících vrcholů a hran, kde je navštívena každá hrana a každý vrchol grafu.
+
+        $G$ je eulerovský, pokud má uzavřený eulerovský tah.
+    \end{definice}
+
+    \begin{veta}[Charakterizace eulerovských grafů]
+        $G$ je eulerovský $\Leftrightarrow$ je souvislý a všechny stupně jsou sudé.
+
+        \begin{dukazin}
+            $\implies:$ triviální.
+
+            $\Leftarrow:$ Nechť $T$ je maximální možný tah. Nemůže být neuzavřený, protože jinak koncový vrchol má lichý stupeň nebo by šel tah prodloužit. Pokud by nějaká sousední hrana nebyla připojena, pak ho rozpojíme a přidáme ji. Pokud by nebyl připojen vrchol, nebo nějaká nesousední hrana, pak ze spojitosti existuje sousední hrana (vedeme cestu a první hrana mimo…).
+        \end{dukazin}
+
+% 20. 11. 2020
+
+        \begin{dukazin}[Algoritmický]
+            Jelikož $G$ má všechny stupně sudé, lze ho rozložit na kružnice (dokážeme indukcí), následně kružnice pospojujeme.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Orientovaný graf]
+        Orientovaný graf $G$ je dvojice $(V, E)$, kde $V$ je množina a $E \subseteq V^2$.
+    \end{definice}
+
+    \begin{definice}[Orientovaná cesta, tah, kružnice]
+        Triviální
+    \end{definice}
+
+    \begin{definice}[Eulerovský orientovaný graf]
+        Orientovaný graf je eulerovský, když obsahuje orientovaný uzavřený tah přes všechny hrany a vrcholy.
+    \end{definice}
+
+    \begin{definice}[Vstupní a výstupní stupeň]
+        $\deg^+(v) = $\# hran, jež vedou do $v$.
+
+        $\deg^-(v) = $\# hran, jež vedou z $v$.
+    \end{definice}
+
+    \begin{definice}
+        Pokud $G = (V, E)$ je orientovaný graf, jeho symetrizace ($sym(G)$) je neorientovaný graf $(V, E')$, kde $E' = \{\{x, y\}| \(x, y\) \in E\}$.
+    \end{definice}
+
+    \begin{veta}[Charakterizace eulerovských orientovaných grafů]
+            Orientovaný graf je eulerovský právě tehdy, když je slabě souvislý (symetrizace je souvislá) a $\forall v \deg^+(v) = \deg^-(v)$.
+    \end{veta}
+
+    \begin{definice}[Hamiltonovské kružnice]
+        Kružnice, která obsahuje každý vrchol.
+    \end{definice}
+
+    \begin{definice}[Skóre grafu]
+        Nechť $v_1, …, v_n$ jsou vrcholy grafu $G$. Skóre grafu $G$ je posloupnost $\(\deg_G\(v_1\), …, \deg_G\(v_n\)\)$.
+    \end{definice}
+
+    \begin{veta}[Havel-Hakimi, věta o skóre]
+        Nechť $D = \(d_1, …, d_n\)$ je posloupnost taková, že $\forall i, d_i \in ®N$ a $d_1≤d_2≤…≤d_n$. Pak $D$ je skóre nějakého grafu $\Leftarrow$ $D' = (d'_1, …, d"_{n-1})$ je skóre grafu, kde
+        $$ d'_i = \begin{cases} d_i & \text{ pro } i < n-d_n \\ d_i - 1 & \text{ pro } i ≥ n-d_n \end{cases}. $$
+
+        \begin{dukazin}
+            $\Leftarrow:$ Triviální (přidáme vrchol stupně $d_n$ a spojíme ho s 'posledními' vrcholy).
+
+            $\implies:$ Definujeme $j(G) = $maximální index tak, že vrchol tohoto indexu není spojen s posledním. Mějme graf na 'o jedna méně vrcholech', pro nějž je $j$ největší. Potom tento graf má skóre $D'$, protože jinak bychom mohli přepojit vrcholy a získali větší $j$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Strom, list]
+        Strom je spojitý acyklický graf.
+
+        List je vrchol stromu stupně 1.
+    \end{definice}
+
+    \begin{lemma}[O koncovém vrcholu]
+        Každý strom na alespoň 2 vrcholech obsahuje alespoň 2 listy.
+
+        \begin{dukazin}
+            Nechť $T$ je nejdelší cesta ve stromu. Pak krajní body jsou listy, protože jinak by šla přidat další hrana a nastal by spor buď s acykličností grafu, nebo s maximalitou cesty.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Postupná výstavba stromů]
+        Nechť $G$ je graf a $v$ je list. $G$ je strom právě tehdy, když $G-v$ ($G$ bez vrcholu $v$) je strom.
+
+        \begin{dukazin}
+            $\implies:$ $G$ neobsahuje kružnici $\implies$ $G-v$ neobsahuje kružnici. $G$ souvislý $\implies$ $G-v$ souvislý, protože cesty nemohli vést přes list.
+
+            $\Leftarrow:$ $G$ je souvislý, protože do $v$ vede libovolná cesta, co vede do jeho souseda. $G$ není cyklický, protože cyklus má vrcholy stupně 2, ale list je stupně 1.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Charakterizace stromů]
+        Nechť $G=(V, E)$ je graf. Následující podmínky jsou ekvivalentní:
+
+        \begin{itemize}
+            \item $G$ je strom.
+            \item $\forall x, y \in V\ \exists!$ cesta z $x$ do $y$. (jednoznačnost cesty)
+            \item $G$ je souvislý a $\forall e\in E: G-e$ není souvislý. (minimální souvislý)
+            \item $G$ nemá kružnici a $\forall \binom{V}{2} \setminus E: G+e$ obsahuje kružnici. (maximální acyklický)
+            \item $G$ je souvislý a $|V| = |E| + 1$. (Eulerův vzorec)
+        \end{itemize}
+
+        \begin{dukazin}
+            $(i) \implies (ii), (i) \implies (iii), (i) \implies (iv), (i) \implies (v)$ indukcí podle $|V|$ -- domácí cvičení. Ostatní také jednoduché.
+        \end{dukazin}
+    \end{veta}
+
+% 4. 12. 2020
+
+    \begin{definice}[Kostra]
+        Kostra grafu $G$ je podgraf $T$ grafu $G$ tak, že $T$ je strom a $V(G) = V(T)$.
+    \end{definice}
+
+    \begin{definice}[Ohodnocený graf]
+        Ohodnocený graf je dvojice $(G, w)$, kde $w: E(G) \rightarrow ®R$ je ohodnocení hran.
+    \end{definice}
+
+    \begin{definice}[Minimání kostra]
+        Minimální kostra ohodnoceného grafu $G$ je kostra $G$, která minimalizuje $\sum_{e \in E(T)} w(t)$.
+    \end{definice}
+
+    \begin{poznamka}[Algoritmy hledání kostry]
+        Borůvka (1928), Jarník (1930, Prim 1957), Kruskal (1956).
+    \end{poznamka}
+
+    \begin{definice}[Jarníkův algoritmus]
+        Vybereme libovolně $v\in V(G)$. Následně budeme budovat kostru od $v$ tak, že k této kostře vždy přidáme vrchol, do kterého z této kostry vede 'nejkratší' hrana. Takto nalezneme minimální kostru pro každý souvislý graf.
+
+        \begin{dukazin}
+            Je to kostra? Ano, přidávali jsme listy. Pokud nemá všechny vrcholy, tak se neměl zastavit / není souvislý. Pokud to není minimální kostra, tak existuje kostra $T'$ s menší vahou. Nechť $e_1, e_2, …$ jsou hrany $T$ v pořadí, jak byly přidány. Nechť $k = k(T')$ je minimální index tak, že $e_{k+1} \in E(T) \setminus E(T') \implies \{e_1, …, e_k\} \subseteq E(T')$.
+
+            Nechť $T''$ je minimální kostra, která maximalizuje $k$. Vrátíme se s algoritmem zpět do okamžiku, kdy jsme přidávali $e_{k+1}$. Zkusíme vhodnou hranu z $T''$ nahradit hranou $e_{k+1}$: nalezneme kružnici $T'' + e_{k+1}$. Jistě existuje na této kružnici další hrana $e$, která byla k dispozici, ale my jsme vybrali $e_{k+1}$, tedy $w(e) ≥ e_{k+1}$, tedy $T + e_{k+1} - e$ musí být také minimální kostra a má větší $k$, \lightning.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{definice}[Počet koster $K_n$]
+        $\kappa(K_n) := $ \# koster $K_n$
+    \end{definice}
+    
+    \begin{veta}[Cayleyho formule]
+        Pro $n ≥ 2$ máme $\kappa(K_n) = n^{n-2}$.
+
+        \begin{definicein}
+            Kořenový strom je dvojice $(T, r)$, kde $T$ je strom a $r \in V(T)$ kořen.
+        \end{definicein}
+
+        \begin{definicein}
+            povykos (postup výroby kořenového stromu) je trojice $(T, r, c)$, kde $(T, r)$ je kořenový strom a $c$ je číslování hran, tj. bijekce $E(T) \rightarrow [n-1]$.
+        \end{definicein}
+
+% 11. 12. 2020
+
+        \begin{dukazin}[Počítání 'povykosů' dvěma způsoby]
+            Každý strom odpovídá $n·(n-1)!$ (výběr kořenu a pořadí hran). Tedy povykosů je $\kappa(K_n)·n·(n-1)!$.
+
+            Strom 'zorientujeme' ke kořeni … orientace taková, že existuje právě 1 vrchol, ze kterého nevychází šipka. Naopak z každé orientace, která toto splňuje, dostaneme jednoznačně kořenový strom. Začneme s vrcholy bez hran a budeme přidávat hrany… První hranu můžeme přidat $n·(n-1)$ způsoby. Další hrany můžeme přidávat pouze tak, abychom nevytvořili kružnici (tj. spojíme 2 komponenty), navíc každá nová hrana vychází z vrcholu, ze kterého ještě žádná šipka nevychází.
+
+            Po přidání $k$ hran máme $n-k$ komponent, tedy $n-k$ vrcholů, odkud může vycházet hrana (v každé komponentě je právě 1 vrchol, odkud nevychází hrana). Po $k$ krocích tedy nová hrana může končit stále kdekoliv, ale začínat může pouze v komponentě, kde nekončí, tedy $n·(n-k-1)$ možností. Tj.
+            $$ \prod_{k=0}^{n-2} n·(n-k-1) = n^{n-2}·n·(n-1)! = \kappa(K_n)·n·(n-1)!, $$ 
+            $$ \kappa(K_n) = n^{n-2}. $$ 
+        \end{dukazin}
+    \end{veta}
+
+\section{rovinné grafy}
+    \begin{definice}[Nakreslení]
+        Vrcholům přiřadíme body, hranám přiřadíme křivky (Jordanovy oblouky), které spojují vrcholy (spojitý prostý obraz $[0, 1]$ v $®R^2$, kde 0 se zobrazí na obraz jednoho vrcholu a 1 na obraz druhého, navíc na tomto obrazu neleží žádný další).
+    \end{definice}
+
+    \begin{definice}[Rovinný graf]
+        Graf je rovinný, pokud má nakreslení do roviny, v němž se neprotínají 'hrany'.
+    \end{definice}
+
+    \begin{definice}[Topologická kružnice]
+        Topologická kružnice (Jordanova křivka) je (Jordanův) oblouk (s upravenou podmínkou na prostotu), jehož koncové body splývají
+    \end{definice}
+
+    \begin{definice}[Oblouková souvislost]
+        Pokud $U \subseteq ®R^2$ definujeme relaci $\approx$ na $U$ takto: $x \approx y$ pokud existuje oblouk $\gamma \subseteq U$ s koncovými body $x$ a $y$.
+    \end{definice}
+
+    \begin{definice}[Komponenty obloukové souvislosti]
+        Komponenty relace $\approx$ se nazývají komponenty obloukové souvislosti.
+    \end{definice}
+
+    \begin{veta}[Jordanova věta o kružnici]
+        Nechť $\kappa$ je topologická kružnice. Potom $®R^2 \setminus \kappa$ má právě 2 komponenty obloukové souvislosti ('vnitřek' a 'vnějšek'), jejichž hranicí je $\kappa$.
+
+        \begin{dukazin}
+            Vynecháme -- těžký -- topologie.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}
+        $K_5$ není rovinný.
+
+        \begin{dukazin}
+            Pokud existuje rovinné nakreslení $K_5$. Vezmeme $K_3$ jako podgraf. Jeho obraz tvoří kružnici. Tedy zbylé dva musí ležet buď oba vevnitř, nebo oba venku. Vezmeme všechny kružnice předchozích 3 bodů s 4. a 5. bod pak musí ležet v nějakém bodě
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Podobně pro $K_{3, 3}$. Pokud tedy přidáme vrcholy na hrany tohoto grafu, stále nebude graf rovinný, stejně tak přidáním dalších vrcholů nebo hran.
+    \end{poznamka}
+
+    \begin{definice}[Dělení hrany]
+        $G$ je graf a $e \in E(E)$, $v \notin V(G)$. Pak $G\%e$ je graf $V(G\%e) = V(G) \cup \{v\}$. $E(G\%e) = (E(G) \setminus \{e\}) \cup \{\{x, v\}, \{y, v\}\}$.
+    \end{definice}
+
+    \begin{veta}[Kuratowského věta]
+        $G$ je rovinný $\Leftrightarrow$ žádný jeho podgraf nevznikl z $K_5, K_{3, 3}$ dělením hran.
+    \end{veta}
+
+    \begin{definice}[Stěny]
+        Pokud $X$ je sjednocení hran grafu, pak komponenty obloukové souvislosti množiny $®R^2 \setminus X$ nazýváme stěny tohoto nakreslení.
+    \end{definice}
+
+    \begin{veta}[Eulerova formule (1752)]
+        Pokud $G = (V, E)$ je rovinný graf a $s$ je počet stěn nějakého rovinného nakreslení $G$, potom $|V| - |E| + s = 2$.
+
+% 18. 12. 2020
+
+        \begin{dukazin}
+        
+        \end{dukazin}
+    \end{veta}
 
 \end{document}
 

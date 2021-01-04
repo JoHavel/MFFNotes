@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[1.]
+        Ověřte přímým výpočtem Stokesovu větu pro singulární krychli $c$ a formu $\omega$:
+        $$ c: \begin{cases} x = r·s \\ y = s·t \\ z = r·t \\ w = r + s + t \end{cases}, \hskip 2em (r, s, t) \in [0, 1]^3, \hskip 2em \omega = w \, dx \wedge dz + z \, dy \wedge dw. $$ 
+
+        \begin{reseni}
+            Stokesova věta pro singulární krychli $c$ a formu $\omega$ vypadá následovně
+            $$ \int_{\partial c}\omega = \int_{c} d\omega. $$
+            Tudíž chceme dokázat, že integrál vlevo se rovná integrálu vpravo. Nejdřív si zvolíme pořadí souřadnic, tj. např. $r, s, t$ a začneme integrálem vlevo:
+
+            Chceme spočítat parametrizaci $\partial c$, a jelikož máme trojrozměrnou parametrizaci $c$, $\partial c$ je
+            $$ \partial c = - c_{r, s, 0} + c_{r, s, 1} + c_{r, 0, t} - c_{r, 1, t} - c_{0, s, t} + c_{1, s, t} $$
+            $$ \int_{\partial c}d\omega = \int_{- c_{r, s, 0}}d\omega + \int_{c_{r, s, 1}}d\omega + \int_{c_{r, 0, t}}d\omega + \int_{- c_{r, 1, t}}d\omega + \int_{- c_{0, s, t}}d\omega + \int_{c_{1, s, t}}d\omega $$
+            $$ \int_{\partial c}d\omega = - \int_{c_{r, s, 0}}d\omega + \int_{c_{r, s, 1}}d\omega + \int_{c_{r, 0, t}}d\omega - \int_{c_{r, 1, t}}d\omega - \int_{c_{0, s, t}}d\omega + \int_{c_{1, s, t}}d\omega $$
+            Tedy najdeme parametrizace jednotlivých 'stěn' krychle a následně dosadíme do příslušných integrálů (viz další strana) a vypočítáme
+            $$ \int_{\partial c}d\omega = - 0 + \(- \frac{19}{12}\) + 0 - \frac{10}{12} - 0 + \frac{25}{12} = -\frac{4}{12} = -\frac{1}{3}. $$
+
+            Nyní pravý integrál: stačí najít $d\omega$ a poté dosadit do integrálu:
+            $$ d\omega = dw \wedge dx \wedge dz + dz \wedge dy \wedge dw, $$
+            $$ dx = r\,ds + s\,dr, \hskip 2em dy = s\,dt + t\,ds, \hskip 2em dz = r\,dt + t\,dr, \hskip 2em dw = dr + ds + dt, $$
+            $$ d\omega = (dr + ds + dt)·(r\,ds + s\,dr)·(r\,dt + t\,dr) + (r\,dt + t\,dr)·(s\,dt + t\,ds)·(dr + ds + dt) = $$
+            $$ = \(r^2 - s·r - r·t - r·t - t·s + t^2\)\, dr \wedge ds \wedge dt, $$ 
+            $$ \int_{c}d\omega = \int_{[0, 1]^3}\(r^2 - s·r - r·t - r·t - t·s + t^2\)\, dr \wedge ds \wedge dt = $$
+            $$ = \frac{1}{3} - \frac{1}{4} - \frac{1}{4} - \frac{1}{4} - \frac{1}{4} + \frac{1}{3} = -\frac{1}{3} $$
+
+            \vskip -1em $-\frac{1}{3} = -\frac{1}{3}$, tedy Stokesova věta pro tuto krychli $c$ a tuto formu $\omega$ platí.    
+        \end{reseni}
+
+        \begin{reseni}[Výpočty levého integrálu]
+            $$ c_{r, s, 0} = \begin{cases} x = r·s \\ y = 0 \\ z = 0 \\ w = r + s + 0 \end{cases}, \hskip 2em
+            c_{r, s, 1} = \begin{cases} x = r·s & dx = r\,ds + s\,dr \\ y = s & dy = ds \\ z = r & dz = dr \\ w = r + s + 1 & dw = dr + ds \end{cases} $$
+            $$ \int_{c_{r, s, 0}}\omega = \int_{c_{r, s, 0}}… …\wedge 0 + 0\,0\wedge… = 0 $$ 
+            $$ \int_{c_{r, s, 1}}\omega = \int_{c_{r, s, 1}}(r+s+1)·(-r) + r·(-1)\, dr\wedge ds = -\frac{1}{3} - \frac{1}{4} - \frac{1}{2} - \frac{1}{2} = -\frac{19}{12} $$ 
+
+            $$ c_{r, 0, t} = \begin{cases} x = 0 \\ y = 0 \\ z = r·t \\ w = r + 0 + t \end{cases}, \hskip 2em
+            c_{r, 1, t} = \begin{cases} x = r & dx = dr \\ y = t & dy = dt \\ z = r·t & dz = r\,dt + t\,dr \\ w = r + 1 + t & dw = dr + dt \end{cases} $$
+            $$ \int_{c_{r, 0, t}}\omega = \int_{c_{r, 0, t}}… 0\wedge … + … 0\wedge… = 0 $$ 
+            $$ \int_{c_{r, 1, t}}\omega = \int_{c_{r, 1, t}}(r+1+t)·(r) + r·t·(-1)\, dr\wedge dt = \frac{1}{3} + \frac{1}{2} + \frac{1}{4} - \frac{1}{4} = \frac{5}{6} = \frac{10}{12} $$
+
+            $$ c_{0, s, t} = \begin{cases} x = 0 \\ y = s·t \\ z = 0 \\ w = 0 + s + t \end{cases}, \hskip 2em
+            c_{1, s, t} = \begin{cases} x = s & dx = ds \\ y = s·t & dy = s\,dt + t\,ds \\ z = t & dz = dt \\ w = 1 + s + t & dw = ds + dt \end{cases} $$
+            $$ \int_{c_{0, s, t}}\omega = \int_{c_{0, s, t}}… 0\wedge 0 + 0 \wedge… = 0 $$ 
+            $$ \int_{c_{1, s, t}}\omega = \int_{c_{1, s, t}}(1+s+t)·(1) + t·(t-s)\, ds\wedge dt = 1 + \frac{1}{2} + \frac{1}{2} + \frac{1}{3} - \frac{1}{4} = \frac{25}{12} $$
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[2.]
+        Definujte mapy na Grassmanniánu
+        $$ Gr_{k, n} := \{L \subseteq ®R^n \middle| L \text{ podprostor dimenze } k \} $$
+        a pro $G_{2, 3}$ ukažte, že přechodové funkce jsou difeomorfismy. Ukažte, že
+        $$ \dim Gr_{k, n} = k·(n-k). $$
+
+        \vskip -1.5em \begin{reseni}[Definování map]
+            Každé $L \in Gr_{k, n}$ má nějakou bázi $B = \(¦b_1, ¦b_2, …, ¦b_k\)$. Jelikož jsou vektory báze lineárně nezávislé, existuje posloupnost $l = \(l_i\)_{i=1}^k$ přirozených čísel $1 ≤ l_1 < l_2 < … < l_k ≤ n$ tak, že $B$ lze lineárními kombinacemi převést na $B'$ (bázi, jelikož má $k$ zjevně nezávislých vektorů)
+            $$ B' = \(¦b'_1, ¦b'_2, …, ¦b'_k\) = \(\begin{pmatrix} c_{1, 1} \\ \vdots \\ c_{l_1-1, 1} \\ 1 \\ c_{l_1, 1} \\ \vdots \\ c_{l_2 - 2, 1} \\ 0 \\ c_{l_2 - 1, 1} \\ \vdots \\ c_{l_k - k, 1} \\ 0 \\ c_{l_k - k + 1, 1} \\ \vdots \\ c_{n-k, 1} \end{pmatrix}, \begin{pmatrix} c_{1, 2} \\ \vdots \\ c_{l_1-1, 2} \\ 0 \\ c_{l_1, 2} \\ \vdots \\ c_{l_2 - 2, 2} \\ 1 \\ c_{l_2 - 1, 2} \\ \vdots \\ c_{l_k - k, 2} \\ 0 \\ c_{l_k - k + 1, 2} \\ \vdots \\ c_{n-k, 2} \end{pmatrix}, …, \begin{pmatrix} c_{1, k} \\ \vdots \\ c_{l_1-1, k} \\ 0 \\ c_{l_1, k} \\ \vdots \\ c_{l_2 - 2, k} \\ 0 \\ c_{l_2 - 1, k} \\ \vdots \\ c_{l_k - k, k} \\ 1 \\ c_{l_k - k + 1, k} \\ \vdots \\ c_{n-k, k} \end{pmatrix}\) \text{, řádky } \begin{array}{c} 1 \\ \vdots \\ l_1-1 \\ l_1 \\ l_1 + 1 \\ \vdots \\ l_2-1 \\ l_2 \\ l_2 + 1 \\ \vdots \\ l_k - 1 \\ l_k \\ l_k + 1 \\ \vdots \\ n  \end{array} $$
+
+            \vskip -1em (tedy, že na každém řádku $l_i$ je ve všech vektorech 0 kromě vektoru $¦b'_i$, kde je v tomto řádku 1, zbytek míst je vyplněn $c_{\alpha, \beta}$ pro všechna $\alpha = 1, 2, …, n-k$ a $\beta = 1, 2, …, k$).
+
+            Pro pevnou posloupnost $l$ a každé $L$, které lze vyjádřit v tomto tvaru při této volbě $l$ (označme množinu těchto $L$ jako $©L_l$), jsou čísla $c_{\alpha, \beta}$ určena jednoznačně, jelikož kdybychom našli jinou takovou bázi $B'' = (¦b''_1, …, ¦b''_k)$, která splňuje 'polohu' jedniček a nul, tak každý její prvek musí jít vyjádřit jako lineární kombinace prvků $B'$, ale to lze zjevně jen nějako $¦b''_i = 1·¦b'_i$ právě díky 'poloze' jedniček a nul. Tudíž můžeme definovat zobrazení $\phi_l: ©L_l \rightarrow ®R^{k·(n-k)}$:
+            $$ \phi_l(L) = \(c_{1, 1}, c_{1, 2}, …, c_{1, k}, c_{2, 1}, …, c_{2, k}, …, c_{n-k, 1}, …,  c_{n-k, k}\)^T. $$ 
+            Mapy tedy budou $\(©L_l, \phi_l\)$ a atlas $\{\(©L_l, \phi_l\) | l \text{ jako v prvním odstavci}\}$. (Zde by bylo ještě nutné ověřit, že obrazy průniků $©L$ jsou otevřené a že přechodové funkce jsou difeomorfismy, aby byly mapy kompatibilní, ale jelikož víme, že $\forall L$ existuje $l$ tak, abychom byly schopni získat $c_{\alpha, \beta}$, tak alespoň $\bigcup_l ©L_l = Gr_{k, n}$, což je druhá podmínka na atlas…)
+        \end{reseni}
+
+        \begin{reseni}[Difeomorfismy]
+            Předpokládejme dvě posloupnosti s prvního odstavce definice map $\lambda_1$ a $\lambda_2$. BÚNO $\lambda_1 = (0, 1)$ a $\lambda_2 = (0, 2)$. Tedy $L \in ©L_{\lambda_1} \cap ©L_{\lambda_2}$ má báze:
+            $$ B'_1 = \(\begin{pmatrix} 1 \\ 0 \\ a \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ b \end{pmatrix}\) \text{ a } B'_2 = \(\begin{pmatrix} 1 \\ c \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ d \\ 1 \end{pmatrix}\). $$
+            Z báze $B'_1$ do báze $B'_2$ lze přejít tak, že k prvnímu vektoru přičteme $-\frac{a}{b}$ násobek druhého a druhý vektor vynásobíme $\frac{1}{b}$ (pokud $b = 0$, tak zjevně $B'_2$ není báze $L$, tj. $L \notin ©L_{\lambda_2}$). Tedy $d = \frac{1}{b}$ a $c = -\frac{a}{b}$ a naopak $b = \frac{1}{d}$ a $a = -\frac{c}{d}$. Tedy přechodová funkce (BÚNO) $\psi = \phi_{\lambda_2} \circ \phi^{-1}_{\lambda_1}$ je:
+            $$ \psi((a, b)) = \(-\frac{a}{b}, \frac{1}{b}\), \hskip 4em \psi^{-1}((c, d)) = \(-\frac{c}{d}, \frac{1}{d}\). $$ 
+            Tedy je zřejmě prostá (má inverzi) a hladká (derivováním podle $b$ se zvyšuje mocnina u $b$ a přenásobuje se $-1, -2, -3, …$, derivováním podle $a$ se $d$ změní na 0 a $c$ nejdříve na zápornou mocninu $b$ a pak na nulu), stejně tak její inverze.
+        \end{reseni}
+
+        \begin{reseni}[Dimenze]
+            Zobrazení $\phi_l$ je zřejmě na $®R^{k·(n-k)}$, jelikož každá nezávislá množina vektorů určuje nějaký prostor (a nezávislé jsou díky 'jedničkám a nulám'), tedy $Gr_{k, n}$ je dimenze $k·(n-k)$, jelikož mapy jsou této dimenze.
+
+            %(Aby to byla přímo varieta dimenze $k·(n-k)$, tak $Gr_{k, l}$ s topologií danou tímto atlasem musí být Hausdorffův a musí mít spočetnou bázi. Hausdorffův je, jelikož buď jsou $L_1, L_2 \in Gr_{k, l}$ ze shodného ©L, pak je můžeme převést mapou a vzít disjunktní okolí v té souřadnici, kde se liší a převést zpět.
+
+            %Spočetnou bázi má, jelikož pro libovolné $l$ je $\phi_l$ z definice topologie (a protože je bijekce) homeomorfismus mezi $®R^{k·(n-k)}$, jež má spočetnou bázi, a $©L_$)
+        \end{reseni}
+    \end{priklad}
+
+    \pagebreak
+
+    \begin{priklad}[3.]
+        Ukažte, že tečný fibrovaný prostor $TX$ má přirozenou strukturu hladké variety. Definujte mapy na $TX$ a ukažte, že přechodové funkce jsou difeomorfismy. 
+    \end{priklad}
+
+\end{document}

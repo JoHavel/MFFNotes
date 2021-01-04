@@ -1042,7 +1042,7 @@
             $$ \rho'(x, y) = \rho(x, y) + \sum_{n=1}^∞ \min\{2^{-n}, \(\frac{1}{\rho(x, F_n)} - \frac{1}{\rho(y, F_n)}\)\}. $$
             $\rho'$ je kompatibilní s metrikou $\rho$ (cvičení). Ověříme, že $\rho'$ je úplná: Ať $(y_i)$ je cauchyovská posloupnost v $(®Y, \rho)$. Chceme ukázat, že má limitu. $\rho < \rho'$. Tedy $(y_i)$ je cauchyovská v $(®X, \rho)$. Tedy $(y_i)$ je konvergentní v $(®X, \rho)$. $y_i \rightarrow y \in ®X$. Chceme, že $y \in ®Y$ a $y_i \rightarrow y$ v $(®Y, \rho')$.
 
-            $$ \n \in ®N: \lim_{i, j \rightarrow ∞}\left| \frac{1}{\rho(y_i, F_n)} - \frac{1}{\rho(y_j, F_n)} \right| = 0 (\text{protože $(y_i)$ je $\rho'$ cauchyovská.}) $$ 
+            $$ n \in ®N: \lim_{i, j \rightarrow ∞}\left| \frac{1}{\rho(y_i, F_n)} - \frac{1}{\rho(y_j, F_n)} \right| = 0 (\text{protože $(y_i)$ je $\rho'$ cauchyovská.}) $$ 
             Tedy $\forall n \in ®N \frac{1}{\rho(y_i, F_n)}$ konvergentní a odražená od nuly (její limita není nula). Tedy $\forall n \in ®N: y \notin F_n$. Tedy $y \in ®Y$. Navíc $y_i \rightarrow y$ v $(®Y, \rho')$, protože $\rho (x, y)$ jde k 0 pro $x$ jde k $y$ a zbytek $\rho'$ je část posloupnost a zbytek konvergentní $\frac{1}{2^{-n}}$.
         \end{dukazin}
     \end{veta}
@@ -1053,10 +1053,218 @@
         \begin{dukazin}
             Spojitý obraz kompaktů je kompakt, tedy $f(®Y)$ je kompaktní, tedy uzavřená v ®Z. $f(®Y) \supseteq f(®X) = ®X$, ®X hustá v ®Z, tedy $f(®Y)$ je hustá v ®Z. Nutně $f(®Y) = ®Z$. Tedy $f(®Y \setminus ®X) \supseteq ®Z \setminus ®X$.
 
-            Obrácená inkluze sporem: $\exists y \in ®Y \setminus ®X: f(y) = x \in ®X$. Existuje otevřené okolí $U$ bodu $x$, že $y \notin \overline{U}$ $(y ≠ x)$. Ze spojitosti $f: \overline{®X \setminus U} = \overline{f^{-1}(®X \seminus U)} = f^{-1}(\overline{®X \setminus U})$
+            Obrácená inkluze sporem: $\exists y \in ®Y \setminus ®X: f(y) = x \in ®X$. Existuje otevřené okolí $U$ bodu $x$, že $y \notin \overline{U}$ $(y ≠ x)$. Ze spojitosti $f: \overline{®X \setminus U} = \overline{f^{-1}(®X \setminus U)} = f^{-1}(\overline{®X \setminus U}) \not\ni y$, tedy $y \notin \overline{®X \setminus U}$. Celkem $y \notin \overline{U} \cup \overline{®X \setminus U} = \overline{®X} = ®Y$ \lightning.
         \end{dukazin}
     \end{lemma}
 
+    \begin{tvrzeni}[Charakterizace čechovsky úplných prostorů]
+        Pro Tichonovův prostor je ekvivalentní
+
+        \begin{itemize}
+            \item[a] ®X je $G_\delta$ v $\beta®X$,
+            \item[b] ®X je $G_\delta$ v každé své kompaktifikaci,
+            \item[c] ®X je $G_\delta$ v nějaké své kompaktifikaci.
+        \end{itemize}
+        
+        \begin{dukazin}
+            a$\implies$b: Ať ®Y je libovolná kompaktifikace ®X. $\beta®X$ je největší kompaktifikace ®X, tedy existuje spojitá $f: \beta®X \rightarrow ®Y$, rozšiřující $\id_{®X}$. Víme, že $®X = \bigcap_{n=1}^∞ G_n$, $G_n$ otevřená v $\beta®X$. $®Y \setminus f (\beta®X\setminus G_n)$, ot. v ®Y. $\bigcup_{n=1}^∞ f(\beta®X\setminus G_n) = f(\beta®X \setminus ®X) = ®Y \setminus ®X$. $®X = \bigcap_{n \in ®N} (®Y \setminus f(\beta®X \setminus G_n))$, tedy ®X je $G_\delta$ v ®Y.
+
+            b$\implies$c: každý Tichonovův prostor má kompaktifikaci.
+
+            c$\implies$a: Ať ®Y je nějaká kompaktifikace ®X, že ®X je $G_\delta$ v ®Y. $®X = \bigcap G_n, G_n \text{ otevřené v }®Y$. Existuje $f: \beta®X \rightarrow ®Y$ spojité rozšíření $\id_{®X}$. $\bigcap_{n \in ®N}f^{-1}(G_n) = ®X$ (z lemmatu o přírůstku). Tedy ®X je $G_\delta$ v $\beta®X$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Čechovsky úplný]
+        Tichonovův prostor ®X se nazývá čechovsky úplný, pokud ®X je $G_\delta$ v $\beta®X$.
+    \end{definice}
+
+    \begin{upozorneni}
+        V předchozí charakterizaci nelze psát v libovolném kompaktu.
+    \end{upozorneni}
+
+    \begin{priklady}
+        Každý kompaktní Hausdorffův prostor je čechovsky úplný. Každý lokálně kompaktní Hausdorffův prostor je čechovsky úplný (má 1-bodovou kompaktifikaci).
+    \end{priklady}
+
+    \begin{veta}[Frolíhova vnitřní charakterizace čechovské úplnosti]
+            Tichonovův TP ®X je čechovsky úplný $\Leftrightarrow$ existuje posloupnost otevřených pokrytí $©U_n, n \in ®N$, že pro každý centrovaný systém uzavřených množin ©F, takový, že
+            $$ \forall n \in ®N\ \exists  F \in ©F: \exists U \in ©U_n: F \subseteq U (*), $$
+            je $\bigcap ©F ≠ \O$.
+
+% 13. 12. 2020
+
+        \begin{dukazin}
+                $\implies:$ TP ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®X$. $®X = \bigcap_{n \in ®N} G_n$, $G_n$ otevřená v $\beta ®X$. Pro $x \in ®X$ a $n \in ®N$ existuje otevřená $U_{x, n} \subseteq \beta ®X$, že $x \in U_{x, n} \subseteq \overline{U_{x, n}} \subseteq G_n$. Položme $V_{x, n} = U_{x, n}\cap ®X$ … otevřené v ®X. $©U_n := \{V_{x, n}: x \in ®X\}$ … otevřené pokrytí ®X. Ať ©F je centrovaný systém uzavřených množin splňující (*). Chceme, že $\bigcap ©F ≠ \O$. Ať $©F' := \{\overline{F}: F \in ©F\}$. $©F'$ je centrovaný systém uzavřených množin v $\beta®X$. Z charakterizace kompaktnosti je $\bigcap©F'≠\O$. Ať $x \in \bigcap©F'$. Ukážeme, že $x \in ®X$. Víme $x \in G_n, n \in ®N$. Tedy $x \in \bigcap_{n \in ®N}G_n = ®X$. $\overline{F} \cup ®X = F$ (protože $F$ je uzavřená v ®X). Proto $x \in \bigcap ©F$. Tedy $\bigcap ©F ≠ \O$.
+
+                $\Leftarrow:$ ®X splňuje druhou část věty. Pro $U \in ©U_n$ existuje otevřená množina $V_U \subseteq \beta®X$, že $®X \cap V_U = U$. $G_n := \bigcup\{V_U: U \in ©U_n\} \underset{\text{otevřená}}{\subseteq}$, $®X \subseteq G_n$. $®X \subseteq \bigcap_{n \in ®N} G_n$. Zbývá $®X \supseteq \bigcap_{n \in ®N} G_n$. Ať $x \in \bigcap_{n \in ®N} G_n$. $©F := \{®X \cap \overset{V} : V \in ©U(x)\}$. ©F je centrovaný systém uzavřených množin v ®X. Navíc splňuje i (*), tj. $\bigcap©F ≠ \O$. Ať $y \in \bigcap©F$. Ukážeme, že $y=x$. Kdyby $y ≠ x$, pak (jelikož jsme v Hausdorffově prostoru) existuje $V \in ©U(x): y \notin \overline{V} \implies y \notin \bigcap©F$. \lightning. $x=y \in ®X$. Celkově $®X = \bigcap G_n$, tedy ®X je $G_\delta$ v $\beta®X$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}[Čech]
+        Metrizovatelný prostor ®X je úplně metrizovatelný, právě když je čechovsky úplný.
+
+        \begin{dukazin}
+            $\implies:$ Ať ®X je úplně metrizovatelný a $\rho$ je úplná kompatibilní metrika. Ať $©V_n$ je soubor otevřených koulí o poloměru $2^{-n}$ (otevřené pokrytí ®X). $(®X, \rho)$ je úplný, tedy podle Cantorovy věty pro každý centrovaný systém ©F sestávající z uzavřených množin a splňující $\forall n \in ®N\ \exists F \in ©F\ \exists V \in ©V_n: F \subseteq V$, je $\bigcap©F≠\O$. Tudíž podle Frolíkovy charakterizace je ®X čechovsky úplný.
+
+            $\Leftarrow$: důkaz úplně totožný, jelikož všechno je ekvivalence.
+
+            $\Leftarrow$ druhý způsob. Ať $\rho$ je nějaká kompaktní metrika na ®X. Ať $Y$ je zúplnění $(®X, \rho)$. $\beta®Y$ je kompaktifikace ®Y, ale je to také kompaktifikace ®X (®X je v ®Y hustá a ®Y je hustá v $\beta®Y$). ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®Y$. Tedy ®X je $G_\delta$ v ®Y. Podle věty Alexandrova je $®X$ úplně metrizovatelný.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{veta}[Baire]
+        Průnik spočetně mnoha otevřených hustých podmnožin čechovsky úplného prostoru je v něm hustý.
+
+        \begin{dukazin}
+                Ať $G_n, n \in ®N$ je otevřená hustá v ®X. Ať $©U_n$ jsou otevřené pokrytí z Frolíkovy charakterizce. Ať $G ≠ \O$ otevřená. Chceme $\bigcap G_n \cap G ≠ \O$. Indukcí nalezneme pro každé $n \in ®N$ uzavřenou množinu $F_n \subseteq ®X$ s neprázdným vnitřkem, že $F_{n+1} \subseteq F_n, F_n \subseteq G_n \cap G$ a že $\exists U_n \in ©U_n: F_n \subseteq U_n$. $\{F_n| n \in ®N\}$ je centrovaný systém uzavřených množin a podle Frolíkovy charakterizace $\bigcap F_n ≠ \O$, $\bigcap F_n \subseteq G \cap \bigcap_{n \in ®N} G_n$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Zachování čechovské úplnosti operacemi]
+        Čechovská úplnost se zachovává spočetnou sumou, spočetným součinem a uzavřeným podprostorem.
+
+        \begin{dukazin}
+            Ať $®X_i, i \in ®N$ jsou čechovsky úplné. $®X_i = \bigcap_{n \in ®N}G_{i, n}$, $G_{i, n}$ otevřené v $\beta®X_i$.
+
+            $\bigoplus_{i \in ®N} ®X_i \subseteq \bigoplus_{i \in ®N} \beta®X_i$ … lokálně kompaktní. Tedy můžeme uvažovat jednobodovou kompaktifikaci $\alpha(\bigoplus \beta®X_i) \supseteq \bigoplus_{i \in ®N} \beta®X_i$. $\bigoplus_{i \in ®N} \beta®X_i$ je otevřená v $\alpha(\bigoplus \beta®X_i)$. $\bigoplus®X_i = \bigcap_{n \in ®N} \underbrace{\bigcup_{i \in ®N} G_{i, n}}_{\text{otevřená v $\bigoplus\beta®X_i$, otevřená v $\alpha(…)$}}$ … je $G_\delta$ v $\alpha(…)$. Tedy $\bigoplus ®X_i$ je čechovsky úplný.
+
+            Pro součin obdobně (dokonce můžeme vynechat $\alpha$).
+
+            Ať $F \subseteq ®X$ uzavřená, $®X = \bigcap G_n$, $G_n \subseteq \beta ®X$ otevřené. $F \subseteq \overline{F}$ je kompaktifikace $F$. $F = F\cap ®X = F \cap \bigcap_{n \in ®N} G_n = \overline{F} \cap \bigcap_{n \in ®N} G_n = \bigcap \overline{F} \cap G_n$ jsou otevřené v $\overline{F}$. Tedy $F$ je čechovsky úplný.
+        \end{dukazin}
+    \end{tvrzeni}
+
+% 20. 12. 2020
+
+\section{Uniformní prostory}
+    Weil 1936 a Tukey 1940
+
+    \begin{poznamka}
+        Pro množinu $X$ značíme $\triangle(X) = \{(x, x): x \in ®X\}$.
+
+        Pro $E \subseteq X \times X$ označíme $E^{-1} = \{(y, x)| (x, y) \in E\}$.
+
+        Pro $C, D \subseteq X \times X$, $C \circ D = \{(x, z)| \exists y \in X: (x, y) \in C \land (y, z) \in D\}$.
+
+        Pro $E \subseteq X \times X$, $x \in X$, $E[x] = \{y \in X: (x, y) \in E\}$.
+    \end{poznamka}
+    
+    \begin{definice}[Uniformní prostor]
+        Dvojice $(®X, ©D)$ se nazývá uniformní prostor, pokud ®X je množina a $©D \subseteq ©P(®X \times ®X)$ (tj. ©D je soubor binárních relací na ®X), $©D ≠ \O$ a splňuje:
+        \begin{itemize}
+            \item $\forall D \in ©D: \triangle(®X) \subseteq D$,
+            \item $\forall C, D \in ©D: C \cap D \in ©D$,
+            \item $\forall D \in ©D\ \exists C \in ©D: C \circ C \subseteq D$ („$\frac{\epsilon}{2}$“),
+            \item $\forall D \in ©D: D^{-1} \in ©D$,
+            \item $\forall D \in ©D\ \forall C \subseteq ®X \times ®X, C \supseteq D: C \in ©D$,
+            \item $\forall x, y \in ®X, x≠y\ \exists D \in ©D: (x, y) \notin D$. (Občas se neuvádí, pak se definují tzv. separované uniformní prostory, které ji mají navíc.)
+        \end{itemize}
+
+        Systém ©D se nazývá uniformita na ®X. Prvky ©D se nazývají okolí diagonály.
+    \end{definice}
+
+    \begin{poznamka}
+        Poslední podmínka je ekvivalentní podmínce $©D = \triangle(®X)$.
+    \end{poznamka}
+
+    \begin{definice}[Báze a subbáze]
+        Systém $©B \subseteq ©P(®X \times ®X)$ se nazývá báze uniformity (resp. báze uniformity ©D), pokud uzavřením $©B$ na nadmnožiny dostaneme nějakou uniformitu (resp. uniformitu ©D).
+
+        Systém $©S \subseteq ©P(®X \times ®X)$ se nazývá subbáze uniformity (resp. subbáze uniformity ©D), pokud konečné průniky prvků z ©S tvoří bázi uniformity (resp. bázi uniformity ©D).
+    \end{definice}
+
+    \begin{definice}[Uniformní / stejnoměrně spojité zobrazení]
+        Zobrazení $f: (®X, ©D) \rightarrow (®Y, ©E)$ se nazývá uniformní (nebo stejnoměrně spojité), pokud $(f \times f)^{-1}(E) \in ©D$, pro každé $E \in ©E$. ($\Leftrightarrow \forall E \in ©E\ \exists D \in ©D: (x, y) \in D \implies (f(x), f(y)) \in E$.)
+    \end{definice}
+
+    \begin{definice}[Uniformní izomorfismus]
+        Zobrazení $f: (®X, ©D) \rightarrow (®Y, ©E)$ se nazývá uniformní izomorfismus, jestliže $f$ je bijekce a $f$ i $f^{-1}$ jsou uniformní zobrazení.
+    \end{definice}
+
+    \begin{lemma}
+        Ať $X$ je množina. Systém $©B \subseteq ©P(X \times X)$ tvoří bázi nějaké uniformity na $X$, pokud
+        \begin{itemize}
+            \item $\bigcap ©B = \triangle(X)$,
+            \item $\forall C, D \in ©B\ \exists E \in ©B: E \subseteq C \cap D$,
+            \item $\forall D \in ©B\ \exists C \in ©B: C \circ C \subseteq D$,
+            \item $\forall D \in ©B\ \exists E \in ©B: E \subseteq D^{-1}$.
+        \end{itemize}
+
+        \begin{dukazin}
+            Bez důkazu. (Důkaz přímočarý.)
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{priklady}
+        Diskrétní uniformita na množině $X$ -- $©D = \{D \in ©P(X \times X)| \triangle(X) \subseteq D\}$. (Samozřejmě lze definovat i indiskrétní uniformitu $©D = \{X \times X\}$, ale tu nebudeme používat).
+    \end{priklady}
+
+    \begin{tvrzeni}[Vytvoření UP z MP a TP z UP]
+        Je-li $(®X, \rho)$ MP a $D_\epsilon = \{(x, y) \in ®X \times ®X: \rho(x, y) < \epsilon\}$, pak $\{D_\epsilon | \epsilon > 0\}$ je báze nějaké uniformity $©D_\rho$ na ®X. (Tato uniformita se nazývá generovaná metrikou $\rho$.)
+
+        Je-li $(®X, ©D)$ UP, pak systém $\tau_{©D} = \{A \subseteq ®X | \forall x \in A\ \exists D \in ®D: D[x] \subseteq A\}$ je topologie na ®X a pro každé $x \in ®X$ tvoří systém $\{D[x]: D \in ©D\}$ bázi okolí v bodě $x$ (při topologii $\tau_{©D}$). (Topologie $\tau_{©D}$ se nazývá generovaná uniformitou $©D$.) (Topologii lze definovat i za pomocí okolí )
+
+        Je-li $(®X, ©D)$ (separovaný) UP, pak $®X, \tau_{©D}$ je Hausdorffův TP.
+
+        $(®X, \rho) \rightarrow (®X, ©D_\rho) \rightarrow (X, \tau_{©D_\rho})$ je totéž jako $(®X, \rho) \rightarrow (®X, \tau_\rho)$.
+
+        \begin{dukazin}
+            Vynechán.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}
+        UP $(®X, ©D)$ je metrizovatelný, pokud na ®X existuje metrika $\rho$, že $©D = ©D_\rho$.
+
+        TP $(®X, \tau)$ je uniformizovatelný, pokud na ®X existuje uniformita ©D tak, že $\tau = \tau_{©D}$.
+    \end{definice}
+
+    \begin{priklady}
+        Diskrétní TP je uniformizovatelný, ale může být generován nediskrétní uniformitou.
+    \end{priklady}
+
+    \begin{veta}[Metrizovatelnost UP]
+        UP $(@X, ©D)$ je metrizovatelný $\Leftrightarrow$ UP $(®X, ©D)$ má spočetnou bázi.
+
+        \begin{dukazin}
+            Na topologii 2.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Operace s UP a zobrazeními]
+        Podobně jako u TP můžeme definovat podprostor, sumu, součin a kvocient UP.
+    \end{poznamka}
+
+    \begin{definice}[Net]
+        Net $(x_i)_{i \in I}$ v UP $(®X, ©D)$ se nazývá cauchyovský, pokud $\forall D \in ©D\ \exists i_0 \in I\ \forall i, j ≥ i_0: (x_i, x_j) \in D$.
+
+        UP $(®X, ©D)$ je úplný, pokud každý cauchyovský net v $(®X, ©D)$ je konvergentní v $(®X, \tau_{@D})$.
+    \end{definice}
+
+    \begin{poznamka}
+        Metrický prostor $(®X, \rho)$ je úplný $\Leftrightarrow$ $(®X, ©D_\rho)$ je úplný.
+    \end{poznamka}
+
+    \begin{definice}[Totální omezenost]
+        UP $(®X, ©D)$ se nazývá totálně omezený, pokud $\forall E \in ©D\ \exists K \subseteq ®X$ konečná: $E[K] = \bigcup_{x \in K} E[x] = ®X$.
+    \end{definice}
+
+    \begin{poznamka}
+        Metrický prostor $(®X, \rho)$ je totálně omezený $\Leftrightarrow$ $(®X, ©D_\rho)$ je totálně omezený.
+    \end{poznamka}
+
+    \begin{veta}
+        Buď $(®X, ©D)$ UP. Pak $(®X, \tau_{©D})$ je kompaktní $\Leftrightarrow$ $(®X, ©D)$ je úplný a totálně omezený.
+
+        \begin{dukazin}
+            Není přímočarý. Vynechán.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Uniformita na kompaktu]
+        Na každém kompaktním Hausdorffově TP existuje právě jedna uniformita, která generuje tuto topologii.
+    \end{veta}
 
 
 \end{document}

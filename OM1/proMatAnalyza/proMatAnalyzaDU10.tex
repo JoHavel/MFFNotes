@@ -1,0 +1,31 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[Teoretický příklad 10]
+    Nechť
+    $$ f(x) = \left\lfloor x^2 \right\rfloor \sin(πx), \hskip 2em x \in ®R. $$
+    Ve kterých bodech je $f$ spojitá a ve kterých nespojitá?
+
+    \begin{reseni}
+        Nejdříve ukážeme, že je funkce lichá:
+        $$ f(-x) = \left\lfloor (-x)^2 \right\rfloor \sin(π(-x)) = \left\lfloor x^2 \right\rfloor ·\(-\sin(πx)\) = -\left\lfloor x^2 \right\rfloor ·\sin(πx) = -f(x), $$
+        tudíž spojitost řešíme jen pro $x \in ®R^+_0$, na záporné poloose bude symetricky.
+
+        Pro lepší popis nespojitostí zadefinujme (pro nezáporná $y$)
+        $$ g(y) = f(\sqrt{y}) = \left\lfloor y \right\rfloor ·\(-\sin(π\sqrt{y})\), $$
+        tj. $g$ je spojitá v $y$ právě tehdy, když $f$ je spojitá v $\sqrt{y}$. Nyní je zřejmé, že $g$ je na intervalech $(k, k+1)$ pro $k \in ®N_0$ spojitá, jelikož $\forall y \in (k, k+1)$ je $g(y) = k·\sin(\pi \sqrt{y})$ a odmocnina, konstanta i sinus jsou spojité funkce, tedy jejich složení / násobení je také spojité. Zároveň pro každé $k \in ®N_0$ je $g$ v bodě $k$ spojitá zprava ze stejného důvodu.
+
+        Nás tedy zajímá pouze spojitost zleva v bodech $k \in ®N$, jelikož jinak je $g$ spojitá. Na levém $\epsilon < 1$ okolí $k$ je
+        $$ g(y) = (k-1)·\sin(\pi·\sqrt{y}) \overset{y \rightarrow k}{\longrightarrow} (k-1)·\sin(\pi·\sqrt{k}). $$
+        Tudíž spojitá bude právě v těch bodech $k$, kde $(k-1)·\sin(\pi·\sqrt{k}) = g(k) = k·\sin(\pi·\sqrt{k})$. Vytknutím sinu dostaneme $(k-k-1)\sin(\pi·\sqrt{k}) = \sin(\pi·\sqrt{k}) = 0$. Ale my víme, že $\sin(z) = 0$ nastává právě v případě, že $z = l\pi, l\in ®Z$. Tedy $g$ bude spojitá právě v těch $k$, kde $\sqrt{k} \in ®N$.
+
+        Funkce $f$ je tedy spojitá na všech bodech ®R, kromě $±\sqrt{k} \notin ®Z, k \in ®N$ (v nule je spojitá, protože je spojitá zprava a lichá, tedy i spojitá zleva).
+
+    \end{reseni}
+\end{priklad}
+
+\end{document}

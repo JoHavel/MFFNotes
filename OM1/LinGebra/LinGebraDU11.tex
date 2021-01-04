@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+% \renewcommand{\baselinestretch}{0.7}
+\renewcommand{\arraystretch}{1.2}
+
+\let\oldbinom\binom
+\def\binom#1#2{\mathchoice{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}{\oldbinom{#1}{#2}}{}{}}
+
+\begin{document}
+
+    \begin{priklad}[11.1]
+        Víme, že $B, C, D$ jsou báze prostoru $®R^2$, $f: ®R^2 \rightarrow ®R^2$ je lineární zobrazení a $x \in ®R^2$. Dále víme, že platí
+        $$ [x]_B = \binom{x1}{x2}, \hskip 2em [f]^B_C = \begin{pmatrix} 2 & 3 \\ 3 & 1 \end{pmatrix}, \hskip 2em [f]^D_C = \begin{pmatrix} \phantom{-}1 & 3 \\ −1 & 5 \end{pmatrix}. $$
+        Určete $[x]_D$ (v závislosti na $x_1$ a $x_2$).
+
+        \begin{reseni}
+            Ze skládání lineárních funkcí víme, že $[f]^B_C = [f]^D_C·[id]^B_D$, a z definice matice přechodu, že $[x]_D = [id]^B_D·[x]_B$. Tedy nám stačí najít $[id]^B_D$, tedy najít $a, b, c, d$ tak, že
+            $$ \begin{pmatrix} 2 & 3 \\ 3 & 1 \end{pmatrix} = \begin{pmatrix} \phantom{-}1 & 3 \\ −1 & 5 \end{pmatrix}·\begin{pmatrix} a & b \\ c & d \end{pmatrix} = \begin{pmatrix} \phantom{-}a + 3c & \phantom{-}b + 3d \\ -a+5c & -b + 5d \end{pmatrix}, $$
+            $$ 2 = a + 3c, \hskip 2em 3 = b + 3d, \hskip 2em 3 = -a + 5c, \hskip 2em 1 = -b + 5d. $$ 
+
+            Vyřešíme SLR\footnote{Nebo najdeme inverzní matici k $[f]^D_C$, čímž můžeme použít $[x]_D = \([f]^D_C\)^{-1}·[f]^B_C·[x]_B$, což můžeme bez dalšího počítání použít např. v Matlabu.} a získáme $c = \frac{5}{8}$, $a = \frac{1}{8}$, $d = \frac{1}{2}$ a $b = \frac{3}{2}$. Nyní už můžeme vyjádřit $[x]_D$:
+            $$ [x]_D = [id]^D_B·[x]_B = \begin{pmatrix} \frac{1}{8} & \frac{3}{2} \\ \frac{5}{8} & \frac{1}{2} \end{pmatrix} \binom{x_1}{x_2} = \binom{\frac{1x_1}{8} + \frac{3x_2}{2}}{\frac{5x_1}{8} + \frac{1x_2}{2}}. $$ 
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[11.2]
+        Nechť $f: ¦V \rightarrow ¦W$ je lineární zobrazení mezi konečně generovanými prostory nad tělesem ®T, $¦v_1, …, ¦v_k \in V$, $U \subseteq V$. Rozhodněte, která z následujících implikací (obecně) platí:
+        \begin{itemize}
+            \item Je-li $\(¦v_1, …, ¦v_k\)$ lineárně nezávislá posloupnost ve ¦V, pak je $\(f\(¦v_1\), …, f\(¦v_k\)\)$ lineárně nezávislá posloupnost v ¦W.
+            \item Je-li $\(f\(¦v_1\), …, f\(¦v_k\)\)$ lineárně nezávislá posloupnost v ¦W, pak je $\(¦v_1, …, ¦v_k\)$ lineárně nezávislá posloupnost ve ¦V.
+            \item Je-li $U$ podprostorem prostoru ¦V, pak je $f(U) = \{f(¦u): ¦u \in U\}$ podprostorem prostoru ¦W.
+            \item Je-li $f(U)$ podprostorem prostoru ¦W, pak je $U$ podprostorem prostoru ¦V.
+        \end{itemize}
+
+        \begin{reseni}
+            \ 
+            \begin{itemize}
+                \item Obecně neplatí, např. každá projekce (jež není bijekcí, tedy např. projekce z roviny do přímky) sníží dimenzi, tedy zobrazí bázi na závislou posloupnost vektorů.
+                \item Obecně platí, neboť pokud by vzor nebyl lineárně nezávislý, pak lze jeden z jeho vektorů vyjádřit jako lineární kombinaci ostatních, ale z linearity $f$ pak lze takto vyjádřit i obraz tohoto vektoru za pomoci obrazů ostatních vektorů, tedy jsme dokázali obměnu implikace $\implies$ implikace platí.
+                \item Obecně platí, jelikož $f(U)$ je podmnožinou W a je uzavřené na součet a součin z linearity $f$, neboť $f(¦x) + f(¦y) = f(¦x+¦y)$ a $t·f(¦x) = f(t·¦x)$ pro všechna $¦x, ¦y \in U$, $t \in ®T$ (a z toho, že $U$ je podprostor víme, že $¦x + ¦y, t·¦x \in U$).
+                \item Obecně neplatí, jelikož když vezmeme libovolnou projekci jako v prvním bodě, odstraněním libovolného 1 bodu ve vzoru se obraz nezmění, protože každý bod obrazu má jistě více vzorů.
+            \end{itemize}
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+    \let\a\alpha
+
+    \begin{priklad}[11.*]
+        Nechť ¦V je konečně generovaný prostor a $B = \(¦v_1, …, ¦v_n\)$ je báze ¦V. Nechť $f_1, …, f_n$ jsou lineární formy určené vztahy $f_i(¦v_j) = \delta_{ij}$ pro každé $i, j \in \{1, 2, …, n\}$. Ukažte, že $B^d = \(f_1, …, f_n\)$ tvoří bázi $¦V^d$, je to tzv. duální báze k $B$. Dále dokažte, že pro libovolnou formu $f \in ¦V^d$ platí $[f]^B = \([f]_{B^d}\)^T$.
+
+        Dále nechť $g: ¦V \rightarrow ¦W$ je lineární zobrazení mezi konečně generovanými prostory, $B$ je báze ¦V a $C$ je báze ¦W. Zobrazení $g^d: W^d \rightarrow V^d$ definujeme vztahem $g^d(f) = f g$ (pro každé $f \in W^d$). Dokažte, že $g^d$ je lineární zobrazení $¦W^d \rightarrow ¦V^d$ a platí
+        $$ \[g^d\]^{C^d}_{B^d} = \([g]^B_C\)^T $$
+        
+        \begin{dukazin}[Duální báze]
+            Pokud se nepletu, $¦V^d$ jsme nikde nepotkali, tedy ověřujeme jen, že $B^d$ je LN. Můžeme si všimnout, že z definice je $[f_i]^B = (\underbrace{0, 0, 0,}_{i-1} 1, \underbrace{0, 0, 0, 0}_{\dim(¦V) - i}) $ (tj. že jednička je na $i$-té pozici), jelikož $B$ je LN, tedy vektor $¦v_i$ lze vyjádřit právě jedním (tímto) způsobem jako lineární kombinace ostatních, a jelikož lineární zobrazení (v závislosti na nějaké bázi) lze vyjádřit jako matici, a toto je tudíž jediná matice, která vyhovuje definici.
+
+            $\[f_i\]^B$ jsou tedy transponované vektory kanonické báze, tudíž jsou lineárně nezávislé\footnote{Protože můžu nejdříve transponovat vektory a potom spočítat výraz, nebo nejdříve spočítat výraz a výsledek pak transponovat a dostanu to samé, tedy transpozice je lineární zobrazení.}. $f \rightarrow [f]^B$ je jistě lineární zobrazení, tedy vzor $f_i$ LN posloupnosti $\[f_i\]^B$ v tomto zobrazení bude také lineárně nezávislý (podle druhého bodu předchozího příkladu). Tedy je bází.
+
+            $f$ je lineární zobrazení z ¦V do ®R, tedy $[f]^B$ lze vyjádřit nějakou maticí ('vektorem') $\(\a_1, \a_2, …, \a_{\dim(¦V)}\) = \a_1·\[f_1\]^B + \a_2·\[f_2\]^B + … + \a_{\dim(¦V)}·\[f_{\dim(¦V)}\]^B $.  A jelikož je zobrazení $f \rightarrow [f]^B$ lineární, lze $f$ zapsat jako $\a_1·f_1 + \a_2·f_2 + … + \a_{\dim(¦V)}·f_{\dim(¦V)}$, jinými 'slovy' $[f]_{B^d} = \(\a_1, \a_2, …, \a_{\dim(¦V)}\)^T$. A jelikož je transpozice sama k sobě inverzní operací, tak jsme dokázali $[f]^B = \([f]_{B^d}\)^T$.
+        \end{dukazin}
+
+        \begin{dukazin}[Duální zobrazení]
+            Přenásobme rovnici, kterou chceme dokázat, libovolným $[f]_{C^d}$ zprava (tj. aplikovat obě strany jako zobrazení na vektor $[f]_{C^d}$) a dostaneme
+            $$ \[g^d\]^{C^d}_{B^d}·[f]_{C^d} = \([g]^B_C\)^T·[f]_{C^d}. $$
+            Z první části již víme, že $[f]_{C^d} = \([f]^C\)^T$ (transponování je inverzní samo k sobě), tj.~předchozí rovnice se dá přepsat jako
+            $$ \[g^d\]^{C^d}_{B^d}·[f]_{C^d} = \([g]^B_C\)^T·\([f]^{C}\)^T. $$
+            Také víme, že $X·Y = \(X^T·Y^T\)^T$, tudíž můžeme pokračovat v přepisování na tvar
+            $$ \[g^d\]^{C^d}_{B^d}·[f]_{C^d} = \([f]^C·[g]^B_C\)^T. $$
+            Vpravo je nyní skládání lineárních zobrazení, vlevo aplikace lineárního zobrazení na vektor, tedy máme
+            $$ \[g^d(f)\]_{B^d} = \([f g]^B\)^T. $$
+            Ale toto jsou vyjádření vektorů z $¦V^d$, tedy můžeme aplikovat znovu první část příkladu a získat tak
+            $$ \[g^d(f)\]_{B^d} = [f g]_{B^d}, $$
+            což už vyplývá z definice $g^d(f) = f g$. Jestliže ale 2 zobrazení dávají schodný obraz pro libovolný vzor, pak jsou totožná, tedy jsme dokázali rovnost ze zadání.
+
+        \end{dukazin}
+    \end{priklad}
+
+\end{document}
