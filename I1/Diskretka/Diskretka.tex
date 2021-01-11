@@ -978,8 +978,7 @@
     \begin{definice}[Střední hodnota]
         Střední hodnota (expected value) náhodné veličiny $X$ v diskrétním prostoru je
         $$ ®E[X]:=\sum_{\omega \in \Omega} P(\omega)·X(\omega). $$
-
-        (V nekonečných pravděpodobnostních prostorech nemusí existovat.)
+        \vskip -2em (V nekonečných pravděpodobnostních prostorech nemusí existovat.)
     \end{definice}
 
     \begin{veta}[O linearitě střední hodnoty]
@@ -989,6 +988,43 @@
 
         \begin{dukazin}
             Triviální rozepsáním.
+        \end{dukazin}
+    \end{veta}
+
+% 4. 1. 2021
+
+    \begin{priklad}
+        $\Omega = \{0, 1\}^n, X := \#1$ v posloupnosti. $®E[X] = ?$.
+
+        \begin{reseni}
+            Zadefinujeme $X_i = 1$, když na $i$-té pozici je 1, 0 jinak, jako náhodnou veličinu. Následně víme, že $X = \sum_i X_i$ a $®E[X] = \sum_i ®E[X]$. Ale $®E[X_i] = 0·\frac{1}{2} + 1·\frac{1}{2} = \frac{1}{2}$. Tedy $®E[X] = n·\frac{1}{2}$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{poznamka}
+        Předchozí řešení využívá tzv. indikátorů (náhodná veličina, která je 1, když jev nastal, a 0, když nenastal).
+    \end{poznamka}
+
+    \begin{definice}[Rozdělení]
+        Rozdělení náhodné veličiny $X$ je funkce, která přiřazuje každému reálnému číslo pravděpodobnost, že ho náhodný jev nabývá:
+        $$ Q: ®R \rightarrow [0, 1], Q(a) := P[X=a] = \sum_{\omega \in \Omega, X(\omega) = a} P(\omega). $$ 
+
+        Hlavně pro spojité prostory se spíše definuje distribuční funkce $D(a) := P[X ≤ a]$.
+    \end{definice}
+
+    \begin{poznamka}
+        $®E[X] = \sum_\omega X(\omega)·P(\omega) = \sum_{a \in ®R} a·P[X=a]$, tj. střední hodnota je jednoznačně dána rozdělením.
+    \end{poznamka}
+
+    \begin{veta}[Markovova nerovnost]
+        Je-li ®X nezáporná náhodná veličina a $k > 0$, pak
+        $$ P[X ≥ k·®E[X]] ≤ \frac{1}{k}. $$ 
+        
+        \begin{dukazin}
+            Pro libovolné $t > 0$ platí
+            $$ ®E[X] = \sum_{a \in ®R} a·P[X=a] = \sum_{a<t} a·P[X=a] + \sum_{a≥t}a·P[X=a] ≥ $$
+            $$ ≥ 0 + \sum_{a≥t} t·P[X=a] = t·\sum_{a≥t} P[X=a] \implies \frac{®E[x]}{t} ≥ P[X ≥ t]. $$ 
+            Zvolíme $t := k·®E[X]$ a dostaneme nerovnost z věty.
         \end{dukazin}
     \end{veta}
 

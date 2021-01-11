@@ -499,9 +499,35 @@
                     $$ g(x+y) = g(x)+g(y), g(0) = f(0) - 0 = 0 \implies g(r) = rg(0) = 0, \forall r \in ®Q. $$
                     Nechť $x \in (-\epsilon, \epsilon)$. Pak $\exists r \in ®Q, x+r \in (a, b)$. Tedy $g(r) = f(r) - f(1)r = 0$ a $g(x) = g(x) + g(r) = g(x+r) = f(x+r) - f(1)·(x+r)$. $f(x+r)$ je shora omezená z předpokladů, $f(1)·(x+r)$ zřejmě. Tedy $g$ je shora omezená na epsilonovém okolí 0, tedy i $f$ je shora omezená na epsilonovém okolí 0, a protože je lichá, tak je i sdola omezená.
 
-                    Krok 2: z definice spojitosti je tato funkce tedy spojitá v 0.
+                    Krok 2: z definice spojitosti a linearity je tato funkce tedy spojitá v 0.
+
+                \item Pokud je monotónní, pak je omezená na intervalu např. $[0, 1]$, tedy dále postupujeme podle bodu (ii).
             \end{itemize}
         \end{dukazin}
     \end{veta}
+
+% 4. 1. 2021
+
+    \begin{priklad}
+        Najděte všechny funkce $f: ®R \rightarrow ®R$ spojité, splňující $f(1)>0, f(x+y) = f(x)f(y)$.
+
+        \begin{reseni}
+            $$ f(x) = f\(\frac{x}{2} + \frac{x}{2}\) = \(f\(\frac{x}{2}\)\)^2 ≥ 0 $$ 
+            Pokud $f\(x_0\) = 0$ pro nějaké $x_0 \in ®R$, pak $f(x) = f\(x-x_0\)·0 = 0$ \lightning.
+
+            Tedy $f(x) > 0$. Tedy můžeme 'zlogaritmovat': $g(x) = \log f(x)$ spojitá na ®R a
+            $$ g(x+y) = \log f(x+y) = \log f(x) + \log f(y) = g(x) + g(y). $$
+
+            Tudíž $g(x) = ax$ pro nějaké $a \in ®R$. Tudíž $f(x) = e^{ax} = \(e^a\)^x = b^x$, pro $b \in ®R$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}
+        Najděte všechny spojité $f: ®R \rightarrow ®R$ takové, že $x - y \in ®Q \implies f(x) - f(y) \in ®Q$.
+
+        \begin{reseni}
+                $g(x) = f(x+1) - f(x)$ spojitá. $H(g) \subseteq ®Q \implies g$ je konstantní. Potom při označení $f(0) = r$ je $f(z) = r + zq$, pro libovolné $. z \in ®Z$. Obdobně to dokážeme pro jiné konstanty v $g$ než 1 a že $f\(\frac{n}{m}\) = r+\frac{n}{m}q$, takže ze spojitosti $f(x) = r + qx$ pro $q \in ®Q$, $r \in ®R$.
+        \end{reseni}
+    \end{priklad}
 
 \end{document}

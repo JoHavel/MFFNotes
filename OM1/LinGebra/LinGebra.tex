@@ -1262,6 +1262,147 @@
         Parita počtu transpozic, na které rozložím permutaci, je vždy stejná.
     \end{poznamka}
 
+% 5. 1. 2021
 
+    \begin{tvrzeni}
+        Buď $X$ konečna, $\pi = \pi_1 \circ … \circ \pi_l$ a $x≠y$, $x, y \in X$. Pak počet cyklů v obdobném zápisu $(xy)\circ\pi$ je $l±1$ a počty sudých cyklů v zápisu $\pi$ a $(xy)\circ \pi$ se také liší o 1.
+
+        \begin{dukazin}
+            2 možnosti: $x, y$ jsou ve stejném cyklu $\pi_i$. BÚNO $i = 1$, 
+            $$\pi = \(x_1, …, x_l, y_1, …, y_m\) \implies (x y) \circ \pi = \(x_1, …, x_l\)(y_1, …, y_m)\pi_2,…,\pi_k. $$
+            Očividně se buď z lichého cyklu stal sudý a lichý, nebo ze sudého 2 liché, nebo ze sudého 2 sudé, tedy počet sudých cyklů se změní o 1.
+
+            Obdobně pokud byly v různých, tak se cykly spojí…
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Je-li $X$ konečná množina a $\pi = (x_1y_1) \circ … \circ (x_ky_k)$, pak nastane právě 1 z následujících možností: cyklický zápis $\pi$ má sudý počet cyklů sudé délky a $k$ je sudé, nebo cyklický zápis $\pi$ má lichý počet cyklů sudé délky a $k$ je liché.
+    \end{dusledek}
+
+    \begin{definice}[Znaménko permutace]
+        $\sgn(\pi)$ je 1 v prvním případě (a permutaci se říká sudá) a -1 v druhém (lichá).
+    \end{definice}
+
+    \begin{tvrzeni}
+        $\sgn(\id_X) = 1$, $\sgn(\pi^{-1}) = \sgn(\pi)$, $\sgn(\pi\circ \rho) = \sgn(\pi)·\sgn(\rho)$.
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Počet sudých / lichých permutací na množině velikosti $n \in ®N \setminus \{1\}$ je polovina všech.
+    \end{tvrzeni}
+
+    \subsection{Determinant}
+        \begin{definice}[Determinant]
+            Buď $A = (a_ij)$ čtvercová matice řádu $n$ nad ®T. Pak determinant $A$ je následující prvek ®T:
+            $$ \det(A) = \left|\begin{array}{ccc} a_{11} & … & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{n1} & … & a_{nn} \end{array}\right| = \sum_{\pi \in S_n} \sgn(\pi)·a_{\pi(1), 1}·a_{\pi(2), 2}·…·a_{\pi(n), n}. $$ 
+        \end{definice}
+
+        \begin{poznamka}[Základní vlastnosti]
+            $\sum_{\pi \in S_n} \sgn(\pi)·a_{1, \pi(1)}·a_{2, \pi(2)}·…·a_{n, \pi(n)}$.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Buď ®T těleso, $n \in ®N$, $¦v_1, …, ¦v_n, ¦u \in ®T^n$, $t \in ®T$. Pak platí:
+            $$ \forall i: \det\(¦v_1|…|¦v_{i-1}|¦v_i + ¦u|¦v_{i+1}|…|¦v_n\) = \det\(¦v_1|…|¦v_{i-1}|¦u|¦v_{i+1}|…|¦v_n\) + \det\(¦v_1|…|¦v_{i-1}|¦v_i|¦v_{i+1}|…|¦v_n\), $$ 
+            $$ \det\(¦v_1|…|¦v_{i-1}|t¦v_i|¦v_{i+1}|…|¦v_n\) = t\det\(¦v_1|…|¦v_{i-1}|¦v_i|¦v_{i+1}|…|¦v_n\), $$ 
+            $$ \rho \in S_n: \det\(¦v_{\rho(1)}|…|¦v_{\rho(n)}\) = \sgn(\rho)·\det\(¦v|…|¦v_n\), $$
+            $$ v_i = v_j, i ≠ j \implies \det\(¦v_1|…|¦v_n\) = 0, $$
+            $$ i ≠ j \implies \det\(¦v_1|…|¦v_{i-1}|¦vi + t¦v_j|¦v_{i+1}|…|¦v_n\) = \det\(¦v_1|…|¦v_n\) = 0. $$ 
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Je-li $A = (a_{ij})$ horní / dolní trojúhelníková, pak $\det(A) = a_{11}·a_{22}·…·a_{nn}$.
+        \end{tvrzeni}
+
+% 7. 1. 2021
+
+        \begin{tvrzeni}
+            Buď $A$ čtvercová matice nad ®T. Pak $A$ je regulární $\Leftrightarrow$ $\det(A) ≠ 0$.
+
+            \begin{dukazin}
+                Upravíme do odstupňovaného tvaru, tím se nulovost nezmění. Pak je nulovost ekvivalentní s tím, že na diagonále jsou prvky nenulové, což je ekvivalentní s tím, že $A$ je regulární.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}
+            Buď $A$ matice typu $m \times n$ nad ®T. Pak minor matice $A$ řádu $k ≥ 1$ je determinant čtvercové matice řádu $k$, která vznikne z $A$ vypuštěním některých řádků a sloupců.
+        \end{definice}
+
+        \begin{tvrzeni}
+            $A$ matice typu $m \times n$ nad ®T. Pak hodnost $A$ je rovna největšímu $k ≥ 1$ takovému, že nějaký minor řádu $k$ je $≠0$.
+
+            \begin{dukazin}[Náznak]
+                Pro odstupňovaný tvar tvrzení zřejmě platí a hodnost ani nulovost determinantu (tedy ani $k$) se nemění EŘÚ.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}[Determinanty elementárních úprav]
+            Determinant vynásobení řádku $t$ je $t$, přičtení násobku řádku je 1 a prohození řádků je $-1$.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Pokud $A$ je čtvercová matice a $E$ je elementární matice, obě řádu $n$. Pak $\det(EA) = \det(E)·\det(A)$.
+
+            \begin{dukazin}
+                Jednoduše z předchozí poznámky.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buďte $A, B$ čtvercové matice řádu $n$ nad ®T. Pak $\det(A·B) = \det(A)·\det(B)$.
+
+            \begin{dukazin}
+                Pokud $A$ je regulární, pak se dá podle tvrzení T4.88 rozepsat jako součin elementárních matic a indukcí roznásobit. Jinak ani $A·B$ není regulární a tedy $A$ i $A·B$ mají nulový determinant.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            $\det(A^{-1}) = \(\det(A)\)^{-1}$.
+        \end{dusledek}
+
+        \begin{veta}[Cramerovo pravidlo]
+            Buď $A$ regulární matice řádu $n$. Buď $¦b \in ®T^n$ a $A¦x = ¦b$. Pak
+            $$ \forall j \in [n]: x_j = \frac{\det\(\(¦a_1|…|¦a_{j-1}|¦b|¦a_{j+1}|…|¦a_n\)\)}{\det\(A\)}. $$
+
+            \begin{dukazin}
+                To, že $A¦x = ¦b$, můžeme přepsat do tvaru $¦b = x_1·¦a_1 + … +x_n · ¦a_n$. Pak rozepíšeme determinant čitatele výše a dostaneme:
+                $$ \det\(\(¦a_1|…|¦a_{j-1}|¦b|¦a_{j+1}|…|¦a_n\)\) = \det\(\(¦a_1|…|¦a_{j-1}|\sum_{i=1}^n x_i·¦a_i|¦a_{j+1}|…|¦a_n\)\) = \sum_{i=1}^n x_i·\det\(\(¦a_1|…|¦a_{j-1}|¦a_i|¦a_{j+1}|…|¦a_n\)\) = x_j·\det(A). $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            Algebraickým doplňkem (též kofaktorem) prvku $a_{ij}$ rozumíme
+            $$ A_{ij} = (-1)^{i+j}·\det(M_{ij}), $$
+            kde $M_{ij}$ je matice $A$ bez $i$-tého řádku a $j$-tého sloupce.
+        \end{definice}
+
+        \begin{veta}[O rozvoji podle sloupce]
+            $$ \det(A) = \sum_{i=1}^n a_{ij}·A_{ij}, j \in [n]. $$
+
+            \begin{dukazin}
+                1. speciální případ: $j=n, a_n=e_n$. Triviální.
+
+                2. speciální případ: $j, k, \in [n], a_j = e_k$. Permutace předchozího.
+
+                3. obecný případ: Součet předchozího.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O falešném rozvoji]
+            TODO
+        \end{veta}
+
+        \begin{definice}
+            Adjungovaná matice (matice kofaktorů): $adj(A)$.
+        \end{definice}
+
+        \begin{poznamka}
+            Můžeme si všimnout, že $A·adj(A) = \det(A)·I_n = adj(A)·A$.
+        \end{poznamka}
+
+        \begin{veta}
+                Tvrdí poznámku výše, speciální případ ($A$ regulární) $A^{-1} = \frac{\det(adj(A))}{\det(A)}$.
+        \end{veta}
 
 \end{document}

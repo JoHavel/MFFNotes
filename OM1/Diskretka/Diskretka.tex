@@ -667,9 +667,61 @@
 % 18. 12. 2020
 
         \begin{dukazin}
-        
+            Indukcí podle počtu hran. Pro $|E| = 0$ triviální. Pro $|E|>0$: nemá kružnici $\implies$ je strom, tedy už víme, že platí, pokud naopak má kružnici, smažeme hranu z této kružnice -> zmenšíme $|E|$ o jedna a $s$ o jedna, podle indukčního předpokladu pak dokážeme, že věta platí.
         \end{dukazin}
     \end{veta}
+
+    \begin{dusledek}
+        $G$ je rovinný graf a $s$ je počet stěn nějakého rovinného nakreslení $G$ a $k$ je počet komponent souvislosti, potom
+        $$ |V| - |E| + s = 1 + k. $$ 
+    \end{dusledek}
+
+    \begin{veta}
+        Nechť $G=(V, E)$, $|V≥3|$, $G$ rovinný. Pak $|E| ≤ 3|V| - 6$.
+
+        \begin{dukazin}
+            Dokážeme jako v I. diskrétce, že každý graf lze doplnit hranami na triangulaci a potom už je to triviální.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Nechť $G=(V, E)$, $|V≥3|$, $G$ rovinný, neobsahuje trojúhelníky ($K_3$ jako podgraf). Pak $|E| ≤ 2|V| - 4$.
+
+        \begin{dukazin}
+            Dokážeme jako v I. diskrétce, že každý graf lze doplnit hranami tak, aby hranice stěn byly 4cykly, 5cykly a hvězdy, a potom už je to triviální.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Každý rovinný graf obsahuje vrchol stupně nejvýše 5. Když je navíc bez trojúhelníků, tak má vrchol stupně nejvýše 3.
+
+        \begin{dukazin}
+                Pro $|V| < 3$ triviální. Z věty výše víme, že platí $|E| ≤ 3|V| - 6$ (resp. $|E| ≤ 2|V| - 4$), ale součet stupňů vrcholů děleno 2 je počet hran, tedy kdyby měly všechny vrcholy stupeň alespoň 5 (resp. 3), pak je hran alespoň $\frac{6|V|}{2}$ (resp. $\frac{4|V|}{2}$), což je ale ve sporu s tím, že $\frac{6|V|}{2}≤|E|≤3|V|-6$ (resp. $\frac{4|V|}{2} ≤ |E| ≤ 2|V| - 4$).
+        \end{dukazin}
+    \end{veta}
+
+    \subsection{barvení grafů}
+        \begin{definice}[Obarvení grafu]
+            Nechť $G = (V, E)$ je graf. Zobrazení $b:v \rightarrow \{1, …, k\}$ nazveme obarvením grafu, pokud $\{x, y\} \in E \implies b(x)≠b(y)$.
+
+            Barevnost grafu $G$ je nejmenší $k$, pro něž existuje obarvení $G$ pomocí $k$ barev. Značí se $\chi(G)$
+        \end{definice}
+
+        \begin{veta}[O 4 barvách]
+            $G$ je rovinný $\implies$ $\chi(G) ≤ 4$.
+
+            \begin{dukazin}
+                Bez důkazu, překvapivě ;).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O 5 barvách]
+            $G$ je rovinný graf $\implies$ $\chi(G) ≤ 5$.
+
+            \begin{dukazin}
+                \url{https://www.youtube.com/watch?v=PEBUYt8LgkY}
+            \end{dukazin}
+        \end{veta}
 
 \end{document}
 

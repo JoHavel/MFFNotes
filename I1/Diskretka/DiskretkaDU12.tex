@@ -31,7 +31,7 @@
     \end{enumerate}
 
     \begin{reseni}
-        Ve všech třech případech postavíme vlak tak, že budeme přidávat za lokomotivu vagóny jeden po druhém. Tedy vždy máme danou nějakou polarizaci posledního přidaného vagónu (na začátku lokomotivy) a hledáme pravděpodobnost, s jakou bude mít nějaký magnet „správnou“ (tedy opačnou tomuto) polarizaci. Tu každý z $m$ magnetů nebude mít s pravděpodobností $\frac{1}{2}$, tedy pravděpodobnost, že žádný z dostupných $m$ magnetů nebude mít správnou polarizaci je $\frac{1}{2^m}$, tudíž pravděpodobnost, že všechny budou mít správnou je $1 - \frac{1}{2^m}$. Tyto pravděpodobnosti budeme násobit, jelikož jsou nezávislé (viz dále).
+        V prvních dvou případech postavíme vlak tak, že budeme přidávat za lokomotivu vagóny jeden po druhém. Tedy vždy máme danou nějakou polarizaci posledního přidaného vagónu (na začátku lokomotivy) a hledáme pravděpodobnost, s jakou bude mít nějaký magnet „správnou“ (tedy opačnou tomuto) polarizaci. Tu každý z $m$ magnetů nebude mít s pravděpodobností $\frac{1}{2}$, tedy pravděpodobnost, že žádný z dostupných $m$ magnetů nebude mít správnou polarizaci je $\frac{1}{2^m}$, tudíž pravděpodobnost, že všechny budou mít správnou je $1 - \frac{1}{2^m}$. Tyto pravděpodobnosti budeme násobit, jelikož jsou nezávislé (viz dále).
 
         V prvním případě máme vždy k dispozici jen 1 magnet, tedy pravděpodobnost, že jedno spojení bude fungovat je $1 - \frac{1}{2} = \frac{1}{2}$, tedy že budou fungovat všechny je
         $$\underbrace{\frac{1}{2}·\frac{1}{2}·…·\frac{1}{2}}_{n\text{-krát}} = \frac{1}{2^n}. $$
@@ -41,10 +41,8 @@
         $$ \underbrace{\frac{3}{4}·\frac{3}{4}·…·\frac{3}{4}}_{n\text{-krát}} = \(\frac{3}{4}\)^n $$
         A jelikož jsou vagónky nezávislé a my se vždy ptáme jen na ten, který použijeme, spojení jsou opravdu nezávislá (můžeme předpovědět, jaký magnet bude na konci již spojeného vlaku, ale to nás netrápí, protože je jedno, která polarizace bude „správná“).
 
-        V posledním případě máme pro $i$-té spojení od konce $2i$ magnetů, které můžeme pro toto napojení použít, tedy pravděpodobnost povedeného spojení je $1 - \frac{1}{2^{2i}}$. Pravděpodobnost povedeného vláčku je
-        $$ \(1-\frac{1}{2^{2n}}\)·\(1-\frac{1}{2^{2(n-1)}}\)·…·\(1-\frac{1}{2^{2}}\). $$
-        Spojení jsou tentokrát nezávislá pouze, pokud se předchozí vydařila, ale to stačí. To, že se předchozí vydařila nám ale nedává žádnou informaci o tom, jak bude probíhat toto spojení, protože to, že tam existoval magnet (libovolný, ne náhodně vybraný) správný nám nijak neříká, kolik jich tam bylo.
-
+        Ve třetím případě to takhle nefunguje, ale můžeme si všimnout, že vláček půjde pospojovat právě tehdy, když se počet magnetů jedné polarizace a počet magnetů druhé budou lišit o 1. Tedy ze všech $2^{2n+1}$ různých vláčků funguje $\binom{2n}{n+1} + \binom{2n}{n+1}$ vláčků, tedy pravděpodobnost je
+        $$ \frac{\binom{2n}{n+1} + \binom{2n}{n+1}}{2^{2n+1}} = \frac{2\binom{2n}{n+1}}{2^{2n+1}} = \frac{\binom{2n}{n+1}}{4^n}. $$ 
     \end{reseni}
 \end{priklad}
 

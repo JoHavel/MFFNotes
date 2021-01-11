@@ -328,7 +328,7 @@
     \end{definice}
 
     \begin{definice}[Formát, header]
-            Soubory potřebují metadata a navíc se data můžou ukládat různě, proto existují formáty souborů. Metadata jsou většinou na začátku a pak se jim říká header. Dokonce většinou obsahují konstantu (magic constant, signature), tj. první byt je v tomto formátu vždy shodný, např. BMP má BM.
+        Soubory potřebují metadata a navíc se data můžou ukládat různě, proto existují formáty souborů. Metadata jsou většinou na začátku a pak se jim říká header. Dokonce většinou obsahují konstantu (magic constant, signature), tj. první byt je v tomto formátu vždy shodný, např. BMP má BM.
     \end{definice}
 
 \section{Reprezentace textu}
@@ -343,7 +343,13 @@
     \end{definice}
 
     \begin{definice}[Unicode]
-        Definuje pouze přechod od znaku ke kódu, ale neříká, jak se bude kód ukládat (blbci ;) ). Tedy existuje několik různých překladů kód -> uložení, například: UTF-32le (častější), UTF-32be, UTF-8, ….
+        Definuje pouze přechod od znaku ke kódu, ale neříká, jak se bude kód ukládat (blbci ;) ). Tedy existuje několik různých překladů kód -> uložení, například: UTF-32le (častější), UTF-32be, UTF-8, …, UCS2 (pevná délka -- 2B, přestalo se použivat), UTF-16 (2B+4B, proměnná délka, využívá reserved kódů Unicodu a tzv. surrogate = zástupce), UTF-8 (podobně jako UTF-8).
+    \end{definice}
+
+% 5. 1. 2021
+
+    \begin{definice}[Obraz disku (disk image)]
+        Veškerá data z nějakého disku můžeme překopírovat do jiného (většího, se super právy), čímž vytvoříme tzv. obraz disku, tedy soubor, který můžeme používat jako disk, ke kterému máme přístup i bez superuživatele a nepoškodíme si pokusy na něm náš disk.
     \end{definice}
 
 \end{document}

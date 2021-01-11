@@ -87,7 +87,19 @@
     \pagebreak
 
     \begin{priklad}[3.]
-        Ukažte, že tečný fibrovaný prostor $TX$ má přirozenou strukturu hladké variety. Definujte mapy na $TX$ a ukažte, že přechodové funkce jsou difeomorfismy. 
+        Ukažte, že tečný fibrovaný prostor $TX$ má přirozenou strukturu hladké variety. Definujte mapy na $TX$ a ukažte, že přechodové funkce jsou difeomorfismy.
+
+        \begin{reseni}
+            Nechť $M$ je varieta dimenze $n$. Víme, že $\forall m \in M: T_mX$ je lineární vektorový prostor dimenze $n$, který pro libovolnou mapu, jež definuje obraz i pro $m$ má bázi $(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n})$. Tedy disjunktní sjednocení $T_mX$ lze 'ztotožnit' s '$M \times ®R^n$'.
+
+            Tedy mějme daný atlas na $M$, libovolnou mapu $(U, \phi)$ z něho a pro každý bod $m \in U$ bázi $B_m = \(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n}\)$ tečného prostoru $T_mX$. Zobrazení $\psi_\phi: \coprod_{m \in U} T_mX \rightarrow ®R^{2n}$ potom můžeme definovat jako\footnote{$\pi$ je projekce $\forall x \in T_mX: \pi(x) = m$ a $[x]_B$ je vyjádření vektoru při bázi $B$.}
+            $$ \psi_\phi(x) = \binom{\phi(\pi(x))}{[x]_{B_{\pi(x)}}} = \(\phi(\pi(x))_1, …, \phi(\pi(x))_n, \([x]_{B_{\pi(x)}}\)_1, …, \([x]_{B_{\pi(x)}}\)_n\)^T $$ 
+            (tedy pro bod z $T_mX$ se na prvních $n$ souřadnic zobrazuje $m$ pomocí $\phi$ a na dalších $n$ souřadnicích jsou souřadnice tohoto bodu při bázi $B_m$). $\(\coprod_{m \in U} T_mX, \psi_\phi\)$ je pak zřejmě mapa a lze těmito mapami pokrýt celý $TX$, jelikož každý bod $TX$ má projekci $m \in M$, která jistě musí být v nějakém $U$.
+
+            Aby byly přechodové funkce difeomorfismy, musí být prosté, na a hladké. Můžeme si všimnout, že pro dvě různé mapy $(U_1, \phi_1)$ a $(U_2, \phi_2)$ zobrazuje přechodová funkce prvních $n$ souřadnic podle přechodové funkce $\phi_1 \circ \phi_2^{-1}$, o níž víme, že je prostá, na a hladká, jelikož $M$ je varieta a toto jsou mapy z jednoho jejího atlasu, tedy musí být kompatibilní.
+
+            Naopak druhých $n$ souřadnic zobrazuje podle změny báze ($B_m$ je pro jiné $(U, \phi)$ jiná), ale takováto změna je stejná pro všechny prvky jednoho $T_mX$, tedy pro konkrétní $m$ (tj.~konkrétní hodnoty prvních $n$ souřadnic) je to přechod od báze k bázi, což je lineární bijekce, tedy rozhodně prostá, hladká a na. Tedy přechodová funkce je prostá, surjektivní a hladká, tedy difeomorfismus.
+        \end{reseni}
     \end{priklad}
 
 \end{document}

@@ -1,0 +1,116 @@
+\documentclass[10pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+\usepackage{cancel}
+
+\makeatother%
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or *\or \dagger\or \ddagger\or%
+\mathsection\or \mathparagraph\or \|\or **\or \dagger\dagger%
+\or \ddagger\ddagger \else\@ctrerr\fi}}%
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}%
+\makeatletter%
+
+\begin{document}
+
+Hodně štěstí ke zkouškám, nestresujte se a hlavně se nezapomínejte smát, úsměv vždy pomůže. Váš Jidáš
+
+\section*{\hfill Tahák na písemnou zkoušku z MA 20/21 \hfill\ }
+\subsection*{Limity $x \rightarrow ∞$, $a > 1$, $b\in ®R$}
+    $$ 1<<\log x<<\sqrt[a]{x}<<x<<x^a<<a^x<<x!<<x^x$$
+    $$ \sqrt[x]{a-1} \rightarrow 1, \qquad \sqrt[x]{x} \rightarrow 1, \qquad \sqrt[x]{x!}\rightarrow ∞, \qquad \(1 + \frac{b}{x}\)^x = e^b. $$
+
+\subsection*{Limity $x\rightarrow 0$}
+    $$ \frac{\sin x}{x} \rightarrow 1, \qquad \frac{\log(1+x)}{x} \rightarrow 1, \qquad \frac{e^x - 1}{x} \rightarrow 1, \qquad \frac{1-\cos x}{x^2} \rightarrow \frac{1}{2}, \qquad \frac{\tan x}{x}\rightarrow 1, \qquad \frac{1}{0_±} = ±∞ $$ 
+\subsection*{Derivace $a \in ®R$, $n \in ®N$, $x \in ®R$, $x_+ > 0$, $x_1 \in (-1, 1)$}
+    $$ c' = 0, \qquad \(x^n\)' = nx^{n-1}, \qquad \(x_+^a\)'=ax_+^{a-1}, \qquad (\sin x)' = \cos x, \qquad (\cos x)' = -\sin x, $$
+    $$ (\exp x)' = \exp x, \qquad (\log x_+)' = \frac{1}{x_+}, \qquad (\arcsin x_1) = \frac{1}{\sqrt{1-x_1^2}}, \qquad (\arccos x_1)' = -\frac{1}{\sqrt{1-x_1^2}} $$
+    $$ (\arctan x)' = \frac{1}{1+x^2}, \qquad (\arccotg x)' = -\frac{1}{1+x^2}, \qquad (\abs x)' = \sgn x \text{ (kromě 0, kde neexistuje)}, $$
+    $$ (\tan x)' = \frac{1}{\cos^2 x} \quad \(x\in ®R \setminus \{\frac{\pi}{2} + k\pi, k \in ®Z\}\), \qquad (\cotg x)' = -\frac{1}{\sin^2 x} \quad \(x\in ®R \setminus \{k\pi, k \in ®Z\}\). $$ 
+\subsection*{Taylorovy polynomy v bodě $x=0$}
+    $$ \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} + … + (-1)^n \frac{x^{2n+1}}{(2n+1)!} + o(x^{2n+2}), $$ 
+    $$ \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} + … + (-1)^n \frac{x^{2n}}{(2n)!} + o(x^{2n+1}), $$ 
+    $$ \exp x = 1 + \frac{x^2}{2!} + \frac{x^3}{3!} + … + \frac{x^n}{n!} + o(x^n), $$ 
+    $$ \log(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} + … + (-1)^{n-1} \frac{x^n}{n} + o(x^n), $$
+    $$ \arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} + … + (-1)^n \frac{x^{2n+1}}{(2n+1)} + o(x^{2n+2}), $$ 
+    $$ (1+x)^a = 1 + \frac{a}{2!}·x + \frac{a·(a-1)}{3!}+…+ \binom{a}{n}x^n + o(x^n). $$ 
+
+\subsection*{Vyšetření funkce}
+    Definiční obor a spojitost. Průsečíky. Symetrie (lichost, sudost, periodicita). Limity. Derivace. Monotonie a extrémy (lokální, globální). Druhá derivace. Konvexita, konkavita, inflexní body. Asymptoty. Graf a obor hodnot.
+
+\pagebreak
+
+\subsection*{Zbytky Taylorova polynomu $\xi_1, \xi_2, \xi \in (a, x)$}
+    $$ \text{Lagrangeův}: f(x) - T^{f, a}_n(x) = \frac{1}{(n+1)!}·f^{(n+1)}\(\xi_1\)·(x-a)^{n+1}, $$ 
+    $$ \text{Cauchyův}: f(x) - T^{f, a}_n(x) = \frac{1}{n!}·f^{(n+1)}\(\xi_2\)·(x-\xi_2)^n·(x-a), $$ 
+    $$ \text{Taylorův}: f(x) - T^{f, a}_n(x) = \frac{1}{n!}·\frac{\phi(x) - \phi(a)}{\phi'(\xi)}·f^{(n+1)}\(\xi\)·(x-\xi)^n. $$ 
+\subsection*{Věty}
+    Aritmetika limit (+ Binomická věta\footnote{Pozor, 'platí' pouze pro konstantní mocninu, tj. ne pro $(…)^x$ a $(…)^n$.}), věta o složené funkci (S, P), L'Hopital, Heine, POLICIE (strážníci, Anděl, Ďábel), omezená krát nulová = nulová, bezejmenná věta o dělení nulou, limita a uspořádání, jednoznačnost limity, Bolzano-Cauchyova podmínka, limita vybrané posloupnosti, věta o (limitě) monotónní posloupnosti, věty o hromadných bodech a limsup s liminf.
+
+    Aritmetika derivací, derivace složené funkce, derivace inverzní funkce, vztah derivace a monotonie, derivace a limita derivace (spojitá funkce), vztah druhé derivace a konvexity / konkavity.
+
+\subsection*{Spojité funkce\footnote{Funkce v () jsou spojité jen na nějakém intervalu.}, $a \in ®R$}
+    $$ (x^a), \log, \exp, \sin, \cos, (\tan), (\cotg), \arcsin, \arccos, \arctan, \arccotg, \abs, (\sgn). $$
+    $$ \text{Dále: složení, součet, rozdíl, součin a násobek spojitých funkcí}\footnote{Podíl chybí schválně!}. $$  
+\subsection*{Funkce pro vyvracení tvrzení}
+    $$ (-1)^n, \abs, \sgn, \sin{\frac{1}{x}}, f=\begin{cases} x^2 & \text{pro } x>0 \\ x^3 & \text{pro } x<0 \end{cases}, \text{Dirichletova}, \text{Riemannova}\footnote{Riemannova, ne Riemannova $\zeta$}, \text{Weierstrassova}, \text{Cantorovo diskontinuum}. $$
+    Nemá limitu ani limitu součtu, ale má třeba limitu průměru. Nemá derivaci v nule, ale je spojitá. V nule má derivaci (nevlastní), ale není spojitá. Na libovolném okolí nuly není prostá. V nule nemá druhou derivaci, ale první ano. Není monotónní ani spojitá ani nemá jednostranné derivace, ale zato má spoustu maxim a minim. Je spojitá právě v iracionálních bodech. Je spojitá na celém ®R, ale nemá nikde derivaci. Je opravdu divné.
+
+\subsection*{Další $x, c, d > 0$, $n$ liché}
+$$ x^y = \exp(y\log(x)), \qquad \sqrt{c} - \sqrt{d} = \frac{c-d}{\sqrt{c} + \sqrt{d}}, \qquad \sqrt[3]{a} - \sqrt[3]{b} = \frac{a-b}{\sqrt[3]{a}^2 + \sqrt[3]{ab} + \sqrt[3]{b}^2}, $$ 
+$$ \qquad a^n - b^n = (a-b)\(a^{n-1} + ba^{n-2} + … + b^{n-1}\), \qquad (a±b)^2 = a^2 ± 2ab + b^2, \qquad (a±b)^3 = a^3 ± 3a^2b + 3 ab^2 ± b^3. $$ 
+
+\vskip 2em
+\begin{small}
+    \noindent Zdroje:\\[-3em]
+
+    \begin{itemize}
+        \item \url{https://www2.karlin.mff.cuni.cz/~hencl/prednaska.pdf}
+        \item \url{https://www2.karlin.mff.cuni.cz/~cuth/priklady.pdf}
+        \item \url{https://www2.karlin.mff.cuni.cz/~pernecka/ZS2009-2010/stvrtok/derivace.pdf}
+        \item \url{https://github.com/JoHavel/MFFNotes/blob/master/OM1/MatAnalyza/MatAnalyza.pdf}
+    \end{itemize}
+\end{small}
+
+\pagebreak
+
+\subsection*{Goniometrické identity\footnote{Zdroj \url{https://cs.wikipedia.org/wiki/Goniometrick\%C3\%A1_funkce}.}}
+    $$ \tan x = \frac{\sin x}{\cos x}, \qquad \cotg x = \frac{\cos x}{\sin x}, \qquad \sin^2 x + \cos^2 x = 1, \qquad \tan x · \cotg x = 1. $$ 
+
+    $$ \sin(-x) = -\sin x, \qquad \cos(-x) = \cos x, \qquad \tan(-x) = -\tan x, \qquad \cotg(-x) = - \cotg x. $$ 
+
+    $$ 1 + \tan^2 x = \frac{1}{\cos^2 x}, \qquad 1 + \cotg^2 x = \frac{1}{\sin^2 x}. $$ 
+    
+    $$ \sin(x±y) = \sin x · \cos y ± \cos x · \sin x, \qquad \cos(x±y) = \cos x · \cos y \mp \sin x · \sin y, $$
+    $$ \tan(x ± y) = \frac{\tan x ± \tan y}{1 \mp \tan x · \tan y}, \qquad \cotg(x ± y) = \frac{\cotg x · \cotg y \mp 1}{\cotg x ± \cotg y}. $$
+
+\hrule
+
+\newcommand{\vr}{\vrule height 1.2em depth 0.6em width 0pt}
+
+\hfill\begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    \vr Rad     & 0 & $\;\frac{\pi}{6}$      & $\;\frac{\pi}{4}$      & $\;\frac{\pi}{3}$      & $\frac{\pi}{2}$ \\\hline
+    \vr $\sin$  & 0 & $\;\frac{1}{2}$        & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & 1               \\\hline
+    \vr $\cos$  & 1 & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\;\frac{1}{2}$        & 0               \\\hline
+    \vr $\tan$  & 0 & $\frac{\sqrt{3}}{3}$ & $\;1$                    & $\sqrt{3}$           & --               \\\hline
+    \vr $\cotg$ & -- & $\sqrt{3}$           & $\;1$                    & $\frac{\sqrt{3}}{3}$ & 0\\\hline              
+\end{tabular}\hfill\ 
+
+\vskip 1em \hrule\vskip -1em
+
+    $$ \sin x ± \sin y = 2\sin \frac{x±y}{2} · \cos \frac{x\mp y}{2}, \qquad \cos x + \cos y = 2\cos \frac{x+y}{2} · \cos \frac{x-y}{2}, \qquad \cos x - \cos y = -2\sin \frac{x+y}{2} · \sin \frac{x-y}{2}, $$ 
+    $$ \tan x ± \tan y = \frac{\sin(x ± y)}{\cos x · \cos y}, \qquad \cotg x ± \cotg y = \frac{\sin(y ± x)}{\sin x · \sin y}, \qquad \tan x ± \cotg y = ±\frac{\cos(y \mp x)}{\cos x \sin y}. $$
+
+    $$ \sin x · \sin y = \frac{1}{2}\[\cos(x-y) - \cos(x+y)\], \qquad \cos x · \cos y = \frac{1}{2}\[\cos(x-y) + \cos(x+y)\], $$
+    $$ \sin x · \cos y = \frac{1}{2}\[\sin(x-y) + \sin(x+y)\], \qquad \tan x · \cotg y = \frac{\tan x + \cotg y}{\cotg x + \tan y}, $$
+    $$ \tan x · \tan y = \frac{\tan x + \tan y}{\cotg x + \cotg y}, \qquad \cotg x · \cotg y = \frac{\cotg x + \cotg y}{\tan x + \tan y}. $$ 
+
+    $$ \sin 2x = 2· \sin x · \cos x, \qquad \cos 2x = \cos^2 x - \sin^2 x, \qquad \tan 2x = \frac{2·\tan x}{1 - \tan^2 x}, \qquad \cotg 2x = \frac{\cotg^2 x - 1}{2·\cotg x}. $$
+
+    $$ \left|\sin \frac{x}{2}\right| = \sqrt{\frac{1-\cos x}{2}}, \qquad \left|\cos \frac{x}{2}\right| = \sqrt{\frac{1+\cos x}{2}}, \qquad \left|\tan \frac{x}{2}\right| = \sqrt{\frac{1-\cos x}{1+\cos x}}, \qquad \left|\cotg \frac{x}{2}\right| = \sqrt{\frac{1+\cos x}{1-\cos x}}. $$
+
+    $$ \sin^2 x = \frac{1}{2}(1 - \cos 2x), \qquad \cos^2 x = \frac{1}{2}(1 + \cos 2x), \qquad \sin^3 x = \frac{1}{4}(3\sin x - \sin 3x), \qquad \cos^3 x = \frac{1}{4}(\cos 3x + 3\cos x). $$ 
+\subsection*{Logaritmy}
+    $$ \log(xy) = \log x + \log y, \qquad \log\frac{x}{y} = \log x - \log y, \qquad \log\(x^y\) = y\log(x), \qquad \log_a b = \frac{\log_c{b}}{\log_c{a}}. $$ 
+
+
+\end{document}

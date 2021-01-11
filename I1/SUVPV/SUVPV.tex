@@ -453,4 +453,22 @@
             Iterujeme: vybereme shluk „nejlevnější“ (třeba jako v předchozím algoritmu) na rozdrobení (= rozdělíme tento shluk mezi okolní) a rozdrobíme.
     \end{definice}
 
+% 4. 1. 2021
+
+    \begin{definice}[Algoritmus K-průměrů]
+        Nehierarchický. Vybereme náhodně $K$ bodů v prostoru. Následně data přiřadíme nejbližšímu takovému bodu. Následně posuneme těch $K$ bodů, aby byly těžiště k nim přiřazených bodů. Následně opakujeme přiřazení a posunutí, dokud nedosáhneme nějakého „stop“ kritéria.
+
+        Vždy zkonverguje k lokálnímu optimu, ale optimum nemusí být globální. Je citlivý na šum a body daleko. Klustery jsou závislé na začátečním rozložení $K$ bodů, tedy není to deterministický algoritmus.
+
+        Můžeme používat i tzv. medoidy (v podstatě mediány), pak jsou $K$ body z množiny, nebo mediány (ve všech složkách), pak jsou alespoň jejich složky z množiny.
+    \end{definice}
+
+    \begin{definice}[SOM]
+        Náhodně se vyberou váhy mapy (neuronové sítě, která má jako vstup vektor a výstup mřížku -> každý bod má (učenou) souřadnici (ve vahách neuronové sítě) v původním prostoru a zároveň pevné umístění v mřížce $®Z^2$ resp. $®Z^3$, ). Pro učení opakujeme: Vložíme vektor a posuneme nejbližší neuron výsledek směrem ke vstupu…
+    \end{definice}
+
+    \begin{poznamka}
+        Dále jsme probírali automaty a gramatiky, ale to nebude u zkoušky.
+    \end{poznamka}
+
 \end{document}

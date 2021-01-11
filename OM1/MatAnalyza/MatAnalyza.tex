@@ -1457,7 +1457,7 @@
             \end{dukazin}
         \end{dusledek}
 
-        \begin{poznamka}[Taylorovy polynomy]
+        \begin{poznamka}[Taylorovy řady elementárních funkcí]
             $$ e^x = \sum_{n=0}^∞ \frac{x^n}{n!} $$ 
             $$ \sin x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n+1}}{(2n+1)!} $$ 
             $$ \cos x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n}}{(2n)!} $$ 
@@ -1465,5 +1465,31 @@
             $$ \arctan x = \sum_{n=0}^∞ (-1)^n \frac{x^{2n+1}}{2n+1} $$ 
             $$ (1+x)^\alpha = \sum_{n=0}^∞ \binom{\alpha}{n} x^n $$ 
         \end{poznamka}
+
+% 5. 1. 2021
+
+        \begin{dukaz}[Taylor]
+            Definujeme pro $t \in [a, x]$:
+                $$ F(t) = f(x) - \[f(t) + \frac{f'(t)}{1!}(x-t) + \frac{f''(t)}{2!}(x-t)^2 + … + \frac{f^{(n)}(t)}{n!}(x-t)^n\]. $$
+            Platí $F$ je spojitá na $[a, x]$ ($\exists f^{(n+1)}$ vlastní $\implies f^{(n)}$ spojitá). $F(x) = 0$. $F(a) = f(x) - T_n^{f, a}(x)$. $\exists F'$ na $(a, x)$.
+
+            Podle Cauchyovy věty o střední hodnotě $\exists \zeta \in (a, x):$
+            $$ \frac{0 - \(f(x) - T_n^{f, a}(x)\)}{\phi(x) - \phi(a)} = \frac{F(x) - F(a)}{\phi(x) - \phi(a)} = \frac{F'(\zeta)}{\phi'(\zeta)}. $$
+            Nyní
+            $$ F'(\zeta) = 0 - \[f'(\zeta) - f'(\zeta) + f''(\zeta)·(x-\zeta) - f''(\zeta) \frac{2(x-\zeta)}{2} + f'''(\zeta)\frac{(x-\zeta)^2}{2!} + … - f^{(n)}(\zeta)\frac{n·(x-\zeta)^{n-1}}{n!} + f^{(n+1)(\zeta)·\frac{(x-\zeta)^n}{n!}}\] = -f^{(n+1)(\zeta)·\frac{(x-\zeta)^n}{n!}}. $$ 
+
+            Tedy
+            $$ f(x) - T_n^{f, a}(x) = -F'(\zeta)·\frac{\phi(x) - \phi(a)}{\phi(\zeta)} = f^{(n+1)}(\zeta)\frac{(x-\zeta)^n}{n!}·\frac{\phi(x) - \phi(a)}{\phi(\zeta)}. $$ 
+        \end{dukaz}
+
+        \begin{definice}
+            Nechť $f$, $g$ jsou funkce a $a \in ®R^*$. Řekneme, že funkce $f$ je v bodě $a$ malé $o$ od $g$, jestliže platí $\lim_{x \rightarrow a} \frac{f(x)}{g(x)} = 0$. Píšeme $f(x) = o(g(x))$ pro $x \rightarrow a$.
+        \end{definice}
+
+% 8. 1. 2021
+
+\begin{poznamka}
+    Ukazovala se vzorová písemná zkouška.
+\end{poznamka}
 
 \end{document}

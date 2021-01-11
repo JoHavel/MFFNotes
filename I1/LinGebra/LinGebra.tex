@@ -1041,7 +1041,21 @@
         Dále jsme si ukazovali, jak kreslit fraktály tak, že zvolíme náhodně afinní zobrazení, které použijeme. Robotiku a strojové učení.
     \end{poznamka}
 
+% 7. 1. 2021
 
+    \begin{definice}[LU rozklad]
+        Elementárními úpravami se dostaneme na horní trojúhelníkovou a dolní trojúhelníková bude následně mít naakumolované elementární úpravy. Dolní trojúhelníková má na jedničce diagonály.
+
+        Lze ho spočítat pomocí gaussovy eliminace, kde si navíc můžeme ukládat změny rovnou místo nul, tedy nepotřebujeme ani paměť navíc.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Každá matice $A \in ®R^{n\times n}$ jde rozložit na tvar $PA = LU$, kde $P \in ®R^{n\times n}$ je permutační matice, $L \in ®R^{n\times n}$ je dolní trojúhelníková matice s jedničkami na diagonále a $U \in ®R^{n\times n}$ horní trojúhelníková matice.
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        $LU$ rozklad se dá použít k jednoduchému počítání determinantů nebo k vyřešení SLR.
+    \end{poznamka}
 
 
 \end{document}

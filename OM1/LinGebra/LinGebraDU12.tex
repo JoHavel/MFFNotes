@@ -1,0 +1,50 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+% \renewcommand{\baselinestretch}{0.7}
+% \renewcommand{\arraystretch}{1.2}
+
+% \let\oldbinom\binom
+% \def\binom#1#2{\mathchoice{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}{\oldbinom{#1}{#2}}{}{}}
+
+\begin{document}
+
+    \begin{priklad}[12.1]
+        Determinant reálné matice
+        $$ A = \begin{pmatrix} 2 & 1 & x & -2x \\ -3x & 3 & x & 2 \\ 4 & \pi & x & 5 \\ e & x & 2 & 1 \end{pmatrix} $$
+        je polynom v proměnné $x$. Přímo z definice determinantu najděte koeficienty tohoto polynomu u $x^4$ a $x^3$ (tj. nesmíte např. vypočítat celý determinant nějakou jinou metodou a pak se podívat na koeficienty).
+
+        \begin{reseni}
+            Definice determinantu říká, že determinant je součet součinů všech čtveřic prvků, které nejsou ve stejném řádku / sloupci. Jelikož ve všech kromě třetího sloupce je $x$ právě jednou, vyšší mocnina není nikde. Tedy jediný člen s $x^4$ bude $±a_{21}·a_{42}·a_{33}·a_{14}$. Tedy znaménko je znaménko permutace $(124)(3)$, která nemá žádný sudý cyklus, tedy znaménko je $+1$. Tudíž člen je $+(-3x)·x·x·(-2x) = 6x^4$, takže koeficient je $6$.
+
+            Obdobně vezmeme všechny členy $(s)$ součtu v definici determinantu, které mají $x^3$, což znamená, že jeden z činitelů ($a_{ij}$) tvořících $s$ má $x$ v nulté mocnině. Pokud by tento činitel byl v prvním (druhém, čtvrtém) řádku, byl by zřejmě další činitel s $x^0$ v čtvrtém (prvním, druhém) sloupci. Tedy činitel $x^0$ musí být ve třetím řádku. V posledním (4.) řádku máme jen jedno $x$, tedy další činitel bude $a_{42}$. Další dva podle výběru členu ze třetího, tedy členy s $x^3$ budou $±a_{14}·a_{23}·a_{31}·a_{42}$ a $±a_{13}·a_{21}·a_{34}·a_{42}$. Znaménka budou znaménka permutací $(1423)$ a $(1342)$, tedy obě $-1$ (obsahují jeden sudý cyklus), tj. koeficient je $-(-2)·1·4·1 -1·(-3)·5·1 = 23$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[12.2]
+        Permutace $\alpha, \beta \in S_9$ jsou dány redukovaným cyklickým zápisem.
+        $$ \alpha = (3 1 2 6)(4 9 5), \hskip 2em \beta = (5 1 3 8)(2 6 7) $$
+
+        \begin{itemize}
+            \item[a] Dokažte, že pro libovolnou permutaci $\pi \in S_9$ je redukovaný cyklický zápis permutace $\pi \alpha \pi^{-1}$ tvaru $(x_1 x_2 x_3 x_4)(x_5 x_6 x_7)$.
+            \item[b] Určete počet permutací $\pi \in S_9$, pro které platí $\pi\alpha\pi^{−1} = \beta$.
+        \end{itemize}
+
+        \begin{dukazin}[a]
+            Můžeme si všimnout, že pokud zobrazíme $\pi(i)$ permutací $\pi\alpha\pi^{-1}$, tak nejdříve zobrazíme $\pi^{-1}$ na $\pi^{-1}(\pi(i)) = i$, následně zobrazíme pomocí $\alpha$ a nakonec pomocí $\pi$, tedy prvek $\pi(i)$ se zobrazí na $\pi(\alpha(i))$. Tedy $x_1 = \pi(3)$ se zobrazí na $x_2 = \pi(1)$, to na $x_3 = \pi(2)$, to na $x_4 = \pi(6)$ a to nakonec na $x_1 = \pi(3)$. Obdobně $x_5 = \pi(4)$ na $x_6 = \pi(9)$, to na $x_7 = \pi(5)$ a to na $x_5 = \pi(4)$. Pro zbytek prvků je $\alpha$ identita, takže se zobrazí sami na sebe. Tedy pro libovolnou $\pi$ je redukovaný cyklický zápis $\pi\alpha\pi^{-1}$ opravdu jako v zadání.
+        \end{dukazin}
+
+        \begin{reseni}[b]
+            Ukázali jsme, že $\pi\alpha\pi^{-1} = (\pi(3) \pi(1) \pi(2) \pi(6)) (\pi(4) \pi(9) \pi(5))$. Cyklus můžeme pootáčet, takže $(5 1 3 8)$ odpovídá 3 dalším cyklům. Stejně tak $(2 6 7)$ odpovídá dalším 2 cyklům. Navíc zbylé dva prvky můžeme propermutovat, takže dohromady (jelikož jiné úpravy tohoto zápisu permutace nemůžeme dělat) $4·3·(2!) = 24$ různých permutací $\pi \in S_9$ tak, že $\pi\alpha\pi^{-1} = \beta$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[12.*]
+        TODO
+    \end{priklad}
+
+\end{document}

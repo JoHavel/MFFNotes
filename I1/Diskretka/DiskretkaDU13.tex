@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+\begin{priklad}[1]
+    Hrajeme hru, kde v každém kole hodíme šestistěnnou kostkou a posuneme se o příslušný počet políček. S jakou pravděpodobností šlápneme někdy během hry na $n$-té políčko, pokud jsme začali na políčku číslo 0? Odpověď stačí ve formě rekurentního vzorce, který se odkazuje na konstantně mnoho hodnot pro nižší $n$. Dokážete využít pouze 2 hodnoty pro nižší $n$?
+
+    \begin{reseni}
+        Na každé políčko (krom 0) se musíme dostat jedním hodem z nějakého předchozího políčka. Jelikož na kostce můžou padnout jen čísla 1 až 6 a to každé se stejnou pravděpodobností, dostanu se na políčko $n$ jedním hodem kostky z políčka $n-1$ s pravděpodobností $\frac{1}{6}$, …, z políčka $n-6$ s pravděpodobností $\frac{1}{6}$. Můžu tedy $p_n$ jako pravděpodobnost, že šlápnu na $n$-té políčko zapsat jako:
+        $$ p_n = \frac{p_{n-1}}{6} + \frac{p_{n-2}}{6} + \frac{p_{n-3}}{6} + \frac{p_{n-4}}{6} + \frac{p_{n-5}}{6} + \frac{p_{n-6}}{6}, $$
+        což platí pro všechna $n>0$, pokud $p_i$ pro záporná $i$ definujeme jako 0 (na záporná políčka se nedostaneme) a $p_0 = 1$ (na nulté políčko jsme jistě šlápli, když tam začínáme…). Navíc pokud $n>1$ musí tento vzorec platit i pro $n-1$:
+        $$ p_{n-1} = \frac{p_{n-2}}{6} + \frac{p_{n-3}}{6} + \frac{p_{n-4}}{6} + \frac{p_{n-5}}{6} + \frac{p_{n-6}}{6} + \frac{p_{n-7}}{6}. $$
+        Co kdybychom tuto a předchozí rovnici odečetli, aby 'zmizely' některé členy:
+        $$ p_n - p_{n-1} = \frac{p_{n-1}}{6} + 0 + 0 + 0 + 0 + 0 - \frac{p_{n-7}}{6}, $$
+        $$ p_n = \frac{7}{6}p_{n-1} - \frac{1}{6}p_{n-7}, $$
+        což je vzorec, který se odkazuje pouze na 2 předchozí členy, ale musíme zadat navíc $p_1 = \frac{1}{6}$, jelikož platí až pro $n > 1$.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2]
+    (Věta o džbánu) Vždy, když jdeme se džbánem pro vodu, s pravděpodobností $p$ se nám ucho utrhne. Kolik cest pro vodu ve střední hodnotě před utržením uděláme (včetně té závěrečné při které se ucho již utrhne)?
+
+    \begin{reseni}
+        Počet cest pro vodu je náhodná veličina $X$. My si můžeme definovat náhodné veličiny $X_i, i \in ®N$, tak, že $X_i$ je 1, pokud jsme v daném pokusu absolvovali alespoň $i$ cest (neboli před $i$-tou cestou ještě nebyl džbán rozbit) a 0 jinak. Tedy zřejmě $X=\sum_i X_i$. Pravděpodobnost, že se ucho neutrhlo při prvních $i$ cestách (tedy, že před $i$-tou ještě nebyl rozbit) je $(1-p)^{i-1}$. Tedy $®E[X_i] = 1·(1-p)^{i-1} + 0 = (1-p)^{i-1}$. Z linearity střední hodnoty (a součtu geometrické řady) plyne:
+        $$ ®E[X] = ®E\[\sum_i X_i\] = \sum_i ®E\[X_i\] = \sum_i (1-p)^{i-1} = \frac{1}{1-(1-p)} = \frac{1}{p}. $$
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[3]
+    Jazykový korektor změní $99\%$ chybných slov na správná a $0.01\%$ správných na chybná. Změnil $2\%$ slov. Jaký podíl správných a cyhbných slov je na jeho vstupu a výstupu?
+
+    \begin{reseni}
+        Místo poměrů se nad úlohou zamysleme v pravděpodobnosti. Pokud v původním textu bylo $p·100\%$ slov chybných, pak pravděpodobnost, že nějaké slovo z původního textu je chybné je $p$. To znamená, že když si korektur přečte libovolné slovo z původního textu, tak ho s pravděpodobností $0.99p + 0.0001(1-p)$. Víme, že pravděpodobnost, že změnil slovo je $0.02$, jelikož změnil $2\%$ slov. Tedy
+        $$ 0.99p + 0.0001(1-p) = 0.02, \hskip 2em p = \frac{199}{9899} \approx 2.01\%. $$
+        Tedy v původním textu bylo přibližně $2.01\%$ slov špatně ($97.99\%$ dobře). Pravděpodobnost, že slovo bylo po opravě špatně je $p' = (1-0.99)p + 0.0001(1-p) \approx 0.03\%$, tedy v opraveném textu je přibližně $0.03\%$ slov špatně ($99.97\%$ dobře).
+    \end{reseni}
+\end{priklad}
+
+\end{document}
