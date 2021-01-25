@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-
+\def\ibegin{\ \\[-3.8em]\hfill \phantom{x}}
 
 \begin{document}
 
@@ -9,7 +9,7 @@
     Přesun nebyl odhlasován.
 
     \begin{poznamka}[Literatura]
-        \ 
+        \ibegin
         \begin{itemize}
             \item Engelking: General Topology (spíš taková příručka, hodně obtížná)
             \item Čech: Bodová topologie
@@ -26,7 +26,7 @@
 \section{Úvod}
 
     \begin{poznamka}[Historie]
-        \ 
+        \ibegin 
         \begin{itemize}
             \item Euler: mosty ve městě Královec (7 mostů, Eulerovský tah)
             \item Listing (1847): pojem topologie (bez rigorózních definic)
@@ -51,7 +51,7 @@
     \begin{definice}[Topologický prostor (TP)]
         Uspořádaná dvojice $(®X, \tau)$ se nazývá topologický prostor, pokud ®X je množina, $\tau \subseteq ©P(®X)$ a platí:\\
         (T1) $\O, ®X \in \tau$\\
-        (T2) jsou-li $®U, ®V \in \tau$, pak $®U \cap ®V \in \tau$\\
+        (T2) jsou-li $U, V \in \tau$, pak $U \cap V \in \tau$\\
         (T3) je-li $©U \in \tau$, pak $\bigcup ©U \in \tau$.
     \end{definice}
 
@@ -60,19 +60,19 @@
     \end{definice}
 
     \begin{definice}[Okolí bodu]
-        Množina $®V \subseteq ®X$ se nazývá okolí bodu $x$, pokud existuje $®U \in \tau$, že $x \in ®U \subseteq ®V$. Množina všech okolí bodu $x$ značíme $©U(x) = ©U_\tau(x)$.
+        Množina $V \subseteq ®X$ se nazývá okolí bodu $x$, pokud existuje $U \in \tau$, že $x \in U \subseteq V$. Množina všech okolí bodu $x$ značíme $©U(x) = ©U_\tau(x)$.
     \end{definice}
 
     \begin{definice}[Báze a subbáze]
-        Soubor množin $©B \subseteq \tau$ se nazývá báze topologie $\tau$, pokud pro každé $®U\in \tau$ existuje $©U \subseteq ®B: \bigcup ©U = ®U$. Soubor $©S \subseteq \tau$ se nazývá subbáze topologie $\tau$, pokud $\{\bigcap ©F: ©F \subseteq ©S \text{konečná}\}$ je báze topologie $\tau$.
+        Soubor množin $©B \subseteq \tau$ se nazývá báze topologie $\tau$, pokud pro každé $U\in \tau$ existuje $©U \subseteq ©B: \bigcup ©U = U$. Soubor $©S \subseteq \tau$ se nazývá subbáze topologie $\tau$, pokud $\{\bigcap ©F: ©F \subseteq ©S \text{ konečná}\}$ je báze topologie $\tau$.
     \end{definice}
 
     \begin{tvrzeni}[Charakterizace otevřené množiny pomocí okolí]
-        Ať $(®X, \tau)$ je TP a $®U \in ®X$. Pak $®U \in \tau$, právě když $\forall x \in ®U \exists ®V\in ©U(x): ®V \subseteq ®U$
+        Ať $(®X, \tau)$ je TP a $U \in ®X$. Pak $U \in \tau$, právě když $\forall x \in U\ \exists V\in ©U(x): V \subseteq U$
         \begin{dukazin}
-            Důkaz ($\implies$) vidíme $®U = ®V$.
+            Důkaz ($\implies$) volíme $V = U$.
 
-            Opačně víme $\forall x \in ®U \exists ®V_x\in©U(x): ®V_x \subseteq ®U$. $\exists ®W_x \in \tau: x\in ®W_x \subseteq ®U_x$. $®U = \bigcup_{x\in ®U}®W_x \in \tau$. Tedy $®U \in \tau$.
+            Opačně víme $\forall x \in U\ \exists V_x\in©U(x): V_x \subseteq U$. $\exists W_x \in \tau: x\in W_x \subseteq U_x$. $U = \bigcup_{x\in U}W_x \in \tau$. Tedy $U \in \tau$.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -81,31 +81,31 @@
     \end{priklad}
 
     \begin{definice}[Metrizovatelný TP]
-        TP $(®X, \tau)$ se nazývá metrizovatelný, pokud na množině ®X existuje metrika $\rho$ tak, že topologie odvozené z $(®X, \rho)$ splývá s topologií $\tau$.
+        TP $(®X, \tau)$ se nazývá metrizovatelný, pokud na množině ®X existuje metrika $\rho$ tak, že topologie odvozená z $(®X, \rho)$ splývá s topologií $\tau$.
     \end{definice}
 
-    \begin{priklad}
+    \begin{priklady}
         Je-li $(®X, \rho)$ MP, pak systém všech otevřených koulí tvoří bázi topologie $\tau_\rho$.
         \begin{prikladyin}
             Všechny otevřené intervaly tvoří bázi topologie na ®R.
             
             Systém $\{(-\infty, b), (a, \infty): a,b \in ®R\}$ je subbáze topologie na ®R.
         \end{prikladyin}
-    \end{priklad}
+    \end{priklady}
 
-    \begin{priklad}[Diskrétní a indiskrétní TP]
+    \begin{priklady}[Diskrétní a indiskrétní TP]
         Je-li ®X množina, pak $(®X, ©P(®X))$ je TP, nazývá se diskrétní TP (a vždy je metrizovatelný). Naopak $(®X, \{\O, ®X\})$ se nazývá indiskrétní TP. (Pokud $|®X| ≥ 2$, pak indiskrétní TP není metrizovatelný.)
-    \end{priklad}
+    \end{priklady}
 
     \begin{tvrzeni}[Vlastnosti báze]
         Je-li $(®X, \tau)$ TP a ©B jeho báze, pak\\
-        (B1) $\forall ®U, ®V \in ©B \forall x \in ®U \cap ®V \exists ®W \in ®B: x \in ®W \subseteq ®U \cap ®V$,\\
+        (B1) $\forall U, V \in ©B\ \forall x \in U \cap V\ \exists W \in ©B: x \in W \subseteq U \cap V$,\\
         (B2) $\bigcup ©B = ®X$.
 
-        Je-li ®X libovolná množina a $©B \subseteq ®P(®X)$ splňuje podmínky (B1), (B2), pak na ®X existuje jediná topologie, jejíž báze je $®B$.
+        Je-li ®X libovolná množina a $©B \subseteq ®P(®X)$ splňuje podmínky (B1), (B2), pak na ®X existuje jediná topologie, jejíž báze je $©B$.
 
         \begin{dukazin}
-            První část je snadná (průnik 2 množin báze je otevřený, tj. prvkem topologie, tedy se dá zapsat jako sjednocení podmnožiny báze).
+            První část je snadná (průniky 2 množin báze i ®X jsou otevřené, tj. prvky topologie, tedy se dají zapsat jako sjednocení podmnožiny báze).
 
             Druhá část: Mějme tedy ®X a ©B z věty splňující obě podmínky. Definujme $\tau := \{\bigcup ©U: ©U \subseteq ©B\}$. $\tau$ je topologie na ®X (ověříme, že $\tau$ splňuje podmínky topologie).
 
@@ -115,7 +115,7 @@
         \begin{dusledekin}
             Je-li ®X množina, $©S \subseteq ©P(®X)$ a $\bigcup©S=®X$, pak $©S$ je subbáze jednoznačně určené topologie na ®X.
             \begin{dukazin}
-                    $ ©B = \{\cap ©F: ©F \subseteq ©S \text{konečná}\} $ splňuje podmínky (B1) a (B2) předchozího tvrzení (B2 \ definice ©S, B1 protože $®U, ®V \in ©B, ®U = \bigcup ©F_1, ®V = \bigcap ©F_2, ©F_1, ©F_2 \subseteq ©S \text{konečné}$. $ ®U \cap ®V = \bigcap (©F_1 \cup ©F_2) \in ©B $. (Dokonce celý průnik je prvkem ©B, nejenom pro každý prvek existuje množina, která ho obsahuje, je podmnožinou průniku a je v ©B).
+                $©B = \{\cap ©F: ©F \subseteq ©S \text{ konečná}\}$ splňuje podmínky (B1) a (B2) předchozího tvrzení (B2 z definice ©S, B1 protože $U, V \in ©B, U = \bigcup ©F_1, V = \bigcap ©F_2, ©F_1, ©F_2 \subseteq ©S \text{ konečné}$. $U \cap V = \bigcap (©F_1 \cup ©F_2) \in ©B$. (Dokonce celý průnik je prvkem ©B, nejenom pro každý prvek existuje množina, která ho obsahuje, je podmnožinou průniku a je v ©B).
             \end{dukazin}
         \end{dusledekin}
     \end{tvrzeni}
@@ -123,40 +123,44 @@
     \begin{tvrzeni}[Vlastnosti systému všech okolí]
         Je-li $(®X, \tau)$ TP, pak soubory všech okolí $©U_\tau(x), x \in ®X$ splňují\\
         (U1) $ \forall x \in ®X: ©U(x) ≠ \O, x \in \bigcap©U(x)$,\\
-        (U2) $\forall ®U \in ©U(x) \forall ®V: ®U \subseteq ®V \subseteq ®X \implies ®V \in ©U(x)$,\\
-        (U3) $\forall ®U, ®V \in ©U(x): ®U \cap ®V \in ©U(x)$,\\
-        (U4) $\forall ®U \in ©U(x) \exists ®V \in ©U(x) \forall y \in ®V: ®U \in ©U(y)$
+        (U2) $\forall U \in ©U(x)\ \forall V: U \subseteq V \subseteq ®X \implies V \in ©U(x)$,\\
+        (U3) $\forall U, V \in ©U(x): U \cap V \in ©U(x)$,\\
+        (U4) $\forall U \in ©U(x)\ \exists V \in ©U(x)\ \forall y \in V: U \in ©U(y)$.
 
         Je-li ®X množina a systémy množin $©U(x) \subseteq ©P(®X), x \in ®X$ splňující podmínky (U1-4), pak na množině ®X existuje jediná topologie $\tau$, že $©U(x) = ©U_\tau(x), x \in ®X$.
+
         \begin{dukazin}
             První část snadná. (Domácí cvičení.)
 
-            Položme $\tau = \{®U \in ©P(®X): \forall x \in ®U, ®U\in©U(x)\}$. $\tau$ je topologie na $®X$. Z (U1) a (U2) vyplyne (T1). Atd…
-        
+            Položme $\tau = \{U \in ©P(®X) | \forall x \in U: U \in ©U(x)\}$. $\tau$ je topologie na $®X$: Z (U1) a (U2) vyplyne (T1), (T2) je vlastně (U3) a (T3) získáme hlavně z (U2). Ať $U \in ©U(x)$. Položme $G = \{z \in U | U \in ©U(z)\}$. Zřejmě $x \in G \subseteq U$. Tvrdíme, že $G \in \tau$: Je-li $z \in G$, pak $U \in ©U(z)$, tedy dle (U4) existuje $V \in ©U(z)$, že pro každé $y \in V$ platí $U \in ©U(y)$. Tedy $V \subseteq G$. Proto $G \in \tau$. Tedy $©U(x) = ©U_\tau(x)$.
+
+            Jednoznačnost vyplývá z charakterizace otevřené množiny za pomoci okolí.
         \end{dukazin}
     \end{tvrzeni}
     
     \begin{definice}[Báze okolí]
-        Ať $(®X, \tau)$ je TP. Systém množin $©B(x) \subseteq ©P(®X)$ se nazývá báze okolí v bodě $x$, pokud $©B(x) \subseteq ©U_\tau(x)$ a pro každé $®V \in ©U_\tau(x)$ existuje $®U \in ©B(x)$, že $®U \in V$???. Indexovaný soubor $\{©B(x): x \in ®X\}$ se nazývá báze okolí prostoru $®X$, pokud $\forall x \in ®X: ©B(x)$ je báze okolí v bodě $x$.
+        Ať $(®X, \tau)$ je TP. Systém množin $©B(x) \subseteq ©P(®X)$ se nazývá báze okolí v bodě $x$, pokud $©B(x) \subseteq ©U_\tau(x)$ a pro každé $V \in ©U_\tau(x)$ existuje $U \in ©B(x)$, že $U \subseteq V$.
+
+        Indexovaný soubor $\{©B(x): x \in ®X\}$ se nazývá báze okolí prostoru $®X$, pokud $\forall x \in ®X: ©B(x)$ je báze okolí v bodě $x$.
     \end{definice}
 
     \begin{tvrzeni}[Vlastnosti báze okolí]
-        Je-li $(®X, \tau)$ TP a $\{©B(x): x \in ®X\}$ báze okolí, pak\\
-        (O1) $©B(x) ≠ \O, x \in \bigcap ©B(x), x \in ®X$,\\
-        (O2) $\forall ®U, ®V \in ©B(x) \exists ®W \in ©B(x): ®W \subseteq ®U \cap ®V$,\\
-        (O3) $\forall ®U \in ©B(x) \exists ©B(x) \forall y \in ®V \exists ®W \in ©B(y): ®W \subseteq ®U$.
+        Je-li $(®X, \tau)$ TP a $\{©B(x) | x \in ®X\}$ báze okolí, pak\\
+        (O1) $\forall x \in ®X: ©B(x) ≠ \O, x \in \bigcap ©B(x)$,\\
+        (O2) $\forall x \in ®X\ \forall U, V \in ©B(x)\ \exists W \in ©B(x): W \subseteq U \cap V$,\\
+        (O3) $\forall x \in ®X\ \forall U \in ©B(x)\ \exists V \in ©B(x)\ \forall y \in V\ \exists ®W \in ©B(y): W \subseteq U$.
 
-        Je-li ®X množina a $©B(x)\subseteq ©P(®X), x \in ®X$ soubory splňující (O1), (O2), (O3), pak na množině ®X existuje jediná topologie, jejíž báze okolí je $\{©B(x): x \in ®X\}$.
+        Je-li ®X množina a $©B(x)\subseteq ©P(®X), x \in ®X$ soubory splňující (O1), (O2), (O3), pak na množině ®X existuje jediná topologie, jejíž báze okolí je $\{©B(x) | x \in ®X\}$.
 
         \begin{dukazin}
             První část je snadná. 
 
-            Položme $©U(x) = \{®U \in ©P(x): \exists ®B \in ©B(x): ®B \subseteq ®U\}, x \in ®X$. Ověříme, že splňuje (U1-4). (U1) z (O1). (U2) z definice $©U$. (U3) z (O2), (U4) z (O3).
+            Položme $©U(x) = \{U \in ©P(x): \exists B \in ©B(x): B \subseteq U\}, x \in ®X$. Ověříme, že splňuje (U1-4). (U1) z (O1). (U2) z definice $©U(x)$. (U3) z (O2), (U4) z (O3). Z definice báze okolí plyne jednoznačnost volby okolí. Následně použijeme tvrzení o vlastnostech systému všech okolí.
         \end{dukazin}
     \end{tvrzeni}
 
     \begin{definice}[Váha prostoru]
-        Ať $(®X, \tau)$ je TP. Pak váha prostoru $(®X, \tau)$ je nejmenší mohutnost báze prostoru $(®X, \tau)$. Značíme ji $\weight(®X) = \weight(®X, \tau)$
+        Ať $(®X, \tau)$ je TP. Pak váha prostoru $(®X, \tau)$ je nejmenší mohutnost báze prostoru $(®X, \tau)$. Značíme ji $\weight(®X) = \weight(®X, \tau)$.
 
         Charakter v bodě $x$ je nejmenší mohutnost báze okolí bodu $x$. Značíme ho $\chi(x, ®X)$.
 
@@ -167,7 +171,7 @@
 
             $\weight(®X, ©P(®X)) = |®X|$ ($\{\{x\}: x \in ®X\}$ je báze $(®X, ©P(®X))$)
 
-            $ \weight(®X, \{\O,\{®X\}\}) = 1 $
+            $\weight(®X, \{\O,\{®X\}\}) = 1$
         \end{prikladyin}
 
         \begin{prikladyin}
@@ -178,7 +182,7 @@
     \begin{tvrzeni}
             Ať $(®X, \tau)$ je TP a $x \in ®X$. Pak $\chi(x, ®X)≤\weight(®X)$
         \begin{dukazin}
-            Ať ©B je báze $(®X, \tau)$, že $|©B| = \weight(®X)$. Položme $©B(x):=\{®U \in ©B: x \in ®U\}$. $©B(x)$ je báze okolí v bodě $x$.
+            Ať ©B je báze $(®X, \tau)$, že $|©B| = \weight(®X)$. Položme $©B(x):=\{U \in ©B | x \in U\}$. $©B(x)$ je báze okolí v bodě $x$.
 
             $|©B(x)|≤|©B|$, protože $©B(x) \subseteq ©B$. $\chi(x, ®X)≤|©B(x)|≤|©B|=\weight(®X)$.
         \end{dukazin}
@@ -186,7 +190,7 @@
 
     \subsection{Vnitřek, Uzávěr, hranice}
         \begin{definice}[Uzavřená množina]
-            Ať $(®X, \tau)$ je TP. Množina $®F \subseteq ®X$ se nazývá uzavřená, pokud její doplněk je otevřená množina (neboli $®X \setminus ®F \in \tau$).
+            Ať $(®X, \tau)$ je TP. Množina $F \subseteq ®X$ se nazývá uzavřená, pokud její doplněk je otevřená množina (neboli $®X \setminus F \in \tau$).
         \end{definice}
 
         \begin{definice}[Obojetná množina (clopen set)]
@@ -194,59 +198,61 @@
         \end{definice}
 
         \begin{definice}[Uzávěr]
-            Je-li $®A \subseteq ®X$, pak uzávěr ®A je $\cl(®A) = \overline{®A} = \bigcap\{®F \subseteq ®X, ®A \subseteq ®F, ®F \text{je uzavřená}\}$.
+            Je-li $A \subseteq ®X$, pak uzávěr $A$ je $\cl(A) = \overline{A} = \bigcap\{F \subseteq ®X, A \subseteq F, F \text{ je uzavřená}\}$.
         \end{definice}
 
         \begin{definice}[Vnitřek množiny]
-            Vnitřek množiny $®A$ je $\Int®A = ®A^0 = \bigcup\{®U \in \tau: ®U \subseteq ®A\}$.
+            Vnitřek množiny $A$ je $\Int A = A^\circ = \bigcup\{U \in \tau: U \subseteq A\}$.
         \end{definice}
 
         \begin{definice}[Hranice množiny]
-                Hranice množiny ®A je $\delta ®A = \overline{®A} \cap \overline{®X \setminus ®A}$
+            Hranice množiny $A$ je $\delta A = \overline{A} \cap \overline{®X \setminus A}$.
         \end{definice}
 
         \begin{tvrzeni}[Vztah vnitřku a uzávěru]
-                Ať $(®X, \tau)$ je TP, $®A\subseteq®X$, pak $®X \setminus \overline{®A} = \Int(®X \setminus ®A)$ a $®X \setminus \Int®A = \overline{®X \setminus ®A}$.
+            Ať $(®X, \tau)$ je TP, $A \subseteq ®X$, pak $®X \setminus \overline{A} = \Int(®X \setminus A)$ a $®X \setminus \Int A = \overline{®X \setminus A}$.
 
             \begin{dukazin}
-                $® \setminus \overline{®A}$ je otevřená, navíc $®X \setminus \overline{®A} \subseteq ®X \setminus ®A$. Tedy $®X \setminus \overline{®A} \subseteq \Int(®X\setminus ®A)$. $\Int(®X \setminus ®A)®X \setminus ®A$, přechodem k doplňku $®A \subseteq ®X \setminus \Int(®X \setminus ®A)$. Tedy $\overline{®A} \subseteq ®X \setminus \Int(®X)???$. Přechodem k doplňku: $\Int(®X \setminus ®A) \subseteq ®X \setminus \overline{®A}$.
+                $®X \setminus \overline{A}$ je otevřená, navíc $®X \setminus \overline{A} \subseteq ®X \setminus A$. Tedy z otevřenosti $®X \setminus \overline{A} \subseteq \Int(®X\setminus A)$. $\Int(®X \setminus A) \subseteq ®X \setminus ®A$, přechodem k doplňku (obrátí se inkluze) $A \subseteq ®X \setminus \Int(®X \setminus A)$, která je uzavřená. Tedy $\overline{A} \subseteq ®X \setminus \Int\(®X \setminus A\)$. Přechodem k doplňku: $\Int(®X \setminus A) \subseteq ®X \setminus \overline{A}$. Tím jsou obě inkluze dokázány a platí tedy rovnost.
 
                 Druhou část můžeme dokázat přechodem k doplňku a převedením na první část.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{tvrzeni}[Charakterizace uzávěru]
-                Buď $(®X, \tau)$ TP, $x \in ®X, ®A \subseteq ®X$ a $©B(x)$ báze okolí v bodě $x$. Pak následující podmínky jsou ekvivalentní\\
-            1) $x \in \overline{®A}$,\\
-            2) $\forall ®U \in ©U(x): ®U\cap ®A ≠ \O$,\\
-            3) $\forall ®U \in ©B(x): ®U\cap ®A ≠ \O$.
+                Buď $(®X, \tau)$ TP, $x \in ®X, A \subseteq ®X$ a $©B(x)$ báze okolí v bodě $x$. Pak následující podmínky jsou ekvivalentní\\
+            1) $x \in \overline{A}$,\\
+            2) $\forall U \in ©U(x): U \cap A ≠ \O$,\\
+            3) $\forall U \in ©B(x): U \cap A ≠ \O$.
 
             \begin{dukazin}
-                1) -> 2) sporem: Kdyby pro nějaké $®U \in ©U(x): ®U \cap ®A = \O$, pak existuje ®V otevřené: $x \in ®V \subseteq ®U$. $®V \cap®A = \O$. $®X \setminus ®V$ je uzavřená a $®A \subseteq ®X \setminus ®V$. Pak $x \in \overline{®A} \subseteq ®X \setminus ®V$, neobsahuje $x$. $\lightning$.
+                1) -> 2) sporem: Kdyby pro nějaké $U \in ©U(x): U \cap A = \O$, pak existuje $V$ otevřené: $x \in V \subseteq U$. $V \cap A = \O$. $®X \setminus V$ je uzavřená a $A \subseteq ®X \setminus V$. Pak $x \in \overline{A} \subseteq ®X \setminus V$ neobsahuje $x$. \lightning.
 
                 2) -> 3) triviální
 
-                3) -> 1) sporem: $x \notin \overline{®A}$ pak $x \in ®X\setminus \overline{®A}$. Pak existuje $®U \in ©B(x): x \in ®U \subseteq ®X \setminus \overline{®A}$. Pak ???
+                3) -> 1) sporem: $x \notin \overline{A}$ pak $x \in ®X\setminus \overline{A}$, která je otevřená. Pak existuje $U \in ©B(x): x \in U \subseteq ®X \setminus \overline{A}$. Pak $U \cap A = \O$.
             \end{dukazin}
         \end{tvrzeni}
 
-        Jako speciální důsledky dostáváme následující. Je-li ®U otevřená, pak $®U \cap ®A = \O$ právě když $®U \cap \overline{®A} = \O$. Jsou-li ®U, ®V otevřené disjunktní množiny, pak $®U \cap \overline{®V} = \O = \overline{®U} \cap ®V$.
+        \begin{dusledek}
+            Jako speciální důsledky dostáváme následující. Je-li $U$ otevřená, pak $U \cap A = \O$ právě když $U \cap \overline{A} = \O$. Jsou-li $U$, $V$ otevřené disjunktní množiny, pak $U \cap \overline{V} = \O = \overline{U} \cap V$.
+        \end{dusledek}
 
         \begin{tvrzeni}[Vlastnosti uzávěru]
-            Pro množiny ®A, ®B v TP $(®X, \tau)$ platí\\
+            Pro množiny A, B v TP $(®X, \tau)$ platí\\
             (C1) $\overline{\O} = \O$,\\
-            (C2) $®A \subseteq \overline{®A}$,\\
-            (C3) $\overline{\overline{®A}} = \overline{®A}$
-            (C4) $\overline{®A \cup ®B} = \overline{®A} \cup \overline{®B}$,\\
-            (C5) $\overline{®A \cap ®B} \subseteq \overline{®A} \cap \overline{®B}$.
+            (C2) $A \subseteq \overline{A}$,\\
+            (C3) $\overline{\overline{A}} = \overline{A}$,\\
+            (C4) $\overline{A \cup B} = \overline{A} \cup \overline{B}$,\\
+            (C5) $\overline{A \cap B} \subseteq \overline{A} \cap \overline{B}$.
 
             \begin{dukazin}
-                První dvě jsou jednoduché, 3. plyne z uzavřenosti uzávěru. 4. dokážeme inkluzemi. Shrnutím dostaneme (C5).
+                První dvě jsou jednoduché, 3. plyne z uzavřenosti uzávěru. 4. a 5. dokážeme inkluzemi.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{priklad}
-                Zobrazení z podmnožin do podmnožin, které splňuje podmínky (C1-C4) jednoznačně určuje topologii.
+            Zobrazení z $©P(®X)$ do $©P(®X)$, které splňuje podmínky (C1-C4) jednoznačně určuje topologii na ®X.
         \end{priklad}
 
         \begin{tvrzeni}[Vlastnosti vnitřku]
@@ -254,9 +260,9 @@
         \end{tvrzeni}
 
         \begin{tvrzeni}[Charakterizace hranice]
-            Ať $®A \subseteq ®X$ a $x \in ®X$. Pak $x \in \delta ®A$, právě když každé okolí bodu $x$ protíná jak ®A, tak $®X \setminus ®A$.
+            Ať $A \subseteq ®X$ a $x \in ®X$. Pak $x \in \delta A$, právě když každé okolí bodu $x$ protíná jak $A$, tak $®X \setminus A$.
             \begin{dukazin}
-                Plyne okamžitě z definice hranice $\delta ®A = \overline{®A} \cap \overline{®X \setminus ®A}$ a charakterizace uzávěru.
+                Plyne okamžitě z definice hranice $\delta A = \overline{A} \cap \overline{®X \setminus A}$ a charakterizace uzávěru.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -266,47 +272,49 @@
     
     \subsection{Husté a řídké množiny, hromadné a izolované body}
         \begin{definice}[Hustá a řídká množina, hustota, separabilní prostor]
-                Ať ®X je TP. Množina $®A \subseteq ®X$ se nazývá hustá (v ®X), pokud $\overline{®A} = ®X$. ®A se nazývá řídká, pokud $®X \setminus \overline{®A}$ je hustá.
+            Ať ®X je TP. Množina $A \subseteq ®X$ se nazývá hustá (v ®X), pokud $\overline{A} = ®X$. $A$ se nazývá řídká, pokud $®X \setminus \overline{A}$ je hustá.
 
-                Hustota prostoru ®X je nejmenší mohutnost husté podmnožiny, značí se $\d(®X)$ (d…density). Prostor se spočetnou hustotou se nazývá separabilní.
+            Hustota prostoru ®X je nejmenší mohutnost husté podmnožiny, značí se $\den(®X)$. Prostor se spočetnou hustotou se nazývá separabilní.
         \end{definice}
 
         \begin{tvrzeni}[Charakterizace hustých a řídkých množin]
-            Ať ®X je TP. Množina $®A \subseteq ®X$ je hustá v ®X, právě když $\forall ®U$ otevřená neprázdná v ®X protíná ®A. Množina ®A je řídká (v ®X), právě když $\forall ®V$ otevřená neprázdná $\exists ®U$ otevřená neprázdná, že $®U \subseteq ®V \setminus ®A$, což je právě když $\Int(\overline{®A}) = \O$.
+            Ať ®X je TP. Množina $A \subseteq ®X$ je hustá v ®X, právě když každá $U$ otevřená neprázdná v ®X protíná $A$. Množina $A$ je řídká (v ®X), právě když $\forall V$ otevřená neprázdná $\exists U$ otevřená neprázdná, že $U \subseteq V \setminus A$, což je právě když $\Int(\overline{A}) = \O$.
             \begin{dukazin}
-                Označme $\tau* = \tau \setminus \O$. Z charakterizace uzávěru: $\overline{®A} = ®X \Leftrightarrow \forall x \in ®X \forall ®V \in ©U(x): ®V\cap ®A ≠ \O$. $A$ je řídká $\Leftrightarrow$ $®X\setminus \overline{®A}$ je hustá $\Leftrightarrow \forall ®U \in \tau*: ®U \cap (®X \setminus \overline{®A}) ≠ \O \Leftrightarrow \forall ®U \in \tau*: ®U \setminus \overline{®A} ≠ \O$.
+                Označme $\tau^* = \tau \setminus \O$. Z charakterizace uzávěru: $\overline{A} = ®X \Leftrightarrow \forall x \in ®X\ \forall V \in ©U(x): V \cap A ≠ \O$.
 
-                První část dostaneme ekvivalencí z předchozího: $ \forall ®U \in \tau* \exists ®V \in \tau*: ®V \subseteq ®U \setminus \overline{®A}$.
+                $A$ je řídká $\Leftrightarrow$ $®X\setminus \overline{A}$ je hustá $\Leftrightarrow \forall U \in \tau^*: U \cap (®X \setminus \overline{A}) ≠ \O \Leftrightarrow \forall U \in \tau^*: U \setminus \overline{A} ≠ \O$.
 
-                Druhá část pak plyne z $\Int \overline{A} = \O$
+                První část dostaneme ekvivalencí z předchozího: $ \forall U \in \tau^*\ \exists V \in \tau^*: V \subseteq U \setminus \overline{A}$ (můžeme volit $V = U \setminus \overline{A}$ jedním směrem a implikace druhým směrem je: $\exists V \in \tau^*: V \subseteq U \setminus \overline{A}$ tím spíše $U \setminus \overline{A} ≠ \O$).
+
+                Druhá část $\(\Int \overline{A} = \O\)$ se dokáže sporem oběma směry.
             \end{dukazin}
         \end{tvrzeni}
         
         \begin{tvrzeni}[Vztah váhy a hustoty]
-            Ať ®X je TP. Pak $\d(®X) ≤ \weight(®X)$. Speciálně každý prostor se spočetnou bází je separabilní.
+            Ať ®X je TP. Pak $\den(®X) ≤ \weight(®X)$. Speciálně každý prostor se spočetnou bází je separabilní.
             \begin{dukazin}
-                Ať ©B je báze TP ®X. (BÚNO $\O \notin ©B$). $forall ®B \in ©B$ fixujeme $x_B \in B, ®D:=\{x_B : B \in ©B\}$. Zřejmě $|®D|≤|©B|$, ®D je hustá v ®X. (Když tedy volíme $©B$ nejmenší, získáme výraz.)
+                Ať ©B je báze TP ®X. (BÚNO $\O \notin ©B$). $\forall B \in ©B$ fixujeme $x_B \in B, D:=\{x_B : B \in ©B\}$. Zřejmě $|D|≤|©B|$, $D$ je hustá v ®X (každá otevřená množina ji protíná). Když tedy volíme $©B$, aby její mohutnost byla nejmenší, získáme $\den(®X) ≤ \weight(®X)$.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{poznamka}
-            Pro metrizovatelný TP ®X platí $\d(®X) = \weight(®X)$.
+            Pro metrizovatelný TP ®X platí $\den(®X) = \weight(®X)$.
         \end{poznamka}
 
         \begin{definice}[Izolovaný a hromadný bod]
-            Ať ®X je TP. Bod $x \in ®A \subseteq ®X$ se nazývá izolovaným bodem množiny $A$, pokud existuje otevřená množina $®U \subseteq ®X$, že $®U\cap ®A = \{x\}$. Bod $x$ se nazývá hromadným bodem množiny ®A, pokud každé okolí bodu $x$ protíná množinu $®A\subseteq \{x\}$
-            \begin{prikladyin}
-                V diskrétním prostoru jsou všechny body izolované. Naopak je-li $®X = ®R$ a $®A = ®Q$, pak každý bod ®X je hromadným bodem množiny ®A. Žádný bod z ®A není izolovaným bodem ®A.
-            \end{prikladyin}
+            Ať ®X je TP. Bod $x \in A \subseteq ®X$ se nazývá izolovaným bodem množiny $A$, pokud existuje otevřená množina $U \subseteq ®X$, že $U \cap A = \{x\}$. Bod $x$ se nazývá hromadným bodem množiny $A$, pokud každé okolí bodu $x$ protíná množinu $A \setminus \{x\}$.
 
+            \begin{prikladyin}
+                V diskrétním prostoru jsou všechny body izolované. Naopak je-li $®X = ®R$ a $A = ®Q$, pak každý bod ®X je hromadným bodem množiny $A$ a žádný bod z $A$ není izolovaným bodem $A$.
+            \end{prikladyin}
         \end{definice}
 
         \begin{definice}[Derivace množiny]
-            Množina hromadných bodů množiny ®A se značí $®A'$. Někdy se nazývá derivace ®A.
+            Množina hromadných bodů množiny $A$ se značí $A'$. Někdy se nazývá derivace $A$.
         \end{definice}
 
         \begin{tvrzeni}[Vlastnosti derivace]
-            $\overline{®A} = ®A \cup ®A'$, $(®A \cup ®B)' = ®A' \cup ®B'$
+            $\overline{A} = A \cup A'$, $(A \cup B)' = A' \cup B'$
             \begin{dukazin}
                 Domácí cvičení (je jednoduchý).
             \end{dukazin}
@@ -314,15 +322,15 @@
 
     \subsection{Spojitá zobrazení}
         \begin{definice}[Spojité zobrazení, homeomorfizmus a spojitost v bodě]
-            Ať $(®X, \tau)$ a $(®Y, \sigma)$ jsou TP. Ať $f: ®X \rightarrow ®Y$. Zobrazení $f$ se nazývá spojité, pokud $\forall ®U \in \sigma: f^{-1}(®U) \in \tau$.
+            Ať $(®X, \tau)$ a $(®Y, \sigma)$ jsou TP. Ať $f: ®X \rightarrow ®Y$. Zobrazení $f$ se nazývá spojité, pokud $\forall U \in \sigma: f^{-1}(U) \in \tau$.
 
             $f$ se nazývá homeomorfizmus, pokud $f$ je bijekce a $f$ i $f^{-1}$ jsou spojitá.
 
-            $f$ je spojité v bodě $x$, pokud $\forall ®V \in ©U_\sigma(f(x)) \exists ®U \in ©U_\tau(x): f(U) \subseteq ®V$.
+            $f$ je spojité v bodě $x$, pokud $\forall V \in ©U_\sigma(f(x))\ \exists U \in ©U_\tau(x): f(U) \subseteq V$.
         \end{definice}
 
         \begin{priklady}
-            ®R, $(0, 1)$ jsou homeomorfní (ale nejsou izometrické)
+            ®R, $(0, 1)$ jsou homeomorfní (ale nejsou izometrické).
         \end{priklady}
 
         \begin{poznamka}
@@ -339,31 +347,31 @@
 
         \begin{tvrzeni}[Charakterizace spojitých zobrazení]
             Ať $(®X, \tau)$, $(®Y, \sigma)$ jsou TP, $f: ®X \rightarrow ®Y$ zobrazení. Pak následující je ekvivalentní:\\
-            1) $f$ je spojité\\
-            2) vzory množin z nějaké subbáze jsou otevřené\\
-            3) vzory množin z nějaké báze jsou otevřené\\
-            4) $f$ je spojité v každém bodě\\
-            5) vzory uzavřených množin jsou uzavřené\\
-            6) $\forall ®A \subseteq ®X: f(\overline{®A}) \subseteq \overline{f(®A)}$\\
-            7) $\forall ®B \subseteq ®Y: \overline{f^{-1}(®B)} \subseteq f^{-1}(\overline{®B})$\\
-            8) $\forall ®B \subseteq ®Y: f^{-1}(\Int ®B) \subseteq \Int\(f^{-1}(®B)\)$
+            1) $f$ je spojité,\\
+            2) vzory množin z nějaké subbáze jsou otevřené,\\
+            3) vzory množin z nějaké báze jsou otevřené,\\
+            4) $f$ je spojité v každém bodě,\\
+            5) vzory uzavřených množin jsou uzavřené,\\
+            6) $\forall A \subseteq ®X: f(\overline{A}) \subseteq \overline{f(A)}$,\\
+            7) $\forall B \subseteq ®Y: \overline{f^{-1}(B)} \subseteq f^{-1}(\overline{B})$,\\
+            8) $\forall B \subseteq ®Y: f^{-1}(\Int B) \subseteq \Int\(f^{-1}(B)\)$.
 
             \begin{dukazin}
                 1->2 Triviální (z definice).
 
-                2->3 Ať $©B$ je nějaká báze. Dle 2 pro nějakou subbázi ©S toho $(®Y, \sigma)$ platí, že $f^{-1}(®S)$ je otevřená pro $®S \in ©S$. Ať $®B \in ©B$. ®B lze vyjádřit jako sjednocení konečných průniků prvků ©S. (Vzor průniku je průnik vzorů, vzor sjednocení je sjednocení vzorů.) $f^{-1}(®B)$ je sjednocením konečných průniků prvků tvaru $f^{-1}(®S), ®S \in ©S$. Tedy $f^{-1}(®B)$ je otevřená.
+                2->3 Ať $©B$ je nějaká báze. Dle 2 pro nějakou subbázi ©S toho $(®Y, \sigma)$ platí, že $f^{-1}(S)$ je otevřená pro $S \in ©S$. Ať $B \in ©B$. $B$ lze vyjádřit jako sjednocení konečných průniků prvků ©S. (Vzor průniku je průnik vzorů, vzor sjednocení je sjednocení vzorů.) $f^{-1}(B)$ je sjednocením konečných průniků prvků tvaru $f^{-1}(S), S \in ©S$ (otevřených množin). Tedy $f^{-1}(B)$ je otevřená.
 
-                3->4 Ať $x \in ®X$, ®V okolí bodu $f(x)$. ©B báze z 3. podmínky. $\exists ®B \in ©B$, že $f(x) \in ©B \subseteq ®V$. $®U = f^{-1}(®B)$ otevřená, $x \in ®U f(®U) \subseteq ®B \subseteq ®V$.
+                3->4 Ať $x \in ®X$, $V$ okolí bodu $f(x)$. ©B báze z 3. podmínky. $\exists B \in ©B$, že $f(x) \in ©B \subseteq V$. $U = f^{-1}(B)$ otevřená, $x \in U, f(U) = B \subseteq V$.
 
-                4->5 Ať $®F \subseteq ®Y$ je uzavřená. Ať $x \in \overline{f^{-1}(F)}$. Chceme, že $x \in f^{-1}(®F)$ (tj. že $f(x) \in ®F$). Z 4 pro každé okolí ®V bodu $f(x)$ existuje ®U okolí $x$, že $f(x) \subseteq V$. Z definice uzávěru platí, že každé takové ®U protíná $f^{-1}(®F)$, tedy $f(®U) \cap ®F ≠ \O$, tedy $®V \cap ®F ≠ \O$. Tedy podle charakterizace uzávěru $f(x) \in \overline{®F} = ®F$.
+                4->5 Ať $F \subseteq ®Y$ je uzavřená. Ať $x \in \overline{f^{-1}(F)}$. Chceme, že $x \in f^{-1}(F)$ (tj. že $f(x) \in F$). Z 4 pro každé okolí $V$ bodu $f(x)$ existuje $U$ okolí $x$, že $f(x) \subseteq V$. Z definice uzávěru platí, že každé takové $U$ protíná $f^{-1}(F)$, tedy $f(U) \cap F ≠ \O$, tedy $V \cap F ≠ \O$. Tedy podle charakterizace uzávěru $f(x) \in \overline{F} = F$.
 
-                5->6 $f^{-1}(\overline{f(®A)})$ je uzavřená dle 5 a obsahuje ®A, tedy obsahuje i $\overline{®A}$. Pak $f(\overline{®A}) \subseteq f\(f^{-1}(\overline{f(®A)})\)\subseteq \overline{f(®A)}$.
+                5->6 $f^{-1}\(\overline{f(A)}\)$ je uzavřená dle 5 a obsahuje $A$, tedy obsahuje i $\overline{A}$. Pak $f(\overline{A}) \subseteq f\(f^{-1}(\overline{f(A)})\)\subseteq \overline{f(A)}$.
 
-                6->7 Ať $®B \subseteq Y$, $A := f^{-1}(®B)$. Dle 6 $f(\overline{f^{-1}(®B)}) \subseteq \overline{f(f^{-1}(®B))}\subseteq \overline{®B}$. $\overline{f^{-1}(®B)} \subseteq f^{-1}(\overline{®B})$ (aplikováním vzoru? na předchozí).
+                6->7 Ať $B \subseteq Y$, $A := f^{-1}(B)$. Dle 6 $f(\overline{f^{-1}(B)}) \subseteq \overline{f(f^{-1}(B))}\subseteq \overline{B}$. $\overline{f^{-1}(B)} \subseteq f^{-1}(\overline{B})$ (aplikováním vzoru na předchozí).
 
-                7->8 Vztah vnitřku a uzávěru. $f^{-1}(\Int ®B) = f^{-1}(®Y \setminus \overline{®Y \setminus ®B}) = ®X \setminus f^{-1}(\overline{®Y \setminus ®B}) \stackrel{\text{dle 7}}{\subseteq} ®X \setminus \overline{®Y \setminus ®B} = ®X \setminus \overline{®X \setminus f^{-1}(®B)} = ®X \setminus \(®X \setminus \Int f^{-1}(®B)\) = \Int f^{-1}(®B)$.
+                7->8 Vztah vnitřku a uzávěru: $f^{-1}(\Int B) = f^{-1}(®Y \setminus \overline{®Y \setminus B}) = ®X \setminus f^{-1}(\overline{®Y \setminus B}) \stackrel{\text{dle 7}}{\subseteq} ®X \setminus \overline{®Y \setminus B} = ®X \setminus \overline{®X \setminus f^{-1}(B)} = ®X \setminus \(®X \setminus \Int f^{-1}(B)\) = \Int f^{-1}(B)$.
 
-                8->1 Je-li $®V \subseteq ®Y$ otevřená, pak ze 7: $f^{-1}(®V) \subseteq \Int(f^{-1}(®V))$. Triviálně $\Int f^{-1}(®V) \subseteq f^{-1}(®U)$. Tedy $f^{-1}(®V) = \Int f^{-1}(®V)$, tedy $f^{-1}(®V)$ je otevřená.
+                8->1 Je-li $V \subseteq ®Y$ otevřená, pak ze 8: $f^{-1}(V) \subseteq \Int(f^{-1}(V))$. Triviálně $\Int f^{-1}(V) \subseteq f^{-1}(U)$. Tedy $f^{-1}(V) = \Int f^{-1}(V)$, tedy $f^{-1}(V)$ je otevřená.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -373,9 +381,9 @@
             Pokud $f$ je spojité v bodě $x$ a $g$ spojité v $f(x)$, pak $g \circ f$ je spojité v $x$.
 
             \begin{dukazin}
-                $(g\circ f)^{-1}(®V) = f^{-1}(g^{-1}(®V))$
+                $(g\circ f)^{-1}(V) = f^{-1}(g^{-1}(V))$.
 
-                Je-li ®V okolí $gf(x)$, pak $g^{-1}(®V)$
+                Je-li $V$ okolí $gf(x)$, pak $g^{-1}(V)$ je okolí $f(x)$ a $f^{-1}\(g^{-1}(V)\)$ je okolí $x$.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -385,12 +393,12 @@
         \begin{definice}
             TP ®X se nazývá:
             \begin{itemize}
-                \item $T_0$, pokud $\forall x, y \in ®X \exists ®U \text{otevřená} : |U \cap \{x, y\}| = 1$.
-                \item $T_1$, pokud $\forall x, y \in ®X, x≠y \exists ®U \text{otevřená} : x\in ®U, y\notin ®U$.
-                \item $T_2$ (Hausdorffův), pokud $\forall x, y \in ®X \exists ®U, V \text{otevřené disjunktní} : x \in ®U, y \in ®V $.
-                \item regulární, pokud $\forall ®F \subseteq ®X$ uzavřenou $\forall \in ®X \setminus ®F \exists ®U, ®V$ otevřené disjunktní: $x \in ®U, ®F \subseteq ®V$.
-                \item normální, pokud $\forall ®E, ®F$ uzavřené disjunktní $\exists ®U, ®V$ otevřené disjunktní: $®E \subseteq ®U, ®F \subseteq ®V$.
-                \item úplně regulární, pokud $\forall ®F \subseteq ®X$ uzavřenou $\forall x \in ®X \setminus ®F \exists f: ®X \rightarrow \[0, 1\]$ spojitá, že $f(x) = 0, f(®F)\subseteq \{1\}$.
+                \item $T_0$, pokud $\forall x, y \in ®X\ \exists U \text{ otevřená} : |U \cap \{x, y\}| = 1$.
+                \item $T_1$, pokud $\forall x, y \in ®X, x≠y\ \exists U \text{ otevřená} : x \in U, y \notin U$.
+                \item $T_2$ (Hausdorffův), pokud $\forall x, y \in ®X\ \exists U, V \text{ otevřené disjunktní}: x \in U, y \in V$.
+                \item regulární, pokud $\forall F \subseteq ®X$ uzavřenou $\forall x \in ®X \setminus F\ \exists U, V$ otevřené disjunktní: $x \in U, F \subseteq V$.
+                \item normální, pokud $\forall E, F$ uzavřené disjunktní $\exists U, V$ otevřené disjunktní: $E \subseteq U, F \subseteq V$.
+                \item úplně regulární, pokud $\forall F \subseteq ®X$ uzavřenou $\forall x \in ®X \setminus F\ \exists f: ®X \rightarrow \[0, 1\]$ spojitá, že $f(x) = 0, f(F) \subseteq \{1\}$.
                 \item $T_3$, pokud je regulární a $T_1$.
                 \item $T_{3\frac{1}{2}}$ nebo $T_\pi$ (Tichonovův), pokud je úplně regulární a $T_1$.
                 \item $T_4$, pokud je normální a $T_1$.
@@ -400,16 +408,17 @@
                 $$ \text{normální} \implies \text{úplně regulární} \overset{\text{rozpůlení intervalu $\[0, 1\]$}}{\implies} \text{regulární} $$ 
                 $$ T_4 \implies T_\pi \implies T_3 \implies T_2 \implies T_1 \implies T_0 $$ 
                 (Platí pouze tímto směrem, ne opačně!)
-                $$ T_0 \not\implies T_1: \(\{0, 1\}, \{\O, \{0, 1\}, \{0\}\}\) … (\text{Sierpinského TP}) $$
-                $$ T_1 \not\implies T_2: \(®N, \{\O\} \cup \{®N \setminus K: K \text{je konečná}\}\) (\text{Topologie kokonečných (doplněk konečných) množin}) $$
+                $$ T_0 \nRightarrow T_1: \(\{0, 1\}, \{\O, \{0, 1\}, \{0\}\}\) … (\text{Sierpinského TP}) $$
+                $$ T_1 \nRightarrow T_2: \(®N, \{\O\} \cup \{®N \setminus K: K \text{ je konečná}\}\) $$
+                $$ (\text{Topologie kokonečných (doplněk konečných) množin.}) $$
             \end{poznamka}
         \end{definice}
 
         \begin{tvrzeni}[Metrizovatelné prostory jsou $T_4$]
-            Je-li ®X metrizovatelný prostor a $®E, ®F \subseteq ®X$ uzavřené disjunktní množiny, pak existuje spojitá funkce $f: ®X \rightarrow \[0, 1\]$, že $f(®E) \subseteq \{0\}, f(®F) \subseteq \{1\}$.
+            Je-li ®X metrizovatelný prostor a $E, F \subseteq ®X$ uzavřené disjunktní množiny, pak existuje spojitá funkce $f: ®X \rightarrow \[0, 1\]$, že $f(E) \subseteq \{0\}, f(F) \subseteq \{1\}$.
 
             \begin{dukazin}
-                    ®X je metrizovatelný, tedy existuje metrika $\rho$ kompatibilní s topologií na ®X. Položme $f(x) = \frac{\rho(x, ®E)}{\rho(x, ®E) + \rho(x, ®F)}, x \in ®X$. $f$ je dobře definovaná a jistě spojitá. $f(x) = 0, x \in ®E$, $f(x) = 1, x \in ®F$.
+                ®X je metrizovatelný, tedy existuje metrika $\rho$ kompatibilní s topologií na ®X. Položme $f(x) = \frac{\rho(x, E)}{\rho(x, E) + \rho(x, F)}, x \in ®X$. $f$ je dobře definovaná a jistě spojitá. $f(x) = 0, x \in E$, $f(x) = 1, x \in F$.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -417,9 +426,9 @@
             Ať ®X je TP. Pak
             \begin{itemize}
                 \item[a)] ®X je $T_1 \Leftrightarrow$ každá jednoprvková množina je uzavřená $\Leftrightarrow$ každá konečná množina je uzavřená.
-                \item[b)] ®X je $T_2$ $\implies \forall x, y \in ®X, x≠y \exists ®U \in ©U(x): y\notin \overline{®U}$.
-                \item[c)] ®X je regulární $\Leftrightarrow \forall x \in ®X \forall ®U \in ©U(x) \exists ®V \in ©U(x): \overline{®V} \subseteq ®U$.
-                \item ®X je normální $\Leftrightarrow \forall ®V \subseteq ®X \text{otevřenou} \forall ®E \in ®V \text{uzavřenou} \exists U \subseteq ®X \text{otevřená}: ®E \subseteq ®U \subseteq \overline{®U} \subseteq V$.
+                \item[b)] ®X je $T_2$ $\Leftrightarrow \forall x, y \in X, x≠y\ \exists U \in ©U(x): y\notin \overline{U}$.
+                \item[c)] ®X je regulární $\Leftrightarrow \forall x \in ®X\ \forall U \in ©U(x)\ \exists V \in ©U(x): \overline{V} \subseteq U$.
+                \item[d] ®X je normální $\Leftrightarrow \forall V \subseteq ®X \text{ otevřenou}\ \forall E \subseteq V \text{ uzavřenou}\ \exists U \subseteq ®X \text{ otevřená}: E \subseteq U \subseteq \overline{U} \subseteq V$.
             \end{itemize}
 
             \begin{dukazin}
@@ -428,29 +437,35 @@
         \end{lemma}
 
         \begin{veta}[Urysohnovo lemma]
-            TP ®X je normální $\Leftrightarrow$ pro každé dvě disjunktní uzavřené ®E, ®F existuje spojitá funkce $f:®X \rightarrow [0, 1]$, že $f(®E) \subseteq \{0\}, f(®F) \subseteq \{1\}$
+            TP ®X je normální $\Leftrightarrow$ pro každé dvě disjunktní uzavřené $E$, $F$ existuje spojitá funkce $f:®X \rightarrow [0, 1]$, že $f(E) \subseteq \{0\}, f(F) \subseteq \{1\}$.
             
             \begin{dukazin}
                 Implikace zprava doleva je snadná -- uvažujeme $\{x \in ®X: f(x) < \frac{1}{2}\}$ a $\{x \in ®X: f(x)>\frac{1}{2}\}$.
 
-                $\implies$ Označme $D:=®Q \cap \[0, 1\]$, $D= \{r_n: n \in ®N \cup \{0\}\}$, $r_0 = 0, r_1 = 1$ ($r_n$) prostá posloupnost. Indukcí najdeme otevřené množiny $®V_q: q \in D$, že pro $p, q \in D, p<q \implies ®V_p \subseteq ®V_q$ a navíc $®E \subseteq ®V_0, ®V_1 \subseteq ®X \setminus ®F$.
+                $\implies$ Označme $D:=®Q \cap \[0, 1\]$, $D= \{r_n: n \in ®N \cup \{0\}\}$, $r_0 = 0, r_1 = 1$ ($r_n$) prostá posloupnost. Indukcí najdeme otevřené množiny $V_q: q \in D$, že pro $p, q \in D, p<q \implies V_p \subseteq V_q$ a navíc $E \subseteq V_0, V_1 \subseteq ®X \setminus F$.
 
-                Z normality najdeme otevřenou množinu ®U, že $®E \subseteq ®U \subseteq \overline{®U}\subseteq ®X \setminus \overline{r}$. Položíme $®V_0 = ®U$, $®V_1 = ®X \setminus ®F$.
+                Z normality najdeme otevřenou množinu $U$, že $E \subseteq U \subseteq \overline{U}\subseteq ®X \setminus \overline{r}$. Položíme $V_0 = U$, $V_1 = ®X \setminus F$.
 
-                Nyní předpokládejme, že $®V_{r_0}, ®V_{r_1}, …, ®V_{r_n}, n≥1$. Už známe a platí, že pro $p, q \in \{r_0, …, r_n\}: p<q \implies \overline{®V_p} \subseteq ®V_q$. Chceme najít $®V_{r_{n+1}}$. Ať $i,j≤n$ jsou taková, že $r_i = \max\{r_k: r_k < r_{n+1}\}$ a $r_j = \min\{r_k: r_k > r_{n+1}\}$. $r_i < r_j$. Z 1P: $\overline{V_{r_i}} \subseteq V_{r_j}$. Z normality existuje otevřená $®V_{r_{n+1}}$, že $\overline{®V_{r_i}} \subseteq ®V_{r_{n+1}} \subseteq \overline{®V_{r_{n+1}}} \subseteq ®V_{r_j}$.
+                Nyní předpokládejme, že $V_{r_0}, V_{r_1}, …, V_{r_n}, n≥1$ už známe a platí, že pro $p, q \in \{r_0, …, r_n\}: p<q \implies \overline{V_p} \subseteq V_q$. Chceme najít $V_{r_{n+1}}$. Ať $i,j≤n$ jsou taková, že $r_i = \max\{r_k: r_k < r_{n+1}\}$ a $r_j = \min\{r_k: r_k > r_{n+1}\}$. $r_i < r_j$. Z IP: $\overline{V_{r_i}} \subseteq V_{r_j}$. Z normality existuje otevřená $V_{r_{n+1}}$, že $\overline{V_{r_i}} \subseteq V_{r_{n+1}} \subseteq \overline{V_{r_{n+1}}} \subseteq V_{r_j}$.
 
-                Položme $f(x) = 1, x \in ®X \setminus ®V_1| f(x) = \inf{r\in D: x \in ®V_r}, x \in ®V_1$. $f:®X \rightarrow \[0, 1\]$. Nyní stačí ověřit spojitost: vzory subbázových (nějaké subbáze) podmnožin jsou otevřené. Zvolím si subbázi $\{\[0, b\), \(a,1\], a, b \in \(0, 1\)\}$. $f^{-1}(\[0, b\)) = \{x \in ®X: f(x)<b\} = \{x \in ®X: \exists r< b: x \in ®V_r\} = \bigcap_{r<b}®V_r…\text{otevřené}$. $f^{-1}(\(a, 1\]) = \{x \in ®X: f(x) > a\} = \{x \in ®X: \exists r>a: x\notin ®V_r\} = \{x \in ®X: \exists s>a: x \notin \overline{®V_s}\} = \bigcup_{s>a}®X \setminus \overline{®V_s}…\text{otevřené}$
+                Položme
+                $$ f(x) = \begin{cases}1&, x \in ®X \setminus V_1 \\ \inf \{r \in D: x \in V_r\}&, x \in V_1 \end{cases} . $$
+
+                $f:®X \rightarrow \[0, 1\]$. Nyní stačí ověřit spojitost: vzory subbázových (nějaké subbáze) podmnožin jsou otevřené. Zvolím si subbázi $\{\[0, b\), \(a,1\], a, b \in \(0, 1\)\}$. 
+                $$ f^{-1}(\[0, b\)) = \{x \in ®X: f(x)<b\} = \{x \in ®X: \exists r< b: x \in V_r\} = \bigcup_{r<b} V_r…\text{otevřené}. $$ 
+        $$ f^{-1}(\(a, 1\]) = \{x \in ®X: f(x) > a\} = \{x \in ®X: \exists r>a: x\notin V_r\} = $$
+        $$ = \{x \in ®X: \exists s>a: x \notin \overline{V_s}\} = \bigcup_{s>a} ®X \setminus \overline{V_s}…\text{otevřené}. $$
             \end{dukazin}
         \end{veta}
 
-        \begin{poznamka}[$T_4 \implies T_{3.5}$, normalita $\implies$ úplná regularita]
-        
-        \end{poznamka}
+        \begin{dusledek}
+            $T_4 \implies T_\pi$.
+        \end{dusledek}
     
 
     \subsection{Konvergence v topologických prostorech}
         \begin{definice}[Usměrněné množiny]
-            Dvojice $(®I, ≤)$ se nazývá usměrněná množina, pokud ®I je množina a $≤$ je binární relace na ®I, která je reflexivní, tranzitivní a pro $i, j \in ®I$, pak existuje $k\in ®I$, že $i≤k, j≤k$.
+            Dvojice $(I, ≤)$ se nazývá (nahoru) usměrněná množina, pokud $I$ je množina a $≤$ je binární relace na $I$, která je reflexivní, tranzitivní a pro $i, j \in I$, pak existuje $k\in I$, že $i≤k, j≤k$.
 
             \begin{prikladyin}
                 $(®N, ≤)$
@@ -462,9 +477,9 @@
         \end{definice}
 
         \begin{definice}[Konvergence netu]
-            Řekneme, že net $(x_i)_{i \in ®I}$ konverguje k bodu $x$, pokud $\forall ®U \in ©U(x) \exists i_0 \in ®I \forall i \in ®I, i≥ i_0: x_i \in ®U$. Pokud existuje právě jeden, značíme $x= \lim_{i\in®I}x_i$.
+            Řekneme, že net $(x_i)_{i \in I}$ konverguje k bodu $x$, pokud $\forall U \in ©U(x)\ \exists i_0 \in I\ \forall i \in I, i≥ i_0: x_i \in U$. Značíme $x= \lim_{i \in I}x_i$ a říkáme, že $x$ je limita tohoto netu.
 
-            Bod $x$ se nazývá hromadným bodem netu $(x_i)_{i \in ®I}$, pokud $\forall ®U \in ©U(x) \forall i \in ®I \exists j≥i: x_j \in ®U$.
+            Bod $x$ se nazývá hromadným bodem netu $(x_i)_{i \in I}$, pokud $\forall U \in ©U(x)\ \forall i \in I\ \exists j≥i: x_j \in U$.
         \end{definice}
 
         \begin{tvrzeni}[Jednoznačnost limity netu]
@@ -473,19 +488,19 @@
 % 26. 10. 2020
 
             \begin{dukazin}
-                $(\implies)$: Ať $(x_i)_{i \in I}$ je net mající dvě různé limity $x, y \in ®X$. ®X je Hausdorffův, tedy existuje disjunktní okolí $U, V$ bodů $x, y$. Pak existuje $i \in I$, že $\forall j\in I, j≥i: x_j \int ®U$ a existuje $k \in I$, že $\forall j\in I, j≥k: x_j \int ®V$. $(I, ≤)$ je usměrněná množina, tedy existuje $l \in I$, že $l≥i$, $l≥k$. $x_l \in ®U \cap ®V$. $\lightning$.
+                $(\implies)$: Ať $(x_i)_{i \in I}$ je net mající dvě různé limity $x, y \in ®X$. ®X je Hausdorffův, tedy existuje disjunktní okolí $U, V$ bodů $x, y$. Pak existuje $i \in I$, že $\forall j\in I, j≥i: x_j \in U$ a existuje $k \in I$, že $\forall j\in I, j≥k: x_j \in V$. $(I, ≤)$ je usměrněná množina, tedy existuje $l \in I$, že $l≥i$, $l≥k$. $x_l \in U \cap V$. \lightning.
 
-                Opačně: Ať ®X není Hausdorffův. Ať $x, y \in ®X$ je dvojice různých bodů, které nejdou oddělit otevřenými disjunktními množinami. Uvažme otevřenou množinu $\(©U(x)\times ©V(y), ≤\)$, kde $(®A, ®B) ≤ (®U, ®V) ≡ (®U\subseteq ®U \land ®V \subseteq ®B)$. Pro každé $(®U, ®V) \in ©U(x)\times ©V(y)$ vezměme nějaký bod $x_{(®U, ®V)} \in ®U \cap ®V$. $\(x_{(®U, ®V)}\)_{(®U, ®V)\in ©U(x) \times ©U(y)}$ je net v $X$, který konverguje k $x$ a zároveň konverguje k $y$.
+                Opačně: Ať ®X není Hausdorffův. Ať $x, y \in ®X$ je dvojice různých bodů, které nejdou oddělit otevřenými disjunktními množinami. Uvažme otevřenou množinu $\(©U(x)\times ©V(y), ≤\)$, kde $(A, B) ≤ (U, V) ≡ (U\subseteq A \land V \subseteq B)$. Pro každé $(U, V) \in ©U(x)\times ©V(y)$ vezměme nějaký bod $x_{(U, V)} \in U \cap V$. $\(x_{(U, V)}\)_{(U, V)\in ©U(x) \times ©U(y)}$ je net v ®X, který konverguje k $x$ a zároveň konverguje k $y$.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{tvrzeni}[Charakterizace uzávěru pomocí konvergence netů]
-            Ať ®X je TP a $®A \subseteq ®X$. Pak $x\in \overline{®A}$, právě když existuje net $(x_i)_{i \in I}$ tvořený body z $®A$, který konverguje k $x$.
+            Ať ®X je TP a $A \subseteq ®X$. Pak $x \in \overline{A}$, právě když existuje net $(x_i)_{i \in I}$ tvořený body z $A$, který konverguje k $x$.
 
             \begin{dukazin}
-                ($\implies$): Ať $x \in \overline{A}$. $\forall ®U\in ©U(x): ®U\cap ®A ≠ \O$. Fixujme $x_{®U}\in ®U \cap ®A$, pro $®U \in ©U(x)$. $\(©U, \supseteq\)$ je usměrněná množina. $(x_{®U})_{®U \in ©U(x)}$ je net tvořený prvky z ®A, který konverguje k $x$.
+                ($\implies$): Ať $x \in \overline{A}$. $\forall U\in ©U(x): U\cap A ≠ \O$. Fixujme $x_{U}\in U \cap A$, pro $U \in ©U(x)$. $\(©U(x), \supseteq\)$ je usměrněná množina. $(x_{U})_{U \in ©U(x)}$ je net tvořený prvky z $A$, který konverguje k $x$.
 
-                ($\Rightarrow$): Ať $x\in ®X, (x_i)_{i\in I}$ je net z prvků $®A$, který konverguje k $x$. Chceme, $x\in \overline{®A}$. Ať ®U je okolí $x$. Chceme, že $U\cap®A ≠ \O$. $(x_i)$ konverguje k $x$, tedy existuje $j \in I: x_j \in ®U$. Navíc $x_j \in ®A$. $x_j \in ®A \cap ®U$.
+                ($\Rightarrow$): Ať $x\in ®X, (x_i)_{i\in I}$ je net z prvků $A$, který konverguje k $x$. Chceme, $x\in \overline{A}$. Ať $U$ je okolí $x$. Chceme, že $U \cap A ≠ \O$. $(x_i)$ konverguje k $x$, tedy existuje $j \in I: x_j \in U$. Navíc $x_j \in A$. $x_j \in A \cap U$.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -493,11 +508,15 @@
             Ať ®X, ®Y jsou TP. $f: ®X \rightarrow Y$ je zobrazení, $x \in ®X$. Pak $f$ je spojité v bodě $x$ právě tehdy, když pro každý net $(x_i)_{i \in I}$ konvergující k bodu $x \in ®X$ konverguje net $(f(x_i))_{i\in I}$ k bodu $f(x)$.
 
             \begin{dukazin}
-                ($\implies$): Ať $®V \in ©U(f(x))$. Pak ze spojitosti $\exists ®U \in ©U(x): f(®U)\subseteq ®V$. Net $(x_i)$ konverguje k $x$, tedy existuje $i_0 \in I$, že pro $i≥i_0: x_i \in ®U$. Pak zřejmě pro $i ≥ i_0: f(x_i)\in ®V$.
+                ($\implies$): Ať $V \in ©U(f(x))$. Pak ze spojitosti $\exists U \in ©U(x): f(U)\subseteq V$. Net $(x_i)$ konverguje k $x$, tedy existuje $i_0 \in I$, že pro $i≥i_0: x_i \in U$. Pak zřejmě pro $i ≥ i_0: f(x_i)\in V$.
 
-                ($\Rightarrow$): Ať $f$ není spojité v bodě $x$. Tedy existuje $®V \in ©U(f(x))$, že $\forall ®U \in ©U(x): f(®U)\setminus ®V ≠ \O$. Zvolme $x_{®U} \in ®U$, že $f(x_{®U}) \notin ®V$. $(x_{®U})_{®U \in ©U(x)}$ je net v ®X, zřejmě $(x_{®U})$ konverguje k $x$. $(f(x_{®U}))_{®U \in ©U(x)}$ zřejmě tedy nekonverguje k bodu $f(x)$. $\lightning$
+                ($\Rightarrow$): Ať $f$ není spojité v bodě $x$. Tedy existuje $V \in ©U(f(x))$, že $\forall U \in ©U(x): f(U)\setminus V ≠ \O$. Zvolme $x_{U} \in U$, že $f(x_{U}) \notin V$. $(x_{U})_{U \in ©U(x)}$ je net v ®X, zřejmě $(x_{U})$ konverguje k $x$. $(f(x_{U}))_{U \in ©U(x)}$ zřejmě tedy nekonverguje k bodu $f(x)$. \lightning.
             \end{dukazin}
         \end{tvrzeni}
+
+        \begin{poznamka}
+            Obdobně lze dokázat $x \in A' \Leftrightarrow \exists$net $\(x_i\)_{i \in I}$ konvergující k $x$, že $x_i ≠ x$ pro $i \in I$.
+        \end{poznamka}
 
 \section{Operace s TP a zobrazeními}
     \subsection{Obecné konstrukce}
@@ -508,40 +527,44 @@
         \begin{poznamka}
             Topologie $\tau$ je větší než $\sigma$ $\Leftrightarrow$ $id_{®X}: (®X, \tau) \rightarrow (®X, \sigma)$ je otevřená.
 
-            Jsou-li $\tau_i: i \in I$ topologie na ®X, pak $\bigcap_{i \in I}\tau_i$ je opět topologie na ®X. Navíc je největší topologií, která je menší než všechny $\tau_i$. $\bigcap_{i \in I} \tau_i$ je subbáze nějaké topologie, která je nejmenší topologie, která je větší než všechny $\tau_i$.
+            Jsou-li $\tau_i: i \in I$ topologie na ®X, pak $\bigcap_{i \in I}\tau_i$ je opět topologie na ®X. Navíc je největší topologií, která je menší než všechny $\tau_i$. $\bigcup_{i \in I} \tau_i$ je subbáze nějaké topologie, která je nejmenší topologie, která je větší než všechny $\tau_i$.
         \end{poznamka}
 
         \begin{definice}[Projektivní a induktivní vytváření]
-            Ať ®X je množina a $(®X_i, \tau_i), i \in I$, jsou TP a $f_i: ®X \rightarrow ®X_i$ zobrazení.
+            Ať ®X je množina a $(®X_i, \tau_i), i \in I$, jsou TP a $f_i: ®X \rightarrow ®X_i$ resp. $f_i: ®X_i \rightarrow ®X$ zobrazení.
 
             Topologie $\tau$ na množině ®X se nazývá projektivně vytvořená, pokud $\tau$ je nejmenší topologie, při níž jsou všechna zobrazení $f_i: (®X, \tau) \rightarrow (®X_i, \tau_i)$ spojitá.
 
             Jsou-li $f_i:®X_i \rightarrow ®X$ zobrazení, topologie $\tau$ na ®X se nazývá induktivně vytvořená, pokud $\tau$ je největší topologie na ®X, při které jsou všechna $f_i: (®X_i, \tau_i) \rightarrow (®X, \tau)$ spojitá.
         \end{definice}
 
-        \begin{veta}[Charakterizace spojitosti zobrazení do projektivně definovaného TP]
-            Ať $(®X, \tau)$ je projektivně vytvořen souborem zobrazení $f_i: ®X \rightarrow (®X_i, \tau_i)$. Zobrazení $g: (®Y, \sigma) \rightarrow (®X, \tau)$ je spojité $\Leftrightarrow \forall i \in I: f_i \circ g: (®Y, \sigma) \rightarrow (®X_i, \tau_i)$ je spojité.
+        \begin{veta}[Char. spojitosti zobrazení do projektivně definovaného TP]
+            Ať $(®X, \tau)$ je projektivně vytvořen souborem zobrazení $f_i: ®X \rightarrow (®X_i, \tau_i), i \in I$. Zobrazení $g: (®Y, \sigma) \rightarrow (®X, \tau)$ je spojité $\Leftrightarrow \forall i \in I: f_i \circ g: (®Y, \sigma) \rightarrow (®X_i, \tau_i)$ je spojité.
 
             \begin{dukazin}
                 Doprava je jednoduché, složení spojitých zobrazení je spojité.
 
-                Opačně: Ať $\tau'$ je největší topologie na ®X, při které je zobrazení $g$ spojité: $\tau' = \{ ®U \subseteq ®X: g^{-1}(®U) \in \sigma\}$. Stačí, že $\tau \subseteq \tau'$. $\tau$ je nejmenší topologie, která obsahuje množiny $f^{-1}_i (®V), ®V \in \tau_i, i \in I$. Tedy stačí ukázat, že $f^{-1}_i (®V) \in \tau'$ pro $®V \in \tau_i, i \in I$. $g^{-1}(f^{-1}(®V)) = (f_i \circ g)^{-1}(®V)\in \sigma$. Tedy opravdu $f_i^{-1} \in \tau'$.
+                Opačně: Ať $\tau'$ je největší topologie na množině ®X, při které je zobrazení $g$ spojité: $\tau' = \{U \subseteq ®X: g^{-1}(U) \in \sigma\}$. Stačí, že $\tau \subseteq \tau'$. $\tau$ je nejmenší topologie, která obsahuje množiny $f^{-1}_i (V), V \in \tau_i, i \in I$. Tedy stačí ukázat, že $f^{-1}_i (V) \in \tau'$ pro $V \in \tau_i, i \in I$. $g^{-1}(f^{-1}_i(V)) = (f_i \circ g)^{-1}(V)\in \sigma$. Tedy opravdu $f_i^{-1} \in \tau'$ z definice $\tau'$.
             \end{dukazin}
         \end{veta}
+
+        \begin{poznamka}
+            Obdobné tvrzení platí i pro induktivně vytvořené topologie.
+        \end{poznamka}
         
     \subsection{Podprostor, suma, součin, kvocient}
         \begin{definice}
             Je-li $(®X, \tau)$ TP a $A \subseteq ®X$, pak $(A, \sigma)$ se nazývá podprostor $(®X, \tau)$, pokud topologie $\sigma$ je projektivně vytvořená zobrazením identitou na $A$.
 
-            Jsou-li $(®X_i, \tau_i)$ TP, pak je jejich součin TP $(®X, \tau)$, kde $X = \prod_{i \in I} ®X_i$ a $\tau$ je projektivně vytvořená zobrazeními $\pi_i: ®X \rightarrow ®X_i, \pi_i(…) = x_i$
+            Jsou-li $(®X_i, \tau_i), i \in I$ TP, pak je jejich součin TP $(®X, \tau)$, kde $®X = \prod_{i \in I} ®X_i$ a $\tau$ je projektivně vytvořená zobrazeními $\pi_i: ®X \rightarrow ®X_i, \pi_i\(\(x_j\)_{j \in I}\) = x_i$.
 
-            Zobrazení $f: (®X, \tau) \rightarrow (®Y, \sigma)$ se nazývá vnořené zobrazení, pokud $f$ je prosté a topologie $\tau$ na ®X je projektivně vytvořená zobrazením $f$.
+            Zobrazení $f: (®X, \tau) \rightarrow (®Y, \sigma)$ se nazývá vnoření, pokud $f$ je prosté a topologie $\tau$ na ®X je projektivně vytvořená zobrazením $f$.
         \end{definice}
 
         \begin{poznamka}
-            Ať $(®X, \tau)$ je TP. $A\subseteq X$. $\tau_A := \{®U \cap A: ®U \in \tau\}$ je topologie podprostoru na $A$.
+            Ať $(®X, \tau)$ je TP. $A\subseteq X$. $\tau_A := \{U \cap A: U \in \tau\}$ je topologie podprostoru na $A$.
 
-            Ať $(®X_i, \tau_i)$ jsou TP, $i \in I$. Ať $®X = \prod_{i \in I} ®X_i$, součinová topologie na ®X má subbázi: $©S := \{\pi^{-1}(®U): i \in I, ®U \in \tau_i\}$. 
+            Ať $(®X_i, \tau_i)$ jsou TP, $i \in I$. Ať $®X = \prod_{i \in I} ®X_i$, součinová topologie na ®X má subbázi: $©S := \{\pi^{-1}(U): i \in I, U \in \tau_i\}$. 
 
             Konvergence netú v součinové topologii: Net $(x_j)_{j \in J}$ konverguje k $x \in X \Leftrightarrow \forall i \in I: (\pi_i(x_j))_{j \in J}$ konverguje k $\pi_i (c)$.
 
@@ -549,15 +572,15 @@
         \end{poznamka}
 
         \begin{priklad}
-            $C(\[0, 1\], ®R) \subseteq ®R^{\[0, 1\]} := \{f:[0, 1] \rightarrow ®R, f \text{zobrazení}\}$.
+            $C(\[0, 1\], ®R) \subseteq ®R^{\[0, 1\]} := \{f:[0, 1] \rightarrow ®R, f \text{ zobrazení}\}$.
 
-            Topologie podprostoru $C…$ = „topologie bodové konvergence“.
+            Topologie podprostoru $C(\[0, 1\], ®R)$ = „topologie bodové konvergence“.
         \end{priklad}
 
         \begin{definice}
             Ať $(®X, \tau)$ je TP, $E \subseteq ®X \times ®X$ ekvivalence. Uvažme $®X \setminus E = \{\[x\]_E : x \subseteq ®X\}$, $\pi: ®X \rightarrow ®X \setminus E, x\rightarrow [x]_E$. Kvocientová topologie na $®X \setminus E$ je induktivně vytvořená zobrazením $\pi$.
 
-            Jsou-li $(®X_i, \tau_i)$ TP, $i \in I$, ($®X_i$ jsou po dvou disjunktní) pak topologie sumy na $\bigcap_{i \in I} ®X_i$ je topologie, která je induktivně vytvořena zobrazeními $j_i: ®X_i \rightarrow \bigcup_{k \in I}®X_k, j_i(x) = x$. Sumu TP značíme $\bigoplus_{i \in I}®X_i$.
+            Jsou-li $(®X_i, \tau_i)$ TP, $i \in I$, ($®X_i$ jsou po dvou disjunktní) pak topologie sumy na $\bigcup_{i \in I} ®X_i$ je topologie, která je induktivně vytvořena zobrazeními $j_i: ®X_i \rightarrow \bigcup_{k \in I}®X_k, j_i(x) = x$. Sumu TP značíme $\bigoplus_{i \in I}®X_i$.
 
             Zobrazení $f: (®X, \tau) \rightarrow (®Y, \sigma)$ se nazývá kvocientové, pokud je na a topologie $\sigma$ je induktivně vytvořená zobrazením $f$.
         \end{definice}
@@ -567,15 +590,15 @@
         \end{priklad}
 
         \begin{poznamka}
-            Množina ®U v kvocientovém prostoru $®X \setminus E$ je otevřená $\Leftrightarrow \pi^{-1}(®U)$ je otevřená v ®X.
+            Množina $U$ v kvocientovém prostoru $®X \setminus E$ je otevřená $\Leftrightarrow \pi^{-1}(U)$ je otevřená v ®X.
 
-            $®X = \bigoplus ®X_i, ®U \subseteq ®X$. ®U je otevřená $\Leftrightarrow ®U \cap ®X_i$ je otevřená v $®X_i$.
+            $®X = \bigoplus ®X_i, U \subseteq ®X$. $U$ je otevřená $\Leftrightarrow U \cap ®X_i$ je otevřená v $®X_i$.
         \end{poznamka}
 
 % 2.11.2020
 
         \begin{priklad}
-            Je-li $®X$ TP a $®Y \subseteq ®X$, $®M \subseteq ®Y$, pak $\overline{®M}^{®Y} = \overline{®M}^{®X}\cap ®Y$.
+            Je-li $®X$ TP a $®Y \subseteq ®X$, $M \subseteq ®Y$, pak $\overline{M}^{®Y} = \overline{M}^{®X}\cap ®Y$.
         \end{priklad}
 
         \begin{tvrzeni}[Charakterizace vnoření a kvocientových zobrazení]
@@ -584,7 +607,7 @@
             \begin{dukazin}
                 $f$ je vnoření $\Leftrightarrow$ $f$ je prosté a $\tau$ je projektivně vytvořená zobrazením $f: ®X \rightarrow (®Y, \sigma) \Leftrightarrow f: ®X \rightarrow f(®X)$ je bijekce a obě zobrazení $f: (®X, \tau) \rightarrow (f(®X), \sigma|_{f(®X)})$ a $f^{-1}: (f(x), \sigma|_{f(®X)}) \rightarrow (®X, \tau)$ jsou spojitá $\Leftrightarrow f:(®X, \tau) \rightarrow (f(®X), \sigma|_{f(®X)})$ je homeomorfismus.
 
-                $f$ je kvocientové zobrazení $\Leftrightarrow$ $f$ je na a $\sigma = \sigma' \rightarrow (f$ je na a $\forall V \subseteq ®Y: V \in \sigma \Leftrightarrow f^{-1}(V)\in \tau)$.
+                $f$ je kvocientové zobrazení $\Leftrightarrow$ $f$ je na a $\sigma = \{V \subseteq ®Y: f^{-1}(V) \in \tau\} =$ induktivně vytvořená topologie na ®Y ($f$ je na a $\forall V \subseteq ®Y: V \in \sigma \Leftrightarrow f^{-1}(V)\in \tau)$.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -613,10 +636,10 @@
     \subsection{Zachovávání konstrukcemi}
         \begin{definice}
             Jsou-li $®X_i$ a $®Y_i$ TP, $i \in I$ a $f_i: ®X_i \rightarrow ®Y_i$ zobrazení, pak definujeme
-            $$ \bigoplus_{i \in I}f_i : \bigoplus_{i \in I} ®X_i \rightarrow \bigoplus_{i \in I} ®Y_i, x \rightarrow f_i(x), \text{ pokud } x \in ®X. $$
-            $$ \prod_{i \in I}f_i : \prod_{i \in I} ®X_i \rightarrow \prod_{i \in I} ®Y_i, \(x_i\)_{i \in I} \rightarrow \(f_i(x_i)\)_{i \in I}. $$
+            $$ \bigoplus_{i \in I}f_i : \bigoplus_{i \in I} ®X_i \rightarrow \bigoplus_{i \in I} ®Y_i, x \mapsto f_i(x), \text{ pokud } x \in ®X_i. $$
+            $$ \prod_{i \in I}f_i : \prod_{i \in I} ®X_i \rightarrow \prod_{i \in I} ®Y_i, \(x_i\)_{i \in I} \mapsto \(f_i(x_i)\)_{i \in I}. $$
             Jsou-li $®X_i = ®X$, $i \in I$, pak definujeme tzv. diagonální zobrazení
-            $$ \triangle_{i \in I} f_i: ®X \rightarrow \prod_{i \in I} ®Y_i, x \rightarrow \(f_i(x)\)_{i \in I}. $$ 
+            $$ \triangle_{i \in I} f_i: ®X \rightarrow \prod_{i \in I} ®Y_i, x \mapsto \(f_i(x)\)_{i \in I}. $$ 
         \end{definice}
 
         \begin{tvrzeni}
@@ -635,48 +658,55 @@
             \end{dukazin}
         \end{dusledek}
 
+\begin{tiny}
         \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
             \hline
-                               & $T_0$ & $T_1$ & $T_2$ & $T_3$ & $T_\pi$ & $T_4$ & Separabilní & Spoč. báze & Spoč. charakter & Metrizovatelnost \\ \hline
+                               & $T_0$ & $T_1$ & $T_2$ & $T_3$ & $T_\pi$ & $T_4$ & Separabilní & Spočetná báze & Spočetný charakter & Metrizovatelnost \\ \hline
                 podprostor     & Ano   & Ano   & Ano   & Ano   & Ano     & Ne    & Ne          & Ano        & Ano             & Ano              \\ \hline
                 (spoč.) suma   & Ano   & Ano   & Ano   & Ano   & Ano     & Ano   & (Ano) Ne    & (Ano) Ne   & Ano             & Ano              \\ \hline
                 kvocient       & Ne    & Ne    & Ne    & Ne    & Ne      & Ne    & Ano         & Ne         & Ne              & Ne               \\ \hline
                 (spoč.) součin & Ano   & Ano   & Ano   & Ano   & Ano     & Ne    & (Ano) Ne    & (Ano) Ne   & (Ano) Ne        & (Ano) Ne         \\ \hline
         \end{tabular}
+\end{tiny}
 
         \begin{tvrzeni}[(Úplná) regularita se zachovává součinem]
-            Jsou-li TP $X_i,\ i\in I$ (úplně) regulární, pak $\prod_{i \in I} X_i$ je (úplně) regulární.
+            Jsou-li TP $®X_i,\ i\in I$ (úplně) regulární, pak $\prod_{i \in I} ®X_i$ je (úplně) regulární.
 
             \begin{dukazin}
-                $X:= \prod_{i \in I} X_i$. Ať $F \subseteq X$ je uzavřená a $x \in X \setminus F$. Z definice součinové topologie existuje $K \setminus I$ konečná a otevřené $U_i \subseteq X_i,\ i \in K$, že $x \in \cap_{i \in K} \pi_i^{-1} (U_i) \subseteq X \setminus F$.
+                $®X:= \prod_{i \in I} ®X_i$. Ať $F \subseteq ®X$ je uzavřená a $x \in ®X \setminus F$. Z definice součinové topologie existuje $K \subseteq I$ konečná a otevřené $U_i \subseteq ®X_i,\ i \in K$, že $x \in \bigcap_{i \in K} \pi_i^{-1} (U_i) \subseteq ®X \setminus F$.
 
-                Tedy $x_i \in U_i,\ i \in K$. $X_i$ regulární, tedy existuje $G_i \subseteq X_i$ otevřená, že $x_i \in G_i \subseteq \overline{G_i} \subseteq U_i$. TODO dlouhý vzorec.
+                Tedy $x_i \in U_i,\ i \in K$. $®X_i$ regulární, tedy existuje $G_i \subseteq ®X_i$ otevřená, že $x_i \in G_i \subseteq \overline{G_i} \subseteq U_i$.
+                $$ x \in \underbrace{\bigcap_{i \in K}\pi_i^{-1} \(G_i\)}_{\text{otevřená}} \subseteq \underbrace{\overline{\bigcap_{i \in K} \pi_i^{-1} \(G_i\)}}_{\text{uzavřená}} \subseteq \bigcap_{i \in K} \overline{\pi_i^{-1} \(G_i\)} \subseteq \bigcap_{i \in K} \pi_i^{-1} \(\overline{G_i}\) \subseteq \bigcap_{i \in K} \pi_i^{-1} \(U_i\) \subseteq ®X \setminus F. $$
+
+                Úplná regularita: první odstavec stejný, pro $i \in K$ existuje spojitá funkce $f_i: ®X_i \rightarrow [0, 1]$, $f_i(x_i) = 0 a f_i\(®X_i \setminus U_i\) \subseteq \{1\}$. Položme $f: \prod ®X_i \rightarrow [0, 1]$, $f(y) = \max_{i \in K} f_i(y_i)$. $f(x) = 0$, $f(®X \setminus F) \subseteq \{1\}$. $f$ je spojitá. Tedy ®X je úplně regulární.
             \end{dukazin}
         \end{tvrzeni}
 
     \subsection{Rozšiřování spojitých funkcí}
         \begin{tvrzeni}
-            Ať $X, Y$ jsou TP, $f, g: X \rightarrow Y$ spojitá. Pokud $Y$ je Hausdorffův, pak $M:=\{x\in X: f(x) = g(x)\}$ je uzavřená v $X$.
+            Ať $®X, ®Y$ jsou TP, $f, g: ®X \rightarrow ®Y$ spojitá. $®Y$ je Hausdorffův $\implies M:=\{x\in X: f(x) = g(x)\}$ je uzavřená v $®X$.
 
             \begin{dukazin}
-                Ať $x \in X\setminus M$. Pak $f(x)≠g(x) \in Y$. $Y$ je Hausdorffův, tedy existují otevřené disjunktní $U, V$, že $f(x) \in U, g(x) \in V$. Ať $W := f^{-1}(U) \cap g^{-1}(V)$ je otevřená množina a $x \in W$. $W \cap M = \O$, protože $U$ a $V$ jsou disjunktní, tedy $X \setminus M$ je otevřená, $M$ je uzavřená.
+                Ať $x \in ®X\setminus M$. Pak $f(x)≠g(x) \in ®Y$. ®Y je Hausdorffův, tedy existují otevřené disjunktní $U, V$, že $f(x) \in U, g(x) \in V$. Ať $W := f^{-1}(U) \cap g^{-1}(V)$ je otevřená množina a $x \in W$. $W \cap M = \O$, protože $U$ a $V$ jsou disjunktní, tedy $®X \setminus M$ je otevřená, $M$ je uzavřená.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{poznamka}
-            Je-li $f: X \rightarrow Y$ spoj., $Y$ Hausdorffův a $S \subseteq X$ hustá, pak $fcosiS$ má  jediné spojité rozšíření.
+            Je-li $f: ®X \rightarrow ®Y$ spoj., $®Y$ Hausdorffův a $S \subseteq ®X$ hustá, pak $f|_S$ má  jediné spojité rozšíření.
         \end{poznamka}
 
         \begin{tvrzeni}
-            Je-li $X$ TP a $f_n: X \rightarrow ®R$ spoj. zobrazení $(f_n)$ konverguje stejnoměrně k $f: X \rightarrow ®R$, pak $f$ je spojité.
+            Je-li ®X TP, $f_n: ®X \rightarrow ®R$ spoj. zobrazení a $(f_n)$ konverguje stejnoměrně k $f: ®X \rightarrow ®R$, pak $f$ je spojité.
 
             \begin{dukazin}
-                TODO!
+                Ať $x \in ®X$, $\epsilon > 0$. $\exists n \in ®N: ||f_n - f|| < \frac{\epsilon}{3}$ a ze spojitosti $f_n$ existuje okolí $U \in ©U(x): \left|f_n(x) - f_n(y)\right| < \frac{\epsilon}{3}$ pro $y \in U$. Nyní pro $y \in U$
+                $$ |f(x) - f(y)| ≤ \left|f(x) - f_n(x)\right| + \left|f_n(x) - f_n(y)\right| + \left|f_n(y) - f(y)\right| < 3·\frac{\epsilon}{3} = \epsilon. $$ 
+                Tedy $f$ je spojitá.
             \end{dukazin}
         \end{tvrzeni}
 
         \begin{veta}[Tietze-Urysohnova]
-            Je-li $®X$ normální TP a $F \subseteq ®X$ uzavřená, pak lze každou spojitou funkci $f: F \rightarrow ®R$ spojitě rozšířit na celé $®X$, tedy existuje spojitá funkce $\overline{f}: ®X\rightarrow ®R$, že $\overline{f}cosiF = f$.
+            Je-li $®X$ normální TP a $F \subseteq ®X$ uzavřená, pak lze každou spojitou funkci $f: F \rightarrow ®R$ spojitě rozšířit na celé $®X$, tedy existuje spojitá funkce $\tilde{f}: ®X\rightarrow ®R$, že $\tilde{f}|_F = f$.
 
 % 9. 11. 2020
 
@@ -687,9 +717,9 @@
 
                 Nejprve dokažme pro $f: F \rightarrow \[-1, 1\]$ (a rozšíříme jí na spoj. $\overline{f}: ®X \rightarrow \[-1, 1\]$). Indukcí najdeme posloupnost spojitých funkcí $g_n: ®X \rightarrow ®R$, že $||g_n|| ≤ \frac{1}{3}·\(\frac{2}{3}\)^{n-1}$ a pro každé $x \in F$ a $n \in ®N: |f(x) - \sum_{i=1}^n g_i(x)| ≤ \(\frac{2}{3}\)^n$.
 
-                Položme $g_1 = \overline{f}$ z pozorování, tedy $g_1: ®X \rightarrow \[-\frac{1}{3}, \frac{1}{3}\]$. Máme-li $g_1, …, g_n$ zkonstruované a splňující předpoklady indukce, pak uvažujme funkci $f' := f - \sum_{i = 1}^n g_i: F \rightarrow \[-\(\frac{2}{3}\)^n, \(\frac{2}{3}\)^n\]$ a aplikujeme na ni pozorování, tedy existuje spojitá funkce $g_{n+1}: ®X \rightarrow \[-\frac{1}{3}\(\frac{2}{3}\)^n, \frac{1}{3}\(\frac{2}{3}\)^n\]$, že $|f'(x) - g_{n+1}(x)|≤ \frac{2}{3}\(\frac{2}{3}\)^n = \(\frac{2}{3}\)^{n+1},\ x\in F$. Položme $\tilde{f_n}:= \sum_{i = 1}^n g_i(x)$ a $\tilde{f} := \sum_{i=1}^∞ g_i(x) = \lim_{n \rightarrow ∞}\tilde{f_n}(x)$. Stejnoměrná konvergence zachovává spojitost. A jelikož $\tilde{f_n}$ z Waierstrassova kriteria konverguje stejnoměrně, tak $\tilde{f}$ je spojitá. Zároveň $|\tilde{f}(x) - f(x)| = 0$, tedy $\tilde{f}$ je rozšířením $f$.
+                Položme $g_1 = \overline{f}$ z pozorování, tedy $g_1: ®X \rightarrow \[-\frac{1}{3}, \frac{1}{3}\]$. Máme-li $g_1, …, g_n$ zkonstruované a splňující předpoklady indukce, pak uvažujme funkci $f' := f - \sum_{i = 1}^n g_i: F \rightarrow \[-\(\frac{2}{3}\)^n, \(\frac{2}{3}\)^n\]$ a aplikujeme na ni pozorování, tedy existuje spojitá funkce $g_{n+1}: ®X \rightarrow \[-\frac{1}{3}\(\frac{2}{3}\)^n, \frac{1}{3}\(\frac{2}{3}\)^n\]$, že $|f'(x) - g_{n+1}(x)|≤ \frac{2}{3}\(\frac{2}{3}\)^n = \(\frac{2}{3}\)^{n+1},\ x\in F$. Položme $\tilde{f_n}:= \sum_{i = 1}^n g_i(x)$ a $\tilde{f} := \sum_{i=1}^∞ g_i(x) = \lim_{n \rightarrow ∞}\tilde{f_n}(x)$. Stejnoměrná konvergence zachovává spojitost. A jelikož $\tilde{f_n}$ z Weierstrassova kriteria konverguje stejnoměrně, tak $\tilde{f}$ je spojitá. Zároveň $|\tilde{f}(x) - f(x)| = 0$, tedy $\tilde{f}$ je rozšířením $f$.
 
-                Ať nyní $f: F \rightarrow ®R$. Ať $h: ®R \rightarrow (-1, 1)$ je homeomorfismus. $h\circ f: F\rightarrow (-1, 1) \subseteq \[-1, 1\]$ podle předchozí části existuje spojité $v: ®X \rightarrow \[-1, 1\]$, že pro $x \in F$ je $v(x) = h \circ f(x)$. Ať $E := v^{-1}(\{-1, 1\})$ uzavřená v ®X. $E$ je disjunktní s $F$. Z Urysohnova lemmatu existuje spojité $m: ®X \rightarrow \[0, 1\], m(E) \subseteq \{0\}, m(F)\subseteq \{1\}$. $m \circ v: ®X \rightarrow (-1, 1)$. Tudíž $h^{-1} \circ (m \circ v): ®X \rightarrow ®R$ je spojité a navíc $(h^{-1}\circ (m \circ v))(x) = f(x)$ pro $x \in F$.
+                Ať nyní $f: F \rightarrow ®R$. Ať $h: ®R \rightarrow (-1, 1)$ je homeomorfismus. $h\circ f: F\rightarrow (-1, 1) \subseteq \[-1, 1\]$ podle předchozí části existuje spojité $v: ®X \rightarrow \[-1, 1\]$, že pro $x \in F$ je $v(x) = h \circ f(x)$. Ať $E := v^{-1}(\{-1, 1\})$ uzavřená v ®X. $E$ je disjunktní s $F$. Z Urysohnova lemmatu existuje spojité $m: ®X \rightarrow \[0, 1\], m(E) \subseteq \{0\}, m(F)\subseteq \{1\}$. $m · v: ®X \rightarrow (-1, 1)$. Tudíž $h^{-1} \circ (m · v): ®X \rightarrow ®R$ je spojité a navíc $(h^{-1}\circ (m · v))(x) = f(x)$ pro $x \in F$.
             \end{dukazin}
         \end{veta}
 
@@ -708,15 +738,19 @@
         Řekneme, že systém $©F \subseteq ©P(®X)$ je centrovaný, pokud pro každé $n \in ®N$ a $F_1, …, F_n \in ©F$ je $F_1 \cap … \cap F_n ≠ \O$.
     \end{definice}
 
+    \begin{dusledek}
+        Prostor je kompaktní právě tehdy, když je spočetně kompaktní a Lindelöfův.
+    \end{dusledek}
+
     \begin{veta}[Charakterizace kompaktnosti]
-        Pro TP ®X je ekvivalentní: a) ®X je kompaktní. b) Každý centrovaný systém sestávající z uzavřené množiny má neprázdný průnik. c) Každý net má limitu? TODO
+        Pro TP ®X je ekvivalentní: a) ®X je kompaktní. b) Každý centrovaný systém sestávající z uzavřené množiny má neprázdný průnik. c) Každý net má hromadný bod.
 
         \begin{dukazin}
-            $(a \implies b)$ Ať $©F \subseteq ©P(®X)$ sestává z uzavřených množin a je centrovaný. Položme $©U := \{®X \setminus F: F \in ©F\}$ (systém otevřených množin). Ať pro spor $\bigcap ©F = \O$. Pak ©U je pokrytí ®X. ®X je kompaktní, tedy existuje $U_1, …, U_n \in ©U$, že $U_1\cup … \cup U_n = ®X$. $U_i = ®X \setminus F_i$ pro něj $F_i \in ©F$. Pak $\bigcup_{i = 1}^n F_i = \O$. Tedy $©F$ není centrovaný, $\lightning$.
+            $(a \implies b)$ Ať $©F \subseteq ©P(®X)$ sestává z uzavřených množin a je centrovaný. Položme $©U := \{®X \setminus F: F \in ©F\}$ (systém otevřených množin). Ať pro spor $\bigcap ©F = \O$. Pak ©U je pokrytí ®X. ®X je kompaktní, tedy existuje $U_1, …, U_n \in ©U$, že $U_1\cup … \cup U_n = ®X$. $U_i = ®X \setminus F_i$ pro něj $F_i \in ©F$. Pak $\bigcap_{i = 1}^n F_i = \O$. Tedy $©F$ není centrovaný, \lightning.
 
-            $(b \implies c)$ Ať $(x_i)_{i \in I}$ je net v ®X, $(I, ≤)$ usměrněná množina. Položme $F_i = \{x_j: j ≥ i\}$ je uzavřená, $i \in I$. $©F = \{F_i| i \in I\}$ je centrovaný. Tedy dle b) $\bigcap ©F ≠ \O$. Ať $x_0 \in \bigcap ©F$. Pak $x_0$ je hromadným bodem netu $(x_i)_{i \in I}$.
+            $(b \implies c)$ Ať $(x_i)_{i \in I}$ je net v ®X, $(I, ≤)$ usměrněná množina. Položme $F_i = \overline{\{x_j: j ≥ i\}}$ je uzavřená, $i \in I$. $©F = \{F_i| i \in I\}$ je centrovaný. Tedy dle b) $\bigcap ©F ≠ \O$. Ať $x_0 \in \bigcap ©F$. Pak $x_0$ je hromadným bodem netu $(x_i)_{i \in I}$.
 
-            $(c \implies a)$. Ať ©U je otevřená podmnožina ®X. Předpokládejme pro spor, že neexistuje konečné pokrytí. Tedy pro $©F \subseteq ©U$ konečnou existuje bod $x_{©F} \in ®X \setminus \bigcup ©F$. $(x_{©F})_{©F \subseteq ©U}$ je net v ®X. Podle c) existuje hromadný bod $x$ tohoto netu. Existuje $U \in ©U: x \in U$. Z definice hromedného bodu existuje $©F \subseteq ©U$ konečné, že $©F \supseteq \{U\}$ a $x_{®F} \in U$. Ale $x_{®F} \notin \bigcup ©F. To je spor.$
+            $(c \implies a)$. Ať ©U je otevřené pokrytí ®X. Předpokládejme pro spor, že neexistuje konečné podpokrytí. Tedy pro $©F \subseteq ©U$ konečnou existuje bod $x_{©F} \in ®X \setminus \bigcup ©F$. $(x_{©F})_{©F \subseteq ©U}$ je net v ®X. Podle c) existuje hromadný bod $x$ tohoto netu. Existuje $U \in ©U: x \in U$. Z definice hromedného bodu existuje $©F \subseteq ©U$ konečné, že $©F \supseteq \{U\}$ a $x_{®F} \in U$. Ale $x_{®F} \notin \bigcup ©F$. To je spor.
         \end{dukazin}
     \end{veta}
 
@@ -726,7 +760,7 @@
         \begin{dukazin}
             Ukážeme pouze pro kompaktnost: Ať ®X je kompaktní a $F \subseteq ®X$ uzavřená. Ať tedy ©U je otevřené pokrytí $F$. Pro každé $U \in ©U$ existuje $\tilde{U}$ otevřená v ®X, že $\tilde{U} \cap F = U$. Označme $\tilde{©U} = \{\tilde{U}: U \in ©U\} \cup \{X \setminus F\}$. $\tilde{©U}$ otevřené pokrytí ®X, tedy z kompaktnosti ®X existuje konečné podpokrytí $\{\tilde{U_1}, …, \tilde{U_n}, ®X \setminus F\}$. Pak $\{U_1, …, U_n\}$ je pokrytí $F$ vybrané z ©U. Tedy $F$ je kompaktní.
 
-            Ať $f: ®X \rightarrow ®Y$ na, spojité a ®X kompaktní. Ať ©U je otevřené pokrytí ®Y. TODO otevřené pokrytí ®X. ®X je kompaktní, tedy existuje TODO. Pak TODO pokrývá ®Y.
+            Ať $f: ®X \rightarrow ®Y$ na, spojité a ®X kompaktní. Ať ©U je otevřené pokrytí ®Y. $\{f^{-1}(U)|U \in ©U\}$ otevřené pokrytí ®X. ®X je kompaktní, tedy existuje $U_1, …, U_n$ tak, že $f^{-1}\(U_1\) \cup … \cup f^{-1}\(U_n\) = ®X$. Pak $\{U_1, …, U_n\}$ pokrývá ®Y.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -744,11 +778,11 @@
         Hausdorffův kompaktní TP je normální (tedy $T_4$).
 
         \begin{dukazin}
-                a) Ať $E$, $F$ jsou uzavřené disjunktní. $\forall x \in E \exists$ otevřené $U_x \in ©U(x)$, že $\overline{U_x} \cap F = \O$. $\{U_x: x\in ®X\}$ je otevřené pokrytí $E$. Z lindelöfovosti $E$ (uzavřený podprostor ®X) existuje $C \subseteq ®X$ spočetné, že $\{U_c: c \in C\}$ pokrývá $E$. Přeindexujeme systém $\{U_c: c \in C\}$ na $\{U_i: i \in ®N\}$. Analogicky najdeme $\{V_j: j \in ®N\}$ systém otevřených množin pokrývající $F$, $\overline{V_j} \cap E = \O,\ k \in ®N$. TODO
+                a) Ať $E$, $F$ jsou uzavřené disjunktní. Z regularity $\forall x \in E\ \exists$ otevřené $U_x \in ©U(x)$, že $\overline{U_x} \cap F = \O$. $\{U_x: x\in ®X\}$ je otevřené pokrytí $E$. Z lindelöfovosti $E$ (uzavřený podprostor ®X) existuje $C \subseteq ®X$ spočetné, že $\{U_c: c \in C\}$ pokrývá $E$. Přeindexujeme systém $\{U_c: c \in C\}$ na $\{U_i: i \in ®N\}$. Analogicky najdeme $\{V_j: j \in ®N\}$ systém otevřených množin pokrývající $F$, $\overline{V_j} \cap E = \O,\ j \in ®N$.
 
-                $U := \bigcup_{i \in ®N} U_i*, $ otevřené. Kdyby $x \in U \cap V$, pak existují $i, j \in …®N: x \in U_i*\cap V_j*$. Búno: $i ≥ j: x \in U_i \setminus \bigcup_{k ≤ i} \overline{V_k}$, $x \notin \overline{V_j}, x \notin V_j* \lightning$. Tedy ®X je normální.
+                Definujme $U_i^* := U_i \setminus \bigcup_{j ≤ i} V_j$ a $V_j^* := V_j \setminus \bigcup_{i ≤ j} U_i$ otevřené a $U := \bigcup_{i \in ®N} U_i^*$ a $V := \bigcup_{j \in ®N} V_i^*$ otevřené a $V \cup U = \O$. Kdyby $x \in U \cap V$, pak existují $i, j \in …®N: x \in U_i^*\cap V_j^*$. Búno: $i ≥ j: x \in U_i \setminus \bigcup_{k ≤ i} \overline{V_k}$, $x \notin \overline{V_j}, x \notin V_j^* \lightning$. Tedy ®X je normální.
 
-                b) Ať ®X je Hausdorffův kompaktní. Stačí ukázat, že ®X je regulární a použít a). Ať $F \subseteq ®X$ je uzavřená, $x \in ®X \setminus F$. Pro $y \in F$ existují otevřené disjunktní $V_y$, $U_y$, že $x \in U_y, y \in V_y$. $F$ je kompaktní, $\{V_y : y \in F\}$ je otevřená podmnožina $F$. Tedy existuje konečné podpokrytí $\{V_{y_1}, …, V_{y_n}\}$. $U := \bigcap_{i = 1}^n U_{y_i}$, $V := \bigcap_{i = 1}^n V_{y_i}$ otevřené, tedy ®X regulární.
+                b) Ať ®X je Hausdorffův kompaktní. Stačí ukázat, že ®X je regulární a použít a). Ať $F \subseteq ®X$ je uzavřená, $x \in ®X \setminus F$. Pro $y \in F$ existují otevřené disjunktní $V_y$, $U_y$, že $x \in U_y, y \in V_y$. $F$ je kompaktní, $\{V_y : y \in F\}$ je otevřené pokrytí $F$. Tedy existují konečné podpokrytí $\{U_{y_1}, …, U_{y_n}\}$ a $\{V_{y_1}, …, V_{y_n}\}$. $U := \bigcap_{i = 1}^n U_{y_i}$, $V := \bigcup_{i = 1}^n V_{y_i}$ otevřené, tedy ®X regulární.
         \end{dukazin}
     \end{veta}
 
@@ -757,7 +791,7 @@
     \begin{tvrzeni}
             Kompaktní podprostory (®K) jsou uzavřené v Hausdorffových prostorech (®X).
         \begin{dukazin}
-                Pro $x \in ®X \setminus ®K$ fixované a $y \in ®K$ existují disjunktní $U_y$ a $V_y$ v ®x, že $x \in U_y$ a $y \in V_y$. $\{V_y: y \in ®K\}$ je otevřené pokrytí ®K. ®K je kompaktní, tedy $exists y_1, …, y_n \subseteq ®K$, že $V_{y_1} \cup … \cup V_{y_n} \supseteq ®K$. $x \in \bigcap_{i=1}^n U_{y_i}$ otevřené je disjunktním s $\bigcup V_{y_i}$, tedy i disjunktní s ®K. Tedy $®X \setminus ®K$ je otevřená, tj. ®K je uzavřená.
+                Pro $x \in ®X \setminus ®K$ fixované a $y \in ®K$ existují disjunktní $U_y$ a $V_y$ v ®X, že $x \in U_y$ a $y \in V_y$. $\{V_y: y \in ®K\}$ je otevřené pokrytí ®K. ®K je kompaktní, tedy $\exists y_1, …, y_n \subseteq ®K$, že $V_{y_1} \cup … \cup V_{y_n} \supseteq ®K$. $x \in \bigcap_{i=1}^n U_{y_i}$ otevřené je disjunktní s $\bigcup V_{y_i}$, tedy i disjunktní s ®K. Tedy $®X \setminus ®K$ je otevřená, tj. ®K je uzavřená.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -790,9 +824,9 @@
         Součin kompaktních prostorů je kompaktní.
 
         \begin{dukazin}
-            Ať $(®X_i, \tau_i)$, $i \in I$, jsou kompaktní TP. Ať $®X = \prod ®X_i$. $\tau$ součinová topologie na ®X. Ať $©S := \{\pi_i^{-1}(U): U \in \tau_i, i \in I\}$. ©S je subbáze $\tau$. Ověříme, že ©S splňuje předpoklady Alexandrova lemmatu. Ať $©U \subseteq ©S$ je pokrytí ®X. Pro $i \in I$ označme $©U_i = \{U \in \tau_i: \pi_i^{-1}(U) \in ©U\}$. Tvrdíme, že existuje $i \in I$, že $©U_i$ je pokrytí $®X_i$: Kdyby ne, pak $\forall i \in IL ©U_i$ nepokrývá $®X_i$, tedy existuje $x_i \in ®X_i \setminus \bigcup \{V: V \in ©U_i\}$. Nyní $x:=(x_i)_{i \in I} \in ®X$, ale $x\notin \bigcup ©U$. Tedy ©U nepokrývá ®X, spor.
+            Ať $(®X_i, \tau_i)$, $i \in I$, jsou kompaktní TP. Ať $®X = \prod ®X_i$. $\tau$ součinová topologie na ®X. Ať $©S := \{\pi_i^{-1}(U): U \in \tau_i, i \in I\}$. ©S je subbáze $\tau$. Ověříme, že ©S splňuje předpoklady Alexandrova lemmatu. Ať $©U \subseteq ©S$ je pokrytí ®X. Pro $i \in I$ označme $©U_i = \{U \in \tau_i: \pi_i^{-1}(U) \in ©U\}$. Tvrdíme, že existuje $i \in I$, že $©U_i$ je pokrytí $®X_i$: Kdyby ne, pak $\forall i \in I: ©U_i$ nepokrývá $®X_i$, tedy existuje $x_i \in ®X_i \setminus \bigcup \{V: V \in ©U_i\}$. Nyní $x:=(x_i)_{i \in I} \in ®X$, ale $x\notin \bigcup ©U$. Tedy ©U nepokrývá ®X, spor.
 
-            $®X_i$ je kompaktní, tedy existuje $©K \subseteq ©U_i$ konečná, že $\bigcup ©K = ®X_i$. Zřejmě $\{\pi_i^{-1}(U): U \in ©K\}$ je konečné podpokrytí ®X prvky z ®U. Podle Alexandrova lemmatu je ®X kompaktní.
+            $®X_i$ je kompaktní, tj. existuje $©K \subseteq ©U_i$ konečná, že $\bigcup ©K = ®X_i$. Zřejmě $\{\pi_i^{-1}(U): U \in ©K\}$ je konečné podpokrytí ®X prvky z ©U. Podle Alexandrova lemmatu je ®X kompaktní.
         \end{dukazin}
     \end{veta}
 
@@ -800,25 +834,25 @@
         Ať ®X je kompaktní a ®Y Hausdorffův. Ať $f: ®X \rightarrow ®Y$ je spojité a na. Potom $\weight(®Y) ≤ \weight(®X)$.
         
         \begin{dukazin}
-            Ať ©B je báze ®X. Můžeme předpokládat, že ©B je uzavřená na konečné sjednocení (tím nezvýšíme mohutnost nekonečné báze). Definujeme $©C:=\{®Y \setminus f\(®X \setminus B\): B \in ©B\}$. ©C sestává z otevřené množiny. Ukážeme, že ©C je báze ®Y. Ukážeme, že ©C je báze ®Y: Ať $y \in ®Y$ a $V \in ©U(y)$ otevřená, pak $f^{-1}(y) \subseteq f^{-1}(V)$. ©B je báze, tedy $\forall x \in f^{-1}(y) \exists B_x \in ©B: x \in B_x \subseteq f^{-1}(V)$. $f^{-1}(y)$ je kompaktní a $\{B_x: x \in f^{-1}(y)\}$  je otevřené pokrytí $f^{-1}(y)$. Tedy existuje $x_1, …, x_n \in f^{-1}(y): B_{x_1} \cup … \cup B_{x_n} \supseteq f^{-1}(y)$.
+            Ať ©B je báze ®X. Můžeme předpokládat, že ©B je uzavřená na konečné sjednocení (tím nezvýšíme mohutnost nekonečné báze). Definujeme $©C:=\{®Y \setminus f\(®X \setminus B\): B \in ©B\}$. ©C sestává z otevřené množiny. Ukážeme, že ©C je báze ®Y: Ať $y \in ®Y$ a $V \in ©U(y)$ otevřená, pak $f^{-1}(y) \subseteq f^{-1}(V)$. ©B je báze, tedy $\forall x \in f^{-1}(y) \exists B_x \in ©B: x \in B_x \subseteq f^{-1}(V)$. $f^{-1}(y)$ je kompaktní (jelikož je uzavřená z hausdorffovosti ®Y) a $\{B_x: x \in f^{-1}(y)\}$  je otevřené pokrytí $f^{-1}(y)$. Tedy existuje $x_1, …, x_n \in f^{-1}(y): B_{x_1} \cup … \cup B_{x_n} \supseteq f^{-1}(y)$.
 
-            Navíc $B \subseteq TODO$.
+            Navíc $B \subseteq f^{-1}(V)$. $y \in ®Y \setminus f(®X \setminus B) \subseteq V$, tj. $®Y \setminus f(®X \setminus B) \in ©C$. Tedy ©C je báze, navíc $|©C| ≤ |©B|$, tedy při volbě báze mohutnosti váhy je $\weight(®Y) ≤ \weight(®X)$.
         \end{dukazin}
     \end{tvrzeni}
 
 \section{Prostory spojitých funkcí na kompaktech}
     \begin{definice}
-        Pro TP ®X, ®Y značíme symbolem $C(®X, ®Y)$ množinu všech spojitých funkcí ®x do ®Y. Pokud $®Y = ®R$, pak píšeme pouze $C(®X)$.
+        Pro TP ®X, ®Y značíme symbolem $C(®X, ®Y)$ množinu všech spojitých funkcí ®X do ®Y. Pokud $®Y = ®R$, pak píšeme pouze $C(®X)$.
 
         Topologie bodové konvergence: $C(®X, ®Y) \subseteq ®Y^{®X}$ se součinovou topologií.
 
-        Pro ®X kompaktní je $C(X)$ se supremovou normou Banachův prostor.
+        Pro ®X kompaktní je $C(®X)$ se supremovou normou Banachův prostor.
     \end{definice}
 
     \begin{tvrzeni}[Diniho kriterium pro stejnoměrnou konvergenci]
-        Ať ®X je kompaktní TP a $f_n: ®X \rightarrow ®R$ spojitá, že $f_{n+1} ≥ f_n, n \in ®N$ a $f_n$ bodově konverguje ke spojité funkci $f$. Pak $f_n$ konverguje stejnoměrně k $f$.
+        Ať ®X je kompaktní TP a $f_n: ®X \rightarrow ®R$ spojité, že $f_{n+1} ≥ f_n, n \in ®N$ a $f_n$ bodově konverguje ke spojité funkci $f$. Pak $f_n$ konverguje stejnoměrně k $f$.
         \begin{dukazin}
-                Ať $\epsilon > 0$ ať $D_n = \{x \in ®X: f(x) - f_n(x) < \epsilon\}$. Pak $D_n$ je otevřená pro $n \in ®N$. Navíc z monotonie $D_1 \subseteq D_2 \subseteq …$. $\bigcup_{n=1}^∞ = ®X$. ®X kompaktní, tedy existuje $n_0$, že $D_{n_0} = ®X$. Tedy $|f(x) - f_{n_0}(x)| < \epsilon$ pro libovolné $x \in ®X$. Pak pro $n ≥ n_0: f(x) - f_n(x) ≤ f(x) - f_{n_0}(x) < \epsilon$.
+            Ať $\epsilon > 0$ ať $D_n = \{x \in ®X: f(x) - f_n(x) < \epsilon\}$. Pak $D_n$ je otevřená pro $n \in ®N$. Navíc z monotonie $D_1 \subseteq D_2 \subseteq …$, $\bigcup_{n=1}^∞ D_n = ®X$. ®X kompaktní, tedy existuje $n_0$, že $D_{n_0} = ®X$. Tedy $|f(x) - f_{n_0}(x)| < \epsilon$ pro libovolné $x \in ®X$. Pak pro $n ≥ n_0: f(x) - f_n(x) ≤ f(x) - f_{n_0}(x) < \epsilon$.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -826,33 +860,33 @@
         Existuje posloupnost polynomů, která na intervalu $\[0, 1\]$ konverguje stejnoměrně k $\sqrt{t}$.
 
         \begin{dukazin}
-                Položme $p_0(t) = 0$, $p_{n+1}(t) = p_n(t) + \frac{t - p_n^2(t)}{2}, n≥0$. Každé $p_n$ je polynom v proměnné $t$. $\forall n \in ®N: p_n(t) ≤ \sqrt{t}$ a $p_1(t) ≤ p_{n+1}(t), t \in \[0, 1\]$ (dokazatelné indukcí). Tedy pro každé $t \in \[0, 1\]$ je posloupnost $(p_n(t))_{n=1}^∞$ neklesající a shora omezená, tedy má vlastní limitu $L = L + \frac{t - L^2}{2} \implies L = \sqrt{t}$.
+                Položme $p_0(t) = 0$, $p_{n+1}(t) = p_n(t) + \frac{t - p_n^2(t)}{2}, n≥0$. Každé $p_n$ je polynom v proměnné $t$. $\forall n \in ®N: p_n(t) ≤ \sqrt{t}$ a $p_1(t) ≤ p_{n+1}(t), t \in \[0, 1\]$ (dokazatelné indukcí). Tedy pro každé $t \in \[0, 1\]$ je posloupnost $(p_n(t))_{n=1}^∞$ neklesající a shora omezená pro libovolné $t \in [0, 1]$, tedy má vlastní limitu $L = L + \frac{t - L^2}{2} \implies L = \sqrt{t}$. Z Diniho kriteria $p_n$ konverguje stejnoměrně k $\sqrt{\ }$ na $[0, 1]$.
         \end{dukazin}
     \end{lemma}
 
 % 23. 11. 2020
 
     \begin{definice}
-        Ať ©F je systém funkcí $®X \rightarrow ®Y$. Řekneme, že ©F odděluje body, pokud pro $x, y \in ®X, x≠y$ existuje $f\in©F: f(x)≠f(y)$. Řekneme, že ©F odděluje body a uzavřené množiny, pokud $\forall F \subseteq ®X$ uzavřená $\forall x \in ®X \setminus F \exists f \in ©F: f(x) \notin \overline{f(F)}$.
+        Ať ©F je systém funkcí $®X \rightarrow ®Y$. Řekneme, že ©F odděluje body, pokud pro $x, y \in ®X, x≠y$ existuje $f\in©F: f(x)≠f(y)$. Řekneme, že ©F odděluje body a uzavřené množiny, pokud $\forall F \subseteq ®X$ uzavřená $\forall x \in ®X \setminus F\ \exists f \in ©F: f(x) \notin \overline{f(F)}$.
     \end{definice}
 
     \begin{poznamka}[Připomínáme svaz a okruh.]
-        $\O ≠ A \subseteq C(K)$, $A$ je okruh $\Leftrightarrow A$ je uzavřená na násobení, sčítání a odčítání funkcí.
+        $\O ≠ ©A \subseteq C(®K)$ (®K typicky kompakt), ©A je okruh $\Leftrightarrow$ ©A je uzavřená na násobení, sčítání a odčítání funkcí.
 
-        $A$ je svaz $\Leftrightarrow A$ je uzavřená na minimum a maximum dvou funkcí.
+        ©A je svaz $\Leftrightarrow$ ©A je uzavřená na minimum a maximum dvou (tj. konečně mnoha) funkcí.
     \end{poznamka}
 
     \begin{veta}[Stone-Weierstrass]
-        Ať ®K je kompaktní TP a $©B \subseteq C(®K)$ je vektorový podprostor obsahující konstanty a oddělující body. Je-li $©B$ okruh nebo svaz, pak $©B$ je hustá v $C(®K)$ (s topologií stejnoměrné konvergence).
+        Ať ®K je kompaktní TP a $©B \subseteq C(®K)$ je vektorový podprostor $C(®K)$ obsahující konstanty a oddělující body. Je-li $©B$ okruh nebo svaz, pak $©B$ je hustá v $C(®K)$ (s topologií stejnoměrné konvergence).
 
         \begin{dukazin}[Svaz]
             Pozorování: pro $x, y \in ®K, x≠y, a, b \in ®R$ existuje $h \in ©B: h(x) = a \land h(y) = b$. ($©B$ odděluje body, tedy $\exists u \in ©B: u(x) ≠ u(y)$. $h(z) := \frac{b-a}{u(y) - u(x)}·(u(z) - u(x)) + a \in ©B$.)
 
-            Chceme, že $©B$ je hustý. Ať $f \in C(®K)$ a $\epsilon > 0$. Pro každou dvojici $x, y \in ®K$ fixujeme $f_{x, y} \in ©B$, že $f_{x, y}(x) = f(x)$ a $f_{x, y}(y) = f(y)$ (to můžeme díky pozorování pro $x≠y$, pro $x=y$ položíme $f_{x, y} = f(x)$.) Ať $x \in ®K$ je pevné. $\forall y \in ®K\ \exists \text{otevřené} U_y \in ©U(y): |f_{x, y}(z) - f_{x, y}(y)| < \frac{\epsilon}{2}$ (ze spojitosti $f_{x, y}$) a zároveň $|f(z) - f(y)| < \frac{\epsilon}{2}$ pro $z \in U_y$ (ze spojitosti $f$). Systém $\{U_y: y \in ®K\}$ je otevřené pokrytí ®K, tedy existuje $y_1, …, y_k \in ®K: U_{y_1} \cup … \cup U_{y_k} = ®K$. Definujeme $f_x := \min\{f_{x, y_1}, …, f_{x, y_k}\} \in ©B$ (©B je svaz). Navíc $f_x ≤ f+\epsilon$ na celém $®K$ a také $f_x(x) = f(x)$. Nyní $\forall x \in ®K\ \exists\text{otevřené} V_x \in ©U(x): |f_x(z) - f_x(x)|<\frac{\epsilon}{2}$ a $|f(z) - f(x)| < \frac{\epsilon}{2}$ pro $z \in V_x$. $\{V_x: x \in ®K\}$ otevřené pokrytí ®K. Tedy existují $x_1, …, x_l: V_{x_1}\cup … \cup V_{x_l} = ®K$. $g:=\max\{f_{x_1}, …, f_{x_l}\}, g \in ©B$ a $f-\epsilon ≤ g ≤ f + \epsilon$, tj. $||f-g||≤\epsilon$.
+            Chceme, že $©B$ je hustý. Ať $f \in C(®K)$ a $\epsilon > 0$. Pro každou dvojici $x, y \in ®K$ fixujeme $f_{x, y} \in ©B$, že $f_{x, y}(x) = f(x)$ a $f_{x, y}(y) = f(y)$ (to můžeme díky pozorování pro $x≠y$, pro $x=y$ položíme $f_{x, y} = f(x)$.) Ať $x \in ®K$ je pevné. $\forall y \in ®K\ \exists \text{otevřené } U_y \in ©U(y): |f_{x, y}(z) - f_{x, y}(y)| < \frac{\epsilon}{2}$ (ze spojitosti $f_{x, y}$) a zároveň $|f(z) - f(y)| < \frac{\epsilon}{2}$ pro $z \in U_y$ (ze spojitosti $f$). Systém $\{U_y: y \in ®K\}$ je otevřené pokrytí ®K, tedy existuje $y_1, …, y_k \in ®K: U_{y_1} \cup … \cup U_{y_k} = ®K$. Definujeme $f_x := \min\{f_{x, y_1}, …, f_{x, y_k}\} \in ©B$ (©B je svaz). Navíc $f_x ≤ f+\epsilon$ na celém $®K$ a také $f_x(x) = f(x)$. Nyní $\forall x \in ®K\ \exists\text{otevřené } V_x \in ©U(x): |f_x(z) - f_x(x)|<\frac{\epsilon}{2}$ a $|f(z) - f(x)| < \frac{\epsilon}{2}$ pro $z \in V_x$. $\{V_x: x \in ®K\}$ otevřené pokrytí ®K. Tedy existují $x_1, …, x_l: V_{x_1}\cup … \cup V_{x_l} = ®K$. $g:=\max\{f_{x_1}, …, f_{x_l}\}, g \in ©B$ a $f-\epsilon ≤ g ≤ f + \epsilon$, tj. $||f-g||≤\epsilon$.
         \end{dukazin}
 
         \begin{dukazin}[Okruh]
-            Ukážeme, že je-li $©A \subseteq C(®K)$ VP a okruh obsahující konstanty a oddělující body, pak $©B = \overline{©A}$ je svaz. Zřejmě $©B$ je VP obsahující konstanty a odděluje body (je nadmnožinou, proto vše obsahuje). Ukážeme, že pro $f \in ©B$ je $|f| \in ©B$: $f$ je omezená, tedy existuje $c>0$, že $c·f^2: ®K \rightarrow \[0, 1\]$. Z lemmatu o odmocnině existují polynomy $p_n: \[0, 1\] \rightarrow ®R$, že $p_n$ stejnoměrně konverguje k odmocnině. Tedy $p_n \circ (c·f^2) \in \overline{©A}$ stejnoměrně konverguje k $\sqrt{c}·|f| \in \overline{©A}$ (z uzávěru se nedá vykonvergovat). Tedy $|f|\in \overline{©A}$, tedy i $\max\{f, g\} = \frac{f+g+|f-g|}{2}$, tedy $\overline{A}$ je uzavřená na maxima (minima podobně).  Z první části $\overline{\overline{©A}} = C(®K)$, tedy $\overline{©A} = C(®K)$.
+            Ukážeme, že je-li $©A \subseteq C(®K)$ VP a okruh obsahující konstanty a oddělující body, pak $©B = \overline{©A}$ je svaz. Zřejmě $©B$ je VP obsahující konstanty a odděluje body (je nadmnožinou, proto vše obsahuje). Ukážeme, že pro $f \in ©B$ je $|f| \in ©B$: $f$ je omezená, tedy existuje $c>0$, že $c·f^2: ®K \rightarrow \[0, 1\]$. Z lemmatu o odmocnině existují polynomy $p_n: \[0, 1\] \rightarrow ®R$, že $p_n$ stejnoměrně konverguje k odmocnině. Tedy $p_n \circ (c·f^2) \in \overline{©A}$ (aplikování polynomu z venku je jen násobení a sčítání) stejnoměrně konverguje k $\sqrt{c}·|f| \in \overline{©A}$ (z uzávěru se nedá vykonvergovat). Tedy $|f|\in \overline{©A}$, tedy i $\max\{f, g\} = \frac{f+g+|f-g|}{2}$, tedy $\overline{A}$ je uzavřená na maxima (minima podobně).  Z první části $\overline{\overline{©A}} = C(®K)$, tedy $\overline{©A} = C(®K)$.
         \end{dukazin}
     \end{veta}
 
@@ -874,7 +908,7 @@
     \end{poznamka}
 
     \begin{priklady}
-        $®Y_1 = [0, 1]$ je kompaktifikací $®X = (0, 1)$ ($j_1: (0, 1) \rightarrow [0, 1], j_1(x) = x$). $®Y_2 = \{z \in ®C: |z| = 1\}$. $j_2: ®X \rightarrow ®Y_2, j_2(x) = e^{2 \pi i x}$. $(j_2, ®Y_2)$ je kompaktifikací $(0, 1)$. Zřejmě $(j_1, ®Y_1)$ je větší než $(j_2, ®Y_2)$. Naopak zřejmě nejsou ekvivalentní.
+        $®Y_1 = [0, 1]$ je jedna z kompaktifikací prostoru $®X = (0, 1)$ ($j_1: (0, 1) \rightarrow [0, 1],\ j_1(x) = x$). Nyní $®Y_2 = \{z \in ®C: |z| = 1\}$ ($j_2: ®X \rightarrow ®Y_2,\ j_2(x) = e^{2 \pi i x}$). $(j_2, ®Y_2)$ je kompaktifikací $(0, 1)$. Zřejmě $(j_1, ®Y_1)$ je větší než $(j_2, ®Y_2)$. Naopak zřejmě nejsou ekvivalentní.
     \end{priklady}
 
     \begin{definice}[Lokální kompaktnost]
@@ -887,10 +921,10 @@
             Je-li ®X kompaktní, pak má až na ekvivalenci jedinou kompaktifikaci: nechť $(e, ®Y)$ je kompaktifikace ®X. Potom $e(®X)$ je kompaktní (spojitý obraz kompaktu), $e(x)$ je uzavřená a hustá v ®Y, tedy $e(®X) = ®Y$. Tedy $e$ je homeomorfismus a tato kompaktifikace je tedy ekvivalentní s libovolnou další.
 
             Předpokládejme, že $®X$ není kompaktní. BÚNO $∞ \notin ®X$. Ať $\tau$ je topologie na ®X. $®Y = ®X \cup \{∞\}$. Na ®Y definujeme topologii $\sigma$:
-            $$\sigma := \tau \cup \{\{∞\} \cup (®X \setminus K): K \subseteq\text{ je kompaktní}\}.$$
-            Snadno ověříme, že $\sigma$ je topologie na ®Y. $(®Y, \sigma)$ je kompaktní: Ať ©U je otevřené pokrytí ®Y. $\exists U_0 \in ©U: ∞ \in U_0\ \exists K \subseteq ®X$ kompaktní: $U_0 = \{∞\} \cup (®x \setminus K)$. $K$ je pokryto otevřeným pokrytím $\{K \cap U: U\in ©U\}$, tedy z kompaktnosti existují $U_1, …, U_n \in ©U: K \subseteq U_1 \cup … \cup U_n$. $\{U_0, U_1, …, U_n\}$ je tedy konečné podpokrytí ®Y.
+            $$\sigma := \tau \cup \{\{∞\} \cup (®X \setminus K): K \subseteq ®X \text{ je kompaktní}\}.$$
+            Snadno ověříme, že $\sigma$ je topologie na ®Y. $(®Y, \sigma)$ je kompaktní: Ať ©U je otevřené pokrytí ®Y. $\exists U_0 \in ©U: ∞ \in U_0\ \exists K \subseteq ®X$ kompaktní: $U_0 = \{∞\} \cup (®X \setminus K)$. $K$ je pokryto otevřeným pokrytím $\{K \cap U: U\in ©U\}$, tedy z kompaktnosti existují $U_1, …, U_n \in ©U: K \subseteq U_1 \cup … \cup U_n$. $\{U_0, U_1, …, U_n\}$ je tedy konečné podpokrytí ®Y.
 
-            $(®Y, \sigma)$ je Hausdorffův: Pro $x, y \in ®X\ \exists U, V …$. Zajímavější je to pro $∞$ a $x \in ®X$. ®X je likálně kompaktní, tedy existuje $K \subset ®X$ kompaktní, $K \in ©U(x)$, $x \in \Int(K)$, $∞ \in \{∞\} \cup (®X\setminus K)$ (dvě disjunktní množiny).
+            $(®Y, \sigma)$ je Hausdorffův: Pro $x, y \in ®X\ \exists U, V …$ Zajímavější je to pro $∞$ a $x \in ®X$. ®X je lokálně kompaktní, tedy existuje $K \subset ®X$ kompaktní, $K \in ©U(x)$, $x \in \Int(K)$, $∞ \in \{∞\} \cup (®X\setminus K)$ (dvě disjunktní množiny).
 
             Jednoznačnost: v Hausdorffově prostoru jsou uzavřené množiny právě ty kompaktní, tedy nebyla jiná volba $\sigma$.
         \end{dukazin}
@@ -909,7 +943,7 @@
 
         \begin{dukazin}
             Ať $x, y \in ®X, x≠y$. ©F odděluje body, tedy existuje $i \in I: f_i(x) ≠ f_i(y)$. $f(x) ≠ f(y)$. Tedy $f$ je prosté.
-            Chceme ukázat, že $f: ®X \rightarrow f(®X)$ je homeomorfismus. Tedy stačí, že je uzavřené. Ať $F\subseteq ®X$ je uzavřené a $x \in ®X \setminus F$. $\exists i \in I: f_i(x) \notin f_i(F) = \overline{\pi_i(f(F))} \supseteq \pi_i(\overline{f(F)})$. Tedy $f_i(x) \notin \pi_i(\overline{f(F)})$. Proto $\pi_i(f(x)) = f(x) \notin \overline f(x) \notin \overline{f(F)}$. Tedy f je uzavřené.
+            Chceme ukázat, že $f: ®X \rightarrow f(®X)$ je homeomorfismus. Tedy stačí, že je uzavřené. Ať $F\subseteq ®X$ je uzavřené a $x \in ®X \setminus F$. $\exists i \in I: f_i(x) \notin f_i(F) = \overline{\pi_i(f(F))} \supseteq \pi_i(\overline{f(F)})$. Tedy $\pi_i(f(x)) = f_i(x) \notin \pi_i(\overline{f(F)})$. Proto $f(x) \notin \overline{f(F)}$. Tedy f je uzavřené.
         \end{dukazin}
     \end{lemma}
 
@@ -917,7 +951,7 @@
         Každý Tichonovův prostor lze vnořit do nějaké Tichonovovy krychle, tj. $\[0, 1\]^I$, pro vhodnou množinu $I$.
         
         \begin{poznamkain}
-            Za $I$ lze volit bázy.)
+            Za $I$ lze volit bázi.
         \end{poznamkain}
         
         \begin{dukazin}
@@ -933,19 +967,24 @@
     \end{dusledek}
 
     \begin{definice}
-            Kompaktifikace z důkazu předchozího důsledku (nebo kterákoliv s ní ekvivalentní) se nazývá Čechova-Stoneova (nebo beta-obal) a značí se $\beta®X$.
+        Kompaktifikace z důkazu předchozího důsledku (nebo kterákoliv s ní ekvivalentní) se nazývá Čechova-Stoneova (nebo beta-obal) a značí se $\beta®X$.
     \end{definice}
 
     \begin{veta}[Charakterizace beta obalu]
-        Ať ®X je Tichonovův TP a $Y$ kompaktifikace ®X. Pak je ekvivalentní a) $Y$ je Čechova-Stoneova kompaktifikace ®X. b) Každou spojitou funkci $f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na $Y$. c) Každou spojitou funkci $f:®X \rightarrow ®Z$ do libovolného kompaktního Hausdorffova prostoru ®Z lze spojitě rozšířit na $Y$. d) $Y$ je největší kompaktifikace ®X.
+        Ať ®X je Tichonovův TP a ®Y kompaktifikace ®X. Pak je ekvivalentní\\
+        a) ®Y je Čechova-Stoneova kompaktifikace ®X.\\
+        b) Každou spojitou funkci $f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na ®Y.\\
+        c) Každou spojitou funkci $f:®X \rightarrow ®Z$ do libovolného kompaktního Hausdorffova prostoru ®Z lze spojitě rozšířit na ®Y.\\
+        d) ®Y je největší kompaktifikace ®X.
+        
         \begin{dukazin}
-            $a) \implies b):$ $Y = \overline{e(X)}, e = \triangle\{f: f:®X\rightarrow \[0, 1\]\text{ spojitá}\}$. $e: ®X \rightarrow \[0, 1\]^I$. Ať $f: ®X \rightarrow \[0, 1\]$ je spojité $f \in I, \pi_f:\[0, 1\]^I\rightarrow \[0, 1\], \pi_f \circ e = f$, tedy $\pi_f$ rozšiřuje $f$, $\pi_f|Y$ je hledané spojité rozšíření.
+            $a) \implies b):$ $®Y = \overline{e(X)}, e = \triangle\{f | f:®X\rightarrow \[0, 1\]\text{ spojitá}\} = \triangle I$. $e: ®X \rightarrow \[0, 1\]^I$. Ať $f: ®X \rightarrow \[0, 1\]$ je spojité $f \in I, \pi_f:\[0, 1\]^I\rightarrow \[0, 1\], \pi_f \circ e = f$, tedy $\pi_f$ rozšiřuje $f$, $\pi_f|_{®Y}$ je hledané spojité rozšíření.
 
-            $b) \implies c)$ Podle lemmatu o Tichonovově vnoření\footnote{Z kompaktní Hausdorfův $\implies T_4 \implies T_{\pi}$} můžeme předpokládat, že $Z \subseteq [0, 1]^J$ pro nějakou množinu $J$. $\pi_j \circ f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na $g_j: Y \rightarrow \[0, 1\], j \in J$. $\triangle\{g_j: j \in J\}: Y \rightarrow \[0, 1\]^J$ je hledané spojité rozšíření toho zobrazení $f=\triangle_{j \in J}(\pi_j \circ f)$.
+            $b) \implies c)$ Podle lemmatu o Tichonovově vnoření\footnote{Z kompaktní Hausdorfův $\implies T_4 \implies T_{\pi}$} můžeme předpokládat, že $®Z \subseteq [0, 1]^J$ pro nějakou množinu $J$. $\pi_j \circ f: ®X \rightarrow \[0, 1\]$ lze spojitě rozšířit na $g_j: ®Y \rightarrow \[0, 1\], j \in J$. $\triangle\{g_j: j \in J\}: ®Y \rightarrow \[0, 1\]^J$ je hledané spojité rozšíření toho zobrazení $f=\triangle_{j \in J}(\pi_j \circ f)$.
 
-            $c) \implies d)$ Triviální z definice uspořádání na kompaktifikaci (Je-li Z nějaká kompaktifikace ®X, pak $id_{®X}:®X \rightarrow Z$ lze podle c) spojitě rozšířit na $Y$. Tedy $Y$ je větší kompaktifikace než $Z$.)
+            $c) \implies d)$ Triviální z definice uspořádání na kompaktifikaci (Je-li Z nějaká kompaktifikace ®X, pak $id_{®X}:®X \rightarrow ®Z$ lze podle c) spojitě rozšířit na ®Y. Tedy ®Y je větší kompaktifikace než ®Z.)
 
-            $d) \implies a)$ $Y$ je největší, tedy je větší než Čechova-Stoneova. Zbývá ukázat, že Čechova-Stoneova kompaktifikace je větší než $Y$. To již víme z důkazu implikace $a \implies c$ volbou $f = id_{®X}$. Podle poznámky o ekvivalenci kompaktifikací jsou tyto ekvivalentní.
+            $d) \implies a)$ ®Y je největší, tedy je větší než Čechova-Stoneova. Zbývá ukázat, že Čechova-Stoneova kompaktifikace je větší než ®Y. To již víme z důkazů implikace $a \implies d$. Podle poznámky o ekvivalenci kompaktifikací jsou tyto ekvivalentní.
         \end{dukazin}
     \end{veta}
     
@@ -962,7 +1001,7 @@
         Jsou-li $®X_n$ metrizovatelné TP, pak $\prod_{n \in ®N}®X_n$ je metrizovatelný.
 
         \begin{dukazin}
-                Ať $\rho_n$ je metrika na $®X_n$ kompatibilní s topologií $\tau_n$. BÚNO $\rho_n ≤ 1$. $®X = \prod ®X_n$. $\tau$ součinová topologie na ®X. Definujeme $\rho$ metriku na $®X: \rho(x, y):= \sum_{n \in ®N} 2^{-n}\rho_n(x_n, y_n)$. Ověříme, že topologie generovaná metrikou $\rho$ splývá s $\tau: \pi_n: ®X \rightarrow ®X_n$ je $2^n$-lipschitzovské, tedy spojité. Tedy topologie generovaná $\rho$ je větší než $\tau$. Ať $\epsilon > 0$ a $x \in ®X$, najdeme $n \in ®N: 2·2^{-n}<\epsilon$ a ať $\delta = 2^{-n}$. $B_{\rho_1}(x_1, \delta)\times … \times B_{\rho_n}(x_n, \delta) \times \prod_{i=n+1}^∞ ®X_i$ je prvek $\tau$, navíc je podmnožinou $B_{\rho}(x, \epsilon)$. Tedy topologie generovaná, metrikou $\rho$ je menší než $\tau$.
+            Ať $\rho_n$ je metrika na $®X_n$ kompatibilní s topologií $\tau_n$. BÚNO $\rho_n ≤ 1$. $®X = \prod ®X_n$. $\tau$ součinová topologie na ®X. Definujeme $\rho$ metriku na $®X: \rho(x, y):= \sum_{n \in ®N} 2^{-n}\rho_n(x_n, y_n)$. Ověříme, že topologie generovaná metrikou $\rho$ splývá s $\tau: \pi_n: ®X \rightarrow ®X_n$ je $2^n$-lipschitzovské, tedy spojité. Tedy topologie generovaná $\rho$ je větší než $\tau$. Ať $\epsilon > 0$ a $x \in ®X$, najdeme $n \in ®N: 2·2^{-n}<\epsilon$ a ať $\delta = 2^{-n}$. $B_{\rho_1}(x_1, \delta)\times … \times B_{\rho_n}(x_n, \delta) \times \prod_{i=n+1}^∞ ®X_i$ je prvek $\tau$, navíc je podmnožinou $B_{\rho}(x, \epsilon)$. Tedy topologie generovaná, metrikou $\rho$ je menší než $\tau$.
         \end{dukazin}
 
         \begin{poznamkain}
@@ -975,7 +1014,7 @@
         Každý $T_3$ prostor se spočetnou bází je metrizovatelný.
         
         \begin{dukazin}
-            Prostor se spočetnou bází je Lindelöfův. Každý regulární Lindelöfův prostor je normální. Tedy $®X$ je $T_4$, tedy i Tichonovův. Ať $©B$ je spočetná báze $®X$. Označme $©A = \{(U, V): \overline{U} \subseteq V, U, V \in ©B\}$. Pro $(U, V) \in ©A$ existuje spojitá funkce $f_{U, V}$ existuje spojitá funkce $f_{U, V}: ®X \rightarrow \[0, 1\]$, že $f_{U, V}|\overline{U} = 0, f_{U, V}|(®X\setminus V) = 1$ (lze z normality). $©F := \{f_{U, V}: (U, V) \in ©A\}$ odděluje body a odděluje body a uzavřené množiny. Podle lemmatu o Tichonovově vnoření je $e:= \triangle ©F: ®X \rightarrow \[0, 1\]^{©F}$ je vnoření. $\[0, 1\]^{©F}$ je metrizovatelný, protože ©F je spočetná. $e: ®X \rightarrow \[0,1\]^{©F}, e: ®X \rightarrow e(®X)$ je homeomorfismus. $e(®X)$ je metrizovatelný, tedy ®X je metrizovatelný.
+            Prostor se spočetnou bází je Lindelöfův. Každý regulární Lindelöfův prostor je normální. Tedy prostor $®X$ je $T_4$, tzn. i Tichonovův. Ať $©B$ je spočetná báze prostoru $®X$. Označme $©A = \{(U, V): \overline{U} \subseteq V, U, V \in ©B\}$. Pro $(U, V) \in ©A$ existuje spojitá funkce $f_{U, V}: ®X \rightarrow \[0, 1\]$, že $f_{U, V}|_{\overline{U}} = 0, f_{U, V}|_{(®X\setminus V)} = 1$ (lze z normality). $©F := \{f_{U, V}: (U, V) \in ©A\}$ odděluje body a odděluje body a uzavřené množiny. Podle lemmatu o Tichonovově vnoření je $e:= \triangle ©F: ®X \rightarrow \[0, 1\]^{©F}$ vnoření. $\[0, 1\]^{©F}$ je metrizovatelný, protože ©F je spočetná. $e: ®X \rightarrow \[0,1\]^{©F}$ je vnoření, tedy $e: ®X \rightarrow e(®X)$ je homeomorfismus. $e(®X)$ je metrizovatelný, tedy ®X je metrizovatelný.
         \end{dukazin}
     \end{veta}
 
@@ -1024,9 +1063,9 @@
         Ať ®X je MP, ®Y úplně metrizovatelný. Ať $A \subseteq ®X, f: A \rightarrow ®Y$ spojité. Potom existuje $G_\delta$-množina $G \subseteq ®X$, že $A \subseteq G \subseteq \overline{A}$, a spojité $g: G \rightarrow ®Y$, které rozšiřuje $f$.
 
         \begin{dukazin}
-            Pro $x \in \overline{A}$ definujeme oscilaci $\osc_f(x) = \inf\{\diam f(U cap A): U \text{ otevřené okolí } x\}$. Pro $x \in A: \osc_f(x)=0 \Leftrightarrow f$ je spojité v bodě $x$. $G:=\{x \in \overline{A}: \osc_f(x) = 0\}$. $G$ je $G_\delta$ v $\overline{A}$, $\overline{A}$ je $G_\delta$ v ®X. Tedy $G$ je $G_\delta$ v ®X.
+            Pro $x \in \overline{A}$ definujeme oscilaci $\osc_f(x) = \inf\{\diam f(U \cap A): U \text{ otevřené okolí } x\}$. Pro $x \in A: \osc_f(x)=0 \Leftrightarrow f$ je spojité v bodě $x$. $G:=\{x \in \overline{A}: \osc_f(x) = 0\}$. $G$ je\footnote{$$ G = \bigcap_{n \in ®N} \{x \in \overline{A}| \osc_f(x) < \frac{1}{n}\}. $$} $G_\delta$ v $\overline{A}$, $\overline{A}$ je $G_\delta$ v ®X. Tedy $G$ je $G_\delta$ v ®X.
 
-            Pro $x \in G$ existuje $x_1n \in A$, že $x_n \rightarrow x$. Definujeme $g(x) = \lim_{n \rightarrow ∞} f\(x_n\)$. Definice $g$ nezávisí na volbě $x_n$. $g$ rozšiřuje $f$. Spojitost $g$: Pro $U \subseteq ®X$ otevřená, že $U\cap G ≠ \O: g(U) \subseteq \overline{f(U)}$, tedy $\diam g(U) ≤ \diam \overline{f(U)} = \diam f(U) \implies \osc_g(x) ≤ \osc_f(x)$, tedy speciálně $\osc_g(x) = 0, x\in G$, tedy $g$ je spojitá.
+            Pro $x \in G$ existuje $x_n \in A$, že $x_n \rightarrow x$. Definujeme $g(x) = \lim_{n \rightarrow ∞} f\(x_n\)$. Definice $g$ nezávisí na volbě $x_n$. $g$ rozšiřuje $f$. Spojitost $g$: Pro $U \subseteq ®X$ otevřená, že $U\cap G ≠ \O: g(U) \subseteq \overline{f(U)}$, tedy $\diam g(U) ≤ \diam \overline{f(U)} = \diam f(U) \implies \osc_g(x) ≤ \osc_f(x)$, tedy speciálně $\osc_g(x) = 0, x\in G$, tedy $g$ je spojitá.
         \end{dukazin}
     \end{veta}
 
@@ -1036,14 +1075,14 @@
         Je-li ®X úplně metrizovatelný a $®Y \subseteq ®X$ je $G_{\delta}$, pak ®Y je úplně metrizovatelný.
 
         \begin{dukazin}
-            $(®X, \rho), (®Y, \sigma)$. $\id: (®Y, \rho) \rightarrow (®Y, \sigma)$ je spojité zobrazení (dokonce homeomorfismus). Tedy podle Kuratowského věty existuje spojité rozšíření $g: G \rightarrow Y$, kde $®Y \subseteq G \subseteq \overline{®Y}$. $\id_G: G \rightarrow G$ je spojité. $g|®Y = \id = \id_G|Y$ a ®Y je hustá v G. Z jednoznačnosti zobrazení do Hausdorffova prostoru musí být $g = \id_G$. Tedy $G = ®Y$. $G$ je $G_{\delta}$, tedy i $®Y$ je $G_{\delta}$.
+            $(®X, \rho), (®Y, \sigma)$. $\id_{®Y}: (®Y, \rho) \rightarrow (®Y, \sigma)$ je spojité zobrazení (dokonce homeomorfismus). Tedy podle Kuratowského věty existuje spojité rozšíření $g: G \rightarrow ®Y$, kde $®Y \subseteq G \subseteq \overline{®Y}$. $\id_G: G \rightarrow G$ je spojité. $g|_{®Y} = \id_{®Y} = \id_G|_{®Y}$ a ®Y je hustá v G. Z jednoznačnosti zobrazení do Hausdorffova prostoru musí být $g = \id_G$. Tedy $G = ®Y$. $G$ je $G_{\delta}$, tedy i $®Y$ je $G_{\delta}$.
 
             Druhá část: $(®X, \rho)$ úplný metrický, $®Y = \bigcap_{n \in ®N}U_n$, kde $U_n$ je otevřená, $F_n := ®X \setminus U_n$ jsou uzavřené. Definujeme novou metriku na $®Y$:
-            $$ \rho'(x, y) = \rho(x, y) + \sum_{n=1}^∞ \min\{2^{-n}, \(\frac{1}{\rho(x, F_n)} - \frac{1}{\rho(y, F_n)}\)\}. $$
-            $\rho'$ je kompatibilní s metrikou $\rho$ (cvičení). Ověříme, že $\rho'$ je úplná: Ať $(y_i)$ je cauchyovská posloupnost v $(®Y, \rho)$. Chceme ukázat, že má limitu. $\rho < \rho'$. Tedy $(y_i)$ je cauchyovská v $(®X, \rho)$. Tedy $(y_i)$ je konvergentní v $(®X, \rho)$. $y_i \rightarrow y \in ®X$. Chceme, že $y \in ®Y$ a $y_i \rightarrow y$ v $(®Y, \rho')$.
+            $$ \sigma(x, y) = \rho(x, y) + \sum_{n=1}^∞ \min\{2^{-n}, \left|\frac{1}{\rho(x, F_n)} - \frac{1}{\rho(y, F_n)}\right|\}. $$
+            $\sigma$ je kompatibilní s metrikou $\rho$ (cvičení). Ověříme, že $\sigma$ je úplná: Ať $(y_i)$ je cauchyovská posloupnost v $(®Y, \rho)$. Chceme ukázat, že má limitu. $\rho ≤ \sigma$. Tedy $(y_i)$ je cauchyovská v $(®X, \rho)$. Tedy $(y_i)$ je konvergentní v $(®X, \rho)$. $y_i \rightarrow y \in ®X$. Chceme, že $y \in ®Y$ a $y_i \rightarrow y$ v $(®Y, \sigma)$.
 
-            $$ n \in ®N: \lim_{i, j \rightarrow ∞}\left| \frac{1}{\rho(y_i, F_n)} - \frac{1}{\rho(y_j, F_n)} \right| = 0 (\text{protože $(y_i)$ je $\rho'$ cauchyovská.}) $$ 
-            Tedy $\forall n \in ®N \frac{1}{\rho(y_i, F_n)}$ konvergentní a odražená od nuly (její limita není nula). Tedy $\forall n \in ®N: y \notin F_n$. Tedy $y \in ®Y$. Navíc $y_i \rightarrow y$ v $(®Y, \rho')$, protože $\rho (x, y)$ jde k 0 pro $x$ jde k $y$ a zbytek $\rho'$ je část posloupnost a zbytek konvergentní $\frac{1}{2^{-n}}$.
+            $$ n \in ®N: \lim_{i, j \rightarrow ∞}\left| \frac{1}{\rho(y_i, F_n)} - \frac{1}{\rho(y_j, F_n)} \right| = 0 (\text{ protože $(y_i)$ je $\sigma$ cauchyovská.}) $$ 
+            Tedy $\forall n \in ®N: \frac{1}{\rho(y_i, F_n)}$ konvergentní a odražená od nuly (její limita není nula). Tedy $\forall n \in ®N: y \notin F_n$. Tedy $y \in ®Y$. Navíc $y_i \rightarrow y$ v $(®Y, \sigma)$, protože $\rho (x, y)$ jde k 0 pro $x$ jde k $y$ a zbytek $\sigma$ je část posloupnosti a zbytek konvergentní $\frac{1}{2^{-n}}$.
         \end{dukazin}
     \end{veta}
 
@@ -1053,7 +1092,7 @@
         \begin{dukazin}
             Spojitý obraz kompaktů je kompakt, tedy $f(®Y)$ je kompaktní, tedy uzavřená v ®Z. $f(®Y) \supseteq f(®X) = ®X$, ®X hustá v ®Z, tedy $f(®Y)$ je hustá v ®Z. Nutně $f(®Y) = ®Z$. Tedy $f(®Y \setminus ®X) \supseteq ®Z \setminus ®X$.
 
-            Obrácená inkluze sporem: $\exists y \in ®Y \setminus ®X: f(y) = x \in ®X$. Existuje otevřené okolí $U$ bodu $x$, že $y \notin \overline{U}$ $(y ≠ x)$. Ze spojitosti $f: \overline{®X \setminus U} = \overline{f^{-1}(®X \setminus U)} = f^{-1}(\overline{®X \setminus U}) \not\ni y$, tedy $y \notin \overline{®X \setminus U}$. Celkem $y \notin \overline{U} \cup \overline{®X \setminus U} = \overline{®X} = ®Y$ \lightning.
+            Obrácená inkluze sporem: $\exists y \in ®Y \setminus ®X: f(y) = x \in ®X$. Existuje otevřené okolí $U$ bodu $x$, že $y \notin \overline{U}$ $(y ≠ x)$. Ze spojitosti $f: \overline{®X \setminus U} = \overline{f^{-1}(®X \setminus U)} \subseteq f^{-1}\(\overline{®X \setminus U}\) \not\ni y\ (\notin ®X)$, tedy $y \notin \overline{®X \setminus U}$. Celkem $y \notin \overline{U} \cup \overline{®X \setminus U} = \overline{®X} = ®Y$ \lightning.
         \end{dukazin}
     \end{lemma}
 
@@ -1061,9 +1100,9 @@
         Pro Tichonovův prostor je ekvivalentní
 
         \begin{itemize}
-            \item[a] ®X je $G_\delta$ v $\beta®X$,
-            \item[b] ®X je $G_\delta$ v každé své kompaktifikaci,
-            \item[c] ®X je $G_\delta$ v nějaké své kompaktifikaci.
+            \item[a)] ®X je $G_\delta$ v $\beta®X$,
+            \item[b)] ®X je $G_\delta$ v každé své kompaktifikaci,
+            \item[c)] ®X je $G_\delta$ v nějaké své kompaktifikaci.
         \end{itemize}
         
         \begin{dukazin}
@@ -1084,7 +1123,9 @@
     \end{upozorneni}
 
     \begin{priklady}
-        Každý kompaktní Hausdorffův prostor je čechovsky úplný. Každý lokálně kompaktní Hausdorffův prostor je čechovsky úplný (má 1-bodovou kompaktifikaci).
+        Každý kompaktní Hausdorffův prostor je čechovsky úplný.
+
+        Každý lokálně kompaktní Hausdorffův prostor je čechovsky úplný (má 1-bodovou kompaktifikaci).
     \end{priklady}
 
     \begin{veta}[Frolíhova vnitřní charakterizace čechovské úplnosti]
@@ -1095,9 +1136,9 @@
 % 13. 12. 2020
 
         \begin{dukazin}
-                $\implies:$ TP ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®X$. $®X = \bigcap_{n \in ®N} G_n$, $G_n$ otevřená v $\beta ®X$. Pro $x \in ®X$ a $n \in ®N$ existuje otevřená $U_{x, n} \subseteq \beta ®X$, že $x \in U_{x, n} \subseteq \overline{U_{x, n}} \subseteq G_n$. Položme $V_{x, n} = U_{x, n}\cap ®X$ … otevřené v ®X. $©U_n := \{V_{x, n}: x \in ®X\}$ … otevřené pokrytí ®X. Ať ©F je centrovaný systém uzavřených množin splňující (*). Chceme, že $\bigcap ©F ≠ \O$. Ať $©F' := \{\overline{F}: F \in ©F\}$. $©F'$ je centrovaný systém uzavřených množin v $\beta®X$. Z charakterizace kompaktnosti je $\bigcap©F'≠\O$. Ať $x \in \bigcap©F'$. Ukážeme, že $x \in ®X$. Víme $x \in G_n, n \in ®N$. Tedy $x \in \bigcap_{n \in ®N}G_n = ®X$. $\overline{F} \cup ®X = F$ (protože $F$ je uzavřená v ®X). Proto $x \in \bigcap ©F$. Tedy $\bigcap ©F ≠ \O$.
+            $\implies:$ TP ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®X$. $®X = \bigcap_{n \in ®N} G_n$, $G_n$ otevřená v $\beta ®X$. Pro $x \in ®X$ a $n \in ®N$ existuje otevřená $U_{x, n} \subseteq \beta ®X$, že $x \in U_{x, n} \subseteq \overline{U_{x, n}} \subseteq G_n$. Položme $V_{x, n} = U_{x, n}\cap ®X$ … otevřené v ®X. $©U_n := \{V_{x, n}: x \in ®X\}$ … otevřené pokrytí ®X. Ať ©F je centrovaný systém uzavřených množin splňující (*). Chceme, že $\bigcap ©F ≠ \O$. Ať $©F' := \{\overline{F}^{\beta ®X}: F \in ©F\}$. $©F'$ je centrovaný systém uzavřených množin v $\beta®X$. Z charakterizace kompaktnosti je $\bigcap©F'≠\O$. Ať $x \in \bigcap©F'$. Ukážeme, že $x \in ®X$. Víme $x \in G_n, n \in ®N$. Tedy $x \in \bigcap_{n \in ®N}G_n = ®X$. $\overline{F} \cap ®X = F$ (protože $F$ je uzavřená v ®X). Proto $x \in \bigcap ©F$. Tedy $\bigcap ©F ≠ \O$.
 
-                $\Leftarrow:$ ®X splňuje druhou část věty. Pro $U \in ©U_n$ existuje otevřená množina $V_U \subseteq \beta®X$, že $®X \cap V_U = U$. $G_n := \bigcup\{V_U: U \in ©U_n\} \underset{\text{otevřená}}{\subseteq}$, $®X \subseteq G_n$. $®X \subseteq \bigcap_{n \in ®N} G_n$. Zbývá $®X \supseteq \bigcap_{n \in ®N} G_n$. Ať $x \in \bigcap_{n \in ®N} G_n$. $©F := \{®X \cap \overset{V} : V \in ©U(x)\}$. ©F je centrovaný systém uzavřených množin v ®X. Navíc splňuje i (*), tj. $\bigcap©F ≠ \O$. Ať $y \in \bigcap©F$. Ukážeme, že $y=x$. Kdyby $y ≠ x$, pak (jelikož jsme v Hausdorffově prostoru) existuje $V \in ©U(x): y \notin \overline{V} \implies y \notin \bigcap©F$. \lightning. $x=y \in ®X$. Celkově $®X = \bigcap G_n$, tedy ®X je $G_\delta$ v $\beta®X$.
+            $\Leftarrow:$ ®X splňuje druhou část věty. Pro $U \in ©U_n$ existuje otevřená množina $V_U \subseteq \beta®X$, že $®X \cap V_U = U$. $G_n := \bigcup\{V_U: U \in ©U_n\} \underset{\text{otevřená}}{\subseteq} \beta®X$, $®X \subseteq G_n$. $®X \subseteq \bigcap_{n \in ®N} G_n$. Zbývá $®X \supseteq \bigcap_{n \in ®N} G_n$. Ať $x \in \bigcap_{n \in ®N} G_n$. $©F := \{®X \cap \overline{V} | V \in ©U(x)\}$. ©F je centrovaný systém uzavřených množin v ®X. Navíc splňuje i (*), tj. $\bigcap©F ≠ \O$. Ať $y \in \bigcap©F$. Ukážeme, že $y=x$. Kdyby $y ≠ x$, pak (jelikož jsme v Hausdorffově prostoru) existuje $V \in ©U(x): y \notin \overline{V} \implies y \notin \bigcap©F$. \lightning. $x=y \in ®X$. Celkově $®X = \bigcap G_n$, tedy ®X je $G_\delta$ v $\beta®X$.
         \end{dukazin}
     \end{veta}
 
@@ -1117,7 +1158,7 @@
         Průnik spočetně mnoha otevřených hustých podmnožin čechovsky úplného prostoru je v něm hustý.
 
         \begin{dukazin}
-                Ať $G_n, n \in ®N$ je otevřená hustá v ®X. Ať $©U_n$ jsou otevřené pokrytí z Frolíkovy charakterizce. Ať $G ≠ \O$ otevřená. Chceme $\bigcap G_n \cap G ≠ \O$. Indukcí nalezneme pro každé $n \in ®N$ uzavřenou množinu $F_n \subseteq ®X$ s neprázdným vnitřkem, že $F_{n+1} \subseteq F_n, F_n \subseteq G_n \cap G$ a že $\exists U_n \in ©U_n: F_n \subseteq U_n$. $\{F_n| n \in ®N\}$ je centrovaný systém uzavřených množin a podle Frolíkovy charakterizace $\bigcap F_n ≠ \O$, $\bigcap F_n \subseteq G \cap \bigcap_{n \in ®N} G_n$.
+            Ať $G_n, n \in ®N$ je otevřené husté v ®X. Ať $©U_n$ jsou otevřené pokrytí z Frolíkovy charakterizce. Ať $G ≠ \O$ otevřená. Chceme $\bigcap G_n \cap G ≠ \O$. Indukcí nalezneme pro každé $n \in ®N$ uzavřenou množinu $F_n \subseteq ®X$ s neprázdným vnitřkem, že $F_{n+1} \subseteq F_n, F_n \subseteq G_n \cap G$ a že $\exists U_n \in ©U_n: F_n \subseteq U_n$. $\{F_n| n \in ®N\}$ je centrovaný systém uzavřených množin a podle Frolíkovy charakterizace $\bigcap F_n ≠ \O$, $\bigcap F_n \subseteq G \cap \bigcap_{n \in ®N} G_n$.
         \end{dukazin}
     \end{veta}
 
@@ -1127,7 +1168,9 @@
         \begin{dukazin}
             Ať $®X_i, i \in ®N$ jsou čechovsky úplné. $®X_i = \bigcap_{n \in ®N}G_{i, n}$, $G_{i, n}$ otevřené v $\beta®X_i$.
 
-            $\bigoplus_{i \in ®N} ®X_i \subseteq \bigoplus_{i \in ®N} \beta®X_i$ … lokálně kompaktní. Tedy můžeme uvažovat jednobodovou kompaktifikaci $\alpha(\bigoplus \beta®X_i) \supseteq \bigoplus_{i \in ®N} \beta®X_i$. $\bigoplus_{i \in ®N} \beta®X_i$ je otevřená v $\alpha(\bigoplus \beta®X_i)$. $\bigoplus®X_i = \bigcap_{n \in ®N} \underbrace{\bigcup_{i \in ®N} G_{i, n}}_{\text{otevřená v $\bigoplus\beta®X_i$, otevřená v $\alpha(…)$}}$ … je $G_\delta$ v $\alpha(…)$. Tedy $\bigoplus ®X_i$ je čechovsky úplný.
+            $\bigoplus_{i \in ®N} ®X_i \subseteq \bigoplus_{i \in ®N} \beta®X_i$ … lokálně kompaktní. Tedy můžeme uvažovat jednobodovou kompaktifikaci $\alpha(\bigoplus \beta®X_i) \supseteq \bigoplus_{i \in ®N} \beta®X_i$. $\bigoplus_{i \in ®N} \beta®X_i$ je otevřená v $\alpha(\bigoplus \beta®X_i)$. 
+            $$ \bigoplus®X_i = \bigcap_{n \in ®N} \underbrace{\bigcup_{i \in ®N} G_{i, n}}_{\text{otevřená v $\bigoplus\beta®X_i$, otevřená v $\alpha(…)$}} $$
+            je $G_\delta$ v $\alpha(…)$. Tedy $\bigoplus ®X_i$ je čechovsky úplný.
 
             Pro součin obdobně (dokonce můžeme vynechat $\alpha$).
 
@@ -1165,7 +1208,7 @@
     \end{definice}
 
     \begin{poznamka}
-        Poslední podmínka je ekvivalentní podmínce $©D = \triangle(®X)$.
+        Poslední podmínka je ekvivalentní podmínce $\bigcap ©D = \triangle(®X)$.
     \end{poznamka}
 
     \begin{definice}[Báze a subbáze]
@@ -1225,7 +1268,7 @@
     \end{priklady}
 
     \begin{veta}[Metrizovatelnost UP]
-        UP $(@X, ©D)$ je metrizovatelný $\Leftrightarrow$ UP $(®X, ©D)$ má spočetnou bázi.
+        UP $(®X, ©D)$ je metrizovatelný $\Leftrightarrow$ UP $(®X, ©D)$ má spočetnou bázi.
 
         \begin{dukazin}
             Na topologii 2.
@@ -1239,7 +1282,7 @@
     \begin{definice}[Net]
         Net $(x_i)_{i \in I}$ v UP $(®X, ©D)$ se nazývá cauchyovský, pokud $\forall D \in ©D\ \exists i_0 \in I\ \forall i, j ≥ i_0: (x_i, x_j) \in D$.
 
-        UP $(®X, ©D)$ je úplný, pokud každý cauchyovský net v $(®X, ©D)$ je konvergentní v $(®X, \tau_{@D})$.
+        UP $(®X, ©D)$ je úplný, pokud každý cauchyovský net v $(®X, ©D)$ je konvergentní v $(®X, \tau_{©D})$.
     \end{definice}
 
     \begin{poznamka}
@@ -1247,7 +1290,8 @@
     \end{poznamka}
 
     \begin{definice}[Totální omezenost]
-        UP $(®X, ©D)$ se nazývá totálně omezený, pokud $\forall E \in ©D\ \exists K \subseteq ®X$ konečná: $E[K] = \bigcup_{x \in K} E[x] = ®X$.
+        UP $(®X, ©D)$ se nazývá totálně omezený, pokud $\forall E \in ©D\ \exists K \subseteq ®X$ konečná:
+        $$ E[K] = \bigcup_{x \in K} E[x] = ®X. $$
     \end{definice}
 
     \begin{poznamka}
@@ -1266,5 +1310,91 @@
         Na každém kompaktním Hausdorffově TP existuje právě jedna uniformita, která generuje tuto topologii.
     \end{veta}
 
+% 4. 1. 2021
+
+\section{Topologické grupu}
+\begin{definice}[Topologická grupa (TG)]
+        Trojice $(®G, ·, \tau)$ se nazývá topologická grupa, pokud $(®G, ·)$ je grupa, $(®G, \tau)$ je (Hausdorffův) TP, $·: ®G \times ®G \rightarrow ®G$ je spojitá a $ ^{-1}: ®G \rightarrow ®G$ je spojité.
+    \end{definice}
+
+    \begin{priklady}
+            $(®R, +, \tau_e)$ ($\tau_e$ je euklidovská topologie), $(C(®K), +, \tau_{\text{stejnoměrná}})$ ($®K$ je kompakt), každý Banachův prostor, $(GL(n, ®R), ·, \tau_{®R^{n \times n}})$ (grupa $n \times n$ matic nad ®R s nenulovým determinantem), grupa homeomorfismů $[0, 1]$ s topologií stejnoměrné konvergence a operací skládání homeomorfismů.
+    \end{priklady}
+
+    \begin{poznamka}[Normální podgrupa, faktogrupa, neutrální prvek]
+        $N ≤ G$ je normální, pokud $\forall g \in G: gNg^{-1} = N$.
+
+        Pokud je $N$ normální podgrupa $G$, pak faktogrupou nazveme $G/N = \{gN | g \in G\}$
+
+        Neutrální prvek grupy značíme $e$.
+    \end{poznamka}
+
+    \begin{tvrzeni}[Základní vlastnosti TG]
+        \ibegin
+        \begin{itemize}
+            \item $ ^{-1}$ je homeomorfismus.
+            \item Pro $g \in ®G$ definujeme tzv. levou translaci $L_g: ®G \rightarrow ®G,\ L_g(h) = g·h$, která je též homeomorfismus.
+            \item Každá TG je homogenní TP ($\forall x, y \exists h: ®G \rightarrow ®G \text{ homeomorfismus},\ h(x) = y$).
+            \item $\forall U \in ©U(e)\ \exists V \in ©U(e): V·V^{-1} \subseteq U$.
+            \item Zobrazení $(x, y) \mapsto x·y^{-1}$ je spojité.
+            \item Pro $U \subseteq ®G$ otevřenou a $M \subseteq ®G$, platí $M·U$ je otevřená.
+            \item Uzávěr podgrupy TG je grupa.
+            \item Uzávěr normální podgrupy je normální podgrupa.
+            \item Je-li $H ≤ ®G$, $\Int H ≠ \O$, pak $H$ je obojetná v ®G.
+            \item Součin TG se součinovou topologií je TG.
+        \end{itemize}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Uniformita na TG]
+        Ať ®G je TG. Pak systém $\{D_U | U \in ©U(e)\}$, kde
+        $$ D_U = \{(x, y) \in ®G \times ®G | xy^{-1} \in U\}, $$
+        je bází nějaké unifomity $©D_{®G}$ (tzv. pravá unifomita na ®G (vs. levá)), která je kompatibilní s topologií na ®G.
+    \end{tvrzeni}
+
+    \begin{veta}
+        Každá TG je Tichonovův TP.
+
+        \begin{dukazin}
+            Každý UP je Tichonovův.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Metrizovatelnost TG]
+        TG je metrizovatelná $\Leftrightarrow$ má spočetný charakter.
+        
+        \begin{dukazin}[Náznak]
+            TG má uniformitu (metrizovatelná právě tehdy, když má spočetnou bázi), která generuje topologii, jelikož jsme ji definovali s bází danou okolími $e$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Spojitost homomorfismu]
+        Ať $®G, ®H$ jsou TG, $f: ®G \rightarrow ®H$ homomorfismus grup. Potom $f$ je spojité $\Leftrightarrow$ f je spojité v $e$.
+    \end{tvrzeni}
+
+    \begin{veta}[Faktor TG]
+        Ať ®G je TG, $N$ je uzavřená normální podgrupa. Potom $®G/N$ s kvocientovou topologií je TG a přirozená projekce $\pi: ®G \rightarrow ®G/N$ je kvocientové zobrazení a otevřený homomorfismus grup.
+    \end{veta}
+
+    \begin{priklady}
+        $®R/®Z \simeq ®S^1$.
+    \end{priklady}
+
+    \begin{tvrzeni}[O homomorfismu]
+        Ať $®G, ®H$ jsou TG, $f: ®G \rightarrow ®H$ spojitý homomorfismus. Pak $N := f^{-1}(e)$ je uzavřená normální podgrupa ®G a existuje spojitý homomorfismus $\overline{f}: ®G/N \rightarrow ®H$, že $\overline{f} \circ \pi = f$. ($\overline{f}$ nemusí být homeomorfismus, ani pokud f je na).
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[O izomorfismu]
+        Ať ®G je TF, $K \subseteq H$ uzavřené normální podgrupy ®G. Potom $H/K$ je uzavřená normální podgrupa $®G/K$ a $(®G/K)/(H/K)$ je izomorfněhomeomorfní s $G/H$. (Existuje bijekce, která je zároveň izomorfismus grup a homeomorfismus topologií.)
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Na každé grupě $(G, ·)$ existuje topologie $\tau$, že $(G, ·, \tau)$ je TG. ($\tau$ diskrétní funguje vždy.)
+
+        Naopak kdy lze rozšířit TP na TG je těžká otázka (možná otevřená). (Na TP $[0, 1]$ nelze definovat $·$, aby šlo o TG, jelikož $[0, 1]$ není homogenní (nelze $0 \mapsto \frac{1}{2}$).)
+    \end{poznamka}
+
+    \begin{veta}[Birkhoff-Kakutani]
+        Každá metrizovatelná TG ®G má zleva (zprava) invariantní metriku (tj. metriku $\rho$, že $\rho(x, y) = \rho(x·z, y·z)$, kde $x, y, z \in ®G$ libovolné).
+    \end{veta}
 
 \end{document}

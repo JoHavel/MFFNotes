@@ -1,8 +1,6 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-
-
 \begin{document}
 
 \section{Úvod}
@@ -16,6 +14,7 @@
     \end{poznamka}
 
     \begin{definice}[Značení]
+        \ \\[-3.8em]
         \begin{itemize}
             \item ®N -- přirozená čísla od 1
             \item $®N_0$ -- přirozená čísla od 0
@@ -27,9 +26,9 @@
     \end{definice}
 
     \subsection{Množiny}
-        \begin{poznamka}[Shodnost množin]
+        \begin{definice}[Shodnost množin]
                 $$ X = Y \Leftrightarrow (\forall z) (z \in X \Leftrightarrow z \in Y) $$ 
-        \end{poznamka}
+        \end{definice}
 
         \begin{poznamka}[Historie teorie množin]
             70. léta 19. století G. Cantor (zavedl např. porovnávání velikostí množin, viz bijekce, také přišel na to, že ne všechny nekonečné množiny jsou spočetné (stejně velké jako ®N)).
@@ -414,7 +413,11 @@
     \end{definice}
 
     \begin{definice}
-        Úplný graf $K_n$ ($V = [n], E = \binom{V}{2}$), kružnice $C_n$ ($V = [n]$, $E = \{\{i, i+1\} | i \in [n-1]\} \cup \{\{n, 1\}\}$), cesta $P_n$ ($V = \{0\} \cup [n]$, $E = \{\{i-1, i\} | i \in [n]\}$), úplný bipartitní graf $K_{n, m}$ ($V = \{u_1, …, u_n\} \cup \{w_1, …, w_m\}, E = \{\{u_i, w_j\}| i \in [n] \land j \in [m]\}$), bipartitní graf (podgraf úplného bipartitního grafu).
+        Úplný graf $K_n$ ($V = [n], E = \binom{V}{2}$),\\
+        kružnice $C_n$ ($V = [n]$, $E = \{\{i, i+1\} | i \in [n-1]\} \cup \{\{n, 1\}\}$),\\
+        cesta $P_n$ ($V = \{0\} \cup [n]$, $E = \{\{i-1, i\} | i \in [n]\}$), \\
+        úplný bipartitní graf $K_{n, m}$ ($V = \{u_1, …, u_n\} \cup \{w_1, …, w_m\}, E = \{\{u_i, w_j\}| i \in [n] \land j \in [m]\}$),\\
+        bipartitní graf (podgraf úplného bipartitního grafu).
     \end{definice}
 
     \begin{definice}[Podgraf, indukovaný podgraf]
