@@ -1,6 +1,8 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
+\setlength{\parskip}{0em}
+
 \begin{document}
 
     \begin{priklad}[1.]
@@ -27,7 +29,7 @@
             $$ \int_{c}d\omega = \int_{[0, 1]^3}\(r^2 - s·r - r·t - r·t - t·s + t^2\)\, dr \wedge ds \wedge dt = $$
             $$ = \frac{1}{3} - \frac{1}{4} - \frac{1}{4} - \frac{1}{4} - \frac{1}{4} + \frac{1}{3} = -\frac{1}{3} $$
 
-            \vskip -1em $-\frac{1}{3} = -\frac{1}{3}$, tedy Stokesova věta pro tuto krychli $c$ a tuto formu $\omega$ platí.    
+            $-\frac{1}{3} = -\frac{1}{3}$, tedy Stokesova věta pro tuto krychli $c$ a tuto formu $\omega$ platí.    
         \end{reseni}
 
         \begin{reseni}[Výpočty levého integrálu]
@@ -90,15 +92,22 @@
         Ukažte, že tečný fibrovaný prostor $TX$ má přirozenou strukturu hladké variety. Definujte mapy na $TX$ a ukažte, že přechodové funkce jsou difeomorfismy.
 
         \begin{reseni}
-            Nechť $M$ je varieta dimenze $n$. Víme, že $\forall m \in M: T_mX$ je lineární vektorový prostor dimenze $n$, který pro libovolnou mapu, jež definuje obraz i pro $m$ má bázi $(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n})$. Tedy disjunktní sjednocení $T_mX$ lze 'ztotožnit' s '$M \times ®R^n$'.
+            Nechť $M$ je varieta dimenze $n$. Víme, že $\forall m \in M: T_mX$ je lineární vektorový prostor dimenze $n$, který pro libovolnou mapu, jež definuje obraz i pro $m$ má bázi $(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n})$. Tzn. disjunktní sjednocení $T_mX$ přes nějakou mapu $(\phi, U)$ lze ztotožnit s $U \times ®R^n$.
 
-            Tedy mějme daný atlas na $M$, libovolnou mapu $(U, \phi)$ z něho a pro každý bod $m \in U$ bázi $B_m = \(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n}\)$ tečného prostoru $T_mX$. Zobrazení $\psi_\phi: \coprod_{m \in U} T_mX \rightarrow ®R^{2n}$ potom můžeme definovat jako\footnote{$\pi$ je projekce $\forall x \in T_mX: \pi(x) = m$ a $[x]_B$ je vyjádření vektoru při bázi $B$.}
-            $$ \psi_\phi(x) = \binom{\phi(\pi(x))}{[x]_{B_{\pi(x)}}} = \(\phi(\pi(x))_1, …, \phi(\pi(x))_n, \([x]_{B_{\pi(x)}}\)_1, …, \([x]_{B_{\pi(x)}}\)_n\)^T $$ 
+            Tedy mějme daný atlas na $M$, libovolnou mapu $(U, \phi)$ z něho a pro každý bod $m \in U$ bázi $B_m = \(\frac{\partial}{\partial x_1}, …, \frac{\partial}{\partial x_n}\)$ tečného prostoru $T_mX$. Zobrazení $\psi_\phi: \coprod_{m \in U} T_mX \rightarrow ®R^{2n}$ potom můžeme definovat pro všechna $x \in T_mX$ jako\footnote{$\pi$ je projekce $\forall x \in T_mX: \pi(x) = m$ a $[x]_B$ je vyjádření vektoru při bázi $B$.}
+            $$ \psi_\phi(x) = \binom{\phi(\pi(x))}{[x]_{B_{\pi(x)}}} = \(\phi_1(\pi(x)), …, \phi_n(\pi(x)), \([x]_{B_{\pi(x)}}\)_1, …, \([x]_{B_{\pi(x)}}\)_n\)^T $$ 
             (tedy pro bod z $T_mX$ se na prvních $n$ souřadnic zobrazuje $m$ pomocí $\phi$ a na dalších $n$ souřadnicích jsou souřadnice tohoto bodu při bázi $B_m$). $\(\coprod_{m \in U} T_mX, \psi_\phi\)$ je pak zřejmě mapa a lze těmito mapami pokrýt celý $TX$, jelikož každý bod $TX$ má projekci $m \in M$, která jistě musí být v nějakém $U$.
 
             Aby byly přechodové funkce difeomorfismy, musí být prosté, na a hladké. Můžeme si všimnout, že pro dvě různé mapy $(U_1, \phi_1)$ a $(U_2, \phi_2)$ zobrazuje přechodová funkce prvních $n$ souřadnic podle přechodové funkce $\phi_1 \circ \phi_2^{-1}$, o níž víme, že je prostá, na a hladká, jelikož $M$ je varieta a toto jsou mapy z jednoho jejího atlasu, tedy musí být kompatibilní.
 
-            Naopak druhých $n$ souřadnic zobrazuje podle změny báze ($B_m$ je pro jiné $(U, \phi)$ jiná), ale takováto změna je stejná pro všechny prvky jednoho $T_mX$, tedy pro konkrétní $m$ (tj.~konkrétní hodnoty prvních $n$ souřadnic) je to přechod od báze k bázi, což je lineární bijekce, tedy rozhodně prostá, hladká a na. Tedy přechodová funkce je prostá, surjektivní a hladká, tedy difeomorfismus.
+            Naopak druhých $n$ souřadnic je vyjádření v bázi dané derivacemi, tedy se v bodě $¦y = \(y_1, …, y_n\) \in ®R^n$ při přechodové funkcí $\Phi(x_1, …, x_n)$ zobrazuje za pomoci koeficientů Jacobiho matice $\Phi$ (vizte skripta):
+            $$ (z_1, …, z_n) \mapsto \(\sum_{k=1}^n z_k \frac{\partial f_1}{\partial x_k}(¦y), …, \sum_{k=1}^n z_k \frac{\partial f_n}{\partial x_k}(¦y)\), $$ 
+            což je hladká funkce, protože součty, násobky a derivace hladkých funkcí jsou hladké. Zároveň je prostá a na, jelikož je to v každém bodě $¦y$ vlastně násobení maticí $\Jac(\Phi)$, která má nenulový determinant (jelikož $\Phi$ je difeomorfismus, tedy $\Phi^{-1}$ je hladká), tedy je regulární.
+
+            Pro mapy $(U_1, \psi_{\phi_1})$ a $(U_2, \psi_{\phi_2})$ na $TX$ a označení $\Phi(x_1, …, x_n) = \phi_1 \circ \phi_2^{-1} (x_1, …, x_n)$ je přechodová funkce (z $\psi_{\phi_2}\(U_2\)$ do $\psi_{\phi_1}\(U_1\)$) pro všechna $(¦y, ¦z)^T \in \psi_{\phi_2}(U_2) \subseteq ®R^{2n}$ $\(¦y, ¦z \in ®R^n\)$ tvaru
+            $$ \psi_{\phi_1} \circ \psi_{\phi_2}^{-1} \binom{¦y}{¦z} = \psi_{\phi_1} \circ \psi_{\phi_2}^{-1} \(y_1, …, y_n, z_1, …, z_n\) = \binom{\Phi(¦y)}{\(\Jac(\Phi)(¦y)\)·¦z} = $$
+            $$ = \(\Phi_1(¦y), …, \Phi_n(¦y), \sum_{k=1}^n z_k · \frac{\partial \Phi_1}{\partial x_k}(¦y), …, \sum_{k=1}^n z_k · \frac{\partial \Phi_n}{\partial x_k}(¦y)\), $$
+            tj. je to hladká prostá funkce na (z předchozích 2 odstavců).
         \end{reseni}
     \end{priklad}
 

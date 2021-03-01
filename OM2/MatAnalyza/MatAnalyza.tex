@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+\section{Řady}
+    \subsection{Úvod}
+        \begin{definice}
+            Nechť $\{a_n\}_{n \in ®N}$ je posloupnost. Číslo $s_m  = a_1 + a_2 + … + a_m$ nazveme $m$-tým částečným součtem řady $\sum a_n$. Součtem nekonečné řady $\sum_{n=1}^∞ a_n$ nazveme limitu posloupnosti $\{s_m\}_{m \in ®N}$, pokud tato limita existuje. Je-li tato limita konečná, pak řekneme, že řada je konvergentní. Je-li tato limita nekonečná nebo neexistuje, pak řekneme, že řada je divergentní. Tuto limitu budeme značit $\sum_{n=1}^∞ a_n$.
+        \end{definice}
+
+        \begin{veta}[Nutná podmínka konvergence]
+            Jestliže je $\sum_{n=1}^∞ a_n$ konvergentní, pak $\lim_{n \rightarrow ∞} a_n = 0$.
+
+            \begin{dukazin}
+                    $\sum_{n=1}^∞ a_n$ konverguje $\implies \exists \lim_{m \rightarrow ∞} s_m = s \in ®R$. $a_n = s_n - s_{n-1}$. $\lim_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} s_n - s_{n-1} = \lim_{n \rightarrow ∞} s_n - \lim_{n \rightarrow ∞} s_{n-1} = s - s = 0$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{upozorneni}
+            Tato věta je pouze a jen implikace.
+        \end{upozorneni}
+
+        \begin{veta}[konvergence součtu řad]
+            Nechť $\alpha \in ®R \setminus \{0\}$, pak $\sum_{n=1}^∞ a_n$ konverguje $\Leftrightarrow$ $\sum_{n=1}^∞ \alpha·a_n$ konverguje.
+
+            Nechť $\sum_{n=1}^∞ a_n$ konverguje a $\sum_{n=1}^∞ b_n$ konverguje, pak $\sum_{n=1}^∞ \(a_n + b_n\) = \sum_{n=1}^∞ a_n + \sum_{n=1}^∞ b_n$.
+
+            \begin{dukazin}
+                $\sum_{n=1}^∞ a_n$ konverguje $\exists$ limita z $s_m \rightarrow s \in ®R$ a to je z AL právě tehdy, když konverguje $\alpha s_m \rightarrow \alpha·s \in ®R$, tedy $\sum_{n=1}^∞ \alpha·a_n$ konverguje.
+
+                $\sum_{n=1}^∞ a_n = s \in ®R$ i $\sum_{n=1}^∞ b_n = \sigma \in ®R$ konvergují, tedy konverguje i $s_m + \sigma_m \rightarrow s + \sigma \in ®R$.
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Řady s nezápornými členy}
+        \begin{pozorovani}
+            Nechť $\{a_n\}_{n = 1}^∞$ je řada s nezápornými členy. Pak $\sum_{n=1}^∞ a_n$ konverguje, nebo má součet $+∞$.
+
+            \begin{dukazin}
+                $s_m = a_1 + … + a_m ≤ a_1 + … + a_{m+1} = s_{m+1}$. $s_m≥0$ neklesající $\implies \exists \lim_{m \rightarrow ∞} s_m \in \[0, ∞\]$.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{veta}[Srovnávací kritérium]
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady s nezápornými členy a nechť $\exists n_0 \in ®N$ tak, že $\forall n \in ®N$, $n ≥ n_0$ platí $a_n ≤ b_n$. Pak a) $\sum_{n=1}^∞ b_n$ konverguje $\implies$ $\sum_{n=1}^∞ a_n$ konverguje b) $\sum_{n=1}^∞ a_n$ diverguje $\implies$ $\sum_{n=1}^∞ b_n$ diverguje.
+
+            \begin{dukazin}
+                a) Označme $s_n = a_1 + … + a_n$ a $\sigma_n = b_1 + … + b_n$. Pro každé $n \in ®N$, $n ≥ n_0$ platí
+                $$ s_n = a_1 + … + a_{n_0} + a_{n_0 + 1} + … + a_n ≤ a_1 + … + a_{n_0} + b_{n_0 + 1} + … + b_n ≤ a_1 + … + a_{n_0} + \sigma_n ≤ a_1 + … + a_{n_0} + \sigma $$
+                A to je konečné, neboť $\sum_{n=1}^∞ b_n$ konverguje, tedy $\sigma \in ®R$. $s_n$ neklesající a omezená $\implies \exists \lim_{n \rightarrow ∞} s_n \in ®R$.
+
+                b) Nepřímím důkazem z a).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Limitní srovnávací kritérium]
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady s nezápornými členy a nechť $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = A \in ®R^*$. Jestliže $A \in (0, ∞)$, pak $\sum_{n=1}^∞ b_n$ konverguje $\Leftrightarrow$ $\sum_{n=1}^∞ a_n$ konverguje. Jestliže $A = 0$, pak $\sum_{n=1}^∞ b_n$ konverguje $\implies$ $\sum_{n=1}^∞ a_n$ konverguje. Jestliže $A = ∞$, pak $\sum_{n=1}^∞ a_n$ konverguje $\implies$ $\sum_{n=1}^∞ b_n$ konverguje.
+
+            \begin{dukazin}
+                (i) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = K \in (0, ∞)$ plyne, k $\epsilon = \frac{K}{2} \exists n_0$ $\forall n ≥ n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = \frac{K}{2}$, tedy $\frac{K}{2} ≤ \frac{a_n}{b_n} ≤ \frac{3}{2}K$.
+
+                $\sum_{n=1}^∞ b_n$ konverguje $\overset{\text{konvergence součtu řad}}{\implies}$ $\sum_{n=1}^∞ \frac{3}{2}K·b_n$ konverguje $\land a_n ≤ \frac{3}{2}K·b_n$ $\overset{\text{Srov. kritérium}}{\implies}$ $\sum_{n=1}^∞ a_n$ konverguje.
+
+                $\sum_{n=1}^∞ a_n$ konverguje $\land \frac{K}{2}·b_n ≤ a_n \implies$ $\sum_{n=1}^∞ \frac{K}{2}·b_n$ konverguje $\implies$ $\sum_{n=1}^∞ b_n$ konverguje.
+
+                (ii) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = 0$ plyne, k $\epsilon = 1 \exists n_0$ $\forall n≥n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = 1$, tedy $a_n < b_n$, a pokud $\sum_{n=1}^∞ b_n$ konverguje, tak$\sum_{n=1}^∞ a_n$ konverguje podle srovnávacího kritéria.
+
+                (iii) Úplně stejně jako (ii).
+            \end{dukazin}
+        \end{veta}
+
+
+
+\end{document}
