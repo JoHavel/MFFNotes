@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+\section{Skalární součin}
+    \begin{definice}[Standardní skalární součin vektorů]
+        Standardní skalární součin vektorů $¦x, ¦y \in ®R^n$ je definován jako $¦x^T¦y = \sum_{i=1}^n x_iy_i$.
+    \end{definice}
+
+    \begin{definice}[Skalární součin nad ®R]
+        Buď ¦V vektorový prostor nad ®R. Pak skalární součin je zobrazení $\<·,·\>: ¦V^2 \rightarrow ®R$, splňující pro všechna $¦x, ¦y, ¦z \in ¦V$ a $\alpha \in ®R$:
+        $$ \<¦x, ¦x\> ≥ 0 \text {a rovnost nastane jen pro } ¦x=¦o, $$
+        $$ \<¦x + ¦y, ¦z\> = \<¦x, ¦z\> + \<¦y, ¦z\>, $$
+        $$ \<\alpha ¦x, ¦y\> = \alpha \<¦x, ¦y\>, $$
+        $$ \<¦x, ¦y\> = \<¦y, ¦x\>. $$ 
+    \end{definice}
+
+    \begin{definice}[Komplexně sdružené číslo]
+        Komplexně sdružené číslo k $a + bi \in ®C$ je číslo $\overline{a + bi} = a - bi$.
+    \end{definice}
+    
+    \begin{definice}[Skalární součin nad ®C]
+        Buď ¦V vektorový prostor nad ®C. Pak skalární součin je zobrazení $\<·,·\>: ¦V^2 \rightarrow ®C$, splňující pro všechna $¦x, ¦y, ¦z \in ¦V$ a $\alpha \in ®C$:
+        $$ \<¦x, ¦x\> ≥ 0 \text {a rovnost nastane jen pro } ¦x=¦o, $$
+        $$ \<¦x + ¦y, ¦z\> = \<¦x, ¦z\> + \<¦y, ¦z\>, $$
+        $$ \<\alpha ¦x, ¦y\> = \alpha \<¦x, ¦y\>, $$
+        $$ \<¦x, ¦y\> = \overline{\<¦y, ¦x\>}. $$ 
+    \end{definice}
+
+    \begin{poznamka}
+        Skalární součin je bilineární (nad ®C se ale musí komplexně sdružovat druhá složka), tudíž je dán hodnotami pro báze (všechny dvojice bází).
+    \end{poznamka}
+
+    \begin{definice}[Norma indukovaná skalárním součinem]
+        Norma indukovaná skalárním součinem je definovaná jako
+        $$ ||¦x|| := \sqrt{\<¦x, ¦x\>}, \text{ kde } ¦x \in ¦V. $$ 
+    \end{definice}
+
+    \begin{definice}[Kolmost]
+        Vektory $¦x, ¦y \in ¦V$ jsou kolmé, pokud $\<¦x, ¦y\> = 0$. Značíme: $¦x \perp ¦y$.
+    \end{definice}
+
+    \begin{veta}[Pythagorova]
+        Pokud $¦x, ¦y \in ¦V$ jsou kolmé, tak
+        $$ ||x + y||^2 = ||x||^2 + ||y^2||. $$ 
+
+        \begin{dukazin}
+            $$ ||x + y||^2  = \<¦x + ¦y, ¦x + ¦y\> = \<¦x, ¦x\> + \<¦x, ¦y\> + \<¦y, ¦x\> + \<¦y, ¦y\> = ||x||^2 + 0 + 0 + ||y^2|| = ||x||^2 + ||y^2||. $$ 
+        \end{dukazin}
+
+        \begin{poznamkain}
+            Pro reálná čísla platí i zpětná implikace, pro komplexní obecně ne.
+        \end{poznamkain}
+    \end{veta}
+
+    \begin{veta}[Cauchyho-Schwartzova nerovnost]
+        Pro každé $¦x, ¦y \in ¦V$ platí
+        $$ |\<¦x, ¦y\>| ≤ ||¦x||·||¦y||. $$
+
+        \begin{dukazin}
+            Pro $¦y = ¦o$ platí, tak předpokládejme $¦y ≠ ¦o$. Uvažujme funkci
+            $$ f(t) = \<¦x + t¦y, ¦x + t¦y\> ≥ 0. $$ 
+            Pak 
+            $$ f(t) = \<¦x, ¦x\> + t\<¦y, ¦x\> + t\<¦x, ¦y\> + t^2\<¦y, ¦y\> = \<¦x, ¦x\> + 2t\<¦y, ¦x\> t^2\<¦y, ¦y\> ≥ 0. $$ 
+            Což je kvadratická funkce, která je všude nezáporná, tedy nemůže mít 2 kořeny, tedy má nekladný diskriminant:
+            $$ 4\<¦y, ¦x\>^2 - 4\<¦x, ¦x\>\<¦y, ¦y\> ≤ 0. $$
+            Odtud $\<¦y, ¦x\>^2 ≤ \<¦x, ¦x\>\<¦y, ¦y\>$ a odmocněním $|\<¦x, ¦y\>| ≤ ||¦x||·||¦y||$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}[Trojúhelníková nerovnost]
+        $$ ||¦x + ¦y|| ≤ ||¦x|| + ||¦y||. $$
+
+        \begin{dukazin}
+            Nejprve připomeňme, že pro každé $z = a + bi \in ®C$ platí $z + \overline{z} = 2a = 2\Re(z)$, a dále $a ≤ |z| = \sqrt{a^2 + b^2} = \sqrt{z·\overline{z}}$. Nyní můžeme odvodit (obě strany jsou nezáporné):
+            $$ ||¦x + ¦y||^2 = \<¦x + ¦y, ¦x + ¦y\> = \<¦x, ¦x\> + \<¦x, ¦y\> + \<¦y, ¦x\> + \<¦y, ¦y\> = \<¦x + ¦y, ¦x + ¦y\> = \<¦x, ¦x\> + 2\Re(\<¦x, ¦y\>) + \<¦y, ¦y\> ≤ \<¦x , ¦x\> + 2|\<¦x, ¦y\>| + \<¦y, ¦y\> \overset{\text{CS}}{≤} ||¦x|| + 2||¦x||·||¦y|| + ||¦y|| = \(||¦x|| + ||¦y||\)^2. $$
+        \end{dukazin}
+    \end{dusledek}
+
+    \subsection{Norma obecně}
+        \begin{definice}[Norma]
+            Buď ¦V vektorový prostor nad ®R nebo ®C. Pak norma zobrazení $||·||: ¦V \rightarrow ®R$, splňující (pro každé $¦x, ¦y \in ¦V$ a $\alpha \in ®R$ resp. ®C):
+            $$ ||¦x|| ≥ 0 \text{ a rovnost nastává pouze pro } ¦x = ¦o, $$
+            $$ ||\alpha ¦x|| = |\alpha|·||¦x||, $$ 
+            $$ ||¦x + ¦y|| ≤ ||¦x|| + ||¦y||. $$ 
+        \end{definice}
+
+        \begin{tvrzeni}
+            Norma indukovaná skalárním součinem je normou.
+
+            \begin{dukazin}
+                Triviální.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{priklady}
+            Pro $p = 1, 2, …, ∞$ definujeme $p$-normu vektoru $¦x \in ®R^n$ jako
+            $$ ||¦x||_p = \(\sum_{i=1}^n |x_i|^p\)^{\frac{1}{p}}. $$ 
+        \end{priklady}
+
+        \begin{definice}[Jednotková koule]
+            Jednotková koule je množina vektorů, které mají normu nanejvýš 1, a tedy jsou od počátku vzdáleny maximálně 1:
+            $$ \{¦x \in ¦V : ||x|| ≤ 1\}. $$
+
+            \begin{poznamkain}
+                Jednotková koule je vždy uzavřená, omezená, symetrická dle počátku, konvexní a počátek leží v jejím vnitřku.
+            \end{poznamkain}
+        \end{definice}
+
+        \begin{definice}[Metrika generovaná normou]
+            Každá norma určuje metriku (vzdálenost) předpisem $d(¦x, ¦y) := ||¦x - ¦y||$.
+        \end{definice}
+\end{document}

@@ -69,6 +69,62 @@
             \end{dukazin}
         \end{veta}
 
+% 5. 3. 2021
+
+        \begin{veta}[Cauchyovo odmocninové kritérium]
+            Nechť $\sum_{n=1}^∞ a_n$ je řada s nezápornými členy, potom
+            $$ (i) \exists q \in (0, 1)\ \exists n_0 \in ®N\ \forall n ≥ n_0: \sqrt[n]{a_n} < q \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$ 
+            $$ (ii) \limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n} < 1 \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$
+            $$ (iii) \lim_{n \rightarrow ∞} \sqrt[n]{a_n} < 1 \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$ 
+            $$ (iv) \limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n} > 1 \implies \sum_{n=1}^∞ a_n \text{ diverguje}, $$ 
+            $$ (v) \lim_{n \rightarrow ∞} \sqrt[n]{a_n} > 1 \implies \sum_{n=1}^∞ a_n \text{ diverguje}. $$
+
+            \begin{dukazin}
+                $(i)$ $b_n = q^n$. Víme, že $a_n < b_n\ \forall n ≥ n_0$, tedy použijeme srovnávací kritérium.
+
+                $(i) \implies (ii): b_n = \{\sqrt[n]{a_n}, \sqrt[n+1]{a_n}, …\}$. $\lim_{n \rightarrow ∞} b_n = \limsup\limits_{n \rightarrow ∞} \sqrt[n]a_n < 1$. Nalezneme $q \in \(\limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n}, 1\)$. Z definice $\lim_{n \rightarrow ∞} b_n$ pro $\epsilon = q - \limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n}$ je $\exists n_0\ \forall n ≥ n_0: b_n < q$, tedy $\forall n ≥ n_0: \sqrt[n]{a_n} < q$, tedy podle $(i)$ $\sum_{n=1}^∞ a_n$ konverguje.
+
+                $(ii) \implies (iii):$ $\exists \lim_{n \rightarrow ∞} \sqrt[n]{a_n} \implies $ $\limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n} = \lim_{n \rightarrow ∞} \sqrt[n]{a_n} < 1$, tedy podle $(ii)$ $\sum_{n=1}^∞ a_n$ konverguje.
+
+                $(iv):$ podobně jako v $(i) \implies (ii)$ dostaneme $\forall n_0 > n_k: b_{n_0} > q > 1$, tedy $\forall n_0\ \exists n > n_0: \sqrt[n]{a_n} > q > 1 \implies a_n > 1$ $\implies \lim_{n \rightarrow ∞} a_n ≠ 0$, tedy podle nutné podmínky konvergence $\sum_{n=1}^∞ a_n$ diverguje.
+
+                $(iv) \implies (v):$ $\lim_{n \rightarrow ∞} \sqrt[n]{a_n} = \limsup\limits_{n \rightarrow ∞} \sqrt[n]{a_n}$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[d'Alambertovo podílové kritérium]
+            Nechť $\sum_{n=1}^∞ a_n$ je řada s kladnými členy. Potom:
+            $$ (i) \exists q \in (0, 1)\ \exists n_0 \in ®N\ \forall n ≥ n_0: \frac{a_{n+1}}{a_n} < q \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$ 
+            $$ (ii) \limsup\limits_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} < 1 \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$
+            $$ (iii) \lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} < 1 \implies \sum_{n=1}^∞ a_n \text{ konverguje}, $$ 
+            $$ (iv) \lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} > 1 \implies \sum_{n=1}^∞ a_n \text{ diverguje}, $$ 
+
+            \begin{dukazin}
+                $(i)$ Víme indukcí $a_{n_0 + k} < q^k a_{n_0}$ a z konvergence geometrické řady $\sum_{k=1}^∞ q^k a_n$ konverguje $\implies$ $\sum_{k=1}^∞ a_{n_0 + k}$ konverguje $\implies \sum_{n=1}^∞ a_n$ konverguje.
+
+                $(i) \implies (ii)$: $b_n = \sup\{\frac{a_{n+1}}{a_n}, \frac{a_{n+2}}{a_{n+1}}, …\}$. $\lim_{n \rightarrow ∞} b_n = \limsup\limits_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} < 1$. Zvolíme $q \in \(\lim_{n \rightarrow ∞} b_n, 1\)$. Tedy $\exists n_0\ \forall n ≥ n_0: b_n < q \implies$ $\forall n ≥ n_0: \frac{a_{n+1}}{a_n} < q$, tudíž podle $(i)$ $\sum_{n=1}^∞ a_n$ konverguje.
+
+                $(ii) \implies (iii)$ $\lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} = \limsup\limits_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} < 1$, tedy podle $(ii)$ $\sum_{n=1}^∞ a_n$ konverguje.
+
+                $(iv)$: Z $\lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} > 1$ definicí limity pro $\epsilon < \lim_{n \rightarrow ∞} \frac{a_{n+1}}{a_n} - 1$ vyplývá $\exists n_0\ \forall n ≥ n_0: \frac{a_{n+1}}{a_n} > 1 \implies a_{n+1} > a_n$. Máme rostoucí posloupnost kladných čísel $\implies$ $\lim_{n \rightarrow ∞} a_n ≠ 0$, tedy podle nutné podmínky konvergence $\sum_{n=1}^∞ a_n$ diverguje.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Kondenzační kritérium]
+            Nechť $\sum_{n=1}^∞ a_n$ je řada s nezápornými členy splňující $a_n ≥ a_{n+1}$, $\forall n \in ®N$. Pak $\sum_{n=1}^∞ a_n$ konverguje $\Leftrightarrow$ $\sum_{n=1}^∞ 2^n·a_{2^n}$ konverguje.
+
+            \begin{dukazin}
+                Pro $k \in ®N:$ $s_k = \sum_{j=1}^k a_j$ $t_k = \sum_{j=0}^k 2^j·a_{2^j}$.
+
+                $\Leftarrow$: Označme $A = \sum_{j=0}^k 2^j·a_{2^j}$, pak $A \in ®R$. Nechť $m \in ®N$ a nalezneme $k in ®N$, $m < 2^k$. Pak $t_k ≤ A$ a:
+                $$ s_m ≤ a_1 + \(a_2 + a_3\) + \(a_4 + a_5 + a_6 + a_7\) + … + \(a_{2^{k-1}} + … + a_{2^k-1}\) ≤ t_{k-1} ≤ A. $$ 
+                Tedy $s_m$ je shora omezená a rostoucí $\implies \exists \lim_{m \rightarrow ∞} s_m \in ®R$ $\implies \sum_{n=1}^∞ a_n$ konverguje.
+
+                $\implies$: Označme $B = \sum_{n=1}^∞ a_n \in ®R$. Zvolme $k \in ®N$ a nalezneme $m \in ®N$, aby $2^k ≤ m$. Pak $s_m ≤ B$ a platí:
+                $$ s_m ≥ a_1 + a_2 + \(a_3 + a_4\) + \(a_5 + a_6 + a_7 + a_8\) + … +\(a_{2^{k-1}+1} + … + a_{2^k}\) ≥ a_1 + \frac{1}{2} \(t_k - 1·a_1\) ≤ \frac{1}{2} t_k \implies t_k ≤ 2·B. $$ 
+                $t_k$ je shora omezená rostoucí posloupnost $\implies \sum_{n=1}^∞ 2^na_{2^n}$ konverguje.
+            \end{dukazin}
+        \end{veta}
 
 
 \end{document}

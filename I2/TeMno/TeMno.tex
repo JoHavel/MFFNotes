@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+\section{Úvod}
+    \begin{poznamka}[Aplikace]
+        Transfinitní indukce, axiom výběru (= princip maximality = Zornovo lemma)
+    \end{poznamka}
+
+    \begin{poznamka}[Cíl]
+        Vybudování matematiky na pevných základech. Porozumění nekonečen. Důkaz existence nealgebraických (= transcendentních) reálných čísel. Princip kompaktnosti. Banach-Tarského paradox.
+    \end{poznamka}
+
+    \begin{poznamka}[Literatura]
+        Balcar, Štěpánek -- Teorie množin\\
+        Seriál PraSete\\
+        Hrbáček, Jech -- Introduction to set theory\\
+        Olšák -- Esence teorie množin (videa)
+    \end{poznamka}
+
+    \begin{poznamka}[Historie]
+        Bernard Bolzano (český matematik, 1781-1848, pojem množina), George Cantor (německý matematik, 1845 - 1918, zavedení aktuálního nekonečna, diagonální metoda, kardinální čísla, uzavřená množina), Bertrand Russell (1902, Russellův paradox = paradox holiče = holí holič holící všechny lidi, kteří se neholí sami, sebe?) + Berriho paradox (nechť m je nejmenší přirozené číslo, které nejde definovat méně než 100 znaky), Zermelo-Fraenkel (zavedli axiomatickou teorii množin).
+    \end{poznamka}
+
+    \begin{definice}[Symboly]
+        Proměnné pro množiny -- $x, y, z, x_1, x_2, …$.
+
+        Binární predikátorový symbol $=$ a bin. relační symbol $\in$.
+
+        Logické spojky $\neg, \lor, \land, \implies, \Leftrightarrow$.
+
+        Kvantifikátory $\forall, \exists$.
+
+        Závorky $\(\)\{\}\[\]$
+    \end{definice}
+
+    \begin{definice}[Formule]
+        Atomické ($x = y$, $x \in y$). Jsou-li $\phi$ a $\psi$ formule, pak $\neg \phi$, $\phi \lor \psi$, $\phi \land \psi$, $\phi \implies \psi$, $\phi \Leftrightarrow \psi$ jsou formule. Je-li $\phi$ formule, $x$ proměnná, pak $(\forall x)\phi$, $(\exists x)\phi$ jsou formule. (Vázané vs. volné proměnné -- proměnné formule, které do ní lze dosadit jsou volné, proměnné formule, které do ní nelze dosadit jsou vázané). Každou formuli lze dostat konečnou posloupností aplikací výše zmíněného.
+    \end{definice}
+
+    \begin{definice}[Rozšíření jazyka]
+        $x ≠ y$ značí $\neg(x=y)$, $x \notin y$ znamená $\neg(x \in y)$, $x \subseteq y$ znamená $(\forall u)(u \in x \implies u \in y)$, $x \subset y$ značí $x \subseteq y \land x ≠ y$. Dále uvidíme $\cup$, $\cap$, $\setminus$, $\{x_1, …, x_n\}$, $\O$, $\{x \in a|\phi(x)\}$.
+    \end{definice}
+
+    \begin{definice}[Axiomy logiky]
+        Vysvětlují, jak se chovají implikace, kvantifikátory, rovnost, …
+    \end{definice}
+
+    \begin{definice}[Axiomy TEMNA]
+        Říkají, jak se chová $\in$ a jaké množiny existují. Budeme používat Zermelo-Fraenkelovu teorii (ZF), tedy 9 axiomů (7 + 2 schémata). (Není minimální, tj. lze některé odvodit z jiných) + axiom výběru (AC) s ním se pak ZF značí ZFC.
+    \end{definice}
+
+    \begin{definice}[Axiomy ZFC]
+        \ 
+        \begin{enumerate}
+            \item Axiom existence množiny: $(\exists x)(x=x)$.
+            \item Axiom extenzionality: $(\forall z)(z \in x \Leftrightarrow z \in y) \implies x=y$.
+        \end{enumerate}
+    \end{definice}
+\end{document}

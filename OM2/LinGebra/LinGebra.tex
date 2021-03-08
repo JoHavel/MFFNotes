@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+% 3. 3. 2021
+\section{Skalární součin}
+    \begin{definice}[Standardní skalární součin]
+        Buďte $¦u, ¦v \in ®C^n$. Pak standardní skalární součin ¦u a ¦v definujeme jako $¦u·¦v = \overline{u_1}·v_1 + … + \overline{u_n}·v_n$.
+    \end{definice}
+
+    \begin{definice}[Euklidovská norma]
+        Nechť $·$ je standardní skalární součin na ¦V. Potom $\forall ¦v \in ¦V$ definujeme euklidovskou normu jako $||¦v|| = \sqrt{¦v·¦v}$.
+    \end{definice}
+
+    \begin{definice}[Skalární součin]
+        Nechť ¦V je vektorový prostor nad ®C. Skalární součin je zobrazení $·: ¦V \times ¦V \rightarrow ®C$, které ($\forall ¦u, ¦v, ¦w \in ¦V$ a $\forall t \in ®C$) splňuje:
+        $$ ¦u·¦v = \overline{¦v·¦u}, \text{ (Symetričnost)} $$
+        $$ ¦u·(t¦v) = t(¦u·¦v),\ ¦u·(¦v + ¦w) = ¦u·¦v + ¦u·¦w. \text{ (Linearita)}$$ 
+    \end{definice}
+
+    \begin{definice}[Hermitovsky sdružená matice]
+        Nechť $A = \(a_{ij}\) \in ®C^{m \times n}$, potom hermitovsky sdružená matice je $A^* = \(\overline{a_{ji}}\)$.
+    \end{definice}
+
+\end{document}

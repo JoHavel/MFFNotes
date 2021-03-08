@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+% 5. 3. 2021
+TODO (Přednáška + první část cvik)
+
+    \begin{dusledek}
+        Každý Lindelöfův regulární prostor je parakompaktní.
+
+        \begin{dukazin}
+            Ať ©U je otevřené pokrytí ®X. Z lindolöfovosti existuje spočetné pokrytí $©V \subseteq ©U$. ©V je $\sigma$-lokálně konečné otevřené zjemnění ©U. Tedy platí b) z minulé věty.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{definice}[Skrčení]
+            Ať $X$ je množina a $©S \subseteq ©P(X)$ (pokrytí $X$). Indexovaný systém $\{T_S: S \in ©S\} \subseteq ©P(X)$ se nazývá skrčení systému ©S, pokud (je to pokrytí) a $T_S \subseteq S, S \in ©S$.
+    \end{definice}
+
+    \begin{poznamka}[Nadmutí]
+        Skrčení je speciální případ zjemnění.
+
+        Podobně jako skrčení lze definovat pojem nadmutí.
+    \end{poznamka}
+
+    \begin{lemma}[O skrčení]
+        Ať ®X je normální TP. Pak každé lokálně konečné (stačí bodově konečné) otevřené pokrytí ®X má uzavřené skrčení, jehož vnitřky tvoří pokrytí.
+
+        \begin{dukazin}
+            Ať $©U = \{U_\alpha: \alpha < \kappa\}$, $\kappa$ kardinál, ©U je lokálně kompaktní, otevřené pokrytí ®X. Nyní $F_0:=®X \setminus \bigcup \{U_\alpha: 0 < \alpha < \kappa\}$ uzavřená, $F_0 \subseteq U_0$ (z toho, že ©U je pokrytí). Z normality existuje otevřená $V_0 \subseteq ®X: F_0 \subseteq V_0\subseteq \overline{V_0} \subseteq U_0$.
+
+            Nyní indukcí: Nechť máme zkonstruované $V_\beta: \forall \beta < \alpha < \kappa$. Označíme $F_\alpha := ®X \setminus \(\bigcup \{V_\beta: \beta < \alpha\}\cup \bigcup \{U_\gamma: \alpha < \gamma < \kappa\}\)$. Z normality zas $V_\alpha \subseteq ®X: F_\alpha \subseteq V_\alpha\subseteq \overline{V_\alpha} \subseteq U_\alpha$.
+
+            $©V = \{\overline{V_\alpha}: \alpha < \kappa\}$ je skrčení ©U, $\Int\overline{V_\alpha} \supseteq V_\alpha$ a $\bigcup_{\alpha < \kappa} V_\alpha = ®X$, tedy $\bigcup_{\alpha < \kappa} \Int\overline{V_\alpha} = ®X$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Kolektivně normální]
+            TP ®X se nazývá kolektivně normální, pokud pro každý diskrétní systém ©F z uzavřených množin existuje disjunktní systém otevřených množin $\{U(F): F \in ©F\}$, že $F \subseteq U(F), F \in ©F$ (tj. otevřené nadmutí).
+    \end{definice}
+
+    \begin{poznamka}
+        Každý kolektivně normální prostor je normální.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Každý parakompaktní prostor už je kolektivně normální, tedy i normální.
+        
+        \begin{dukazin}
+            Ukážeme nejprve, že ®X je regulární. Ať $F \subseteq ®X$ uzavřená, $x \in ®X \setminus F$. Pro $y \in F$ existuje otevřené okolí $U_y$ bodu $y$, že $x \notin \overline{U_y}$. $©U := \{U_y: y \in F\}\cup \{®X \setminus F\}$ otevřené pokrytí ®X. Ať ©V je lokálně konečné otevřené zjemnění ©U. $G := \bigcup \{V \in ©V: V \cap F ≠ \O\}$. Z lemmatu $\overline{G} = \bigcup\{\overline{V}: V \in ©V, V \cup F ≠ \O\} \not\ni x$. $G \supset F$, $G$ otevřená. Tedy ®X je regulární.
+
+            Ať ©F je diskrétní soubor z uzavřených množin. Pro $F \in ©F$ uvážíme $\bigcup\{H \in ©F: H≠F\}$ … uzavřená z lemmatu o uzávěru sjednocení lokálně kompaktního systému. Pro $x \in F$ existuje (z první části důkazu) $U_x$ otevřená, že $x \in U_x$, $\overline{U_x} \cap H = \O$ pro $H ≠ F, H \in ©F$. $\{U_x : x \in F \in ©F\} \cup \{®X \setminus \bigcup F\}$ je otevřené pokrytí ®X. Ať ©V je otevřené lokálně konečné zjemnění. Pro $F \in ©F: V(F):= \{V \in ©V: V \cup F ≠ \O\} \setminus \bigcup \{\overline{V}: V \in ©V, V \cap H ≠ \O \text{ pro nějaké } H \in ©F, H ≠ F\}$. Platí $F \subseteq V(F)$. Pro $F, F' \in ©F, F ≠ F' \implies V(F) \cap V(F') = \O$. $\{V(F): F \in ©F\}$ je disjunktní otevřené nadmutí ©F.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Hvězda]
+        Ať ®X je množina a $©S \subseteq ©P(®X)$, $x \in ®X$, $A \subseteq ®X$.
+
+        Hvězda bodu $x$ vzhledem k ©S je $\st(x, ©S) = \bigcup \{S \in ©S: x \in S\}$.
+
+        Hvězda množiny $A$ vzhledem k @S je $\st(A, ©S) = \bigcup_{x \in A}\st(x, ©S)$.
+    \end{definice}
+
+    \begin{definice}[Barycentrické a hvězdovité zjemnění]
+        Ať ©U, ©V jsou pokrytí ®X. Řekneme, že ©U barycentricky zjemňuje ©V, pokud $\{\st(x, ©U): x \in ®X\}$ zjemňuje ©V.
+
+        Řekneme, že ©U hvězdovitě zjemňuje ©V, pokud $\{\st(U, ©U): U \in ©U\}$ zjemňuje ©V.
+    \end{definice}
+
+    \begin{priklady}
+            Ať $(®X, \rho)$ je MP. Ať ©U, ©V, ©W jsou pokrytí ®X tvořená po řadě všemi $\epsilon, 2\epsilon, 3\epsilon$ koulemi ($\epsilon > 0$ pevné). Pak ©U zjemňuje barycentricky ©V a hvězdovitě ©W.
+    \end{priklady}
+
+    \begin{lemma}[Dvojité barycentrické zjemnění je hvězdovité]
+        Ať $X$ je množina, ©U pokrytí ©X, ©V barycentrické zjemnění ©U a ©W barycentrické zjemnění ©V. Potom ©W je hvězdovité zjemnění ©U.
+    \end{lemma}
+
+
+\end{document}

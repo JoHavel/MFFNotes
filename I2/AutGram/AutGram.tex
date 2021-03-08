@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+\section{Úvod}
+    \begin{poznamka}[Historie]
+        \ 
+        \begin{itemize}
+            \item První formalizace pojmu algoritmus -- Ada, Countess of Lovelace 1852.
+            \item Intenzivnější vývoj s rozvojem počítačů ve 2. čtvrtině 20. století.
+            \item Co stroje umí a co ne? -- Church, Turing, Kleene (konečné automaty / neuronové sítě), Post, Markov, Chomsky (zásobníkové automaty a formální teorie konečných automatů, zkoumal Angličtinu).
+        \end{itemize}
+    \end{poznamka}
+
+    \begin{poznamka}[Cíl]
+        Osvojit si abstraktní model počítače, vnímat jak drobné změny v definici vedou k velmi rozdílným důsledkům. Zažít skutečnost alg. nerozhodnutelných problémů a připravit se na přednášku o složitosti a NP-úplnosti.
+    \end{poznamka}
+
+    \begin{poznamka}[Praktické využití]
+        Korektnost algoritmů, zpracování přirozeného jazyka, lexikální a syntaktická analýza v překladačích. Návrh, popis a verifikace hardwaru (automaty, integrované obvody, stroje). Vyhledávání v textu atd.
+    \end{poznamka}
+
+\section{}
+    \begin{definice}[Deterministický konečný automat (DFA)]
+        Deterministický konečný automat $A = (Q, \Sigma, \delta, q_0, F)$ sestává z: konečné množiny stavů ($Q$), konečné neprázdné množiny vstupních symbolů (abecedy, $\Sigma$), přechodové funkce, tj. zobrazení $Q \times \Sigma \rightarrow Q$ (značí se hranami grafu, $\delta$), počátečního stavu (vede do něj šipka 'odnikud', $q_0 \in Q$) a neprázdné množiny (přijímajících) stavů (značí se dvojitým kruhem / šipku 'ven', $F \subseteq Q$).
+    
+        \begin{umluvain}
+            Přidáváme 0-2 stavy: fail (pokud je nějaký přechod nedefinován, vede sem a všechno z fail vede do fail) a final (pokud je $F$ prázdné, všechny šipky z něj vedou zpět do něj).
+        \end{umluvain}
+    \end{definice}
+
+    \begin{definice}[Slovo, jazyk]
+        Mějme neprázdnou množinu symbolů $\Sigma$. Slovo je konečná (i prázdná) posloupnost symbolů $s \in \Sigma$, prázdné slovo se značí $\lambda$ nebo $\epsilon$.
+
+        Množinu všech slov v abecedě $\Sigma$ značíme $\Sigma^*$ a množinu všech neprázdných $\Sigma^+$.
+
+        Jazyk $L \subseteq \Sigma^*$ je množina slov v abecedě $\Sigma$.
+    \end{definice}
+
+    \begin{definice}[Operace: zřetězení, mocnina, délka slova]
+        Nad slovy $\Sigma^*$ definujeme operace: Zřetězení slov $u.v$ nebo $uv$, mocnina (počet opakování) $u^n$ ($u^0 = \lambda$, $u^1 = u$, $u^{n+1} = u^n.u$), délka slova $|u|$ ($|\lambda| = 0$, $|auto| = 4$), počet výskytů $s \in \Sigma$ ve slově $u$ značíme $|u|_s$ ($|zmrzlina|_z = 2$).
+    \end{definice}
+
+    \begin{definice}[Rozšířená přechodová funkce]
+        Mějme přechodovou funkci $\delta: Q \times \Sigma \rightarrow Q$. Rozšířenou přechodovou funkci $\delta^*: Q \times \Sigma^* \rightarrow Q$ (tranzitivní uzávěr $\delta$) definujeme induktivně: $\delta^*(q, \lambda) = q$ a $\delta^*(q, wx) = \delta(\delta^*(q, w), x)$ pro $x \in \Sigma$ a $w \in \Sigma^*$.
+    \end{definice}
+
+    \begin{definice}[Jazyky rozpoznatelné konečnými automaty, regulární jazyky]
+        Jazykem rozpoznávaným (akceptovaným, přijímaným) konečným automatem $A$ nazveme jazyk $L(A) = \{w | w \in \Sigma^* \land \delta^*(q_0, w) \in F\}$.
+
+        Jazyk je rozpoznatelný konečným automatem, jestliže existuje konečný automat $A$ takový, že $L = L(A)$.
+
+        Třídu jazyků rozpoznatelných konečnými automaty označíme $©F$ a nazveme ji regulární jazyky.
+    \end{definice}
+
+    \begin{veta}[!Iterační (pumpin) lemma pro regulární jazyky]
+        Mějme regulární jazyk $L$. Pak existuje konstanta $n \in ®N$ (závislá na $L$) tak, že každé $w \in L; |w| ≥ n$ můžeme rozdělit na tři části, $w = xyz$, že $y ≠ \lambda \land |xy| ≤ n \land \forall k \in ®N_0$, slovo $xy^kz$ je také v $L$.
+
+        \begin{dukazin}
+            Mějme regulární jazyk $L$, pak existuje DFA $A$ s $n$ stavy, že $L = L(A)$. Vezmeme libovolné slovo $a_1a_2…a_n…a_m = w \in L$ délky $m ≥ n$, $a_i \in \Sigma$. Následně definujeme $\forall i: p_i = \delta^*(q_0, a_1a_2…a_i)$. Platí $p_0 = q_0$. Z Dirichletova principu se některý stav opakuje. Vezmeme první takový, tj. $(\exists i, j)(0 ≤ i < j ≤ n \land p_i = p_j)$.
+
+            Definujeme $x = a_1a_2…a_i$, $y = a_{i+1}a_{i+2}…a_j$ a $z = a_{j+1}a_{j+2}…a_m$, tj. $w = xyz$, $y ≠ \lambda$, $|xy| ≤ n$.
+        \end{dukazin}
+    \end{veta}
+
+
+\end{document}

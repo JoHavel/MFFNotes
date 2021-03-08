@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 5. 3. 2021
+\section{Úvod}
+    \begin{definice}[Metrika, metrický prostor]
+        $M$ množina, $d: M \times M \rightarrow [0, ∞)$ je metrika, pokud $\forall x, y, z \in M$ platí:
+        $$ d(x, y) = 0 \Leftrightarrow x = y, $$ 
+        $$ d(y, x) = d(x, y), $$
+        $$ d(x, y) ≤ d(x, z) + d(z, y). $$ 
+
+        Dvojice $(M, d)$ se pak nazývá metrický prostor.
+    \end{definice}
+
+    \begin{definice}[Norma a normovaný lineární prostor (NLP)]
+        Ať ¦V je vektorový prostor nad $®F \in \{®R, ®C\}$, pak $||·||: ¦V \rightarrow [0, ∞)$ je norma, pokud $\forall ¦x, ¦y \in ¦V$
+        $$ ||¦x|| = 0 \Leftrightarrow ¦x = ¦o, $$
+        $$ \forall \lambda \in ®F: ||\lambda ¦x|| = |\lambda|·||¦x||, $$
+        $$ ||¦x + ¦y|| ≤ ||¦x|| + ||¦y||. $$ 
+
+
+        Dvojice $(¦V, ||·||)$ se pak nazývá normovaný lineární prostor.
+    \end{definice}
+
+    \begin{definice}[Otevřená a uzavřená koule]
+        Ať $(®M, d)$ je MP, $x \in ®M$, $r > 0$. Pak otevřená koule o středu $x$ a poloměru $r$ je množina $B(x, r):=\{y \in M; d(x, y) < r\}$. Uzavřená koule o středu $x$ a poloměru $r$ je množina $\overline{B}(x, r):= \{y \in M; d(x, y) ≤ r\}$.
+    \end{definice}
+
+    \begin{veta}
+        $(®R^d, ||·||_p)$ je NLP pro $d \in ®N, p \in [1, ∞]$.
+
+        \begin{dukazin}
+                1. krok: $B = \{ x \in ®R^d; ||x||_p ≤ 1\}$ je konvexní množina (tj. $\forall \lambda \in (0, 1)\ \forall x, y \in B: \lambda x + (1 - \lambda)y \in B$). Pro $p=∞$: 
+                $$ \forall i \in [d]: |\lambda x_i + (1-\lambda) y_i| ≤ \lambda|x_i| + (1 - \lambda)|y_i| ≤ \lambda · 1 + (1-\lambda)·1 = 1 $$
+                Pro $p < ∞$:
+                $$ \forall i \in [d]: |\lambda x_i + (1-\lambda) y_i|^p ≤ \lambda|x_i|^p + (1 - \lambda)|y_i|^p, $$
+                protože $t \mapsto t^p$ je konvexní funkce. Dopočítáním obou nerovností získáme, že je to opravdu konvexní množina.
+
+                2. krok: Pokud $||·||$ splňuje $(i) + (ii)$ a $B$ je konvexní, pak $||·||$ je norma. Zvolme $¦x, ¦y \in ¦V$, BÚNO $¦x, ¦y ≠ ¦o$, položme $\tilde{¦x} := \frac{¦x}{||¦x||}$, $\tilde{¦y} := \frac{¦y}{||¦y||}$, tedy:
+                $$ \frac{¦x + ¦y}{||¦x|| + ||¦y||} = \frac{||¦x||}{||¦x|| + ||¦y||} \tilde{¦x} + \frac{||¦y||}{||¦x|| + ||¦y||}\tilde{¦y} \in B \text{ (zlomky jsou } \lambda, 1-\lambda). $$ 
+                $$ ||\frac{¦x + ¦y}{||¦x|| + ||¦y||}|| ≤ 1 \implies \frac{||¦x + ¦y||}{||¦x|| + ||¦y||} ≤ 1. $$ 
+
+                3. $||·||_p$ zřejmě splní $(i) + (ii)$ a $B$ je konvexní podle 1. kroku. Tedy $||·||_p$ je norma.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Značení]
+        $$ l_p^d := \(®R^d, ||·||_p\). $$ 
+    \end{poznamka}
+
+    \begin{definice}[Konvergence]
+        Ať $(®M, d)$ je MP, $\{x_n\}_{n = 1}^∞$ posloupnost v ®M, $x \in ®M$. Pak $(x_n)$ konverguje k $x$ pokud $d(x_m, x)$ konverguje k 0. Píšeme $x_n \rightarrow x$ nebo také $\lim_{n \rightarrow ∞} x_n = x$.
+    \end{definice}
+
+\end{document}

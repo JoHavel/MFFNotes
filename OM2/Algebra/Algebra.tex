@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+% 3. 3. 2021
+\section{Úvod}
+    \begin{poznamka}[Informační zdroje]
+        Stránky, diskuze na google docs, Moodle.
+    \end{poznamka}
+
+    \begin{poznamka}[Proč algebra]
+        Diofanctické rovnice (Fermatovy věty, Gaussova celá čísla), kořeny polynomů (Grupy polynomů), geometrie (nekonstruovatelnost), studium abstraktních struktur běžných objektů.
+    \end{poznamka}
+
+\section{Obory}
+    \begin{definice}[Okruh]
+            Okruh $R$ je pětice $(R, +, ·, -, 0)$, kde $+, ·: R \times R \rightarrow R$, $-: R \rightarrow R$, $0 \in R$ tak, že $\(\forall a, b, c \in R\)$:
+        $$ a + (b + c) = (a + b) + c, $$ 
+        $$ a + b = b + a, a + 0 = a, a + (-a) = 0, $$
+        $$ a·(b·c) = (a·b)·c, a·(a+b) = a·b + a·c, (b+c)·a = b·a + c·b. $$ 
+    \end{definice}
+
+    \begin{definice}[Komutativní okruh]
+        Komutativní okruh je okruh, pro který platí $a · b = b · a$.
+    \end{definice}
+
+    \begin{definice}[Okruh s jednotkou]
+        Okruh s jednotkou je okruh, který má prvek $1 \in R: a·1 = a$.
+    \end{definice}
+
+    \begin{definice}[Obor (integrity)]
+        Obor (integrity) je komutativní okruh s jednotkou tak, že $0 ≠ 1 \land (a≠0 \land b≠0 \implies a·b ≠ 0)$.
+    \end{definice}
+
+    \begin{definice}[Těleso]
+        Těleso je komutativní okruh s 1, že $0 ≠ 1$ a $\forall 0≠a \in R\ \exists b \in R: a · b = 1$.
+    \end{definice}
+
+    \begin{definice}[Podokruh]
+        Podokruh S okruhu R je $(S, +|_S, ·|_S, -|_S, 0)$, kde $0 \in S$ a $\forall a, b \in S: a+b \in S \land a·b \in S \land -a \in S$.
+    \end{definice}
+
+\end{document}
