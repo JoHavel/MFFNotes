@@ -11,4 +11,148 @@
 
     Dále se probírali základy značení a teorie množin.
 
+% 11. 2. 2021
+
+    \begin{definice}[Základy]
+            Základem výrokové logiky je 5 symbolů (2 hodnoty + 3 logické spojky): $\top \bot \neg \land \lor$ = pravda, lež, negace, a, nebo.
+
+        Dále jsou to výrokové atomy z nějaké abecedy. Libovolný výrok je pak konečným aplikováním logických spojek.
+    \end{definice}
+
+    \begin{definice}[Pravdivostní ohodnocení]
+        Pravděpodobnostní ohodnocení je zobrazení $t$ z prvovýroků do $\{0, 1\}$. Toto zobrazení lze jednoznačně rozšířit na $t'$ na všechny výroky:
+        $$ t'(\top) = 1, t'(\bot) = 0, t'(\neg a) = 1 - t'(a), t'(a \lor b) = \max\{t'(a), t'(b)\}, t'(a \land b) = \min\{t'(a), t'(b)\} $$ 
+    \end{definice}
+
+    \begin{definice}
+        Pomocí pravdivostního ohodnocení můžeme zavést implikaci (spojka mezi premisou (antecedent) a závěrem (konsekvent)).
+    \end{definice}
+
+    \begin{definice}[Tautologie]
+        $p$ je tautologie (notace $\models p$) $≡ t(p) = 1$ pro všechna $t: A \rightarrow \{0, 1\}$. $p$ je splnitelné $≡$ existuje $t: A \rightarrow \{0, 1\}$ takové, že $t(p) = 1$.
+    \end{definice}
+
+    \begin{lemma}[Zákony inempotence, komutativity, asociativity, distributivity, absorbce, DeMorganovy]
+        Viz skripta.
+    \end{lemma}
+
+    \begin{definice}[Model]
+        Model (koho, čeho) $\Sigma$ (výrokové teorie) je každé pravděpodobnostní ohodnocení $t$, které přiřazuje 1 všem výrokům ze $\Sigma$. Říkáme, že $p$ je tautologický důsledek $\Sigma$ (píšeme $\Sigma \models p$, říkáme $p$ vyplývá ze $\Sigma$) $≡ t(p) = 1$ pro všechny modely $t$ (koho čeho) $\Sigma$.
+    \end{definice}
+
+    \begin{poznamka}
+        $\models p$ je totéž, co $\O \models p$.
+    \end{poznamka}
+
+    \begin{lemma}
+        Vlastnosti $\models$. Viz skripta.
+    \end{lemma}
+
+    \begin{definice}[Arita]
+        Mějme množinu symbolů $F$ a zobrazení $a: F \rightarrow ®N$. Říkáme, že symbol $f \in F$ má aritu $n$ $≡ a(f) = n$.
+
+        Řekněme, že slovo je přijatelné $≡$ TODO.
+    \end{definice}
+
+    \begin{definice}[Arita logických symbolů]
+        Aritu symbolů $ar$ definujeme pro $F = A \cup \{\top, \bot, \neq, \lor, \land\}$ jako $ar(x) = 0, x\in A \cup \{\top, \bot\}$, $ar(\neq) = 1$, $ar(\lor, \land) = 2$.
+    \end{definice}
+
+    \begin{lemma}
+        Buďte $t_1, …, t_m$ a $u_1, …, u_n$ jsou přijatelná slova a $w$ libovolné slovo tak, že $t_1…t_mw=u_1–u_n$. Potom $m ≤ n$, $t_i = u_i$ pro $i \in [m]$ a $w = u_{m+1}…u_n$.
+
+        \begin{dukazin}
+            Indukcí podle velikosti $u_1…u_n$.
+        \end{dukazin}
+    \end{lemma}
+
+% 18. 3. 2021
+
+    \begin{definice}[Modus Ponens (= MP = odvozovací pravidla)]
+        Z $p$ a $p \implies q$, odvodíme $q$.
+    \end{definice}
+
+    \begin{definice}[Důkaz]
+        Formální důkaz (či důkaz) $p$ z $\Sigma$ je sekvence $p_1, …, p_n$, kde $n≥1$ a $p_n = p$ tak, že $\forall k \in [n]$: buď $p_k \in Sigma$, nebo $p_k$ je výrokový axiom (viz skripta), nebo $\exists i, j \in [k-1]$ tak, že $p_k$ lze odvodit pravidlem MP z $p_i$ a $p_j$.
+
+        Říkáme, že $p$ je dokazatelné ze $\Sigma$, a značíme $\Sigma \vdash p$
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pokud $\Sigma \vdash p$, pak $\Sigma \models p$.
+
+        \begin{dukazin}
+            Jednoduchý.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[O úplnosti (1. znění)]
+        $$ \Sigma \vdash p \Leftrightarrow \Sigma \models p. $$ 
+    \end{veta}
+
+    \begin{veta}[Kompaktnost logiky]
+        Pokud $\Sigma \models p$, pak existuje konečná podmnožina $\Sigma_0 \subseteq \Sigma$ tak, že $\Sigma_0 \models p$.
+
+        \begin{dukazin}
+            Vyplývá z předchozí věty
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Konzistentnost]
+        Říkáme, že $\Sigma$ je nekonzistentní, pokud $\Sigma \vdash \bot$, jinak (pokud $\Sigma \not\vdash \bot$) je konzistentní.
+    \end{definice}
+
+    \begin{veta}[O úplnosti (2. znění)]
+        $\Sigma$ je konzistentní právě tehdy, když má model.
+    \end{veta}
+
+    \begin{dusledek}
+        $\Sigma$ má model $\Leftrightarrow$ každá konečná podmnožina $\Sigma$ má model.
+    \end{dusledek}
+
+    \begin{lemma}[Dedukce]
+        Předpokládejme $\Sigma \cup \{p\} \vdash q$. Potom $\Sigma \vdash p \implies q$.
+
+        \begin{dukazin}[Indukcí]
+            Pokud je $q$ výrokový axiom, pak $\Sigma \vdash q$ a jelikož $q \implies (p \implies q)$ je výrokový axiom, MP říká $\Sigma \vdash p \implies q$. Pokud $q \in \Sigma \cup \{p\}$, pak buď TODO
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        $\Sigma \vdash p$ tehdy a pouze tehdy, když $\Sigma \cup \{\neg\}$ je nekonzistentní.
+
+        \begin{dukazin}
+            $\implies$: Předpokládejme, že $\Sigma \vdash p$. Jelikož $p \implies (\neg p \implies \bot)$ je výrokový axiom, můžeme 2krát použít MP a získat $\Sigma \cup \{p\}$ TODO
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{dusledek}
+        Z druhého znění věty o úplnosti vyplývá první znění.
+    \end{dusledek}
+
+    \begin{definice}
+        Říkáme, že $\Sigma$ je kompletní (úplná, ale s větou o úplnosti nemá nic společného), pokud $\Sigma$ je konzistentní a pro všechna $p$ je buď $\Sigma \vdash p$ nebo $\Sigma \vdash \neg p$.
+    \end{definice}
+
+    \begin{lemma}[Lindenbaum]
+        Nechť $\Sigma$ je konzistentní. Pak existuje kompletní $\Sigma'$ tak, že $\Sigma \subseteq \Sigma'$.
+
+        \begin{dukazin}
+            Zornovo lemma. TODO. Pokud je axiomů konečně, tak můžeme udělat důkaz bez Zornova lemmatu.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Pravdivostní ohodnocení v závislosti na $\Sigma$]
+        $t_\Sigma: A \rightarrow \{0, 1\}$, $t_\Sigma(a) = 1$, pokud $\Sigma \vdash a$, jinak $t_\Sigma(a)= 0$.
+    \end{definice}
+
+    \begin{lemma}
+        Předpokládejme, že $\Sigma$ je kompletní, potom pro každé $p$ máme
+        $$ \Sigma \vdash p \Leftrightarrow t_\Sigma(p) = 1. $$
+        Nevoli $t_\Sigma$ je model $\Sigma$.
+
+        \begin{dukazin}
+            Indukcí podle počtu spojek. TODO.
+        \end{dukazin}
+    \end{lemma}
 \end{document}

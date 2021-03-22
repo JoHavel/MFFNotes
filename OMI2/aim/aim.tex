@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+% 9. 3. 2021
+\section{Úvod}
+    \begin{poznamka}
+        Probírali jsme C (typy, literály, operátory, konverze, )
+    \end{poznamka}
+
+    \begin{upozorneni}
+        Proměnné mohou být uložené s paddingem (když vyžadují zarovnání (\verb|_Alignof(typ)|), např. ve struktuře s char a int se mezi char a int vloží 3 byty). Také nejsou všechny kombinace funkční (např. u float), tedy není dobré jen tak přistupovat na náhodná místa.
+
+        Padding není v poli! A na začátku (a pouze tam) struktur.
+
+        Navíc ve struktuře je zaručeno pořadí, takže char int char zabere 12 bytů (na konec se přidává padding tak, aby zarovnání fungovalo i v poli takových struktur).
+    \end{upozorneni}
+
+    \begin{upozorneni}
+        „0číslo“ je číslo v oktanové (osmičkové) soustavě.
+
+        V 16 soustavě se používá pro exponent znak \verb|p|, ne \verb|e|.
+
+        Dva řetězce s mezerou uprostřed se spojí.
+    \end{upozorneni}
+
+    \begin{upozorneni}
+        Na floatech rovná se moc nefunguje. Např. NAN (not a number) není roven ničemu, ani sám sobě.
+    \end{upozorneni}
+
+    \begin{upozorneni}
+        Menší typy než int se při výpočtu a předávání do funkcí bez definovaných parametrů převádějí na int.
+    \end{upozorneni}
+
+\end{document}

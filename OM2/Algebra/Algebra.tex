@@ -18,7 +18,7 @@
             Okruh $R$ je pětice $(R, +, ·, -, 0)$, kde $+, ·: R \times R \rightarrow R$, $-: R \rightarrow R$, $0 \in R$ tak, že $\(\forall a, b, c \in R\)$:
         $$ a + (b + c) = (a + b) + c, $$ 
         $$ a + b = b + a, a + 0 = a, a + (-a) = 0, $$
-        $$ a·(b·c) = (a·b)·c, a·(a+b) = a·b + a·c, (b+c)·a = b·a + c·b. $$ 
+        $$ a·(b·c) = (a·b)·c, a·(b+c) = a·b + a·c, (b+c)·a = b·a + c·b. $$ 
     \end{definice}
 
     \begin{definice}[Komutativní okruh]
@@ -38,7 +38,605 @@
     \end{definice}
 
     \begin{definice}[Podokruh]
-        Podokruh S okruhu R je $(S, +|_S, ·|_S, -|_S, 0)$, kde $0 \in S$ a $\forall a, b \in S: a+b \in S \land a·b \in S \land -a \in S$.
+        Podokruh $S$ okruhu $R$ je $(S, +|_S, ·|_S, -|_S, 0)$, kde $0 \in S$ a $\forall a, b \in S: a+b \in S \land a·b \in S \land -a \in S$. Značíme $R ≤ S$.
     \end{definice}
 
+% 5. 3. 2021
+
+    \begin{definice}[Podobor]
+        $S$ je podobor oboru $R$ tehdy, když $S ≤ R$ a $S$ je obor.
+    \end{definice}
+
+    \begin{definice}[Podtěleso]
+        $S$ je podtěleso tělesa $R$ tehdy, když $S ≤ R$ a $S$ je těleso.
+    \end{definice}
+
+    \begin{definice}[Gaussova čísla]
+        $®Z[i] = \{a+b_i | a, b \in ®Z\}$ jsou tzv. Gaussova celá čísla.
+    
+        $®Q[i] = \{a+bi | a, b \in ®Q\}$ jsou tzv. Gaussova racionální čísla..
+    \end{definice}
+
+    \subsection{Základní vlastnosti}
+        \begin{tvrzeni}
+            Mějme množinu $X$ s asociativní (tj. $(a*b)*c = a*(b*c)$) operací $*:X \times X \rightarrow X$. Pak hodnota výrazu $a_1*a_2*a_3*…*a_n$ nezávisí na uzávorkování.
+
+            \begin{dukazin}
+                Indukcí.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Základní vlastnosti oborů]
+            Buď $R$ okruh a $a, b, c \in R$.
+            $$ 1) a + c = b + c \implies a = b, $$
+            $$ 2) a·0 = 0, $$
+            $$ 3) -(-a) = a,\ -(a + b) = -a + (-b), $$
+            $$ 4) -(a·b) = (-a)·b = a·(-b),\  (-a)·(-b) = a·b, $$ 
+            $$ 5) \text{Je-li $R$ obor, pak } a·c = b·c \land c≠0 \implies a=b. $$ 
+
+            \begin{dukazin}
+                $$ 1) (a+c) + (-c) = (b + c) + (-c) \implies a+0 = b+0 \implies a = b, $$
+                $$ 2) 0 + a·0 = a·0 = a·(0 + 0) = a·0 + a·0 \implies 0 = a·0. $$
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Každé těleso je obor]
+            Z existence $a^{-a}$ vyplývá $a≠0, b≠0 \implies ab ≠ 0$.
+
+            \begin{dukazin}[Sporem]
+                $a ≠ 0, b ≠ 0, ab=0 \implies b = (a^{-1}·a)·b = a^{-1}·(ab) = a^{-1}·0$ a podle předchozího tvrzení (část 2) $b = 0$ \lightning.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Každý konečný obor je těleso.
+            
+            \begin{dukazin}
+                Viz skripta.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}
+            Nechť $R$ je okruh s jednotkou 1. Charakteristika $R$ je nejmenší přirozené číslo $n$ tak, že $ \underbrace{1+1+…+1}_{n\text{-krát}}$, pokud takové $n$ neexistuje, říkáme, že charakteritika je 0 (případně $∞$).
+
+            Prvek $\underbrace{1+1+…+1}_{n\text{-krát}}$ značíme $n$, obdobně $\underbrace{-1-1-…-1}_{n\text{-krát}}$ značíme $-n$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Každý obor má charakteristiku 0 nebo $p$.
+
+            \begin{dukazin}
+                Pro 1 je to cvičení. V případě, že charakteristika je $n = k·l$, $k, l≠1$, pak $0 = k·l$. Jsme v oboru, tedy $k = 0$ nebo $l=0$. Spor s minimalitou $n$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Izomorfismus}
+        \begin{definice}[Homomorfismus]
+            Nechť $R, S$ jsou okruhy. Zobrazení $\phi: R \rightarrow S$ je homomorfismus okruhů, pokud $\forall a, b \in R:$
+            $$ \phi(a + b) = \phi(a) + \phi(b) \land \phi(a·b) = \phi(a) · \phi(b). $$
+
+            Je-li homeomorfismus $\phi$ bijekce, nazývá se izomorfismus.
+        \end{definice}
+
+        \begin{poznamka}
+            Inverzní zobrazení k izomorfismu je izomorfismus.
+        \end{poznamka}
+
+        \begin{definice}
+            Okruhy $R, S$ jsou izomorfní, pokud existuje izomorfismus $\phi: R \rightarrow S$. Značíme $R \simeq S$.
+        \end{definice}
+
+        \begin{priklady}
+            Tzv. prvookruh (tj. všechny prvky tvaru $1+1+…+1$ nějakého okruhu s jedničkou) je izomorfní $®Z_n$ resp. (v tomto případě musíme zahrnout i $-1-1-…-1$) $®Z$.
+        \end{priklady}
+
+    \subsection{Podílové těleso}
+        \begin{definice}[Multiplikativní množina]
+            Nechť $R$ je obor. Pak $M \subseteq R$ je multiplikativní množina, pokud $0 \notin M, 1 \in M$ a $a, b \in M \implies a·b \in M$.
+
+            \begin{prikladyin}
+                Nejdůležitější MM je $M = R \setminus \{0\}$.
+            \end{prikladyin}
+        \end{definice}
+
+        \begin{definice}[Podílové těleso]
+            Nechť $R$ je obor a $M$ multiplikativní množina. Definujeme relaci $\sim$ na $R \times M$:
+            $$ (a, b) \sim (c, d) ≡ ad = bc. $$
+
+            Blok $[(a, b)]_{\sim}$ nazýváme zlomek a značíme $\frac{a}{b}$.
+
+            Na $Q = \{\frac{a}{b} | a \in R, b \in M\}$ definujeme operace
+            $$ \frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd},\ \frac{a}{b}\frac{c}{d} = \frac{ac}{bd},\ -\frac{a}{b} = \frac{-a}{b},\ 0 = \frac{0}{1}, 1 = \frac{1}{1}. $$ 
+            Tedy $Q$ je okruh s jednotkou. $(Q, +, -, ·, 0, 1)$ se nazývá lokalizace oboru $R$ v MM $M$. Pokud $M = R \setminus \{0\}$, pak se nazývá podílové těleso.
+        \end{definice}
+
+% 10. 3. 2021
+        
+        \begin{tvrzeni}
+            Máme $R$, $N$, $Q$ z předchozí definice. 1) $Q$ je obor. 2) $\{\frac{a}{1} | a \in R\}$ je podobor $Q$, který je izomorfní s $R$. 3) Je-li $M = R \setminus \{0\}$, pak $Q$ je těleso.
+
+            \begin{dukazin}
+                1) Ověříme axiomy. Triviální. Důležitý je hlavně součin ne0 prvků.
+
+                2) Ověříme uzavřenost a obsah jedničky. Ověříme, že zjevné zobrazení je izomorfizmus.
+
+                3) Ověříme axiomy. Na tři řádky.
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Polynomy}
+    \subsection{Obory polynomů}
+        \begin{poznamka}[Značení]
+            V celé sekci Polynomů je $R$ komutativní okruh s jednotkou.
+        \end{poznamka}
+
+        \begin{definice}[Polynom]
+            Polynom v proměnné $x$ nad okruhem $R$ je výraz tvaru
+            $$ a_0 + a_1·x + a_2·x^2 + a_n·x^n, $$ 
+            kde $n ≥ 0$, $a_1, …, a_n \in R$ a $a_n ≠ 0$ vyjma $n = 0$. $a_1, …, a_n$ jsou koeficienty, $x$ proměnná. Navíc se dodefinovává $a_m = 0 \forall m > n$.
+
+            Číslo $n = \deg f$ je stupeň polynomu $f$. $\deg 0 = -1$. $a_n$ se nazývá vedoucí koeficient a $a_0$ absolutní člen.
+
+            $f$ je monický, pokud $a_n = 1$. Množinu všech polynomů značíme $R[x]$.
+        \end{definice}
+
+        \begin{definice}[Operace na $R\[x\]$]
+                $$ \sum_{i=0}^m a_ix^i + \sum_{i=0}^n b_ix^i = \sum_{i=0}^{max(m, n)} (a_i + b_i)x^i;\ -\sum_{i=0}^m a_ix^i = \sum_{i=0}^m -a_ix^i; $$
+                $$ \(\sum_{i=0}^m a_ix^i\)\(\sum_{i=0}^n b_ix^i\) = \sum_{i=0}^{m+n} \sum_{j+k = i, j, j ≥ 0} (a_j·b_k)x^i $$ 
+        \end{definice}
+
+        \begin{tvrzeni}
+            $R[x]$ je komutativní okruh s jednotkou. Navíc je-li $R$ obor, pak i $R[x]$ je obor $\land \deg(fg) = \deg f + \deg g$ $\forall f, g \in R[x], f≠0≠g$.
+
+            \begin{dukazin}
+                Jednoduché, ve skriptech. Druhá část přes vedoucí koeficienty (jsou nenulové).
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Polynom více proměnných]
+            Induktivní definicí: Polynom v proměnných $x_1, x_2, …, x_m$ nad okruhem $R$ je polynom v proměnné $x_m$ nad okruhem $R[x_1, …, x_{m-1}]$.
+
+            Značíme $R[x_1, …, x_m] = (R[x_1, …, x_{m-1}])[x_m]$.
+
+            Každý $f \in R[x_1, …, x_m]$ jde jednoznačně napsat v distribuovaném tvaru (je potřeba dokázat, ale tím pádem nezáleží na pořadí proměnných):
+            $$ \sum_{k_1, …, k_m}^n a_{k_1, …, k_m}x_1^{k_1}·…·x_m^{k_m}. $$ 
+        \end{definice}
+
+    \subsection{Hodnota polynomu}
+        \begin{definice}
+            $R ≤ S$ obory. $f = a_0 + a_1·x + … + a_n·x^n \in R[x], u \in S$. Hodnota polynomu $f$ po dosazení $u$ je definována:
+            $$ f(u):= a_0 + a_1·u + … + a_n·u^n \in S. $$
+            (Operace jsou v oboru $S$.)
+
+            Zobrazení $S \rightarrow S$, $u \mapsto f(u)$ nazýváme polynomiální zobrazení dané polynomem $f$.
+        \end{definice}
+
+    \subsection{Dělení polynomu se zbytkem}
+        \begin{definice}
+            $f, g \in R[x]$. $g$ dělí $f$, zapisujeme $g | f$, $≡$ $\exists h \in R[x]$ tak, že $f = gh$.
+
+            Je-li $R$ obor a $g | f ≠ 0$ $\implies \deg g ≤ \deg f$ z tvrzení výše.
+        \end{definice}
+
+        \begin{tvrzeni}[Dělení polynomů se zbytkem]
+            Nechť $R$ je obor, $Q$ podílové těleso. $f, g \in R[x], g≠0$. Pak existuje právě jedna dvojice $q, r \in Q[x]$:
+            $$ f = gq + r \land \deg r < \deg g. $$
+
+            Je-li navíc $g$ monický, pak $q, r \in R$.
+
+            $f div g := q$ a $f mod g := r$.
+
+            \begin{dukazin}
+                    $q_0 = 0, r_0 = f$. Induktivně ($l(f) := $ vedoucí koeficient polynomu $f$):
+                $$ q_{i+1} = q_i + \frac{l(r_i)}{l(g)} x^{\deg r_i - \deg g},\ r_{i+1} = r_i - \frac{l(r_i)}{l(g)}x^{\deg r_i - \deg g}·g. $$
+                Vidíme, že stupeň $r_i$ se snižuje, a když $\deg r_i < \deg g$, tak skončíme a $r = r_i, q = q_i$.
+
+                Jednoznačnost:
+                $$ f = gq + r = g\tilde{q} + \tilde{r} \implies g(q - \tilde{q}) = \tilde{r} - r \implies g | \tilde{r} - r \implies \tilde{r} - r = 0. $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Kořeny a dělitelnost}
+        \begin{definice}
+                Ať $R ≤ S$ jsou obory, $f \in R[x]$, $a \in S$. Pak $a$ je kořen $f$ $≡$ $f(a) = 0$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $R$ obor, $f \in R[x]$, $a \in R$. $a$ je kořen $f$ $\Leftrightarrow x-a | f$.
+
+            \begin{dukazin}
+                $\implies:$ $f = (x-a)·g$ pro nějaké $g \in R[x]$ $\implies f(a) = (a - a)·g(a) = 0$.
+            
+                Buď $q, r \in R[x]$ podíl a zbytek při dělení $f$ monickým polynomem $x - a$. $f = (x - a)·q + r$, $\deg r < \deg (x - a) = 1$ $\implies r$ je konstantní polynom. Dosadíme $a$:
+                $$ 0 = f(a) = (a-a)q(a) + r(a) = r(a). $$ 
+                $r$ je konstantní $\implies r = 0$. $f = (x - a)·q + 0 \implies x - a | f$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{pozorovani}
+            $$ f mod x-a = f(a) $$ 
+        \end{pozorovani}
+
+        \begin{veta}[Počet kořenů]
+            $R$ obor, $0 ≠ f \in R[x]$.  Pak $f$ má nejvýše $\deg f$ kořenů v $R$.
+
+            \begin{dukazin}
+                Indukcí dělením $x - \text{kořen}$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Vícenásobný kořen]
+            Ať $f \in R[x], a \in R$. Pak $a$ je $n$-násobný kořen $f$ $≡$ $(x - a)^n | f$ a $(x - a)^{n-1} \not| f$.
+        \end{definice}
+
+\section{Číselné obory}
+    \subsection{Okruhová a tělesová rozšíření}
+        \begin{definice}
+            Nechť $R ≤ S$ jsou komutativní okruhy, $a_1, …, a_n \in S$. Definujeme $R[a_1, …, a_n]$ jako nejmenší podokruh okruhu $S$, který obsahuje $R$ a $a_1, …, a_n$. Ten nazveme okruhové rozšíření $R$ o prvky $a_1, …, a_n$.
+
+            Nechť $R ≤ S$ jsou tělesa, $a_1, …, a_n \in S$. Definujeme $R(a_1, …, a_n)$ jako nejmenší podtěleso tělesa $S$, které obsahuje $R$ a $a_1, …, a_n$. To nazveme tělesové rozšíření $R$ o prvky $a_1, …, a_n$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Mějme $R ≤ S$ komutativní okruhy s 1, $a \in R$. Pak $R[a] = \{f(a) | f \in R[x]\}$. Jsou-li $R, S$ navíc tělesa, pak $R(a) = \{\frac{f(a)}{g(a)} | f, g \in q[R], g(a) ≠ 0\}$.
+
+            \begin{dukazin}
+                Dokážeme, že je to podokruh, že obsahuje $R$ i $a$ a že je nejmenší takový.
+            \end{dukazin}
+        \end{tvrzeni}
+
+% 12. 3. 2021
+
+        \begin{pozorovani}
+            Ať $T ≤ S$ jsou tělesa, potom $T[a] \subseteq T(a)$.
+
+            Ale např. $®Q[i] = ®Q(i)$.
+        \end{pozorovani}
+
+        \begin{tvrzeni}
+            Nechť $T ≤ S$ jsou tělesa, $a$ není kořenem žádného nenulového polynomu z $T[x]$. Pak $T[a] ≠ T(a)$.
+
+            \begin{dukazin}
+                Podle předchozího tvrzení $T[a] = \{f(a) | f \in T[x]\}$. Kdyby $T[a] = T(a)$, pak $T[a]$ je těleso, tedy $a^{-1} \in T[a] \implies a^{-1} = f(a)$ pro nějaký $f \in T[x]$, tedy $a·f(a) - 1 = 0$. Tedy $a$ je kořenem $x·f - 1$. \lightning.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Algebraická a transcendentní čísla}
+        \begin{definice}
+            $a \in ®C$ je algebraické, pokud je kořenem nějakého nenulového polynomu $f \in ®Z[x]$.
+
+            Jinak $a$ je transcendentní.
+        \end{definice}
+
+        \begin{poznamka}[První důkaz transcendentního čísla]
+            Luvil? $\sum_{i=1}^∞ 10^{-i!}$.
+
+            Další čísla (19. stol): $\pi, e$.
+
+            Cantor: náhodné reálné číslo je transcendentní (tj. algebraická čísla jsou spočetná / mají míru 0).
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Množina algebraických čísel je spočetná.
+
+            \begin{dukazin}
+                Indexem polynomu $f = a_0 + a_1x + … + a_nx^n \in ®Z[x], f ≠ 0$ nazvěme číslo $|a_0| + |a_1| + … + |a_n| + n \in N$. Indexů existuje jen konečně mnoho daného indexu (díky započítání stupně do indexu). Všechny polynomy seřadím podle rostoucího indexu. Nyní už je zřejmě $®Z[x]$ spočetná. Navíc každý polynom má konečně kořenů, tedy, tedy i kořenů je spočetně mnoho.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Množina reálných čísel je nespočetná.
+        \end{tvrzeni}
+
+\section{Elementární teorie čísel}
+    \subsection{Dělitelnost a základní věta aritmetiky}
+        \begin{definice}[Dělitelnost v celých číslech]
+            Ať $a, b \in ®Z$, $b$ dělí $a$, značíme $b|a$, pokud $\exists c \in ®Z: a = bc$.
+
+            $±1$ a $±a$ se nazývají nevlastní dělitelé, ostatní jsou vlastní.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Mějme $a, b \in ®Z$, $b≠0$. Pak $\exists! q, r \in ®Z: a = qb+r, 0≤r<|b|$. Značíme $a \div b = q$ a $a \mod b = r$. Navíc $b|a \Leftrightarrow a \mod b = 0$
+        \end{tvrzeni}
+
+        \begin{definice}[Prvočíslo a složené číslo]
+            Prvočíslo je $p \in ®Z, p > 1$, které má pouze nevlastní dělitele. Ostatní přirozená čísla $>1$ jsou složená.
+        \end{definice}
+
+        \begin{veta}[Základní věta aritmetiky]
+            $\forall a \in ®Z, a > 1$ existují po dvou různá prvočísla $p_1, …, p_n$ a $k_1, …, k_n \in ®N$ tak, že $a = p_1^{k_1}·…·p_n^{k_n}$. Tento rozklad je až na pořadí jednoznačný.
+
+            \begin{dukazin}
+                Později.
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{NSD}
+        \begin{definice}[NSD, NSN]
+            Největší společný dělitel $a, b \in ®Z$ je největší $c \in ®N$ takové, že $c | a, c|b$. Značíme ho $\NSD(a, b)$ (neexistuje pro $a=b=0$).
+
+            Nejmenší společný násobek $a,b \in ®Z\setminus \{0\}$ je nejmenší $c \in ®N$ tak, že $a | c$ a $b | c$. Značíme ho $\NSN(a, b)$.
+        \end{definice}
+
+        \begin{poznamka}
+            Základní věta aritmetiky $\implies$ $a·b = \NSD(a, b)·\NSN(a, b)$.
+
+            Rychlý algoritmus na hledání NSN je Euklidův algoritmus.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Bézoutova rovnost]
+            $\forall a, b \in ®Z$, $a ≠ 0$ nebo $b ≠ 0$, $\exists u, v \in ®Z$ (Bézoutovy koeficienty) tak, že $a·u + b·v = \NSD(a, b)$.
+
+            \begin{dukazin}
+                Rozšířený Euklidův algoritmus.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{lemma}
+            Ať $p$ je prvočíslo, $a, b \in ®Z$. Pak $p|a·b \implies p|a \lor p|b$.
+
+            \begin{poznamkain}
+                V obecném oboru neplatí. Např. v $®Z[\sqrt{5}]$ $2|(\sqrt{5} + 1)(\sqrt{5} - 1) = 4$, ale $2\not|\sqrt{5} ± 1$
+            \end{poznamkain}
+
+            \begin{dukazin}
+                BÚNO $p \not| a$, tedy chceme, aby $p|b$. $p$ je prvočíslo, tudíž nemá vlastní dělitele $\implies$ $\NSD(p, a) = $ buď $p$ (to by ale $p|a$), nebo $1$. Dle tvrzení o Bézoutově rovnosti $\exists u, v \in ®Z: pu+av = 1$. Vynásobíme $b$: $pbu + abv = b$. Ale $p | ab$, takže $p | pbu + abv = b$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}
+            $p$ prvočíslo, $a_1, …, a_n \in ®Z$. $p|a_1 · … · a_n \implies \exists i: p | a_i$.
+
+            \begin{dukazin}
+                Indukcí z předchozího tvrzení.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{dukaz}[Základní věta aritmetiky]
+            Existence: pro spor ať $a$ je nejmenší přirozené číslo, které nemá rozklad na součin. Buď je $a$ prvočíslo, ale pak má rozklad $a = a^1$. Nebo je $a$ složené, tedy $a=b·c, 1 < b, c, < a$, ale $a$ bylo nejmenší číslo, které nemá rozklad, tedy $b$ i $c$ mají rozklad. Ale pak součin těchto rozkladů je $a$.
+
+            Jednoznačnost: $a$ nejmenší přirozené číslo, které má 2 rozklady: $a = p_1^{k_1} · … · p_m^{k_m} = q_1^{l_1}·…·q_n^{l_n}$. Pak $p_1 | q_1^{l_1}·…·q_n^{l_n}$. Podle předchozího lemmatu $\exists i: p_1 | q_i$. Jsou to prvočísla, tedy $p_1 = q_i$. Potom $p_1^{k_1-1} · … · p_m^{k_m} = q_1^{l_1}·…·q_i^{k_i - 1}…·q_n^{l_n}$ jsou dva rozklady čísla $< a$. \lightning.
+        \end{dukaz}
+
+    \subsection{Kongruence}
+        \begin{poznamka}[Historie]
+            Symbol $≡$ zavedl v roce 1801 Gauss.
+        \end{poznamka}
+
+        \begin{definice}
+            $a, b, m \in ®Z, m≠0$. $a$ je kongruentní s $b$ modulo $m$ ($a ≡ b (\mod m)$), pokud $m|a-b$. (Ekvivalentně $a, b$ dávají stejný zbytek po dělení $m$.)
+        \end{definice}
+
+        \begin{pozorovani}
+            Být kongruentní $\mod m$ je ekvivalence.
+        \end{pozorovani}
+
+        \begin{tvrzeni}[Vlastnosti kongruence]
+            $a, b, c, d, m \in ®Z, m≠0$. $a ≡ b \mod m, c ≡ d \mod m$.
+            $$ a+c = b+d \mod m, \qquad a-c ≡ b-d \mod m, \qquad a·c ≡ b·d \mod m, \qquad a^k≡b^k \mod m, k \in ®N. $$
+            $$ c≠0 \implies a≡b \mod m \Leftrightarrow ac≡bc \mod mc, \qquad \NSD(c, m) = 1 \implies a≡b \mod m \Leftrightarrow ac≡bc \mod m. $$
+            \begin{dukazin}
+                Z definice rozepsáním.
+                $$ a≡b \mod m \Leftrightarrow \exists q: a-b = mq \Leftrightarrow ac - bc = mcq \Leftrightarrow ac ≡ bc \mod mc. $$
+                $$ cu + mv = 1, cu = 1 - mv \implies (ac ≡ bc \mod m \Leftrightarrow a≡a(1-mv)≡auc≡buc≡b(1-mv)≡b \mod m). $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Eulerova věta a RSA}
+        \begin{definice}[Eulerova funkce]
+                Eulerova funkce $\phi(n)$ značí (pro $n \in ®N$) počet $k \in \{1, 2, …, n\}$ nesoudělných s $n$, čili $\NSD(k, n)=1$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            $n = p_1^{k_1}·…·p_m^{k_m}$ prvočíselný rozklad, $n > 1$. Pak $\phi(n) = p_1^{k_1-1}(p_1-1)·…·p_m^{k_m - 1}(p_m - 1)$.
+            
+            \begin{dukazin}
+                Příště.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}[Eulerova]
+            Pokud $a, m$ jsou nesoudělná přirozená čísla, pak $a^{\phi(m)} ≡ 1 \mod m$.
+
+            Speciálním případem je Malá Fermatova věta: $p$ prvočíslo, $p\not|a \implies a^{p-1}≡1(\mod p)$.
+
+            \begin{dukazin}
+                $\Phi_m$ nechť značí množinu $\{k \in [m]|\NSD(k, m) = 1\}$. $\phi(m) = |\Phi_m|$.
+
+                Lemma: $a, m$ nesoudělná přirozená čísla, $m≠1$. Definujeme zobrazení $f_a: \Phi_m \rightarrow \Phi_m$, $k \mapsto ka \mod m$. Pak $f_a$ je dobře definované $\land$ je to bijekce.
+
+                Důkaz $k, a$ nesoudělná s $m \implies k·a$ nesoudělné s $m \implies k·a \mod m$ nesoudělné s $m \implies k·a \mod m \in \Phi_m$. $f_a(k) = f_a(l) \implies k·a ≡ l·a \mod m \implies k≡l \mod m$ ($a$ je nesoudělné s $m$, tedy můžeme použít tvrzeni výše) $\implies k=l$. $f_a$ je prosté a na konečné množině, tedy je bijekce.
+
+                $$ \prod_{b \in \Phi_m}b = \prod_{b \in \Phi_m} f_a(b) = \prod_{b \in \Phi_m} (ab \mod m) ≡ a^{\phi(m)} \prod_{b \in \Phi_m} b $$
+                $c = \prod_{b \in \Phi_m} b$, $c ≡ a^{\phi(m)}c \mod m$ a $c$ je nesoudělné s $m$, tedy dle tvrzení výše je $1 ≡ a^{\phi(n)} \mod m$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Lemma z posledního důkazu nám říká, že každý prvek z $\Phi_m$ má inverzi v okruhu $®Z_m$.
+
+            Ten můžeme najít buď přes Eulerovu větu, nebo přes Bézoutovu větu. (Druhý způsob je zpravidla rychlejší.)
+        \end{poznamka}
+
+% 17. 3. 2021
+
+        \begin{poznamka}[RSA (Rivest Shamir Adleman)]
+            Šifrovací algoritmus založený na Eulerově větě.
+        \end{poznamka}
+
+    \subsection{Čínská zbytková věta}
+        \begin{poznamka}
+            Špatně: Uvedená v knize umění války (počítání vojáků).
+
+            Správně: vymyslel ji čínský matematik, který se jmenoval stejně jako legendární generál, autor knihy výše.
+        \end{poznamka}
+
+        \begin{veta}[Čínská zbytková]
+            Nechť $m_1, …, m_n \in ®N$ po dvou nesoudělná čísla. Označíme $M = m_1·…·m_N$. Ať $u_1, …, u_n \in ®Z$. Pak\footnote{$$ [M-1]_0 = \{0, 1, …, M-1\} $$ } $\exists! x \in [M-1]_0$ tak, že $x ≡ u_1 \mod m_1, …, x ≡ u_n \mod m_n$.
+
+            \begin{dukazin}
+                Jednoznačnost: Ať $x, y \in [M-1]_0$, pro které platí všechny kongruence. Potom $\forall i: m_i | x - y$, tedy $M | x - y$. Ale $|x - y| < M$, tudíž $x - y = 0$.
+
+                Existence: $f: [M-1]0 \rightarrow [m_1-1]_0 \times … \times [m_n - 1]_0$, $x \mapsto (x \mod m_1, …, x \mod m_n)$. Korektní definice zobrazení (mimochodem je to dokonce isomorfismus okruhů). $f$ je prosté (díky jednoznačnosti). Množiny jsou stejně velké, tedy je to dokonce bijekce, a proto existuje inverze, tudíž prvek $(u_1, …, u_n)$ musí mít obraz při zobrazení $f^{-1}$, který z definice splňuje vlastnosti hledaného prvku..
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dukaz}[Vzorec pro eulerovu formuli]
+            1) $\phi(p^k) = p^{k-1}(p-1)$. 2) $a, b$ nesoudělná $\implies \phi(ab) = \phi(a)·\phi(b)$. Následně se vzorec dokáže aplikováním hodněkrát 2 na rozklad a jedničky nakonec.
+
+            1) Počet čísel soudělných s $p^k$ z množiny $[p^k]$ je $p^{k-1}$, tedy počet nesoudělných je $p^k - p^{k-1}$.
+
+            2) Funkce z důkazu čínské zbytkové věty je bijekce. Uvažujme zúžení $f$ na $\Phi_{a·b}$. Chceme: obraz zúžení je $\Phi_a \times \Phi_b$, tedy $\phi(ab) = |\Phi_{ab}| = |\Phi_a \times \Phi_b| = \phi(a)·\phi(b)$. Důkaz:
+
+            a) $f$ zobrazí $\Phi$ do $\Phi_a \times \Phi_b$, čili, že $\NSD(x, a·b) = 1$ implikuje $\NSD(x \mod a, a) = 1, \NSD(x \mod b, b) = 1$. b) $f$ zobrazí $\Phi_{a, b}$ na $\Phi_a \times \Phi_b$, čili pokud $\NSD(u, a) = 1$, $\NSD(v, b) = 1$, pak to jediné $x$, které se zobrazí na $(u, v)$, leží v $\Phi_{a, b}$.
+
+            $$ \NSD(x, ab) == 1 \Leftrightarrow \NSD(x, a) = 1 \land \NSD(x, b) = 1 \Leftrightarrow \NSD(x \mod a, a) = 1 \land \NSD(x \mod b, b) = 1. $$ 
+            a) je zleva doprava a b) je zprava doleva.
+        \end{dukaz}
+
+\section{Abstraktní dělitelnost}
+    \subsection{Dělitelnost a asociovanost}
+        \begin{definice}[Dělitelnost, asociovanost, inverz]
+            $R$ obor, $a, b \in R$. $b$ dělí $a$ v $R$, značíme $b|a$, pokud existuje $c \in R$ tak, že $a = b·c$.
+
+            $a, b$ jsou asociované v $R$, pokud $a|b$, $b|a$. Značíme $a||b$.
+
+            $a \in R$ je invertibilní, pokud existuje $b \in R$ tak, že $a·b = 1$ (značíme $b = a^{-1}$).
+        \end{definice}
+
+        \begin{pozorovani}
+            $a$ je invertibilní $\Leftrightarrow$ $a || 1$.
+
+            Relace $|$ je reflexivní $\land$ tranzitivní.
+        \end{pozorovani}
+
+        \begin{tvrzeni}
+            $R$ obor, $a, b \in R$. Pak $a||b$ $\Leftrightarrow$ $\exists$~invertibilní prvek $q \in R$ tak, že $a = bq$.
+
+            \begin{dukazin}
+                $\Leftarrow$: ($a = bq \implies b | a) \land (b = aq^{-1} \implies a | b)$.
+
+                $\implies$: $a = 0 \implies b = 0$. Ať $a ≠ 0$, $(b|a \implies a = bu) \land (a|b \implies b=av) \implies a = bu = auv$. Můžeme vykrátit $a ≠ 0$, tj. $1 = uv$, a $u, v$ jsou tedy invertibilní.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Kongruence]
+            $a, b, m \in R: a≡b \mod m$, pokud $m | a - b$.
+        \end{definice}
+
+        \begin{pozorovani}
+            Je to ekvivalence, zachovává se přičtením a odečtením, ale nemusí platit krácení.
+        \end{pozorovani}
+
+    \subsection{Kvadratická rozšíření ®Z}
+        \begin{definice}[Kvadratické rozšíření ®Z]
+            Kvadratické rozšíření ®Z je $®Z[\sqrt{s}] = \{a + b\sqrt{s}|a, b \in ®Z\}$, kde $s \in ®Z$, $s$ není druhá mocnina celého čísla.
+            \begin{dukazin}[Tvar $®Z\[sqrt{s}\]$]
+                Dokáže se uzavřenost.
+            \end{dukazin}
+        \end{definice}
+
+        \begin{definice}
+            Norma na oboru $®Z[\sqrt{s}]$ je zobrazení $\ni : ®Z[\sqrt{s}] \rightarrow ®N \cup \{0\}, a+b\sqrt{s} \mapsto |a^1 - b^2s|$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            $\forall u, v \in ®Z[\sqrt{s}]$ platí:
+            
+            \begin{enumerate}
+                \item $\ni(u·v) = \ni(u)·\ni(v)$,
+                \item $\ni(u) = 1 \Leftrightarrow u$ je invertovatelné.
+                \item Pokud $u|v$ a $v|u$, pak $\ni(u)|\ni(v)$ (víme z 1)) a $\ni(u)≠\ni(v)$.
+            \end{enumerate}
+
+            \begin{dukazin}
+                1) vezmu a ověřím. Nebo využiji, že $\ni(u) = |u·u'|$, kde $u' = a - b\sqrt{s}$, $u = a + b\sqrt{s}$. Zjistíme, že $(u·v)' = u'·v'$. Potom $|u·v·(u·v)'| = |u·u'|·|v·v'|$.
+
+                2) $\Leftarrow$: $u·u^{-1} = 1 \implies \ni(u·u^{-1}) = \ni(1) = 1$. A z 1) už plyne $\ni(u) = 1$. $\implies$: $\ni(u) = 1 \implies u·u' = 1 \implies u'$ je hledaná inverze.
+
+                3) $u = 0 \implies v = 0 \implies v|u$. Ať tedy $v=uc$ pro $c \in ®Z[\sqrt{s}]$. Ať $\ni(u) = \ni(v) = \ni(u·c) = \ni(u)·\ni(c) \implies \ni(c) = 1 \implies c$ je invert $\implies v||u$, čili $v|u$ spor.
+            \end{dukazin}
+        \end{tvrzeni}
+
+% 19. 3. 2021
+
+        \begin{upozorneni}
+            Norma nesplňuje trojúhelníkovou nerovnost!
+        \end{upozorneni}
+
+        \begin{tvrzeni}[Dělení Gaussových čísel se zbytkem]
+            $$ \forall \alpha, \beta \in ®Z[i], \beta ≠ 0\ \exists \gamma, \delta \in ®Z[i]: \alpha = \beta·\gamma + \delta \land \ni(\delta)<\ni(\beta). $$
+
+            \begin{dukazin}
+                $®Z[i] \subseteq ®C$, tudíž berme $\frac{\alpha}{\beta} \in ®C$. Zvolme $\gamma \in ®Z[i]$ jako nejbližší hodnotu k $\frac{\alpha}{\beta}$. Položme $\delta = \alpha - \beta·\gamma$. $\frac{\delta}{\beta} = \frac{\alpha}{\beta} - \gamma$, tj. $|\frac{\delta}{\beta}| ≤ \frac{\sqrt{2}}{2}$, tj. $\ni{\delta} ≤ \(\frac{\sqrt{2}}{2}\)^2|\beta|^2 < 1\ni(\beta)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Takováto definice dělení se zbytkem funguje ještě pro $®Z[\sqrt{-2}]$ a $®Z[\sqrt{2}]$, ale pro ostatní $®Z[\sqrt{s}]$ už nefunguje.
+        \end{poznamka}
+
+    \subsection{Největší společný dělitel}
+        \begin{definice}[Největší společný dělitel, nesoudělnost a největší společný násobek]
+            Pro $a, b \in R$, $R$ obor řekneme, že $c \in R$ je největší společný dělitel $a, b$, značíme $c = \NSD(a, b)$, pokud 1) $c|a \land c|b$ a 2) $\forall d|a, d|b: d|c$.
+
+            $a, b$ jsou nesoudělné, pokud $\NSD(a, b) = 1$.
+
+            Obdobně definujeme $\NSN(a, b) = c ≡ a|c \land b|c \land \forall d, a|d, b|d: c|d$.
+        \end{definice}
+
+        \begin{poznamka}
+            $\NSD$ nemusí existovat. Zároveň není jednoznačně určený. Ale je jednoznačně určený až na asociovanost.
+        \end{poznamka}
+
+    \subsection{Ireducibilní prvky a rozklady}
+        \begin{definice}[Vlastní dělitel a ireducibilní prvek]
+            $R$ obor. $a \in R \setminus \{0\}$. $b \in R$ je vlastní dělitel $a$, pokud $b|a$ a $b \not||1$ a $b\not||a$.
+
+            $a≠0$ je ireducibilní, pokud $a \not||1$ a nemá žádné vlastní dělitele.
+        \end{definice}
+
+        \begin{definice}[Ireducibilní rozklad]
+            Ireducibilní rozklad prvku $a$ je zápis $a || p_1^{k_1}p_2^{k_2}…p_n^{k_n}$, kde $p_1, …, p_n$ jsou ireducibilní prvky a $p_i \not|| p_j$, pro $i≠j$, a kde $k_1, …, k_n \in ®N$.
+
+            Řekneme, že $a$ má jednoznačný ireducibilní rozklad, pokud má právě 1 rozklad až na pořadí a asociovanost.
+        \end{definice}
+
+    \subsection{Prvočinitelé}
+        \begin{definice}[Prvočinitel]
+            $R$ obor, pak $p \in R, p\not||1$ je prvočinitel, pokud $\forall a, b \in R: p|a·b \implies p|a \lor p|b$.
+        \end{definice}
+
+        \begin{pozorovani}
+            $p$ je prvočinitel $\implies$ $p$ je ireducibilní.
+
+            \begin{dukazin}
+                Ať $p = ab$. Pak $p|a·b$ $\overset{\text{prvočinitel}}{\implies} p|a \lor p|b$. Zároveň zřejmě $a|p$ a $b|p$, tedy $p||a \implies b||1$ nebo $p||b \implies a||1$. Tedy $a, b$ jsou nevlastní dělitelé.
+            \end{dukazin}
+        \end{pozorovani}
+
+\section{Existence a jednoznačnost ireducibilního rozkladu}
+    \subsection{Gaussovské obory}
+        \begin{definice}[Gaussovský obor]
+            Obor $R$ je gaussovský, pokud $\forall a \in R, a≠0, a\not||1$, má jednoznačný ireducibilní rozklad.
+        \end{definice}
+
+        \begin{priklad}[Otevřený problém]
+            $®Z[\sqrt{s}]$ je gaussovský pro $∞$ mnoho $s$. (Čeká se, že ano.)
+        \end{priklad}
+
+        \begin{poznamka}[Rozšíření definice ireducibilního rozkladu]
+            $a||1$, pak řekneme, že ireducibilní rozklad $a$ je $a||1 = …^0$.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Vlastnosti gaussovských oborů]
+            $R$ je gaussovský obor a $a, b \in R$, $a, b ≠ 0$. Ať navíc je $a || p_1^{k_1}·…·p_n^{k_n}$ je ireducibilní rozklad. Pak $b|a \Leftrightarrow b || p_1^{l_1}·…·p_n^{l_n}$ (nemusí být rozklad, protože $l_i$ smí být 0), kde $\forall i: 0≤l_i≤k_i$.
+
+            \begin{dukazin}
+                $\Rightarrow$: Ať $b = rp_1^{l_1}·…·p_n^{l_n}$ a $a = q·p_1^{k_1}·…·p_n^{k_n}$, kde $r || 1 || q$. Chci: $b|a$, čili $\exists c: a=b·c$. $c = q·r^{-1}·p_1^{k_1-l_1}·…·p_n^{k_n - l_n}$.
+
+                $\implies$: $b|a \implies \exists c: a = b·c$. Ať $b||q_1^{s_1}·…·q_u^{s_u}$, $c || r_1^{t_1}·…·r_v^{t_v}$ jsou ireducibilní rozklady. Zkombinujeme na rozklad $b·c: B·C||q_1^{s'_1}·…·q_u^{s'_u}·r_{i_1}^{t_{i_1}}·…·r_{i_w}^{t_{i_w}}$ (vyfiltrujeme z rozkladu $c$ ty $r_i$, který jsou asociovány s nějakým $q_j$). Máme 2 rozklady $b·c = a$. Z jednoznačnosti rozkladů $q_i = p_{\pi(i)} \land s'_i = k_{\pi(i)} ≥ s_i$. Tudíž $b || p_{\pi(1)}^{s_1}·…·p_{\pi(n)}^{s_n}$, kde $s_i ≤ k_{\pi(i)}$ (a doplníme chybějící $p_j^0$).
+            \end{dukazin}
+        \end{tvrzeni}
 \end{document}

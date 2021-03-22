@@ -1,0 +1,102 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[1.1]
+    Dokažte, že v libovolném komplexním vektorovém prostoru ¦V se skalárním součinem $\<·,·\>$ platí (pro libovolné $¦u, ¦v \in ¦V$)
+    $$ \Re(\<¦u, ¦v\>) = \frac{1}{4}\(||¦u + ¦v||^2 - ||¦u - ¦v||^2\), $$ 
+    $$ \Im(\<¦u, ¦v\>) = \frac{1}{4}\(||¦u - i¦v||^2 - ||¦u + i¦v||^2\). $$
+
+    \begin{dukazin}
+        Jednoduše upravujeme podle definice skalárního součinu 8.15 (body SSS, SL1, SL2), pozorování 8.16 (body 2, 3) a definicí normy 8.27 (N)\footnote{Ještě potřebujeme
+            $$ \Re(a + bi) = \frac{1}{2}(a + bi + a - bi) = \frac{1}{2}(a + bi + \overline{a + bi}), $$
+            $$ \Im(a + bi) = \frac{i}{2}(a - bi - (a + bi)) = \frac{i}{2}(\overline{a + bi} - (a + bi)). $$}:
+            $$ \frac{1}{4}\(||¦u + ¦v||^2 - ||¦u - ¦v||^2\) \overset{\text{N}}{=} \frac{1}{4}\(\<¦u + ¦v, ¦u + ¦v\> - \<¦u - ¦v, ¦u - ¦v\>\) \overset{\text{SL2, 3}}{=} $$
+        $$ = \frac{1}{4}(\<¦u, ¦u\> + \<¦v, ¦v\> + \<¦u, ¦v\> + \<¦v, ¦u\> - \<¦u, ¦u\> - \<¦v, ¦v\> + \<¦u, ¦v\> + \<¦v, ¦u\>) \overset{\text{SSS}}{=} $$
+        $$ = \frac{1}{2}(\<¦u, ¦v\> + \overline{\<¦u, ¦v\>}) = \Re(\<¦u, ¦v\>), $$
+        
+        $$ \frac{1}{4}\(||¦u - i¦v||^2 - ||¦u + i¦v||^2\) \overset{\text{N}}{=} \frac{1}{4}\(\<¦u - i¦v, ¦u - i¦v\> - \<¦u + i¦v, ¦u + i¦v\>\) \overset{\text{SL2, 3, SL1, 2}}{=} $$
+        $$ = \frac{1}{4}(\<¦u, ¦u\> + \<¦v, ¦v\> - i\<¦u, ¦v\> + i\<¦v, ¦u\> - \<¦u, ¦u\> - \<¦v, ¦v\> - i\<¦u, ¦v\> + i\<¦v, ¦u\>) \overset{\text{SSS}}{=} $$
+        $$ = \frac{i}{2}(\overline{\<¦u, ¦v\>} - \<¦u, ¦v\>) = \Im(\<¦u, ¦v\>). $$
+    \end{dukazin}
+\end{priklad}
+
+\begin{priklad}[1.2]
+    Zobrazení $\<·,·\>: ®R^2 \times ®R^2 \rightarrow ®R$ je dáno vzorcem $\<¦u,¦v\> = ¦u^T A ¦v$, kde $A$ je reálná symetrická čtvercová matice $A = \(a_{ij}\)$ řádu 2. Dokažte, že $\<·,·\>$ je skalární součin na $®R^2$ právě tehdy, když platí $a_{11} > 0$ a $\det(A) > 0$.
+
+    \begin{dukazin}
+        Vizte následující příklad ($a_{11} = \det A_1, \det A = \det A_2$).
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[1.*]
+    Buď $A = (a_{ij})$ reálná symetrická matice řádu $n$. Pro $1 ≤ k ≤ n$ označme $A_k = (a_{ij})_{i,j≤k}$ matici řádu $k$, která vznikne z matice $A$ vynecháním posledních $n − k$ řádků a posledních $n − k$ sloupců. Ukažte, že matice $A$ určuje skalární součin na  $®R^n$ právě když $\det(A_k) > 0$ pro všechna $k \in \{1, 2, …, n\}$.
+
+    \begin{dukazin}
+        Taktéž použijeme definici 8.15. Z toho, že je matice reálná a symetrická (tedy hermitovská) a $¦u^TA¦v$ číslo, dostáváme SSS ($\forall ¦v, ¦u \in ®R^n$):
+        $$ \<¦u, ¦v\> = ¦u^TA¦v = \(¦u^TA¦v\)^T = ¦v^TA^T¦u = ¦v^TA¦u = \<¦v, ¦u\>. $$
+
+        Z vlastností násobení matic skalárem a násobení a sčítání matic mezi sebou dostáváme SL1 a SL2 ($\forall ¦u, ¦v, ¦w \in ®R^n, t \in ®R$):
+        $$ \<¦u, t¦v + ¦w\> = ¦u^TA(t¦v + ¦w) = t¦u^TA¦v + ¦u^TA¦w = t\<¦u, ¦v\> + \<¦u, ¦w\>. $$
+
+        Tedy to, co rozhoduje, jestli daná reálná symetrická matice bude skalární součin, je podmínka SP. Nejprve vyřešme situaci\footnote{$[n] = \{1, …, n\}$.} $\exists k_0 \in [n]: \det A_{k_0} = 0$. To, že je determinant nulový, znamená, že $A_{k_0}$ není regulární, tedy existuje nenulový vektor $\(x_1, …, x_{k_0}\)^T$ v jejím jádru. Pokud tento vektor doplníme nulami na vektor $¦x = \(x_1, …, x_{k_0}, 0, 0, …\)^T \in ®R^n$, vektor $A¦x$ má prvních $k_0$-členů nulových (z definice jádra a z toho, že díky 0 se sloupce $k_0 + 1$ a dále neprojeví do součinu). Tím pádem ale
+        $$ ¦x^T·(A¦x) = x_1·0 + x_2·0 + … + x_{k_0}·0 + 0·(A¦x)_{k_0+1} + … + 0·(A¦x)_n = 0. $$
+        Tudíž jsme našli vektor $¦x \in ®R^n \setminus \{¦o\}$, pro který je $¦x^TA¦x = 0$. To však nesplňuje druhou část podmínky SP, tedy matice $A$ neurčuje skalární součin.
+
+        Nyní tedy předpokládejme, že $\forall k \in [n]: \det A_k ≠ 0$. Můžeme si všimnout, že členy matice
+        $$ A = I·A·I = I^T·A·I = \(e_1|…|e_n\)^T·A·(e_1|…|e_n) = \(e_1^T|…|e_n^T\)·A·(e_1|…|e_n), $$
+        $$ \text{ kde } e_i = (0, …, 0, 1_i, 0, …, 0)^T, $$
+        určují $¦u^TA¦v$, kde ¦u, ¦v jsou příslušné bázové vektory. Nejprve nechť $\exists k_- \in [n]: \det A_k < 0$. Zvolme nejmenší takové $k_-$. Potom $\forall k \in [k_- - 1]: \det A_k > 0$, tedy můžeme použít záporné lemmátko níže, takže existuje posloupnost symetrických úprav tak, že $a'_{k_-, k_-} < 0$. Podle sčítacího lemmátka (jelikož už víme, že $¦u^TA¦v$ splňuje SSS, SL1, SL2) má ale existovat $¦x \in ®R^n$ tak, že $a'_{k_-, k_-} = ¦x^TA¦x < 0$. Tedy takové $A$ také nesplňuje podmínku SP, tentokrát první část.
+
+        Zbývá dokázat, že pokud reálná symetrická matice splňuje $\det(A_k) > 0$, $\forall k \in [n]$, pak už splňuje SP. To uděláme jednoduše tak, že libovolný nenulový\footnote{Pro nulový vektor je SP splněna triviálně pro každou matici, jelikož $¦o^TA¦o = 0$.} vektor $¦x \in ®R^n$ zapíšeme ve tvaru $¦x = x_1·e_1 + … x_k·e_k + 0·e_{k+1} + … + 0·e_n$, kde $x_k ≠ 0$. Následně sloupec a řádek $k$ matice $A$ přenásobíme $x_k$ a přičteme k nim $x_1$krát první řádek a sloupec, $x_2$krát druhý, …, $x_{k-1}$krát $k-1$-tý. Tím podle sčítacího lemmátka dostaneme v $a'_{k, k}$ výsledek
+        $$ (x_1·e_1 + … x_k·e_k)^TA(x_1·e_1 + … x_k·e_k) = ¦x^TA¦x. $$
+        Přenásobením a přičtením jsme rozhodně nezměnili $A_{k-1}$ a přenásobením jsme sice vynásobili $\det A_k$ číslem $(x_k)^2$, ale to je kladné číslo, tedy znamínko $\det A_k$ se nezměnilo a přičítáním řádků a sloupců k jiným se determinant nemění. Tedy můžeme použít kladné lemmátko na $A'_k$ a dostaneme, že $0 < a'_{k, k} = ¦x^TA¦x$. Tím jsme dokázali SP.
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{lemma}[Sčítací lemmátko]
+    Mějme bilineární symetrickou (tj. splňující SSS, SL1 a SL2) formu $\<·, ·\>$ na $®R^n$, vektory $¦v_1, …, ¦v_n$ a reálnou matici $B = (b_{i, j})$ řádu $n$, kde $b_{i, j} = \<¦v_i, ¦v_j\>$. Potom přičtením $x$ násobku řádku $\alpha$ k řádku $\beta$ a $x$ násobku sloupce $\alpha$ k sloupci $\beta$ dostaneme matici $B' = (b'_{i, j})$, kde $b'_{i, j} = \<¦v'_i, ¦v'_j\>$, kde $¦v'_l = ¦v_l + x·¦v_\alpha$, pokud $l=\beta$, a $¦v'_l = ¦v_l$ jinak.
+
+    Speciálně pro volbu $\alpha = \beta$ a $x = y - 1$ dostáváme matici $B' = (b'_{i, j})$, kde $b'_{i, j} = \<¦v'_i, ¦v'_j\>$, kde $¦v'_l = y·¦v_l$, pokud $l=\beta$, a $¦v'_l = ¦v_l$ jinak.
+
+    \begin{dukazin}
+        Přičtením $x$ násobku řádku $\alpha$ k řádku $\beta$ se změní pouze řádek $\beta$, a to ($i \in [n]$)
+        $$ b^*_{\beta, i} = b_{\beta, i} + x·b_{\alpha, i} = \<¦v_\beta, ¦v_i\> + x·\<¦v_\alpha, ¦v_i\> = \<¦v_\beta + x·¦v_\alpha, ¦v_i\> = \<¦v'_\beta, ¦v_i\>. $$
+        (Pro $i ≠ \beta$ již $b^*_{\beta, i} = b'_{\beta, i}$, jelikož $¦v_i = ¦v'_i$.) Obdobně následně přičteme sloupec. Jediný problém je prvek $b'_{\beta, \beta}$, ale ten je zřejmě
+        $$ b'_{\beta, \beta} = b^*_{\beta, \beta} + x·b^*_{\beta, \alpha} = \<¦v'_\beta, ¦v_\beta\> + x·\<¦v'_\beta, ¦v_\alpha\> = \<¦v'_\beta, ¦v_\beta + x¦v_\alpha\> = \<¦v'_\beta, ¦v'_\beta\>. $$
+
+    \end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Kladné lemmátko]
+    Nechť $A = (a_{i, j})$ je reálná symetrická matice řádu $n$, pro kterou platí\footnote{$A_k$ značí podmatici $A$ jako v příkladu výše.} $\forall k \in [n]: \det A_k > 0$, potom $A$ má na diagonále kladné členy.
+
+    \begin{dukazin}[Indukcí]
+        Pro $\mu = 1$ je triviálně $a_{1, 1} = \det A_1 > 0$. Tedy $a_{1, 1}$ je kladné a vynásobením prvního řádku a prvního sloupce $\frac{1}{\sqrt{a_{1, 1}}}$ dostaneme jednotkovou matici bez toho, abychom změnili znaménka determinantů matic $A_k, k \in [n]$ (násobíme řádek / sloupec, tedy i determinant, kladným číslem), a aniž bychom změnili hodnoty $a_{k, k}, k \in [n] \setminus \{1\}$.
+
+        Nechť nyní $\mu \in [n] \setminus \{1\}$ a pro $\mu - 1$ lze matici $A_{\mu-1}$ symetrickými úpravami na $A$, které nezmění determinanty $A_k$ a hodnoty $a_{k, k}, n ≥ k ≥ \mu$, převést do jednotkové matice. Proveďme tyto úpravy.
+
+        Označme novou matici $A'_\mu = (a'_{i, j})$. Víme tedy, že $A'_{\mu-1} = I$, $\det A'_\mu > 1$, $A'_\mu$ je symetrická a $a'_{\mu, \mu} = a_{\mu, \mu}$. Zároveň na první pohled (jiné členy z definice determinantu vyjdou 0):
+        $$ 0 < \det A'_\mu = a'_{\mu, \mu}·1·…·1 + \sum_{i=1}^{\mu-1} \sgn((i, \mu))·a'_{\mu, i}·1·…·1·a'_{i, \mu} = $$
+        $$ a_{\mu, \mu} - \sum_{i=1}^{\mu-1} \(a'_{\mu, i}\)^2 ≤ a_{\mu, \mu}. $$
+        Tudíž opravdu $a_{\mu, \mu} > 0$.
+
+        Nyní už můžeme přičtením správných násobků řádků a sloupců (symetricky) $k < \mu$ k sloupci a řádku $\mu$ vynulovat všechny prvky $a'_{\mu, k}$ a $a'_{k, \mu}$, kde $k < \mu$. To je přičítání násobků řádků / sloupců k jinému řádku / sloupci, tedy to nemění determinant. Navíc to mění pouze prvky, které mají alespoň jeden index $< \mu$, takže i neměnnost $a_{k, k}, k > \mu$ zůstává zachována. Následně pak můžeme $\mu$-tý sloupec a $\mu$-tý řádek vynásobit $\frac{1}{\sqrt{a''_{\mu, \mu}}}$ (z předchozího přičítání / odčítání nám vyjde nový prvek na pozici $\mu, \mu$, my však už víme, že musí být kladný), tedy převést matici $A_\mu$ do jednotkové a nezměnit znaménko determinantů vyšších matic, ani další prvky na diagonále.
+    \end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Záporné lemmátko]
+    Nechť $A = (a_{i, j})$ je reálná symetrická matice řádu $k_-$, pro kterou platí\footnote{$A_k$ značí podmatici $A$ jako v příkladu výše.} $\forall k \in [k_- - 1]: \det A_k > 0$ a $\det A < 0$. Potom existuje posloupnost symetrických úprav (řádková + ta samá sloupcová úprava) tak, že $a_{k_-, k_-} < 0$.
+
+    \begin{dukazin}
+        Stejně jako v minulém lemma upravíme matici $A_{k_- - 1}$ do jednotkové matice symetrickými úpravami na $A$. Následně odečteme $\forall i \in [k_- - 1]: a_{k_-, i}$krát $i$-tý řádek od $k_-$-tého a $i$-tý sloupec od $k_-$-tého. Tím vynulujeme všechny prvky kromě těch na diagonále a nezměníme $A_{k_- - 1}$ ani znaménko determinantu $\det A$. Tedy:
+        $$ 0 > \det A = \prod_{i = 1}^{k_-} a_{i, i} = 1·…·1·a_{k_-, k_-} = a_{k_-, k_-}. $$ 
+    \end{dukazin}
+\end{lemma}
+
+\end{document}

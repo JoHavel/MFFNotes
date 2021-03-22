@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[medián]
+        Je dán „komprimovaný“ seznam čísel. Nalezněte jejich medián (prvek na pozici $m/2$ v seřazené posloupnosti všech $m$ prvků). Komprimace spočívá v tom, že místo čísel dostáváme dvojice čísel, kde první udává hodnotu a druhé počet výskytů dané hodnoty v nekomprimované posloupnosti (stejná hodnota může být ve více dvojicích, dokonce ani není zakázáno její použití v ihned následující dvojici). Můžete využívat algoritmus na nalezení mediánu v nekomprimovaném případě jako podprogram (a nemusíte o něm dokazovat, že pro $n$ prvků pracuje v čase $O(n)$). 
+
+        \begin{reseni}
+            Přidáme si do seznamu 2 prvky s hodnotami $± ∞$ a s počtem 0.
+
+            Následně zavoláme algoritmus na nalezení mediánu mezi hodnotami (počty ignorujeme). Následně spočítáme, kolik (rozbalených) čísel je větších než tento medián, kolik je stejných a kolik je menších. Z toho jednoznačně poznáme, kde leží skutečný medián. Pokud leží mezi stejnými, tak jsme vyhráli, pokud v menších, tak všechny stejné a větší (kterých (teď již zase nerozbalených) je z definice mediánu alespoň polovina) zahodíme, jen $+∞$ necháme právě s počtem stejných + větších. Pokud ve větších, tak analogicky. A zavoláme znovu tento odstavec.
+
+            To nám dává rekurzi $t(n) ≤ O(n) + t(n/2)$, tedy čas $O(n)$, jelikož hledání mediánu už ze zadání trvá $O(n)$, spočítání, kolik je menších a kolik větších, zřejmě také a voláme se jednou na poloviční velikost. To, že nám zůstávají prvky $±∞$ navíc nám nevadí, protože přidají pouze konstantní počet operací, tudíž se 'ztratí' v $O(n)$.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

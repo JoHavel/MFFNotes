@@ -63,5 +63,163 @@
         \end{dukazin}
     \end{veta}
 
+% 9. 3. 2021
+
+    \begin{definice}[Kongruence, konečný index]
+        Mějme konečnou abecedu $\Sigma$ a relaci ekvivalence $\sim$ na $\Sigma^*$. Potom $\sim$ je pravá kongruence, jestliže $\forall u, v, w \in \Sigma^*: u \sim v \implies uw \sim vw$. $\sim$ je konečného indexu, jestliže rozklad $\Sigma^* / \sim$ má konečný počet tříd.
+
+        Třídu kongruence $\sim$ obsahující slovo $u$ značíme $[u]_\sim$, resp. $[u]$.
+    \end{definice}
+
+    \begin{veta}[Myhill-Nerodova věta]
+        Nechť $L$ je jazyk nad konečnou abecedou $\Sigma$. Potom $L$ je rozpoznatelný konečným automatem právě tehdy, když existuje pravá kongruence $\sim$ konečného indexu nad $\Sigma^*$ tak, že $L$ je sjednocením jistých tříd rozkladu $\Sigma^* / \sim$.
+
+        \begin{dukazin}
+            $\implies$ definujeme $u \sim v ≡ \delta^*(q_0, u) = \delta^*(q_0, v)$. Zřejmě je to ekvivalence. Je to pravá kongruence (z definice $\delta^*$) a má konečný index (jelikož automat má konečně mnoho stavů).
+            $$ L = \{w|\delta^*(q_0, w) \in F\} = \bigcup_{q \in F} [w | \delta^*(q_0, w) = q]_\sim. $$ 
+
+            $\Rightarrow$ abeceda automatu bude $\Sigma$. Stavy budou třídy rozkladu $\Sigma^* / \sim$. Počáteční stav je $q_0 = [\lambda]_\sim$. Koncové stavy $F = \{c_1, …, c_n\}$, kde $L = \bigcup_{i \in [n]} c_i$. Přechodová funkce $\delta([u], x) = [ux]$ (korektní z definice pravé kongruence).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{priklad}
+        $L = \{u | u = a^+b^ic^i \land u = b^ic^j \land i, j \in ®N_0\}$ není regulární, ale vždy lze pumpovat první písmeno.
+
+        \begin{dukazin}[Sporem]
+            Předpokládejme, že $L$ je regulární. Pak existuje pravá kongruence $\sim$ konečného indexu $m$, $L$ je sjednocení některých tříd $\Sigma^* / \sim$. Vezmeme množinu slov $S = \{ab, abb, abbb, …, ab^{m+1}\}$. Existují dvě slova (Dirichletův princip) $i ≠ j$, která padnou do stejné třídy. $ab^i \sim ab^j \Leftrightarrow ab^ic^i \sim ab^jc^i$, ale $ab^ic^i \in L \land ab^jc^i \notin L$. \lightning.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{definice}[Dosažitelné stavy]
+        Mějme DFA $A = (Q, \Sigma, \delta, q_0, F)$ a $q \in Q$. Řekneme, že stav $q$ je dosažitelný, jestliže existuje $w \in \Sigma^*$ takové, že $\delta^*(q_0, w) = q$.
+
+        \begin{poznamka}[Hledání dosažitelných stavů]
+            'Hloupé' prohledávání do šířky.
+        \end{poznamka}
+    \end{definice}
+
+    \begin{definice}[Automatový homomorfismus]
+        Nechť $A_1, A_2$ jsou DFA se standardním označením a shodnou abecedou. Řekněme, že zobrazení $h: Q_1 \rightarrow Q_2$ je automatovým homomorfismem, jestliže $h({q_1}_0) = {q_2}_0$, $h(\delta_1(q, x)) = \delta_2(h(q), x)$ a $q \in F_1 \Leftrightarrow h(q) \in F_2$.
+    \end{definice}
+
+    \begin{definice}[Ekvivalence automatů]
+        Dva konečné automaty nad stejnou abecedou jsou ekvivalentní, jestliže rozpoznávají stejný jazyk.
+    \end{definice}
+
+    \begin{veta}[O ekvivalenci automatů]
+        Existuje-li homomorfismus konečných automatů, pak jsou tyto automaty ekvivalentní.
+
+        \begin{dukazin}
+            Triviální.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Ekvivalence stavů]
+        Dva stavy jsou ekvivalentní, pokud pro všechna slova dojdeme z obou stavů buď do nepřijímajících, nebo do přijímajících stavů. Pokud dva stavy nejsou ekvivalentní, říkáme, že jsou rozlišitelné.
+    \end{definice}
+
+    \begin{poznamka}[Algoritmus pro nalezení eqvivalentních stavů]
+        Vytvořím tabulku dvojic stavů a zaškrtám zřejmě rozlišitelné dvojice (přijímající + nepřijímající). Potom pro každou dvojici zkusím všechna písmena a pokud nějaké z nich posune ze stavů do rozlišitelné, pak i tato dvojice je rozlišitelná. Opakuji, dokud se něco mění.
+    \end{poznamka}
+
+    \begin{definice}[Redukovaný DFA, redukt]
+        DFA je redukovaný, pokud nemá nedosažitelné stavy a žádné dva stavy nejsou ekvivalentní. DFA $B$ je reduktem $A$, jestliže $B$ je redukovaný a $B$ a $A$ jsou ekvivalentní.
+    \end{definice}
+
+% 16. 3. 2021
+
+    \begin{poznamka}[Algoritmus na testování ekvivalence reg. jazyků]
+        Najdeme jeden a druhý DFA rozpoznávající jeden a druhý jazyk. BÚNO jsou stavy disjunktní. Vytvoříme DFA sjednocením (za počáteční stav vezmeme libovolný z 2 počátečních stavů našich DFA). Potom jsou jazyky ekvivalentní, když jsou ekvivalentní počáteční stavy našich DFA.
+    \end{poznamka}
+    
+\section{NFA}
+
+    \begin{definice}[Nederministický konečný automat (NFA)]
+        NFA je DFA, kde přechodová funkce je funkce do potenční množiny stavů. A počáteční stav může být také množina, ale existují obě alternativy.
+    \end{definice}
+
+    \begin{definice}[Rozšířená přechodová funkce]
+        Pro přechodovou funkci $\delta$ NFA je rozšířená přechodová funkce $\delta^*: Q\times \Sigma^* \rightarrow ©P(Q)$ definovaná indukcí: $\delta^*(q, \lambda) = \{q\}$ a $\delta^*(q, wx) = \bigcup_{p \in \delta^*(q, w)}\delta(p, x)$.
+    \end{definice}
+
+    \begin{definice}[Jazyk přijímaný NFA]
+        Mějme NFA $A = (Q, \Sigma, \delta, S_0, F)$, pak $L(A) = \{w|\exists q_0 \in S_0:\delta^*(q_0, w)\cap F ≠ \O\}$ je jazyk přijímaný automatem $A$.
+    \end{definice}
+
+    \begin{poznamka}[Algoritmus: podmnožinová konstrukce]
+        Začínáme s NFA $N = (Q_N, \Sigma, \delta_N, S_0, F_N)$. Cílem je popis deterministického DFA $D = (Q_D, \Sigma, \delta_D, S_0, F_D)$, pro který $L(N) = L(D)$.
+
+        $Q_D$ je množina podmnožin $Q_N$ ($Q_D = ©P(Q_n)$). Počáteční stav DFA označený $S_0$ je prvek $Q_D$. $F_D = \{S|S \in ©P(Q_n) \land S \cap F_N ≠ \O\}$. Přechodová funkce je ($S \in Q_D$, $a \in \Sigma$):
+        $$ \delta_D(S, a) = \bigcup_{p \in S} \delta_N(p, a). $$
+
+        \begin{dukazin}
+            Triviální, indukcí dokážeme shodné chování $d*$.
+        \end{dukazin}
+    \end{poznamka}
+
+    \begin{definice}[$\lambda$-NFA]
+        $\lambda$-NFA (NFA s $\lambda$ přechody) je NFA, kde $\delta$ je definována pro $Q \times (\Sigma \cup \{\lambda\})$.
+    \end{definice}
+
+    \begin{definice}[$\lambda$-uzávěr]
+        Pro $q \in Q$ definujeme $\lambda$-uzávěr stavu $q$ (v těchto poznámkách značeno $\overline{q}$) rekurzivně: $q \in \overline{q}$. Je-li $p \in \overline{q}$ a $r \in \delta(p, \lambda)$, pak i $r \in \overline{q}$.
+
+        Pro $S \subseteq Q$ definujeme $\overline{S} = \bigcup_{q \in S} \overline{q}$.
+    \end{definice}
+
+    \begin{definice}[Rozšířená přechodová funkce]
+        $\delta^*(q, \lambda) = \overline{q}$. $\delta^*(q, wa) = \overline{\bigcup_{\delta^*(q, w)} \delta(p, a)}$.
+    \end{definice}
+
+    \begin{veta}
+        Jazyk je rozpoznatelný $\lambda$-NFA $\Leftrightarrow$ $L$ regulární.
+
+        \begin{dukazin}
+            $\Leftarrow$: triviální. $\implies$: přes podmnožinovou konstrukci.
+        \end{dukazin}
+    \end{veta}
+
+\section{Množinové operace nad jazyky}
+    \begin{definice}[Množinové operace nad jazyky]
+        Mějme jazyky $L, M$. Definujeme následující operace:
+
+        \begin{itemize}
+            \item binární (konečné) sjednocení $L \cup M = \{w|w \in L \lor w \in M\}$,
+            \item průnik $L \cap M = \{w|w \in L \land w \in M\}$,
+            \item rozdíl $L - M = \{w | w \in L \land w \notin M\}$,
+            \item doplněk (komplement) $\overline{L} = -L = \{w|w\notin L\} = \Sigma^* - L$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{veta}[Uzavřenost na množinové operace]
+        Regulární jazyky jsou uzavřené na 4 operace výše.
+
+        \begin{dukazin}
+            Doplněk: doplníme všechny přechody (doplníme FAIL stav). Potom prohodíme přijímající a nepřijímající stavy.
+
+            Průnik sjednoceni a rozdíl přes tzv. součinový automat $(Q_1 \times Q_2, \Sigma, \delta', (q_0, q_1), F)$, kde $\delta'((p_1, p_2), x) = (\delta_1(p_1, x), \delta_2(p_2, x))$ a $F$ je podle toho, zda řešíme průnik, sjednocení nebo rozdíl, $F_1 \times F_2$, $(F_1\times Q_2)\cup(Q_1 \times F_2)$ nebo (po doplnění) $F_1 \times (Q_2 - F_2)$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Řetězcové operace nad jazyky]
+        Mějme jazyky $L, M$. Definujeme následující operace:
+
+        \begin{itemize}
+            \item zřetězení $L.M = \{uv|u \in L \land v \in M\}$,
+            \item mocninu $L^0 = \{\lambda\}, L^{i+1} = L^i.L$,
+            \item pozitivní iteraci $L^+ = \bigcup_{i ≥ 1}L^i$,
+            \item obecnou iteraci $L^* = \bigcup_i L^i$,
+            \item otočení (zrcadlový obraz, reverze) $L^R = \{u^R|u \in L\}$, $(x_1x_2…x_n)^R = x_n…x_2x_1$,
+            \item levý kvocient $M\setminus L = \{v|uv \in L \land u \in M\}$,
+            \item levá derivace $\partial_w L = \{w\}\setminus L$,
+            \item pravý kvocient $L/M = \{u|uv \in L \land v \in M\}$,
+            \item pravá derivace $\partial^R_w L = L/\{w\}$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{veta}[Uzavřenost regulárních jazyků na řetězcové operace]
+        Regulární jazyky jsou uzavřené na 10 operací výše.
+    \end{veta}
+
 
 \end{document}

@@ -55,6 +55,162 @@
         \begin{enumerate}
             \item Axiom existence množiny: $(\exists x)(x=x)$.
             \item Axiom extenzionality: $(\forall z)(z \in x \Leftrightarrow z \in y) \implies x=y$.
+
+% 9. 3. 2021
+
+            \item Schéma axiomů vydělení: je-li $\phi(x)$ formule, která neobsahuje volnou proměnnou $z$, potom $(\forall a)(\exists z)(\forall x)(x \in z \Leftrightarrow (x \in a \land \phi(x)))$ je axiom.
+            \item Axiom dvojice: $(\forall a)(\forall b)(\exists z)(\forall x)(x \in z \Leftrightarrow (x = a \lor x = b))$.
+            \item Axiom sumy: $(\forall a)(\exists z)(\forall x)(x \in z \Leftrightarrow (\exists y)(x \in y \land y \in a))$.
+            \item Axiom potence: $(\forall a)(\exists z)(\forall x)(x \in z \Leftrightarrow x \subseteq a)$.
+            \item Schéma axiomů nahrazení\footnote{Slogan: Obraz množiny funkcí je množina.} Je-li $\psi(u, v)$ formule s volnými proměnnými $u, v$, jež nemá volné proměnné $w, z$, pak
+                    $$ (\forall u)(\forall v)(\forall w)((\psi(u, v) \land \psi(u, w))\implies v=w) \implies (\forall a)(\exists z)(\forall v)(v \in z \Leftrightarrow (\exists u)(u \in a \land \psi(u, v))) $$
+                    je axiom.
+            \item Axiom fundovanosti (regularity): $(\forall a)(a ≠ \O \implies (\exists x)(x \in a \land x \cap a = \O))$.
         \end{enumerate}
+
+        Později ještě:
+        \begin{itemize}
+            \item Axiom nekonečna
+            \item Axiom výběru
+        \end{itemize}
     \end{definice}
+
+    \begin{definice}[Značení]
+        $\{x | x \in a \land \phi(x)\}$, zkráceně $\{x \in a | \phi(x)\}$ je množina z axiomů vydělení.
+    \end{definice}
+
+    \begin{definice}[Průnik, množinový rozdíl, prázdná množina]
+        $a \cap b = \{x | x \in a \land x \in b\}$.
+
+        $a \setminus b = a - b = \{x | x \in a \land x \notin b\}$.
+
+        $\O = \{x | x \in a \land x ≠ x\}$. ($\O$ je díky prvním třem axiomům dobře definována.)
+    \end{definice}
+
+    \begin{definice}[Neuspořádaná a uspořádaná dvojice]
+        $\{a, b\}$ je neuspořádaná dvojice, $\{a\}$ znamená $\{a, a\}$.
+
+        $(a, b) = <a, b> = \{\{a\}, \{a, b\}\}$ je uspořádaná dvojice.
+    \end{definice}
+
+    \begin{lemma}
+        $(x, y) = (u, v) \Leftrightarrow (x = u \land y = v)$.
+
+        \begin{dukazin}
+            $\Leftarrow$ $x=u$, pak $\{x\} = \{u\}$ z axiomu extenzionality, stejně tak $\{x, y\} = \{u, v\}$, a tedy $\{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}$.
+
+            $\implies$ $\{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}$ pak $\{x\} = \{u\}$ nebo $\{x\} = \{u, v\}$, každopádně $x = u$. Nyní $\{u, v\} = \{x\}$ nebo $\{u, v\} = \{x, y\}$ tedy $v = x$ nebo $v = y$. Pokud $v = y$, tak jsme skončili, pokud $v = x$ pak $v = u = x = y$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Potenční množina]
+        $©P(a) = \{x | x \subseteq a\}$ je potenční množina (potence) $a$ (z axiomu potence).
+    \end{definice}
+
+    \begin{definice}[Uspořádaná $n$-tice]
+        Jsou-li $a_1, a_2, …, a_n$ množiny, definujeme uspořádanou $n$-tici $(a_1, a_2, …, a_n) = <…>$ následovně: $(a_1) = a_1$, je-li definovaná $(a_1, …, a_k)$, pak $(a_1, …, a_k, a_{k+1}) = ((a_1, a_2, …, a_k), a_{k+1})$.
+    \end{definice}
+
+    \begin{lemma}
+        $(a_1, a_2, …, a_n) = (b_1, b_2, …, b_n) \Leftrightarrow (a_1 = b_1 \land a_2 = b_2 \land … \land a_n = b_n)$.
+
+        \begin{dukazin}
+            Domácí cvičení.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Značení]
+        $$ \bigcup a = \{x | (\exists y)(x \in y \land y \in a\}. $$ 
+        
+        \begin{definicein}
+            Pro $a = \{b, c\}$ definujeme $b \cup c = \bigcup a$.
+        \end{definicein}
+    \end{definice}
+
+    \begin{definice}[Neuspořádaná $n$-tice]
+            Neuspořádanou $n$-tici $\{a_1, …, a_n\}$ ($n$-prvkovou množinu) definujeme rekurzivně: je-li definováno $\{a_1, …, a_k\}$, pak $\{a_1, …, a_k, a_{k+1}\} = \{a_1, …, a_k\} \cup \{a_{k+1}\}$.
+    \end{definice}
+
+% 16. 3. 2021
+
+    \begin{poznamka}
+        Axiom nahrazení se využívá v: transfinitní rekurzi, definici $\omega + \omega$, větě o typu dobrého uspořádání, Zornově lemmatu (tj. axiom výběru).
+    \end{poznamka}
+
+    \begin{priklad}
+        Ukažte, že axiom fundovanosti zakazuje existenci konečných cyklů relace $\in$ (tj. takových množin $y$, pro které $y \in . \in … \in . \in y$).
+
+        \begin{dusledekin}
+            Všechny množiny lze vygenerovat z $\O$ pomocí operací $\bigcup$ a $©P$ (zhruba).
+        \end{dusledekin}
+    \end{priklad}
+
+    \subsection{Třídy}
+        \begin{definice}
+            Nechť $\phi(x)$ je formule, pak $\{x, \phi(x)\}$ (čteme třída všech $x$, pro které platí $\phi(x)$), tzv. třídový term, se nazývá třída (určená formulí $x$).
+        \end{definice}
+
+        \begin{dusledek}
+            Pokud $\phi(x)$ je tvaru $x \in a \land \phi(x)$, pak je $\{x, \phi(A)\}$ množina z axiomu vydělení. Obdobně pro axiom dvojice, sumy, …
+        \end{dusledek}
+
+        \begin{poznamka}
+            Je-li $y$ množina, pak $y$ má stejné prvky jako třída ${x, x \in y \land x = x}$.
+        \end{poznamka}
+
+        \begin{poznamka}[Vlastní třídy]
+            Existují i třídy (tzv. vlastní), které nejsou množiny (např. třída všech množin).
+        \end{poznamka}
+
+        \begin{definice}[Rozšíření jazyka]
+            Ve formulích na místech volných proměnných připustíme i Třídové termy a proměnné pro třídy (psané velkými písmeny). (Avšak je nebude možné kvantifikovat!)
+        \end{definice}
+
+        \begin{definice}[Eliminace (nahrazování) třídových termů]
+            $x, y, z, X, Y$ proměnné (3 množinové + 3 třídové), $\phi(x)$, $\psi(y)$ formule základního jazyka, $X$ zastupuje $\{x, \phi(x)\}$ a $Y$ $\{y, \phi(y)\}$.
+            $$ z \in X \text{ (schéma formulí pro obecné $X$) zastupuje } z \in \{x, \phi\} \text{ nahradíme } \phi(z). $$
+            $$ z = \{X\} \text{ zastupuje } z = \{x, \phi(x)\} \text{ nahradíme } (\forall u)(u \in z \Leftrightarrow \phi(u)). $$
+            $$ X \in Y \text{ zastupuje } \{x, \phi(x)\} \in \{y, \phi(y)\} \text{ nahradíme } (\exists u)(u = \{x, \phi(x)\}) \land u \in \{y, \psi(y)\}. $$ 
+            $$ X \in y \text{ analogicky předchozí.} $$
+            $$ X = Y … … … … (\forall u)(\phi(u) \Leftrightarrow \psi(u)). $$ 
+        \end{definice}
+
+        \begin{poznamka}
+            Třídy s rozšířenou formulí nepřináší díky eliminaci nic nového.
+        \end{poznamka}
+
+        \begin{definice}[Třídové operace]
+            $A \cap B$ je $\{x, x \in A \land x \in B\}$, $A \cup B$ je $\{x, x \in A \lor B\}$, $A \setminus B = A - B = \{x, x \in A \land x \notin B\}$.
+        \end{definice}
+
+        \begin{definice}[Univerzální třída, doplněk]
+            $\{x, x = x\}$ je tzv. univerzální třída a značí se $V$.
+
+            Buď $A$ třída, pak (absolutní) doplněk $A$ je $V - A$, který se značí $-A$.
+        \end{definice}
+
+        \begin{definice}[Inkluze]
+            $A \subseteq B$ ($A \subset B$) značí „$A$ je (vlastní) částí (= podtřídou) $B$“.
+        \end{definice}
+
+        \begin{definice}[Suma a průnik]
+            $\bigcup A$ značící sumu třídy $A$ je třída $\{x, (\exists a)(a \in A \land x \in a)\}$. $\bigcap A$ značící průnik třídy $A$ je třída $\{x, (\forall a)(a \in A \rightarrow x \in a)\}$.
+        \end{definice}
+
+        \begin{lemma}
+            $V$ není množina.
+
+            \begin{dukazin}
+                Cvičení.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}
+            Je-li $A$ třída, $a$ množina, pak $a \cap A$ je množina.
+
+            \begin{dukazin}
+                V podstatě axiom vydělení.
+            \end{dukazin}
+        \end{lemma}
+
 \end{document}

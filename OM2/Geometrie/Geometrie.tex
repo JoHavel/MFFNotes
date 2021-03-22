@@ -14,4 +14,52 @@
 % 2. 3. 2021
     Podobný začátek jako Analýza na varietách (AnVar).
 
+% 5. 3. 2021
+    \begin{definice}[Difeomorfismus]
+        Standardně.
+    \end{definice}
+
+    \begin{veta}[Věta o lokálním difeomorfismu]
+        Pokud je Jakobián nenulový, pak existuje difeomorfní okolí.
+    \end{veta}
+
+    \begin{definice}[Hladký bod hranice]
+        Nechť $\Omega \subseteq ®R^n$ je otevřená podmnožina. Označme symbolem $®H^n$ otevřený podprostor. Řekněme, že bod $a \in H(\Omega) = \overline{\Omega} \setminus \Omega$ je hladký bod hranice, pokud existuje okolí $U$ bodu $a$ a difeomorfismus $\Phi$ na? $U$ takový, že
+        $$ \Phi(\Omega \cap U) = \Phi(U)\cap ®H^n. $$ 
+        (Narovnání hranice pomocí difeomorfismu.)
+
+        Množinu všech hladkých bodů hranice značíme $H^*(\Omega)$.
+    \end{definice}
+
+    \begin{definice}[Vnější algebra vektorového prostoru]
+        Nechť ¦V je vektorový prostor nad reálnými čísly a $\{e_1, …, e_n\}$ je jeho pevně zvolená báze. Vnější algebra $\Lambda^*(¦V)$ vektorového prostoru ¦V je definována jako algebra nad tělesem reálných čísel, jejíž báze je množina
+        $$ \{e_I | I \subseteq \{1, … n\}\}. $$
+        A prvky báze splňují
+        $$ e_I \wedge e_J := \begin{cases} 0 & I \cap J ≠ \O \\ \sgn\binom{I, J}{I \cup J} e_{I \cup J} \end{cases}. $$
+
+        Vzhledem k bilinearitě násobení v algebře je tímto výrazem násobení vektorů již plně definováno.
+    \end{definice}
+
+    \begin{poznamka}
+        $e_\O$ je podle definice jednotka.
+
+        $\Lambda^k(¦V)$, což je lineární obal bází $\Lambda^*(¦V)$ velikosti $k$, se nazývá $k$-tá vnější algebra a její prvky jsou $k$-vektory.
+    \end{poznamka}
+
+    \begin{veta}
+        Pro vektorový prostor ¦V s bází $e_1, …, e_n$ a pro libovolná $k, l \in \{1, …, n\}$.
+        \begin{enumerate}
+            \item $\dim \Lambda^k(¦V) = \binom{n}{k}, \dim \Lambda^*(¦V) = 2^n.$
+            \item $\wedge$ je asociativní.
+            \item $e_I = e_{i_1} \wedge … \wedge e_{i_k}, |I|=k$.
+            \item Je-li $\omega \in \Lambda^k(¦V), \tau \in \Lambda^l(¦V)$, pak $\omega \wedge \tau = (-1)^{kl}\tau \wedge \omega$.
+            \item Nechť $¦v_1, …, ¦v_k \in ¦V$ jsou vektory. Potom (matice $V_I$ má za sloupce vektory $¦v_i$ a řádky jsou vybrány pouze ty s indexem $I$)
+                $$¦v_1 \wedge … \wedge ¦v_k = \sum_{I \subseteq [n], |I|=k} \det ¦V_I·e_I.$$
+        \end{enumerate}
+
+        \begin{dukazin}
+            Jednoduchý. (Ve skriptech anvar…).
+        \end{dukazin}
+    \end{veta}
+
 \end{document}

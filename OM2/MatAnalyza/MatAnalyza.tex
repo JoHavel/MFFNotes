@@ -2,6 +2,9 @@
 \usepackage{../../MFFStyle}                     % Import stylu
 
 \begin{document}
+
+% 3. 3. 2021
+
 \section{Řady}
     \subsection{Úvod}
         \begin{definice}
@@ -125,6 +128,218 @@
                 $t_k$ je shora omezená rostoucí posloupnost $\implies \sum_{n=1}^∞ 2^na_{2^n}$ konverguje.
             \end{dukazin}
         \end{veta}
+
+% 10. 3. 2021
+
+    \subsection{Neabsolutní konvergence řad}
+        \begin{definice}
+            Nechť pro řadu $\sum_{n=1}^∞ a_n$ platí, že $\sum_{n=1}^∞ |a_n|$ konverguje. Pak říkáme, že $\sum_{n=1}^∞ a_n$ konverguje absolutně.
+        \end{definice}
+
+        \begin{veta}[Bolzano-Cauchyova podmínka pro konvergenci řad]
+            Řada $\sum_{n=1}^∞ a_n$ konverguje právě tehdy, když je splněna následující podmínka:
+            $$ \forall\epsilon > 0 \ \exists n_0 \in ®N\ \forall m, n \in ®N, m ≥ n_0, n ≥ n_0: \left|\sum_{n=j}^m a_n\right| < \epsilon. $$
+
+            \begin{dukazin}
+                    $\sum_{n=1}^∞ a_n$ konverguje $\Leftrightarrow \exists \lim_{n \rightarrow ∞} s_n \in ®R$ $\overset{\text{BC}}{\Leftrightarrow} \forall\epsilon > 0 \ \exists n_0 \in ®N\ \forall m, n \in ®N, m ≥ n_0, n ≥ n_0: \left|s_m - s_{n-1}\right| < \epsilon$. Což je přesně výraz (po odečtení $s_m - s_{n-1}$) ve větě.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Vztah konvergence a absolutní konvergence]
+            Nechť řada $\sum_{n=1}^∞ a_n$ konverguje absolutně, pak řada $\sum_{n=1}^∞ a_n$ konverguje.
+
+            \begin{dukazin}
+                Z BC podmínky: $\sum_{n=1}^∞ a_n$ konverguje $\implies \forall\epsilon > 0 \ \exists n_0 \in ®N\ \forall m, n \in ®N, m ≥ n_0, n ≥ n_0: \sum_{j=n}^m \left| a_j \right| < \epsilon$. Chceme dokázat, že $\sum_{n=1}^∞ a_n$ konverguje. Stačí ověřit BC podmínku. K $\epsilon > 0$ volme $n_0$ jako výše, pak $\forall m, n ≥ n_0: \left| \sum_{j=n}^m a_j \right| ≤ \sum_{j=n}^m \left| a_j \right| ≤ \epsilon$ $\implies \sum_{n=1}^∞ a_n$ konverguje.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Leibnitzovo kritérium (T5.10)]
+            Nechť $\{a_n\}_{n = 1}^∞$ je nerostoucí posloupnost nezáporných čísel, pak $\sum_{n=1}^∞ (-1)^n a_n$ konverguje $\Leftrightarrow \lim_{n \rightarrow ∞} a_n = 0$.
+
+            \begin{dukazin}
+                $\implies$: z nutné podmínky (V5.1) $\lim_{n \rightarrow ∞} (-1)^n·a_n = 0 \implies \lim_{n \rightarrow ∞} a_n = 0$.
+
+                $\Leftarrow$: $s_{2k + 2} - s_{2k} = (-1)^{2k+2}·a_{2k+2} + (-1)^{2k+1}·a_{2k+1} = a_{2k+2} - a_{2k+1} ≤ 0 \implies s_{2k}$ je nerostoucí. Obdobně $s_{2k+1} - s_{2k-1} = a_{2k+1} - a_{2k} ≥ 0 \implies s_{2k+1}$ je neklesající. Navíc $s_2k = (-a_1 + a_2) + … + (-a_{2k-1} + a_{2k}) ≤ 0 + … + 0 = 0$. Analogicky $s_{2k+1} ≥ -a_1$.
+
+                Nyní $0 ≥ s_{2k} = s_{2k+1} + a_{2k+1} ≥ -a_1 + a_{2k+1} ≥ -a_1$. Analogicky $-a_1 ≤ s_{2k+1} ≤ 0$. Tedy obě vybrané podposloupnosti jsou omezené a monotónní, tedy konvergují. $\lim_{n \rightarrow ∞} s_{2k} = S_1 \in ®R$ a $\lim_{n \rightarrow ∞} s_{2n+1} = S_2 \in ®R$. Navíc
+                $$ S_2 = \lim_{n \rightarrow ∞} s_{2k+1} = \lim_{n \rightarrow ∞} s_{2k} - a_{2k+1} \overset{\text{AL}}{=} S_1 - 0 = S_1. $$
+                Tedy jelikož existuje limita sudých i lichých členů a rovnají se, existuje i limita $s_n$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{lemma}[Abelova parciální sumace]
+            Nechť $m, n \in ®N$ a $m ≤ n$ a nechť $a_m, …„, a_n, b_m, …, b_n \in ®R$. Označme $s_k = \sum_{i=m}^k a_i$. Pak platí
+            $$ \sum_{i=m}^n a_i·b_i = \sum_{i=m}^n s_i·(b_i - b_{i+1}) + s_n·b_n. $$
+            
+            \begin{dukazin}
+                $$ = a_m · b_m + a_{m+1} · b_{m+1} + … + a_n·b_n = s_m·b_m + (s_{m+1} - s_m)· b_{m+1} + … + (s_n - s_{n-1})·b_n = \sum_{i=m}^n s_i·(b_i - b_{i+1}) + s_n·b_n. $$ 
+            \end{dukazin}
+        \end{lemma}
+
+% 12. 3. 2021
+
+        \begin{veta}[Abel-Dirichletovo kritérium]
+            Nechť $\{a_n\}_{n = 1}^∞$ je posloupnost reálných čísel a $\{b_n\}_{n = 1}^∞$ je nerostoucí posloupnost nezáporných čísel. Nechť je splněna alespoň jedna z následujících podmínek:
+            
+            (A) $\sum_{n=1}^∞ a_n$ je konvergentní. (D) $\lim_{n \rightarrow ∞} b_n = 0$ a $\sum_{n=1}^∞ a_n$ má omezené částečné součty (tj. $\exists K > 0\ \forall m \in ®N: |s_m| = |\sum_{n=1}^m a_n| < K$).
+
+            Pak je $\sum_{n=1}^∞ a_n·b_n$ konvergentní.
+
+            \begin{dukazin}
+                Podle V 5.8 budeme ověřovat BC podmínku pro $\sum_{n=1}^∞ a_n·b_n$. Označme $s_k = \sum_{n=m}^k a_n$. $b_n$ je nerostoucí a $b_n > 0$ $\implies$ $\forall i: b_i - b_{i+1} ≥ 0$ a $\exists K\ \forall n: |b_n| ≤ K$.
+
+                (A): $\sum_{n=1}^∞ a_n$ konverguje
+                $$ \implies \forall \epsilon > 0\ \exists n_0\ \forall i ≥ m ≥ n_0 |\sum_{n=m}^i a_n| = |s_i| < \epsilon. $$
+                Nyní k $\epsilon > 0$ volme $n_0$ jako výše a nechť $n ≥ m ≥ n_0$:
+                $$ |\sum_{i=m}^n a_i · b_i| \overset{\text{Abel PS}}{≤} \sum_{i=m}^{n-1} |s_i·(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \epsilon · \sum_{n=1}^∞ (b_i - b_{i+1}) + \epsilon·b_n = \epsilon·(b_m - b_n) + \epsilon · b_n ≤ \epsilon·K. $$
+                A podle BC podmínky máme $\sum_{n=1}^∞ a_n·b_n$ konverguje.
+
+                (D) Z předpokladů víme, že $\exists M > 0\ \forall i ≥ m: |s_i| = |\sum_{n=1}^i  a_n - \sum_{n=1}^{m-1} a_n| ≤ M$ (volme $M = 2K$). Z $\lim_{n \rightarrow ∞} b_n = 0$ k $\epsilon > 0\ \exists n_0\ \forall n ≥ n_0: |b_n|<\epsilon$. Nyní 
+                $$ \forall n ≥ m ≥ n_0: |\sum_{i=m}^n a_i·b_i| ≤ \sum_{i=m}^{n-1} |s_i(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \sum_{i=m}^{n-1} M·(b_i - b_{i+1}) + M·b_n = M·(b_m - b_n) + M·b_n ≤ M·\epsilon. $$
+                A podle BC podmínky máme $\sum_{n=1}^∞ a_n·b_n$ konverguje.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{priklad}
+            $\sin n$ a $\cos n$ má omezené částečné součty.
+
+            \begin{dukazin}
+                Buď sečtením $\sin 1 + \sin 2 + … + \sin n = $ vzoreček.
+
+                Nebo dokážeme dokonce $\forall x ≠ 2k\pi$ $\sin nx$ a $\cos nx$ má omezené částečné součty.
+                $$ e^ix = \cos x + i·\sin x \implies \sum_{k=0}^n e^{i·k·x} = \sum_{k=0}^n \cos k·x + i·\sum_{k=0}^n \sin k·x. $$
+                Z geometrické řady ale víme, že
+                $$ \sum_{k=0}^n e^{i·k·x} = \frac{1 - \(e^{ix}\)^{n+1}}{1 - e^{ix}} = \frac{1 - \cos x·(n+1) - i·\sin x·(n+1)}{1 - \cos x - i\sin x} · \frac{1 - \cos x + i·\sin x}{1 - \cos x + i·\sin x} = \frac{A_n·B}{(1 - \cos x)^2 + (\sin x)^2}. $$
+                Zřejmě $|A_n| ≤ 3$ a $|B|≤3$, jmenovatel je nenulový a není závislý na $n$, tedy pro všechna $n$ je výraz omezen konstantou.
+            \end{dukazin}
+        \end{priklad}
+
+    \subsection{Přerovnání a součin řad}
+        \begin{definice}[Přerovnání řady]
+            Nechť $\sum_{n=1}^∞ a_n$ je řada a $p: ®N \rightarrow ®N$ bijekce. Řadu $\sum_{n=1}^∞ a_{p(n)}$ nazýváme přerovnáním řady $\sum_{n=1}^∞ a_n$.
+        \end{definice}
+
+        \begin{veta}[O přerovnání absolutně konvergentní řady]
+            Nechť $\sum_{n=1}^∞ a_n$ je absolutně konvergentní řada a $\sum_{n=1}^∞ a_{p(n)}$ je její přerovnání. Pak $\sum_{n=1}^∞ a_{p(n)}$ je absolutně konvergentní a má stejný součet.
+
+            \begin{dukazin}
+                $\sum_{n=1}^∞ |a_n|$ konverguje $\implies$ splňuje BC podmínku. Tedy 
+                $$ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ m ≥ n_0 |\sum_{i=n}^m a_i| < \epsilon \implies \sum_{i=n_0}^∞ |a_i| ≤ \epsilon. $$
+                Zvolme $n_0' = \max\{p(1), p(2), …, p(n_0)\}$. Pak $\forall n'≥ n_0': p^{-1}(n') ≥ n_0$. Tedy
+                $$ \forall n' ≥ m' ≥ n_0': \sum_{i=m'}^{n'} |a_{p(i)}| ≤ \sum_{i=n_0}^∞ |a_i| < \epsilon. $$
+                Tedy podle BC podmínky $\sum_{n=1}^∞ |a_{p(n)}|$ konverguje, tedy i $\sum_{n=1}^∞ a_{p(n)}$ konverguje.
+
+                Konverguje k tomu samému? $\sum_{n=1}^∞ a_n = A$, $\sum_{n=1}^∞ a_{p(n)} = A'$. Víme, že k $\epsilon > 0\ \exists n_0 \sum_{i=n_0}^∞ |a_i| ≤ \epsilon$. Zvolme $n_0' ≥ \max_{i ≤ n_0} p(i)$, aby $\sum_{i=n_0'}^∞ |a_{p(i)}| ≤ \epsilon$. Pak $|\sum_{i=1}^{n_0} a_i - A| ≤ \epsilon$ a $|\sum_{i=1}^{n_0'} a_{p(i)} - A'| ≤ \epsilon$. Nyní
+                $$ |A - A'| ≤ |\sum_{i=1}^{n_0} a_i - A| + |\sum_{i=1}^{n_0'} a_{p(i)} - A'| + |\sum_{i=1}^{n_0} a_i - \sum_{i=1}^{n_0'} a_{p(i)}| ≤ \epsilon + \epsilon + \sum_{i=n_0}^∞ |a_i| ≤ 3\epsilon $$ 
+            \end{dukazin}
+        \end{veta}
+
+% 17. 3. 2021
+
+        \begin{veta}[Rieman]
+            Neabsolutně konvergentní řadu lze přerovnat k libovolnému součtu $s \in ®R^*$.
+
+            \begin{dukazin}
+                Bez důkazu (idea: rozdělíme na kladné a záporné členy (mají součty $+∞$ a $-∞$) a jdeme nahoru dolu nahoru dolu (vždy alespoň o 1 prvek), abychom se co nejvíce blížili $s$).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Cauchyovský součin]
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady. Cauchyovským součinem těchto řad nazveme řadu $\sum_{k=2}^∞ \sum_{i=1}^{k-1} (a_{k-i}·b_i)$.
+        \end{definice}
+
+        \begin{veta}[O součinu řad]
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují absolutně. Pak $\(\sum_{n=1}^∞ a_n\)·\(\sum_{n=1}^∞ b_n\) = \sum_{k=2}^∞ \sum_{i=1}^{k-1} (a_{k-i}·b_i)$.
+
+            \begin{dukazin}
+                Označme $s_n = \sum_{i=1}^n a_i \rightarrow A \in ®R$, $\sigma_n = \sum_{i=1}^n b_i \rightarrow B \in ®R$ a $\rho_n = \sum_{k=2}^n\(\sum_{i=1}^{k-1} a_{k-i}b_i\) \overset{\text{Chceme}}{\rightarrow} A·B \in ®R$. Nechť $\epsilon > 0$. Pak $\exists n_0: \sum_{i=n_0}^∞ |a_i| < \epsilon$ a $\sum_{j=n_0}^∞ |b_j| < \epsilon$ (z BC podmínky) a zároveň $|s_{n_0}·\sigma_{n_0} - A·B| < \epsilon$. Nechť $n ≥ 2n_0$, pak
+                $$ |\rho_n - A·B| ≤ |\rho_n - s_{n_0}·\sigma_{n_0}| + |s_{n_0}·\sigma_{n_0} - A·B| ≤ $$
+                $$ ≤ |(a_1b_1) + (a_1b_2 + a_2b_1) + … + (a_{n-1}·b_1 + … + a_1·b_{n-1}) - (a_1 + … +a_{n_0})·(b_1+…+b_{n_0})| + \epsilon ≤ $$
+                $$ ≤ \sum_{i ≥ n_0 \lor j ≥ n_0} |a_ib_j| + \epsilon ≤ \sum_{i=1}^∞ |a_i| · \sum_{j=n_0}^∞ |b_j| + \sum_{i=n_0}^∞ |a_i| · \sum_{j=1}^∞ |b_j| + \epsilon ≤ A\epsilon + B\epsilon + \epsilon = \epsilon·\text{konst}. $$
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Limita posloupnosti a součet řady v ®C}
+        \begin{definice}
+            Nechť $\{a_n\}_{n = 1}^∞$ a $\{b_n\}_{n = 1}^∞$ jsou dvě reálné posloupnosti. Pak $c_n = a_n + ib_n$ je komplexní posloupnost.
+
+            Řekneme, že $\lim_{n \rightarrow ∞} c_n = A+iB$, pokud existují $\lim_{n \rightarrow ∞} a_n = A \in ®R$ a $\lim_{n \rightarrow ∞} b_n = B \in ®R$.
+        \end{definice}
+
+        \begin{definice}
+            Nechť $\{a_n\}_{n = 1}^∞$ a $\{b_n\}_{n = 1}^∞$ jsou dvě reálné posloupnosti a $c_n = a_n + i b_n$. Řekneme, že komplexní řada $\sum_{n=1}^∞ c_n$ konverguje k $A + iB$, pokud konvergují řady $\sum_{n=1}^∞ a_n = A$ a $\sum_{n=1}^∞ b_n = B$.
+        \end{definice}
+
+        \begin{veta}[Vztah konvergence a absolutní konvergence pro komplexní řady]
+            Nechť $\{c_n\}_{n = 1}^∞$ je komplexní posloupnost a řada $\sum_{n=1}^∞ |c_n|$ konverguje. Pak řada $\sum_{n=1}^∞ c_n$ konverguje.
+
+            \begin{dukazin}
+                Z BC podmínky pro konvergenci $\sum_{n=1}^∞ |c_n|$ dostaneme
+                $$ \forall \epsilon > 0\ \exists n_0\ \forall m ≥ n ≥ n_0: \sum_{j=n}^m |c_j| < \epsilon. $$ 
+                Víme $c_n = a_n + ib_n$. Nyní $\forall m ≥ n ≥ n_0:$
+                $$ \sum_{j=n}^m |a_j| ≤ \sum_{j=n}^m |c_j| < \epsilon \land \sum_{j=n}^m |b_j| ≤ \sum_{j=n}^m |c_j| < \epsilon. $$ 
+                Tedy $\sum_{n=1}^∞ |a_n|$ a $\sum_{n=1}^∞ |b_n|$ splňují BC podmínku, tedy konvergují. Podle V5.9 (vztah KaAK), tedy $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují, tedy konverguje i $\sum_{n=1}^∞ c_n$.
+            \end{dukazin}
+        \end{veta}
+
+% 19. 3. 2021
+
+\section{Primitivní funkce}
+    \subsection{Základní vlastnosti}
+        \begin{definice}[Primitivní funkce, integrál]
+            Nechť je funkce $f$ definována na otevřeném intervalu $I$. Řekneme, že funkce $F$ je primitivní funkce k funkci $f$, pokud pro každé $x\in I$ existuje $F'(x)$ a $F'(x) = f(x)$.
+
+            Množinu všech primitivních funkcí k $f$ na $I$ značíme $\int f(x)\, dx$
+        \end{definice}
+
+        \begin{veta}[O jednoznačnosti primitivní funkce až na konstantu]
+            Nechť $F$ a $G$ jsou primitivní funkce k $f$ na otevřeném intervalu $I$. Pak existuje $c \in ®R$ tak, že $F(x) = G(x)+c$ pro všechna $x \in I$.
+
+            \begin{dukazin}
+                Označme $H(x) = F(x) - G(x)$. Pak $(H(x))' = (F(x) - G(x))' = f(x) - f(x) = 0$. Tedy (např. z Lagrangeovy věty) $\exists c \in ®R: H(x) = c$ na $I$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Značíme $\int f(x)\,dx = F(x) + C$. Nechť $F$ je primitivní funkce k $f$. Pak $F$ je spojitá (protože má všude vlastní derivaci).
+        \end{poznamka}
+
+        \begin{veta}[O vztahu spojitosti a existence primitivní funkce]
+            Nechť $I$ je otevřený interval a $f$ je spojitá funkce na $I$. Pak $f$ má na $I$ primitivní funkci.
+
+            \begin{dukazin}
+                Později.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Linearita primitivní funkce]
+            Nechť $f$ má primitivní funkci $F$ a $g$ má primitivní funkci $G$ na otevřeném intervalu $I$ a nechť $\alpha, \beta \in ®R$. Pak $\alpha·f + \beta·g$ má primitivní funkci $\alpha F + \beta G$.
+
+            \begin{dukazin}
+                $$ (\alpha·F(x) + \beta·G(x))' \overset{\text{AD}}{=} \alpha·F'(x) + \beta·G'(x) = \alpha·f + \beta·g. $$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Tabulkové integrály]
+            \ 
+            \begin{itemize}
+                \item $ \int x^n\,dx = \frac{x^n}{n+1} + C, ((x \in ®R \land n \in ®N) \lor (x \in ®R \setminus\{0\} \land n \in ®Z \setminus \{1\}))$.
+                \item $\int \frac{1}{x}\, dx = \log|x| + C, (x \in ®R \setminus \{0\})$.
+                \item $\int e^x\, dx = e^x + C, (x \in ®R)$.
+                \item TODO
+            \end{itemize}
+        \end{poznamka}
+
+        \begin{veta}[Nutná podmínka existence primitivní funkce]
+            Nechť $f$ má na otevřeném intervalu $I$ primitivní funkci. Pak $f$ má na $I$ Darbouxovu vlastnost, tedy pro každý interval $J \subseteq I$ je $f(J)$ interval.
+
+            \begin{dukazin}
+                Nechť $J \in I$ je interval. Nechť $y_1, y_2 \in f(J)$ a $y_1 < z < y_2$. Chceme ukázat $z \in f(J)$. Nechť $F$ je primitivní funkce k funkci $f$ na intervalu $I$. Definujeme $H(x) = F(x) - z·x$ pro $x \in I$. Pak $H$ je spojitá na $I$ a $\forall x \in I: (H(x))' = f(x) - z$. Nalezneme $x_1, x_2 \in J$ tak, že $f(x_1) = y_1$ a $f(x_2) = y_2$. Nechť $x_1 < x_2$, v opačném případě je důkaz analogický. Funkce $H$ je spojitá na $[x_1, x_2]$, a tedy tam nabývá minima.
+
+                Víme $H'(x_1) = f(x_1) - z < f(x_1) - y_1 = 0$, tedy $\exists \delta > 0$, že $\forall x \in [x_1, x_1+\delta], H(x) < H(x_1)$, tedy v $x_1$ není minimum. Obdobně v $x_2$ není minimum. Tedy minimum je v $x_0 \in (x_1, x_2) \overset{\text{Fermat}}{\implies} 0 = H'(x_0) = f(x_0) - z$, tj. $f(x_0) = z$.
+            \end{dukazin}
+        \end{veta}
+
 
 
 \end{document}

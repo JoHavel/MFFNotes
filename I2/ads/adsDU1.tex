@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[indukce]
+        Dokažte matematickou indukcí případy rekurence $t(n) ≤ cn^\alpha + \sum^k_{i=1} t(a_in)$ ($t(n)≤C$, pro $n≤n_0$, $\forall i: a_i < 1$) dle srovnání $S_\alpha = \sum a^\beta_i$ s $1$, užitečné je dokazovat vztah $t(n) ≤ c_1n^\alpha+c_2n^\beta$, kde $\sum a^\beta_i=1$, případně $t(n)≤c_1n^\alpha+c_2n^\alpha\log n$, vhodná $c_i$ zjistěte v průběhu důkazu. Hodí se za indukční předpoklad brát, že tvrzení platí pro všechna menší $n$.
+
+        \begin{dukazin}[$S_\alpha < 1$]
+            Nejprve se domluvme, že přirozená čísla (konkrétně $n$) jsou od 1, protože jinak je to jen o přečíslování. Nyní začneme s $S_\alpha ≤ 1$: Nechť $c_1 = \max\{c, C\}$. Tím jsme vlastně dokázali první krok indukce, jelikož zřejmě ($c_2 ≥ 0$):
+            $$ \forall n ≤ n_0: t(n) ≤ C ≤ c_1·n^\alpha + c_2·n^\alpha, $$
+            $$ \forall n ≤ n_0: t(n) ≤ C ≤ c_1·n^\alpha + c_2·n^\alpha·\log n. $$
+
+            Nechť nejprv $S_\alpha < 1$. Potom předpokládejme jako indukční krok, že
+            $$ \forall n_1 < n: t(n_1) ≤ c_1·n_1^\alpha + c_2·n_1^\alpha. $$
+            Potom je
+            $$ t(n) ≤ \(cn^\alpha\) + \(\sum^k_{i=1} t(a_in)\) ≤ \(c_1n^\alpha\) + \(\sum^k_{i=1} c_1a_i^\alpha n^\alpha + c_2a_i^\alpha n^\alpha\) = c_1n^\alpha + S_\alpha(c_1 + c_2)n^\alpha. $$ 
+            Tedy když zvolím\footnote{$c_2$ sice jak tady, tak i dále, volím uvnitř indukčního kroku, ale volím ho nezávisle na $n$, tedy všude stejné, konstantní.} $c_2 ≥ S_\alpha(c_1 + c_2)$, což můžu díky $S_\alpha < 1$, tak opravdu dostanu $t(n) ≤ c_1n^\alpha + c_2n^\alpha \(= \(c_1 + c_2\)·n^\alpha\)$. To je zřejmě $O\(n^\alpha\)$, protože se to od $n^\alpha$ liší jen konstantakrát.
+
+        \end{dukazin}
+
+        \begin{dukazin}[$S_\alpha = 1$]
+            Obdobně pro $S_\alpha = 1$ indukčně předpokládejme, že 
+            $$ \forall n_1 < n: t(n_1) ≤ c_1·n_1^\alpha + c_2·n_1^\alpha\log n_1. $$
+            Potom je:
+            $$ t(n) ≤ \(cn^\alpha\) + \(\sum^k_{i=1} t(a_in)\) ≤ \(c_1n^\alpha\) + \(\sum^k_{i=1} c_1a_i^\alpha n^\alpha + c_2a_i^\alpha n^\alpha\log\(a_in\)\) = $$
+            $$ = c_1n^\alpha + c_1n^\alpha + \sum^k_{i=1} c_2a_i^\alpha n^\alpha \log(n) + c_2a_i^\alpha n^\alpha \log(a_i) = $$
+            $$ = c_1n^\alpha + c_1n^\alpha + c_2n^\alpha\log(n) + \sum^k_{i=1} c_2a_i^\alpha n^\alpha \log(a_i). $$
+            Jelikož $\forall i: 0 < a_i < 1$, tj. $\log a_i < 0$, tak
+            $$ 0 > K := \sum^k_{i=1} c_2·a_i^\alpha·n^\alpha \log(a_i). $$
+            To znamená, že můžeme volit
+            $$ c_2 ≥ c_2 + \frac{Kc_2 + c_1}{\log(n)}. \qquad \(\text{Např. } c_2 = \frac{c_1}{-K}.\) $$
+            A splníme tak
+            $$ t(n) ≤ c_1·n^\alpha + c_2·n^\alpha\log n, $$
+            což je $O(n^\alpha\log n)$, protože
+            $$ c_1·n^\alpha + c_2·n^\alpha\log n ≤ \(c_1 + c_2\)·n^\alpha\log n $$
+            a konstanty se nepočítají.
+        \end{dukazin}
+
+        \begin{dukazin}[$S_\alpha > 1$]
+            Tentokrát chceme pouze $c_2 > 0$ $(c_2 + c_1) = \max\{c, C\}$, aby byl splněn první krok indukce ($\sum^k_{i=1} a_i^\beta = 1$)\footnote{Že takové $\alpha < \beta < ∞$ existuje, zjistíme z toho, že $\exp$ je spojitá, součet spojitých je spojitá, násobek spojité je spojitá a složení spojitých je spojitá, tedy
+            $$ f(x) := \sum^k_{i=1} \exp^{x·\log_e\(a_i\)} = \sum^k_{i=1} a_i^x $$
+            je spojitá a víme, že $S_\alpha > 1$ a $\lim_{x \rightarrow ∞} f(x) = 0$, jelikož $\lim_{x \rightarrow ∞} a^x = 0, a < 1$, tedy ze spojitosti (potažmo Darbouxovy vlastnosti) víme, že $\exists \beta, ∞ > \beta > \alpha: 0 < f(\beta) = 1 < S_\alpha$.}:
+            $$ \forall n ≤ n_0: t(n) ≤ C ≤ (c_1 + c_2)·n^\alpha < c_1·n^\alpha + c_2·n^\beta. $$
+
+            Nyní předpokládejme indukční předpoklad:
+            $$ \forall n_1 < n: t(n_1) ≤ c_1·n_1^\alpha + c_2·n_    1^\beta. $$
+            To znamená, že
+            $$ t(n) ≤ \(cn^\alpha\) + \(\sum^k_{i=1} t(a_in)\) ≤ \(cn^\alpha\) + \(\sum^k_{i=1} c_1a_i^\alpha n^\alpha + c_2a_i^\beta n^\beta\) = cn^\alpha + c_2n^\beta + S_\alpha c_1n^\alpha. $$
+            Nyní zvolíme $c_1 ≥ c_1·S_\alpha + c$ (tj. např $c_1 = \frac{-c}{S_\alpha - 1}$) a k tomu $c_2$, aby byla splněna podmínka s 1. kroku indukce (např. $c_2 = -c_1 + c + C$) a dostáváme opravdu:
+            $$ t(n) ≤ c_1·n^\alpha + c_2·n^\beta \qquad (≤ c_2·n^b), $$
+            tudíž opravdu $t(n)$ je $O(n^\beta)$, protože konstantu můžeme zanedbat.
+        \end{dukazin}
+    \end{priklad}
+
+\end{document}

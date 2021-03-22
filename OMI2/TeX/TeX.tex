@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 10. 3. 2021
+\section{PDF}
+    \begin{poznamka}[Historie]
+        Portable Document Format (Adobe, 90 léta) měl nahradit PostScript (Ten byl příliš komplikovaný. Dokonce i s doplněním o konvence DSC.). Na rozdíl od PostSciptu PDF není míněno jako programovací popis.
+
+        1.0 ani Medvěd neviděl, 1.7 už bylo v ISO standardu (ale lepší je číst PDF Reference přímo od Adobe než ISO standard).
+
+        Postupem vznikly profily (sady pravidel) pro různé použití: PDF / X = pro tiskárnu (zakazuje JS apod.), PDF / A = pro archivaci (univerzálně srozumitelná téměř jistě i za 30 let).
+    \end{poznamka}
+    
+    \subsection{Lexikální struktura}
+        \begin{definice}[Obsah PDF]
+            PDF je key sensitive.
+
+            Znaky jsou nadmnožina ASCII. Dělí se na mezery (mezera, TAB, FF, NUL, CR, LF, řádek končí LF / CR LF), oddělovače (\verb|()[]{}<>/%|), ostatní (u těch není specifikováno, jaké je kódování).
+        
+            \verb|%| značí komentář do konce řádku (formálně mezera).
+
+            Klíčová slova (začínají písmenem a jdou až do mezery): null, true, false, f*.
+
+            Čísla jsou buď celá nebo floaty a píší se standardně.
+
+            Stringy se píší do kulatých závorek (ne uvozovek). Mohou být víceřádkové, mohou obsahovat i znak 0, mohou obsahovat vnořené kulaté závorky (správně uzávorkované), escapes (\verb|\( \) \n \t| \verb|\newline| se ignoruje \verb|\ooo| kód znaku v 8 soustavě). Nebo může být uzavřen do menšítek, pak je ale celý v hexadecimálním formátu.
+
+            Jména jsou znaky kromě mezer a oddělovačů předcházené /, hexadecimální znak se dá zadat \verb|#xx| (ale nelze znak s kódem 0), konvence utf-8.
+
+            Pole jsou \verb|[prvky …]|, tedy třeba \verb|0 false (str) [1 2]|. Slovník je \verb|<< /jméno hodnota … >>| (slušnost je, aby se slova neopakovala). Konvencí je, že pokud slovník obsahuje \verb|/Type|, tak je správně, např. \verb|/Page|. Stream je tvaru \verb|<< slovnik + /Length bytes >> stream <eol> …data streamu… <nepovinný eol> endstream|, slovník navíc může obsahovat \verb|/Filter /jméno| nebo \verb|/Filter [/jméno …]| (např. /ASCIIHexDecode, /ASCII85Decode, /FlatDecode, /LZWDecode?).
+
+            Nepřímé objekty: definice = \verb|{číslo objektu} {číslo generace} obj … endobj| odkazování se = \verb|{číslo} {generace} R|
+        \end{definice}
+    
+        \begin{definice}[Struktura]
+            První řádek verze, druhý řádek nesmyslné znaky (aby se neinterpretovalo jako textový soubor), obojí zakomentované.
+
+            Mělo by (musí tam někde být) končit \verb|%%EOF| (i když zatím občas bývá nějaký balast), před tím jsou (v pořadí odshora): xref (pro rychlé přečtení dat o objektech, 2 čísla a \verb|f-| nebo \verb|n-|?), trailer (metadata o soboru, slovník) a startxref (kde začíná xref, číslo).
+
+            Mezi tím jsou objekty.
+        \end{definice}
+
+        \begin{definice}[xref]
+            Začínají xref a končí (už tam nepatří) trailer. Má sekce (začínají 2 čísly, pořadím sekce? a počtem znaků). Navíc každý řádek musí mít 20 bytů (takže TeX doplňuje mezeru kvůli CR LF (TeX používá jen LF)).
+
+            Položka (tj. 1 řádek) může být n, pak obsahuje pozici (10 číslic), generaci (5 číslic) a n. Nebo může být f (později, souvisí s generacemi a aktualizacemi PDF).
+        \end{definice}
+
+        \begin{definice}[trailer]
+            Slovník obsahující /Size + počet objektů, /Prev + odkaz (pozice) na předchozí xref, /Root nepřímý odkaz, /Info nepřímý odkaz, občas obsahuje /Encrypt, nepovinné, ale silně doporučené /ID + číslo verze při vytvoření + číslo aktuální verze.
+        \end{definice}
+
+        \begin{definice}[Updatování]
+                PDF je stavěné na update připsáním na konec. (Zajímavé třeba při podepisování.) Navíc xref má položku f (smazáno, nebo také free = volný obsahující odkaz (číselný) na další f objekt (resp. u 0 na 0) jako spojový seznam a číslo poslední generace (a f)). Navíc objekty mají generace, aby se daly recyklovat jejich čísla.
+        \end{definice}
+
+        \begin{definice}
+            V novějších verzích se objekty ukládají do object streamů (aby se zmenšil text okolo). Ten vypadá: všechno generace 0, žádné další streamy, výjimky (nesmí obsahovat velikost jiného objektu atd.).
+
+            \verb|Číslo gen obj << /Type /objStm /N #objektů /First pozice 1. objektu [/Extends] [/Filter] >> stream … endstream endobj|, kde stream obsahuje N párů čísel (čísla objekth a pozice), cokoliv, N objektů bez obj a endobj.
+
+            Následně také obsahuje Xref Stream (místo xref a traileru):
+            \verb|číslo gen obj << /Type /xref   položky z traileru  [/Index[rozsah indexů objektů]] /W šířka sloupců v bytech >> stream endstream endobj|.
+        \end{definice}
+
+        \begin{poznamka}
+            Pro lepší práci s pdf se hodí program qpdf. Speciálně \verb|qpdf --qdf --object-stream=disable| (výsledek se ukládá do souboru a pak ho lze po upravení zase 'zkomprimovat').
+        \end{poznamka}
+
+        \begin{definice}[Stranky]
+            Root objekt (viz trailer) obsahuje seznam dětí = stránek.
+        \end{definice}
+
+% 17. 3. 2021
+
+        \begin{definice}[High-level struktura]
+            Z traileru získáme info, ale získáme i odkaz na catalog (root), který obsahuje všechno. Obsahuje odkazy (page tree, page labels, …), viewer prefs (nějaké nastavení prohlížeče, např. zazoomování), jazyk (může být až na úrovni slov, když je dokument vícejazyčný, udává se např. kvůli ligaturám), version override (při updatu můžeme chtít použít novější verzi PDF, tak ta se uvádí zde).
+
+            page tree (počítá se klidně i s tisícemi stránek a málem paměti zařízení) se skládá z jednotlivých objektů, které mají typ pages, parent …, kids $\[…\]$, count počet (aby se dalo rychle listovat). Listy pak mají typ page, parent …, resources (slovník), contents (stream), mediabox [velikost stránky\footnote{Souřadnice jsou v bp (big pointech). Papír je popsán obdélníkem [$x_1 y_1 x_2 y_2$].}], cropbox [rozměry, na které ořezáváme veškeré kresby], bleedbox [kam může barva prosakovat] + trimbox [na co se bude ořezávat papír po opuštění tiskárny], rotate 90 (ne všechny prohlížeče respektují). (Boxy jdou definovat už v Pages, stejně tak další vlastnosti, jako přechody v prezentaci, …).
+
+            resources a contents: v resources jsou odkazy na objekty, protože nemohou být contents (protože je to stream a nemusel by být čitelný všem programům). resources můžou být nepřímý objekt, tedy je mohou stránky sdílet.
+            
+            Content stream (vypadá jak postscript) -- částečně zásobníkový jazyk (ale po provedení operátoru musí být zásobník prázdný), obshuje čísla a operátory (vždy seznam argumentů a operátor). Operátory jsou např (m = move, l = line (nekreslí, jen ji vytvoří), S = stroke (vykreslí)).
+        \end{definice}
+
+        \begin{definice}[Operátory]
+            Nastavení parametrů kreslení (grafický stav = gstate)\footnote{Máme user space, grafický stav pak musí definovat tzv. CTM (current transform matrix?) a ta zobrazuje user space na device space. Obecně jsou PDF vektory $(x, y , 1)^T$ a CTM je $3\times 3$}: q / Q (save / restore -- zásobník grafických stavů), $a b c d e f$ cm (definuje transformační matici (násobí se s předchozí?)), $x$ w (line width = šířka obdélníku kolem úsečky, při $x=0$ se nastaví 1 pixel),
+
+            Konce a napojení úseček: (butt ending = konec kolmý na úsečku, round ending = konec oblý se středem v konci, square ending = konec čtverec se středem v konci, zároveň existují 3 typy napojení (jedné lomené čáry) round = vyplní se kruhovou úsečí, tj. v podstatě round, bevel = spojí se vrcholy obdélníků, miter = protáhne se do špičky (pokud je moc daleko (tzn. víc jak miter limit), udělá se bevel)): typ J (line cap: 0 = butt, 1 = round, 2 = square), typ j (line join: 0 = miter, 1 = round, 2 = bevel), limit M (miter limit).
+
+            Dále čárkování: [pole délek] fáze d (dash pattern, pole délek = délky čáry, mezery, čáry, mezery, …, fáze = kde v seznamu má začít, pole délek může mít i lichou délku, prostě se nekonečněkrát zopakuje za sebou, čárkovací pattern pokračuje i za zlomem, pokud je to jedna čára, line cap a line join se aplikují na každou čárku zvlášť).
+
+            Další věci se dají reprezentovat ExtGState objektem, na který se pak odkazujeme operátorem /jméno gs.
+
+            Konstrukce cest: $x y$ m (move to, začíná úsek), $x y$ l (line to), $x_1 y_1 x_2 y_2 x_3 y_3$ c (curve to = bézierova křivka 3. řádu ($x_3 y_3$ je konec, další dva body jsou směry odchodu a příchodu do koncových bodů)), h (close = nakreslí úsečku do počátku úseku), $x y w h$ re (založí nový úsek a zkonstruuje obdélník), S (stroke, aktuálními parametry gstate se obtáhne cesta a zruší se), s (close \& stroke = uzavře a obtáhne), f/f* (close? \& fill = vyplní cestu, f* počítá počet průsečíků a podle parity určí, zda vyplnit, f počítá počet orientovaných průsečíků a porovnává s 0), b/b* (close \& fill \& stroke), n (new = discard).
+        \end{definice}
+
+        \begin{definice}[Barvy]
+            Součást gstatu. Existují různé (přesně nedefinované) prostory: $g$ G/g (device gray, $g \in [0, 1]$, větší hodnota jasnější), $r g b$ RG/rg (device RGB), $c m y k$  (device CMYK), malé jsou výplň, velké hranice (stroke).
+        \end{definice}
+
+        \begin{poznamka}[TeX]
+            TeX nastaví počátek userspace na aktuální referenci, pokud použijeme samotné \verb|\pdfliteral{…}|. Pokud použijeme \verb|\pdfliteral{…}| začne na začátku stránky.
+        \end{poznamka}
+
+        \begin{upozorneni}
+            Transformace je lepší dělat přímo TeXem, jinak se rozsypou například odkazy.
+        \end{upozorneni}
+
+\end{document}

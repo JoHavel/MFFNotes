@@ -27,7 +27,7 @@
     \end{definice}
 
     \begin{definice}[Otevřená a uzavřená koule]
-        Ať $(®M, d)$ je MP, $x \in ®M$, $r > 0$. Pak otevřená koule o středu $x$ a poloměru $r$ je množina $B(x, r):=\{y \in M; d(x, y) < r\}$. Uzavřená koule o středu $x$ a poloměru $r$ je množina $\overline{B}(x, r):= \{y \in M; d(x, y) ≤ r\}$.
+        Ať $(®M, d)$ je MP, $x \in ®M$, $r > 0$. Pak otevřená koule o středu $x$ a poloměru $r$ je množina $\B(x, r):=\{y \in ®M; d(x, y) < r\}$. Uzavřená koule o středu $x$ a poloměru $r$ je množina $\overline{\B}(x, r):= \{y \in ®M; d(x, y) ≤ r\}$.
     \end{definice}
 
     \begin{veta}
@@ -56,4 +56,207 @@
         Ať $(®M, d)$ je MP, $\{x_n\}_{n = 1}^∞$ posloupnost v ®M, $x \in ®M$. Pak $(x_n)$ konverguje k $x$ pokud $d(x_m, x)$ konverguje k 0. Píšeme $x_n \rightarrow x$ nebo také $\lim_{n \rightarrow ∞} x_n = x$.
     \end{definice}
 
+% 14. 3. 2021
+
+\section{Otevřené a uzavřené množiny}
+    \begin{definice}[Vnitřek, vnějšek, hranice]
+        Ať $(®M, d)$ je MP. $A \subseteq ®M$. Pak $x_0 \in ®M$ je vnitřní bod $A$ $≡$ $\exists r > 0: \B(x_0, r) \subseteq A$. Dále vnitřek (interior) množiny $A$ je množina
+        $$ \Int(a) = \{x_0 \in ®M| x_0 \text{ je vnitřní bod } A\}. $$ 
+
+        Dále $x_0 \in ®M$ je vnější bod $A$ $≡$ $\exists r>0: \B(x_0, r) \subseteq ®M \setminus A$. Vnějšek (exterior) množiny $A$ je množina
+        $$ \Ext(a) = \{x_0 \in ®M| x_0 \text{ je vnější bod } A\}. $$
+
+        Nakonec $x_0 \in ®M$ je hraniční bod $A$ $≡$ $x \in ®M \setminus (\Int(A) \cup \Ext(A))$. Hranice množiny $A$ je množina
+        $$ \partial A = \{x_0 \in ®M | x_0 \text{ je hraniční bod } A\}. $$ 
+    \end{definice}
+
+    \begin{pozorovani}
+        Zřejmě $\Int(A) \subseteq A$.
+
+        Zřejmě $\Ext(A) = \Int(®M \setminus A) \subseteq ®M \setminus A$.
+    \end{pozorovani}
+
+    \begin{definice}[Otevřená a uzavřená množina]
+        Buď $(®M, d)$ MP a $A \subseteq ®M$. Pak $A$ je otevřená $≡$ $A \cap \partial A = \O$.
+
+        Dále uzávěr množiny $A$ je množina $\overline{A} = A \cup \partial A$. Množina $A$ je poté uzavřená $≡$ $\partial A \subseteq A$.
+    \end{definice}
+
+    \begin{pozorovani}
+        Zřejmě $A$ je otevřená $\Leftrightarrow$ $A = \Int(A)$.
+
+        Otevřená koule je otevřená množina.
+    \end{pozorovani}
+
+    \begin{lemma}
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak $x \in \overline{A} \Leftrightarrow \exists (x_n) \subseteq N\times A: x_n \rightarrow x$. Zároveň následující podmínky jsou ekvivalentní:
+        $$ a) A \text{ je uzavřená,} \qquad b) A = \overline{A}, \qquad \forall(x_n \in A): x_n \rightarrow x \in ®M \implies x \in A. $$ 
+
+        \begin{dukazin}
+            $\implies$: Ať $x \in \overline{A}$. Pokud $x \in A$, polož $x_n = x$. Pokud $x \notin A$, pak $x \in \partial A$, tedy $\forall n\ \exists x_n \in \B(x, \frac{1}{n}) \cap A$. Pak $x_n \rightarrow x$ ($0≤d(x_n, x) < \frac{1}{n} \rightarrow 0$).
+
+            $\Leftarrow$ Ať $(x_n)$ je posloupnost v $A$, $x_n \rightarrow x$. Pokud $x \in A$, jsme hotovi. Pokud $x \notin A$, pak $\forall \epsilon > 0\ \exists r_0 \forall n ≥ n_0 : x_n \in \B(x, \epsilon) \cap A$. Tedy $x \in \overline{A}$.
+
+            $a) \Leftrightarrow b)$ $A$ je uzavřená $\overset{\text{def}}{\Leftrightarrow} \partial A \subseteq A$ $\Leftrightarrow A = A \cup \partial A = \overline{A}$.
+
+            $b) \implies c) \implies a)$ $A = \overline{A} \implies \forall(x_n): x_n \rightarrow x \implies x \in A$ $\overline{\text{První část}}{\implies} \partial A \subseteq A$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Základní vlastnosti otevřených množin]
+        Ať $(®M, d)$ je MP. Pak
+
+        \begin{itemize}
+            \item[(i)] ®M a $\O$ jsou otevřené.
+            \item[(ii)] Sjednocení libovolně mnoha otevřených je otevřený.
+            \item[(iii)] Průnik konečně mnoha otevřených je otevřený.
+        \end{itemize}
+
+        \begin{dukazin}
+            (i) Triviální. (ii) $x \in \bigcup_i M_i$, pak $\exists j: x \in M_j$. Potom $M_j$ je otevřená, tedy existuje $r > 0: \B(x, r) \subseteq M_j \subseteq \bigcup_i M_i$. Tedy $\bigcup_i M_i$ je otevřená. (iii) $x \in \bigcap_i M_i$, pak $\forall i\ \exists r_i: \B(x, r_i) \subseteq M_i$. Polož $r = \min_i r_i > 0$ (protože $i$ je z konečné množiny, tedy existuje minimum a to je jistě jeden z těch poloměrů, tedy $> 0$), pak $\B(x, r) \subseteq \bigcap_i M_i$. Tedy $\bigcap_i M_i$ je otevřená.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Vztah otevřená a uzavřené množiny]
+        Ať $(®M, d)$ je MP, $A \subseteq M$. Pak $A$ je otevřená $\Leftrightarrow$ $®M \setminus A$ je uzavřená.
+
+        \begin{dukazin}
+            $\implies$: Zvol $(x_n)$ posloupnost v $®M \setminus A$, $x_n \rightarrow x$. Sporem. Nechť $x \in A$. Potom $\exists \epsilon > 0: \B(x, \epsilon) \subseteq A$, ale pak $\exists n: x_n \in A$. \lightning.
+
+            $\Rightarrow$: Zvol $x \in A$. Protože $®M \setminus A$ je uzavřená, tedy $\partial(®M \setminus A) \subseteq ®M \setminus A)$, $x \notin \partial(®M \setminus A)$, tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap A = \O$ (to nelze) nebo $\B(x, \epsilon)\cap(®M\setminus A) = \O$. Tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap (®M \setminus A) = \O$, tj. $\B(x, \epsilon) \subseteq A$, tedy $A$ je otevřená.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Základní vlastnosti uzavřených množin]
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak
+        
+        \begin{itemize}
+            \item[(i)] ®M a $\O$ jsou uzavřené.
+            \item[(ii)] Průnik libovolně mnoha uzavřených množin je uzavřený.
+            \item[(iii)] Sjednocení konečně mnoha uzavřených množin je uzavřené.
+        \end{itemize}
+        
+        \begin{dukazin}
+            Plyne z věty výše a de-Morganových pravidel.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak $\Int(A) = \bigcup\{G \subseteq A | G \text{ otevřené}\}$. $\overline{A} = \bigcap\{F \supseteq A | F \text{ uzavřené}\}$.
+
+        \begin{dukazin}
+            $\subseteq$: $x \in \Int(A) \implies \exists \epsilon > 0: \B(x, \epsilon) \subseteq A$, stačí položit $G = \B(x, \epsilon)$.
+
+            $\supseteq$: Ať $G \subseteq A$ otevřená, pak $G = \Int(G) \subseteq \Int(A)$.
+
+            $\subseteq$: $x \in \overline{A}$, pak $\exists (x_n)$ v $A$: $x_n \rightarrow x$. Zvol $F \supseteq A$ uzavřená, pak $x_n \rightarrow x \in F$ (z uzavřené se nedá vykonvergovat).
+
+            $\supseteq$: Položme $F = \overline{A} \supseteq A$.
+        \end{dukazin}
+    \end{veta}
+
+% 19. 3. 2021
+
+\section{Spojitost v metrických prostorech}
+    \begin{definice}[Spojitost v bodě, spojitost, $k$-Lipschitzovskost, Lipschitzovskost]
+        Ať $(®M, d), (®N, e)$ jsou MP, $f: ®M \rightarrow ®N$, $a \in ®M$. Potom $f$ je spojitá v $a$ $≡ \forall \epsilon > 0\ \exists \delta > 0\ \forall x \in ®M:$ $d(x, a) < \delta \implies e(f(x), f(a) < \epsilon)$.
+
+        $f$ je spojitá na ®M $≡ \forall a \in ®M:$ $f$ je spojitá v $a$.
+
+        $f$ je $k$-Lipschitzovská ($k > 0$) $≡ \forall x, y \in ®M: e(f(x), f(y)) ≤ k·d(x, y)$.
+
+        $f$ je Lipschitzovská $≡$ $\exists k>0:$ $f$ je $k$-Lipschitzovská.
+    \end{definice}
+
+    \begin{pozorovani}
+        $f$ je $k$-Lipschitzovská $\implies$ $f$ je spojitá.
+    \end{pozorovani}
+
+    \begin{definice}[Značení]
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$, $x \in ®M$. Pak $\dist(x, A):=\inf_{a \in A} d(x, a)$.
+    \end{definice}
+
+    \begin{lemma}
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak
+        $$ (i) \forall x \in ®M: d(x, A) = d(x, \overline{A}), $$ 
+        $$ (ii) \forall x \in ®M: d(x, A) = 0 \Leftrightarrow x \in \overline{A}, $$ 
+        $$ (iii) \dist(·, A): ®M \rightarrow ®R \text{ je 1-Lipschitzovská}. $$ 
+
+        \begin{dukazin}
+            $(i)$ $≥$: Jasné (infimum přes menší množinu). $≤$: Pro $n \in ®N$ zvolme $y_n \in \overline{A}$: $d(x, y_n) < \dist(x, \overline{A}) + \frac{1}{n}$. Zvolme dále $x_n \in \B\(y_n, \frac{1}{n}\) \cap A$, pak $\dist(x, A) ≤ d(x, x_n) ≤ d(x, y_n) + d(y_n, x_n) < \dist(x, \overline{A}) + \frac{1}{n}$, celkem $\forall n \in ®N: \dist(x, A) < \dist(x, \overline{A}) + \frac{2}{n}$ $\implies \dist(x, A) ≤ \dist(x, \overline{A})$.
+
+            $(ii)$: BÚNO $A$ je uzavřená (jinak podle $(i)$). $\Rightarrow$: Jasné (do $\inf$ dosadíme $x$). $\Rightarrow$ $\forall n \ \exists x_n \in \B(x, \frac{1}{n}) \cap A$ protože $d(x, A) = 0$. Pak ale $x_n \rightarrow x$, tedy $x \in A$ z uzavřenosti.
+
+            $(iii)$: Zvolme $x, y \in ®M$. BÚNO $d(x, A) ≥ d(y, A)$. Fixujeme $n \in ®N$. Zvolme $y_n \in A: d(y, y_n) < \dist(y, A) + \frac{1}{n}$. Pak
+            $$ |d(x, A) - d(y, A)| = d(x, A) - d(y, A) < d(x, y_n) - \(d(y, y_n) - \frac{1}{n}\) \overset{\triangle}{≤} \frac{1}{n} + d(x, y). $$
+
+            $\implies$ ($n$ bylo libovolné, přejdeme k limitě) $|d(x, A) - d(y, A)| ≤ 1·d(x, y)$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}
+        Ať $(®M, d)$ je MP. Pak
+        $$ (i) \forall x ≠ y \in ®M\ \exists f: ®M \rightarrow ®R \text{ 1-Lipschitzovská, že } f(x) ≠ f(y), $$
+        $$ (ii) \text{ Projekce } \pi_i: (®R^d, ||·||_p) \rightarrow ®R, (x_1, …, x_d) \mapsto x_i \text{ jsou Lipschitzovské}, d \in ®N, p \in [1, ∞]. $$
+
+        \begin{dukazin}
+            $(i)$ Zvol $f:=d(·, \{x\})$.
+
+            $(ii)$ $\forall \vec{x}, \vec{y} \in ®R^d: |\pi_i(x_1, …, x_d) - \pi_i(y_1, …, y_d)| = |x_i - y_i|$
+            $$ ≤ \begin{cases} p = ∞: & ||\vec{x} - \vec{y}||_∞ \\ p≠∞: & \sqrt[p]{\sum_{j=1}^d |x_j - y_j|^p} \end{cases}. $$ 
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{tvrzeni}
+        Ať $(®M, d)$, $(®N, e)$ jsou MP, $f: ®M \rightarrow ®N$. Pak následující tvrzení jsou ekvivalentní:
+        
+        \begin{itemize}
+            \item[(i)] $f$ je spojitá,
+            \item[(ii)] $f^{-1}(U)$ je otevřená, kdykoliv $U \subseteq ®N$ je otevřená,
+            \item[(iii)] $f^{-1}(F)$ je uzavřená, kdykoliv $F \subseteq ®N$ je uzavřená.
+        \end{itemize}
+
+        \begin{dukazin}
+            (ii) $\Leftrightarrow$ (iii): Z věty o doplňcích a toho, že $f^{-1}(®N \setminus U) = ®M \setminus f^{-1}(U)$.
+
+            (i) $\implies$ (ii): Nechť $U \subseteq ®N$ otevřená, $x \in f^{-1}(U)$. Pak $f(x) \in U \implies \exists \epsilon > 0: \B(f(x), \epsilon) \subseteq U$. $\implies$ ($f$ spojitá) $\exists \delta > 0: y \in \B(x, \delta) \implies f(y) \in \B(f(x), \epsilon) \subseteq U$, pak $\B(x, \delta) \subseteq f^{-1}(U)$.
+
+            (ii) $\implies$ (i): Nechť $x \in ®M, \epsilon > 0$. Pak $f^{-1}(\B(f(x), \epsilon))$ je otevřená dle (ii). $\implies \exists \delta > 0: \B(x, \delta) \subseteq f^{-1}(\B(f(x), \epsilon))$. Tedy $d(x, y) < \delta \implies f(y) \in \B(f(x), \epsilon)$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Stejnoměrná spojitost]
+        Ať $(®M, d)$ a $(®N, e)$ jsou MP, $f: ®M \rightarrow ®N$. Pak $f$ je stejnoměrně spojitá, pokud
+        $$ \forall \epsilon > 0 \exists \delta > 0\ \forall x, y \in ®M: d(x, y) < \delta \implies e(f(x), f(y)) < \epsilon. $$
+    \end{definice}
+
+    \begin{dusledek}
+        $f$ je stejnoměrně spojitá $\implies$ $f$ je spojitá. (Ale naopak to neplatí.)
+
+        $f$ je Lipschitzovská $\implies$ $f$ je stejnoměrně spojitá. (Stejně tak tohle naopak neplatí.)
+    \end{dusledek}
+
+    \begin{definice}[Izometrie]
+        Ať $(®M, d)$ a $(®N, e)$ jsou MP, $f: ®M \rightarrow ®N$. Pak $f$ je izometrie, pokud $\forall x, y \in ®M: d(x, y) = e(f(x), f(y))$.
+    \end{definice}
+
+    \begin{dusledek}
+        Izometrie je 1-Lipschitzovská. (Ale ne naopak.)
+    \end{dusledek}
+
+    \begin{definice}[Homeomorfismus]
+        Ať $(®M, d)$ a $(®N, e)$ jsou MP, $f: ®M \rightarrow ®N$. Pak $f$ je homeomorfismus, pokud $f$ je spojitá bijekce a $f^{-1}$ je spojitá.
+    \end{definice}
+
+    \begin{dusledek}
+        Izometrie na je homeomorfismus. (Ale opačně to neplatí.)
+    \end{dusledek}
+
+    \begin{lemma}
+        $I$ interval, $f: I \rightarrow ®R$, že $|f'(x)| ≤ C, \forall x \in \Int(I)$ $\implies f$ je C-Lipschitzovská.
+
+        \begin{dukazin}
+            Ať $a < b \in I$ $\implies$ (Lagrange) $\exists \zeta \in (a, b): |\frac{f(b) - f(a)}{b-a}| = |f'(\zeta)| ≤ C$, tj. $|f(b) - f(a)| ≤ C|b - a|$.
+        \end{dukazin}
+    \end{lemma}
 \end{document}

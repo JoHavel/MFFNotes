@@ -4,7 +4,89 @@
 \begin{document}
 
 % 5. 3. 2021
-TODO (Přednáška + první část cvik)
+\begin{poznamka}[Úmluva]
+    Všechny topologické prostory v tomto semestru budou Hausdorffovy ($T_2$). Tedy regulární jsou automaticky $T_3$, úplně regulární jsou automaticky $T_\pi$ a normální jsou $T_4$.
+
+    Speciálně např. kompaktní prostory jsou $T_4$.
+\end{poznamka}
+
+\section{Parakompaktní prostory}
+    \begin{poznamka}[Připomenutí]
+        Pokrytí, otevřené pokrytí, podpokrytí.
+    \end{poznamka}
+
+    \begin{definice}[Zjemnění]
+        Ať $X$ je množina a ©S je pokrytí $X$. Řekneme, že systém $©T \in ©P(X)$ je zjemnění ©S, pokud $©T$ je pokrytí a $\forall T \in ©T\ \exists S \in ©S: T \subseteq S$.
+    \end{definice}
+
+    \begin{definice}[Lokálně konečný systém]
+        Ať ®X je TP, $©S \subseteq ©P(®X)$. ©S se nazývá lokálně konečný, pokud
+        $$ \forall x \in ®X\ \exists U \in ©U(x): \{S \in ©S| S \cap U ≠ \O\} \text{ je konečná.} $$
+
+        Systém ©S se nazve diskrétní, pokud
+        $$ \forall x \in ®X\ \exists U \in ©U(x): \left|\{S \in ©S| S \cap U ≠ \O\}\right| ≤ 1. $$
+
+        Systém ©S se nazve $\sigma$-lokálně konečný (resp. $\sigma$-diskrétní), pokud $\exists S_n$, že $Š = \bigcup_{n=1}^∞$, že $©S_n$ jsou lokálně konečné (resp. diskrétní), $n \in ®N$.
+    \end{definice}
+
+    \begin{poznamka}
+        Diskrétní systém je lokálně konečný. $\sigma$-diskrétní systém je $\sigma$-lokálně konečný.
+    \end{poznamka}
+
+    \begin{lemma}[Uzávěr lokálně konečného prostoru]
+        Ať ®X je TP, $©A \subseteq ©P(X)$ lokálně konečný systém. Pak $\{\overline{A}| A \in ©A\}$ je opět lokálně konečný a platí $\overline{\bigcup ©A} = \bigcup \{\overline{A}| A \in ©A\}$.
+
+        \begin{dukazin}
+            Ať $x \in ®X$ je libovolné. Existuje $U \in ©U(x): \{A \in ©A: A \cap U ≠ \O\}$ je konečná. Ať $V = \int U, V \in ©U(x)$. $\{A \in ©A: A \cap V ≠ \O\}$ je zřejmě konečná. $V \cap A ≠ \O \Leftrightarrow V \cap \overline{A} ≠ \O$. Tedy $\{A \in ©A: \overline{A} \cap V ≠ \O\} = \{A \in ©A: A \cap V ≠ \O\}$. Tedy $\{\overline{A}| A \in ©A\}$ je konečná.
+
+            $\supseteq:$ $\bigcup ©A \supseteq A, A \in ©A$, tedy $\overline{\bigcup ©A} \supseteq \overline{A} \implies \overline{\bigcup ©A} \supseteq \bigcup \{\overline{A}| A \in ©A\}$.
+
+            $\subseteq:$ Ať $x \in \overline{\bigcup ©A}$. $\exists U \in ©U(x)$ otevřená, že $\{A \in ©A: A \cap U ≠ 0\} = \{A_1, …, A_n\}$. $x \in \overline{A_1 \cup … \cup A_n} \stackrel{\text{konečné}}{=} \overline{A_1} \cup … \cup \overline{A_n}$. $\exists i ≤ n: x \in \overline{A_i}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Parakompaktní]
+        TP ®X se nazývá parakompaktní, pokud každé jeho otevřené pokrytí má lokálně konečné otevřené zjemnění.
+    \end{definice}
+
+    \begin{poznamka}
+        Kompaktní $\implies$ parakompaktní (protože podpokrytí je zjemnění a konečné je lokálně konečné).
+
+        Diskrétní TP $\implies$ parakompaktní.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Uzavřený podprostor parakompaktního TP je parakompaktní.
+
+        \begin{dukazin}
+            ®X je parakompaktní TP a $F \subseteq ®X$ uzavřená. Ať ©U je otevřené pokrytí $F$ (otevřenými množinami v $F$). Z definice podprostoru $\forall U \in ©U\ \exists V_U$ otevřená v $®X: U = F \cap V_U$. Uvažujme $©V = \{V_U|U \in ©U\} \cup \{F \setminus  F\}$. ©V je otevřené pokrytí ®X. Existuje otevřené lokálně konečné zjemnění ©W tohoto ©V. $\{F \cap W | W \in ©W\}$ je otevřené pokrytí $F$ a zároveň lokálně konečné. Navíc je to i zjemnění ©U.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Charakterizace parakompaktnosti]
+        Pro regulární TP ®X jsou následující podmínky ekvivalentní:
+        
+        \begin{itemize}
+            \item[a)] ®X je parakompaktní.
+            \item[b)] Každé otevřené pokrytí ®X má otevřené $\sigma$-lokálně konečné zjemnění.
+            \item[c)] Každé otevřené pokrytí ®X má lokálně konečné zjemnění (libovolnými množinami).
+            \item[d)] Každé otevřené pokrytí ®X má uzavřené lokálně konečné zjemnění. 
+        \end{itemize}
+
+        \begin{dukazin}
+            $a) \implies b):$ každé lokálně konečné zjemnění je $\sigma$-lokálně konečné.
+
+            $b) \implies c):$ Ať ®U je otevřené pokrytí ®X. Podle b) existuje otevřené zjemnění $©V = \bigcup_{n=1}^∞ ©V_n$, $©V_n$ lokálně konečný systém. $W_n:=\bigcup ©V_n$ je otevřené $\{W_n | n \in ®N\}$ je otevřené pokrytí ®X. Ať $A_n := W_n \setminus \bigcup_{i < n} W_i$. $\{A_n | n \in ®N\}$ je lokálně konečné pokrytí ®X (každé $x \in ®X$ je v nějakém $W_n$, takže už není ve větších $A_n$). $\{A_n \cap V | n \in ®N, V \in ©V_n\}$ je lokálně konečné zjemnění ©U.
+
+% 5. 3. 2021
+
+            $c) \implies d):$ Ať ©U je otevřené pokrytí ®X. Pro každé $x \in ®X$ existuje $U_x \in U: x \in U_x$. Nyní máme bod v otevřené množině, tedy z regularity existují otevřené množiny $V_x \subseteq ®X: x \in V_x \subseteq \overline{V_x} \subseteq U_x$. $©V:=\{V_x | x \in ®X\}$ je otevřené pokrytí ®X. ©V má lokálně konečné zjemnění $©W$ podle $c)$. $\{\overline{W} | W \in ©W\}$ je lokálně konečný systém podle lemmatu „Uzávěr lokálně konečného systému“. Navíc je i pokrytí a zjemňuje ©U.
+
+            $d) \implies a)$ Ať ©U je otevřené pokrytí ®X. Z d) existuje lokálně konečné uzavřené zjemnění ©V. Pro $x \in ®X$ existuje $W_x$ otevřené okolí $x$ protínající jen konečně mnoho prvků z ©V. $©W:=\{W_x | x \in ®X\}$ je otevřené pokrytí ®X. Z d) existuje lokálně konečné uzavřené zjemnění ©A toho ©W. Pro $V \in ©V$ označíme $V^*:=®X \setminus \bigcup\{A \in ©A | A \cap V = \O\}$. Zřejmě $V^* \supseteq V$. Tedy $\{V^* | V \in ©V\}$ je otevřené (odčítáme uzavřenou množinu, neboť $A$ jsou uzavřené a množina je lokálně konečná, tedy podle lemmatu … je uzavřené i sjednocení) pokrytí.
+
+                    Ať $x \in ®X$. $\exists U$ okolí $x$, které protíná jen konečně prvků $A_1, …, A_n \in ©A$. Zřejmě $U \subseteq A_1 \cup … \cup A_n$. Každé $A_i$ je podmnožinou nějakého $W_y$, tj. (podle volby $W_y$) $A_i$ protíná jen konečně mnoho prvků z ©V. Navíc je-li $V \in ©V$ a $A \in ©A$, že $A \cap V = \O$, pak $A \cap V^* = \O$. Tedy každé $A_i$ protíná pouze konečně mnoho prvků $V^*$, $V \in @V$. Pro každé $V \in @V$ fixujeme $U_v \in ©U: V \subseteq U_V$. Zřejmě $V \subseteq U_V \cap V^*$. Pak $\{U_V \cap V^* | V \in ©V\}$ je otevřené pokrytí ®X, které je lokálně konečné a které je zjemnění $©U$.
+        \end{dukazin}
+    \end{veta}
 
     \begin{dusledek}
         Každý Lindelöfův regulární prostor je parakompaktní.
@@ -15,7 +97,7 @@ TODO (Přednáška + první část cvik)
     \end{dusledek}
 
     \begin{definice}[Skrčení]
-            Ať $X$ je množina a $©S \subseteq ©P(X)$ (pokrytí $X$). Indexovaný systém $\{T_S: S \in ©S\} \subseteq ©P(X)$ se nazývá skrčení systému ©S, pokud (je to pokrytí) a $T_S \subseteq S, S \in ©S$.
+        Ať $X$ je množina a $©S \subseteq ©P(X)$ (pokrytí $X$). Indexovaný systém $\{T_S: S \in ©S\} \subseteq ©P(X)$ se nazývá skrčení systému ©S, pokud (je to pokrytí) a $T_S \subseteq S, S \in ©S$.
     \end{definice}
 
     \begin{poznamka}[Nadmutí]
@@ -37,7 +119,7 @@ TODO (Přednáška + první část cvik)
     \end{lemma}
 
     \begin{definice}[Kolektivně normální]
-            TP ®X se nazývá kolektivně normální, pokud pro každý diskrétní systém ©F z uzavřených množin existuje disjunktní systém otevřených množin $\{U(F): F \in ©F\}$, že $F \subseteq U(F), F \in ©F$ (tj. otevřené nadmutí).
+        TP ®X se nazývá kolektivně normální, pokud pro každý diskrétní systém ©F z uzavřených množin existuje disjunktní systém otevřených množin $\{U(F): F \in ©F\}$, že $F \subseteq U(F), F \in ©F$ (tj. otevřené nadmutí).
     \end{definice}
 
     \begin{poznamka}
@@ -74,7 +156,126 @@ TODO (Přednáška + první část cvik)
 
     \begin{lemma}[Dvojité barycentrické zjemnění je hvězdovité]
         Ať $X$ je množina, ©U pokrytí ©X, ©V barycentrické zjemnění ©U a ©W barycentrické zjemnění ©V. Potom ©W je hvězdovité zjemnění ©U.
+
+% 12. 3. 2021
+
+        \begin{dukazin}
+            Mějme $W \in ©W$ libovolně. Chceme najít $U \in ©U: \st(W, ©W) \subseteq U$. $W = \O$ triviální. $W ≠ \O:$ Fixujeme $x_0 \in W$. Pro každé $x \in ®X$ existuje $V_x \in ©V$: $\st(x, ©W) \subseteq V_x$. Nyní 
+            $$ \st(W, ©W) = \bigcup\{T \in ©W: T \cap W ≠ \O\} = \bigcup\{\{T \in ©W| x \in T\} | x \in W\} = \bigcup\{\st(x, ©W) | x \in W\} \subseteq \bigcup\{V_x| x \in W\} \subseteq \st(x_0, ©V), $$
+            protože $W \subseteq V_x$ pro každé $x \in W$. ©V barycentricky zjemňuje ©U, tedy existuje $u \in ©U: \st(x_0, ©V) \subseteq U$.
+        \end{dukazin}
     \end{lemma}
+
+    \begin{veta}[Charakterizace parakompaktnosti pomocí hvězdovitých zjemnění]
+        Pro TP ®X je ekvivalentní:
+
+        \begin{itemize}
+            \item[a)] ®X je parakompaktní.
+            \item[b)] Každé otevřené pokrytí ®X má barycentrické zjemnění.
+            \item[c)] Každé otevřené pokrytí ®X má hvězdovité zjemnění.
+            \item[d)] Každé otevřené pokrytí ®X má otevřené $\sigma$-diskrétní zjemnění a ®X je regulární.
+        \end{itemize}
+
+        \begin{dukazin}
+            $a) \implies b)$ Ať ©U je otevřené pokrytí ®X. Z a) vyplývá, že existuje jeho lokálně konečné otevřené zjemnění ©V. Víme, že ®X je parakompaktní, tedy normální. Z lemmatu o skrčení existuje uzavřené pokrytí $©W = \{W_V | V \in ©V\}$, $W_V \subseteq V$. ©V je lokálně konečné, tedy i ©W je lokálně konečné. Pro $x \in ®X$ definujeme $A_x = \bigcap\{V | x \in W_V\}$. Jde o konečný průnik (vzhledem k lokální kompaktnosti), tedy $A_x$ je otevřená. Položme $B_x = \bigcup\{W \in ©W | x \notin W\}$. Podle lemmatu o sjednocení lokálně konečného systému je $B_x$ uzavřená. Zřejmě $x \in A_x \setminus B_x =: C_x$ je otevřená. Tedy $©C = \{C_x|x \in ®X\}$ je otevřené pokrytí ®X.
+
+                Ukážeme, že ©C barycentricky zjemňuje ©U: Ať $y \in ®X$. Chceme najít $V \in ©U$: $\st(y, ©C) \subseteq V$. Víme, že existuje $V \in ©V: y \in W_V$. Ať $x \in \st(y, ©C)$. Pak $y \in C_x = A_x \setminus B_x$, tedy $y \notin B_x$, tudíž $x \in W_V \subseteq V$ (kdyby ne, pak $W_V \subseteq B_x$, tedy $y \notin C_x$).
+
+            $b) \implies c)$ k otevřenému pokrytí můžeme najít barycentrické zjemnění, ke kterému můžeme najít barycentrické zjemnění. Pak c) vyplývá z předchozího lemmatu.
+
+            $c) \implies d)$ ®X je regulární: Ať $F \subseteq ®X$ uzavřená, $x \in ®X \setminus F$. Uvažujme otevřené pokrytí $\{®X \setminus F, ®X \setminus {x}\}$. Podle c) existuje otevřené hvězdovité zjemnění ©U. $\exists U \in ©U: x \in U$. Nutně $U \cap F = \O$. Pak $\overline{U} \subseteq \st(U, ©U) \subseteq ®X \subseteq ®X \setminus F$. Tedy ®X je regulární.
+
+                Ať $©U_0$ je otevřené pokrytí ®X. Chceme najít $\sigma$-diskrétní zjemnění toho $©U_0$. Použijeme podmínku c) spočetně nekonečněkrát, abychom induktivně našli otevřená pokrytí $©U_1, ©U_2, …$, že $©U_{n+1}$ hvězdovitě zjemňuje $©U_n, n≥0$. Oindexujme prvky $©U_0: ©U_0 = \{U_i|i \in I\}$. Pro $i \in I$ a pro $n \in ®N$ uvažujme $U_{i, n} := \{x \in ®X|x \text{ má okolí } V: \st(V, ©U_n) \subseteq U_i\}$. Pro každé $n \in ®N: \{U_{i, n}| i \in I\}$ je otevřené zjemnění ©U, ale ne nutně pokrytí.
+
+                Pomocné tvrzení: Pokud $x \in U_{i, n}, u \notin U_{i, n+1}$, pak neexistuje $U \in ©U_{n+1}$, že $x, y \in U$. Důkaz: Pro $U \in ©U_{n+1}$ existuje $W \in ©U_n: \st(U, ©U_{n+1})\subseteq W$. Tedy pokud $x \in U\cap U_{i, n}$, pak $W \subseteq \st(x, ©U_n) \subseteq U_i$. Pak $\st(U, ©U_{n+1})\subseteq U_i$ a $u \subseteq U_{i, n+1}$. Tedy $y \notin U$, protože $y \notin U_{i, n+1}$.
+
+                Uvažme dobré uspořádání $<$ na $I$. Ať $V_{i_0, n} = U_{i_0, n} \setminus \bigcup \{U_{i, n+1} | i < i_0\}$, $i_0 \in I, n \in ®N$. Ukážeme, že $** = \{V_{i_0, n} | i_0 \in I, n \in ®N\}$ je hledané $\sigma$-diskrétní zjemnění $©U_0$. Pro $i_1 ≠ i_2, i_1, i_2 \in I$, pak $i_1 < i_2$ nebo naopak. Podle toho buď $V_{i_2, n} \subseteq ®X \setminus U_{i_1, n+1}$ nebo $V_{i_1, n} \subseteq ®X \setminus U_{i_2, n+1}$. Podle pomocného tvrzení platí, že pokud $x \in V_{i_1, n}$ a $y \in V_{i_2, n}$, pak neexistuje $U \in ©U_{n+1}$, že $x, y \in U$. To nám říká, že $\forall n \in ®N: \{V_{i, n} | i \in I\}$ je diskrétní. Zbývá už jen ukázat, že $**$ je pokrytí: Ať $y \in ®X$. Existuje $<$-nejmenší $i(y) \in I: y \in U_{i(y), n}$ pro nějaké $n \in ®N$. Nyní $y \notin U_{i, n+2}$ pro $i <i(y)$. Podle pomocného tvrzení použitého na $n+1$ platí $\st(y, ©U_{n+2}) \cap \bigcup \{U_{i, n+1}|i < i(y)\} = \O$. Tedy $y \in V_{i(y)}, n$.
+
+                $d) \implies a)$ Víme, že ®X je regulární, tedy můžeme aplikovat charakterizaci parakompaktnosti z minulého týdne, jelikož $\sigma$-diskrétní $\implies \sigma$-lokálně konečný.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Stone]
+        Každý metrizovatelný prostor je parakompaktní.
+
+        \begin{dukazin}
+            Ukážeme, že každé otevřené pokrytí ©U má barycentrické zjemnění. Fixujeme na nějakém tom prostoru ®X kompatibilní metriku $\rho ≤ 1$. Navíc búno $®X \notin ©U$. Pro každé $x \in ®X$ a $U \in ©U$, že $x \in U$, existuje největší možné $\epsilon_{x, U}>0$, že $B(x, 5\epsilon_{x, U})$. Položíme $©V = \{B(x, \epsilon_{x, U})|x \in U \in ©U\}$. Ověříme, že $©V$ barycentricky zjemňuje $©U$: Ať $x \in ®X$. Chceme najít $U \in ©U: \st(x, ©V) \subseteq U$. Ať $\epsilon_x = \sup\{\epsilon_{x, U} | x \in U \in ©U\}$. $0 < \epsilon_x ≤ 1$. Existuje $U \in ©U: \epsilon_{x, U} ≥ \frac{\epsilon_x}{2}$.
+
+            Ukážeme, že $\st(x, ©V) \subseteq U$. Ať tedy $x \in B(y, \epsilon_{y, v})$ pro nějaké $y \in V \in ©U$. Chceme $B(y, \epsilon_{y, v}) \subseteq U$. Máme $B(y, 5\epsilon_{y, v}) \subseteq V$ a zároveň $\rho(x, y) < \epsilon_{U, V}$. Z $\triangle$-nerovnosti: $B(x, 4\epsilon_{y, V}) \subseteq V$. Z maximality $\epsilon_{x, V} ≥ \frac{1}{5}4\epsilon_{y, V}$. Také $2\epsilon_{x, U} > \epsilon_x ≥ \epsilon_{x, V}$. Dohromady $2\epsilon_{x, U} > \frac{4}{5} \epsilon_{y, V}$, tj. $5\epsilon_{x, U} > 2\epsilon_{y, V}$. Pro $z \in B(y, \epsilon_{y, V}): \rho(x, z) < 2\epsilon_{y, V}$, a tedy $\rho(x, z) < 5\epsilon_{x, U}$. Proto $z \in U$. Tudíž $B(y, \epsilon_{y, v}) \subseteq U$.
+        \end{dukazin}
+    \end{veta}
+
+% 19. 3. 2021
+
+    \begin{definice}
+        Pro funkci $f: X \rightarrow ®R$ značíme $\supp f = \overline{\{x \in X: f(x) ≠ 0\}}$.
+    \end{definice}
+
+    \begin{veta}[Rozklad jednotky]
+        Ať ®X je parakompaktní prostor, ©U otevřené pokrytí ®X. Pak existuje rozklad jednotky podřízený tomuto pokrytí, tj. systém spojitých funkcí $f_i: X \rightarrow [0, 1]$, $i \in I$, že $\{\supp f_i: i \in I\}$ je lokálně konečné zjemnění ©U a $\sum_{i \in I} f_i(x) = 1, \forall x \in ®X$.
+
+        \begin{dukazin}
+            ®X parakompaktní, tedy normální. Tedy existuje otevřené pokrytí ©W takové, že $\{\overline{W}: W \in ©W\}$ zjemňuje ©U. Ať ©V je lokálně konečné otevřené zjemnění ©W. Víme, že existuje uzavřené skrčení $\{F_V: V \in ©V\}$, $F_V \subseteq V$. Z normality existují spojité funkce $g_V: ®X \rightarrow [0, 1]$, $g_V|_{F_V} = 1$, $g_V|_{®X \setminus V} = 0$. Položme $g(x):=\sum_{V \in ©V} g_V(x)$. Funkce $g$ je spojitá, protože spojitost je lokální pojem a $g$ je lokálně součet konečně mnoha nenulových spojitých funkcí. Navíc zřejmě $g ≥ 1$, protože $\{F_V: V\in©V\}$ je pokrytí ®X. Tedy položme $f_V:= \frac{g_V}{g}$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Michaelova selekční]
+        Zdola polospojitá (vícehodnotová) funkce z parakompaktního prostoru do neprázdných uzavřených konvexních podmnožin Banachova prostoru má spojitou selekci.
+    \end{veta}
+
+    \begin{veta}[Dugunjiho]
+        Ať ®X je metrizovatelný a $A \subseteq ®X$ uzavřená. Pak existuje lineární zobrazení $L: C(A, ®R) \rightarrow C(®X, ®R)$, že $L(f)$ rozšiřuje $f$ pro $f \in C(A, ®R)$.
+    \end{veta}
+
+\section{Metrizační věty}
+    \begin{poznamka}[Opakování]
+        Uryshonova metrizační věta: Regulární prostor se spočetnou bází je metrizovatelný.
+    \end{poznamka}
+
+    \begin{veta}[Bing, Nagata, Smirnov]
+        Pro regulární prostor ®X jsou následující podmínky ekvivalentní:
+        
+        \begin{itemize}
+            \item[a)] ®X je metrizovatelný.
+            \item[b)] ®X má $\sigma$-diskrétní bázi.
+            \item[c)] ®X má $\sigma$-lokálně konečnou bázi.
+        \end{itemize}
+
+        \begin{dukazin}
+            $a) \implies b)$: Ať $©B_n$ je otevřené pokrytí ®X koulemi o poloměru $\frac{1}{n}$. ®X je parakompaktní podle Stoneovy věty. Z charakterizace parakompaktnosti máme, že $©B_n$ má $\sigma$-diskrétní otevřené zjemnění $©V_n$. $\bigcup_{n \in ®N} ©V_n$ je opět $\sigma$-diskrétní, navíc je to báze.
+
+            $b) \implies c)$: triviální.
+
+            $c) \implies a)$ Ať $B = \bigcup_{n=1}^∞$ je báze $®X$, $©B_n$ lokálně konečný soubor. Uvědomíme si, že ®X je parakompaktní: Je-li totiž $©U$ otevřené pokrytí ®X, pak $\{B \in ©B: \exists U \in ©U: B \subseteq U\}$ je zjemnění $U$ a vzhledem k tomu, že $B$ je báze, tak je to i pokrytí. Navíc je $\sigma$-lokálně konečné. Tedy z charakterizace parakompaktnosti to máme.
+
+            Z parakompaktnosti dostáváme normalitu ®X. Pro $n, k \in ®N$ a $B \in ©B_n$ položme $V_{k, n, B}:= \bigcup\{C \in ©B_k: \overline{C} \subseteq B\}$. $©B_k$ je lokálně konečný, tedy (z lemmatu o uzávěru lokálně konečného systému) $\overline{V_{k, n , B}} \subseteq B$. Tedy existují (z normality) spojité funkce $f_{k, n, B}: ®X \rightarrow [0, 1]$, $f_{k, n, B}(x) = 0$ pro $x \in ®X \setminus B$ a $1$ pro $x \in \overline{V_{k, n, B}}$.
+
+            Definujeme $M_{k, n} \subseteq [0, 1]^{©B_n}$ následovně $M_{k, n} = \{\phi: ©B_n \rightarrow [0, 1]: \{B \in ©B_n: \phi(B) ≠ 0\} \text{ je konečná}\}$. Na $M_{k, n}$ uvažme metriku $\rho_{k, n}{\phi, \psi} := \sum_{B \in ©B_n} |\phi(B) - \psi(B)|$. Ať $g_{k, n}: ®X \rightarrow M_{k, n}$, $g_{k, n} = \triangle_{B \in ©B_n} f_{k, n, B}$, $g_{k, n}(x) = (f_{k, n, B}(x))_{B \in ©B_n}$.
+
+            Ověříme, že $g_{k, n}: ®X \rightarrow (M_{k, n}, \rho_{k, n})$ je spojité: Ať $x \in ®X$, $\epsilon > 0$, existuje $U$ okolí $x$ protínající jen konečně prvků $B_1, …, B_m \in ©B_n$. $f_{k, n, B_1}, …, f_{k, n, B_m}$ jsou spojitá, tedy existuje $V \subseteq U$ okolí $x$, že $|f_{k, n, B}(x) - f_{k, n, B_i}(y)| < \frac{\epsilon}{m}$ pro $i ≤ m, y \in V$. Nyní
+            $$ \rho_{k, n}(g_{k, n}(x), g_{k, n}(y)) = \sum_{i=1}^m |g_{k, n}(x)(B_i) - g_{k, n}(y)(V_i)| = \sum |f_{k, n, B}(x) - f_{k, n, B_i}(y)| < m·\frac{\epsilon}{m} = \epsilon. $$
+
+            Pokud systém $\{g_{k, n}: k, n \in ®N\}$ odděluje body a uzavřené množiny, pak $\delta:= \triangle_{k, n \in ®N}g_{k, n}:®X \rightarrow \prod_{k, n \in ®N} M_{k, n}$ je vnoření (podle lemmatu o Tichonovově vnoření). Tím jsme vnořili ®X do spočetného součinu metrizovatelných prostorů, tedy do metrizovatelného prostoru, tedy ®X je metrizovatelné.
+
+            $\{g_{k, n}: k, n \in ®N\}$ odděluje body a uzavřené množiny: Ať $F \subseteq ®X$ je uzavřená, $x \in ®X\setminus F$. Existuje $n \in ®N$ a $B \in ©B_n: x \in B \subseteq X \setminus F$. Z regularity existuje $C \in ©B_k, k \in ®N$. $g_{k, n}(x)(B) = f_{k, n, B}(x) = 1$ a $g_{k, n}(y)(B) = f_{k, n, B}(y) = 0$ pro $y \in ®X \setminus B \supseteq F$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}
+        Ať ®X je TP. Posloupnost otevřených pokrytí $©V_n$ prostoru ®X se nazývá development, pokud pro každé $x \in ®X: \{\st(x, ©V_n)| n \in ®N\}$ je báze okolí v bodě $x$.
+    \end{definice}
+
+    \begin{poznamka}
+        Je-li $(X, \rho)$ MP, pak $©V_n:= \{B(x, \frac{1}{n}): x \in ®X\}, n \in ®N$ je development ®X.
+    \end{poznamka}
+
+    \begin{veta}[Bing]
+        TP ®X je metrizovatelný $\Leftrightarrow$ je kolektivně normální a má development.
+
+        \begin{dukazin}
+            $\implies$: metrizovatelný $\implies$ má development (podle předchozí poznámky) a metrizovatelný $\implies$ parakompaktní $\implies$ kolektivně normální.
+        \end{dukazin}
+    \end{veta}
 
 
 \end{document}
