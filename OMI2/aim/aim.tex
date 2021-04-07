@@ -33,4 +33,165 @@
         Menší typy než int se při výpočtu a předávání do funkcí bez definovaných parametrů převádějí na int.
     \end{upozorneni}
 
+% 16. 3. 2021
+
+    \begin{upozorneni}
+        Za návěštím musí být příkaz (klidně prázdný), nemůže tam být deklarace ani konec bloku.
+    \end{upozorneni}
+
+    \begin{upozorneni}
+        Switch funguje interně jako goto, tedy tam musíme použít break. (Pokud chceme propadnout dále, píše se \verb|\\fall through|).
+    \end{upozorneni}
+
+    \begin{poznamka}
+        Switch může skákat i do bloků (tj. např. můžeme zahájit první iteraci cyklu podle proměnné někde uprostřed).
+    \end{poznamka}
+
+    \begin{definice}
+        Existuje \verb|_Static_assert(podmínka, zpráva)|, které umí ověřit něco při kompilaci (a v případě neúspěchu vrátit zprávu), např. \verb|sizeof(int)==4|.
+    \end{definice}
+
+    \begin{poznamka}
+        Existují s proměnným počtem příkazů, na to se hodí \verb|<stdarg.h>| a \verb|va_arg|. Ale nepředává žádná metadata! (Na druhou stranu, zde se předávají pouze věci větší než / stejně velké jako int.)
+    \end{poznamka}
+
+    \begin{definice}[Fáze překladu]
+        \ 
+        \begin{enumerate}
+            \item Konverze do kompilační znakové sady a nahrazení trigrafů (náhrad za chybějící znaky, tvaru \verb|??něco|).
+            \item Slepení řádků končících na \verb|\|.
+            \item Rozdělení na preprocesorové tokeny (aby pp mohl ignorovat sémantiku C) a mezery, komentáře -> mezery.
+            \item Preprocesor (direktivy, makra, includy).
+            \item Konverze do cílové znakové sady (kdybychom kompilovali na jiný počítač).
+            \item Slepení navazujících stringových literálů.
+            \item Konverze pp-tokenů na tokeny, zapomenutí mezer.
+            \item Syntaktická a sémantická analýza.
+            \item Linker.
+        \end{enumerate}
+    \end{definice}
+
+    \begin{definice}[Preprocesorové direktivy]
+        \verb|#| musí být na začátku řádku, za ním mezery a pak direktiva až do konce řádku.
+
+        Umí \verb|#if, #else, #endif, #elif|, ale nepřetypovává. Naopak umí ještě \verb|defined(ident), defined ident|, speciálně \verb|#efdef ident, #ifndef ident|. Všude jinde se nahrazují makra, nedefinované identifikátory (i klíčová slova) jsou 0.
+
+        Dále umí \verb|define ident[(arg)] expanze| a \verb|undef|. (Pozor na mezery před (arg)).
+
+        K tomu ještě umí \verb|#include <jméno>| nebo \verb|#include "jméno"| makra. (Systémové nebo naše knihovny.) Uvnitř \verb|#include| se expandují makra (ale neslučují se stringy). Proti vícenásobnému inkludování se lze ochránit tak, že soubor uzavřeme do \verb|#ifndef| s nějakým unikátním makrem, které si nadefinujeme.
+
+        \verb|#warning, #error| dělá obvyklé věci, \verb|#pragma, _Pragma| si naopak volí sám kompilátor, co má dělat (\verb|_Pragma| nemusí být na začátku řádku).
+    \end{definice}
+
+    \begin{definice}[Nahrazování maker]
+        Zjistíme, zda se máme vůbec nahrazovat, posbíráme argumenty (a rekurzivně expandujeme ty), volání makra nahradíme jeho definicí s argumenty (speciálně \verb|#cosi| vrací \verb|"cosi"|, \verb|##| slepuje makra), ve výsledné posloupnosti hledáme další makra (případně blokujeme rekurzi).
+    \end{definice}
+
+    \begin{upozorneni}
+        Důležité je závorkovat.
+    \end{upozorneni}
+
+% 23. 3. 2021
+
+\section{Procesory}
+    \subsection{i386 = x86}
+        \begin{definice}[Datové typy]
+            Integer 8/16/32 a někdy 64 bitů. Float 32 (16+8 float)/64 (53+11 double)/80 (16+64 long double) a někdy 16 (11+5, pouze ve vektorech). Vektory 128 bitů, musí být homogenní a obsahuje libovolný předchozí typ (krom long double).
+        \end{definice}
+
+        \begin{definice}[Paměť (z pohledu uživatele)]
+            Pole bytů. Integery se ukládají little-endian, float mají také nějaké uspořádání, vektory jsou v běžném pořadí.
+        \end{definice}
+
+        \begin{definice}[Registry]
+            EAX (32b, obsahuje navíc AX = 16bitů a ten obsahuje AL a AH = 1byte), EBX, ECX, EDX.
+
+            ESI a EDI (source a destination index, dnes už umí skoro všechno, avšak neexistuje SIL apod.).
+
+            ESP (stack pointer, stack roste směrem dolů, tedy stack pointer ukazuje na nejnižší adresu, uložení na zásobník je: snížení ESP a uložení dat na ESP), EBP (base pointer, hraje ($±$ zaniklá konvence) roli při předávání argumentů, dnes již také běžný registr).
+
+            EIP (instruction pointer, ukazuje na další instrukci programu). EFLAGS (stavový registr, jednotlivé bity mají vlastní význam: nula, záporný, přetečení, směr čtení z paměti).
+
+            ST0-ST7 (teoreticky) (floatový stack), FPUSR (floating point unit status registr, stavy jako v EFLAGS), FPUCR (FPU control registr, řídící bity).
+
+            XMM0-7 (128bitové vektorové registry), dnes již často YMM0-7 (256b), MXCSR (control a status registr).
+        \end{definice}
+
+        \begin{definice}[Asembler]
+            Existují 2 různé syntaxe (pozor, mají opačně operandy (tj. kam se ukládá výsledek)) Intel (spíš Windows, \verb|ADD EBX,1|) a AT\&T (UNIX, \verb|addl $1,%ebx|, kde \verb|$| značí literál a \verb|\%| registr, \verb|l| (32) obdobně jako q (64b), w (16b), b (8b) značí, s čím pracuje instrukce). Budeme používat AT\&T syntaxi.
+
+            Operandy \verb|$číslo| = literál, \verb|%registr|, \verb|číslo| adresa v paměti, \verb|(%registr)| adresace registrem, \verb|číslo(%registr)| = adresa je registr + číslo (registr nemění), \verb|číslo(%r1, %r2, mul)| = adresa je r1 + (r2 krát mul) + číslo (např pro pole, mul může být 1, 2, 4, 8), implicitní operant (nepíše se, instrukce má automatický operand), \verb|.Návěští|.
+        \end{definice}
+
+        \begin{definice}[Konvence předávání argumentů funkce a výsledků]
+            Tzv. ABI (Application Binary Interface) (závislé na architektuře, OS, programovacím jazyku). Existuje procesorová funkce CALL x, přidá na zásobník aktuální adresu a přeskočí na danou adresu. RET naopak ze zásobníku vytáhne IP. Argumenty funkce se ukládají na zásobník před CALL, po RET je musí volající odstranit. (1. argument je nejblíže SP, poslední nejdále).
+
+            Části zásobníku patřící k 1 volání se říká stack frame. EBP ukazuje do na původní hodnotu EBP, která je přesně pod návratovou adresou, tj. návratová adresa je \verb|EBP + 4|. Pod EBP je prostor na lokální proměnné a pod nimi pracovní prostor, který končí ESP. Výsledek funkce se vrací v EAX, pokud je $<32b$ a v EDX horní polovina, EAX dolní, pokud je $<64b$ a $>32b$. V ST0, pokud je to float, jinde jinak.
+
+            Volaný může libovolně používat EAX, ECX, EDX, ST0-7 a část EFLAGS (tzv. Scratch registry), zbytek musí uvést do původního stavu.
+        \end{definice}
+
+    \subsection{AMD64}
+        \begin{definice}[Datové typy]
+            Integer je i 64 výjimečně 128. Jinak je vše při starém.
+        \end{definice}
+
+        \begin{definice}[Registry]
+            Nově máme 64b registry RAX, RBX, RCX, RDX, RSI, RDI, RBP, RSP, které jsou univerzální, tj. se jim říká R0-7. (Z nich se stále dají vykousnout menší registry, ale 16b jsou pomalé), navíc přibyli R8-15. EIP a EFLAGS se změnily na RIP a RFLAGS. Floatová jednotka zůstala (ale většinou se používá jen na long double, zbytek umí vector).
+
+            Vectory přibyli XMM8-15 a YMMO8-15.
+        \end{definice}
+
+        \begin{definice}[ABI]
+            Už se téměř vždy předávají argumenty v registrech. A floatové argumenty / výsledky přešly do XMM0-7 (80b stále v ST0).
+
+            Navíc se smí používat tzv. red zone, tj. 128 pod SP. (Jsou kvůli tomu různé hacky, např. v Ctrl-z).
+
+            V GCC je implicitně nastaven přepínač -fomit-frame-pointer tj. nepoužívá se EBP, pokud není potřeba.
+        \end{definice}
+
+% 30. 3. 2021
+
+        TODO!
+
+% 6. 4. 2021
+
+        \begin{definice}[Bit global]
+            Nastavený bit global na 1 zaručuje, že daná stránkovací knihovna nebude vyhozena při přepnutí kontextu.
+
+            Zároveň lze udělat i explicitní invalidaci stránky. Dále existuje PSID (process context ID), které se přiřadí stránkám (do dolních volných 12 bitů).
+        \end{definice}
+
+        \begin{definice}[Další přiblížení paměti]
+            SDRAM (synchronous dynamic) je matice ($±$ čtvercová) DRAM buněk + SRAM registr (1 řádek). Pracuje se tak, že se tzv. Activate řádek, který daný řádek přesune na SRAM registr. Po provedení čtení a úprav se provede tzv. PRECHARGE, čímž se data vrátí zpět.
+        \end{definice}
+
+    \subsection{Výpočet}
+        \begin{poznamka}[Historicky]
+            Fetch, decode, read input, alu, write output, PC++, (opakovat).
+        \end{poznamka}
+
+        \begin{definice}[Pipelining (neboli dnes)]
+            Jednotlivé části vykonávají činnosti paralelně, tedy se vykonává více instrukcí zároveň. Parametry: latence a propustnost. Můžou se však vytvářet bubliny (některé instrukce jsou na více taktů, nebo závislé, proto se ALU např. rozděluje na 2 takty, aby pipeline byla plynulejší). Větší problém jsou však skoky (proto se predikuje, kam se skočí).
+
+            Protipól skalárního procesoru (popsaného zde) jsou vektorové procesory, které mají mnoho ALU apod.
+        \end{definice}
+
+        \begin{definice}[Superskalární procesor]
+            Mezi skalárními a vektorovými procesory jsou ještě superskalární procesory, které: fetch, decode, read in. (vlastně také ve scheluderu), scheluder, ALU1 + ALU2 + …, write out.
+
+            Musí se však udržovat zdání lineárního průběhu (hlavně závislosti), např. se scheluder dívá na vstupy z a výstupy do paměti. Další problém jsou výjimky (např. dělení nulou). Celkově se to řeší tak, že dekodér rozebere operaci na $\mu$-operace. Naopak $\mu$-kro operace lze i slévat (např. podmínka + podmíněný skok).
+
+            Také probíhá register renaming, tedy se udržuje zobrazení mezi architekturovými registry (ty, co jsou v programu) a interními registry (fyzickými). Např. pokud 2 instrukce používají shodný pracovní registr, tak se přejmenuje, aby mohly běžet zároveň.
+
+            Nakonec probíhá tzv. spekulativní vyhodnocování (do registru se zapisují pouze ověřené instrukce, ale vyhodnocují se i vyspekulované (např. po skoku, po možnosti výjimky, …) s označením, že ještě nejsou ověřené).
+        \end{definice}
+
+        \begin{definice}[Predikce (skoky)]
+            1) statická predikce (bez kontextu): např. skoky dopředu většinou neskočí, skoky dozadu skočí (protože cykly).
+
+            2) dynamická predikce (BranchTargetBuffer): pamatuje si u každého skoku, jak dopadl minule a pak předvídá. Starší položky se vyhazují. Funguje např. tak, že se odčítá 1, když neskočil, přičítá 1, když skočil, čím větší, tím pravděpodobnější stav (tzv. saturační čítač, který když by měl přetéct na libovolnou stranu, tak zůstává) (takhle se to dělalo v prvním takovém procesoru: pentiu, ale byla tam chyba).
+
+            Nebo v 2) můžeme mít pole saturujících čítačů indexované historií.
+        \end{definice}
+
 \end{document}

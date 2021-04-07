@@ -1,0 +1,58 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[3.1]
+    Nechť $A = (¦a_1 | … | ¦a_n)$ je regulární reálná matice řádu $n$. Dokažte, že absolutní hodnota determinantu matice $A$ je menší nebo rovná součinu norem vektorů $¦a_1, …, ¦a_n$ (normy bereme vzhledem ke standardnímu skalárnímu součinu). Interpretujte tuto nerovnost geometricky.
+
+    \begin{dukazin}[Geometricky]
+        Determinant matice určuje objem rovnoběžnostěnu daného jejími sloupci nebo řádky (v 1D je to délka, ve 2D je to nenulová složka vektorového součinu, který mimo jiné vyjadřuje obsah, v 3D je to tzv. smíšený součin, objem jak vyšitý, pro vyšší dimenze lze ukázat, že taktéž reprezentuje objem). Naopak součin velikostí vektorů (tj. čísel) určuje objem 'kvádru', který má příslušné hrany délky daných vektorů.
+
+        Můžeme si tedy všimnout, že když budeme objem rovnoběžnostěnu počítat jako stěna dimenze $n-1$ krát výška, tak pokud tak otočením hrany (vektoru) nenáležejícího této stěně tak, aby byl kolmý maximalizujeme objem (jelikož výška nemůže být větší než délka této hrany). Když to takhle provedeme postupně pro všechny hrany (můžeme si všimnout, že hrana, kterou jsme změnili na kolmou již kolmá zůstane, takže proces je konečný), tak jsme tudíž nezmenšili objem a dostali kvádr, tedy druhý objem z prvního odstavce (součin délek vektorů) je jistě větší roven prvnímu (determinantu).
+    \end{dukazin}
+
+    \begin{dukazin}[QR]
+        Jelikož je matice $A$ reálná a regulární (tedy posloupnost jejích sloupcových vektorů je nezávislá), můžeme využít QR rozkladu $A = QR$ (viz tvrzení 8.72 ve skriptech). Víme, že determinant horní trojúhelníkové matice je součin prvků na diagonále (ostatní členy v definici determinantu jsou nulové) a z konstrukce QR rozkladu víme, že $R$ má $i$-tý prvek na diagonále roven $||¦a_i - ¦w_i||$, kde $¦w_i$ je kolmá projekce $¦a_i$ (všimněme si, že je jedno kam, ale víme, že je to na LO předchozích $¦a_j$), tedy například z Pythagorovy věty je $||¦a_i - ¦w_i|| ≤ ||¦a_i||$, tj. $\det R ≤ \prod_i ||¦a_i||$.
+
+        O $Q$ víme, že je to ortogonální matice, tedy když ji vynásobíme samu se sebou transponovanou, získáme matici standardních skalárních součinů ortonormálních (vzhledem ke standardnímu skalárnímu součinu) vektorů, tedy jednotkovou matici. Tudíž $\det(QQ^T) = \det(Q)·\det(Q^T) = \det(Q)^2 = 1$, tj. $\det(Q) = ±1$ (neboť determinant se transponováním nezmění a součin det. je det. součinu). Navíc determinant součinu matic je součin determinantů matic, tedy $|\det A| = |\det(QR)| = |\det(Q)·\det(R)| ≤ |±\prod_i ||¦a_i|| | = \prod_i ||¦a_i||$.
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3.2]
+    Uvažujme dvě báze $C_1 = \(¦u_1, ¦u_2, ¦u_3\)$ a $C_2 = \(¦v_1, ¦v_2, ¦v_3\)$ vektorového prostoru $®R^3$ a označme $B_j$ Gramovu matici $C_j$ vzhledem ke standardnímu skalárnímu součinu  (pro $j = 1, 2$).
+
+    \begin{itemize}
+        \item Ukažte, že pokud existuje ortogonální matice $Q$ řádu 3 taková, že $Q¦u_i = ¦v_i$ pro každé $i \in \{1, 2, 3\}$, pak $B_1 = B_2$ (tj. báze $C_1$ a $C_2$ mají stejné Gramovy matice).
+        \item Ukažte naopak, že pokud $B_1 = B_2$, pak existuje ortogonální matice $Q$ řádu 3 taková, že $Q¦u_i = ¦v_i$ pro každé $i \in {1, 2, 3}$.
+    \end{itemize}
+
+    \begin{reseni}
+        Speciální případ 3.2*. (Podle tvrzení 8.89 je matice $Q = [f]_K^K$ ortogonální $\Leftrightarrow$ zobrazení $f_Q$ je ortonormální).
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[3.2*]
+    Dokažte: Máme-li konečně generovaný reálný vektorový prostor ¦V se skalárním součinem $\<·, ·\>$ a dvě stejně dlouhé posloupnosti vektorů $C_1 = (¦u_1, …, ¦u_k)$ a $C_2 = (¦v_1, …, ¦v_k)$, pak následující podmínky jsou ekvivalentní:
+    
+    \begin{enumerate}
+        \item $C_1$ a $C_2$ mají stejnou Gramovu matici,
+
+        \item existuje ortogonální zobrazení $f: ¦V \rightarrow ¦V$ takové, že $f(¦u_i) = ¦v_i$ pro každé $i \in \{1, 2, …, k\}$.
+    \end{enumerate}
+
+    \begin{dukazin}
+        $(2. \implies 1.)$ triviální: Ortogonální zobrazení zachovává skalární součin, tj. pokud označíme prvek v $i$-tém řádku a $j$-tém sloupci Gramovy matice posloupnosti $C_l$ $g^l_{ij}$, potom
+        $$ g^2_{ij} = \<¦v_i, ¦v_j\> = \<f(¦u_i), f(¦u_j)\> \overset{\text{$f$ orto.}}{=} \<¦u_i, ¦u_j\> = g^1_{ij}. $$
+
+        $(1. \implies 2.)$: Vybereme z $C_1$ libovolnou největší (co do počtu vektorů) nezávislou posloupnost. Následně provedeme Gramovu-Schmidtovu ortogonalizaci. Jelikož obsahuje pouze násobení reálnými čísly a přičítání násobků jiných vektorů z této množiny, můžeme odpovídající 'operace' provádět i 'na' gramově matici posloupnosti $C_1$ a tak ji udržovat 'aktuální' (tj. bude stále gramovou maticí upravené posloupnosti). To znamená, že pokud stejnou posloupnost operací provedeme na gramově matici $C_2$, dostaneme také v příslušných místech 1 a 0, tedy pokud provedeme stejné operace na stejně vybrané (se stejnými indexy) prvky $C_2$, tak dostaneme taktéž ortonormální posloupnost.
+
+        Pokud příslušné vektory ortonormalizované části $C_1$ zobrazíme zobrazením $f'$ na odpovídající vektory ze stejně ortonormalizované části $C_2$ dostaneme ortogonální zobrazení z $\LO(C_1)$ do $\LO(C_2)$, jelikož ostatní vektory (krom vybraných) se dají vyjádřit za pomoci vybraných stejným způsobem\footnote{Jelikož pokud lineární kombinace vybraných vektorů z $C_1$ dává vektor $¦u_i$, tak odečtením stejné lineární kombinace sloupců od $i$-tého sloupce a řádků od $i$-tého řádku, dostaneme v buňce $ii$ Gramovy matice 0 (jelikož pak udává vektorový součin ¦o s ¦o). Ale stejnými úpravami druhé Gramovy matice musíme (jelikož jsou shodné) dostat také 0 a zároveň tato 0 reprezentuje skalární součin rozdílu stejné lineární kombinace $C_2$ a $¦v_i$ se sebou samým. Ale tím pádem je lineární kombinace $C_2$ rovná $¦v_i$, neboť jediný vektor, který má skalární součin se sebou samým 0 je ¦o.} a tím pádem jejich skalární součiny závisí pouze na vybraných a vybrané se z daných ortonormálizovaných částí (díky tomu, že jsme je vytvořili úplně stejným postupem) dají vyjádřit totožně (tj. mají shodný skalární součin a Gramovy matice jsou tudíž shodné a $f'$ je tedy ortogonální zobrazí $¦u_i$ na $¦v_i$).
+
+        Chtěli jsme orogonální zobrazení $f: ¦V \rightarrow ¦V$, tedy obě nalezené ortonormální báze $\LO(C_i)$ doplníme na ortonormální bázi ¦V (věta 8.69) a vybereme nějakou bijekci tohoto doplnění. Tuto bijekci spojíme (sjednotíme) s $f'$ a lineárně doplníme na $f$. Zřejmě $f$ je hledané ortogonální zobrazení.
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

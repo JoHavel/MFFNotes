@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\let\oldmod=\mod
+\def\mod{\!\!\!\!\oldmod}
+
+\begin{document}
+    \begin{priklad}[2.1]
+        Vydělte polynom $f = x^4 + x^3 + 2x^2 + 4x − 2$ se zbytkem polynomem $g=x^2 − x + 1$ v oborech $®Z[x]$, $®Z_3[x]$ a $®Z_5[x]$.
+
+        \begin{reseni}
+            Postupujeme podle standardního algoritmu (vydělíme vedoucí členy, odečteme tento násobek a opakujeme) v $®Z$ ($®Z_3$ a $®Z_5$ vyřešíme z výsledku předchozího):
+            $$ \frac{f}{g} = x^2 + \frac{0 + 2x^3 + x^2 + 4x - 2}{g} = x^2 + 2x + \frac{0 + 3x^2 + 2x - 2}{g} = x^2 + 2x + 3 + \frac{0 + 5x - 5}{g}. $$
+            Tudíž $f/g$ je $x^2 + 2x + 3$ a zbytek $5x - 5$. Jelikož jsme neprováděli žádnou operaci specifickou pro ®Z, výsledek funguje i v $®Z_3$: $f/g = x^2 + 2x$ a zbytek $2x + 1$ a v $®Z_5$: $f/g = x^2 + 2x + 3$ a zbytek $0$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[2.2]
+        Spočítejte největší společný dělitel polynomů $f = x^3 + x^2 − 2x$ a $g = x^3 − x^2 − x + 1$ v oborech $®R[x]$ a $®Z_3[x]$.
+
+        \begin{reseni}
+            Prostě budeme postupovat podle eukleidova algoritmu ($®Z_3$ je těleso, takže dělení číslem nesoudělným s 3 je definováno):
+            $$ (x^3 + x^2 − 2x) - (x^3 − x^2 − x + 1) = 2x^2 - x - 1, $$ 
+            $$ (x^3 − x^2 − x + 1) - \frac{x}{2}\(2x^2 - x - 1\) = -\frac{x^2}{2} - \frac{x}{2} + 1, $$ 
+            $$ \(2x^2 - x - 1\) + 4\(-\frac{x^2}{2} - \frac{x}{2} + 1\) = -3x + 3, $$
+            (Zde končí algoritmus pro $®Z_3$, dále můžeme dělit i násobky 3.)
+            $$ -\frac{x^2}{2} - \frac{x}{2} + 1 - \frac{x}{6}\(-3x + 3\) = -x+1, $$
+            $$ \(-3x + 3\) - 3(-x+1) = 0. $$
+            Tudíž $\NSD\(f, g\) = x-1$ (vynásobil jsem $-1$, abych získal monický polynom, tím jsem jistě nerozbil dělitelnost, jelikož $-1||1$) v ®R a $\NSD(f, g) = -\frac{x^2}{2} - \frac{x}{2} + 1 = x^2 + x + 1$ v $®Z_3$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[2.3]
+        Určete poslední dvě cifry čísla $97^{47^{49}}$.
+
+        \begin{reseni}
+            Hledat poslední dvě cifry čísla odpovídá hledání zbytku po dělení 100. Tj. řešíme úlohu $97^{47^{49}} ≡ x (\mod 100)$. Jelikož umocňujeme, pravděpodobně chceme použít Eulerovu větu. Víme, že pro $y = p_1^{k_1}·…·p_n^{k_n}$ je $\phi(y) = p_1^{k_1 - 1}(p_1 - 1)·…·p_n^{k_n - 1}(p_n - 1)$, tedy $\phi(100) = \phi(2^2·5^2) = 2^1·1·5^1·4 = 40$. Tudíž, jelikož $97$ je prvočíslo, tedy je nesoudělné s $100$, $97^{40} ≡ 1 (\mod 100)$, neboli $97^{40l + m} ≡ 97^{m} (\mod 100)$, $l, m \in ®N$. Tedy nás zajímá zbytek po dělení $47^{49}$ číslem $40$.
+
+            Provedeme stejnou proceduru: $\phi(40) = \phi(2^3·5) = 2^2·1·5^0·4 = 16$, z Eulerovy věty (47 je prvočíslo $\implies$ nesoudělné s 40) $47^{16·3 + 1} = 47^{49} ≡ 47^1 (\mod 40)$. Tj. $47^{49} ≡ 7 (\mod 40)$.
+
+            Nyní už máme jen $97^7 ≡ x (\mod 100)$, což je zřejmě ($97 ≡ -3 (\mod 100)$) to samé jako $(-3)^7 = -2187 ≡ x (\mod 100)$, tudíž $x = 13$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[2.4]
+        Najděte všechna $x\in ®Z$ splňující $ 4x ≡ 8 (\mod 16)$, $2x ≡ 1 (\mod 3)$ a $x + 3 ≡ 4 (\mod 5)$.
+
+        \begin{reseni}
+            To úplně zavání Čínskou zbytkovou větou. Nejprve podle vlastností kongruence upravíme do tvaru potřebného pro Čínskou zbytkovou větu (první vydělím 4 i s modulem, k druhému přičtu $0≡3 (\mod 3)$ a vydělím 2, která je nesoudělná s modulem a od třetího odečtu $3 ≡ 3$):
+            $$ x ≡ 2 (\mod 4), \qquad x ≡ 2 (\mod 3), \qquad x ≡ 1 (\mod 5). $$
+            Jelikož $4$, $5$ a $3$ jsou po dvou nesoudělná čísla, pak z Čínské zbytkové věty existuje jediné takové $x_0 \in \{0, …, 5·3·4\}$. Víme, že číslo dává zbytek 1 po dělení 5 a 2 po dělení 4 (tj. je sudé), takže druhá cifra je 6. Prozkoušíme všech 6 čísel končících na 6 a získáme $x_0 = 26$.
+            
+            Nyní od všech kongruencí výše odečteme $k·60≡0$, $k \in ®Z$. Budeme tedy hledat $x - k·60 \in \{0, …, 60\}$ (každé celé číslo bude odpovídat nějakému $x - k·60 \in \{0, …, 60\}$). To jsme však už udělali a víme tedy, že $x - k·60 = 26$, tj. řešení je $\{26 - 60k\,|\,k \in ®Z\}$.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

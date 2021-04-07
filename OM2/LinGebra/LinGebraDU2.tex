@@ -1,0 +1,76 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[2.1]
+    Báze $B$ níže je ortonormální vzhledem ke skalárnímu součinu $\<·, ·\>$ na $®C^2$. Najděte vzorec pro $\<\binom{x_1}{x_2}, \binom{y_1}{y_2}\>$ v závislosti na $x_1$, $x_2$, $y_1$, $y_2$.
+    $$ B = \(¦b_1, ¦b_2\) = \(\binom{i}{1}, \binom{1}{1-i}\) $$
+
+    \begin{reseni}
+        Známe skalární součiny nějaké báze (protože z toho, že je ortonormální vyplývá, že její prvek sám se sebou dává skalární součin 1 a s ostatními dává 0). Tedy nechť $\chi$ a $\upsilon$ jsou vyjádření $[¦x]_B$ a $[¦y]_B$, kde $¦x = (x_1, x_2)^T$ a $¦y = (y_1, y_2)^T$. Potom z definice skalárního součinu 8.15 (body SL1 a SL2) a z pozorování 8.16 (body 2 a 3) víme, že
+        $$ \<¦x, ¦y\> = \<\chi_1¦b_1 + \chi_2¦b_2, \upsilon_1¦b_1 + \upsilon_2¦b_2\> = \overline{\chi_1}\upsilon_1·\<¦b_1, ¦b_1\> + \overline{\chi_1}\upsilon_2·\<¦b_1, ¦b_2\> + \overline{\chi_2}\upsilon_1·\<¦b_2, ¦b_1\> + \overline{\chi_2}\upsilon_2·\<¦b_2, ¦b_2\> = $$
+        $$ = \overline{\chi_1}\upsilon_1·1 + 0 + 0 + \overline{\chi_2}\upsilon_2·1 = \chi^*·\upsilon. $$
+        Zbývá tedy zjistit, jak vypadá vyjádření vektorů v bázi $B$. Víme, že matice přechodu od $B$ ke $K$ ($K$ je kanonická báze) je $[id]^B_K = \(¦b_1|¦b_2\)$. My ale potřebujeme matici přechodu od $K$ k $B$. Ta ale není nic jiného, než inverze k $[id]^B_K$, tj.
+        $$ \(\begin{array}{cc|cc} i & 1 & 1 & 0 \\ 1 & 1-i & 0 & 1 \end{array}\) \sim \(\begin{array}{cc|cc} i & 1 & 1 & 0 \\ 0 & 1 & i & 1 \end{array}\) \sim \(\begin{array}{cc|cc} i & 0 & 1-i & -1 \\ 0 & 1 & i & 1 \end{array}\) \sim \(\begin{array}{cc|cc} 1 & 0 & -1-i & i \\ 0 & 1 & i & 1 \end{array}\). $$
+        Výsledek je tudíž:
+        $$ \<¦x, ¦y\> = \chi^*·\upsilon = \([id]^K_B ¦x\)^*·\([id]^K_B ¦y\) = ¦x^*\([id]^K_B\)^*·[id]^K_B·¦y = $$
+        $$ ¦x^*·\begin{pmatrix}-1+i & -i \\ -i & 1\end{pmatrix}·\begin{pmatrix}-1-i & i \\ i & 1\end{pmatrix}·¦y = ¦x^*·\begin{pmatrix} 3 & -1-2i \\ -1+2i & 2 \end{pmatrix}·¦y. $$ 
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2.2]
+    Nechť ¦V je vektorový prostor spojitých reálných funkcí s definičním oborem $[1, 4]$ a $\<·, ·\>$ je skalární součin na ¦V daný vztahem
+    $$ \<f, g\> = \int_1^4 f·g. $$ 
+    Najděte ortonormální bázi podprostoru $\LO\{1, x, x^2\}$ a ortogonální projekci funkce $\sin(x)$ na tento prostor.
+
+    \begin{reseni}
+        Provedeme Gramovu-Schmidtovu ortogonalizaci:
+        $$ \int_1^4 1·1\,dx = \[x\]_1^4 = 4 - 1 = 3, $$
+        Tedy prvním vektorem bude $\frac{1}{\sqrt{3}}$. Následně chceme $x$ mínus projekce $x$ do $\frac{1}{\sqrt{3}}$, tedy:
+        $$ x - ? = x - \frac{1}{\sqrt{3}}·\int_1^4x·\frac{1}{\sqrt{3}}\,dx = x - \frac{1}{3}\[\frac{x^2}{2}\]_1^4 = x - \frac{4^2 - 1^2}{6} = x - \frac{5}{2}. $$
+        To znormujeme:
+        $$ \frac{x - 5/2}{||x - 5/2||} = \frac{x-5/2}{\sqrt{\int_1^4 (x - 5/2)^2\,dx}} = \frac{x - 5/2}{\sqrt{[x^3/3]_{-3/2}^{3/2}}} = \frac{x - 5/2}{\sqrt{\frac{27 + 27}{24}}} = \frac{x - 5/2}{\frac{3}{2}} = \frac{2x - 5}{3}. $$
+        Tudíž druhým vektorem ortonormální báze bude $\frac{2x - 5}{3}$. Nyní zjistíme rozdíl $x^2$ a jeho projekce do \linebreak $\LO\{\frac{1}{\sqrt{3}}, \frac{2x - 5}{3}\}$:
+        $$ x^2 - ? = x^2 - \frac{1}{\sqrt{3}}·\int_1^4x^2·\frac{1}{\sqrt{3}}\,dx - \frac{2x - 5}{3} \int_1^4 x^2\frac{2x - 5}{3}dx = x^2 - \frac{1}{3}\[\frac{x^3}{3}\]_1^4 - \frac{2x - 5}{9}\(2\[\frac{x^4}{4}\]_1^4 - 5\[\frac{x^3}{3}\]_1^4\) = $$
+        $$ = x^2 - \frac{4^3 - 1^3}{9} - \frac{2x - 5}{9}\(\frac{4^4 - 1^4}{2} - 10\frac{4^3 - 1^3}{6}\) = x^2 - 7 - \frac{2x - 5}{9}·\frac{255-10·21}{2} = x^2 - 5x + \frac{11}{2}. $$
+        A znormujeme:
+        $$ \frac{x^2 - 5x + 11/2}{||x^2 - 5x + 11/2||} = \frac{x^2 - 5x + 11/2}{\sqrt{\int_1^4(x^2 - 5x + 11/2)^2\,dx}} = \frac{x^2 - 5x + 11/2}{\sqrt{27/20}} = \frac{1}{3}\sqrt{\frac{5}{3}}·\(2x^2 - 10x + 11\). $$
+        Tedy jedna z ortonormálních bází řešeného podprostoru je
+        $$ \(\frac{1}{\sqrt{3}},\quad \frac{2x - 5}{3},\quad \frac{1}{3}\sqrt{\frac{5}{3}}·\(2x^2 - 10x + 11\)\). $$
+
+        Ortogonální projekci $\sin x$ pak jednoduše spočítáme z definice:
+        $$ \frac{1}{\sqrt{3}}\int_1^4 \frac{1}{\sqrt{3}}\sin x\, dx + \frac{2x - 5}{3} \int_1^4 \frac{2x - 5}{3}\sin x\, dx + $$
+        $$ + \frac{1}{3}\sqrt{\frac{5}{3}}·\(2x^2 - 10x + 11\)·\int_1^4 \frac{1}{3}\sqrt{\frac{5}{3}}·\(2x^2 - 10x + 11\)·\sin x\, dx = $$
+        $$ \overset{\text{Wolfram}}{=} 0.587664 + 0.635467 x - 0.25405 x^2. $$
+        \vspace{-2em}
+        \begin{tiny}\begin{verbatim}
+N[Integrate[Sin[x]/Sqrt[3], {x, 1, 4}]/Sqrt[3] + (2 x - 5)/3 Integrate[(2 x - 5)/3 Sin[x], {x, 1, 4}] +
+Sqrt[5/3]/3 (2 x^2 - 10 x + 11) Integrate[Sqrt[5/3]/3 (2 x^2 - 10 x + 11) Sin[x], {x, 1, 4}]]
+
+ExpandAll[%]
+        \end{verbatim}\end{tiny}
+
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[2.*]
+    Ukažte, že skalární součin je až na násobek určen kolmostí. Přesněji: Nechť $\<·, ·\>_1$ a $\<·, ·\>_2$ jsou dva skalární součiny na konečně generovaném prostoru ¦V takové, že pro libovolné $¦u, ¦v \in ¦V$ platí $\<¦u, ¦v\>_1 = 0$, právě když $\<¦u, ¦v\>_2 = 0$. Pak existuje kladné reálné číslo $t$ takové, že $\<¦u, ¦v\>_1 = t\<¦u, ¦v\>_2$, pro libovolné $¦u, ¦v \in ¦V$.
+
+    \begin{dukazin}
+        Nejdříve dokážeme tvrzení sporem pro skalární součin dvou prvků ortogonální báze: Nechť $B = \(¦b_1, …, ¦b_n\)$ je orto\emph{normální} báze ¦V vzhledem k skalárnímu součinu $\<·, ·\>_2$ (víme, že nějaká musí existovat, jelikož vezmeme libovolnou bázi a provedeme ortogonalizaci). S podmínky $\<¦u, ¦v\>_1 = 0 \Leftrightarrow \<¦u, ¦v\>_2 = 0$ víme, že tato báze je ortogonální vzhledem k $\<·, ·\>_1$.
+
+        Nyní nechť pro spor existují $s, t \in ®R, s ≠ t$ a $i, j$ tak, že $\<¦b_i, ¦b_i\>_1 = s·\<¦b_i, ¦b_i\>_2 = s$ a $\<¦b_j, ¦b_j\>_1 = t·\<¦b_j, ¦b_j\>_2 = t$, potom z definice a vlastností skalárního součinu (z ortogonality vzhledem k oběma součinům a z ortonormality vzhledem k druhému)
+        $$ \<¦b_i - ¦b_j, ¦b_i + ¦b_j\>_2 = \<¦b_i, ¦b_i\>_2 - \<¦b_j, ¦b_i\>_2 + \<¦b_i, ¦b_j\>_2 - \<¦b_j, ¦b_j\>_2 = 1 - 0 + 0 - 1 = 0 $$
+        a
+        $$ \<¦b_i - ¦b_j, ¦b_i + ¦b_j\>_1 = \<¦b_i, ¦b_i\>_1 - \<¦b_j, ¦b_i\>_1 + \<¦b_i, ¦b_j\>_1 - \<¦b_j, ¦b_j\>_1 = s - 0 + 0 - t ≠ 0. $$
+        To je ale ve sporu s předpokladem $\<¦u, ¦v\>_1 = 0 \Leftrightarrow \<¦u, ¦v\>_2 = 0$.
+
+        Máme tedy, že $\exists t\ \forall ¦b \in B: \<¦b, ¦b\>_1 = t·\<¦b, ¦b\>$. Z definice a vlastností skalárního součinu (a ortogonality $B$ vzhledem k oběma součinům) máme pro vektory $¦x = \sum_{i = 1}^n x_i¦b_i$ a $¦y = \sum_{i = 1}^n y_i¦b_i$ (víme, že se tak dají vyjádřit každé vektory z ¦V):
+        $$ \<¦x, ¦y\>_1 = \sum_{i = 1}^n \overline{x_i}·y_i·\<¦b_i, ¦b_i\>_1 + \sum_{i, j \in [n], i≠j} 0 = \sum_{i = 1}^n \overline{x_i}·y_i·t\<¦b_i, ¦b_i\>_2 + \sum_{i, j \in [n], i≠j} t·0 = t·\<¦x, ¦y\>_2. $$ 
+
+    \end{dukazin}
+\end{priklad}
+\end{document}

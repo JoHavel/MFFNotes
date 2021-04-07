@@ -155,4 +155,58 @@
             Indukcí podle počtu spojek. TODO.
         \end{dukazin}
     \end{lemma}
+
+% 25. 3. 2021
+
+\section{Predikátorová logika}
+    \begin{definice}[Jazyk]
+        Jazyk ($L$) je disjoin sjednocení množiny relací ($L^r$) (každé relaci $R \in L^r$ přiřadíme aritu $a(R) \in ®N$) a množiny funkčních symbolů ($L^f$) ($F \in L^f$ má aritu $a(F) \in ®N$).
+    \end{definice}
+
+    \begin{definice}[Struktura]
+        Struktura ©A pro $L$ je trojice $(A, (R^{©A})_{R \in L^r}, (F^{©A}_{F \in L^f}))$ sestávající z množiny $A$ (tzv. nosič), pro každou $m$-ární relaci $R \in L^r$ máme její vyjádření $R_A \in A^m$.
+    \end{definice}
+
+    \begin{definice}[Podstruktura, zúžení]
+        $©X$ je podstruktura struktury $©Y$, značíme $©X \subseteq ©Y$, pokud $X \subseteq Y$ a všechny operace jsou uzavřené na relace i funkce. Taktéž říkáme, že $©Y$ je rozšíření $©A$.
+
+        Zúžení funkce $F$ na podstrukturu $©X$, značené $F|_{©X}$ je, jak bychom čekali.
+    \end{definice}
+
+    \begin{definice}[Homomorfismus]
+        Ať ©A a a ©B jsou struktury (pro tentýž jazyk). Homomorfismus $h: ©A \rightarrow ©B$ je zobrazení $h: A \rightarrow B$ tak, že $\forall m$-nární $R \in L^r$ a každé $(a_1, …, a_m)\in A^m$ máme $(a_1, …, a_m)\in R^{©A} \implies (ha_1, …, ha_m) \in R^{©B}$. $\forall n$-nární $F \in L^f$ a každé $(a_1, …, a_n) \in A^n$ je $h(F^{©A}(a_1, …, a_n)) = F^{©B}(ha_1, …, ha_n)$.
+    \end{definice}
+
+    \begin{definice}[Silný homomorfismus]
+        Pokud nahradíme implikaci v předchozí definici ekvivalencí, dostaneme tzv. silný homomorfismus. Speciálním případem je tzv. vnoření, TODO.
+    \end{definice}
+
+    \begin{definice}[Kongruence]
+        Kongruence je ekvivalence taková, že pokud jsou v relaci nějaké prvky, tak jsou v relaci i kongruentní prvky. Stejně tak obraz kongruentních prvků je kongruentní prvek k obrazu původních.
+    \end{definice}
+
+    \begin{definice}[Kvocient / faktorstruktura]
+        Nechť ©A je struktura a $\sim$ kongruence. Potom $©A/\sim$, tzv. faktostruktura, je struktura, kde nosná množina je $A/\sim$ a relace a funkce jsou přepsané tak, aby nové prvky byly v relaci právě tehdy, pokud byly jim odpovídající původní prvky.
+    \end{definice}
+
+    \subsection{Proměnné a formule}
+        \begin{definice}[Proměnné]
+            Proměnné: $Var = \{v_0, v_1, v_2, …\}$ je spočetná (nekonečná) množina.
+        \end{definice}
+
+        \begin{poznamka}
+            Většinou by nevadila ani nespočetná. Naopak se spočetná by nám rozbíjela skládání výroků.
+        \end{poznamka}
+
+        \begin{definice}[Termy]
+            $L$-term je slovo na abecedě $L^f \cup Var$ získané jako: každá proměnná je $L$-term a kdykoliv je $F \in L^f$ $n$-nární relace a $t_1, …, t_n$ $L$-termy, pak je $Ft_1…t_n$ $L$-term.
+        \end{definice}
+
+        \begin{definice}[Uzavřený term]
+            Uzavřený term se nazývá ten term, který neobsahuje proměnné.
+        \end{definice}
+
+        \begin{definice}[Generátory]
+            Mějme strukturu a množinu (oindexovanou) prvků z ní. Pokud tuto množinu uzavřeme na relace a funkce, pak dostaneme podstrukturu, která se nazývá generovaná danou množinou prvků (a ty se nazývají generátory).
+        \end{definice}
 \end{document}

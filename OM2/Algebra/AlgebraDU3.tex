@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\let\oldmod=\mod
+\def\mod{\!\!\!\!\oldmod}
+
+\begin{document}
+    \begin{priklad}[3.1]
+        Nalezněte ireducibilní rozklad polynomu $x^4 + 1$ nad tělesy ®C, ®R a $®Z_5$.
+
+        \begin{reseni}
+            Ze střední školy víme, že rovnice $x^4 + 1 = 0$ má 4 řešení tvaru $e^{k\frac{2\pi}{4} + \frac{\pi}{4}}$ (jelikož $-1 = e^\pi$), tedy rozklad v ®C bude 
+            $$ x^4 + 1 = \(x - e^{\pi/4}\)·\(x - e^{3\pi/4}\)·\(x - e^{5\pi/4}\)·\(x - e^{7\pi/4}\) = $$
+            $$ \(x - \frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\)·\(x + \frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}\)·\(x + \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\)·\(x - \frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2}\), $$
+            jelikož polynomy stupně 1 jsou ireducibilní.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[3.2]
+        Nalezněte (nějaký) ireducibilní rozklad prvku $16 + i\sqrt{5}$ v oboru $®Z[i\sqrt{5}]$.
+
+        \begin{reseni}
+            Víme, že norma na $®Z[i\sqrt{5}]$ je dána $\nu(a + b·i\sqrt{5}) = |a^2 + 5b^2|$, tedy $\nu(16 + i\sqrt{5}) = |256 + 5| = 261$.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[3.3]
+        Nalezněte největšího společného dělitele čísel $4 + 6i$ a $3 − 7i$ v oboru $®Z[i]$.
+
+        \begin{reseni}
+            Víme, že $®Z[i]$ je eulerovský, tedy použijeme eukleidův algoritmus.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[3.4]
+        Zvolme pevné $z \in ®C$. Ukažte, že množina $\{f \in ®Q[x] | f(z) = 0\}$ tvoří ideál okruhu $®Q[x]$.
+
+        \begin{dukazin}
+            Stačí ukázat uzavřenost na sčítání, opačný prvek a násobení libovolným prvkem $®Q[x]$:
+            $$ f, g \in ®Q[x] \land f(z) = g(z) = 0 \implies (f+g)(z) = 0 + 0 = 0, $$
+            $$ f \in ®Q[x] \land f(z) = 0 \implies (-f)(z) = -0 = 0, $$ 
+            $$ f, g \in ®Q[x] \land f(z) = 0 \implies (f·g)(z) = f(z)·g(z) = 0·g(z) = 0. $$ 
+        \end{dukazin}
+    \end{priklad}
+
+\end{document}

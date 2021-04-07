@@ -16,11 +16,428 @@
     \begin{definice}[Skalární součin]
         Nechť ¦V je vektorový prostor nad ®C. Skalární součin je zobrazení $·: ¦V \times ¦V \rightarrow ®C$, které ($\forall ¦u, ¦v, ¦w \in ¦V$ a $\forall t \in ®C$) splňuje:
         $$ ¦u·¦v = \overline{¦v·¦u}, \text{ (Symetričnost)} $$
-        $$ ¦u·(t¦v) = t(¦u·¦v),\ ¦u·(¦v + ¦w) = ¦u·¦v + ¦u·¦w. \text{ (Linearita)}$$ 
+        $$ ¦u·(t¦v) = t(¦u·¦v),\ ¦u·(¦v + ¦w) = ¦u·¦v + ¦u·¦w, \text{ (Linearita)}$$
+        $$ \<¦u, ¦u\> ≥ 0 \land (\<¦u, ¦u\> = 0 \Leftrightarrow ¦u = ¦o). $$ 
     \end{definice}
 
     \begin{definice}[Hermitovsky sdružená matice]
         Nechť $A = \(a_{ij}\) \in ®C^{m \times n}$, potom hermitovsky sdružená matice je $A^* = \(\overline{a_{ji}}\)$.
+
+        Čtvercová matice je Hermitovská, pokud je rovna své hermitovsky sdružené matici.
     \end{definice}
+
+% 5. 3. 2021
+
+    \begin{definice}
+        Buď $®T = ®R$ nebo ®C a buď $A = T^{n \times n}$. Pak $A$ je pozitivně definitní, pokud je hermitovská a platí
+        $$ ¦u*Au ≥ 0 \land (¦u*Au = 0 \Leftrightarrow ¦u=¦o). $$ 
+    \end{definice}
+
+    \begin{dusledek}
+        $\<·, ·\>_A = ·^*A·$ je skalární součin, právě když $A$ je pozitivně definitní.
+    \end{dusledek}
+
+    \begin{definice}[Norma]
+        Buď ¦V VP nad ®R nebo ®C se skalárním součinem $\<·, ·\>$. Pak normou vektoru $¦u \in ¦V$ rozumíme $||¦u|| = \sqrt{\<¦u, ¦u\>}$ .
+    \end{definice}
+
+    \begin{tvrzeni}[Vlastnosti normy]
+        $$ ||¦u||≥0 \land (||¦u|| = 0 \Leftrightarrow ¦u = ¦o). $$
+        $$ \forall t \in ®T: ||t¦u|| = |t|·||¦u||. $$
+        $$ ||¦u+¦v||^2 + ||¦u-¦v||^2 = 2||¦u||^2 + 2||¦v||^2. $$
+        $$ \Re(\<¦u, ¦v\>) = \frac{1}{2}||¦u+¦v||^2 - ||¦u||^2 - ||¦v||^2. $$ 
+    \end{tvrzeni}
+
+    \begin{veta}[Cauchy-Schwarzova nerovnost]
+        Buď $®T = ®R$ nebo ®C, ¦V VP nad ®T se skalárním součinem $\<·, ·\>$. Pak platí $\forall ¦u, ¦v \in ¦V: |\<¦u, ¦v\>| ≤ ||¦u||·||¦v||$. Rovnost platí právě tehdy, pokud $(¦u, ¦v)$ je lineárně závislá.
+
+        \begin{dukazin}
+            Případ 1): $(¦u, ¦v)$ je LZ: Buď $¦u = t¦v$: $|\<¦u, ¦v\>| = |\<¦u, t·¦u\>| = |t|·|\<¦u, ¦u\>| = |t|·||¦u||·||¦u|| = ||¦u||·||¦v||.$
+
+            Případ 2): $(¦u, ¦v)$ je LN: Víme, že $||¦u - t¦v||^2 > 0$. Zvolme $t$ tak, aby $\<¦v, ¦u - t¦v\> = 0$. (To lze, protože $\<¦v, ¦u - t¦v\> = \<¦v, ¦u\> - t\<¦v, ¦v\> = \<¦v, ¦u\> - t||¦v||^2 \implies t = \frac{\<¦v, ¦u\>}{||¦v||^2}$.) $0 < ||¦u - t¦v||^2 = \<¦u - t¦v, ¦u - t¦v\> = \<¦u, ¦u - t¦v\> - \overline{t}·\<¦v, ¦u - t¦v\> = \<¦u, ¦u - t¦v\> =  \<¦u, ¦u\> - t\<¦u, ¦v\> = ||¦u||^2 - \frac{\<¦v, ¦u\>·\<¦u, ¦v\>}{||¦v||^2} = ||¦u||^2 - \frac{\overline{\<¦u, ¦v\>}·\<¦u, ¦v\>}{||¦v||^2} = ||¦u||^2 - \frac{|\<¦u, ¦v\>|^2}{||¦v||^2}$.
+
+            Tj. $0 < ||¦u||^2·||¦v||^2 - |\<¦u, ¦v\>|^2$, tedy $|\<¦u, ¦v\>| ≤ ||¦u||·||¦v||$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}[Trojúhelníková nerovnost]
+        Buď $®T = ®R$ nebo ®C, ¦V VP nad ®T se skalárním součinem $\<·, ·\>$. Pak platí $\forall ¦u, ¦v \in ¦V: ||¦u + ¦v|| ≤ ||¦u|| + ||¦v||$. Rovnost platí právě tehdy, pokud $(¦u, ¦v)$ je lineárně závislá.
+
+        \begin{dukazin}
+            $||¦u + ¦v||^2 = \<¦u + ¦v, ¦u + ¦v\> = \<¦u, ¦u\> + \<¦v, ¦u\> + \<¦u, ¦v\> + \<¦v, ¦v\> = ||¦u||^2 + \<¦u, ¦v\> + \overline{\<¦u, ¦v\>} + ||¦v||^2 = ||¦u||^2 + 2\Re(\<¦u, ¦v\>) + ||¦v||^2 ≤ ||¦u||^2 + 2|\<¦u, ¦v\>| + ||¦v||^2 ≤ ||¦u||^2 + 2·||¦u||·||¦v|| + ||¦v||^2 = \(||¦u|| + ||¦v||\)^2.$
+        \end{dukazin}
+    \end{dusledek}
+
+% 10. 3. 2021
+
+    \begin{definice}[Kolmost]
+        Buď ¦V VP se skalárním součinem $\<·, ·\>$ a $¦u, ¦v \in ¦V$. Řekneme, že ¦u a ¦v jsou kolmé, značíme $¦u \perp ¦v$, pokud $\<¦u, ¦v\>$.
+    \end{definice}
+
+    \begin{poznamka}
+        Ze skoro symetrie (SSS) plyne, že relace jsou kolmé je symetrická.
+    \end{poznamka}
+
+    \begin{definice}[Kolmost množin]
+        Množina nebo posloupnost $M$ vektorů VP ¦V s $\<·, ·\>$ se nazývá ortogonální, pokud každá dvojice různých prvků $M$ je kolmá. Nazývá se ortonormální, pokud je ortogonální a každý prvek má normu 1.
+    \end{definice}
+
+    \begin{dusledek}
+        Kanonická báze je ortonormální. Normovaná (tj. každý prvek vydělíme normou) ortogonální množina / posloupnost je ortonormální.
+    \end{dusledek}
+
+    \begin{tvrzeni}[Pythagorova věta]
+        ¦V vektorový prostor se $\<·, ·\>$, buďte $¦u, ¦v \in ¦V$ kolmé vektory. Pak
+        $$ ||¦u + ¦v||^2 = ||¦u||^2 + ||¦v||^2. $$
+
+        \begin{dukazin}
+            $$ ||¦u + ¦v||^2 = \<¦u + ¦v, ¦u + ¦v\> = \<¦u, ¦u\> + \<¦v, ¦u\> + \<¦u, ¦v\> + \<¦v, ¦v\> = \<¦u, ¦u\> + 0 + 0 + \<¦v, ¦v\> = ||¦u||^2 + ||¦v||^2. $$
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Je-li $(¦v_1, …, ¦v_k)$ ortogonální posloupnost, pak $||¦v_1 + … + ¦v_k||^2 = ||¦v_1||^2 +… + ||¦v_k||^2$.
+
+        \begin{dukazin}
+            Indukcí triviálně.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        Buď ¦V vektorový prostor s $\<·, ·\>$ a $(¦v_1, …, ¦v_k)$ ortogonální posloupnost nenulových vektorů. Pak je $(¦v_1, …, ¦v_k)$ LN.
+
+        \begin{dukazin}
+            Předpokládejme, že $0 = a_1¦v_1 + … + a_k¦v_k$, kde $a_1, …, a_k \in ®T$ ($®T = ®R \lor ®T = ®C$). Chceme ukázat, že $a_1 = … = a_k = 0$.
+            $$ \forall i \in [k]: 0 = \<v_i, ¦o\> = \<¦v_i, a_1¦v_1 + … + a_k¦v_k\> = a_1 \<¦v_i, ¦v_1\> + … + a_k \<¦v_i, ¦v_k\> = a_i·||¦v_i||^2 \implies a_i = 0. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \subsection{Ortonormální báze a vyjádření vektorů vzhledem k nim}
+        \begin{tvrzeni}
+            ¦V VP s $\<·, ·\>$, $B = (¦v_1, …, ¦v_n)$ ortonormální báze. Pak pro každý $¦u \in ¦V$ platí:
+            $$ ¦u = \<¦v_1, ¦u\>·¦v_1 + … + \<¦v_n, ¦u\>·¦v_n. $$
+            To jest
+            $$ [¦u]_B = (\<¦v_1, ¦u\>, …, \<¦v_k, ¦u\>)^T. $$
+
+            \begin{dukazin}
+                Vezmeme $a_1, …, a_n \in ®T$ tak, aby $¦u = a_1¦v_1 + … + a_n¦v_n$. Máme $\<¦v_i, ¦u\> = \<¦v_i,  a_1¦v_1 + … + a_n¦v_n\> = a_1·0 + … + a_i + … + a_n·0 = a_i$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Kdyby $B$ byla jen ortogonální, pak $ [¦u]_B = (\frac{\<¦v_1, ¦u\>}{||¦v_1||}, …, \frac{\<¦v_k, ¦u\>}{||¦v_k||})^T$.
+        \end{poznamka}
+
+        \begin{poznamka}
+            $a_1, …, a_n$ se někdy nazývají Fourierovy koeficienty.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            ¦V VP s $\<¦·, ·\>$, $B = (¦v_1, …, ¦v_n)$ ortonormální báze, $¦u, ¦w \in ¦V$. Pak $\<¦u, ¦w\> = [¦u]_B·[¦w]_B = [¦u]^*_B[¦w]_B$.
+
+            \begin{dukazin}
+                    Buď $[¦u]_B = (a_1, …, a_n)^T$, $[¦w]_B = (b_1, …, b_n)^T$. Pak $\<¦u, ¦v\> = \<a_1¦v_1 + … + a_n¦v_n, b_1¦v_1 + … + b_n¦v_n\> = \sum_{i=1}^n\sum_{j=1}^n \overline{a_i}·b_j·\<¦v_i, ¦v_j\> = \sum_{i=1}^n\overline{a_i}b_i·\<¦v_i, ¦v_i\> = [¦u]^*_B    [¦w]_B$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Kolmost množin}
+        \begin{definice}[Kolmost množin]
+            ¦V VP s $\<¦·, ·\>$, $¦v \in ¦V$, $M, N \subseteq ¦V$. Pak řekneme, že ¦v je kolmý k $M$, značíme $¦v\perp M$, pokud $¦v \perp ¦w\ \forall ¦w \in M$, a řekneme, že $M$ je kolmá k $N$, značíme $M \perp N$, pokud $¦v \perp ¦w\ \forall ¦v \in M\ \forall ¦w \in N$.
+        \end{definice}
+
+% 12. 3. 2021
+
+        \begin{definice}
+            Buď ¦V VP s $\<¦·, ·\>$ a buď $¦W ≤ ¦v$. Je-li $¦v \in ¦V$, ortogonální projekcí vektoru ¦v na podprostor ¦W rozumíme vektor ¦w takový, že $¦w \in ¦W$ a $¦v - ¦w \perp ¦w$.
+        \end{definice}
+
+        \begin{veta}
+        Buď ¦V VP s $\<¦·, ·\>$, buď $¦W≤¦V$, $¦v \in ¦V$ a $¦w \in ¦W$ ortogonální projekce ¦v na ¦W. Potom pro každý vektor $¦u \in ¦W$ různý od ¦w platí: $||¦v - ¦w|| < ||¦v - ¦u||$.
+
+        Speciálně existuje-li ortogonální projekce ¦v na ¦W, pak je určena jednoznačně.
+
+            \begin{dukazin}
+                Z předpokladu $¦w, ¦u$, a tedy i $¦w - ¦u$ jsou vektory $¦W$. Tudíž $¦v - ¦w \perp ¦w - ¦u$ ($¦v - ¦w \perp ¦W$). Z Pythagorovy věty: $||¦v - ¦u||^2 = ||¦v - ¦w||^2 + ||¦w - ¦u||^2 > ||¦v - ¦w||^2$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}
+            Buď ¦V VP s $\<¦·, ·\>$ a buďte $M, N \subseteq ¦V$. Pak $M \perp N$ $\Leftrightarrow$ $M \perp \LO (N)$ ($\Leftrightarrow$ $\LO(M) \perp \LO(N)$).
+
+            \begin{dukazin}
+                $\Leftarrow$: Triviální (protože $N \subseteq \LO(N)$).
+
+                $\implies$: Předpokládejme, že $M \perp N$. Vezměme $¦v \in M$ a $¦w = a_1¦w_1 + … + a_n¦w_n \in \LO(N)$. Pak $\<¦v, ¦w\> = a_1\<¦v_1, ¦w_1\> + … + a_n\<¦v_n, ¦w_n\> = 0$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buď ¦V VP s $\<¦·, ·\>$ a $¦W≤¦V$, který má ortonormální bázi $B = (¦u_1, …, ¦u_n)$. Pak pro libovolné $¦v \in ¦V$ je
+            $$ ¦w := \<¦u_1, ¦v\>·¦u_1 + \<¦u_2, ¦v\>¦u_2 + … + \<¦u_k, ¦v\>·¦u_k $$
+            ortogonální projekcí do ¦W.
+
+            \begin{dukazin}
+                Zjevně $¦w \in \LO(B) = ¦W$. Chceme ukázat, že $¦v - ¦w \perp ¦W$. Podle tvrzení výše stačí ukázat, že $¦v - ¦w \perp ¦u_i, \forall i \in [k]$. Označme $a_i := \<¦u_i, ¦v\>$.
+                $$ \<¦u_i, ¦v - ¦w\> = \<¦u_i, ¦v - a_1¦u_1 - a_2¦u_2 - … - a_k¦u_k\> = a_i - a_1·0 - … - a_i·1 - … - a_k·0 = ¦o. $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Gramova-Schmidtova ortogonalizace]
+            Postup, který vezme LN posloupnost $(¦v_1, …, ¦v_k)$ z VP s $\<¦·, ·\>$ a vytvoří ortonormální posloupnost $(¦u_1, …, ¦u_k)$ taková, že $\forall i \in [k]: \LO\{¦v_1, …, ¦v_i\} = \LO\{¦u_1, …, ¦u_i\}$.
+
+            1) $¦u_1 := \frac{¦v_1}{||¦v_1||}$. 2) Pro každé $i = 2, …, k$ spočítáme $¦w_i = \<¦u_1, ¦v_i\>·¦u_1 + … + \<¦u_{i-1}, ¦v_i\>·¦u_{i-1}$ a položíme $¦u_i = \frac{¦v_i - ¦w_i}{||¦v_i - ¦w_i||}$.
+
+            \begin{dukazin}
+                To, že $(¦u_1, …, ¦u_i)$ je ortonormální $\forall i \in [k]$ dokážeme triviálně indukcí.
+
+                Stejně tak, že $\LO\{¦v_1, …, ¦v_i\} = \LO\{¦u_1, …, ¦u_i\}$.
+                $$ ¦u_i = \frac{¦v_i}{||…||} - \frac{¦w_i}{||…||}, \frac{¦w_i}{||…||} \in \LO\{¦u_1, …, ¦u_{i-1}\} \overset{\text{IP}}{=} \LO\{¦v_1, …, ¦v_{i-1}\}. $$
+                $¦v_i$ také z definice.
+
+                Nakonec musíme ukázat, že nikdy nedělíme nulou (naopak, pokud dostaneme špatný (= LZ) vstup, tak dělíme). Ukáže se, že kdybychom dělili, tak nějaké $¦u_i \in \LO\{¦u_1, …, ¦u_{i-1}\}$.
+            \end{dukazin}
+        \end{definice}
+
+        \begin{veta}
+            Máme-li ¦V VP s $\<¦·, ·\>$ a aplikujeme-li GS ortogonalizaci na LN posloupnost vektorů z ¦V, pak dostaneme ortonormální posloupnost, že se jejich LO rovnají.
+
+            \begin{dukazin}
+                Viz předchozí důkaz.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Každý konečně generovaný VP se skalárním součinem má ortonormální bázi.
+        \end{dusledek}
+
+        \begin{dusledek}
+            Máme-li ¦V konečně generovaný VP s $\<¦·, ·\>$ a ortonormální posloupnost $(¦u_1, …, ¦u_k)$, můžeme ji doplnit na ortonormální bázi.
+
+            \begin{dukazin}
+                Doplníme na bázi a aplikujeme GS ortogonalizaci, kde si rozmyslíme, že nám nezmění původní posloupnost.
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{dusledek}
+            Je-li ¦V konečně generovaný VP s ortonormální bází $B = (¦u_1, …, ¦u_n)$ a s $\<¦·, ·\>$, pak existuje isomorfismus $¦V \rightarrow T^n$ takový, že $\forall ¦v, ¦w: \<¦v, ¦w\> = f(¦v)·f(¦w)$.
+        \end{dusledek}
+
+        \begin{poznamka}
+            Aplikováním GS ortogonalizace na $®T^n$ dostaneme tzv. QR - rozklad matice, kde $A = Q·R$ a $A$ má za sloupce původní vektory, $Q$ má ortonormální posloupnost sloupců a $R$ je horní trojúhelníková s nezápornými reálnými čísly na diagonále.
+        \end{poznamka}
+
+% 17. 3. 2021
+
+    \subsection{Ortogonální doplněk, Gramova matice}
+        \begin{definice}
+            Buď ¦V VP s $\<¦·, ·\>$ nad $®T = ®R$ nebo ®C. Je-li $M \subseteq ¦V$ množina vektorů, pak ortogonálním doplňkem k $M$ ve ¦V, rozumíme
+            $$ M^{\perp} = \{¦v \in ¦v|¦v \perp M\} = \{¦v \in ¦V | (\forall ¦u \in M: \<¦v, ¦u\> = 0)\}. $$
+        \end{definice}
+
+        \begin{dusledek}
+            $M \perp M^{\perp}$ a $M^\perp$ je největší taková množina vzhledem k inkluzi.
+        \end{dusledek}
+
+        \begin{tvrzeni}
+            ¦V VP s $\<¦·, ·\>$, $M \subseteq ¦V$. Pak $M^\perp = (\LO M)^\perp$, $M^\perp$ je podprostor ¦V, $M \subseteq N \implies N^\perp \subseteq M^\perp$.
+
+            \begin{dukazin}
+                $$ ¦v \in M^\perp \Leftrightarrow ¦v \perp M \Leftrightarrow ¦v \perp \LO M \Leftrightarrow ¦v \in (\LO M)^\perp. $$
+
+                Vezmeme $¦w_1, ¦w_2 \in M^\perp$ a $t \in ®T$, pak $\forall ¦v \in M: \<¦v, ¦w_1 + ¦w_2\> = \<¦v, ¦w_1\> + \<¦v, ¦u_2\> = 0 + 0 = 0$ a $\<¦v, t·¦w_1\> = t·\<¦v, ¦w_1\> = t·0 = 0$ $\implies ¦w_1 + ¦w_2, t·¦w_1 \in M^\perp$.
+
+                Ať $M \subseteq N$. Pak $¦v \in N^\perp \Leftrightarrow ¦v \perp N \implies ¦v \perp M \Leftrightarrow ¦v \in M^\perp$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}
+            Buď ¦V VP s $\<¦·, ·\>$ nad ®R nebo ®C. Buď $¦W ≤ ¦V$ konečně generovaný. Pak platí:
+            $$ 1) ¦V = ¦W \oplus ¦W^\perp. $$ 
+            $$ 2) (¦W^\perp)^\perp = ¦W. $$ 
+            3) Každý vektor $¦v \in ¦V$  má (jednoznačnou) ortogonální projekci jak na ¦W, tak ne $¦W^\perp$.\\
+            4) Je-li ¦V konečně generovaný dimenze $n$, pak $n = \dim ¦W + \dim ¦W^\perp$.
+
+            \begin{dukazin}
+                1) Triviálně $¦W \cap ¦W^\perp = \{¦o\}$. Navíc použitím toho, že existuje ortogonální projekce (a toho, že je kolmá) na ¦W máme, že $¦W + ¦W^\perp = ¦V$.
+
+                2) $¦W \subseteq (¦W^\perp)^\perp$: je-li $¦w \in ¦W$, pak $w \perp (¦W^\perp)$, tj. $w \in (¦w^\perp)^\perp$. Naopak $(¦W^\perp)^\perp \subseteq ¦W$: vezměme $¦v \in (¦W^\perp)^\perp$. Uvažujme ortogonální projekci $¦v$ na ¦W:
+                $$ (¦W^\perp)^\perp \ni ¦v = ¦w + (¦v - ¦w) \land ¦v - ¦w \in (¦W^\perp)^\perp \implies (¦v-¦w)\perp(¦v - ¦w) \implies ¦v - ¦w = ¦o \implies ¦v = ¦w \in ¦W. $$
+
+                Víme, že ortogonální projekce na ¦W existuje. Je-li tedy $¦v \in ¦V$, pak můžeme psát $¦v = ¦w + (¦v - ¦w) = (¦v - ¦w) + ¦w$, potom $(¦v - ¦w) \in ¦W^\perp$ je podle definice ortogonální projekce na $¦W^\perp$. ($¦w \in (¦W^\perp)^\perp$.)
+
+                Použijeme 1) a větu o dimenzi součtu a průniku podprostorů.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Gramova matice]
+            Buď ¦V VP s $\<¦·, ·\>$ nad ®R nebo ®C. Buď $(¦u_1, …, ¦u_k)$ posloupnost vektorů. Pak Gramovu matici posloupnosti $(¦u_1, …, ¦u_k)$ definujeme jako:
+            $$ (\<¦u_i, ¦u_j\>)_{k \times k}. $$ 
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď ¦V VP s $\<¦·, ·\>$, $(¦u_1, …, ¦u_k)$ posloupnost vektorů ¦V, $B$ Gramova matice. Vezměme $¦v \in ¦V$ a $¦w = a_1¦u_1 + … + a_k¦u_k \in ¦W := \LO\{¦u_1, …, ¦u_k\}$. Pak následující je ekvivalentní:\\
+            1) ¦w je ortogonální projekce ¦v na ¦W.\\
+            2) $B·\(a_1, …, a_k\)^T = (\<¦u_1, ¦v\>, …, \<¦u_k, ¦v\>)$.
+
+            \begin{dukazin}
+                1) $\Leftrightarrow ¦v - ¦w \perp ¦W \Leftrightarrow \forall i \in [k]: \Leftrightarrow ¦u_i \perp ¦v - ¦w \Leftrightarrow \forall i \in [k]: \<¦u_i, ¦v - ¦w\> = 0 \Leftrightarrow \forall [k]: \<¦u_i, ¦w\> = \<¦u_i, ¦v\> \Leftrightarrow \forall i \in [k]: \<¦u_i, ¦u_1\>·a_1 + \<¦u_i, ¦u_k\>·a_k =\<¦u_i, ¦v\> \Leftrightarrow 2).$
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Buď $A$ matice typu $n \times k$ nad ®R nebo ®C. Buď $¦v \in ®R^n$ nebo $®C^n$ a $x \in ®C^k$ nebo $®R^k$. Pak následující je ekvivalentní:\\
+            1) $Ax$ je ortogonální projekce ¦v na $\Im A$.\\
+            2) $A^*A·x = A^*·¦v.$
+        \end{dusledek}
+
+        \begin{tvrzeni}[8.80]
+            Buď $(¦u_1, …, ¦u_k)$ posloupnost vektorů ve VP ¦V s $\<·, ·\>$ a buď $B \in T^{k \times k}$ gramova matice. Pak platí:\\
+            1) $B$ je regulární $\Leftrightarrow$ $(¦u_1, …, ¦u_k)$ LN.\\
+            2) $B$ je hermitovská (v reálném případě symetrická).
+            3) Je-li $(¦u_1, …, ¦u_k)$ LN, pak $B$ je pozitivně definitní.
+
+% 19. 3. 2021
+
+            \begin{dukazin}
+                1) aplikujeme tvrzení výše na $¦v = ¦o$. První podmínka se přepíše na $0 = a_1¦u_1 + … + a_k¦u_k \Leftrightarrow B·(a_1, …, a_k)^T = ¦o \Leftrightarrow (a_1, …, a_k)^T \in \Ker B$. Ale jádro je $\{¦o\}$ $\Leftrightarrow$ $B$ je regulární.
+
+                2) Plyne z rovnosti: $\<¦u_i, ¦u_j\> = \overline{\<¦u_j, ¦u_i\>}$.
+
+                3) Vezměme ortonormální bázi $C$ prostoru $\LO\{¦u_1, …, ¦u_k\}$ a položme $A = \([¦u_1]_C|…|[¦u_k]_C\)$. Pak $A$ je regulární, tj. $A^*A$ je pozitivně definitní.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Unitární a ortogonální matice}
+        \begin{definice}[Unitární a ortogonální matice]
+            Čtvercová matice nad ®R se nazývá ortogonální, pokud má ortonormální posloupnost sloupců vzhledem ke standardnímu skalárnímu součinu.
+
+            Čtvercová matice nad ®C se nazývá unitární, pokud má ortonormální posloupnost sloupců vzhledem ke standardnímu skalárnímu součinu.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $Q$ čtvercová komplexní matice řádu $n$. Pak následující je ekvivalentní: 1) $Q$ je unitární, 2) $Q^*·Q = I_n$, 3) $Q^*$ je unitární, 4) $Q·Q^*=I_n$, 5) $Q^T$ je unitární, 6) $f_Q$ zachovává standardní skalární součin, tj. $\forall ¦u, ¦v \in ®C^n: f(¦u)·f(¦v) = ¦u·¦v$.
+
+            Speciálně je každá unitární matice regulární a $Q^{-1} = Q^*$.
+
+            \begin{dukazin}
+                $1) \Leftrightarrow 2)$, $3) \Leftrightarrow 4)$: z definice. $2) \implies 4)$: $2) \implies Q$ má levou inverzi $Q^*$ $\implies Q$ regulární a $Q^{-1} = Q^*$ $\implies$ $Q·Q^{-1} = Q·Q^* = I_n$. $4) \implies 2)$: analogicky.
+
+                $3) \Leftrightarrow 5)$: 5) říká, že $Q$ má ortonormální posloupnost řádků, 3) říká, že když komplexně sdružíme všechny prvky $Q$, pak dostaneme ortonormální posloupnost řádků. Z toho to už jednoduše dostaneme.
+
+                $2) \implies 6)$: Předpokládejme 2), uvažujme $¦u, ¦v \in ®C^n$. Pak $f_Q(¦u)·f_Q(¦v) = (Q¦u)^*(Q¦v) = ¦u^*(Q^*Q)¦v = ¦u^*¦v$.
+
+                $6) \implies 1)$ $Q = \(f_Q(e_1)| …| f_Q(e_n)\) \implies \(f_Q(e_1), …, f_Q(e_n)\)$ ortonormální $ \implies Q$ unitární.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Součin unitárních matic stejného řádu je unitární matice.
+
+            \begin{dukazin}
+                $(AB)^*(AB) = B^*A^*AB = B^*B = I_n$.
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{tvrzeni}
+            Je-li $A$ regulární komplexní matice a $Q_1R_1 = A = Q_2R_2$ jsou 2 QR rozklady, pak nutně $Q_1 = Q_2$ a $R_1 = R_2$.
+
+            \begin{dukazin}
+                Z regularity $Q_1R_1 = Q_2R_2 \implies Q_2^*Q_1 = Q_2^{-1}Q_1 = R_2R^{-1} =: (¦c_1|…|¦c_n)$. Chceme ukázat, ze $¦c_i = e_i \forall i$. To ukážeme indukcí podle $i$. Víme, že $R_2R_1^{-1}$ je horní trojúhelníková, tedy každé $¦c_i$ musí mít kladný prvek na $i$-té pozici a zároveň všude výše musí mít nulu, aby byl kolmý ke všem předchozím (o kterých z IP víme, že jsou to jednotkové vektory).
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}
+            Buď ¦V komplexní VP s $\<·, ·\>_{¦V}$ a ¦W komplexní VP s $\<·, ·\>_{¦W}$. Pak lineární zobrazení $f: ¦V \rightarrow ¦W$ se nazývá unitární, pokud $\forall ¦u, ¦v \in ¦V: \<f(¦v), f(¦w)\>_{¦W} = \<¦u, ¦v\>_{¦V}$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $f: ¦V \rightarrow ¦W$ lineární zobrazení, ¦V, ¦W komplexní VP se skalárním součinem, pak následující je ekvivalentní: 1) $f$ je unitární, 2) $\forall ¦u \in ¦V: ||f(¦u)_{¦W} = ||¦u||_{¦V}$ ($f$ zachovává normu), 3) $f$ zobrazí každou ortonormální posloupnost $(¦u_1, …, ¦u_k)$ na ortonormální posloupnost $(f(¦u_1, …, f(¦u_k)))$, 4) $f$ zobrazuje jednotkové vektory na jednotkové vektory.
+
+            Speciálně: každé unitární zobrazení je prosté.
+
+            \begin{dukazin}
+                Ve skriptech. Dodatek plyne z 2) a $f$ prosté $\Leftrightarrow \Ker f = \{¦o\}$. $1) \implies 2) \implies 4)$, $1) \implies 3) \implies 4)$ jednoduché. $4) \implies 2)$: $¦o≠¦v \in ¦V$, pak $¦v = t¦u$ pro $t = ||¦v||_{¦V}$, ¦u jednokový. $||f(¦v)||_{¦W} = t·||f(¦u)||_{¦W} = t = ||¦v||_{¦V}$.
+
+                $2) \implies 1)$: Polarizační identity: $\Re\<¦u, ¦v\>, \Im\<¦u, ¦v\> = \frac{1}{2}(…)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Unitární zobrazení může zobrazovat i do prostoru větší dimenze.
+        \end{poznamka}
+
+    \subsection{Přibližné řešení SLR metodou nejmenších čtverců}
+        \begin{definice}
+            Vektor $¦c \in ®C^n$ je přibližné řešení SLR $A¦x = ¦b$ metodou nejmenších čtverců, pokud
+            $$ ||A¦c - ¦b|| = \min_{¦x \in ®C^n} ||A¦x - ¦b||. $$ 
+        \end{definice}
+
+        \begin{dusledek}
+            ¦c je ortogonální projekce ¦b do $\im A$.
+        \end{dusledek}
+
+        \begin{poznamka}
+            Používá se například, když chybou měření soustava nemá řešení, ale my víme, že řešení mít má.
+
+            Jmenuje se podle čtverců ve výpočtu normy.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            ¦c je přibližné řešení $A¦x = ¦b$ metodou nejmenších čtverců, právě když $A^*A¦x = A^*¦b$.
+        \end{tvrzeni}
+
+% 24. 3. 2021
+
+\section{Lineární dynamické systémy, vlastní čísla a vlastní vektory}
+
+% 26. 3. 2021
+
+    \begin{definice}[Vlastní čísla a vlastní vektory]
+        Buď ®T těleso, $A$ čtvercová matice řádu $n$ (tj. máme $f_a: ®T^n \rightarrow ®T^n$). $\lambda \in ®T$ se nazývá vlastní číslo matice $A$, pokud $\exists ¦v \in T^n, ¦v ≠ ¦o$ takový, že $A·¦V = \lambda·¦v$. Je-li $\lambda \in ®T$ vlastní číslo matice $A$, pak $¦w \in ®T^n$ je vlastním vektorem příslušným k $\lambda$, pokud $A·¦w = \lambda·¦w$.
+    \end{definice}
+
+    \begin{definice}[Vlastní čísla a vlastní vektory]
+        Buď ®T těleso, ¦V VP nad ®T a $f: ¦V \rightarrow ¦V$ lineární operátor. $\lambda \in ®T$ se nazývá vlastní číslo operátoru $f$, pokud $\exists ¦v \in ¦V, ¦v ≠ ¦o$ takový, že $f(¦V) = \lambda·¦v$. Je-li $\lambda \in ®T$ vlastní číslo operátoru $f$, pak $¦w \in ¦V$ je vlastním vektorem příslušným k $\lambda$, pokud $f(¦w) = \lambda·¦w$.
+    \end{definice}
+
+    \begin{pozorovani}
+        $A$ má vlastní číslo 0 $\Leftrightarrow$ $\Ker A ≠ \{¦o\}$ $\Leftrightarrow$ (pro čtvercové) $A$ je singulární $\Leftrightarrow$ $\det A = 0$.
+
+        $f$ má vlastní číslo 0 $\Leftrightarrow$ $\Ker f ≠ \{¦o\}$.
+
+        Navíc množina vlastních vektorů příslušných k 0 je přesně $\Ker A$ ($\Ker f$).
+    \end{pozorovani}
+
+    \begin{pozorovani}
+        $A$ má vlastní číslo $\lambda$ $\Leftrightarrow$ $\Ker (A - \lambda I_n) ≠ \{¦o\}$ $\Leftrightarrow$ $A - \lambda I_n$ singulární $\Leftrightarrow$ $\det(A - \lambda I_n) = 0$.
+
+        $f$ má vlastní číslo $\lambda$ $\Leftrightarrow$ $\Ker (f - \lambda·\id_{¦V}) ≠ \{¦o\}$.
+
+        Navíc množina $M_{\lambda}$ vlastních vektorů $A$ (resp. $f$) příslušných k $\lambda$ je v tom případě rovna $\Ker(A - \lambda I_n)$ (resp. $\Ker (f - \lambda·\id_{¦V})$). Speciálně $M_\lambda ≤ ®T^n$ (resp. $M_\lambda ≤ ¦V$).
+    \end{pozorovani}
+
+    \begin{definice}[Charakteristický polynom]
+        Buď $A$ čtvercová matice nad ®T. Potom charakteristickým polynomem $A$ rozumíme polynom v $\lambda$:
+        $$ p_A(\lambda) = \det(A - \lambda I_n). $$ 
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buď $A = (a_{ij})$ matice řadu $n$ nad ®T. A $p_A(\lambda)$ charakteristický polynom. Pak
+
+        \begin{enumerate}
+            \item $p_A(\lambda)$ je polynom stupně $n$.
+            \item Koeficient u $\lambda^n$ je roven $(-1)^n$.
+            \item Koeficient u $\lambda^{n-1}$ je roven $(-1)^{n-1}·(a_{11} + … + a_{nn})$ (tzv. stopa matice $·(-1)^{n-1}$).
+            \item Absolutní člen je roven $\det A$.
+        \end{enumerate}
+    \end{tvrzeni}
+
+    \begin{definice}[Podobné matice]
+        Čtvercové matice $X$ a $Y$ jsou podobné, pokud $Y = RXR^{-1}$ pro $R$ regulární.
+    \end{definice}
+
+    \begin{tvrzeni}
+        $X, Y$ podobné $\implies$ $p_X(\lambda) = p_Y(\lambda)$.
+    \end{tvrzeni}
 
 \end{document}

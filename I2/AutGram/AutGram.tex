@@ -221,5 +221,227 @@
         Regulární jazyky jsou uzavřené na 10 operací výše.
     \end{veta}
 
+% 23. 3. 2021
+
+    \begin{definice}[Regulární jazyky]
+        Algebraický popis jazyků. Definuje pouze regulární jazyky, ale všechny.
+
+        Základ $\lambda$ = prázdný řetězec (${\lambda}$), $\O$ = prázdný výraz ($\{\}$), písmeno abecedy ($\{a\}, a \in \Sigma$).
+
+        Zbytek vyrobíme indukcí pomocí: $\alpha + \beta$ ($L(\alpha) \cup L(\beta)$), $\alpha\beta$ ($L(\alpha)L(\beta)$), $\alpha^*$ ($L(\alpha)^*$), $(\alpha)$ ($L(\alpha)$) ($= \alpha$).
+    \end{definice}
+
+    \begin{definice}[Priorita]
+        Největší prioritu má $*$, potom zřetězení a nakonec sjednocení.
+    \end{definice}
+
+    \begin{veta}[varianta Kleene]
+        Každý jazyk reprezentovaný konečným automatem lze zapsat jako regulární výraz. A opačně.
+
+        \begin{dukazin}
+            $\Leftarrow$: triviální indukcí dle struktury regulárního výrazu.
+
+            $\implies$: Zkonstruujeme induktivně (podle $k$) $R_{ij}^k$, kde $k$ značí maximální číslo mezistavu na cestě, $i$ je počáteční stav, $j$ je koncový stav. $R_{ij}^k$ tedy určuje regulární výraz všech slov, kterými se dostanu přes mezistavy $≤k$ z $i$ do $j$. Pro $k=0$ je konstrukce zřejmá (součet všech písmen vedoucích z $i$ do $j$, resp. $\O$).
+
+            $$ R^{k+1}_{ij} = R^k_{ij} + R^k_{i(k+1)}\(R^k_{(k+1)(k+1)}\)^*R^k_{(k+1)j}. $$
+
+            Nakonec vezmu regulární výraz, který je součtem všech $R$ z počátečního stavu do nějakého koncového s $k=n$ ($n = $ počet stavů).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Substituce jazyků]
+        Mějme konečnou abecedu $\Sigma$. Pro každé $x \in \Sigma$ budiž $\sigma(x)$ jazyk v nějaké abecedě $Y_x$. Dále položme $\sigma(\lambda) = \{\lambda\}$ a $\sigma(u.v) = \sigma(u).\sigma(v)$.
+
+        Zobrazení $\sigma: \Sigma^* \rightarrow P(Y^*)$, kde $Y = \sum_{x \in \Sigma}Y_x$ se nazývá substituce. Nevypouštějící substituce je substituce, kde žádné $\sigma(x)$ neobsahuje $\lambda$.
+    \end{definice}
+
+    \begin{definice}[Homomorfizmus]
+        Homomorfizmus $h$ je speciální případ substituce, kde obraz je vždy jen jednoslovný jazyk (vynecháváme u něj závorky), tj. $\forall x \in \Sigma: h(x) = w_x$. Pokud $\forall x: w_x ≠ \lambda$, jde o nevypouštějící homomorfizmus.
+
+        Inverzní homomorfizmus $h^{-1}(L) = \{w|h(w) \in L\}$.
+    \end{definice}
+
+    \begin{veta}[Uzavřenost na homomorfizmus]
+        Je-li jazyk $L$ i $\forall x \in \Sigma$ jazyk $\sigma(x).h(x)$ regulární, pak je regulární i $\sigma(L)$ a $h(L)$.
+
+        \begin{dukazin}
+            Prezentace. (Indukcí rozebereme sjednocení, zřetězení a iteraci na základní symboly a ty proženeme $\sigma$). Nezkouší se.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Je-li $h$ homomorfizmus abecedy $T$ do abecedy $\Sigma$ a $L$ je regulární jazyk $\Sigma$, pak $h^{-1}(L)$ je také regulární jazyk.
+
+        \begin{dukazin}
+            Pro $L$ máme DFA $A = (Q, \Sigma, \delta, q_0, F)$. Definujeme $\lambda$-NFA $B = Q', T, \delta', [q_0, \lambda], F\times\{\lambda\}$, kde $Q' = \{[q, u]\}, q \in Q, u \in \Sigma^*, \exists (a \in T)\ \exists (v \in \Sigma^*: h(a) = vu)$. $\delta'([q, \lambda], a) = [q, h(a)]$ a $\delta'([q, bv], \lambda) = [p, v]$, kde $\delta(q, b) = p$ a $b \in \Sigma$.
+        \end{dukazin}
+    \end{veta}
+
+% 30. 3. 2021
+
+\section{Dvousměrné (dvoucestné) konečné automaty}
+    \begin{definice}[Dvousměrné (dvoucestné) konečné automaty (2DFA)]
+        Dvousměrným (dvoucestným) konečným automatem nazýváme pětici $A = (Q, \Sigma, \delta, q_0, F)$, kde $Q, \Sigma, q_0, F$ jsou jako obvykle a $\delta$ je zobrazení $Q \times \Sigma \rightarrow Q \times \{-1, 1\}$ určuje přechodovou funkci rozšířenou o pohyb hlavy.
+    \end{definice}
+
+    \begin{poznamka}
+        Někdy se uvažuje, že hlava se nemusí posunout. Tedy $\delta$ bude do $Q \times \{-1, 0, 1\}$.
+
+        Takhle je deterministický, nedeterministický nebudeme zavádět.
+    \end{poznamka}
+
+    \begin{definice}[Výpočet dvousměrného automatu]
+        Slovo $w$ je přijato dvousměrným konečným automatem, pokud výpočet začal na prvním písmenu slova $w$ vlevo v počátečním stavu, čtecí hlava poprvé opustila slovo $w$ vpravo v některém přijímajícím stavu.
+    \end{definice}
+
+    \begin{poznamka}
+        Můžeme si na kraj přidat speciální koncové znaky $\# \notin \Sigma$, abychom mohli lépe konstruovat automat. Pomocí $\delta\#$ a $\delta^R\#$ jsme schopni $\#$ odstranit (tedy přidání $\#$ nám nemění regularitu).
+    \end{poznamka}
+
+    \begin{veta}
+        Jazyky přijímané dvousměrnými konečnými automaty jsou právě regulární jazyky.
+
+        \begin{dukazin}
+            $\Leftarrow$: Triviální. Hlavou pohybuji jen doprava.
+            
+            TODO
+        \end{dukazin}
+    \end{veta}
+
+% 6. 4. 2021
+
+    \begin{definice}[Palindrom]
+        Palindrom je řetězec $w = w^R$.
+    \end{definice}
+
+    \begin{lemma}
+        Jazyk $L_{pal}$ všech palindromů  není regulární.
+
+        \begin{dukazin}
+            Sporem. Předpokládejme, že je regulární a $n$ je konstanta z pumping lemmatu. Uvažujme slovo $w = 0^n 1 0^n$. $w=xyz$, $y$ obsahuje jednu nebo více z prvních $n$ nul a neobsahuje jedničku. Zapumpováním přidáme na začátek 0, tedy to už nebude palindrom.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Formální (generativní) gramatika]
+        Formální (generativní) gramatika je $G = (V, T, P, S)$ složené z konečné množiny neterminálů (variables) $V$, neprázdné konečné množiny terminálních symbolů (terminálů) $T$, počátečního symbolu $S \in V$ a konečné množiny pravidel (produkcí) $P$ reprezentující rekurzivní definici jazyka. Každé pravidlo má tvar:
+        $$ \beta A\gamma \rightarrow \omega, A \in V, \beta, \gamma, \omega \in (V \cup T)^*. $$
+
+        Jazyky jsou typu $©L_0$
+    \end{definice}
+
+    \begin{definice}[Bezkontextová gramatika]
+        Gramatika, kde pravidla mají tvar $A \rightarrow \omega, A \in V, \omega \in (V \cup T)^*$.
+
+        Jazyky jsou typu $©L_1$
+    \end{definice}
+
+    \begin{definice}[Kontextová gramatika]
+        Gramatika, kde pravidla mají tvar $\gamma A\beta \rightarrow \gamma\omega\beta, A \in V, \gamma, \beta \in (V \cup T)^*, \omega \in (V \cup T)^+$ (tzv. nezkracující). Jedinou výjimkou je pravidlo $S \rightarrow \lambda$, potom se ale $S$ nevyskytuje na pravé straně žádného pravidla (prostě přidáme nulové slovo, aniž bychom něco rozbili).
+
+        Jazyky jsou typu $©L_1$
+    \end{definice}
+
+    \begin{definice}[Regulární / pravé lineární gramatiky]
+        Gramatiky, kde pravidla jsou 2 typů: $A \rightarrow \omega B$ a $A \rightarrow \omega$, $A, B \in V, \omega \in T^*$.
+
+        Jazyky jsou typu $©L_3$
+    \end{definice}
+
+    \begin{pozorovani}
+        $©L_0 \supset ©L_1 \supset ©L_2 \supset ©L_3$.
+
+        \begin{dukazin}
+            Neostré inkluze z definice.
+
+            Ostré později.
+        \end{dukazin}
+    \end{pozorovani}
+
+    \begin{poznamka}[Notace]
+        Terminály = malá písmena, číslice, znaky. Neterminály velká písmena. Řetězce terminálů = malá písmena z konce abecedy. Terminál nebo neterminál = velká písmena z konce abecedy. Řetězec neterminálů a terminálů = řecká písmena. Svislítko (OR) je kompaktní zápis více pravidel.
+    \end{poznamka}
+
+    \begin{definice}[Derivace $\implies^*$]
+        Mějme gramatiku $G$. Říkáme, že $\alpha$ se přímo přepíše na $\omega$ (píšeme $\alpha \implies_G \omega$ nebo $\alpha \implies \omega$), jestliže $\omega$ vznikne z $\alpha$ 'aplikováním' jednoho pravidla.
+        
+        Říkáme, že $\alpha$ se přepíše na $\omega$ (píšeme $\alpha \implies_G^* \omega$ nebo $\alpha \implies^* \omega$), jestliže $\omega$ vznikne z $\alpha$ 'aplikováním' konečně mnoha pravidel. Posloupnost $\beta_i$, že $\alpha = \beta_1 \implies \beta_2 \implies … \implies \beta_n = \omega$ nazýváme derivací (odvozením). Pokud $\forall i ≠ j: \beta_i ≠ \beta_j$, pak hovoříme o minimálním odvození.
+    \end{definice}
+
+    \begin{definice}[Jazyk generovaný gramatikou]
+        $(L(G))$, tj. jazyk generovaný gramatikou $G$ je množina terminálních řetězců, pro které existuje derivace ze startovního symbolu.
+
+        Jazyk neterminálu $A \in V$ je $L(A) = \{w \in T^* | A \implies^* w\}$.
+    \end{definice}
+
+    \begin{pozorovani}[Gramatika typu 3]
+        Každé slovo derivace obsahuje právě jeden neterminál, který je zcela vpravo. Druhým typem pravidla se derivace uzavírá, krok derivace pouze generuje symboly a změní neterminál.
+    \end{pozorovani}
+
+    \begin{veta}
+        Pro každý jazyk rozpoznávaný konečným automatem existuje gramatika typu 3, která ho generuje.
+
+        \begin{dukazin}
+            $L = L(A)$ pro DFA $A(Q, \Sigma, \delta, q_0, F)$. Definujeme gramatiku $G = (Q, \Sigma, P, q_0)$, kde $P$ mají tvar $p \rightarrow aq$, když $\delta(p, a) = q$, $p \rightarrow \lambda$, když $p \in F$. Takováto gramatika zřejmě generuje $L$.
+            $$ a_1…a_n \in L(A) \Leftrightarrow \exists q_0, …, q_n \in Q: \delta(q_i, a_{i+1}) = q_{i+1}, q_n \in F \Leftrightarrow $$ 
+            $$ \Leftrightarrow (q_0 \implies a_1q_1 \implies … \implies a_1…a_nq_n \implies a_1…a_n) \text{ je derivace } \Leftrightarrow a_1…a_n \in L(G). $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}
+        Ke každé gramatice typu 3 existuje gramatika typu 3, která generuje stejný jazyk a obsahuje pouze pravidla tvaru $A \rightarrow aB, A \rightarrow \lambda, A, B \in V, a \in T$.
+
+        \begin{dukazin}
+            Zkonstruujeme tak, že zavedeme dostatečný počet nových neterminálů a pravidlo $A \rightarrow a_1…a_n[B]$ přepíšeme na $A \rightarrow a_1Y_1 \rightarrow a_1a_2Y_2 \rightarrow … \rightarrow a_1…a_n[B]$. Smažeme i pravidla typu $A \rightarrow B$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}
+        Pro každý jazyk generovaný gramatikou typu 3 existuje konečný automat, který ho rozpoznává.
+
+        \begin{dukazin}
+            Najdeme $\lambda$-NFA podobně jako jsme hledali gramatiku v důkazu předchozí věty z gramatiky z předchozího lemmatu.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Levé lineární gramatiky]
+        Gramatika $G$ je levá lineární, jestliže má pouze pravidla tvaru $A \rightarrow Bw, A \rightarrow w, A, B \in V, w \in T^*$.
+    \end{definice}
+
+    \begin{lemma}
+        Jazyky generované levou lineární gramatikou jsou právě regulární jazyky.
+
+        \begin{dukazin}
+            'Otočíme pravidla' a získáme pravou lineární gramatiku, k té najdeme automat.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Lineární gramatika, jazyk]
+        Gramatika je lineární, jestliže má pouze pravidla tvaru $A \rightarrow uBw, A \rightarrow w$. Lineární jazyky jsou právě jazyky generované lineárními gramatikami.
+    \end{definice}
+
+    \begin{upozorneni}
+        Platí regulární jazyky $\subset$ lineární jazyky (viz $0^n1^n$, $S \rightarrow 0S1|01$).
+    \end{upozorneni}
+
+    \begin{definice}[Derivační strom]
+        Mějme gramatiku $G$. Derivační strom pro $G$ je strom, kde: kořen je označen $S$, každý vnitřní uzel je označen $V$, každý uzel je ohodnocen prvkem $V \cup T \cup \{\lambda\}$. Je-li uzel ohodnocen $\lambda$, pak je jediným synem. Pokud jsou synové označeni $X_1, X_2, …, X_n$ a otec $A$, pak $(A \rightarrow X_1X_2…X_n) \in P$.
+    \end{definice}
+
+    \begin{definice}[Slovo dané stromem]
+        Strom dává slovo $w$ (yield), jestliže $w$ je slovo složené z ohodnocení listů bráno zleva doprava.
+    \end{definice}
+
+    \begin{definice}[Levá a pravá derivace]
+        Levá derivace (leftmost) ($\implies_{lm}, \implies_{lm}^*$) v každém kroku přepisuje nejlevější neterminál. Analogicky pravá derivace.
+    \end{definice}
+
+    \begin{veta}
+        Pro danou gramatiku $G$ a $w \in T^*$ jsou následující tvrzení ekvivalentní: $A \rightarrow^* w$, $A \rightarrow_{lm}^* w$, $A \rightarrow_{rm}^* w$, existuje derivační strom s kořenem $A$ dávající slovo $w$.
+
+        \begin{dukazin}
+            Všimneme si, že bezkontextovou gramatiku a derivační strom s kořenem $A$ dávající slovo $w \in T^*$. Pak existuje levá derivace $A \implies_{lm}^* w$ v $G$. Viz prezentace.
+        \end{dukazin}
+    \end{veta}
+
 
 \end{document}

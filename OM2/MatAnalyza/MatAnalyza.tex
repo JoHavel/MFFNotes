@@ -340,6 +340,305 @@
             \end{dukazin}
         \end{veta}
 
+% 24. 3. 2021
 
+        \begin{veta}[Integrace per partes]
+            Nechť $I$ je otevřený interval a funkce $f$ a $g$ jsou spojité na $I$. Nechť $F$ je primitivní k $f$ a $G$ je primitivní k $g$ na $I$. Pak platí $\int g(x)·F(x)\,dx = G(x)·F(x) - \int G(x)·f(x)\,dx$ ne $I$.
+
+            \begin{dukazin}
+                $G$ je spojitá, tedy $G(x)·f(x)$ je spojitá (tedy integrál vpravo existuje). Mějme funkci $G·F - H$, kde $H$ je primitivní k $G·f$, pak
+                $$ (G(x)·F(x) - H(x))' = g(x)·F(x) + G(x)·f(x) - G(x)·f(x) = g(x)·F(x), $$
+                neboli $\int g(x)·F(x)\,dx = G(x)·F(x) - H(x)$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[1. o substituci]
+            Nechť $F$ je primitivní funkce k $f$ na $a, b$. Nechť $\phi$ je funkce definovaná na $(\alpha, \beta)$ s hodnotami v intervalu $(a, b)$, která má v každém bodě $(\alpha, \beta)$ vlastní derivaci. Pak $\int f(\phi(t))·\phi'(t)\,dt = F(\phi(t))$ na $(\alpha, \beta)$.
+
+            \begin{dukazin}
+                Podle věty o derivaci složené funkce
+                $$ (F(\phi(t)))' = F'(\phi(t))·\phi'(t) = f(\phi(t))·\phi'(t)\ \forall t \in (\alpha, \beta). $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[2. o substituci]
+            Nechť funkce $\phi$ má v každém bodě intervalu $\alpha, \beta$ vlastní nenulovou derivaci a $\phi((\alpha, \beta)) = (a, b)$. Nechť funkce $f$ je definována na intervalu $(a, b)$ a platí $\int f(\phi(t))·\phi'(t)\,dt = G(t)$ ne $(\alpha, \beta)$. Pak $\int f(x)\,dx = G(\phi^{-1}(x))$ na $(a, b)$.
+
+            \begin{dukazin}
+                Podle V6.4 $\phi'$ nabývá mezihodnot (a je všude nenulová), tudíž $\phi'$ je na $(\alpha, \beta)$ buď kladná nebo záporná a $\phi$ je tím pádem ryze monotónní a spojitá. Tedy lze použít větu o derivaci inverzní funkce a dostaneme $(\phi^{-1}(x)) = \frac{1}{\phi'(\phi(x))}$. Nyní na $(a, b)$
+                $$ (G(\phi^{-1}(x)))' = G'(\phi^{-1}(x))·(\phi^{-1}(x))' = f(\phi(\phi^{-1}(x)))·\phi'(\phi^{-1}(x))·\frac{1}{\phi'(\phi^{-1}(x))} = f(x). $$ 
+            \end{dukazin}
+        \end{veta}
+
+% 26. 3. 2021
+    \subsection{Integrace racionálních funkcí}
+        \begin{definice}[Racionální funkce]
+            Racionální funkcí rozumíme podíl dvou polynomů $\frac{P}{Q}$, kde $Q$ není nulový polynom.
+        \end{definice}
+
+        \begin{veta}[Základní věta algebry]
+            Nechť $P(x) = a_nx^n + … + a_0x^0$, $a_i \in ®R$, $a_n ≠ 0$. Pak existují $x_1, …, x_n \in ®C$ tak, že $P(x) = a_n·(x - x_1)·…·(x - x_n)$, $x \in ®R$.
+        \end{veta}
+
+        \begin{lemma}[O komplexních kořenech polynomu]
+            Nechť $P$ je polynom s reálnými koeficienty a $z \in ®C$ je kořen $P$ násobnosti $k \in ®N$. Pak i $\overline{z}$ je kořen násobnosti $k$.
+
+            \begin{dukazin}
+                Nejprve pozorování: $(\overline{z})^k = \overline{z^k}$ (dokážeme přes goniometrický tvar).
+
+                Důkaz provedeme matematickou indukcí podle $k$. $k = 1$: $z$ je kořen, tj. $P(z) = 0 = \overline{P(z)} = \overline{a_n·z^n + … + a_0z^0} = a_n\overline{z^n} + … + a_0\overline{z^0} = P(\overline{z})$ $\implies \overline{z}$ je kořen. Dále předpokládejme, že $z \notin ®R$ (jinak je důkaz triviální.)
+
+                Nyní nechť tvrzení platí pro $k-1$ a $z$ je kořen násobnosti alespoň $k$, potom z IP víme, že $\overline{z}$ je $k-1$násobný kořen. Tedy $P(x) = (x - z)^{k-1}·(x - \overline{z})^{k-1}·Q(x) = (x^2 - (z + \overline{z})·x + z·\overline{z})^{k-1}·Q(x)$, tedy $Q$ má reálně koeficienty a $Q(z) = 0$. Podle 1. kroku indukce je tudíž $\overline{z}$ kořenem $Q$, tedy $k$násobným kořenem $P$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[O rozkladu na parciální zlomky]
+                Nechť $P$ a $Q$ jsou polynomy s reálnými koeficienty takové, že stupeň $P$ je ostře menší než stupeň $Q$ a $Q(x) = a_n·(x - x_1)^{p_1}·…·(x - x_k)^{p_k}·(x^2 + \alpha_1x + \beta_1)^{q_1}·…·(x^2 + \alpha_lx + \beta_l)^{q_l}$, kde $a_n, x_1, …, x_k, \alpha_1, …, \alpha_l, \beta_1, …, \beta_l \in ®R, a_n ≠ 0$, $p_1, …, p_k, q_1, q_l \in ®N$, žádné dva z mnohočlenů nemají společný kořen a mnohočleny $x^2+\alpha_ix+\beta_i$ nemají reálný kořen.
+
+                Pak existují jednoznačně určená čísla $A_j^i \in ®R$, $i \in [k]$, $j \in [p_i]$ a $B^i_j, C^i_j \in ®R$, $i \in [l]$, $j \in [q_i]$ tak, že platí:
+                $$ \frac{P(x)}{Q(x)} = \frac{A^1_1}{x - x_1} + … + \frac{A^1_{p_1}}{(x - x_1)^{p_1}} + … + \frac{A^k_1}{x - x_k} + … + \frac{A^k_{p_k}}{(x - x_k)^{p_k}} + \frac{B^1_1x + C^1_1}{(x^2 + \alpha_1 x + \beta_1)^1} + …. $$ 
+
+            \begin{dukazin}
+                Bez důkazu (velmi obtížný a docela zbytečný).
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Postup při integraci racionální funkce]
+            \ 
+            \begin{enumerate}
+                \item Vydělit polynomy.
+                \item Rozklad na parciální zlomky podle předchozí věty.
+                \item Integrace parciálních zlomků.
+            \end{enumerate}
+        \end{poznamka}
+
+% 31. 3. 2021
+
+    \subsection{Substituce, převádějící na racionální funkce}
+        Viz přednáška. ($R(e^{ax}) \rightarrow t = e^{ax}, R(\log x)·\frac{1}{x} \rightarrow t = \log(x)$).
+
+    \subsection{Integrace trigonometrických funkcí}
+        \begin{definice}[Racionálni funkce 2 proměnných]
+            Racionální funkcí dvou proměnných rozumíme podíl dvou polynomů $R(a, b) = \frac{P(a, b)}{Q(a, b)}$, kde $P(a, b)$ a $Q(a, b)$ jsou polynomy dvou proměnných a $Q$ není identicky nulový.
+        \end{definice}
+
+        \begin{poznamka}
+            Při integraci funkcí $R(\sin x, \cos x)$ používáme substituce:
+
+            \begin{itemize}
+                \item Pokud $R(-\sin x, \cos x) = -R(\sin x, \cos x)$, pak používáme $t = \cos x$.
+                \item Pokud $R(\sin x, -\cos x) = -R(\sin x, \cos x)$, pak používáme $t = \sin x$.
+                \item Pokud $R(-\sin x, -\cos x) = R(\sin x, \cos x)$, pak používáme $t = \tan x$.
+                \item Vždy funguje $t = \tan \frac{x}{2}$. (Nepoužívat není-li nutné, těžký výpočet!)
+            \end{itemize}
+        \end{poznamka}
+
+    \subsection{Integrace funkcí obsahujících odmocniny}
+        Viz přednáška. ($q \in ®N, ad ≠ bc, R(x, \(\frac{ax+b}{cx+d}\)^{\frac{1}{q}}) \rightarrow t = \(\frac{ax+b}{cx+d}\)^{\frac{1}{q}}$).
+
+        \begin{poznamka}[Eulerovy substituce]
+            Nechť $a ≠ 0$. Při integraci funkcí typu $R(x, \sqrt{ax^2 + bx + c})$ používáme substituce:
+
+            \begin{itemize}
+                \item polynom $ax^2 + bx + c$ má dvojnásobný kořen a $a > 0$, pak $\sqrt{ax^2 + bx + c} = \sqrt{a}|x-\alpha|$ a řešíme na $x>\alpha$ a $x<\alpha$ jako racionální funkce.
+                \item polynom $ax^2 + bx + c$ má dva reálné kořeny $\alpha_1$ a $\alpha_2$. Pak úpravou převedeme na tvar $\sqrt{a\frac{x-\alpha_1}{x-\alpha_2}}$ nebo $\sqrt{a·\frac{\alpha_1-x}{x-\alpha_2}}$.
+                \item polynom $ax^2 + bx + c$ nemá reálný kořen a $a > 0$. Pak používáme substituci $\sqrt{ax^2 + bx + c} = \sqrt{a}·x + t$.
+            \end{itemize}
+
+            \begin{upozorneni}
+                Substituce $\tan x$, $\tan \frac{x}{2}$ a poslední předchozí jsou substituce 2. druhu a je vždy potřeba ověřit, že vnitřní funkce je monotónní a na.
+            \end{upozorneni}
+        \end{poznamka}
+
+% 7. 4. 2021
+
+\section{Určitý integrál}
+    \subsection{Riemannův integrál}
+        \begin{definice}[Dělení, zjemnění dělení]
+            Konečnou posloupnost $\{x_j\}_{j=0}^n$ nazýváme dělením intervalu $[a, b]$, jestliže $a = x_0 < x_1 < … < x_{n-1} < x_n = b$.
+
+            Řekneme, že dělení $D'$ intervalu $[a, b]$ zjemňuje dělení $D$ intervalu $[a, b]$, jestliže každý bod dělení $D$ je i bodem dělení $D'$.
+        \end{definice}
+
+        \begin{definice}[Horní a dolní součty, Riemanovy integrály]
+            Nechť $f$ je omezená funkce definovaná na intervalu $[a, b]$ a $D$ je dělení $[a, b]$, definujme horní a dolní součty
+            $$ S(f, d) = \sum_{i=1}^n \sup\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}), $$
+            $$ s(f, d) = \sum_{i=1}^n \inf\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}). $$
+
+            Horní a dolní Riemannův integrál definujeme jako
+            $$ (R)\overline{\int_a^b} f(x)\,dx = \inf\{S(f, D) | D \text{ je dělení } [a, b]\}, $$ 
+            $$ (R)\underline{\int_a^b} f(x)\,dx = \sup\{s(f, D) | D \text{ je dělení } [a, b]\}. $$ 
+        \end{definice}
+
+        \begin{definice}
+            Řekneme, že $f$ je Riemanovsky integrovatelná, jestliže $(R)\underline{\int_a^b} f(x)\,dx = (R)\overline{\int_a^b} f(x)\,dx$. Tuto hodnotu pak označujeme $(R)\int_a^b f(x)\,dx$.
+
+            Množinu funkcí mající Riemannův integrál značíme $R([a, b])$.
+        \end{definice}
+
+        \begin{poznamka}
+            Omezenost $f$ je nutnou podmínkou.
+        \end{poznamka}
+
+        \begin{veta}[O zjemnění dělení]
+            Nechť $f$ je omezená funkce na $[a, b]$, $D$ a $D'$ jsou dělení intervalu $[a, b]$ a $D'$ zjemňuje $D$. Pak $s(f, D) ≤ s(f, D') ≤ S(f, D') ≤ (f, D)$.
+
+            \begin{dukazin}
+                Prostřední nerovnost je triviální z $\sup ≥ \inf$.
+
+                Předpokládejme, že $D = \{x_0, x_1, …, x_n\}$ a $D' = \{x_0, x_1, …, x_{j-1}, z, x_{x_j}, …, x_n\}$. Pak $\inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}$ a $\inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [z, x_j]\}$. Vynásobením $(z - x_{j-1})$ a $(x_j - z)$ dostaneme
+                $$ \inf\{f(x), x \in [x_{j - 1}, x_j]\}·(x_j - x_{j-1}) ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}·(z - x_{j-1}) + \inf\{f(x), x \in [z, x_j]\}·(x_j - z) \implies s(f, D) ≤ s(f, D'). $$
+
+                Pokud se $D$ a $D'$ liší o více bodů, pak postupujeme indukcí. Analogicky pro horní součty.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O dvou děleních]
+            Nechť $f$ je omezená funkce na $[a, b]$ a $D_1, D_2$ jsou dělení intervalu $[a, b]$. Pak $s(f, D_1) ≤ S(f, D_2)$.
+
+            \begin{dukazin}
+                Nechť $D$ zjemňuje $D_1$ i $D_2$ ($D = D_1 \cup D_2$). Potom $D$ je jemnější než $D_1$ i $D_2$ a podle předchozí věty:
+                $$ s(f, D_1) ≤ s(f, D) ≤ S(f, D) ≤ S(f, D_2). $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Nechť $f$ je omezená na $[a, b]$, $D_1$ a $D_2$ jsou dělení $[a, b]$, $m = \inf\{f(x) | x \in [a, b]\}$ a $M = \sup\{f(x) | x \in [a, b]\}$. Pak:
+            $$ m·(b - a) ≤ s(f, D_1) ≤ \underline{\int_a^b} f(x)\,dx ≤ \overline{\int_a^b} f(x)\,dx ≤ S(f, D_2) ≤ M·(b - a). $$ 
+        \end{dusledek}
+
+        \begin{definice}[Norma dělení]
+            Nechť $D$ je dělení $[a, b]$. Číslo $\ni(D) = \max_{j = 1, …, n} |x_j - x_{j-1}|$ nazveme normou dělení $D$.
+        \end{definice}
+
+        \begin{veta}[Aproximace R. integrálu pomocí součtů]
+            Nechť $f$ je omezená funkce na $[a, b]$ a $\{D_n\}_{n=1}^∞$ je posloupnost dělení $[a, b]$ taková, že $\lim_{n \rightarrow ∞} \ni(D_n) = 0$. Potom $(R) \overline{\int_a^b} f(x)\,dx = \inf_{n \in ®N} S(f, D_n)$ a $(R) \underline{\int_a^b} f(x)\,dx = \sup_{n \in ®N} s(f, D_n)$.
+
+            \begin{dukazin}
+                BÚNO $f ≥ 0$ (jinak přičteme k $f$ konstantu). Stačí dokázat druhá rovnost, první je analogická. Nechť $D$ je libovolné dělení a $\epsilon > 0$. Stačí dokázat, že $\exists n_0: s(f, D_{n_0}) ≥ s(f, D) - \epsilon$. Pak
+                $$ (R) \underline{\int_a^b} f(x)\,dx = \sup_D S(f, D) ≥ \sup_{D_n} s(f, D_n) ≥ \sup_D(s(f, D) - \epsilon) = (R) \underline{\int_a^b} f(x)\,dx - \epsilon. $$
+                Nechť $0≤ f ≤ K$ a zvolme $n_0$, aby $\ni(D_{n_0}) ≤ \frac{\epsilon}{K·4·\#\text{intervalů } D}$. Označme $H = $ intervaly vzniklé dělením $P = D \cup D_{n_0}$ a $\gamma = $ intervaly z $P$, v kterých není žádný bod dělení $D$. $P$ je jemnější než $D$, a proto z věty výše dostáváme
+                $$ s(f, D) ≤ s(f, P) = \sum_{L \in H} \inf_{L}f·\text{délka } L = \sum_{L \in \gamma} \inf_{L}f·\text{délka } L + \sum_{L \in H \setminus \gamma} \inf_{L}f·\text{délka } L ≤ s(f, D_{n_0}) + 2·\#\text{intervalů }D·(K·\ni(D_{n_0})) < s(f, D_{n_0}) + \epsilon. $$
+            \end{dukazin}
+        \end{veta}
+
+
+% 9. 4. 2021
+
+        \begin{veta}[Kritérium existence R integrálu]
+            Nechť $f$ je omezená funkce na $[a, b]$. Pak $f \in R([a, b]) \Leftrightarrow \forall \epsilon > 0\ \exists$ dělení $D$ intervalu $[a, b]$, že $S(f, D) - s(f, D) < \epsilon$.
+
+            \begin{dukazin}
+                $\implies$: Zvolme libovolnou posloupnost dělení, že $\ni|D_n| \rightarrow 0$ ($D_{n+1}$ je jemnější než $D_n$). Pak
+                $$\lim_{n \rightarrow ∞} S(f, D_n) = (R) \overline{\int_a^b}f(x)\,dx = (R) \int_a^bf(x)\,dx, $$
+                $$\lim_{n \rightarrow ∞} s(f, D_n) = (R) \underline{\int_a^b}f(x)\,dx = (R) \int_a^bf(x)\,dx. $$
+                Tedy $\exists n_0\ \forall n ≥ n_0: S(f, D_n) - s(f, D_n) < \epsilon$.
+
+                $\Rightarrow$: Zvolme $\epsilon > 0$ a k němu nalezneme $D$ z předpokladu. 
+                $$ 0 ≤ (R) \overline{\int_a^b}f(x)\,dx - (R) \underline{\int_a^b}f(x)\,dx ≤ S(f, D) - s(f, D) < \epsilon \implies (R) \overline{\int_a^b}f(x)\,dx = (R) \underline{\int_a^b}f(x)\,dx. $$
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Stejnoměrná spojitost]
+            Řekneme, že funkce $f$ je stejnoměrně spojitá na intervalu $I$, jestliže
+            $$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x, y \in I: |x - y| < \delta \implies |f(x) - f(y)| < \epsilon. $$
+        \end{definice}
+
+        \begin{veta}[O vztahu spojitosti a stejnoměrné spojitosti]
+            Nechť $f$ je spojitá na omezeném uzavřeném intervalu $[a, b]$, pak $f$ je stejnoměrně spojitá na $[a, b]$.
+
+            \begin{dukazin}
+                Sporem. Nechť $f$ je spojitá na $[a, b]$, ale
+                $$ \exists \epsilon > 0\ \forall \delta = \frac{1}{n}\ \exists x_n, y_n \in I: |x_n - y_n| < \frac{1}{n} \land |f(x_n) - f(y_n)| ≥ \epsilon. $$
+                Interval $a, b$ je omezený, tedy z $x_n$ lze vybrat konvergentní posloupnost podle Weirstrassovy věty. Tedy $\lim_{k \rightarrow ∞} x_{n_k} = x_0$. Dále $\lim_{k \rightarrow ∞} y_{n_k} = x_0$, neboť 
+                $$ |y_{n_k} - x_0| ≤ |y_{n_k} - x_{n_k}| + |x_{n_k} - x_0| < \frac{1}{n_k} + |x_{n_k} - x_0| \rightarrow 0. $$
+                Víme, že $f$ je spojitá v $x_0$ (vzhledem k $[a, b]$). Tedy k našemu $\epsilon > 0\ \exists \delta > 0$ tak, že $\forall z \in (x_0 - \delta, x_0 + \delta) \cap [a, b]: |f(z) - f(x_0)| < \frac{\epsilon}{3}$. Nalezneme $j \in ®N$, aby $x_{n_k}, y_{n_k} \in (x_0 - \delta, x_0 + \delta)$. Nyní
+                $$ \epsilon ≤ |f(x_{n_k} - f(y_{n_k}))| ≤ |f(x_{n_k} - f(x_0))| + |f(x_0) - f(y_{n_k})| < \frac{\epsilon}{3} + \frac{\epsilon}{3} < \epsilon.\text{\lightning}. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O vztahu spojitosti a Riemannovské integrovatelnosti]
+            Nechť $f$ je spojitá na omezeném intervalu $[a, b]$, pak $f \in R([a, b])$.
+
+            \begin{dukazin}
+                Podle věty ze zimy je spojitá funkce na omezeném intervalu spojitá. Z předchozí věty víme, že $f$ je dokonce stejnoměrně spojitá na $[a, b]$. Pak
+                $$ \exists \delta > 0: \forall x, y \in [a, b]: |x - y| < \delta \implies |f(x) - f(y)| < \epsilon. $$
+                Zvolme dělení $D$ intervalu $[a, b]$ tak, že $\ni(D) < \delta$. Nechť $D = \{x_j\}_{j = 0}^n$. Označme $M_j = \sup_{x_j, x_{j + 1}}f$, $m_j = \inf_{x_j, x_{j + 1}}f$. Pak platí $M_j ≤ m_j + \epsilon \forall j \in [n]$.
+                $$ S(f, D) - s(f, D) = \sum_{j=1}^n M_j(x_j - x_{j-1}) - \sum_{j=1}^n m_j(x_j - x_{j-1}) = \sum_{j=1}^n (M_j - m_j)·(x_j - x_{j-1}) ≤ \epsilon·\sum_{j=1}^n (x_j - x_{j-1}) = \epsilon·(b - a). $$
+                Podle věty výše tedy $f \in R([a, b])$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Vztah monotonie a Riemanovské integrovatelnosti]
+            Nechť $f$ je (omezená) monotonní funkce na intervalu $[a, b]$. Pak $f \in R([a, b])$.
+
+            \begin{dukazin}
+                BÚNO $f$ je neklesající. Budeme kritérium existence R integrálu. Nechť $\epsilon > 0$. Zvolme ekvidistantní dělení $D = \{a + (b - a)\frac{j}{n}\}_{j=0}^n$ a volíme $n$, aby $n > \frac{1}{\epsilon}(b-a)·(f(b) - f(a))$. Nyní
+                $$ S(f, D) = \sum_{j = 1}^n \sup_{[x_{j-1}, x_j]}f·(x_j - x_{j-1}) = \sum_{j=1}^n f(x_j)·(x_j - x_{j-1}) = \frac{b - a}{n} \sum_{j=1}^n f(x_j), $$ 
+                $$ s(f, D) = \sum_{j = 1}^n \inf_{[x_{j-1}, x_j]}f·(x_j - x_{j-1}) = \sum_{j=1}^n f(x_{j-1})·(x_j - x_{j-1}) = \frac{b - a}{n} \sum_{j=1}^n f(x_{j-1}). $$ 
+                Odtud
+                $$ S(f, D) - s(f, D) = \frac{b-a}{n} \sum_{j=1}^n f(x_j) - f(x_{j-1}) ≤ \frac{b-a}{n}(f(b) - f(a)) < \epsilon. $$ 
+            \end{dukazin}
+        \end{veta}
+
+% 14. 4. 2021
+
+        \begin{veta}[Vlastnosti R integrálu]
+            a) Linearita: $f, g \in R([a, b]), \alpha \in ®R \implies f+g \in R([a, b]) \land \alpha f \in R([a, b])$ a 
+            $$ (R) \int_a^b f + g = (R) \int_a^b f + (R) \int_a^b g \land (R) \int_a^b \alpha·f = \alpha·(R) \int_a^b g. $$
+            b) Monotonie: $f, g \in R([a, b]), f ≤ g$, pak $(R) \int_a^b f ≤ (R) \int_a^b g$.
+
+            c) Aditivita vzhledem k intervalům: Nechť $a < c < b$. Pak $f\in R([a, b]) \Leftrightarrow f \in R([a, c]) \land f \in R([c, b])$ a platí $(R) \int_a^b f(x)\,dx = (R) \int_a^c f(x)\,dx + (R) \int_c^b f(x)\,dx$.
+
+            \begin{dukazin}[a]
+                $f, g \in R([a, b]) \implies f$ a $g$ jsou omezené na $[a, b]$ $\implies f + g$ je omezená a $\alpha f$ je omezená na $[a, b]$. Je-li $I \subseteq [a, b]$ interval, pak $\sup_I(f+g) ≤ \sup_I f + \sup_I g$, $\inf_I(f+g) ≤ \inf_I f + \inf_I g$. Proto pro libovolné dělení $D$ intervalu $[a, b]$ platí
+                $$ s(f, D) + s(g, D) ≤ s(f + g, D) ≤ S(f + g, D) ≤ S(f, D) + S(g, D). $$
+                Zvolme posloupnost dělení $\{D_n\}$ intervalu $[a, b]$ tak, že $\ni(D_n) \rightarrow 0$ (a $D_{n+1}$ jemnější než $D_n$). Podle věty výše
+                $$ \lim_{n \rightarrow ∞} S(f, D_n) + S(g, D_n) = (R) \int_a^b f(x)\,dx + (R) \int_a^b g(x)\,dx, $$
+                $$ \lim_{n \rightarrow ∞} s(f, D_n) + s(g, D_n) = (R) \int_a^b f(x)\,dx + (R) \int_a^b g(x)\,dx. $$
+                Spolu s nerovností výše je to
+                $$ \lim_{n \rightarrow ∞} s(f+g, D_n) = \lim_{n \rightarrow ∞} S(f + g, D_n) \overset{\text{POLICIE}}{=} (R) \int_a^b f(x)\,dx + (R) \int_a^b g(x)\,dx. $$
+                Tedy podle věty výše $f+g \in R([a, b])$ a $(R) \int_a^b f + g = (R) \int_a^b f + (R) \int_a^b g$.
+
+                Je-li $f \in R([a, b])$, $\alpha ≥ 0$, je $\alpha·f$ omezená na $[a, b]$. Pro každý interval $I \subseteq [a, b]$
+                $$ \sup_I \alpha·f = \alpha·\sup_I f, \qquad \inf_I \alpha·f = \alpha·\inf_I f \implies $$
+                $$ S(\alpha f, D) = \alpha·S(f, D), \qquad s(\alpha·f, D) = \alpha·s(f, D). $$
+                Nechť $\{D_n\}$ je posloupnost dělení $[a, b]$, že $\nu|D_n| \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$. Pak
+                $$ \lim_{n \rightarrow ∞} S(\alpha f, D_n) = \lim_{n \rightarrow ∞} \alpha·S(f, D_n) = \alpha·(R) \int_a^b f(x)\,dx, $$
+                $$ \lim_{n \rightarrow ∞} s(\alpha f, D_n) = \lim_{n \rightarrow ∞} \alpha·s(f, D_n) = \alpha·(R) \int_a^b f(x)\,dx. $$
+                Podle věty výše je pro $\alpha f: \alpha f \in R([a, b])$ a $(R)\int_a^b \alpha f = \alpha (R)\int_a^b f$.
+
+                Zbývá $\alpha < 0$. Stačí $\alpha = -1$ (jelikož pak můžeme násobit kladným). Pak $\forall$ interval $I$ $\sup_I (-f) = -\inf_I f$ a $\inf_I(-f) = -\sup_I f$. Tedy $\forall$ posloupnost dělení $\{D_n\}$, kde $\nu(D_n) \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$:
+                $$ \lim_{n \rightarrow ∞} S(-f, D_n) = \lim_{n \rightarrow ∞} - s(f, D_n) = - (R)\int_a^b f(x)\,dx, $$ 
+                $$ \lim_{n \rightarrow ∞} s(-f, D_n) = \lim_{n \rightarrow ∞} - S(f, D_n) = - (R)\int_a^b f(x)\,dx, $$
+                tudíž $-f \in R([a, b])$ a $(R)\int_a^b (-f) = -(R)\int_a^b f$.
+            \end{dukazin}
+
+            \begin{dukazin}[b]
+                Nechť $D_n$ je posloupnost dělení, $\nu(D_n) \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$. Pak $\sup_I f ≤ \sup_I g$. Tedy víme, že
+                $$ \int_a^b f(x)\,dx = \lim_{n \rightarrow ∞} S(f, D_n) ≤ \lim_{n \rightarrow ∞} S(g, D_n) = (R)\int_a^b g(x)\,dx. $$
+            \end{dukazin}
+
+            \begin{dukazin}[c]
+                Nechť $\{D_n^1\}$ a $\{D_n^2\}$ jsou posloupnosti dělení $[a, c]$ respektive $[c, b]$ splňující $\nu(D_n^1) \rightarrow 0$ a $\nu(D_n^2) \rightarrow 0$ a $D^1_{n+1}$ je jemnější než $D^1_n$ a $D^2_{n+1}$ je jemnější než $D^2_n$. Nechť $D_n = D_n^1 \cup D_n^2$. Pak $D_n$ je dělení $[a, b]$ a $\nu(D_n) \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$.
+
+                Nechť $f\in R([a, c])$ a $f \in R([c, b])$. Pak podle věty výše
+                $$ \lim_{n \rightarrow ∞} S(f, D_n^1) = \lim_{n \rightarrow ∞} s(f, D_n^1) = (R)\int_a^c f(x)\,dx, $$
+                $$ \lim_{n \rightarrow ∞} S(f, D_n^2) = \lim_{n \rightarrow ∞} s(f, D_n^2) = (R)\int_c^b f(x)\,dx. $$
+                Tedy
+                $$ \lim_{n \rightarrow ∞} S(f, D_n) = \lim_{n \rightarrow ∞} S(f, D_n^1) + S(f, D_n^2) = (R) \int_a^c f(x)\,dx + (R)\int_c^b f(x)\,dx, $$
+                $$ \lim_{n \rightarrow ∞} s(f, D_n) = \lim_{n \rightarrow ∞} s(f, D_n^1) + s(f, D_n^2) = (R) \int_a^c f(x)\,dx + (R)\int_c^b f(x)\,dx. $$
+                Podle věty výše je $f \in R([a, b])$ a $(R) \int_a^b f(x)\,dx = (R) \int_a^c f(x)\,dx + (R)\int_c^b f(x)\,dx$.
+
+                Nechť $f \in R([a, b])$. Pak
+                $$ 0 ≤ S(f, D_n^1) - s(f, D_n^1) ≤ S(f, D_n^1) - s(f, D_n^1) + S(f, D_n^2) - s(f, D_n^2) = S(f, D_n) - s(f, D_n) \rightarrow 0 \implies $$ 
+                $$ \implies \lim_{n \rightarrow ∞} S(f, D_n^1) - s(f, D_n^1) = 0 \implies f \in R([a, c]). $$
+                Analogicky $f \in R([c, b])$. Rovnost $(R) \int_a^b f(x)\,dx = (R) \int_a^c f(x)\,dx + (R) \int_c^b f(x)\,dx$ plyne z předchozí části důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}[Úmluva]
+            1. Nechť $b < a$, pak definujeme $\int_a^b f(x)\,dx = - \int_b^a f(x)\,dx$.
+        \end{poznamka}
 
 \end{document}

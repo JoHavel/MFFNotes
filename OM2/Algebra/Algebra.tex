@@ -639,4 +639,272 @@
                 $\implies$: $b|a \implies \exists c: a = b·c$. Ať $b||q_1^{s_1}·…·q_u^{s_u}$, $c || r_1^{t_1}·…·r_v^{t_v}$ jsou ireducibilní rozklady. Zkombinujeme na rozklad $b·c: B·C||q_1^{s'_1}·…·q_u^{s'_u}·r_{i_1}^{t_{i_1}}·…·r_{i_w}^{t_{i_w}}$ (vyfiltrujeme z rozkladu $c$ ty $r_i$, který jsou asociovány s nějakým $q_j$). Máme 2 rozklady $b·c = a$. Z jednoznačnosti rozkladů $q_i = p_{\pi(i)} \land s'_i = k_{\pi(i)} ≥ s_i$. Tudíž $b || p_{\pi(1)}^{s_1}·…·p_{\pi(n)}^{s_n}$, kde $s_i ≤ k_{\pi(i)}$ (a doplníme chybějící $p_j^0$).
             \end{dukazin}
         \end{tvrzeni}
+
+% 24. 3. 2021
+
+        \begin{dusledek}[Dělitelnost v gaussovských oborech]
+            $R$ gaussovský obor. Pak $\forall a, b \in R$, $a≠0 \lor 0≠b$ $\implies$ existuje $\NSD(a, b)$. Každý ireducibilní prvek je prvočinitel. Neexistuje posloupnost $a_1, a_2, a_3, … \in R: a_{i+1}|a_i \land a_i \not|| a_{i+1}$.
+
+            \begin{dukazin}
+                Mějme rozklady $a || p_1^{k_1}·…·p_n^{k_n}$ a $b || p_1^{l_1}·…·p_n^{l_n}$ (doplněné tak, aby měli shodná prvočísla, ale $k_i ≠ 0 \lor l_i ≠ 0$).
+
+                Ať $a, b ≠ 0$, potom existuje jednoznačný rozklad na prvočinitele. Potom každé (a jenom ty) $c || p_1^{m_1}·…·p_n^{m_n}$, kde $0 ≤ m_i ≤ \min(k_i, l_i)$ dělí $a$ i $b$, tedy $c$ s největšími $m_i$ a to už je zřejmě $\NSD(a, b)$.
+
+                Nechť $p | a·b$ a zároveň je ireducibilní, tj. $p = p_i$ pro nějaké $i$. Toto $p_i$ musí být v nenulové mocnině v $a$ nebo v $b$, tedy $p$ dělí jedno z nich.
+
+                Definujeme normu $\ni(a) = k_1 + … + k_n$. Jelikož máme jednoznačný ireducibilní rozklad, tak $\ni$ je dobře definovaná. Pokud $b|a$, pak $\ni(b) ≤ \ni(a)$, pokud navíc $b \not || a$, pak $\ni(b) < \ni(a)$. Posloupnost $\ni(a_i)$ je pak nekonečná klesající posloupnost v ®N. \lightning. 
+            \end{dukazin}
+        \end{dusledek}
+
+    \subsection{Zobecněná základní věta aritmetiky}
+        \begin{veta}[Zobecněná základní věta aritmetiky]
+            $R$ je gaussovský $\Leftrightarrow$ existuje $\NSD$ všech dvojic prvků (krom 0, 0) $\land$ neexistuje nekonečná posloupnost vlastních dělitelů $a_1, a_2, a_3, … \in R: a_{i+1}|a_i \land a_i \not||a_{i+1}$.
+
+            \begin{dukazin}[$\implies$]
+                Je dokázáno.
+            \end{dukazin}
+
+            \begin{dukazin}[Existence rozkladů]
+                Sporem s druhou částí: Ať $a_1 = a$, $a_1 \not||1$ a $a$ nemá ireducibilní rozklad. Mějme $a_i \not|| 1$ a nemá ireducibilní rozklad. Tedy není ireducibilní (jinak by bylo samo sobě rozkladem) $\implies a_i = b·c$ pro nějaké $b, c \not||1$. Kdyby $b, c$ měly ireducibilní rozklad, pak by i. rozklad mělo i $a_i$. Takže aspoň jeden z nich nemá IR. Označíme ho $a_{i+1}$. Tudíž $a_{i+1}|a_i \land a_{i+1}\not||1 \land a_{i+1}$ nemá IR. Indukcí tedy vyrobíme nekonečnou posloupnost, kterou mi podmínky zakazují. \lightning.
+            \end{dukazin}
+
+            \begin{lemmain}
+                $R$ obor, $a, b \in R$, $c \in R$, $c ≠ 0$. Předpokládejme, že existuje $\NSD(a, b)$, $\NSD(ca, cb)$. Pak $\NSD(ca, cb) = c·\NSD(a, b)$.
+
+                \begin{dukazin}
+                    Ve skriptech. Triviální.
+                \end{dukazin}
+            \end{lemmain}
+
+            \begin{lemmain}
+                Buď $R$ obor, ve kterém existuje $\NSD$ všech dvojic prvků. Pak je každý ireducibilní prvek prvočinitel.
+
+                \begin{dukazin}
+                    Buď $p$ ireducibilní a ať $p|a·b$. Ať $p \not| a$. $\NSD(p, a)$ existuje, tedy $\NSD(p, a) = 1$, neboť $p$ je ireducibilní. Podle předchozího lemmatu $\NSD(pb, ab) = b·\NSD(p, a) = b$. Zároveň $p | pb$ a $p|ab$, $b$ je $\NSD \implies p|b$.
+                \end{dukazin}
+            \end{lemmain}
+
+            \begin{dukazin}[Jednoznačnost rozkladu]
+                Sporem: Mezi všemi prvky s nejednoznačnými rozklady vyberme ten, který má nejkratší rozklad, čili má minimální $k_1+…+k_n$. Nechť tedy $a || p_1^{k_1}·…·p_n^{k_n} || q_1^{l_1}·…·q_m^{l_m}$. $p_1$ je ireducibilní a dělí $a$, tedy (podle předchozího lemmatu) dělí $q_i$ pro nějaké $i$. To ale znamená, že $p_1^{k_1 - 1}·…·p_n^{k_n} || …$. To jsou ale zase dva různé ireducibilní rozklady, ale to je spor s minimalitou.
+            \end{dukazin}
+        \end{veta}
+
+\section{Eukleidův algoritmus a Bézoutova rovnost}
+    \subsection{Eukleidovské obory}
+        \begin{definice}[Eukleidovský obor]
+            $R$ je obor. $R$ je eukleidovský, pokud na něm existuje tzv. eukleidovská norma, čili zobrazení $\ni: R \rightarrow ®N_0$ tak, že $\ni(0) = 0$, $a|b \land b ≠ 0 \implies \ni(a) ≤ \ni(b)$, $\forall a, b \in R, b ≠ 0\ \exists q, r \in R: a = bq + r \land \ni(r) < \ni(b)$.
+        \end{definice}
+        
+        \begin{pozorovani}
+            $a = 0 \Leftrightarrow \ni(a) = 0$. (Z ostré nerovnosti v třetí podmínce.)
+        \end{pozorovani}
+
+        \begin{pozorovani}
+            Tělesa jsou eukleidovská ($\ni(0) = 0$, $\ni(a≠0) = 1$). ®Z je eukleidovské $\ni(a) = |a|$. $®Z[i]$ je eukleidovské. ®T těleso, $R = T[x]$ je eukleidovský obor ($\ni(f) = 1 + \deg f$).
+
+            $®Z[x]$ není eukleidovské (ale je gaussovské). ($\NSD(x + 1, x - 1) ≠ f(x)·(x + 1) + g(x)·(x-1)$. Tj. neplatí Bézoutova rovnost.)
+        \end{pozorovani}
+
+        \begin{poznamka}
+            Eukleidův algoritmus funguje normálně, jen dělení se zbytekm je určené podle definice Eukleidovských oborů.
+        \end{poznamka}
+
+        \begin{veta}[Správnost eukleidova algoritmu]
+            V eukleidovském oboru $R$ najde rozšířený Eukleidův algoritmus pro jakýkoliv vstup $a, b \in R$ hodnotu $\NSD(a, b)$ a Bézoutovy koeficienty $u, v$ splňující $\NSD(a, b) = u·a + v·b$.
+
+            \begin{dukazin}
+                EA skončí, neboť norma se zmenšuje a je nezáporná. Stačí ukázat, že $\NSD(a_{i-1}, a_i) = \NSD(a_{i+1}, a_i)$ a $a_i = u_i·a + v_i·b$. Obojí plyne z $a_{i-1} = a_{i}q+a_{i+1}$
+            \end{dukazin}
+        \end{veta}
+
+% 26. 3. 2021
+
+        \begin{poznamka}[Oprava]
+            $\NSD(0, 0) = 0$, tento případ tedy nemusel být v tvrzení výše vynecháván…<F2> 
+        \end{poznamka}
+
+        \begin{lemma}
+            $R$ eukleidovský obor, $a, b \in R \setminus \{0\}$. Pokud $a|b$ a $a \not|| b$, pak $\ni(a) < \ni(b)$.
+
+            \begin{dukazin}
+                Ať $b = a·u$ pro nějaké $u \in R$. Víme, že $\exists q, r \in R$, $a = bq + r$, $\ni(r) < \ni(b)$. $a\not||b$ $\implies$ $b \not|a \implies r≠0$. $r = a-bq = a(1-uq) \implies a|r$. Z definice dělení se zbytkem je $\ni(a) ≤ \ni(r) < \ni(b)$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            Eukleidovské obory jsou gaussovské.
+
+            \begin{dukazin}
+                $R$ eukleidovský. Podle jedné z předchozích vět: gaussovský $\Leftrightarrow$ $\exists \NSD$ a $\nexists$ řetězec vlastních dělitelů. $\NSD$ v eukleidovském existuje. Podle lemmatu výše se norma vlastních dělitelů zmenšuje, tedy opravdu takový řetězec neexistuje.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            $®Z[i]$ je gaussovský. $®T[x]$ je gaussovský.
+        \end{dusledek}
+
+    \subsection{Diofantické rovnice, rozklad v $®Z\[i\]$}
+       Viz přednáška, nebude u zkoušky.
+
+    \subsection{Obory hlavních ideálů}
+        \begin{definice}
+            $R$ je komutativní okruh. Ideál v $R$ je neprázdná podmnožina $I \subseteq R$ tak, že $a, b \in I \implies a+b \in I, -a \in I$, $a \in I, r \in R \implies r·a \in I$.
+        \end{definice}
+
+        \begin{priklady}
+            $R = ®Z$, $I = n®Z$ pro libovolné $n \in ®Z$. (Dále dokážeme, že jiný v ®Z neexistuje.)
+        \end{priklady}
+
+        \begin{tvrzeni}[Definice hlavních ideálů]
+            $R$ komutativní okruh, $a \in R$. Pak $a·R = \{a·r|r \in R\} = \{u \in R\,|\,a|u\}$ je ideál v $R$. Navíc je to nejmenší (vůči inkluzi) ideál v $R$, který obsahuje $a$. Takovému ideálu se říká hlavní.
+
+            \begin{dukazin}
+                $ar, as \in aR \implies ar + as = a(r + s) \in aR, -ar = a·(-r) \in aR$, $ar \in aR, t \in R \implies art \in aR$. Tedy $R$ je ideál.
+
+                Buď $I$ ideál v $R$, $a \in I$. Z uzavřenosti plyne, že $ar \in I \forall r \in R \implies aR \subseteq I$. Tedy $aR$ je nejmenší.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Hlavní, protože je tam ten hlavní prvek $a$, který ho vytváří.
+        \end{poznamka}
+
+        \begin{definice}
+            Hlavním ideálům $0R = \{0\}$ a $1R = R$ se říká nevlastní, ostatním se říká vlastní.
+        \end{definice}
+
+        \begin{pozorovani}
+            $$ a|b \Leftrightarrow aR \supseteq bR. $$
+
+            \begin{dukazin}
+                Triviální, viz přednáška.
+            \end{dukazin}
+
+            \begin{dusledekin}
+                $$ a||b \Leftrightarrow aR = bR. $$
+            \end{dusledekin}
+        \end{pozorovani}
+
+        \begin{veta}
+            V eukleidovském oboru je každý ideál hlavní.
+
+            \begin{dukazin}
+                $R$ eukleidovský obor, $I$ ideál. Pokud $I = \{0\} \implies I = 0R$. Ať $I \supset \{0\}$. Buď $0 ≠ a \in I$ (libovolný) prvek s nejmenší možnou normou $\ni(a)$. Dokážeme, že $I = aR$. Zřejmě $aR \subseteq I$, protože $a \in I$. Pro spor ať existuje $b \in I \setminus aR$. Vydělíme se zbytkem: $b = aq + r, \ni(r)<\ni(a)$. Ale máme $r = b-aq$, přičemž $b, a, aq \in I$, tudíž $r = b-aq \in I$, ale z minimality normy $a$ je $r = 0$, tudíž $a | b$. \lightning.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Obor hlavních ideálů (OHI)]
+            Pokud $R$ je obor tak, že každý ideál je hlavní, pak se $R$ nazývá obor hlavních ideálů (OHI).
+        \end{definice}
+
+        \begin{priklady}
+            $®Z[x]$ není OHI. $®Z[\frac{1 + \sqrt{-19}}{2}$ je OHI, ale není euklidovský (těžké dokázat).
+        \end{priklady}
+
+        \begin{tvrzeni}
+            $R$ komutativní okruh s 1. $R$ je těleso $\Leftrightarrow$ $R$ má pouze nevlastní ideály.
+
+            \begin{dukazin}
+                Ať $I ≠ \{0\}$. Buď $0 ≠ a \in I$. $R$ těleso $\implies a^{-1} \in R$. Z uzavřenosti na násobení $1 = a·a^{-1} \in I$, tudíž $R = 1·R \in I$, tj. $I = R = 1R$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            $R$ komutativní okruh.
+
+            1) $I, J$ ideály v $R$ $\implies$ $I \cap J$ je ideál v $R$.
+
+            2) $I, J$ ideály v $R$. Pak $I + J = \{a + b | a \in I, b \in J\}$ je ideál. Navíc je to nejmenší ideál, který obsahuje $I, J$.
+
+            3) Mějme ideály $I_j$ v $R$ pro $j \in ®N$ tak, že $I_1 \subseteq I_2 \subseteq I_3 \subseteq …$. Pak $\bigcup_{j=®N}I_j$ je ideál v R.
+
+            \begin{dukazin}
+                1) $a, b \in I \cap J, r \in R \implies a, b \in I, a,v \in J$. $I$ ideál $\implies a + b, -a, ra \in I$. $J$ ideál $\implies a + b, -a, ra \in J$. Tedy $a + b, -a, ra \in I \cap J$.
+
+                2) Ať $a + b \in I + J, c + d \in I + J, r \in R$, kde $a, c \in I$, $b, d \in J$. Pak $(a+b) + (c+d) = (a + c) + (b + d) \in I + J$. $· \land -$ obdobně. $I + J$ ideál.
+
+                Zřejmě $I \subseteq I + J$, neboť je $a + 0 \in I + J$. Stejně tak pro $J$, tj. $I \cup J \subseteq I + J$. Druhý 'směr' plyne z uzavřenosti na součet.
+
+                3) Uzavřenost na $+$: Ať $a, b \in \bigcup I_j$. Tudíž $a \in I_j, b \in I_k$ pro nějaká $j, k$, BÚNO $j ≤ k$. Máme $I_j \subseteq I_k$, tedy $a \in I_k$. $I_k$ je ideál, tedy je uzavřený na součet. Uzavřenost na $· \land -$ snadná (stačí vzít 1 ideál).
+            \end{dukazin}
+        \end{tvrzeni}
+
+% 31. 3. 2021
+
+        \begin{veta}
+            Buď $R$ OHI. Pak $R$ je gaussovský a platí v něm Bézoutova rovnost.
+
+            \begin{dukazin}
+                $R$ OHI. Chceme 1) existuje NSD 2) neexistují řetězce vlastních dělitelů (zobecněná věta algebry):
+
+                1) $a, b \in R$. Buď $I = aR + bR$, (protože OHI) existuje $c \in R, cR = I$. $aR, bR \subseteq cR \implies c|a, b$. Buď $d |a, b$ $\implies aR, bR \subseteq dR \implies aR+bR = cR \subseteq dR \implies d|c$. Tedy $c = \NSD(a, b)$. Navíc $c \in aR + bR = \{ar+bs\}$, tj. $c=ar+bs$ pro nějaké $r, s \in R$.
+
+                2) Pro spor uvažujme takovou posloupnost dělitelů $…|a_2|a_1$, tj. $a_1R \subset a_2R \subset …$. $I = \bigcup_{i=1}^∞ a_iR$ je ideál, tj. (protože OHI) $I = bR$, pro nějaké $b \in I$. Ale tím pádem $\exists i: b \in a_iR$. Pak $bR \subseteq a_iR \subset a_{i+1}R \subset … \subseteq I = bR$. \lightning.
+            \end{dukazin}
+        \end{veta}
+
+\section{Polynomy nad gaussovskými obory (bez důkazů)}
+    \begin{definice}[Primitivní polynom]
+        $R$ obor, $f \in R[x]$ je primitivní, pokud jsou jeho koeficienty nesoudělné (čili $\forall c \in R:$ pokud $c$ dělí všechny koeficienty, pak $c||1$).
+    \end{definice}
+
+    \begin{veta}[Gaussovo lemma]
+        $R$ gaussovský obor, $f, g$ primitivní polynomy v $R[x]$ $\implies f·g$ primitivní v $R[x]$.
+    \end{veta}
+
+    \begin{tvrzeni}
+        $R$ je gaussovský, $Q$ podílové těleso $R$. $f, g$ primitivní polynomy v $R[x]$. Pak $f|g$ v $R[x]$ $\Leftrightarrow$ $f|g$ v $Q[x]$.
+    \end{tvrzeni}
+
+    \begin{definice}[Značení]
+        $f = \sum_{i=0}^n a_ix^i \in R[x], a_n ≠ 0$ ($R$ gaussovský). $c(f) = \NSD(a_0, a_1, …, a_n)$ je obsah (content) polynomu.
+
+        $PP(f) = \frac{1}{c(f)}·f$ je primitivní část (primitive part) $f$.
+    \end{definice}
+
+    \begin{veta}
+        $R$ gaussovský, $Q$ podílové těleso, $f, g \in R[x]$. Pak:
+        $$ \exists \NSD_{R[x]} (f, g) = c·h, c = \NSD_R(c(f), c(g)), h \in R[x]\text{ je primitivní tak, že } h = \NSD_{Q[x]}(f, g). $$
+        $f$ je ireducibilní v $R[x]$ $\Leftrightarrow$ $\deg f = 0$ a $f$ je ireducibilní v $R$, nebo $\deg f > 0$, $f$ je primitivní a $f$ je ireducibilní v $Q[x]$.
+    \end{veta}
+
+    \begin{veta}[Gaussova]
+        $R$ gaussovský obor $\implies$ $R[x]$ gaussovský obor.
+    \end{veta}
+
+    \begin{dusledek}
+        $R$ gaussovský $\implies$ $R[x_1, …, x_n]$ gaussovský $\implies$ $R[x_1, x_2, x_3, …]$ gaussovský.
+    \end{dusledek}
+
+    \subsection{Ireducibilita polynomů (i s důkazy)}
+        \begin{tvrzeni}[Existence racionálního kořene]
+            Nechť $R$ je gaussovský, $Q$ je podílové těleso. Má-li $f = \sum_{i=1}^n a_ix^i \in R[x]$, $a_n ≠ 0$ kořen $\frac{r}{s} \in Q$ (pro $\NSD(r, s) = 1$), pak $r | a_0, s | a_n$.
+
+            \begin{dukazin}
+                    $0 = f\(\frac{r}{s}\) = \sum a_i \(\frac{r}{s}\)^i$ přenásobíme $s^n$: $0 = a_0s^n + a_1rs^{n-1} + … + a_nr^n \implies r|a_0s^n$. Ale $\NSD(r, s) = 1$, tedy z gaussovskosti $r|a_0$. Stejně tak $s|a_nr^n \implies s|a_n$.
+            \end{dukazin}    
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Einsteinovo kritérium]
+            $R$ obor, $f = \sum_{i=0}^n a_ix^i \in R[x]$ primitivní, $a_n ≠ 0$. Pokud existuje prvočinitel $p \in R$ tak, že $p|a_0, a_1, …, a_{n-1}, p^2\not|a_0$, pak $f$ je ireducibilní.
+
+            \begin{dukazin}
+                Pro spor $f = g · h$, $g = \sum_{i=0}^k b_ix^i$, $h = \sum_{i=0}^l c_ix^i \in R[x]$, l, k > 0.
+                $$ a_0 + a_1x + a_2x^2 + … = (b_0 + b_1x + …)(c_0 + c_1x + …) = b_0c_0 + (b_0v_1 + b_1c_0)x + … \implies a_0 = b_0c_0. $$
+                Tudíž $p|a_0 = b_0c_0 \implies $ BÚNO $p|b_0$, pak $p\not|c_0$, neboť $p^2\not|a_0$. $p|a_1 = b_0c_1 + b_1c_0 \implies p|b_1$, …, $p|b_i$ $\forall i ≤ n-1$. $p$ dělí všechny koeficienty $b_i$ pro $i ≤ k ≤ n-1$, ale jelikož $h$ má stupeň alespoň 1, tak $p$ dělí všechny koeficienty $b_i$, tj. $p | g | f$. \lightning.
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Čínská zbytková věta a interpolace}
+    \begin{veta}[ČZV pro polynomy]
+        ®T těleso. Ať $m_1, m_2, …, m_n \in ®T[x]$ jsou po 2 nesoudělné polynomy, $d = \sum \deg m_i$. Ať $u_1, …, u_n \in ®T[x]$. Pak $\exists! f \in ®T[x]$ stupně $<d$ tak, že $f ≡ u_1 \mod m_1, …, f ≡ u_n \mod m_n$.
+
+        \begin{dukazin}
+            Jednoznačnost: Ať $f, g$ jsou řešení, $\deg f, \deg g < d$, čili $f≡g≡u_i \mod m_i \forall i$. Tedy $m_i | f-g \forall i$. $m_i$ jsou po dvou nesoudělné a $®T[x]$ je gaussovské, tj. $m_1·…·m_n |f - g$, tj. $\deg(f-g) > d$ (\lightning) nebo $f-g = 0$.
+
+            Existence: $P_k = \{f \in T[x]|\deg f < k\}$ je vektorový prostor nad ®T dimenze $k$ ($x^i$ je báze). $d_i = \deg m_i$. $\phi: P_d \rightarrow P_{d_1}\times … \times P_{d_n}$, $f \mapsto (f \mod m_1, …, f \mod m_n)$. Zřejmě $P_{d_i}$ má dimenzi $d_i$ a $\phi$ je dobře definované a navíc homomorfismus vektorových zobrazení. Navíc z jednoznačnosti (1. bodu důkazu) je prosté, tj. z porovnání dimenzí je $\phi$ bijekce. Tedy hledaný polynom je $\phi^{-1}(u_1 \mod m_1, …, u_n \mod m_n)$.
+        \end{dukazin}
+    \end{veta}
+
+
 \end{document}

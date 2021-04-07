@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[rekur2]
+        Zjednodušte popis funkce $t$ (stačí $\Theta(t)$) dané následující rekurencí: $t(n) = 2t\(\left\lceil\strut\sqrt{n}\right\rceil\) + c$, pro $n≥3$ a kde $t(n) = n$ pro $1≤n≤2$.
+
+        \begin{reseni}[Variace na řešení rekur]
+            Nejprve indukcí dokážeme, že je funkce neklesající. 1. krok: Pro $n = 1, 2$ tvrzení rozhodně platí.
+
+            2. krok: Nechť tvrzení platí pro všechna $n ≤ k$. Chceme dokázat, že $t(k+1) ≥ t(k)$, tedy že
+            $$ 2t\(\left\lceil\strut\sqrt{k+1}\right\rceil\) + c ≥ 2t\(\left\lceil\strut\sqrt{k}\right\rceil\) + c, $$
+            $$ t\(\left\lceil\strut\sqrt{k+1}\right\rceil\) ≥ t\(\left\lceil\strut\sqrt{k}\right\rceil\), $$
+            z ind. předpokladu (a toho, že $\left\lceil\vrule width 0pt height 1em \sqrt{k+1}\right\rceil ≤ k, \forall k > 1$) je to totéž jako $\left\lceil\vrule width 0pt height 1em\sqrt{k+1}\right\rceil ≥ \left\lceil\strut\sqrt{k}\right\rceil,$
+            horní celá část je také neklesající a odmocnina též tj. toto platí, když $k+1 ≥ k$, což rozhodně je, tudíž $t$ je neklesající.
+
+            Nyní si můžeme všimnout\footnote{Nebo dokázat indukcí, že $t\(2^{2^k}\) = (2+c)2^k - c$: 1.~krok:
+            $$ k = 0 \implies t\(2^{2^k}\) = t\(2^1\) = t(2) = 2 = 2+c-c = (2+c)2^k - c. $$
+
+            2. krok: Ať $t\(2^{2^{k - 1}}\) = (2 + c)2^{k-1} - c$. Potom
+            $$ t\(2^{2^{k}}\) = 2t\(\left\lceil\vrule width 0pt height 1.5em \sqrt{2^{2^{k}}}\right\rceil\) + c = 2t\(\left\lceil 2^{2^{k}/2}\right\rceil\) + c = 2t\(\left\lceil 2^{2^{k-1}}\right\rceil\) + c = $$
+            $$ = 2t\(2^{2^{k - 1}}\) + c = 2\((2 + c)·2^{k-1} - c\) + c = (2 + c)·2^k - 2c + c = (2 + c)·2^k - c. $$
+            }, že když dosadíme $n = (…((2\overbrace{^2)^2)…)^2}^{k\text{-krát}} = 2^{2^k}$, pak $t\(2^{2^k}\) = 2·2^k + (c·2^{k-1} + c·2^{k-2} + … + c·2^1 + c)$, jelikož v $t(n)$ je každé $c$ přenásobeno dvěma tolikrát, jak hluboko je v pomyslné rekurzi výpočtu $t(n)$. Tudíž ze součtu geometrické řady máme
+            $$ t\(2^{2^k}\) = 2^{k+1} + c·\frac{2^k - 1}{2 - 1} = (2+c)·2^k - c. $$ 
+
+            Tedy pro tato konkrétní $n$ je $t(n)$ rovno\footnote{$\log = \log_2$} $(2 + c)·2^{\log(\log n)} - c = (2 + c)·\log(n) - c$. Ale protože je funkce neklesající, tak pro libovolné $n \in ®N$ je
+            $$ (2 + c)\lfloor\log n\rfloor - c ≤ t(n) ≤ (2 + c)·\lceil\log n\rceil - c, $$ 
+            $$ (2 + c)·(\log(\log n) - 1) - c ≤ t(n) ≤ (2 + c)·(\log(\log n) + 1) - c. $$
+            Z čehož je jasně vidět $t(n) = \Theta(\log n)$.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

@@ -259,4 +259,80 @@
             Ať $a < b \in I$ $\implies$ (Lagrange) $\exists \zeta \in (a, b): |\frac{f(b) - f(a)}{b-a}| = |f'(\zeta)| ≤ C$, tj. $|f(b) - f(a)| ≤ C|b - a|$.
         \end{dukazin}
     \end{lemma}
+
+% 26. 3. 2021
+
+    \begin{definice}[Topologicky ekvivalentní]
+        Řekneme, že $\sigma$ a $\sigma_1$ jsou topologicky ekvivalentní, pokud
+        $$ \{A \subseteq ®Y: A \text{ je otevřená v } (®Y, \sigma) \} = \{A \subseteq ®Y: A \text{ je otevřená v } (®Y, \sigma_1)\}. $$
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buďte $(®X, \rho)$, $(®Y, \sigma)$ MP, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ homeomorfismus. Definujeme pro všechna $y, y' \in ®Y$ zobrazení $\sigma_1 ®Y \times ®Y \rightarrow [0, ∞)$ předpisem
+        $$ \sigma_1(y, y') = \rho(f^{-1}(y), f^{-1}(y')). $$ 
+        Pak $\sigma_1$ je metrika na ®Y, $f:(®X, \rho) \rightarrow (®Y, \sigma_1)$ je izometrie a metriky $\sigma$ a $\sigma_1$ jsou topologicky ekvivalentní.
+
+        \begin{dukazin}
+            Metrika: Banální, cvičení pro nás. Izometrie: Nechť $x, x' \in ®X$ jsou libovolné body. 
+            $$ \sigma_1(f(x), f(x')) = \rho\(f^{-1}(f(x)), f^{-1}(f(x'))\) = \rho(x, x'), $$
+            a tedy $f$ je izometrie.
+
+            Topologická ekvivalence: Nechť $U \subseteq ®Y$ je otevřená vzhledem k $\sigma$. Pak $f^{-1}(U)$ je otevřená ($f$ je homeomorfismus), ale $f$ je izometrie, tedy $f^{-1}$ je izometrie, tudíž $f^{-1}$ je spojitá. Tj.
+            $$ U = f\(f^{-1}(U)\) = \(f^{-1}\)^{-1}\(f^{-1}(U)\) \text{ je otevřená.} $$
+            Podobně pokud $U$ je $\sigma_1$-otevřená, je $\sigma$-otevřená.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}
+        Buďte $\rho_1$, $\rho_2$ metriky na ®X. Pak $\rho_1$ a $\rho_2$ jsou topologicky ekvivalentní $\Leftrightarrow$
+        $$ (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_1(x, y) < \delta \implies \rho_2(x, y) < \epsilon) \land (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_2(x, y) < \delta \implies \rho_1(x, y) < \epsilon). $$
+
+        \begin{dukazin}
+            Snadné cvičení.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Diametr, omezená množína]
+        Buď $(®X, \rho)$ MP, $A \subseteq ®X$. Definujeme $\diam_\rho(A) = \sup\{\rho(x, y): x, y \in A\}$.
+
+        Řekneme, že $A$ je omezená, pokud $\diam_\rho(A) < ∞$.
+    \end{definice}
+
+    \begin{definice}[Omezená metrika]
+        $\rho$ je na ®X omezená pokud $®X$ je omezená.
+    \end{definice}
+
+\section{Operace s metrickými prostory}
+    \begin{definice}[Operace]
+        Je-li $(®X, \rho)$ MP, $®Y \subseteq ®X$, pak metrický prostor $(®Y, \rho|_{®Y \times ®Y})$ nazýváme podprostorem prostoru $(®X, \rho)$, značíme $(®Y, \rho)$.
+
+        \begin{dukazin}
+            Že $(®Y, \rho)$ je MP je zřejmé.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buď $(®X, \rho)$ MP, $®Y \subseteq ®X$. Pak:
+
+        1) Pokud $G \subseteq ®X$ je otevřená v $(®X, \rho)$, pak $G'=G \cap ®Y$ je otevřená v $(®Y, \rho)$.
+        
+        2) Pokud $G' \subseteq ®Y$ je otevřená v $(®Y, \rho)$, pak $\exists G \subseteq ®X$ otevřená v $(®X, \rho): G' = G \cap ®Y$.
+
+        \begin{dukazin}
+            1) Nechť $y \in G'$. Protože $G$ je otevřená v ®X, tak $\exists r > 0: \B_{®X, \rho}(y, r) \subseteq G$. Tedy $\B_{®Y, \rho}(y, r) = \B_{®X, \rho}(y, r) \cap ®Y \subseteq G \cap ®Y = G'$.
+
+            2) Nechť je dána $G'$ otevřená v $(®Y, \rho)$. Pak $\forall x \in G'\ \exists \epsilon(x) > 0: \B_{®Y, \rho}(x, \epsilon(x)) \subseteq G'$. Zřejmě $G' = \bigcup_{x \in G'}\B_{®Y, \rho}(x, \epsilon(x))$.
+
+            Položme $G = \bigcup_{x \in G'}\B_{®X, \rho}(x, \epsilon(x))$. Potom je $G \cap ®Y = G'$. $G$ je otevřená, jelikož je sjednocením otevřených množin.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Součet MP]
+        Mějme MP $\{®X_\alpha, \rho_\alpha\}_{\alpha \in I}$, které splňují $\forall \alpha \in I\ \forall x, y \in ®X_\alpha: \rho_\alpha(x, y) ≤ 1$. Sumou prostorů $\(®X_\alpha, \rho_\alpha\)$ nazýváme prostor
+        $$ \sum_{\alpha \in I} (®X_\alpha, \rho) = (®X, \rho), $$
+        kde
+        $$ ®X = \coprod_{\alpha \in I}®X_\alpha = \{(x, \alpha) | x \in ®X_\alpha, \alpha \in I\}, $$
+        $$ \rho((x, \alpha), (y, \beta)) = 1, \text{ pokud } \alpha ≠ \beta, \rho_{\alpha}(x, y), \text{ pokud } \alpha = \beta. $$
+    \end{definice}
+
 \end{document}

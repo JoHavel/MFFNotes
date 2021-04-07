@@ -213,4 +213,217 @@
             \end{dukazin}
         \end{lemma}
 
+% 23. 3. 2021
+
+        \begin{definice}[Kartézský součin tříd]
+            Kartézský součin tříd $A$, $B$, značený $A \times B$, je třída $\{(a, b), a \in A, b \in B\}$ (zkrácený zápis pro $\{x, (\exists a)(\exists b)(x = (a, b) \land a \in A \land b \in B)\}$).
+        \end{definice}
+
+        \begin{lemma}
+            Jsou-li $x, y$ množiny, pak $x \times y$ je množina.
+
+            \begin{dukazin}[„Vnoření a vydělení“]
+                Stačí dokázat, že $x\times y \subseteq ©P(©P(x \cup y))$ (vpravo je množina z axiomu potence, součin pak vydělíme): Pokud $u \in x$ a $v \in y$, pak $\{u\}, \{u, v\} \subseteq x \cup y$, tedy $\{u\}, \{u, v\} \in ©P(x \cup y)$. Tedy $\{\{u\}, \{u, v\}\} \subseteq ©P(x \cup y)$, tj. $\in ©P(©P(x \cup y))$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{definice}[Mocnina]
+            $X$ třída, pak $X^1 = X$ a $X^{n+1} = X^n\times X$. (Tj. $X^n$ je třída všech uspořádaných $n$-tic s prvky v $X$.)
+        \end{definice}
+
+        \begin{pozorovani}
+            $V = V^1 \supset V^2 \supset …$.
+        \end{pozorovani}
+
+        \begin{priklad}
+            Obecně neplatí $X \times X^2 = X^3$.
+        \end{priklad}
+
+    \subsection{relace}
+        \begin{definice}[Relace]
+            Třída $R$ je (binární) relace pokud, $R \subseteq V \times V$. ($n$-ární relace, pokud $R \subseteq V^n$.)
+
+            $xRy$ je zkratka za $(x, y) \in R$.
+        \end{definice}
+
+        \begin{definice}[Definiční obor, obor hodnot, zúžení]
+            Je-li $X$ relace (libovolná třída), pak $\Dom(X) := \{u, (\exists v)((u, v) \in X)\}$ je definiční obor třídy $X$.
+
+            Je-li $X$ relace (libovolná třída), pak $\Rang(X) := \{v, (\exists u)((u, v) \in X)\}$ je obor hodnot třídy $X$.
+
+            Je-li navíc $Y$ třída, pak $X''Y$ (nebo také $X[Y]$) $:= \{z, (\exists y)(y \in Y \land (y, z) \in X)\}$ je obraz třídy $Y$ třídou $X$.
+
+            Je-li navíc $Y$ třída, pak $X\upharpoonright Y := \{(y, z), y \in Y \land (y, z) \in X)\}$ je zúžení třídy $X$ na třídu $Y$ (nebo také parcializace).
+        \end{definice}
+       
+        \begin{lemma}
+            Je-li $x$ množina, $Y$ třída, pak $\Dom(x)$, $\Rang(x)$, $x \upharpoonright Y$, $x''Y$ jsou množiny.
+
+            \begin{dukazin}[Vnoření a vydělení]
+                $\Dom(x) \subseteq \bigcup(\bigcup x))$. Když $u \in \Dom(x)$, $\exists v$, že $(u, v) \in x$, $u \in \{u\} \in (u, v) \in x$, tedy $\{u\} \in \bigcup x$, tj. $u \in \bigcup(\bigcup x))$.
+
+                $\Rang(x) \subseteq \bigcup(\bigcup x))$. (Analogicky.) $x \upharpoonright Y \subseteq x$, $x''Y \subseteq \Rang(x)$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{definice}[Inverzní relace, složení relací]
+            $R$, $S$ relace, pak $R^{-1} := \{(u, v), (v, u) \in R\}$ je relace inverzní k $R$. Relace $R \circ S := \{(u, w), (\exists v)(uRv \land vSw)\}$ je složení relací $R$, $S$.
+        \end{definice}
+
+        \begin{definice}[Zobrazení, na, do, prosté]
+            Relace $F$ je zobrazení (funkce), pokud $(\forall u)(\forall v)(\forall w)(((u, v) \in F \land (u, w) \in F)\implies v = w)$.
+
+            Zkracujeme $(u, v) \in F$ na $F(u) = v$.
+
+            $F$ je zobrazení třídy $X$ do (na) třídy $Y$ $F:X \rightarrow Y$, pokud $\Dom(F) = X$ a $\Rang(F) \subseteq Y$ ($\Rang(F) = Y$).
+
+            Zobrazení $F$ je prosté, pokud inverzní relace $F^{-1}$ je zobrazení. (Zřejmě je pak i $F^{-1}$ prosté).
+        \end{definice}
+
+        \begin{definice}[Zkratka]
+            $A$ třída, $\phi$ formule, pak $(\exists x \in A)\phi$ je zkratka za $(\exists x)(x \in A \land \phi)$ a $(\forall x \in A)\phi$ je zkratka za $(\forall x)(x \in A \implies \phi)$.
+
+            Obraz (vzor) třídy $X$ zobrazením $F$ je $F[X]$ místo $F''X$ ($F^{-1}[X]$ místo $F^{-1''}X$).
+        \end{definice}
+
+        \begin{definice}
+            $A$ třída, $a$ množina, pak $^aA := \{f, f: a \rightarrow A\}$ je třída všech zobrazení $a$ do $A$.
+
+            \begin{dukazin}
+                Axiom nahrazení říká, že $\Rang f$ je množina, $f \subseteq a \times \Rang(f)$, libovolné $f$ je tedy množina a tato třída je dobře definována.
+            \end{dukazin}
+        \end{definice}
+
+        \begin{dusledek}
+            $^{\O}y = \{\O\}$, $^x\O = \O$ ($x ≠ \O$).
+        \end{dusledek}
+
+        \begin{lemma}
+            Pro libovolné množiny $x, y$ je $^xy$ množina. Je-li $x ≠ \O$, $Y$ je vlastní třída, pak $^xY$ je vlastní třída.
+
+            \begin{dukazin}
+                $f \in ^xy…f: x \rightarrow y…f \subseteq x \times y…f \in ©P(X\times y)$ $\implies ^xy \subseteq ©P(x\times y)$.
+
+                Pro každé $y \in Y$ definujeme konstantní zobrazení $k_y: x \rightarrow Y$ tak, že $(\forall u \in x)(k_y(u) = y)$. Nechť $K = \{k_y, y \in Y\} \subseteq ^xY$. Sporem: pokud $^xY$ je množina, pak $K$ je množina. Použijeme axiom nahrazení $F: K \rightarrow Y$, $F(k_y) = y$, tj. (protože $F$ zobrazuje na $Y$) $Y$ je množina. \lightning.
+            \end{dukazin}
+        \end{lemma}
+
+\section{Uspořádání}
+    \begin{definice}[Reflexivní, antireflexivní, symetrická, slabě antisymetrická, antisymetrická, trichotomická, tranzitivní]
+        Relace $R (\subseteq V \times V)$ je na třídě $A$ reflexivní (antireflexivní, symetrická, slabě antisymetrická, antisymetrická, trichotomická, tranzitivní), pokud … (…, …, $(\forall x \in A)(\forall y \in A)((xRy \land yRx) \implies x = y)$, $(\forall x \in A)(\forall y \in A)\neg(xRy \land yRx)$, $(\forall x \in A)(\forall y \in A)(xRy \lor yRx \lor x = y)$, …).
+    \end{definice}
+
+    \begin{pozorovani}
+        Tyto vlastnosti jsou dědičné (tzn. platí i na každé podtřídě $B \subseteq A$).
+    \end{pozorovani}
+
+    \begin{definice}[Uspořádání, porovnatelné]
+        Řekneme, že relace $R$ je uspořádání na třídě $A$, je-li $R$ na $A$ reflexivní, slabě symetrická, tranzitivní.
+
+        $x, y \in A$ jsou porovnatelné relací $R$, pokud $xRy \lor yRx$.
+    \end{definice}
+
+    \begin{definice}[Značení]
+        $x ≤_R y$ znamená $xRy$, $x$ je menší nebo rovno $y$ vzhledem k $R$.
+    \end{definice}
+
+    \begin{definice}[Lineární uspořádání]
+        Uspořádání $R$ je lineární, je-li $R$ trichotomická relace.
+    \end{definice}
+
+    \begin{definice}[Ostré uspořádání]
+        Relace $R'$ je ostré uspořádání, je-li $R' = R - \id$ a $R$ je uspořádání.
+
+        Píšeme $x <_R y$, když $xR'y$.
+    \end{definice}
+
+    \begin{definice}
+        Nechť $R$ je uspořádání na třídě $A$, $X \subseteq A$. Říkáme, že $a \in A$ je (vzhledem k $R$, $A$): majoranta (horní mez, horní závora) třídy $X$, pokud $(\forall x \in X)(x ≤_R a)$, maximální prvek třídy $X$ pokud $a \in X \land (\forall x \in X)(\neg a <_R x)$, největší prvek třídy $X$ pokud $a \in X \land (\forall x \in X)(x ≤_R a)$, supremum třídy $X$, pokud $a$ je nejmenší majoranta.
+
+        Obdobně (dolní mez, dolní závora), minimální, nejmenší, infimum.
+    \end{definice}
+
+    \begin{pozorovani}
+        Největší $\implies$ maximální. V lineárním uspořádání i naopak.
+    \end{pozorovani}
+
+    \begin{definice}[Shora, zdola omezená množina, dolní, horní množina]
+        $X$ je shora omezená v $A$, pokud existuje majorita $X$ v $A$. $X$ je dolní množina v $A$, pokud $\forall x \in X)(\forall y \in A)(y ≤_Rx \implies y \in X)$. $x \in A$, pak $(\leftarrow, x]$ je $\{y, y \in A \land y ≤_R x\}$ hlavním ideálem určeným $x$.
+
+        Obdobně zdola uzavřená a horní množina. Lze definovat i pro třídy, ale to se nedělá.
+    \end{definice}
+
+    \begin{pozorovani}
+        $R$ je uspořádání na $A$, pak pro libovolné $x, y \in A$ platí $x ≤_R y \Leftrightarrow (\leftarrow, x]\subseteq(\leftarrow, y]$.
+    \end{pozorovani}
+
+    \begin{definice}[Dobré uspořádání]
+        Uspořádání $R$ na třídě $A$ je dobré, pokud každá neprázdná podmnožina $u \subseteq A$ má nejmenší prvek.
+    \end{definice}
+
+\section{Srovnávání množin}
+    \begin{definice}
+        Množiny $x, y$ mají stejnou mohutnost (jsou ekvivalentní), $x \approx y$, pokud existuje prosté zobrazení $x$ na $y$.
+    \end{definice}
+
+% 6. 4. 2021
+
+    \begin{definice}
+        Množina $x$ má mohutnost menší nebo rovnou mohutnosti $y$, $x \preceq y$, pokud existuje prosté zobrazení $x$ do $y$. (Také říkáme $x$ je subvalentní $y$). $x$ má mohutnost menší než $y$, $x \prec y$, pokud $x \preceq y \land \neg(x \approx y)$.
+    \end{definice}
+
+    \begin{pozorovani}
+        $x \subseteq y \implies x \preceq y$. $x \subset y \implies x \preceq y$, ale ne nutně $x \prec y$ (viz přirozená čísla).
+    \end{pozorovani}
+
+    \begin{lemma}
+        Jsou-li $x, y, z$ množiny, pak
+        $$ 1) x \approx x. \qquad (\id) $$
+        $$ 2) x \approx y \implies y \approx x. \qquad (^-1) $$
+        $$ 3) (x \approx y \land y \approx z) \implies x \approx z. \qquad (\circ) $$
+        $$ 4) x \preceq x. \qquad (\id) $$
+        $$ 5) (x \preceq y \land y \preceq z) \implies x \preceq z. \qquad (\circ) $$
+    \end{lemma}
+
+    \begin{pozorovani}
+        $(x \approx y) \implies (x \preceq y \land y \preceq x)$.
+    \end{pozorovani}
+
+    \begin{definice}
+        Zobrazení $H: ©P(x) \rightarrow ©P(x)$ je monotónní vzhledem k inkluzi, pokud pro každé podmnožiny $u, v \subseteq x$ platí $u \subseteq v \implies H(u) \subseteq H(v)$.
+    \end{definice}
+
+    \begin{lemma}
+        Je-li $H: ©P(x) \rightarrow ©P(x)$ zobrazení monotónní vzhledem k inkluzi, pak existuje podmnožina $c \subseteq c$, že $H(c) = c$.
+
+        \begin{poznamkain}
+            Speciální případ Knaster-Tarski, kteří předpokládají jen úplný svaz.
+        \end{poznamkain}
+
+        \begin{pozorovaniin}
+            $A \subseteq ©P(x) \implies \sup_{\subseteq} A = \bigcup A$.
+        \end{pozorovaniin}
+
+        \begin{dukazin}
+            Nechť $A = \{u, u \subseteq x \land u \subseteq H(u)\}$. $c = \bigcup A$. $c \subseteq x$ zřejmě, $u \in A \implies u \subseteq c \land u \subseteq H(u) \subseteq H(c)$. Tedy $H(c)$ je majoranta $A$, tedy $c \subseteq H(c)$. Z monotonie $H$ je $H(c) \subseteq H(H(c))$, tedy $H(c) \in A$, tedy $H(c)\subseteq c$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Cantor-Bernstein]
+        $(x \preceq y \land y \preceq x) \implies x \approx y$.
+        
+        \begin{dukazin}
+            Nechť $f: x \rightarrow y, g: y \rightarrow x$ jsou prostá zobrazení. Uvažujeme 'indukovaná' zobrazení $(\vec{f}) : ©P(x) \rightarrow ©P(y)$, $u \mapsto f[u]$. Definujeme $H: ©P(x) \rightarrow ©P(x)$ tak, že pro $u \subseteq u$ $H(u) = X - g[Y-f[u]$. $H$ je monotónní vzhledem k inkluzi: $u_1 \subseteq u_2 \implies f[u_1] \subseteq f[u_2] \implies y - f[u_1] \supseteq f[u_2] \implies … \implies H(u_1) \subseteq H(u_2)$. Podle lemmatu o pevném bodě existuje $c: H(c) = c$.
+
+            Tedy $c = x - g[y - f(c)]$, tj. $x - c = g[y - f[c]$. Tedy $g^{-1}|_{(x - c)}$ je prosté zobrazení $x - c$ na $y - f[c]$. Tedy definujeme $h: x \rightarrow y$, $h(a) = f(a)$ pro $a \in c$, $H(a) = g^{-1}(a)$ jinak.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}
+            $x, y, z, x_1, y_1$ množiny, pak $1) x\times y \approx y \times x$, $2) x \times (y \times z) \approx (x \times y) \times z$, $3) (x \approx x_1 \land y \approx y_1) \implies (x\times y) \approx (x_1 \times y_1)$, $4) x \approx y \implies ©P(x) \approx ©P(y)$, $5) ©P(x) \approx ^x2 = ^x\{\O, \{\O\}\}$.
+
+        \begin{dukazin}
+            1-4) Triviální. Pro 5) definujeme charakteristickou funkci a je to triviální.
+        \end{dukazin}
+    \end{lemma}
 \end{document}

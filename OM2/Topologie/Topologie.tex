@@ -274,8 +274,84 @@
 
         \begin{dukazin}
             $\implies$: metrizovatelný $\implies$ má development (podle předchozí poznámky) a metrizovatelný $\implies$ parakompaktní $\implies$ kolektivně normální.
+
+% 26. 3. 2021
+
+            $\Leftarrow$: Dokážeme ve 4 částech:
+
+            1. Pro diskrétní soubor $©F = \{F_\alpha\}_{\alpha \in A}$ uzavřených množin v ®X existuje diskrétní soubor otevřených množin $©W = \{W_\alpha\}_{\alpha \in A}$, že $F_\alpha \subseteq W_\alpha$: Dle kolektivní normality existují otevřené disjunktní $U_\alpha: \alpha \in A, F_\alpha \subseteq U_\alpha$. Položme $F = \bigcup ©F$, $Z = ®X \setminus \bigcup_{\alpha \in A} U_\alpha$. $F$ uzavřená (sjednocení lokálního systému uzavřených množin), $Z$ uzavřená. ®X je kolektivně normální, tedy speciálně normální, tedy existují otevřené disjunktní $V, W$, že $Z \subseteq V$ a $F \subseteq W$. Položme $W_\alpha := U_\alpha \cap W$. Systém $\{W_\alpha\}$ už je diskrétní (je-li $x \in Z$, pak $x \in V$ a $V \cap W_\alpha = \O$, je-li naopak $x$ v $U_\alpha$, pak $U_\alpha \cap W_\beta = \O$ pro $\beta ≠ \alpha$) a $F_\alpha \subseteq W_\alpha$.
+
+            2. Ať $©V_n$ je development prostoru ®X. Buď $\kappa ≥ \omega$ a očíslujme $©V_n = \{V_{\alpha, n} | \alpha < \kappa\}$ (s případným opakováním prvků). Položme $D_{\alpha, n, k} = \{x \in V_{\alpha, n} | \st(x, V_k) \subseteq V_{\alpha, n}\}$ a $C_{\alpha, n, k} = D_{\alpha, n, k} \setminus \bigcup_{\beta < \alpha} V_{\beta, n}$. $D_{\alpha, n, k}$ (a tudíž i $C_{\alpha, n, k}$) je uzavřená:
+
+                Volme $x \in \overline{D_{\alpha, n, k}}$. Pak pro libovolné $V \in ©V_k$, že $x \in V$ platí, že existuje $y \in V \cap D_{\alpha, n, k}$. Pak $V \subseteq \st(y, ©V_k) \subseteq V_{\alpha, n}$. Tedy $\st(x, ©V_k) = \bigcup\{V \in ©V_k | x \in V\} \subseteq V_{\alpha, n}$. Tedy $x \in D_{\alpha, n, k}$, tudíž $D_{\alpha, n, k}$ je uzavřená.
+
+            3. Pro pevná $n, k \in ®N$ je $\{C_{\alpha, n, k} | \alpha < \kappa\}$ diskrétní: Buď $y \in ®X$ libovolné. Pak existuje nejmenší $\beta < \kappa: y \in V_{\beta, n}$. Najděme $V \in ©V_k: y \in V$. Pro $\alpha > \beta: V_{\beta, n}$ je disjunktní s $C_{\alpha, n, k}$ a pro $\alpha < \beta: V$ je disjunktní s $C_{\alpha, n, k}$ (kdyby existovalo $z \in V \cap C_{\alpha, n, k}$ pak $\st(z, ©V_k) \subseteq V_{\alpha, n}$, speciálně $y \in V_{\alpha, n}$, což je spor s minimalitou $\beta$). Tedy $V \cap V_{\beta, n}$ je okolí bodu $y$, které protíná nejvýše jeden prvek systému $\{c_{\alpha, n, k} | \alpha \in A\}$ (a sice prvek $C_{\beta, n, k}$).
+
+            4. $\{C_{\alpha, n, k}\}$ je diskrétní soubor uzavřených množin (podle 2, 3). Podle 1 existuje diskrétní soubor otevřených nadmnožin $\{V_{\alpha, n, k} | \alpha < \kappa\}$. Tedy $©V_{n, k} := \{V_{\alpha, n, k} \cap V_{\alpha, n} | \alpha < \kappa\}$ je diskrétní (zmenšili jsme jeho množiny). Ukážeme, že $©V := \bigcup_{n, k \in ®N} ©V_{n, k}$ je báze ®X:
+
+            Ať $U \subseteq ®X$ je otevřená, $x \in U$. $\exists n \in ®N: \st(x, ©V_n) \subseteq U$. Najdeme $\alpha$ nejmenší možné, že $x \in V_{\alpha, n}$. Zřejmě $V_{\alpha, n} \subseteq U$. Opět z vlastností developmentu existuje $k \in ®N: \st(x, ©V_k) \subseteq V_{\alpha, n}$. Nyní $x \in C_{\alpha, n, k}$, tedy $x \in V_{\alpha, n, k} \cap V_{\alpha, n} \subseteq U$. Tudíž ©V je báze ®X.
+
+            ©V je $\sigma$-diskrétní báze ®X, tedy podle metrizační věty Bing-Nagata-Smirnov je ®X metrizovatelný.
         \end{dukazin}
     \end{veta}
 
+\section{Uniformní prostory}
+    \begin{poznamka}
+        Zavedeno např. díky tomu, že stejnoměrnou spojitost nelze charakterizovat pomocí topologie.
 
+        Matematici Weil(1936), Tukey(1940) … prvotní zkoumání UP.
+    \end{poznamka}
+
+    \begin{definice}[Značení]
+        Pro množinu ®X značíme $\triangle(X) = \{(x, x) | x \in X\}$.
+
+        Pro $E \subseteq X \times X$ značíme $E^{-1} = \{(y, x) | (x, y) \in E\}$.
+
+        Pro $C, D \in X \times X$ značíme $C \circ D = \{(x, z) \in X \times X | \exists y \in X: (x, y) \in C \land (y, z) \in D\}$.
+
+        $E[x] = \{y \in X | (x, y) \in E\}$.
+    \end{definice}
+
+    \begin{definice}[Uniformní prostor (UP)]
+        Dvojice $(®X, ©D)$ se nazývá uniformní prostor (UP), pokud $®X$ je množina a $©D \subseteq ©P(X \times X), ©D ≠ 0$ splňující
+
+        \begin{enumerate}
+            \item $\forall D \in ©D: \triangle(®X) \subseteq D$,
+            \item $\forall C, D \in ©D: C \cap D \in ©D$,
+            \item $\forall D \in ©D\ \exists C \in ©D: C \circ C \subseteq D$,
+            \item $\forall D \in ©D: D^{-1} \in ©D$,
+            \item $\forall D \in ©D\ \forall E \subseteq X \times X: D \subseteq E \implies E \in ©D$,
+            \item $\forall x, y \in X: x≠y \implies \exists D \in ©D: (x, y) \notin D$. $(\Leftrightarrow \bigcap ©D = \triangle(®X).)$
+        \end{enumerate}
+
+        Prvky systému ©D nazýváme okolí diagonály.
+    \end{definice}
+
+    \begin{definice}[Báze uniformity]
+        Systém $©B \subseteq ©P(®X^2)$ se nazývá báze uniformity (resp. báze uniformity ©D), pokud uzavřením ©B na nadmnožiny dostaneme ©D.
+    \end{definice}
+
+    \begin{definice}[Subbáze uniformity]
+        Systém $©S \subseteq ©P(®X^2)$ tvoří subbázi uniformity (resp. uniformity ©D), pokud uzavřením na konečné průniky dostaneme bázi uniformity (resp. bázi uniformity ©D).
+    \end{definice}
+
+    \begin{definice}[Uniformní zobrazení]
+        Jsou-li $(®X, ©D)$ a $(®Y, ©E)$ UP, $f: ®X \rightarrow ®Y$ se nazývá uniformní (stejnoměrně spojité), pokud $\forall E \in ©E: (f \times f)^{-1}(E) \in ©D$. ($\Leftrightarrow \forall E \in ©E\ \exists D \in ©D: (f \times f)(D) \subseteq E$.) ($\Leftrightarrow \forall E \in ©E\ \exists D \in ©D\ \forall x, y \in ®X: (x, y) \in D \implies (f(x), f(y)) \in E$.)
+    \end{definice}
+
+    \begin{definice}[Uniformní izomorfismus]
+        Zobrazení $f$ se nazývá uniformní izomorfismus, pokud $f$ je bijekce a $f$ i $f^{-1}$ jsou uniformní.
+    \end{definice}
+
+    \begin{lemma}
+        Systém $©B \subseteq ©P(®X^2)$ tvoří bázi nějaké uniformity na ®X, pokud
+        $$ a) \bigcap ©B = \triangle(®X), $$ 
+        $$ b) \forall C, D \in ©B\ \exists E \in ©B: E \subseteq C \cap D, $$
+        $$ c) \forall D \in ©B\ \exists C \in ©B: C \circ C \subseteq D, $$ 
+        $$ d) \forall D \in ©B\ \exists E \in ©B: E \subseteq D^{-1}. $$
+
+        \begin{dukazin}
+            $©D := \{C \subseteq ®X \times ®X | \exists B \in ©B: B \subseteq C\}$. Následně ověříme podmínky.
+        \end{dukazin}
+    \end{lemma}
 \end{document}

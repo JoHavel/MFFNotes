@@ -111,4 +111,119 @@
             Transformace je lepší dělat přímo TeXem, jinak se rozsypou například odkazy.
         \end{upozorneni}
 
+% 24. 3. 2021
+
+        \begin{definice}[Další operátory]
+            Cestu můžeme zakončit příkazem w (w*). Další kreslení pak probíhá oříznuté na vnitřek této cesty. (Po w může ještě následovat S, aby se ještě vykreslila. Nebo následuje n, aby se cesta, kterou se ořezává zahodila.)
+
+            Barvy mají ještě tzv. barevné prostory, viz přednáška…
+
+            BX (begin extension) … EX (end extension) = pokud se mezi nimi objeví neznámí operátor, má se ignorovat (a nehlásit chybu).
+        \end{definice}
+
+        \begin{definice}[XObject]
+            Obrázky, vložené stránky atd. Lze ho pojmenovat a pak volat jinde.
+        \end{definice}
+
+        \begin{definice}[Text]
+            Text začíná operátorem BT a končí ET. Musí obsahovat: /font velikost Tf (výběr fontu), x y Td (posun na konkrétní pozici), (řetězec) Tj (vykreslí řetězec). Dále může obsahovat: x Tc (character spacing = roztahování písmen), x Tw (word spacing = roztahuje slova), x Tz (horizontal scaling (v \%)), x Ts (rise = na indexy a exponenty), x Tr (rendering mode: 0 = fill, 1 = stroke, 2 = obojí, 3 = nic, +4 je přidání do ořezávání).
+
+            K tomu ještě: x y Td (nový řádek na (x, y), relativně oproti začátku aktuálnímu řádku), x y TD (navíc nastaví leading (= rozpětí řádku) na -y, od té doby lze použít:), T* (= 0 -leading Td), a b c d e f Tm (set text matrix).
+
+            Vykreslení: (str) ' (= T* $\land$ (str) Tj), [(str)kern(str)kern…] TJ (sází text s mezerami -kern/1000 aktuálních textových jednotek).
+        \end{definice}
+
+    \subsection{Ukládání dat}
+        \begin{definice}
+            Slovníky můžou být moc velké = pomalé. Tedy se zavedl tzv. Name Tree, což je strom, který má v listech (uloženy ve vnitřních vrcholech nad nimi) stringy seřazené podle abecedy, vnitřní vrcholy mají intervaly pro vyhledávání (musíme se ale podívat do všech synů, abychom se dozvěděli, kam jít).
+
+            \verb|<</Kids [references…] /limits [min max]>>| nebo \verb|/Names [(key1) val1 (key2) val_2 …] /Limits[min max]|.
+
+            Obdobně funguje number tree.
+        \end{definice}
+
+    \subsection{Interakce}
+        \begin{definice}[Destinations = odkazy]
+            \verb|page-obj /XYZ left top zoom|, \verb|page-obj /Fit (stránka) nebo /FitV (šířka) nebo /FitH (výška) nebo /FitR left bottom right top|.
+
+            Destinace jsou uložené v root katalogu v /Dests (odkaz na slovník) nebo /Names a /Dest (name dict = slovník odkazů na name tree).
+
+            V pdfTeXu se vytváří \verb/\pdfdest name{jméno} (xyz | fitr | fitv | …)/.
+
+            Při kliknutí se neskočí, ale provede se tzv. akce (Action) \verb|<< /Type /Action /S typakce a ještě občas /Next …>>|. Typy akcí jsou \verb|/S /GoTo|, \verb|/S /URI /URI (uri)|, \verb|/S /Named /N /NextPage|, …
+        \end{definice}
+
+        \begin{definice}[Outline]
+            Další zvrhlý stromeček, kde se ukládá např. odkaz. Vrcholy se zde odkazují na prvního a posledního syna, na vedlejší sourozence (max 2) a na otce. Navíc obsahují informaci o tom, kolik je otevřených položek v podstromu, title a co se stane, když se zmáčkne (/A action, /C [r g b], /F flags (bit 0 je kurzíva, bit 1 je tučné)).
+
+            V TeXu: \verb|\pdfoutline attr{…}, akce (např. goto page N), user {…}, count N|, kde N je velikost podstromu (rozbalený) nebo - velikost podstromu (sbalený)
+        \end{definice}
+
+        \begin{definice}[Anotace]
+            Stránka může mít ve svém slovníku /Annots annotation nebo [annotations]. Ty mají /Type /Annot, /SubType …, /Rect [oblast, k čemu anotace patří], /Contents string, /P page, a dále /Border [horizontal Corner radius, vertical Corner radius, width of line, někdy opt. dash array], /C [gray / r g b / c m y k] (pozná se podle počtu prvků v seznamu).
+
+            Používají se na všechno možné. Subtypy jsou např. /Text, /FreeText (kreslí se přímo na stránku) /Line (úsečky / kóty), /Highlight (zvýraznění), /Link (/A action /Dest dest).(Existuje i např. anotace na kótování technických výkresů).
+
+            pdfTeX umí \verb|\pdfannot, \pdfstartlink … \pdfendlink|
+        \end{definice}
+
+        \begin{definice}[PageLabels]
+            Root katalog může obsahovat /PageLabels a odkaz na nametree. Page labels pak obsahuje \verb|<</Type /PageLabel /S style>>|, kde style je (/D decimal, /R ROMAN, /r roman, /A uppercase A-Z, /a lowercase a-z).
+
+            TODO
+        \end{definice}
+
+        TODO Shading \& Patterns
+
+% 31. 3. 2021
+
+\section{MetaFont}
+    \begin{poznamka}
+        Původně bylo myšleno hlavně na parametrické fonty (parametry byly zvlášť (roman, italic, …), písmo zvlášť).
+    \end{poznamka}
+
+    \begin{definice}[Typy proměnných]
+        boolean, string, path, pen, picture, transform, pair, numeric (defaultní)
+
+        + MetaPost: color
+
+        Deklaruje se \verb|typ název|.
+    \end{definice}
+
+    \begin{definice}
+        Znaky se dělí na: písmena + mezera, (\verb&<=>:|&), uvozovky, + -, \verb|\/*|, ?!, \verb|^~|, [, ], \verb|{}|, ., loners (,;()), další ("0-9).
+
+        Druhy tokenů: řetězcové (\verb|"…"|), numerické (číslice a nejvýše 1 tečka $<2^{12}$, rozlišení $2^{-16}$), symbolické (dokud se opakuje stejná skupina znaků (např. uvozovky, písmena, …) krom loners, tvoří se 1 symbolický token, může obsahovat i .).
+
+        Spark = symbolický token s definovaným výrazem (existuje něco jako let v TeXu pro změnu),  tag = vše ostatní.
+
+        Proměnná = \verb|<tag><suffix>| nebo vnitřní hodnota (suffix může být prázdný, nebo suffix tag nebo suffix subscript (numerický token nebo numerický výraz)).
+    \end{definice}
+
+    \begin{definice}
+        $x++y$ je $\sqrt{x^2 + y^2}$, $x+-+y = \sqrt{x^2 - y^2}$.
+
+        $z1 = (x1, y1)$ (tj. $zn = (xn, yn)$).
+    \end{definice}
+
+    \begin{definice}[Řídící konstrukce]
+        if bool.výraz: … elseif bool.výraz:…else:…fi
+
+        for x=A,B,C,…: tělo(x) endfor
+
+        for x = A step B until C: tělo(x) endfor
+        
+        forsuffixes s=A,B,…: tělo(s) endfor
+
+        forever: tělo endfor
+    \end{definice}
+
+    \begin{upozorneni}
+        Cykly se expandují, nevykonávají!
+    \end{upozorneni}
+
+    \begin{definice}[Cesty]
+        Operátor length vrací počet úseků, ze kterých se daná cesta skládá. Úsek jsou krajní body + 2 body (bézierova křivka 3. řádu).
+    \end{definice}
+
 \end{document}
