@@ -906,5 +906,390 @@
         \end{dukazin}
     \end{veta}
 
+% 7. 4. 2021
 
+    \begin{dusledek}[Věta o interpolaci]
+        ®T těleso. Mějme po 2 různé body $a_1, …, a_n \in ®T$ a libovolné hodnoty $u_1, …, u_n \in ®T$. $\exists! f \in ®T[x], \deg f < n$ tak, že $\forall i: f(a_i) = u_i$.
+
+        \begin{dukazin}
+            $f ≡ f(a) (\mod x - a)$ (už jsme ukázali), tedy $f ≡ u_i (\mod x - a_i)$ a použijeme čínskou zbytkovou větu.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{dusledek}[Zobrazení na konečných tělesech jsou polynomiální]
+        ®T je konečné těleso. Pro $\forall \phi: ®T \rightarrow ®T$ zobrazení $\exists! f \in ®T[x]$, $\deg f < |®T|$ tak, že $\phi(a) = f(a)$.
+    \end{dusledek}
+
+\section{Faktorokruh modulo polynom}
+    \begin{definice}[Faktorokruh]
+        ®T těleso. Buď $m \in ®T[\alpha]$ polynom stupně $n ≥ 1$. Faktorokruh $®T[\alpha] / (m)$ je množina všech polynomů z $T[\alpha]$ stupně $< n$ se standardním $+$ a $-$ a s operací násobení modulo $m$, čili $f \odot g = f·g \mod m$.
+
+        Čili $®T[\alpha]/(m) = \(\{f \in ®T[\alpha] | \deg f < n\}, +, -, \odot, 0, 1\)$.
+    \end{definice}
+
+    \begin{pozorovani}
+        Jde o komutativní okruh s 1. (Ověříme axiomy.)
+    \end{pozorovani}
+
+    \begin{tvrzeni}[Faktor podle ireducibilního polynomu]
+        ®T těleso, $m \in ®T[\alpha], \deg m ≥ 1$. Pak následující je ekvivalentní: 1) $T[\alpha]/(m)$ je těleso, 2) $T[\alpha]/(m)$ je obor, 3) $m$ je ireducibilní prvek v $®T[\alpha]$.
+
+        \begin{dukazin}
+            $1 \implies 2$ zřejmé (jedno z prvních tvrzení), $2 \implies 3$: Ať $m = fg$ pro $f, g \in ®T[\alpha]$, $\deg f, \deg g ≥ 1$. Pak v $®T[\alpha] / (m)$ platí $f\odot g = fg \mod m = m \mod m = 0$, čili $®T[\alpha] / (m)$ není obor.
+
+            $3 \implies 1$: Buď $f ≠ 0$ polynom, $\deg f < \deg m$. $m$ ireducibilní, $f$ má menší stupeň než $m \implies m, f$ jsou nesoudělné. Bézout: $1 = \NSD(f, m) = uf + vm$ pro nějaké $u, v \in T[\alpha]$. Buď $\tilde{u} = u \mod m$. Pak v $®T[\alpha] / (m)$ platí: $\tilde{u} \odot f = \tilde{u}f \mod m ≡ uf ≡ 1 (\mod m)$. Tedy $\tilde(u)\odot f = 1$ v $®T[\alpha] / (m)$. Tedy $\tilde{u}$ je inverz.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Dál budeme $\odot$ značit jako $·$.
+    \end{poznamka}
+
+    \subsection{Kořenová, rozkladová nadtělesa}
+        \begin{tvrzeni}
+            ®T těleso, $f \in ®T[x]$, $\deg f ≥ 1$. Pak existuje $S ≥ T$, ve kterém ma $f$ kořen.
+
+            \begin{dukazin}
+                Buď $m = \sum_{i=0}^n a_ix^i \in ®T[x]$ nějaký ireducibilní dělitel $f$. $S = T[\alpha] / (m(\alpha))$. Z předchozího tvrzení je $S$ tělesso a $S ≥ T$ (neboť ®T jsou tam konstantní polynomy). Chceme $m(x)$ má v $S$ kořen (pak má triviálně i $f$ kořen v $S$).
+
+                $$ m(\alpha) = \sum a_i \odot (\alpha \odot … \odot \alpha) = \sum(a_i \alpha^i \mod m) = $$
+                $$ = a_0 \mod m + a_1\alpha \mod m + … + a_n \alpha^n \mod m = a_0 + a_1\alpha  + … + a_{n-1} \alpha^{n-1} + (- a_0 - a_1 \alpha - … - a_{n-1}\alpha^{n-1}) = 0. $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}
+            ®T těleso, $f \in ®T[x]$, $\deg f ≥ 1$. Pak existuje těleso $S ≥ T$, kde se $f$ rozkládá na součin polynomů stupně 1.
+
+            \begin{dukazin}
+                Indukcí podle $f$. $\deg f = 1 \implies f = ax + b$ a má kořen $-a^{-1}b \in ®T$.
+
+                $\deg f > 1$. Podle předchozího tvrzení buď $U ≥ T$ tak, že $f(u) = 0$ pro nějaké $u \in U$. Pak $f = (x - u)·g$ pro nějaké $g \in U[x]$, $\deg g = \deg f - 1$. Následně použijeme indukční předpoklad pro $g$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            ®T těleso, $f \in ®T[x]$, $\deg f ≥ 1$. Kořenové nadtěleso je (libovolné) těleso $®S ≥ ®T$, ve kterém existuje $a \in ®S$ tak, že $®S = ®T(a)$ a $f(a) = 0$.
+
+            Rozkladové nadtěleso $f$ je (libovolné) těleso $®S ≥ ®T$, že existují $a_1, …, a_n \in ®S: ®S = ®T(a_1, …, a_n)$ a $f||(x - a_1)·…·(x - a_n)$.
+        \end{definice}
+
+        \begin{dusledek}[Existence kořenového a rozkladového nadtělesa]
+            ®T těleso, $f \in ®Ť[x]$, $\deg ≥ 1$. Pak existuje kořenové i rozkladové nadtěleso $f$ nad ®T.
+
+            \begin{dukazin}
+                $\exists ®S ≥ ®T$ tak, že $f(a) = 0$ pro $a \in ®S_0$. Kořenové nadtěleso pak je $®S = ®T(a) ≤ ®S_0$. Obdobně rozkladové.
+            \end{dukazin}
+        \end{dusledek}
+
+% 9. 4. 2021
+
+\section{Konečná tělesa}
+    \begin{pozorovani}[Konečná tělesa]
+        Nechť $®T = ®Z_p[\alpha]/(m)$, kde $p$ je prvočíslo, $m$ ireducibilní polynom v $®Z_p[\alpha]$, $\deg m = k$. Potom ®T je těleso s $p^k$ prvky. Značíme ho $®F_{p^k}$ (podle dalšího pozorování je jediné této mohutnosti).
+    \end{pozorovani}
+
+    \begin{pozorovani}[Vlastnosti konečných těles]
+        \ 
+        \begin{itemize}
+            \item $\forall k\ \forall p$ prvočíslo $\exists$ ireducibilní polynom stupně $k$ v $®Z_p[\alpha]$ $\implies \exists$ konečné těleso velikosti $p^n$.
+            \item Každé konečné těleso lze takto zkonstruovat.
+            \item Na volbě $m$ (daného stupně) nezáleží.
+        \end{itemize}
+
+        \begin{dukazin}
+            Bez důkazu.
+        \end{dukazin}
+    \end{pozorovani}
+
+    \begin{poznamka}
+        Díky pozorování, že nad konečným tělesem je každá funkce polynomiální a že posloupnost jedniček je vlastně $®F_{2^k}$, stačí v kryptografii zkoumat jen polynomy.
+
+        Navíc násobení na tomto tělese používá symetrická šifra AES (advanced encryption standard), která počítá s maticemi $4 \times 4$ nad $®F_{256}$.
+    \end{poznamka}
+
+    \begin{poznamka}
+        Další využití je v konečné geometrii, např. eliptické křivky jsou Diofantické rovnice tvaru $y^2 = x^3 + ax + b$ nad $®F_{p^k}$ (řešení tvoří grupu a dělá se s tím něco jako v RSA).
+    \end{poznamka}
+
+    \subsection{Sdílení tajemství}
+        \begin{definice}
+            $(k, n)$-schéma sdílení tajemství je situace, kdy se $n$ lidí dělí o tajemství a k odhalení je potřeba alespoň (libovolných) $k$ z nich.
+        \end{definice}
+
+        \begin{definice}[Tajemství]
+            Za tajemství budeme uvažovat posloupnost $0$ a $1$, na kterou se budeme dívat v $®Z_2^m$ nebo $®F_{2^m}$.
+        \end{definice}
+
+        \begin{poznamka}
+            Pro $k = n$ se $(k, n)$-schéma nazývá maskování hodnot: Pro každého člověka vyberu hodnotu $a_i \in T$ a zveřejním hodnotu $c = t + \sum_{i=1}^n a_i$. ($t$ je tajemství.)
+        \end{poznamka}
+
+        \begin{definice}[Shamirův protokol]
+                Vlastník zvolí polynom $f \in ®T[x]$, $\deg f < k$ tak, že $f(0) = t$. Vyberu $n$ po dvou různých prvků $0 ≠ a_1, …, a_n \in ®T$, které se zveřejní, a jednotlivým účastníkům se dá $f(a_1), …, f(a_n)$.
+
+            Když se potká $k$ lidí, tak mají $k$ hodnot polynomu, tedy mohou polynom interpolovat a zjistit konstantní člen, tj. $f(0) = t$.
+        \end{definice}
+
+\section{Symetrické polynomy}
+    \begin{definice}
+            $R$ komutativní okruh. Polynom $f \in R[x_1, …, x_n]$ je symetrický, pokud po libovolném permutování proměnných se $f$ nezmění. (formálně: $f(x_1, …, x_n) = f(x_{\pi(1)}, …, x_{\pi(n)})$ pro každou permutaci $\pi \in S_n$.)
+    \end{definice}
+
+    \begin{tvrzeni}[Viétovy vztahy]
+        $®T$ těleso, $f = \sum a_i x^i \in ®T[x]$, $\deg f = n ≥ 1$. Ať $f = a_n(x - u_1)·…·(x - u_n)$ v nějakém nadtělese $®S ≥ ®T$. Pak
+        $$ \frac{a_{n-i}}{a_n} = (-1)^i s_i(u_1, …, u_n) = \sum_{j_1 < j_2 < … < j_i}x_{j_1}·…·x_{j_i}. $$
+
+        \begin{dukazin}
+            Berme $g = a^{-1}_n f$. Z rovnosti
+            $$ (y - x_1)·…·(y - x_n) = y^n - s_1y^{n-1} + … + (-1)^ns_n $$
+            dostaneme
+            $$ g = \sum \frac{a_i}{a_n}x^i = (x - u_1)·…·(x - u_n) = x^n + \sum_{i=1}^n (-1)^i s_i(u_1, …, u_n)x^{n-i}. $$
+            Porovnáním koeficientů dostaneme chtěnou rovnost.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Základní věta o symetrických polynomech]
+        Buď $R$ obor, $f \in R[x_1, …, x_n]$ symetrický polynom. Pak $\exists! g \in R[z_1, …, z_n]$ tak, že $f = g(s_1, …, s_n)$.
+
+        \begin{dukazin}
+            Později.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Term]
+        Term v proměnných $x_1, …, x_n$ je výraz $x_1^{k_1}x_2^{k_2}…x_n^{k_n}, k_i \in ®N_0$.
+    \end{definice}
+
+    \begin{definice}[Uspořádání termů]
+        Relaci $<$ na termech definujeme jako $x_1^{k_1}…x_n^{k_n} < x_1^{l_1}…x_n^{l_n}$, pokud $\exists i ≥ 0$ tak, že $k_1 = l_1, k_2=l_2, …, k_i = l_i, k_{i + 1} < l_{i+1}$.
+
+        Definujeme $t ≤ s$, pokud $t = s \lor t < s$.
+    \end{definice}
+
+    \begin{lemma}
+        Relace $≤$ má vlastnosti: 1) Je to lineární uspořádání. 2) Pro libovolné termy $t_1 > t_2$, $s_1 > s_2$ platí $t_1s_1 > t_2s_2$. 3) Neexistuje $∞$ klesající řetězec termů $t_1 > t_2 > …$
+
+        \begin{dukazin}
+            Domácí cvičení.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Vedoucí člen polynomu]
+        $R$ obor, $f \in R[x_1, …, x_n]$. Vedoucí člen $f$ je ten člen, který má největší term. Značí se $l(f)$.
+    \end{definice}
+
+    \begin{lemma}
+        $R$ obor, $f, g \in R[x_1, …, x_n]$. Pak 1) $l(fg) = l(f)·l(g)$. 2) Je-li $f$ symetrický a $l(f) = a·x_1^{k_1}…x_n^{k_n}$, potom $k_1 ≥ k_2 ≥ … ≥ k_n$.
+        \begin{dukazin}
+            1) $l(f)$, $l(g)$ jsou největší členy v $f$, $g$. Podle předchozího lemmatu víme, že $>$ se zachovává násobením $\implies l(f)·l(g)$ je největší ze všech členů v $fg$. Navíc $R$ je obor $\implies$ koeficient v $l(f)·l(g)$ není nulový.
+
+            2) Kdyby $k_i < k_j$ pro $i < j$, mohli bychom prohodit proměnné $x_i, x_j$. Ze symetrie $f$ je $a·x_1^{k_1}…x_i^{k_j}…x_j^{k_i}…x_n^{k_n}$ je taktéž v $f$, ale je větší než $l(f)$, což je spor.
+        \end{dukazin}
+    \end{lemma}
+
+% 14. 4. 2021    
+
+    \begin{lemma}
+        $k_1≥k_2≥…≥k_n$ nezáporná celá. Pak $\exists!$ ($l_1, …, l_n$) nezáporné celé tak, že $l(s_1^{l_1}…s_n^{l_n}) = x_1^{k_1}·…·x_n^{k_n}$.
+
+        \begin{dukazin}
+            $$ l(s_1^{l_1}·…·s_n^{l_n}) = l(s_1)^{l_1}·…·l(s_n)^{l_n} = x_1^{l_1}·(x_1x_2)^{l_2}·…·(x_1x_2…x_n)^{l_n} = x_1^{l_1 + l_2 + … + l_n}·…·x_n^{l_n}. $$ 
+            Tedy řeším systém $l_1 + … l_n = k_1$, $l_2+…+l_n = k_2$, …, $l_n=k_n$, tj. $l+n = k_n ≥ 0$, $l_i = k_i - k_{i+1} ≥ 0$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Gaussův algoritmus]
+        $R$ obor, vstup $f \in R[x_1, …, x_n]$ symetrický, výstup $g \in R[z_1, …, z_n]$ tak, že $g(s_1, …, s_n) = f$.
+        
+        $f_1 = f$, $g_1 = 0$.
+
+        $i=1, 2, 3, …$: dělej: Najdi $l_1, …, l_n$ tak, že $l(f_i) = c·l(s_1^{l_1}·…·s_n^{l_n})$ pro nějaké $c \in R$ podle předchozího lemmatu. $f_{i+1} = f_i - c·s_1^{l_1}·…·s_n^{l_n}, g_{i+1} = g_i + c·z_1^{l_1}·…·z_n^{l_n}$. Pokud je $f_{i+1}$ konstantní, zastavím se a vrátím $g_{i+1} + f_{i+1}$.
+
+        \begin{dukazin}
+            Ověříme, že $f_i$ je symetrický polynom -- zřejmé z definice $f_i$. $g_i \in R[z_1, …, z_n]$ -- jasné z definice $g_i$. $f_i + g_i(s_1, …, s_n) = f$ -- vidíme, nebo ověříme indukcí. A skončí, jelikož zmenšujeme vedoucí člen a neexistuje nekonečná klesající posloupnost.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{dukazin}[Základní věta o symetrických polynomech]
+        Existenci dokazuje Gaussův algoritmus. Jednoznačnost: Ať $f = g_1 (s_1, …, s_n) = g_2(s_1, …, s_n)$, $g_1 ≠ g_2$. $g = g_1 - g_2 = \sum a_it_i$, kde $t_i$ jsou po dvou různé jednotlivé termy (v proměnných $z_i$), $a_i≠0$. $t_i(s_1, …, s_n)$ mají různé vedoucí členy podle lemmatu výše. Vezměme lexikograficky největší z vedoucích členů $t_i(s_1, …, s_n)$. Ten je tedy striktně větší než ostatní, tedy $\sum a_it_i(s_1, …, s_n) ≠ 0$, tudíž $0 = g(s_1, …, s_n) - g_2(s_1, …, s_n)$.
+    \end{dukazin}
+
+    \begin{dusledek}[Hodnota symetrického polynomu na kořenech]
+        ®T těleso, $f \in T[x]$, $\deg f ≥ 1$. Buď $®U ≥ ®T$ nadtěleso, kde $f || (x - u_1)·…·(x-u_n)$. $\forall$ symetrický polynom $s \in T[x_1, …, x_n$ platí: $s(u_1, …, u_n) \in ®T$.
+
+        \begin{dukazin}
+                $f = \sum a_ix^i$. Viétovy vztahy $s_i(u_1, …, u_n) = (-1)^i\frac{a_{n-i}}{a_n} \in ®T$. Z předchozí věty $\exists g \in ®T[z_1, …, z_n$ tak, že $f = g(s_1, …, s_n)$ $\implies$ $f(u_1, …, u_n) = g(s_1(u_1, …, u_n), …, s_n(u_1, …, u_n)) \in ®T$.
+        \end{dukazin}
+    \end{dusledek}
+
+\section{Základní věta algebry}
+    \begin{veta}[Základní věta algebry]
+        Každý komplexní polynom stupně $≥1$ má kořen.
+
+        \begin{dusledekin}
+            $$ \forall f \in ®C[x], \deg f ≥ 1: f||(x-u_1)·…·(x-u_n). $$
+        \end{dusledekin}
+
+        \begin{dusledekin}
+            Každý polynomiální zobrazení $®C \rightarrow ®C$ je na.
+        \end{dusledekin}
+
+        \begin{dukazin}[Jeden z mnoha, nejvíce algebraický]
+            Lemma: předpokládejme, že každý reálný polynom stupně $≥1$ má (komplexní) kořen. Pak má každý komplexní polynom stupně $≥1$ nějaký kořen.
+
+            Důkaz: $f \in ®C[x], \deg f ≥ 1, f = \sum a_ix^i.$ $\overline{f} = \sum\overline{a_i}x^i$. Uvažujme $g = f·\overline{f} = \sum_k\(\sum_{i+j = k} a_i\overline{a_j}\)x^k$. Ten má pro $i=j$ reálný koeficient a pro $i≠j$ má koeficienty $a_i\overline{a_j} + \overline{a_i}a_j \in ®R$. Buď $z \in ®C$ kořen $g$. Potom $f(z) = 0$ (OK) nebo $\overline{f}(z) = 0$ (tj. $f(\overline{z})=0$, OK).
+
+            Lemma: Komplexní polynom stupně 2 má komplexní kořen. Důkaz $\frac{-b ± \sqrt{b^2 - 4a·c}}{2} \in ®C$. (Jediný zádrhel je odmocnina, ale existenci odmocniny z komplexního čísla ukážeme přes exponenciální tvar.)
+
+            Lemma: Reálný polynom lichého stupně má kořen. Důkaz: Vynechán (věta o střední hodnotě a spojitost polynomů).
+
+            Díky 1. lemmatu stačí, že $\forall f \in ®R[x], \deg f ≥ 1$, má kořen v ®C. $\deg f = n = 2^{k}m, m$ liché. Indukcí podle $k$: $k=0 \implies f$ má lichý stupeň, tedy tvrzení je splněno díky přdchozímu lemmatu.
+
+            Ať $k ≥ 1$. Ať $S ≥ ®C$ je nadtěleso, ve kterém $f||(x-u_1)·…·(x-u_n)$ (díky větě z dřívějška). Chceme $\exists i: u_i \in ®C$. Trik. Vezmeme $a \in ®Z$ a definujeme $h_a = \prod_{i < j}(x - (u_i + v_j + a·u_i·u_j)) \in S[x]$. Chceme $h_a \in ®R[x]$. $\tilde h_a = \prod_{i<j}(x - (y_i + y_j + a·y_i·y_j)) \in (®Z[x])[y_1, …, y_n]$ je symetrický polynom v proměnných $y_1, …, y_n$ (s koeficienty ze $®Z[x]$). 
+
+            Z věty výše $\exists g_a \in (®Z[x])[z_1, …, z_n]$ tak, že $\tilde h_a = g_a(s_1, …, s_n)$. Dosadíme $y_i = u_i$: $h_a = \tilde h_a(u_1, …, u_n) = g_a(s_1(u_1, …, u_n), …)$. Z viétových vztahů $s_1(u_1, …, u_n), …, s_n(u_1, …, u_n) \in ®R$. Tedy $h_a$ je polynom v $®R[x]$. $\deg h_a = \binom{n}{2} = 2^{k-1}·(m·(2^k·m - 1))$, takže má menší mocninu dvojky ve stupni, tedy aplikujeme IP. Proto má $h_a$ kořen v ®C, tudíž $\forall a \in ®Z\ \exists i < j: u_i + u_j + au_iu_j$, tedy nějaká dvojice $i, j$ se vyskytne nekonečněkrát ($a$ je nekonečně, dvojic je konečně). Stačí, že $\exists a≠b: u_i + u_j + au_iu_j \in ®C$ a $u_i + u_j + bu_iu_j \in ®C$, tudíž $(a-b)v_i·u_j \in ®C$ a $c=u_i + u_j \in ®C$. Tedy $u_i, u_j$ jsou kořeny $x^2 - cx + (u_iu_j)\in ®C[x]$, tedy podle 3. lemmatu existuje kořen $x \in ®C$, tj. $u_i \in ®C$ nebo $u_j \in ®C$.
+        \end{dukazin}
+    \end{veta}
+
+\section{Grupy}
+    \begin{definice}[Grupa, abelovská grupa]
+        Grupa je čtveřice $(G, *, ', e)$, kde $G$ je množina (tzv. nosná), $*$ je binární operace na $G$, $'$ je unární operace ($a'$ je tzv. inverzní prvek k $a$) a $e \in G$ (tzv. jednotka) tak, že $\forall a, b, c \in G$:
+        $$ a*(b*c) = (a*b)*c, \qquad a*e = e*a = a, \qquad a*a' = a'*a = e. $$
+
+        Jestliže $\forall a, b \in G: a*b = b*a$, pak je grupa abelovská (čili komutativní).
+    \end{definice}
+
+    \begin{poznamka}
+        Existují 2 zápisy: aditivní $(G, +, -, 0)$ (typicky abelovská) a multiplikativní $(G, ·, ^{-1}, 1)$.
+    \end{poznamka}
+
+    \begin{definice}[Podgrupa]
+        Ať $(G,  *, ', e)$ je grupa, $H \subseteq G$ podmnožina. Pokud je $H$ uzavřené na operace, čili $e \in H, \forall a, b \in H: a*b \in H, a' \in H$, pak $H$ je podgrupa $G$. Značíme $H ≤ G$.
+
+        $G, \{e\}$ jsou nevlastní podgrupy, ostatní jsou vlastní.
+    \end{definice}
+
+    \begin{priklady}[Symetrická grupa]
+        $X$ neprázdná množina, ($S_X := \{\text{permutace na } X\}$, operace $\circ$ skládání, $^{-1}$ inverzní, $\id_X$) je symetrická grupa. Pokud je $X = \{1, 2, …, n\}$, pak značíme $S_n := S_X$.
+    \end{priklady}
+
+    \subsection{Vlastnosti permutací}
+        \begin{definice}[Cyklus]
+            Cyklus je posloupnost $a_1, …, a_k \in X$ navzájem různých prvků přičemž $\pi(a_1) = a_2, \pi(a_2) = a_3, …, \pi(a_k) = a_1$. Cyklus značíme $(a_1 a_2 … a_k)$.
+        \end{definice}
+
+        \begin{definice}[Rozklad na cykly]
+            Rozklad na cykly je zápis $(a_{11} a_{12} … a_{1k_1})(a_{21} … a_{2k_2})…(a_{m1} … a_{mk_m})$, kde $a_{ij}$ jsou po dvou různé prvky. Cykly délky 1 typicky nepíšeme.
+
+            Každá permutace na konečné množině jde (jednoznačně) rozložit na cykly.
+        \end{definice}
+
+        \begin{definice}[Transpozice]
+            Transpozice je cyklus délky 2.
+
+            Každá permutace ($X$ konečná, stejně jako kdekoliv dále) jde napsat jako složení transpozic.
+        \end{definice}
+
+        \begin{definice}[Sudá a lichá permutace, znaménko]
+            Sudá permutace je ta permutace, kterou lze rozložit na sudý počet transpozic. Jinak je permutace lichá.
+
+            Znaménko permutace $\sgn \pi = 1$ pokud je daná permutace sudá, jinak $\sgn \pi = -1$. $\sgn(\pi^{-1}) = \sgn \pi$. $\sgn \pi = (-1)^{n-m} = (-1)^{m_0}$, kde $m$ je počet cyklů a $m_0$ je počet sudých cyklů ($n$ počet prvků v množině).
+        \end{definice}
+
+        \begin{definice}[Konjugované]
+            $\pi, \sigma \in S_n$ jsou konjugované, pokud $\exists \rho \in S_n: \sigma = \rho\circ\pi\circ\rho^{-1}$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            $\pi, \sigma$ jsou konjugované, právě když mají stejný počet cyklů každé délky.
+            
+            \begin{dukazin}
+                Viz skripta.
+            \end{dukazin}
+        \end{tvrzeni}
+        
+        \begin{priklady}[Permutační grupy]
+            Permutační grupy = podgrupy $S_n$: Alternující grupa $A_n ≤ S_n$ jsou všechny sudé permutace $n≥2$. Digedrální grupa $D_{2n} ≤ S_n$ jsou všechny symetrie pravidelného $n$-úhelníku.
+
+            $|S_n| = n!$, $|A_n| = \frac{n!}{2}$, $|D_{2n}| = 2n$.
+        \end{priklady}
+
+        \begin{priklady}[Geometrické grupy]
+            $D_{2n}$, $E_n$ (euklidovská grupa -- symetrie $®R^n$), symetrie projektivního prostoru.
+        \end{priklady}
+
+        \begin{priklady}[Maticové grupy]
+            $GL_n(®T)$ je grupa regulárních matic $n \times n$ nad ®T, $SL_n(®T)$ je grupa podgrupa regulárních matic s $\det = 1$, $O_n(®T)$ je grupa ortogonálních matic, čili $A·A^T = I_n$.
+        \end{priklady}
+
+        \begin{priklady}[Okruhové grupy]
+            $R$ okruh. $(R, +, -, 0)$ je aditivní grupa okruhu $R$ (je ablovská), pokud je navíc $R$ (komutativní) okruh s 1 a $R^*$ množina všech invertibilních prvků, pak $(R^*, ·, ^{-1}, 1)$ je multiplikativní grupa okruhu $R$.
+        \end{priklady}
+
+        \begin{priklady}[Komplexní jednotky]
+            $\(\{z \in ®C\ |\ |z| = 1\}, ·, ^{-1}, 1\)$ a její podgrupy tzv. cyklotomické grupy $®C_n = \{\text{kořeny } x^n - 1\} = \{\zeta_n^j | j \in [n]\}$, kde $\zeta_n = e^{2\pi i/n}$.
+
+            Priferova $p$-grupa $®C_{p^∞} = \bigcup_{k=1}^∞ ®C_{p^k}$.
+        \end{priklady}
+
+        \begin{definice}[Direktní součin grup]
+            Direktní součin grup $(G_i, *_i, '_i, e_i)$, $i \in [n]$, je grupa $\prod G_i = G_1\times … \times G_n = \{(a_1, …, a_n) | a_i \in G_i\}$, kde operace $*, ', e$ jsou definovány „po složkách“:
+            $$ (a_1, …, a_n)*(b_1, …, b_n) = (a_1*_1b_1, …, a_n*_nb_n), \qquad (a_1, …, a_n)' = (a_1^{'_1}, …), \qquad e = (e_1, …, e_n). $$ 
+
+            Pro $G_1 = … = G_n = G$ jde o direktní mocniny $G^n$.
+        \end{definice}
+
+        \begin{tvrzeni}[Základní vlastnosti grup]
+            $(G, *, ', e)$, $a, b, c \in G$:
+            $$ a*c = b*c \implies a = b, $$
+            $$ a*c = a \implies c = e, $$ 
+            $$ (a')' = a, \qquad (a*b)' = b'*a'. $$
+        \end{tvrzeni}
+
+    \subsection{Mocniny a řád prvku}
+        \begin{definice}[Mocnina prvku]
+            $G$ grupa, $a \in G$, $n \in ®Z$.
+            $$ a^n = \begin{cases} 1 & n = 0 \\ \underbrace{a·a·…·a}_{n\times} & n > 0 \\ \underbrace{a^{-1}·a^{-1}·…·a^{-1}}_{n\times} & n < 0 \end{cases}. $$ 
+        \end{definice}
+
+        \begin{tvrzeni}
+            $G$ grupa, $a, b \in G$, $k, l \in ®Z$. Pak $a^{k+l} = a^k·a^l$, $a^{k·l} = (a^k)^l = (a^l)^k$. Pokud je navíc $G$ abelovská, potom $(ab)^k = a^kb^k$.
+
+            \begin{dukazin}
+                Pro $k, l > 0$ je to jasné: $a^{k+l} = \underbrace{a·a·…·a}_{k+l} = \underbrace{a·a·…·a}_{k}·\underbrace{a·a·…·a}_{l} = a^k·a^l$. Když $k = 0$ nebo $l = 0$, pak je to ještě jasnější. $k > 0, l < 0, k+l>0$ a podobně rozebereme každé zvlášť.
+
+                Zbytek analogicky.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Řád grupy]
+            Řád grupy $G$ je počet prvků nosné množiny $G$ (tj. $|G|$), resp. $∞$.
+
+            Řád prvku $a \in G$ je nejmenší $n \in ®N$ tak, že $a^n = 1$ (pokud neexistuje, pak $∞$). Značíme $\ord(a)$.
+        \end{definice}
+
+        \begin{tvrzeni}[Řád permutace]
+            Řád permutace $\pi \in S_n$ je nejmenší společný násobek délek cyklů $\pi$.
+
+            \begin{dukazin}
+                Cyklus délky $k$ má zřejmě řád $k$. Pro disjunktní cykly $C_1, …, C_m$ máme $\pi = (C_1 \circ … \circ C_m)^k$. Protože jsou disjunktní, tak je to to samé jako $C_1^k \circ … \circ C_m^k$. Tedy $\pi^k = \id \Leftrightarrow C_1^k = \id, …, C_m^k = \id$ $\Leftrightarrow k$ je násobek délek všech cyklů. Tedy $\ord \pi = \min k = \NSN(…)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Grupy}
+    \begin{lemma}
+        Průnik podgrup je podgrupa.
+
+        \begin{dukazin}
+            $G$ grupa, $H_i ≤ G$ pro $i \in I$. $H = \bigcup_{i \in I} H_i \subseteq G$. $H$ je uzavřené na operace: jednoduché ověřit.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}
+        Buď $X \subseteq G$ podmnožina $G$. Podgrupa generovaná množinou $X$ je nejmenší (vzhledem k inkluzi) podgrupa $G$, která obsahuje $X$. Značíme $\<X\>_G$.
+
+        \begin{dukazin}
+                $\<X\>_G = \bigcap \{H ≤ G | X \subseteq H\}$.
+        \end{dukazin}
+    \end{definice}
 \end{document}

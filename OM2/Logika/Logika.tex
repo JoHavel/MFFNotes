@@ -209,4 +209,78 @@
         \begin{definice}[Generátory]
             Mějme strukturu a množinu (oindexovanou) prvků z ní. Pokud tuto množinu uzavřeme na relace a funkce, pak dostaneme podstrukturu, která se nazývá generovaná danou množinou prvků (a ty se nazývají generátory).
         \end{definice}
+
+% 1. 4. 2021
+
+        \begin{definice}[Symboly]
+            V predikátorové logice máme: $\top, \bot, \neg, \land, \lor, =, \forall, \exists$.
+        \end{definice}
+
+        \begin{definice}[Atomická formule]
+            Atomická $L$-formule je slovo z abecedy $L \cup Var \cup \{\top, \bot, =\}$, které je tvaru buď $\top, \bot$, nebo termy jsou v relaci ($Rt_1…t_m$, kde $R \in L^r$ je $m$-nární relace a $t_1, …, t_m$ jsou $L$-termy), nebo $=t_1t_2$ (kde $t_1$ a $t_2$ jsou $L$-termy).
+        \end{definice}
+
+        \begin{definice}[Formule]
+            $L$-formule je slovo na abecedě $L \cup Var \cup \{\top, \bot, \neg, \lor, \land, =, \exists, \forall\}$, které je buď atomická formule, nebo $\neg\phi, \lor\phi\psi, \land\phi\psi$, kde $\phi$ a $\psi$ jsou $L$-formule, nebo $\exists x\phi, \forall x\phi$, kde $\phi$ je formule a $x$ je proměnná.
+        \end{definice}
+
+        \begin{definice}[Podformule]
+            Podformule je podslovo formule, které je také formule.
+        \end{definice}
+
+        \begin{definice}[Vázaný a volný výskyt]
+            Pokud se proměnná vyskytuje v podformuli tvaru $\exists x \phi$ nebo $\forall x \phi$, pak se nazývá vázaná (má na tomto místě vázaný výskyt), pokud se vyskytuje jinde, pak je volná (volný výskyt).
+        \end{definice}
+
+        \begin{definice}[Sentence (= uzavřená formule)]
+            Sentence je formule, kde všechny výskyty proměnné jsou vázané.
+        \end{definice}
+
+        \begin{poznamka}
+            Píšeme $\phi(x_1, …, x_n)$, abychom zvýraznili, že právě proměnné $x_1, …, x_n$ jsou volné v $\phi$.
+
+            Do formule dosazujeme $(\phi(t_1/x_1, …, t_n/x_n))$ naráz a nahrazujeme všechny volné výskyty dané proměnné.
+
+            Místo $\phi(t_1/x_1, …, t_n/x_n)$ budeme psát $\phi(t_1, …, t_n)$.
+        \end{poznamka}
+
+        \begin{lemma}
+            Nechť $\phi$ je $L$-formule, $x_1, …, x_n$ různé proměnné a $t_1, …, t_n$ jsou $L$-termy. Potom $\phi(t_1/x_1, …, t_n/x_n)$ je $L$-formule. Pokud $t_1, …, t_n$ nemají volné proměnné a $\phi = \phi(x_1, …, x_n)$, potom $\phi(t_1, …, t_n)$ je $L$-sentence.
+        \end{lemma}
+
+        \begin{definice}
+            Jazyk rozšiřujeme o tzv. jména, tj. konstantní symboly reprezentující prvky, o kterých se chceme bavit. Tzv. expanze struktury.
+        \end{definice}
+
+        \begin{definice}[Pravdivost (Tarského definice splňování)]
+            $L_A$-sentence $\sigma$ je pravdivá v $L$-struktuře $A$ (píšeme $A \models \sigma$ a čteme $\sigma$ je pravdivá / splněna v $A$) takto:
+            
+            \begin{itemize}
+                \item $A \models \top$ a $A \not\models \bot$,
+                \item $A \models Rt_1…t_m$ právě tehdy, pokud $(t^A_1, …, t^A_m) \in R^A$ pro $m$-nární relaci $R \in L^r$ a $L_A$ termy bez volných proměnných $t_1, …, t_m$,
+                \item $A \models t_1 = t_2$ právě tehdy, když $t_1^A = t_2^A$ pro $L_A$-termy bez volných proměnných $t_1, t_2$,
+                \item $\sigma = \neg \sigma_1$, potom $A \models \sigma$ právě tehdy, pokud $A \not\models \sigma_1$,
+                \item $\sigma = \sigma_1 \lor \sigma_2$, potom $A \models \sigma$ právě tehdy, pokud $A \models \sigma_1$ nebo $A \models \sigma_2$,
+                \item $\sigma = \sigma_1 \land \sigma_2$, potom $A \models \sigma$ právě tehdy, pokud $A \models \sigma_1$ a $A \models \sigma_2$,
+                \item $\sigma = \exists x \phi(x)$, potom $A \models \sigma$ tehdy a jen tehdy, když $A \models \phi(\underline{a})$ pro nějaké $a \in A$,
+                \item $\sigma = \forall x \phi(x)$, potom $A \models \sigma$ tehdy a jen tehdy, když $A \models \phi(\underline{a})$ pro všechna $a \in A$,
+            \end{itemize}
+        \end{definice}
+
+        \begin{definice}
+            $\phi(x_1, …, x_n)$ definuje množinu $\phi^A = \{(a_1, …, a_n) : A \models \phi(a_1, …, a_n)\}$.
+
+            Pokud existuje formule definující $S \subseteq A^n$, potom říkáme, že formule je 0-definovatelná v $A$.
+        \end{definice}
+
+        \begin{definice}
+            Formule se nazývá pozitivní, pokud neobsahuje negaci ($\neg$).
+        \end{definice}
+
+        TODO
+
+% 15. 4. 2021
+
+        TODO, velké TODO
+
 \end{document}

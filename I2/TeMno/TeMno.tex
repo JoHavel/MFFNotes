@@ -420,10 +420,162 @@
     \end{veta}
 
     \begin{lemma}
-            $x, y, z, x_1, y_1$ množiny, pak $1) x\times y \approx y \times x$, $2) x \times (y \times z) \approx (x \times y) \times z$, $3) (x \approx x_1 \land y \approx y_1) \implies (x\times y) \approx (x_1 \times y_1)$, $4) x \approx y \implies ©P(x) \approx ©P(y)$, $5) ©P(x) \approx ^x2 = ^x\{\O, \{\O\}\}$.
+        $x, y, z, x_1, y_1$ množiny, pak $1) x\times y \approx y \times x$, $2) x \times (y \times z) \approx (x \times y) \times z$, $3) (x \approx x_1 \land y \approx y_1) \implies (x\times y) \approx (x_1 \times y_1)$, $4) x \approx y \implies ©P(x) \approx ©P(y)$, $5) ©P(x) \approx ^x2 = ^x\{\O, \{\O\}\}$.
 
         \begin{dukazin}
             1-4) Triviální. Pro 5) definujeme charakteristickou funkci a je to triviální.
         \end{dukazin}
     \end{lemma}
+
+% 13. 4. 2021
+
+    \begin{definice}[Konečná množina (Tarski)]
+        Množina $x$ je konečná (značíme $\Fin(x)$), pokud každá neprázdná podmnožina její potenční podmnožiny má vzhledem k inkluzi maximální prvek.
+    \end{definice}
+
+    \begin{pozorovani}
+        $Fin(x)$ právě tehdy, když každá neprázdná podmnožina $©P(x)$ má minimální prvek vzhledem k $\subseteq$.
+
+        \begin{dukazin}
+            $d: ©P(x) \rightarrow ©P(x), y \mapsto x\setminus y$ vše obrátí.
+        \end{dukazin}
+    \end{pozorovani}
+
+    \begin{definice}[Dedekindovsky konečná množina]
+        Množina $a$ je dedekindovsky konečná, pokud má větší mohutnost než každá její vlastní podmnožina. (Tj. neexistuje prosté zobrazení $a$ do $b$.)
+    \end{definice}
+
+    \begin{lemma}
+        Je-li $a$ konečná, potom je i dedekindovsky konečná.
+
+        \begin{dukazin}
+            Víme $b \subset a \implies b \preceq a$. Chceme tedy $a ≠ b$. Sporem: Předpokládejme, že $b \subset a \land b \approx a$, $Y := \{b, b\subset a \land b \approx a\}$. Víme, že $Y$ je neprázdná, $Y \subseteq ©P(a)$. Nechť $c$ je minimální prvek $Y$ vzhledem k inkluzi. Existuje tedy bijekce $f: a \rightarrow c$. Nechť $d = f[c]$. Zřejmě $f|_c: c \rightarrow d$ je bijekce, tedy $c \approx d$ a z tranzitivity $d \approx a$. Tedy $d \in Y$. Ale $d \subset c$, jelikož $\exists s \in c, f^{-1}(s) \in a \setminus c$, tj. $s \notin d$. To je ale spor s volbou $c$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{poznamka}
+        V ZF je opravdu konečnost silnější než dedekindovská konečnost.
+    \end{poznamka}
+
+    \begin{poznamka}[Další definice konečnosti]
+        Existuje lineární uspořádání, které je dobré a jeho inverze je také dobré uspořádání.
+
+        Existuje lineární uspořádání a každá dvě lineární uspořádání jsou izomorfní.
+
+        Potenční množina od potenční množiny je dedekindovsky konečná.
+    \end{poznamka}
+
+    \begin{veta}
+        1) Je-li $a$ konečná množina uspořádaná relací (částečným uspořádáním) $≤$, pak každá neprázdná podmnožina $b \subset a$ má maximální i minimální prvek (vzhledem k $≤$).
+        2) Každé lineární uspořádání na konečné množině je dobré (každá podmnožina má nejmenší prvek).
+
+        \begin{dukazin}
+            1) $\implies$ 2): každá podmnožina má minimální prvek, ale ten je při lineárním uspořádání konečný.
+
+            1): Pro každé $x \in a$ uvažujeme $(\leftarrow, x] := \{y \in a | y ≤ x\}$. To jsou zřejmě podmnožiny $a$. Nechť $u = \{(\leftarrow, x], x \in b\}$. $b \in u \subseteq ©P(a)$, tedy z definice konečnosti má maximální prvek $(\leftarrow, m]$. $m \in b$ je maximální prvek v $b$. Minimum otočením $≤$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Izomorfismus]
+        $F$ je zobrazení $A_1$ do $A_2$, $R_1, R_2$ jsou relace. $F$ je izomorfismus tříd $A_1$ a $A_2$ vzhledem k $R_1$ a $R_2$, pokud $F$ je bijekce (prosté zobrazení na) a $\forall x, y \in A_1: xR_1y \Leftrightarrow F(x)R_2F(y)$.
+    \end{definice}
+
+    \begin{definice}[Počátkové vnoření]
+        $A$ množina uspořádaná relací $R$, $B$ relací $S$, potom zobrazení $F: A \rightarrow B$ je počátkové vnoření $A$ do $B$, pokud $A_1 = \Dom(F)$ je dolní množina $A$, $B_1 = \Rang(F)$ je dolní podmnožina $B$ a $F$ je izomorfismus $A_1$ a $B_1$ vzhledem k $R, S$.
+    \end{definice}
+
+    \begin{lemma}
+        Nechť $F, G$ jsou počátková vnoření dvou dobře uspořádaných množin $A$, $B$. Pak $F \subseteq G \lor G \subseteq F$.
+
+        \begin{dukazin}
+            Nechť $R$ resp. $S$ je dané uspořádání $A$ resp. $B$. Víme, že $\Dom(F), \Dom(G)$ jsou dolní podmnožiny. $R$ je lineární (jelikož je dobré), tedy $\Dom(F) \subseteq \Dom(G)$ nebo $\Dom(G)\subseteq \Dom(F)$. BÚNO první možnost. Sporem dokážeme, že $(\forall x \in \Dom(F))(F(x) = G(x))$.
+
+            Nechť $x$ je vzhledem k $R$ nejmenší prvek množiny $\{z, z\in A \land F(z)≠G(z)\}$. Tedy pro každé $y <_R x$ je $F(y) = G(y)$. Z linearity $S$ $F(x) <_S G(x)$ nebo $F(x) >_S G(x)$. BÚNO první možnost. Nechť $b = F(x)$. $z \in \Dom(G)$, 1) $z <_R x \implies G(z) = f(z) <_S b$, 2) $z ≥_R x \implies G(z) ≥_s G(x) >_S b$. Tedy $b \notin \Rang G$ a $\Rang G$ není dolní množina. \lightning.
+        \end{dukazin}
+    \end{lemma}
+
+% 20. 4. 2021
+
+    \begin{veta}[O porovnávání dobrých uspořádání]
+        $A$ je množina dobře uspořádaná $R$, $B$ je množina dobře uspořádaná $S$, pak existuje právě jedno zobrazení $F$, které je izomorfismus $A$ a dolní množiny $B$ nebo izomorfismus dolní množiny $A$ a $B$.
+
+        \begin{dukazin}
+            $P$ množina všech počátkových vnoření z $A$ do $B$. $F := \bigcup P$ je zobrazení: když $(x, y_1)$ a $(x, y_2)$ existují počátková vnoření $F_1, F_2$ taková, že $(x, y_1) \in F_1$ a $(x, y_2) \in F_2$. Podle lemma: $F_1 \subseteq F_2 \lor F_2 \subseteq F_1$, tedy $y_1 = y_2$.
+
+            $F$ je počátkové vnoření: když $x_1 <_R x_2 \in \Dom(F)$, pak existuje počátkové vnoření $F' \in P$ takové, že $x_2 \in \Dom(F')$, tedy $x_1 \in \Dom(F') \subseteq \Dom F$, tedy $\Dom(F)$ je dolní množina. Symetricky pro $\Rang(F)$.
+
+            TODO.
+
+            $\Dom(F) = A \lor \Rang(F) = B$: Sporem: $A - \Dom(F)$, $B - \Dom(F)$ jsou neprázdné. Mají tedy nejmenší prvky $a, b$. Definujeme $F' := F \cup \{(a, b)\}$. $F'$ je počátkové vnoření, přitom $F' \supseteq F$, \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        $a$ je konečná množina, pak každé dvě lineární uspořádání na $a$ jsou izomorfní.
+
+        \begin{dukazin}
+            $r, s$ dvě lineární uspořádání $a$. Podle věty výše jsou $r, s$ dobrá, tedy $a, r$ je izomorfní dolní množině b v $a, s$ nebo naopak. Tzn. $a \approx b$, tedy z definice konečnosti $b = a$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}[Zachovávání konečnosti]
+        $$ 1) (\Fin(x) \land y \subseteq x) \implies \Fin(y). $$
+        $$ 2) (\Fin(x) \land y \approx x) \implies \Fin(y). $$
+        $$ 3) (\Fin(x) \land y \preceq x) \implies \Fin(y). $$ 
+
+
+        \begin{dukazin}
+            $1)$ z definice. $2)$ $©P(x) \approx ©P(y)$, dokonce jsou izomorfní vzhledem k $\subseteq$. $3)$ z $1)$ a $2)$.
+        \end{dukazin}
+    \end{lemma}
+    
+    \begin{lemma}[Sjednocení konečných množin]
+        $$ 1) (\Fin(x) \land \Fin(y)) \implies \Fin(x \cup y). $$
+        $$ 2) \Fin(x) \implies (\forall y)(\Fin(x \cup \{y\})). $$ 
+
+        \begin{dukazin}
+            1) $w \subseteq ©P(x \cup y)$ neprázdná. $©P(x) \supseteq w_1 = \{u, (\exists t \in w)(u = t \cap x)\} ≠ \O$. Tedy $w_1$ má maximální prvek ($v_1$). Nechť $\O ≠ w_2 := \{u, (\exists t \in w)(t \cap x = v_1 \land t \cap y = u)\} \subseteq ©P(y)$. Tedy $w_2$ má maximální prvek $v_2$. $v_1 \cup v_2$ je maximální prvek $w$.
+
+            2): důsledek 1).
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Třída konečných množin]
+        Třída všech konečných množin je $\Fin := \{x, \Fin(x)\}$.
+    \end{definice}
+
+    \begin{veta}[Princip indukce pro konečné množiny]
+        Je-li $X$ třída, pro kterou platí
+        $$ 1) \O \in X, \qquad 2) x \in X \implies (\forall y)(x \cup \{y\} \in X), $$
+        potom $\Fin \subseteq X$.
+
+        \begin{dukazin}[Sporem]
+            Pokud $x \in \Fin \setminus X$, pak označme $w = \{v, v \subseteq x \land v \in X\} = ©P(x) \cap X$. Potom z definice konečnosti má $w$ (která obsahuje minimálně $\O$) maximální prvek $v_1$. $v_0 \subseteq X, v_0 ≠ x$, tedy $\exists y \in x \setminus v_0$ a $v_0 \subseteq v_0 \cup \{y\} \in X$, tím pádem jsme našli větší prvek než $v_0$, který je v $w$, \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}
+        $$ \Fin(x) \implies \Fin(©P(x)). $$
+
+        \begin{dukazin}
+            Indukcí přes konečné množiny. Nechť $X = \{x, \Fin(©P(x))\}$. 1) $\O \in X$, protože $©P(\O) = \{\O\}$ je konečná. 2) Nechť $x \in X$, $y$ množina. Chceme, aby $x \cup \{y\} \in X$. BÚNO $y \notin x$. Rozdělíme $©P(x \cup \{y\})$ na části $©P(x)$ a $z:=©P(x\cup\{y\}) \setminus ©P(x)$. Platí $©P(x) \approx z$: pro $u \in ©P(x)$ definujeme $f(u) = u \cup \{y\}$. Podle IP $\Fin(©P(x))$, podle lemma $\Fin(z)$ a $\Fin(z \cup ©P(x))$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        $\Fin(x) \land \Fin(y) \implies \Fin(x \times y)$.
+    \end{dusledek}
+
+    \begin{lemma}[Sjednocení konečně mnoha konečných množin]
+        $(\Fin(a) \land (\forall b \in a)(\Fin(b))) \implies \Fin(\bigcup a)$.
+
+        \begin{dukazin}[Indukcí]
+            Nechť $X = \{x, x \subseteq \Fin \implies \Fin(\bigcup x)\}$. 1) $\O \in X$, protože $\bigcup \O = \O$ je konečná. 2) Nechť $x \in X$, $y$ množina. Nechť $x \cup \{y\} \subseteq \Fin$, speciálně $x \subseteq \Fin$. $\bigcup (x \cup \{y\}) = (\bigcup x)\cup y$, což je podle IP a lemmatu o sjednocení konečné.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}[Dirichletův princip pro nekonečné množiny]
+        Je-li nekonečná množina sjednocením konečně mnoha množin, pak alespoň jedna z nich je nekonečná.
+    \end{dusledek}
+
 \end{document}

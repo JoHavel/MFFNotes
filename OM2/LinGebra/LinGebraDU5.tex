@@ -1,0 +1,53 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[5.1]
+    Rozhodněte, která z následujících tvrzení platí pro každou reálnou čtvercovou matici $A$ řádu $k$.
+
+    \renewcommand{\theenumi}{\alph{enumi}}
+    \begin{enumerate}
+        \item Pokud $A^2 = A$ a $\lambda$ je vlastní číslo matice $A$, pak $\lambda \in \{0, 1\}$.
+        \item Pokud $A^2 = A$, pak 0 je vlastní číslo matice $A$.
+        \item Pokud $A^2 = A$, pak 1 je vlastní číslo matice $A$.
+        \item Pokud pro nějaké přirozené číslo $n$ platí $A^n = 0_{k \times k}$ a $\lambda$ je vlastní číslo matice $A$, pak $\lambda = 0$.
+        \item Pokud pro nějaké přirozené číslo $n$ platí $A^n = 0_{k \times k}$, pak 0 je vlastní číslo matice $A$.
+    \end{enumerate}
+
+    \begin{reseni}
+        a. (ANO) Můžeme si všimnout, že pokud $A¦x = \lambda ¦x$, potom $A^2¦x = A\lambda¦x = \lambda A¦x = \lambda^2 A¦x$. Tedy (pro vlastní, tj. nenulový, vektor ¦x) je $\lambda^2 = \lambda$ a tedy $\lambda \in \{0, 1\}$. 
+
+        b. a c. (NE) Pro matice $I_k$ a $0_{k \times k}$ platí $A^2 = A$, ale víme, že vlastní čísla $I_k$ jsou 1 (tedy 0 nemusí být vlastní číslo) a $o_{k \times k}$ (tedy 1 nemusí být vlastní číslo).
+
+        d. (ANO) Už jsme si ukázali, že $A^2¦x = \lambda^2¦x$ (kde $\lambda$ je vlastní číslo $A$ a ¦x vlastní vektor jemu příslušný). Indukcí se dá dokázat, že $A^n¦x = \lambda^n¦x$. Ale my víme, že $A^n¦x = o_{k \times k}¦x = ¦o = 0¦x$, tedy $\lambda = 0$.
+
+        e. (ANO) Determinant součinu matic je součin determinantů daných matic, tedy (jelikož $\det 0_{k\times k} = 0$ a součin v ®R je nulový pouze pokud je jeden činitel je 0) $\det A = 0$. Ale absolutní člen charakteristického polynomu je právě $\det A$, tedy 0 je rozhodně kořenem char. polynomu $A$, tedy vlastní číslo.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[5.2]
+    Máme k dispozici neomezenou zásobu tří druhů dlaždic -- červené o rozměrech $1 \times 1$, modré o rozměrech $2 \times 1$ a zelené o rozměrech $2 \times 1$ (dlaždice stejného druhu jsou nerozlišitelné). Kolika různými způsoby lze vydláždit chodník o rozměru $n \times 1$?
+
+    \begin{reseni}
+        Označme $a_n$, $n \in ®N_0$, počet způsobů vydláždění chodníku rozměru $n \times 1$. Pak víme, že $\forall k > 1: a_k = a_{k-1} + 2a_{k-2}$, jelikož buď můžeme buď položit dlaždici $1\times 1$ a zbytek vyplnit jako chodník délky $k-1$, nebo položit jednu z 2 dlaždic a zbude nám chodník délky $k-2$. Zároveň chodník délky $1$ můžeme vyplnit jedním způsobem stejně jako chodník délky 0. Tedy lineární operátor a počáteční stav je např. (první řádek jen 'přesouvá' druhý prvek vektoru do prvního):
+        $$ A = \begin{pmatrix} 0 & 1 \\ 2 & 1 \end{pmatrix}\qquad \(·\binom{a_{k-2}}{a_{k-1}} = \binom{a_{k-1}}{2a_{k-2} + a_{k-1}} = \binom{a_{k-1}}{a_k}\) \qquad ¦x_0 = \binom{1}{1}. $$
+        $n$-tý člen posloupnosti pak dostaneme jako první prvek vektoru $A^n¦x$, tj. $(1, 0)·A^n¦x$.
+
+        Nyní potřebujeme zjistit explicitní vzorec, tedy provedeme na $A$ singulární rozklad: Charakteristický polynom $A$ je $(0 - \lambda)·(1 - \lambda) - 2 = \lambda^2 - \lambda - 2$, jehož kořeny jsou $\lambda_1 = -1$ a $\lambda_2 = 2$. Z prvního řádku $A$ vidíme, že vlastní vektory budou mít druhý člen $\lambda_i$ násobek prvního, tedy vlastní vektory jsou $¦v_1 = (1, -1)^T$ a $¦v_2 = (1, 2)^T$.
+
+        Převedeme matici operátoru na matici vzhledem k bázi $B:=(¦v_1, ¦v_2)$ a bázi $B$ a obalíme příslušnými maticemi přechodu od kanonické báze k $B$ a opačně. Ty jsou
+        $$ [id]^B_K = \begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}, \qquad [id]^K_B = \([id]^B_K\)^{-1} = \begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}. $$
+        Tedy:
+        $$ A = [id]^B_K[id]^K_BA[id]^B_K[id]^K_B = \begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ 2 & 1 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix} = $$
+        $$ = \begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix}-1 & 0 \\ 0 & 2\end{pmatrix}\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}. $$
+        A nakonec:
+        $$ a_n =  (1, 0)·A^n¦x = (1, 0)·\overbrace{\begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix}-1 & 0 \\ 0 & 2\end{pmatrix}\overbrace{\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}\begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}}^I\begin{pmatrix}-1 & 0 \\ 0 & 2\end{pmatrix}\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}·… }^{n\text{krát}}¦x = $$
+        $$ (1, 0)·\begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}·\begin{pmatrix}-1 & 0 \\ 0 & 2\end{pmatrix}^n·\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}¦x = (1, 0)·\begin{pmatrix} 1 & 1 \\ -1 & 2 \end{pmatrix}·\begin{pmatrix}(-1)^n & 0 \\ 0 & 2^n\end{pmatrix}·\begin{pmatrix} 2/3 & -1/3 \\ 1/3 & 1/3 \end{pmatrix}\binom{1}{1} = $$
+        $$ = (1, 0)·\binom{\((-1)^n + 2^{n+1}\)/3}{\((-1)^{n+1} + 2^{n+2}\)/3} = \frac{(-1)^n + 2^{n+1}}{3} $$ 
+    \end{reseni}
+\end{priklad}
+
+\end{document}

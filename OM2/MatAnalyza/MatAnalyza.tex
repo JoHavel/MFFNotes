@@ -641,4 +641,159 @@
             1. Nechť $b < a$, pak definujeme $\int_a^b f(x)\,dx = - \int_b^a f(x)\,dx$.
         \end{poznamka}
 
+        \begin{veta}[O derivaci integrálu podle horní meze]
+            Nechť $J$ je neprázdný interval a $f \in R([\alpha, \beta])$ pro každé $\alpha, \beta \in J$. Nechť $c \in J$ je libovolný pevný bod. Definujme na $J$ funkci $F(x) = (R) \int_c^x f(t)\,dt$. Pak platí: 1) $F$ je spojitá na $J$, 2) je-li $f$ spojitá v $x_0 \in J$, pak $F'(x_0) = f(x_0)$.
+        \end{veta}
+
+        \begin{dusledek}
+            Je-li $f$ spojitá na $(a, b)$, pak má na $(a, b)$ primitivní funkci.
+        \end{dusledek}
+
+        \begin{dusledek}
+            Nechť $f$ je spojitá na $[\alpha, \beta]$, $\alpha, \beta \in ®R$. Pak
+            $$ (R) \int_a^b f(t)\,dt = \lim_{x \rightarrow \beta-} F(x) - \lim_{x \rightarrow a+} F(x), $$ 
+            kde $F$ je primitivní funkce k $f$ na $(\alpha, \beta)$.
+        \end{dusledek}
+
+% 14. 4. 2021
+
+        \begin{dukaz}[Věty o defivaci integrálu …]
+            1) Nechť $y_0 \in J$ není pravým krajním bodem $J$. Chceme dokázat $\lim_{y \rightarrow y_0+} F(y) = F(y_0)$. Nyní
+            $$ F(y) - F(y_0) = (R) \int_c^y f(t)\,dt - (R)\int_c^{y_0} f(t)\,dt = (R)\int_{y_0}^y f(t)\,dt ≤ |y - y_0|K \rightarrow 0, $$
+            jelikož $f$ je Riemannovsky integrovatelná, tedy je omezená $f(t) < K$. Policií dokážeme $F(y) - F(y_0) \rightarrow 0$. Analogicky pro limitu zleva.
+
+            2) Víme 
+            $$ F'(x_0) = \lim_{h \rightarrow 0} \frac{F(x_0 + h) - F(x_0)}{h} = \lim_{h \rightarrow 0} \frac{(R) \int_0^{x_0 + h} f(t)\,dt - (R)\int_0^{x_0} f(t)\,dt}{h} = \lim_{h \rightarrow 0} \frac{1}{h}·\int_{x_0}^{x_0 + h} f(t)\,dt. $$
+            Nyní
+            $$ \frac{1}{h}·\int_{x_0}^{x_0 + h} f(t)\,dt - f(x_0) = \frac{1}{h}·\int_{x_0}^{x_0 + h} (f(t) - f(x_0))\,dt. $$ 
+            Zvolme $\epsilon > 0$. K němu nalezneme $\delta > 0$ tak, že $\forall t \in [x_0 - \delta, x_0 + \delta]$ platí $|f(t) - f(x_0)| < \epsilon$. Pak platí
+            $$ \left|\frac{1}{h}\int_{x_0}^{x_0 + h} (f(t) - f(x_0))\,dt\right| ≤ \frac{1}{h}·\epsilon·h = \epsilon. $$
+            Tedy $F'(x_0) - f(x_0) = 0$ z policie.
+        \end{dukaz}
+
+    \subsection{Newtonův integrál}
+        \begin{definice}[Newtonův integrál]
+            Řekneme, že funkce $f$ má na intervalu $(a, b)$ Newtonův integrál, jestliže má na $(a, b)$ primitivní funkci $F$ a existují $\lim_{x \rightarrow a+} F(x)$ a $\lim_{x \rightarrow b-} F(x)$ vlastní. Hodnotou Newtonova integrálu rozumíme číslo
+            $$ (N) \int_a^b f(t)\,dt = \lim_{x \rightarrow b-} F(x) - \lim_{x \rightarrow a+} F(x). $$ 
+
+            Množinu funkcí mající Newtonův integrál značíme $N(a, b)$.
+        \end{definice}
+
+        \begin{dusledek}
+            Je-li $f$ spojitá na $[a, b]$, pak existují oba (v budoucnu všechny) integrály a rovnají se.
+
+            Existují i funkce integrovatelné pouze N a pouze R: $\int_0^1 \frac{1}{\sqrt{x}}\,dx$ a $\int_{-1}^1 \sgn x\,dx$.
+        \end{dusledek}
+
+        \begin{veta}[Per partes pro určitý integrál]
+            Nechť $f, f', g, g'$ jsou spojité na intervalu $[a, b]$. Potom $\int_a^b f(x) g'(x)\,dx = [f·g]_a^b - \int_a^b f'(x) g(x)\,dx$, kde $[fg]_a^b = f(b)g(b) - f(a)g(a)$ a obecněji $\lim_{x \rightarrow b_+} f(x)g(x) - \lim_{x \rightarrow a_-} f(x)g(x)$.
+
+            \begin{dukazin}
+                Víme, že $f$ je primitivní k $f'$ a $g$ je primitivní k $g'$. Tedy pro primitivní funkci platí $\int f·g' = f·g - \int f'·g$. Dále $\int_a^b f(x)·g'(x)\,dx = Primit(b) - Primit(a) = f(b)·g(b) - f(a)·g(a) - \int_a^b f'(x)g(x)\,dx$. Všechny integrály existují ze spojitosti.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O substituci pro určitý integrál]
+            Nechť $f$ je spojitá na intervalu $[a, b]$ a $\phi:[\alpha, \beta] \rightarrow [a, b]$ je funkce, která má na $[\alpha, \beta]$ spojitou první derivaci. Pak
+            $$ \int_\alpha^\beta f(\phi(t))·\phi'(t)\,dt = \int_{\phi\alpha}^{\phi\beta}f(x)\,dx. $$
+
+            Nechť $f$ je spojitá na intervalu $[a, b]$ a $\phi: [\alpha, \beta] \rightarrow [a, b]$ je na a má na $[\alpha, \beta]$ vlastní spojitou nenulovou derivaci. Pak
+            $$ \int_a^b f(x)\,dx = [\Phi(\phi^{-1}(t))]_a^b = [\Phi(t)]_{\phi^{-1}(a)}^{\phi^{-1}(b)} = \int_{\phi^{-1}(a)}^{\phi^{-1}(b)} f(\phi(t))·\phi'(t)\,dt, $$
+            kde $\Phi$ je primitivní funkce k $(f \circ \phi)·\phi'$.
+            \begin{dukazin}
+                Bez důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{pozorovani}
+            Nechť $f$ je spojitá na $(a, b)$ a $a < c < b$. Pak
+            $$ 1) f \in N(a, c) \land f \in N(c, b) \implies f \in N(a, b). $$ 
+            $$ 2) f \in N(a, b) \implies f \in N(a, c). $$ 
+        \end{pozorovani}
+
+% 21. 4. 2021
+
+    \subsection{Konvergence integrálu}
+        \begin{veta}[Srovnávací kritérium pro konvergenci integrálů]
+            Nechť $a \in ®R, b \in ®R^*$ a $a < b$. Nechť jsou funkce $f, g: [a, b) \rightarrow ®R$ spojité na $[a, b)$ a nechť $0 ≤ f(x) ≤ g(x)$ $\forall x \in [a, b)$. Pak $g \in N(a, b) \implies f \in N(a, b)$.
+
+            \begin{dukazin}
+                    Zvolme $c \in (a, b)$ a označme $G$ a $F$ primitivní funkce k $f$ a $g$. BÚNO $G(c) = F(c)$ (jinak odečti konstantu). $(G-F)'(x) = (g - f)(x) ≥ 0$ na $[c, b) \implies G-F$ je neklesající na $[c, b)$. Dále $G(c) = F(c) \implies \forall x \in [c, b): G(x) ≥ F(x)$. Dále $G'=g≥0$ a $F'=f≥0$, tedy jsou neklesající. $g \in N(a, b) \implies \lim_{x \rightarrow b_-} G(x) \in ®R$. $F$ je neklesající a omezená $\lim_{x \rightarrow b_-} G(x)$, tedy $\lim_{x \rightarrow b_-} F(x) \in ®R \implies f\in N(c, b)$. $f$ je spojitá na $[a,c]$, tj. $f \in N(a, c)$. Tudíž $f \in N(a, b)$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Platí analogie pro $(a, b]$.
+        \end{poznamka}
+
+        \begin{veta}[Limitní srovnávací kritérium pro konvergenci integrálu]
+            Nechť $a \in ®R, b \in ®R^*$ a $a < b$. Nechť jsou funkce $f, g: [a, b) \rightarrow ®R$ spojité a nezáporné na $[a, b)$. Jestliže existuje $\lim_{x \rightarrow b_-} \frac{f(x)}{g(x)} \in (0, ∞)$, pak $g \in N(a, b) \Leftrightarrow f \in N(a, b)$.
+
+            \begin{dukazin}
+                Označme $A = \lim_{x \rightarrow b_-} \frac{f(x)}{g(x)}$. Z definice limity pro
+                $$ \epsilon = \frac{A}{2}\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |\frac{f(x)}{g(x)} - A| < \epsilon = \frac{A}{2}. $$
+                Neboli $\exists x_0 \in (a, b)\ \forall x \in [x_0, b]: \frac{3}{2}A ≥ \frac{f(x)}{g(x)} ≥ \frac{1}{2}A$. Tudíž $\frac{3}{2}A·g(x) ≥ f(x) ≥ \frac{1}{2}A·g(x)$. $g \in N(a, b) \implies \frac{2}{3}A·g(x) \in N(a, b) \implies \frac{3}{2}A·g(x)\in N(x_0, b) \implies f\in N(x_0, b)$ podle předchozí věty. $f$ je spojitá na $[a, x_0]$, tedy $f \in N(a, x_0) \implies f \in N(a, b)$.
+
+                Pokud naopak $f \in N(a, b)$, pak $f(x) \in N(x_0, b) \implies \frac{1}{2}A·g(x) \in N(x_0, b) \implies g(x) \in N(x_0, b)$. $g$ je spojitá na $[a, x_0]$, tedy $g \in N(a, x_0) \implies g \in N(a, b)$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Platí i analogie pro $(a, b]$.
+        \end{poznamka}
+
+        \begin{lemma}[Odhad Newtonova integrálu součinu dvou funkcí]
+            Nechť $a, b \in ®R$ a $a < b$. Nechť $f$ je spojitá funkce na $[a, b]$ a $g:[a, b] \in ®R$ je nerostoucí, nezáporná a spojitá. Potom $g(a)·\inf_{x \in [a, b]} \int_a^x f(t)\,dt ≤ \int_a^b f(t)·g(t)\,dt ≤ g(a)·\sup_{x \in [a, b]}\int_a^x f(t)\,dt$.
+
+            Speciálně platí $|\int_a^b f(t)·g(t)\,dt| ≤ g(a)·\sup_{x \in [a, b]}·|\int_a^x f(t)\,dt|$.
+        \end{lemma}
+
+        \begin{veta}[Abelovo-Dirichletovo kritérium konvergence integrálu]
+            Nechť $a \in ®R, b \in ®R^*$ a $a < b$. Nechť $f:[a, b) \rightarrow ®R$ je spojitá a $F$ je primitivní funkce k $f$ na $(a, b)$. Dále nechť $g:[a, b) \rightarrow ®R$ je na $[a, b]$ monotónní a spojitá. Pak platí:
+
+            (A) Je-li $f \in N(a, b)$ a $g$ je omezená, pak $f·g \in N(a, b)$.
+
+            (D) Je-li $F(x)$ omezená na $(a, b)$ a $\lim_{x \rightarrow b_-} g(x) = 0$, pak $f·g \in N(a, b)$.
+        \end{veta}
+
+% 23. 4. 2021
+
+        \begin{dukaz}[Odhad Newtonova integrálu součinu dvou funkcí]
+            Dokážeme druhou nerovnost (první je analogická). Nechť $\epsilon > 0$. Z V7.5 (spojitost na kompaktu a stejnoměrná spojitost) plyne stejnoměrná spojitost $f$ a $f·g$ na $[a, b]$.
+            $$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x, y \in [a, b]: |x-y| < \delta \implies |f(x) - f(y)|<\epsilon \land |f(x)·g(x) - f(y)·g(y)| < \epsilon. $$ 
+            Označme $F(x) = \int_a^x f(t)\,dt, x \in [a, b]$. Pak $F(a) = 0$. Zvolme dělení $D$ intervalu $[a, b]$ s normou $< \delta$. Ze stejnoměrné spojitosti $\forall i \in \{1, …, n\}\ \forall t \in [x_{i-1}, x_i]: f(t) ≥ f(x_{i-1}) - \epsilon$. Tedy $\int_{x_{i-1}^{x_i} f(t)\,dt ≥ f(x_{i-1}·(x_i - x_{i-1}) - \epsilon·(x_i - x_{i-1}))}$. Analogicky z $f(t)·g(t) ≤ f(x_{i-1})·g(x_{i-1}) + \epsilon$ dostaneme $\int_{x_{i-1}}^{x_i} f(t)g(t)\,dt ≤ f(x_{i-1})·g(x_{i-1})·(x_i - x_{i-1}) + \epsilon·(x_i - x_{i-1})$. Nyní aplikujeme předchozí nerovnost:
+            $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i} f(t)\,dt + \epsilon·(x_i - x_{i-1})\) + \epsilon·(x_i - x_{i-1}) ≤ $$
+            $g$ nerostoucí
+            $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + g(a)·\epsilon·(x_i - x_{i-1}) + \epsilon·(x_i - x_{i-1}) ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + \frac{x_i - x_{i-1}}{a-b}\tilde{\epsilon}, $$
+            kde $\tilde{\epsilon} = \epsilon(g(a) + 1)·(b-a)$.
+
+            Nyní
+            $$ \int_a^b f(t)·g(t)\,dt = \sum_{i=1}^n \int_{x_i - 1}^{x_i}f(t)·g(t)\,dt ≤ \sum_{i=1}^ng(x_{i-1})·\int_{x_{i-1}}^{x_i} + \tilde{\epsilon} = $$
+            $$ \sum_{i=1}^ng(x_{i-1})·(F(x_i) - F(x_{i-1})) + \tilde{\epsilon}. $$ 
+            Přes Abelovu parciální sumaci:
+            $$ = \sum_{i=1}^{n-1} F(x_i)·(g(x_{i-1} - g(x_i))) + g(x_{n-1})·F(x_n) + \tilde{\epsilon} ≤ $$ 
+            $$ ≤ \sup_{t \in [a, b]} F(t)·\sum_{i=1}^{n-1}(g(x_{i-1}) - g(x_i) + g(x_{n-1})) + \tilde{\epsilon} = g(a)·\sup_{t \in [a, b]} F(t) + \epsilon·(g(a) + 1)·(b-a). $$ 
+            Toto platí $\forall \epsilon > 0$, tedy požadovaná nerovnost platí.
+        \end{dukaz}
+
+        \begin{dukaz}[Abelovo-Dirichletovo kritérium konvergence integrálu]
+            $f·g$ spojitá na $(a, b) \implies \exists$ primitivní funkce $H$. BÚNO je $g$ nerostoucí. Jinak vezmeme $-g$ a konvergence $\int f·g$ se nezmění.
+
+            (A) BÚNO $g≥0$: víme, že $g$ je omezená $\exists K > 0\ \forall x \in [a, b):|g(x)|<K$. Vezmeme funkci $g(x) + K ≥ 0$ a konvergence se nám nezmění. $g ≥ 0$ omezená, tedy $\exists c > 0\ \forall x \in [a, b): 0 ≤ g(x) < c$. $f \in N(a, b) \implies \lim_{x \rightarrow b_-} F(x) \in ®R$. Nechť $\epsilon > 0$. Z Bolzano-Cauchyovy podmínky pro limitu funkce k tomuto
+            $$ \epsilon > 0\ \exists \delta > 0\ \forall x, y \in P_-(b, \delta): -\epsilon < F(x) - F(y) < \epsilon. $$
+            Nechť $x, y \in P_-(b, \delta)$, podle lemmatu:
+            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ g(x)·\epsilon ≤ c·\epsilon. $$
+            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ -g(x)·\epsilon ≥ -c·\epsilon. $$
+            Tedy $\forall \epsilon > 0\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |H(x) - H(y)| < c·\epsilon$. Tedy z BC podmínky pro limitu funkce $\exists \lim_{x \rightarrow b_-} H(x)$. Nechť $u \in (a, b)$, $f·g$ je spojitá na $[a, u] \implies f·g \in N(a, c)$. $H$ je spojitá v $u$ $\implies$ $\exists \lim_{x \rightarrow u_-} H(x)$ $\implies$ $f·g \in N(u, b)$. Tudíž $f·g \in N(a, b)$.
+
+            (D) Víme $g$ nerostoucí a $\lim_{x \rightarrow b_-} g(x) = 0 \implies g ≥ 0$. $F(x)$ omezená, tj. $\exists K > 0\ \forall x \in (a, b): |F(x)| ≤ K$. Nechť $\epsilon > 0$:
+            $$ \text{Z } \lim_{x \rightarrow b_-} g(x) = 0\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |g(x)|<\epsilon. $$ 
+            Nyní $\forall x, y \in P_-(b, \delta)$, $x < y$ platí
+            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ \epsilon·\sup_{z \in [x, y]}F(z) - F(x) ≤ \epsilon · 2K. $$ 
+            Analogicky
+            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ \epsilon·\inf_{z \in [x, y]}F(z) - F(x) ≥ - \epsilon · 2K. $$
+            Tedy $H$ splňuje BC podmínku a $\exists \lim_{x \rightarrow b_-} H(x)$. A z toho dostaneme $f·g \in N(a, b)$.
+        \end{dukaz}
+
+
 \end{document}

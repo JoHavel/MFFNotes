@@ -194,4 +194,58 @@
             Nebo v 2) můžeme mít pole saturujících čítačů indexované historií.
         \end{definice}
 
+% 13. 3. 2021
+
+        \begin{definice}[Globální historie skoků]
+            Většinou ve formě hešovací tabulky a máme tzv. agree predictor, který predikuje, které predikce v hešovací tabulce potřebujeme.
+        \end{definice}
+
+
+\section{Více procesorů / jader}
+        \begin{definice}[Symetric Multi-Processing]
+            Na 1 sběrnici je připojeno více CPU. Symetrii nám ale kazí fyzika (o tom příště) a cache. Proto existuje MESI protokol (na synchronizaci cachí), účastní se ho cache. Stav řádku v cachi: Modified (data mám jen já a jsou novější), Exclusive (moje cache je jediná, která má tento řádek, a data jsou aktuální), Shared (data mám já a možná ještě někdo a jsou aktuální), Invalid (data nemám).
+
+            Na začátku Invalid. Pak se vyšle požadavek na čtení, a když do toho nikdo nevstoupí (read bez intervence) přejdeme Exclusive. Při intervenci přejdu do Shared. Exclusive -> (write) Modified -> (write back) -> Exclusive. Z Exclusive mohu zapomenout, tedy -> (flush) Invalid. Pokud chci zapisovat do Shared, pošle se request for ownership -> Exclusive.
+
+            Navíc existuje rozšíření MOESI, která rozšířuje Shared o Owned, kde vlastník Owned se zavazuje data zapsat.
+        \end{definice}
+
+% 20. 4. 2021
+
+        \begin{definice}[cc/NUMA]
+            Cache-Cogerent Non-Uniform Memory Architecture. Procesory jsou připojeny ke stejné sběrnici, ale každý má vlastní paměť, do které mohou ale přistupovat i jiné procesory.
+        \end{definice}
+
+        \begin{definice}[Programování na SMP]
+            1. oddělené procesy (programy) -- propojení rourami / sockety apod. (mohou být i na jiných počítačích).
+
+            2. vlákna (threads) (na Unixu příkaz fork nebo clone). Tradiční rozhraní je definované standardem POSIX (pthreads). Ještě existuje (od C11) součást standardní knihovny C -- C11 threads.
+
+            3. explicitní sdílení (např. blok sdílené paměti). Zde jsou rozhraní SysV IPC a POSIX IPC (pletou se, protože se v nich funkce podobně jmenují, ale SysV IPC nechceme používat!).
+        \end{definice}
+
+        \begin{upozorneni}[Proglémy se sdílením]
+            1. důvod, proč řešit synchronizaci -- race conditions (časové hazardy) v programu (úseky závisející na pořadí příkazů, např. inc. a read variable). 2. důvod -- relativní viditelnost změn mezi CPU. 3. důvod -- procesory přehazují pořadí instrukcí.
+
+            Efektivita -- viz MOESI, minimalizovat sdílená R/W data. (Pozor na falešné sdílení, tj. 2 různá data v 1 cache řádku. Pomůže posix\_memalign()).
+
+            Bezpečnost syscallů a knihovních funkcí -- nebezpečné, thread-safe, signal-safe (např. převod do času v č. zóně není signal-safe a zavolání této funkce v signal-handleru může vyvolat deadlock (pokud byla v tu chvíli využívána)), specifické záruky (např. zápis na konec souboru zaručuje, že se soubor bude tvářit ve finální velikosti, takže 2 zápisy na konec se nepromíchají).
+        \end{upozorneni}
+
+        \begin{definice}[Thread-local variables]
+            pthread\_getspecific (otravné a pomalé), tedy GCC zavádí \_\_thread a C!! \_Thread\_local.
+
+            Každé vlákno má vlastní instanci proměnné.
+        \end{definice}
+
+        \begin{definice}[Synchronizační primitiva]
+            Zámek (mutex = mutual exclusion) -- stav = odemčeno / zamčeno, operace = lock (nebo acquire) / unlock (nebo release), při lock se buď zamkne (pokud je odemčený), jinak se čeká.
+
+            Semafor -- stav = $x ≥ 0$, operace = down (nebo p) / up (nebo v)\footnote{\url{https://en.wikipedia.org/wiki/Semaphore\_\%28programming\%29\#Operation\_names}}, při down se buď sníží ($x > 0$), nebo čeká.
+
+            Condition variable -- stav = mutex + fronta procesů, operace = wait / signal, wait čeká na změnu stavu, tedy signal. Mutex je tam, aby se dala udělat kontrola stavu a wait atomicky (= dohromady).
+
+            Synchronizační primitiva jsou dnes již rychlá (hlavně v linuxu, tzv. futex (typicky user-space, výjimečně kernel)), ale zámky jsou sdílená R/W data, takže budou stejně docela pomalá. Další problém je, kolik jich mít (každý prvek seznamu vs. celý seznam), řeší se hešovacími zámky. 
+        \end{definice}
+
 \end{document}

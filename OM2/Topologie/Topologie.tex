@@ -354,4 +354,106 @@
             $©D := \{C \subseteq ®X \times ®X | \exists B \in ©B: B \subseteq C\}$. Následně ověříme podmínky.
         \end{dukazin}
     \end{lemma}
+
+% 9. 4. 2021
+
+    \begin{tvrzeni}[Vytvoření UP z MP a TP z UP]
+        Je-li $(®X, \rho)$ metrický prostor a $D_\epsilon = \{(x, y)| \rho(x, y) < \epsilon\}$, potom $\{D_\epsilon | \epsilon > 0\}$ je báze nějaké uniformity na ®X -- značíme ji $©D_\rho$. Tato uniformita se nazývá generovaná metrikou $\rho$.
+
+        Je-li $(®X, ©D)$ UP, pak systém $\tau_{©D} = \{A \subseteq X | \forall x \in A\ \exists D \in ©D: D[x] \subseteq A\}$ je topologie na ®X a pro každé $x \in ®X$ tvoří systém $©B(x) := \{D[x] | D \in ©D\}$ bázi okolí v bodě $x$. Topologie $\tau_{©D}$ se nazývá generovaná uniformitou ©D.
+
+        Pokud místo systému ©D použijeme v definici topologie $\tau_{©D}$ nějakou bázi ©D, pak dostaneme stejnou topologii. Zároveň také $\tau_{©D_\rho}$ je systém všech otevřených množin v $(®X, \rho)$.
+
+        \begin{dukazin}
+            Ověříme definice.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}
+        UP $(®X, ©D)$ se nazývá metrizovatelný, pokud existuje metrika $\rho$ na ®X, že $©D = ©D_\rho$. TP $(®X, \tau)$ se nazývá metrizovatelný, pokud existuje uniformita ©D na ®X, že $\tau = \tau_{©D}$
+    \end{definice}
+
+    \begin{definice}
+        Ať $©U \subseteq ©P(®X)$, $A \subseteq ®X$, pak značíme $\st(A, ©U) = \bigcup\{U \in ©U | U \cap A ≠ \O\}$. $©U^* = \{\st(U, ©U) | U \in ©U\}$.
+
+        Pro ©U, ©V pokrytí ®X, definujeme jejich společné zjemnění $©U \wedge ©V = \{U \cap V | U \in ©U, V \in ©V\}$.
+    \end{definice}
+
+    \begin{poznamka}
+        Pro ©U, ©V pokrytí množiny ®X: ©U hvězdovitě zjemňuje ©V, pokud $©U^*$ zjemňuje ©V.
+    \end{poznamka}
+
+    \begin{definice}
+        Ať ®X je množina, $¦U \subseteq ©P(©P(®X))$ se nazývá pokrývací uniformita na ®X, pokud:
+
+        \begin{itemize}
+            \item $\forall ©U \in ¦U: ©U$ je pokrytí ®X,
+            \item Je-li $©U \in ¦U, ©V$ pokrytí ®X a ©U zjemňuje ©V, pak $©V \in ¦U$,
+            \item $\forall ©U \in ¦U\ \exists ©V \in ¦U: ©V$ hvězdovitě zjemňuje ©U,
+            \item $\forall ©U, ©V \in ¦U: ©U \wedge ©V \in ¦U$,
+            \item $\forall x, y \in ®X, x ≠ y\ \exists ©U \in ¦U\ \forall U \in ©U: |\{x, y\} \cap U| ≤ 1$.
+        \end{itemize}
+
+        Prvky systému ¦U se nazývají uniformní pokrytí.
+        
+        Je-li ¦U pokrývací uniformita na ®X, pak položme
+        $$ ©D_{¦U} := \{D \subseteq ®X \times ®X | \exists ©U \in ¦U\ \forall u \in ©U: U \times U \subseteq D\}. $$
+
+        Je-li ©D (diagonální) uniformita na ®X, pak položme
+        $$ ©U_{©D} := \{©U \in ©P(©P(®X)) | \exists D \in ©D: \{D[x] | x \in ®X\} \text{ zjemňuje} ©U\}. $$
+
+        Přiřazení $¦U \mapsto ©D_{¦U}$ a $©D \mapsto ¦U_{©D}$ jsou navzájem inverzní bijekce systému všech pokrývacích uniformit na ®X a systém všech uniformit.
+    \end{definice}
+
+    \begin{lemma}[O pseudometrice]
+        Ať $(®X, ©D)$ je UP a $D_i \in ©D$, $D_i = D_i^{-1}$, $i \in ®N_0$, $D_0 = ®X \times X$, $D_{i+1} \circ D_{i+1} \circ D_{i+1} \subseteq D_i$. Pak existuje pseudometrika $d$ na ®X, že pro každé $i ≥ 1$: $\{(x, y) : d(x, y) < \frac{1}{2^i}\} \subseteq D_i \subseteq \{(x, y) | d(x, y) ≤ \frac{1}{2^i}\}$.
+
+% 16. 4. 2021
+
+        \begin{dukazin}
+            Položme $d(x, y) := \inf\{\frac{1}{2^{i_1}} + \frac{1}{2^{i_2}} + … + \frac{1}{2^{i_k}} | x_0, …, x_k \in ®X \land (x_{j-1}, x_j) \in D_{i_j} \land x = x_0, y=x_k\}$. $d(x, y)$ je pseudometrika na ®X. $D_i \subseteq \{(x, y) | d(x, y) ≤ \frac{1}{2^i}\}$ vidíme z toho, že pro $(x, y) \in D_i$ zvolíme $k=1$. Zbývá dokázat $\{(x, y) | d(x, y) < \frac{1}{2^i}\} \subseteq D_i$. Tedy chceme, že $d(x, y) < \frac{1}{2^i}$, pak $(x, y) \in D_i$, tj. že pro každou posloupnost $x_0, …, x_k$, kde $(x_{j_-1}, x_j) \in D_{i_j}$: pokud $\frac{1}{2^{i_1}} + … + \frac{1}{2^{i_k}} < \frac{1}{2^i}$, pak $(x_0, x_k) \in D_i$. To dokážeme indukcí podle $k$:
+
+            Pro $k=1: \frac{1}{2^{i_1}} < \frac{1}{2^i}$, tj. $i < i_1$, tedy $(x_0, x_k) \in D_{i_1} \subseteq D_i$. Nyní předpokládejme, že $m > 1$ a pro všechna $k < m$ uvedené tvrzení platí. Uvažme posloupnost $x_0, …, x_m$, že $(x_{j-1}, x_j) \in D_{i_j}, j = 1, …, m$, a $\frac{1}{2^{i_1}} + … + \frac{1}{2^{i_m}} < \frac{1}{2^i}$. Zřejmě buď $\frac{1}{2^{i_1}} < \frac{1}{2^{i+1}}$, nebo $\frac{1}{2^{i_m}} < \frac{1}{2^{i+1}}$. Ze symetrie obou případů můžeme BÚNO předpokládat platnost první nerovnosti.
+
+            Ať $n ≤ m-1$ je největší takové, že $\frac{1}{2^{i_1}} + … + \frac{1}{2^{i_n}} < \frac{1}{2^{i+1}}$. Pokud $n < m-1$, pak $\frac{1}{2^{i+1}} + … + \frac{1}{2^{i_{n+1}}} ≥ \frac{1}{2^{i+1}}$, tedy $\frac{1}{2^{i_{n+1}}} + … + \frac{1}{2^{i_m}} < \frac{1}{2^{i+1}}$. Podle indukčního předpokladu $x_0, n \in D_{i+1}$, $(x_{n+1}, x_m) \in D_{i+1}$. Navíc $\frac{1}{2^{i_{n+1}}} < \frac{1}{2^i}$, tedy $i < i_{n+1}$, $i + 1 ≤ i_{n+1}$, $D_{i_{n+1}} \subseteq D_{i+1}$. $(x_0, x_m) = (x_0, x_n)\circ(x_n, x_{n+1})\circ(x_{n+1}, x_m) \in D_{i+1}\circ D_{i+1}\circ D_{i+1} \subseteq D_i$.
+
+            Pokud $n = m-1$, pak podle IP $x_0, x_{m-1} \in D_{i+1}$, a jelikož $\frac{1}{2^{i_m}} < \frac{1}{2^i}$, tak $(x_{m-1}, x_m)\in D_{i_m} \subseteq D_{i+1}$. Tedy $(x_0, x_m) \in D_{i+1}\circ D_{i+1} \subseteq D_i$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Metrizovatelnost UP]
+        UP $(®X, ©D)$ je metrizovatelný, právě když má spočetnou bázi uniformity.
+
+        \begin{dukazin}
+            $(\implies)$: Ať $d$ je metrika na ®X generující ©D. Pak $\{\{(x, y): d(x, y) < \frac{1}{n}\} | n \in ®N\}$ je báze ©D.
+
+            $(\Leftarrow)$: Ať $\{C_n | n \in ®N\}$ je báze ©D. Indukcí najdeme posloupnost $D_n \in ©D$, že jsou splněny předpoklady předchozího lemmatu. A že $D_i \subseteq C_i$: Předpokládejme, že $D_0, …, D_n$ máme ($D_0 = ®X \times ®X$), pak víme, že $\exists E: E \circ E \subseteq D_n$, $\exists F: F \circ F \subseteq E$. Tedy $F \circ F \circ F \subseteq D_n$. Ať $D_{n+1} := (F \cap C_{i+1}) \cap (F \cap C_{i+1})^{-1}$. Tedy $D_{n+1}\circ D_{n+1} \circ D_{n+1} \subseteq D_n$, $D_{n+1} \subseteq C_{i+1}$. Tedy podle lemmatu o pseudometrice existuje pseudometrika $d$ na ®X, že
+            $$ \{(x, y) | d(x, y) < \frac{1}{2^i}\} \subseteq D_i \subseteq \{(x, y) | d(x, y) ≤ \frac{1}{2^i}\}. $$
+            Pro $x, y \in ®X, x≠y$ $\exists C \in ©D: (x, y) \notin C$. $\exists i \in ®N: C_i \subseteq C$. $D_i \subseteq C_i$. $(x, y)\notin D_i$. Tedy $d(x, y) ≥ \frac{1}{2^i} > 0$. Tedy $d$ je metrika. $d$ generuje uniformitu ©D: Tj. pro $\epsilon > 0$ $\{(x, y | d(x, y) < \epsilon)\} \in ©D$. To platí díky vlastnosti z předchozího lemmatu. A pro $D \in ©D\ \exists \epsilon > 0: \{(x, y) | d(x, y) < \epsilon\} \subseteq D$. $D \in ©D$ dané $\exists i \in ®N: C_i \subseteq D$, $D_i \subseteq C_i \subseteq D$. $\epsilon := \frac{1}{2^i}$. To máme také díky vlastnosti z předchozího lemmatu.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Jemná uniformita]
+        Ať $(®X, \tau)$ je TP. Všechny otevřené podmnožiny $®X \times ®X$ obsahující $\delta(®X)$ tvoří bázi nějaké uniformity na ®X právě tehdy, když ®X je parakompaktní.
+
+        \begin{poznamkain}[Reformulace]
+            Ať $(®X, \tau)$ je TP. Všechna otevřená pokrytí ®X tvoří bázi nějaké pokrývací uniformity na ®X, právě když ®X je parakompaktní.
+        \end{poznamkain}
+
+        \begin{dukazin}
+            Pokud všechna otevřená pokrytí ®X tvoří bázi pokrývací uniformity, pak speciálně každé otevřené pokrytí má hvězdovité otevřené zjemnění. Tedy podle charakterizační věty je ®X parakompaktní.
+
+            Je-li ®X parakompaktní, tak podle charakterizační věty má každé otevřené pokrytí ®X otevřené hvězdovité zjemnění a snadno se ověří, že $\{©U | ©U \text{ je pokrytí } ®X \text{, které je zjemňované nějakým otevřeným pokrytím } ®X\}$ je pokrývací uniformita na ®X.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Uniformizovatelnost TP]
+        TP je uniformizovatelný (tj. generován nějakou uniformitou), právě když je Tichonovův.
+
+        \begin{dukazin}
+            Ať $(®X, \tau)$ je generovaný uniformitou ©D. Buď $F \subseteq ®X$ uzavřená, $x \in ®X \setminus F$. Pak existuje $D \in ©D: D[x] \subseteq ®X \setminus F$. Ať $d$ je pseudometrika z předchozího lemmatu, kde volíme $D_1 = D$. Pak $\B_d(x, \frac{1}{2}) \subseteq D[x]$. Definujeme $f: ®X \rightarrow ®R$, $f(y) = d(x, y)$, $0 ≤ f ≤ 1$, $f(x) = 0$ a $f$ je spojitá. Pro $y \in F: f(y) ≥ \frac{1}{2}$. Tedy $®X$ je $T_\pi$.
+
+            Ať $(®X, \tau)$ je Tichonovův. Pak uvažme $\beta®X$. $\beta®X$ je (para)kompaktní. Tedy na $\beta®X$ máme jemnou uniformitu, která generuje topologii na $\beta®X$. Tuto jemnou uniformitu na $\beta®X$ můžeme zúžit na ®X a ta již generuje topologii $\tau$.
+        \end{dukazin}
+    \end{veta}
 \end{document}

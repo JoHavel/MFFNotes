@@ -226,4 +226,57 @@
         Operátor length vrací počet úseků, ze kterých se daná cesta skládá. Úsek jsou krajní body + 2 body (bézierova křivka 3. řádu).
     \end{definice}
 
+% 7. 4. 2021
+
+    \begin{definice}[numeric]
+        Může být unknown, dependent (závislá na jiné), known. Výrazy jsou pouze lineární.
+
+        Můžeme napsat např. \verb|z5 = whatever[z1, z2]| a \verb|z5 = whatever[z3, z4]|, kde \verb|x[a, b]| je lineární kombinace $(1-x)·a + x·b$. Tyto dva výrazy 'uloží' do z5 průsečík dvou úseček (přímek?), jelikož whatever je proměnná, která je při každém použití nová (unknown) a jinak se počítá soustava lineárních rovnic.
+    \end{definice}
+
+    \begin{definice}[Další užitečné funkce]
+        known, numeric, $>$ (booleany, poslední porovnává případně lexikograficky), min, floor, ceiling, sind, cosd (ve stupních), angle (vrací úhel daného vektoru od (1, 0), inverze (na jednotkovou kružnici) dir), mlog, mexp.
+
+        normal deviate, uniform deviate (náhodné generátory)
+    \end{definice}
+
+    \begin{definice}[Transformace (vstupem dvojice čísel = komplexní číslo vlevo)]
+        scaled, xscaled, yscaled, rotated (vstupem jedno číslo vpravo), shifted (dvě čísla), zscaled (násobení komplexních čísel (tj. dvojic)), dotprod
+    \end{definice}
+
+    \begin{definice}[Priorita operátorů]
+        Primary = funkce, Secondary = násobení dělení, Tertiary = sčítání apod, Výraz = vše ostatní.
+    \end{definice}
+
+    \begin{definice}[Definice]
+        \verb|def symb.token = replacement enddef;| nebo s parametry \verb|def symb.token (typ nazev, …) = replacement enddef;|, kde typ může být suffix, text a expr.
+    \end{definice}
+
+% 14. 4. 2021
+
+\section{Křivky}
+    \begin{definice}[Bézierova křivka]
+        Bézierova křivka řádu (stupně) $d$ je parametrická ($t \in [0, 1]$) křivka určená body $a_0^d, …, a_d^d$. Definujeme $a_i^j = a_{i}^{j+1}·(1-t) + a_{i+1}^{j+1}·t$ a výsledný bod je $a_0^0$. Tedy výsledný polynom je $\sum_{i=0}^d \binom{d}{i}(1-t)^{d-i}t^i·a_i^d$. To jsou tzv. Bernsteinovy polynomy.
+    \end{definice}
+
+    \begin{pozorovani}[Vlastnosti B. křivek]
+        Je (koeficienty l. kombinace řídících bodů, která dává bod křivky, jsou) invariantní vůči lineárním transformacím. Leží v konvexním obalu řídících bodů.
+
+        Jakákoliv B. křivka řádu $d$ je taktéž B. křivka řádu $>d$. $d \rightarrow d+1$: $a_0 \rightarrow a_0$, $a_d \rightarrow a_{d+1}$, $\frac{i}{d+i}a_{i-1} + \(1-\frac{i}{d+i}\)a_i \rightarrow a_i$.
+
+        Křivku lze rozdělit v bodě $t$ na dvě B. křivky stejného řádu. Řídící body jsou pak $a_0^d, a_0^{d-1}, …, a_0^0$ a $a_d^d, a_{d-1}^{d-1}, …, a_0^0$.
+
+        Popis maticí: $a(t) = (t_0, …, t^d)·M·(z_0, …, z_d)^T$, kde $M$ je matice koeficientů.
+    \end{pozorovani}
+
+    \begin{poznamka}
+        Jelikož po křivce se „cestuje“ různě rychle, tak se špatně počítá správě hustá aproximace. Proto se rekurzivně křivka dělí, dokud spojnice koncových bodů není dobrá aproximace. Obdobně se hledá průnik (větve, kde jsou disjunktní obaly řídících bodů, můžeme zahodit). Také se tak počítá aproximace délky křivky, bod v dané vzdálenosti, inverze, …
+
+        Hledání bodů, které jsou nejvýše $\delta$ vzdáleny, zvyšuje řád!
+    \end{poznamka}
+
+    \begin{definice}[Splines]
+        Narozdíl od B. křivek prochází všemi řídícími body. Fungují tak, že se křivka rozdělí na části mezi 2 následujícími řídícími body, tyto části se pak vyjádří jako kubické (nejčastěji) křivky tak, aby celá křivka měla spojité derivace do 2. řádu (nejčastěji) (stačí v řídících bodech). Pokud je uzavřená, tak je to plně definovaná, jinak se většinou chce, aby derivace v krajních bodech byly nulové.
+    \end{definice}
+
 \end{document}

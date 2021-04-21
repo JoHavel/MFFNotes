@@ -1,0 +1,54 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[6.1]
+    Lineární operátor $f$ na prostoru $¦V = \LO\{(1, 3, −1, 1)^T, (0, 1, −1, 4)^T\}$ (jde o podprostor prostoru $®R^4$) splňuje
+    $$ f((1, 3, −1, 1)^T) = (1, 2, 0, −3)^T, \qquad f((0, 1, −1, 4)^T) = (0, −1, 1, −4)^T $$
+    Spočítejte $f^n((7, 17, −3, −9)^T)$.
+
+    \begin{reseni}
+        Označme si $B = (¦v_1, ¦v_2) = ((1, 3, −1, 1)^T, (0, 1, −1, 4)^T)$. Vyjádříme si $f$ v této bázi: $f(¦v_1) = ¦v_1 - ¦v_2$, $f(¦v_2) = -¦v_2$, tudíž (jelikož je $f$ lineární):
+        $$ [f]^B_B = \begin{pmatrix} 1 & -1 \\ 0 & -1 \end{pmatrix}. $$
+        Diagonalizace: Charakteristický polynom této matice je $(1-\lambda)·(-1-\lambda)$, tedy vlastní čísla jsou $1$, a vlastní vektor např. $(1, 0)^T$, a $-1$, a vlastní vektor např. $(1, 2)^T$. Tedy máme bázi $C = \(¦u_1, ¦u_2\) = \((1, 0)^T, (1, 2)^T\)$ vektorového prostoru $®R^2$, který reprezentuje vektory ¦V vyjádřené v bázi $B$.
+        $$ [\id]^C_B = \(¦u_1 | ¦u_2\) = \begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}, \qquad [\id]^B_C = \([\id]^C_B\)^{-1} = \begin{pmatrix} 1 & -1/2 \\ 0 & 1/2 \end{pmatrix}. $$ 
+        $$ [f]^C_C = [\id]_C^B·[f]_B^B·[\id]^C_B = \begin{pmatrix} 1 & -1/2 \\ 0 & 1/2 \end{pmatrix}·\begin{pmatrix} 1 & -1 \\ 0 & -1 \end{pmatrix}·\begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}. $$
+        
+        Ze skládání lineárních zobrazení víme, že
+        $$ f^n(¦x) = [\id]_K^B[\id]_B^C[f]_C^C[\id]_C^B[\id]_B^K[\id]_K^B[\id]_B^C[f]_C^C[\id]_C^B[\id]_B^K·…·[\id]_K^B[\id]_B^C[f]_C^C[\id]_C^B[\id]_B^K¦x = $$
+        $$ = [\id]_K^B[\id]_B^C]\([f]_C^C\)^n[\id]_C^B[\id]_B^K¦x. $$
+
+        Jediné, co nám tedy chybí je matice přechodů\footnote{Vlastně to není matice přechodu mezi bázemi, protože kanonická báze je báze $®R^4$ a $B$ je báze ¦V, tedy budou $2\times 4$ a $4\times 2$ a budou to identity jen na ¦V.} od báze $B$ ke kanonické bázi a opačně. To však můžeme (a musíme, protože $B$ není báze celého ®R, ale $K$ ano) „ošidit“ tím, že na základě první a druhé souřadnice tipneme (a ověříme), že $(7, 17, -3, -9)^T = 7¦v_1 - 4¦v_2 =: ¦x$, druhý přechod uděláme, jako jsme zvyklí (vektory $B$ budou sloupce dané matice), tedy
+        $$ f^n(¦x) = (¦v_1 | ¦v_2)·\begin{pmatrix} 1 & 1 \\ 0 & 2 \end{pmatrix}·\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}^n·\begin{pmatrix} 1 & -1/2 \\ 0 & 1/2 \end{pmatrix}·\binom{7}{-4} = \begin{pmatrix} 1 & 0 \\ 3 & 1 \\ -1 & -1 \\ 1 & 4 \end{pmatrix}\binom{9 + 2(-1)^{n+1}}{4(-1)^{n+1}} = $$
+        $$ = \begin{pmatrix} \phantom{-}9 + \phantom{1}2(-1)^{n+1} \\ 27 + 10(-1)^{n+1} \\ -9 + \phantom{1}6(-1)^n\phantom{12} \\ \phantom{-}9 + 18(-1)^{n+1} \end{pmatrix}. $$ 
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[6.2]
+    Vyřešte pro každé celé $n$ reálný spojitý dynamický systém
+    $$ ¦u'(x) := \begin{pmatrix} u'_1(x) \\ u'_2(x) \\ u'_3(x) \end{pmatrix} = \begin{pmatrix} 0 & 1 & 1 \\ -1 & 2 & 1 \\ -1 & 1 & 2 \end{pmatrix}^n·\begin{pmatrix} u_1(x) \\ u_2(x) \\ u_3(x) \end{pmatrix} =: A·¦u(x) $$ 
+    s počátečními podmínkami $u_i(0) = i$ pro $i = 1, 2, 3$. (Značení: $A^n = \(A^{−1}\)^{|n|}$ pro záporná $n$).
+
+    \begin{reseni}
+            Chceme rovnice převést do tvaru $¦y'(x) = D^n¦y(x)$, kde $D$ je diagonální matice a $¦y(x) = M¦u(x)$ ($M$ je regulární matice). Nejprve tedy provedeme diagonalizaci: Charakteristický polynom je $(0 - \lambda)(2 - \lambda)(2 - \lambda) - 1 - 1 + (2 - \lambda) - (0 - \lambda) + (2 - \lambda)$. Kořeny jsou 2 a dvojnásobný kořen 1. Vlastní vektory dostaneme tak, že do $(A - \lambda I)¦x=0$ dosadíme příslušná vlastní čísla a vyřešíme (jelikož potom $A¦x = \lambda¦x$).
+        $$ \(\begin{array}{ccc|c} 0 - 2 & 1 & 1 & 0 \\ -1 & 2 - 2 & 1 & 0 \\ -1 & 1 & 2 - 2 & 0 \end{array}\) \sim \(\begin{array}{ccc|c} 0 & 0 & 0 & 0 \\ 0 & -1 & 1 & 0 \\ -1 & 1 & 0 & 0 \end{array}\), $$
+        $$ \(\begin{array}{ccc|c} 0 - 1 & 1 & 1 & 0 \\ -1 & 2 - 1 & 1 & 0 \\ -1 & 1 & 2 - 1 & 0 \end{array}\) \sim \(\begin{array}{ccc|c} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ -1 & 1 & 1 & 0 \end{array}\). $$
+        Tudíž báze, kterou hledáme, je například $B = \((1, 1, 1)^T, (1, 1, 0)^T, (1, 0, 1)^T\)$. To nám dává matice přechodu:
+        $$ [\id]_K^B = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}, \qquad [\id]_B^K = \([\id]_K^B\)^{-1} = \begin{pmatrix} -1 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix}. $$
+
+        Máme tedy (využíváme, že matice přechodů jsou k sobě inverzní):
+        $$ ¦u'(x) = [\id]_K^B[\id]_B^KA^n[\id]_K^B[\id]_B^K¦u(x), \qquad \([\id]_B^K¦u\)'(x) = [\id]_B^K¦u'(x) = \([\id]_B^KA[\id]_K^B\)^n·[\id]_B^K¦u(x). $$
+        To už je náš tvar: $¦y'(x) = D^n¦y(x)$, kde $¦y(x) = [\id]_B^K¦u(x)$ a 
+        $$ D^n = \([\id]_B^KA[\id]_K^B\)^n = \(\begin{pmatrix} -1 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix}·\begin{pmatrix} 0 & 1 & 1 \\ -1 & 2 & 1 \\ -1 & 1 & 2 \end{pmatrix}·\begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}\)^n = \begin{pmatrix} 2 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}^n. $$
+        To nám dává rovnici
+        $$ ¦y'(x) = D^n¦y(x) = \begin{pmatrix} 2^n & 0 & 0 \\ 0 & 1^n & 0 \\ 0 & 0 & 1^n \end{pmatrix}¦y(x). $$
+        Analýza nám dává řešení $¦y(x) = \(y_1(0)·e^{2^nx}, y_2(0)·e^x, y_3(0)·e^x\)^T$. To dosadíme zpátky:
+        $$ ¦u(x) = [\id]_B^K¦y(x) = [\id]_B^K·\begin{pmatrix} e^{2^nx} & 0 & 0 \\ 0 & e^x & 0 \\ 0 & 0 & e^x \end{pmatrix}¦y(0) = \begin{pmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \\ 1 & 0 & 1 \end{pmatrix}·\begin{pmatrix} e^{2^nx} & 0 & 0 \\ 0 & e^x & 0 \\ 0 & 0 & e^x \end{pmatrix}·\begin{pmatrix} -1 & 1 & 1 \\ 1 & 0 & -1 \\ 1 & -1 & 0 \end{pmatrix}·¦u(0) = $$
+        $$ = \begin{pmatrix} -3e^x + 4e^{2^n·x} \\ -2e^x + 4e^{2^n·x} \\ -1e^x + 4e^{2^n·x} \end{pmatrix}. $$
+    \end{reseni}
+\end{priklad}
+
+\end{document}

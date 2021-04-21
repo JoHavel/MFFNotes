@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}
+    Uvažujme Minkowského prostoročas $M = ®R^4 \simeq ®R[t,x_1,x_2,x_3]$ se skalárním součinem signatury  $(3,1)$  odpovídající  kvadratické  formě $−t^2 +x^2_1+x^2_2+x^2_3$ a  vektorový  prostor  diferenciálů $T^*=T^*(M)$ s bází $\{d_0, d_1, d_2, d_3\}$, kde $d_0 = dt$, $d_i=dx_i$, $i= 1, 2, 3$.
+
+    Homogenní části vnější algebry $\Lambda^*(T^*) = \sum^4_{k=0}\Lambda^k(T^*)$ mají tvar:
+    $$ \Lambda^0 = ®R;\qquad \Lambda^1 = \<d_0, d_1, d_2, d_3\>;\qquad \Lambda^2 = \<d_{01}, d_{02}, d_{03}, d_{12}, d_{13}, d_{23}\>; $$
+    $$ \Lambda^3 = \<d_{012}, d_{013}, d_{023}, d_{123}\>; \qquad \Lambda^4 = \<d_{1234}\>. $$ 
+
+    (A) Napište explicitně tvar Hodgeova operátoru $*: \Lambda^k(T^*)\rightarrow \Lambda^{n−k}(T^*)$, $k= 0, 1, 2, 3, 4$. Objemová forma $\sigma$ je definována předpisem $\sigma = dt \wedge dx_1 \wedge dx_2 \wedge dx_3$.
+
+    (B) Diferenciální forma stupně 2 na Minkowského prostoru je definována vztahem
+    $$ F = −E_1dt\wedge dx_1 − E_2 dt\wedge dx_2 − E_3 dt \wedge dx_3 + B_1 dx_2 \wedge dx_3 - B_2 dx_1\wedge dx_3+B_3 dx_1 \wedge dx_2 $$
+    a diferenciální forma stupně 1
+    $$ J = −\rho dt+J_1dx_1+J_2dx_2+J_3dx_3. $$ 
+    Vypočítejte explicitně tvar rovnic
+    $$ dF = 0;\qquad *d*F=J $$
+    a porovnejte je se sadou Maxwellových rovnic.
+
+    \begin{reseni}[A]
+        Nejprve zjistíme, kolik vychází skalární součin $\<d_I, d_J\>$ ($I = (i_1, …, i_k)$, $J = (j_1, …, j_k)$, $i_1 < i_2 < … < i_k$, $j_1 < j_2 < … < j_k$). Jelikož je prostor symetrický vůči permutaci 3 prostorových souřadnic, mohou nastat jen 3 případy:
+
+        \begin{enumerate}
+            \item $I$ a $J$ odpovídají různé množině indexů, tj. existuje $i \in I, i \notin J$, tedy $\<d_I, d_J\> = …·\<d_i, …\>·… = …·0·… = 0$, jelikož v definici skalárního součinu není žádný člen $x_i·x_j$ pro $i≠j$.
+            \item $0 \notin I$ (tj. $0 \notin J$). Potom všechny skalární součiny $\<d_i, d_i\>$ (tj. jediné které jsou nenulové) jsou rovny jedné, protože metrika má u prostorových souřadnic koeficient $+1$, tj.
+            $$ \<d_I, d_J\> = \<d_I, \sgn\binom{I}{J}d_I\> = \sgn\binom{I}{J}·\<d_{i_1}, d_{i_1}\>·…·\<d_{i_k}, d_{i_k}\> = 1·1·…·1 = 1. $$
+    \item $0 \in I$ (tj. $0 \in J$). Potom jeden ze skalárních součinů bázových vektorů bude tvaru $\<dt, dt\> = -1$, protože u času je v Minkowského metrice koeficient $-1$, zbylé (skalární součiny stejných bázových vektorů) budou zase $+1$. BÚNO $i_1 = 0$. Tedy
+            $$ \<d_I, d_J\> = \<d_I, \sgn\binom{I}{J}d_I\> = 1·\<dt, dt\>·\<d_{i_2}, d_{i_2}\>·…·\<d_{i_k}, d_{i_k}\> = (-1)·1 = -1. $$
+        \end{enumerate}
+        Navíc budeme používat bilinearitu skalárního součinu, tedy $\<a·d_I, b·d_J\> = a·b·\<d_I, d_J\>$. Teď už nám stačí zapsat si rovnost definující Hodgeův operátor v obecné formě a spočítat:
+
+        \begin{itemize}
+            \item $k=0$: Máme $a \in ®R$, $b·d_{0123} \in \Lambda^4$ a hledáme $c·d_{0123} \in \Lambda^4$:
+                $$ a \wedge b·d_{0123} = a·b·d_{0123} = \<c·d_{0123}, b·d_{0123}\>·d_{0123} = c·b·(-1)·d_{0123} \implies c = -a. $$
+                Tudíž $*: a \mapsto -a·d_{0123}$.
+            \item $k=1$: Máme $a_0d_0 + a_1d_1 + a_2d_2 + a_3d_3 \in \Lambda^1$, $b_0d_{123} + b_1d_{023} + b_2d_{013} + b_3d_{012} \in \Lambda^3$ a hledáme $c_0d_{123} + c_1d_{023} + c_2d_{013} + c_3d_{012} \in \Lambda^3$:
+                $$ \(a_0d_0 + a_1d_1 + a_2d_2 + a_3d_3\) \wedge \(b_0d_{123} + b_1d_{023} + b_2d_{013} + b_3d_{012}\) = $$
+                $$ = \(a_0b_0 - a_1b_1 + a_2b_2 - a_3b_3\)d_{0123} = $$
+                $$ = \<c_0d_{123} + c_1d_{023} + c_2d_{013} + c_3d_{012}, b_0d_{123} + b_1d_{023} + b_2d_{013} + b_3d_{012}\>·d_{0123} = $$
+                $$ = (c_0b_0 - c_1b_1 - c_2b_2 - c_3b_3)·d_{0123} \implies c_0 = a_0, c_1 = a_1, c_2 = -a_2, c_3 = a_3. $$
+                Tedy $*: a_0d_0 + a_1d_1 + a_2d_2 + a_3d_3 \mapsto a_0d_{123} + a_1d_{023} - a_2d_{013} + a_3d_{012}$. (Mínusy v prvním výrazu vyšly z přeházení bázových vektorů, v druhém výrazu pak ze skalárního součinu, kde byl čas.)
+        \end{itemize}
+
+    \end{reseni}
+
+    \begin{reseni}[Pokračování A]
+        \ 
+        \vspace{-3em} \begin{itemize}
+            \item $k=2$: Máme $a_{01}d_{01} + a_{02}d_{02} + a_{03}d_{03} + a_{12}d_{12} + a_{13}d_{13} + a_{23}d_{23} \in \Lambda^2$, $a_{01}d_{01} + a_{02}d_{02} + b_{03}d_{03} + b_{12}d_{12} + b_{13}d_{13} + b_{23}d_{23} \in \Lambda^2$ a hledáme $c_{01}d_{01} + c_{02}d_{02} + c_{03}d_{03} + c_{12}d_{12} + c_{13}d_{13} + c_{23}d_{23} \in \Lambda^2$:
+                $$ \(a_{01}d_{01} + a_{02}d_{02} + a_{03}d_{03} + a_{12}d_{12} + a_{13}d_{13} + a_{23}d_{23}\) \wedge $$
+             $$ \wedge \(b_{01}d_{01} + b_{02}d_{02} + b_{03}d_{03} + b_{12}d_{12} + b_{13}d_{13} + b_{23}d_{23}\) = $$
+                $$ = (a_{01}·b_{23} - a_{02}·b_{13} + a_{03}·b_{12} + a_{12}·b_{03} - a_{13}·b_{02} + a_{23}·b_{01})·d_{0123} = $$
+                $$ \<c_{01}d_{01} + c_{02}d_{02} + c_{03}d_{03} + c_{12}d_{12} + c_{13}d_{13} + c_{23}d_{23}\right., $$
+                $$ \left.b_{01}d_{01} + b_{02}d_{02} + b_{03}d_{03} + b_{12}d_{12} + b_{13}d_{13} + b_{23}d_{23}\>·d_{0123} = $$
+                $$ = \(-c_{01}b_{01} - c_{02}b_{02} - c_{03}b_{03} + c_{12}b_{12} + c_{13}b_{13} + c_{23}b_{23}\)·d_{0123} $$
+            Proto $*: a_{01}d_{01} + a_{02}d_{02} + a_{03}d_{03} + a_{12}d_{12} + a_{13}d_{13} + a_{23}d_{23} \mapsto -a_{23}d_{01} + a_{13}d_{02} - a_{12}d_{03} + a_{03}d_{12} - a_{02}d_{13} + a_{01}d_{23}$.
+
+            \item $k=3$: Máme $a_0d_{123} + a_1d_{023} + a_2d_{013} + a_3d_{012} \in \Lambda^3$, $b_0d_0 + b_1d_1 + b_2d_2 + b_3d_3 \in \Lambda^1$ a hledáme $c_0d_0 + c_1d_1 + c_2d_2 + c_3d_3 \in \Lambda^1$:
+                $$ \(a_0d_{123} + a_1d_{023} + a_2d_{013} + a_3d_{012}\) \wedge \(b_0d_0 + b_1d_1 + b_2d_2 + b_3d_2\) = $$
+                $$ = \(- a_0b_0 + a_1b_1 - a_2b_2 + a_3b_3\)d_{0123} = $$
+                $$ = \<c_0d_0 + c_1d_1 + c_2d_2 + c_3d_3, b_0d_0 + b_1d_1 + b_2d_2 + b_3d_3\>·d_{0123} = $$
+                $$ (-c_0b_0 + c_1b_1 + c_2b_2 + c_3b_3)·d_{0123} \implies c_0 = a_0, c_1 = a_1, c_2 = -a_2, c_3 = a_3. $$
+                Tudíž $a_0d_{123} + a_1d_{023} + a_2d_{013} + a_3d_{012} \mapsto a_0d_0 + a_1d_1 - a_2d_2 + a_3d_3$.
+            \item $k=4$: Máme $a·d_{0123} \in \Lambda^4$, $b \in ®R$ a hledáme $c \in ®R$:
+                $$ a·d_{0123} \wedge b = a·b·d_{0123} = \<c, b\>·d_{0123} = c·b·d_{0123} \implies c = a. $$
+                Tudíž $*: a·d_{0123} \mapsto a$.
+        \end{itemize}
+    \end{reseni}
+
+    \begin{reseni}[B]
+        Z definice diferenciálu spočítáme:
+        $$ dF = \(-\frac{\partial E_1}{\partial x_2} + \frac{\partial E_2}{\partial x_1} + \frac{\partial B_3}{\partial t}\)d_{012} + \(-\frac{\partial E_1}{\partial x_3} + \frac{\partial E_3}{\partial x_1} - \frac{\partial B_2}{\partial t}\)d_{013}\, + $$
+        $$ + \(-\frac{\partial E_2}{\partial x_3} + \frac{\partial E_3}{\partial x_2} + \frac{\partial B_1}{\partial t}\)d_{023} + \(\frac{\partial B_1}{\partial x_1} + \frac{\partial B_2}{\partial x_2} + \frac{\partial B_3}{\partial x_3}\)d_{123} = 0. $$
+        Porovnáním členů dostaneme:
+        $$ -\frac{\partial B_3}{\partial t} = \frac{\partial E_2}{\partial x_1} - \frac{\partial E_1}{\partial x_2}; \qquad -\frac{\partial B_2}{\partial t} = \frac{\partial E_1}{\partial x_3} - \frac{\partial E_3}{\partial x_1}; $$
+        $$ -\frac{\partial B_1}{\partial t} = \frac{\partial E_3}{\partial x_2} - \frac{\partial E_2}{\partial x_3}; \qquad \frac{\partial B_1}{\partial x_1} + \frac{\partial B_2}{\partial x_2} + \frac{\partial B_3}{\partial x_3} = 0. $$
+        Což je z definice rotace a divergence to samé jako (druhá a čtvrtá Maxwellova rovnice):
+        $$ \vec{\nabla} \times \vec{E} = - \frac{\partial \vec{B}}{\partial t}; \qquad \vec{\nabla}·\vec{B} = 0. $$ 
+
+        Z předchozích výsledků zobrazíme $*$, následně z definice spočítáme diferenciál a nakonec znovu zobrazíme $*$:
+        $$ *d*F = *d\(-B_1d_{01} - B_2d_{02} - B_3d_{03} - E_3d_{12} + E_2d_{13} - E_1d_{23}\) = $$
+        $$ = *\(\(-\frac{\partial B_1}{\partial x_2} + \frac{\partial B_2}{\partial x_1} - \frac{\partial E_3}{\partial t}\)d_{012} + \(-\frac{\partial B_1}{\partial x_3} + \frac{\partial B_3}{\partial x_1} + \frac{\partial E_2}{\partial t}\)d_{013}\, + \right. $$
+        $$ \left. + \(-\frac{\partial B_2}{\partial x_3} + \frac{\partial B_3}{\partial x_2} - \frac{\partial E_1}{\partial t}\)d_{023} + \(-\frac{\partial E_1}{\partial x_1} - \frac{\partial E_2}{\partial x_2} - \frac{\partial E_3}{\partial x_3}\)d_{123} \) = $$
+        $$ = \(-\frac{\partial B_1}{\partial x_2} + \frac{\partial B_2}{\partial x_1} - \frac{\partial E_3}{\partial t}\)d_3 - \(-\frac{\partial B_1}{\partial x_3} + \frac{\partial B_3}{\partial x_1} + \frac{\partial E_2}{\partial t}\)d_2\, + $$
+        $$ +\(-\frac{\partial B_2}{\partial x_3} + \frac{\partial B_3}{\partial x_2} - \frac{\partial E_1}{\partial t}\)d_1 + \(-\frac{\partial E_1}{\partial x_1} - \frac{\partial E_2}{\partial x_2} - \frac{\partial E_3}{\partial x_3}\)dt = $$
+        $$ = -\rho\,dt + J_1dx_1 + J_2dx_2 + J_3dx_3. $$
+        Porovnáním koeficientů dostaneme
+        $$ J_3 + \frac{\partial E_3}{\partial t} = \frac{\partial B_2}{\partial x_1} - \frac{\partial B_1}{\partial x_2}; \qquad J_2 + \frac{\partial E_2}{\partial t} = \frac{\partial B_1}{\partial x_3} - \frac{\partial B_3}{\partial x_1}; $$
+        $$ J_1 + \frac{\partial E_1}{\partial t} = \frac{\partial B_3}{\partial x_2} - \frac{\partial B_2}{\partial x_3}; \qquad -\frac{\partial E_1}{\partial x_1} - \frac{\partial E_2}{\partial x_2} - \frac{\partial E_3}{\partial x_3} = -\rho. $$
+        A taktéž z definice rotace a divergence dostaneme (první a třetí Maxwellova rovnice):
+        $$ \vec{\nabla} \times \vec{B} = \vec{J} + \frac{\partial \vec{E}}{\partial t}; \qquad \vec{\nabla}·\vec{E} = \rho. $$ 
+    \end{reseni}
+\end{priklad}
+
+\end{document}

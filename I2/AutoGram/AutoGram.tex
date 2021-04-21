@@ -443,5 +443,84 @@
         \end{dukazin}
     \end{veta}
 
+% 13. 4. 2021
+
+
+\section{Zásobníkový automat (PDA)}
+    \begin{definice}
+        Zásobníkový automat (PDA) je $P = (Q, \Sigma, \Gamma, \delta, q_0, Z_0, F)$, kde $Q$ je konečnámnožína stavů, $\Sigma$ je neprázdná konečná množina vstupních symbolů, $\Gamma$ neprázdná konečná zásobníková abeceda, $\delta$ je přechodová funkce $\delta: Q \times (\sigma \cup \{\lambda\})\times \Gamma \rightarrow P(FIN(Q \times \Gamma^*))$, $\delta(p, a, X) \ni (q, \gamma)$, kde $q$ je nový stav a $\gamma$ je řetězec zásobníkových symbolů, který nahradí $X$ na vrcholu zásobníku. $q_0 \in Q$ je počáteční stav, $Z_0 \in \Gamma$ je počáteční zásobníkový symbol (víc na začátku na zásobníku není), $F$ je množina přijímajících (koncových) stavů; může být nedefinovaná.
+    \end{definice}
+
+    \begin{definice}[Přechodový diagram pro zásobníkový automat]
+        Uzly odpovídají stavům PDA, šipka odnikud ukazuje počátek, dvojité kruhy jsou přijímající stav, hrana odpovídá přechodu PDA.
+    \end{definice}
+
+    \begin{definice}[Situace zásobníkového automatu]
+        Situaci zásobníkového automatu reprezentujeme trojicí $(q, w, \gamma)$, kde $q$ je stav, $w$ je zbývající vstup a $\gamma$ je obsah zásobníku (vrchol je vlevo). Situaci značíme ID z anglického instantaneous description.
+    \end{definice}
+
+    \begin{definice}[Posloupnost situací, jazyk]
+        Intuitivně. Jen u jazyka můžeme mít přijímání koncovým stavem, nebo prázdným zásobníkem.
+    \end{definice}
+
+    TODO
+
+    \begin{veta}
+        Následující tvrzení jsou ekvivalentní:
+        
+        \begin{itemize}
+            \item Jazyk $L$ je bezkontextový, tj. generovaný CFG.
+            \item Jazyk $L$ je přijímaný nějakým zásobníkovým automatem koncovým stavem.
+            \item Jazyk $L$ je přijímaný nějakým zásobníkovým automatem prázdným zásobníkem.
+        \end{itemize}
+    \end{veta}
+
+    \begin{lemma}[Od přijímajícího stavu k prázdnému zásobníku]
+        Mějme $L = L(P_F)$ pro nějaký PDA. Pak existuje PDA $P_N$ takový, že $L(P_N)$.
+
+        \begin{dukazin}
+                Odsimulujeme $P_F$ a ze všech přijímajících stavů dovolíme přejít do uklízecího stavu, kde automat vše vyhází. (Pozor, musíme přidat „neznámý“ prvek na zásobník, aby nedošlo k vyprázdnění v nepřijímajícím stavu.)
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}[Od prázdného zásobníku ke koncovému stavu]
+        Pokud $L = N(P_n)$, pak $L = L(P_F)$.
+
+        \begin{dukazin}
+            Odsimulujeme a pak se, pokud máme prázdný zásobník, dostaneme do stavu, kde přijmeme.
+        \end{dukazin}
+    \end{lemma}
+
+% 20. 4. 2021
+
+    \begin{definice}[Algoritmus CYK]
+        TODO
+    \end{definice}
+
+    \begin{definice}[Chomského normální forma]
+        Bezkontextová gramatika, kde jsou pravidla pouze typu $A \rightarrow BC$ nebo $A \rightarrow A$.
+    \end{definice}
+
+    \begin{definice}[Zbytečný, užitečný, generující a dosažitelný sympbol]
+        Symbol $X$ je užitečný v gramatice $G$, pokud existuje derivace tvaru  $S \implies^* \alpha X\beta \implies^* w$. Pokud $X$ není užitečný, říkáme, že je zbytečný.
+
+        $X$ je generující, pokud $X \implies^* w$. $X$ je dosažitelný, pokud $S \implies^* \alpha X \beta$.
+    \end{definice}
+
+    \begin{definice}[Eliminace zbytečných symbolů]
+            Nechť $G$ je $CFG$ a $L(G) ≠ \O$. Zkonstruujeme $G_1$ tak, že eliminujeme negenerující symboly a pravidla je obsahující a poté eliminujeme všechny nedosažitelné symboly. Pak $G_1$ nemá zbytečné symboly a $L(G_1) = L(G)$.
+    \end{definice}
+
+    \begin{definice}[Nulovatelný neterminál]
+        Neterminál je nulovatelný, pokud $A \implies^* \lambda$.
+    \end{definice}
+
+    \begin{definice}[Jednotkové pravidlo]
+        Jednotkové pravidlo je $A \rightarrow B \in P$, kde $A, B$ jsou oba neterminály.
+    \end{definice}
+
+    \begin{definice}[Jednotkový pár]
+        Dvojici $A, B \in V$ takovou, že $A \implies^* B$ pouze jednotkovými pravidly nazýváme jednotkový pár (jednotková dvojice).
+    \end{definice}
 
 \end{document}

@@ -335,4 +335,87 @@
         $$ \rho((x, \alpha), (y, \beta)) = 1, \text{ pokud } \alpha ≠ \beta, \rho_{\alpha}(x, y), \text{ pokud } \alpha = \beta. $$
     \end{definice}
 
+% 9. 4. 2021
+
+    \begin{definice}[Součin (spočetně mnoha) MP]
+        Buďte $\{®X_i, \rho_i\}_{i \in ®N}$ MP, že $\forall i \in ®N: \diam(®X_i) ≤ 1$. Součinem prostorů $\(®X_i, \rho_i\)$ nazýváme metrický prostor (je nutno, ale jednoduché dokázat)
+        $$ \prod_{i \in ®N} := (®X, \rho), \qquad ®X = \prod_{i \in ®N}®X_i \land \forall f, g \in ®X: \rho(f, g) = \sum_{i=1}^* \frac{\rho_i(f(i), g(i))}{2^i}. $$ 
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buďte $(®X_i, \rho_i)$, $i \in ®N$, MP, kde $\diam ®X_i ≤ 1$. Nechť $(®X, \rho) = \prod_{i \in ®N}(®X_i, \rho_i)$ a budiž $\{f_n\}_{n=1}^∞ \subseteq ®X$ posloupnost bodů v ®X, $f \in ®X$. Pak $\lim_{n \rightarrow ∞} f_n = f$ v $(®X, \rho)$ $\Leftrightarrow$ $\forall i \in ®N: \lim_{n \rightarrow ∞} f_n(i) = f(i)$ v $(®X_i, \rho_i)$.
+
+        \begin{dukazin}
+            $\implies$: Nechť $f_n \rightarrow f$. Budiž dáno libovolné $i_0 \in ®N$. Nechť $\epsilon > 0$. Najdeme $n_0 \in ®N$, že $\forall n ≥ n_0: \rho(f_n, f) < \epsilon·2^{-i_0}$. Tedy pro
+            $$ n ≥ n_0: \epsilon · 2^{-i_0} > \rho(f_n, f) = \sum_{i=1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≥ \frac{\rho_{i_0}(f_n(i_0), f(i_0))}{2^{i_0}}, $$
+            tj. $\rho_{i_0}(f_n(i_0), f(i_0)) < \epsilon$. tedy $\lim_{n \rightarrow ∞} f_n(i_0) = f(i_0)$.
+
+            $\Leftarrow$: Nechť $\forall i \in ®N: f_n(i) \rightarrow f(i)$. Nechť $\epsilon > 0$. Najděme $i_0 \in ®N$, že $\sum_{i = i_0 + 1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro všechna $i \in \{1, 2, …, i_0\}$ najdeme $n_i$, že $\forall n ≥ n_i: \rho_i(f_n(i), f(i)) < \frac{\epsilon}{i_0}$. Položme $\tilde{n} := \max \{n_1, n_2, …, n_{i_0}\}$. Pak $n ≥ \tilde n$: jest
+            $$ \rho(f_n, f) = \sum_{i=1}^∞\frac{\rho_i(f_n(i), f(i))}{2^i} = \sum_{i=1}^{i_0} \frac{\rho_i(f_n(i), f(i))}{2^i} + \sum_{i=i_0+1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≤ \sum_{i=1}^{i_0} \frac{\epsilon/i_0}{2} + \sum_{i = i_0+1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+\section{Totálně omezené a separabilní MP}
+    \begin{definice}[$\epsilon$-síť, $\epsilon$-separovanost, totální omezenost]
+        Buď $(®M, d)$ MP, $A \subseteq ®M$, $\epsilon > 0$. Řekneme, že $A$ je $\epsilon$-síť pro ®M, jestliže $\forall x \in ®M\ \exists a \in A\ \forall x \in \B(a, \epsilon): d(x, a) < \epsilon$.
+
+        $A$ je $\epsilon$-separovaná, pokud $\forall x, y \in A: d(x, y) ≥ \epsilon$.
+
+        ®M je totálně omezený, jestliže $\forall \epsilon > 0\ \exists A \subseteq ®M: A$ je konečná $\epsilon$-síť pro ®M.
+
+        ®M je separabilní, pokud $\exists A \subseteq ®M$ spočetná: $\overline{A} = ®M$. (Tj. $A$ je hustá v ®M.)
+    \end{definice}
+
+    \begin{veta}
+        MP $(®M, d)$ je totálně omezený, právě když $\forall \epsilon > 0$ je každá $\epsilon$-separovaná množina konečná.
+
+        \begin{dukazin}
+            $\implies$: Nechť $\epsilon > 0$, $B \subseteq ®M$ je $\epsilon$-separovaná. Chceme $B$ je konečná. Protože ®M je TO, existuje konečná $\frac{\epsilon}{4}$-síť $A \subseteq ®M$. Pro každé $x \in B$ zvolíme nějaký bod $a_x \in A: d(x, a_x) < \frac{\epsilon}{4}$. Pak pro $x≠y$, $x, y \in B$ platí $a_x ≠ a_y$: $d(a_x, a_y) ≥ d(x, y) - d(x, a_x) - d(y, a_y) ≥ \epsilon - \frac{\epsilon}{4} - \frac{\epsilon}{4} = \frac{\epsilon}{2} > 0$. Tj. zobrazení $B \rightarrow A: x \mapsto a_x$ je prosté. Ale $A$ je konečná tedy $B$ je konečná.
+
+            $\Leftarrow$ Nechť $\epsilon > 0$; chceme najít konečnou $\epsilon$-síť. Vezmeme si $B \subseteq M$ $\epsilon$-separovaná, která je maximální (co do inkluze). Tvrdíme, že $B$ je automaticky $\epsilon$ síť: Zvolme $x \in ®M$. Pak existuje $b \in B: d(x, b) < \epsilon$. Kdyby ne: $\forall b \in B: d(x, b) ≥ \epsilon$. To by znamenalo, že $B \cup \{x\} \supset B$ je $\epsilon$-separovaná, což je spor s maximalitoui B. Tj. $B$ je opravdu $\epsilon$-síť pro ®M.
+
+            Druhá část důkazu však potřebuje tzv. Zornovo lemma, abychom mohli brát $B$ maximální.
+        \end{dukazin}
+    \end{veta}
+
+% 16. 4. 2021
+
+    \begin{veta}
+        Buď $(®M, d)$ MP, $®N \subseteq ®M$. Pokud $(®M, d)$ je TO, pak i $(®N, d)$ je TO. (Tedy TO se zachovává na podprostory.)
+
+        \begin{dukazin}
+            Nechť $A \subseteq ®N$ je $\epsilon$-separovaná. Chceme: $A$ je konečná. (Pak $(®N, d)$ je TO podle V18). Ale $A \subseteq ®N \subseteq ®M$, tedy $A \subseteq ®M$ je $\epsilon$-separovaná v ®M. Ale ®M je TO, takže $A$ musí být konečná.
+        \end{dukazin}
+    \end{veta}
+    
+    \begin{veta}
+        $(®M, d)$ je MP, $®N \subseteq ®M$. Je-li $(®N, d)$ TO, pak $(\overline{®N}, d)$ je TO. (TO se zachovává na uzávěr.)
+
+        \begin{dukazin}
+            $\epsilon > 0$ dáno, chceme konečnou $\epsilon$-síť v prostoru $(\overline{®N}, d)$. Nechť $A \subseteq ®N$ je konečná $\epsilon/2$-síť pro ®N (ta existuje, neboť $(®N, d)$ je TO). Chceme $Á$ je $\epsilon$-sít pro $(\overline{®N}, d)$. Zvolme libovolný bod $x \in \overline{®N}$. Chceme $\exists y \in A: d(x, y) < \epsilon$.
+
+            Protože $x \in \overline{®N}$, existuje $z \in ®N: d(x, z) < \frac{\epsilon}{2}$. Protože $A$ je $\epsilon/2$-síť pro ®N, existuje $y \in A: d(y, z) < \frac{\epsilon}{2}$. Tedy $d(x, y) ≤ d(x, z) + d(y, z) < \epsilon/2 + \epsilon/2 = \epsilon$. Tudíž $A$ je $\epsilon$-síť pro $\overline{®N}$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Nechť $(®M_\alpha, d_\alpha)$, $\alpha \in I$ jsou MP, $\diam M_\alpha ≤ 1$, $\forall \alpha \in I$. Pak $\sum_{\alpha \in I}(®M_\alpha, d_\alpha)$ je TO $\Leftrightarrow$ $I$ je konečná a $\forall \alpha \in I:$ $(®M_\alpha, d_\alpha)$ je TO.
+
+        \begin{dukazin}
+            $\implies$: Nechť $\sum$ je TO. Nechť $\epsilon > 0$. Pokud $\epsilon ≥ 1$, pak libovolná jednobodová množina je $\epsilon$-síť. $\epsilon < 1$. Nechť $A \subseteq \sum(®M_\alpha, d_\alpha)$ je konečná $\epsilon$-síť. Položme $A_\alpha := \{x \in ®M_\alpha | (x, \alpha) \in A\}$. Potom $A_\alpha$ je zřejmě $\epsilon$-síť $(®M_\alpha, d_\alpha)$.
+
+            $\Leftarrow$: Podle předpokladů, pro dané $\epsilon > 0$, $\forall \alpha \in I\ \exists A_\alpha \subseteq ®M_\alpha: A_\alpha$ je konečná $\epsilon$-síť (protože $(®M_\alpha, d_\alpha)$ jsou TO). $A \bigcup_{\alpha \in I} A_\alpha\times\{\alpha\}$ je $\epsilon$-síť pro $\sum_{\alpha \in I}(®M_\alpha, d_\alpha)$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Nechť $(®M_i, d_i)$ jsou MP, $i \in ®N$, a nechť $\forall i: \diam ®M_i ≤ 1$. Pak $(®M, d) = \prod_{i \in ®N}(®M_i, d_i)$ je TO $\Leftrightarrow$ $\forall i \in ®N: (®M_i, d_i)$ je TO.
+
+        \begin{dukazin}
+            $\implies$: (Lze provést i důkaz přímo z definic) Zvolme $a = (a_i)_{i=1}^∞ \in ®M$. Definujeme zobrazení $\phi: (®M_i, d_i) \rightarrow (®M, d)$ tak, že $\phi(x) = (a_1, a_2, …, a_{i-1}, x, a_{i+1}, a_{i+2}, …) \in ®M$. Pak $\phi$ je izometrie. Tedy $(®M_i, \frac{d_i}{2^i})$ lze chápat jako podprostor (neboli izometrickou kopii podprostoru) $(®M, d)$. Ale ®M je TO, tedy i jeho podprostor je TO.
+
+        $\Leftarrow$: Nechť $\epsilon > 0$ je dáno. Zvolíme $i_0 \in ®N: \sum_{i=i_0}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro $i \in \{1, …, i_0 - 1\}$ najdeme konečné $\epsilon/2$-síťě $A_i$ pro $®M_i$. $S = \{(x_i) \in ®M | x_i \in A_i, i \in \{1, …, i_0 - 1\} \lor x_i = a_i, i ≥ i_0\}$. $S$ je konečná, neboť $|S| \prod_{i=1}^{i_0 - 1}|A_i|$. $S$ je $\epsilon$-síť pro ®M.
+        \end{dukazin}
+    \end{veta}
+
 \end{document}

@@ -440,4 +440,95 @@
         $X, Y$ podobné $\implies$ $p_X(\lambda) = p_Y(\lambda)$.
     \end{tvrzeni}
 
+% 31. 3. 2021
+
+    \begin{definice}[Diagonalizovatelný operátor]
+        ®T těleso, ¦V konečně generovaný vektorový prostor. $f: ¦V \rightarrow ¦V$ lineární operátor. Pak $f$ je diagonalizovatelný, pokud $\exists$ báze $B$ prostoru ¦V taková, že $[f]_B^B$ je diagonální.
+    \end{definice}
+
+    \begin{poznamka}[Značení]
+        $$ \diag(\lambda_1, \lambda_2, …, \lambda_n) := \begin{pmatrix} \lambda_1 & & … & \\ & \lambda_2 & … & \\ \vdots & \vdots & \ddots & \\ & & & \lambda_n \end{pmatrix}. $$
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Buď $f: ¦V \rightarrow ¦V$ lineární operátor na konečně generovaném VP ¦V nad ®T a buď $B = (¦v_1, …, ¦v_n)$ nějaká báze. Pak:
+        $$ [f]_B^B = \diag(\lambda_1, …, \lambda_n) \Leftrightarrow \forall i: ¦v_i \text{ je vlastní vektor příslušný k } \lambda_i. $$ 
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Za stejných předpokladů: $f$ diagonalizovatelný $\Leftrightarrow$ ¦V má bázi z vlastních vektorů $f$.
+    \end{dusledek}
+
+    \begin{definice}[Diagonalizovatelnost pro matice]
+        Buď ®T těleso a $A$ čtvercová matice řádu $n$ nad ®T. Pak $A$ je diagonalizovatelná, pokud je $f_A: ®T^n \rightarrow T^n$ diagonalizovatelný lineární operátor.
+    \end{definice}
+
+    \begin{dusledek}
+        $A$ je diagonalizovatelná $\Leftrightarrow$ $®T^n$ má bázi z vlastních vektorů $A$.
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        Buď $A \in ®T^{n \times n}$. Pak následující tvrzení jsou ekvivalentní:
+        
+        \begin{enumerate}
+            \item $A$ je diagonalizovatelná.
+            \item $®T^n$ má bázi z vlastních vektorů matice $A$.
+            \item $A$ je podobná diagonální matici.
+        \end{enumerate}
+    \end{tvrzeni}
+
+    \subsection{Lineární nezávislost vlastních vektorů}
+        \begin{veta}
+            Buď ®T těleso a $f: ¦V \rightarrow ¦V$ lineární operátor na VP ¦V nad ®T. Je-li $(¦v_1, …, ¦v_n)$ posloupnost vlastních vektorů $f$ popořadě příslušných k vlastním číslům $(\lambda_1, …, \lambda_n)$ a $\lambda_1, …, \lambda_n$ jsou po dvou různá, pak je $(¦v_1, …, ¦v_n)$ LN.
+
+            \begin{dukazin}
+                Indukcí podle $n$. $n=1$ je triviální ($¦v_1 ≠ 0$). $n>1$: Uvažujme $a_1, …, a_{n-1} \in ®T$ taková, že $a_1¦v_1 + … + a_n¦v_n = ¦o$. $a_1f(¦v_1) + … + a_nf(¦v_n) = 0$ $\Leftrightarrow$ $\lambda_1a_1¦v_1 + … + \lambda_na_n¦v_n = 0$. Také můžeme původní rovnici vynásobit $\lambda_n$: $\lambda_na_1¦v_1 + … + \lambda_na_n¦v_n = 0$. Následně můžeme odečíst tyto rovnice od sebe a dostaneme $(\lambda_1 - \lambda_n)a_1¦v_1 + … + (\lambda_{n-1} - \lambda_n)a_{n-1}¦v_{n-1} = 0$. Ale z IP $(\lambda_1 - \lambda_n)a_1 = … = (\lambda_{n-1} - \lambda_n)a_{n-1} = 0$. Ale vlastní čísla jsou po dvou různá, tedy $a_1 = … = a_{n-1} = 0$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Má-li lineární operátor $f: ¦V \rightarrow ¦V$ na prostoru dimenze $n$ $n$ po 2 různých vlastních čísel, pak je $f$ diagonalizovatelný.
+
+            Má-li čtvercová matice $A$ řádu $n$ $n$ po 2 různých vlastních čísel, pak je $A$ diagonalizovatelná.
+        \end{dusledek}
+
+% 7. 4. 2021
+
+    \subsection{Geometrická násobnost vlastních čísel}
+        \begin{definice}[Geometrická násobnost]
+            Buď $A$ čtvercová matice řádu $n$ nad ®T, $\lambda \in ®T$ vlastní číslo. Uvažujme podprostor
+            $$ M_\lambda := \{¦v \in ®T^n | A¦v = \lambda ¦v\} ≤ ®T^n. $$
+            Pak geometrickou násobností $\lambda$ rozumíme $\dim M_\lambda$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Máme-li lineární operátor $f: ¦V \rightarrow ¦V$ na konečně dimenzionálním vektorovém prostoru ¦V nad ®T a máme-li vlastní číslo $\lambda$ operátoru $f$, pak geometrická násobnost $\lambda$ $≤$ algebraická násobnost $\lambda$.
+
+            \begin{tvrzeniin}[Pomocné tvrzení o determinantech]
+                Buď ®T těleso, $1 ≤ k < n$ a buď $A$ matice blokově trojúhelníkovéůo tvaru, tj. $a_{ij} = 0$ pro $i > k ≥ j$. Pak $\det A = (\det B)·(\det D)$, kde $B$ je prvních $k$ sloupců a řádků, $D$ je posledních $n-k$ sloupců a řádků.
+
+                \begin{dukazin}
+                    Indukcí podle $k$: $k = 1$: Rozvoj $\det A$ podle 1. sloupce nám dá chtěnou rovnost. $k > 1$: taktéž vezmeme rozvoj podle prvního sloupce: $\det A = a_{11}\det M_{11} - a_{21} \det M_{21} + …$. $M_{ij}$ jsou ale takové matice pro $k \leftarrow k-1$. Tedy je spočítáme: $\det A = a_{11}(\det B_{11})(\det D) - a_{21}(\det B_{21})(\det D) + … = (\det B)·(\det D)$.
+                \end{dukazin}
+            \end{tvrzeniin}
+
+            \begin{dukazin}
+                Buď $k$ geometrická násobnost vlastního čísla $\lambda$. Tj. $\dim M_\lambda = k$, kde $M_\lambda = \{¦v \in ¦V | f(v) = \lambda ¦v\} ≤ ¦V$. Vezmeme si bázi $(¦v_1, …, ¦v_k)$ prostoru $M_\lambda$ a doplníme na bázi $B = (¦v_1, …, ¦v_n)$ prostoru ¦V. $A = [f]_B^B$ splňuje předpoklady předchozího tvrzení ($B = \diag(\lambda, …, \lambda)$). Tedy $\det A - \mu·I_n = \(\lambda - \mu\)^k·\det D$. Tedy $\lambda$ je minimálně $k$-násobným kořenem $\det A - \mu·I_n$, tedy má algebraickou násobnost $≥$ geometrické. 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na VP dimenze $n$ nad ®T. Pak následující tvrzení jsou ekvivalentní:
+
+            \begin{enumerate}
+                \item $f$ je diagonalizovatelný.
+                \item $f$ má $n$ vlastních čísel včetně algebraických násobností a současně geometrická násobnost každého vlastního čísla je rovna jeho algebraické násobnosti.
+            \end{enumerate}
+            
+            \begin{dukazin}
+                $1) \implies 2)$: $f$ je diagonalizovatelný, tedy máme bázi $B = (¦v_1, …, ¦v_n)$ z vlastních vektorů. Řekněme, že $¦V_1, …, ¦v_{m_1}$ jsou vlastní vektory příslušné vlastnímu číslu $\lambda_1$, …, $¦v_{m_1 + m_2 + … + m_{k-1} + 1}, …, ¦v_{v_n}$ jsou vlastní vektory příslušné vlastnímu číslu $\lambda_k$. $\forall i \in [k]:$ Geometrická násobnost i algebraická násobnost $\lambda_i$ je $≥ m_i$. Na druhou stranu součet algebraických násobností je nejvýše $n$, tedy násobnosti $\lambda_i$ jsou $m_i$.
+
+                $2) \implies 1)$: Buďte $\lambda_1, …, \lambda_k$ po dvou různá vlastní čísla, $m_i$ algebraická (tj. i geometrická) násobnost $\lambda_i$ = $\dim M_{\lambda_i}$ a $n = m_1 + … + m_k$. Zvolme si bázi $M_{\lambda_i}$ $B_i = (¦v_1^i, …, ¦v_{m_i}^i)$. Ukáže se, že $B = (¦v_1^1, …, v_{m_k}^k)$ je báze ¦V. $B$ má $n = \dim ¦V$ prvků, tedy stačí dokázat, že $B$ je LN. Uvažujme $0 = a_1^1¦v_1^1 + … + a_{m_k}^k¦v_{m_k}^k$. Součty násobků prvků jednotlivých prostorů $M_{\lambda_i}$ jsou zase v $M_{\lambda_i}$, takže jsou (až na právě ty nulové) LN, protože jsou to vlastní vektory příslušné po dvou různým vlastním číslům. Tedy musí být všechny nulové, ale v jednotlivých $M_{\lambda_i}$ byla $(¦v_1^i, …, ¦v_{m_i}^i)$ báze, tedy všechny koeficienty musí být nulové. 
+            \end{dukazin}
+        \end{veta}
 \end{document}

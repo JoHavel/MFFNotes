@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\let\oldmod=\mod
+\def\mod{\!\!\!\!\!\!\oldmod}
+
+\begin{document}
+    \begin{priklad}[4.1]
+        Dokažte, že polynom $6x^5 + 27x^3 - 18$ je ireducibilní prvek $®Q[x]$.
+
+        \begin{dukazin}
+            Nechť $f_1 \in ®Q[x]$ dělí $6x^5 + 27x^3 - 18\ ||\ 2x^5 + 9x^3 - 6$. Potom můžeme $f_1$ vynásobit nejmenším společným násobkem jmenovatelů a vydělit největším společným dělitelem čitatelů, čímž dostaneme $f_2 \in ®Z[x]$, který je primitivní a v $®Q[x]$ stále dělí $g_2 := 2x^5 + 9x^3 -6$, což je taktéž primitivní polynome v $®Z[x]$. Ale tudíž (podle tvrzení / lemmatu o dělitelnosti v oboru vs. podílovém tělese) je $f_2|g_2$.
+
+            Víme, že 3 je prvočíslo a $(3\nmid2), (3|9), (3\mid-6), (9\nmid-6)$, tedy máme splněny všechny předpoklady Einsteinova kritéria, tedy $g_2 \in ®Z[x]$ je ireducibilní. Tudíž $f_2 || 1$ nebo $f_2 || g_2$ v $®Z[x]$, a tedy i v $®Q[x]$, tudíž $6x^5 + 27x^3 - 18$ je ireducibilní.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[4.2]
+        Najděte všechny polynomy $f \in ®Z_3[x]$, pro které zároveň platí
+        $$ f ≡ x + 2 \pmod{x^2 + 1} $$
+        a
+        $$ f ≡ 1 \pmod{x^2 + x + 1}. $$ 
+
+        \begin{reseni}
+            Z Eulerovy věty je $x^2 ≡ 1 \pmod{3}$ pro $x ≠ 0$ a $x^2 ≡ 0 \pmod{3}$ pro $x=0$. Tedy $x^2 + 1$ je ireducibilní v $®Z_3[x]$ (jelikož je řádu 2 a vlastní dělitel by musel být řádu 1, tj. existoval by kořen). Jelikož $x^2 + 1$ nedělí $x^2 + x + 1$ (ani opačně), tak jsou tyto dva polynomy nesoudělné a můžeme použít Čínskou zbytkovou větu pro polynomy.
+
+            Polynom $(x^2 + 1)·(x^2 + x + 1)$ je řádu 4, tedy hledáme polynom stupně $3$. Řešíme vlastně rovnici
+            $$ x + 2 + (\alpha_1x + \alpha_0)(x^2 + 1) = (\alpha_1)x^3 + (\alpha_0)x^2 + (\alpha_1 + 1)x + (\alpha_0 + 2) = $$ 
+            $$ = 1 + (\beta_1x + \beta_0)(x^2 + x + 1) = (\beta_1)x^3 + (\beta_1 + \beta_0)x^2 + (\beta_1 + \beta_0)x + (\beta_0 + 1). $$
+            Porovnáním koeficientů dostaneme $\beta_0 = 1$, $\alpha_0 = 0$, $\alpha_1 = \beta_1 = 2$, tedy hledaný polynom je:
+            $$ x + 2 + (2x + 0)(x^2 + 1) = 2x^3 + 2. $$
+            Řešením je tedy
+            $$ 2x^3 + 2 + (x^2 + 1)(x^2 + x + 1)·f, \text{ kde } f \in ®Z_3[x]. $$
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[4.3]
+        V tělese $®Z_2[\alpha]/(\alpha^2 + \alpha + 1)$ spočtěte řešení soustavy lineárních rovnic zadané maticí
+        $$ \(\begin{array}{cc|c} \alpha & 1 & \alpha + 1 \\ \alpha + 1 & \alpha + 1 & \alpha \end{array}\). $$ 
+
+        \begin{reseni}
+            Jelikož pracujeme v tělese, můžeme provést klasickou Gaussovu-Jordanovu eliminaci. (S tím, že nemusíme dělit, protože první úpravu tipneme (přičíst $\alpha$-násobek prvního řádku k druhému), druhá je naprosto zřejmá (přičtení 2. řádku do 1.) a pokud $\alpha·x_1 = 0$, pak $x_1 = 0$):
+            $$ \(\begin{array}{cc|c} \alpha & 1 & \alpha + 1 \\ \alpha + 1 & \alpha + 1 & \alpha \end{array}\) \sim \(\begin{array}{cc|c} \alpha & 1 & \alpha + 1 \\ 0 & 1 & \alpha^2 \end{array}\) \sim \(\begin{array}{cc|c} \alpha & 0 & 0 \\ 0 & 1 & \alpha^2 \end{array}\). $$
+            Tudíž $x_1 = 0$ a $x_2 = \alpha^2$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[4.4]
+        Popište rozkladové nadtěleso polynomu $x^4 − 1$ nad $®Z_3$ a rozložte v něm daný polynom na lineární členy.
+
+        \begin{dukazin}
+            $x^4 - 1 = (x - 1)(x + 1)(x^2 + 1)$ (protože $1$ a $-1$ jsou kořeny, nebo prostě z vzorce na rozdíl čtverců). Kořenové těleso (podle důkazu věty o něm), které potřebujeme je tedy $®Z_3[\alpha]/(\alpha^2 + 1)$ ($x^2 + 1$ je nerozložitelné už bylo dokázáno v řešení 4.2). V tomto tělese má $(x^2 + 1)$ zřejmě kořeny $\alpha$ a $2·\alpha$, tj. rozklad v něm (a tudíž i důkaz, že je to zároveň rozkladové těleso) je $(x-1)(x+1)(x-\alpha)(x-2\alpha)$.
+        \end{dukazin}
+    \end{priklad}
+
+\end{document}

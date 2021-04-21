@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[řeka]
+        Je dáno povodí řeky ve formě orientovaného stromu, v němž každý vrchol je buď soutok nebo molo (či současně obojí). Pro každý úsek mezi sousedícími vrcholy je dána jejich vzdálenost (malé přirozené číslo). Je dáno malé přirozené číslo $d$. Otázka je, zda v povodí existují dvě mola, kde jedno je dosažitelné po proudu od druhého a jejichž vzdálenost je přesně $d$. Popište algoritmus, který na danou otázku odpoví. 
+
+        \begin{reseni}
+            V každém vrcholu si pro každou hodnotu $1, 2, …, d - 1$ budeme uchovávat, zda se do tohoto vrcholu umíme dostat po proudu z nějakého mola na tuto vzdálenost. Zároveň si budeme uchovávat seznam vrcholů, do kterých už nevede hrana (kterou jsme ještě nezkoumali, tj. pokud jsem to správně pochopil, na začátku listy). A u každého vrcholu $\deg_{in}$ (počet neprozkoumaných hran vedoucích do tohoto vrcholu), abychom uměli aktualizovat předchozí seznam. (Graf budeme uchovávat jako seznamy sousedů pro každý vrchol.)
+
+            Náš algoritmus následně vezme vrchol ze seznamu a aktualizuje sousední vrcholy po proudu (tj. pokud jsem to správně pochopil otec řešeného vrcholu). Tj. jestliže se do tohoto vrcholu dá dostat z mola po proudu ve vzdálenosti $l$ a má souseda ve vzdálenosti $v$ po proudu, pak se dá dostat do souseda ze vzdálenosti $l+v$. Pokud $l+v = d$, pak jsme vyhráli. Pokud $l+v>d$, tak (předpokládám, že délka řeky je nezáporná) se z daného mola touto cestou už nedostaneme na vzdálenost $d$. Nakonec všechny sousedy, kteří po aktualizaci mají $\deg_{in} = 0$, přidáme do seznamu a řešený vrchol z něho odstraníme.
+
+            Nyní si všimneme 2 věcí: První -- náš seznam bude prázdný až ve chvíli, kdy vyřešíme všechny vrcholy. To můžeme nahlédnout jednoduše, pokud zvolíme libovolný vrchol a půjdeme proti proudu, nemůžeme jít do nekonečna, protože ve stromu nejsou cykly.
+
+            Druhá -- vrcholy ze seznamu už mají uzavřenou dosažitelnost (tj. všechna mola proti proudu od tohoto vrcholu už jsme prozkoumali, a pokud se z nich lze dostat do tohoto vrcholu na méně než $d$ kroků, tak je vyřešíme). U vrcholů, které jsou v seznamu na začátku, je to pravda. Jakmile vrchol má $\deg_{in} = 0$, tak už jsme prozkoumali všechny vrcholy proti proudu. Ty už v seznamu byly, takže to o nich platilo. Tudíž jsme prozkoumali i všechna mola proti proudu od tohoto.
+
+            Pro výpočet časové a prostorové složitosti označme $n$ počet vrcholů. Hran je pak $n-1 = O(n)$. Každý vrchol zpracováváme jednou a přes každou hranu aktualizujeme jednou $d$ prvků, tedy časová složitost je $O(n + n·d) = O(n·d)$. Pamatovat si potřebujeme jen seznam vrcholů a v každém vrcholu $d$ vzdáleností k molům, tedy prostorová složitost je také $O(n + n·d) = O(n·d)$.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}
