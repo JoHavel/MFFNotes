@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[perm2n]
+        Pro danou permutaci čísel od $1$ do $K$ nalezněte její „abecední“ pořadí mezi všemi takovými permutacemi (předpokládejte, že máte aritmetiku s dostatečně velkými čísly).
+
+        \begin{reseni}
+            Abecední pořadí spočítáme tak, že si předpočítáme faktoriály ($1!, 2!, …, K!$) a budeme si udržovat intervalový strom, kde v každém vrcholu si budeme pamatovat počet ještě „neviděných“ celých čísel v daném intervalu, takže budeme schopni říct, kolik je menších „neviděných“ čísel než nějaké dané číslo. A kumulativní proměnnou $r$.
+
+            Následně pro každý index $i$ (od $1$ do $K$) spočítáme (počet neviděných čísel menších než číslo na indexu $i$) krát $(K-i)!$ a přičteme výsledek do $r$ (to je počet abecedně menších permutací nehledě na předchozí indexy, jelikož do aktuálního indexu můžeme dosadit libovolné menší číslo, které jsme ještě neviděli, a zbytek může být libovolná permutace). Následně číslo na aktuálním indexu přidáme do intervalového stromu (tedy označíme za viděné).
+
+            Aktualizace a dotazy na strom jsou v $O(log(K))$, tedy časová složitost je $O(K·log(K))$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[n2perm]
+        Nalezněte permutaci, která je mezi permutacemi čísel od $1$ do $K$ na daném $n$-tém „abecedním“ pořadí (předpokládejte, že máte aritmetiku s dostatečně velkými čísly).
+
+        \begin{reseni}
+            Permutaci z jejího pořadí získáme obdobně, připravíme si faktoriály a strom (kterého se ale tentokrát budeme ptát, které číslo je $j$-té neviděné číslo). Následně pro index $i$ vždy celočíselně vydělíme $x = n // (K-i)!$, napíšeme na index $i$ do permutace $x$-té neviděné číslo. A toto číslo přidáme do stromu jako viděné. Na následující index ($i+1$) budeme pokračovat s $n\ \%\!= (K-i)!$.
+
+            Aktualizace a dotazy na strom jsou v $O(log(K))$, tedy časová složitost je $O(K·log(K))$.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

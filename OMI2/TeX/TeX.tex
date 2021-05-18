@@ -279,4 +279,78 @@
         Narozdíl od B. křivek prochází všemi řídícími body. Fungují tak, že se křivka rozdělí na části mezi 2 následujícími řídícími body, tyto části se pak vyjádří jako kubické (nejčastěji) křivky tak, aby celá křivka měla spojité derivace do 2. řádu (nejčastěji) (stačí v řídících bodech). Pokud je uzavřená, tak je to plně definovaná, jinak se většinou chce, aby derivace v krajních bodech byly nulové.
     \end{definice}
 
+% 28. 4. 2021
+
+\section{Asymptote}
+    \begin{definice}[Asymptote]
+        Inspirován MetaFontem a MetaPost. ALe je to C-like jazyk (pozor, \verb|++| a \verb|--| jsou vždy prefixové, aby se nepletli se spojováním linek, dále nemáme bitové operátory, složené typy jsou referenční a používají se pouze 1st class funkce, navíc lze přetěžovat funkce a operátory).
+
+        Křivkový model MF generalizovaný do 3D a výstup v PS nebo PDF. Naopak neřeší rovnice (na takové věci se většinou používají knihovny). Navíc můžeme generovat TeXové popisky (jednoduše, MF nebo PS to umí také).
+    \end{definice}
+
+    \begin{definice}[Typy]
+        void, bool (false, true), bool3(false, true, default), int, real (float, tj. menší přesnost než MF, kde to byly „inty“), pair (komplexní číslo), triple (trojrozměrné matice), string (bytestring, zadávají se \verb|"…"|, kde se překládá jen \verb|\"|, nebo $'…'$, kde se interpretují i jiné escapované znaky (např. \verb|\n|)), path (s měřítkem), guide (bez měřítka), pen, transform, transform3, frame (s měřítkem), picture (bez měřítka), file, struktury, pole (homogenní).
+    \end{definice}
+
+    \begin{definice}[Zadávání křivek (syntax guides)]
+        \verb|..| je spojení dle Hobbyho, \verb|--| spojení úsečkou (funguje \verb|..cycle|), \verb|(0, 0)..controls(a, b)and(c, d)..(1, 1)| specifikuje bezierku, \verb|..tension x..| a \verb|..tension x and y| specifikuje napětí (parametr pro křivky), \verb|..tension atleast x..| (magie, která nějak mění křivku, \verb|:: = ..tension atleast 1..| zařídí, že je křivka v trojúhelníku určeném krajními body a směry, \verb|__ = ..tension atleast ∞..| zařídí spojitost křivosti v uzlech, jinak vypadá jako úsečka), \verb|p&q| je slepení \verb|p| a \verb|q| za koncové body, \verb|p^q| je disjunktní sjednocení (např. při výrobě mezikruží).
+
+        Dále se dá říct \verb|(0, 0){směr}|, nebo $(0, 0){curl2}$.
+    \end{definice}
+
+    \begin{definice}[Operace na cestách]
+        length (počet částí), size (počet vrcholů), cyclic(path) (je cyklická?), straight(path, int), piecewisestraight(path), point(path, int/real) (pro reálné vrací bod na křivce), dir(path, real, bool (normalize=true)), … (\url{https://asymptote.sourceforge.io/asymptote.pdf})
+    \end{definice}
+
+    \begin{definice}[příkazy]
+        \verb|int x; int x=5; int x[]; int x[]={1, 2, 3}; int x[5]; x=new int[]{1,2,3};| (Při dosazení do indexu > velikost se automaticky rozšíří). \verb|for(int i=0; i < 10; ++i)| nebo \verb|for(int i:x)|.
+
+        \verb|x| pole, pak \verb|x.length, x.cyclic, x.push(…), x.pop(…), array(n, x)| (n kopií x), \verb|copy, concat, max, min, map(f, pole)|, \verb|x+y| (po složkách), \verb|x[array], x[2:6], x[:]| (kopie nekopírují cykličnost) (takto lze i přiřazovat). \verb|Sequence(n) = {0, …, n-1}, Sequence(m, n) = {m, …, n-1}, Sequence(f, n) = {f(0), f(1), …, f(n-1)}|.
+
+        Funkce: \verb|int f(real x, real y) {…}| neboli \verb|int f(real x, real y) = new int(real x, real y){…}| (všechny funkce jsou přiřazené anonymní funkce), \verb|int f(real x=0, real y=x)| (běžné volání s defaulty), \verb|int f(keyword int x)| (musí se volat \verb|f(x = 10)|), \verb|void f(real x … real y[])| (zbylé args se předají jako pole y), stejně tak se dá volat \verb|f(1…pole)|.
+
+        \verb|typ operator znak(typ x, typ y){…}| (znak můžeme použít standardní operátory, nebo operátory bez významu (\verb|$, $$, @, @@|)).
+    \end{definice}
+
+    \begin{definice}[Automatická konverze]
+        int $\rightarrow$ real $\rightarrow$ pair $\rightarrow$ ($\rightarrow$ guide) $\rightarrow$ path
+
+        real $\rightarrow$ path
+
+        Manuální se dělají normálně (\verb|(string) 5|) (v definici funkce se dá říct \verb|explicit|, čímž se v parametrech zakážou automatické konverze).
+
+        Automatická konverze se definuje jako \verb|typ operator cast (typ x){…}|.
+    \end{definice}
+
+    \begin{definice}[Transformace]
+        Aplikování: \verb!transformace*(pair|guide|path|…)!, \verb|transformace*transformace|. Máme \verb|identity(), shift(x, y)/shif(pair), xscale(x)/yscale(y)/scale(…), stant(s)| (zkosení), \verb|rotate(deg, [pair]), reflect(pair a, b)| (osová symetrie)
+    \end{definice}
+
+    \begin{definice}[Příkazy na párech]
+            \verb|length(p), angle(p), degrees(p), unit(p), xpart(p), ypart(p), dot(p, q), *| (komplexní násobení), \verb|dir(deg), expi(rad)|, \verb|interp(x, y, t) = (1-t)x + ty|.
+    \end{definice}
+
+    \begin{definice}[Pera]
+        A+B je kombinace (A má přednost). currentpen. a*pero (saturace barvy). Pera: \verb|gray(a), 0<=a<=1, rgb(a, b, c), cmyk(c, m, y, k), invisible, rgb("xxyyzz"), hsv(h, s, v), linewidth(bp)| (nebo rovnou pen + bp), \verb|linetype(array, offset)| (čárkované), \verb|(square/roundcap/extends)cap|, \verb|(miter/round/bevel)join|.
+
+        K textu lze nastavit peru \verb|(no)basealign|, \verb|fontsize(pt [, lineskip_pt])|.
+    \end{definice}
+
+% 5. 5. 2021
+
+    TODO
+
+\section{LuaTeX}
+    \begin{definice}
+        LUA + API k TeXu, $\epsilon$-TeX, pdfTeX, Aleph (unicode, OFM místo TFM, sázení všemi směry), sazba TrueType/OpenType fonty.
+
+        Volání Luy: \verb|\directlua{expanded text}|, např. \verb|\directlue{dofile("něco.lua")}| nebo \verb|\directlua{tex.print(tex.count[0])}|. \verb|\latelua{…}| se vykonává při \verb|\shipout|.
+
+        \verb|\luaescapestring{…}| odescapuje speciální znaky, např. pro házení textu do lua stringu.
+        
+        Při zavolání \verb|luatex --luaonly soubor| to soubor začne vykonávat jako Luu, z ní pak lze volat TeX.
+
+        Změny v TeXu: více catcode tables. TODO. 
+    \end{definice}
+
 \end{document}

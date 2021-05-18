@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[7.1]
+    Matice lineárního operátoru $f$ ne $®R^8$ vzhledem k bázi $B = (¦b_1, …, ¦b_8)$ je matice v Jordanově tvaru s dvěma buňkami příslušnými vlastnímu číslu $0$ řádů $3$ a $5$. Pro každé $i, j \in ®N$ určete dimenzi a najděte pomocí báze $B$ nějakou bázi prostoru $(\Ker f^i) \cap (\im f^j)$.
+
+    \begin{reseni}
+        Mocniny Jordanových buněk příslušných 0 jsme viděli na přednášce a z té také víme, že matice v Jordanově tvaru se mocní „po buňkách“. Tedy zřejmě (při označení $A = [f]_B^B$):
+        $$ A = \begin{pmatrix} 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \end{pmatrix},\qquad A^2 = \begin{pmatrix} 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \end{pmatrix} $$
+        $$ A^3 = \begin{pmatrix} 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \end{pmatrix},\qquad A^4 = \begin{pmatrix} 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ \end{pmatrix}. $$
+        Další mocniny již budou zřejmě nulové. Dále můžeme zjistit báze jader a obrazů a to tak, že báze obrazu jsou nenulové sloupce (jelikož jsou to po dvou různé vektory $B$, tedy jsou nezávislé, pro dostatečný počet vizte dále) a báze jádra jsou vektory odpovídající prázdným sloupcům (jelikož jsou to taktéž po dvou různé vektory $B$), protože dohromady jich je vždy $8 = \dim \Ker A^i + \dim \im A^i$, tedy dostáváme tak opravdu báze celých těchto prostorů.
+        \begin{align*}
+            \im A = \LO\{¦e_1, ¦e_2, ¦e_4, ¦e_5, ¦e_6, ¦e_7\} &\implies \im f = \LO\{¦b_1, ¦b_2, ¦b_4, ¦b_5, ¦b_6, ¦b_7\}, \\
+            \Ker A = \LO\{¦e_1, ¦e_4\} &\implies \Ker f = \LO\{¦b_1, ¦b_4\}, \\
+            \im A^2 = \LO\{¦e_1, ¦e_4, ¦e_5, ¦e_6\} &\implies \im f^2 = \LO\{¦b_1, ¦b_4, ¦b_5, ¦b_6\}, \\
+            \Ker A^2 = \LO\{¦e_1, ¦e_2, ¦e_4, ¦e_5\} &\implies \Ker f^2 = \LO\{¦b_1, ¦b_2, ¦b_4, ¦b_5\}, \\
+            \im A^3 = \LO\{¦e_4, ¦e_5\} &\implies \im f^3 = \LO\{¦b_4, ¦b_5\}, \\
+            \Ker A^3 = \LO\{¦e_1, ¦e_2, ¦e_3, ¦e_4, ¦e_5, ¦e_6\} &\implies \Ker f^3 = \LO\{¦b_1, ¦b_2, ¦b_3, ¦b_4, ¦b_5, ¦b_6\}, \\
+            \im A^4 = \LO\{¦e_4\} &\implies \im f^4 = \LO\{¦b_4\}, \\
+            \Ker A^4 = \LO\{¦e_1, ¦e_2, ¦e_3, ¦e_4, ¦e_5, ¦e_6, ¦e_7\} &\implies \Ker f^4 = \LO\{¦b_1, ¦b_2, ¦b_3, ¦b_4, ¦b_5, ¦b_6, ¦b_7\}, \\
+            \forall i > 4: \im A^i = \{\O\} \implies \im f^i = \{\O\}, &\qquad\ \ \Ker A^i = ®R^8 \implies \Ker f^i = ®R^8.
+        \end{align*}
+        
+        Nyní si stačí všimnout, že pokud prvek báze „přidává“ nějaký vektor, potom v bázi bez tohoto prvku nelze tento vektor získat, tedy stačí proniknout báze (tabulka je ve tvaru \verb|dimenze: báze|):
+
+                \centering\begin{tabular}{cccccc}
+                        $i\backslash j$ & 1                                               & 2                             & 3                 & 4           & $>4$    \\
+                        1             & 2: $(¦b_1, ¦b_4)$                               & 2: $(¦b_1, ¦b_4)$             & 1: $(¦b_4)$       & 1: $(¦b_4)$ & 0: $\O$ \\
+                        2             & 4: $(¦b_1, ¦b_2, ¦b_4, ¦b_5)$                   & 3: $(¦b_1, ¦b_4, ¦b_5)$       & 2: $(¦b_4, ¦b_5)$ & 1: $(¦b_4)$ & 0: $\O$ \\
+                        3             & 6: $(¦b_1, ¦b_2, ¦b_3, ¦b_4, ¦b_5, ¦b_6)$       & 4: $(¦b_1, ¦b_4, ¦b_5, ¦b_6)$ & 2: $(¦b_4, ¦b_5)$ & 1: $(¦b_4)$ & 0: $\O$ \\
+                        4             & 7: $(¦b_1, ¦b_2, ¦b_3, ¦b_4, ¦b_5, ¦b_6, ¦b_7)$ & 4: $(¦b_1, ¦b_4, ¦b_5, ¦b_6)$ & 2: $(¦b_4, ¦b_5)$ & 1: $(¦b_4)$ & 0: $\O$ \\
+                        $>4$          & 7: $(¦b_1, ¦b_2, ¦b_3, ¦b_4, ¦b_5, ¦b_6, ¦b_7)$ & 4: $(¦b_1, ¦b_4, ¦b_5, ¦b_6)$ & 2: $(¦b_4, ¦b_5)$ & 1: $(¦b_4)$ & 0: $\O$
+                \end{tabular}
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[7.2]
+    Označme ¦V vektorový prostor všech reálných polynomů stupně nejvýše $2$ s běžnými operacemi. Lineární operátor $\phi$ na ¦V je definovaný vztahem $\phi(p) =- p' - x^2 p''$. Najděte matici $J$ v Jordanově tvaru a bázi $B$ prostoru ¦V tak, aby $[\phi]_B^B = J$.
+
+    \begin{reseni}
+        Víme, že báze ¦V je například $B_0 = (1, x, x^2)$ a že $1' = 0$, $1'' = 0$, $x' = 1$, $x'' = 0$, $\(x^2\)' = 2x$, $\(x^2\)'' = 2$ , tedy $\phi(1) = 0$, $\phi(x) = -1$ a $\phi(x^2) = -2x - 2x^2$. Dostáváme
+        $$ [\phi]_{B_0}^{B_0} = \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & -2 \\ 0 & 0 & -2 \end{pmatrix}. $$
+        
+        Charakteristický polynom $[\phi]_{B_0}^{B_0}$ je $(0 - \lambda)(0 - \lambda)(-2 - \lambda)$, tedy vlastní čísla jsou $-2$ algebraické násobnosti $1$ a $0$ algebraické násobnosti 2. Následně najdeme vlastní vektory jako jádra příslušných matic (např. Gaussovou eliminací) jako
+        $$ \Ker\([\phi]_{B_0}^{B_0} - 0·I_3\) = \Ker \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & -2 \\ 0 & 0 & -2 \end{pmatrix} = \LO\{\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}\}, $$ 
+        $$ \Ker\([\phi]_{B_0}^{B_0} - 2·I_3\) = \Ker \begin{pmatrix} 2 & -1 & 0 \\ 0 & 2 & -2 \\ 0 & 0 & 0 \end{pmatrix} = \LO\{\begin{pmatrix} 1 \\ 2 \\ 2 \end{pmatrix}\}. $$
+        
+        Nyní vidíme, že $2$ je algebraické i geometrické násobnosti 1, tedy pro $\lambda = 2$ máme hotovo (algebraická $≥$ geometrická). Naopak $0$ je algebraické násobnosti $2$, ale geometrické jen $1$. Tedy $0$ bude mít Jordanův řetízek délky $2$ a tedy chceme ještě najít 3. vektor ¦v, pro který bude $([\phi]_{B_0}^{B_0} - 0·I_3)(¦v) = (1, 0, 0)^T$. Takovým vektorem (nezávislým na obou předchozích) je např. $(0, -1, 0)$.
+
+        Tedy (ze vztahu Jordanových řetízků a matice v Jordanově tvaru) je
+        $$ J = \begin{pmatrix} -2 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 0 & 0 \end{pmatrix}, \qquad B = (2x^2 + 2x + 1, 1, -x). $$ 
+
+    \end{reseni}
+\end{priklad}
+
+\end{document}

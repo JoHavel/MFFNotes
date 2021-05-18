@@ -523,4 +523,166 @@
         Dvojici $A, B \in V$ takovou, že $A \implies^* B$ pouze jednotkovými pravidly nazýváme jednotkový pár (jednotková dvojice).
     \end{definice}
 
+% 27. 4. 2021
+
+    \begin{definice}[Chomského normální tvar]
+        O bezkontextové gramatice $G(V, T, P, S)$ bez zbytečných symbolů, kde jsou všechna pravidla v jednom ze dvou tvarů $A \rightarrow BC$ nebo $A \rightarrow a$, $A, B, C \in V, a \in T$, říkáme, že je v Chomského normálním tvaru.
+    \end{definice}
+
+    \begin{lemma}[Gramatika v normálním tvaru, redukovaná]
+        Mějme bezkontextovou gramatiku $G$, $L(G) \setminus \{\lambda\} ≠ \O$. Pak existuje CFG $G_1$ taková, že $L(G_1) = L(G) \setminus \{\lambda\}$ a $G_1$ neobsahuje $\lambda$-pravidla …
+
+        \begin{dukazin}
+            Prostě postupně odstraníme vše, co překáží.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[ChNF]
+        Mějme bezkontextovou gramatiku $G$, $L(G) \setminus \{\lambda\} ≠ \O$. Pak existuje CFG $G_1$ v Chomského normálním tvaru taková, že $L(G_1) = L(G) \setminus \{\lambda\}$.
+    \end{veta}
+
+    \begin{lemma}[Velikost derivačního stromu gramatiky v CNF]
+        Mějme derivační strom podle gramatiky $G=(V, T, P, S)$ v Chomského normálním tvaru, který dává slovo $w$. Je-li délka nejdelší cesty $n$, pak $|w| ≤ 2^{n-1}$.
+
+        \begin{dukazin}
+            Indukcí. $|a| = 1 = 2^0$. Pokud pro $n-1$ tvrzení platí, pak se na začátku podívám, že $S$ generuje nejvýše 2 neterminály, čímž pokračujeme do 2 stromů s cestou $n-1$, tedy slovo je délky nejvýše $2·2^{(n-1)-1} = 2^{n-1}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Lemma o vkládání (pumping) pro bezkontextové jazyky]
+        Mějme bezkontextový jazyk $L$. Pak existuje $n \in ®N$ takové, že každé $z \in L, |z| > n$ lze rozložit na $z = uvwxy$, kde: $|vwx| ≤ n$, $vx ≠ \lambda$, $\forall i ≥ 0: uv^iwx^iy \in L$.
+
+        \begin{dukazin}
+            Vezmeme derivační strom pro $z$. Najdeme nejdelší cestu a na ní dva stejné neterminály nejdále od kořene. Tyto neterminály určí dva podstromy, z nichž spodní můžeme nahradit horním. Jednoduše ověříme, že délky fungují (z minulého lemmatu).
+        \end{dukazin}
+    \end{veta}
+
+% 4. 5. 2021
+
+    \begin{veta}
+        CFL jsou uzavřené na sjednocení, konkatenaci, iteraci, positivní iteraci, homomorfismus a zrcadlový obraz.
+
+        \begin{dukazin}
+            Sjednocení: pokud $V_1 \cap V_2 ≠ \O$, přejmenujeme neterminály. Přidáme nový startovní symbol $S_n$ a přidáme pravidlo $S_n \rightarrow S_1|S_2$. Zřetězení stejně, akorát pravidlo bude $S_n \rightarrow S_1|S_2$.
+
+            Pozitivní a obecná iterace obdobně. (Pravidla $S_n \rightarrow SS_n|S$ a $S_n \rightarrow SS_n|\lambda$.)
+
+            Zrcadlový obraz: obrátíme pravou stranu pravidel.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{upozorneni}
+            CFL nejsou uzavřené na průnik! (Viz $\{0^n 1^n 2^i|n, i ≥ 1\}$ a $\{0^i 1^n 2^n | n, i ≥ 1\}$)
+    \end{upozorneni}
+
+    \begin{veta}[CFL i DCFL jsou uzavřené na průnik s regulárním jazykem]
+        Mějme $L$ bezkontextový a $R$ regulární jazyk. Pak $L \cap R$ je bezkontextový jazyk.
+
+        Mějme $L$ deterministický CFL a $R$ regulární jazyk. Pak $L \cap R$ je deterministický CFL.
+
+        \begin{dukazin}
+            Vezmeme kartézský součin stavů a zjevným způsobem doplníme přechody.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[CFL jsou uzavřené na substituci]
+        Mějme CFL jazyk $L$ nad $\Sigma$ a substituci $\sigma$ na $\Sigma$ takovou, že $\sigma(a)$ je CFL pro každé $a \in \Sigma$. Pak je i $\sigma(L)$ CFL (bezkontextový).
+
+        \begin{dukazin}
+            Vezmeme všechny gramatiky substitucí $a \in \Sigma$ a gramatiku $L$. Neterminály a terminály budou sjednocením neterminálů a terminálů, k pravidlům navíc přidáme lambda přechod na start příslušných automatů.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}[Homomorfismus]
+        Bezkontextové jazyky jsou uzavřeny na homomorfismus.
+    \end{dusledek}
+
+    \begin{veta}[CFL jsou uzavřené na inverzní homomorfismus]
+        Mějme CFL (resp. deterministický CFL) jazyk $L$ a homomorfismus $h$. Pak $h^{-1}(L)$ je bezkontextový (resp. deterministický CFL).
+        \begin{dukazin}
+            Přes buffer.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}
+        Bezkontextové jazyky jsou uzavřené na levý (pravý) kvocient s regulárním jazykem. (Na přednášce přeskočeno.)
+    \end{lemma}
+
+    \begin{veta}[Rozdíl s regulárním jazykem]
+        Mějme bezkontextový jazyk $L$ a regulární jazyk $R$. Pak $L - R$ je CFL.
+
+        \begin{dukazin}
+            $$ L - R = L \cap \overline{R}. $$
+        \end{dukazin}
+    \end{veta}
+
+    \begin{upozorneni}
+        CFL nejsou uzavřené na doplněk.
+    \end{upozorneni}
+
+    \begin{lemma}
+        Doplněk deterministického CFL je opět deterministický CFL.
+
+        \begin{dukazin}
+            „Prohodíme koncové a nekoncové stavy.“ Nedefinované kroky ošetříme „podložkou“ na zásobníku, cyklus odhalíme pomocí čítače, až po přečtení slova procházíme koncové a nekoncové stavy.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{upozorneni}
+        DCFL nejsou uzavřené na sjednocení, viz $\{a^ib^jc^k | i≠j \lor j≠k \lor i≠k\}$.
+    \end{upozorneni}
+
+    \begin{upozorneni}
+        DCFL nejsou uzavřené na homomorfismus.
+    \end{upozorneni}
+
+% 11. 5. 2021
+
+    TODO Dyckovy jazyky.
+
+    \begin{definice}[Jednoznačnost a víceznačnost CFG]
+        Bezkontextová gramatika $G$ je víceznačná, pokud existuje alespoň jeden řetězec, pro který můžeme najít dva různé derivační stromy.
+
+        V opačném případě je $G$ jednoznačná.
+    \end{definice}
+
+    \begin{veta}
+        Nechť $L = N(P)$ nebo $L(P)$ pro nějaký DPDA $P$. Pak $L$ má jednoznačnou CFG.
+
+        \begin{dukazin}
+            Viz prezentace, nezkouší se.
+        \end{dukazin}
+    \end{veta}
+
+\section{Turingovy stroje}
+    \begin{definice}[Turingův stroj]
+        Turingův stroj (TM) je sedmice $M = (Q, \Sigma, \Gamma, \delta, q_0, B, F)$ se složkami: $Q$ -- konečná množina stavů, $\Sigma$ -- konečná neprázdná množina vstupních symbolů, $\Gamma \supseteq \Sigma$ -- konečná množina všech symbolů pro pásku (Chceme $Q \cap \Gamma = \O$), $\delta$ -- (částečná) přechodová funkce $: (Q \setminus F) \times \Gamma \rightarrow Q \times \Gamma \times \{L, R\}$, $q_0$ -- počáteční stav, $B$ -- prázdný symbol, $F$ -- množina finálních stavů.
+    \end{definice}
+
+    \begin{definice}[Konfigurace TM (Instantaneous Description)]
+        Konfigurace TM je řetězec $X_1X_2…X_{i-1}qX_iX_{i+1}…X_n$, kde $Q$ je stav TM, čtecí hlava je vlevo od $i$-tého symbolu, $X_1…X_n$ je část pásky mezi nejlevějším a nejpravějším symbolem různým od prázdného ($B$), s výjimkou, když hlava čte z $B$, pak je tam i toto $B$.
+    \end{definice}
+
+    \begin{definice}[Krok TM, odvození TM, přijímání jazyka TM]
+        Intuitivně.
+    \end{definice}
+
+    \begin{definice}[Rekurzivně spočetný jazyk]
+        Rekurzivně spočetný jazyk je jazyk, který je přijímán TM.
+    \end{definice}
+
+    \begin{definice}[TM se zastaví]
+        TM se zastaví, pokud vstoupí do stavu $q$, s čteným symbolem $X$, a není instrukce pro tuto situaci, tj. $\delta(q, X)$ není definováno.
+    \end{definice}
+
+    \begin{definice}[Rozhodování jazyka, rekurzivní jazyky]
+        Říkáme, že TM $M$ rozhoduje jazyk $L$, pokud $L = L(M)$ a pro každé $w \in \Sigma^*$ stroj $M$ nad $w$ zastaví.
+
+        Jazyky rozhodnutelné TM nazýváme rekurzivní jazyky.
+    \end{definice}
+
+    \begin{definice}[Přechodový diagrem pro TM]
+        Přechodový diagram pro TM sestává z uzlů odpovídajícím stavům TM. Hrany $q \rightarrow p$ jsou označeny seznamem všech dvojic, kde $\delta(q, X) = (p, Y, D), D \in \{\rightarrow, \leftarrow\}$.
+    \end{definice}
+
 \end{document}

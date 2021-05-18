@@ -578,4 +578,222 @@
         Je-li nekonečná množina sjednocením konečně mnoha množin, pak alespoň jedna z nich je nekonečná.
     \end{dusledek}
 
+% 27. 4. 2021
+
+    TODO
+
+\section{Přirozená čísla}
+    \begin{definice}[Přirozené číslo (von neumann)]
+        Přirozené číslo je množina všech menších přirozených čísel.
+    \end{definice}
+
+    \begin{definice}
+        $w$ je induktivní množina, pokud $0 \in w \land (\forall v \in w)(v \cup \{v\} \in w)$
+    \end{definice}
+
+    \begin{definice}[Axiom nekonečna]
+        $\exists w$. Neboli
+        $$ (\exists z)(\O \in z \land (\forall x)(x \in z \implies x \cup \{x\} \in z)). $$ 
+    \end{definice}
+
+    \begin{definice}[Množina všech přirozených čísel]
+        Množina všech přirozených čísel (značíme $\omega$), je $\bigcap \{w | w \text{ je induktivní množina}\}$.
+
+        \begin{dukazin}[$\omega$ je induktivní]
+                $\O \in \omega$, protože $\O$ je prvkem každé induktivní množiny. Stejně tak, pokud $x \in \omega$, pak $(\forall w \text{ induktivní})(w|x \in w)$, tedy i $x \cup \{x\}$ patří do každé induktivní množiny.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{definice}[Následník]
+        Funkce následník je $S: \omega \rightarrow \omega$. Pro $v \in \omega:$ $S(v) = v \cup \{v\}$.
+    \end{definice}
+
+    \begin{veta}[Princip indukce pro přirozená čísla]
+        Je-li $X \subseteq \omega$ taková, že $\O \in X$ a $x \in X \implies S(x) \in X$. Pak $X = \omega$.
+
+        \begin{dukazin}
+            Z podmínek na $X$ víme, že $X$ je induktivní množina, tedy $\omega \subseteq X$. Tedy $\omega = X$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}[$\in$ je ostré uspořádání na $\omega$]
+        $$ 1) n \in \omega \implies n \subseteq \omega. $$
+        $$ 2) m \in n \implies m \subseteq n. $$
+        $$ 3) n \notin n. $$
+
+        \begin{dukazin}[Indukcí]
+            1) 1. krok $\O \subseteq \omega$. 2. krok: Nechť $n \in \omega \land n \subseteq \omega$. Pak $\{n\} \subseteq \omega$. Tedy i $n \cup \{n\} \subseteq \omega$.
+
+            2) 1. krok $\nexists m \in \O$. 2, krok. Nechť $m \in S(m) = m \cup \{m\}$, potom $m = n$, tj. $m \subseteq n$, nebo $m \in n$ pak z IP $m \subseteq n$.
+
+            3) 1. krok $\O \notin \O$ platí. 2. krok předpokládejme, že $n \in \omega$ a $n \notin n$. Sporem: Nechť $S(n) \in S(n) = n \cup \{n\}$. Tedy $S(n) = n$, tj $n \in S(n) \in n$, nebo $S(n) \in n$. Tedy podle 2 $n \in n$. \lightning.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}[Přirozená čísla jsou konečná]
+        $$ (\forall n \in \omega)(\Fin(n)). $$
+
+        \begin{dukazin}
+            $\Fin(\O)$ a podle lemma sjednocení dvou konečných je konečná, tj. $\Fin(x) \implies \Fin(S(x))$.
+        \end{dukazin}
+
+        \begin{veta}
+            Množina $x$ je konečná $\Leftrightarrow$ $(\exists n \in \omega)(x \approx n)$.
+
+            \begin{dukazin}
+                $\Leftarrow$ plyne z předchozího lemmatu a zachovávání konečnosti při $\approx$.
+
+                $\implies$ indukcí podle konečných množin: $\O \approx 0$. Nechť to pro $x$ platí a $y$ je množina. Máme $x \approx n$ pro nějaké $n \in ®N$. Buď $y \in x$, pak $x \cup \{y\} = x \approx n$. Jinak $x \cup \{y\} \approx S(n)$ (bijekci rozšíříme o $(y, n)$).
+            \end{dukazin}
+        \end{veta}
+    \end{lemma}
+
+% 4. 5. 2021
+
+    \begin{lemma}
+        Množina $\omega$ i každá induktivní množina je nekonečná.
+
+        \begin{dukazin}
+            Podle lemmatu výše 1) $n \in \omega \implies n \subseteq \omega$, tedy $n \in ©P_{\omega}$. Tudíž $\omega \subseteq ©P(\omega)$. $\omega$ je neprázdná, ale nemá maximální prvek vzhledem k $\subseteq$, jelikož $n \in \omega \implies n \notin n$, tj. $n \subset n \cup \{n\}$, tedy $n$ není maximální.
+
+            Je-li $W$ induktivní, potom $\omega \subseteq W$ a podle dřívějšího lemma (konečnost se zachovává na podmnožinu) je $W$ nekonečná.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{priklad}[Cvičení]
+        Dokažte, že $\omega$ je dedekindovsky nekonečná.
+    \end{priklad}
+
+    \begin{lemma}[Linearita $\in$ na $\omega$]
+        1) $m \in n \Leftrightarrow m \subset n$.\\
+        2) $m \in n \lor m = n \lor n \in m$.
+
+        \begin{dukazin}
+                1) Víme $m \in n \implies m \subseteq n$. $\implies$: Kdyby ale $m = n$, pak $n \in n$, \lightning. $\Leftarrow$: Indukcí podle $n$. $n = 0$ nelze splnit $m \subset n$. Nechť platí pro nějaké $n$ a všechna $m$. Nechť $m \subset S(n)$, pak platí $m \subseteq n$. Kdyby $n \in m$, pak $n \subseteq m$ TODO?
+
+                2) Pro $n \in \omega$ nechť $A(n) = \{m \in \omega; m \in n \lor m = n \lor n \in m\}$. Dokážeme, že $A(n)$ je induktivní indukcí podle $m$. $n = 0: 0 \in A(0)$, protože $0 = 0$. Pokud $m \in A(0)$, pak $0 \in m \lor m = 0…0 \in \{m\}$, tj. $0 \in m \cup \{m\} = S(m)$. Tedy $A(0) = \omega$.
+
+                Tedy také $(\forall n \in \omega) 0 \in A(n)$. nechť $n, m \in \omega$, $m \in A(n)$. Ukážeme, že $S(m) \in A(n)$. a) $m \in n$: Podle 1) $m \subset n$, $\{m\} \subseteq n$, tedy $S(m) \subseteq n$: $S(m) = n \lor S(m) \subset n$ a podle 1) $S(m) \in n \subseteq S(n)$. b) $m = n \lor n \in m \implies n \in m \cup \{m\} = S(m)$. Ve všech případech tedy $S(m) \in A(n)$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}
+        Množina $\omega$ je dobře ostře uspořádaná relací $\in$.
+
+        \begin{dukazin}
+            Nechť $a \subseteq \omega, a ≠ \O$. Zvolme $n \in a$. Kdyby $n$ bylo minimální, jsme hotovi, není-li $n$ minimální, definujeme $b = a \cup n$. Z konečnosti plyne, že $b$ má minimum, které je zároveň hledaným minimem.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{priklad}[Cvičení]
+        Dokažte princip silné indukce na $\omega$.
+
+        $f: \omega \rightarrow X$, $f$ je zobrazení na, pak $X \preceq \omega$.
+    \end{priklad}
+
+    \begin{veta}[Charakterizace uspořádání $\in$ na $\omega$]
+        Nechť $A$ je nekonečná množina, lineárně ostře uspořádaná relací $<$ tak, že pro každé $a \in A$ je dolní množina $(\leftarrow, a]$ konečná. Potom $<$ je dobré ostré uspořádání na $A$ a množiny $A$, $\omega$ jsou izomorfní vzhledem k $<, \in$.
+
+        \begin{dukazin}
+            $<$ je dobré: $\O ≠ C \subseteq A$, nechť $a \in c$. Pokud $a$ není minimální, nechť $b = c \cap (\leftarrow, a]$ podle předchozího je $b$ konečná, neprázdná a má minimální prvek $m$. $m$ je i minimální v $c$ (kdyby $x \in c, x < m$, pak $x \in b$).
+
+            Izomorfismus: Podle věty o porovnávání dobrých uspořádání 1) $A$ je izomorfní \emph{dolní} množině $B \subseteq \omega$, pak $B$ není shora omezená (jinak $B \subseteq S(n)$, tedy $B$ by byla konečná). Tedy každé $n \in \omega$ je menší než nějaký prvek $B$. Tedy $n \in B$. Tedy $B = \omega$.
+
+            2) $\omega$ je izomorfní s dolní množinou $C \in A$, pak $C$ není shora omezená (obdobně jako v předchozím odstavci), tedy $C = A$.
+        \end{dukazin}
+    \end{veta}
+    
+\section{Spočetné množiny}
+    \begin{definice}
+        Množina $x$ je spočetná, pokud $x \approx \omega$. $x$ je nejvýše spočetná, je-li konečná nebo spočetná. Jinak je nespočetná.
+    \end{definice}
+
+    \begin{poznamka}
+        V ZF nelze dokázat, že každá nekonečná množina obsahuje spočetnou podmnožinu. Platí totiž $x$ je dedekindovsky nekonečná $\Leftrightarrow \omega \preceq x$.
+    \end{poznamka}
+
+    \begin{veta}
+        1) Každá shora omezená podmnožina $\omega$ je konečná, každá shora neomezená podmnožina $\omega$ je spočetná.
+
+        2) Každá podmnožina spočetné množiny je nejvýše spočetná.
+
+        \begin{dukazin}
+            1) $A$ je shora omezená $(\exists n \in \omega)(\forall a \in A)(a \in n \lor a = n)$, tedy $A \subseteq S(n)$, tedy $\Fin(A)$. (Naopak konečná $\implies$ shora omezená.)
+
+            $A$ shora neomezená, pak $A$ je nekonečná, dobře ostře uspořádaná $\in$, pro každé $a \in A$ tedy platí, že $(\leftarrow, a]$ je konečná. Tedy podle ? věty $A \approx \omega$, tedy $A$ je spočetná.
+
+            2) $A$ spočetná, $f$ prosté zobrazení $A$ na $\omega$. $B \subseteq A$, $B \approx f[B] \subseteq \omega$, podle 1) je konečná nebo spočetná.
+        \end{dukazin}
+    \end{veta}
+
+% 11. 5. 2021
+
+    \begin{definice}[Lexikografické uspořádání]
+        Lexikografické uspořádání na $\omega \times \omega$ je relace $(n_1, m_1) <_L (n_2, m_2) \Leftrightarrow (n_1 \in m_1 \lor (n_1=n_2 \land m_1 \in m_2))$.
+    \end{definice}
+
+    \begin{dusledek}
+        $<_L$ je dobré na $\omega\times \omega$. $<_L$ na $\omega \times 2$ (ne opačně!) je izomorfní s $\omega$ uspořádanou $\in$.
+    \end{dusledek}
+
+    \begin{definice}[Maximum]
+        Maximum $n, m$ je $\max(m, n) = m$, pokud $n \in m$, a $n$ jinak.
+    \end{definice}
+
+    \begin{definice}[Maximo-lexikografické uspořádání]
+        Maximo-lexikografické uspořádání na $\omega \times \omega$ je relace $(n_1, m_1) <_{ML} (n_2, m_2) \Leftrightarrow (\max{n_1, m_1} < \max(n_2, m_2) \lor (\max(n_1, m_1) = \max(n_2, m_2) \land (n_1, m_1) <_L (n_2, m_2)))$.
+    \end{definice}
+
+    \begin{pozorovani}
+        $<_{ML}$ je izomorfní s $\in$. Tudíž $\omega \times \omega \approx \omega$.
+    \end{pozorovani}
+
+    \begin{veta}[O zachování spočetnosti]
+        Jsou-li $A, B$ spočetné množiny, pak $A \cup B$ a $A \times B$ jsou spočetné.
+
+        \begin{dukazin}
+            $f: A \rightarrow \omega$, $g: B \rightarrow \omega$ bijekce. Definujeme zobrazení $h: A \cup B \rightarrow \omega \times 2$, že $h(x) = (f(x), 0)$, pokud $x \in A$, $h(x) = (g(x), 1)$ jinak ($x \in B \setminus A$). $h$ je prosté. Podle Cantor-Bernstein $A \cup B \approx \omega$.
+
+            $k: A \times B \rightarrow \omega \times \omega \approx \omega$ jako $k((a, b)) = (f(a), g(b))$, tedy $k$ je bijekce.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        ®Z, ®Q jsou spočetné.
+    \end{dusledek}
+
+    \begin{dusledek}[Pouze s axiomem výběru]
+        Spočetné sjednocení spočetných množin je spočetné.
+    \end{dusledek}
+
+    \begin{veta}[Cantorova věta]
+        Pro každou množinu $x$ platí, že $x \prec ©P(x)$. (Dokonce neexistuje zobrazení $x$ na $©P(x)$.)
+
+        \begin{dukazin}
+            $x \preceq ©P(x)$. Díky zobrazení $f(y) = \{y\}$.
+
+            nechť nyní $f: x \rightarrow ©P(x)$. Ukážeme, že $\Rang(f) ≠ ©P(x)$. $y = \{t, t \in x \land t \notin f(t)\}$. $y \in ©P(x)$, ale nemá vzor při $f$ (jinak by tento vzor nemohl a musel být ve svém obrazu).
+        \end{dukazin}
+
+        \begin{dusledekin}
+            $Ö(\omega)$ je nespočetná a $V$ je vlastní.
+        \end{dusledekin}
+    \end{veta}
+
+    \begin{veta}
+        $©P(\omega) \approx ®R \approx [0, 1]$.
+
+        \begin{dukazin}
+            Víme, že $©P(\omega) = ^\omega 2$, tj. množina posloupností $(a_0, a_1, …)$, kde $a_i \in \{0, 1\}$. Každé $a \in [0, 1]$ lze zapsat binárně jako $a = 0$ nebo $a = 0, a_0a_1a_2…$. Pokud jsou možné 2 zápisy, tak si vybereme ten, kde je nekonečně mnoho pozic rovných 1. Tím získáváme prosté zobrazení $[0, 1]$ do $^\omega 2$.
+
+            Prosté zobrazení $^\omega 2$ do $[0,1]$ použijeme trojkovou soustavu: $(a_0, a_1, …) \mapsto \sum_{i=0}^∞ \frac{a_i}{3^{i+1}}$. Následně použijeme Cantor-Bernstein na $^\omega 2 \approx [0, 1]$.
+
+            Pro $[0, 1] \approx ®R$ stačí uvažovat něco jako $\frac{\pi/2 + \arctg(x)}{\pi}$ a $[0, 1] \subseteq ®R$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Algebraická čísla]
+        Pro definici viz Algebru. Je jich spočetně mnoho.
+    \end{poznamka}
+
 \end{document}

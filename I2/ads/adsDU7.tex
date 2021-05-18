@@ -1,0 +1,18 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[řeka2]
+        Je dáno povodí řeky ve formě orientovaného stromu, v němž každý vrchol je buď soutok nebo molo (či současně obojí). Pro každý úsek mezi sousedícími vrcholy je dána jejich vzdálenost (malé přirozené číslo). Je dáno malé přirozené číslo $d$. Otázka je, zda v povodí existují dvě mola (mohou být na různých přítocích), jejichž (říční) vzdálenost je přesně $d$. Popište algoritmus, který na danou otázku odpoví.
+
+        \begin{reseni}
+            Nechť hloubka je vzdálenost (tj. součet délek úseků řeky na přímé cestě) mola / soutoku od ústí (kořene stromu). Pro každý vrchol si při příchodu vytvoříme strukturu $S$, která umí FIND, INSERT a výčet všech prvků (hashset, vyhledávací strom, …), kde si budeme postupně ukládat hloubky všech vrcholů pod aktuálně řešeným vrcholem. (Hloubky jednotlivých vrcholů si buď předpočítáme, nebo je budeme počítat jednoduše průběžně).
+
+            Provedeme DFS, kde v každém vrcholu nejdříve vytvoříme $S_v$ a provedeme INSERT hloubky aktuálního vrcholu, pokud obsahuje molo. Následně se postupně pouštíme na každého potomka a po návratu z něj vezmeme menší strukturu z $\{\right.$vrácené ze syna, $S_v$$\left.\}$. Pro všechny její prvky nejprve zjistíme, zda $d$ mínus (hodnota prvku mínus hloubka aktuálního vrcholu) plus hloubka aktuálního vrcholu není v druhé struktuře (FIND). Pokud je, tak jsme vyhráli, protože nejbližší společný předek daných mol je tento vrchol a vzdálenost přes něj opravdu vyjde $d$ (z toho vznikl ten předchozí vzoreček). Poté co jsme vyzkoušeli všechny vrcholy menší struktury, všechny prvky menší struktury vložíme pomocí INSERT do větší. Nakonec (až projdeme všechny syny) vrátíme $S_v$.
+
+            Časová složitost je $O(n\log n)$ krát součet časových složitostí FIND a INSERT, protože s každým molem provedeme FIND a INSERT maximálně $\log n$ krát, jelikož když s ním aplikujeme tyto funkce, druhá struktura musí být alespoň tak velká jako ta, ve které je dané molo, tedy se takto může molo dostat do větší struktury nejvýše $\log n$ krát. Tedy pro hashset je to průměrně $O(n\log n)$, pro vyhledávací strom $O(n\log^2 n)$. 
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

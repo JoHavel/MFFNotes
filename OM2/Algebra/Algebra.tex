@@ -1276,7 +1276,7 @@
             \end{dukazin}
         \end{tvrzeni}
 
-\section{Grupy}
+\section{Podgrupy}
     \begin{lemma}
         Průnik podgrup je podgrupa.
 
@@ -1289,7 +1289,523 @@
         Buď $X \subseteq G$ podmnožina $G$. Podgrupa generovaná množinou $X$ je nejmenší (vzhledem k inkluzi) podgrupa $G$, která obsahuje $X$. Značíme $\<X\>_G$.
 
         \begin{dukazin}
-                $\<X\>_G = \bigcap \{H ≤ G | X \subseteq H\}$.
+            $\<X\>_G = \bigcap \{H ≤ G | X \subseteq H\}$.
         \end{dukazin}
     \end{definice}
+
+% 21. 4. 2021 Písemka
+
+% 23. 4. 2021
+
+    \begin{tvrzeni}
+        $G$ grupa $\O ≠ X \subseteq G$. Pak
+        $$ \<X\>_G = [a_1^{k_1}·…·a_n^{k_n} | n \in ®N_0, a_1, …, a_n \in X, k_1, …, k_n \in ®Z]. $$ 
+    
+        \begin{upozorneni}
+            $a_i$ nemusí být různé.
+
+            Vyjádření typicky není jednoznačné.
+        \end{upozorneni}
+
+        \begin{dukazin}
+            $M = $ množina napravo. Chceme $M$ je podgrupa, $M \supseteq X$, $M$ je nejmenší podgrupa.
+
+            1. $(a_1^{k_1}·…·a_n^{k_n})·(b_1^{l_1}·…·b_m^{k_m}) \in M$. $(a_1^{k_1}·…·a_n^{k_n})^{-1} = a_n^{-k_n}·…·a_1^{-k_1} \in M$. $1 \in M$ (pro $n = 1$ nebo $k_i = 0$).
+
+            2. $a \in X \implies a^1 \in M$. 3. Buď $H ≤ G$, $H \supseteq X$. $\forall a \in X: a \in H \implies \forall k \in ®Z: a^k \in H$. $a_1, …, a_n \in X \implies a_1^{k_1}, … \in H \implies a_1^{k_1}·… \in H \implies M \subseteq H$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}[Značení]
+        $$ \<\{b_1, …, b_m\}\>_G ≡ \<b_1, …, b_m\>_G. $$
+    \end{poznamka}
+
+    \begin{dusledek}
+        $G$ grupa $a \in G$. $\<a\>_G = \{a^k | k \in ®Z\}$.
+    \end{dusledek}
+
+    \begin{dusledek}
+        $G$ abelovská grupa, $a_1, …, u_n \in G$. $\<u_1, …, u_n\>_G = \{u_1^{k_1}·…·u_n^{k_n} | k_i \in ®Z\}$.
+    \end{dusledek}
+
+    \begin{tvrzeni}[Generátory permutačních grup]
+        1. Grupa $S_n$ je generovaná množinou všech transpozic (viz Lingebra).
+
+        2. Grupa $A_n$ je generována množinou všech trojcyklů. 
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Řád prvku a řád podgrupy]
+        $G$ je grupa, $a \in G$. Pak $\ord a = |\<a\>_G|$.
+
+        \begin{dukazin}
+            Z minulého tvrzení $\<a\>_G = \{a^k | k \in ®Z\}$. $a^i = a^j \Leftrightarrow a^{i-j} = 1 \Leftrightarrow \ord a | i - j$ nebo $i-j = 0$ pro $\ord a = ∞$. Pro $\ord a = ∞$ je tvrzení jasné, pro $\ord a = n < ∞$ víme, že $a^i = a^j \Leftrightarrow n|i-j \Leftrightarrow i ≡ j \mod n$. Pak $\<a\>_G = \{a^0, a^1, …, a^{n-1}\}$, tj. $|\<a\>_G| = n = \ord a$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \subsection{Lagrangeova věta}
+        \begin{veta}
+            $G$ grupa, $H ≤ G$. Pak $|H|$ dělí $|G|$.
+        \end{veta}
+
+        \begin{definice}[Rozkladové třídy, transverzála, index podgrupy]
+            $H ≤ G$. Množiny $aH = \{a·b | b \in H\}$ pro $a \in G$ nazýváme rozkladové třídy podgrupy $H$.
+
+            Podmnožina $T \subseteq G$ s vlastností $|T \cap aH| = 1$ pro $\forall a \in G$ se nazývá transverzála rozkladu $G$ podle $H$.
+
+            Počet různých rozkladových tříd se nazývá index podgrupy $H$ v grupě $G$ a značí se $[G:H] = |\{aH | a \in G\}|$.
+        \end{definice}
+
+        \begin{poznamka}
+            Někdy se těmto definicím říká levá transverzála a levá rozkladová třída. Pravé by se definovaly symetricky. Index je shodný (viz dále).
+        \end{poznamka}
+
+        \begin{lemma}[Disjunktnost rozkladových tříd]
+            $H ≤ G$. $\forall a, b \in G: aH = bH$ nebo $aH \cap bH = \O$.
+
+            \begin{dukazin}
+                Ať $aH \cap bH ≠ \O$. Buď $c \in aH \cap bH$. Tedy $c = ah_1 = bh_2$ pro nějaké $h_1, h_2 \in H$. Vezmeme $ah \in aH$ a máme $ah = ch_1^{-1}h = bh_2h_1^{-1}h \in bH$. Symetricky $bh \in aH$, tedy $aH = bH$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{dusledek}
+            Mohutnost transverzály se rovná mohutnosti množiny rozkladových tříd.
+        \end{dusledek}
+
+        \begin{lemma}[Velikost rozkladových tříd]
+            $H ≤ G$. Pro $\forall a \in G: |aH| = H$.
+
+            \begin{dukazin}
+                Zobrazení $f: G \rightarrow G$, $x \mapsto ax$ je prosté: $ax = ay \implies x = y$. $f(H) = aH$, tedy $f|_H$ je bijekce mezi $H$ a $aH$. Tedy $|H| = |aH|$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[Lagrangeova věta podruhé]
+            $H ≤ G$. Pak $|G| = |H|·[G:H]$.
+
+            \begin{dukazin}
+                Buď $T$ nějaká transverzála. Pak $G = \bigcup_{a \in T} aH$ je disjunktní sjednocení podle lemmatu výše. Tedy
+                $$ |G| = \sum_{a \in T} |aH| = \sum_{a \in T} |H| = |H|·|T| = |H|·[G:H]. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            $G$ grupa, $a \in G$. Pak $\ord a | |G|$.
+        \end{dusledek}
+        
+        \begin{poznamka}
+            Z Lagrangeovy věty plyne Eulerova věta.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Rovnost rozkladových tříd]
+            $H ≤ G$. $\forall a, b \in G$ platí $aH = bH \Leftrightarrow a^{-1}b \in H$. $Ha = Hb \Leftrightarrow ab^{-1} \in H$.
+
+            \begin{dukazin}
+                $\implies$: $aH = bH \ni b = b·1$, čili $b \in aH$, tedy $b = ah$ pro nějaké $h \in H$. Pak $a^{-1}b = h \in H$.
+
+                $\Leftarrow$: $a^{-1}b = h$ pro nějaké $h \in H$ $\implies$ $b·1 = a·h \in aH \cap bH \implies aH = bH$.
+
+                Analogicky pro pravé.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            Levých a pravých rozkladových tříd je stejně, neboť zobrazení $aH \rightarrow Ha^{-1}$ je bijekce.
+        \end{dusledek}
+
+    \subsection{Loydova patnácka (nebude se zkoušet)}
+        Místo prázdného políčka uvažujme 16. Každý stav hry lze popsat permutací $\pi \in S_{16}$. Tah je přechod z $\pi$ do $\pi\circ(ij)$, kde $\pi(i) = 16$.
+
+        \begin{pozorovani}
+            Každý tah změní znaménko permutace.
+        \end{pozorovani}
+
+        \begin{definice}[Invariant pro L. 15]
+            $I(\pi) = \sgn(\pi)·(-1)^{d(\pi)}$, kde $d(pi)$ je Newyorská vzdálenost prázdného pole od pravého dolního rohu.
+
+            \begin{dukazin}[Invariant]
+                Tah změní $\sgn \pi$ i $d(\pi)$.
+            \end{dukazin}
+        \end{definice}
+
+        \begin{veta}
+            Loydova 15 je řešitelná $\Leftrightarrow$ $I(\pi) = 1$.
+
+            \begin{dukazin}
+                $\implies$: Zřejmé (z toho, že je $I(\pi)$ invariant a na konci má být $I = 1$). $\implies$: BÚNO $\pi(16) = 16$. Dívejme se tedy na $\pi \in A_{15}$. Potom pomocí $\pi \circ (5, 6, 7, 8, 11, 10, 9)$ (dolní obdélníček $2 \times 4$), $\pi \circ (1, 2, 3, 4, 7, 6, 5)$ (prostřední obdélníček), $\pi \circ (9, 10, 11, 12, 15, 14, 13)$ (dolní obdélníček). Toto už generuje $A_{15}$ (cvičení).
+            \end{dukazin}
+        \end{veta}
+
+% 28. 4. 2021
+
+\section{Grupové homomorfismy}         
+    \subsection{Základní vlastnosti}
+        \begin{definice}
+            $G = (G, ·, ^{-1}, 1), H = (H, *, ', e)$  jsou grupy. Zobrazení $\phi: G \rightarrow H$ je homomorfismus grup, pokud $\forall a, b \in G: \phi(a·b) = \phi(a)*\phi(b)$, $\phi(a^{-1}) = \phi(a)'$, $\phi(1) = e$.
+        \end{definice}
+        
+        \begin{lemma}
+            $G, H$ jsou grupy jako výše, $\phi: G \rightarrow H$ zobrazení. Pak $\phi$ je homomorfismus $\Leftrightarrow$ $\phi(a·b) = \phi(a)*\phi(b)$.
+            
+            \begin{dukazin}
+                $\Leftarrow$: $\phi(1) \stackrel{?}{=} e$: $e*\phi(1) = \phi(1) = \phi(1·1) = \phi(1)*\phi(1)$. Zkrátíme $\phi(1)$ na obou stranách $\implies$ $e = \phi(1)$.
+                
+                $\phi(a)*\phi(a)' = e = \phi(1)' = \phi(a·a^{-1}) = \phi(a)*\phi(a^{-1})$. Zkrátíme $\phi(a)$ a dostáváme $\phi(a^{-1}) = \phi(a)'$.
+                
+                $\implies$: triviální
+            \end{dukazin}
+        \end{lemma}
+        
+        \begin{definice}[Obraz a jádro homomorfismu]
+            $\phi: G \rightarrow H$ homomorfismus. Obraz $\phi$ je jeho obor hodnot, čili množina:
+            $$ \im(\phi) = \{\phi(a) | a \in G\} \subseteq H. $$
+            
+            Jádro $\phi$ je množina
+            $$ \Ker(\phi) = \{a \in G | \phi(a) = e\}\subseteq G. $$
+        \end{definice}
+        
+        \begin{tvrzeni}[Jádro a obraz jsou podgrupy]
+            $\phi: G \rightarrow H$ homomorfismus grup. Pak $\im(\phi) ≤ H$ a $\Ker(\phi) ≤ G$.
+            
+            \begin{dukazin}
+                $e = \phi(1) \implies e \in \im(\phi)$. Pokud $\phi(a), \phi(b) \in \im(\phi)$, pak $\phi(a)'=\phi(a^{-1})' \in im(\phi)$ a $\phi(a)*\phi(b) = \phi(a·b) \in \im(\phi)$.
+                
+                $\phi(1) = e \implies 1 \in \Ker(\phi)$. Pokud $a, b \in \Ker \phi$, pak $\phi(a^{-1}) = \phi(a)' = e' = e \implies a^{-1} \in \Ker(\phi)$. $a·b$ podobně.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            $\phi: G \rightarrow H$ homomorfismus grup. Pak $\phi$ je prosté $\Leftrightarrow$ $\Ker(\phi) = \{1\}$.
+            
+            \begin{dukazin}
+                $\implies$: Pro $a≠0$, prostota $\implies$ $\phi(a) ≠ \phi(1) = e$ $\implies$ $a \notin \Ker(\phi)$.
+                
+                $\Leftarrow$: $\phi(a)=\phi(b) \Leftrightarrow \phi(a·b^{-1}) = e \Leftrightarrow a·b^{-1} \in \Ker(\phi)$. Ale $\Ker(\phi) = \{1\}$, tedy $a·b^{-1} = 1 \implies a=b$. Tedy $\phi$ je prosté.
+            \end{dukazin}
+        \end{tvrzeni}
+        
+        \begin{pozorovani}[Bez důkazu]
+            Homomorfismus je určený svými hodnotami na generátorech. Na rozdíl od LA však nelze volit libovolně:
+        \end{pozorovani}
+        
+        \begin{tvrzeni}[Řád prvku a jeho obrazu]
+            $\phi: G \rightarrow H$ homomorfismus. Pro $a \in G$ platí: $\ord_H(\phi(a)) | \ord_G(a)$. ($x|∞$). Je-li $\phi$ prosté, pak $\ord(\phi(a)) = \ord(a)$.
+            
+            \begin{dukazin}
+                $\ord(a) = ∞$ zřejmé. Ať $\ord(a) = n \in ®N$. Pak $\phi(a)^n = \phi(a^n) = \phi(1) = e$. Tedy $\ord(\phi(a)) | n$ (neboť vydělím $n$ číslem $\ord(\phi(a))$ se zbytkem a dostanu, že zbytek $= 0$).
+                
+                Prostota: civčení.            
+            \end{dukazin}
+        \end{tvrzeni}
+        
+        \begin{tvrzeni}
+            Mějme grupy $G, H, K$ a homomorfismy $\phi: G \rightarrow H, \psi: H \rightarrow K$. Pak $\psi \circ \phi$ je homomorfismus $G \rightarrow K$. Je-li $\phi$ bijekce, pak $\phi^{-1}: H \rightarrow G$ je homomorfismus.
+            
+            \begin{dukazin}
+                Viz skripta.
+            \end{dukazin} 
+        \end{tvrzeni}
+        
+    \subsection{Izomorfismus}
+        \begin{definice}[Izomorfismus]
+            Bijektivní homomorfismus $\phi: G \rightarrow H$ je izomorfismus.
+        \end{definice}
+        
+        \begin{dusledek}
+            Inverze k izomorfismu je izomorfismus.
+        \end{dusledek}
+        
+        \begin{dukazin}
+            Grupy $G, H$ jsou izomorfní, pokud existuje izomorfismus $\phi: G \rightarrow H$. Značíme $G \simeq H$.
+        \end{dukazin}
+        
+        \begin{pozorovani}
+            Relace „být izomorfní“ je ekvivalence na třídě všech grup.
+            
+            \begin{dukazin}
+                Reflexivní (identita je izomorfismus), tranzitivní (tvrzení výše o homomorfismu a skládání bijekcí), reflexivní (dusledek výše).
+            \end{dukazin}
+        \end{pozorovani}
+        
+        \begin{tvrzeni}[Algebraická verze ČZV]
+            Mějme $m_1, …, m_n$ po dvou nesoudělná přirozená čísla, $M = m_1·…·m_n$. Zobrazení $\phi: ®Z_M \rightarrow Z_{m_1} \times … \times ®Z_{m_n}$, $a \mapsto (a \mod m_1, …, a \mod m_n)$ je izomorfismus okruhů. Restrikce $\phi|®Z_M^*$ je izomorfismus multiplikativních grup $®Z_M^* \rightarrow ®Z_{m_1}^* \times … \times ®Z_{m_n}^*$.
+            
+            \begin{dukazin}
+                $\phi: ®Z_M \rightarrow ®Z_{m_1} \times … \times ®Z_{m_n}$ je bijekce, viz ČZV. Snadno se ověří, že je to homomorfismus pro operace $+$ i $·$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Neizomorfismus}
+        \begin{tvrzeni}
+            Buď $\phi: G \rightarrow H$ surjektivní homomorfismus. Pokud $G = \<X\>$, pak $H = \<\phi(X)\>$, kde $\phi(X) = \{\phi(a) | a \in X\}$.
+
+            \begin{dukazin}
+                Cvičení / skripta.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{upozorneni}
+            Na rozdíl od VP generující množiny mohou být různě velké, např. $®Z = \<1\> = \<2\>$.
+        \end{upozorneni}
+
+% 30. 4. 2021
+
+\section{Cyklické grupy}
+    \subsection{Základy}
+        \begin{definice}
+            Grupa $G$ je cyklická, pokud je generovaná 1 prvkem, čili $G = \<a\>_G$ pro nějaké $a \in G$.
+        \end{definice}
+
+        \begin{dusledek}[Různých předchozích tvrzení]
+            $\<a\> = \{a^k | k \in ®Z\} \implies \<a\>$ je abelovská (násobení je akorát sčítání mocnin).
+            
+            $\ord a = |\<a\>|$.
+        \end{dusledek}
+
+        \begin{veta}[Klasifikace cyklických grup]
+            $G$ cyklická grupa. 1) Je-li $G$ nekonečná, pak je izomorfní $(®Z, +, -, 0)$. 2) Je-li $G$ konečná řádu $n$, pak je izomorfní $(®Z_n, +, -, 0)$.
+
+            \begin{dukazin}
+                1) $|G| = ∞$. Pak $G = \{…, a^{-1}, a^0, a^1, a^2, …\}$ (po dvou různé mocniny). Definujeme izomorfismus $\phi: G \rightarrow ®Z$, $a^k \mapsto k$. Už víme, že je bijekce. Homomorfismus je to, protože $k + l = \phi(a^k) + \phi(a^l) = \phi(a^k·a^l) = \phi(a^{k+l}) = k+l$.
+
+                2) $|G| = n$. $\phi:G = \{1, a, …, a^{n-1}\} \rightarrow ®Z_n$, $a^k \mapsto k$. To že je $\phi$ bijekce už víme, homomorfismus: $k + l \mod n = \phi(a^k) + \phi(a^l) \mod n = \phi(a^k·a^l) = \phi(a^{k+l \mod n}) = k+l \mod n$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}
+            Každá podgrupa cyklické grupy je cyklická.
+
+            \begin{dukazin}
+                $H ≤ G = \<a\>$. 1) $H = \{1\}$, pak je generována 1. 2) $H$ obsahuje prvek $a^l$ pro $l≠0$. Tedy $a^{l'} \in H$ pro $l' > 0$. Buď $k > 0$ nejmenší tak, že $a^k \in H$. Pak $H = \<a^k\>$. Buď $a^n \in H$, vydělíme se zbytkem: $n = ki + j$, $0 ≤ j < k$. Pak ale $a^k > a^j = a^{ki + j}·a^{k(-i)} \in H$. Tudíž $a^k | a^n$ (když $a^j = 1$) nebo \lightning. Tedy $H \subseteq \<a^k\>$. A triviálně $\<a^k\> \subseteq H$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Generátory podgrup]
+            $G = \<a\>$. 1) $\<a^k, a^l\> = \<a^{\NSD(k, l)}\>$. 2) Je-li $|G| = n \in ®N$, pak $\<a^k\> = \<a^{\NSD(k, n)}\>$.
+
+            \begin{dukazin}
+                1) $\subseteq$: jasný, neboť $\NSD(k, l)|k,l$. $\supseteq$: použijeme Bézoutovu rovnost, $\NSD(k, l) = kx + ly$. Tedy $a^{\NSD(k, l)} = \(a^k\)^x·\(a^l\)^y \in \<a^k, a^l\>$.
+
+                2) Volíme v 1) $l = n$. Víme, že $a^n = 1$, tedy
+                $$ \<a^{\NSD(k, n)}\> = \<a^k, a^n\> = \<a^k, 1\> = \<a^k\>. $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Generátory cyklických grup]
+            $G = \<a\>$. 1) $|G| = ∞$, pak generátory jsou právě $a^1, a^{-1}$. 2) $|G| = n$, pak generátory jsou právě $a^k$, kde $k \in \{1, …, n\}$ a $\NSD(k, n) = 1$.
+
+            \begin{dukazin}
+                1) jasné (viz skripta). 2) Z tvrzení výše $\<a^k\> = \<a^{\NSD(k, n)}\> = H$, $H = G \Leftrightarrow \NSD(k, n) = 1$. $\implies$: Kdyby $d = \NSD(k, n) > 1$, pak $H = \<c^d\> = \{1, a^d, …, a^{d(\frac{n}{d} - 1)}\} ≠ G$. $\Leftarrow$: triviální.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Řády prvků]
+            Cyklická grupa konečného řádu $n$ obsahuje právě $\phi(d)$ prvků řádu $d|n$. (A 0 řádu $d\nmid n$.)
+
+            \begin{dukazin}
+                    $G$ cyklická, $|G| = n$. Každý prvek řádu $d|n$ je generátor cyklické podgrupy řádu $d$. Víme, že taková podgrupa existuje v $G$ právě 1, neboť podle tvrzení výše jsou všechny podgrupy tvaru $\<a^k\>$ pro $k|n$ a taková podgrupa má řád $n/k$. Tedy $b$ je generátor $\<a^{n/d}\>$. Ta má podle předchozího tvrzení právě $\phi(d)$ generátorů.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Pro $n \in ®N: \sum_{d|n} \phi(d) = n$.
+
+            \begin{dukazin}
+                Spočteme $|®Z_N|$ dvěma způsoby: 1) $|®Z_n| = n$. 2) $®Z_n = \bigcup_{d|n}\{b \in ®Z_n | \ord b = d\}$. Tj. $|®Z_n| = \sum_{d|n}\phi(d)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Multiplikativní grupy konečných těles}
+        \begin{lemma}
+            $G$ konečná grupa taková, že $\forall k$ grupa $G$ obsahuje nejvýše $k$ prvků $a$: $a^k = 1$. Pak $G$ je cyklická.
+
+            \begin{dukazin}
+                $n = |G|$. $U_k =$ počet prvků řádu $k$ v $G$. Lagrange $\implies$ $U_k = 0$ pro $k \nmid n$. Spočtu prvky $G$ podle řádů (jako v předchozím tvrzení): $n = \sum_{k|n} U_k$. Buď $a$ prvek řádu $k$. $\<a\>$ je cyklická řádu $k$ a všechny prvky $b \in \<a\>$ splňují $b^k = 1$. $\<a\>$ obsahuje $k$ takových prvků.
+
+                Předpoklad: $G$ obsahuje nejvýše $k$ prvků $c$ tak, že $c^k = 1$. Tedy $c \in \<a\>$. Speciálně každý prvek řádu $k$ leží v $\<a\>$ a je generátor $\<a\>$. Z tvrzení výše $\<a\>$ má $\phi(k)$ generátorů $\implies U_k = \phi(k)$. Tedy pro $k|n$ máme $U_k = 0$ nebo $\phi(k)$.
+
+                $\sum_{k|n} \phi(k) = n ≤ \sum_{k|n} U_k ≤ \sum_{k|n} \phi(k)$. Tedy platí rovnost, tedy $U_k = \phi(k) \forall k | n$. Speciálně $U_N = \phi(n) > 1$ a existuje prvek řádu $n$ a ten generuje $G$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            Buď ®T těleso a $G$ konečná podgrupa multiplikativní grupy $®T^*$. Pak $G$ je cyklická.
+
+            \begin{dukazin}
+                Pro předchozí lemma chci $G$ obsahuje nejvýše $k$ prvků tak, že $a^k = 1$. Ale každé takové $a$ je kořen polynomu $x^k - 1$. Nad tělesem ®T má $x^k - 1$ nejvýše $\deg(x^k - 1) = k$ kořenů.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Speciálně $|®T| < ∞$, pak $®T^*$ je cyklické. Její generátory se nazývají primitivní prvky.
+
+            $®T = ®Z_p \implies ®Z_p^* = \{1, 2, …, p-1\}$ je cyklická, čili existuje $g$ tak, že $®Z_p^* = \{g^0, g^1, …, g^{p-2}\}$.
+        \end{dusledek}
+
+    \subsection{Diskrétní logaritmus a kryptografie}
+        \begin{definice}[Diskrétní logaritmus a exponenciála]
+            $|G| = n$, zobrazení $G = \<a\> = \{a_0, a_1, …, a^{n-1}\} \overset{\simeq}{\rightarrow} ®Z_n, a^k \mapsto k$ je tzv. diskrétní logaritmus. Diskrétní exponenciála je pak $®Z_n \overset{\simeq}{\rightarrow} G, k \mapsto a^k$.
+        \end{definice}
+
+        \begin{poznamka}
+            Počítání diskrétní exponenciály je rychlé (rozdělení na mocniny 2), ale diskrétního logaritmu pomalé.
+        \end{poznamka}
+
+% 5. 5. 2021
+
+\section{Působení grupy na množině}
+    \subsection{Abstraktní grupa jako grupa permutací}
+        \begin{definice}[Působení grupy na množině]
+            Působení grupy $G$ na množině $X$ je libovolný homomorfismus $\pi: G \rightarrow S_X$. Hodnotu permutace $\pi(g)$ na prvku $x \in X$ často značíme $g(x)$.
+
+            \begin{dusledekin}
+                $\pi(1) = \id$, $\pi(g^{-1}) = \pi(g)^{-1}$, $(g·h)(x) = g(h(x))$.
+            \end{dusledekin}
+        \end{definice}
+
+        \begin{veta}[Cayleyova representace]
+            Každou grupu jde vnořit do nějaké symetrické grupy. (Čili existuje homomorfismus $\phi: G \rightarrow S_x$).
+
+            \begin{dukazin}
+                Dokonce vezmeme $X = G$. (Tedy pokud je $G$ konečná, pak vnořujeme do $S_{|G|}$). Pro $a \in G$ uvažujeme levou translaci $L_a: G \rightarrow G, x \mapsto a·x$. $L_a$ je zřejmě permutace na $G$, neboť můžeme zinvertovat $a$. Zobrazení $G \rightarrow S_G$, $a \mapsto L_a$ je homomorfismus (čili také $G$ působí na $X = G$), což snadno ověříme.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            Relace tranzitivity $\sim$ na $X$: $x \sim y$ pokud $\exists g \in G: g(x) = y$.
+        \end{definice}
+
+        \begin{lemma}
+            $\sim$ je ekvivalence na $X$.
+
+            \begin{dukazin}
+                Cvičení / skripta.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{definice}[Orbita]
+            Třídy ekvivalence $\sim$ se nazývají orbity.
+
+            Orbitu obsahující $x \in X$ značíme $[x] = \{y \in X | y \sim x\} = \{g(c) | g \in G\}$.
+        \end{definice}
+
+        \begin{definice}[Pevný bod, stabilizátor]
+            Bod $x \in X$ je pevný bod prvku $g \in G$, pokud $g(x) = x$.
+
+            Množinu všech pevných bodů $g \in G$ značíme $X_g = \{x \in X | g(x) = x\}$.
+
+            Stabilizátor prvku $x \in X$ je množina $G_x = \{g \in G | g(x) = x\}$.
+        \end{definice}
+
+        \begin{lemma}
+            Stabilizátor $G_x$ je podgrupa $G$.
+
+            \begin{dukazin}
+                $1 \in G_x$, neboť $1(x) = x$. $g, h \in G_x$, čili $g(x) = x, h(x) = x$, pak $(g·h)x = g(h(x)) = g(x) = x \implies g·h \in G_x$, $g^{-1} = x \implies g^{-1} \in G_x$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{tvrzeni}[Velikost orbity vs. index stabilizátoru]
+            $$ \forall x \in X: |[x]| = [G : G_x]. $$
+
+            \begin{dukazin}
+                Najdeme bijekci mezi $[x]$ a množinou $\{gG_x | g \in G\}$. Uvažujme $\phi: \{gG_x | g \in G\} \rightarrow [x]$, $gG_x \mapsto g(x)$. $g(x) \in [x]$. Je $\phi$ vůbec dobře definovaná? $gG_x = hG_c \implies g(x) = h(x)$, neboť podle dřívějšího tvrzení $gG_x = hG_x \Leftrightarrow h^{-1}g \in G_x \Leftrightarrow h^{-1}g(x) = x \Leftrightarrow g(x) = h(x)$. Zároveň je $\phi$ prosté (díky zpětným implikacím v předchozím) a je na, neboť pro $g(x) \in [x]$ mám $g(x) = \phi(gG_x)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}[Spolu s lagrangeovou větou]
+            $$ |G| = |G_x|·[G : G_x] = |G_x|·|[x]|. $$
+        \end{dusledek}
+
+
+    \subsection{Burnside}
+        \begin{veta}[Burnsideova]
+            Ať konečná grupa $G$ působí na konečné množině $X$. Pak:
+            $$ |X/\sim| = \frac{1}{|G|}·\sum_{g \in G} |X_g|. $$
+
+            \begin{dukazin}
+                Nechť $M = \{(g, x) \in G \times X | g(x) = x\}$. Spočtu velikost $M$ dvěma způsoby:
+                $$ |M| = \sum_{g \in G}|X_g| = \sum_{x \in X}|G_x|. $$
+                $$ \frac{1}{|G|}·\sum_g |X_g| = \frac{1}{|G|}·\sum_x |G_x| = \sum_{x \in X}\frac{1}{|[x]|} = \sum_{o \in X/\sim} \sum_{x \in o} \frac{1}{|o|} = \sum_{o \in X/\sim} 1 = |X/\sim|. $$ 
+            \end{dukazin}
+        \end{veta}
+
+% 7. 5. 2021
+
+        \begin{definice}[Tranzitivní]
+            Buď $G$ permutační grupa, čili $G ≤ S_X$. $G$ je tranzitivní, pokud má jenom 1 orbitu ve svém působení na $X$.
+        \end{definice}
+
+        \begin{veta}[Jordanova]
+            Každé konečná tranzitivní grupa $G$, $|G|≥2$, obsahuje aspoň 1 permutaci bez pevného bodu.
+
+            \begin{dukazin}
+                Burnside: počet orbit (= 1 z tranzitivity) = průměrný počet pevných bodů. $\id \in G$ má $n ≥ 2$ pevných bodů, tedy nadprůměrný počet. To znamená, že $\exists g \in G$, které má podprůměrný počet pevných bodů, tedy 0.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Cauchyova]
+            Buď $G$ konečná grupa a $p$ prvočíslo tak, že $p | |G|$. Pak v $G$ existuje prvek řádu $p$.
+
+            \begin{dukazin}
+                $X = \{(a_1, a_2, …, a_p) \in G^{p} | a_1a_2…a_p = 1\}$. Mohutnost $X$ spočítáme tak, že víme, že $a_1, …, a_{p-1}$ můžeme zvolit libovolně a následně dopočítáme $a_p = a_{p-1}^{-1}…a_1^{-1}$, tedy $|X| = |G|^{p-1}$. $Z_p$ působí na $X$ rotací složek (0 je identita, 1 rotace o 1, …). $|[x]| | |Z_p| = p$, tudíž každá orbita má velikost $1$ nebo $p$. Existuje orbita velikosti $1$ a sice $(1, 1, …, 1)$. Zároveň $X$ je disjunktní sjednocení orbit, $p$ dělí $|X| = |G|^p$. Tedy počet $1$-prvkových orbit je $kp$ pro nějaké $k ≥ 1$, tudíž existuje alespoň $p-1$ $1$-prvkových orbit různých od $1, 1, …, 1$.
+
+                Buď $(a_1, …, a_p)$ tato jiná orbita. Pak $a_1 = a_2$, $a_2 = a_3$, …, tedy je tvaru $(a, a, …, a) \in X$. Ale z definice $X$ je $a^p = 1$, zároveň není $a = 1$, tedy $\ord a = p$.
+            \end{dukazin}
+        \end{veta}
+
+\section{Faktorgrupy}
+    \subsection{Normální podgrupy}
+        \begin{tvrzeni}
+            $G$ je grupa, $H ≤ G$. NTJE:
+            1) $aH = Ha$ $\forall a \in G$,
+            2) $aha^{-1} \in H$ pro každé $h \in H$, $a \in G$.
+        \end{tvrzeni}
+
+        \begin{definicein}[Normální podgrupa]
+            Podgrupa $H$ je normální v grupě $G$, pokud splňuje tyto podmínky. Značíme $H \trianglelefteq G$.
+        \end{definicein}
+
+        \begin{dukazin}
+            $\implies$: Buď $h \in H$, $a \in G$. Víme: $ah \in aH = Ha \implies$ existuje $h' \in H$ tak, že $ah = h'a \implies aha^{-1} = h' \in H$.
+
+            $\Leftarrow$: Dokážeme $aH \subseteq Ha$ (a analogicky $Ha \subseteq aH$). Buď $ah \in aH$. Pak $h' = aha^{-1} \in H$, a tedy $ah = h'a \in Ha$.
+        \end{dukazin}
+
+        \begin{priklady}
+            $\{1\} \trianglelefteq G$ a $G \trianglelefteq G$. V abelovských grupách jsou všechny podgrupy normální. $SL_n(T) \trianglelefteq GL_n(T)$. Naopak $\{\id, (1\ 2)\} \ntrianglelefteq S_3$. Ale $A_n \trianglelefteq S_n$.
+        \end{priklady}
+
+        \begin{tvrzeni}
+            Jádro homomorfismu je normální podgrupa.
+
+            \begin{dukazin}
+                Hom. $\phi: G \rightarrow H$. $\Ker \phi = \{g \in G | \phi(g) = 1_H\} ≤ G$. Buď $a \in G$, $k \in \Ker \phi$.. $aka^{-1} \in \Ker \phi$, protože
+                $$ \phi(aka^{-1}) = \phi(a)\phi(k)\phi(a)^{-1} = \phi(a)\phi(a)^{-1} = 1. $$
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Konstrukce faktorgrupy}
+        \begin{definice}
+            $G$ grupa, $N \trianglelefteq G$. Definujeme relaci na $G$: $a \sim b \Leftrightarrow ab^{-1} \in N$. $ab^{-1} \in N \Leftrightarrow Na = Nb \Leftrightarrow aN = bN$ (z normality). Třídy ekvivalence $[a] = aN = Na$.
+
+            Faktorgrupa $G$ podle podgrupy $N$ = množina těchto bloků = $\{aN | a \in G\}$ (neboli $G/\sim = \{[a] | a \in G\}$), kde operace jsou $[a]·[b] = [ab]$, $[a]^{-1} = [a^{-1}]$ a neutrální prvek je $[1]$.
+
+            \begin{dukazin}[Operace jsou dobře definované a $G/\sim$ je fakt grupa]
+                Ať $[a] = [c]$, $[b] = [d]$. Potom $[ab] = [cd]$, protože $a \sim c$ a $b \sim d$, tedy $ac^{-1} \in N$ a $bd^{-1} \in N$, tudíž $ab(cd)^{-1} = abd^{-1}c^{-1} = (ac^{-1})·(c(bd^{-1})c^{-1}) \in N$. Obdobně pro $^{-1}$.
+
+                Ověříme axiomy grupy…
+            \end{dukazin}
+        \end{definice}
+
+        \begin{veta}
+            $\phi: G \rightarrow H$ homomorfismus grup.
+
+            1) (věta o homomorfismu) Je-li $N \subseteq \Ker \phi$ a $N \trianglelefteq G$, pak zobrazení $\psi: G/N \rightarrow H$, $[a] \mapsto \phi(a)$ je dobře definované a je to grupový homomorfismus.
+
+            \begin{dukazin}
+                Dobře definované: $[a] = [b] \implies ab^{-1} \in N \implies ab^{-1} \in \Ker \phi \implies \phi(ab^{-1}) = 1$. Tedy $\phi(a) = \phi(b)$.
+
+                Homomorfismus: $\psi([a]) · \psi([b]) = \phi(a)·\phi(b) = \phi(ab) = \psi([ab]) = \psi([a]·[b])$.
+            \end{dukazin}
+        \end{veta}
 \end{document}

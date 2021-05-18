@@ -456,4 +456,325 @@
             Ať $(®X, \tau)$ je Tichonovův. Pak uvažme $\beta®X$. $\beta®X$ je (para)kompaktní. Tedy na $\beta®X$ máme jemnou uniformitu, která generuje topologii na $\beta®X$. Tuto jemnou uniformitu na $\beta®X$ můžeme zúžit na ®X a ta již generuje topologii $\tau$.
         \end{dukazin}
     \end{veta}
+
+% 23. 4. 2021
+    
+    \subsection{Operace s uniformními prostory}
+        \begin{definice}
+            Ať $(®X, ©D)$ je UP, $®Y \subseteq ®X$. Pak uniformní podprostor $(®Y, ©D_{®Y})$ je definován následovně $©D_{®Y} := \{D \cap (®Y \times ®Y) | D \in ©D\}$.
+
+            Jsou-li $(®X_i, ©D_i)$ UP, pak suma těchto UP je definována jako $\(\bigcup ®X_i, \{\bigcup D_i | D_i \in ©D_i\}\)$. Součin pak jako $\(\prod ®X_i | \{\prod D_i | D_i \in ©D_i, \Fin(D_i ≠ ®X_i \times ®X_i)\}\)$. (Tedy jsou různé od identity jen v konečně mnoha případech.)
+        \end{definice}
+
+    \subsection{Úplnost a totální omezenost}
+        \begin{definice}[Net]
+            Net $(x_i)_{i \in I}$ UP $(®X, ©D)$ se nazývá cauchyovský, pokud $\forall D \in ©D\ \exists i_0 \in I\ \forall i, j ≥ i_0: (x_i, x_j \in D)$.
+        \end{definice}
+
+        \begin{definice}[Úplný a totálněomezený prostor]
+            UP $(®X, ©D)$ se nazývá úplný, pokud každý cauchyovský net v $(®X, ©D)$ je konvergentní v $(®X, \tau_{©D})$.
+
+            UP $(®X, ©D)$ se nazývá totálně omezený, pokud $\forall E \in ©D\ \exists K \subseteq ®X$ konečná: $E[K] = ®X$.
+        \end{definice}
+
+        \begin{poznamka}
+            MP je totálně omezený (úplný) $\Leftrightarrow$ UP jím generovaný je totálně omezený (úplný).
+        \end{poznamka}
+
+        \begin{poznamka}
+            UP $(®X, ©D)$ je totálně omezený $\Leftrightarrow$ $\forall D \in ©D\ \exists$ konečné pokrytí $U_1, …, U_n$ prostoru ®X, že $(U_1 \times U_1) \cup … \cup (U_n \times U_n) \subseteq D$.
+        \end{poznamka}
+
+        \begin{veta}
+            Buď $(®X, ©D)$ UP. Pak $(®X, \tau_{©D})$ je kompaktní $\Leftrightarrow$ $(®X, ©D)$ je úplný a totálně omezený.
+
+            \begin{dukazin}
+                $\implies$ Je-li $D \in ©D$, pak $\{\Int D[x] | x \in ®X\}$ je otevřené pokrytí ®X. Tedy z kompaktnosti existuje konečné podpokrytí $\{\Int D[x_1], …, \Int D[x_n]\}$. Tedy pro $K := \{x_1, …, x_n\}$ je $D[K] = \bigcup D[x_i] \supseteq \bigcup \int D[x_i] = ®X$.
+
+                Ať $(x_i)_{i \in I}$ je cauchyovský net v $(®X, ©D)$. Z charakterizace kompaktnosti víme, že $(x_i)_{i \in I}$ má hromadný bod -- řekněme $x$. Ukážeme, že $x$ je limitou netu $x_i$ (tj. $x_i$ konverguje k $x$). Ať $U$ je okolí $x$. Pak existuje symetrické $D \in ©D: (D \circ D)[x] \subseteq U$. Z cauchyovskosti existuje $i_0$, že pro $i, j ≥ i_0: (x_i, x_j) \in D$
+
+            \end{dukazin}
+        \end{veta}
+
+        TODO
+
+% 16. 4. 2021 Druhá část
+
+\section{Topologické grupy}
+    \begin{definice}[Topologická grupa]
+        $(®G, ·, \tau)$ se nazývá topologická grupa (TG), pokud $(®G, ·)$ je grupa, $(®G, \tau)$ je TP a $·: ®G \times ®G \rightarrow ®G$ je spojité, $^{-1}: ®G \rightarrow ®G$ je spojité.
+    \end{definice}
+
+    \begin{pozorovani}
+        Ať ®G je TG. Pak:
+
+        \begin{itemize}
+            \item $^{-1}$ je homeomorfismus.
+            \item $\forall g \in ®G: L_g: ®G \rightarrow ®G$, $L_g(h) := g·h$ (tzv. levá translace) je homeomorfismus. ($L^{-1}_g = L_{g^{-1}}$.)
+            \item $\forall x, y \in ®G\ \exists h: ®G \rightarrow ®G$ homeomorfismus: $h(x) = y$. ($L_{yx^{-1}}(x) = y$.)
+            \item $\forall U$ okolí $e$ $\exists V$ okolí $e$: $V·V^{-1} := \{u·v^{-1} | u \in V, v \in V\} \subseteq U$.
+            \item Pro $U$ otevřenou v ®G a $M \subseteq ®G$ libovolnou $M·U$ je otevřené.
+            \item Uzávěr podgrupy $H ≤ ®G$ je opět grupa.
+            \item Uzávěr normální (algebraicky) podgrupy je normální (algebraicky) podgrupa.
+            \item Je-li $H$ podgrupa ®G s neprázdným vnitřkem, pak je obojetná.
+            \item Součin TG se součinovou topologií a operací po složkách je TG.
+        \end{itemize}
+    \end{pozorovani}
+
+    \begin{tvrzeni}[Uniformita na TG]
+        Ať ®G je TG. Pak systém $\{D_U | U \text{ je okolí } e\}$, kde $D_U = \{(x, y) | x·y^{-1} \in U\}$, je bází nějaké uniformity na ®G. (Tzv. pravá uniformita na ®G). Tato uniformita je kompatibilní s topologií ®G.
+
+        \begin{dukazin}
+            $\delta(G) \subseteq D_u$. Ať $U$ je okolí $e$. Chceme najít $¦V$ okolí $e: D_{V} \circ D_{V} \subseteq D_{U}$. Uvažme spojité zobrazení $(x, y) \mapsto x·y$, $x, y \in ®G$. $(e, e) \rightarrow e$.
+
+            Tedy existuje $V$ okolí $e$: $¦V·¦V \subseteq U$. Nyní $D_V \circ D_V \subseteq D_u$: Ať $(a, b) \in D_V \circ D_V$. Pak existuje $c \in G: (a, c) \in D_V$, $(c, b \in D_V)$. $a·c^{-1} \in V$ a $cb^{-1} \in V$, tedy $a·c^{-1}·c·b^{-1} \in V·V \subseteq U$. $a·b^{-1} \in U$. $(a, b) \in D_U$. Pro $V, W$ okolí $e$: $D_V \cap D_W \supseteq D_{V \cap W}$. Tedy $\{D_U | U \text{ okolí } e\}$ tvoří bázi uniformity.
+
+            Tato uniformita je kompatibilní s původní topologií na ®G: Ať $V$ okolí $e$, $x \in ®G$. $D_V[x] = \{y \in ®G | xy^{-1} \in V\} = \{y \in ®G | y \in V^{-1}·x\}i = V^{-1}·x$ je okolí $x$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}
+        Každá TG je Tichonovova.
+
+        \begin{dukazin}
+            Ať $(®G, ·, \tau)$ je TG. Ať ©D je pravá uniformita na $(®G, ·, \tau)$. Víme, že $(®G, \tau_{©D})$ je Tichonovův. Předchozí tvrzení dává, že $\tau_{©D} = \tau$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Metrizovatelnost TG]
+        TG je metrizovatelná, právě když má spočetný charakter.
+        
+        \begin{dukazin}
+                $\implies$: Triviální (každý met. prostor má spočetný charakter). $\Leftarrow$: Ať $(®G, ·, \tau)$ má spočetný charakter. Ať $\{U_n : n \in ®N\}$ je báze okolí v $e$. $D_n := \{(x, y) \in ®G \times ®G | xy^{-1} \in U_n\}$, $\{D_n | n \in ®N\}$ je báze pravé uniformity ©D. Tedy ©D má spočetnou bázi. Tedy $(®G, ©D)$ je metrizovatelný, tedy $(©G, \tau)$ je metrizovatelný.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Informativně]
+        Věta (Birkhoff Kahutani): Každá metrizovatelná grupa má zleva (zprava) invariantní metriku, tj. metrika $\rho$, že $\rho(x, y) = \rho(c·x, c·y)$, $\forall c, x, y \in ®G$.
+    \end{poznamka}
+
+    \begin{tvrzeni}[Spojitost homomorfismu]
+        Ať $®G$, $®H$ jsou TG. $f: ®G \rightarrow ®H$ je homomorfismus grup. $f$ je spojité $\Leftrightarrow$ $f$ je spojité v $e \in ®G$.
+
+        \begin{dukazin}
+            $\implies$: zřejmě. $\Leftarrow$: Ať $x \in ®G$, $(x_i)_{i \in I}$ je net v ®G, který konverguje k $x$. Chceme, že $(f(x_i))_{i \in I}$ konverguje k $f(x)$ v ®H. $(x_i · x^{-1})_{i \in I}$ je net v ®G, konverguje k $x·x^{-1} = e \in ®G$. $f$ spojité v $e$, tedy $f(x_i·x^{-1})$ konverguje k $f(e) = e \in ®H$. Tudíž $f(x_i)·\(f(x)\)^{-1} \rightarrow e \in ®H$. Tudíž (po vynásobení $f(x)$) $f(x_i) \rightarrow f(x)$. Tedy $f$ spojité v $x$. $x \in ®G$ libovolné. Tedy $f$ je spojité.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Faktor TG]
+        Buď $N$ uzavřená normální podgrupa TG ®G. Pak faktogrupa $®G / N$ s kvocientovou topologií je TG a přirozená projekce (= kvocientové zobrazení) $\pi: ®G \rightarrow ®G / N$, $\pi(g) := g·N$, je spojitý a otevřený homeomorfismus.
+
+        \begin{dukazin}
+            Víme: $\pi$ je spojitý homeomorfismus. $\pi$ je otevřené: je-li $U \subseteq ®G$ otevřené, pak $\pi(U) = \{xN: x \in U\} \subseteq G/N$, $\pi^{-1}(\pi(U)) = U·N$ je otevřením. Tedy z definice kvocientové topologie je $\pi(U)$ otevřená množina.
+
+            $®G/N$ je TG: Násobení je spojité: $f: ®G \times G \rightarrow ®G / N$, $f(g, h) := g·h·N$ je spojité, jelikož je to složení součinu a kvocientového zobrazení. Poznamenejme, že můžeme přirozeně identifikovat $®G \times ®G / N \times N$ a $(®G/N) \times (®G/N)$. Operace součinu na $G/N$ je kvocientem spojitého zobrazení $f$. Tedy je také spojité podle charakterizace spojitosti a projektivně vytvořeného prostoru.
+
+            Spojitost $^{-1}$ se ukáže obdobně.
+
+            Zbývá ověřit, že $®G / N$ je Hausdorffův. Stačí ověřit, že je $T_1$. $N$ je uzavřená, tedy $G\setminus N$ je otevřená. $\pi^{-1}(G / N \setminus \{N\}) = ®G \setminus N$ je otevřená. Tedy z definice kvocientové topologie $G/N \setminus \{N\}$ je otevřená v $G/N$, …
+        \end{dukazin}
+    \end{veta}
+
+% 30. 4. 2021
+
+    \begin{tvrzeni}[O homomorfismu]
+        Ať $®G, ®H$ jsou TG a $f: G \rightarrow H$ spojitý homomorfismus. Pak $N := f^{-1}(e)$ je normální (uzavřená) podgrupa $G$ a existuje spojitý homomorfismus $\overline{f}: G / N \rightarrow H$, že $\overline{f}\pi = f$ (kde $\pi: G \rightarrow G/N$ je přirozená projekce).
+
+        \begin{poznamkain}
+            $\overline{f}$ nemusí být vnoření topologických prostorů.
+        \end{poznamkain}
+
+        \begin{dukazin}
+            Bez důkazu.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[O izomorfismu]
+        Ať ®G je TG, $K \subseteq H$ její uzavřené normální podgrupy. Pak $H/K$ je uzavřenou normální podgrupou $G/K$ a $(G/K)/(H/K)$ je izomorfně homeomorfní s $G/H$.
+
+        \begin{dukazin}
+            Bez důkazu.
+        \end{dukazin}
+    \end{tvrzeni}
+
+\section{Souvislé prostory}
+    \begin{definice}
+        TP se nazývá souvislý, pokud je neprázdný a nelze ho vyjádřit jako sjednocení dvou disjunktních otevřených neprázdných množin. (Tj. obsahuje právě dvě obojetné množiny, sám sebe a prázdný prostor.)
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pro neprázdný TP ®X je ekvivalentní: a) ®X je souvislý, b) Je-li $®X = A \cup B$ a $\overline{A}\cap B = \O = \overline{B} \cap A$, pak $A = \O$ nebo $B = \O$. c) ®X neobsahuje vlastní obojetnou podmnožinu. d) Každé spojité zobrazení $f: ®X \rightarrow \{0, 1\}$ je konstantní.
+
+        \begin{dukazin}
+            Přímočaré.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Spojitý obraz souvislého prostoru je souvislý.
+
+        \begin{dukazin}
+            Ať $f: ®X \rightarrow ®Y$ je spojité zobrazení, ®X souvislé, $f$ na. Sporem. ®Y není souvislý. Potom z minulého tvrzení $\exists g: ®Y \rightarrow \{0, 1\}$ spojitý nekonstantní. Potom ale $g\circ f: ®X \rightarrow \{0, 1\}$ je spojité a nekonstantní $\implies$ ®X není souvislý. \lightning.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Sjednocení souvislých množin]
+        Ať $C_i \subseteq ®X, C_i$ souvislé, $i \in I, 0 \in I, C_i \cap C_0 ≠ \O$ pro $i \in I$. Pak $\bigcup C_i$ je souvislé.
+
+        \begin{dukazin}
+            Ať $O$ je neprázdná obojetná množina v $\bigcup C_i$. Existuje $j \in I$, $C_j \cap O ≠ \O$. $C_j \cap O$ je obojetná v $C_j$, $C_j$ je souvislá, tedy $C_j \subseteq O$. Tedy $C_0 \cap O ≠ \O$, tj. $C_0 \subseteq O$. Je-li $i \in I$ libovolná, pak $C_i \cap O ≠ \O$ a opět $C_i \subseteq O$.Tudíž $O = \bigcup C_i$, tj. $\bigcup C_i$ je souvislá.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Jsou-li $C_i$ souvislé v TP ®X, $i \in I$ a $\bigcap C_i ≠ \O$, pak $\bigcup_{i \in I}C_I$ je souvislá.
+
+        \begin{dukazin}
+            Předchozí s $C_0 := \{x_0\} \subseteq \bigcap C_i$.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{dusledek}
+        Je-li $A \subseteq ®X$ souvislá a $A \subseteq M \subseteq \overline{A}$, pak $M$ je souvislá.
+
+        \begin{dukazin}
+            $C_a := A \cup \{a\}$ pro $a \in M \setminus A$. Vzhledem k předchozímu stačí ověřit, že $C_a$ je souvislá $(M = \bigcup_{a \in M \setminus A} C_a)$.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{veta}
+        Buď ®X Tichonovův prostor. Pak ®X je souvislý $\Leftrightarrow$ $\beta ®X$ je souvislý.
+
+        \begin{dukazin}
+            $\implies$: $\overline{®X} = \beta ®X$, ®X je souvislá $\implies$ $\overline{®X}$ je souvislá $\implies$ $\beta®X$ je souvislá.
+
+            $\Leftrightarrow$: Ať $\beta®X$ je souvislý. Ať $f: ®X \rightarrow \{0, 1\}$ je spojité zobrazení. Z vlastností $\beta ®X$ existuje spojité rozšíření $\overline{f}: \beta®X \rightarrow \{0, 1\}$. $\beta ®X$ je souvislý $\implies$ $\overline{f}$ je konstantní $\implies$ $f$ je konstantní $\implies$ ®X je souvislý.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Součin souvislých prostorů]
+        Ať $®X_i: i \in I$ jsou TP. Pak $\prod_{i \in I}®X_i$ je souvislý $\Leftrightarrow$ $\forall i \in I: ®X_i$ je souvislý.
+
+        \begin{dukazin}
+            Pokud některý $®X_i = \O$, tvrzení platí. Dále ať $®X_i ≠ \O$, $i \in I$. $\implies$: Je-li $\prod ®X_i$ souvislý, $\pi_j: \prod ®X_i \rightarrow ®X_j$ je spojité a na, tedy i $®X_j$ je souvislý.
+
+            $\Leftarrow$: Nejprve pro dva prostory ®X, ®Y: $®X \times ®Y = (\{x_0\} \times ®Y) \cup \bigcup_{y \in ®Y} ®X \times \{y\}$. Tedy podle tvrzení výše je $®X \times ®Y$ souvislý. Indukcí dokážeme pro konečně mnoho. Obecně: $\forall i \in I$ fixujeme bod $x_i \in ®X_i$.
+            $$ M:= \{(y_i)_{i \in I} \in \prod ®X_i: y_i = x_i \text{ pro všechna $i \in I$ až na konečně mnoho výjimek}\}. $$
+            $$ M = \bigcup_{K \subseteq I \text{ konečná}} \( \prod_{i \in K}®X_i \times \prod_{i \in I \setminus K} \{x_i\}\). $$
+            To znamená, že $M$ je souvislé, protože je sjednocením souvislých množin s průnikem obsahujícím $(x_i)_{i \in I}$. Ale $M$ je hustá v $\prod ®X_i$. $\overline{M}$ je souvislá, tedy $\prod ®X_i$ je souvislá.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Komponenta souvislosti]
+        Ať ®X je TP, $x \in ®X$, pak komponenta souvislosti bodu $x$ je největší souvislá množina, která $x$ obsahuje. Značíme ji $C_x$.
+
+        \begin{dukazin}[Existence]
+            Plyne z jednoho z důsledků: $\bigcup \{C | x \in C \land C \text{ je souvislá}\}$ je souvislá a maximální. Navíc je to vždy uzavřená množina.
+        \end{dukazin}
+
+        \begin{poznamkain}
+            Komponenty souvislosti tvoří rozklad, tj. $C_x = C_y$ nebo $C_x \cap C_y = \O$.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{tvrzeni}
+        Jsou-li $®X_i$ TP a $x_i \in ®X_i$, $C_i$ komponenta bodu $x_i$ v $®X_i$. Pak $\prod C_i$ je komponenta $(x_i)_{i \in I}$ v $\prod ®X_i$.
+        
+        \begin{dukazin}
+            Cvičení.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}[Kvazikomponenty]
+        Ať ®X je TP. Množina $Q \subseteq ®X$ se nazývá kvazikomponenta bodu $x \in ®X$ v prostoru ®X, pokud $Q = \bigcap \{Z | x \in Z \land Z \text{ obojetná}\}$. Značíme ji $Q_x$.
+
+        \begin{poznamkain}
+            $\forall x \in ®X: C_x \subseteq Q_x$. Navíc $Q_x$ je uzavřená. A opět tvoří rozklad prostoru ®X.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{priklady}[TP ®X, že $C_x ≠ Q_x$]
+            $®X \subseteq ®R^2$ skládající se ze 2 bodů $x, y$ a úseček k ním konvergujícím (\verb!:|| |  |   |!). $C_x = \{x\}$, $Q_x = \{x, y\}$.
+    \end{priklady}
+
+    \begin{lemma}[O průniku v kompaktu]
+        Buď ®X kompaktní TP, ©A soubor uzavřených množin v ®X. $U \subseteq ®X$ otevřená a $\bigcap ©A \subseteq U$. Pak existuje konečný systém $©F \subseteq ©A: \bigcap ©F \subseteq U$.
+
+        \begin{dukazin}
+            Kdyby ne, pak $\forall ©F \subseteq ©A$ konečné: $\bigcap ©F \setminus U ≠ \O$. Tedy $©A \cup \{®X \setminus U\}$ má konečnou průnikovou vlastnost. ®X kompaktní: $\bigcap ©A \cap (®X \setminus U) ≠ \O$. Tedy $\bigcap ©A \not \subseteq U$. \lightning.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}
+        V kompaktním TP komponenty a kvazikomponenty splývají.
+
+        \begin{dukazin}
+            Ať $x \in ®X$. $C_x \subseteq Q_x$. Pro $Q_x \subseteq C_x$ stačí dokázat, že $Q_x$ je souvislá. Předpokládejme $E \cup F$, $E, F$ uzavřené (v $Q_x$, a tedy i v ®X) disjunktní množiny. BÚNO $x \in E$. ®X je normální, tedy existují otevřené disjunktní množiny $U, V$: $E \subseteq U$, $F \subseteq V$. $Q_x = E \cup F \subseteq U \cup V$. Podle předchozího lemmatu existují obojetné množiny $Q_1, …, Q_n: Q_1 \cap … \cap O_n \subseteq U \cup V$. Otevřené $O \cap U = O \setminus V$ uzavřené, tedy $x \in O \cap U$, tedy $Q_x \subseteq O \cap U$. Tedy $F = \O$. Proto $Q_x$ je souvislá.
+        \end{dukazin}
+    \end{veta}
+
+% 7. 5. 2021
+
+    \begin{definice}[Křivková a oblouková souvislost]
+        TP ®X se nazývá obloukově (resp. křivkově) souvislý, pokud $\forall x, y \in ®X, x≠y \exists f: [0, 1] \rightarrow f([0, 1])$ homeomorfní (resp. $f$ spojité), že $f(0) = x$, $f(1) = y$.
+
+        \begin{poznamkain}
+            Obecně je mezi nimi rozdíl, v Hausdorffových prostorech je to totéž.
+        \end{poznamkain}
+    \end{definice}
+
+\section{Kontinua}
+    \begin{definice}[Kontinuum]
+        Kontinuum je kompaktní souvislý prostor.
+
+        Jednoprvkové kontinuum se nazývá degenerované, ostatní nedegenerovaná.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Ať $K_n$ je klesající (vzhledem k inkluzi) posloupnost kontinuí, pak $\bigcap_{n = 1}^∞ K_n$ je opět kontinuum.
+
+        \begin{dukazin}
+            $K := \bigcap_{n = 1}^∞ K_n$ je zřejmě kompaktní. Předpokládejme, že $K = E \cup F$, kde $E, F$ jsou uzavřené disjunktní. Chceme $E = \O$ nebo $F = \O$. $K_1$ je normální, tedy existují otevřené disjunktní $U, V$, že $E \subseteq U$ a $F \subseteq V$. Podle lemmatu o průniku v kompaktu existuje $n \in ®N$, že $K_n \subseteq U \cup V$, tedy $K_1 = (K_n \cap U) \cup (K_n \cap V)$. $K_n$ je sovislá, tedy $K_n \cap U = \O$ nebo $K_n \cap V = \O$. Tedy $E = \O$ nebo $F = \O$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}[Bum do hranice (Boundary bumping theorem)]
+        Ať ®X je kontinuum, $A$ vlastní uzavřená podmnožina ®X. Pak každá komponenta množiny $A$ protíná hranici $A$.
+
+        \begin{dukazin}
+            $A = \O$ nemá žádnou komponentu. Tedy $A ≠ \O, x \in A$, $C_x$ … komponenta bodu $x$ v $A$. Pro spor předpokládejme, že $C_x \cap \partial A = \O$. $A \subset ®X$, ®X je kontinuum, tedy $\partial A ≠ \O$. Víme, že $C_x$ je kvazikomponenta ®X, $C_x \subseteq A \setminus \partial A$. Tedy podle lemmatu o průniku v kompaktu existuje obojetná množina $Z$ v $A$, že $C_x \subseteq Z \subseteq A \setminus \partial A$. $Z$ je uzavřená v ®X, neprázdná, vlastní. Navíc $Z$ je otevřená v $A$ a neprotíná hranici, tedy $Z$ je otevřená v ®X ($Z$ je otevřená v otevřené $A \setminus \partial A$). $Z$ je tedy obojetná vlastní podmnožina v ®X, \lightning.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Sierpinski]
+        Ať ®X je kontinuum, $X_n, n \in ®N$ po dvou disjunktní uzavřené množiny v ®X, že $X = \bigcup X_n$. Pak všechna $X_n = \O$ až na jednu výjimku.
+
+        \begin{dukazin}
+            Je-li kontinuum $®D$ spočetným sjednocením uzavřených neprázdných disjunktních množin $Y_i, i \in ®N$, pak pro každé $i \in ®N$ existuje kontinuum $®C \subseteq ®D$, které je disjunktní s $Y_i$, ale není obsaženo v žádném $Y_j, j \in ®N$ (protíná alespoň 2). Důkaz:
+
+            Fixujeme $j ≠ i$: existují disjunktní otevřené $U, V$: $Y_j \subseteq U$, $Y_i \subseteq V$. Buď $C$ komponenta libovolného bodu z $Y_j$ v množině $\overline{U}$. Podle bum do hranice víme, že $C \cap \partial \overline{U} ≠ \O$. Tj. $\partial \overline{U}\cap Y_j = \O$, tedy $C \nsubseteq Y_j$. $C \subseteq \overline{U} \subseteq ®D \setminus V$, tedy $C \cap Y_i = \O$.
+
+            Důkaz věty: Sporem: Existují alespoň dva indexy $n ≠ m: X_n ≠ \O ≠ X_m$. Kdyby $\{k \in ®N: X_n ≠ \O\}$ byla konečná, pak ®X je sjednocením konečně mnoha disjunktních uzavřených neprázdných množin, tyto množiny by již byly obojetné, spor se souvislostí ®X.
+
+            BÚNO (vyházíme prázdné a přeindexujeme) $X_n ≠ \O, \forall n \in ®N$. Indukcí najdeme posloupnost kontinuí $C_n$, že $C_{n+1} \subseteq C_n \land C_n \cap X_n = \O \land C_n$ není obsaženo v žádném $X_i$, $i \in ®N$. Podle prvního odstavce $®X = ®D$, $X_j = Y_j$, $i = 1$ existuje $C = C_j$. Dále uvažme $C_1$. To protíná nekonečně mnoho z množin $X_i$. V druhém kroku indukce použijeme první odstavec na $®D = C_1$, $\{Y_i | i \in ®N\} = \{C_1 \cap X_i | C_1 \cap X_i ≠ \O\}$, …
+
+            $\bigcap C_n ≠ \O$, ať tedy $c \in \bigcap C_n$. $c \notin \bigcup X_n = ®X$. \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Rozložitelné a nerozložitelné kontinuum]
+        Kontinuum ®X se nazývá rozložitelné, pokud existují dvě vlastní podkontinua $®A, ®B$ (ne nutně disjunktní), že $®X = ®A \cup ®B$. Jinak je nerozložitelné.
+    \end{definice}
+
+    \begin{veta}[Charakterizace nerozložitelnosti]
+        Kontinuum ®X je nerozložitelné, právě když každé jeho vlastní podkontinuum je v něĺ řídké (tj. uzávěr má prázdný vnitřek).
+
+        \begin{dukazin}
+            $\Leftarrow$ Kdyby $X = ®A \cup ®B$, ®A, ®B vlastní podkontinua, pak ®A, ®B řídké. $®A \cup ®B$ je řídká v ®X, \lightning.
+
+            $\implies$: Ať $®Y \subseteq ®X$ je vlastní podkontinuum ®X, $\Int ®Y ≠ \O$. Ať $M = \overline{®X \setminus ®Y}$. Pak $M$ je souvislá: $®X = M \cup ®Y$ a $M$ je kontinuum, tedy ®X je rozložitelné. Nebo $M$ je nesouvislá: $M = E \cup F$, kde $E, F$ jsou uzavřené disjunktní neprázdné podmnožiny v $M$. Potom $(®Y \cup E) \cup (®Y \cup F)$. Ale tyto dvě množiny jsou vlastní uzavřené podmnožiny ®X, které jsou souvislé (neboť každá komponenta $E$ nebo $F$ protíná jejich hranici a ta je podmnožinou ®Y a sjednocení souvislých protínajících se ve stejném bodě je souvislé).
+        \end{dukazin}
+    \end{veta}
+
+
 \end{document}

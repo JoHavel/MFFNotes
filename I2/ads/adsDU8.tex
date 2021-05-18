@@ -1,0 +1,20 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[lavl]
+        Ukažte, jak je možno z libovolného binárního stromu vytvořit AVL strom (zachovávající inorder pořadí) v lineárním čase a ukažte, že rychleji to nejde.
+
+        \begin{reseni}
+            Převedeme strom do pole v inorder pořadí. Následně rekurzivně: (pro počet vrcholů $n$) najdeme největší $d$ tak, že $2·\(2^{d+1} - 1\) + 1 ≤ n$. Označme $r = n - \(2·\(2^{d+1} - 1\) + 1\)$. Následně se zavoláme na prvních $2^{d+1} - 1 + \min\{2^{d + 1}, r\}$, poté se zavoláme na posledních $2^{d+1} - 1 + \max\{0, r - 2^{d+1}\}$. Tím nám zbude 1 „prostřední“ vrchol, který prohlásíme za kořen (aktuálního volání) a kterému připojíme za syny kořeny těchto volání.
+
+            Tím nám vznikne strom, který zachoval inorder pořadí a tvarem odpovídá haldě (proto ty vzorce „spadlé z nebe“), tedy je to jistě AVL strom, protože každý podstrom sahá buď na poslední, nebo na předposlední hladinu, tedy se hloubky sourozenců liší nejvýše o 1. Časová složitost je $O(n)$, jelikož každé volání provede konstantní počet operací ($d$ stačí spočítat pro celý strom, v dalších volání může být buď stejné nebo o jedna menší, než ve volání o hladinu výše) a „odstraní“ 1 vrchol.
+        \end{reseni}
+
+        \begin{dukazin}
+            Představme si, že máme plný (všechny hladiny zaplněné) binární strom o $d$ hladinách. Následně přidáme listům 1 syna, který má 1 syna. Tedy z každého listu „vyraší“ větev délky 2. Nový strom má $n = 2^{d+1} - 1 + 2·2^d$ vrcholů. Zároveň podstrom pod žádným synem nesplňuje podmínku AVL stromu. Abychom takový podstrom „opravili“, musíme odpojit spodního syna, přepojit horního jinam, nebo přidat původnímu listu druhého syna (jiné změny hran nic neřeší). Tedy změnou jedné hrany umíme opravit nejvýše 2 takové stromy (z jednoho odpojíme vrchol a k druhému přidáme), my jich ale máme $2^d$ (počet listů), tedy změníme minimálně $2^{d-1}$ hran. To nám dává čas $\Omega(2^{d-1}) = \Omega(4·2^{d-1} - 1) = \Omega(n)$.
+        \end{dukazin}
+    \end{priklad}
+
+\end{document}

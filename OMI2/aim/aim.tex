@@ -248,4 +248,50 @@
             Synchronizační primitiva jsou dnes již rychlá (hlavně v linuxu, tzv. futex (typicky user-space, výjimečně kernel)), ale zámky jsou sdílená R/W data, takže budou stejně docela pomalá. Další problém je, kolik jich mít (každý prvek seznamu vs. celý seznam), řeší se hešovacími zámky. 
         \end{definice}
 
+% 27. 4. 2021
+
+        TODO
+
+% 4. 5. 2021
+
+        \begin{poznamka}[Co potkáme dnes]
+            Více CPU na 1 čipu -- více jader (samostatná CPU + sdílené I/O a část keší) nebo SMT (symmetric multi-threading, sdílené výpočetní jednotky).
+        \end{poznamka}
+
+        \begin{definice}[Sběrnice]
+            Rychlost se udává v šířce sběrnice a počtu cyklů za sekundu, tedy kolikrát se přenese šířka za sekundu.
+
+            FSB = 64 bitů, $10^3$GT/s (gigatransferů za sekundu); RAM DDR2-1066 = 1.066 GT/s, 64b; dnes DDR4 = 2.1 GT/s, 64b; PCI = 33 MT/S, 32b; PCI Express (PCIe) = 1-32 linek, 2.0 = 500MB/S per lane, 3.0 = 985 MB/s per lane;
+
+            TODO
+        \end{definice}
+
+% 11. 5. 2021
+
+        \begin{definice}[Vektorové operace]
+            Tzv. SIMD (Single Instruction Multiple Data) paralelismus. Aplikace: lineární algebra (zpracování obrazu a zvuků, machine learning), blokové zpracování dat (zda se v tomto velkém souboru nachází 0), tentýž algoritmus pro různé vstupy.
+
+            1996 Intel MMX (multimedia extensions) (archaická věc, ale stále se odráží v dnešním SIMD) -- 8 64-bitových vektorových registrů (MM0-MM7) sdílených s FPU (muselo se však přepínat a to bylo ukrutně pomalé), integerová (i saturační) aritmetika (add, sub, mul). 1998 3DNow rozšířilo MMX o floatové vektory (2011 zrušeno).
+
+            Intel SSE (Streaming SIMD Extensions) -- registry XMM0-XMM7 (v 64-bit módu až XMM15), které jsou 128-bitové ($16\times 8b, 8 \times 16b, 4 \times 32b, 2 \times 64b$, poslední dva i floatové operace). Dále vznikly další verze…
+
+            ADDPD (= add + packed + double (=64b)), ADDSUBPS (= add + sub (na střídačku, vhodné např pro furierku) + packed + single (=32b)), CMPEQPD (= CMP (compare) + EQ (rovnost) + packed + double) vyrobí bit masku, MAXPD (maximum), HADDPS (= horizontal + add + p + s) sčítá abcd+efgh = (e+f, g+h, a+b, c+d).
+
+            PADDW (=packed + add + word), PADDSW (saturační verze), PAND, PAVGB (průměr), PMINB, PMAXB, PCMPEQB.
+
+            Pak ještě přesuny: MOVAPD (= move + aligned + packed + double), MOVDQA (= move + double quad + aligned), MOVUPD (=…unaligned…), MOVDQU. A permutace: PSHUFD (řízeno 8bit tabulkou u instrukce, kde určujeme, co se má vzít, kde).
+
+            Délky jsou $S=32$, $D=64$ floaty, $B=8$, $W=16$, $D=32$, $Q=64$, $DQ=128$.
+
+            AVX (Advanced Vector eXtensions) -- 256-bit registry YMM0-15 (rozšíření XMMn), původně jen floatové (AVX2 má navíc integery, které také nevyžaduje alignment a umí gather (vektorové indexování)).
+        \end{definice}
+
+        \begin{definice}[Programování vektorových instrukcí (GCC)]
+            Autovektorizace (GCC umí rozbalovat smyčky na vektorové operace). Nebo přímo GCC vektory (\verb|typedef int __attribute__((vector_size(16))) vec;|, kde 16 (libovolná velikost, GCC si to srovná) je v bytech a int určuje velikost 1 prvku). Pak $+-=$ funguje po složkách, můžeme indexovat (\verb|x[i]|), násobit po složkách ($*$), nebo přímo instrukce: \verb|__builtin_ia32_paddb(x, y)|. Nakonec existuje i Intelovské C.
+        \end{definice}
+
+        \begin{definice}[/proc/cpuinfo]
+            Obsahuje informace o všech procesorech (virtuálních), včetně třeba flags, kde jsou vyjmenované featury, co procesor umí.
+        \end{definice}
+
 \end{document}

@@ -531,4 +531,405 @@
                 $2) \implies 1)$: Buďte $\lambda_1, …, \lambda_k$ po dvou různá vlastní čísla, $m_i$ algebraická (tj. i geometrická) násobnost $\lambda_i$ = $\dim M_{\lambda_i}$ a $n = m_1 + … + m_k$. Zvolme si bázi $M_{\lambda_i}$ $B_i = (¦v_1^i, …, ¦v_{m_i}^i)$. Ukáže se, že $B = (¦v_1^1, …, v_{m_k}^k)$ je báze ¦V. $B$ má $n = \dim ¦V$ prvků, tedy stačí dokázat, že $B$ je LN. Uvažujme $0 = a_1^1¦v_1^1 + … + a_{m_k}^k¦v_{m_k}^k$. Součty násobků prvků jednotlivých prostorů $M_{\lambda_i}$ jsou zase v $M_{\lambda_i}$, takže jsou (až na právě ty nulové) LN, protože jsou to vlastní vektory příslušné po dvou různým vlastním číslům. Tedy musí být všechny nulové, ale v jednotlivých $M_{\lambda_i}$ byla $(¦v_1^i, …, ¦v_{m_i}^i)$ báze, tedy všechny koeficienty musí být nulové. 
             \end{dukazin}
         \end{veta}
+
+% 9. 4. 2021
+
+        \begin{poznamka}
+            Dále se probírali lineární systémy v $®R^2$. Viz přednáška.
+        \end{poznamka}
+
+% 14. 4. 2021
+
+    \subsection{Jordanův kanonický tvar}
+        \begin{definice}[Jordanova buňka]
+            Buď ®T těleso, $k ≥ 1$ a $\lambda \in ®T$. Pak Jordanovou buňkou řádu $k$ příslušnou k prvku $\lambda$ rozumíme matici:
+            $$ J_{\lambda, k} = \begin{pmatrix} \lambda & 1 & & … & 0 \\ & \lambda & 1 & … & \\ & & \ddots & ddots & & \\ & & & & & 1 \\ 0 & & & & & \lambda \end{pmatrix}. $$ 
+        \end{definice}
+
+        \begin{definice}
+            Řekneme, že čtvercová matice $J$ nad tělesem ®T je v Jordanově kanonickém tvaru, pokud je blokově diagonální a čtvercové bloky na diagonále jsou Jordanovy buňky. Tj.
+            $$ J = \diag(J_{\lambda_1, k_1}, …, J_{\lambda_s, k_s}). $$ 
+        \end{definice}
+
+        \begin{definice}[Zobecnění diagonalizovatelnosti]
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na konečně generovaném VP nad ®T. Řekneme, že existuje Jordanův kanonický tvar (operátoru $f$), pokud existuje báze $B$ prostoru ¦V taková, že $[f]_B^B$ je v Jordanově tvaru.
+
+            Podobně je-li $A$ čtvercová matice nad ®T, pak $A$ má Jordanův kanonický tvar, pokud pro $f_A$ existuje Jordanův kanonický tvar.
+        \end{definice}
+
+        \begin{pozorovani}
+            $A$ má jordanův kanonický tvar $\Leftrightarrow$ $\exists$ matice v Jordanově tvaru, která je podobná matici $A$.
+        \end{pozorovani}
+
+        \begin{tvrzeni}[Mocnění matice v J. tvaru]
+            Buď ®T těleso a $J = \diag(J_{\lambda_1, k_1}, …, J_{\lambda_s, k_s})$ matice v Jordanově tvaru.
+
+            \begin{pozorovaniin}
+                $J^n = \diag(J_{\lambda_1, k_1}^m, …, J_{\lambda_s, k_s}^m)$.
+            \end{pozorovaniin}
+
+            \begin{tvrzeniin}[Mocnění Jordanovy buňky příslušné k 0]
+                Pro $m < k$: $J_{0, k}^m = \(0 \mid| \begin{array}{ccc} 1 & … & 0 \\ \vdots & \diag & \vdots \\ 0 & … & 1 \\ 0 & 0 & 0 \\ \vdots & \vdots & \vdots \end{array}\)$.
+
+                Pro $m ≥ k$: $J_{0, k}^m = 0$.
+            \end{tvrzeniin}
+
+            \begin{tvrzeniin}[Mocniny obecné Jordanovy buňky]
+                $$ J_{\lambda, k}^m = (\lambda·I_k + J_{0, k})^m \overset{\text{Binomická věta, komutativita $I_k$}}{=} \sum_{i=0}^m \binom{m}{i} \lambda^i · J_{0, k}^{m-i}. $$
+            \end{tvrzeniin}
+        \end{tvrzeni}
+
+        \begin{definice}[Jordanův řetízek, zobecněné vlastní vektory]
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na VP ¦V, buď $\lambda$ vlastní číslo $f$ a buď $(¦V_1, …, ¦v_k)$ posloupnost vektorů. Řekneme, že $(¦v_1, …, ¦v_k)$ je Jordanův řetízek délky $k$ příslušný vlastnímu číslu $\lambda$ s počátkem $¦v_1$, pokud
+            $$ ¦v_k \overset{f - \lambda\id}{\longrightarrow} ¦v_{k-1} \overset{f - \lambda\id}{\longrightarrow} … \overset{f - \lambda\id}{\longrightarrow} ¦v_1 \overset{f - \lambda\id}{\longrightarrow} ¦o. $$
+            Vektory $¦v_1, …, ¦v_k$ se pak nazývají zobecněné vlastní vektory příslušné $\lambda$.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na konečně generovaném VP ¦V s bází $B = (¦v_1, …, ¦v_k)$ pak $[f]_B^B = J_{\lambda, k} \Leftrightarrow B$ je Jordanův řetízek délky $k$ příslušný k $\lambda$ s počátkem ve $¦v_1$.
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na konečně generovaném VP ¦V a $B$ báze ¦V, pak $[f]_B^B = \diag(J_{\lambda_1, k_1}, …, J_{\lambda_s, k_s})$, právě když $B = B_1…B_s$ je spojením Jordanových řetízků $B_1, …, B_s$, kde $B_i$ je délky $k_i$ a příslušný $\lambda_i$.
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            $f: ¦V \rightarrow ¦V$ má Jordanův kanonický tvar právě tehdy, když existuje báze $B$ prostoru ¦V, která je spojením Jordanových řetízků.
+        \end{dusledek}
+
+        \begin{veta}
+            Buď ®T těleso, $f: ¦V \rightarrow ¦V$ lineární operátor na VP ¦V nad ®T. Buďte $B_1, …, B_s$ jordanovy řetízky popořadě délek $k_1, …, k_s$ příslušné vlastním číslům $\lambda_1, …, \lambda_s$. Předpokládejme, že $\forall \lambda \in \{\lambda_1, …, \lambda_s\}$ je posloupnost počátků těch $B_i$, které jsou příslušné $\lambda$, LN. Pak už je spojení $B_1…B_s$ LN.
+
+% 16. 4. 2021
+
+            \begin{dukazin}
+                Označme $B_i = (¦v_1^i, …, ¦v_{k_i}^i)$, $(f - \lambda_i \id)(¦v_j^i) = ¦v_{j-1}^i$ ($¦v_0^i := ¦o$ kvůli značení). $B:=B_1…B_s$. Indukce podle délky $B$, tj. podle $k = k_1 + k_2 + … + k_s$. Případ $k=1$: Máme nutně $s=1$, $B=B_1=(¦v_1^1)$, z předpokladu $¦v_1^1 ≠ ¦o$, tedy $B$ je LN.
+
+                Pro $k > 1$: BÚNO $\lambda_1 = \lambda_2 = … = \lambda_r$, $\forall i > r: \lambda_i ≠ \lambda_1$. Uvažujme lineární kombinaci $a_1^1¦v_1^1 + … + a_n^{a^s_{k_s}¦v^s_{k_s}} = ¦o$. Na ní aplikujeme $f - \lambda_1 \id_{¦V}: ¦V \rightarrow ¦V$. ¦o zobrazí na ¦o, prvních $¦v^i_1$ pro $i ≤ r$ zobrazí také na ¦o a $¦v^i_j$, kde $i ≤ r$ a $1<j$, zobrazí na $¦v_{j-1}^i$. Ostatní $¦v_i^j$ zobrazí na $\lambda_i¦v_j^i + ¦v_{j-1}^i - \lambda_1¦v_j^i$. Tedy dostaneme lineární kombinaci vektorů z řetízků, ale ubrali jsme vektor řetízků příslušících $\lambda_1$, tedy můžeme použít IP.
+
+                Takto se můžeme zbavit všech členů, kromě: $a_1^1¦v_1^1 + a_1^2¦v_1^2 + … + a_1^r¦v_1^r + … + a_1^s¦v_1^s$. BÚNO shlukneme jednotlivá vlastní čísla. Stejně tak shlukneme vlastní vektory příslušící jednomu vlastnímu číslu, tedy $¦w_k = a_1^i¦v_1^i + …$ jsou vlastní vektory příslušné po dvou různým vlastním číslům (nebo ¦o). Podle věty výše jsou takové vlastní vektory nezávislé, tedy $¦o$. Tudíž $a_i^j = 0$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Kritérium existence jordanova kanonického tvaru]
+            Buď $f: ¦V \rightarrow ¦V$ lineární operátor na prostoru dimenze $n$ nad ®T. Pak následující je ekvivalentní: 1. pro $f$ $\exists$ Jordanův kanonický tvar a 2. $f$ má $n = \dim ¦V$ vlastních čísel včetně algebraické násobnosti.
+        \end{veta}
+
+        \begin{dusledek}
+            $®T = ®C$: Jordanův kanonický tvar vždy existuje (ze základní věty algebry).
+        \end{dusledek}
+
+% 21. 4. 2021
+
+\section{Invariantní podprostory lineárního operátoru}
+    \begin{definice}[Invariantní podprostor]
+        Buď $f: ¦V \rightarrow ¦V$ lineární operátor na vektorovém prostoru ¦V nad ®T. Pak řekneme, že $¦W ≤ ¦V$ je invariantním podprostorem operátoru $f$, pokud $\forall ¦v \in ¦W : f(¦v) \in ©W$ (jinými slovy $f(¦W) \subseteq ¦W$).
+    \end{definice}
+
+    \begin{priklady}[Vždy invariantní podprostory]
+        $$ \{¦o\}, ¦V, \Ker f, \Im f, u \text{vlastní vektor} \implies \LO\{¦u\}, (¦u_1, …, ¦u_k) \text{Jordanův řetízek} \implies \LO\{¦u_1, …, ¦u_k\}. $$
+
+        \begin{dukazin}
+                $\implies$ viz přednáška. (Nebude u zkoušky?)
+        \end{dukazin}
+    \end{priklady}
+
+    \begin{pozorovani}
+        $\id_{¦V}$, a dokonce $\id_{¦V}·\lambda$ mají (¦V má při těchto zobrazení) všechny podprostory invariantní.
+    \end{pozorovani}
+
+    \begin{tvrzeni}
+        Buď $f: ¦V \rightarrow ¦V$ lineární operátor a buďte $¦U, ¦W ≤ ¦V$ invariantní podprostory $f$. Pak i $¦U + ¦V$ a $¦U \cap ¦W$ jsou invariantní podprostory $f$.
+
+        \begin{dukazin}
+            Pro $¦U + ¦W$: každý vektoru z $¦U + ¦W$ je tvaru $¦u + ¦v$. Potom $f(¦u + ¦v) = f(¦u) + f(¦v) \in ¦U + ¦W$.
+
+            Pro $¦U \cap ¦W$: Buď $¦v \in ¦U \cap ¦W$, tj. $¦v \in ¦U \land ¦v \in ¦W$ $\implies$ $f(¦V) \in ¦U, ¦W$, tj. $f(¦v) \in ¦U \cap ¦W$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        $\LO$ spojení (konečně mnoha) Jordanových řetízků $f$ je vždy invariantní podprostor $f$.
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        Buď $f: ¦V \rightarrow ¦V$ lineární operátor na konečně dimenzionálním VP ¦V nad ®T, buď $¦W≤¦V$ invariantní podprostor a $g = f|_{¦W}: ¦W \rightarrow ¦W$. Pak $p_g(\lambda)$ dělí $p_f(\lambda)$.
+
+        \begin{dukazin}
+                Zvolíme bázi $C = (¦v_1, …, ¦v_k)$ prostoru ¦W. $C$ rozšíříme na bázi $B = (¦v_1, …, ¦v_k, ¦v_{k+1}, …, ¦v_n)$ prostoru ¦V. Uvažujme $G := [f]_B^B = \([f(¦v_1)]_B | … | [f(¦v_k)]_B | [f(¦v_{k+1})]_B | … | [f(¦v_n)]_B\)$. Prvních $k$ vektorů je z $[¦W]_B$, tedy $G$ je blokově horní trojúhelníková, přičemž levý horní blok je $A = [g]_C^C$. Tedy $p_f(\lambda) = \det(G - \lambda I_n) = \det(A = \lambda I_k)·\det(F - \lambda I_{n-k}) = p_g(\lambda)·…$. (Podle lemma o blokově trojúhelníkové matici. $F$ je pravá dolní matice…)
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Buď $f: ¦V \rightarrow ¦V$, ¦V konečně generovaný, $n = \dim ¦V$. $¦W ≤ ¦V$ invariantní podprostor, $g = f_{¦W}: ¦W \rightarrow ¦W$, $m = \dim ¦W (≤ n)$. Má-li $f$ $n$ vlastních čísel včetně algebraické násobnosti, pak $g$ má $m$ vlastních čísel včetně algebraické násobnosti.
+
+        \begin{dukazin}[Stručně]
+            Ekvivalentně dokazujeme: $p_f(\lambda)$ je součinem lineárních polynomů, tedy $p_g(\lambda)$ musí být také součinem lineárních polynomů (viz Algebra), jelikož dělí $p_f(\lambda)$.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        Buď ¦V VP a $¦W ≤ ¦V$ podprostor. Pak jsou-li $f, g: ¦V \rightarrow ¦V$ takové, že ¦W je invariantním podprostorem $f$ i $g$, pak ¦W je invariantním podprostorem $f + g$. Je-li ¦W invariantním podprostorem $f$ a $t \in ®T$, pak ¦W je invariantním podprostorem $t·f$.
+
+        \begin{dukazin}
+            $(f + g)(¦w) = f(¦w) + g(¦w) \in ¦W$, tj. ¦W je invariantním podprostorem $f+ g$. Druhá část je analogicky.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+        Buď $f: ¦V \rightarrow ¦V$ lineární operátor, $\lambda \in ®T$ a $g = f - \lambda·\id_{¦V}$. Pak $f$ a $g$ mají stejnou množinu invariantních podprostorů.
+    \end{dusledek}
+
+    \begin{dukaz}[Kritérium existence jordanova kanonického tvaru]
+        $\Leftarrow$: (Nebude u zkoušky?) Položme $n = \dim ¦V$. Následuje indukce podle $n$: $n = 1$ jasné, $n > 1$: Vezměme $\lambda \in ®T$ vlastní číslo $f$ (z předpokladů druhé části věty existuje) a položme $g = f - \lambda\id_{¦V}$. pak máme podprostory $g$ (tedy i $f$): $\Ker g, \dim \Ker g = k > 0$, $\im g$, $\dim \im g = n-k =: m < n$. $h:= f|_{¦W}$ splňuje předpoklad, tedy podle IP má bázi vzniklou spojením Jordanových řetízků.
+
+        Máme tedy řetízky $h$ příslušné nějakému vlastnímu číslu $\lambda$, řekněme, že jich je $r$. Potřebujeme doplnit vektory do $k$. Doplníme je tedy dalšími vlastními vektory. Pak vše jen dáme dohromady a ověříme, že je to báze.
+    \end{dukaz}
+
+% 23. 4. 2021
+
+\section{Cayleyho-Hamiltonova věta}
+    \begin{poznamka}
+        Buď ¦V VP nad ®T a $f: ¦V \rightarrow ¦V$ lineární operátor. Máme VP $Hom(¦V, ¦V)$ nad ®T, jehož prvky jsou lineární operátory: $f, g \in Hom(¦V, ¦V) \implies f+g: ¦V \rightarrow ¦V, ¦v \mapsto f(¦v) + g(¦v)$ a $f \in Hom(¦V, ¦V), t \in ®T \implies tf: ¦V \rightarrow ¦V, ¦v \mapsto t·f(¦v)$, $¦o: ¦V \rightarrow ¦V, ¦v \mapsto ¦o$.
+
+        Je-li $g(x) = \sum c_ix^i$ polynom, definujeme operátor $g(f) = \sum c_i·f^i : ¦V \rightarrow ¦V, ¦v \mapsto \sum c_i f^i(¦v)$.
+
+        Je-li $\dim ¦V = n$, pak $\dim Hom(¦V, ¦V) = n^2$. (Zvolíme-li $B(¦u_1, …, ¦u_n)$ bázi ¦V, dostaneme izomofrismus: $Hom(¦V, ¦V) \rightarrow ®T^{n \times n}, f \mapsto [f]_B^B$).
+    \end{poznamka}
+
+    \begin{pozorovani}
+        Jsou-li $g(x), h(x)$ polynomy nad ®T, $f: ¦V \rightarrow ¦V$ operátor a je-li $h(x) = g(x)·r(x)$, pak $h(f) = g(f)\circ r(f)$ a $h(f), g(f), r(f): ¦V \rightarrow ¦V$.
+
+        \begin{dukazin}
+            $g(x) = \sum c_ix^i$, $r(x) = d_jx^j$, $c_i, d_j \in ®T$, potom $h(x) = g(x)·r(x) = \sum_{k=0}^{d+l}(\sum_{i+j = k} c_id_j)·x^{k}$. Dosadí se $h(f)$ a $g(f)·r(f)$ a vyjdou stejné operátory.
+        \end{dukazin}
+    \end{pozorovani}
+
+    \begin{veta}[Cayleyho-Hamiltonova]
+        ®T je těleso, ¦V konečně generovaný VP nad ®T a $f:¦V \rightarrow ¦V$ lineární operátor. Pak
+        $$ p_f(f) = 0. $$
+
+        \begin{dukazin}
+            Budeme požadovat, aby $p_f$ byl součinem lineárních polynomů, tj. $p_f(\lambda) = (\lambda_1 - \lambda)^{k_1}·…·(\lambda_r - \lambda)^{k_r}$, $k_i \in ®N$, $\lambda_1, …, \lambda_r \in ®T$ (tj. aby měl $f$ Jordanův kanonický tvar). V případě potřeby budeme pracovat nad rozkladovým tělesem, viz Algebra.
+
+            Buď $B$ báze vzniklá spojením Jordanových řetízků, tj. $[f]_B^B = \diag(J_{\lambda_1, k_1}, …, J_{\lambda_r, k_r})$, $p_f(\lambda) = (\lambda_1 - \lambda)^{k_1}·…·(\lambda_r - \lambda)^{k_r}$. Všimněme si, že z mocnění Jordanových buněk plyne, že $(J_{\lambda_i, k_i} - \lambda_i·I_{k_i})^{k_i} = 0_{k_i \times k_i}$, tedy $p_f(J_{\lambda_i, k_i}) = o_{k_i \times k_i}$. Tedy $[p_f(f)]_B^B = p_f([f_B^B]) = 0_{r\times r}$, jelikož mocnění a násobení blokově diagonální matice odpovídá mocnění a násobení bloků.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Dále se pokračovalo vysvětlováním LA v Googlu ;)
+    \end{poznamka}
+
+% 28. 4. 2021
+
+\section{Unitární diagonalizovatelnost}
+    \begin{definice}
+        Buď $A \in ®C^{n \times n}$ čtvercová komplexní matice řádu $n$. Pak $A$ je unitárně diagonalizovatelná, pokud existuje ortonormální báze $B$ prostoru $®C^n$ taková, že $[f]_B^B = \diag(\lambda_1, …, \lambda_n)$ je diagonální ($\lambda_1, …, \lambda_n \in ®C$ jsou vlastní čísla).
+    \end{definice}
+
+    \begin{definice}
+        Buď $A \in ®R^{n \times n}$ čtvercová reálná matice řádu $n$. Pak $A$ je ortogonálně diagonalizovatelná, pokud existuje ortonormální báze $B$ prostoru $®R^n$ taková, že $[f]_B^B = \diag(\lambda_1, …, \lambda_n)$ je diagonální ($\lambda_1, …, \lambda_n \in ®R$ jsou vlastní čísla).
+    \end{definice}
+
+    \begin{definice}
+        Matice $X, Y \in ®C^{n \times n}$ jsou unitárně podobné, pokud $\exists U$ unitární matice taková, že $Y = U^*XU (= U^{-1}XU)$.
+    \end{definice}
+
+    \begin{definice}
+        Matice $X, Y \in ®R^{n \times n}$ jsou ortogonálně podobné, pokud $\exists U$ ortogonální matice taková, že $Y = U^*XU (= U^{-1}XU)$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Buď $A \in ®C^{n \times n}$. Pak následující je ekvivalentní: 1. $A$ je unitárně diagonalizovatelná. 2. $®C^n$ má ortonormální bázi složenou z vlastních vektorů $A$. 3. $A$ je unitárně podobná diagonální matici (v tom případě jsou na diagonále takové diagonální matice vlastní čísla $A$, včetně násobnosti).
+
+        \begin{dukazin}
+            Cvičení / opakování.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}
+        Buď $A \in ®C^{n \times n}$. Pak NTJE: 1. $A$ je unitárně diagonalizovatelná, 2. Platí současně, že $A$ má $n$ vlastních čísel včetně algebraické násobnosti (pro ®C splněno automaticky), geometrická násobnost každého čísla je rovna algebraické a $\forall$ dvojici různých vlastních čísel $\lambda$ a $\mu$, $\lambda ≠ \mu$, platí, že $M_\lambda \perp M_\mu$.
+
+        \begin{dukazin}
+            $1 \implies 2$: První dvě vlastnosti plynou z dřívější věty o diagonalizovatelnosti. Navíc z této věty víme, že ortonormální báze $B$ z vlastních vektorů $A$, kterou nám dává předpoklad 1, je tvaru $B = B_1…B_k$, kde $B_i$ je (nutně ortonormální) báze $M_{\lambda_i}$, $\lambda_1, …, \lambda_k$ jsou všechna po 2 různá vlastní čísla $A$. Navíc $B_i \perp B_j \forall i ≠ j$, tj. $M_{\lambda_i} = \LO\{B_i\} \perp \LO\{B_j\} = M_{\lambda_j}$.
+
+            $2 \implies 1$: Ať $\lambda_1, …, \lambda_k$ jsou všechna vlastní čísla $A$, po 2 různá. Zvolíme $\forall i$ ortonormální bázi $B_i$ podprostoru $M_{\lambda_i}$, položíme $B = B_1…B_k$ $\implies$ $B$ je ortonormální báze (je to báze ze zmiňované věty), $[f_A]_B^B$ je diagonální.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{pozorovani}
+        Buď $x \in ®C^m, y \in ®C^n, A \in C^{m \times n}$. Pak platí $x·(Ay) = (A^*x)·y$. ($·$ je skalární součin.)
+
+        \begin{dukazin}
+            $x·Ay = x^*(Ay) = (x^*A^{**})y = (A^*x)^*y = A^*x·y$.
+        \end{dukazin}
+    \end{pozorovani}
+
+% 30. 4. 2021
+
+\section{Spektrální věty}
+    \begin{definice}[Normální matice]
+        $A \in ®C^{n \times n}$ je normální, pokud $A^*A = AA^*$.
+    \end{definice}
+
+    \begin{poznamka}[Vlastnosti]
+        $$ A \text{ normální}, t \in ®C \implies t·A \text{ normální}, A^* \text{ normální}. $$ 
+        Normální jsou matice: diagonální, Hermitovské, Antihermitovské, Unitární, …
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Buď $A \in ®C^{n \times n}$ a $\lambda \in ®C$. Pak $\lambda$ je vlastní číslo $A$ $\Leftrightarrow$ $\overline{\lambda}$ je vlastní číslo $A^*$.
+
+        \begin{dukazin}
+            $\lambda$ je vlastní číslo $A$ $\Leftrightarrow$ $(A - \lambda I_n)$ není invertibilní $\Leftrightarrow$ $(A - \lambda I_n)^* = A^* - \overline{\lambda}I_n$ není invertibilní $\Leftrightarrow$ $\overline{\lambda}$ je vlastní číslo $A^*$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Buď $A$ normální komplexní matice řádu $n$. Pak
+        $$ 1) \forall t \in ®C: A - t·I_n \text{ je normální}. $$
+        $$ 2) \forall U \text{ unitární}: UAU^* \text{ je normální}. $$
+
+        \begin{dukazin}
+            $$ 1) (A - t·I_n)^*(A - t·I_n) = (A^* - \overline{t}·I_n)(A - t·I_n) = A^*A - t·A^* - \overline{t}·A + |t|^2I_n = … = (A - t·I_n)(A - t·I_n)^*. $$
+            $$ 2) (UAU^*)^*(UAU^*) = (UA^*U^*)(UAU^*) = UA^*U^*UAU^* = UA^*AAU^* = UAA^*U^* = … = (UAU^*)(UAU^*)^*. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{tvrzeni}
+        Je-li $A$ normální řádu $n$, pak $\forall ¦v \in ®C^n: ||A·¦v|| = ||A^*¦v||$.
+
+        \begin{dukazin}
+                $$ ||A¦v||^2 = A¦v·A¦v = (A¦v)^*(A¦v) = ¦v^*A^*A¦v = ¦v^*AA^*¦v = (A^*¦v)^*(A^*¦v) = A^*¦v·A^*¦v = ||A^*¦v||^2. $$ 
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        $\forall ¦v \in ®C^n: ||A·¦v|| = ||A^*¦v||$ je ekvivalentní normalitě.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Buď $A \in ®C^{n \times n}$ normální, buď $\lambda \in ®C$ a $¦v \in ®C^n$. Pak
+        $$ A¦v = \lambda¦v \Leftrightarrow A^*¦v = \overline{\lambda}¦v $$ 
+        čili množiny vlastních vektorů $A$ a $A^*$ jsou stejné.
+
+        \begin{dukazin}
+            $$ A¦v = \lambda ¦v \Leftrightarrow (A - \lambda I_n)·¦v = ¦o \Leftrightarrow ||(A - \lambda I_n)·¦v|| = 0 \Leftrightarrow ||(A - \lambda I_n)^*¦v|| = 0 \Leftrightarrow $$
+            $$ \Leftrightarrow (A - \lambda I_n)^*¦v = ¦o \Leftrightarrow (A^* - \overline{\lambda}I_n)¦v = ¦o \Leftrightarrow A^*¦v = \overline{\lambda}¦v. $$
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Spektrální věta pro normální matice]
+        Buď $A \in ®C^{n \times n}$. Pak $A$ je normální $\Leftrightarrow$ $A$ je unitárně diagonalizovatelná.
+
+        \begin{dukazin}
+            $\Leftarrow$: Buď tedy $A = UDU^*$, $D$ diagonální. Pak $D$ je normální a $A$ je normální podle tvrzení výše bod 2.
+
+            $\implies$: Důkaz indukcí podle $n$. $n = 1$: $A$ je diagonální a není co dokazovat. $n > 1:$ Buď $A \in ®C^{n \times n}$ normální a $\lambda$ vlastní číslo $A$ a $¦o ≠ ¦v_1 \in ®C^n$ příslušný vlastní vektor. BÚNO $||¦v_1|| = 1$, můžeme doplnit na ortonormální bázi $B = (¦v_1, ¦v_2, …, ¦v_n)$ prostoru $®C^n$. Označme $X = [f_A]_B^B$, tj. $X$ je unitárně podobná $A$, speciálně normální. $X$ má v prvním sloupci i řádku první prvek $\lambda$, jinak 0 (jelikož $¦v_1·A¦v_i = A^*¦v_1·¦v_i = \lambda(¦v_1·¦v_i) = \lambda·0 = 0$). Tedy na její minor použijeme IP, tj. $A$ je unitárně diagonalizovatelná.
+        \end{dukazin}
+    \end{veta}
+
+    \subsection{Přehled spektrálních vět}
+        \begin{poznamka}
+            V10.13: $A$ normální $\Leftrightarrow$ $A$ unitárně diagonalizovatelná.
+
+            V10.15: $A$ Hermitovská $\Leftrightarrow$ $A$ unitárně diagonalizovatelná a vlastní čísla jsou reálná.
+
+            Důsl10.16: $A$ symetrická $\Leftrightarrow$ $A$ ortogonálně diagonalizovatelná.
+
+            V10.20: $A$ pozitivně definitní $\Leftrightarrow$ $A$ unitárně diagonalizovatelná a vlastní čísla jsou kladná reálná.
+
+            V10.20: $A$ pozitivně semidefinitní $\Leftrightarrow$ $A$ unitárně diagonalizovatelná a vlastní čísla jsou nezáporná reálná.
+
+            V10.23: $A$ unitární $\Leftrightarrow$ $A$ unitárně diagonalizovatelná a $\forall \lambda$ vlastní číslo platí $|\lambda|=1$.
+        \end{poznamka}
+
+% 5. 5. 2021
+        
+        \begin{pozorovani}
+            Buď $A \in ®C^{m \times n}$ libovolná matice, pak $B = A^*A$ je vždy pozitivně semidefinitní.
+
+            \begin{dukazin}
+                $$ \forall ¦v \in ®C^n: ¦v^*B¦v = ||A¦v||^2 ≥ 0. $$ 
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{tvrzeni}
+            Tvrdí to samé, co předchozí pozorování plus: Každá pozitivně semidefinitní matice $B \in ®C^{n \times n}$ je tvaru $B=A^*A$ pro nějakou matici $A = ®C^{n \times n}$. Je-li $B$ pozitivně definitní, je nutně $A$ regulární.
+
+            \begin{dukazin}
+                Víme ze spektrálních vět, že $B = UOU^*$, kde $U$ je unitární, $D = \diag(\lambda_1, …, \lambda_n)$. Označíme $\sqrt{D} := \diag(\sqrt{\lambda_1}, …, \sqrt{\lambda_n})$. Pak $B = (U\sqrt{D}^*)(\sqrt{D}U^*) = A^*A$.
+
+                Je-li $B$ pozitivně definitní, pak $\lambda_i > 0$. Tj. $D$, $\sqrt{D}$ jsou regulární, tím pádem je $A = \sqrt{D}U^*$ regulární.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Ortogonální operátor $f: ®R \rightarrow ®R$ je vždy buď reflexe ($\det[f]_B^B = -1$ pro libovolnou bázi) nebo otočení ($\det[f]_B^B = 1$ pro libovolnou bázi).
+
+            \begin{dukazin}
+                Je-li $f_A$ ortogonální, je $A$ ortogonální matice (speciálně je $A$ unitární nad ®C), tedy $A = U·\diag(\lambda_1, \lambda_2)·U^*$, $U$ unitární, $|\lambda_1| = |\lambda_2| = 1$. Tedy buď $\lambda_1, \lambda_2 \in ®R$, potom $\lambda_1, \lambda_2$ mají různá znaménka, pak je to reflexe, když $\lambda_1 = \lambda_2$, pak je to otočení o $0$ nebo $\pi$.
+
+                Nebo $\lambda_1 = \cos \phi + i\sin \phi$ a $\lambda_2 = \cos\phi - i\sin\phi$ a vlastní vektory $¦v$ a $¦v_2 = \overline{¦v}$. Vezmeme bázi $B = (\frac{1}{\sqrt{2}}(¦v + \overline{¦v}), \frac{i}{\sqrt{2}} (¦v - \overline{¦v}))$. Tato báze je ortonormální a $[f_A]_B^B$ je matice otočení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            V $®R^3$ máme minimálně 1 reálný kořen, zbytek je jako v předchozím, tedy v $®R^3$ jsou to zase rotace a reflexe, tentokrát však i rotace s reflexí.
+        \end{poznamka}
+
+    \subsection{Singulární rozklad matice nad ®R nebo ®C (SVD)}
+        \begin{veta}
+            Komplexní verze: Buď $A$ komplexní matice typu $m \times n$ a hodnosti $r$. Pak existují ortonormální báze $B = (¦v_1, …, ¦v_n)$ prostoru $®C^n$ a $C = (¦u_1, …, ¦u_m)$ prostoru $®C^m$ a $\sigma_1, ., \sigma_r$ kladná reálná čísla taková, že
+            $$ [f_A]_C^B = \(\diag(\sigma_1, …, \sigma_r, 0, …, 0)|0\). $$
+
+            Reálná verze: Buď $A$ reálná matice typu $m \times n$ a hodnosti $r$. Pak existují ortonormální báze $B = (¦v_1, …, ¦v_n)$ prostoru $®R^n$ a $C = (¦u_1, …, ¦u_m)$ prostoru $®R^m$ a $\sigma_1, ., \sigma_r$ kladná reálná čísla taková, že
+            $$ [f_A]_C^B = \(\diag(\sigma_1, …, \sigma_r, 0, …, 0)|0\). $$
+
+            Maticové verze: Viz skripta.
+        \end{veta}
+
+% 7. 5. 2021
+
+        \begin{pozorovani}
+            Buď $f: ®C^n \rightarrow ®C^n$ lineární operátor a $B$ ortonormální báze $®C^n$ a $C$ ortonormální báze $®C^m$. Uvažujme $f_{A^*}: ®C^m \rightarrow ®C^n$. Pak $[f_{A^*}]_B^C = \([f_A]_C^B\)^*$.
+
+            \begin{dukazin}
+                $$ A = [f_A]_K^K = [\id]_K^C [f_A]_C^B [\id]_B^K, $$ 
+                $$ A^* = [f_{A^*}]_K^K = [\id]_K^B [f_{A^*}]_B^C [\id]_C^K. $$
+                Jelikož jsou báze ortogonální, tak matice přechodu jsou k sobě hermitovsky sdružené: $[f_A]_C^B = U^*AV$, $[f_{A^*}]=V^*A^*U = (U^*AV)^* = [f_A]_C^B$.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{definice}
+            Buď $A \in 2C^{m \times n}$. Pak singulárními hodnotami matice $A$ rozumíme druhé odmocniny vlastních čísel matice $A^*A$.
+        \end{definice}
+            
+        \begin{dukaz}[Věty výše]
+            Označme $\diag_{m \times n}(\sigma_1, …, \sigma_r) = \(\diag(\sigma_1, …, \sigma_r, 0, …, 0)|0\)$.Uvažujme vlastní čísla $\lambda_1 ≥ \lambda_2 ≥ … ≥ \lambda_r > 0 = \lambda_{r+1} = \lambda_n$ matice $A^*A$ řádu $n$. Za bázi $B = (¦v_1, …, ¦v_n)$ zvolíme ortonormální bázi vlastních vektorů $A^*A$, kde $¦v_i$ je příslušný $\lambda_i$. Tedy $[f_{A^*A}]_B^B = \diag(\lambda_1, …, \lambda_r, 0, …, 0)$.
+
+            Pro $i \in [r]$ položíme $\sigma_i = \sqrt{\lambda_i}$. Aby mohl platit závěr věty, musí být $\forall i \in [r]: A¦v_i = \sigma_i¦u_i$. Čili pro $i \in [r]$ položíme $¦u_i = \frac{1}{\sigma_i}A¦v_i$. Ověříme, že $(¦u_1, …, ¦u_r)$ je ortonormální:
+            $$ ¦u_i·¦u_j = (\frac{1}{\sigma_i}A¦v_i)·(\frac{1}{\sigma_j}A¦v_j) = \frac{1}{\sigma_i\sigma_j}(A¦v_i·A¦v_j) = \frac{1}{\sigma_i\sigma_j}((A^*A)¦v_i·¦v_j) = \frac{1}{\sigma_i\sigma_j} (\lambda_i¦v_i·¦v_j). $$
+            Jelikož $B$ je ortogonální, tak výsledkem tohoto bude nula, pokud $i≠j$, a $\frac{\lambda_i}{\sigma_i^2} = 1$, pokud $i = j$. Následně doplníme $(¦u_1, …, ¦u_r)$ na ortonormální bázi $C = (¦u_1, …, ¦u_m)$ prostoru $®C^m$. Tedy pro $i ≤ r: f_A(¦v_i) = \sigma_i¦u_i$. Pro $i > r: [f_A(¦v_i)]_C = 0$. Tedy $[f_A]_C^B = \diag_{m \times n}(\sigma_1, …, \sigma_r)$.
+        \end{dukaz}
+
+        \begin{pozorovani}
+            Je-li $A$ normální, pak singulární hodnoty jsou $\sigma_i = |\mu_i|$, kde $\mu_1, …, \mu_r$ jsou nenulová vlastní čísla $A$. Je-li navíc $A$ pozitivně definitní, pak jsou toto všechna vlastní čísla.
+        \end{pozorovani}
+
+    \subsection{Aplikace SVD}
+        \begin{definice}[Spektrální norma matice]
+            Mějme $A \in ®C^{m \times n}$, $f_A: ®C^n \rightarrow ®C^m$. Potom
+            $$ ||A|| := \max\{\frac{||A¦x||}{||¦x||} | ¦o ≠ ¦x \in ®C^n \setminus \{¦o\}\} = \max\{||A¦y|| : ¦y \in ®C^n, ||¦y|| = 1\} $$
+            se nazývá spektrální norma matice.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď $A \in ®C^{m \times n}$ (nebo $®R^{m \times n}$). Pak $\forall ¦o ≠ ¦x \in ®C^n: ||A¦x|| ≤ \sigma_1||¦x||$, kde $\sigma_1$ je největší singulární hodnota $A$, rovnost nastane přesně pro vlastní vektory ¦x matice $A^*A$ příslušné $\sigma_1^2$. Speciálně $||A|| = \sigma_1$.
+
+            \begin{dukazin}
+                Buď $¦x ≠ ¦o$, položme $¦y = \frac{¦x}{||¦x||}$, $[f_A]_C^B = \diag(\sigma_1, …, \sigma_r)$, $\sigma_1 ≥ \sigma_2 ≥ … ≥ \sigma_r > 0$, $B, C$ ortonormální. Pak
+                $$ ||A¦y|| = ||[A]C^B·[y]_B|| = ||\sigma_1y_1 + … + \sigma_ry_r|| ≤ ||\sigma_1y_1 + … + \sigma_1y_r|| = \sigma_1||¦y||. $$ 
+            \end{dukazin}
+        \end{tvrzeni}
 \end{document}

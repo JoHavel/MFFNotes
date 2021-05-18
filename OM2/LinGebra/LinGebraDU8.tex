@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[8.1]
+    Uvažujme pro matici
+    $$ A = \begin{pmatrix} -1 & -2 & 0 \\ -1 & 3 & -1 \\ 2 & 3 & 1 \end{pmatrix} $$
+    lineární operátor $f_A$ na reálném vektorovém prostoru $®R^3$. Najděte všechny roviny $U$, pro které platí, že $f_A(U) = U$ a v každé z těchto rovin najděte takovou bázi $B_U$, aby matice zúženého lineárního operátoru $[f_A|_U]_{B_U}^{B_U}$ byla Jordanova matice.
+
+    \begin{reseni}
+        MATLAB našel vlastní čísla $-1$ a k němu příslušný vlastní vektor $(1, 0, -1)^T$ a $2$ (algebraické násobnosti 2) s vlastním vektorem $(2, -3, -5)^T$. Jelikož charakteristický polynom zúžení $f_A|_U$ dělí charakteristický polynom $f_A$, tak i $f_U$ musí mít vlastní čísla $1, 2$ nebo vlastní číslo $2$ algebraické násobnosti $2$. (Musí mít 2 vlastní čísla včetně násobnosti, viz důsledek 9.113.)
+
+        Pokud jsou vlastní čísla $1, 2$, pak $U = \LO\((1, 0, -1)^T, (2, -3, -5)^T\) = \LO B_U$, jelikož aby to byla vlastní čísla, tak musí existovat vlastní vektory jim příslušné. Zároveň
+        $$ [f_A|_U]_{B_U}^{B_U} = \begin{pmatrix} -1 & 0 \\ 0 & 2 \end{pmatrix}. $$
+
+        Pokud je vlastní číslo pouze $2$ (a to algebraické násobnosti 2). Tedy ze stejného důvodu musí být $B_U = \((2, -3, -5)^T, ¦v\)$. Matice $[f_A|_U]_{B_U}$ je potom tvaru (po dosazení $(1, 0)^T$, tj. obraz vlastního vektoru příslušného 2, musíme dostat $(2, 0)^T$ a charakteristický polynom musí být $(2 - \lambda)^2 = 0$):
+        $$ [f_A|_U]_{B_U} = \begin{pmatrix} 2 & a \\ 0 & 2 \end{pmatrix}. $$ 
+        $a≠0$, protože máme jen „1“ vlastní vektor, tj. ¦v nemůže být vlastní vektor. Tedy hledáme ¦v tak, aby $(f_A - 2\id)|_U(¦v) = a·(2, -3, -5)^T$, tedy i $(f_A - 2\id)(¦v) = a·(2, -3, -5)^T$. BÚNO $a = 1$ (vydělíme $¦v$ číslem $a$). Řešíme tedy soustavu:
+        $$ \(\begin{array}{ccc|c} -3 & -2 & 0 & 2 \\ -1 & 1 & -1 & -3 \\ 2 & 3 & -1 & -5 \end{array}\) \sim \(\begin{array}{ccc|c} 0 & -5 & 3 & 11 \\ -1 & 1 & -1 & -3 \\ 0 & 5 & -3 & -11 \end{array}\) \sim \(\begin{array}{ccc|c} 1 & -1 & 1 & 3 \\ 0 & 5 & -3 & -11 \\ 0 & 0 & 0 & 0 \end{array}\). $$
+        Tudíž další invariantní podprostory jsou tvaru $\LO\((2, -3, -5)^T, (3 - \frac{2z+11}{5}, \frac{3z-11}{5}, z)^T\) = \LO B_U$ a
+        $$ [f_A|_U]_{B_U}^{B_U} = \begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix}. $$
+
+        Tedy v obou případech je matice zúženého zobrazení v Jordanově kanonickém tvaru (v prvních jsou buňky příslušné $-1$ a $2$, v druhé pak jen $2$), tj. našli jsme správnou bázi.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[8.2]
+    Mějme čtvercovou matici $A$ stupně $n$ nad nějakým tělesem ®T, definujme podprostor $©M(A) = \LO\{A^i | i ≥ 0\}$ vektorového prostoru všech čtvercových matic stupně $n$ nad tělesem ®T. Dokažte, že
+
+    \begin{itemize}
+        \item[(a)] $©M(A) = \LO\{A^0, A^1, …, A^{n-1}\}$,
+        \item[(b)] je-li $B \in ©M(A)$ regulární, pak $B^{-1} \in ©M(A)$,
+        \item[(c)] pro $A = (\max\{0, i-j+1\})_{i, j \in [5]} \in ®R^{5 \times 5}$ je posloupnost $N = (A^0, A^1, A^2, A^3, A^4)$ báze $©M(A)$ (nemusíte dokazovat); spočítejte souřadnice $[A^{-1}]_N$.
+    \end{itemize}
+
+    \begin{dukazin}[a]
+        Nechť $p_A(\lambda)$ je charakteristický polynom $A$. Potom podle Cayleyho-Hamiltonovy věty je $p_A(A) = 0_{n \times n}$. Zároveň víme, že polynom $p_A(\lambda)$ je stupně $n$, tedy $p_A(A)$ je lineární kombinací matic $A^0, A^1, …, A^n$, kde u $A^n$ je nenulový člen. Tedy $\exists t_0, … t_n \in ®T, t_n ≠ 0$, že
+        $$ t_0A^0 + t_1A^1 + … + t_nA^n = 0_{n \times n}, \qquad = \frac{t_0}{-t_n}A^0 + … + \frac{t_{n-1}}{-t_{n}}A_{n-1} = A^n. $$
+
+        Tedy $A^n$ je lineární kombinací $A^0, …, A^{n-1}$. Navíc pokud tuto rovnici přenásobíme (je jedno, jestli zleva nebo zprava, $A$ se sebou a „se skaláry“ komutuje) $A^i$, $i=0, 1, …$, pak dostaneme $A^{i + n}$ jako lineární kombinaci $A^{i}, …, A^{i + n - 1}$. Tedy indukcí můžeme každou matici $A^{i+n}$ vyjádřit za pomoci $A^0, …, A^{n-1}$ (vyjádřit za pomoci předchozích $n$, které umíme vyjádřit z indukční podmínky). Z toho už jednoduše plyne, že z $A^i$ nám stačí pro generování $©M(A)$ pouze $A^0, …, A^{n-1}$.
+    \end{dukazin}
+
+    \begin{dukazin}[c]
+        Jelikož $A$ samo se sebou komutuje a podle Cayleyho-Hamiltonovy věty je (a protože $A$ je dolní trojúhelníková, tedy se můžeme dívat jen na diagonálu):
+        $$ (I_5 - A)^5 = -A^5 + 5A^4 - 10A^3 + 10A^2 - 5A + I_5 = 0_{5 \times 5}, $$ 
+        $$ A(A^4 - 5A^3 + 10A^2 - 10A^1 + 5A^0) = I_5. $$
+        Zřejmě je v závorce $A^{-1}$ (jelikož v součinu s $A$ dává $I_5$). Tedy $[A^{-1}]_N = (5, -10, 10, 5, 1)$.
+    \end{dukazin}
+
+    \begin{dukazin}[b]
+        Podle pozorování 9.14 matice $B$ nemá vlastní číslo $0$, jelikož je regulární. Tím pádem $p_B(0) ≠ 0$ (kde $p_B$ je charakteristický polynom $B$), tedy $p_B$ má nenulový absolutní člen. Tedy $p_B(\lambda)$ se dá vyjádřit jako $\lambda·p_2(\lambda) + b = 0$, kde $b ≠ 0$ a $p_2$ je polynom. Tedy $B·(p_2(B))/(-b) = I_n$. Teď už stačí dokázat, že $(p_2(B))/(-b) = B^{-1} \in ©M(A)$.
+
+        Jelikož $B \in ©M(A)$, tak $B$ je lineární kombinace $A^0, A^1, …$. Protože lineární kombinace obsahuje pouze konečně mnoho nenulových prvků, tak ji lze samu se sebou vynásobit a výsledek roznásobit. Tedy $B^i$, $i ≥ 0$ vypadá jako konečný součet členů, kde každý člen je součin $i$ prvků ®T a $i$ (ne nutně shodných) mocnin matice $A$. Ale $A$ samo se sebou komutuje (a „komutuje se skaláry“), tak každý člen je tvaru $tA^j$, kde $t \in ®T$, $j ≥ 0$. $B^i$ je tedy lineární kombinace mocnin $A$, tj. $B^i \in ©M(A)$ a tedy i $p_2(B)/(-b) = B^{-1} \in ©M(A)$ (jelikož je to nejvýše $n$člená lineární kombinace $B^i$).
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

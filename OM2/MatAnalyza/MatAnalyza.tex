@@ -795,5 +795,282 @@
             Tedy $H$ splňuje BC podmínku a $\exists \lim_{x \rightarrow b_-} H(x)$. A z toho dostaneme $f·g \in N(a, b)$.
         \end{dukaz}
 
+% 28. 4. 2021
+
+        \begin{veta}[O střední hodnotě integrálního počtu]
+            Nechť $a, b \in ®R, a < b$. Nechť $f$ je spojitá funkce na intervalu $[a, b]$, $g$ je nezáporná na $[a, b]$, $g \in N(a, b)$ a $f·g \in (a, b)$. Potom existuje $c \in [a, b]$ tak, že $\int_a^b f(x)·g(x)\,dx = f(c)·\int_a^b g(x)\,dx$.
+
+            \begin{dukazin}
+                $f$ je spojité na $[a, b]$, tedy nabývá mezihodnot. Také je na $[a, b]$ omezená. Označme $m = \min_{x \in [a, b]}f(x)$ a $M = \max_{x \in [a, b]}f(x)$. Pak $m·g(x) ≤ f(x)·g(x) ≤ M·g(x)$. Je-li $\int_a^b g = 0 \implies g = 0$, volíme $c$ libovolně. Nechť $\int_a^b g(x)\,dx > 0$. Pak
+                $$ m ≤ \frac{\int_a^b f(x)·g(x)\,dx}{\int_a^b g(x)\,dx} ≤ M. $$ 
+                $f$ nabývá mezihodnot, a proto $\exists c \in [a, b]$ tak, že $f(c) = \frac{\int_a^b g(x)·f(x)\,dx}{\int_a^b g(x)\,dx}$.
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Aplikace určitého integrálu}
+        \begin{definice}[Obsah]
+            Nechť $f: [a, b] \rightarrow ®R$ je nezáporná spojitá funkce, pak obsahem plochy pod grafem funkce nazveme
+            $$ Obsah(f, [a, b]) = (R) \int_a^b f(x)\,dx = (N) \int_a^b f(x)\,dx. $$ 
+        \end{definice}
+
+        \begin{definice}[Délka křivky]
+            Nechť $f: [a, b] \rightarrow ®R$ je spojitá funkce a nechť $D = \{x_j\}^n_{j=0}$ je dělením intervalu $[a, b]$. Označme $L(f, D) = \sum_{j=1}^n \sqrt{(x_j - x_{j-1})^2 + (f(x_j) - f(x_{j-1}))^2}$. Délkou křivky $f$ nazveme $L(f, [a, b]) = \sup_D L(f, D)$.
+        \end{definice}
+
+        \begin{veta}
+            Nechť $f$ má na intervalu $[a, b]$ spojitou první derivaci. Pak $L(f, [a, b]) = \int_a^b \sqrt{1 + (f'(x))^2}\,dx$.
+
+            \begin{dukazin}
+                Označme $g(x) = \sqrt{1 + (f'(x))^2}$. Mějme dělení $D = \{x_j\}_{j=0}^n$. Pak
+                $$ L(f, [a, b]) = \sum_{j=1}^n \sqrt{(x_j - x_{j-1})^2 + (f(x_j) - f(x_{j-1}))^2} = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + \(\frac{f(x_j) - f(x_{j-1})}{x_j - x_{j-1}}\)^2} = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + (f'(\zeta_j))^2}, $$
+                podle Lagrangeovy věty o střední hodnotě, kde $\zeta_j \in (x_{j-1}, x_j)$. Odtud snadno odvodíme, že $s(g, D) ≤ L(f, D) ≤ S(g, D)$. Tedy $\sup_D s(g, D) = \int_a^b g ≤ \sup_D L(f, D) = L(f)$.
+
+                Sporem: Nechť $L(f) > \int_a^b g(x)\,dx$. Tedy $\exists$ dělení $D$, že $L(f, D) > \int_a^b g(x)\,dx$. Zvolme posloupnost dělení $\{D_n\}$ tak, že $D_1$ zjemňuje $D$, $D_{n+1}$ zjemňuje $D_n$ a $\lim_{n \rightarrow ∞} \nu(D_n) = 0$. Pak $L(f, D) ≤ L(f, D_1) ≤ L(f, D_2) ≤ …$ (jemnější dělení dává delší „délku“). Z nerovnosti v prvním odstavci je $L(f, D_n) ≤ S(g, D_n)$, tedy $\lim_{n \rightarrow ∞} S(g, D_n) ≥ L(f, D)$. \lightning.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Délka křivky v $®R^n$]
+                Nechť $\phi: [a, b] \rightarrow ®R^n$ je spojitá a má spojitou první derivaci. Pak
+                $$ L(\phi([a, b])) = \int_a^b \sqrt{(\phi_1'(x))^2 + … + (\phi_n'(x))^2}\,dx. $$ 
+            
+            \begin{dukazin}
+                Bez důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Délka křivky nezávisí na parametrizaci.
+        \end{poznamka}
+
+        \begin{veta}[Objem a povrch rotačního tělesa]
+            Nechť $f: [a, b] \rightarrow ®R$ je spojitá a nezáporná. Označme $T = \{[x, y, z] \in ®R^2 | x \in [a, b] \land \sqrt{y^2 + z^2} ≤ f(x)\}$. Pak $Objem(T) = \pi · \int_a^b (f^x)^2\,dx$.
+
+            Je-li navíc $f$ spojitá na $[a, b]$, pak $Obsah povrchu(T) = 2\pi·\int_a^b f(x)·\sqrt{1 + (f'(x))^2}\,dx$.
+
+            \begin{dukazin}
+                Bez důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Integrální kritérium konvergence řad]
+            Nechť $f$ je nezáporná, nerostoucí a spojitá na $n_0-1, ∞$ pro nějaké $n_0 \in ®N$. Nechť pro posloupnost $a_n$ platí $a_n = f(n)$ pro všechna $n ≥ n_0$. Pak
+            $$ (N) \int_{n_0}^∞ f(x)\,dx < +∞ \Leftrightarrow \sum_{n=1}^∞ a_n \text{ konverguje}. $$ 
+
+% 30. 4. 2021
+
+            \begin{dukazin}
+                Nechť $n_1 ≥ n_0$ a mějme $D = \{n_0, n_0 + 1, …, n_1\}$ intervalu $[n_0, n_1]$. Funkce $f$ je nerostoucí, a tedy
+                $$ S(f, D) = a_{n_0} + … + a_{n_1 - 1} = \sum_{i=n_0}^{n_1 - 1} a_i, $$
+                $$ s(f, D) = a_{n_0 + 1} + … + a_{n_1} = \sum_{i=n_0 + 1}^{n_1} a_i. $$
+                Protože $f$ je spojitá na $[n_0, n_1]$, platí
+                $$ \sum_{i=n_0 + 1}^{n_1} a_i = s(f, D) ≤ (R) \int_{n_0}^{n_1} f(x)\,dx = (N) \int_{n_0}^{n_1} f(x)\,dx ≤ S(f, D) = \sum_{i=n_0}^{n_1 - 1} a_i. $$ 
+
+                Nechť $\int_{n_0}^∞ f(x)\,dx$ konverguje. Pak je $F(x) = \int_{n_0}^x f(t)\,dt$, $t \in [n_0, ∞)$ je primitivní k $f(x)$ na $(n_0, ∞)$ (z derivace integrálu podle mezí). Tedy $\forall n_1 ≥ n_0$ (z nerovnosti výše):
+                $$ \int_{n_0}^∞ f(x)\,dx = \lim_{x \rightarrow ∞} F(x) - F(n_0) = \lim_{x \rightarrow ∞} \int^x_{n_0} f(t)\,dt ≥ $$
+                $$ ≥ \lim_{n \rightarrow ∞} \sum_{i = n_0 + 1}^n a_i = \sum_{i = n_0 + 1}^∞ a_i \implies \sum_{n=1}^∞ a_n \text{konverguje}. $$
+
+                Obráceně: Nechť $\sum_{i=1}^∞ a_i$ konverguje $\implies$ $\sum_{i=n_0 + 1}^∞ a_i$ konverguje. Z nerovnosti výše:
+                $$ \sum_{i=n_0 + 1}^∞ a_i = \lim_{n \rightarrow ∞} \sum_{i=n_0 + 1}^n a_i ≥ \lim_{n \rightarrow ∞} \int_{n_0}^∞ f(t)\,dt = \lim_{n \rightarrow ∞} F(n) = \lim_{x \rightarrow ∞} F(x). $$
+                Tedy $\lim_{x \rightarrow ∞} F(x) \in ®R \implies \int_{n_0}^∞ f(x) \,dx$
+            \end{dukazin}
+
+            \begin{priklad}[Stirlingova formule, nezkouší se]
+                $$ \lim_{n \rightarrow ∞} \frac{n!}{\sqrt{2\pi n}·\(\frac{n}{e}\)^n} = 1. $$
+
+                \begin{dukazin}[Nástřel]
+                    Vytknout konstanty, zlogaritmovat, upravit a použít Abelovu parciální sumaci. Následně použít Lagrangeův tvar zbytku TP. Následně podle předchozí věty dokážeme konvergenci. Následně si pomocí Wallisovy formule (Per partes na $\sin^n x$, $\frac{1}{2n + 1}·\(\frac{(2n)!!}{(2n-1)!!}\)^2 \rightarrow \frac{\pi}{2}$) „odvodíme“ hodnotu $\pi$. Potom si do Wallisovy formule dosadíme limitu Stirlingovi (jako nějaké $a$) a dopočítáme.
+                \end{dukazin}
+            \end{priklad}
+        \end{veta}
+
+% 5. 5. 2021
+
+\section{Obyčejné diferenciální rovnice}
+    \subsection{Řešení, existence a jednoznačnost}
+        \begin{definice}[ODR]
+            Nechť $\Phi: \Omega \subseteq ®R^{n+2} \rightarrow ®R$. Obyčejnou diferenciální rovnicí (ve zkratce ODR) $n$-tého řádu nazveme $\Phi(x, y(x), y'(x), …, y^{(n)}(x)) = 0$.
+        \end{definice}
+
+        \begin{definice}[Řešení ODR]
+            Řešení ODR na intervalu $I \subseteq ®R$ je funkce $y(x)$ splňující:
+            
+            \begin{itemize}
+                \item Existuje $y^{(k)}(x)$ vlastní pro $k = 1, …, n$ v $I$ a všechna $x \in I$.
+                \item Rovnice ODR platí pro všechna $x \in I$.
+            \end{itemize}
+        \end{definice}
+
+        \begin{definice}
+            Řekneme, že $(\tilde{y}, \tilde{I})$ je rozšířením řešení $(y, I)$, pokud $\tilde{y}$ je řešení na $\tilde{I}$, $I \subset \tilde{I}$, $y = \tilde{y}$ na $I$.
+
+            Řekneme, že $(y, I)$ je maximální řešení, pokud nemá rozšíření.
+        \end{definice}
+
+        \begin{definice}[Otevřený interval]
+            Řekneme, že $I \subseteq ®R^n$ je otevřený interval, pokud existují otevřené intervaly $I_1, I_2, …, I_n$ tak, že $I = I_1 \times … \times I_n$.
+        \end{definice}
+
+        \begin{definice}[(Otevřená) koule]
+            Nechť $c \in ®R^n$ a $r > 0$. Definujeme (otevřenou) kouli jako
+            $$ \B(c, r) = \{x \in ®R | ||x-c|| = \sqrt{\sum_{i=1}^n (x_i - c_1)^2} < r\}. $$ 
+        \end{definice}
+
+        \begin{definice}
+            Nechť $I \subseteq ®R^n$ je otevřený interval a $f: I \rightarrow ®R$ je funkce. Řekneme, že $f$ je spojitá v bodě $x_0 \in I$, pokud
+            $$ \forall \epsilon > 0\ \exists \delta > 0: \forall x \in \B(x_0, \delta) \cap I: |f(x) - f(x_0)| < \epsilon. $$
+
+            Řekneme, že $f$ je spojitá na $I$, pokud je spojitá ve všech bodech $I$.
+        \end{definice}
+
+        \begin{veta}[Peano s $y^{(n)}$]
+            Nechť $I \subset ®R^{n+1}$ otevřený interval, $f: I \rightarrow ®R$ je spojitá. $a[x_0, y_0, …, y_{n-1}] \in I$. Pak existuje $\delta > 0$ a okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR
+            $$ y^{(n)}(x) = f(x, y(x), y'(x), …, y^{(n-1)}(x)) \forall x \in (x_0 - \delta, x_0 + \delta) $$
+            s počáteční podmínkou $y(x_0) = y_0, y'(x_0) = y_1, …, y^{(n-1)}(x_0) = y_{n-1}$.
+
+            \begin{dukazin}
+                Později.
+            \end{dukazin}
+
+            \begin{upozorneni}
+                Tato věta je lokální a nedává jednoznačnost řešení.
+            \end{upozorneni}
+        \end{veta}
+
+        \begin{definice}
+            Nechť $I \subseteq ®R^2$ je otevřený interval. Řekneme, že funkce $f: I \rightarrow ®R$ je lokálně lipschitzovská vůči $y$, pokud $\forall U \subseteq I$ omezené existuje $K \in ®R$ tak, že
+            $$ |f(x, y) - f(x, \tilde{y})| ≤ K·(y - \tilde{y})\  \forall [x, y] \in U \land [x, \tilde{y}] \in U. $$ 
+        \end{definice}
+
+        \begin{veta}[Picard]
+            Nechť $I \subseteq ®R^2$ je otevřený interval a $[x_0, y_0] \in I$. Nechť $f: I \rightarrow ®R$ je spojitá a lokálně lipschitzovská vůči $y$. Pak existuje $(x_0 - \delta, x_0 + \delta)$ a funkce $y(x)$ definována na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR $y'(x) = f(x, y(x))$ pro $x \in (x_0 - \delta, x_0 + \delta)$ s počáteční podmínkou $y(x_0) = y_0$. Navíc $y$ je jediné řešení na $(x_0 - \delta, x_0 + \delta)$.
+
+            \begin{dukazin}
+                Později.
+            \end{dukazin}
+        \end{veta}
+
+% 7. 5. 2021
+
+    \subsection{Rovnice prvního řádu}
+        \begin{definice}
+            Nechť $I \subseteq ®R^2$ je otevřený interval a $f: ®R \rightarrow ®R$ je spojitá, kde $\omega \subseteq ®R$. V této kapitole studujeme pouze rovnice typu $y'(x) = f(x, y(x))$.
+        \end{definice}
+
+        \begin{poznamka}[Speciální tvary]
+            $$ y' = f(x) \implies y(x) = c + \int_{x_0}^x f(t)\,dt, $$
+            $$ y'(x) = g(y(x)), $$ 
+            $$ y'(x) = g(y(x))·h(x) (\text{separované proměnné}), $$
+            $$ y'(x) = h\(\frac{y(x)}{x}\) (\text{homogenní rovnice}) (\text{substitucí převedeme na předchozí}), $$
+            $$ y'(x) = a(x)·y + b(x) (\text{lineární rovnice 1. řádu}), $$
+            $$ y'(x) = a(x)·y(x) + b(x)·y^{\alpha}(x) (\text{Bernouliho rovnice}) (\text{substitucí převedeme na předchozí}). $$ 
+        \end{poznamka}
+
+        \begin{veta}[O existenci řešení separované rovnice]
+            Nechť $h: (a, b) \rightarrow ®R$ je spojitá, $g: (c, d) \rightarrow ®R$ je spojitá a nenulová. Potom každým bodem $[x_0, y_0] \in (a, b)\times (c, d)$ prochází právě jedno řešení rovnice $y'(x) = g(y(x))·h(x)$.
+
+            \begin{dukazin}
+                $g$ je spojitá a nenulová $\implies$ nemění znaménko. Můžeme definovat $H(x) = \int_{x_0}^x h(t)\,dt$ a $G(y) = \int_{y_0}^y \frac{1}{g(s)}\, ds$. $g$ nemění znaménko, tedy $G$ je monotónní, tj. $\exists G^{-1}$. Chceme ukázat, že $y(x) = G^{-1}(H(x))$ je řešení. $h, g$ spojité $\implies$ $H', G', (G^{-1})'$ je spojitá. Podle derivace složené funkce a derivace inverzní funkce
+                $$ y'(x) = \(G^{-1}(H(x))\)' = (G^{-1})'(H(x))·H'(x) = \frac{1}{G'(G^{-1}(H(x)))}·h(x) = \frac{1}{\frac{1}{g(y(x))}}h(x) = g(y(x))·h(x). $$
+
+                Ověříme, že splňuje počáteční podmínku: $H(x_0) = 0$, $G(y_0) = 0$, $y(x_0) = G^{-1}(H(x_0)) = G^{-1}(0) = y_0$.
+
+                Jednoznačnost: Nechť $y(x)$ a $a(x)$ jsou řešení: $y'(x) = g(y(x))·h(x)$, $a'(x) = g(a(x))·h(x)$, $y(x_0) = y_0 = a(x_0)$ $\implies$ ($g$ nenulové) $\frac{y'(x)}{g(y(x))} = h(x) = \frac{a'(x)}{g(a(x))}$.
+                $$ G(y(x)) - G(y(x_0)) = \int_{x_0}^x \frac{y'(x)}{g(y(x))}\,dx = \int_{x_0}^x \frac{a'(x)}{g(a(x))} = G(a(x)) - G(a(x_0)) \implies $$ 
+                $$ \implies G(y(x)) = G(a(x)) \implies (G\text{ monotónní}) y(x) = a(x). $$
+            \end{dukazin}
+        \end{veta}
+
+% 12. 5. 2021
+
+        \begin{veta}[O řešení lineární diferenciálni rovnice prvního řádu]
+            Nechť $(c, d) \subseteq ®R$ je interval, $x_0 \in (c, d)$ a $a, b: (c, d) \rightarrow ®R$ jsou spojité funkce. Maximální řešení rovnice $y'(x) = a(x)·y(x) + b(x)$ s počáteční podmínkou $y(x_0) = y_0$ má tvar
+            $$ y(x) = \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)} = y_0·e^{A(x)}, $$
+            pro $x \in (c, d)$, kde $A$ je primitivní k $a$ splňující $A(x_0) = 0$.
+
+            \begin{dukazin}
+                Zřejmě $y(x_0) = 0·e^{A(x_0)} + y_0·e^{A(x_0)} = y_0$. Z věty o derivaci podle horní meze $ \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)' = b(x)·e^{-A(x)}$, tedy 
+                $$ y'(x) = b(x)·e^{-A(x)}·e^{A(x)} + \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)}·a(x) + y_0·e^{A(x)}·a(x), $$
+                $$ a(x)·y(x) + b(x) = a(x)·\(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)} + a(x)·y_0·e^{A(x)} + b(x). $$
+                Tyto výrazy se rovnají, tudíž $y$ řeší naši ODR s počáteční podmínkou $y(x_0) = y_0$ na celém $(c, d)$.
+
+                Jednoznačnost: Nechť $y(x)$ a $z(x)$ řeší naši ODR, pak $u(x) = y(x) - z(x)$. Dosazením $y, z$ do ODR a odečtením dostaneme $u'(x) = a(x)·u(x), u(x_0) = 0$. Tj.
+                $$ \frac{u'(x)}{u(x)} = (\ln u(x))' = a(x) \implies \ln u(x) = A(x) + C \implies e^{A(x)}·\tilde{C}. $$
+                Z $u(x_0) = 0$ je $\tilde{C} = 0$, tedy $u ≡ 0 = y(x) - z(x)$.
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Systémy lineárních ODR a linearní rovnice $n$-tého řádu}
+        \begin{definice}
+            Nechť $I$ je interval a mějme funkce $a_0, a_1, …, a_{n-1}, b: I \rightarrow ®R$. Lineární ODR řádu $n$ nazveme rovnici
+            $$ y^{(n)} + a_{n-1}(x)·y^{(n-1)} + … + a_1(x)·y' + a_0·y = f(x), \qquad x \in I. $$
+
+            Je-li $b≡0$ na $I$, pak se rovnice nazývá homogenní.
+        \end{definice}
+
+        \begin{definice}
+            Nechť $I \subseteq ®R$ je interval. Mějme funkce $¦b, ¦y: I \rightarrow ®R^n$ a mějme maticovou funkci $A: I \rightarrow ®R^{n^2}$. Systémem ODR prvního řádu rozumíme systém rovnic
+            $$ y_i' = a_{i, 1}·y_1 + … + a_{i, n}·y_n + b_i. $$
+            Neboli v maticovém zápisu $¦y' = A·¦y + ¦b$.
+
+            Je-li $¦b ≡ ¦o$, pak se systém nazývá homogenní.
+        \end{definice}
+
+        \begin{poznamka}
+            Řešení jedné rovnice řádu $n$ lze převést na řešení systému $n$ rovnic řádu $1$ (zavedeme si funkce $u_i = y^{(i-1)}$ a řekneme, že musí splňovat $u_i' = u_{i+1}$, poslední rovnice pak vznikne z původní rovnice).
+        \end{poznamka}
+
+% 19. 5. 2021
+
+        \begin{veta}[O existenci řešení systému ODR 1. řádu]
+                Nechť $I \subseteq ®R$ je interval a mějme spojité funkce $b_j, a_{ij}: I \rightarrow ®R$ pro $i, j \in [n]$. Nechť $x_0 \in I$, $¦y^0 \in ®R^n$ a $A = (a_{ij})_{i, j = 1}^n$ je spojitá maticová funkce. Pak existuje právě jedno řešení rovnice $¦y' = A¦y + ¦b$ s počáteční podmínkou $¦y(x_0) = ¦y^0$ definované na celém $I$.
+
+            \begin{dukazin}
+                Později.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            $$ C^1(I, ®R^n) := \{¦y: I \rightarrow ®R^n: ¦y'_i \text{ je spojitá funkce z $I$ do ®R } \forall i \in [n]\} $$
+        \end{definice}
+
+        \begin{veta}[Prostor řešení ODR 1. řádu]
+            Nechť $I \subseteq ®R$ je interval a mějme spojité funkce $b_j, a_{ij}: I \rightarrow ®R$, pro $i, j \in [n]$. Označme
+            $$ L(¦y) = ¦y' - A¦y, \qquad H = \Ker L = \{¦y \in C^1(I, ®R^n) : L(¦y) = 0 \text{ na } I\}. $$
+            Pak $H$ je vektorový prostor dimenze $n$. Označme $M$ množinu všech řešení nehomogenního systému rovnic $L(¦y) = ¦y' - A¦y = ¦b$ a nechť $¦y_0$ je jedno pevné řešení $L(¦y_0) = ¦b$. Pak $M = ¦y_0 + \Ker L$.
+
+            \begin{dukazin}
+                Nechť $x_0 \in I$. Podle předchozí věty existuje řešení $¦y_1, …, ¦y_n$ rovnice $¦y' = A¦y$ takové, že $¦y_i(x_0) = ¦e_i$. Tvrdíme, že $¦y_1, …, ¦y_n$ tvoří bázi $H$. Zřejmě jsou to řešení. Jsou lineárně nezávislé, protože kdyby ne, pak $\exists c_1, …, c_n \in ®R$ tak, že $c_1¦y_1(x) + … + c_n¦y_n(x) ≡ ¦o$. Speciálně pro $x = x_0: c_1¦e_1 + c_2¦e_2 + … + c_n¦e_n = ¦o$, tedy $c_i = 0 \forall i \in [n]$.
+
+                Navíc tvoří bázi: Nechť $y \in M$ tj. $¦y' = A¦y$. Pak $¦y(x_0) = [\alpha_1, …, \alpha_n] = \alpha_1¦y_1(x_0) + … + \alpha_n¦y_n(x_0)$. Podle předchozí věty existuje právě jedno řešení $¦y' = A¦y$ s počáteční podmínkou $¦y(x_0) = [\alpha, …, \alpha_n]$. Ale $\alpha_1¦y_1(x) + … + \alpha_n¦y_n(x)$ řeší $¦y' = A¦y$. Z jednoznačnosti řešení $¦y(x) = \alpha_1¦y_1(x) + … + \alpha_n¦y_n(x)$.
+
+                Podle předchozí věty existuje řešení $¦y_0$ rovnice $¦y' = A¦y + ¦b$. $¦y_0 + \Ker L \subseteq M$: Nechť $¦y \in H$, pak $(¦y_0 + ¦y)' = A¦y_0 + ¦b + A¦y = A·(¦y_0 + ¦y) + ¦b$ $\implies$ $¦y_0 + ¦y \in M$. $¦y_0 + \Ker L \supseteq M$: Nechť $¦y_1 \in M$, $¦y_1$ řeší $¦y_1' = A·¦y_1 + ¦b$. Označme $¦y = ¦y_1 - ¦y_0$. Pak $¦y' = ¦y_1' - ¦y_0' = A¦y_1 + ¦b - (A¦y_0 + ¦b) = A(¦y_1 - ¦y_0) = A¦y$ $\implies$ $¦y \in H$.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Fundamentální systém řešení]
+            Libovolnou bázi $\{¦y_1, …, ¦y_n\}$ prostoru $H = \Ker(¦y' - A¦y)$ (tj. libovolných $n$ lineárně nezávislých řešení homogenní rovnice $¦y' = A¦y$) nazýváme fundamentálním systémem řešení (FSŘ) homogenní rovnice $¦y' = A¦y$.
+        \end{definice}
+    
+    \subsection{Rovnice $n$-tého řádu s konstantními koeficienty}
+        \begin{definice}[Charakteristický polynom]
+            Nechť $a0, a_1, …, a_{n-1} \in ®R$. Pak $\lambda^n + a_{n-1}·\lambda^{n-1} + … + a_1\lambda + a_0 = 0$ nazveme charakteristickým polynomem rovnice $y^{(n)} + a_{n-1}y^{(n-1)} + … + a_1y' + a_0y = 0$.
+        \end{definice}
+
+        \begin{veta}[FSŘ pro rovnici $n$-tého řádu s konstantními koeficienty]
+            Mějme zadány $a_0, …, a_{n-1} \in ®R$ a nechť $\lambda_1, …, \lambda_k$ jsou kořeny charakteristického polynomu s násobností $s_1, …, s_k$. Pak funkce
+            $$ e^{\lambda_1 x}, x·e^{\lambda_1 x}, …, x^{s_1 - 1}·e^{\lambda_1 x}, …, e^{\lambda_k x}, …, x^{s_{k} - 1}·e^{\lambda_k x} $$ 
+            tvoří fundamentální systém řešení $y^{(n)} + … + a_1y' + a_0y = 0$ na ®R.
+
+            \begin{dukazin}
+                Podle věty výše stačí ukázat, že tyto funkce řeší ODR a jsou lineárně nezávislé. 1. krok: Označme $L(y) = y^{(n)} + … + a_1y' + a_0y$ a $Q(\lambda)$ charakteristický polynom. Chceme $Q(\lambda) = 0 \implies L(e^{\lambda x}) = e^{\lambda} Q(\lambda) = 0$. To dostaneme snadno z derivace $(e^{\lambda x})' = \lambda·e^{\lambda x}$ atd.
+
+                2. krok Nechť $\lambda = 0$ je $s$-násobný kořen $Q(\lambda)$. Chceme ukázat, že $1, x, …, x^{s-1}$ patří do FSŘ. $0$ je $s$-násobný kořen $\implies Q(\lambda) = \lambda^sP(\lambda) = \lambda^n + a_{n-1}\lambda^{n-1} + … + a_s\lambda^s + 0 + … + 0$. Derivace $1, …, x^{s-1}$ řádu $s$ a vyšší jsou $0$ $\implies$ tyto funkce jsou řešením $L(y) = 0$.
+
+% 21. 5. 2021
+
+
+            \end{dukazin}
+        \end{veta}
+
 
 \end{document}
