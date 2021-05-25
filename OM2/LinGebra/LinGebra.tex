@@ -932,4 +932,26 @@
                 $$ ||A¦y|| = ||[A]C^B·[y]_B|| = ||\sigma_1y_1 + … + \sigma_ry_r|| ≤ ||\sigma_1y_1 + … + \sigma_1y_r|| = \sigma_1||¦y||. $$ 
             \end{dukazin}
         \end{tvrzeni}
+
+% 19. 5. 2021
+
+\section{Bilineární a kvadratické formy}
+%    \begin{definice}[Forma]
+%        Zobrazení $®T^n \rightarrow ®T$ dané polynomem, jehož všechny členy mají stejný stupeň, se nazývá forma.
+%    \end{definice}
+
+    \begin{definice}[Bilineární forma]
+        Buď ¦V vektorový prostor nad tělesem ®T. Bilineární formou na ¦V rozumíme zobrazení $f: ¦V \times ¦V \rightarrow ®T$, které splňuje:
+        $$ (BL1) \forall ¦v, ¦w \in ¦V\ \forall t \in ®T: f(t¦v, ¦w) = t·f(¦v, ¦w) = f(¦v, t¦w), $$
+        $$ (BL2) \forall ¦u, ¦v, ¦w \in ¦W: f(¦u + ¦v, ¦w) = f(¦u, ¦w) + f(¦v, ¦w) \land f(¦w, ¦u + ¦v) = f(¦w, ¦u) + f(¦w, ¦v). $$ 
+    \end{definice}
+
+    \begin{definice}[Kvadratická forma]
+        Buď ¦V vektorový prostor nad tělesem ®T a $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma. Pak kvadratickou formou na ¦V vytvořenou bilineární formou $f$ (též příslušnou formě $f$) rozumíme zobrazení $f_2: ¦V \rightarrow ®T$, $¦v \mapsto f(¦v, ¦v)$
+    \end{definice}
+
+    \subsection{Matice bilineární formy}
+        \begin{definice}
+            Buď ¦V konečně generovaný vektorový prostor nad ®T s bází $B = (¦v_1, …, ¦v_n)$. Buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma. Buď $¦u = x_1¦v_1 + … + x_n¦v_n$, $¦w = y_1¦v_1 + … +y_n¦v_n$. Potom $f(¦u, ¦w)$ lze vyjádřit maticí ($\sum_{i=1}^na_{ij}x_iy_j$). Této matici říkáme matice bilineární formy $f$ vzhledem k bázi $B$. ($[f]_B = (f(¦v_i, ¦v_j))_{i, j}$).
+        \end{definice}
 \end{document}

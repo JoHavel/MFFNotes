@@ -685,4 +685,20 @@
         Přechodový diagram pro TM sestává z uzlů odpovídajícím stavům TM. Hrany $q \rightarrow p$ jsou označeny seznamem všech dvojic, kde $\delta(q, X) = (p, Y, D), D \in \{\rightarrow, \leftarrow\}$.
     \end{definice}
 
+% 18. 5. 2021
+
+    TODO
+
+    \begin{veta}
+        Každý rekurzivně spočetný jazyk je typu 0.
+
+        \begin{dukazin}
+            Pro Turingův stroj $T$ najdeme gramatiku $G$, $L(T) = L(G)$. $G = (\{S, C, D, E\} \cup \{\underline{x}\}_{x \in \Sigma\cup\Gamma}\cup \{q_i\}_{q_i \in Q}, \Sigma, P, S)$, TODO! (Tvoříme 3 typy pravidel: vygenerování slova a jeho kopie pro výpočet, simulace automatu, úklid).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dukazin}
+        Každý jazyk typu 0 je rekurzivně spočetný.
+    \end{dukazin}
+
 \end{document}

@@ -1807,5 +1807,177 @@
 
                 Homomorfismus: $\psi([a]) · \psi([b]) = \phi(a)·\phi(b) = \phi(ab) = \psi([ab]) = \psi([a]·[b])$.
             \end{dukazin}
+
+% 14. 5. 2021
+
+            2) (1. věta o isomorfismu) $G/\Ker \phi \simeq \Im \phi$.
+
+            \begin{dukazin}
+                Použiji 1) pro $N = \Ker \phi$. $\psi: G/\Ker \rightarrow H$. $\psi$ je prosté: $[a] = [b] \Leftrightarrow ab^{-1} \in \Ker \phi \Leftrightarrow \phi(ab^{-1}) = 1 \Leftrightarrow \phi(a) = \phi(b) \Leftrightarrow \psi([a])=\psi([b])$. Když se na $\psi$ dívám jenom jako na zobrazení $G/\Ker \phi \rightarrow \Im \phi ≤ H$, tak je na.
+            \end{dukazin}
         \end{veta}
+
+        \begin{tvrzeni}[2. věta o isomorfismu]
+            $N \trianglelefteq G$. 1) $N \trianglelefteq H \trianglelefteq G$, pak $H/N$ je normální podgrupa $G/N$.
+
+            2) Je-li $K \trianglelefteq G/N$, pak existuje $H \trianglelefteq G$ tak, že $K = H/N$.
+
+            3) $N \trianglelefteq H \trianglelefteq G$, pak $(G/N)/(H/N) \simeq G/H$.
+
+            (1) i 3) platí i pro podgrupy, které nejsou normální.)
+
+            \begin{dukazin}
+                1) se ověří.
+
+                2) $K \trianglelefteq G/N \implies K = H/N$ pro nějaké $H$, a sice $H = \{a \in G | [a] = aN \in K\}$. Ověří se, že $K = H/N$.
+
+                3) 1. věta o isomorfismu: Uvažujme homomorfismus $\phi: G/N \rightarrow G/H$, $aN \mapsto aH$. Ověříme, že je dobře definován: $aN = bN \Leftrightarrow ab^{-1} \in N \implies ab^{-1} \in H \Leftrightarrow aH = bH$ a že je to homomorfismus: $\phi(aN·bN) = \phi(abN) = (ab)H \overset{?}{=} \phi(aN)·\phi(bN) = aH·bH = (ab)H$. $\Im \phi = G/H$ zřejmě, $\Ker \phi = \{aN | \phi(aN) = aH = 1·H\}$, ale $aH = 1·H \Leftrightarrow a·1^{-1} = a \in H$. Tedy $\Ker \phi = H/N$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[3. věta o isomorfismu]
+            $N \trianglelefteq G$, $H ≤ G$. Pak $HN$ je podgrupa $G$. $H \cap N \trianglelefteq H \land HN/N \simeq H/(H \cap N)$.
+
+            \begin{dukazin}
+                Bez důkazu (jednoduchý).
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Řešitelné grupy}
+        \begin{definice}[Řešitelná grupa, stupeň řešitelnosti]
+            Grupa $G$ je řešitelná, pokud $\exists k \in ®N$ a normální podgrupy $N_0, N_1, …, N_k \trianglelefteq G$ tak, že $\{1\} = N_0 ≤ N_1 ≤ … ≤ N_k = G$ a každá faktorgrupa $N_i / N_{i-1}$, pro $i \in [k]$, je abelovská.
+
+            Nejmenší $k$, pro které tento řetězec v $G$ existuje, se nazývá stupeň řešitelnosti $G$.
+        \end{definice}
+
+        \begin{definice}[Metaabelovská grupa]
+            Grupa stupně řešitelnosti 2 se nazývá metaabelovská.
+        \end{definice}
+
+        \begin{veta}[Feit-Thompson]
+            Každá grupa lichého řádu je řešitelná.
+
+            Jednodušší varianta: Každá grupa řádu $p^k$ ($p$ prvočíslo) je řešitelná.
+
+            \begin{dukazin}
+                Extrémně těžký.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Derivovaná podgrupa]
+            $G$ grupa. Její derivovaná podgrupa je $G' = \<aba^{-1}b^{-1} | a, b \in G\>$.
+        \end{definice}
+
+        \begin{lemma}
+            $N \trianglelefteq G$. 1) $N' \trianglelefteq G$. 2) $G/N$ je abelovská $\Leftrightarrow$ $G' ≤ N$.
+
+            \begin{dukazin}
+                1) ověří se (viz skripta). 2) $G/N$ abelovská $\Leftrightarrow$ $[a][b] = [b][a]$ $\Leftrightarrow$ $[aba^{-1}b^{-1}] = [1]$ $\Leftrightarrow$ $aba^{-1}b^{-1} \in N$ $\Leftrightarrow$ $G' \subseteq N$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{tvrzeni}[Řešitelnost podgrup a faktogrup]
+            $G$ grupa. 1) $G$ řešitelná a $H ≤ G \implies H$ řešitelná.
+
+            2) $G$ řešitelná, $K \trianglelefteq G$ $\implies$ $G/K$ řešitelná.
+
+            3) Pokud $\exists N \trianglelefteq G$ tak, že $N$ je řešitelná a $G / N$ je řešitelná, pak je $G$ řešitelná.
+
+            \begin{dukazin}
+                1) $N_i \trianglelefteq G$, $\{1\} = N_0 ≤ N_1 ≤ … ≤ N_k = G$, $N_i / N_{i-1}$ abelovská. Uvažujme $\{1\} = N_0 \cap H ≤ N_1 \cap H ≤ … ≤ N_k \cap H = H$, dokážeme, že tato posloupnost prokazuje řešitelnost $H$. Triviálně $N_i \cap H \trianglelefteq H$. $(N_i\cap H)/(N_{i-1} \cap H) = (N_i \cap H)/((N_i \cap H) \cap N_{i-1})$. Podle 3. věty o isomorfismu je to isomorfní s $N_{i-1}(N_i \cap H) / N_{i-1} ≤ N_i / N_{i-1}$, která je abelovská, tedy i její podgrupa je abelovská, tedy $(N_i \cap H)/(N_{i-1} \cap H)$ je abelovská.
+
+                2) analogicky (2. a 3. věta o isomorfismu). 3. podobně (nezkouší se, viz skripta).
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            $G$ grupa s normálními podgrupami $N_0, …, N_k$ tak, že $\{1\} = N_0 ≤ N_1 ≤ … ≤ N_k = G$ a $N_i/N_{i-1}$ jsou řešitelné. Pak $G$ je řešitelná.
+
+            \begin{dukazin}
+                Indukcí podle $k$ a použitím třetího bodu předchozího tvrzení.
+            \end{dukazin}
+        \end{dusledek}
+
+\section{Číselná tělesa a kořeny polynomů}
+    \subsection{Okruhové homeomorfismy a faktorokruhy}
+        \begin{tvrzeni}[Obraz a jádro]
+            $R, S$ okruhy, $\phi: R \rightarrow S$ homomorfismus okruhů. 1) $\Im \phi$ je podokruh $S$. 2) $\Ker \phi$ je ideál v $R$.
+
+            \begin{dukazin}
+                1) $\phi(a) + \phi(b) = \phi(a+b) \in \Im \phi$. $\phi(a)·\phi(b) = \phi(a·b) \in \Im \phi$.
+
+                2) $\Ker \phi$ je uzavřené na $+$ (ověří se). Také je uzavřené na násobení $R$: $a \in \Ker \phi, r \in R \implies \phi(ra) = \phi(r)·\phi(a) = \phi(r) = 0$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            $\phi: R \rightarrow S$ je prostý homomorfismus okruhů $\Leftrightarrow$ $\Ker \phi = \{0\}$.
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            $\phi: R \rightarrow S, \psi: S \rightarrow T$ homomorfismy okruhů. Pak 1) $\psi \circ \phi: R \rightarrow T$ je homomorfismus okruhů.
+
+            2) Je-li $\phi$ bijekce (čili $\phi$ je isomorfismus), pak $\phi^{-1}: S \rightarrow R$ je homomorfismus okruhů (a tedy isomorfismus).
+        \end{tvrzeni}
+
+% 19. 5. 2021
+
+    \subsection{Faktorokruh podle ideálu}
+        \begin{definice}
+            $R$ okruh, $I$ ideál v $R$. Definujeme ekvivalenci na $R$ $a \sim b \Leftrightarrow a-b \in I$.
+
+            Uvažujme jenom grupu $(R, +, -, 0)$. Potom $\sim$ je ta stejná ekvivalence podle podgrupy $I$.
+
+            $a \sim b \Leftrightarrow a + I = b + I$ … třídy ekvivalence jsou rozkladové třídy podle podgrupy. $[a] = a + I$.
+
+            Na blocích definujeme $[a] + [b] = [a+b]$, $-[a] = [-a]$, $[0]$ je neutrální prvek, $[a]·[b] = [a·b]$.
+
+            Množina bloků $[a]$ s těmito operacemi je faktorokruh podle ideálu $I$: $R/I = \(\{[a] | a \in R\}, +, -, [0], ·\)$.
+
+            \begin{dukazin}[Dobrá definovanost]
+                1) Operace na blocích jsou dobře definované: $+, -$ víme z grup. Buď nyní $[a] = [c]$, $[b] = [d]$, chceme $[ab] = [cd]$. Z definice bloků víme, že $a - c \in I$ a $b - d \in I$, tudíž $ab - cd = a(b - d) + (a - c)d \in I$.
+
+                2) $R/I$ je okruh: Ověří se axiomy okruhu pro $R/I$ z axiomů pro $R$. (Pozor, axiomy oboru se nezachovávají.)
+            \end{dukazin}
+        \end{definice}
+
+        \begin{veta}
+            $\phi: R \rightarrow S$ homomorfismus okruhů.
+
+            1) (věta o homomorfismu) $I \subseteq \Ker \phi$ ideál v $R$. Pak $\phi: R/I \rightarrow S$, $[a] \mapsto \phi(a)$ je dobře definovaný okruhový homomorfismus.
+
+            2) (1. věta o isomorfismu) $R / \Ker \phi \simeq \Im \phi$, $[a] \mapsto \phi(a)$.
+
+            \begin{dukazin}
+                Použije se věta pro grupy a člověk si rozmyslí, že tato zobrazení jsou homomorfismy i vůči násobení.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Platí i 2. a 3. věta o isomorfismu. (Viz skripta.)
+        \end{poznamka}
+
+    \subsection{Kdy je faktorokruh obor / těleso?}
+        \begin{definice}[prvoideál, maximální ideál]
+            Ideál $I$ v okruhu $R$ je prvoideál, pokud $\forall a, b \in R: ab \in I \implies a \in I$ nebo $b \in I$. A je maximální, pokud je $I$ maximální vlastní ideál v $R$, čili neexistuje ideál $j$ tak, že $I \subset J \subset R$.
+        \end{definice}
+
+        \begin{veta}
+            $R$ komutativní okruh s $1$, $I$ ideál. 1) Pak $R/I$ je obor $\Leftrightarrow$ $I$ prvoideál. 2) Potom $R/I$ je těleso $\Leftrightarrow$ $I$ je maximální.
+
+            \begin{dukazin}
+                1) $R/I$ obor $\Leftrightarrow$ $([a]·[b] = 0 \implies [a] = 0 \lor [b] = 0)$ $\Leftrightarrow$ $(a·b \in I \implies a \in I \lor b \in I)$ $\Leftrightarrow$ $I$ je prvoideál.
+
+                2) Z tvrzení 7.6: $R/I$ těleso $\Leftrightarrow$ nemá žádné vlastní ideály. Z druhé věty o isomorfismu: Ideály v $R/I$ jsou právě $J/I$ pro $J \supseteq I$. Tedy $R/I$ je těles $\Leftrightarrow$ $I$ je maximální ideál.
+            \end{dukazin}
+        \end{veta}
+
+\section{Tělesové rozšíření jako vektorový prostor}
+    \begin{definice}[Rozšíření těles]
+        Rozšíření těles jsou tělesa $®T$, $®S$ tak, že $®T ≤ ®S$. (Čili $®T$ je podtěleso $®S$ a $®S$ je rozšíření $®T$).
+    \end{definice}
+
+    \begin{definice}[Stupeň rozšíření]
+        Dimenze vektorového prostoru $®S_{®T}$ (vektorový prostor nad ®T odpovídající ®S) je stupeň rozšíření $®S≥®T$. Neboli $[®S:®T] = \dim ®S_{®T}$.
+    \end{definice}
 \end{document}

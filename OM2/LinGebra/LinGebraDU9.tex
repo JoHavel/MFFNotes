@@ -1,0 +1,41 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[9.1]
+    Existuje komplexní hermitovská matice $A$ řádu 3 splňující následující vztah?
+    $$ f_A\((1+2i, 3+4i, -1-i)^T\) = (-2+i,-4+3i, 1-i)^T $$ 
+
+    \begin{reseni}
+        Neexistuje: Nechť tedy pro spor máme takovou matici $A = A^*$, která splňuje
+        $$ A(1+2i, 3+4i, -1-i)^T = (-2+i,-4+3i, 1-i)^T. $$
+        Potom můžeme tuto rovnici hermitovsky sdružit (víme, že $(AB)^* = B^*A^*$):
+        $$ (1-2i, 3-4i, -1+i)A^* = (1-2i, 3-4i, -1+i)A = (-2-i,-4-3i, 1+i). $$
+        Následně původní rovnici vynásobíme $(1-2i, 3-4i, -1+i)$ zleva a dosadíme druhou rovnici:
+        $$ (1-2i, 3-4i, -1+i)A(1+2i, 3+4i, -1-i)^T = (-2-i,-4-3i, 1+i)(1+2i, 3+4i, -1-i)^T = -32i = $$
+        $$ = 32i = (1-2i, 3-4i, -1+i)(-2+i,-4+3i, 1-i)^T $$
+        Spor \lightning.
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[9.2]
+    Označme výraz
+    $$ V(a,b,c) = 3a^2 + 2b^2 + 4c^2 - 4ab + 2ac - 3bc. $$
+    Dokažte, že $V(a,b,c) ≥ 0$ pro libovolná reálná čísla $a, b, c$.
+
+    \begin{dukazin}
+        Začneme tím, že vytvoříme horní trojúhelníkovou matici $\tilde{A}$ tak, aby $V(a, b, c) = (a, b, c)\tilde{A}(a, b, c)^T$. Není těžké si rozmyslet, že prvek v 1. řádku v 1. sloupci (odpovídající $a^2$) musí být 3, v 1. řádku a 2. sloupci (odpovídající $a·b$) musí být $-4$… Takto dostaneme
+        $$ \tilde{A} = \begin{pmatrix} 3 & -4 & 2 \\ 0 & 2 & -3 \\ 0 & 0 & 4 \end{pmatrix}. $$
+
+        Můžeme si všimnout, že ze stejného důvodu $V(a, b, c) = (a, b, c)\tilde{A}^T(a, b, c)^T$. Tedy můžeme dostat stejný výraz se symetrickou maticí jako:
+        $$ V(a, b, c) = \frac{(a, b, c)\tilde{A}(a, b, c)^T + (a, b, c)\tilde{A}^T(a, b, c)^T}{2} = (a, b, c)\frac{\tilde{A} + \tilde{A}^T}{2}(a, b, c)^T =: (a, b, c)A(a, b, c)^T, $$
+        $$ A = \begin{pmatrix} 3 & -2 & 1 \\ -2 & 2 & -1.5 \\ 1 & -1.5 & 4 \end{pmatrix}. $$
+
+        Podle Wolfram Mathematica má tato matice vlastní čísla přibližně $\{6.03926, 2.63024, 0.330507\}$, což je rozhodně kladné a tedy podle tvrzení 10.19 je matice pozitivně definitní, což podle definice 10.18 není nic jiného než, že:
+        $$ \forall ¦o ≠ (a, b, c)^T \in ®R^3: V(a, b, c) = (a, b, c)A(a, b, c)^T > 0. $$
+        A pro $(a, b, c) = ¦o$ je zřejmě $V(a, b, c) = 0$.
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

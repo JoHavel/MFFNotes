@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    \begin{priklad}[permBi]
+        Algoritmicky popište zobrazení a k němu inverzní zobrazení, mezi čísly od $1$ do $K!$ a permutacemi čísel od $1$ do $K$ (předpokládejte, že máte aritmetiku s dostatečně velkými čísly).
+
+        \begin{reseni}
+            Bijekce mezi čísly $1$ až $K!$ a permutacemi je vlastně nějaké uspořádání permutací. Seřazení permutací provedeme tak, že primárně seřadíme podle prvního členu, tento člen následně prohodíme s $K$ a následně seřadíme posloupnosti, které se shodli v prvním členu rekurzivně podle zbytku permutace. Tedy vlastně takové modifikované lexikografické třízení.
+
+            Obraz permutace tedy spočítáme tak, že si na začátku připravíme pole indexů, na kterých se nacházejí daná čísla (které budeme průběžně aktualizovat) (abychom uměli prohazovat prvky), a předpočítáme si $1!, 2!, …, K!$. Obojí umíme v lineárním čase. Také si založíme proměnnou $r$, kde budeme počítat, o kolika permutacích už víme, že jsou menší.
+
+            Následně pro každý (od nejmenšího po největší) index $i \in \{1, …, K\}$ přičtu do $r$: (číslo na aktuálním indexu mínus 1) krát $(K-i)!$, jelikož všechny menší posloupnosti (když pominu předchozí čísla) mají na daném indexu menší číslo ať je zbytek (indexy $i+1, …, K-1$) seřazen jakkoliv. Následně prohodím číslo na aktuálním indexu s číslem $K-i+1$ a pokračuji na další index.
+
+            Obraz čísla $n$ najdeme tím, že si zase připravíme pole s $1!, 2!, …, K!$ a připravíme si pole $1, 2, …, K$. Následně spočítáme $n$ celočíselně vydělený $(K-1)!$, čímž získáme číslo na první pozici, označme ho $m$. Na dalším místě, kde vyjde $m$, bylo (před výpočtem obrazu permutace na tomto indexu) $K$, tedy na pozici číslo $m$ v poli, které jsme si připravily uložíme $K$. Následně „rekurzivně“ generujeme permutaci délky $K-1$ s $r$ rovným $r \% (K-1)!$ (jen nebudeme psát do permutace toto číslo, ale číslo, které je na odpovídajícím indexu v poli).
+
+            Tedy obojí umíme v lineárním čase.
+        \end{reseni}
+    \end{priklad}
+
+\end{document}

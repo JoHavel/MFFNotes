@@ -1064,13 +1064,231 @@
             \begin{dukazin}
                 Podle věty výše stačí ukázat, že tyto funkce řeší ODR a jsou lineárně nezávislé. 1. krok: Označme $L(y) = y^{(n)} + … + a_1y' + a_0y$ a $Q(\lambda)$ charakteristický polynom. Chceme $Q(\lambda) = 0 \implies L(e^{\lambda x}) = e^{\lambda} Q(\lambda) = 0$. To dostaneme snadno z derivace $(e^{\lambda x})' = \lambda·e^{\lambda x}$ atd.
 
-                2. krok Nechť $\lambda = 0$ je $s$-násobný kořen $Q(\lambda)$. Chceme ukázat, že $1, x, …, x^{s-1}$ patří do FSŘ. $0$ je $s$-násobný kořen $\implies Q(\lambda) = \lambda^sP(\lambda) = \lambda^n + a_{n-1}\lambda^{n-1} + … + a_s\lambda^s + 0 + … + 0$. Derivace $1, …, x^{s-1}$ řádu $s$ a vyšší jsou $0$ $\implies$ tyto funkce jsou řešením $L(y) = 0$.
+                2. krok: Nechť $\lambda = 0$ je $s$-násobný kořen $Q(\lambda)$. Chceme ukázat, že $1, x, …, x^{s-1}$ patří do FSŘ. $0$ je $s$-násobný kořen $\implies Q(\lambda) = \lambda^sP(\lambda) = \lambda^n + a_{n-1}\lambda^{n-1} + … + a_s\lambda^s + 0 + … + 0$. Derivace $1, …, x^{s-1}$ řádu $s$ a vyšší jsou $0$ $\implies$ tyto funkce jsou řešením $L(y) = 0$.
 
 % 21. 5. 2021
 
+                3. krok: Nechť $\lambda_0$ je $s$-násobný kořen $Q(x)$. Chceme $e^{\lambda_0x}, …, x^{s-1}e^{\lambda_0x}$ jsou řešení. Napišme řešení ve tvaru $y(x) = a(x)·e^{\lambda_0 x}$. Potom $y'(x) = a'(x)e^{\lambda_0 x} + a(x)\lambda_0e^{\lambda_0x}$, $y''(x) = a''(x)e^{\lambda_0 x} + …$. Obecně $L(y) = L(a·e^{\lambda_0 x}) = e^{\lambda_0x}·M(a)$, kde $M$ je lineární diferenciální operátor řádu $n$ s konstantními koeficienty, tedy $M(a) = b_na^{(n)} + … + b_1a' + b_0·a$, $b_j \in ®R$. Označme $Q_1$ charakteristický polynom $M(a)$.
+                
+                Z bodu 1 víme, že $L(e^{\lambda x}) = e^{\lambda x}·Q(\lambda)$ a analogicky $M(e^{\lambda x}) = e^{\lambda x} Q_1(\lambda)$. Nyní trochu magie:
+                $$ Q_1(\lambda) = \frac{M(e^{\lambda x})}{e^{\lambda x}} = \frac{L(e^{\lambda x}e^{\lambda_0 x})}{e^{\lambda_0 x}e^{\lambda x}} = \frac{L(e^{\lambda x + \lambda_0 x})}{e^{\lambda_0 x + \lambda x}} = Q(\lambda + \lambda_0). $$
+                Víme, že $Q(\lambda)$ má $\lambda_0$ jako $s$-násobný kořen $\implies$ $Q_1(\lambda)$ má 0 jako $s$-násobný kořen. Podle 2. kroku $1, x, …, x^{s-1}$ je řešením $M(a) = 0$, tedy $y = a·e^{\lambda_0 x}$ pro $a = 1, x, …, x^{s-1}$ jsou řešení.
 
+                4. krok Funkce … jsou lineárně nezávislé. Nechť pro spor existují polynomy $p_1, …, p_k$ ($\deg p_i ≤ s_i - 1$) tak, že $\sum_{j=1}^k P_j(x)e^{\lambda_j x} = 0$. BÚNO $P_j \not≡ 0$. Vynásobíme předchozí rovnici $e^{- \lambda_k x}$:
+                $$ 0 = P_1(x)e^{(\lambda_1 - \lambda_k)x} + … + P_2(x)e^{(\lambda_2 - \lambda_k)x} + … + P_k(x) $$
+                Toto $s$ krát zderivujeme (pozorování: derivací $P_je^{\lambda_j x}$ nesnižujeme stupeň polynomu):
+                $$ 0 = R_1(x)e^{\lambda_1 - \lambda_k} + … + R_{k-1}(x)e^{(\lambda_{k-1} - \lambda_k) x}. $$
+                Toto provedeme $(k-1)$krát, až nám zbude $S(x)e^{\tilde{\lambda}x} ≡ 0$, kde $\deg S = \deg P_1$. Ale $S≡0$, což je spos s $P_1 \not≡ 0$.
             \end{dukazin}
         \end{veta}
 
+        \begin{veta}[O speciální pravé straně pro rovnici $n$-tého řádu]
+            Mějme zadány $a_0, a_1, …, a_{n-1} \in ®R$, nechť $P_m(x)$ je polynom $m$-tého řádu a $(\alpha + i\beta)$ je $k$-násobný kořen charakteristického polynomu (lze i $k = 0$, $\alpha = 0$, $\beta = 0$). Pak rovnice $y^{(n)} + … + a_1y' + a_0y = P_m(x)e^{\alpha x}·\cos \beta x$ (případně se $\sin$ místo $\cos$) má na ®R řešení ve tvaru
+            $$ y_0(x) = x^kQ_m(x)e^{\alpha x}\cos \beta x + x^kR_m(x)e^{\alpha x}\sin \beta x, $$
+            kde $Q_m$ a $R_m$ jsou polynomy stupně $m$.
 
+            \begin{dukazin}
+                Bez důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Není-li pravá strana rovnice ve tvaru kvazipolynomu, pak lze řešení nehomogenní rovnice najít metodou variace konstant ve tvaru
+            $$ y(x) = \sum_{i=1}^n c_i(x)y_i(x), $$ 
+            kde $\{y_1, …, y_n\}$ tvoří FSŘ rovnice
+            $$ y^{(n)} + … + a_1y' + ay = 0. $$ 
+        \end{poznamka}
+
+% 26. 5. 2021
+
+    \subsection{Systémy rovnic s konstantními koeficienty}
+        \begin{veta}[FSŘ pro soustavu rovnic s konstantními koeficienty]
+            Nechť má matice $A$ všechna vlastní čísla $\lambda_1, …, \lambda_n$ různá a nechť $¦v_1, …, ¦v_n$ jsou příslušné vlastní vektory. Pak vektorové funkce $¦v_1·e^{\lambda_1 x}, …, ¦v_ne^{\lambda_n x}$ tvoří fundamentální systém řešení $¦y' = A·¦y$ na ®R.
+
+            \begin{dukazin}
+                Je to řešení: Nechť $y(x) = ¦v_1 · e^{\lambda_1 x}$, pak $¦y'(x) = ¦v_i \lambda_1 e^{\lambda_1 x}$, neboli $¦y'(x) = A·¦v_1 · e^{\lambda_1 x} = A·¦y(x)$.
+
+                Je to lineárně nezávislé (že je jich $n$ víme…): Nechť pro spor $\exists C_i \in ®R: C_1¦v_1e^{\lambda_1 x} + … + C_n·¦v_n·e^{\lambda_n x} = 0$. BÚNO $C_1 ≠ 0$. Vydělíme poslední exponencielou a zderivujeme:
+                $$ C_1·¦v_{11}·e^{(\lambda_1 - \lambda_n) x} + … + C_n · ¦v_n = 0, $$
+                $$ C_1(\lambda_1 - \lambda_n)¦v_1·e^{(\lambda_1 - \lambda_n) x} + …+ C_{n-1}(\lambda_1 - \lambda_n)¦v_{n-1}e^{(\lambda_{n-1} - \lambda_n) x} = 0. $$
+                $(n-1)$-krát zopakujeme a dostaneme $C_1·¦v_1 = 0 \implies C_1 = 0$, \lightning.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Nemá-li matice $A$ všechna vlastní čísla různá, pak lze FSŘ také algoritmicky sestrojit. Nechť $\lambda$ je $k$-násobné vlastní číslo. Pokud existuje $k$ lineárně nezávislých vlastních vektorů $¦v_1, …, ¦v_k$, pak do FSŘ dáme funkce $¦v_1·e^{\lambda x}, …, ¦v_ke^{\lambda x}$. Pokud existuje pouze jeden vlastní vektor, tak nalezneme řetězce vektorů $¦v_2, …, ¦v_k$, aby $(A - \lambda I)·¦v_1 = 0$, $(A - \lambda I)¦v_2 = ¦v_1$, … a do FSŘ dáme funkce $¦v_1e^{\lambda x}$, $¦v_1·x·e^{\lambda x} + ¦v_2e^{\lambda x}$, …
+
+            Pokud existuje více vlastních vektorů, ale ne $k$, pak provedeme něco mezi. Záleží na Jordanově tvaru matice $A = R^{-1}JR$.
+        \end{poznamka}
+
+% 28. 5. 2021
+
+        \begin{definice}
+            Nechť $¦y^1, ¦y^2, …, ¦y^n$ tvoří FSŘ $¦y' = A·¦y$. Pak matici $\phi(x) = (¦y_1(x)|¦y_2|…|¦y_n)$ nazýváme fundamentální maticí soustavy $¦y' = A·¦y$. (Tj. $\phi'(x) = A·\phi(x)$.)
+        \end{definice}
+
+        \begin{lemma}
+            Nechť $\phi$ je fundamentální matice soustavy $¦y' = A·¦y$ na intervalu $I$. Pak $\phi(x)$ je regulární pro každé $x \in I$.
+
+            \begin{dukazin}
+                Sporem. Nechť $\exists c_i \in ®R$ a $\exists x_0 \in I$, $c_1·¦y^1(x_0) + … + c_n·¦y^n(x_0) = ¦o$. Podle věty o existenci řešení systému ODR 1. řádu $\exists!$ řešení splňující $¦y(x_0) = ¦o$. Toto řešení je ale $¦y ≡ 0$. Ale i funkce $¦y(x)$ je řešení a splňuje $¦y(x_0) = 0$. Z jednoznačnosti $¦y(x) ≡ ¦o$, což je ale spor s nezávislostí $¦y^1, ¦y^2, …, ¦y^n$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[Tvar řešení pro soustavu ODR]
+            Nechť $I$ je interval, $A: I \rightarrow ®R^{n \times n}$ a $b: I \rightarrow ®R^n$ jsou spojité funkce, $x_0 \in I$ a $¦y^0 \in ®R^n$. Pak maximální řešení rovnice $¦y' = A¦y + ¦b$ s počáteční podmínkou $¦y(x_0) = ¦y^0$ má tvar
+            $$ ¦y(x) = \phi(x)·\phi^{-1}(x_0)·¦y^0 + \phi(x)·\int_{x_0}^x \phi^{-1}(t)·¦b(t)dt, $$
+            kde $\phi$ je fundamentální matice soustavy.
+
+            \begin{dukazin}
+                Z lemmatu víme, že $\phi(x)$ je regulární $\forall x \in I$. Díky Kramerově pravidlu je $\phi^{-1}(t)$ spojitá, tedy $\int_{x_0}^x \phi^{-1}(t)·¦b(t)dt$ má smysl. Označme $¦y(x)$ jako ve větě. Podle věty o derivaci podle horní meze dostaneme
+                $$ ¦y'(x) = \phi'(x)·\phi^{-1}(x_0)·¦y^0 + \phi'(x)·\int_{x_0}^x \phi^{-1}(t)·¦b(t) dt + \phi(x)·\phi^{-1}(x)·¦b(x) = $$
+                $$ A·(\phi(x)·\phi^{-1}(x_0)·¦y^0 + \phi(x)·\int_{x_0}^x \phi^{-1}(t)¦b(t)dt) + ¦b(x) = A·¦y(x)+¦b(x). $$
+                Z věty výše máme navíc jednoznačnost.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            Jako důsledek předchozí věty lze odvodit větu o pravé straně ve tvaru kvazipolynomu i následující větu.
+        \end{dusledek}
+
+        \begin{veta}[O speciální pravé straně pro soustavu $n$-tého řádu]
+            Nechť $A \in ®R^{n \times n}$ je matice a $¦p, ¦q$ jsou $n\times 1$ vektory polynomů. Pak soustava
+            $$¦y' = A·¦y + ¦p(x)·e^{ax}·\cos bx + ¦q(x)·e^{ax}·\sin bx $$
+            má řešení ve tvaru
+            $$ ¦y(x) = \tilde{¦p}(x)·e^{ax}·\cos bx + \tilde{¦q}(x)·e^{ax}·\sin bx, $$ 
+            kde $\tilde{¦p}$, $\tilde{¦q}$ jsou vektory polynomů a $\max\{\deg \tilde{¦p}, \deg \tilde{¦q}\} = \max \{\deg ¦p, \deg ¦q\}$ + násobnost $(a + ib)$ jako vlastního čísla $A$.
+
+            \begin{dukazin}
+                Bez důkazu.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            Není-li pravá strana ve tvaru kvazipolynomu, pak lze řešení nehomogenní rovnice najít metodou variace konstant ve tvaru $¦y(x) = \sum_{i = 1}^n c_i(x)·¦y_i(x)$, kde $\{¦y_1, …, ¦y_n\}$ tvoří FSŘ rovnice $¦y' = A¦y$.
+        \end{poznamka}
+
+% 2. 6. 2021
+
+\section{Metrické prostory}
+    \subsection{Základní pojmy}
+        \begin{definice}[Metrický prostor (MP)]
+            Metrickým prostorem budeme rozumět dvojici $(®P, \rho)$, kde $®P$ je množina bodů a $\rho: ®P \times ®P \rightarrow ®R$ splňuje:
+            $$ (i) \forall x, y \in ®P: \rho(x, y = 0) \Leftrightarrow x = y, $$ 
+            $$ (ii) \forall x, y \in ®P: \rho(x, y) = \rho(y, x), (\text{symetrie}) $$
+            $$ (iii) \forall x, y, z \in ®P: \rho(x, z) ≤ \rho(x, y) + \rho(y, z). (\triangle\text{-nerovnost}) $$ 
+        \end{definice}
+
+        \begin{poznamka}
+            Z $(i)$ a $(iii)$ (volba $x = z$) vyplývá $\rho(x, y) ≥ 0$.
+        \end{poznamka}
+
+        \begin{tvrzeni}[Cauchyova nerovnost]
+            $n \in ®N$, $a_1, …, a_n, b_1, …, b_n \in ®R$. Pak
+            $$ \(\sum_{i = 1}^n a_ib_i\)^2 ≤ \(\sum_{i = 1}^n a_i^2\) \(\sum_{i = 1}^n b_i^2\). $$
+
+            \begin{dukazin}
+                $a_i = 0, \forall i \implies$ jasné. Jinak $\sum_{i = 1}^n a_i^2 > 0$.
+                $$ 0 ≤ \sum_{i = 1}^n (a_i·x + b_i)^2 = \(\sum_{i = 1}^n a_i^2\)·x^2 + 2\(\sum_{i = 0} a_ib_i\)·x + \(\sum_{i = 1}^n b_i^2\). $$
+                Kvadratická funkce, která je na ®R nezáporná a $\sum_{i = 1}^n a_i^2 > 0 \implies$ má nejvýše 1 kořen $\implies$
+                $$ \implies 0 ≥ D = 4\(\sum_{i=1}^n a_ib_i\)^2 - 4\(\sum_{i=1}^n a_i^2\)·\(\sum_{i= 1}^n b_i^2\). $$
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Trojúhelníková nerovnost v $®R^n$]
+            Buď $¦x, ¦y, ¦z \in ®R^n$. Potom $\rho_e(¦x, ¦z) ≤ \rho_e(¦x, ¦z) = \rho(¦y, ¦z)$.
+
+            \begin{dukazin}
+                Rozepíšeme:
+                $$ \sqrt{\sum_{i = 1}^n (x_i - z_i)^2} ≤ \sqrt{\sum_{i = 1}^n (x_i - y_i)^2} + \sqrt{\sum_{i = 1}^n (y_i - z_i)^2}. $$
+                Označme $a_i = x_i - y_i$, $b_i = (y_i - z_i)$ a přepišme:
+                $$ \sqrt{\sum_{i = 1}^n (a_i + b_i)^2} ≤ \sqrt{\sum_{i = 1}^n a_i^2} + \sqrt{\sum_{i = 1}^n b_i^2}. $$
+                Umocníme na druhou (druhé mocniny pod odmocninami jsou jistě kladné, takže i jejich součet):
+                $$ \sum_{i=1}^n a_i^2 + 2\sum_{i = 1}^n a_ib_i + \sum_{i = 1}^n b_i^2 ≤ \sum_{i=1}^n a_i^2 + \sqrt{\sum_{i = 1}^n a_i^2}\sqrt{\sum_{i = 1}^n b_i^2} + \sum_{i = 1}^n b_i^2. $$
+                Po odečtení správných členů nám zbude Cauchyova nerovnost.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}[Otevřená a uzavřená koule]
+            Nechť $(®P, \rho)$ je MP, $x \in ®P, r > 0$.
+
+            Otevřenou koulí se středem $x$ a poloměrem $r$ nazveme $\B(x, r) = \{y \in ®P | \rho(x, y) < r\}$.
+
+            Uzavřenou koulí nazveme $\overline{\B(x, r)} = \{y \in ®P | \rho(x, y) ≤ r\}$.
+        \end{definice}
+
+        \begin{definice}[Otevřená, uzavřená]
+            Nechť $(®P, \rho)$ je metrický prostor. Řekneme, že množina $G \subseteq ®P$ je otevřená (v $(®P, \rho)$), jestliže pro každý bod $x \in G$ existuje $r > 0$, že $\B(x, r) \subseteq G$.
+
+            Řekneme, že množina $F \subseteq ®P$ je uzavřená (v $(®P, \rho)$), pokud je $®P\setminus F$ otevřená.
+        \end{definice}
+
+        \begin{veta}[Vlastnosti otevřených množin]
+            Nechť $(®P, \rho)$ je metrický prostor. Pak $\O$ a ®P jsou otevřené, průnik konečně mnoha otevřených je otevřená, sjednocení libovolně mnoha otevřených je otevřená.
+
+            \begin{dukazin}
+                Zřejmé, zvolíme minimum z okolí v každé z nich, najdeme $U \ni x$ a okolí v ní. Viz MetPro.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Vlastnosti uzavřených množin]
+            Nechť $(®P, \rho)$ je metrický prostor. Pak $\O$ a ®P jsou uzavřené, konečné sjednocení uzavřených je uzavřená, libovolný průnik uzavřených je uzavřena.
+
+% 4. 6. 2021
+
+            \begin{dukazin}
+                Přes doplňky, viz MetPro.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Vnitřní bod, vnitřek]
+            Nechť $(®P, \rho)$ je metrický prostor, $A \subseteq ®P$ a $x \in ®P$. Řekneme, že $x$ je vnitřním bodem množiny $A$, jestliže existuje $r > 0$ tak, že $\B(x, r) \subseteq A$. Množinu všech vnitřních bodů $A$ nazýváme vnitřkem $A$ a značíme $\Int A$.
+        \end{definice}
+
+        \begin{veta}[Charakterizace vnitřku]
+            Nechť $(®P, \rho)$ je metrický prostor a $A \subseteq ®P$. Potom $\Int A$ je největší (vzhledem k inkluzi) otevřená množina obsažená v $A$.
+
+            \begin{dukazin}
+                $\Int A$ je otevřená: Podle definice $\forall x \in \Int A\ \exists r>0: \B(x, r) \subseteq A$. Tvrdíme, že $\B(x, r) \subseteq A$. $\forall y \in \B(x, r)$ zvolme $\tilde{r} = r - \rho(x, y)$. Pak $\B(y, \tilde{r}) \subseteq \B(x, r) \subseteq A \implies y \in \Int A$. $\forall x \in \Int A\ \exists r > 0: \B(x, r) \subseteq \Int A \implies \Int A$ je otevřená.
+
+                $\Int A \subseteq A$ jasné. $\Int A$ je největší otevřená množina v $A$: Sporem. Nechť $\exists G$ otevřená, $\Int A \subsetneq G \subseteq A$. Pak $\exists x \in G \setminus \Int A$, ale $G$ otevřená, tedy $\exists r > 0$, že $\B(x, r) \subseteq G \subseteq A \implies x \in \Int A$. \lightning.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{dusledek}
+            A otevřená $\implies \Int A = A$.
+        \end{dusledek}
+
+        \begin{definice}[Hraniční bod, hranice, uzávěr]
+            Nechť $(®P, \rho)$ je metrický prostor, $M \subseteq ®P$ a $x \in ®P$. Řekneme, že $x$ je hraničním bodem $M$, jestliže $\forall r > 0$ platí $M \cap \cap \B(x, r) ≠ \O$ a $(®P \setminus M) \cap (\B(x, r)) ≠ \O$. Množinu všech hraničních bodů nazýváme hranicí $M$ a značíme jí $\partial M$.
+
+            Uzávěr množiny $M$ je definován jako $\overline{M} = M \cup \partial M$.
+        \end{definice}
+
+        \begin{veta}[Uzávěr a uzavřené množiny]
+            Nechť $(®P, \rho)$ je metrický prostor a $A \subseteq ®P$. Pak $A$ je uzavřená v ®P $\Leftrightarrow$ $\overline{A} = A$.
+
+            \begin{dukazin}
+                $\implies$: $A$ uzavřená $\implies$ $®P \setminus A$ je otevřená $\implies$ $\forall x \in ®P \setminus A\ \exists r > 0: \B(x, r) \subseteq ®P \setminus A$ $\implies$ $x \notin \partial A$ $\implies$ $\partial \subseteq A$ $\implies$ $\overline{A} = A \cup \partial A = A$.
+
+                $\Leftarrow$: $A = \overline{A} = A \cup \partial A$ $\implies$ $\partial A \subseteq A$ $\implies$ $\forall x \in ®P \setminus A$ $x \notin \partial A$ $\implies$ $\exists r > 0: \B(x, r) \cap A = \O$ nebo $\B(x, r) \cap (®P \setminus A) = \O$ $\implies$ $\B(x, r) \cap A = \O$ $\implies$ $\B(x, r) \subseteq ®P \setminus A$ $\implies$ $®P \setminus A$ je otevřená $\implies$ $A$ je uzavřena.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Vlastnosti uzávěru]
+            Nechť $(®P, \rho)$ je metrický prostor a $A \subseteq P$. Potom platí
+            $$ (i) A \subseteq B \implies \overline{A} \subseteq \overline{B}. $$
+            $$ (ii) \text{ Nechť $A ≠ \O$, pak }\overline{A} = \{x \in ®P | \rho(x, A) = \inf\{\rho(x, y) | y \in A\} = 0\}. $$ 
+            $$ (iii) \overline{\overline{A}} = \overline{A}. $$
+
+            \begin{dukazin}
+                (i): Nechť $x \in \overline{A} = A \cup \partial A \subseteq B \cup \partial A$. Je-li $x \in B$, pak $x \in \overline{B} = B \cup \partial B$. Je-li $x \in \partial A$ a $x \notin B$, pak $\forall r > 0: \B(x, r)\cap A ≠ \O \implies \B(x, r) \cap B ≠ \O$ a $\{x\} \in \B(x, r) \cap (®P \setminus B) ≠ \O$ $\implies$ $x \in \partial B \implies x \in \overline{B}$.
+
+                (ii) Označme $M = \{x \in ®P | \rho(x, A) = 0\}$. $M$ je uzavřená: Nechť $y \in ®P \setminus M$, pak $\rho(y, A > 0)$, tedy $\exists r > 0: \B(y, r) \cap A = \O$. Tvrdíme, že $\B(y, \frac{r}{2}) \subseteq ®P \setminus M$: $\forall a \in A\ \forall z \in \B(y, \frac{r}{2})$, pak $\rho(z, a) ≥ \rho(y, a) - \rho(z, y) > r - \frac{r}{2} = \frac{r}{2}$ $\implies$ $z \in \P \setminus M$ $\implies$ $\B(y, \frac{r}{2}) \subseteq ®P \setminus M$. Tedy $\forall y \in ®P \setminus M\ \exists r > 0: \B(y, \frac{r}{2}) \subseteq ®P \setminus M$ $\implies$ $®P \setminus M$ je otevřená $\implies$ $M$ je uzavřená. Podle (i) je $A \subseteq M \implies \overline{A} \subseteq \overline{M} = M$.
+
+                Dokážeme opačnou inkluzi $(M \subseteq \overline{A})$: Nechť $x \in ®P \setminus \overline{A}$ $\implies$ podle předchozí věty je $\overline{A}$ uzavřená, a tedy $®P \setminus \overline{A}$ je otevřená $\implies$ $\exists r > 0: \B(x, r)\cap \overline{A} ≠ \O$ $\implies$ $\rho(x, A) ≥ r > 0$ $\implies$ $x \notin M$. Z $®P \setminus \overline{A} \subseteq ®P \setminus M \implies M \subseteq \overline{A}$.
+
+                (iii) Pro $A = \O$ je $\overline{A} = \O$ a tvrzení platí. Jinak podle (ii) $\overline{A} = M$ a $\overline{M} = M$. Pak $\overline{\overline{A}} = \overline{M} = M = \overline{A}$.
+            \end{dukazin}
+        \end{veta}
 \end{document}

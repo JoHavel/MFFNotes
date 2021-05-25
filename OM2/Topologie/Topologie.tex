@@ -776,5 +776,194 @@
         \end{dukazin}
     \end{veta}
 
+% 14. 5. 2021
+
+\section{Nesouvislost (absence souvislosti)}
+    \begin{definice}
+        TP ®X se nazývá
+        
+        \begin{itemize}
+            \item dědičně nesouvislý, pokud jeho jediné souvislé podprostory jsou jednobodové (tj. komponenty bodů jsou jednoprvkové).
+            \item totálně nesouvislý, jestliže $\forall x, y \in ®X, x ≠ y, \exists$ obojetná $Z \subseteq ®Z: x \in Z \land y \notin Z$.
+            \item nuldimenzionální, pokud ®X má bázi tvořenou obojetnými množinami (tj. pro $x \in ®X$, $U$ okolí $x$ existuje obojetná $Z \subseteq ®X: x \in Z \subseteq U$).
+            \item silně nuldimenzionální, pokud ®X je normální a pro uzavřené disjunktní $E, F \subseteq ®X$ existuje obojetná $Z \subseteq ®X: E \subseteq Z \subseteq ®X \setminus F$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{poznamka}
+        Definici silné nuldimenzionality lze zobecnit na Tichonovovy prostory: Tichonovův prostor ®X se nazve silně nuldimenzionální, pokud $\forall E, F \subseteq$, $E$, $F$ funkcionálně oddělené množiny (tj. $\exists f: ®X \rightarrow ®R$ spojitá, že $E \subseteq f^{-1}(0)$, $F \subseteq f^{-1}(1)$) existuje obojetná $Z \subseteq ®X: E \subseteq Z \subseteq ®X \setminus F$.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Silně nuldimenzionální $\implies$ nuldimenzionální $\implies$ totálně nesouvislý $\implies$ dědičně nesouvislý.
+
+        \begin{dukazin}
+            Snadné cvičení.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Obecně nelze žádnou z výše uvedených implikací obrátit.
+    \end{poznamka}
+
+    \begin{veta}
+        Ať ®X je kompaktní TP. Pak je ekvivalentní:
+
+        \begin{enumerate}
+            \item ®X je dědičně nesouvislý.
+            \item ®X je totálně nesouvislý.
+            \item ®X je nuldimenzionální.
+            \item ®X je silně nuldimenzionální.
+        \end{enumerate}
+
+        \begin{dukazin}
+            Implikace směrem nahoru už máme, tedy stačí $1) \implies 4)$. Ale ukážeme nejprve $1) \implies 3)$ a pak $3) \implies 4)$. Ať $x \in ®X$, $U$ okolí $x$. Víme, že $C_x = \{x\}$. V kompaktním prostoru splývají komponenty a kvazikomponenty: $C_x = Q_x = \bigcap \{Z: x \in Z, Z \text{ je obojetná v } ®X\}$. Podle lemmatu o průniku v kompaktu existují obojetné $Z_1, …, Z_n$, že $x \in \bigcap Z_i$, $x \in \bigcap Z_i \subseteq U$. Tedy $1) \implies 3)$.
+
+            Zbývá $3) \implies 4)$: Kompaktní prostor je normální. Ať $E, F$ jsou uzavřené disjunktní. Pro každé $x \in E$ existuje obojetná $Z_x \subseteq ®X$, že $x \in Z_x \subseteq X \setminus F$, díky nuldimenzionalitě. $\{Z_x | x \in E\}$ je otevřené pokrytí $E$. $E$ uzavřená v ®X, tedy $E$ kompaktní. $\exists x_1, …, x_n \in E: E \subseteq Z_{x_1} \cup … \cup Z_{x_n}$, což je obojetná $\subseteq ®X \setminus F$/ Tedy ®X je silně nuldimenzionální.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Nuldimenzionalita v $\beta®X$]
+        Buď ®X je Tichonovův prostor. Pak $\beta®X$ je nuldimenzionální, právě když ®X je silně nuldimenzionální.
+
+        \begin{dukazin}
+            $\implies$: $\beta®X$ je kompaktní, tedy $\beta®X$ je silně nuldimenzionální. Ať $f: ®X \rightarrow ®R$ je spojitá. Chceme, že $f^{-1}$ a $f^{-1}(1)$ oddělíme obojetnou: Existuje spojité rozšíření $\overline{f}: \beta®X \rightarrow [0, 1]$ funkce $f$. $\overline{f}^{-1}(0)$, $\overline{f}^{-1}(1)$ funkcionálně oddělené v $\beta ®X$. Tedy existuje obojetná $Z \subseteq \beta®X$, že $\overline{f}^{-1}(0)\subseteq Z \subseteq \beta®X \setminus \overline{f}^{-1}(1)$. Nyní $Z \cap ®X$ obojetná v ®X. $f^{-1}(0) = \overline{f}^{-1}(0)\cap®X \subseteq Z \cap ®X \subseteq ®X \setminus f^{-1}(1)$. $Z \cap ®X$ je obojetná a odděluje $f^{-1}(0)$ a $f^{-1}(1)$.
+
+            $\Leftarrow$: $\beta®X$ je kompaktní, tedy stačí ukázat (díky předchozí větě), že ®X je totálně nesouvislý. Ať $a, b \in ®X$, $a ≠ b$. Existuje spojitá funkce $f: \beta®X \rightarrow [0, 1]$, $f(a) = 0$, $f(b) = 1$. $A := f^{-1}\(\[0, \frac{1}{3}\)\)$, $B := f^{-1}\(\(\frac{2}{3}, 1\]\)$. Jistě $a \in A$ a $b \in B$. $A, B$ jsou funkcionálně oddělené v $\beta®X$, otevřené. Tj. $A\cap®X$, resp. $B \cap ®X$, je hustá v $A$, resp. $B$. Navíc jsou oddělené v ®X. Ze silné nuldimenzionality ®X existuje obojetná $Z \subseteq ®X: A \cap ®X \subseteq Z \subseteq ®X \setminus B$. Uvažujme spojitou funkce $g: ®X \rightarrow \{0, 1\}$, $g|_Z = 0$, $g|_{X \setminus Z} = 1$. $g$ lze spojitě rozšířit na $\overline{g}: \beta®X \rightarrow \{0, 1\}$. Ať $W := \overline{g}^{-1}(0)$. $W \supseteq Z$, $W$ obojetná, $W \cap B = \O$. $W \supseteq A$. $a \in W$, $b \notin W$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Podprostor nuldimenzionálního prostoru je nuldimenzionální. Součin nuldimenzionálních je nuldimensionální. Tedy $\{0, 1\}^\kappa$ je vždy nuldimenzionální.
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Každý nuldimenzionální prostor ®X lze vnořit do $\{0, 1\}^A$, kde za $A$ lze volit váhu (nebo bázi) ®X.
+
+        \begin{dukazin}
+            Ať ©B je báze $X$, která je tvořena obojetnými množinami, pro kterou je $|©B| = w(®X)$. Pro $B \in ©B$ uvažme $f_B(x) = 0$, $x \in B$ a $1$ jinak. $\{f_B|B \in ©B\}$ odděluje body a uzavřené množiny, tedy podle lemmatu o Tichonovově vnoření je $\triangle_{B \in ©B} : x \in ®X \mapsto (f_B(x))_{B \in ©B}$ je vnoření $®X \rightarrow \{0, 1\}^{©B}$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{dusledek}
+            Každý kompaktní metrický (má spočetnou váhu) nuldimenzionální prostor lze vnořit do Cantorova diskontinua.
+    \end{dusledek}
+    
+    \begin{veta}[Topologická charakterizace Cantorova diskontinua]
+        Každý neprázdný nuldimenzionální kompaktní metrizovatelný prostor je homeomorfní Cantorovu diskontinuu.
+
+        \begin{dukazin}
+            Bez důkazu.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}[Stonova dualita]
+        Kompaktní nuldimenzionální TP se spojitými zobrazeními se dají přiřadit Booleovým algebrám s homomorfismy
+    \end{poznamka}
+
+% 21. 5. 2021
+
+\section{Topologická dimenze}
+    \begin{definice}[Malá induktivní dimenze, Menger-Urysohn]
+        Pro ®X regulární definujeme
+
+        \begin{itemize}
+            \item $\ind \O = -1$.
+            \item $\ind ®X ≤ n ≥ 0$, pokud $\forall x \in ®X\ \forall U$ okolí $x$ $\exists$ otevřená $V: x \in V \subseteq U: \ind(\partial V) ≤ n-1$.
+            \item $\ind ®X = n$, pokud $\ind ®X ≤ n$ a neplatí $\ind ®X ≤ n-1$.
+            \item $\ind ®X = ∞$, pokud $\forall n \in ®N: \ind ®X \not≤ n$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{poznamka}
+        $\ind ®X = -1 \Leftrightarrow X = \O$. $\ind ®X ≤ 0 \Leftrightarrow ®X$ je nuldimenzionální ($\partial V = \O \Leftrightarrow V$ je obojetná). $\ind([0, 1]) = 1$ (není nuldimenzionální). $\ind[0, 1]^n ≤ n$ indukcí. (Naopak už pro $n = 2$ se těžko dokazuje, že platí rovnost. Viz dále.)
+    \end{poznamka}
+
+    \begin{definice}[Velká induktivní dimenze, Brouwer-čech]
+        Pro ®X normální definujeme
+        
+        \begin{itemize}
+            \item $\Ind \O = -1$.
+            \item $\Ind ®X ≤ n ≥ 0$, pokud $\forall E \subseteq ®X$ uzavřenou a $\forall U$ otevřenou: $E \subseteq U\ \exists V$ otevřená: $E \subseteq V \subseteq U$ a $\Ind(\partial V) ≤ n-1$.
+            \item $\Ind ®X = n$, pokud $\Ind ®X ≤ n$ a neplatí $\Ind ®X ≤ n-1$.
+            \item $\Ind ®X = ∞$, pokud $\forall n \in ®N: \ind ®X \not≤ n$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{poznamka}
+        $\Ind ®X ≤ 0 \Leftrightarrow ®X$ je silně nuldimenzionální.
+    \end{poznamka}
+
+    \begin{definice}[Pokrývací dimenze, Čech-Lebesgue]
+        Říkáme, že systém ©A podmnožin množiny $X$ je řádu $n$, pokud $n$ je největší přirozené číslo pro které existují po dvou různé $A_1, …, A_{n+1} \in ©A: A_1 \cap A_2 \cap … \cap A_{n+1} ≠ \O$.
+
+        Pro normální prostor ®X definujeme
+        
+        \begin{itemize}
+            \item $\dim \O = -1$.
+            \item $\dim ®X ≤ n ≥ 0$, pokud každé konečné otevřené pokrytí ®X má konečné otevřené zjemnění řádu nejvýše $n$.
+            \item $\dim ®X = n$, pokud $\dim ®X ≤ n$ a neplatí $\dim ®X ≤ n-1$.
+            \item $\dim ®X = ∞$, pokud $\forall n \in ®N: \dim ®X \not≤ n$.
+        \end{itemize}
+    \end{definice}
+
+    \begin{veta}
+        Ať ®X je normální TP. Pak $\dim ®X ≤ 0$ $\Leftrightarrow$ ®X je silně nuldimenzionální.
+
+        \begin{dukazin}
+            $\implies$: Ať $E, F$ jsou uzavřené disjunktní. Ať $©U = \{®X \setminus E, ®X \setminus F\}$ otevřené pokrytí ®X. $\exists$ konečné otevřené zjemnění ©V toho ©U, které má řád $≤ 0$, tedy prvky ©V jsou navzájem disjunktní. Tedy každé $V \in ©V$ je obojetná, $\bigcup \{V \in ©V|V \subseteq ®X \setminus F\}$ obojetná, obsahující $E$ (protože pokud $V \cap E ≠ \O$ pro $V \in ©V$, pak $V \subseteq ®X \setminus F$) a disjunktní s $F$.
+
+            $\Leftarrow$: Ať ©U je otevřené konečné pokrytí ®X. Podle lemmatu o skrčení existuje uzavřené $F_U: U \in ©U, F_U \subseteq U$, $\bigcup \{F_U | U \in ©U\}$. ®X silně nuldimenzionální, tedy $\exists$ obojetné $C_U: F_U \subseteq C_U \subseteq U$, $U \in ©U$. $\{C_U | U \in ®U\}$ je konečné obojetné pokrytí ®X zjemňující ©U. Toto pokrytí můžeme „rozdisjunktnit“ a dostaneme disjunktní otevřené (obojetné) konečné pokrytí řádu 0 (zjemnění ©U).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        $\dim [0, 1] = 1$. $\dim [0, 1]^n = n$ (zase dosti těžké dokázat).
+    \end{poznamka}
+
+    \begin{tvrzeni}[Dimenze (uzavřeného) podprostoru]
+        Je-li ®X regulární a $A \subseteq ®X$, pak $\ind A ≤ \ind ®X$.
+
+        Je-li ®X normální a $A \subseteq ®X$ uzavřená, pak $\Ind A ≤ \Ind ®X$ a $\dim A ≤ \dim ®X$.
+
+        \begin{dukazin}
+            Indukcí podle $\ind ®X$ ($\Ind ®X, \dim ®X$): Pokud $\ind ®X = -1$, pak $®X = \O = A$, $\ind A = -1$. Předpokládejme, že pro všechny regulární prostory ®Y, kde $\ind ®Y ≤ n-1$, a $B \subseteq ®Y$ je $\ind(B) ≤ \ind(®Y)$. $\ind ®X = n$, $A \subseteq ®X$: chceme $\ind A ≤ n$. Ať $x \in A$, $U$ okolí $x$ v $A$. Existuje $W$ okolí $x$ v ®X takové, že $W \cap A = U$. $\exists V$ otevřené okolí $x$ v ®X: $\ind(\partial V) ≤ n-1$, $x \in V \subseteq W$. $x \in V \cap A \subseteq U$, $V \cap A$ otevřená v $A$ a $\partial_A(V \cap A) \subseteq \partial_{®X}V$, tedy podle indukčního předpokladu $\ind \partial_A(V \cap A) ≤ \ind \partial_{®X}V ≤ n-1$, tj. $\ind A ≤ n$. Ostatní 2 dimenze analogicky.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Charakterizace pokrývací dimenze]
+        Pro normální prostor ®X je ekvivalentní:
+        
+        \begin{enumerate}
+            \item $\dim ®X ≤ n$.
+            \item Každé konečné otevřené pokrytí ®X má otevřené skrčení řádu $≤ n$.
+            \item Každé konečné otevřené pokrytí ®X má uzavřené skrčení řádu $≤ n$.
+            \item Každé konečné otevřené pokrytí ®X má konečné uzavřené zjemnění řádu $≤ n$.
+        \end{enumerate}
+
+        \begin{dukazin}
+            $1) \implies 2)$: Ať $©U = \{U_1, …, U_n\}$ otevřené pokrytí ®X. Dle 1) existuje ©V konečné otevřené zjemnění toho ©U řádu nejvýše $n$. $V_i' := \bigcup \{V \in ©V|V \subseteq U_i \land V \nsubseteq \bigcup V_j': j < i\}$. $©V' = \{V'_i | i \in [n]\}$ je skrčení ©U řádu $≤ n$.
+
+            $2) \implies 3)$ je z lemmatu o skrčení. $3) \implies 4)$ je triviální.
+
+            $4) \implies 1)$: Ať ©U je konečné otevřené pokrytí ®X a ©F je jeho uzavřené konečné zjemnění řádu $≤ n$. $©F = \{F_1, …, F_m\}$. Pro $i ≤ m$ fixujeme $U_i \in ©U: F_i \subseteq U_i$. Indukcí najdeme $©V = \{V_1, …, V_m\}$, že $F_i \subseteq V_i \subseteq \overline{V_i} \subseteq U_i$, že řád ©V $≤ n$. Ať $A_1 = \bigcup \{H_1 \cap … \cap  H_{n+1} | H_i \in ©F \setminus \{F_1\}, H_i \text{ jsou po dvou různé}\}$. $A_1$ uzavřená. Navíc $A_1 \cap F_1 = \O$, protože řád ©F $≤ n$. Ať $V_1$ je otevřená, že $F_1 \subseteq V_1$ a $\overline{V_1} \cap A_1 = \O$. Nyní $\{\overline{V_1}, F_2, F_3, …, F_m\}$ má řád nejvýše $n$.
+
+            Předpokládejme, že máme otevřené $V_1, …, V_{j-1}$, že $F_i \subseteq V_i \subseteq \overline{V_i} \subseteq U_i$, $i ≤ j-1$ a systém $\{\overline{V_1}, \overline{V_2}, …, \overline{V_{j-1}}, F_j, F_{j+1}, …, F_m\}$ má řád $≤ n$. Hledáme $V_j$. Ať $A_j$ je sjednocením průniků $n+1$ různých množin vybraných ze systému $\{\overline{V_1}, \overline{V_2}, …, \overline{V_{j-1}}, F_{j+1}, F_{j+2}, …, F_m\}$. $A_j$ je uzavřená a disjunktní s $F_j$. Opět z normality existuje otevřená $V_j: F_j \subseteq V_j \subseteq \overline{V_j} \subseteq U_j \setminus A_j$. Řád $\{\overline{V_1}, …, \overline{V_j}, F_{j+1}, …, F_n\} ≤ n$.
+
+            $©V:= \{V_1, …, V_m\}$ je otevřené zjemnění ©U řádu $≤ n$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Součtová pro $\dim$]
+        Je-li ®X normální TP a $F_i \subseteq ®X$ uzavřené, $i \in ®N$, $\dim F_i ≤ n$ a $X = \bigcup_{i \in ®N}F_i$, pak $\dim ®X ≤ n$.
+    \end{veta}
+
+    \begin{tvrzeni}
+        Pro normální TP ®X: $\ind ®X ≤ \Ind ®X$.
+
+        \begin{dukazin}
+            Přímočarý, indukcí podle $\Ind ®X$.
+        \end{dukazin}
+    \end{tvrzeni}
 
 \end{document}

@@ -1,0 +1,221 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\def\degree{^{\circ}}
+
+\begin{document}
+
+\section*{Normy mimo normu}
+    \begin{priklad}[8.1]
+        Dokažte následující vlastnosti pro libovolnou normu $||·||$:
+
+        \begin{itemize}
+            \item[a)] Počátek $¦o\notin S_r$ pro libovolné $r > 0$.
+            \item[b)] Množiny $S_r$ a $B_r$ jsou symetrické podle počátku, tedy $−S_r = S_r$ a $−B_r = B_r$.
+            \item[c)] Množina $B_r$ je konvexní.
+        \end{itemize}
+
+        \begin{dukazin}
+            a): Z definice normy je norma lineární, tedy $||¦o|| = ||0·¦x|| = 0·||¦x|| = 0 ≠ r$ pro žádné $r > 0$, tedy $¦o \notin S_r$.
+
+            \noindent b): Jelikož je norma lineární, tak pokud $||s|| = r$ (resp. $||s|| ≤ r$), pak $||-s|| = |-1|·||s|| = ||s|| = r$ (resp. $||-s|| = ||s|| ≤ r$), tedy $s \in S_r \implies -s \in S_r$ (resp. $s \in B_r \implies -s \in B_r$), tedy s každým prvkem je zde obsažen i opačný prvek, tj. $S_r = -S_r$ (resp. $B_r = -B_r$).
+
+            \noindent c): Mějme tedy libovolnou lineární kombinaci $t_1¦x_1 + t_2¦x_2 + … + t_k¦x_k$, kde $t_1 + … + t_k = 1$ a $t_i ≥ 0$, bodů $¦x_1, …, ¦x_k \in B_r$. Z trojúhelníkové nerovnosti a linearity je
+            $$ ||t_1¦x_1 + t_2¦x_2 + … + t_k¦x_k|| ≤ ||t_1¦x_1|| + ||t_2¦x_2|| + … + ||t_k¦x_k|| = t_1||¦x_1|| + t_2||¦x_2|| + … + t_k||¦x_k||. $$
+            Navíc $t_i||¦x_i|| ≤ t_i·r$, tj. $t_1||¦x_1|| + t_2||¦x_2|| + … + t_k||¦x_k|| ≤ t_1r + t_2r + … + t_kr = r$.
+        \end{dukazin}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[8.2]
+        Nechť $||·||$ je libovolné zobrazení $®R^n \rightarrow ®R$, které splňuje (i) a (ii). Dokažte, že $B_r$ je konvexní pro libovolné $r > 0$, právě když $||t¦x + (1−t)¦y|| ≤ t||¦x|| + (1−t) ||¦y||$, kdykoliv $t \in [0,1]$.
+
+        \begin{dukazin}
+            $\ \Longleftarrow\ $: Nechť máme $r$ a $¦x, ¦y \in B_r$. Chceme dokázat, že $\{t¦x+(1−t)¦y | t \in [0,1]\} \subseteq B_r$. Mějme tedy nějaké $t \in [0, 1]$:
+            $$ ||t¦x + (1−t)¦y|| ≤ t||¦x|| + (1−t) ||¦y|| ≤ t·r + (1-t)·r = r, $$
+            neboť $¦x, ¦y \in B_r$, tedy $||¦x||, ||¦y|| ≤ r$. Tudíž i $t¦x + (1−t)¦y \in B_r$.
+
+            \noindent$\implies$: Nejprve pro $¦x = ¦o$ nebo $¦y = ¦o$ nerovnost platí z linearity, jelikož (BÚNO $¦x = ¦o$) je $||t¦x + (1-t)·¦o|| = t||¦x|| = t||¦x|| + (1-t)||0·¦o||$. Nechť tedy $¦x, ¦y ≠ ¦o$, tj. podle nezápornosti $||¦x||, ||¦y|| ≠ 0$. Tudíž můžeme položit $\alpha = ||¦y||/||¦x||$ a $\alpha\tilde{¦y} = ¦y$, takže z linearity $||\tilde{¦y}|| = ||¦y||/\alpha = ||¦x||$. Napíšeme si celou nerovnost znovu:
+            $$ ||t¦x + (1−t)\alpha\tilde{¦y}|| \overset{?}{≤} t||¦x|| + (1−t)||\alpha\tilde{¦y}|| = t||¦x|| + (1−t)\alpha||¦x|| = (t + (1-t)\alpha)||¦x||. $$
+            Na levé straně už je skoro úsečka mezi vektory na $S_{||¦x||}$. Jen potřebujeme „$t + (1-t)\alpha = 1$“. Není nic jednoduššího než koficienty znormovat (aby dávali součet 1), tj. vydělit nerovnici výrazem $t + (1-t)\alpha$ (je nezáporný, jelikož $0 ≤ t ≤ 1$ a $\alpha > 0$) a použít linearitu:
+            $$ \frac{1}{t + (1-t)\alpha}||t¦x + (1−t)\alpha\tilde{¦y}|| = \left|\left|\frac{t}{t + (1-t)\alpha}¦x + \frac{(1-t)\alpha}{t + (1-t)\alpha}\tilde{¦y}\right|\right| \overset{?}{≤} ||¦x||. $$
+            Ale $¦x, \tilde{¦y} \in S_{||¦x||} \subseteq B_{||¦x||}$, tedy i úsečka mezi nimi, jejíž bod máme vlevo od menšítka, musí ležet v $B_{||¦x||}$, tedy norma toho bodu je $≤ ||¦x||$, což je přesně, co chceme dokázat.
+        \end{dukazin}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[8.3]
+        Nechť $B_1 ≠ \O$ je uzavřená omezená konvexní podmnožina $®R^n$, symetrická podle počátku. Nechť $S_1$ je hranice $B_1$ a nechť $¦o \notin S_1$. Definujme zobrazení $||·||: ®R^n\rightarrow ®R$ následovně: $||¦x|| = |\alpha|$, kde $¦x = \alpha ¦y$ a $¦y \in S_1$. Dokažte, že $||·||$ je norma.
+
+        \begin{dukazin}
+            Nejprve dobrá definovanost: Je-li $¦o ≠ ¦x = \alpha_1¦y_1 = \alpha_2¦y_2$, kde $¦y_1, ¦y_2 \in S_1$, potom za prvé je $¦y_1 = ±¦y_2$, protože díky symetrii je $-¦y_1 \in S_1$, tedy pokud by bylo $¦y_2 = \beta¦y_1$ ($\beta$ nemůže být díky $¦o \notin S_1$ nula) BÚNO $0 < \beta < 1$, potom vzhledem k faktu $¦o \notin S_1$ musí $B_1$ obsahovat\footnote{Za předpokladu, že $B_1 ≠ \O$ (pak by bylo zobrazení z prázdné množiny a ne z $®R^n$, tedy by rozbíjelo zadání), $B_1$ obsahuje ¦o, jelikož pro $¦x \in B_1$ ze symetrie i $-¦x \in B_1$ a z konvexnosti i ($t = 1/2$) $$ ¦o = ¦x/2 + (-¦x/2) \in B_1. $$} i nějaké $\epsilon$ okolí ¦o (vzhledem k eukleidovské metrice), tedy obsahuje $(1-\beta)\epsilon$ okolí $¦y_2$ (dokáže se jednoduše přes konvexitu s koeficientem $\beta$), tedy $¦y_2 \notin \partial B_1 = S_1$. Tudíž $\alpha_1 = ± \alpha_2$, a tedy $|\alpha_1| = |\alpha_2|$, tedy $||·||$ je zobrazení (existuje pouze jeden obraz jednoho bodu). Navíc jak jsme již řekli, $B_1$ obsahuje $\epsilon$ okolí ¦o, tedy obsahuje nějaký bod libovolným směrem. A jelikož je omezená a uzavřená, tak každým směrem obsahuje i bod na hranici. Tedy zobrazuje opravdu celé $®R^n$ (a ne jen nějakou podmnožinu).
+
+            Nyní ověříme axiomy normy: Nezápornost -- absolutní hodnota je nezáporná, navíc $\forall ¦x = \alpha¦y ≠ ¦o: \alpha ≠ 0$, tedy $|\alpha| ≠ 0$. Linearita -- jednoduše
+            $$ \forall \gamma\ \forall ¦x = \alpha¦y, ¦y \in S_1: ||\gamma¦x|| = ||\gamma·\alpha¦y|| = |\gamma·\alpha| = |\gamma|·||\alpha¦y|| = |\gamma|·||¦x||. $$
+            A trojúhelníková nerovnost (už jsme ověřili podmínky předchozí úlohy, tedy ji použijeme)
+            $$ \forall ¦x_1, ¦x_2: ||¦x_1 + ¦x_2|| = 2||¦x_1/2 + ¦x_2/2|| ≤ 2||¦x_1/2|| + 2||¦x_2/2|| = ||¦x_1|| + ||¦x_2||. $$
+        \end{dukazin}
+    \end{priklad}
+
+\section*{Determinant je multilineární alternující forma}
+    \begin{priklad}[9.1]
+        Pomocí základních vlastností determinantu dokažte následující vlastnosti:
+
+        \begin{itemize}
+            \item[1')] První řádek není v ničem speciální, determinant je lineárně závislý na libovolném řádku matice.
+            \item[4)] Pokud má determinant nulový řádek, je roven nule.
+            \item[5)] Pokud má determinant dva řádky stejné, je roven nule.
+            \item[6)] Přičtení libovolného násobku jednoho řádku k jinému nemění determinant.
+            \item[7)] Determinant trojúhelníkové matice $T$ (horní či dolní) je roven součinu prvků na hlavní diagonále.
+            \item[8)] Determinant je nenulový právě tehdy, když je matice regulární.
+            \item[9)] Determinant součinu dvou matic je součin jejich determinantů.
+            \item[10)] Determinant matice i její transpozice je stejný, tedy $\det A = \det A^T$.
+        \end{itemize}
+
+        \begin{dukazin}
+            \begin{itemize}
+                \item[1')] Prohodíme daný řádek s prvním, tím před determinanty dostaneme mínus. Následně aplikujeme rovnice z 1) a nakonec prohodíme řádky zpět, čímž dostaneme další mínus před determinant, tedy v celku plus.
+                \item[4)] Podle 1') je determinant takové matice roven libovolnému svému násobku (násobíme něčím nulový řádek), tedy je $0$.
+                \item[5)] Podle 2) je determinant s těmito řádky prohozenými roven opačnému číslu, je to však ten samý determinant, tedy je nulový.
+                \item[6)] Vezmeme matici, která má místo „jiného řádku“ „jeden“. Ta má 2 stejné řádky, tedy její determinant je nula. Aplikujeme na ni 2. rovnost z 1'), tím dostaneme zase nulu, a následně ji pomocí 1. rovnosti přičteme k původní matici, čímž dostaneme, že determinant nové matice je roven determinantu původní plus nula.
+                \item[7)] Pokud kdykoliv během výpočtu dostaneme nulový řádek, tak je determinant 0. Postupujeme následovně: Příslušné násobky posledního řádku (resp. prvního řádku u dolní trojúhelníkové) odečteme od všech ostatních, aby jediný nenulový prvek v posledním (resp. prvním) sloupci byl ten na diagonále. Následně totéž provedeme u předposledního (2.), a tak dále. Nakonec dostaneme ekvivalentní (co do hodnoty determinantu) diagonální matici. Pak podle 1') vytkneme všechny prvky na diagonále a dostaneme tak $I$, které má determinant 1 a před tím součin prvků na diagonále.
+                \item[8)] Podle 6) a 2. rovnice 1') Gaussova eliminace (konkrétně každý její krok) nemění nenulovost determinantu, tedy pokud GE vyjdou na diagonále nenulová čísla (regulární matice), tak je determinant nenulový, jinak (singulární matice) nulový.
+                \item[9)] Asi aktuálně netuším. Zkusím si rozmyslet časem…
+                \item[10)] Řešení dalšího příkladu říká, že $P_\pi$ má determinant $\sgn(\pi)$, tedy podle 9)
+                    $$ \det A = 1·\det A = (\sgn \pi)^2\det A = \det P_\pi \det A \det P_\pi = \det(P_\pi A P_\pi). $$
+                    A můžeme si všimnout, že $A^T$ je $P_\pi A P_\pi$ pro $\pi = \begin{pmatrix} 1 & 2 & … & n-1 & n \\ n & n-1 & … & 2 & 1 \end{pmatrix}$.
+            \end{itemize}
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[9.2]
+        Jak vypadá determinant permutační matice $P_\pi$? Dokažte pomocí předchozích vlastností i pomocí definice.
+
+        \begin{reseni}
+            Z definice determinantu je jasné, že $\det P_\pi = \sgn \pi$, jelikož jediný nenulový člen je ten pro $\pi$ a všechny prvky matice v tomto členu jsou 1.
+
+            K důkazu pomocí vlastností nám stačí 3) a 2), jelikož pomocí 2) proházíme řádky (rozložíme $\pi$ na transpozice a podle těch proházíme řádky), až dostaneme $I$. Protože každé prohození řádku odpovídá složení $\pi$ s 1 transpozicí, tak nám vyjde znaménko $\sgn \pi$. Podle 3) je $\det I = 1$, tedy je $\det P_\pi = \sgn \pi$.
+        \end{reseni}
+    \end{priklad}
+
+    \begin{priklad}[9.3]
+        Dokažte, že determinant definovaný za pomoci základních vlastností je ekvivalentní s klasickou definicí.
+
+        \begin{dukazin}
+            Determinant pomocí 1') rozložíme na součet matic majících v každém řádku jen 1 nenulové číslo (nejdříve rozdělíme první řádek, pak pro každou vzniklou matici druhý, …). Pokud má matice nulový sloupec, tak podle 10) a 4) (nebo podle 8)) je její determinant roven nule. Z ostatních matic „vytkneme“ permutační matici, podle 9) rozdělíme determinant na součin a dostaneme diagonální matici (tedy speciální trojúhelníkovou), která podle 7) má determinant roven součinu jejích nenulových prvků. Determinant permutační matice je roven $\sgn \pi$, tedy dostáváme přesně klasickou definici determinantu.
+        \end{dukazin}
+    \end{priklad}
+
+\pagebreak
+
+\section*{Hadamardovy matice dají nejvíce!}
+    \begin{priklad}[10.1]
+        Nechť $H$ je Hadamardova matice $n \times n$. Potom $n = 1, 2$ nebo je dělitelné čtyřmi.
+
+        \begin{dukazin}
+            Je-li $n > 1$, potom v matici $H·H^T = nI_n$ je $0$. Tato nula musí být výsledkem skalárního součinu 2 vektorů (řádku $H$ a sloupce $H^T$), které jsou tvořeny pouze $1$ a $-1$. To ale znamená, že tato nula je rovna součtu $n$ prvků tvaru $(±1)·(±1)$. Takový součet má ale stejnou paritu jako $n$, neboť se s každým členem parita změní. Ale $0$ je sudá, tedy $n$ je sudé.
+
+            Už u definice je napsáno, že sloupce $H$ jsou ortogonální vektory. Můžeme si všimnout, že i naopak, pokud máme ortogonální bázi vektorů obsahujících pouze $1$ a $-1$, tak už je matice, která má vektory této báze za sloupce, Hadamardova. Tedy můžeme vzít sloupce $H$ a libovolně je propermutovat a vynásobit $±1$, až dostaneme matici, která má v prvním řádku samé jedničky (násobení $±1$) a v druhém řádku nejdříve $1$ a pak $-1$ (permutace sloupců).
+
+            Jelikož (standardní) skalární součin prvního a druhého vektoru musí být $0$ (z $H·H^T = nI_n$), tak druhý řádek musí mít stejně $1$ jako $-1$. Stejně tak i $3.$ řádek pro $n > 2$ musí mít stejně $1$ a $-1$, jelikož taktéž dává ve skalárním součinu s $1.$ řádkem $0$. Zároveň dává $0$ i s $2.$ řádkem, tudíž když označíme $k$ počet $1$ v první polovině 3. řádku a $j$ počet $1$ v druhé, pak $k+j = n/2$ (ze součinu $1.$ a $3.$) a $k - j - n/2 + k + n/2 - j = 2(k-j) = 0$, tj. $k = j$ (ze součinu $2.$ a $3.$). Tedy se shoduje i parita $k$ a $j$, tudíž $k+j$ je sudé a $n = 2(k+j)$ násobek $2·2 = 4$.
+        \end{dukazin}
+    \end{priklad}
+
+\pagebreak
+
+    \begin{priklad}[10.2]
+        Dokažte, že existuje Hadamardova matice $H_n$ velikosti $n\times n$ pro každé $n = 2^k$.
+
+        \begin{dukazin}
+            Snadno si ověříme, že $H_2 \otimes H_{2^k} = H_{2·2^{k}}$ a jelikož víme, že $H_2$ existuje, tak existuje i $H_{2^i}$.
+
+            Ještě mě však napadla jiná konstrukce $H_{2^k}$ (vedoucí pravděpodobně na „podobnou“ matici a velmi neefektivní, ale což): Začneme s $\sqrt{n}·I_n$, což je matice, jejíž sloupce tvoří ortogonální bázi se správnými velikostmi vektorů. Tedy pokud najdeme zobrazení zachovávající kolmost a velikost, které nám tuto matici převede na matici $1$ a $-1$, tak jsme vyhráli. $\sqrt{n}·I_n$ vynásobme postupně maticemi ($\frac{1}{\sqrt{2}} = q_1 = \sin(45\degree) = q_2 = \cos(45\degree)$):
+            $$ \begin{pmatrix} q_1 & q_2 & 0 & 0 & … \\ -q_2 & q_1 & 0 & 0 & … \\ 0 & 0 & q_1 & q_2 & … \\ 0 & 0 & -q_2 & q_1 & … \\ \vdots & \vdots & \vdots & \vdots & \ddots \end{pmatrix}, \begin{pmatrix} q_1 & 0 & q_2 & 0 & … \\ 0 & q_1 & 0 & q_2 & … \\ -q_2 & 0 & q_1 & 0 & … \\ 0 & -q_2 & 0 & q_1 & … \\ \vdots & \vdots & \vdots & \vdots & \ddots \end{pmatrix}, \begin{pmatrix} q_1 & 0 & 0 & 0 & … \\ 0 & q_1 & 0 & 0 & … \\ 0 & 0 & q_1 & 0 & … \\ 0 & 0 & 0 & q_1 & … \\ \vdots & \vdots & \vdots & \vdots & \ddots \end{pmatrix}… $$
+            Po prvním vynásobení budeme mít v matici na diagonále buňky $2\times 2$, po druhém $4 \times 4$, po třetím $8 \times 8$, … Navíc každá matice je soubor rotací o $45$ stupňů (první matice jsou rotace v sousedních souřadnicích, 2. jsou rotace ob jednu souřadnici v budoucích buňkách $4 \times 4$, 3. ob 3 souřadnice, 4. ob 7, …), tedy toto zobrazení (složení všech těchto rotací) zachovává velikost vektorů a kolmost. Navíc si lehko ověříme, že čísla v jednom bloku jsou vždy stejná co do absolutní hodnoty, tedy po $k$ krocích (blok $2^k \times 2^k$) musí být všechna $±1$.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[10.3]
+        Mějme matici $A$ velikosti $n\times n$, že $\left|a_{i,j}\right|≤1$ ve všech pozicích $(i, j)$. Potom platí $|\det(A)| ≤ n^{n/2}$ a rovnosti se nabývá právě tehdy, když $A$ je Hadamardova matice.
+
+        \begin{dukazin}
+            Když si determinant představíme jako ($n$-dimenzionální) objem rovnoběžnostěnu daného sloupcovými / řádkovými vektory dané matice, tak je zřejmé, že největší objem má, když jsou vektory na sebe kolmé, a to součin jejich velikostí (jelikož pak je to kvádr, podrobný důkaz je na \url{https://github.com/JoHavel/MFFNotes/blob/master/OM2/LinGebra/LinGebraDU3.pdf}):
+            $$ \det(A) ≤ \prod_{i=1}^n \sqrt{\sum_{j=1}^n a_{i, j}^2} ≤ \prod_{i=1}^n \sqrt{n·1} = n^{n/2}. $$
+
+            Jak jsme již řekli v prvním odstavci, maximální je determinant, když jsou vektory ortogonální, a rovnost v nerovnosti výše nastává, právě když všechna $a_{i, j}$ jsou rovna $±1$ (potom je velikost vektoru přesně $\sqrt{n}$), a toto je právě tehdy, když $A$ je Hadamardova.
+        \end{dukazin}
+    \end{priklad}
+
+\section*{Determinují determinanty perfektní párování?}
+    \begin{priklad}[11.1]
+        Dokažte, že pokud $\det(I_G) ≠ 0$, graf $G$ má nutně perfektní párování.
+
+        \begin{dukazin}
+            Nechť $n$ je řád $I_G = (a_{ij})$. Můžeme si všimnout, že všechna perfektní párování v této situaci lze vzájemně přiřadit permutacím $\pi \in S_n$ takovým, že $\forall i: a_{i, \pi(i)} = 1$, jelikož párování je přesně bijekce (tj. v našem případě permutace) a mezi danými dvojicemi vrcholů musí vést hrana.
+
+            Tedy pokud máme nenulový determinant, tak to znamená, že ve výrazu z definice determinantu ($\det I_G = \sum_{\pi \in S_n}\sgn(\pi)·\prod_{i=1}^n a_{i, \pi(i)}$) musí být nějaký člen součtu nenulový, tj. $\exists \pi_1: \sgn(\pi_1)\prod_{i=1}^n a_{i, \pi_1(i)} ≠ 0$. To ale znamená, že $\forall i: a_{i, \pi_1(i)} ≠ 0$ (protože jsme v tělese). Ale jediná možná nenulová hodnota v naší matici je 1, tj. $\forall i: a_{i, \pi_1(i)} = 1$, a podle prvního odstavce jsme tak našli nějaké perfektní párování.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[11.2]
+        Rozhodněte a zdůvodněte, zda platí i obrácená implikace. Je nějaký vztah mezi hodnotou determinantu a počtem různých perfektních párování?
+
+        \begin{reseni}
+            Neplatí, už jen pro matici $I_G = \begin{pmatrix} 1 & 1 \\ 1 & 1 \end{pmatrix}$ je její determinant roven 0, přesto perfektní párování existují.
+
+            V důkazu předchozího příkladu si můžeme všimnout, že každé perfektní párování odpovídá nenulovému členu v determinantu a opačně. Navíc (protože v matici máme jen $1$ nebo $0$) nenulový člen determinantu našich matic může mít hodnotu pouze $1$ nebo $-1$. Tudíž pokud se na to podíváme v $®Z_2$, kde $-1 = 1$, tak determinant je opravdu součet jedniček za každé perfektní párování. Tudíž determinant má stejnou paritu jako počet perfektních párování.
+
+            Nic moc víc nám neříká, jelikož vlastně říká rozdíl počtu perfektních párování odpovídajících sudým a lichým permutacím, ale to vůbec nic neříká o jejich celkovém počtu.
+        \end{reseni}
+    \end{priklad}
+
+\pagebreak
+
+\section*{Po stopách matic}
+    \begin{priklad}[12.1]
+        Dokažte pro libovolné matice $A \in ®R^{m \times n}$ a $B \in R^{n \times m}$, že platí
+        $$ \tr(AB) = \tr(BA). $$ 
+
+        \begin{dukazin}
+            Z definice maticového násobení
+            $$ (AB)_{i, k} = \sum_{j=1}^n a_{i, j}b_{j, k} \qquad (BA)_{i, k} = \sum_{j=1}^m b_{i, j}a_{j, k}. $$
+            Nás zajímá součet prvků na diagonále:
+            $$ \tr(AB) = \sum_{i=1}^m(AB)_{i, i} = \sum_{i=1}^m\sum_{j=1}^n a_{i, j}b_{j, i} \qquad \tr(BA)\sum_{i=1}^n(BA)_{i, i} = \sum_{i=1}^n\sum_{j=1}^m b_{i, j}a_{j, i}. $$
+            (Jednoduše ověříme, že meze indexů sedí.) V reálných číslech je násobení komutativní (můžeme prohodit $a$ s $b$) a stejně tak sčítání (můžeme prohodit sumy). Tedy výrazy výše se liší jen pojmenováním indexů a jsou tudíž totožné.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[12.2]
+        Dokažte, že maticová podobnost nemění stopu, tedy $\tr\(SAS^{-1}\) = \tr(A)$.
+
+        \begin{dukazin}
+            Podle předchozího tvrzení (a asociativity násobení matic) je:
+            $$ \tr\(SAS^{-1}\) = \tr\((SA)S^{-1}\) = \tr\(S^{-1}(SA)\) = \tr\(\(S^{-1}S\)A\) = \tr(A). $$
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[12.3]
+        Nechť $\lambda_1, …, \lambda_n$ jsou vlastní čísla matice $A$. Dokažte, že
+        $$ \tr(A) = \lambda_1 + … + \lambda_n. $$ 
+
+        \begin{dukazin}
+            Předpokládejme, že $n$ je řád $A$ (jinak by tvrzení neplatilo, viz $\begin{pmatrix} 1 & -1 \\ 1 & 0 \end{pmatrix}$). Víme, že každá matice řádu $n$ s $n$ vlastními čísly včetně jejich algebraické násobnosti je podobná matici v Jordanově tvaru. Jordanova matice podobná $A$ (označme ji $J$) má na diagonále $\lambda_1, …, \lambda_n$. Tedy $\tr(A) = \tr\(SJS^{-1}\) = \tr(J) = \lambda_1 + … + \lambda_n$.
+        \end{dukazin}
+    \end{priklad}
+
+    \begin{priklad}[12.4]
+        Nechť $f: ®R^{n \times n} \rightarrow ®R$ je lineární zobrazení, které splňuje $f(AB) = f(BA)$ a pro které $f\(I_n\) = n$. Dokažte, že potom $f = \tr$.
+
+        \begin{dukazin}
+            $\(E_{i, j}\)_{i, j \in [n]}$ je báze prostoru $®R^{n \times n}$ a $f$ i $\tr$ jsou lineární zobrazení, tedy jsou jednoznačně určeny obrazy báze (jak víme z prvního semestru), tedy stačí ověřit $\forall i, j \in [n]: f\(E_{i, j}\) = \tr\(E_{i, j}\)$. Můžeme si všimnout, že z podmínky na zobrazení $f$ je
+            $$ \forall i, j \in [n]: f(E_{i, i}) = f(E_{i, j}E_{j, i}) = f(E_{j, i}E_{i, j}) = f(E_{j, j}). $$
+            Tedy (ještě z linearity) $f(I_n) = \sum_{i=1}^n f(E_{i, i}) = n·E_{k, k}$, tj. $E_{k, k} = 1$ pro libovolné $k$.
+
+            Naopak z linearity je $f(0_{n\times n}) = 0$. Ale („prostřední“ rovnost zase z vlastnosti $f$)
+            $$ \forall i, j \in [n], i≠j: 0 = f\(0_{n \times n}\) = f\(E_{i, j}E_{i, i}\) = f\(E_{i, i}E_{i, j}\) = f\(E_{i, j}\). $$
+            Tedy opravdu $\forall i, j \in [n]: f\(E_{i, j}\) = \tr\(E_{i, j}\)$.
+        \end{dukazin}
+    \end{priklad}
+\end{document}

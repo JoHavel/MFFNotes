@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}                   % Začátek dokumentu
 \usepackage{../../MFFStyle}                     % Import stylu
+\usepackage{mathabx}
 
 \begin{document}
 \section{Úvod}
@@ -796,4 +797,87 @@
         Pro definici viz Algebru. Je jich spočetně mnoho.
     \end{poznamka}
 
+% 18. 5. 2021
+
+\section{Hypotéza kontinua}
+    \begin{poznamka}[Historie]
+        Cantor 1878, zkracuje se CH. První z 23 Hilbertových problémů (1900). Bezespornost s ZFC dokázána 1940 Gödelem. 1963-4 Cohen ukázal, že i negace je bezesporná s ZFC.
+    \end{poznamka}
+
+    \begin{definice}[CH]
+        Každá nekonečná podmnožina ®R je buď spočetná nebo ekvivalentní s ®R. ($\Leftrightarrow$ Neexistuje množina $x \subseteq ®R$ pro kterou $\omega \prec x \prec ©P(\omega)$.)
+    \end{definice}
+
+\section{Axiom výběru}
+    \begin{definice}[Princip výběru (starší verze)]
+            Pro každý rozklad $r$ množiny $X$ existuje výběrová množina (tj. množina $v \subseteq X$, pro kterou platí $(\forall u \in r)(\exists x)(v \cap r = \{x\})$) (někdy také transverzála, viz Algebra).
+    \end{definice}
+
+    \begin{definice}[Selektor]
+        Je-li $X$ množina, pak funkce $f$ definovaná na $X$ a splňující $(y \in X \land y ≠ \O) \implies f(y) \in y$ se nazývá selektor na množině $X$.
+    \end{definice}
+
+    \begin{definice}[Axiom výběru (AC)]
+        Na každé množině existuje selektor.
+    \end{definice}
+
+    \begin{prikladyin}[Ekvivalentní tvrzení]
+        Každou množinu lze dobře uspořádat.
+
+        Relace subvalence ($\preceq$) je trichotomická.
+
+        Zornovo lemma.
+    \end{prikladyin}
+
+    \begin{dusledek}
+        Každý vektorový prostor má bázi.
+
+        Součin kompaktních prostorů je kompaktní.
+
+        Hall?-Banachova věta (o oddělování nadrovinou).
+
+        Princip kompaktnosti.
+    \end{dusledek}
+
+    \begin{definice}[Indexovaný soubor množin]
+        $\<F_j, j \subseteq J\>$, kde $F$ je zobrazení s definičním oborem $J$, pro $j \in J$ je $F_j = F(j)$, je indexová třída (množina), prvky $J$ se nazývají indexy.
+
+        $$ \bigcup_{j \in J} F_j = \{x, (\exists j \in J) x \in F_j\} = \bigcup_{j \in J}F_j = \bigcup \Rang F. $$ 
+        $$ \bigcap_{j \in J} F_j = \{x, (\forall j \in J) x \in F_j\} = \bigcap_{j \in J}F_j = \bigcap \Rang F. $$ 
+    \end{definice}
+
+    \begin{definice}[Kartézský součin souboru množin]
+        $$ \bigtimes_{j \in J} F_j := \{f, f: J \rightarrow \bigcup_{j \in J}F_j \land (\forall j \in J) f(j) \in F_j\} $$
+    \end{definice}
+
+    \begin{lemma}
+        Je-li $J$ množina, pak $\bigtimes_{j \in J} F_j$ je množina.
+
+        Je-li $(\forall j \in J) F_j = y$, pak $\bigtimes_{j \in J} = ^Jy$.
+
+        \begin{dukazin}
+            $J$ množina, tedy z axiomu $\Rang F$ je množína, tedy $\bigcup \Rang(F)$ je množina, $^J\bigcup \Rang F$ je množína, $\bigtimes_{j \in J}F_j \subseteq ^J \bigcup \Rang F \subseteq J \times (\bigcup \Rang F)$.
+        \end{dukazin}
+    \end{lemma}
+    
+    \begin{lemma}
+        Následující je ekvivalentní:
+
+        \begin{enumerate}
+            \item Axiom výběru.
+            \item Princip výběru.
+            \item Pro každou množinovou relaci $S$ existuje funkce $F \subseteq S$ tak, že $\Dom(f) = \Dom(S)$.
+            \item Kartézský součin $\bigtimes_{i \in x} a_i$ neprázdného souboru neprázdných množin je neprázdný.
+        \end{enumerate}
+
+        \begin{dukazin}
+            $1 \implies 2$: $r$ rozklad $X$. Podle $1)$ existuje selektor $f$ na $r$, potom $\Rang(f)$ je výběrová množina na $r$.
+
+            $2 \implies 3$: BÚNO $S ≠ \O$: utvoříme rozklad $S$. $r = \{\{i\} \times S''\{i\}, i \in \Dom(S)\} = \{\{(i, x) | (i, x) \in S\}, i \in \Dom(S)\}$. Výběrová množina $r$ je přesně funkce $f \subseteq S$. $\Dom(f) = \Dom(S)$.
+
+            $3 \implies 4$: $\<a_i, i \in x\>$. Vytvoříme relaci $S = \{(i, y), i \in x \land y \in a_i\}$. Funkce $f$ z 3) je prvkem $\bigtimes_{i \in x} a_i$.
+
+            $4 \implies 1$: $X$ množina, BÚNO $X ≠ \O$ a $\O \notin X$. 
+        \end{dukazin}
+    \end{lemma}
 \end{document}

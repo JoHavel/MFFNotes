@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[4.1]
+
+    \begin{reseni}
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[4.2]
+    Ukažte, že pro libovolné vektory $¦x, ¦y, ¦u, ¦v \in ®R^3$ platí rovnost
+    $$ (¦x \times ¦y)·(¦u \times ¦v) = \det \begin{pmatrix} ¦x·¦u & ¦x·v \\ ¦y·¦u & ¦y·¦v \end{pmatrix}. $$
+
+    \begin{dukazin}
+        Determinant je lineární v každém sloupci / řádku matice a skalární součin je bilineární zobrazení, tedy tento je lineární vůči $¦x, ¦y$ (řádky) a $¦u, ¦v$ (sloupce). Stejně tak skalární i vektorový součin jsou bilineární, tedy levá strana rovnice je také lineární vůči všem vektorům, tedy nám tvrzení stačí ověřit pro kanonickou bázi $®R^3$: $¦e_1, ¦e_2, ¦e_3$.
+
+        Pokud $¦x = ¦y$, resp. $¦u = ¦v$, tak vektorový součin $¦x \times ¦y$, resp. $¦u \times ¦v$, je nulový a matice vpravo má shodné řádky, resp. sloupce, tedy je singulární, tj. má determinant 0.
+
+        Pokud vlevo budou vektorové součiny různých dvojic vektorů, pak jejich výsledek budou jiné $±1$ krát bázové vektory, tedy jejich skalární součin bude 0. Stejně tak vpravo, BÚNO $¦x ≠ ¦u$, $¦x ≠ ¦v$, bude mít matice první řádek nulový, tj. bude singulární a determinant bude 1.
+
+        Jestliže prohodíme ¦x a ¦y (resp. ¦u a ¦v), tak se vlevo změní znaménko příslušného vektorového součinu, tedy i celého skalárního součinu a vpravo se prohodí řádky (resp. sloupce), tedy determinant také změní znaménko. Proto nám zbývá dokázat, že věta platí pro $¦x = ¦u = ¦e_i$, $¦y = ¦v = ¦e_j$, $i ≠ j$. Vlevo potom dostáváme skalární součin $(±¦e_k)·(±¦e_k) = 1$ a vpravo je jednotková matice, která má determinant také 1.
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[4.3]
+    \begin{dukazin}
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

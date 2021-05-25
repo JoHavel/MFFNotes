@@ -1,0 +1,89 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[3.1]
+    Označme $\partial^{(2)}: ©C_2(\Omega) \rightarrow ©C_1(\Omega)$; $\partial^{(2)}(c) = \partial c$ a $\partial^{(1)}: ©C_1(\Omega) \rightarrow ©C_0(\Omega)$; $\partial^{(1)}(c) = \partial c$ zobrazení, které danému řetězci přiřadí jeho hranici.
+
+    1. Napište explicitní tvar řetězce $\partial I_2$ a $\partial I_1$.
+
+    2. Napište explicitní tvar řetězce $\partial^{(2)} \phi$, resp. $\partial^{(1)}$ pro $\phi \in S_2(\Omega)$, resp. pro $\phi \in S_1(\Omega)$.
+
+    3. Ukažte, že $\partial^{(2)}\circ \partial^{(1)}$ je triviální zobrazení.
+
+    \begin{reseni}
+        1. Postupujeme přesně podle definice:
+        $$ \partial I_2 = \sum_{j = 1}^2 (-1)^j(I^2_{(j, 0) - I^2_{j, 1}}) = -I_{(1, 0)}^2 + I_{(1, 1)}^2 + I_{(2, 0)}^2 - I_{(2, 1)}^2, $$
+        $$ \partial I_1 = -I_{(1, 0)}^1 + I_{(1, 1)}^1. $$
+        
+        2. Podle definice je $\partial \phi := \phi \circ \partial I_k$, tedy
+        $$ \partial^{(2)}\phi = \phi \circ \partial I_2 = -\phi \circ I_{(1, 0)}^2 + \phi \circ I_{(1, 1)}^2 + \phi \circ I_{(2, 0)}^2 - \phi \circ I_{(2, 1)}^2, $$
+        resp.
+        $$ \partial^{(1)}\phi = \phi \circ \partial I_1 = -\phi \circ I_{(1, 0)}^1 + \phi \circ I_{(1, 1)}^1. $$
+
+        3. Mějme tedy $c \in C_2(\Omega)$. Víme, že $\partial c := \sum_{i \in A}n_i \partial \phi_i$, tedy hranice můžeme počítat pro každou singulární plochu zvlášť. Nechť je tedy $\phi \in S_2(\Omega)$. Za pomoci 2. a definice získáme:
+        $$ \partial^{(2)}\circ \partial^{(1)}(\phi) = \partial^{(1)}\(-\phi \circ I_{(1, 0)}^2 + \phi \circ I_{(1, 1)}^2 + \phi \circ I_{(2, 0)}^2 - \phi \circ I_{(2, 1)}^2\) = $$
+        $$ = -\phi \circ I_{(1, 0)}^2 \circ \partial I_1 + \phi \circ I_{(1, 1)}^2 \circ \partial I_1 + \phi \circ I_{(2, 0)}^2 \circ \partial I_1 - \phi \circ I_{(2, 1)}^2 \circ \partial I_1 = $$
+        Nyní si můžeme všimnout, že každý člen se nám v rovnici vyskytuje 2 krát:
+        $$ (-1)^{j + k + 1 + 1}\phi \circ I_{(1, j)}^2 \circ I_{(1, k)}^1 + (-1)^{j + k + 2 + 1}\phi \circ I_{(2, k)}^2 \circ I_{(1, j)}^1 = 0. $$ 
+        Takto se odečtou všechny členy, tj. $\partial^{(2)} \circ \partial^{(1)} (\phi) = 0$.
+    \end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3.2]
+    Ukažte, že platí Stokesova věta pro řetězce: Je-li $\omega \in ©E^{k-1}(\Omega)$ a $c \in C_k(\Omega)$, pak
+    $$ \int_{\partial c}\omega = \int_c d\omega. $$
+
+    \begin{dukazin}
+        Integrál na řetězcích jsme si definovali jako lineární zobrazení, tedy stačí větu dokázat na singulárních plochách (prvky báze $©C_k(\omega)$). Mějme tedy $\phi \in S_k$, potom z definic:
+        $$ \int_\phi d\omega = \int_{\Int I_k} \phi^*(d\omega) = \int_{\Int I_k} d\phi^*(\omega) = \int_{\Int I_k} \frac{\partial \phi^*(\omega)}{\partial x_1}dx_1 + … + \frac{\partial \phi^*(\omega)}{\partial x_k}dx_k. $$
+        A následně z linearity integrálu a Newtonovy formule:
+        $$ \int_\phi d\omega = \int_{\Int I_k} \frac{\partial \phi^*(\omega)}{\partial x_1}dx_1 + … + \int_{\Int I_k} \frac{\partial \phi^*(\omega)}{\partial x_k}dx_k = $$
+        $$ = \int_{\Int I^k_{(1, 1)}} \phi^*(\omega) - \int_{\Int I^k_{(1, 0)}} \phi^*(\omega) - \int_{\Int I^k_{(2, 1)}} \phi^*(\omega) + \int_{\Int I^k_{(2, 0)}} \phi^*(\omega) … = $$
+        $$ = \int_{\partial I_k} \phi^*(\omega) = \int_{\partial \phi} \omega. $$
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[3.3]
+    Ukažte, že zobrazení $\{c \in ©C_k(\Omega), \omega \in ©E^k(\Omega)\} \mapsto \int_c \omega$ je dualita, tj. bilineární zobrazení součinu $©C_k(\Omega) \times ©E^k(\Omega)$ do ®R a že Stokesova věta říká, že zobrazení, že zobrazení $\partial$ a $d$ jsou duální operátory vzhledem k této dualitě.
+
+    \begin{dukazin}
+        Integrál je lineární zobrazení vzhledem k $c \in ©C_k(\Omega)$ přímo z definice. Linearitu vzhledem k $\omega \in ©E^k(\Omega)$ dokážeme zase pro singulární plochu (a pak linearitou v mezích rozšíříme):
+        $$ \phi \in S_k(\Omega), \qquad \omega_1, \omega_2 \in ©C_k(\Omega): $$ 
+        $$ \int_\phi (a\omega_1 + \omega_2) = \int_{I_k} \phi^*(a \omega_1 + \omega_2) = \int_{I_k} \phi^*(a\omega_1) + \phi^*\omega_2 = $$
+        $$ \int_{I_k} \det(\Jac \phi)(a\omega_1 \phi) dx_1… + \int_{I_k} \phi^*\omega_2 = a\int_{I_k} \det(\Jac \phi)(\omega_1 \phi) dx_1… + \int_{\phi}\omega_2 = $$
+        $$ = a\int_{I_k}\phi^*\omega_1 + \int_{\phi}\omega_2  = a\int_{\phi}\omega_1 + \int_{\phi}\omega_2. $$
+
+        Stokesova věta nám potom říká, že když aplikujeme $\partial$ na $c$. pak dostaneme přesně stejný obraz, jako když aplikujeme $d$ na $\omega$.
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}
+    Ukažte, že pro $\Omega = ®R^2 \setminus \{0\}$ jsou prostory $H_1(\Omega)$ a $H^1_{dR}(\Omega)$ netriviální. De Rhamovy kohomologické grupy se definují takto:
+    $$ H_{dR}^1(\Omega) = \{\omega \in ©E^1(\Omega) | d\omega = 0\}/\{\omega \in ©E^1(\Omega)|\exists f \in ©E^0(\Omega), \omega = df\}. $$ 
+
+    \begin{dukazin}
+        K důkazu použijeme $\omega = \frac{xdy - ydx}{x^2 + y^2} \in ©E^1(\Omega)$ a $\phi(t) = (\cos(2\pi t), \sin(2\pi t))$, $t \in [1, 1]$, $\phi \in S_1(\Omega)$. Nejprve hranice a diferenciál:
+        $$ \partial\phi = \phi \circ \partial I_1 = \phi \circ („1“ - „0“) = (\cos(2\pi), \sin(2\pi)) - (\cos(0), \sin(0)) = 0, $$ 
+        $$ d\phi = \(-2x\(\frac{x}{\(x^2 + y^2\)^2}\) + \frac{1}{x^2 + y^2}\)dy \wedge dx - \(\frac{1}{x^2 + y^2} - 2y\(\frac{y}{\(x^2 + y^2\)^2}\)\)dx \wedge dy = $$
+        $$ = -2\frac{1}{x^2 + y^2}dx \wedge dy + \frac{2x^2 + 2y^2}{\(x^2 + y^2\)^2}dx\wedge dy = 0. $$
+        Tedy $\omega \in \{f \in ©E^1(\Omega) | df = 0\}$ a $\phi \in \{c \in ©C_1(\Omega) | \partial c = 0\}$.
+
+        Následně integrál:
+        $$ \int_{\phi} \omega = \int_{I_1}\frac{\cos(2\pi t)(2\pi \cos(2\pi t)dt) - \sin(2\pi t)(-2\pi\sin(2\pi t)dt)}{\cos^2(2\pi t) + \sin^2(2\pi t)} = \int_{I_1} 2\pi\frac{1}{1} dt = 2\pi. $$
+
+        Ale podle Stokesovy věty, kdyby existovalo $f \in ©E^0(\Omega), df = \omega$, nebo $c\in ©C_2(\Omega), \partial c = \phi$, potom
+        $$ \int_{\partial \phi} f = \int_\phi df = \int_\phi \omega = 2\pi, $$ 
+        $$ \int_c d\omega = \int_{\partial c} \omega = \int_\phi \omega = 2\pi, $$
+        ale víme, že složení operátoru hranice (resp. diferenciál) se sebou je triviální, tedy vlevo je integrál z 0 nebo přes 0, tedy 0. Tudíž takové $f, c$ neexistuje, tedy dostáváme, že $\phi \notin \{f \in ©E^1(\Omega) | \exists g \in ©E^0(\Omega), f = dg \}$ a $phi \notin \{c \in ©C_1(\Omega) | \exists e \in ©C_2, \partial e = c\}$. Tudíž $H_1(\Omega)$ a $H_{dR}^1(\Omega)$, jakožto podíly různých grup, jsou netriviální.
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

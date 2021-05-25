@@ -353,4 +353,42 @@
         Změny v TeXu: více catcode tables. TODO. 
     \end{definice}
 
+% 19. 5. 2021
+
+    \subsection{LUA (5.3)}
+        \begin{definice}[Typy]
+            Hodnotové: nil, boolean (false je pouze false z boolean a nil), number (v 5.3: double precision i int, v 5.2 jenom double precision), string (posloupnost bytů).
+
+            Referenční: function, table (jako Pythoní slovník, ukládá cokoliv kromě nilu, používá se i jako tzv. sequence: klíče 1, 2, 3, …, $n$), thread (Lua má coroutines), userdata (data z vnějšku: lightuserdata = Cčkový void*, fulluserdata spravovaná Luou (např. se na ně aplikuje garbage collector)).
+
+            Zkratka: \verb|tab.xyz| je \verb|tab["xyz"]|.
+
+            Meta-tabulky: používají se na definice „typů“. Garbage collector: weak reference nepočítá, takže objekt bez strong reference smaže (a weak nahradí nilem).
+        \end{definice}
+
+        \begin{definice}[Syntax]
+            Středníky jsou nepovinné. Bloky nejsou tvořeny závorkami, ale \verb|do…end|. Přiřazuje se \verb|variablelist = expresionlist| (přebytečné expresion se zahodí, do přebytečných proměnných se přiřadí nil). Funkce vrací i více proměnných (pokud je na konci explistu (nebo samotná), tak se výsledky přidají do seznamu, jinak se bere jen 1).
+
+            \verb|if cond then … [elseif cond then] … [else] … end|. \verb|while cond do … end|. \verb|repeat … until cond|. \verb|break, goto label|. \verb|::label::|. \verb|return explist| (!musí být na konci bloku). \verb|for var=from,to[,step] do … end|. \verb|for varlist in explist do … end|.
+
+            \verb|function name(args …) … end| (ve skutečnosti \verb|f = function (args …) … end|). Moduly se pak definují: \verb|mod = {}; function mod.f(…) … end|. Také funguje \verb|function obj:f(x, y) … end|, což vytvoří \verb|obj.f = function(self, x, y) … end|. Obdobně se dá volat: \verb|obj:f(x, y)|. Též \verb|function f(x, ...) … end|, kde \verb|...| se uvnitř funkce expandují na zbytek parametrů.
+
+            Operátory: \verb|//| je floor division. \verb|^| je umocňování. \verb|..| konkatenace (zprava asociativní, slovníky, stringy). \verb|...| jsou varargs. \verb|== ~=| jsou rovná se a nerovná se. \verb|and, or, not|. \verb|f "string"| a \verb|f {…}| jsou volání funkce. \verb|#| je délka řetězce / sekvence (na obecné tabulce nefunguje). \verb|{1, 3, 5}| je konstruktor sekvence, \verb|{[1] = 5, ["xyz"]=7, abc = 9}| tabulek (prvkům bez klíče se přiřazuje klíč 1, 2, 3, …, bez ohledu na to, které byly explicitně použity).
+
+            \verb|-- …| je komentář. \verb|[===[ … ]===]| (tzv. long brackets, rovnítek může být libovolně, jen otevírací a zavírací se musí shodovat) se používá např. na long komentář: \verb|--[=…=[…]=…=]| a fungují i přes více řádků.
+        \end{definice}
+
+        \begin{definice}[Knihovny]
+            basics: \verb|assert(cond[, "msg"])| je standardní assert, \verb|pairs(tab)| je iterátor přes klíč -- hodnota, \verb|ipairs(tab)| iteruje přes int klíče (aneb sekvence), \verb|tonumber(…), tostring(…)| (pro explicitní konverzi, jinak se dělá automaticky), \verb|type(expr)->string|.
+
+            strings: \verb|s[1]…s[#s]|, \verb|s[-1]|, \verb|s:byte(i)|, \verb|string.format|.
+
+            tables: \verb|table.concat(tab[, sep])|, \verb|table.insert(seq, pos, val)|, \verb|table.remove(seq, pos)|, \verb|table.sort(seq[, comp.])|.
+        \end{definice}
+
+    \subsection{Integrace s LuaTeXem}
+        \begin{poznamka}
+            Z TeXu: \verb|\directlua{…}|. Z Luy: knihovny pro sazbu (vidí vnitřní stav TeXu), callbacky.
+        \end{poznamka}
+
 \end{document}
