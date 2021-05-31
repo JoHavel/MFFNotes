@@ -954,4 +954,205 @@
         \begin{definice}
             Buď ¦V konečně generovaný vektorový prostor nad ®T s bází $B = (¦v_1, …, ¦v_n)$. Buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma. Buď $¦u = x_1¦v_1 + … + x_n¦v_n$, $¦w = y_1¦v_1 + … +y_n¦v_n$. Potom $f(¦u, ¦w)$ lze vyjádřit maticí ($\sum_{i=1}^na_{ij}x_iy_j$). Této matici říkáme matice bilineární formy $f$ vzhledem k bázi $B$. ($[f]_B = (f(¦v_i, ¦v_j))_{i, j}$).
         \end{definice}
+
+% 21. 5. 2021
+
+        \begin{tvrzeni}
+            Buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma na konečně generovaném vektorovém prostoru ¦V nad ®T a buď $B = (¦v_1, …, ¦v_n)$ báze ¦V. Pak
+            $$ 1) \forall ¦u, ¦w \in ¦V: f(¦u, ¦w) = [¦u]^T_B [f]_B [¦w]_B, $$
+            $$ 2) A \in ®T^{n \times n} \land \forall ¦u, ¦w \in ¦V: f(¦u, ¦w) = [¦u]^T_B A [¦v]_B \implies A = [f]_B. $$ 
+
+            \begin{dukazin}
+                Viz přednáška.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            ¦V konečně generovaný VP s bází $B = (¦v_1, …, ¦v_n)$. Je-li $A \in ®T^{n \times n}$, $n = \dim ¦V$, pak zobrazení:
+            $$ f: ¦V \times ¦V \rightarrow ®T, (¦u, ¦w) \mapsto [¦u]_B^T A [¦w]_B $$
+            je bilineární formou a $[f]_B = A$.
+
+            \begin{dukazin}
+                To, že $f$ je bilineární, plyne z vlastností maticového násobení.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}[Terminologie]
+            Rozepsání bilineární formy na $\sum_{i, j = 1}^n a_{ij}x_iy_i$ se nazývá analytické vyjádření $f$.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Buď ¦V konečně generovaný VP s bázemi $B$ a $C$. Buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma. Potom
+            $$ [f]_C = P^T [f]_B P, \text{ kde } P = [id]_B^C. $$ 
+
+            \begin{dukazin}
+                Buďte $¦x, ¦y \in ¦V$. Pak $[¦x]_B = [\id]^C_B [¦x]_C = P[¦x]_C$, $[¦y]_B = [\id]_B^C [¦y]_C = P[¦y]_C$. Odtud
+                $$ (P[¦x]_B)^T [f]_B (P[¦y]_C) = [¦x]_B^T (P^T [f]_B P)[¦y]_C [¦x]_B^T [f]_B [¦y]_B = f(¦x, ¦y) = [¦x]_C^T[f]_C[¦y]_C. $$ 
+                Jelikož toto platí $\forall ¦x, ¦y \in ¦V$, tak z jednoznačnosti matice $f$ vzhledem k $C$ dostaneme $[f]_C = P^T [f]_B P$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Symetrické a antisymetrické bilineární formy}
+        \begin{definice}
+            Buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma na libovolném VP nad ®T. Řekneme, že
+            
+            \begin{itemize}
+                \item $f$ je symetrická, pokud $\forall ¦x, ¦y \in ¦V: f(¦x, ¦y) = f(¦y, ¦x)$.
+                \item $f$ je antisymetrická, pokud $\forall ¦x, ¦y \in ¦V: f(¦x, ¦y) = -f(¦y, ¦x)$.
+            \end{itemize}
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buď ¦V konečně generovaný VP s bází $B$, buď $f: ¦V \times ¦V \rightarrow ®T$ bilineární forma. Pak 1) $f$ je symetrická $\Leftrightarrow$ $[f]_B$ je symetrická matice, 2) $f$ je antisymetrická $\Leftrightarrow$ $[f]_B$ je antisymetrická matice.
+
+            \begin{dukazin}
+                1) $\implies$: $f$ symetrická $\implies$ $[f]_B^T = (f(¦v_i, ¦v_j))^T_{n\times n} = (f(¦v_j, ¦v_i))_{n \times n} = (f(¦v_i, ¦v_j))_{n \times n} = [f]_B$.
+
+                $\Leftarrow$: $[f]_B$ symetrická matice $\implies$ $f(¦y, ¦x) = (¦y)^T_B [f]_B [¦x]_B = ([¦y]_B^T [f]_B [¦x]_B)^T = [¦x]_B^T [f]_B^T [¦y] = f(¦x, ¦y)$.
+
+                2) analogicky.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Buď ¦V vektorový prostor nad tělesem charakteristiky $≠ 2$. Pak každá bilineární forma $f: ¦V \times ¦V$ lze jednoznačně zapsat jako $f = f_s + f_a$, kde $f_s: ¦V \times ¦V \rightarrow ®T$ je symetrická a $f_a: ¦V \times ¦V \rightarrow ®T$ je antisymetrická.
+
+            Navíc $f_s (¦x, ¦y) = \frac{f(¦x, ¦y) + f(¦y, ¦x)}{2}$ a $f_a(¦x, ¦y) = \frac{f(¦x, ¦y) - f(¦y, ¦x)}{2}$.
+
+            \begin{dukazin}
+                Jednoduše $\forall ¦x, ¦y \in ¦V: f(¦x, ¦y) = f_s(¦x, ¦y) + f_a(¦x, ¦y)$, $f_s(¦x, ¦y) = f_s(¦y, ¦x)$, $f_a(¦x, ¦y) = -f_a(¦y, ¦x)$ pro $f_s, f_a$ jako ve znění.
+
+                Kdyby $f = f_s + f_a = g_s + g_a$, pak $h:= f_s - g_s = g_a - f_a$ $\implies$ $\forall ¦x, ¦y: h(¦x, ¦y) = h(¦y, ¦x) = -h(¦x, ¦y)$ $\implies$ $\forall ¦x, ¦y: 2h(¦x, ¦y) = 0$ $\implies$ $\forall ¦x, ¦y: h(¦x, ¦y) = 0$. Tedy $f_s = g_s$, $f_a = g_a$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{pozorovani}
+            ¦V konečně generovaný s bází $B$, $f, g: ¦V \times ¦V \rightarrow ®T$ bilineární, $t \in ®T$. Pak $[f + g]_B = [f]_B + [g]_B$, $[tf]_B = t[f]_b$.
+        \end{pozorovani}
+
+    \subsection{Kvadratické formy}
+        \begin{tvrzeni}
+            Buď ®T těleso charakteristiky $≠2$. Máme-li bilineární formy $f, g: ¦V \times ¦V \rightarrow ®T$, ¦V vektorový prostor nad ®T, pak $f_2 = g_2 \Leftrightarrow f_s = g_s$. ($f_2, g_2: ¦V \rightarrow ®T$.)
+
+            Navíc platí $\forall ¦x, ¦y \in ¦V: f_s(¦x, ¦y) = \frac{1}{2}(f_2(¦x + ¦y) - f_2(¦x) - f_2(¦y))$.
+
+            \begin{dukazin}
+                $\Leftarrow$: Předpokládejme, že $f_s = g_s$, kde $f = f_s + f_a$, $g = g_s + g_a$. Pak $\forall ¦x \in ¦V: f_2(¦x) = f(¦x, ¦x) + f_a(¦x, ¦x) = f(¦x, ¦x) = g_s(¦x, ¦x) = … = g_2(¦x)$, jelikož antisymetrie nám říká, že $f_a(¦x, ¦x) = - f_a(¦x, ¦x)$.
+
+                $\implies$: plyne z toho, že $\forall ¦x, ¦y \in ¦V$ platí
+                $$ \frac{1}{2}(f_2(¦x + ¦y) - f_2(¦x) - f_2(¦y)) = \frac{1}{2}(f_s(¦x + ¦y, ¦x + ¦y) - f_s(¦x, ¦x) - f_s(¦y, ¦y)) = $$
+                $$ = \frac{1}{2}(f_s(¦x, ¦x) + f_s(¦x, ¦y) + f_s(¦y, ¦x) + f_s(¦y, ¦y) - f_s(¦x, ¦x) - f_s(¦y, ¦y)) = \frac{1}{2}(f_s(¦x, ¦y) + f_s(¦y, ¦x)) = f_s(¦x, ¦y). $$ 
+            \end{dukazin}
+        \end{tvrzeni}
+
+% 26. 5. 2021
+
+        \begin{definice}[$f$-ortogonální]
+            Buď ¦V vektorový prostor nad ®T, $f: ¦V \times ¦V \rightarrow ®T$ symetrická bilinearní forma. Řekneme, že vektory $¦v, ¦w \in ¦®V$ jsou $f$-ortogonální, pokud $f(¦v, ¦w) = 0$ ($ = f(¦w, ¦v)$). Značíme $¦v \perp_f ¦w$.
+
+            Posloupnost (nebo báze) vektorů $(¦v_1, …, ¦v_n)$ prostoru ¦V je $f$-ortogonální, pokud $¦v_i \perp_f ¦v_j$ $\forall i ≠ j$.
+        \end{definice}
+
+        \begin{definice}[Hodnost bilineární formy]
+            Buď ¦V konečně generovaný VP, $B, C$ báze, $f: ¦V \times ¦V \rightarrow ®T$ symetrická bilineární forma. Pak $[f]_C = P^T [f]_B P$, kde $P = [\id]_B^C$ je regulární. Tj. $\rank([f]_C) = \rank([f]_B)$. Hodnost $f$ potom definujeme jako hodnost $[f]_B$ vzhledem k libovolné bázi $B$ (značíme $\rank f$).
+
+            Hodnost kvadratické formy $g: ¦V \rightarrow ®T$ definujeme jako hodnost příslušné symetrické bilineární formy (značíme $\rank g$).
+
+            Pokud je $[f]_B$ regulární, pak řekneme, že $f$ je regulární / nedegenerovaná (podobně pro $g$).
+        \end{definice}
+
+        \begin{veta}
+            Buď ®T těleso charakteristiky $≠ 2$. Je-li ¦V konečně generovaný vektorový prostor a $f: ¦V \times ¦V \rightarrow ®T$ symetrická bilineární forma, pak existuje $f$-ortogonální báze $B$ (tj. $[f]_B$ je diagonální).
+
+            \begin{dukazin}
+                Vezmeme nejprve libovolnou bázi $C$ prostoru ¦V, označíme $A = [f]_C$ (symetrická matice řádu $n = \dim ¦V$). Najdeme regulární matici $G$ takovou, že $D = GAG^T$ je diagonální, tak, že provedeme něco jako Gaussovu eliminaci se symetrickými úpravami. (Pokud máme prvek v aktuálním levonahoře nenulový, tak ho odečteme od ostatních v řádku / sloupci jsou na diagonále nenulové prvky, tak je prohodíme, jinak něco přičteme.)
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}
+            Buď $A$ symetrická matice nad tělesem ®T charakteristiky $≠ 2$. Předpokládejme, že pří Gaussově eliminaci $A$ nemusíme prohazovat řádky. Pak $\exists$ dolní trojúhelníková matice $L \in ®T^{n \times n}$ a diagonální matice $D \in ®T^{n \times n}$ taková, že $A = LDL^T$.
+
+            \begin{dukazin}
+                Provedeme Gaussovu eliminaci $A$. Úpravy se vynásobí na dolní trojúhelníkovou matici. Symetrické úpravy pak dají horní trojúhelníkovou a zbude diagonální.
+            \end{dukazin}
+        \end{tvrzeni}
+
+% 28. 5. 2021
+
+        \begin{pozorovani}
+                ®T je těleso charakteristiky $≠ 2$, $f: ¦V \times ¦V \rightarrow ®T$ symetrická bilineární forma. $B = (¦v_1, …, ¦v_n)$ báze ¦V nad ®T. Předpokládejme, že $[f]_B = \diag(a_1, …, a_n)$. Vezměme $C = (t_1¦v_1, …, t_n¦v_n)$, kde $t_1, …, t_n \in ®T$. Potom $[f]_c = (f(t_i¦v_i, t_j¦v_j))_{i, j} = (t_it_jf(¦v_i, ¦v_j))_{i, j} = \diag(t_1^2a_1, …, t_n^2a_n)$.
+        \end{pozorovani}
+
+        \begin{pozorovani}
+            Je-li $®T = ®C$, můžeme pro každé $a_i ≠ 0$ vzít $t_i \in ®C: t_i^2a_i = 1$. Pro každou symetrickou bilineární formu nad ®C na konečně generovaném VP ¦V existuje báze $B$ prostoru ¦V taková, že $[f]_B = (1, …, 1, 0, …, 0)$.
+        \end{pozorovani}
+
+        \begin{pozorovani}
+                Je-li $®T = ®R$, můžeme pro každé $a_i ≠ 0$ vzít $t_i \in ®R: t_i = \sqrt{\frac{1}{a_i}}$. Pro každou symetrickou bilineární formu nad ®R na konečně generovaném VP ¦V existuje báze $B$ prostoru ¦V taková, že $[f]_B = (1, …, 1, -1, …, -1, 0, …, 0)$.
+        \end{pozorovani}
+
+        \begin{veta}[Zákon setrvačnosti reálných kvadratických forem]
+            Buď ¦V konečně dimenzionální reálný VP, $f: ¦V \times ¦V \rightarrow ®R$ symetrická bilineární forma a $C = (¦u_1, …, ¦u_k, ¦v_1, …, ¦v_l, ¦w_1, …, ¦w_m)$ taková báze ¦V, že $[f]_C = (1, …, 1, -1, …, -1, 0, …, 0)$ ($k, l, m$ jedniček, mínus jedniček a nul), $C' = (¦u_1', …, ¦u_{k'}', ¦v_1', …, ¦v_{l'}', ¦w_1', …, ¦w_{m'}')$ taková báze ¦V, že $[f]_{C'} = (1, …, 1, -1, …, -1, 0, …, 0)$. Pak nutně $k = k', l = l', m=m'$.
+
+            \begin{dukazin}
+                Víme $m = m' = \dim ¦V - \rank(f)$. Buď pro spor $k > k'$ (případ $k < k'$ analogicky). Položme $¦U = \LO \{¦u_1, …, ¦u_k\} ≤ ¦V$, $¦W = \LO \{¦v_1', …, ¦v_{l'}', ¦wq', …, ¦w_{m'}'\}$.
+
+                Pozorování: $¦U \cap ¦W ≠ \{\O\}$, totiž $\dim(¦U \cap ¦W) = \dim ¦U + \dim ¦W - \dim(¦U + ¦W) > k' + l' + m' - n = 0$. Vezměme tedy $¦o ≠ ¦x \in ¦U \cap ¦W = a_1¦u_1 + … + a_k¦u_k = b_1¦v_1 + … + b_l'¦v_{l'}' + c_1 ¦w_1' + … + c_{m'}¦w_{m'}'$.
+
+                Tudíž $f_2(¦x) = [¦x]_C^T[f]_C[¦x]_C = 1·a_1^2 + … + 1·a_k^2 > 0$ a $f_2(¦x) = [¦x]^T_{C'}[f]_{C'}[¦x]_C = -1·b_1^2 + … + (-1)·b_{l'}^2 + 0· c_1^2 + … + 0·c_{m'}^2 ≤ 0$. \lightning.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{poznamka}
+            $k =: n_+(f)$ je pozitivní index setrvačnosti, $l =: n_f(f)$ je negativní index setrvačnosti a $m =: n_0(f)$ se nazývá nulita $f$. Dohromady se nazývají signatura $f$: $(n_0(f), n_+(f), n_-(f))$.
+        \end{poznamka}
+
+        \begin{definice}[Pozitivně semidefinitní reálné symetrické bilineární (a kvadratické) formy]
+                ¦V reálný VP, $f: ¦V \times ¦V \rightarrow ®C$ symetrická bilineární forma. Pak řekneme, že $f$ je pozitivně definitní, pokud $\forall 0 ≠ ¦x \in ¦V: f_2(¦x) > 0$. A je pozitivně semidefinitní, pokud $\forall ¦x \in ¦V: f_2(¦x) ≥ 0$.
+        \end{definice}
+
+        \begin{pozorovani}
+            Buď ¦V konečně generovaný a $B$ jeho báze. Pak $f$ je pozitivně (semi)definitní symetrická bilineární forma $\Leftrightarrow$ $[f]_B$ je pozitivně (semi)definitní matice.
+
+            \begin{dukazin}
+                Plyne okamžitě z toho, že $\forall ¦x \in ¦V: f_2(¦x) = [¦x]_B^T[f]_B[¦x]_B$.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{poznamka}
+            Skalární součin je totéž co pozitivně definitní symetrická bilineární forma.
+        \end{poznamka}
+
+        \begin{tvrzeni}
+            Buď ¦V VP nad ®R dimenze $n$ a buď $f: ¦V \times ¦V \rightarrow ®R$ symetrická bilineární forma. Pak $f$ je pozitivně definitní $\Leftrightarrow$ $n_+(f) = n$. Navíc $f$ je pozitivně semidefinitní $\Leftrightarrow$ $n_-(f) = 0$.
+
+            \begin{dukazin}
+                Najdeme bázi $B$ prostoru ¦V takovou, že $[f]_B = (1, …, 1, -1, …, -1, 0, …, 0)$. Vše pak plyne z toho, že pro $[¦x]_B = (x_1, …, x_n)^T$ platí $f_(x) = x_1^2 + … + x_{n_+(f)}^2 - x_{n_+(f) + 1}^2 - … - x_{n_+(f) + n_-(f)}^2 + 0 + … + 0$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Charakterizace pozitivně definitních matic}
+        \begin{veta}
+            Buš $A$ reálná symetrická matice řádu $n$. Pak NTJE:
+
+            \begin{enumerate}
+                \item $A$ je pozitivně definitní.
+                \item (Sylvestrovo kritérium) $\forall i \in [n]: \det A_i > 0$, kde $A_i$ je prvních $i$ sloupců a řádků $A$.
+                \item Gaussova eliminace $A$ proběhne bez prohazování řádků a všechny pivoty jsou kladné.
+                \item Existuje vyjádření $A = LDL^T$, kde $L$ je dolní $\triangle$ s 1 na diagonále a $D$ je diagonální a má kladné prvky na diagonále.
+                \item (Choleského rozklad) $\exists R$ dolní $\triangle$ regulární taková, že $A = RR^T$.
+
+                \begin{dukazin}
+                    $1 \implies 2$: Máme-li $¦x \in ®R^n$ tvaru $¦o ≠ (x_1, …, x_i, 0, …, 0)^T$ a označíme-li $¦y = (x_1, …, x_i)^T \in ®R^i$ a je-li $A$ pozitivně definitní, pak $0 < ¦x^T A ¦x = ¦y^TA_i¦y$ $\implies$ $A_i$ pozitivně definitní $\forall i$. Podle důsledku o ortogonální diagonalizaci $\exists U_i \text{ ortogonální}: U_i^T A_i U_i = \diag(\lambda_1, …, \lambda_i)$, ale $\det A_i = \lambda_1·…·\lambda_i$ a $\lambda_1, …, \lambda_i > 0$ podle jedné ze spektrálních vět.
+
+                    $2 \implies 3$: Předpokládejme, že $\forall i \in [n]: \det A_i > 0$. Dokážeme indukcí podle $n$: Vynulujeme první sloupec a symetricky první řádek (krom $a_{1, 1}$). $A$ bez prvního řádku a sloupce je potom pozitivně definitní (jen jsme změnili bázi).
+
+                    $3 \implies 4$: Přesně tvrzení výše.
+
+                    $4 \implies 5$: $A = LDL^T$, položíme $R = L\sqrt{D}$ $\implies$ $RR^T = L\sqrt{D}(L\sqrt{D})^T = LDL^T = A$.
+
+                    $5 \implies 1$: Bylo $\forall 0 ≠ ¦x \in ®R^n: ¦x^TA¦x = ¦x^TRR^T¦x = R^T¦x·R^T¦x > 0$.
+                \end{dukazin}
+            \end{enumerate}
+        \end{veta}
 \end{document}

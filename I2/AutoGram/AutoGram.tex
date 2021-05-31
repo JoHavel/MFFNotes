@@ -701,4 +701,99 @@
         Každý jazyk typu 0 je rekurzivně spočetný.
     \end{dukazin}
 
+% 25. 5. 2021
+
+    \begin{definice}[Separovaná gramatika]
+        Gramatika je separovaná, pokud obsahuje pouze pravidla tvaru $\alpha \rightarrow \beta$, kde buď $\alpha, \beta \in V^+$ nebo $\alpha \in V$ a $\beta \in T \cup \{\lambda\}$.
+    \end{definice}
+
+    \begin{lemma}
+        Ke každé gramatice lze sestrojit ekvivalentní separovanou gramatiku $G'$.
+
+        \begin{dukazin}
+            Pro každý terminál zavedeme neterminál…
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Monotónní (nevypouštějící) gramatika]
+            Gramatika je monotónní (nevypouštějící), jestliže pro každé pravidlo $(\alpha \rightarrow \beta) \in P$ platí $|\alpha| ≤ |\beta|$.
+    \end{definice}
+
+    \begin{lemma}
+        Ke každé monotónní gramatice lze nalézt ekvivalentní gramatiku kontextovou.
+
+        \begin{dukazin}
+            Nejprve převedeme na separovanou (to nám neporuší monotonii). Pravidla $A' \rightarrow a$ jsou kontextová. Zbývající pravidla ($A_1…A_m \rightarrow B_1…B_n$) převedeme na pravidla, kde se přepíše vždy pouze 1 symbol za pomoci nových neterminálů.
+        \end{dukazin}
+    \end{lemma}
+
+    \subsection{Lineárně omezené automaty}
+        \begin{definice}[Lineárně omezený automat (LBA)]
+            Lineárně omezený automat (LBA) je nedeterministický TM, kde na pásce je označen levý a pravý konec $l, r$. Tyto symboly nelze přepsat a nesmí se jít nalevo od $l$ a napravo od $r$.
+
+            Slovo $w$ je přijímáno LBA, pokud $q_0lwr \vdash^* \alpha t \beta$, kde $t$ je přijímající stav a $\alpha$ a $\beta$ je cokoliv.
+        \end{definice}
+
+        \begin{veta}
+            Každý kontextový jazyk lze přijímat pomocí LBA.
+
+            \begin{dukazin}
+                Derivaci gramatiky budeme simulovat pomocí LBA. Použijeme pásku se dvěma stopami (abecedu umocníme na druhou) slovo $w$ dáme na jednu, na začátek druhé pak dáme $S$. Následně přepisujeme pomocí $G$ (nedeterministicky se rozhodneme, co budeme přepisovat). Nakonec porovnáme stopy.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}
+            LBA přijímají pouze kontextové jazyky.
+
+            \begin{dukazin}
+                Výpočet ukryjeme do dvoustopých neterminálů, první symbol v sobě bude mít ukryt nejen význam 1. symbolu, ale i l. Stejně tak pravý.. V gramatice opravdu budeme „jezdit“ hlavou po slově a přepisovat.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{lemma}
+            Je-li $L$ rekurzivní jazyk, je rekurzivní i $\overline{L}$.
+        \end{lemma}
+
+        \begin{veta}[Postova věta]
+            Jazyk $L$ je rekurzivní, právě když $L$ i $\overline{L}$ jsou rekurzivně spočetné.
+
+            \begin{dukazin}
+                $\Leftarrow$: Necháme běžet 2 TM, pro jazyk a jeho doplňek. Jeden z nich se musí zastavit (jazyky jsou komplementární) a podle toho který, odpovíme.
+
+                $\implies$: TODO. To bylo na přednášce opravdu zmateně…
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Diagonální jazyk]
+            $$ L_d = \{w | \text{ TM reprezentovaný jako $w$ nepřijímá slovo $w$}\}. $$
+        \end{definice}
+
+        \begin{veta}
+            $L_d$ není rekurzivně spočetný jazyk, tj. neexistuje TM přijímající $L_d$.
+
+            \begin{dukazin}
+                ???
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Univerzální jazyk]
+            Definujeme univerzální jazyk $L_u$ jakožto množinu binárních řetězců, které kódují pár $(M, w)$, kde $M$ je TM a $w \in L(M)$. TM přijímající $L_u$ se nazývá Univerzální Turingův stroj.
+        \end{definice}
+
+        \begin{veta}[Existence univerzálního TM]
+            Existuje TM $U$, pro který $L_u = L(U)$.
+
+            \begin{dukazin}
+                Simulace…
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Nerozhodnutelnost univerzálního jazyka]
+            $L_u$ je rekurzivně spočetný, ale není rekurzivní.
+
+            \begin{dukazin}
+                Nebyl. Viz prezentace.
+            \end{dukazin}
+        \end{veta}
+
 \end{document}

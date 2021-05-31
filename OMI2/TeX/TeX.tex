@@ -391,4 +391,53 @@
             Z TeXu: \verb|\directlua{…}|. Z Luy: knihovny pro sazbu (vidí vnitřní stav TeXu), callbacky.
         \end{poznamka}
 
+% 26. 5. 2021
+
+\section{Unicode}
+    \begin{definice}
+        Reprezentuje sémantiku (abstraktní znaky = codepointy), ne vzhled (glyfy). Obsahuje běžné znaky s 8-bit kódováním.
+
+        Grafémy jsou také abstraktní věci, ale jsou složeny z více codepointů.
+    \end{definice}
+
+    \begin{definice}[Codepoints]
+        Prostor velikosti 17 rovin: $17 \circ 2^{16} \approx 1.1M$ (dohodlo se, že víc jich nebude). (Ve 13.0 obsazeno cca 144k).
+
+        Dolních 128 je ASCII (i když unicode nedává řídícím znakům žádnou sémantiku). Dalších 128 je Latin-1 (nesystematické věci vůči unicodu). Dalších „pár“ je rozšířená latinka. Další část je zase variace na latinku: znaky fonetické abecedy. Následuje Alfabeta (+ Kopština), rozšířená Cyrilice (nadmnožina azbuky, kazaštiny, …), Hlaholice, Gruzínština, Severské runy (Futhark?), Hieroglyfy. Následuje obrovský blok CJK (Chinese, Japanese, Korean), kde je zobecněná (a osekaná) Čínština.
+
+        Následují kombinující znaky (překvapivě kombinace s i a j fungují, tečka nad nimi má speciální status, musí se tam přidat zvlášť, pokud chceme obojí). Potom je blok interpunkce (včetně neviditelných znaků jako mezer různých šířek, včetně nulových (zalomitelné a naopak „protilomitelné“, a totéž pro ligatury), povolení pro zalomení, neviditelné krát, neviditelné plus (složené zlomky), neviditelná čárka (indexy)…).
+
+        Další hromady značek: šipky, technické značky, závorky pro skládání do velkých závorek, všehochuť. Následuje skládačka na rámečky. Emotikony (emoji se vyvinuly dále). Hudba. Rozšířený brail. Domino. Šachy. Hrací karty.
+
+        Pak následuje spoustu bloků matematické notace. Letterlike symbols (Alef, číselné obory, Omega (Ohm)). Matematické šipečky. Matematické (tučné, kaligrafické, gotické fraktury) varianty písmen latinky. Zlomky a římská čísla.
+
+        Ligatury. Hromada různých konců řádků (000D CR, 000A LF, 0085 NEL (next line, latin1), 2028 line separator, 2029 paragraph separator).
+
+        Private-use areas: E000-F8FF, F0000-FFFFD, 100000-10FFFD. Non-characters (bez grafémů a glyfů): FFFC object replacement character (sem něco vložit), FFFD replacement character (chyby při převodu do unicode), FFFE + FEFF = zero-width non-breaking space + neobsazeno (používá se jako Byte Order Mark (BOM), tedy použije se FFFE, a pokud máme špatnou endianitu, tak nám vznikne FEFF).
+
+        Variation Sequences (rozlišení glyfů pro jednu sémantiku): FE00-FE0F.
+    \end{definice}
+
+    \begin{definice}[Reprezentace]
+        UCS-2 (čistě historické, $2^{16}$ codepointů, 16b jednotky, používá BOM). $\longrightarrow$ UTF-16 (pro CP nad FFFF surrogate pairs = 10 + 10 bitů informace, D800-DBFF high, DC00-DFFF low)
+
+        UCS-4, dnes UTF-32 (32b jednotky, používá BOM).
+
+        UTF8 (8b jednotky, nadmnožina ASCII, 10xxxxxx šestibitové pokračování, 110xxxxx 5+6 pokračování, 1110xxxx 4 + 6 + 6 pokračování, 11110xxx 3 + 6 + 6 + 6 pokračování, povinnost použít nejkratší možnost, zachovává lexikografické uspořádání, samosynchronizující, lze číst po zpátku, nešvar s BOM (jasně daná endianita, ale windows používá jako značku UTF-8)).
+    \end{definice}
+
+    \begin{definice}[Normální formy (pro porovnávání)]
+        NFC = composed, NFD = decomposed
+
+        NFKC, NFKD jsou pak compatibility normální formy. Nerozbíjí se upgradem.
+    \end{definice}
+
+    \begin{upozorneni}[Bezpečnostní díry]
+        Ekvivalentní sekvence (může projít kontrolou), nekanonické kódy UTF-8, stejně vypadající znaky.
+    \end{upozorneni}
+
+    \begin{definice}[Emoji (Emojipedia)]
+        Např. vlajka je kombinující znak na další 2 znaky. Nebo obecné vlajky mají tagy (končící cancel tag), ze kterých se pak poskládá vlajka. Běžící muž používá Zero Width Joiner, které kombinují gender a běh. Barva pleti je zas kombinující znak.
+    \end{definice}
+
 \end{document}

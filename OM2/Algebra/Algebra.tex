@@ -1980,4 +1980,267 @@
     \begin{definice}[Stupeň rozšíření]
         Dimenze vektorového prostoru $®S_{®T}$ (vektorový prostor nad ®T odpovídající ®S) je stupeň rozšíření $®S≥®T$. Neboli $[®S:®T] = \dim ®S_{®T}$.
     \end{definice}
+
+% 21. 5. 2021
+
+    \begin{definice}[Prvotěleso]
+        Nejmenší podtěleso v jiném tělesu se nazývá prvotěleso.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Počet prvků konečného tělesa je mocnina prvočísla.
+
+        \begin{dukazin}
+            ®T konečnétěleso, ®P prvotěleso, tj. $®P \simeq ®Z_p$. Tedy VP $®T_p$ je izomorfní VP $(®Z_p)^k$, kde $k = [®T:®P] < ∞$. Ale $|®Z_p^k| = p^k = |®T|$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+\section{Algebraické prvky, rozšíření konečného stupně}
+    \subsection{Minimální polynom}
+        \begin{definice}[Algebraické a transcendentní číslo]
+            $®T ≤ ®S$ rozšíření těles, $\alpha \in ®S$. $\alpha$ je algebraické nad ®T, pokud $\exists 0 ≠ f \in ®T[x]: f(\alpha) = 0$. Jinak je $\alpha$ transcendentní nad ®T.
+        \end{definice}
+
+        \begin{definice}[Minimální polynom]
+            $®T ≤ ®S$ rozšíření těles, $\alpha \in ®S$ algebraické nad ®T. Minimální polynom prvku $\alpha$ nad tělesem ®T je ireducibilní monický polynom $m_{\alpha, ®T} \in ®T[x]$, který má kořen $\alpha$.
+        \end{definice}
+
+        \begin{tvrzeni}[Vlastnosti minimálního polynomu]
+            $m_{\alpha, ®T}$ existuje a je jednoznačný. $\alpha$ je kořen $f \in ®T[x]$ $\Leftrightarrow$ $m_{\alpha, ®T} | f$.
+
+            \begin{dukazin}
+                $I = \{f \in ®T[x] | f(\alpha) = 0\}$ je ideál v $®T[x]$. $®T[x]$ je OHI $\implies$ $I$ je hlavní. Buď $m \in ®T[x]$ monický tak, že $I = m®T[x]$. Tedy $f(\alpha) = 0 \Leftrightarrow f \in I = m®T[x] \Leftrightarrow m|f$.
+
+                $m \overset{?}{=} m_{\alpha, ®T}$: monický je, $m(\alpha) = 0$, tedy zbývá ireducibilita: Kdyby $m = f·g$, pak $f(\alpha)·g(\alpha) = 0$, tj. $f(\alpha) = 0$ nebo $g(\alpha) = 0$ $\implies m | f$ nebo $m|g$, \lightning. Tedy je ireducibilní.
+
+                Jednoznačnost: $\tilde{m} \in ®T[x]$ ireducibilní, monický, $\tilde{m}(\alpha)$. $m | \tilde{m}$. Ale $\tilde{m}$ je ireducibilní, tedy $m||\tilde{m}$, čili $m = c\tilde{m}$, $c \in ®T^*$. Ale $m, \tilde{m}$ jsou monické $\implies$ $c = 1$, $m = \tilde{m}$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Struktura jednoduchých rozšíření]
+            Buď $®T ≤ ®S$ rozšíření těles, $\alpha \in S$. Pak $®T(\alpha) = ®T[\alpha] \Leftrightarrow$ $\alpha$ je algebraické nad ®T.
+
+            \begin{dukazin}
+                $®T[\alpha] = \{f(\alpha) | f \in ®T[x]\}$.
+
+                $\Leftarrow$: Uvažujme homomorfismus okruhů $\phi: ®T[x] \rightarrow ®T[\alpha]$, $f \mapsto f(\alpha)$. $\im \phi = ®T[\alpha]$. $\Ker \phi = \{f | f(\alpha) = 0\} = m_{\alpha, ®T}®T[x]$. Víme, že $m = m_{\alpha, ®T}$ je ireducibilní, tedy $m®T[x]$ je maximální. Podle 1. věty o izomorfismu $®T[\alpha] \simeq ®T[x] / m®T[x]$, což je faktor podle maximálního ideálu $\implies$ $®T[\alpha]$ je těleso. A protože $®T[\alpha]$ je těleso $\implies$ nejmenší těleso obsahující $\alpha$ $\implies$ $®T[\alpha] = T(\alpha)$.
+
+                $\implies$ $\alpha$ transcendentní. Pro spor ať $®T[\alpha] = ®T(\alpha)$. Tedy $\exists f(\alpha \in ®T[\alpha])$ tak, že $f(\alpha) = \alpha^{-1}$. Pak ale $\alpha$ je kořen polynomu $x·f - 1$, \lightning.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}[Stupeň jednoduchého rozšíření]
+            $®T ≤ ®S$ rozšíření, $\alpha \in ®S$ algebraické nad ®T. $[®T(\alpha):®T] = \deg m_{\alpha, ®T}$.
+
+            \begin{dukazin}
+                $n = \deg m_{\alpha, ®T}$. Dokážeme, že $1, \alpha, \alpha^2, …, \alpha^{m-1}$ tvoří bázi VP $®T(\alpha)_{®T}$. Lineární nezávislost: Kdyby $\sum_{i=0}^{n-1}t_i\alpha^i = 0$ pro nějaké $t_i \in ®T$, pak $f = \sum_{t_i}x^i$ má $\alpha$ za kořen, $m_{\alpha, ®T} | f$ $\implies$ $f = 0$ (jelikož $m_{\alpha, ®T}$ má větší stupeň), tedy máme triviální lineární kombinaci.
+
+                Generování: $f(\alpha) \in ®T[\alpha] = ®T(\alpha)$, kde $f \in ®T[x]$. Ať $f = m_{\alpha, ®T} · q + r$, $q, r \in ®T[x]$, $\deg r < deg m_{\alpha, ®T} = n$, tj. $r = \sum_{i = 0}^{n-1} r_i\alpha^i$ $\implies$ $f(\alpha) = m_{\alpha, ®T}(\alpha)·q(\alpha) + r(\alpha) = 0 + r(\alpha)$. Tím jsme $f(\alpha)$ vyjádřili v $1, \alpha, …, \alpha^{n-1}$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            $®T ≤ ®S$, $\alpha \in ®S$, $\alpha$ je algebraické nad ®T $\Leftrightarrow$ $[®T(\alpha):®T] < ∞$.
+
+            \begin{dukazin}
+                $\alpha$ je transcendentní $\implies$ $1, \alpha, \alpha^2, …$ je lineární nezávislá množina $\implies$ $[®T(\alpha):®T]$ není konečný.
+
+                $\alpha$ algebraické $\implies$ $[®T(\alpha):®T] = \deg m_{\alpha, ®T} < ∞$ podle předchozího tvrzení.
+            \end{dukazin}
+        \end{dusledek}
+
+    \subsection{Vícenásobné rozšíření}
+        \begin{tvrzeni}[Stupeň vícenásobného rozšíření]
+            Buď $®T ≤ ®S ≤ ®U$ rozšíření těles, pak $[®U:®T] = [®U:®S]·[®S:®T]$.
+
+            \begin{dukazin}
+                $A$ je báze VP $®S_{®T}$ a $B$ je báze VP $®U_{®S}$. Dokážeme, že $C = \{a·b | a \in A, b \in B\}$ je báze $®U_{®T}$. Generování: $C \subseteq ®U$, tedy $C$ generuje podprostor $®U_{®T}$. $u \in ®U$. $B$ báze $®S_{®S}$ $\implies$ $u = \sum_j s_jb_j$, $s_j \in ®S$, $b_j \in B$. $A$ báze $®S_{®T}$ $\implies$ $s_j = \sum_i t_{ij}a_i$, $t_{ij}\in ®T$, $a_i \in A$. Tudíž $u = \sum_j\sum_i t_{ij}(a_ib_i)$ $\implies$ $u$ jsme vyjádřili v $C$ s koeficienty z ®T.
+
+                LN viz skripta. Pak $[®U:®T] = |C| = |A|·|B| = [®S:®T]·[®U:®S]$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{dusledek}
+            $$ [®T(\alpha_1, \alpha_2):®T] = \deg m_{\alpha_2, ®T(\alpha_1)} \deg m_{\alpha_1, ®T} ≤ \deg m_{\alpha_2, ®T} · \deg m_{\alpha_1, ®T}. $$
+        \end{dusledek}
+
+        \begin{dusledek}
+                $®T ≤ ®S$, $\alpha_1, …, \alpha_n \in ®S$ algebraické nad ®T. Pak $®T(\alpha_1, …, \alpha_n)$ je rozšíření konečného stupně nad ®T.
+
+            \begin{dukazin}
+                Indukcí.
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{definice}
+            $®T ≤ ®S$ rozšíření těles je algebraické, pokud $\forall \alpha \in ®S$ je algebraický prvek nad ®T.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Každé rozšíření konečného stupně je algebraické.
+
+            \begin{dukazin}
+                    $u = [®S:®T]$. Buď $\alpha \in ®S$. $\alpha$ je algebraické $\Leftrightarrow$ $[®T(\alpha):®T] < ∞$. Tedy $[®T(\alpha) : ®T] ≤ n \implies \alpha$ algebraické nad ®T.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            Opačná implikace neplatí! Existuje algebraické rozšíření nekonečného stupně (např. algebraický uzávěr ®Q).
+        \end{poznamka}
+
+        \begin{veta}
+            $®T ≤ ®S$. Prvky ®S, jež jsou algebraické nad ®T, tvoří podtěleso ®S.
+
+            \begin{dukazin}
+                $\alpha, \beta \in ®S$ algebraické nad ®T. Chceme $\alpha + \beta, -\alpha, \alpha·\beta, \alpha^{-1}$ jsou algebraická nad ®T.
+                $$ ®T ≤ ®T(\alpha + \beta) ≤ ®T(\alpha, \beta). $$
+                Víme, že $[®T(\alpha, \beta) : ®T] < ∞$ $\implies$ $[®T(\alpha + \beta) : ®T] < ∞$ $\implies$ $\alpha + \beta$ je algebraické. Úplně stejně pro $-\alpha$, $\alpha·\beta$, $\alpha^{-1}$.
+            \end{dukazin}
+        \end{veta}
+
+% 26. 5. 2021
+
+\section{Geometrické úlohy}
+    \begin{poznamka}[Staré řecké úlohy]
+        Zdvojení krychle. Trisekce úhlu. Kvadratura kruhu. Konstrukce pravidelných $n$-úhelníků pro dané $n$ (17-úhelník -- Gauss).
+
+        Použijeme metodu Piere Wantzel 1837: $M_0$ je počáteční množina bodů v rovině (to, co máme zadáno). $M_i \supseteq M_{i-1}$ vytvoříme tak, že zkonstruujeme nový bod jako průsečík 2 nerovnoběžných přímek (vedoucích skrz body v $M_{i-1}$) nebo průsečík přímky a kružnice (přímka vedoucí skrz body v $M_{i-1}$ a kružnice se středem v $M_{i-1}$ a poloměrem vzdáleností dvou bodů z $M_{i-1}$) nebo průsečík dvou kružnic (se středy v $M_{i - 1}$ a poloměry „tamtéž“).
+
+        Tedy zavedeme systém souřadnic v rovině, čili ztotožníme rovinu s $®R^2$. Definujeme $®T_i =$ nejmenší těleso, které obsahuje všechny $x$-ové a $y$-ové souřadnice bodů z $M_i ≤ ®R$. Dostaneme tak tělesové rozšíření $Q(x_B, y_B | B \in M_i)$. Přidáním bodu $X$ do $M_i$ je totéž, co $®T_{i+1} = ®T_i(x_X, y_X)$.
+    \end{poznamka}
+
+    \begin{lemma}
+        Pro každou konstrukci pravítkem a kružítkem máme $[®T_{i+1} : ®T_i] = 1, 2$, $\forall i$.
+
+        \begin{dukazin}
+            1) Průsečík 2 přímek. $ax + by = c$, $dx + ey = f$ jsou obecné rovnice 2 přímek. $a, b, c, d, e, f \in ®T_i$. $ax + by = c$ je přímka procházející body $A = (k, l)$ a $B = (m, n) \in M_i$ $\implies$ $(l-n)x + (m-k)y = l·m - k·n$. Tedy $a = l-n, … \in ®T_i$, protože $k, l, m, n \in ®T_i$. Řešení je bod $(u, v)$, kde $u, v \in ®T_i$. A tedy $T_{i+1} = ®T_i(u, v) = ®T_i$ a máme $[®T_{i+1}:®T_i] = 1$.
+
+            2) Přímka a kružnice: $ax + by = c$, $(x - d)^2 + (y - e)^2 = (k-l)^2 + (l - n)^2$, pro $a, b, c, d, e, k, l, m, n \in ®T_i$. Pokud $b ≠ 0$, pak vyjádříme $y$ z rovnice přímky $y = \frac{c - ax}{b}$ a dosadíme to do rovnice kružnice. Dostaneme, že $x$ je kořenem kvadratické rovnice s koeficienty z $®T_i$, kde buď $f$ je ireducibilní, tedy $[®T_{i+1}:®T_i] = 2$, nebo $f$ není ireducibilní, potom minimáľní polynom pro $x$ má stupeň 1, tedy $[®T_{i+1}, ®T_i] = 1$. Případ $b = 0$ se vyjádří obdobně.
+
+            3) viz skripta.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{tvrzeni}[Stupeň rozšírení pro konstrukce pravítkem a kružítkem]
+        Pro každou konstrukci pravítkem a kružítkem je $[®T_n : ®T_0] = 2^k$ pro nějaké $0 ≤ k ≤ n$.
+
+        \begin{dukazin}
+            Indukcí z předchozího tvrzení.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{priklad}[Zdvojení krychle]
+        Volíme $®T_0 = ®Q$, protože na začátku máme úsečku délky BÚNO 1. Chceme sestrojit $\sqrt[3]{2}$. Ale z předchozího tvrzení $[®T_n : ®Q] = 2^k$. $®Q ≤ ®Q(\sqrt[3]{2}) ≤ ®T_n$, tedy $[®T_n : ®Q] = [®T_n : ®Q(\sqrt[3]{2})]·[®Q(\sqrt[3]{2}) : ®Q]$. A víme, že $x^3 - 2 = m_{\sqrt[3]{2}, ®Q}$, tedy $[®Q(\sqrt[3]{2} :®Q)] = 3$. Tj. $3 | [®T_n : ®Q] = 2^k]$, \lightning.
+    \end{priklad}
+
+    \begin{priklad}[Retifikace kružnice nebo kvadratura kruhu]
+        Podobně jako v minulé úloze bychom měli, že $\pi \in K_n$. Ale mi víme, že $\pi$ (těžké dokázat), takže nemůže ležet v rozšíření konečného stupně $K_n ≥ ®Q$ (resp. se dá dokázat, že ani $K_n ≥ ®Q(\sqrt{2})$).
+    \end{priklad}
+
+    \begin{priklad}[Trisekce úhlu]
+        Dokonce nejde zkonstruovat úhel $20\degree$, protože $\cos 20\degree$ má minimální polynom stupně 3.
+    \end{priklad}
+
+\section{Izomorfismy tělesových rozšíření}
+    \subsection{Galoisova věta}
+        \begin{definice}[T-izomorfismus]
+            ®T, ®S, ®U tělesa tak, že $®T ≤ ®S, ®T ≤ ®U$. $\phi: ®S \rightarrow ®U$ okruhový izomorfismus tak, že $\phi(t) = t$ pro $\forall t \in ®T$ se nazývá T-izomorfismus.
+        \end{definice}
+
+        \begin{definice}
+            $®T ≤ ®S$, T-izomorfismy $®S \rightarrow ®S$ jsou T-automorfismy.
+        \end{definice}
+
+        \begin{definice}
+            Grupa všech T-automorfismů $®S \rightarrow ®S$, $®T ≤ ®S$, se nazývá Galoisova grupa rozšíření $®T ≤ ®S$ a značí se $\Gal(®S / ®T)$.
+
+            \begin{dukazin}
+                Grupa je to triviálně, jelikož T-automorfismy jsou uzavřené na skládání a tedy tvoří podgrupu symetrické grupy na množině ®S.
+            \end{dukazin}
+        \end{definice}
+
+        \begin{pozorovani}
+            $\phi \in \Gal(®S / ®T)$ je jednoznačně určené (pokud existují) hodnotami $\phi(a_1), …, \phi(a_n)$, kde $®T(a_1, …, a_n) = ®S$ a $a_1, …, a_n$ jsou algebraická nad ®T.
+
+            \begin{dukazin}
+                $®S = ®T(a_1, …, a_n) = ®T[a_1, …, a_n]$ (z algebraičnosti). Každý prvek $s \in ®S$ jde vyjádřit jako $s = \sum c_{i_1…i_n}a_1^{i_1} … a_n^{i_n}$ pro $c_{i_1, …, i_n} \in ®T$. Teď $\phi(s) = \sum\phi(c_{i_1…i_n}) \phi(a_1)^{i_n}…\phi(a_n)^{i_n}$, ale obraz $c_{…}$ je ono samo, tedy stačí mít obrazy $a_1, …, a_n$.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{upozorneni}
+            Ne každá volba $\phi(a_1), …$ funguje.
+        \end{upozorneni}
+
+        \begin{tvrzeni}[Galoisova grupa a kořeny polynomů]
+            $®T ≤ ®S$, $f \in ®T[x]$, $A \subseteq ®S$ je množina všech kořenů polynomu $f$ v $®S \setminus ®T$. Pro každé $\phi \in \Gal(®S/®T)$ je $\phi|_A$ permutace množiny $A$ $\land$ zobrazení $\Gal(®S / ®T) \rightarrow S_A$, $\phi \mapsto \phi|_A$ je grupový homomorfismus.
+
+% 30. 5. 2021
+
+            \begin{dukazin}
+                $f = \sum c_ix^i$, $\alpha \in S$ kořen. 
+                $$ 0 \overset{?}{=} f(\phi(\alpha)) = \sum c_i \phi(\alpha)^2 = \sum \phi(c_i)\phi(\alpha)^2 = \phi(\sum c_i \alpha^i) = \phi(f(\alpha)) = \phi(0) = 0. $$
+            Tedy $\phi(\alpha)$ je také kořen. Ale pokud $\alpha \in ®T$, pak $\phi(\alpha) = \alpha \in ®T$. $\phi$ je prosté $\implies$ žádný jiný kořen $\alpha'$ se mi na $\alpha$ nezobrazí. Tedy $\phi | A$ je prosté zobrazení na $A$. $A$ je konečná množina, tedy jelikož $\phi|_A$ je bijekce, tak je i permutace.
+
+                Grupový homomorfismus se snadno ověří.
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Jednoznačnost kořenových a rozkladových nadtěles (bez důkazů)}
+        \begin{veta}[Jednoznačnost koř. a roz. nadtěles]
+            ®T těleso, $f \in ®T[x]$, $\deg f ≥ 1$. Je-li $f$ ireducibilní, pak každé dvě kořenová nadtělesa $f$ nad ®T jsou T-izomorfní. 2) Každá dvě rozkladová nadtělesa $f$ nad ®T jsou T-izomorfní.
+
+            \begin{dukazin}[Nástřel]
+                Mějme kořenová nadtělesa $®T(a)$, $T(b)$. $a, b$ algebraické nad ®T $\implies$ $®T(a) = ®Ť[a] = \{g(a) | g \in ®T[x]\}$. Definujeme $®T(a) \rightarrow ®T(b)$, $g(a) \mapsto g(b)$. Toto zobrazení je hledaný T-izomorfismus (musí se dokázat dobrá definovanost).
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Galoisova grupa polynomů}
+        \begin{definice}
+            $f \in ®T[x], \deg f ≥ 1$. Galoisova grupa polynomu $f$ nad ®T je $\Gal(f/®T) := \Gal(®S/®T)$ pro libovolné rozkladové nadtěleso ®S polynomu $f$ nad ®T.
+        \end{definice}
+
+        \begin{tvrzeni}[Základní vlastnosti Galoisovy grupy]
+            ®T těleso, $f \in ®T[x]$, $\deg f ≥ 1$, ®S rozkladové nadtěleso $f$ nad ®T.
+
+            1) $\Gal(®S / ®T)$ je izomorfní podgrupě symetrické grupy $S_m$, kde $m$ je počet různých kořenů v $®S \setminus ®T$.
+
+            2) $f$ ireducibilní $\implies$ $\forall$ kořeny $a, b \in ®S\ \exists \phi \in \Gal(®S \setminus ®T): \phi(a) = b$.
+
+            3) $®T ≤ ®S ≤ ®U$, kde ®U je rozkladové nadtěleso nějakého polynomu nad ®T. Pak $\Gal(®U/®S) \trianglelefteq \Gal(®U / ®T)$ a $\Gal(®U/®T)/\Gal(®U/®S) \simeq \Gal(®S/®T)$.
+
+            \begin{dukazin}[Zkouší se jen 1]
+                1) Ať $A = \{a_1, …, a_m\}$ jsou kořeny $f$ v $®S \setminus ®T$. Z tvrzení výše pak je pak $\forall \phi \in \Gal(®S / ®T) : \phi|_A$ je permutace $A$ a $\psi: \Gal(®S/®T) \rightarrow S_A$, $\phi \mapsto \phi|_A$ je homomorfismus.
+
+                Důkaz, že $\psi$ je prosté: ®S rozkladové nadtěleso $\implies ®S = ®T(a_1, …, a_m)$, čili $\forall \phi$ je jednoznačně určené hodnotami $\phi(a_1), …, \phi(a_m)$, čili $\phi|_A$ jednoznačně určuje $\phi \implies \psi$ je prosté. Tedy podle 1. věty o izomorfismu $\Gal(®S/®T) \simeq \Im \psi ≤ S_A \simeq S_m$.
+
+                2) plyne z důkazu jednoznačnosti rozkladových nadtěles.
+
+                3) Použijeme 1. větu o izomorfismu: $\Phi: \Gal(®U/®T) \rightarrow \Gal(®S/®T)$, $\phi \mapsto \phi|_{®S}$. Ověříme, že to funguje. Pak si všimneme $\Im \Phi = \Gal(®S/®T)$ (s využitím jednoznačnosti rozkladových nadtěles). $\Ker \Phi \ni \phi \Leftrightarrow \phi|_S = \id \Leftrightarrow \phi(s) = s\ \forall s \in ®S \Leftrightarrow \phi \in \Gal(®U/®S)$. $\Ker \Phi = \Gal(®U/®S) \trianglelefteq \Gal(®U/®T)$.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{lemma}
+            $0 ≠ a \in ®Q$. Rozkladové nadtěleso polynomu $f = x^4 - a$ nad ®Q je $®Q(\zeta_n, b)$, kde $b$ je libovolný komplexní kořen $f$.
+
+            \begin{dukazin}
+                Komplexní kořeny $x^n - a$ jsou právě $b·\zeta_n^k$, $k = 0, …, n-1$. Tedy máme $n$ kořenů polynomu stupně $n$, tudíž máme všechny. Rozkladové nadtěleso $= ®S = ®Q(b, b\zeta_n, …, b\zeta_n^{n-1}) \overset{?}{=}®Q(b, \zeta_n) = ®S'$. $\supseteq:$ $b \in ®S$, $\zeta_n = b^{-1}·(b\zeta_n) \in ®S$. $\subseteq$ $b\zeta_n^k \in ®S'$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{tvrzeni}[Galoisovy grupy pro odmocniny]
+            $®Q ≤ ®T ≤ ®C$ těleso, $n \in ®N$, $a \in ®T$. Pak 1) $\Gal(x^n - 1 / ®T)$ je abelovská, 2) $\Gal(x^n - a / ®T(\zeta_n))$ je abelovská, 3) $\Gal(x^n - a / ®T)$ je řešitelná grupa stupně $≤ 2$.
+
+            \begin{dukazin}
+                $®S = ®T(\zeta_n)$, $®U = ®T(\zeta_n, b)$, kde $b \in ®C$ je nějaký kořen $x^n - a$.
+
+                1) Důkaz, že je izomorfní podgrupě $®Z_n^*$: ®S = rozkladové nadtěleso $x^n - 1$ (neboť kořeny jsou $1 = \zeta_n^0, …, \zeta_n^{n-1}$). $\forall \phi \in \Gal(®S/®T)$ permutuje kořeny $x^n-1$, čili $\phi(\zeta_n) = \zeta_n^k$. Co můžeme říct o $k$? $\phi$ je automorfismus tělesa ®S $\implies$ $\phi$ je také automorfismus grupy $®S^*$ $\implies$ $\phi$ zachovává řády prvků v $S^*$. Tj. $\ord(\zeta_n) = n \implies \ord(\zeta_n^k) = 1$ $\Leftrightarrow$ $\NSD(k, n) = 1$.
+
+                Tedy máme zobrazení $\Phi: \Gal(®S/®T) \rightarrow ®Z_n^*$, $\phi(\zeta_n) = \zeta_n^k \mapsto k$. Toto zobrazení je prosté, neboť $\phi(\zeta_n)$ jednoznačně určuje $\phi$ na $®S = ®T(\zeta_n)$. Navíc je $\Phi$ grupový homomorfismus (jednoduše se rozepíše). Podle 1. věty o izomorfismu je tedy $\Gal(®S/®T) \simeq \Im \Phi ≤ ®Z_n^*$.
+
+                2) (náznak, nezkouší se): $\Gal(x^n - a/®S) = \Gal(®U / ®S) \ni \phi$. Dokáže se, že $\Gal(®U/®S)$ je izomorfní podgrupě $®Z_n$: Kořeny $x^n - a$ jsou $b·\zeta_n^k$ $\implies$ $\phi(b) = b\zeta_n^k$. A to nám dává homomorfismus $\Gal(®U/®S) \rightarrow ®Z_n$, $\phi(b) = b\zeta_n^k \mapsto k$. Ověříme, že je vše OK a máme to.
+
+                3) $\Gal(x^n - a/®T) = \Gal(®U/®T)$. $®U = ®T(\zeta_n, b)$ je rozkladové nadtěleso pro $x^n - a$. $®S = ®T(\zeta_n)$. Rozšíření $®T ≤ ®S ≤ ®U$. Z tvrzení 24.5(3) máme $\Gal(®U/®S) \trianglelefteq \Gal(®U/®T)$. K řešitelnosti potřebujeme řetězec podgrup TODO. Máme triviálně takový řetězec délky nejvýše 2 (může být dokonce i 1, když jsou 2 totožné).
+            \end{dukazin}
+        \end{tvrzeni}
+
 \end{document}

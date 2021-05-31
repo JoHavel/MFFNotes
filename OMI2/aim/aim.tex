@@ -301,7 +301,19 @@
         \begin{poznamka}[Bezpečnostní chyby]
             Sideefekty na cachích prosakují informace o šifrovacích klíčích (AES i RSA).
 
-            Meltdown (spekulace, side-efekty: cache, vytížení jednotek, …, obcházení přístupových práv ke stránkám (přes výjimky) výskyt: výhradně Intel), Spectre. 
+            Meltdown (spekulace, side-efekty: cache, vytížení jednotek, …, obcházení přístupových práv ke stránkám (přes výjimky) výskyt: výhradně Intel)
+
+% 25. 5. 2021
+
+            Spectre (obejití kontrol tak, že se mi věci přečtou jen spekulativně a já pak vyhodím error, čímž se věci nezahodí. Velký problém JavaScriptu, navíc na všech procesorech s predikcí skoků) (zneužití druhé části prediktoru: prediktor, kam se skočí… Obrana je retpoline: místo skoku se zavolá funkce, která si přenastaví RSP, aby se vrátila tam, kam jsme chtěli skočit).
+
+            L1TF (level 1 terminal fault) (foreshadow): pokud překlad stránky selhal, stejně se vyspekulované instrukci předá neplatný záznam, který použije. Normálně je malý, ale přes virtualizaci se dá zvýšit na adresy, které už obsahují data. Funguje však jen na datech v L1 cache.
+
+            MDS (Fallout, RIDL, Zombieload) (2019): útoky na buffery (hlavně na store buffer, kde se hromadí zápisy (jak predikované, tak aktuální, aby se zprůměroval zápis), ale i load buffery a fillbuffery), kde se porovnává pouze část adresy: 1. naplním store buffer, 2. zavolám kernel, který zapíše někam, kam nemůžu, 3. čtu z adresy, kam mám přístup a která se shoduje v dolních 12 bitech. Řeší se bariérami kolem syscallů a přerušení a uspání / probuzení vlákna.
+
+            Na informacích o procesoru si můžeme přečíst řádek bugs…
         \end{poznamka}
+
+
 
 \end{document}

@@ -598,4 +598,64 @@
         \end{dukazin}
     \end{veta}
 
+% 21. 5. 2021
+
+    \begin{tvrzeni}[Zachovávání kompaktnosti operacemi]
+        1. Je-li $(®X, \rho)$ kompaktní MP a $Y \subseteq ®X$ uzavřená, pak $(®Y, \rho|_{®Y})$ je kompaktní.
+
+        2. Je-li $(®X, \rho)$ kompaktní MP a $(®Y, \rho)$ MP, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ spojité, pak $(f(®X), \sigma_{f(®X)})$ je kompaktní.
+
+        3. Je-li $(®X< \rho)$ MP a $®Y \subseteq ®X$, že $(®Y, \rho|_{®Y})$ je kompaktní, pak ®Y je uzavřená v $(®X, \rho)$.
+
+        4. Jsou-li $(®X_i, \rho_i)$ kompaktní MP, $i \in ®N$, $\rho_i ≤ 1$, pak $\prod_{i \in ®N}(®X_i, \rho_i)$ je kompaktní.
+
+        5. Jsou-li $(®X_i, \rho_i)$ MP a $(®X, \rho)$ je suma prostorů $(®X_i, \rho_i)$, $i \in I$. Pak $(®X, \rho)$ je kompaktní $\Leftrightarrow$ $\forall i \in I$: $(®X_i, \rho_i)$ je kompaktní a $\{i \in I | ®X_i ≠ \O\}$ je konečná.
+
+        \begin{dukazin}
+            1. Kompaktnost $\Leftrightarrow$ úplnost + totální omezenost. Uzavřený podprostor úplného je úplný, tedy ®Y je úplný (jelikož ®X je úplný). Podprostor totálně omezeného je totálně omezený, tedy ®Y je totálně omezený. Tedy ®Y je kompaktní.
+
+            2. Ať ©U je otevřené pokrytí $f(®X)$. $f$ je spojité, tedy $f^{-1}(U)$ jsou otevřené pro $U \in ©U$. Navíc $\{f^{-1}(U) | U \in ©U\}$ je pokrytí ®X. ®X je kompaktní, tedy existuje konečné podpokrytí $\{f^{-1}(U_1), …, f^{-1}(U_n)\}$ pro $n \in ®N$ a $U_1, …, U_n \in ©U$. $®X = f^{-1}(U_1) \cup … \cup f^{-1}(U_n) = f^{-1}(U_1 \cup … \cup U_n)$, tedy $f(®X) \subseteq U_1 \cup … \cup U_n$, tedy $\{U_1, …, U_n\}\subseteq ©U$ je konečné podpokrytí $f(®X)$. Tedy $f(®X)$ je kompaktní.
+
+            3. ®Y je kompaktní, tedy úplný. Ale tím pádem je uzavřený (úplný podprostor je nutně uzavřený).
+
+            4. Převedením na úplnost a totální omezenost (součin spočetně mnoha úplných MP je úplný, stejně tak součin spočetně mnoha totálně omezených MP je totálně omezený).
+
+            5. $\implies$ $J := \{i \in I | ®X_i ≠ \O\}$ je konečná sporem: Ať $J$ je nekonečná. Pro $j \in J$ vybereme $x_j \in ®X_j$. $A := \{x_k | j \in J\}$. $A$ je nekonečná, ®X kompaktní, tedy podle charakterizace kompaktnosti má $A$ hromadný bod $a \in \sum (®X_i, \rho)$. $\B(a, \frac{1}{2}) \cap A$ nekonečná, $\exists i ≠ j, i, j \in J: x_i, x_j \in \B(a, \frac{1}{2})$. $\rho(x_i, x_j) < 1$, spor, neboť $\rho(x_i, x_j) = 1$.
+
+            $\forall i \in I: ®X_i$ je kompaktní: $®X_i$ je uzavřená podmnožina $\sum(…®X_i, \rho_i)$. Podle 1. je $®X_i$ kompaktní.
+
+            $\leftarrow$: $\{i \in I | ®X_i ≠ \O\}$ je konečná, $\forall i \in I: ®X_i$ kompaktní. Chceme, že $\sum(®X_i, \rho_i)$ je kompaktní. Ať $A \subseteq \sum(®X_i, \rho_i)$ je nekonečná. Nutně existuje $i \in I: ®X_i \cap A$ má hromadný bod v $®X_i$. Ten je zřejmě hromadným bodem celé množiny $A$. Tedy podle charakterizace kompaktnosti pomocí hromadných bodů nekonečných množin je $\sum (®X_i, \rho_i)$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{lemma}[Lebesgueovo číslo]
+        Ať $(®X, \rho)$ je kompaktní MP a ©U otevřené pokrytí ®X. Pak existuje $\delta > 0$, ze pro každé $x \in ®X$ existuje $U \in ©U: \B(x, \delta) \subseteq U$.
+
+        \begin{dukazin}
+            ®X kompaktní, tedy existuje konečné podpokrytí ©U: $\{U_1, …, U_n\} \subseteq ©U$. Pokud $\exists i \in \{1, …, n\} : U_i = ®X$, jsme hotovi, $\delta = 1$. Předpokládejme tedy, že $\forall i ≤ n: U_i \subsetneq ®X$. Ať $C_i := ®X \setminus U_i$, $C_i$ uzavřené, $C_i ≠ \O$. Ať $f(x) = \frac{1}{n} \sum_{i=1}^n \dist_\rho(x, C_i)$. $f$ je spojité. $f: ®X \rightarrow [0, ∞)$, $\forall x \in ®X: \exists i \in \{1, …, n\} : x \in U_i$, $x \notin C_i, \dist_\rho(x, C_i) > 0$. tedy $f: ®X \rightarrow (0, ∞)$. ®X kompakt, tedy $f$ nabývá svého minima $\delta := \min f(®X) > 0$.
+
+            Nyní pro $x \in ®X: f(x) ≥ \delta$. $f(x) =$ aritmetický průměr $n$ čísel, tedy $\exists i \in \{1, …, n\}: \dist_\rho(x, C_i) ≥ \delta$. Tj. $\B_\rho(x, \delta) \cap C_i = O$, tj. $\B_\rho(x, \delta) \subseteq U_i$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        Ať $(®X, \rho)$, $(®Y, \sigma)$ jsou MP, $(®X, \rho)$ kompaktní, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ spojitá. Pak $f$ je stejnoměrně spojitá.
+
+        \begin{dukazin}
+                Ať $\epsilon > 0$ dáno. $\{f^{-1}\(\B_\sigma\(y, \frac{\epsilon}{2}\)\) | y \in ®Y\}$ je otevřené pokrytí ®X ($f$ spojitá, tedy vzor otevřené je otevřená). ®X kompaktní. Tedy ať $\delta$ je Lebesgueovo číslo z předchozího lemmatu příslušné uvedenému otevřenému pokrytí, tj. $\forall x \in ®X\ \exists y \in ®Y: \B_\rho(x, \delta) \subseteq f^{-1}\(\B_\sigma\(y, \frac{\epsilon}{2}\)\)$. $f(\B_\rho(x, \delta)) \subseteq \B_\sigma\(y, \frac{\epsilon}{2}\)$. Tedy pokud $x, x' \in ®X, \rho(x, x') < \delta$, pak $x' \in \B_\rho(x, \delta)$ a pak $f(x), f(x') \in \B_\sigma\(y, \frac{\epsilon}{2}\)$ pro nějaké $y \in ®Y$. Tedy $\sigma(f(x), f(x')) < \epsilon$.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{lemma}
+        Ať $(®X, \rho)$ a $(®Y, \sigma)$ jsou MP, $(®X, \rho)$ kompaktní, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ spojitá bijekce. Pak $f$ je homeomorfismus.
+
+        \begin{dukazin}
+            Potřebujeme pouze ověřit, že $f^{-1}(®Y, \sigma) \rightarrow (®X, \rho)$ je spojité. Ať $G \subseteq ®X$ je otevřená. $(f^{-1})^{-1}(G)$ je otevřená v $(®Y, \sigma)$, jelikož $f(G) = ®Y \setminus f(®X \setminus ®G)$ je otevřený (vzor je uzavřená, tedy kompakt, tedy obraz je kompakt, tedy uzavřený, tedy doplněk je otevřený). Tedy $f^{-1}$ je spojitá.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}[Vlastnosti Cantorova diskontinua a Hilbertovy kostky]
+        Pro každý neprázdný kompaktní MP $(®X, \rho)$ existuje spojitá surjekce $f: C \rightarrow ®X$. Pro každý separabilní MP $(®Y, \sigma)$ existuje spojitá $g: ®Y \rightarrow Q$, že $g: ®Y \rightarrow g(®Y)$ je homeomorfismus. 
+    \end{veta}
+
 \end{document}

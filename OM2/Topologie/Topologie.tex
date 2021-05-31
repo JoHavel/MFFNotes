@@ -966,4 +966,61 @@
         \end{dukazin}
     \end{tvrzeni}
 
+% 28. 5. 2021
+
+    \begin{veta}[Součinová věta pro $\dim$]
+        Je-li ®X normální TP a $F_i \subseteq ®X$ uzavřené, $i \in ®N$, $\dim F_i ≤ n$ a $®X = \bigcup_{i \in ®N}F_i$, pak $\dim ®X ≤ n$.
+
+        \begin{dukazin}
+            Ať $©U = \{U_i | i \in [k]\}$ je otevřené pokrytí ®X. $F_0 := \O$. Induktivně definujeme otevřené pokrytí $©U_0, ©U_1, …$, že $©U_j = \{U_{j, i} | i \in [k]\}$, $U_{j, i} \subseteq U_{j-1, i}$ pro $j ≥ 1$ a $U_{0, i} \subseteq U_i$, $\ord\{\overline{U_{j, i}} \cap F_j | i \in [k]\} ≤ n$.
+
+            $j = 0: U_{j, 0} := U_j$. Předpokládejme, že máme $©U_j$, $j < m ≥ 1$, splňující podmínky výše. $\{F_m \cap U_{m-1, i}|i \in [k]\}$ je otevřené pokrytí $F_m$. Podle charakterizace dimenze $\dim$ má otevřené skrčení $\{V_1, …, V_k\}$ řádu nejvýše $n$. Ať $W_i := (U_{m-1, i}, F_m) \cup V_i \subseteq U_{m-1, i}$. $\{W_i | i \in [k]\}$ je otevřené pokrytí ®X. Řád $\{F_m \cap W_i | i \in [k]\} ≤ n$. Podle lemmatu o skrčení existuje skrčení tohoto $\{W_i | i \in [k]\}$ na $\{U_{m, i} | i \in [k]\}$, že $\overline{U_{m, i}} \subseteq W_i$. $©U_m := \{U_{m, i} | i \in [k]\}$ splňuje požadované podmínky. Nyní $\forall x \in ®X\ \forall j \in ®N: \exists i(x) \in [k]: x \in U_{j, i(x)}$. $\exists i(x) \in [k] : \{j | i(x) = i(j, x)\}$ je nekonečné. $x \in \bigcap_{j=1}^∞$. Tedy $\{\bigcap_{j=1}^∞ \overline{U_{j, i}} | i \in [k]\}$ je uzavřené pokrytí ®X a navíc skrčení ©U. K tomu je řádu $≤n$. Tedy podle charakterizace $\dim$ je $≤ n$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Ať ®X je normální, pak $\Ind \beta ®X = \Ind ®X$, $\dim \beta ®X = \dim ®X$.
+
+        \begin{dukazin}
+            Bez důkazu. Pro důkaz viz Engelking: Theory of dimensions Finite and Infinite.
+        \end{dukazin}
+    \end{veta}
+
+    \subsection{Dimenze separabilních metrizovatelných prostorů}
+        \begin{veta}
+            Je-li ®X separabilní metrizovatelný, pak $\dim ®X = \ind ®X = \Ind ®X$.
+
+            Jsou-li ®X, ®Y neprázdné separabilní metrizovatelné, pak $\dim ®X \times ®Y ≤ \dim ®X + \dim ®Y$.
+        \end{veta}
+
+        \begin{veta}
+            Je-li ®X separabilní metrizovatelný prostor, pak existuje metrizovatelná kompaktifikace $\tilde{®X}$, že $\dim ®X = \dim \tilde{®X}$.
+        \end{veta}
+
+        \begin{lemma}[O oddělování]
+            Pokud pro separabilní metrizovatelný prostor ®X je $\dim ®X ≤ n$, pak pro každou posloupnost disjunktních dvojic $(A_1, B_1), …, (A_{n+1}, B_{n+1})$ uzavřených množin existují otevřené množiny $U_1, …, U_{n+1}: A_i \subseteq U_i \subseteq \overline{U_i} \subseteq ®X \setminus B_i$, že $\bigcap_{i = 1}^{n+1} \partial U_i = \O$.
+        \end{lemma}
+
+    \subsection{Dimenze eukleidovských prostorů}
+        \begin{veta}[Bronworova o pevném bodě]
+            Každé spojité zobrazení $f: [0, 1]^n \rightarrow [0, 1]^n$ má pevný bod, tj. $x \in [0, 1]^n: f(x) = x$.
+        \end{veta}
+
+        \begin{veta}
+            $$ \dim [0, 1]^n = \dim ®R^n = n. $$
+
+            \begin{dukazin}[Myšlenka]
+                $\dim [0, 1]^n ≤ n$: Indukcí podle $n$: $n = 1$ je cvičení. Předpokládejme, že $\dim [0, 1]^n ≤ n$, chceme $\dim [0, 1]^{n+1} ≤ n+1$: Otevřené koule (při maximové metrice) v $[0, 1]^{n+1}$ jsou „krychličky“, jejichž hranice jsou sjednocením konečně mnoha množin homeomorfních s $[0, 1]^n$. Ze součtové věty je tedy dimenze hranice každé krychle v $[0, 1]^{n+1}$ nejvýše $n$-dimenzionální. $®R^n$ je spočetným sjednocením prostorů homeomorfních $[0, 1]^n$ tedy ze součtové věty $\dim ®R^n ≤ n$.
+
+                $\dim [0, 1]^n ≥ n$: Ať pro spor $\dim [0, 1]^n ≤ n-1$. $A_i := \{x \in [0, 1]^n | x_i = 0\}$ a $B_i := \{x \in [0, 1]^n | x_i = 1\}$. Zřejmě $\bigcup A_i \cup \bigcup B_i$ tvoří hranici $[0, 1]^n$ v $®R^n$. Podle lemmatu o oddělování existují otevřené množiny $U_1, …, U_n: A_i \subseteq U_i \subseteq \overline{U_i} \subseteq [0, 1]^n \setminus B_i$, $i \in [n]$ a $\partial U_1 \cap … \cap \partial U_n = \O$. Definujme $f_i : [0, 1]^n \rightarrow [0, 1]: f_i(x) = \frac{1}{2}\frac{\rho(x, \partial U_i)}{\rho(x, \partial U_i) + \rho(x, A_i)} + \frac{1}{2}$, pro $x \in U_i$, a $-\frac{1}{2}\frac{\rho(x, \partial U_i)}{\rho(x, \partial U_i) + \rho(x, B_i)} + \frac{1}{2}$ jinak. $f_i$ je spojité, $f(x) = 1$ pro $x \in A_i$, $f(x) = 0$ pro $x \in B_i$. $f_i^{-1}(1/2) = \partial U_i$. $f := f_1 \triangle … \triangle f_n$, $f: [0, 1]^n \rightarrow [0, 1]^n$ spojité. Bod $a = (1/2, …, 1/2)$ neleží v obrazu $f$, protože $\bigcap_{i=1}^n \partial U_i = \O$.
+
+                Ať $g: [0, 1]^n \setminus \{a\} \rightarrow [0, 1]^n$ je projekce z bodu $a$ na $[0, 1]^n$. $g \circ f: [0, 1]^n \rightarrow [0, 1]^n$ spojité, ale nemá pevný bod.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Vnoření do euklidovských prostorů]
+            Separabilní metrizovatelný TPP dimenze $≤ n$ lze vnořit do $®R^{2n+1}$. (Menší dimenze ®R by už nefungovala.)
+
+            Dokonce lze takový prostor vnořit do $\{x \in ®R^{2n+1} | x \text{ má nejvýše $n$ racionálních souřadnic}\}$ (který má dimenzi $n$, takže se mu říká univerzální ?).
+        \end{veta}
 \end{document}

@@ -880,4 +880,122 @@
             $4 \implies 1$: $X$ množina, BÚNO $X ≠ \O$ a $\O \notin X$. 
         \end{dukazin}
     \end{lemma}
+
+% 25. 5. 2021
+
+    \begin{lemma}[AC]
+        Sjednocení (nejvýše) spočetného souboru (nejvýše) spočetných množin je spočetné.
+
+        \begin{dukazin}
+            $\<B_j, j \in J\>$, BÚNO $J = \omega$. Najdeme prosté zobrazení z $\bigcup_{j \in J} B_j$ do $\omega \times \omega$. Uvažujme soubor $\<E_j, j \in \omega\>$, kde $E_j$ je množina všech prostých zobrazení $B_j$ do $\omega$. Z předpokladu $E_j ≠ \O$. Podle Lemma o AC bod 4) je $\times_{j \in \omega} E_j$ je neprázdný. Existuje tedy soubor prostých zobrazení $\<f_j, j \in \omega\>$, kde $f_j \subseteq E_j$.
+
+            Definujeme $h = \bigcup_j B_j \rightarrow \omega \times \omega$ jako $h(x) = (j, f_j(x))$, kde $j$ je $\min\{i | x \in B_i\}$. Toto zobrazení už je zřejmě prosté, tedy $\bigcup_i B_i \preceq \omega \times \omega \approx \omega$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Řetězec]
+        $A$ je množina uspořádaná $≤$. Pak $B \subseteq A$ je řetězec, pokud $B$ je lineárně uspořádaná $≤$.
+    \end{definice}
+
+    \begin{definice}[Zornovo lemma (princip maximality) (PM)]
+        Je-li $A$ množina uspořádaná relací $≤$ tak, že každý řetězec má horní mez, pak $\forall a \in A\ \exists$ maximální prvek $b \in A$ takový, že $a ≤ b$.
+
+        \begin{poznamkain}
+            Ekvivalentní s AC.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Princip maximality II (PMS)]
+        Je-li $A$ množina uspořádaná relací $≤$ tak, že každý řetězec má supremum, pak $\forall a \in A\ \exists$ maximální prvek $b \in A$ takový, že $a ≤ b$.
+        
+        \begin{poznamkain}
+            Taktéž ekvivalentní s AC.
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{definice}[Princip trichotomie relace subvalence (PT)]
+        Pro libovolné množiny $x, y$ platí $x \preceq y$ nebo $y \preceq x$. (Každé dvě množiny dokážeme porovnat podle velikosti.)
+    \end{definice}
+
+    \begin{lemma}
+        (PM) $\implies$ (PT).
+
+        \begin{dukazin}
+                Definujeme $D = \{f | f \text{ prosté zobrazení } \land \Dom(f) ≤ x \land \Rang(f) \subseteq y\}$. $(D, \subseteq)$ splňuje předpoklady (PM). Nechť $g$ je maximální prvek $(D, \subseteq)$: Sporem: Kdyby $x \setminus \Dom(g)$ a $y \setminus \Rang(g)$ byly neprázdné, lze $g$ rozšířit o další dvojici -- spor. Pokud $\Dom(g) = x$, je $x \preceq y$. Pokud $\Rang(g) = y$, pak $g^{-1}i: y \rightarrow x$ je prosté, tedy $y \preceq x$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        Pro každou nekonečnou množinu $x$ platí $\omega \preceq x$.
+    \end{dusledek}
+
+    \begin{definice}[Princip dobrého uspořádání (WO)]
+        Každou množinu lze dobře uspořádat.
+
+        \begin{poznamkain}
+            Také ekvivalentní s AC
+        \end{poznamkain}
+    \end{definice}
+
+    \begin{lemma}
+        (WO) $\implies$ (AC).
+
+        \begin{dukazin}
+            $X ≠ \O$, $\O \notin X$. Použijeme (WO) na $\bigcup X$ a získáme $≤$. Definujeme si (tzv. selektor) $f: X \rightarrow \bigcup x$ jako $f(y) = \min_≤(y)$.
+        \end{dukazin}
+    \end{lemma}
+
+\section{Ordinální čísla}
+    \begin{poznamka}[Historie]
+        Historicky se ordinální čísla definovala jako typy dobře uspořádaných množin.
+
+        Kardinální čísla $\subseteq$ ordinální čísla. Jsou to mohutnosti dobře uspořádaných množin (s AC libovolných množin).
+
+        Ordinální čísla jsou dobře uspořádaná $\in$ a platí pro ně transfinitní indukce.
+    \end{poznamka}
+
+    \begin{definice}[Tranzitivní třída]
+        Třída $X$ je tranzitivní, pokud $x \in ®X \implies x \subseteq X$.
+    \end{definice}
+
+    \begin{lemma}
+        Jsou-li $X, Y$ tranzitivní, pak $X \cap Y$ a $X \cup Y$ jsou tranzitivní.
+
+        Je-li $X$ třída a každý prvek $x \in X$ je tranzitivní množina, pak $\bigcap X$, $\bigcup X$ jsou tranzitivní.
+
+        Je-li $X$ tranzitivní, pak $\in$ je tranzitivní na $X$ $\Leftrightarrow$ každé $x \in ®X$ je tranzitivní množina.
+
+        \begin{dukazin}
+            Cvičení.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Ordinál]
+        Množina $x$ je ordinální číslo (ordinál), pokud $x$ je tranzitivní množina a $\in$ je dobré ostré uspořádání $x$.
+        
+        Třídu všech ordinálních čísel značíme $O_n$.
+    \end{definice}
+
+    \begin{lemma}
+        $O_n$ je tranzitivní třída (prvky ordinálů jsou ordinály).
+
+        \begin{dukazin}
+            Nechť $y \in x \in O_n$. $x$ je ordinální číslo, takže je tranzitivní: $y \subseteq x$, $\in$ je dobré uspořádání na $x$, tedy je to dobré uspořádání i na $y$. Také z toho vyplývá, že $\in$ je tranzitivní na $x$ $\implies$ $y$ je tranzitivní podle předchozího lemma.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        $\in$ je tranzitivní na $O_n$.
+    \end{dusledek}
+
+    \begin{lemma}
+        $x, y \in O_n$, pak 1) $x \notin x$, 2) $x \cap y \in O_n$, 3) $x \in y \Leftrightarrow x \subset y$.
+
+        \begin{dukazin}
+                1) sporem z antireflexivity $\in$ na $x$, 2) přímo z definice, 3) cvičení.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}
+    \end{definice}
 \end{document}

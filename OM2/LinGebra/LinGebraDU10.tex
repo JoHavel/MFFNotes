@@ -1,0 +1,25 @@
+\documentclass[10pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[10.1]
+    Uvažujme reálnou matici $\begin{pmatrix} 3 & 1 & 1 & 1 \\ 1 & 3 & 1 & 1 \\ 1 & 1 & 3 & 1 \end{pmatrix}$.
+
+    Spočítejte singulární rozklady matic $A$, $A^T$, $AA^T$ a $A^TA$.
+
+    \begin{reseni}[Počítáno Wolfram + Matlab]
+        Nejdříve spočítáme singulární rozklad matice $A^* = A^T$: Spočítáme vlastní čísla a vlastní vektory $AA^T$, vlastní čísla jsou $4, 4, 28$, tedy jejich odmocniny jsou $2, 2, 2\sqrt{7}$, odpovídající vlastní vektory (normované k 1) pak $(-1/\sqrt{2}, 1/\sqrt{2}, 0)$, $(-1/\sqrt{2}, 0, 1/\sqrt{2})$ a $(1/\sqrt{3}, 1/\sqrt{3}, 1/\sqrt{3})^T$. To je druhá báze. První spočítáme jako obrazy (násobení maticí) této vynásobené příslušnými odmocninami vlastních čísel, tedy $\frac{5}{2\sqrt{21}}(1, 1, 1, 3/5)$, $\frac{1}{\sqrt{2}}(-1, 0, 1, 0)$ a $\frac{1}{\sqrt{2}}(-1, 1, 0, 0)$.
+
+        První matice přechodu báze má ve sloupcích prostě vektory báze, diagonální matice má na diagonále odmocniny a druhá matice přechodu je inverzní matice k matici, která má ve sloupcích vektory báze. Tedy
+        $$ A^T = A^* = \begin{pmatrix} \frac{5}{2\sqrt{21}} & -\frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}} \\ \frac{5}{2\sqrt{21}} & 0 & \frac{1}{\sqrt{2}} \\ \frac{5}{2\sqrt{21}} & \frac{1}{\sqrt{2}} & 0 \\ \frac{3}{2\sqrt{21}} & 0 & 0 \end{pmatrix} \begin{pmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 2\sqrt{7} \end{pmatrix} \begin{pmatrix} \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{3}} \\ -\frac{\sqrt{2}}{3} & -\frac{\sqrt{2}}{3} & \frac{2 \sqrt{2}}{3} \\ -\frac{\sqrt{2}}{3} & \frac{2 \sqrt{2}}{3} & -\frac{\sqrt{2}}{3} \end{pmatrix} = UDV. $$
+
+        Rozklad matice $A$ je pak jednoduše $\(A^T\)^T = (UDV)^T = V^TDU^T$. 
+    \end{reseni}
+\end{priklad}
+
+\begin{priklad}[9.2]
+    TODO!
+\end{priklad}
+
+\end{document}
