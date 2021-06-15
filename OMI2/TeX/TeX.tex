@@ -440,4 +440,35 @@
         Např. vlajka je kombinující znak na další 2 znaky. Nebo obecné vlajky mají tagy (končící cancel tag), ze kterých se pak poskládá vlajka. Běžící muž používá Zero Width Joiner, které kombinují gender a běh. Barva pleti je zas kombinující znak.
     \end{definice}
 
+% 2. 7. 2021
+
+\section{Fonty}
+    \begin{poznamka}[Historie]
+        Bitmapové fonty.
+
+        Vektorové (= křivkové) fonty -- Adobe: Type1 fonty (kubické Bézierovy křivky) (-> Type2 (CFF)). V reakci na drahé ceny Adobe MicroSoft s Applem vyvinuly TrueType fonty (kvadratické Bézierovy křivky).
+
+        Následně byl přidán ke křivkovým fontům tzv. hinting (napoví se, kterým směrem se má zaokrouhlovat, většinou tak, že se před začátkem kreslení pustí program, který posune řídící body) (druhá možnost je tzv. anti-aliasing, tedy kreslení šedě podle toho, jaká část měla být černá / bílá. Na barevných displejích ještě trik s rozsvícením správných barev\footnote{Místo v první trojici barev rozsvítíme červenou po konci, tedy posloupnost červená, zelená, modrá, červená, zelená, modrá, …, o 1/3 pixelu. Ale musí uspořádání pixelů na displeji sedět.}). Na Hinting byly ale patenty, tedy vznikly automatické hintingy, například FreeType.
+
+        TrueType a Type1 + Type2 (a nejenom ty) se poté spojili v OpenTypu.
+    \end{poznamka}
+
+    \begin{definice}[OpenType]
+        Striktně rozlišuje znaky a glyfy (+ složené glyfy).
+
+        Soubor obsahuje hlavičku + množinu tabulek, nebo je font collection (smí se sdílet tabulky). Základní (téměř 100\% povinné) tabulky jsou: head (měřítko v units per em, globální bounding box), maxp (maximum profile) (obsahuje maximum všech rozměrů a spol. písma), name (jméno fontu), cmap (character map) (překlady znaku na glyf, mnoho variant, dokonce může obsahovat různé tabulky pro různá kódování), hhea (horizontal header) (výšky, hloubky, doporučené řádkování, sklon písma, …) + hmtx (horizontal metrics) (pro každý znak obsahuje posunutí referenčního bodu (advance width) a jak moc doleva od referenčního bodu znak zasahuje (left bearing)).
+
+        Reprezentace glyfů: Type1 (CFF), TrueType, svg (za to může trochu emoji, protože ostatní typy nemají barvy, předchůdcem byly barevné vrstvy), bitmapy.
+
+        Layout: (používá se na kerning, výrobu a rozklad ligatur, kontextové věci (např. korekce akcentů, aby se vešli s okolními písmeny), alternativní tvary) GDEF (global definitions = vlastnosti glyfů, attachment points), GPOS (= pozicování jako kerny apod.) + GSUB (= nahrazovací pravidla).
+
+        Featury layoutu: aalt (access all alternates = vyjmenuj všechny alternativy), calt (contextual alternates = používej alternativy), clig (contextual ligatures), c2sc (caps-to-small caps), cv01-cv99 (pojmenované sady alternativ), dlig (discretionary ligatures = nějaké ligatury navíc), kern + liga (defaultní kernování a ligatury), onum (old-style numbers), rand (randomize = volí náhodně alternativy), salt (stylistic alternates = speciální alternativy), ss01-ss20 (pojmenované sady stylistických alternativ), swsh (swashes = speciální ozdůbky), zero (škrtnutá nula), …
+
+        Variable fonts: osy paramterů (báze VP písem): italic (0-1), slant (= naklonění), optical size (= fyzická velikost), width (= extended), weight (= tloušťka), libovolné další. Lze i pojmenovat některé body. Poté existují přepočty, které přepočtou vše na základě těchto parametrů.
+    \end{definice}
+
+    \begin{definice}[Zkoumání fontů]
+        \verb|ttfdump| (vypíše vše, co o fontu zjistí). \verb|| (převede všechny tabulky do XML).
+    \end{definice}
+
 \end{document}

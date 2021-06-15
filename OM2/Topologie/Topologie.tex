@@ -1023,4 +1023,42 @@
 
             Dokonce lze takový prostor vnořit do $\{x \in ®R^{2n+1} | x \text{ má nejvýše $n$ racionálních souřadnic}\}$ (který má dimenzi $n$, takže se mu říká univerzální ?).
         \end{veta}
+
+% 4. 6. 2021
+
+\section{Hyperprostory}
+
+        \begin{definice}[Hyperprostory]
+            ®X TP. $©K(®X) = \{K \subseteq ®X | K \text{ kompaktní, } K ≠ \O\}$. Na $©K(®X)$ lze zavést přirozeným způsobem topologii. Subbáze této topologie je tvořena množinami
+            $$ \Gamma(U) = \{K \in ©K(®X): K \cap U ≠ \O\}, $$
+            $$ \Lambda(V) = \{K \in ©K(®X) | K \subseteq V\}, $$ 
+            pro $U, V$ otevřené v ®X.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Je-li ®X kompaktní, pak $©K(®X)$ je kompaktní.
+
+            \begin{poznamkain}
+                Opačná implikace je triviální, protože ®X je uzavřený v $©K(®X)$.
+            \end{poznamkain}
+
+            \begin{dukazin}
+                Aplikace Alexandrovova lemmatu: Ať $\{\Gamma(U_i), \Lambda(V_j) | i \in I, j \in J\}$ je pokrytí $©K(®X)$. Chceme vybrat konečné podpokrytí. $U:= \bigcup_{i \in I}U_i$ je otevřené. $F := ®X \setminus U$ uzavřená. Tedy $F$ je kompaktní. Buď $F = \O$, tak $\{U_i | i \in I\}$ je pokrytí ®X, lze z něj tedy vybrat konečné podpokrytí $U_1, …, U_n$ a $\{\Gamma(U_i): i \in [n]\}$ je pokrytí $©K(®X)$. Nebo $F ≠ \O$, tedy $F \in ©K(®X)$ a $F \notin \Gamma(U_i)$ pro žádné $i \in I$. $\exists j \in J: F \in \Gamma(V_j)$. Tedy $F \subseteq V_j$.
+
+                $M:= ®X \setminus V_j \subseteq U$ je uzavřená, tedy kompaktní, $M \subseteq \bigcup_{i \in I} U_i$, $\exists i_1, …, i_n$, že $M \subseteq U_{i_1} \cup … \cup U_{i_n}$. Tvrdíme, že $\Gamma(U_{i_1}) \cup … \cup \Gamma(U_{i_n}) \cup \Lambda(V_j) = ©K(®X)$: Ať $K \in ©K(®X)$, pak $K \subseteq V_j \implies K \in \Lambda(V_j)$, $K \notin V_j \implies K \cup M ≠ \O. \exists i_r: K \cap U_{i_r} ≠ \O$, Tedy $©K(®X)$ je kompaktní podle A. lemmatu.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{tvrzeni}
+            Je-li ®X kontinuum, pak $©K(®X)$ je kontinuum.
+
+            Je-li ®X úplně metrizovatelný, pak $©K(®X)$ je úplně metrizovatelný.
+        \end{tvrzeni}
+
+        \begin{poznamka}
+            $®Q = [0, 1]^{®N}$. Každý kompaktní metrický prostor lze vnořit do ®Q. Tedy $©K(®Q)$ obsahuje (jako body) topologické kopie všech kompaktních metrických prostorů.
+
+            Nejčastější prostor je Cantorovo diskontinuum.
+        \end{poznamka}
+
 \end{document}

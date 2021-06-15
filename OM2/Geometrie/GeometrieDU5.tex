@@ -1,0 +1,66 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+    $$ H := \{x + iy \in ®C | y > 0\} \subset ®C = ®R^2. $$
+    $$ g_{(x, y)}^H = \frac{1}{y^2} \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}. $$ 
+
+\begin{priklad}[5.1]
+    Označme $G_0 \subseteq G$ podgrupu všech Möbiových transformací, které zachovávají Riemannovu plochu $H$. Ukažte, že každý prvek $G_0$ je izometrie $H$ na $H$.
+
+    \begin{dukazin}
+        Podle návodu je $G_0$ generována prvky $ \phi_a(z) = z + a, a \in ®R; \phi_b(z) = bz; b > 0; \phi(z) = -\frac{1}{z}. $
+        Posunutí ($\phi_a$) a „natažení“ ($\phi_b$) jsou jednoduše\footnote{Dále pokračuje intuitivní zdůvodnění, ale dalo by se to dokázat stejně jako dále třetí „typ“ zobrazení.} izometrie, jelikož posunutí ve směru osy $x$ nijak nedeformuje tečné prostory a metrika není závislá na $x$. Natažení „natáhne $b$-krát tečné prostory“, tedy $(g_{\phi_b(z)}^H)(T_z\phi(X), T_z\phi(Y)) = \frac{1}{b^2}(g_z^H)(bX, bY) = 1·(g_z^H)(X, Y). $
+
+        Třetí zobrazení je trochu obtížnější. Nejdříve se podíváme, jak vypadá $\phi$:
+        $$ \phi(x + yi) = \frac{-1}{x + yi} = \frac{-x + yi}{x^2 + y^2} = \frac{-x}{x^2 + y^2} + \frac{y}{x^2 + y^2}i. $$
+        Tedy
+        $$ g_{\phi(x, y)^H} = \(\frac{1}{x^2 + y^2}\)^{-2}g_{(x, y)} = (x^2 + y^2)^2g_{(x, y)}. $$
+        Navíc z přednášky víme, že matice tečného zobrazení daného $\phi$ vzhledem k bázi určené mapou $(H, \id: H \rightarrow ®R^3)$ na $H$ je Jacobiho matice, tj.
+        $$ \begin{pmatrix} \frac{2x^2}{(x^2 + y^2)^2} - \frac{1}{x^2 + y^2} & \frac{2xy}{(x^2 + y^2)^2} \\ \frac{-2yx}{(x^2 + y^2)^2} & \frac{2x^2}{(x^2 + y^2)^2} - \frac{1}{x^2 + y^2} \end{pmatrix} = \frac{1}{(x^2 + y^2)^2} \begin{pmatrix} x^2 - y^2 & +2xy \\ -2xy & x^2 - y^2 \end{pmatrix}. $$
+        
+        Jelikož diagonální matice komutuje, tak
+        $$ g_{\phi(x, y)}^H(T_{(x, y)} \phi(X), T_{(x, y)} \phi(Y)) = (\Jac(\phi)Y)^T((x^2 + y^2)^2g_{(x, y)}^H)(\Jac(\phi)X) = $$
+        $$ = Y^Tg_{(x, y)}^H(x^2 + y^2)^2\Jac(\phi)^T\Jac(\phi)X. $$
+        Aby
+        $$ g_{\phi(x, y)}^H(T_{(x, y)} \phi(X), T_{(x, y)} \phi(Y)) = Y^Tg^H_{(x, y)}X = g_{(x, y)}^H(X, Y) $$ 
+        potřebujeme tudíž dokázat $(x^2 + y^2)^2\Jac(\phi)^T\Jac(\phi) = I_2$.
+        $$ (x^2 + y^2)^2\Jac(\phi)^T\Jac(\phi) = (x^2 + y^2)^{-2} \begin{pmatrix} x^2 - y^2 & -2xy \\ +2xy & x^2 - y^2 \end{pmatrix} \begin{pmatrix} x^2 - y^2 & +2xy \\ -2xy & x^2 - y^2 \end{pmatrix} = $$ 
+        $$ (x^2 + y^2)^{-2} \begin{pmatrix} x^4 - 2x^2y^2 + y^4 + 4y^2x^2 & 0 \\ 0 & x^4 - 2x^2y^2 + y^4 + 4x^2y^2 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}. $$
+        \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[5.2]
+    1. Ukažte, že grupa $G_0$ působí tranzitivně na $H$. 2. Ukažte, že každou přímku v $H$ lze převést na průnik osy $y$ s prostorem $H$.
+
+    \begin{dukazin}
+        1. Nechť $x + yi$ je bod $H$, potom $\phi_{a = -x}$ zobrazuje tento bod na $yi$ a $\phi_{b = 1/y}$ následně na $i$. Jelikož $G_0$ je grupa, tak složení je její součástí a inverze je její součástí, tj. každý bod lze převést na $i$ a $i$ lze převést na každý bod. Tedy každý bod lze nějakým prvkem $G_0$ zobrazit na libovolný jiný, tj. $G_0$ působí na $H$ tranzitivně.
+
+        2. Libovolnou „svislou“ přímku zobrazíme posunutím ($\phi_a$) na osu $y \cap H$. Kružnici pak zobrazíme nejprve posunutím ($\phi_a$) tak, aby „procházela“ počátkem a následně ji „skoro kruhovou inverzí“ (kruhová inverze až na překlopení podle osy $y$) ($\phi$) zobrazíme na svislou přímku, kterou už umíme převést.
+    \end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[5.3]
+    Ukažte, že plocha $|\triangle|$ hyperbolického trojúhelníka v $H$ se vypočte vzorcem
+    $$ |\triangle| = \pi - (\alpha + \beta + \gamma), $$
+    kde $\alpha, \beta, \gamma$ jsou úhly trojúhelníka $\triangle$.
+
+    \begin{dukazin}
+        Začneme s trojúhelníky $(\cos(\pi − \alpha), \sin(\pi−\alpha))$; $(\cos \beta, \sin \beta)$; $∞$, kde  $0≤ \beta < \pi − \alpha ≤ \pi$. Obsah trojúhelníku je roven
+        $$ \!\!\int_{\triangle} 1 dS = \!\!\int_{¦p^{-1}(\triangle)} \sqrt{\det g_{(x, y)}^H} d(x, y) = \!\!\int_{¦p^{-1}(\triangle)} \sqrt{\det \begin{pmatrix} 1/y^2 & 0 \\ 0 & 1/y^2 \end{pmatrix}} d(x, y) = \!\!\int_{¦p^{-1}(\triangle)} \frac{1}{y^2} d(x, y), $$
+        což je podle Fubiniovy věty rovno\footnote{Označení pod integrály je třeba brát s rezervou. Je rovno výrazu, který z něho vznikne po integraci jako meze, abych je pořád neopisoval.}
+        $$ \int_{¦p^{-1}(\triangle)_x} \int_{¦p^{-1}(\triangle(x))_y} \frac{1}{y^2} dy\, dx = \int_{¦p^{-1}(\triangle)_x} \[-\frac{1}{y}\]_{\sqrt{1-x^2}}^∞ dx = -\int_{¦p^{-1}(\triangle)_x}-\frac{1}{\sqrt{1-x^2}} dx = $$
+        $$ = -[\arccos(x)]_{\cos(\pi - \alpha)}^\beta = \pi - \alpha - \beta (-\, 0). $$
+        Následně si snadno rozmyslíme, že úhly $\alpha, \beta, \gamma = 0$ opravdu odpovídají úhlům daného trojúhelníku.
+
+        Pro každý trojúhelník lze zvolit (podle příkladu 2) izometrii tak, aby se jedna (dokonce libovolná) z jeho stran zobrazila na „svislou“ úsečku. BÚNO je tato strana $CA$ a $C$ leží výše. Potom obsah tohoto trojúhelníka (a díky tomu, že jsme použili izometrii, i původního trojúhelníka) jako rozdíl obsahů trojúhelníků $AB∞$ a $CB∞$, tedy $\pi - \alpha - (\beta + \beta')$ a $\pi - (\pi - \gamma) - \beta' = \gamma + \beta'$ (protože trojúhelník $CB∞$ má u vrcholu $C$ opačný úhel než trojúhelník $ABC$ a u vrcholu $B$ má přesně to ($\beta'$), co přebývá $AB∞$ oproti $ABC$ u vrcholu $B$). Tedy
+        $$ |\triangle| = \pi - (\alpha + \beta + \gamma). $$ 
+    \end{dukazin}
+\end{priklad}
+
+\end{document}

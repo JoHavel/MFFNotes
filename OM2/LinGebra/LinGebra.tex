@@ -1155,4 +1155,35 @@
                 \end{dukazin}
             \end{enumerate}
         \end{veta}
+
+% 2. 6. 2021
+
+        \begin{tvrzeni}
+            Buď ¦V konečně generovaný reálný vektorový prostor se $<·, ·>$. Buď $f: ¦V \times ¦V \rightarrow ®R$ symetrická bilineární forma. Pak existuje ortonormální (vzhledem k $<·,·>$) báze $B$, která je zároveň $f$-ortogonální (tj. $[f]_B$ je diagonální).
+
+            \begin{dukazin}
+                    Vezmeme si nejprve nějakou ortonormální bázi $C$ prostoru ¦V. Položme $A = [f]_C$, tj. $A \in ®R^{n \times n}$ symetrická ($n = \dim ¦V$). Pak $\exists U \in ®R^{n \times n}$ ortogonální ($U^TU = I_n = UU^T$) taková, že $U^TAU = \diag(\lambda_1, …, \lambda_n)$. Zvolíme bázi $B = (¦v_1, …, ¦v_n)$ takovou, že $U = [f]_C^B$, tj. $U = ([¦v_1]_C|…)$. Tj. $[f]_B = \diag(\lambda_1, …, \lambda_n)$, čili $B$ je $f$-ortogonální, a protože $C$ je ortonormální a $U$ je ortogonální, je i $B$ ortonormální.
+            \end{dukazin}
+        \end{tvrzeni}
+
+\section{Shodná zobrazení v $®R^n$}
+    \begin{definice}[Shodné zobrazení]
+        Zobrazení $g: ®R^n \rightarrow ®R^n$ je shodné zobrazení (též shodnost), pokud $\forall ¦u, ¦v \in ®R^n: ||g(¦u) - g(¦v)|| = ||¦u - ¦v||$.
+    \end{definice}
+
+    \begin{veta}
+        Zobrazení $g: ®R^n - ®R^n$ je shodnost, právě když $g$ je dáno předpisem $g(u) = An + p$, kde $¦p \in ®R^n$ a $A \in ®R^{n \times n}$ je ortogonální matice.
+
+        \begin{dukazin}
+            $$ \forall ¦u: g(¦u) = A¦u + ¦p \implies g \text{ shodnost. Cvičení.} $$ 
+
+            $g$ shodnost $\implies$ $\exists A, ¦p\ \forall n: g(n) = An + ¦p$: Položíme $p:= g(¦o) \in ®R^n$. Uvažujme shodnost $h: ®R^n \rightarrow ®R^n$, $¦u \mapsto g(¦u) - ¦p$, $¦o \mapsto ¦o$. Chceme ukázat, že $h$ je ortogonální (lineární!) zobrazení. Ukážeme $\forall ¦uL ||h(¦u)|| = ||h(¦u) - h(¦o)|| = ||¦u - ¦o|| = ||¦u||$. $\forall ¦u, v: h(¦u)·h(¦v) = \frac{1}{2}(||h(¦u)||^2 + ||h(¦v)||^2 - ||h(¦u) - h(¦v)||^2)$ $= \frac{1}{2}(||¦u||^2 + ||¦v||^2 - ||¦u - ¦v||^2) = ¦u·¦v$ $\implies$ $(h(¦e_1), …, h(¦e_n))$ ortonormální báze $®R^n$. $h(¦e_i) = ¦v_i$.
+
+            Položíme $A = (¦v_1|…|¦v_n)$ (nutně ortogonální matice). TODO.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        $g$ shodnost $\implies$ $g$ bijekce a $g^{-1}$ shodnost.
+    \end{dusledek}
 \end{document}

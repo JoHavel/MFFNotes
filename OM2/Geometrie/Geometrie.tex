@@ -62,4 +62,262 @@
         \end{dukazin}
     \end{veta}
 
+% 27. 4. 2021
+
+    \begin{poznamka}[Označení]
+        Nechť $F: \Omega \subseteq ®R^m \rightarrow ®R^n$ je diferencovatelné (spojité), pak diferenciál $dF$ je nejlepší lineární přiblížení, tedy $dF: ®R^m \rightarrow ®R^n$ lineární, $||F(x + a) - F(a) - dF_x(a)|| \rightarrow 0$.
+    \end{poznamka}
+
+    \begin{veta}[Diferenciál složeného zobrazení]
+        Pokud $F: U \rightarrow ®R^n$, $F:V \rightarrow ®R^k$, $U \subseteq ®R^m$ otevřená, $V \subseteq ®R^n$ otevřená. Potom
+        $$ d(F \circ G) = dF_{G(x)} \circ dF_x. $$ 
+    \end{veta}
+
+    \begin{definice}
+        Je-li $S \subset ®R^3$ plocha, $\forall x \in S: T_xS \subseteq ®R^3$. Definujeme bilineární formu $I_x$ na $T_xS$ předpisem
+        $$ \forall ¦u, ¦v \in T_xS I_x(¦u, ¦v) = ¦u·¦v. $$
+        $I_x$ je positivně definitní forma, kterou nazveme první fundamentální forma $S$.
+
+        Vzor $I_x$, $x = p(¦u)$, $u \in O$ při zobrazení $d®p_u: ®R^2 \rightarrow T_xS$ budeme značit $g_u$. Je to bilineárně symetrická forma
+        $$ a, b \in ®R^2: g_n(a, b) := I_x(d®p_u(a), d®p_u(b)). $$
+        Tato forma odpovídá gramově matici (značme ji $g_u$) $(®p_{u_1}, ®p_{u_2})$. 
+    \end{definice}
+
+    \begin{dusledek}[Délka křivky]
+        $c: I \subseteq ®R \rightarrow S$, $I$ interval. Potom délka křivky $c$ na ploše je
+        $$ L(c) = \int_I \sqrt{I_{c(t)}(c'(t), c'(t))}dt. $$
+    \end{dusledek}
+
+    \begin{lemma}
+        $$ L(c) = \int_I g_u (d'(t), d'(t)). $$
+    \end{lemma}
+
+    \begin{lemma}
+        Je-li $®P: o \rightarrow S$ mapa, $W \subseteq ®p(o)$ borelovská podmnožina, potom
+        $$ S(W) = \int_{®p^{-1}(W)} \sqrt{\det g_u} du = \int_{®p^{-1}(W)} 1·dS. $$
+    \end{lemma}
+
+    \subsection{Hladké (diferencovatelné) zobrazení, tečné zobrazení}
+        \begin{definice}
+            Jsou-li $S$ a $S'$ dvě plochy v $®R^3$ a $\Phi: S \rightarrow S'$, řekneme, že $\Phi$ je diferencovatelné, jestliže $\Phi \circ ®p$ je diferencovatelné $\forall$ mapu ®p na $S$.
+
+            Pak definujeme diferenciál $\Phi$ v bodě $x \in S$ jako $d\Phi_x := d(\Phi \circ ®p)_u \circ (d®p_u)^{-1}: T_xS \rightarrow ®R^3$.
+        \end{definice}
+
+% 4. 5. 2021
+    
+        \begin{definice}
+            Pokud $\phi: S \rightarrow S'$ je diferencovatelné, pak definujeme $T_S \phi: T_SS \rightarrow T_{\phi(S)S'}$ tečné zobrazení předpisem $c:(-k, k) \rightarrow S$, $c(0) = S$, $c'(0) = \nu$, $\nu \in T_SS$, pak $T_S\phi(\nu) = \frac{d}{dt}|_0 (\phi \circ c) = w \in T_{\phi(S)}S'$.
+        \end{definice}
+
+        \begin{lemma}
+            1) $T_S \Phi$ je dobře definované. 2) $T_S \Phi$ je lineární. 3) Pokud $s \in S$ patří do $®p(u)$, $s \in ®p(o)$, ®p mapa, $\Phi(s) \in S'$ patří do $®p'(o')$, pak matice tečného zobrazení $T_s \Phi$ vzhledem k bázím určeným mapami $®p$ a $®p'$ je Jacobiho matice zobrazení $\Phi$.
+        \end{lemma}
+
+        \begin{lemma}
+            Pokud $S \overset{\phi}{\rightarrow} S' \overset{\psi}{\rightarrow} S''$, $\phi, \psi$ diferencovatelné, pak $\psi \circ \phi$ je diferencovatelné a $T_S(\psi \circ \phi) = T_{\phi(S)}\psi \circ T_S \psi$.
+        \end{lemma}
+
+    \subsection{Normála a druhá fundamentální forma}
+        \begin{poznamka}
+            Budeme předpokládat, že plocha $S$ je orientovaná.
+        \end{poznamka}
+
+        TODO
+
+        \begin{definice}
+            Nechť $S$ je plocha s orientací zadanou (Gaussovým) zobrazením $N$. Druhá fundamentální forma $II$ je bilineární forma na $T_SS$ zadaná předpisem
+            $$ X, Y \in T_SS: II_S(X, Y) := I_X(-T_SN(X), Y). $$
+        \end{definice}
+
+        \begin{veta}
+            1) $II_S$ je symetrická. 2) Je-li $p: O \rightarrow S$ mapa na $S$, $s \in p(o)$, pak $II$ má v lokálních souřadnicích daných mapou $p$ tvar
+            $$ II(X, Y) = \sum_{i, j = 1}^2 h_{i, j}\alpha_i\beta_j. $$ 
+        \end{veta}
+
+        \begin{definice}
+            Matice $II$ vzhledem k bázi $\{p_{u_1}, p_{u_2}\}$ je $h=(h_{i, j})_{i, j}$, kde $h_{i, j} = <w(p_{u^i}), p_{u^j}>$.
+        \end{definice}
+
+% 11. 5. 2021
+
+        \begin{veta}[Mensier]
+            Nechť $S$ je orientovaná plocha, $a: I \rightarrow S$ regulární, $I \subseteq ®R$ interval. Nechť $t(s), \kappa(s), n(s)$ jsou tečný vektor, křivost a vektor hlavní normály. Pak
+            $$ II_{c(s)} (t(s), t(s)) = \kappa(s), \cos \beta, $$ 
+            kde $\beta$ je úhel mezi $N(c(s))$ a $n(s)$.
+        \end{veta}
+
+    \subsection{Normálová křivost plochy}
+        \begin{definice}
+            Normálová křivost orientované plochy $S$ v bodě $s \in S$ se definuje jako
+            $$ \Kappa_n(X) := \frac{II(X, X)}{I(X, X)}, \qquad X \in T_sS. $$
+        \end{definice}
+
+        \begin{poznamka}
+            $n = N$, potom z Mensierovy věty je $\Kappa = II(c', c')$ -- geometrická interpretace $II$.
+        \end{poznamka}
+
+        \begin{definice}
+            Minimum a maximum $\Kappa_n$ v $s \in S$ se nazývají hlavní křivosti $S$ v $s$ a odpovídající směry se nazývají hlavní směry.
+        \end{definice}
+
+        \begin{definice}
+            V každém bodě $S$ definujeme 1) Gaussovu křivost jako $K = \Kappa_1·\Kappa_2$ (součin hlavních křivostí), 2) Střední křivost $H = (\Kappa_1 + \Kappa_2)/2$.
+        \end{definice}
+
+        \begin{veta}
+                Jsou-li $\lambda_1 ≠ \lambda_2$ dvě řešení $\det(h_u - \lambda g_u) = 0$ (*) a $\zeta_1 ≠ \zeta_2$ odpovídající řešení $(h_u - \lambda g_u)\zeta = 0$ (**). Pak $g_u(\zeta_1, \zeta_2) = 0$.
+
+            Hlavní směry jsou vlastní vektory ($\zeta_1, \zeta_2$) Weig. zobrazení W a křivosti jsou vlastní čísla ($\lambda_1, \lambda_2$).
+        \end{veta}
+
+        \begin{definice}
+            Mohou nastat tyto případy: 1) Rovnice (*) má jediné řešení $\lambda_1$, pak $\lambda_1 = K_n(x) \forall x \in T_sS$ (každý směr je hlavní směr -- $\lambda_1 = 0$, pak je $s$ tzv. planární bod, $\lambda_1 ≠ 0$, pak je $s$ tzv. kruhový bod.
+
+            2) Rovnice (*) má 2 různá řešení $\lambda_1 < \lambda_2$ hlavní směry $x_1, x_2$ jsou kolmé -- pokud $\lambda_1, \lambda_2 > 0$, pak $s$ je eliptický bod, $\lambda_1·\lambda_2 = 0$, pak je parabolický, nebo $\lambda_1, \lambda_2 < 0$, pak je hyperbolický.
+        \end{definice}
+
+        \begin{veta}
+            Je-li $p: O \rightarrow S$, $p(u) = s \in S$, pak 1) $K(s) = \frac{\det h_u}{\det g_u}$ a 2) $H(s) = \frac{g_u^{11}h_u^{22} + g^{22}_uh^{11}_u - 2g_u^{12}h_u^{12}}{2\det g_u}$.
+        \end{veta}
+
+        \begin{definice}
+            $S$ je orientovaná plocha, $p: O \rightarrow S$ mapa. 1) Křivky $u \mapsto p(u, v)$, $v$ pevné, a $v \mapsto p(u, v)$, $u$ pevné, jsou tzv. parametrické křivky. 2) Regulární křivka $c: I \rightarrow S$ je hlavní křivka, pokud $c'(t)$ je hlavní směr $\forall t \in I$. 3) Nenulový vektor $x \in T_SS$ je asymptotický směr na $S$ v $s$, pokud $II_s(x, x) = 0$. Regulární křivka $c: I \rightarrow S$ se nazývá asymptotická křivka, jestliže $c'(t)$ je asymptotický směr $\forall t \in I$.
+        \end{definice}
+
+        \begin{veta}
+            1) Je-li $K(s)>0$, pak v $s$ neexistuje žádný asymptotický směr.
+
+            2) Je-li $K(S) < 0$, pak v $s$ existují právě 2 zřejmě asymptotické směry.
+            
+            3) Je-li $K(s) = 0$ a $0 = \lambda_1(s) + \lambda_2(s)$, pak $\exists$ právě jeden asymptotický směr a ten je zároveň hlavním.
+
+            4) Je-li $K(S) = 0$ a $0 = \lambda_1(s) = \lambda_2(s) = 0$, pak je každý směr asymptotický.
+        \end{veta}
+
+        \begin{veta}
+            Je-li $p: O \rightarrow S$ a $c(t) = p(u(t), v(t))$ na $S$ je hlavní křivka $\Leftrightarrow$ $\det (TODO) = 0$,
+
+            2) asymptotická křivka $\Leftrightarrow$ $h^{11}(u')^2 + 2h^{12}u'v' + h^{22}(v')^2$.
+        \end{veta}
+
+% 18. 5. 2021
+
+    \subsection{Křivky}
+        \begin{poznamka}[Značení]
+            $$ ¦p_1 := \frac{\partial ¦p}{\partial u^1}. $$
+            $$ a = g^{-1}. $$ 
+        \end{poznamka}
+
+        \begin{lemma}
+            1) $¦p_{ij} = \sum \Gamma_{ij}^k ¦p_k + h^{ij}¦n$.
+
+            2) $¦n_i = - \sum \sum h^{il} a^k_l ¦p_k$.
+        \end{lemma}
+
+        \begin{definice}[Christoffelovy symboly]
+            $\Gamma_{ij}^k = \sum a^{kl} (¦p_{ij}·¦p_l) = \frac{1}{2} \sum a^{kl} (g_j^{il} + g_i^{jl} - g_l^{ij})$.
+        \end{definice}
+
+        \begin{poznamka}
+            Vnitřní vlastnosti plochy jsou ty, které závisí jen na $g^{ij}$. (Tedy např. 1. f. f. je, 2. f. f. není.)
+        \end{poznamka}
+
+        \begin{poznamka}
+            Předpokládejme $¦p(u^1, u^2)$ má 3 spojité parciální derivace. Potom
+            $$ ¦p_{ijk} = ¦p_{ikj}. $$ 
+            Důsledkem je $¦p_{ij} = \sum \Gamma_{ij}^k ¦p_k + h^{ij}¦n$ a derivací
+            $$ \sum_l ((\Gamma^l_{ij})_k¦p_l + \Gamma_{ij}^l¦p_{kl}) + h_k^{ij}¦n + h^{ij}¦n_k = $$ 
+            $$ \sum_l ((\Gamma^l_{ik})_j¦p_l + \Gamma_{ik}^l¦p_{jl}) + h_j^{ik}¦n + h^{ik}¦n_j $$
+            Rozepsáním a porovnáním koeficientů u báze ($¦p_1$, $¦p_2$, ¦n) dostaneme Gaussovu a Codazzi-Mainardovu rovnici.
+        \end{poznamka}
+
+        TODO GCM rovnice.
+
+        \begin{veta}[Bonnet]
+            Je-li $U \subseteq ®R^2$, $g, h$ symetrické $2 \times 2$ matice závislé na $u \in U$ takové, že $g$ je positivně definitní a platí GCM rovnice. Pak existuje parametrická plocha $¦p: U \rightarrow ®R^3$, jejíž 1. a 2. f. f. je právě $g$ a $h$.
+
+            ¦p je jednoznačně určena až na shodnost.
+        \end{veta}
+        
+        \begin{veta}[Theorema egregium (Skvělá obdivuhodná věta)]
+            Gaussova křivost je vnitřní vlastnost plochy.
+        \end{veta}
+
+        \begin{dusledek}
+            Rovina a koule nejsou isometrické.
+        \end{dusledek}
+
+        \begin{tvrzeni}
+            Je-li $S \subset ®R^3$ plocha pro kterou $\Kappa ≡ 0$, pak $\forall s \in S\ \exists u: S$ je isometrická s kusem roviny.
+
+            $\exists$ 2 plochy, které mají kladnou $\Kappa$ v odpovídajících bodech, ale nejsou isometrické.
+        \end{tvrzeni}
+
+    \subsection{Geodetiky}
+        \begin{definice}
+            $S$ plocha v $®R^3$. Regulární křivka $c: I \rightarrow S$ je geodetika na ploše $S$, pokud $\forall t \in I: \det(c'(t), c''(t), N(c(t))) = 0$.
+        \end{definice}
+
+        \begin{poznamka}
+            Bytí geodetikou nezávisí na parametrizaci.
+        \end{poznamka}
+
+% 25. 5. 2021
+
+        \begin{definice}
+            Geodetická křivost křivky je
+            $$ \Kappa_g = \frac{\det(c', c'', N\circ c)}{||c'||^3}, t \in I. $$
+        \end{definice}
+
+        \begin{poznamka}
+            $c$ geodetika $\implies \Kappa_g = 0$. $\Kappa_g$ nezávisí na změně parametrizace, pouze na její orientaci.
+        \end{poznamka}
+
+        \begin{veta}
+            Je-li $c$ regulární křivka na $S$ bez inflexních bodů, pak
+            $$ \Kappa·¦n = \Kappa_n(¦t)¦N + \Kappa_g(¦N \times ¦t), $$ 
+            $$ \Kappa^2 = \Kappa_n^2 (¦t) + \Kappa_g^2. $$ 
+        \end{veta}
+
+        \begin{definice}
+            Nechť $c: I \rightarrow S$, $S$ orientovaná, $¦X: I \rightarrow ®R^3$ vektorové pole. Pak definujeme kovariantní derivace
+            $$ \frac{\nabla ¦X}{dt} := \Pi_s(¦X'(t)), $$ 
+            kde $\Pi_s$ je ortogonální projekce.
+
+            Regulární křivka $c: I \rightarrow S$ je parametrizovaná geodetika, pokud
+            $$ \forall t \in I: \frac{\nabla c}{dt} = 0 $$ 
+        \end{definice}
+
+        \begin{veta}
+            Nechť $c: I \rightarrow S$ je regulární křivka, $S$ orientovaná plocha. Pak jsou ekvivalentní: 1) $c$ je parametrizovaná geodetika, 2) $c''(t)$  je násobek $N(c(t))$, 3) $c$ je geodetika a $||c'(t)||$ je konstantní.
+        \end{veta}
+
+        \begin{veta}
+            Je-li ¦v jednotkový tečný vektor v bodě $s \in S$, $S$ orientovaná, pak $\exists!$ geodetika parametrizovaná obloukem, která prochází bodem $s \in S$ a její tečný vektor v bodě s je ¦v.
+        \end{veta}
+
+
+\section{Hyperbolická geometrie}
+    $$ \Kappa ≡ -1 $$
+    \begin{definice}[Hyperboloid]
+        $$ H_2 = \{ x = (x_1, x_2, x_0) \in ®R^3 | x_0^2 - x_1^2 - x_2^2 = 1 \land x_0 > 0 \}. $$
+
+        $B(x, y) = x_1y_1 + x_2y_2 - x_0y_0$.
+    \end{definice}
+
+% 1. 6. 2021
+
+    \begin{veta}
+        Restrikce $B$ na $T_xH_2$ je pozitivně definitní $\forall x \in H_2$.
+    \end{veta}
+
+    \begin{poznamka}[Značení]
+        $$ SO(2, 1) := \{A \in SL(3, ®R) | B(AX, AY) = B(X, Y) \forall X, Y \in ®R^3\} $$
+    \end{poznamka}
+
+    \begin{veta}
+        $A \in SO(2, 1)$ je izometrie na $H_2$.
+    \end{veta}
+
 \end{document}
