@@ -992,10 +992,117 @@
         $x, y \in O_n$, pak 1) $x \notin x$, 2) $x \cap y \in O_n$, 3) $x \in y \Leftrightarrow x \subset y$.
 
         \begin{dukazin}
-                1) sporem z antireflexivity $\in$ na $x$, 2) přímo z definice, 3) cvičení.
+            1) sporem z antireflexivity $\in$ na $x$, 2) přímo z definice, 3) cvičení.
         \end{dukazin}
     \end{lemma}
 
-    \begin{definice}
+% 1. 6. 2021
+
+    \begin{veta}
+        $\in$ je dobré ostré uspořádání třídy $O_n$.
+
+        \begin{dukazin}
+            $\in$ je ostré uspořádání (víme z dřívějška). Trichotomie: $x, y \in O_n \implies x \cap y \in O_n$. Pro spor předpokládejme, že $x \cap y \subsetneq x, y$. Podle předchozího lemmatu (3. část) $x \cap y \in x, y$, tj. $x \cap y \in x \cap y$, \lightning. Tedy buď $x \cap y = x = y$, pak jsme hotovi, nebo BÚNO $x \cap y = x ≠ y$, pak $x \subset y$ a tedy $x \in y$.
+
+            „Dobrota“: $A \subseteq O_n$, $A ≠ \O$. Zvolíme si $\alpha \in A$. Když je minimální, pak máme hotovo, tedy předpokládejme, že není minimální. $b := \alpha \cap A$, $b \subseteq \alpha$, $b ≠ \O$. $b$ má nejmenší prvek (podmnožina ordinálu), označme ho $\beta$. $\beta$ je minimální v $A$: Sporem $\exists \gamma \in \beta$, $\gamma \in A$, $\beta \in b \subseteq \alpha$, $\alpha$ je tranzitivní, tedy $\gamma \in \alpha$, tedy i $\gamma \in b$. \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        $O_n$ není množina. (Jinak $O_n$ je ordinální číslo, tedy $O_n \in O_n$, \lightning.)
+    \end{dusledek}
+
+    \begin{dusledek}
+        Je-li $X$ vlastní tranzitivní třída, kde $\in$ je dobré ostré uspořádání na $X$, pak $X = O_n$.
+    \end{dusledek}
+
+    \begin{poznamka}[Značení]
+        Ordinály se značí malými řeckými písmeny.
+
+        Místo $\alpha \in \beta$ se píše $\alpha < \beta$. Obdobně $\alpha ≤ \beta$.
+    \end{poznamka}
+
+    \begin{lemma}
+        1) Množina $x \subseteq O_n$ je ordinální číslo $\Leftrightarrow$ $x$ je tranzitivní.
+
+        2) $A \subseteq O_n$, $A ≠ \O$ třída, pak $\bigcap A$ je nejmenší prvek $A$.
+
+        3) $a \subseteq O_n$ množina, pak $\bigcup a \in O_n$ a $\bigcup a = \sup a$.
+    \end{lemma}
+
+    \begin{dusledek}
+        $\omega$ je supremum množiny všech přirozených čísel v $O_n$. ($\omega = \sup \omega$.)
+
+        Konečné ordinály jsou právě přirozená čísla.
+    \end{dusledek}
+
+    \begin{lemma}
+        $\alpha \in O_n$, pak $\alpha \cup \{\alpha\}$ je nejmenší ordinál větší než $\alpha$.
+
+        \begin{dukazin}
+            Z tranzitivity $O_n$ máme $\alpha \subseteq O_n$, tedy $\alpha \cup \{\alpha\} \subseteq O_n$. Je-li $\beta \in \alpha \cup \{\alpha\}$, pak buď $\beta \in \alpha$ nebo $\beta = \alpha$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Následník, předchůdce]
+        $\alpha \cup \{\alpha\}$ se nazývá následník $\alpha$; $\alpha$ je předchůdce $\alpha \cup \{\alpha\}$.
     \end{definice}
+
+    \begin{definice}[Izolovaný, limitní ordinál]
+        $\alpha$ je izolovaný, pokud $\alpha = 0$ nebo $\alpha$ má předchůdce. Jinak se nazývá limitní.
+    \end{definice}
+
+    \begin{veta}
+        Je-li $a$ množina dobře uspořádaná relací $r$, pak existuje právě jedno ordinální číslo $\alpha$ a právě jeden izomorfismus $(a, r)$ na $(\alpha, <)$.
+
+        \begin{definicein}[Typ]
+            $\alpha$ se nazývá typ uspořádání $r$.
+        \end{definicein}
+
+        \begin{poznamkain}
+            Takto definoval ordinální čísla Cantor 1895. (Naše definice je Von Neumann 1923.)
+        \end{poznamkain}
+
+        \begin{dukazin}
+            V dalším semestru (předmět o nekonečných množinách).
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Na $O_n^2 = O_n \times O_n$ lze definovat lexikografické uspořádání, maximo-lexikografické uspořádání, která jsou dobrá a maximo-lexikografické je úzké ($(\leftarrow, x]$ je množina $\forall x$).
+    \end{poznamka}
+
+    \begin{veta}[Princip transfinitní indukce]
+        Je-li $A \subseteq O_n$ třída splňující $(\forall \in O_n) (\alpha \subseteq A \implies \alpha \in A)$, pak $A = O_n$.
+
+        \begin{dukazin}
+            Sporem: předpokládejme, že $O_n \setminus A ≠ \O$, pak díky dobrému uspořádání $O_n$ existuje nejmenší prvek $\alpha \in O_n \setminus A$, tedy každé $\beta \in \alpha$ už je prvek $A$, tedy $\alpha \subseteq A$ a podle předpokladu $\alpha \in A$. \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[PTI 2. verze:]
+        Je-li $A \subseteq O_n$ třída splňující $0 \in A$ a pro každé $\alpha \in O_n: \alpha \in A \implies \alpha \cup \{\alpha\} \in A$ nebo $\alpha \subseteq A \implies \alpha \in A$, pokud $\alpha$ je limitní, pak $A = O_n$.
+    \end{veta}
+
+    \begin{veta}[O konstrukci transfinitní rekurzí]
+        Je-li $G: V \rightarrow V$ třídové zobrazení, pak existuje právě jedno (třídové) zobrazení $F: O_n \rightarrow V$ splňující $\forall \alpha \in O_n: F(\alpha) = G(F|_\alpha)$. (Další varianty jsou $F(\alpha = G(F[\alpha]))$, $F(\alpha) = G(\alpha, F|_\alpha)$, jiné varianty pro limitní a pro izolované).
+
+        \begin{dukazin}
+            Transfinitní indukcí a Axiomem nahrazení -> v navazujícím předmětu.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dukazin}[AC $\implies$ WO, náznak]
+        $A$ množina, $g$ selektor na $©P(A)$. $f(0) = g(A)$, $f(\beta) = g(A \setminus f[\beta])$.
+    \end{dukazin}
+
+    \begin{priklad}[Pro zajímavost]
+        $®R^3$ je disjunktní sjednocení jednotkových kružnic.
+
+        \begin{dukazin}
+            Očíslují se všechny body v $®R^3$ pomocí ordinálních čísel. Potom sestrojíme soubor $\<C_\alpha, \alpha < 2^{\omega}\>$ disjunktních jednotkových kružnic (a prázdných množin) tak, že $x_\alpha \in C_\alpha$ nebo $x_\alpha \in \bigcup_{\beta \subseteq \alpha} C_\beta$.
+
+            $C_\alpha$ definujeme rekurzivně. Protože $\alpha < |®R|$, tak vždy najdeme rovinu bez kružnice a na ní kružnici, která neprotíná žádnou jinou (každá kružnice protínající tuto rovinu nám zakáže maximálně 2 kružnice).
+        \end{dukazin}
+    \end{priklad}
 \end{document}

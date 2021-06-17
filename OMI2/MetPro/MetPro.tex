@@ -658,4 +658,224 @@
         Pro každý neprázdný kompaktní MP $(®X, \rho)$ existuje spojitá surjekce $f: C \rightarrow ®X$. Pro každý separabilní MP $(®Y, \sigma)$ existuje spojitá $g: ®Y \rightarrow Q$, že $g: ®Y \rightarrow g(®Y)$ je homeomorfismus. 
     \end{veta}
 
+% 28. 5. 2021
+
+\section{Souvislost}
+    \begin{definice}[Souvislý prostor]
+        MP $(®X, \rho)$ se nazývá souvislý, pokud $®X ≠ \O$ a pokud $®X = U \cup V$ pro $U, V$ otevřené, neprázdné, pak $U \cap V ≠ \O$.
+    \end{definice}
+
+    \begin{poznamka}
+        $(®X, \rho)$ není souvislý, právě když $®X = \O$ nebo $®X = U \cup V$, že $U \cap V = \O$, $U, V$ otevřené neprázdné. (Tj. existuje obojetná množina $ ≠ \O, ®X$.)
+
+        Souvislost je topologický pojem.
+    \end{poznamka}
+
+    \begin{veta}[Charakterizace souvislosti]
+        Pro neprázdný MP $(®X, \rho)$ je ekvivalentní: 1) ®X je souvislý, 2) ®X má právě 2 obojetné podmnožiny, 3) je-li $f: ®X \rightarrow [0, 1]$ spojitá a $f(®X) \supseteq \{0, 1\}$, pak je $f$ na.
+
+        \begin{dukazin}
+            $1) \implies 2):$ $\O, ®X$ jsou vždy obojetné, $®X ≠ \O$. Kdyby existovala obojetná $A \subsetneq ®X$, pak $A ≠ \O, ®X$, $®X \setminus A ≠ \O, ®X$, pak $®X = A \cup (®X \setminus A)$ je sjednocení dvou otevřených neprázdných disjunktních množin, tedy spor se souvislostí.
+
+            $2) \implies 3):$ Ať $f: ®X \rightarrow [0, 1]$ je spojitá, $f(®X) \supseteq \{0, 1\}$. Ať $\exists r \in (0, 1): f^{-1}(r) = \O$. Intervaly $[0, r)$ a $(r, 1]$ jsou otevřené množiny v $[0, 1]$, tedy i jejich vzory (neprázdné disjunktní množiny) jsou otevřené. Tj. $®X = f^{-1}([0, 1]) = f^{-1}([0, r)) \cup f^{-1}(r) \cup f^{-1}((r, 1]) = f^{-1}([0, r)) \cup f^{-1}((r, 1])$. A tedy $\O, ®X, f^{-1}((r, 1]), f^{-1}([0, r))$ jsou obojetné množiny. \lightning.
+
+            $3) \implies 1):$ Ať $®X = U \cup V$, kde $U, V$ jsou otevřené neprázdné. Chceme $U \cap V ≠ \O$. Sporem: $U \cap V = \O$. Definujeme $f: ®X \rightarrow [0, 1]$, $f(x) = 0$, $x \in U$ a $f(x) = 1$, $x \in V$. $f$ je spojitá, jelikož $f^{-1}(G) \in \{\O, ®X, U, V\}$, pro $G \subseteq [0, 1]$, což jsou otevřené množiny. $f$ tedy nenabývá např. hodnoty $1/2$. \lightning.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        $[0, 1]$ je souvislá.
+
+        \begin{dukazin}
+            Každá spojitá funkce $f: [0, 1] \rightarrow [0, 1]$ má Darbouxovu vlastnost, tedy z předchozí charakterizace je $[0, 1]$ souvislá.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{veta}
+        Ať $(®X, \rho)$ je MP a ať pro každou dvojici $a, b \in ®X$ existuje souvislá množina $S(a, b)$, že $S(a, b) \supseteq \{a, b\}$. Pak ®X je souvislý.
+
+        \begin{dukazin}
+            Sporem: $®X = U \cup V$, $U ≠ \O ≠ V$, $U, V$ otevřené, $U \cap V = \O$. Ať $a \in U, b \in V$ libovolné. $S(a, b)$ je souvislá, ale $S(a, b) = (S(a, b) \cap U) \cup (S(a, b) \cap V)$, což jsou otevřené neprázdné (obsahují $a$ a $b$), tedy máme spor se souvislostí $S(a, b)$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Ať $(®X, \rho)$ je MP a ©S je soubor nějakých souvislých podmnožin ®X, pro který je $\bigcap ©S ≠ \O$, pak $\bigcup ©S$ je souvislý podprostor ®X.
+
+        \begin{dukazin}
+                Ať $U, V$ jsou otevřené v $\bigcup ©S$ a $U \cap V = \O$. Chceme dokázat $U = \O$ nebo $V = \O$. Fixujeme $x_0 \in \bigcap ©S$. BÚNO $x_0 \in U$. Pro libovolné $y \in \bigcup ©S$ existuje $S \in ©S: y \in S$. $S = (S \cap U) \cup (S \cap V)$, což jsou otevřené množiny a $S \cap U$ neprázdná, tedy $S \cap V = \O$, jelikož $S$ je souvislá. Tudíž $S \subseteq U$. Celkově $\bigcup ©S \subseteq U$. Tedy $V = \O$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        Je-li $A$ souvislá podmnožina MP $(®X, \rho)$, pak každá množina $M$, splňující $A \subseteq M \subseteq \overline{A}$, je souvislá.
+
+        \begin{dukazin}
+            Ať $x \in \overline{A} \setminus A$. Ukážeme, že $A \cup \{x\}$ je souvislá: Ať $A \cup \{x\} = U \cup V$, kde $U, V$ jsou disjunktní otevřené v $A \cup \{x\}$. BÚNO $x \in U$. $U$ otevřená, $x \in \overline{A}$, tedy $A \cap U ≠ \O$.
+
+            $A = (A \cap V) \cup (A \cap U)$, kde $A \cap U ≠ \O$ a $A \cap V = V$ jsou otevřené množiny, tedy $V = \O$. Tedy $A \cup \{x\}$ je souvislá.
+
+            Ať $M$ splňuje předpoklady, $©S := \{A \cup \{x\} | x \in M\}$. $\bigcup ©S = M$, $\bigcap ©S = A ≠ \O$, tedy $M$ je souvislá.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{veta}
+        Obraz souvislého MP při spojitém zobrazení je souvislý prostor.
+
+        \begin{dukazin}
+            Ať $f: (®X, \rho) \rightarrow (®Y, \sigma)$ na a $(®X, \rho)$ souvislý. Chceme, že ®Y je souvislý. Ať $g: ®Y \rightarrow [0, 1]$ je spojitá a $g(®Y) \supseteq \{0, 1\}$. Chceme $g$ je na. Ale $h := g \circ f$ je spojité a zjevně na $[0, 1]$ podle charakterizace souvislosti, tedy podle char. souv. $g$ je na.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}
+        Ať $(®X, \rho)$ je MP. Množina $M \subseteq ®X$ se nazývá oblouk, pokud $M$ je homeomorfní s $[0, 1]$.
+
+        Body $h(0), h(1)$ se nazývají krajní body oblouku $M$. 
+
+        Prostor $(®X, \rho)$ se nazývá obloukově souvislý, pokud $\forall x, y \in ®X, x ≠ y$ existuje $M \subseteq ®X$ oblouk s krajními body $x$ a $y$.
+    \end{definice}
+
+    \begin{dusledek}
+        Každý obloukově souvislý prostor ®X je souvislý.
+
+        \begin{dukazin}
+            $\forall a, b \in X$, $S(a, b) = \{a\}$, pokud $a = b$, nebo $S(a, b) = $ oblouk s krajními body $a, b$. Z předchozích vět je tak ®X souvislý.
+        \end{dukazin}
+    \end{dusledek}
+
+    \begin{definice}
+        Ať $(®X, \rho)$ je MP. Množina $C_x$ se nazývá komponenta (souvislosti) bodu $x$ v prostoru ®X, pokud $C_x$ je největší souvislá podmnožina ®X obsahující $x$.
+
+        \begin{dukazin}[Korektnost „největší“]
+            Z předchozích vět víme, že pokud vezmeme souvislé množiny obsahující bod $x$, tak jejich sjednocení je souvislé.
+        \end{dukazin}
+    \end{definice}
+
+    \begin{poznamka}
+        $\{C_x | x \in ®X\}$ tvoří rozklad MP $(®X, \rho)$.
+    \end{poznamka}
+
+    \begin{definice}
+        Souvislý kompaktní MP se nazývá kontinuum.
+    \end{definice}
+
+    \begin{poznamka}
+        Kontinuum je topologický pojem.
+
+        Spojitý obraz kontinua je kontinuum.
+    \end{poznamka}
+
+    \begin{veta}
+        Ať $K_n$ je kontinuum pro každé $n \in ®N$.
+        $$ K_1 \supseteq K_2 \supseteq …  $$
+        Pak $\bigcap_{n=1}^∞ K_n$ je kontinuum.
+
+        \begin{dukazin}
+            Každé $K_n$ je kompaktní, tedy uzavřené v $K_1$. $\bigcap_{i=1}^∞ K_i$ je uzavřená v $K_1$, $K_1$ kompaktní, tedy $\bigcap_{i=1}^∞ K_i$ je kompaktní.
+
+            Souvislost $K:= \bigcup_{i = 1}^∞ K_i$: Ať pro spor $K$ není souvislé: $K = A \cup B$, $A, B$ jsou otevřené v $K$, $A ≠ \O ≠ B$, $A \cap B = \O$. $\exists U, v$ otevřené disjunktní v $K_1$, že $U \cap K = A$, $V \cap K = B$. $K \subseteq U \cup V$ otevřené v $K_1$. Tvrdíme, že existuje $n \in ®N: K_n \subseteq U \cup V$. To dokážeme sporem: kdyby ne, $K_n \setminus (U \cup V) ≠ \O, n \in ®N$. $F_n := K_n \setminus (U \cup V)$ kompaktní neprázdný, $F_{n+1} \subseteq F_1$. Pak $\bigcap_{n=1}^∞ F_n ≠ \O$, protože $\{F_n | n \in ®N\}$ má konečnou průnikovou vlastnost. $x \in \bigcap F_n \subseteq \bigcap K_n$, $x \in K_n \setminus (U \cup V)$, Spor s $K \subseteq U \cup V$.
+
+            Tedy $K_n = (K_n \cap U) \cup (K_n \cap V)$, což jsou neprázdné otevřené (v $K_n$) disjunktní množiny. \lightning.
+        \end{dukazin}
+    \end{veta}
+
+% 4. 6. 2021
+
+\section{Hausdorffova metrika}
+    \begin{poznamka}[Značení]
+        Ať ®X je MP. Označíme
+        $$ \kappa(X) = \{K \subseteq ®X | K ≠ \O, K \text{ kompaktní}\}. $$
+    \end{poznamka}
+
+    \begin{definice}
+        Pro MP $(®X, \rho)$ definujeme $\rho_H: \kappa(®X)\times \kappa(®X) \rightarrow ®R$,
+        $$ \rho_H(A, B) = \max\{\sup_{x \in A}\dist_\rho(x, B), \sup_{x \in B}\dist_\rho(x, A)\}. $$
+        $\rho_H$ se nazývá Hausdorffova metrika, $(\kappa(®X), \rho_H)$ se nazývá hyperprostor.
+    \end{definice}
+
+    \begin{veta}
+        $\rho_H$ je metrika na $\kappa(®X)$.
+
+        \begin{dukazin}
+            Ať $A \in \kappa(®X): \rho_H(A, A) = 0$.
+
+            Ať $A, B \in \kappa(®X)$, $A ≠ B$, $\rho_H(A, B) \overset{?}{>} 0$. $(A \setminus B) \cup (B \setminus A) ≠ \O$. Ať $x \in (A \setminus B) \cup (B \setminus A)$. $\rho(x, A) > 0$ nebo $\rho(x, B) > 0$. Tedy $\rho_H(A, B) > 0$.
+
+            Symetrie je triviální.
+
+            Pomocné tvrzení: Ať $C \in \kappa(®X)$, $x, y \in ®X$. Pak $\rho(x, C) ≤ \rho(x, y) + \rho(y, C)$. Důkaz: Je-li $c \in C: \rho(x, c) ≤ \rho(x, y) + \rho(y, c)$. Přejdeme k infimu: $\rho(x, C) ≤ \rho(x, y) + \rho(y, C)$.
+
+            Ať $A, B, C \in \kappa(®X)$. Pro $a \in A$, $b \in B$: $\rho(a, C) ≤ \rho(a, b) + \rho(b, C) ≤ \rho(a, b) + \rho_H(B, C)$. Přejdeme k infimu:
+            $$ \rho(a, C) ≤ \rho(a, B) + \rho_H(B, C) ≤ \rho_H(A, B) + \rho_H(B, C). $$
+            To platí pro všechna $a \in A$, tedy přejdeme k supremu:
+            $$ \sup_{a \in A} \rho(a, C) ≤ \rho_H(A, B) + \rho_H(B, C). $$
+            Analogicky $\sup_{c \in C} \rho(c, A) ≤ …$. Tedy $\rho_H(A, C) ≤ \rho_H(A, B) + \rho_H(B, C)$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}
+        Ať $(®X, \rho)$ je MP, pak zobrazení $f: (®X, \rho) \rightarrow (\kappa(®X), \rho_H)$, $f(x) = \{x\}$ je izometrické vnoření na uzavřenou podmnožinu $\kappa(®X)$.
+
+        \begin{dukazin}
+            $\rho_H(f(x), f(y)) = \rho(x, y)$ triviálně.
+
+            $M := \{\{x\} | x \in ®X\}$ je uzavřená v $\kappa(®X)$: Doplněk je otevřená: Ať $A \in \kappa(®X)$, $|A| ≥ 2$ (tj. $A$ je v doplňku $M$). Fixujeme $x, y \in A, x ≠ y: \rho(x, y) =: \epsilon > 0$. $\B_{\rho_H}(A, \frac{\epsilon}{3}) \cap M = \O$ sporem: Kdyby existovalo $z \in ®X: \{z\} \in B_{\rho_H}(A, \frac{\epsilon}{3})$, pak $\rho_H(\{z\}, A) < \frac{\epsilon}{3}$, $\rho(x, z) < \frac{\epsilon}{3}$, $\rho(y, z) < \frac{\epsilon}{3}$.
+            $$ \epsilon = \rho(x, y) ≤ \rho(x, z) + \rho(y, z) < \frac{2}{3} \epsilon. $$
+            \lightning.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}
+        Pro MP $(®X, \rho)$ platí:
+
+        \begin{enumerate}
+            \item $(®X, \rho)$ je úplný $\Leftrightarrow$ $(\kappa(®X), \rho_h)$ je úplný.
+            \item $(®X, \rho)$ je totálně omezený $\Leftrightarrow$ $(\kappa(®X), \rho_H)$ je totálně omezený.
+            \item $(®X, \rho)$ je kompaktní $\Leftrightarrow$ $(\kappa(®X), \rho_H)$ je kompaktní.
+            \item $(®X, \rho)$ je kontinuum $\Leftrightarrow$ $(\kappa(®X), \rho_H)$ je kontinuum.
+        \end{enumerate}
+
+        \begin{dukazin}[Pouze náznak]
+                1), 2) $\leftarrow$: Z předchozího je ®X uzavřený podprostor úplného (tot. omezeného) prostoru, tedy úplný (tot. omezený) prostor.
+
+                1) $\implies$: Předpokládejme, že $(A_n)$ je cauchyovská v $(\kappa(®X), \rho_H)$. $B_n := \overline{\bigcup_{k ≥ n} A_k}$. $B := \bigcap B_n$. Lze ukázat, že $B \in \kappa(®X)$, $A_n \rightarrow B$.
+
+                2) $\implies$: Ať $\epsilon > 0$. Ať $A_0$ je konečná $\epsilon$-síť v $(®X, \rho)$. $©P(A_0)\setminus \{\O\}$ (je konečná a) je $\epsilon$-síť v $(\kappa(®X), \rho_H)$.
+
+                3) plyne z 1) a 2). 4) bez náznaku.
+        \end{dukazin}
+    \end{veta}
+
+    \subsection{Iterované funkční systémy}
+        \begin{definice}
+            Ať $(®X, \rho)$, $(®Y, \sigma)$ jsou MP, $f: ®X \rightarrow ®Y$ se nazývá kontrakce, pokud existuje $K < 1$, že $\forall x, y \in ®X: \sigma(f(x), f(y)) ≤ K·\rho(x, y)$.
+        \end{definice}
+
+        \begin{veta}[Banachova věta]
+            Ať $(®X, \rho)$ je neprázdný úplný MP, $f: ®X \rightarrow ®X$ kontrakce. Pak $f$ má právě jeden pevný bod, tj. bod $x \in ®X: f(x) = x$.
+
+            \begin{dukazin}
+                Ať $x_0 \in ®X$ libovolně. $x_1 = f(x_0), x_2 = f(x_1), …$. Posloupnost $(x_n)_{n=1}^∞$ je cauchyovská:
+                $$ \rho(x_{n+1}, x_n) ≤ K·\rho(x_n, x_{n-1}) ≤ … ≤ K^n·\rho(x_1, x_0). $$
+                $\sum_{n=1}^∞ K^n·\rho(x_1, x_0)$ konverguje. Tedy pro $\epsilon > 0\ \exists n_0 \in ®N: \sum_{n=n_0}^∞ K^n·\rho(x_1, x_0) < \epsilon$. Tedy $m ≥ n > n_0$:
+                $$ \rho(x_m, x_n) ≤ \rho(x_m, x_{m-1}) + \rho(x_{m-1}, x_{m-2}) + … + \rho(x_{n+1}, x_n) ≤ \sum_{i=n}^m K^i \rho(x_0, x_1) ≤ \epsilon. $$ 
+                $(®X, \rho)$ je úplný, $(x_n)$ cauchyovská, tedy $\lim_{n \rightarrow ∞} x_n = x \in ®X$. Tvrdíme, že $f(x) = x$:
+                $$ f(x) = f(*\lim_{n \rightarrow ∞} x_n) \overset{\text{$f$ spojitá}}{=} \lim_{n \rightarrow ∞} f(x_n) = \lim_{n \rightarrow ∞} x_{n+1} = x. $$
+
+                Jednoznačnost: Kdyby $f(x) = x$, $f(y) = y$, pak
+                $$ \rho(x, y) ≤ K·\rho(f(x), f(y)) = K\rho(x, y) \implies \rho(x, y) = 0 \implies x = y. $$ 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}
+            Ať $(®X, \rho)$ je MP, $f_1, …, f_n: ®X \rightarrow ®X$ kontrakce, $n \in ®N$. Pak $\{f_1, …, f_n\}$ se nazývá iterovaný funkční systém. Množina $K \subseteq ®X$ se nazývá invariantní (vůči tomuto IFS), pokud $K = f_1(K) \cup … \cup f_n(K)$.
+        \end{definice}
+
+        \begin{veta}
+            Ať $(®X, \rho)$ je úplný neprázdný MP a $\{f_1, …, f_n\}$ IFS na ®X. Pak existuje jediná kompaktní neprázdná invariantní množina pro tento IFS.
+
+            \begin{dukazin}
+                Víme $(\kappa(®X), \rho_H)$ je úplný. Definujeme $F: \kappa(®X) \rightarrow \kappa(®X)$, $F(L):=f_1(L) \cup … \cup f_n(L) \in \kappa(®X)$. $F$ je kontrakce. Podle Banachovy věty existuje právě jedno $K \in \kappa(®X): F(K) = K$. Tím je důkaz hotov.
+            \end{dukazin}
+        \end{veta}
 \end{document}
