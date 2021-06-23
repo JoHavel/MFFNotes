@@ -270,17 +270,283 @@
         \begin{definice}
             $\phi(x_1, …, x_n)$ definuje množinu $\phi^A = \{(a_1, …, a_n) : A \models \phi(a_1, …, a_n)\}$.
 
-            Pokud existuje formule definující $S \subseteq A^n$, potom říkáme, že formule je 0-definovatelná v $A$.
+            Pokud existuje $L$-formule definující $S \subseteq A^n$, potom říkáme, že formule je 0-definovatelná v $A$.
         \end{definice}
 
         \begin{definice}
             Formule se nazývá pozitivní, pokud neobsahuje negaci ($\neg$).
         \end{definice}
 
-        TODO
+% 8. 4. 2021
+
+        \begin{definice}
+            Buďte $©A, ©B$ dvě $L$-struktury, $C \subseteq A$ a $h: C \rightarrow B$ zobrazení. Řekneme, že $h$ je $(©A, ©B)$-podobnost, pokud pro každou $L_C$-sentenci $\sigma$ platí $A \models \sigma \Leftrightarrow B \models \sigma_h$. Existuje-li nějaká $(©A, ©B)$-podobnost (kde $C ≠ \O$), říkáme, že ©A je elementárně ekvivalentní s ©B, píšeme $©A ≡ ©B$. Je-li dokonce $C = A$, říkáme, že $h$ je elementární vnoření ©A do ©B.
+        \end{definice}
+
+        \begin{tvrzeni}
+            Buďte ©A, ©B dvě $L$-struktury a $h: A \rightarrow B$ izomorfismus. Pak $h$ je elementární vnoření.
+
+            \begin{dukazin}
+                Již víme, že $h(t^{©A}) = t_h^{©B}$ pro každý uzavřený $L_A$-term $t$. Tvrzení dokážeme indukcí…
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{definice}
+            Říkáme, že ©A je model $\Sigma$, když $©A \mapsto \sigma$ pro všechny $\sigma \in \Sigma$.
+        \end{definice}
+
+        \begin{definice}
+            Říkáme, že $\sigma$ vyplývá z $\Sigma$ (píšeme $\Sigma \models \sigma$), pokud $\sigma$ je pravdivý v každém modelu (koho, čeho) $\Sigma$.
+        \end{definice}
+
+        \begin{definice}
+            Formule $\sigma$ je validní v ©A, $©A \models \phi$, jestliže všechny ©A-instance jsou pravdivé v ©S.
+        \end{definice}
+
+        
+        \begin{definice}[Axiomy predikátorové logiky]
+            TODO
+        \end{definice}
+
+        \begin{definice}[Axiomy rovnítka]
+            TODO
+        \end{definice}
+
+        \begin{definice}
+            $t$ je substituovatelný za $y$ v $\phi$, jestliže žádná proměnná (žádný její výskyt) v $t$ se nestane vázanou.
+        \end{definice}
 
 % 15. 4. 2021
 
-        TODO, velké TODO
+        \begin{definice}
+            Qvantifikátorové axiomy v $L$ jsou formule $\phi(t/y) \implies \exists y\phi$ a $\forall y \phi \implies \phi(t/y)$.
+        \end{definice}
+
+        \begin{veta}[O korektnosti predikátorového počtu]
+            Každý logický axiom v $L$ je validní v každé $L$-struktuře.
+
+            \begin{lemmain}
+                Mějme nějaké atomy $\alpha_1, …, \alpha_n$, které nejsou v $L$, a buďte $\phi_i = \phi(x_1, …, x_m)$, $\forall 1 ≤ i ≤ n$. Definujeme pravdivostní ohodnocení $t:\{\alpha_1, …, \alpha\} \rightarrow \{0, 1\}$ tak, že $t(\alpha_i) = 1$ pokud $©A \models_i(a_1, …, a_m)$. Potom $p(\phi_1, …, \phi_n)$ je $L$-formule a TODO.
+            \end{lemmain}
+
+            \begin{definicein}[$L$-tautologie]
+                $L$-tautologie je formule tvaru $p(\phi_1, …, \phi_n)$ pro nějakou tautologii $p(\alpha_1, …, \alpha_n) \in Prop\{\alpha_1, …, \alpha_n\}$ a formule $\phi_1, …, \phi_n$.
+            \end{definicein}
+        \end{veta}
+
+        \begin{definice}[Logická pravidla]
+            Modus Ponens (MP): z $\phi$ a $\phi \implies \psi$ odvodíme $\psi$.
+
+            Generalizační pravidla (G): pokud se proměnná $x$ nevyskytuje volně v $\phi$, potom z $\phi \implies \psi$ odvodíme $\phi \implies x\psi$ a z $\psi \implies \phi$ odvodíme $\exists x \psi \implies \phi$.
+        \end{definice}
+
+        \begin{definice}[Důkaz]
+            Formální důkaz, nebo prostě důkaz $\phi$ z $\Sigma$ je posloupnost $\phi_1, …, \phi_n$ formulí, kde $n ≥ 1$ a $\phi_n = \phi$, takových, že $\forall k \in [n]$: je buď $\phi_k \in \Sigma$ nebo $\phi_k$ je logický axiom, nebo $\phi_k$ může být odvozen z $\phi_i$ a $\phi_j$ ($\phi_j$) pomocí MP (G), pro nějaké $i, j$. Značíme $\Sigma \vdash \phi$.
+        \end{definice}
+
+        \begin{veta}[Kompletnost predikátorové logiky]
+            $$ \Sigma \vdash \phi \Leftrightarrow \Sigma \models \phi. $$ 
+        \end{veta}
+
+        \begin{veta}[Kompaktnost]
+            Pokud $\Sigma \models \sigma$, pak existuje konečná podmnožina $\Sigma_0$ (koho, čeho) $\Sigma$, že $\Sigma_0 \models \sigma$.
+        \end{veta}
+
+        \begin{definice}
+            $\Sigma$ je konzistentní, pokud $\Sigma \nvdash \bot$, jinak (pokud $\Sigma \vdash \bot$) ji nazýváme nekonzistentní.
+        \end{definice}
+
+        \begin{lemma}
+            Ať $\Sigma \vdash \phi$. Potom $\Sigma \vdash \forall x \phi$..
+
+            \begin{dukazin}[Náznak]
+                Použijeme MP a G na konkrétní $L$-tautologie.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}[Dedukce]
+            Nechť $\Sigma \cup \{\sigma\} \vdash \phi$, potom $\Sigma \vdash \sigma \implies \phi$.
+
+            \begin{dukazin}
+                Indukcí.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            Pokud každá konečná podmnožina (koho, čeho) $\Sigma$ má model, pak i $\Sigma$ má model.
+        \end{veta}
+
+% 22. 4. 2021
+
+        \begin{lemma}
+            Předpokládejme $\Sigma \vdash \phi$ a $t$ je substituovatelné za $x$ v $\phi$. Potom $\Sigma \vdash \phi(t/x)$.
+
+            \begin{dukazin}
+                MP $\Sigma \vdash \forall x \phi$ s $\forall x \phi \implies \phi(t/x)$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}[Důsledky axiomů rovnosti]
+            TODO.
+        \end{lemma}
+
+        \begin{definice}
+            Ať $L_T$ je množina $L$-termů bez proměnných. Definujeme binární relaci $\sim_\Sigma$ na $T_L$:
+            $$ t_1 \sim_\Sigma t_2 \Leftrightarrow \Sigma \vdash t_1 = t_2. $$ 
+        \end{definice}
+
+        \begin{lemma}
+            $\sim_\Sigma$ je relace ekvivalence.
+        \end{lemma}
+
+        \begin{definice}[Kanonická struktura pro $\Sigma$]
+            $A_\Sigma := T_L/\sim_\Sigma$. $R^{A_\Sigma}$ nebo $F^{A_\Sigma}$ je potom relace nebo funkce, přijímající bloky ekvivalence.
+        \end{definice}
+
+        \begin{definice}
+            Kompletní teorie je konsistentní a pro každou $\sigma$ lze v této teorii dokázat $\sigma$ nebo $\neg\sigma$.
+        \end{definice}
+
+        \begin{lemma}[Lindenbaum]
+            Ať $\Sigma$ je konzistentní. Potom $\Sigma \subseteq \Sigma'$ pro nějaké úplné $\Sigma'$.
+        \end{lemma}
+
+% 29. 4. 2021
+
+        \begin{definice}
+            $\Sigma$ (henkinovský) svědek sentence $\exists x \phi(x)$ je konstantní term $t \in T_L$ tak, že $\Sigma \vdash \phi(t)$. Říkáme, že $\Sigma$ je henkinovská teorie (má svědky), jestliže existuje svědek pro každou sentenci $\exists x \phi(x)$.
+        \end{definice}
+
+        \begin{veta}
+            Nechť $L$ má konstantní symbol a předpokládejme $\Sigma$ je konzistentní. Potom následující podmínky jsou ekvivalentní: 1) $\forall \sigma$ máme $\Sigma \vdash \sigma \Leftrightarrow ©A_\Sigma \models \sigma$ a 2) $\Sigma$ je kompletní a má svědky.
+        \end{veta}
+
+        \begin{lemma}
+            Ať $\Sigma$ je množina $L$-sentencí a $c$ je konstantní symbol, který není v jazyku $L$. Definujme $L_c = L \cup \{c\}$. Potom když $\phi(y)$ je $L$-formule a $\Sigma \vdash_{L_c} \phi(c)$, tak $\Sigma \vdash_L \phi(y)$.
+        \end{lemma}
+
+        \begin{lemma}
+            Nechť $\Sigma$ je konzistentní a $\Sigma \vdash \exists y\phi(y)$. Ať $c$ je konstanta, která není v $L$. Položme $L_c := L \cup \{c\}$. Potom $\Sigma \cup \{\phi(c)\}$ je konzistentní množina $L_c$-sentencí. Obdobně pro více $c_i$.
+        \end{lemma}
+
+        \begin{lemma}[Rozšíření teorie o svědky]
+            TODO!
+        \end{lemma}
+
+        \begin{lemma}
+            Pokud máme jazyky $L_0 \subseteq L_1 \subseteq …$ a konzistentní teorie $\Sigma_0 \subseteq \Sigma_1 \subseteq …$. Potom sjednocení $\Sigma_{∞}$ je konzistentní množina $L_{∞}$-sentencí.
+        \end{lemma}
+
+% 6. 5. 2021
+    
+    \subsection{Prenexní tvar}
+
+        TODO?
+
+        \begin{definice}[Prenexní tvar]
+                Formule je v prenexním tvaru, pokud je tvaru $Q_1x_1…Q_nx_n\phi$, kde $x_1, …, x_n$ jsou různé proměnné, $Q_i \in \{\exists, \forall\}$ a $\phi$ je bez kvantifikátorů.
+        \end{definice}
+
+% 13. 5. 2021
+
+\section{Trochu teorie modelů}
+    \begin{veta}[Löwenheim-Skolem (spočetná verze)]
+        Nechť $L$ je spočetný jazyk a $\Sigma$ má model. Potom $\Sigma$ má spočetný model.
+
+        \begin{dukazin}
+            Jelikož množina proměnných je spočetná a $L$ je spočetný, tak i množina $L$-sentencí je spočetná. Tedy i 
+            $$ L \cup \{c_\sigma | \Sigma \vdash \sigma \land \sigma = \exists x \phi(x) \} $$ 
+            je spočetný, tedy přidání svědků nezvětší $L$ nad spočetnost. To znamená, že množina $L_{∞}$-termů je spočetná, tj. $©A_{\Sigma_{∞}}$ je spočetná a $©A_{\Sigma_{∞}}|_L$ je spočetný model $\Sigma$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}[Vaughtův test]
+        Nechť $L$ je spočetné a $\Sigma$ má model a všechny spočetné modely $\Sigma$ jsou isomorfní. Pak $\Sigma$ je kompletní.
+
+        \begin{dukazin}
+            Kdyby nebyla kompletní, pak existuje $\sigma$ tak, že $\Sigma \nvdash \sigma$ a $\Sigma \nvdash \neg\sigma$. Potom z Löwenheim-Skolemovy věty existují 2 spočetné modely, ve kterých je $\sigma$ (v prvním) a $\neg\sigma$ (ve druhém), které z $\Sigma$ dostaneme tak, že přihodíme $\neg \sigma$ a $\sigma$. Tedy máme 2 izomorfní modely, v nichž v jednom je $\neg\sigma$ a v druhém $\sigma$. Spor.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{veta}[Löwenheim-Skolem (obecná verze)]
+        Nechť $L$ je jazyk mohutnosti $\kappa$ a $\Sigma$ má nekonečný model. Potom $\Sigma$ má model mohutnosti $\kappa$.
+
+        \begin{dukazin}
+            Podobně jako předchozí, jen přidáme $c_\lambda ≠ c_\mu$, abychom měli právě mohutnost $\kappa$.
+        \end{dukazin}
+    \end{veta}
+
+
+    \begin{tvrzeni}[Vaughtův test]
+        Nechť $L$ je mohutnosti nejvýše $\kappa$, $\Sigma$ má model, všechny modely jsou nekonečné, a všechny modely $\Sigma$ mohutnosti $\kappa$ jsou isomorfní. Pak $\Sigma$ je kompletní.
+    \end{tvrzeni}
+
+% 20. 5. 2021
+
+% 27. 5. 2021
+
+    \begin{definice}
+        $\Sigma'$ se nazývá konzervativní nad $\Sigma$, pokud pro každou $L$-sentenci $\sigma$ je
+        $$ \Sigma' \vdash_{L'} \sigma \Leftrightarrow \Sigma \vdash_L \sigma. $$ 
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pokud $\phi(x_1, …, x_n, y)$ je $L$-formule. $f_{\phi}$ je $n$-ární funkční symbol, který není v $L$ a pro který položíme $L' := L\cup \{f_{\phi}\}$ a 
+        $$ \Sigma' := \Sigma \cup \{\forall x_1…\forall x_n (\exists y \phi(x_1, …, x_n, y) \implies \phi(x_1, …, x_n, f_{\phi(x_1, …, x_n)}))\} $$ 
+    \end{tvrzeni}
+
+    TODO?
+
+% 3. 6. 2021
+
+    \begin{definice}[Presburgerova aritmetika]
+        Uvažujme jazyk $K = \{0, S, +\}$, kde $0$ je konstantní symbol, $S$ je unární funkční a $+$ binární funkční symbol. Presburgerova aritmetika je $K$-teorie obsahující právě následující axiomy:
+        
+        \begin{enumerate}
+            \item $Sx ≠ 0$;
+            \item $Sx = Sy \implies x = y$;
+            \item $x ≠ 0 \implies \exists y: x = Sy$;
+            \item $x + 0 = x$;
+            \item $x + Sy = S(x+y)$;
+        \end{enumerate}
+        
+        a navíc schéma axiomů indukce (pro každou $K$-formuli $\phi$):
+        $$ (\phi(0/x) \land \forall x (\phi(x) \implies \phi(Sx/x))) \implies \forall x \phi. $$ 
+    \end{definice}
+
+    \begin{veta}
+        Presburgerova aritmetika je kompletní.
+    \end{veta}
+
+    \begin{definice}[Robinsonova a Peanova aritmetika (tj. včetně $·$)]
+        Rozšíříme $K$ na $L = K \cup \{·\}$, kde $·$ je binární funkční symbol, a přidejme k předchozím axiomům navíc $x·0 = 0$ a $x·Sy = x·y + x$. Navíc schéma indukce nyní uvažujme pro všechny $L$-formule. Výsledné $L$-teorii se říká Peanova aritmetika (P nebo PA). Její (konečnou) podteorii, která vznikne vypuštěním všech axiomů indukce, nazýváme Robinsonova aritmetika (Q či RA).
+    \end{definice}
+
+    \begin{poznamka}
+        V RA nelze dokázat ani asociativitu, ani komutativitu $+$ a $·$, ani vztah $\forall x: x ≠ Sx$.
+    \end{poznamka}
+
+    \begin{definice}
+        Buďte $x, y$ dvě různé proměnné a $\phi$ nějaká $L$-formule. Formuli $\forall x(x≤y \implies \phi)$ zkráceně zapisujeme jako $\forall x ≤ y \phi$. Formuli $\exists x(x≤y \implies \phi)$ zkráceně zapisujeme jako $\exists x ≤ y \phi$. Formuli nazveme omezenou, pokud se v rámci její rekurzivní definice v kvantivikačním kroku používá místo $\forall v \phi$, resp. $\exists v \phi$, kde $v$ je proměnná, pouze omezená kvantifikace $\forall v ≤ z\phi$ resp. $\exists v ≤ z\phi$, kde $z$ je nějaká proměnná různá od $v$.
+
+        Formuli nazveme $\Sigma_1$-formulí, je-li tvaru $\exists x \psi$, kde $\psi$ je omezená.
+    \end{definice}
+
+    \begin{veta}[$\Sigma_1$-úplnost RA]
+            je-li $\phi$ uzavřená $\Sigma_1$-formule taková, že $®N \models \phi$, pak $RA \vdash \phi$.
+    \end{veta}
+
+    \subsection{Gödelovské kódování}
+        Kóduje veškeré formule do přirozených čísel. (Např. v PA.)
+
+        \begin{definice}
+            Teorii $T$ nazýváme $\Sigma_1$-teorií, pokud existuje $\Sigma_1$-formule $\tau(x)$ taková, že $\sigma \in T$ právě tehdy, když $N \models \tau(\sigma/x)$.
+        \end{definice}
+
+        \begin{veta}[Autoreferenční lemma]
+            Nechť $\phi(y)$ je $L$-formule. Pak existuje $L$-sentence $psi$ taková, že $RA \vdash \psi \Leftrightarrow \phi(\psi/y)$.
+        \end{veta}
+
+        TODO Věty o neúplnosti.
 
 \end{document}

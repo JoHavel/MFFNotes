@@ -1,5 +1,12 @@
 \documentclass[12pt]{article}                   % Začátek dokumentu
 \usepackage{../../MFFStyle}                     % Import stylu
+
+\let\degree\undefined
+\let\leftmoon\undefined
+\let\rightmoon\undefined
+\let\newmoon\undefined
+\let\fullmoon\undefined
+\let\diameter\undefined
 \usepackage{mathabx}
 
 \begin{document}
@@ -64,7 +71,8 @@
             \item Axiom sumy: $(\forall a)(\exists z)(\forall x)(x \in z \Leftrightarrow (\exists y)(x \in y \land y \in a))$.
             \item Axiom potence: $(\forall a)(\exists z)(\forall x)(x \in z \Leftrightarrow x \subseteq a)$.
             \item Schéma axiomů nahrazení\footnote{Slogan: Obraz množiny funkcí je množina.} Je-li $\psi(u, v)$ formule s volnými proměnnými $u, v$, jež nemá volné proměnné $w, z$, pak
-                    $$ (\forall u)(\forall v)(\forall w)((\psi(u, v) \land \psi(u, w))\implies v=w) \implies (\forall a)(\exists z)(\forall v)(v \in z \Leftrightarrow (\exists u)(u \in a \land \psi(u, v))) $$
+                    $$ (\forall u)(\forall v)(\forall w)((\psi(u, v) \land \psi(u, w))\implies v=w) \implies $$
+                    $$ \implies (\forall a)(\exists z)(\forall v)(v \in z \Leftrightarrow (\exists u)(u \in a \land \psi(u, v))) $$
                     je axiom.
             \item Axiom fundovanosti (regularity): $(\forall a)(a ≠ \O \implies (\exists x)(x \in a \land x \cap a = \O))$.
         \end{enumerate}
@@ -109,7 +117,7 @@
     \end{definice}
 
     \begin{definice}[Uspořádaná $n$-tice]
-        Jsou-li $a_1, a_2, …, a_n$ množiny, definujeme uspořádanou $n$-tici $(a_1, a_2, …, a_n) = <…>$ následovně: $(a_1) = a_1$, je-li definovaná $(a_1, …, a_k)$, pak $(a_1, …, a_k, a_{k+1}) = ((a_1, a_2, …, a_k), a_{k+1})$.
+        Jsou-li $a_1, …, a_n$ množiny, definujeme uspořádanou $n$-tici $(a_1, …, a_n) = <…>$ následovně: $(a_1) = a_1$, je-li definovaná $(a_1, …, a_k)$, pak $(a_1, …, a_k, a_{k+1}) = ((a_1, a_2, …, a_k), a_{k+1})$.
     \end{definice}
 
     \begin{lemma}
@@ -742,7 +750,8 @@
     \end{definice}
 
     \begin{definice}[Maximo-lexikografické uspořádání]
-        Maximo-lexikografické uspořádání na $\omega \times \omega$ je relace $(n_1, m_1) <_{ML} (n_2, m_2) \Leftrightarrow (\max{n_1, m_1} < \max(n_2, m_2) \lor (\max(n_1, m_1) = \max(n_2, m_2) \land (n_1, m_1) <_L (n_2, m_2)))$.
+        Maximo-lexikografické uspořádání na $\omega \times \omega$ je relace $(n_1, m_1) <_{ML} (n_2, m_2) \Leftrightarrow$
+        $$ (\max{n_1, m_1} < \max(n_2, m_2) \lor (\max(n_1, m_1) = \max(n_2, m_2) \land (n_1, m_1) <_L (n_2, m_2))). $$
     \end{definice}
 
     \begin{pozorovani}
@@ -1100,7 +1109,7 @@
         $®R^3$ je disjunktní sjednocení jednotkových kružnic.
 
         \begin{dukazin}
-            Očíslují se všechny body v $®R^3$ pomocí ordinálních čísel. Potom sestrojíme soubor $\<C_\alpha, \alpha < 2^{\omega}\>$ disjunktních jednotkových kružnic (a prázdných množin) tak, že $x_\alpha \in C_\alpha$ nebo $x_\alpha \in \bigcup_{\beta \subseteq \alpha} C_\beta$.
+            Očíslují se všechny body v $®R^3$ pomocí ordinálů. Potom sestrojíme soubor $\<C_\alpha, \alpha < 2^{\omega}\>$ disjunktních jednotkových kružnic (a $\O$) tak, že $x_\alpha \in C_\alpha$ nebo $x_\alpha \in \bigcup_{\beta \subseteq \alpha} C_\beta$.
 
             $C_\alpha$ definujeme rekurzivně. Protože $\alpha < |®R|$, tak vždy najdeme rovinu bez kružnice a na ní kružnici, která neprotíná žádnou jinou (každá kružnice protínající tuto rovinu nám zakáže maximálně 2 kružnice).
         \end{dukazin}
