@@ -10,6 +10,620 @@
     Úvodní přednáška.
 \end{poznamka}
 
+% 15. 3. 2021
+
+\begin{definice}
+    Průměrná nejkratší cesta:
+    $$ L(G) = \frac{1}{n(n-1)} \sum_{u ≠ v} d(u, b). $$ 
+\end{definice}
+
+\section{Centrality}
+
+    \begin{definice}[Ekcentricita]
+        Excentricita je pro každý vrchol největší vzdálenost do jiného vrcholu.
+        $$ \epsilon(v) = \max_{u \in V(G)} d_G(v, u). $$ 
+    \end{definice}
+
+    \begin{definice}[Closeness centralita]
+        Closeness centralita je převrácená hodnota průměrné vzdálenosti do vrcholů.
+        $$ C_C(v) = \frac{n}{\sum_u d(u, v)}. $$ 
+    \end{definice}
+
+    \begin{definice}[Betweenness centralita]
+        Betweenness centralita je poměr počtu cest, které vedou skrz daný vrchol vůči všem cestám sečteno přes všechny dvojice vrcholů.
+        $$ C_B(v) = \sum_{s ≠ v ≠ t} \frac{\sigma_{st}(v)}{\sigma(st)}, $$ 
+        kde $\sigma_{st}(v)$, resp. $\sigma_{st}$ je počet nejkratších cest z vrcholu $s$ do vrcholu $t$ jdoucích přes $v$, resp. všech.
+    \end{definice}
+
+    \begin{definice}[Globální betweenness]
+        $$ C_B(G) = \frac{1}{n}\sum_{v} C_B(v). $$
+    \end{definice}
+
+    \begin{veta}
+        Mějme graf o $n$ vrcholech. Potom
+        $$ C_B(G) = (n-1)(L(G) - 1). $$
+
+        \begin{dukazin}
+            Vezmeme libovolné dva body a představíme si nejkratší cesty mezi nimi a každou „vlnu“ (tj. všechny vrcholy na nejkratších cestách ve vzdálenosti 1, 2, 3, …). Tyto dva body nám do každé vlny přispějí v součtu 1 (krát $1/n$). Tedy dva body do globální betweenness přispějí průměrně $L(G) - 1$ (krát $1/n$). Dvojic je $n·(n-1)$, ale protože globální betweenness se dělí ještě $n$, tak výsledek je $(n - 1)(L(G) - 1)$.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{dusledek}
+        S klesající průměrnou nejkratší vzdáleností (tedy např. přidáním hrany) klesá i betweenness.
+    \end{dusledek}
+
+    \begin{lemma}
+        Přidáním hrany mezi vrcholy $u, v$, $d = d_G(u, v) > 1$ snížíme globální betweenness nejméně o $\frac{2(d-1)}{n}$.
+
+        \begin{dukazin}
+            $L(G)$ se sníží alespoň o $\frac{2(d-1)}{n(n-1)}$, protože ze dvou vrcholů ve vzdálenosti $d$ uděláme vrcholy ve vzdálenosti $1$. Odečtením jedničky a vynásobením ($n - 1$) dostáváme, ze $C_B(G) = (n - 1)(L(G) - 1)$ se nám sníží alespoň o $\frac{2(d - 1)}{n}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{dusledek}
+        Globální betweenness grafu je minimálně o $\frac{2r}{n}$ menší než globální betweenness jeho kostry, kde $r$ je rozdíl mezi počtem hran grafu a jeho kostry, tj. $m - n + 1$.
+    \end{dusledek}
+
+    \begin{definice}[$k$-okolí vrcholu]
+        $k$-okolí vrcholu $v$ je definováno jako
+        $$ \Gamma_k(v) = \{u \in V: d(u, v) = k\}. $$
+    \end{definice}
+
+    \begin{veta}
+        Buď $G$ graf velikosti $n$, $w \in V$ jeho vrchol a $G'$ graf získaný z $G$ přidáním vrcholu $u$ a hrany $\{u, w\}$. Potom
+        $$ C_B(G) = \frac{n}{n+1}C_B(G) + \frac{2}{n+1} \sum_{k=1}^{\epsilon w} k |\Gamma_k(w)|. $$
+
+        \begin{dukazin}
+                Původní vzdálenosti se vůbec nezmění, jen už nebudou průměrovaný přes $n·(n-1)$, ale přes $(n+1)·n$. Navíc přidáváme cesty (každou dvakrát, „jednou sem a jednou tam“) z nového vrcholu do všech dalších a ty musí vést přes $w$ a tedy
+                $$ L(G') = \frac{n-1}{n+1}L(G) + \frac{2}{n(n+1)} \sum_{k=1}^{\epsilon(w)}(k + 1)|\Gamma_k(w)| = \frac{n-1}{n+1}L(G) + \frac{2}{n(n+1)} \(\sum_{k=1}^{\epsilon(w)}k|\Gamma_k(w)| + n\), $$
+                $$ C_B(G') = n(L(G') - 1) = \frac{n}{n+1}(n-1)(L(G) - 1) + \frac{n(n-1)}{n+1} + \frac{2}{n+1}\sum_{k=1}^{\epsilon(w)}k|\Gamma_k(w)| + \frac{n(1-n)}{n+1} = \frac{n}{n+1}(n-1)(L(G) - 1) + \frac{2}{n+1}\sum_{k=1}^{\epsilon(w)}k|\Gamma_k(w)|. $$ 
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}
+        Pokud do grafu $G$ o $n$ vrcholech přidáme vrchol $w$ s 2 hranami do vrcholů $u, v$ v původním grafu ve vzdálenosti $1 ≤ d(u, v) ≤ 2$ a získáme tím $G'$, tak
+        $$ \frac{1}{n+1}(nC_B(G) + n-2) ≤ C_B(G'). $$ 
+
+        \begin{dukazin}
+            Pokud je vzdálenost $1$, pak $u, v, w$ tvoří trojúhelník, $C_B(w) = 0$ a všechny cesty z $w$ vedou přes $u$ nebo $v$. Tedy máme $n-2$ vrcholů, který spolu s $w$ přispějí do $C_B$ $v$ a $w$ v součtu hodnotou $n - 2$. Do ostatních $C_B$ přispějí něčím. Navíc musíme průměrovat přes $n+1$ vrcholů místo $n$, tedy dostáváme
+            $$ \frac{1}{n + 1}(nC_B(G) + n - 2 + \text{něco}) = C_B(G'). $$
+
+            Pro vzdálenost $d(u, v) = 2$ se $C_B$ z vrcholů na cestách mezi $u, v$ rozdělí navíc do $W$, ale součet zůstane stejný. Jinak to vypadá jako v prvním případě.
+        \end{dukazin}
+    \end{tvrzeni}
+
+% 22. 3. 2021
+
+    \begin{tvrzeni}
+        $$ 0 ≤ C_B(v) ≤ (n-1)(n-2). $$
+        
+        \begin{dukazin}
+            Triviální. $C_B$ z konkrétní uspořádané dvojice dostane přispěno maximálně 1.
+        \end{dukazin}
+
+        \begin{dukazin}
+            $$ C_B(v) = 0 \Leftrightarrow G[\Gamma_G(v)] \cong K_{\deg(v)}. $$
+            Kde $\Gamma_G(v)$ je množina sousedů bodu $v$ a $K_{\deg(v)}$ je úplný graf o $\deg(v)$ vrcholech.
+
+            \begin{dukazin}
+                Triviální.
+            \end{dukazin}
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Graf s vrcholem, který má libovolnou danou betweenness lze sestrojit ze 2 úplných grafů (spojených do 1 úplného) a 2 vrcholů (spojených se sebou a každý se svým úplným grafem)
+    \end{poznamka}
+
+    \begin{tvrzeni}
+        Mějme graf $G$ s maximálním stupněm $\delta$. Potom
+        $$ C_{B\max}(G) = \max_{v \in V(G)} C_B(v) ≤ \frac{\delta - 1}{2\delta}(n-1)^2. $$ 
+
+        \begin{dukazin}
+            Nechť $w$ je vrchol s maximální $C_B$ a stupněm $\deg(w) = d ≤ \delta$. Spustíme prohledávání do hloubky z $w$ a získáme tak nějakou kostru $T$. Pro každého souseda $w_i$ vrcholu $w$ máme podstrom $T_i$, $t_i = |T_i|$. Nejkratší cesty vedou mezi stromy přes $w$ a uvnitř stromů mimo $w$. Tím, že přidáme hrany zpět jen snížíme počet cest vedoucích přes $w$, tedy
+            $$ C_B(w) ≤ \sum_{i, j = 1\\i ≠ j}^d t_it_j ≤ \binom{\delta}{2}\(\frac{n - 1}{\delta}\)^2 = \frac{\delta-1}{2\delta}(n-1)^2, $$
+            jelikož suma nabývá maximum pro $d = \delta$ a $t_i = t_j$.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{definice}
+        $C_{B\max}(G)$ tedy značí maximální $C_B$ ze všech vrcholů grafu. Definujeme ještě $C_{B\max}(©H)$ jako maximum z maximálních betweenness ze všech grafů v třídě $©H$.
+    \end{definice}
+
+    \begin{tvrzeni}
+        Pro $2$-connected graf $G$ velikosti $n$ je:
+        $$ C_{B\max}(G) ≤ \frac{(n-3)^3}{2}. $$
+        Rovnost nastává pro $F_{1, n-1}$.
+
+        \begin{dukazin}
+            TODO.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{poznamka}
+        Automorfismy zachovávají centrality. Ale i další zobrazení mohou zachovávat centrality.
+    \end{poznamka}
+
+    \begin{definice}[Betweenness uniformní graf]
+        Betweenness uniformní graf je takový graf, který má $C_B$ každého vrcholu stejnou.
+    \end{definice}
+
+    \begin{veta}
+        Každý betweenness uniformní graf je $2$-connected.
+        
+        \begin{dukazin}
+            Sporem. TODO.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{lemma}
+        Buď $G = (V, E)$ graf s průměrem $2$. Potom $\forall x \in V:$
+        $$ C_B(x) = \sum_{(u, v) \in \Gamma^2(x) \\ uv \notin E(G)} 1/\sigma_{u,v}. $$
+
+        \begin{dukazin}
+            Triviálně z definice.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}
+        Buď $G = (V, E)$ betweenness uniformní graf s průměrem 2. Potom $\forall x \in V: C_B(x) = n - 1 - 2m/n$.
+
+        \begin{dukazin}
+            Z předchozího lemmatu. TODO.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}
+        Buď $G = (V, E)$ betweenness uniformní graf s $\delta(G) = n-1$ a $|V| = n$. Potom $G \cong K_n$.
+
+        \begin{dukazin}
+            Buď $x \in V(G)$, $\deg(x) = n-1$ a $H = G - x$. TODO.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}
+        Buď $G = (V, E)$ betweenness uniformní graf, kde $\delta(G) = n-2$. Potom $\diam G = 2$.
+    \end{veta}
+
+    \begin{veta}
+        Buď $G = (V, E)$ betweenness uniformní graf. Potom $C_B(v) = 0$ nebo $C_B(v) ≥ 1$.
+    \end{veta}
+
+% 29. 3. 2021
+
+    \begin{definice}[Degree centralita]
+        Degree centralita je normalizovaný stupeň daného vrcholu:
+        $$ \frac{\deg(v)}{n - 1}. $$ 
+    \end{definice}
+
+    \begin{definice}[Eigenvector centralita]
+        $$ ¦x(i) = A¦x(i-1) \Leftrightarrow ¦x(i) = A^i¦x(0), i \rightarrow ∞. $$
+        Kde $A$ je matice sousednosti.
+    \end{definice}
+
+    \begin{lemma}[Spektrální vlastnosti matice sousednosti]
+        Buď $A$ matice sousednosti neorientovaného grafu a $\lambda_1 ≥ \lambda_2 ≥ … ≥ \lambda_n$ její vlastní čísla. Potom $\sum \lambda_i = 0$, $\lambda_1 ≥ 0$, $\det(A) = \prod \lambda_i$.
+    \end{lemma}
+
+    \begin{lemma}[Pozitivita vlastního páru]
+        Buď $A$ matice sousednosti a $\lambda_1 ≥ \lambda_2 ≥ … ≥ \lambda_n$ její vlastní čísla. Potom $\lambda_1 ≥ |\lambda_i|$ a příslušný vlastní vektor má všechny složky nezáporné.
+    \end{lemma}
+
+    \begin{definice}[Katzova centralita]
+        Jako eigenvector centralita, jen přidáme konstantu, aby nebyl problém s orientovanými grafy:
+        $$ x_i = \alpha \sum A_{ij}x_j + \beta \Leftrightarrow ¦x = \alpha A A¦x + \beta ¦1. $$
+        Pro $\beta = 1$ vychází:
+        $$ ¦x = (I - \alpha A)^{-1}¦1 $$ 
+    \end{definice}
+
+    \begin{poznamka}
+        Katzova centralita má problém, že preferuje sousedy vrcholů s velkým stupněm a velkou centralitou. Proto se používá:
+    \end{poznamka}
+
+    \begin{definice}[Pagerank]
+        Jako Katzova centralita, ale dělí příspěvky od vrcholů jejich výstupními stupni (respektive 1, když má stupeň 0). Dostáváme tedy
+        $$ x_i = \alpha \sum A_{ij}\frac{x_j}{\max\{\deg^+(j), 1\}} + \beta $$
+        a při volbě $\beta = 1$ máme:
+        $$ ¦x = (I - \alpha AD^{-1})¦1. $$
+    \end{definice}
+
+    \begin{poznamka}
+        Pro neorientované grafy se $\alpha$ volí jako 1, pro orientované musí být jiná. Např. Google používá $0.85$.
+    \end{poznamka}
+
+    \begin{definice}[Wienerův index]
+        $$ W(G) = \sum_{\{u, v\} \subseteq V(G)} d(u, v). $$
+
+        Používá se například k určování bodu varu molekul.
+    \end{definice}
+
+% 12. 4. 2021
+
+\section{Náhodné grafy}
+    \begin{definice}[Náhodný binomický graf $G_{n, p}$]
+        2 parametry: počet vrcholů $n$ a pravděpodobnost hrany $p$.
+    \end{definice}
+
+    \begin{definice}[Náhodný uniformní graf $G_{n, m}$]
+        2 parametry: počet vrcholů $n$ a počet hran $m$.
+    \end{definice}
+
+    \begin{definice}[Průměrný počet hran]
+        $$ <m> = \sum_{i=1}^{\binom{n}{2}}1·p = p\binom{n}{2}. $$ 
+    \end{definice}
+
+    \begin{definice}[Průměrný stupeň]
+        $$ <k> = \<\frac{2m}{n}\> = \frac{2<m>}{n} = p(n-1). $$
+    \end{definice}
+
+    \begin{definice}[Řídký graf]
+        Graf nazýváme řídký, pokud $<k> << n$.
+    \end{definice}
+
+    \begin{definice}[Pravděpodobnost stupně $k$ pro daný vrchol]
+        $$ p_k = \binom{n - 1}{k}p^k(1 - p)^{n - 1 - k}. $$
+        Pro řídké grafy
+        $$ p_k = \frac{<k>^k}{k!}e^{-<k>}. $$ 
+        Tedy Poissonovo rozdělení pro $\lambda = <k>$.
+    \end{definice}
+
+    \subsection{Obrovská komponenta}
+    \begin{definice}[Obrovská komponenta (GC)]
+            Komponentu $C$ grafu $G = (V, E)$ nazýváme obrovská, pokud $|C| \sim |V|$.
+        \end{definice}
+
+        \begin{lemma}
+            Pravděpodobnost, že $v \in V(G)$ není k GC připojen vrcholem $w \in V(G)$ je $1 - p + pu$, kde $u$ je počet vrcholů mimo obrovskou komponentu (normovaný k celému počtu, tedy pravděpodobnost, že náhodný vrchol nebude součástí GC).
+
+            \begin{dukazin}
+                2 možnosti, jak nebýt připojen přes vrchol $2$: Pravděpodobnost, že mezi nimi nevede hrana je $1 - p$ a pravděpodobnost, že vede a $w$ není součástí GC je $p·u$. Tedy $1-p+pu$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}
+            Buď $G = (V, E)$ graf s průměrným stupněm $<k>$. Potom $G$ má obrovskou komponentu $\Leftrightarrow$ $<k> > 1$.
+
+            \begin{dukazin}
+                Pravděpodobnost, že $v$ není připojeno přes $w$ do GC je $1 - p + pu$, tedy že není připojen žádným je $(1 - p + pu)^{n-1} = u$. Substituce $<k> = p(n-1)$ nám dává:
+                $$ u = \(1 - \frac{<k>}{n-1}(1-u)\)^{n-1},\qquad \ln u = (n-1)\ln\(1 - \frac{<k>}{n-1}(1-u)\) \approx -(n-1)\frac{<k>}{n-1}(1-u) = -<k>(1-u). $$
+                Tedy máme aproximaci a pro velké grafy dokonce rovnost $\ln u = <k>(1-u)$, tj. při $S = 1 - u$ máme $S = 1 - e^{<k>S}$. Graficky odhadneme, že pro $<k> ≤ 1$ je $S \approx 0$. Dále rozebereme, jak rostou $l$-okolí nějakého bodu s rostoucím $l$ a dostaneme se k tomu, že pro $<k> > 1$ rostou exponenciálně, tedy tvoří GC.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}
+            Počet obrovských komponent v řídkých grafech je 1, tj. pravděpodobnost 2 a více GC konverguje k 0.
+
+            \begin{dukazin}
+                TODO.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{definice}[Malá komponenta]
+            Komponenta $C$ je malá, pokud $|C| << n$.
+        \end{definice}
+
+        \begin{pozorovani}
+            Ať $C$ je malá komponenta $G_{n, p}$. Potom s velkou pravděpodobností je izomorfní stromu.
+
+            \begin{dukazin}
+                TODO.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \begin{pozorovani}
+            Náhodný graf $G_{n, p}$ s $m$ hranami je se stejnou pravděpodobností jeden ze všech grafů o $n$ vrcholech a $m$ hranách.
+
+            \begin{dukazin}
+                Triviální.
+            \end{dukazin}
+        \end{pozorovani}
+
+        \subsection{Malý svět (small-world)}
+            \begin{definice}[Koeficient klusterizace]
+                $$ C = \frac{\text{\#tojúhelníků}}{\text{\#spojených trojic}} = \frac{\binom{n}{3}p^3}{\binom{n}{3}p^2} = p = \frac{<k>}{n-1}. $$ 
+            \end{definice}
+
+            \begin{poznamka}
+                V náhodných grafech můžeme počet vrcholů ve vzdálenosti $d$ vyjádřit jako
+                $$ N(d) \approx 1 + <k> + <k>^2 + … + <k>^d = \frac{<k>^{d+1} - 1}{<k> - 1} \approx <k>^d. $$ 
+            \end{poznamka}
+
+            \begin{definice}[Malý svět]
+                Graf má vlastnost malého světa, pokud $L \gtrsim L_{rand}$ a $C >> C_{rand}$, tedy průměrná délka cest je alespoň taková jako u náhodného grafu a koeficient klusterizace je řádově větší než u náhodného grafu.
+
+                Zavádíme také koeficient small-world a podmínky výše můžeme znázornit jako:
+                $$ \sigma = \frac{\frac{L}{L_{rand}}}{\frac{C}{C_{rand}}} >> 1. $$ 
+            \end{definice}
+
+\section{Vlastnosti grafu}
+    \begin{definice}
+        Grafová vlastnost $©P$ je podmnožina všech grafů (s označenými vrcholy) na $n$ vrcholech, tj. $©P \subseteq 2^{\binom{V}{2}}$.
+
+        \begin{prikladyin}
+            Souvislé grafy, rovinné grafy, grafy neobsahující $K_3$, …
+        \end{prikladyin}
+    \end{definice}
+
+    \begin{definice}
+        O vlastnosti grafu říkáme, že je monotónní, pokud ji graf přidáním hrany neztratí, tj. $\forall G \in ©P \forall e \in \binom{V}{2}: G + e \in ©P$.
+    \end{definice}
+
+    \begin{lemma}
+        Buď $©P$ monotónní vlastnost grafu a $0 ≤ p_1 < p_2 ≤ 1$. Potom
+        $$ ¦P[G_{n, p_1} \in ©P] ≤ ¦P[G_2 \in ©P]. $$
+
+        \begin{dukazin}
+            Vytvoříme graf $G$ tak, aby $G_{n, p_2} = G_{n, p_1} \cup G$. Lehce si rozmyslíme, že $G = G_{n, p}$, kde $p = 1 - \frac{1 - p_2}{1 - p_1}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}
+        Buď $©P$ grafová vlasnost a $p = \frac{m}{\binom{n}{2}}$, kde $m = m(n) \rightarrow ∞$ a $\binom{n}{2} - m \rightarrow ∞$. Potom pro velká $n$ je
+        $$ ¦P[G_{n, m} \in ©P] ≤ \sqrt{2 \pi m}¦P[G_{n, p} \in ©P]. $$ 
+
+        \begin{dukazin}
+                TODO. (Přes Stirlingovu formuli dokážeme $¦P[E_{n, p} = m] ≥ \frac{1}{\sqrt{2\pi m}}$.)
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{lemma}
+        Buď ©P monotónní grafová vlasnost a $p = \frac{m}{N}$, kde $N = \binom{n}{2}$. Potom pro velká $n$ a $p$ máme
+        $$ ¦P[G_{n, m} \in ©P] ≤ 3¦P[G_{n, p} \in ©P]. $$
+
+        \begin{dukazin}
+            Rozepíšeme si pravděpodobnost po počtech hran:
+            $$ ¦P[G_{n, p} \in ©P] ≥ ¦P[G_{n, m} \in ©P]\sum_{m'=0}^N ¦P[E_{n, p} = m']. $$
+            Potom s tím uděláme magii a dostaneme dolní odhad na sumu rovný $\frac{1}{3}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{definice}[Threshold]
+        Funkce $p^*$ je threshold pro monotónní vlastnost ©P v náhodném grafu $G_{n, p}$ pokud
+        $$ \lim_{n \rightarrow ∞} ¦P[G_{n, p} \in ©P] = 0 \text{, pokud $p/p^* \rightarrow 0$, a $1$, pokud $p/p^* \rightarrow ∞$.} $$ 
+    \end{definice}
+
+    \begin{lemma}
+        Ať ©P je grafová vlastnost říkající, že graf vlastní alespoň 1 hranu. Potom
+        $$ \lim_{n \rightarrow ∞} ¦P[G_{n, p} \in ©P] = 0\text{, pokud $p >> n^{-2}$, a 1, pokud $p << n^{-2}$.} $$
+
+        \begin{dukazin}
+            Triviální, s využitím $¦P[X > 0] ≤ ®E X$, kde $X$ je počet hran v grafu, máme $¦P[X > 0] ≤ \frac{n^2}{2}p$. A využitím $¦P[X = 0] ≤ \frac{Var X}{(®E x)^2}$ máme $¦P[X > 0] ≥ 1 - \frac{1-p}{\binom{n}{2}p}$.
+        \end{dukazin}
+    \end{lemma}
+
+    \begin{veta}
+        Pokud $m/n \rightarrow ∞$, potom asymptoticky téměř jistě $G_{n, m}$ obsahuje alespoň jeden trojúhelník.
+
+        \begin{dukazin}
+
+% 26. 4. 2021
+
+            Protože vlastnost „obsahuje alespoň 1 trojúhelník“ je monotónní, tak to dokážeme pro $G_{n, p}$ a $np \rightarrow ∞$. Buď $©P_Z$ vlastnost, že počet trojúhelníků je 0. Potom dokážeme $¦P[G_{n, p} \in ©P_Z] \rightarrow 0$ a $¦P[G_{n, m} \in ©P_Z] ≤ 3 ¦P[G_{n, p} \in ©P_Z]$ ???. TODO! (Asi 6 slidů.)
+        \end{dukazin}
+    \end{veta}
+
+    \begin{definice}[Evoluce grafů]
+        Definujeme dynamický proces $G_0 = ([n], \O), G_1, G_2, …, G_N = K_n$, kde $G_m \rightarrow G_{m + 1}$ je provedeno pomocí přidání náhodné hrany.
+    \end{definice}
+
+    \begin{pozorovani}
+        $G_m$ a $G_{n, m}$ mají stejné pravděpodobnostní rozdělení.
+    \end{pozorovani}
+
+    \begin{veta}
+        Pokud $m << n$, potom $G_m$ je asymptoticky jistě les.
+
+        \begin{dukazin}
+            TODO!
+        \end{dukazin}
+    \end{veta}
+
+    \subsection{Modelování náhodných grafů}
+        \begin{poznamka}
+            Problém náhodného rozdělení grafů je, že rozdělení stupňů je dáno Poissonovým rozdělením, kdežto v reálných grafech je dáno částo scale-free rozdělením (malé stupně jsou nejčastější, pravděpodobnost stupně $k$ je $p_k = Ck^{-\alpha}$, kde $2 ≤ \alpha ≤ 3$).
+        \end{poznamka}
+
+        \begin{definice}[Konfigurační model]
+            Mějme definovanou posloupnost stupňů $k_1, k_2, …, k_n$. Vytvoříme „pahýly“, tedy vrcholy s $k_i$ „polohranami“. Potom vezmeme náhodné dvě „polohrany“ a spojíme.
+        \end{definice}
+
+        \begin{pozorovani}
+            Vzniknou nám dvojité hrany i smyčky. Pravděpodobnost dvojité hrany mezi vrcholy je $\frac{k_ik_j(k_i - 1)(k_j - 1)}{(2m)^2}$, tedy počet dvojitých hran bude přibližně
+            $$ P_d = \frac{1}{2}\frac{1}{(2m)^2} \sum_{i, j}k_ik_j(k_i - 1)(k_j - 1) = \frac{1}{2} \(\frac{<k^2> - <k>}{<k>}\)^2. $$
+            Počet smyček bude podobně přibližně
+            $$ P_L = \sum_i \frac{k_i(k_i - 1)}{4m} = \frac{<k^2> - <k>}{2<k>}. $$ 
+        \end{pozorovani}
+            
+        \begin{definice}[Chung-Lu model]
+            Přiřadíme váhy ($w_i$ = očekávaný stupeň) vrcholům. Následně pro $m := \sum_{i} w_i$ spojíme vrcholy $i, j$ s pravděpodobností $p_{ij} = \frac{w_iw_j}{2m}$.
+        \end{definice}
+
+        \begin{pozorovani}
+            Průměrný počet hran je 
+            $$ \sum_{i < j}p_{ij} + \sum_i p_{ii} = \sum_{i < j}\frac{w_iw_j}{2m} + \sum_{i}\frac{w_i^2}{2m} = \sum_{i, j}\frac{w_iw_j}{4m} = \frac{4m^2}{4m} = m. $$
+            Průměrný stupeň vrcholu $v_i$ je
+            $$ <k_i> = 2p_{ii} + \sum_{i≠j}p_{ij} = \sum_j\frac{w_iw_j}{2m} = w_i. $$ 
+        \end{pozorovani}
+
+        \begin{definice}[Barabási-Albert model]
+            Začínáme s $m_0$ vrcholy propojenými libovolně (ale každý se stupněm $> 0$). Přidáme nový vrchol a propojíme ho s $m ≤ m_0$ existujícími vrcholy tak, že
+            $$ ¦P[\text{$u$ je spojený s existujícím vrcholem stupně $k_i$}] = \frac{k_i}{\sum_j k_j}. $$
+        \end{definice}
+
+        \begin{pozorovani}
+            Problémem je, že graf na $m_0$ vrcholech není daný, mohou vznikat multihrany, ale distribuce stupňů je $p_k = Ck^{-\gamma}$, kde $\gamma = 3$.
+        \end{pozorovani}
+
+% 3. 5. 2021
+
+\section{Komunity}
+    \begin{definice}[Komunita]
+        Podgraf $C$ je silná komunita, jestliže pro každé $v \in C$ je počet hran vedoucích mimo $C$ menší než počet hran vedoucích do $C$.
+
+        Podgraf $C$ je slabá komunita, pokud počet hran vedoucích z $C$ pryč je menší než počet hran uvnitř $C$.
+
+        Občas se uvažuje i vážená příslušnost ke komunitám…
+    \end{definice}
+
+    \begin{definice}
+        Intra-cluster hustota je $\rho_{int} := |E(C)|/\binom{n_c}{2}$.
+        
+        Inter-cluster hustota je $\rho_{ext} := |E(C, G \setminus C)|/(n_c(n-n_c))$.
+
+        Hustota grafu je $\rho := |E(G)|/\binom{n}{2}$.
+    \end{definice}
+
+    \begin{dusledek}
+        Komunita má $\rho_{int} >> \rho >> \rho_{ext}$, takže při hledání komunit chceme maximalizovat $\rho_{int} - \rho_{ext}$.
+    \end{dusledek}
+
+    \begin{definice}
+        $k$-klika je maximální podgraf, kde vzdálenost (v grafu $G$, ne přímo v klice) každých vrcholů je $k$. $k$-klub je $k$-klika s průměrem (už přímo v klubu, zajišťuje souvislost) nejvýše $k$.
+
+        $k$-plex je maximální podgraf, kde každý vrchol je spojený se všemi ostatními krom $k-1$ z nich.
+    \end{definice}
+
+    \begin{veta}
+        $k$-PLEX je NP-úplný problém pro libovolné $k$.
+
+        \begin{dukazin}
+            Převedením CLIQUE na $k$-PLEX. Viz prezentace.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{poznamka}
+        Více rozdělování do komunit se objevuje ve strojovém učení. Viz SUVPV.
+    \end{poznamka}
+
+    \begin{definice}[Girvan-Newman algoritmus]
+        Cílem je definovat hranovou centralitu tak, aby byla velká pro různé komunity a malá pro stejné. Na optimum se nabízí tzv. edge-betweenness centralita:
+        $$ C_{EB}(e) = \sum_{u, v \notin e} \frac{\sigma_{uv}(e)}{\sigma_{uv}}. $$ 
+
+        Algoritmus tedy spočítá centralitu pro každou hranu, odstraní hranu s nejvyšší centralitou, přepočítá centrality a postupně takto odstraní všechny hrany, čímž dostaneme chtěnou hierarchii. (Pak zbývá jen otázka, kolik chceme komunit.)
+    \end{definice}
+
+% 10. 5. 2021
+
+    \begin{definice}[Modularita]
+        $$ Q = \frac{1}{2m} \sum_{ij}(A_{ij} - P_{ij})\delta(C_i, C_j), $$ 
+        kde $P_{ij}$ je tzv. null model, $\delta(C_i, C_j)$ je indikátor stejného klusteru.
+    \end{definice}
+
+    \begin{poznamka}[Volba null modelu]
+        Prostě stejný počet hran: $P_{ij} = p = \frac{2m}{n(n-1)}$.
+
+        Model zachovávající stupeň: $P_{ij} = 2mp_ip_j = \frac{k_ik_j}{2m}$.
+    \end{poznamka}
+
+    \begin{poznamka}[Na základě modelu zachovávající stupeň]
+        $$ Q = \frac{1}{2m} \sum_{ij}\(A_{ij} - \frac{k_ik_j}{2m}\)\delta(C_i, C_j). $$
+        První část je:
+        $$ \frac{1}{2m} \sum_{ij = 1}^n A_{ij}\delta(C_i, C_j) = \frac{1}{2m} \sum_{c = 1}^{n_c} \sum_{i, j \in C_c} A_{ij} = \sum_{c=1}^{n_c} \frac{m_c}{m}. $$
+        Druhá pak:
+        $$ \frac{1}{2m} \sum_{ij=1}^n \frac{k_ik_j}{2m} \delta(C_i, C_j) = \sum_{c=1}^{n_c} \frac{d_c^2}{4m^2}. $$
+        Tedy modularita je:
+        $$ Q = \sum_{c=1}^{n_c} \(\frac{m_c}{m} - \(\frac{d_c}{2m}^2\)\). $$
+
+        Tudíž maximalizujeme $\sum_{c=1}^{n_c} [m_c - ®E[m_c]]$.
+    \end{poznamka}
+
+    \begin{definice}[Kernighan-Lin algoritmus]
+        Pouze přibližné dělení: Začne s počátečním dělením (např. náhodným) $X, Y$ a pro všechny dvojice vrcholů z opačných částí spočítá, jak by se zlepšilo $D_x = k_x^{ext} - k_x^{int}$ při jejich prohození. Nejlepší dvojici pak prohodí. Opakuje (ale neprohazuje již prohozené vrcholy), dokud se snižuje výsledek.
+    \end{definice}
+
+% 17. 5. 2021
+
+    \begin{veta}
+        Souvislý graf má maximální vlastní číslo matice modularity rovné 0 právě tehdy, pokud je to  úplný multipartitní graf.
+
+        \begin{dukazin}
+            TODO.
+        \end{dukazin}
+    \end{veta}
+
+    \begin{tvrzeni}
+        TODO.
+    \end{tvrzeni}
+
+    \begin{veta}[Petrovi\,c]
+        Matice souvislosti souvislého grafu má právě jedno kladné vlastní číslo tehdy, a jen tehdy, pokud je to úplný multipartitní graf. 
+    \end{veta}
+
+    \begin{lemma}
+        TODO.
+    \end{lemma}
+
+    \begin{definice}[Vzdálenost]
+        Vzdálenost je funkce $d: S \times S \rightarrow ®R$ splňující
+        $$ \forall i, j \in S, i ≠ j: d(i, j) ≥ 0, $$
+        $$ \forall i, j \in S: i = j \Leftrightarrow d(i, j) = 0. $$ 
+    \end{definice}
+
+    \begin{definice}[Klustrizace]
+        Klusterizace je funkce $f$ z množiny všech vzdáleností na $S$ do množiny funkcí z $S$ na jeho rozdělení, tj. do podmnožiny $©P$.
+
+        Množiny dělení jsou nazvány klustery.
+    \end{definice}
+
+    \begin{definice}[Co splňuje dobré dělení]
+        Je invariatní vůči škálování: Pro každou vzdálenost a každé $\alpha > 0$ máme $f(d) = f(\alpha d)$.
+
+        Bohatost: $\Rang(f)$ je množina všech dělení $S$.
+
+        Konzistentnost: Když zmenšíme vzdálenosti uvnitř klusterů a zvětšíme mezi nimi, dělení zůstane stejné.
+    \end{definice}
+
+    \begin{definice}[Single-linkage dělení]
+        Začneme s klusterem za každý bod a vždy spojíme klustery, které jsou nejblíže, dokud není splněna ukončovací podmínka.
+    \end{definice}
+
+    \begin{pozorovani}
+        Pokud zastavíme na $k$ klusterech, tak dělení není bohaté.
+        
+        Pokud zastavíme na vzdálenosti $r$, tak dělení není invariantní vůči škálování.
+        
+        Pokud zastavíme na $\alpha$ násobku maximální délky hrany, tak dělení není konzistentní.
+    \end{pozorovani}
+
+    \begin{veta}[Kleinberg 2002]
+        Pro každé $n ≥ 2$ neexistuje klusterizace $f$, která by splňovala všechny 3 podmínky.
+    \end{veta}
+
+    \begin{veta}[Kleinberg 2002]
+        Pokud klusterizace splňuje invariantnost vůči škálování a je konzistentní, pak $\Rang(f)$ je antiřetězec.
+
+% 24. 5. 2021
+
+        \begin{dukazin}
+            TODO!
+        \end{dukazin}
+    \end{veta}
+
+    \begin{veta}[Kleinberg 2002]
+        Pro každý antiřetězec dělení existuje klusterizace, která splňuje invarianci vůči škálování a konzistenci, která má obor hodnot přesně tento řetězec.
+    \end{veta}
+
+\section{Šíření v sítích}
+    \begin{definice}[Stavy jedince]
+        S (susceptible) = zdravý, I (Infected) = nakažený, R (recovered) = uzdravený.
+    \end{definice}
+
+    \begin{definice}[Klasický SI model]
+        Předpokládá, že se každá dvojice potkává se stejnou pravděpodobností.
+
+        Má 2 parametry: $\beta$ = pravděpodobnost I -> S (při setkání) a $<k>$ = průměrný počet kontaktů 1 osoby.
+    \end{definice}
+
+    \begin{definice}[SIS model]
+        SIS model navíc předpokládá i možnost znovunakažení.
+    \end{definice}
+
+    \begin{definice}[SIRS model]
+        SIRS model navíc přidává vyléčené, kteří se znovu nakazí s menší pravděpodobností.
+    \end{definice}
+
+% 31. 5. 2021
+
 
 
 \end{document}
