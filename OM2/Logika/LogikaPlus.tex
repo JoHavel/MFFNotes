@@ -1,0 +1,484 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{poznamka}
+    Tyto poznámky jsou udělané z checklistu ke zkoušce, poznámek Lou van de Driese a „zelených slidů“. A samozřejmě z předchozích poznámek. A s vlastními poznámkami, např. ze zkoušky, ze které jsem vyletěl.
+\end{poznamka}
+
+\section{Definice}
+    \subsection{Výroková logika}
+        \begin{definice}[Logické spojky]
+            Základem výrokové logiky je 5 symbolů (2 hodnoty + 3 logické spojky): $\top \bot \neg \land \lor$ = pravda, lež, negace, a, nebo.
+
+            Zatím jim nepřiřazujeme žádný „význam“. Ten získávají až následnými definicemi, zvláště axiomy.
+        \end{definice}
+
+        \begin{definice}[Prvorvýroky (atomy)]
+            Dále jsou důležité výrokové atomy z nějaké abecedy, tj. z libovolné množiny.
+        \end{definice}
+
+        \begin{definice}[Výroky]
+            Libovolný výrok je pak konečným aplikováním logických spojek, jak je chápeme běžně (TODO), na atomy a $\top, \bot$.
+        \end{definice}
+
+        \begin{definice}[Polská (= prefixová) notace]
+            „Nejprve píšeme funkce (tj. zatím jen spojky), za nimi příslušný počet argumentů (včetně dalších funkcí s dalšími argumenty).“
+        \end{definice}
+
+        \begin{definice}[Pravdivostní ohodnocení]
+            Pravděpodobnostní ohodnocení je zobrazení $t$ z prvovýroků do $\{0, 1\}$. Toto zobrazení lze jednoznačně rozšířit na $t'$ na všechny výroky:
+            $$ t'(\top) = 1, \quad t'(\bot) = 0, \quad t'(\neg a) = 1 - t'(a), $$
+            $$ t'(a \lor b) = \max\{t'(a), t'(b)\}, \quad t'(a \land b) = \min\{t'(a), t'(b)\}. $$
+        \end{definice}
+
+        \begin{definice}[Splnitelný výrok]
+            Výrok $p$ je splnitelný $≡$ existuje $t: A \rightarrow \{0, 1\}$ takové, že $t(p) = 1$.
+        \end{definice}
+
+        \begin{definice}[Tautologie (výroková)]
+            Výrok $p$ je tautologie (notace $\models p$) $≡ t(p) = 1$ pro všechna $t: A \rightarrow \{0, 1\}$.
+        \end{definice}
+
+        \begin{definice}[Model]
+            Model (koho, čeho) $\Sigma$ (výrokové teorie) je každé pravděpodobnostní ohodnocení $t$, které přiřazuje 1 všem výrokům ze $\Sigma$.
+        \end{definice}
+
+        \begin{definice}[Vyplývání]
+            Říkáme, že $p$ je tautologický důsledek $\Sigma$ (píšeme $\Sigma \models p$, říkáme $p$ vyplývá ze $\Sigma$) $≡ t(p) = 1$ pro všechny modely $t$ (koho čeho) $\Sigma$.
+        \end{definice}
+
+        \begin{definice}[Disjunktivní normální tvar]
+            Výrok (nad konečnou množinou prvovýroků $A = \{a_1, …, a_n\}$) je v disjunktivním normálním tvaru, pokud je tvaru $p_1 \lor … \lor p_k$, kde každý tzv. disjunkt $p_i$ je tvaru $[\neg]a_1 \land … \land [\neg]a_n$, kde $[\neg]$ je buď $\neg$ nebo nic.
+        \end{definice}
+
+        \begin{definice}[Výrokový axiom]
+            Zákony inempotence, komutativity, asociativity, distributivity, absorbce a DeMorganovy zákony. TODO
+
+            Není nutné znát nazpaměť.
+        \end{definice}
+
+        \begin{definice}[Odvozovací pravidlo (MP)]
+           Z $p$ a $p \implies q$, odvodíme $q$.
+        \end{definice}
+
+        \begin{definice}[Důkaz (formální)]
+            Formální důkaz (či důkaz) $p$ z $\Sigma$ je sekvence $p_1, …, p_n$, kde $n≥1$ a $p_n = p$ tak, že $\forall k \in [n]$:
+
+            \begin{itemize}
+                \item buď $p_k \in \Sigma$,
+                \item nebo $p_k$ je výrokový axiom (viz skripta)
+                \item nebo $\exists i, j \in [k-1]$ tak, že $p_k$ lze odvodit pravidlem MP z $p_i$ a $p_j$.
+            \end{itemize}
+        \end{definice}
+
+    \subsection{Predikátová logika}
+        \begin{definice}[Jazyk (= signatura), arita]
+            Jazyk ($L$) je množina symbolů, jíž je přiřazena tzv. arita, tedy zobrazení z $L$ do $®N_0$.
+
+            Dělí na relace (relační symboly) ($L^r$) a funkce (funkční symboly) ($L^f$). Ale význam je jim přiřazen teprve ve strukturách.
+        \end{definice}
+
+        \begin{definice}[Struktura]
+            Struktura ©A pro $L$ je trojice $(A, (R^{©A})_{R \in L^r}, (F^{©A})_{F \in L^f})$ sestávající z množiny $A$ (tzv. nosič) a vyjádření symbolů: pro každou $m$-ární relaci $R \in L^r$ máme její Interpretace (relaci, tak jak tvrdí TeMno) $R^{©A} \subseteq A^m$ ($m$-ární relace na $A$) a pro každou $n$-ární funkci $F \in L^f$ máme její interpretace (funkci tak, jak tvrdí TeMno) $F^{©A}: A^n \rightarrow A$.
+        \end{definice}
+
+        \begin{definice}[Interpretace rel. a fun. symbolů ve struktuře]
+            Viz minulé 2 definice. Až tím, že se symbol interpretuje v nějaké struktuře, získává význam.
+        \end{definice}
+
+        \begin{definice}[Podstruktura a rozšíření struktury]
+            ©X je podstruktura struktury ©Y, značíme $©X \subseteq ©Y$, pokud $X \subseteq Y$ a nosná množina $X$ je uzavřená na zobrazení funkcemi a funkce i relace z ©X jsou zúžením všech funkcí a relací ©Y. Taktéž říkáme, že ©Y je rozšíření ©A.
+        \end{definice}
+
+        \begin{definice}[Homomorfismus / vnoření / izomorfismus]
+            Ať ©A a a ©B jsou struktury (pro tentýž jazyk). Homomorfismus $h: ©A \rightarrow ©B$ je zobrazení $h: A \rightarrow B$ tak, že $\forall m$-nární $R \in L^r$ a každé $(a_1, …, a_m)\in A^m$ máme $(a_1, …, a_m) \in R^{©A} \implies (ha_1, …, ha_m) \in R^{©B}$. $\forall n$-nární $F \in L^f$ a každé $(a_1, …, a_n) \in A^n$ je $h(F^{©A}(a_1, …, a_n)) = F^{©B}(ha_1, …, ha_n)$.
+
+            Pokud nahradíme implikaci v předchozí definici ekvivalencí, dostaneme tzv. silný homomorfismus. Speciálními případy jsou vnoření, tedy prostý silný homomorfismus, a isomorfismus, tedy bijektivní silný homomorfismus.
+        \end{definice}
+
+        \begin{definice}[Kongruence a faktorstruktura]
+            Kongruence je ekvivalence taková, že pokud jsou v relaci nějaké prvky, tak jsou v relaci i kongruentní prvky. Stejně tak obraz kongruentních prvků je kongruentní prvek k obrazu původních.
+
+            Faktostruktura je struktura, která má za prvky ekvivalenční týdny.
+        \end{definice}
+
+        \begin{definice}[Součin struktur]
+           Triviální. TODO! 
+        \end{definice}
+
+        \begin{definice}[Proměnná a term]
+            Proměnné: $Var = \{v_0, v_1, v_2, …\}$ je spočetná (nekonečná) množina.
+
+            \begin{poznamkain}
+                Většinou by nevadila ani nespočetná. Naopak spočetná by nám rozbíjela skládání výroků.
+            \end{poznamkain}
+
+            $L$-term je slovo na abecedě $L^f \cup Var$ získané jako: každá proměnná je $L$-term a kdykoliv je $F \in L^f$ $n$-nární relace a $t_1, …, t_n$ $L$-termy, pak je $Ft_1…t_n$ $L$-term.
+        \end{definice}
+
+        \begin{definice}[Termová operace]
+            Buď ©A $L$-struktura a $t=t(¦x)$ je $L$-term, kde $¦x = (x_1, …, x_m)$. Potom spojujeme pár $(t, ¦x)$ s funkcí $t^{©A}: A^m \rightarrow A$ následovně:
+
+            \begin{itemize}
+                \item Pokud $t$ je proměnná $x_i$, potom $t^{©A}(¦a) = a_i$ pro $¦a = (a_1, …, a_m) \in A^m$.
+                \item Pokud $t = Ft_1…t_n$, kde $F \in L^f$ je $n$-ární a $t_1, …, t_n$ jsou $L$-termy, potom $t^{©A}(¦a) = F^{©A}(t_1^{©A}(¦a), …, t_n^{©A}(¦a))$ pro $¦a \in A^m$.
+            \end{itemize}
+        \end{definice}
+
+        \begin{definice}[Podstruktura generovaná množinou]
+            Mějme strukturu a množinu (oindexovanou) prvků z ní. Pokud tuto množinu uzavřeme na funkce a funkce i relace zúžíme, pak dostaneme podstrukturu, která se nazývá generovaná danou množinou prvků (a ty se nazývají generátory).
+        \end{definice}
+
+        \begin{definice}[Atomická formule]
+            Atomická $L$-formule je slovo z abecedy $L \cup Var \cup \{\top, \bot, =\}$, které je tvaru buď $\top, \bot$, nebo termy jsou v relaci ($Rt_1…t_m$, kde $R \in L^r$ je $m$-nární relace a $t_1, …, t_m$ jsou $L$-termy), nebo $=t_1t_2$ (kde $t_1$ a $t_2$ jsou $L$-termy).
+        \end{definice}
+
+        \begin{definice}[Formule, sentence]
+            $L$-formule je slovo na abecedě $L \cup Var \cup \{\top, \bot, \neg, \lor, \land, =, \exists, \forall\}$, které je buď atomická formule, nebo $\neg\phi, \lor\phi\psi, \land\phi\psi$, kde $\phi$ a $\psi$ jsou $L$-formule, nebo $\exists x\phi, \forall x\phi$, kde $\phi$ je formule a $x$ je proměnná.
+            
+            Sentence je formule, kde všechny výskyty proměnné jsou vázané.
+        \end{definice}
+
+        \begin{definice}[Vázaný a volný výskyt proměnné]
+            Pokud se proměnná vyskytuje v podformuli tvaru $\exists x \phi$ nebo $\forall x \phi$, pak se tento výskyt nazývá vázaný, pokud se vyskytuje jinde, pak je tento výskyt volný.
+        \end{definice}
+
+        \begin{definice}[Substituce termů do formulí]
+            Píšeme $\phi(x_1, …, x_n)$, abychom zvýraznili, že právě proměnné $x_1, …, x_n$ jsou volné v $\phi$.
+
+            Do formule dosazujeme $(\phi(t_1/x_1, …, t_n/x_n))$ naráz a nahrazujeme všechny volné výskyty dané proměnné.
+
+            Místo $\phi(t_1/x_1, …, t_n/x_n)$ budeme psát $\phi(t_1, …, t_n)$.
+        \end{definice}
+
+        \begin{definice}[Expanze struktury o jména]
+            Jazyk $L$ rozšiřujeme o jména, tj. konstantní symboly reprezentující prvky, o kterých se chceme bavit (množina $C$), na $L_C$. Místo $L$-struktury ©A s nosnou množinou $A \supseteq C$ potom můžeme počítat s expandovanou $L_C$-strukturou $©A_C$, která má stejnou nosnou množinu, stejnou interpretaci $L$ symbolů a symboly z $L_C \setminus L$ interpretuje jako dané prvky (funkce s aritou nula, které zobrazují na tyto prvky) množiny $A$.
+        \end{definice}
+
+        \begin{definice}[Tarského definice splňování]
+            $L_A$-sentence $\sigma$ je pravdivá v $L$-struktuře ©A (píšeme $©A \models \sigma$ a čteme $\sigma$ je pravdivá / splněna v ©A) takto:
+
+            \begin{itemize}
+                \item $©A \models \top$ a $©A \not\models \bot$,
+                \item $©A \models Rt_1…t_m$ právě tehdy, pokud $(t^{©A}_1, …, t^{©A}_m) \in R^{©A}$ pro $m$-nární relaci $R \in L^r$ a $L_©A$ termy bez volných proměnných $t_1, …, t_m$,
+                \item $©A \models t_1 = t_2$ právě tehdy, když $t_1^A = t_2^A$ pro $L_A$-termy bez volných proměnných $t_1, t_2$,
+                \item $\sigma = \neg \sigma_1$, potom $©A \models \sigma$ právě tehdy, pokud $©A \not\models \sigma_1$,
+                \item $\sigma = \sigma_1 \lor \sigma_2$, potom $©A \models \sigma$ právě tehdy, pokud $©A \models \sigma_1$ nebo $©A \models \sigma_2$,
+                \item $\sigma = \sigma_1 \land \sigma_2$, potom $©A \models \sigma$ právě tehdy, pokud $©A \models \sigma_1$ a $©A \models \sigma_2$,
+                \item $\sigma = \exists x \phi(x)$, potom $©A \models \sigma$ tehdy a jen tehdy, když $©A \models \phi(\underline{a})$ pro nějaké $a \in ©A$,
+                \item $\sigma = \forall x \phi(x)$, potom $©A \models \sigma$ tehdy a jen tehdy, když $©A \models \phi(\underline{a})$ pro všechna $a \in A$.
+            \end{itemize}
+        \end{definice}
+
+        \begin{definice}[(0-)definovatelné množiny]
+            $\phi(x_1, …, x_n)$ definuje množinu $\phi^{©A} = \{(a_1, …, a_n) : ©A \models \phi(a_1, …, a_n)\}$.
+
+            Pokud existuje $L$-formule definující $S \subseteq A^n$, potom říkáme, že formule je 0-definovatelná v ©A. Množina je pak definovatelná tehdy, pokud existuje $L_A$-formule definující tuto množinu.
+        \end{definice}
+
+        \begin{definice}[Otevřená formule]
+            Otevřená formule je taková formule, která neobsahuje žádný kvantifikátor.
+        \end{definice}
+
+        \begin{definice}[Teorie a její model]
+            Říkáme, že struktura ©A je model teorie (= množiny $L$-sentencí) $\Sigma$, když $©A \models \sigma$ pro všechny $\sigma \in \Sigma$.
+        \end{definice}
+
+        \begin{definice}[Logický důsledek (vyplývání)]
+            Říkáme, že $\sigma$ vyplývá z $\Sigma$ (píšeme $\Sigma \models \sigma$), pokud $\sigma$ je pravdivá v každém modelu (koho, čeho) $\Sigma$. (Van de Dries dokonce uvádí i pro formule, kde je potom, že vyplývá, pokud její generální uzávěr vyplývá.)
+        \end{definice}
+
+        \begin{definice}[Generální uzávěr formule]
+            Generální uzávěr formule $\phi = \phi(x_1, …, x_n)$ je formule $\forall x_1, …, x_n \phi$.
+
+            Také definujeme $©A \models \phi ≡ ©A \models x_1…x_n\phi$.
+        \end{definice}
+
+        \begin{definice}[Výrokový axiom]
+            TODO.
+            
+            Není nutné znát nazpaměť.
+        \end{definice}
+
+        \begin{definice}[Axiomy rovnosti]
+            TODO.
+        \end{definice}
+
+        \begin{definice}[Axiom specifikace (pro kvantifikátory)]
+            Kvantifikátorové axiomy v $L$ jsou formule (pro všechny $L$-formule $\phi$) $\phi(t/y) \implies \exists y\phi$ a $\forall y \phi \implies \phi(t/y)$.
+        \end{definice}
+
+        \begin{definice}[Substituovatelnost termu]
+            Term $t$ je substituovatelný za proměnnou $a$ ve formuli $\phi$, jestliže žádná proměnná (žádný její výskyt) v $t$ se nestane vázanou.
+        \end{definice}
+
+        \begin{definice}[Odvozovací pravidla (MP a G)]
+            Modus Ponens (MP): z $\phi$ a $\phi \implies \psi$ odvodíme $\psi$.
+
+            Generalizační pravidla (G): pokud se proměnná $x$ nevyskytuje volně v $\phi$, potom z $\phi \implies \psi$ odvodíme $\phi \implies \forall x\psi$ a z $\psi \implies \phi$ odvodíme $\exists x \psi \implies \phi$.
+        \end{definice}
+
+        \begin{definice}[Důkaz (formální) a dokazatelnost]
+            Formální důkaz, nebo prostě důkaz $\phi$ z $\Sigma$ je posloupnost $\phi_1, …, \phi_n$ formulí, kde $n ≥ 1$ a $\phi_n = \phi$, takových, že $\forall k \in [n]$:
+
+            \begin{itemize}
+                \item je buď $\phi_k \in \Sigma$,
+                \item nebo $\phi_k$ je logický axiom,
+                \item nebo $\phi_k$ může být odvozen z $\phi_i$ a $\phi_j$ ($\phi_j$) pomocí MP (G), pro nějaké $i, j$.
+            \end{itemize}
+
+            Pokud existuje důkaz $\phi$ z teorie $\Sigma$, potom píšeme $\Sigma \vdash \phi$ a říkáme, že $\phi$ je dokazatelné ze $\Sigma$.
+        \end{definice}
+
+        \begin{definice}[Kanonická struktura]
+            Kanonická struktura teorie $\Sigma$ je $©A_\Sigma := T_L/\sim_\Sigma$. $R^{A_\Sigma}$ nebo $F^{A_\Sigma}$ je potom relace nebo funkce, přijímající bloky ekvivalence.
+
+            Kde $T_L$ je množina $L$-termů a $\sim_\Sigma$ je definováno jako
+            $$ t_1 \sim_\Sigma t_2 \Leftrightarrow \Sigma \vdash t_1 = t_2. $$
+        \end{definice}
+
+        \begin{definice}[Kompletní teorie]
+            Teorie $\Sigma$ je kompletní, pokud pro každou formuli $\phi$ je buď $\Sigma \vdash \phi$ nebo (výlučné, tj. je konzistentní) $\Sigma \vdash \neg\phi$.
+        \end{definice}
+
+        \begin{definice}[Henkinovský svědek]
+            (V teorii $\Sigma$:) (Henkinovský) svědek sentence $\exists x \phi(x)$ je konstantní term $t \in T_L$ tak, že $\Sigma \vdash \phi(t)$. Říkáme, že $\Sigma$ je henkinovská teorie (má svědky), jestliže existuje svědek pro každou sentenci $\exists x \phi(x)$.
+        \end{definice}
+
+        \begin{definice}[Redukt struktury, expanze struktury]
+            Buď $©A$ $L$-struktura a $©A^*$ $L^*$-struktura, kde $L^* \supseteq L$. Pokud mají $©A$ a $©A^*$ stejnou nosnou množinu a interpretaci symbolů v $L$, pak $©A$ je redukt $©A^*$ a $©A^*$ je expanze $©A$.
+        \end{definice}
+
+        \begin{definice}[Varianta formule a prenexní tvar]
+            Varianta formule je formule získaná nějakým postupným nahrazováním $Q x \phi$ za $Q y \phi(y/x)$, kde $Q \in \{\forall, \exists\}$, kde $y$ je substituovatelné za $x$ v $\phi$ a $y$ nemá volný výskyt v $\phi$.
+
+            Formule je v prenexním tvaru, pokud je tvaru $Q_1x_1…Q_nx_n\phi$, kde $x_1, …, x_n$ jsou různé proměnné, $Q_i \in \{\exists, \forall\}$ a $\phi$ je formule bez kvantifikátorů (otevřená formule).
+        \end{definice}
+
+    \subsection{Teorie modelů}
+        \begin{definice}[Elementární ekvivalence / vnoření]
+            Buďte $©A, ©B$ dvě $L$-struktury, $C \subseteq A$ a $h: C \rightarrow B$ zobrazení. Řekneme, že $h$ je $(©A, ©B)$-podobnost, pokud pro každou $L_C$-sentenci $\sigma$ platí $A \models \sigma \Leftrightarrow B \models \sigma_h$.
+
+            Existuje-li nějaká $(©A, ©B)$-podobnost (kde $C = \O$), říkáme, že ©A je elementárně ekvivalentní s ©B, píšeme $©A ≡ ©B$.
+
+            Je-li naopak dokonce $C = A$, říkáme, že $h$ je elementární vnoření ©A do ©B.
+        \end{definice}
+
+        \begin{definice}[Skolemizace a rozšíření o definice]
+            TODO???
+        \end{definice}
+
+        \begin{definice}[Konzervativní rozšíření teorie]
+            $\Sigma'$ se nazývá konzervativní nad $\Sigma$, pokud pro každou $L$-sentenci $\sigma$ je
+            $$ \Sigma' \vdash_{L'} \sigma \Leftrightarrow \Sigma \vdash_L \sigma. $$
+        \end{definice}
+
+        \begin{definice}[Definice (interpretace) struktury ve struktuře]
+            TODO!
+        \end{definice}
+
+        \begin{definice}[Aritmetiky]
+            \ \\[-3em]
+
+            \begin{definicein}[Presburgerova aritmetika]
+                Uvažujme jazyk $K = \{0, S, +\}$, kde $0$ je konstantní symbol, $S$ je unární funkční a $+$ binární funkční symbol. Presburgerova aritmetika je $K$-teorie obsahující právě následující axiomy:
+        
+                \begin{enumerate}
+                    \item $Sx ≠ 0$;
+                    \item $Sx = Sy \implies x = y$;
+                    \item $x ≠ 0 \implies \exists y: x = Sy$;
+                    \item $x + 0 = x$;
+                    \item $x + Sy = S(x+y)$;
+                \end{enumerate}
+        
+                a navíc schéma axiomů indukce (pro každou $K$-formuli $\phi$):
+                $$ (\phi(0/x) \land \forall x (\phi(x) \implies \phi(Sx/x))) \implies \forall x \phi. $$ 
+            \end{definicein}
+
+            \begin{definicein}[Robinsonova a Peanova aritmetika (tj. včetně $·$)]
+                Rozšíříme $K$ na $L = K \cup \{·\}$, kde $·$ je binární funkční symbol, a přidejme k předchozím axiomům navíc $x·0 = 0$ a $x·Sy = x·y + x$. Navíc schéma indukce nyní uvažujme pro všechny $L$-formule. Výsledné $L$-teorii se říká Peanova aritmetika (P nebo PA). Její (konečnou) podteorii, která vznikne vypuštěním všech axiomů indukce, nazýváme Robinsonova aritmetika (Q či RA).
+            \end{definicein}
+        \end{definice}
+
+\section{Lemma, tvrzení, věty}
+    \subsection{Výroková logika}
+        \begin{lemma}[O jednoznačném čtení výroku]
+            \ \\[-3em]
+
+            \begin{lemmain}
+                Buďte $t_1, …, t_m$ a $u_1, …, u_n$ jsou přijatelná slova a $w$ libovolné slovo tak, že $t_1…t_mw=u_1–u_n$. Potom $m ≤ n$, $t_i = u_i$ pro $i \in [m]$ a $w = u_{m+1}…u_n$.
+
+                \begin{dukazin}
+                    Bez důkazu.
+                \end{dukazin}
+            \end{lemmain}
+
+            Každé přijatelné slovo je tvaru $ft_1…t_n$ pro právě jednu ($n+1$)-tici $(f, t_1, …, t_m)$, kde $f \in F$ ($F$ jsou symboly s přiřazenou aritou) je arity $m$ a $t_1, …, t_n$ jsou přijatelná slova.
+
+            \begin{dukazin}
+                Předpokládejme, že $ft_1…t_n = gu_1…u_m$. Potom z předchozího lemmatu máme $f = g$, tj. $n = m$ a $t_i = u_i$ pro všechna $i \in [n]$.
+            \end{dukazin}
+
+            \begin{lemmain}[Nevím, zda je potřeba]
+                Pro přijatelné slovo $w$ a $1≤i≤lenght(w)$ existuje právě jedno přijatelné slovo začínající ve slově $w$ na pozici $i$.
+
+                \begin{dukazin}
+                    Indukcí vzhledem k $length(w)$.
+                \end{dukazin}
+            \end{lemmain}
+        \end{lemma}
+
+        \begin{tvrzeni}[Disjunktivní normální tvar]
+            Každý výrok (nad konečnou množinou prvovýroků) je ekvivalentní nějakému výroku v disjunktivním normálním tvaru.
+
+            \begin{dukazin}
+                Pro výrok, který není splnitelný, použijeme disjunkci 0 výroků. Jinak pro každé pravdivostní ohodnocení (těch je konečně mnoho), které přiřadí $v$ jedničku, přidáme do disjunkce člen, který bude mít negaci podle toho, zda byl nebo nebyl daný atom ohodnocen 1 nebo nulou.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{lemma}[O dedukci]
+            Předpokládejme $\Sigma \cup \{p\} \vdash q$. Potom $\Sigma \vdash p \implies q$.
+
+            \begin{dukazin}[Indukcí]
+                Pokud je $q$ výrokový axiom, pak $\Sigma \vdash q$ a jelikož $q \implies (p \implies q)$ je výrokový axiom, MP říká $\Sigma \vdash p \implies q$.
+
+                Pokud $q \in \Sigma \cup \{p\}$, pak buď $q \in \Sigma$ a potom ze stejného důvodu $\Sigma \vdash p \implies q$. Nebo $p = q$ a potom $\Sigma \vdash p \implies q$, jelikož $\vdash p \implies p$.
+
+                Jinak je $q$ odvozeno pomocí MP z $r$ a $r \implies q$, kde $\Sigma \cup \{p\} \vdash r, r \implies q$. Můžeme pak z IP předpokládat $\Sigma \vdash p \implies r, p \implies (r \implies q)$. Potom $\Sigma \vdash p \implies q$ dvojnásobným aplikováním MP z
+                $$ (p \implies (r \implies q)) \implies \((p \implies r) \implies (p \implies q)\). $$
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[O úplnosti]
+            \ \\[-3em]
+            
+            \begin{lemmain}[Lindenbaum]
+                Předpokládejme, že $\Sigma$ je konzistentní. Potom existuje úplná $\Sigma' \supseteq \Sigma$. ($\Sigma' \subseteq Prop(A)$.)
+
+                \begin{dukazin}
+                    Standardní aplikace Zornova lemmatu. (A důkaz může být pouze z konečné množiny výroků.)
+                \end{dukazin}
+            \end{lemmain}
+        
+            \begin{lemmain}
+                Předpokládejme $\Sigma$ je úplné. Potom pro každý výrok $p$ je
+                $$ \Sigma \vdash p \Leftrightarrow t_\Sigma(p) = 1. $$
+                Tedy $t_\Sigma$ je model $\Sigma$. Kde $t_\Sigma$ je definováno jako
+                $$ t_\Sigma(a) = 1 \Leftrightarrow \Sigma \vdash a. $$
+
+                \begin{dukazin}
+                    Indukcí. TODO
+                \end{dukazin}
+            \end{lemmain}
+            
+            $$ \Sigma \vdash p \Leftrightarrow \Sigma \models p. $$
+            Neboli $\Sigma$ je konzistentní právě tehdy, pokud $\Sigma$ má model.
+
+            \begin{dukazin}
+                Pomocí Lindenbaumova lemmatu najdeme úplnou nadmnožinu $\Sigma$. Podle předchozího lemmatu má model. Tedy i $\Sigma$ má model.
+
+                Opačná implikace je triviální (ponechána čtenáři, pokud se dá dokázat $\bot$, pak je $t(\bot) = 1$, ale my z definice víme, že je $t(\bot) = 0$. \lightning)
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O kompaktnosti]
+            Pokud $\Sigma \models p$, potom existuje konečná $\Sigma_0 \subseteq \Sigma$ tak, že $\Sigma_0 \models p$.
+
+            \begin{dukazin}
+                Triviální důsledek úplnosti.
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Predikátová logika}
+        \begin{tvrzeni}[Týkající se bezprostředně h/v/i]
+            TODO!
+        \end{tvrzeni}
+
+        \begin{lemma}[O dedukci]
+            Nechť $\Sigma \cup \{\sigma\} \vdash \phi$, potom $\Sigma \vdash \sigma \implies \phi$.
+
+            \begin{dukazin}
+                Indukcí pro délku důkazu. TODO
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}[Lindenbaum]
+            Předpokládejme, že $\Sigma$ je konzistentní. Potom existuje úplná $\Sigma' \supseteq \Sigma$. ($\Sigma' \subseteq Prop(A)$.)
+
+            \begin{dukazin}
+                Standardní aplikace Zornova lemmatu. (A důkaz může být pouze z konečné množiny formulí.)
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[O úplnosti]
+            (Krom technických lemmat jako např. 3.1.2, 3.2.3, 3.2.8-10).
+
+            $$ \Sigma \vdash p \Leftrightarrow \Sigma \models p. $$
+            Neboli $\Sigma$ je konzistentní právě tehdy, pokud $\Sigma$ má model.
+
+            \begin{dukazin}
+                $\Leftarrow$ jasné. $\implies$: TODO!!! 
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[O kompaktnosti]
+            Pokud $\Sigma \models p$, potom existuje konečná $\Sigma_0 \subseteq \Sigma$ tak, že $\Sigma_0 \models p$.
+
+            Neboli pokud každá konečná podmnožina $\Sigma$ má model, potom $\Sigma$ má model.
+
+            \begin{dukazin}
+                TODO? (Nenašel jsem důkaz.)
+            \end{dukazin}
+        \end{veta}
+
+    \subsection{Teorie modelů}
+        \begin{tvrzeni}[Týkající se bezprostředně elem. e/v]
+            TODO!
+        \end{tvrzeni}
+
+        \begin{veta}[Löwenheim-Skolem]
+            Spočetná verze: Předpokládejme, že $L$ je spočetné a $\Sigma$ má model. Potom $\Sigma$ má spočetný model.
+
+            \begin{dukazin}
+                Jelikož $Var$ je spočetné, ze spočetnosti $L$ dostáváme spočetnost množiny všech $L$-sentencí. Můžeme tedy jazyk $L$ doplnit o svědky bez ztráty spočetnosti. Tedy můžeme postupovat stejně jako ve větě o úplnosti, a protože sjednocení spočetně mnoha spočetných množin je spočetné, tak i $L_∞$ z důkazu je spočetné. Tedy $©A_{\Sigma_∞}$ je spočetný a jeho redukt $A_{\Sigma_∞} |_L$ je spočetný model $\Sigma$.
+            \end{dukazin}
+
+            Obecná verze: Předpokládejme, že $L$ je kardinality nejvýše $\kappa$ a $\Sigma$ má nekonečný model. Potom $\Sigma$ má model kardinality $\kappa$.
+
+            \begin{dukazin}
+                TODO!
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}[Vaughtův test]
+            Nechť $L$ je spočetné, $\Sigma$ má model a všechny spočetné modely $\Sigma$ jsou izomorfní. Potom $\Sigma$ je úplné.
+
+            \begin{dukazin}
+                Kdyby $\Sigma$ nebylo úplné, potom existuje $\sigma$ tak, že $\Sigma \nvdash \sigma$ a $\Sigma \nvdash \neg \sigma$. Z Löwenheim-Skolemovy věty existují spočetné modely ©A a ©B tak, že $©A \not\models \sigma$ a $©B \not\models \neg \sigma$. Tedy $©A \models \neg \sigma$ a $©B \models \sigma$, ale pak nemohou být izomorfní.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}[Cantor]
+            (O spočetných modelech teorie hustého lineárního uspořádání bez koncových bodů.)
+
+            Libovolné 2 spočetné hustě lineárně uspořádané množiny bez koncových bodů jsou izomorfní.
+
+            \begin{dukazin}
+                Použijeme Vaughtův test, tedy nám stačí ukázat, že každé 2 spočetné hustě lineárně uspořádané množiny bez koncových bodů jsou izomorfní. TODO? (Jednoduché?)
+            \end{dukazin}
+        \end{veta}
+
+        \begin{tvrzeni}[Kompletnost teorie $∞$ VP]
+            Teorie nekonečných vektorových prostorů nad tělesem ®F je úplná.
+
+            \begin{dukazin}
+                Zvolme $\kappa > |®F|$. Tedy $L_{®F}$ je velikosti nejvýše $\kappa$. Buď ¦V VP nad ®F kardinality $\kappa$. Potom báze ¦V musí mít mohutnost $\kappa$. Tedy každé 2 vektorové prostory nad ®F kardinality $\kappa$ mají báze mohutnosti $\kappa$ a jsou tedy izomorfní. Tedy podle zobecněného Vaughtova testu je teorie $∞$ VP nad ®F úplná.
+            \end{dukazin}
+        \end{tvrzeni}
+
+        \begin{veta}[Gödelovy věty o neúplnosti]
+            TODO!
+        \end{veta}
+\end{document}

@@ -3,6 +3,10 @@
 
 \begin{document}
 
+\begin{poznamka}
+    Do tohoto dokumentu pravděpodobně nebudou zanášeny opravy. Lepší verze poznámek je \href{./LogikaPlus.pdf}{LogikaPlus.tex}.
+\end{poznamka}
+
 % 4. 3. 2021
 \section{Úvod}
     \begin{poznamka}[Domluva]
@@ -14,7 +18,7 @@
 % 11. 2. 2021
 
     \begin{definice}[Základy]
-            Základem výrokové logiky je 5 symbolů (2 hodnoty + 3 logické spojky): $\top \bot \neg \land \lor$ = pravda, lež, negace, a, nebo.
+        Základem výrokové logiky je 5 symbolů (2 hodnoty + 3 logické spojky): $\top \bot \neg \land \lor$ = pravda, lež, negace, a, nebo.
 
         Dále jsou to výrokové atomy z nějaké abecedy. Libovolný výrok je pak konečným aplikováním logických spojek.
     \end{definice}
@@ -73,7 +77,7 @@
     \end{definice}
 
     \begin{definice}[Důkaz]
-        Formální důkaz (či důkaz) $p$ z $\Sigma$ je sekvence $p_1, …, p_n$, kde $n≥1$ a $p_n = p$ tak, že $\forall k \in [n]$: buď $p_k \in Sigma$, nebo $p_k$ je výrokový axiom (viz skripta), nebo $\exists i, j \in [k-1]$ tak, že $p_k$ lze odvodit pravidlem MP z $p_i$ a $p_j$.
+        Formální důkaz (či důkaz) $p$ z $\Sigma$ je sekvence $p_1, …, p_n$, kde $n≥1$ a $p_n = p$ tak, že $\forall k \in [n]$: buď $p_k \in \Sigma$, nebo $p_k$ je výrokový axiom (viz skripta), nebo $\exists i, j \in [k-1]$ tak, že $p_k$ lze odvodit pravidlem MP z $p_i$ a $p_j$.
 
         Říkáme, že $p$ je dokazatelné ze $\Sigma$, a značíme $\Sigma \vdash p$
     \end{definice}
@@ -160,7 +164,7 @@
 
 \section{Predikátorová logika}
     \begin{definice}[Jazyk]
-        Jazyk ($L$) je disjoin sjednocení množiny relací ($L^r$) (každé relaci $R \in L^r$ přiřadíme aritu $a(R) \in ®N$) a množiny funkčních symbolů ($L^f$) ($F \in L^f$ má aritu $a(F) \in ®N$).
+        Jazyk ($L$) je disjunktní sjednocení množiny relací ($L^r$) (každé relaci $R \in L^r$ přiřadíme aritu $a(R) \in ®N$) a množiny funkčních symbolů ($L^f$) ($F \in L^f$ má aritu $a(F) \in ®N$).
     \end{definice}
 
     \begin{definice}[Struktura]
@@ -319,7 +323,7 @@
 % 15. 4. 2021
 
         \begin{definice}
-            Qvantifikátorové axiomy v $L$ jsou formule $\phi(t/y) \implies \exists y\phi$ a $\forall y \phi \implies \phi(t/y)$.
+            Kvantifikátorové axiomy v $L$ jsou formule $\phi(t/y) \implies \exists y\phi$ a $\forall y \phi \implies \phi(t/y)$.
         \end{definice}
 
         \begin{veta}[O korektnosti predikátorového počtu]
@@ -444,7 +448,7 @@
         TODO?
 
         \begin{definice}[Prenexní tvar]
-                Formule je v prenexním tvaru, pokud je tvaru $Q_1x_1…Q_nx_n\phi$, kde $x_1, …, x_n$ jsou různé proměnné, $Q_i \in \{\exists, \forall\}$ a $\phi$ je bez kvantifikátorů.
+            Formule je v prenexním tvaru, pokud je tvaru $Q_1x_1…Q_nx_n\phi$, kde $x_1, …, x_n$ jsou různé proměnné, $Q_i \in \{\exists, \forall\}$ a $\phi$ je bez kvantifikátorů.
         \end{definice}
 
 % 13. 5. 2021
