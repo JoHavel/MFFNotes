@@ -151,18 +151,62 @@
 
 % 30. 3. 2021
 
-        TODO!
+        \begin{poznamka}
+            Dříve byl pouze proces připojený sběrnicí k paměti a periferii. Postupně se ale vyvinuly 2 paměti: statická (klopné obvody, spolehlivá, ale má malou hustotu dat) a dynamická (kondenzátor, destruktivní čtení, zapomíná -- nutnost občerstvování)). Také se začalo narážet na rychlost světla. Tedy se přidali cache.
+        \end{poznamka}
+
+        \begin{definice}[Cache]
+            Řádky jsou nejčastěji 64 bytové.
+
+            Nejdříve můžeme mít plně asociativní cache. Např. 32 bitová adresa je rozdělená na 26b čísla řádku a 6 bitů pozice v řadku. Cache je pak prostě pole položek (dvojic tag (= číslo řádku = horních 26b adresy) a obsah řádku). To je však pomalé vůči adresování.
+
+            Takže máme přímo mapované cache. Ta adresu rozděluje na tag, index a pozici v řádku, tag se používá pro kontrolu, zda je to opravdu daný řádek, a indexem (nebo jinak hashovanou adresou) se indexuje cache. Ta ale aliasuje (adresy lišící se o 64 bitů se navzájem vyhazují z cache).
+
+            Tedy se používá množinově asociativní cache, která má pro každý index množinu míst (předchozí si pro každý index pamatovala nejvýše 1 záznam).
+
+            Pro vyhazování z množin se používá LRU = least recently used.
+
+            Pro zrychlení se navíc staví hierarchie cachí. Přibližné parametry jsou: L1 cache jsou dvě, instrukční a datová, obě 32kB, instrukční 4-cestná, datová 8-cestná. Druhá (a třetí) cache jsou dohromady, v řádech MB a také 8-cestné.
+        \end{definice}
+
+        \begin{definice}[Zápis]
+            Můžeme buď zapisovat write-through (= rovnou zapíšeme do paměti) nebo write-back (= máme dirty bit u každého záznamu v cachi, pokud chceme zapsat něco, co není v cachi, musí se to přečíst).
+        \end{definice}
+
+        \begin{definice}[Memory Management Unit]
+            Už jen kvůli oddělení procesů je dobré zavést překlad mezi adresami programu (virtuální adresy) a fyzickými adresami.
+
+            Paměť se rozdělila na 4kB stránky, tedy 12 bitů adresy se nepřekládá (offset), zbytek je číslo stránky. Paměť je ale docela malá, tedy se místo seznamu stránek používá strom. Např. může být adresa (64b) rozdělena na 16b rezervovaných (sign. extension. záporné položky jsou systému, kladné user módu), $9+9+9+9$ jsou indexy v dané úrovni stromu, 12b je offset (v položce v MMU jsou to flagy: present, writeable, user/system, accessed, dirty, global, kešovatelnost (např. síťové věci nejsou)).
+
+            Překlad může skončit dřív nejenom neúspěchem, ale i tak, že místo další úrovně je tam rovnou větší offset, tzv. huge page.
+
+            Takhle by to bylo ale velmi pomalé, tedy máme TLB (translation look-aside buffer) = cache na překlady. To má zase hierarchie: ITLB1 (asi 128 položek), DTLB1 (pouze čtení zpaměti, 16 malých + 16 velkých, 4-cestná), TLB2 (256 malých + 32 velkých, 4-cestná).
+        \end{definice}
+
+        \begin{poznamka}[Interakce cache -- MMU]
+            Cache adresovaná virtuálně -- nefunguje, protože fyzická adresa může mít více virtuálních a zápis by tedy neproběhl pro celý svět. Ale je rychlejší.
+
+            Cache adresovaná fyzický -- funguje, ale je pomalá.
+
+            Kompromis -- indexovaná virtuálně (6b indexu + 6b offsetu se nezmění překladem, tj. vlastně i fyzicky indexovaná) a tagovaná fyzicky (překlad proběhne zároveň s dotazem na cache, jelikož index máme hned, tedy můžeme začít i s dotazem).
+        \end{poznamka}
 
 % 6. 4. 2021
 
-        \begin{definice}[Bit global]
+        \begin{definice}[Přepnutí kontextu]
+            Každý proces má typicky vlastní překlady, tedy při každé změně procesu se přepíše CR3, tj. vyhodí se vše z TLB. Ale i jiné změny (např. alokace) vyvolají změnu TLB (což se alespoň z části řeší explicitní invalidací položky). Dále se to řeší global bitem a PSID.
+        \end{definice}
+
+        \begin{definice}[Bit global, PSID]
             Nastavený bit global na 1 zaručuje, že daná stránkovací knihovna nebude vyhozena při přepnutí kontextu.
 
-            Zároveň lze udělat i explicitní invalidaci stránky. Dále existuje PSID (process context ID), které se přiřadí stránkám (do dolních volných 12 bitů).
+            Zároveň lze udělat i explicitní invalidaci stránky. Dále existuje PSID (process context ID), které se přiřadí stránkám (do dolních volných 12 bitů). Potom při změně kontextu řekneme, zda používáme nové/recyklované PSID a podle toho ne-/flushnem položky s tímto PSID (respektive ještě existuje i explicitní invalidace).
         \end{definice}
 
         \begin{definice}[Další přiblížení paměti]
-            SDRAM (synchronous dynamic) je matice ($±$ čtvercová) DRAM buněk + SRAM registr (1 řádek). Pracuje se tak, že se tzv. Activate řádek, který daný řádek přesune na SRAM registr. Po provedení čtení a úprav se provede tzv. PRECHARGE, čímž se data vrátí zpět.
+            SDRAM (synchronous dynamic) je matice ($±$ čtvercová, 64MB má např. 8kB řádky) DRAM buněk (dynamické = čtení je ničí) + SRAM registr (1 řádek, statický = lze z něho číst dvakrát). Pracuje se tak, že se tzv. Activate řádek, který daný řádek přesune na SRAM registr. Po provedení čtení a úprav se provede tzv. PRECHARGE, čímž se data vrátí zpět.
+
+            V realitě je více registrů (např. 4).
         \end{definice}
 
     \subsection{Výpočet}
@@ -171,7 +215,7 @@
         \end{poznamka}
 
         \begin{definice}[Pipelining (neboli dnes)]
-            Jednotlivé části vykonávají činnosti paralelně, tedy se vykonává více instrukcí zároveň. Parametry: latence a propustnost. Můžou se však vytvářet bubliny (některé instrukce jsou na více taktů, nebo závislé, proto se ALU např. rozděluje na 2 takty, aby pipeline byla plynulejší). Větší problém jsou však skoky (proto se predikuje, kam se skočí).
+            Jednotlivé části vykonávají činnosti paralelně, tedy se vykonává více instrukcí zároveň. Parametry: latence (jak dlouho trvá cesta celou pipelinou) a propustnost (kolik instrukcí za takt můžeme do pipeliny poslat). Můžou se však vytvářet bubliny (některé instrukce jsou na více taktů, nebo závislé, proto se ALU např. rozděluje na 2 takty, aby pipeline byla plynulejší). Větší problém jsou však skoky (proto se predikuje, kam se skočí).
 
             Protipól skalárního procesoru (popsaného zde) jsou vektorové procesory, které mají mnoho ALU apod.
         \end{definice}
@@ -187,17 +231,31 @@
         \end{definice}
 
         \begin{definice}[Predikce (skoky)]
-            1) statická predikce (bez kontextu): např. skoky dopředu většinou neskočí, skoky dozadu skočí (protože cykly).
+            1) statická predikce (bez kontextu): např. skoky dopředu většinou neskočí (u podmínek nevíme, u výskoků z cyklů je to většinou -- neskočí), skoky dozadu skočí (protože cykly).
 
-            2) dynamická predikce (BranchTargetBuffer): pamatuje si u každého skoku, jak dopadl minule a pak předvídá. Starší položky se vyhazují. Funguje např. tak, že se odčítá 1, když neskočil, přičítá 1, když skočil, čím větší, tím pravděpodobnější stav (tzv. saturační čítač, který když by měl přetéct na libovolnou stranu, tak zůstává) (takhle se to dělalo v prvním takovém procesoru: pentiu, ale byla tam chyba).
+            2) dynamická predikce (Branch Target Buffer): pamatuje si u každého skoku, jak dopadl minule a pak předvídá. Starší položky se vyhazují. Funguje např. tak, že se odčítá 1, když neskočil, přičítá 1, když skočil, čím větší, tím pravděpodobnější stav (tzv. saturační čítač, který když by měl přetéct na libovolnou stranu, tak zůstává) (takhle se to dělalo v prvním takovém procesoru: pentiu, ale byla tam chyba).
 
-            Nebo v 2) můžeme mít pole saturujících čítačů indexované historií.
+            Nebo v 2) můžeme mít pole saturujících čítačů indexované historií (všemi možnými kombinacemi n-tic skočil/neskočil, tj. $2^n$ různých historií).
         \end{definice}
 
 % 13. 3. 2021
 
         \begin{definice}[Globální historie skoků]
-            Většinou ve formě hešovací tabulky a máme tzv. agree predictor, který predikuje, které predikce v hešovací tabulce potřebujeme.
+            Pamatuje si historii $p$ posledních (libovolných) podmíněných skoků (občas indexuje i adresou, kam se má skočit). Většinou ve formě hešovací tabulky (potřebuje indexovat dlouhou historii) a máme tzv. agree predictor, který predikuje, které predikce v hešovací tabulce potřebujeme.
+        \end{definice}
+
+        \begin{definice}[Smyčkový prediktor, nepřímé skoky, call/ret]
+            Smyčkový prediktor si umí zapamatovat, jak dlouhé smyčky jsou.
+
+            Existuje i prediktor na výslednou adresu nepřímých skoků.
+
+            Stack prediktor má stack adres callů, takže umí zjistit, kam skočí ret.
+
+            Hybridní predikce pak předpovídá, který prediktor se má použít.
+        \end{definice}
+
+        \begin{definice}[AMD prediktor]
+            AMD (Zároveň) používá perceptron pro lokální predikci a TAGE (tag geometric) = prediktory s historiemi délek $2^i$, kde každý složitější opravuje (trvá mu to déle, takže se mezitím už stihne něco spočítat a musí se to zahodit, ale alespoň se nezahazuje vše) ten menší…
         \end{definice}
 
 
@@ -227,15 +285,15 @@
         \begin{upozorneni}[Proglémy se sdílením]
             1. důvod, proč řešit synchronizaci -- race conditions (časové hazardy) v programu (úseky závisející na pořadí příkazů, např. inc. a read variable). 2. důvod -- relativní viditelnost změn mezi CPU. 3. důvod -- procesory přehazují pořadí instrukcí.
 
-            Efektivita -- viz MOESI, minimalizovat sdílená R/W data. (Pozor na falešné sdílení, tj. 2 různá data v 1 cache řádku. Pomůže posix\_memalign()).
+            Efektivita -- viz MOESI, minimalizovat sdílená R/W data. (Pozor na falešné sdílení, tj. 2 různá data v 1 cache řádku. Pomůže posix\_memalign() nebo je zabalit do struktury, která se bude zarovnávat na řádky cache).
 
-            Bezpečnost syscallů a knihovních funkcí -- nebezpečné, thread-safe, signal-safe (např. převod do času v č. zóně není signal-safe a zavolání této funkce v signal-handleru může vyvolat deadlock (pokud byla v tu chvíli využívána)), specifické záruky (např. zápis na konec souboru zaručuje, že se soubor bude tvářit ve finální velikosti, takže 2 zápisy na konec se nepromíchají).
+            Bezpečnost syscallů a knihovních funkcí -- nebezpečné, thread-safe, signal-safe (lze volat v programu a zároveň probíhajícím přerušení, např. převod do času v č. zóně není signal-safe a zavolání této funkce v signal-handleru může vyvolat deadlock (pokud byla v tu chvíli využívána)), specifické záruky (např. zápis na konec souboru zaručuje, že se soubor bude tvářit ve finální velikosti, takže 2 zápisy na konec se nepromíchají).
         \end{upozorneni}
 
         \begin{definice}[Thread-local variables]
             pthread\_getspecific (otravné a pomalé), tedy GCC zavádí \_\_thread a C!! \_Thread\_local.
 
-            Každé vlákno má vlastní instanci proměnné.
+            Každé vlákno má vlastní instanci proměnné. V implementaci je použit registr GS z tzv. segmentových registrů, které ukazují na nějakou „základní“ adresu (adresu, ze které se pak počítají ostatní adresy proměnných).
         \end{definice}
 
         \begin{definice}[Synchronizační primitiva]
@@ -245,17 +303,45 @@
 
             Condition variable -- stav = mutex + fronta procesů, operace = wait / signal, wait čeká na změnu stavu, tedy signal. Mutex je tam, aby se dala udělat kontrola stavu a wait atomicky (= dohromady).
 
-            Synchronizační primitiva jsou dnes již rychlá (hlavně v linuxu, tzv. futex (typicky user-space, výjimečně kernel)), ale zámky jsou sdílená R/W data, takže budou stejně docela pomalá. Další problém je, kolik jich mít (každý prvek seznamu vs. celý seznam), řeší se hešovacími zámky. 
+            Synchronizační primitiva jsou dnes již rychlá (hlavně v linuxu, např. mutex je implementován jako tzv. futex (typicky user-space, výjimečně kernel)), ale zámky jsou sdílená R/W data, takže budou stejně docela pomalá. Další problém je, kolik jich mít (každý prvek seznamu vs. celý seznam), řeší se hešovacími zámky. 
         \end{definice}
 
 % 27. 4. 2021
 
-        TODO
+        \begin{definice}[Paměť sdílená mezi procesy]
+            Jedna možnost je vytvořit sdílený soubor, na linuxu pomocí nmap. Tím dostaneme nějakou stránku (stránky), u které linux garantuje, že bude pro stejné procesy stejné. Navíc má linux „složku“ tmpfs, kde jsou soubory uložené pouze v RAMce, tedy je to i dost rychlé (jinak se propisují zápisy na disk). Jinde není nmap, ale msync.
+
+            Jinak existuje Sys IPC, ale o tom se bavit nebudeme, a POSIX IPC, na linuxu nmap v /dev/shm/.
+
+            Interakce s NUMOu je tak, že se dá zapnout striped allocate, takže se data rozdělí rovnoměrně mezi nody. Pokud má každý proces data téměř výhradně pro sebe, tak pokud jsou nody stejně vyvážené (tj. nepřestěhuje ho to při jeho běhu), tak se zase dají alokovat přímo na tomto nodu.
+        \end{definice}
+
+        \begin{definice}[Atomické operace]
+            Většinou: read/write, inc/dec, exchange, compare~\&~exchange (atomicky přepíše s nějakou podmínkou, je potřeba na implementaci zámků) nebo test~\&~set.
+        \end{definice}
+
+        \begin{definice}[Polopropustné bariéry]
+            mutex.lock je bariéra typu acquire, tedy nic se nesmí přesunout před ní. mutex.unlock je bariéra typu release, tedy nic se nesmí přesunout za ni. (Opačně se ale operace přesouvat mohou.)
+
+            Store by mělo být release a load acquire.
+        \end{definice}
+
+        \begin{definice}[Futex]
+            Vázaný na fyzickou adresu v paměti, má hodnotu 32b intu, má uvnitř jádra frontu čekajících procesů a 2 operace futex\_wait (s očekávanou hodnotou) a futex\_wake (s počtem procesů).
+        \end{definice}
+
+        \begin{definice}[Transakční paměť]
+            Struktura je START … (čtení a zápisy) … COMMIT. V kódu není při čtení vidět žádná změna po START a všechny zápisy před COMMIT nejsou nikde jinde vidět. Při COMMIT se zkontroluje, zda se data se kterými se pracovalo nezměnili, případně se začne znovu (tzv. rollback, vrátí se vše lokálně změněné do původního stavu).
+            
+            Softwarově implementováno pomocí žurnálu a commit locku. Ale je to pomalé a existují hardwarové implementace (IBM má, Intel zatím nemá 100\% funkční), využívá MESI a hierarchii cachí.
+        \end{definice}
 
 % 4. 5. 2021
 
         \begin{poznamka}[Co potkáme dnes]
-            Více CPU na 1 čipu -- více jader (samostatná CPU + sdílené I/O a část keší) nebo SMT (symmetric multi-threading, sdílené výpočetní jednotky).
+            Více CPU na 1 čipu -- více jader (samostatná CPU + sdílené I/O a část keší) nebo SMT (symmetric multi-threading (Intel to nazývá hyper-threading), sdílené výpočetní jednotky mezi procesy).
+
+            AMD Buldozer zase uvedl model, kdy jádro má vlastní scheduler, int. jednotky, registry a L1D. Naopak fetch + decode, LI1, floatové jednotky a L2 mají společné 2 jádra.
         \end{poznamka}
 
         \begin{definice}[Sběrnice]
@@ -263,7 +349,11 @@
 
             FSB = 64 bitů, $10^3$GT/s (gigatransferů za sekundu); RAM DDR2-1066 = 1.066 GT/s, 64b; dnes DDR4 = 2.1 GT/s, 64b; PCI = 33 MT/S, 32b; PCI Express (PCIe) = 1-32 linek, 2.0 = 500MB/S per lane, 3.0 = 985 MB/s per lane;
 
-            TODO
+            HyperTransport: 8/16/32 bitů na linku, 2 módy: I/O mód (strom, komunikace procesor --- periferie) a koherentní (obecný graf, komunikace procesory --- procesory). Z toho vznikl HTX connector a z toho NUMA connect, které umí propojit spoustu HT propojených topologií. Tam už nefunguje MOESI, takže se používá directory-based koherence.
+        \end{definice}
+
+        \begin{definice}[HT-Assist]
+            Directory based coherence protocol. Každá buňka RAM má svůj home node, tam se řeší synchronizace. Home-node posílá dotaz všem a zároveň čte z RAMky.
         \end{definice}
 
 % 11. 5. 2021
@@ -296,18 +386,30 @@
 
 % 18. 5. 2021
 
-        Dále se probírali nové featury Céčka (hlavně chary). Následně se probíral projekt Larrabee (Intel), speciálně procesor Knights Landing.
+        Dále se probírali nové featury Céčka (hlavně chary). Následně se probíral projekt Larrabee (Intel), speciálně procesor Knights Landing.i Nakonec AMD Zen a Zeppelin.
 
         \begin{poznamka}[Bezpečnostní chyby]
-            Sideefekty na cachích prosakují informace o šifrovacích klíčích (AES i RSA).
+            Sideefekty na cachích prosakují informace o šifrovacích klíčích (AES i RSA). Prostě jednoduše zaplníme cache, když běžíme na druhém jádře na stejném procesoru, a díváme se, které adresy byly vyhozeny.
 
-            Meltdown (spekulace, side-efekty: cache, vytížení jednotek, …, obcházení přístupových práv ke stránkám (přes výjimky) výskyt: výhradně Intel)
+            Ingredience jsou spekulace a side-efekty (na cachi, při HT vytížení jednotek).
+
+            Meltdown: Obcházení přístupových práv ke stránkám: práva se ověřují spekulativně. Výjimka by nám to ale mohla zašumět, tedy se to musí provést buď v transakci, nebo za mispredikovaným skokem. Výhradně Intel.
 
 % 25. 5. 2021
 
-            Spectre (obejití kontrol tak, že se mi věci přečtou jen spekulativně a já pak vyhodím error, čímž se věci nezahodí. Velký problém JavaScriptu, navíc na všech procesorech s predikcí skoků) (zneužití druhé části prediktoru: prediktor, kam se skočí… Obrana je retpoline: místo skoku se zavolá funkce, která si přenastaví RSP, aby se vrátila tam, kam jsme chtěli skočit).
+            Spectre: (v rámci jednoho adresního prostoru) obejití kontrol tak, že se mi věci přečtou jen spekulativně a já pak vyhodím výjimku, čímž se věci nezahodí. Velký problém JavaScriptu, navíc na všech procesorech s predikcí skoků.
 
-            L1TF (level 1 terminal fault) (foreshadow): pokud překlad stránky selhal, stejně se vyspekulované instrukci předá neplatný záznam, který použije. Normálně je malý, ale přes virtualizaci se dá zvýšit na adresy, které už obsahují data. Funguje však jen na datech v L1 cache.
+            \begin{verbatim}
+int f(uint i) {
+    if (i < n) return x[i] else error();
+}
+
+y[64*f(i)];
+            \end{verbatim}
+
+            Spectre pokračování -- zneužití druhé části predikce skoků: prediktor, kam se skočí (naučím na svém programu, kde nějaký skok skáče na pořád stejnou adresu, potom skok v oběti skočí spekulativně tamtéž (v rámci kódu oběti)). Obrana je retpoline: místo skoku se zavolá funkce, která si přenastaví RSP, aby se vrátila tam, kam jsme chtěli skočit. (Tj. zakáže konkrétní predikci skoku a ne všechny v rámci celého procesoru.)
+
+            L1TF (level 1 terminal fault) (foreshadow): pokud překlad stránky selhal (zneplatněnou položkou), stejně (Intel neumí zahodit instrukci jinde než na konci) instrukce pokračuje s adresou danou číslem neplatné stránky, který použije. Normálně je malé, ale přes virtualizaci se dá zvýšit na adresy, které už obsahují data. Funguje však jen na datech v L1 cache. Lze se bránit flushem L1 cache, ale zkazí nám to HT.
 
             MDS (Fallout, RIDL, Zombieload) (2019): útoky na buffery (hlavně na store buffer, kde se hromadí zápisy (jak predikované, tak aktuální, aby se zprůměroval zápis), ale i load buffery a fillbuffery), kde se porovnává pouze část adresy: 1. naplním store buffer, 2. zavolám kernel, který zapíše někam, kam nemůžu, 3. čtu z adresy, kam mám přístup a která se shoduje v dolních 12 bitech. Řeší se bariérami kolem syscallů a přerušení a uspání / probuzení vlákna.
 
