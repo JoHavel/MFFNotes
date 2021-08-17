@@ -27,11 +27,11 @@
         \begin{definice}[Tečný prostor, hladká funkce]
             Označme $T^*(®T^n)$ (zkráceně $T^*$) vektorový prostor, jehož bázi tvoří symboly $dx_1, …, dx_n$ ($x_1, …, x_n$ je báze $®T^n$).
             
-            Hladkou funkce bude taková funkce, která má spojité parciální derivace všech řádů. Hladké zobrazení do VP je zobrazení, pro které všechny složky tohoto zobrazení vůči některé (a tedy vůči jakékoliv) bázi jsou hladké.
+            Hladká funkce bude taková funkce, která má spojité parciální derivace všech řádů. Hladké zobrazení do VP je zobrazení, pro které všechny složky tohoto zobrazení vůči některé (a tedy vůči jakékoliv) bázi jsou hladké.
         \end{definice}
 
-        \begin{definice}[Diferenciální forma, diferenciální forma stupně $k$ (= $k$-forma)]
-            Diferenciální forma (stupně k) na otevřené podmnožině $\Omega$ je hladké zobrazení $\Omega$ do $\Lambda^*(T^*)$ (resp. $\Lambda^k(T^*)$).
+        \begin{definice}[Diferenciální forma, diferenciální forma stupně $k$ (=$k$-forma)]
+            Diferenciální forma (stupně k) na otevřené množině $\Omega$ je hladké zobrazení $\Omega$ do $\Lambda^*(T^*)$ (resp. $\Lambda^k(T^*)$).
 
             Množinu všech diferenciálních forem (stupně $k$) na množině $\Omega$ budeme označovat $©E^*(\Omega)$ (resp. $©E^k(\Omega)$).
         \end{definice}
@@ -69,10 +69,10 @@
         \end{poznamka}
 
         \begin{definice}[regulární]
-            Nechť ©O je otevřená množina a $\phi$ je zobrazení z ©O. Řekneme, že zobrazení $\phi$ je regulární, pokud $\phi$ je spojitě diferencovatelné, Jacobiho matice $J\phi$ má hodnost rovnou $k$ ve všech bodech $u \in ©O$ a zobrazení $\phi$ je homomorfismus ©O na $\phi(©O)$.
+            Nechť ©O je otevřená množina a $\phi$ je zobrazení z ©O. Řekneme, že zobrazení $\phi$ je regulární, pokud $\phi$ je spojitě diferencovatelné, Jacobiho matice $\Jac\phi$ má hodnost rovnou $k$ ve všech bodech $u \in ©O$ a zobrazení $\phi$ je homomorfismus ©O na $\phi(©O)$.
         \end{definice}
 
-        \begin{definice}[Parametrizovaná plocha dimenze $k$, parametrizace, regulární bod]
+        \begin{definice}[Parametrizovaná plocha, parametrizace, regulární bod]
             Dvojici $(M, \phi)$, kde $\phi$ je regulární zobrazení z otevřené množiny ©O a $M = \phi(©O)$ budeme nazývat parametrizovaná plocha dimenze $k$, zobrazení $\phi$ nazveme parametrizací množiny $M$.
 
             Je-li $M$ množina a je-li $x \in M$, pak řekneme, že $x$ je regulární bod množiny $M$ dimenze $k$, pokud existuje okolí ©U bodu $a$ takové, že $©U \cap M$ je parametrizovaná plocha dimenze $k$.
@@ -112,7 +112,7 @@
             Řekneme, že systém množin $\{P_\alpha\}$ v $®R^n$ je lokálně konečný, pokud pro každý bod $m \in M$ existuje okolí $U_m$ takové, že $U_m \cap P_\alpha ≠ \O$ jen pro konečně mnoho $\alpha$.
         \end{definice}
 
-        \begin{definice}[Rozklad jednotky, respektování o. pokrytí]
+        \begin{definice}[Rozklad jednotky, respektování otevřené pokrytí]
             Nechť ©U je otevřené pokrytí množiny $M \subseteq ®R^n$. Řekneme, že soubor nezáporných funkcí $\{\phi_\alpha\}_{\alpha \in A}$ na $M$ je rozklad jednotky, pokud systém $\{\supp \phi_\alpha\}_{\alpha \in A}$ je lokálně konečný a pro každý bod $m \in M$ platí $\sum_{\alpha \in A} \phi_\alpha(m) = 1$.
 
             Řekneme, že rozklad jednotky $\{\phi_\alpha\}_{\alpha \in A}$ respektuje pokrytí $\{U\}_{U \in ©U}$, pokud pro každé $\alpha \in A$ existuje $U \in ©U$ takové, že $\supp \phi_\alpha \subseteq U$.
@@ -124,13 +124,13 @@
                 \item Nechť $n \in ®N$ a $\Omega$ je otevřená podmnožina v $®R^n$ s bází $(x_1, …, x_n)$ s kanonickou orientací a $\Omega \in ©E^n(\Omega)$. Pak existuje jednoznačně určená hladká funkce $f$ na $\Omega$ taková, že $\omega = f dx_1 \wedge … \wedge dx_n$, pak integrál $\int_\Omega \omega$ definujeme předpisem
                     $$ \int_\Omega \omega := \int_\Omega f, $$
                     pokud integrál napravo existuje jako Lebesgueův integrál.
-                \item Nechť $k \in ®N$. Nechť $\Omega \subseteq ®R^n$ je otevřená množina a $M$ je orientovaná plocha dimenze $k$ v $\Omega$. Nechť $\omega @E^k(\Omega)$ je diferenciální forma, pro kterou existuje otevřená množina $U \subseteq \Omega$ taková, že platí $\supp \omega \subseteq U$ a existuje kladně orientovaná parametrizace $\phi$ plochy $U \cap M$ na ©O. Pak definujeme
+                \item Nechť $k \in ®N$. Nechť $\Omega \subseteq ®R^n$ je otevřená množina a $M$ je orientovaná plocha dimenze $k$ v $\Omega$. Nechť $\omega ©E^k(\Omega)$ je diferenciální forma, pro kterou existuje otevřená množina $U \subseteq \Omega$ taková, že platí $\supp \omega \subseteq U$ a existuje kladně orientovaná parametrizace $\phi$ plochy $U \cap M$ na ©O. Pak definujeme
                     $$ \int_M \omega = \int_{©O} \phi^*(\omega). $$ 
                 \item Nechť $M$ je orientovaná plocha dimenze $k$ v otevřené množině $\Omega \subseteq ®R^n$. Zvolme libovolné pokrytí $\{U_\alpha\}_{\alpha \in A}$ množiny $\Omega$ s vlastností, že pro všechny množiny $M \cap U_\alpha$, $\alpha \in A$ existuje parametrizace $\phi_\alpha$ na oblasti $©O_\alpha \subseteq ®R^k$. Orientaci $©O_\alpha$ zvolíme tak, aby $\phi_\alpha$ byla souhlasně orientovaná s danou orientací $M$.
 
                     Nechť pro $\omega \in ©E^k(\Omega)$ platí, že $M \cap \supp \omega$ je kompaktní. Pak zvolíme rozklad jednotky $\{f_j\}_{j=1}^N$ na množině $M \cap \supp \omega$ respektující pokrytí $\{U_\alpha\}_{\alpha \in A}$ a definujeme
-                    $$ \int_M \omega = \sum_{j=1}^N $$ 
-                \item Orientovaná plocha dimenze 0 je konečná (neměla by být spíš spočetná?) množina bodů $M = \{m_i\}_{i=1}^N$ spolu s volbou orientace $a_i \in \{±1\}$ pro každý bod $M$. Je-li diferenciální forma stupně nula daná funkcí $f$ definovanou na $M$, pak
+                    $$ \int_M \omega = \sum_{j=1}^N \int_M f_j·\omega $$ 
+                \item Nechť je orientovaná plocha dimenze 0 konečná množina bodů $M = \{m_i\}_{i=1}^N$ spolu s volbou orientace $a_i \in \{±1\}$ pro každý bod $M$. Je-li diferenciální forma stupně nula daná funkcí $f$ definovanou na $M$, pak
                     $$ \int_M f = \sum_{i=1}^N a_if(m_i). $$ 
             \end{itemize}
         \end{definice}
@@ -143,7 +143,7 @@
             $$ ®R^k_{≤} = \Int ®R^k_{≤} \cup \partial ®R^k_{≤}. $$ 
         \end{poznamka}
 
-        \begin{definice}[Plocha s okraj, vnitřní bod, bod okraje]
+        \begin{definice}[Plocha s okrajem, vnitřní bod, bod okraje]
             Nechť $k, n \in ®N$, $k ≤ n$. Řekneme, že neprázdná množina $M \subseteq ®R^n$ je plocha dimenze $k$ s krajem, pokud pro každý bod $x \in M$ existuje otevřené okolí $©U \subseteq ®R^n$ bodu $x$ a parametrická plocha $\phi: ©O \rightarrow ®R^n$ taková, že $\phi(©O \cap ®R_{≤}^k) = ©U \cap M$.
 
             Můžou tedy nastat dva případy, body množiny $\phi(©O \cap \Int ®R_{≤}^k)$ jsou regulární body plochy dimenze $k$, tyto body nazveme vnitřní body plochy $M$. Množinu všech takových bodů pak vnitřek plochy $M$ a označíme $\Int M$.
@@ -159,13 +159,13 @@
 
     \subsection{Integrál prvního druhu přes plochy dimenze $k$}
         \begin{definice}[Grammova matice, Grammův determinant]
-            Nechť $k ≥ 1$. Nechť $M$ je plocha dimenze $k$ v $®R^n$ s parametrizací $\phi: ©O \rightarrow ®R^n$, $@O \subseteq ®R^k$ otevřená a $\phi(©O) = M$. Grammovu matici $G = (G_{ij})_{i, j \in [k]}$ definujeme jako
+            Nechť $k ≥ 1$. Nechť $M$ je plocha dimenze $k$ v $®R^n$ s parametrizací $\phi: ©O \rightarrow ®R^n$, $©O \subseteq ®R^k$ otevřená a $\phi(©O) = M$. Grammovu matici $G = (G_{ij})_{i, j \in [k]}$ definujeme jako
             $$ G_{ij} = \<\frac{\partial \phi}{\partial u_i}, \frac{\partial \phi}{\partial u_j}\>. $$ 
 
             Dále definujeme Grammův determinant $g = \det G$.
         \end{definice}
 
-        \begin{definice}
+        \begin{definice}[Integrál 1. druhu]
             Nechť $k ≥ 1$.
 
             \begin{itemize}
@@ -256,24 +256,24 @@
             Pokud má pro každý bod $a \in M$ Jacobiho matice $F(a)$ hodnost $n$, pak je $M$ plocha dimenze $k$.
 
             \begin{dukazin}
-                Zvolme nějaký bod $a \in ®R^{k+n}$ pro který $F(a) = c$. Podle předpokladů existuje $n \times n$ minor Jacobiho matice $\{\frac{\partial F_i}{\partial x_j}\}_{i,j}$ s nenulovým determinantem. Upravíme $F$ tak, že podle věty o inverzním zobrazení pak existuje okolí bodu $a$, na kterém existuje difeomorfismus.
+                Zvolme nějaký bod $a \in ®R^{k+n}$ pro který $F(a) = c$. Podle předpokladů existuje $k \times k$ minor Jacobiho matice $\{\frac{\partial F_i}{\partial x_j}\}_{i,j}$ s nenulovým determinantem. Upravíme $F$ tak, že podle věty o lokálním difeomorfismu pak existuje okolí bodu $a$, na kterém existuje difeomorfismus.
             \end{dukazin}
         \end{veta}
 
-        \begin{veta}[(„O regulárním bodu a difeomorfismu jeho okolí“)]
+        \begin{veta}[O narovnání okolí]
             Bod $x$ je regulární bod plochy $M$ dimenze $k$, právě když existuje okolí $©U \subseteq ®R^n$ bodu $x$ a difeomorfismus $\Phi: ©U \rightarrow ©V$ takový, že
             $$ \Phi(©U \cap M) = \Phi(©U) \cap ®R^k \qquad ®R^k = \{¦x \in ®R^n | ¦x = (x_1, …, x_k, 0, …, 0)\}. $$
 
             \begin{dukazin}
-                TODO str. 27.
+                $\Leftarrow$: Restrikce zobrazení, $\implies$: podle věty o lokálním difeomorfismu (doplníme nevyužité souřadnice identitami).
             \end{dukazin}
         \end{veta}
 
-        \begin{lemma}
+        \begin{lemma}[O přechodové funkce]
             Nechť $M$ je plocha dimenze $k$ a $\phi: ©O \rightarrow M$ a $\phi': ©O' \rightarrow M$ jsou dvě její parametrizace. Pak existuje difeomorfismus $\alpha: ©O' \rightarrow ©O$, pro který $\phi' = \phi \circ \alpha$.
 
             \begin{dukazin}
-                Je zřejmé, že $\alpha = \phi^{-1} \circ \phi'$ je určeno jednoznačně, ale je třeba ukázat, že $\alpha$ je spojitě diferencovatelné. Zvolme bod $x' \in ©O'$ pevně. Podle Předchozí věty existuje okolí $©V' \subseteq ®R$ bodu $x'$, okolí $©V \subseteq ®R^n$ bodu $x = \alpha(x')$, okolí $©U \subseteq ®R^n$ bodu $\phi(x) = \phi'(x')$, a difeomorfismy $\Psi': ©V \rightarrow ©U \subseteq ®R^n$ a $\Psi: ©V \rightarrow ©U$ tak, že $\phi = \Phi$ na $©V \cap ®R^k$ a $\phi' = \Phi'$ na $©V' \cap ®R^k$. Pak ale $\alpha = \Psi^{-1} \circ \Psi'$ je spojitě diferencovatelné na $©V' \cap ®R^k$.
+                Je zřejmé, že $\alpha = \phi^{-1} \circ \phi'$ je určeno jednoznačně, ale je třeba ukázat, že $\alpha$ je spojitě diferencovatelné. Zvolme bod $x' \in ©O'$ pevně. Podle předchozí věty existuje okolí $©V' \subseteq ®R$ bodu $x'$, okolí $©V \subseteq ®R^n$ bodu $x = \alpha(x')$, okolí $©U \subseteq ®R^n$ bodu $\phi(x) = \phi'(x')$, a difeomorfismy $\Psi': ©V \rightarrow ©U \subseteq ®R^n$ a $\Psi: ©V \rightarrow ©U$ tak, že $\phi = \Phi$ na $©V \cap ®R^k$ a $\phi' = \Phi'$ na $©V' \cap ®R^k$. Pak ale $\alpha = \Psi^{-1} \circ \Psi'$ je spojitě diferencovatelné na $©V' \cap ®R^k$.
             \end{dukazin}
         \end{lemma}
 
@@ -308,7 +308,7 @@
         \end{veta}
 
         \begin{lemma}
-            Nechť $k ≥ 1$. Nechť $\Omega$ a $\Omega'$ jsou dvě otevřené podmnožiny $®R^n$ a nechť $\alpha: \Omega \rightarrow \Omega'$, $x' = \alpha(x)$ je difeomorfismus, pro který $\det \Jac\alpha > 0$, kde $J_\alpha$ je Jacobiho matice $\{\frac{\partial \alpha_i}{\partial x_j}\}$, $i, j \in [n]$.
+            Nechť $k ≥ 1$. Nechť $\Omega$ a $\Omega'$ jsou dvě otevřené podmnožiny $®R^n$ a nechť $\alpha: \Omega \rightarrow \Omega'$, $x' = \alpha(x)$ je difeomorfismus, pro který $\det \Jac\alpha > 0$, kde $\Jac\alpha$ je Jacobiho matice $\{\frac{\partial \alpha_i}{\partial x_j}\}$, $i, j \in [n]$.
 
             Pak pro každou diferenciální formu $\omega \in ©E^n(\Omega')$ platí
             $$ \int_{\Omega'}\omega = \int_\Omega \alpha^*(\omega). $$ 
@@ -335,7 +335,7 @@
             Nechť $k ≥ 1$. Je-li $M$ orientovaná plocha dimenze $k$ v otevřené množině $\Omega \subseteq ®R^n$ a je-li $M \cap \supp \omega$ kompaktní, pak $\int_M \omega$ nezávisí ani na volbě otevřeného pokrytí $\{U_\alpha\}_{\alpha \in A}$ množiny $\Omega$ ani na volbě rozkladu jednotky $\{f_j\}_{j=1}^N$ na množině $M \cap \supp \omega$ respektující pokrytí $\{U_\alpha\}_{\alpha \in A}$.
 
             \begin{dukazin}
-                TODO str. 31.
+                Integrujeme postupně přes všechny průniky dvojic $\supp f_j \times \supp g_j$.
             \end{dukazin}
         \end{lemma}
 
@@ -365,7 +365,7 @@
                 Báze $A$ je ortonormální, tedy ¦u můžeme rozložit jako:
                 $$ ¦u = \<¦u, ¦w\>¦w + \sum_{i=1}^{k-1} \<¦u, ¦v_i\>¦v_i. $$
                 Matice přechodu má tedy blokový tvar:
-                $$ \begin{pmatrix} \<¦u, ¦w\> & … \\ 0 \\ I_{k-1} \end{pmatrix}. $$
+                $$ \begin{pmatrix} \<¦u, ¦w\> & … \\ 0 & I_{k-1} \end{pmatrix}. $$
                 Zřejmě je pak $\det M > 0$ právě když $\<¦u, ¦w\> > 0$
             \end{dukazin}
         \end{lemma}
@@ -443,7 +443,7 @@
         \end{definice}
 
         \begin{definice}[Indukovaná mapa na $T_xS$]
-            Nechť ¦p je mapa na $S$ a $s = ¦p(u)$, $u = (u^1, u^2)$ je bod v jejím obraze. Pak zobrazení $d¦p_u: ®R^2 \rightarrow T_sS$ je lineární izomorfismus, který definuje (indukovanou) globální mapu na $T_sS$. Obrazem elementu $a \in ®R^2$ je vektor $a_1¦p_{u^1} + a_2¦p_{u^2}$, kde $¦p_{u^1}$ resp. $¦p_{u^2}$ označuje parciální derivace ¦p podle $u^1$, resp. $u^2$ v bodě $u$.
+            Nechť ¦p je mapa na $S$ a $s = ¦p(u)$, $u = (u^1, u^2)$ je bod v jejím obraze. Pak zobrazení $d¦p_u: ®R^2 \rightarrow T_sS$ je lineární izomorfismus, který definuje (indukovanou) globální mapu na $T_sS$. Obrazem vektoru $¦a \in ®R^2$ je vektor $a_1¦p_{u^1} + a_2¦p_{u^2}$, kde $¦p_{u^1}$ resp. $¦p_{u^2}$ označuje parciální derivace ¦p podle $u^1$, resp. $u^2$ v bodě $u$.
         \end{definice}
 
     \subsection{První fundamentální forma plochy}
@@ -452,21 +452,21 @@
             $$ I_x(¦u, ¦v) = ¦u·¦v $$
             nazveme první fundamentální forma plochy $S$ v bodě $x$.
 
-            Vzor $I_x$ při zobrazení $d¦p_u$ je bilineární forma na $®R^2$, kterou budeme značit $g_u$:
+            Vzor $I_x$ při zobrazení $d¦p_u$ je bilineární forma na $®R^2$, kterou budeme značit $g_u$ ($x=¦p(u)$):
             $$ g_u(a, b) = I_x(d¦p_u(a), d¦pu(b)), \qquad a, b \in ®R^2. $$
             Matice této bilineární formy (označme ji stejným symbolem $g_u$) má tvar
-            $$ g_u = \begin{pmatrix} ¦p_{u^1}·¦p_{u^1} & ¦p_{u^1}·¦p_{u^2} \\ ¦p_{u^2}·¦p_{u^1} & ¦p_{u^2}·¦p_{u^2} \end{pmatrix} = \begin{pmatrix} g_{11} & g_{12} & g_{21} & g_{22} \end{pmatrix} = \begin{pmatrix} E & F \\ F & G \end{pmatrix}. $$
+            $$ g_u = \begin{pmatrix} ¦p_{u^1}·¦p_{u^1} & ¦p_{u^1}·¦p_{u^2} \\ ¦p_{u^2}·¦p_{u^1} & ¦p_{u^2}·¦p_{u^2} \end{pmatrix} = \begin{pmatrix} g_{11} & g_{12} \\ g_{21} & g_{22} \end{pmatrix} = \begin{pmatrix} E & F \\ F & G \end{pmatrix}. $$
 
             Tradičně se první fundamentální forma symbolicky zapisuje ve tvaru
             $$ g_{11}d(u^1)^2 + 2g_{12}du^1du^2 + g_{22}d(u^2)^2 $$ 
             nebo
             $$ Ed(u^1)^2 + 2Fdu^1du^2 + Gd(u^2)^2 $$
             Pro libovolný vektor $A = (a, b) \in ®R^2$ definujeme hodnotu $I(A)$ první fundamentální formy jako
-            $$ I(a, b) = (a\ b)\begin{pmatrix} E & F \\ F & G \end{pmatrix} \binom{\alpha}{\beta} = Ea^2 + 2Fab + Gb^2. $$ 
+            $$ I(a, b) = (a\ b)\begin{pmatrix} E & F \\ F & G \end{pmatrix} \binom{a}{b} = Ea^2 + 2Fab + Gb^2. $$ 
         \end{definice}
 
     \subsection{Druhá fundamentální forma plochy}
-        \begin{definice}
+        \begin{definice}[Normála]
             Je-li $T_xS$ tečný prostor v bodě $x$ k ploše $S$, pak existuje jednotkový vektor $N$ tak, že
             $$ T_sS = \{¦v \in ®R^3 | ¦v·N = 0\}. $$
 
@@ -476,7 +476,7 @@
             $$ N = \frac{¦p_u \times ¦p_v}{|¦p_u \times ¦p_v|}. $$ 
         \end{definice}
 
-        \begin{poznamka}[Souhlasně a opačně přechodové zobrazení, orientovatelný atlas]
+        \begin{poznamka}[Souhlasně a opačně orientované mapy, orientovatelný atlas]
             Dvě mapy pro tentýž bod mají stejnou jednotkovou normálu, právě když determinant Jacobiho matice přechodového zobrazení v daném době je kladný. V tom případě nazýváme tyto mapy souhlasně orientovanými. Pokud je determinant Jacobiho matice přechodového zobrazení v daném bodě záporný, nazveme mapy opačně orientovanými.
 
             Atlas plochy nazveme orientovaným atlasem, pokud jsou všechny jeho mapy po dvou souhlasně orientované. Orientovaná plocha $S$ je plocha s orientovatelným atlasem. Orientovatelná plocha je plocha, pro kterou existuje orientovaný atlas.
@@ -491,7 +491,7 @@
         \begin{definice}[Tečné zobrazení]
             Nechť $S$ a $\tilde{S}$ jsou dvě regulární plochy a $F$ zobrazuje $S$ do $\tilde{S}$. Pak pro každý bod $s \in S$ definujeme tečné zobrazení
             $$ T_sF: T_sS \rightarrow T_{f(s)}\tilde{S} $$
-            následujícím předpisem: je-li $C$ na $(-\epsilon, \epsilon)$ regulární křivka, $c(0) = s$ a $\dot{c}(0) = ¦v \in T_sS$, pak definujeme
+            následujícím předpisem: je-li $c$ na $(-\epsilon, \epsilon)$ regulární křivka, $c(0) = s$ a $\dot{c}(0) = ¦v \in T_sS$, pak definujeme
             $$ T_sF(¦v) = \frac{d}{dt}(F \circ c)(0) \in T_{f(s)}\tilde{S}. $$ 
         \end{definice}
 
@@ -523,14 +523,14 @@
             \end{poznamkain}
         \end{definice}
 
-        \begin{definice}[Hlavní křivosti, hlavní směry, Gaussova křivost a střední křivost]
+        \begin{definice}[Hlavní křivosti, hlavní směry, Gaussova a střední křivost]
             Nechť $S$ je orientovaná plocha. Minimum $\kappa_1(s)$ a maximum $\kappa_2(s)$ normálové křivosti v bodě $s \in S$ se nazývají hlavní křivosti a odpovídající směry se nazývají hlavní směry.
 
-            V každém bodě s orientované plochy $S$ definujeme gaussovu křivost $K = K(s)$ a střední křivost $H = H(s)$ vztahy
+            V každém bodě s orientované plochy $S$ definujeme Gaussovu křivost $K = K(s)$ a střední křivost $H = H(s)$ vztahy
             $$ K(s) = \kappa_1\kappa_2, \qquad H(s) = \frac{\kappa_1 + \kappa_2}{2}. $$
         \end{definice}
 
-        \begin{definice}[Eliptický, kruhový, parabolický, planární a hyperbolický bod]
+        \begin{definice}[Eliptický, kruhový, parabolický, planární a hyperbolický]
             Bod $s \in S$ orientované plochy se nazývá eliptický, pokud $K(s) > 0$, kruhový, je-li navíc $\kappa_1(s) = \kappa_2(s)$, parabolický, pokud $K(s) = 0$, planární, je-li navíc $\kappa_1 = \kappa_2$ ($= 0$), a hyperbolický, pokud $K(s) < 0$.
         \end{definice}
 
@@ -540,7 +540,7 @@
             \begin{itemize}
                 \item Křivky $u \mapsto ¦p(u, v)$ pro $v$ pevné a $v \mapsto ¦p(u, v)$ pro $u$ pevné se nazývají parametrické mapy ¦p na ploše $S$.
                 \item Regulární křivka $c: I \rightarrow S$ je hlavní křivka, pokud $c'(t)$ je hlavní směr pro každé $t \in I$.
-                \item Nenulový vektor $X \in T_sS$ je asymptotický směr na ploše $S$ v bodě $s$, jestliže $II_s(X, X) = 0$.
+                \item Vektor $¦o ≠ X \in T_sS$ je asymptotický směr na ploše $S$ v bodě $s$, jestliže $II_s(X, X) = 0$.
                 \item Regulární křivka $c: I \rightarrow S$ je asymptotická křivka, pokud $c'(t)$ je asymptotický směr pro každé $t \in I$.
             \end{itemize}
         \end{definice}
@@ -575,7 +575,7 @@
         \end{definice}
 
         \begin{definice}
-            Zobrazení $F: S_1 \rightarrow S_2$ dvou Riemannových ploch nazveme lokální isometrie, pokud platí jedna z ekvivalentních podmínek lemmatu o izometrii. Pokud je navíc $F$ vzájemně jednoznačné, nazveme ho isometrie ploch $S_1$ a $S_2$.
+            Zobrazení $F: S_1 \rightarrow S_2$ dvou Riemannových ploch nazveme lokální isometrie, pokud platí jedna z ekvivalentních podmínek lemmatu o isometrii. Pokud je navíc $F$ vzájemně jednoznačné, nazveme ho isometrie ploch $S_1$ a $S_2$.
 
             Řekneme, že zobrazení $F: S_1 \rightarrow S_2$ dvou Riemannových ploch je konformní zobrazení, pokud platí jedna z ekvivalentních podmínek lemmatu o konformním zobrazení.
         \end{definice}
@@ -583,7 +583,7 @@
     \subsection{Hyperbolická geometrie}
         \begin{definice}[Hyperboloid]
             Hyperboloid je Riemannova plocha v $®R^3$ definovaná předpisem
-            $$ H_2 = \{¦x = (x_0, x_1, x_2) \in ®R^3 | B(x_i, ¦x) = -1 \land x_0 > 0\}, $$
+            $$ H_2 = \{¦x = (x_0, x_1, x_2) \in ®R^3 | B(¦x, ¦x) = -1 \land x_0 > 0\}, $$
             kde
             $$ B(x, y) = x_1y_1 + x_2y_2 - x_0y_0, $$
             spolu se skalárním součinem $g_x, x \in H_2$ definovaným jako restrikce bilineární formy $B$ na $T_xH_2$.
@@ -610,7 +610,7 @@
         \end{definice}
 
         \begin{definice}[Přímky v $U$]
-            Průnik zobecněné kružnice $k$ v $®R^2$ s $U$ nazveme přímkou v $U$, pokud $k$ protíná osu jednotkové kružnice? pod pravým úhlem. Průniky přímek v rovině procházejících počátkem s $U$ nazveme speciální přímky v $U$.
+            Průnik zobecněné kružnice $k$ v $®R^2$ s $U$ nazveme přímkou v $U$, pokud $k$ protíná jednotkovou kružnici pod pravým úhlem. Průniky přímek v rovině procházejících počátkem s $U$ nazveme speciální přímky v $U$.
         \end{definice}
 
         \begin{definice}[Přímky v $H_2$]
@@ -673,7 +673,8 @@
                 Můžeme předpokládat, že existuje mapa $¦p: ©O \rightarrow S$, pro kterou $c(I) \subseteq ¦p(©O)$. Pak existuje regulární křivka
                 $$ u = ¦p^{-1} \circ c: I \rightarrow ©O, \qquad c = ¦p \circ u, \qquad u = u(s), $$
                 a tedy $T_{u(s)}¦p(u'(s)) = c'(s)$. V souřadnicích daných mapou tedy platí
-                $$ II_{c(s)}(c'(s), c'(s)) = h_{u(s)}(u'(s), u'(s)) = -T_{u(s)}¦n(u'(s))·T_{u(s)}¦p(u'(s)) = -(n\circ u)'(s)·c'(s) = (¦n \circ u) · c''(u) = \kappa(s)N(c(s))·n(s) = \kappa(s)\cos(\beta) . $$
+                $$ II_{c(s)}(c'(s), c'(s)) = h_{u(s)}(u'(s), u'(s)) = -T_{u(s)}¦n(u'(s))·T_{u(s)}¦p(u'(s)) = $$
+                $$ = -(n\circ u)'(s)·c'(s) = (¦n \circ u) · c''(u) = \kappa(s)N(c(s))·n(s) = \kappa(s)\cos(\beta) . $$
                 První rovnost je z definice, druhá je dosazení, TODO.
             \end{dukazin}
         \end{veta}
@@ -707,14 +708,14 @@
                 Druhá část tvrzení plyne z rovnosti $h - \lambda g = g(w - \lambda I)$.
 
                 Pro třetí pak předpokládejme, že $\kappa_1 ≠ \kappa_2$ jsou hlavní křivosti a $\alpha \in ®R^2$, resp. $\beta \in ®R^2$ jsou odpovídající hlavní směry. Ze vztahu $(h - \lambda g)(\alpha_1, \alpha_2)^T = ¦o$ plyne, že
-                $$ \alpha^t(h - \kappa_2g)\beta = 0, \qquad \beta^t(h - \kappa_1 g)\alpha = 0. $$
-                Odečtením těchto dvou rovnic dostaneme $(\kappa_1 - \kappa_2)[\alpha^tg\beta] = 0$ a z toho plyne kolmost hlavních směrů.
+                $$ \alpha^T(h - \kappa_2g)\beta = 0, \qquad \beta^T(h - \kappa_1 g)\alpha = 0. $$
+                Odečtením těchto dvou rovnic dostaneme $(\kappa_1 - \kappa_2)[\alpha^Tg\beta] = 0$ a z toho plyne kolmost hlavních směrů.
             \end{dukazin}
         \end{veta}
 
         \begin{veta}
             Jsou-li $g = g_u$, resp. $h = h_u$, matice první, resp. druhé, fundamentální formy v bodě $s = ¦p(u) \in S$ vzhledem k mapě $(U, ¦p)$, a $w = w_u$ je matice Weingartnerova zobrazení v tomto bodě, pak:
-            $$ K(¦p(u)) = \det w = \frac{\det h}{\det g}, $$
+            $$ K(s) = \det w = \frac{\det h}{\det g}, $$
             $$ H(s) = \frac{1}{2}\tr(w) = \frac{g^{11}h^{22} + g^{22}h^{11} - 2g^{12}h^{12}}{2\det g}, $$
             $$ \kappa_{1, 2} = H(s) ± \sqrt{H(s)^2 - K(s)}. $$ 
 
@@ -739,7 +740,7 @@
 
         \begin{veta}
             Nechť $S$ je orientovaná plocha s mapou ¦p a $c(t) = ¦p(u(t))$, $t \in I$ je regulární křivka na $S$. Křivka $c$ je hlavní, právě když
-            $$ \det \begin{pmatrix} (v')^2 & -u'v' & (u')^2 \\ g^11 & g^{12} & g^{22} \\ h^{11} & h^{12} & h^{22} \end{pmatrix} = \det \begin{pmatrix} g^{11}u_1' + g^{12}v' & h^{11}u' + h^{12}v' \\ g^{21}u' + g^{22}v' & h^{21}u' + h^{22}v' \end{pmatrix} = 0. $$
+            $$ \det \begin{pmatrix} (v')^2 & -u'v' & (u')^2 \\ g^{11} & g^{12} & g^{22} \\ h^{11} & h^{12} & h^{22} \end{pmatrix} = \det \begin{pmatrix} g^{11}u_1' + g^{12}v' & h^{11}u' + h^{12}v' \\ g^{21}u' + g^{22}v' & h^{21}u' + h^{22}v' \end{pmatrix} = 0. $$
             Křivka $c$ je asymptotická, právě když
             $$ h^{11}(u')^2 + 2h^{12}u'v' + h^{22}(v')^2 = 0. $$ 
 
@@ -811,7 +812,7 @@
 
             \begin{dukazin}
                 Stačí použít Gaussovu rovnici pro speciální hodnoty $i = j = 1$, $k = l = 2$. Pravá strana
-                $$ \sum a^{l_2}(h^{11}h^{2l} - h^{12}h^{1l}) = a^{22} \det h = g^{11}\frac{\det h}{\det g} = g^{11}K. $$
+                $$ \sum a^{l2}(h^{11}h^{2l} - h^{12}h^{1l}) = a^{22} \det h = g^{11}\frac{\det h}{\det g} = g^{11}K. $$
             \end{dukazin}
         \end{veta}
 
@@ -829,8 +830,8 @@
 
         \begin{veta}
             Je-li $c$ regulární křivka bez inflexních bodů na ploše $S$, pak:
-            $$ \kappa ¦n = \kappa_n(t)¦N + \kappa_g(¦N \times ¦t), \qquad ¦t = c', $$
-            $$ \kappa^2 = (\kappa_n(t))^2 + \kappa_g^2, \qquad t \in I. $$
+            $$ \kappa ¦n = \kappa_n(¦t)¦N + \kappa_g(¦N \times ¦t), \qquad ¦t = c', $$
+            $$ \kappa^2 = (\kappa_n(¦t))^2 + \kappa_g^2, \qquad ¦t = c'. $$
 
             \begin{dukazin}
                 Můžeme předpokládat, že je křivka $c$ parametrizovaná obloukem. Nechť ¦n je hlavní normála křivky $c$. Všechny tři vektory $¦n, ¦N , ¦N \times ¦t$ jsou kolmé na $¦t = c'$, tedy leží ve společné rovině, jejíž ortonormální báze je $\{¦N, ¦N \times ¦t\}$. Rozklad vektoru $c'' = \kappa¦n$ do této báze má tvar
@@ -851,7 +852,7 @@
             \end{enumerate}
 
             \begin{dukazin}
-                Pokud $c'(t) ≡ 0$, tvrzení je triviální. Můžeme tedy předpokládat, že $c'(t) \not≡ 0$. Podmínka $\prod_{c(t)}c''(t)$ je ekvivalentní s tím,že $c''(t)$ je násobek vektoru $N(c(t))$. Z toho plyne $1 \Leftrightarrow 2$.
+                Pokud $c'(t) ≡ 0$, tvrzení je triviální. Můžeme tedy předpokládat, že $c'(t) \not≡ 0$. Podmínka $0 = \prod_{c(t)}c''(t)$ je ekvivalentní s tím,že $c''(t)$ je násobek vektoru $N(c(t))$. Z toho plyne $1 \Leftrightarrow 2$.
 
                 Z podmínky 2. plyne, že $c$ je geodetika, tedy $c''(t)$ je kolmé na $T_{c(t)}S$. Speciálně $c''·c' = 0$. Ale
                 $$ c''·c' = 0 \Leftrightarrow \frac{d}{dt}(c'·c') = 0 \Leftrightarrow ||c'|| = konst. $$
@@ -883,7 +884,7 @@
             \end{dukazin}
         \end{veta}
 
-        \begin{lemma}
+        \begin{lemma}[O isometrii]
             Nechť je $F$ diferencovatelné zobrazení Riemannovy plochy $(S_1, g_1)$ do Riemannovy plochy $(S_2, g_2)$. Následující vlastnosti jsou ekvivalentní:
 
             \begin{enumerate}
@@ -904,7 +905,7 @@
             \end{dukazin}
         \end{lemma}
 
-        \begin{lemma}
+        \begin{lemma}[O konformním zobrazení]
             Nechť $F$ je diferencovatelné zobrazení Riemannovy plochy $(S_1, g_1)$ do Riemannovy plochy $(S_2, g_2)$. Následující vlastnosti jsou ekvivalentní:
 
             \begin{itemize}
@@ -939,13 +940,13 @@
             \end{dukazin}
         \end{lemma}
 
-        \begin{dukazin}
+        \begin{tvrzeni}
             Lineární lomené transformace $\Phi(z) = \frac{az + b}{cz + d}$, kde $a, b, c, d \in ®R$, $ad - bc > 0$ jsou isometrie $H_+$ na $H_+$.
 
             \begin{dukazin}
                 Grupa těchto transformací je generována „správnými“ translacemi, dilatacemi a kruhovou inverzí a u těch se snadno ověří, že jsou isometrie.
             \end{dukazin}
-        \end{dukazin}
+        \end{tvrzeni}
 
         \begin{lemma}
             Nechť $x \in ®R$ a $0 < y_1 < y_2$. Křivka $c(t) = (x, t)$ má nejkratší délku mezi všemi křivkami spojující body $(x, y_1)$ a $(x, y_2)$.

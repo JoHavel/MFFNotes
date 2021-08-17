@@ -26,12 +26,13 @@
         \begin{veta}[konvergence součtu řad]
             Nechť $\alpha \in ®R \setminus \{0\}$, pak $\sum_{n=1}^∞ a_n$ konverguje $\Leftrightarrow$ $\sum_{n=1}^∞ \alpha·a_n$ konverguje.
 
-            Nechť $\sum_{n=1}^∞ a_n$ konverguje a $\sum_{n=1}^∞ b_n$ konverguje, pak $\sum_{n=1}^∞ \(a_n + b_n\) = \sum_{n=1}^∞ a_n + \sum_{n=1}^∞ b_n$.
+            Nechť $\sum_{n=1}^∞ a_n$ konverguje a $\sum_{n=1}^∞ b_n$ konverguje, pak 
+            $$ \sum_{n=1}^∞ \(a_n + b_n\) = \sum_{n=1}^∞ a_n + \sum_{n=1}^∞ b_n. $$
 
             \begin{dukazin}
                 $\sum_{n=1}^∞ a_n$ konverguje $\exists$ limita z $s_m \rightarrow s \in ®R$ a to je z AL právě tehdy, když konverguje $\alpha s_m \rightarrow \alpha·s \in ®R$, tedy $\sum_{n=1}^∞ \alpha·a_n$ konverguje.
 
-                $\sum_{n=1}^∞ a_n = s \in ®R$ i $\sum_{n=1}^∞ b_n = \sigma \in ®R$ konvergují, tedy konverguje i $s_m + \sigma_m \rightarrow s + \sigma \in ®R$.
+                $\sum_{n=1}^∞ a_n = s \in ®R$ i $\sum_{n=1}^∞ b_n = \sigma \in ®R$ konvergují, tedy i $s_m + \sigma_m \rightarrow s + \sigma \in ®R$ konverguje.
             \end{dukazin}
         \end{veta}
 
@@ -45,11 +46,17 @@
         \end{pozorovani}
 
         \begin{veta}[Srovnávací kritérium]
-            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady s nezápornými členy a nechť $\exists n_0 \in ®N$ tak, že $\forall n \in ®N$, $n ≥ n_0$ platí $a_n ≤ b_n$. Pak a) $\sum_{n=1}^∞ b_n$ konverguje $\implies$ $\sum_{n=1}^∞ a_n$ konverguje b) $\sum_{n=1}^∞ a_n$ diverguje $\implies$ $\sum_{n=1}^∞ b_n$ diverguje.
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady s nezápornými členy a nechť $\exists n_0 \in ®N$ tak, že $\forall n \in ®N$, $n ≥ n_0$ platí $a_n ≤ b_n$. Pak
+
+            \begin{itemize}
+                \item[a)] $\sum_{n=1}^∞ b_n$ konverguje $\implies$ $\sum_{n=1}^∞ a_n$ konverguje,
+                \item[b)] $\sum_{n=1}^∞ a_n$ diverguje $\implies$ $\sum_{n=1}^∞ b_n$ diverguje.
+            \end{itemize}
 
             \begin{dukazin}
                 a) Označme $s_n = a_1 + … + a_n$ a $\sigma_n = b_1 + … + b_n$. Pro každé $n \in ®N$, $n ≥ n_0$ platí
-                $$ s_n = a_1 + … + a_{n_0} + a_{n_0 + 1} + … + a_n ≤ a_1 + … + a_{n_0} + b_{n_0 + 1} + … + b_n ≤ a_1 + … + a_{n_0} + \sigma_n ≤ a_1 + … + a_{n_0} + \sigma $$
+                $$ s_n = a_1 + … + a_{n_0} + a_{n_0 + 1} + … + a_n ≤ a_1 + … + a_{n_0} + b_{n_0 + 1} + … + b_n ≤ $$
+                $$ ≤ a_1 + … + a_{n_0} + \sigma_n ≤ a_1 + … + a_{n_0} + \sigma $$
                 A to je konečné, neboť $\sum_{n=1}^∞ b_n$ konverguje, tedy $\sigma \in ®R$. $s_n$ neklesající a omezená $\implies \exists \lim_{n \rightarrow ∞} s_n \in ®R$.
 
                 b) Nepřímím důkazem z a).
@@ -60,13 +67,13 @@
             Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ jsou řady s nezápornými členy a nechť $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = A \in ®R^*$. Jestliže $A \in (0, ∞)$, pak $\sum_{n=1}^∞ b_n$ konverguje $\Leftrightarrow$ $\sum_{n=1}^∞ a_n$ konverguje. Jestliže $A = 0$, pak $\sum_{n=1}^∞ b_n$ konverguje $\implies$ $\sum_{n=1}^∞ a_n$ konverguje. Jestliže $A = ∞$, pak $\sum_{n=1}^∞ a_n$ konverguje $\implies$ $\sum_{n=1}^∞ b_n$ konverguje.
 
             \begin{dukazin}
-                (i) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = K \in (0, ∞)$ plyne, k $\epsilon = \frac{K}{2} \exists n_0$ $\forall n ≥ n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = \frac{K}{2}$, tedy $\frac{K}{2} ≤ \frac{a_n}{b_n} ≤ \frac{3}{2}K$.
+                (i) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = K \in (0, ∞)$ plyne, k $\epsilon = \frac{K}{2}\ \exists n_0\ \forall n ≥ n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = \frac{K}{2}$, tedy $\frac{K}{2} ≤ \frac{a_n}{b_n} ≤ \frac{3}{2}K$.
 
-                $\sum_{n=1}^∞ b_n$ konverguje $\overset{\text{konvergence součtu řad}}{\implies}$ $\sum_{n=1}^∞ \frac{3}{2}K·b_n$ konverguje $\land a_n ≤ \frac{3}{2}K·b_n$ $\overset{\text{Srov. kritérium}}{\implies}$ $\sum_{n=1}^∞ a_n$ konverguje.
+                $\sum_{n=1}^∞ b_n$ konverguje $\overset{\text{k. součtu řad}}{\implies}$ $\sum_{n=1}^∞ \frac{3}{2}K·b_n$ konverguje $\land\ a_n ≤ \frac{3}{2}K·b_n$ $\overset{\text{Srov. kritérium}}{\implies}$ $\sum_{n=1}^∞ a_n$ konverguje.
 
                 $\sum_{n=1}^∞ a_n$ konverguje $\land \frac{K}{2}·b_n ≤ a_n \implies$ $\sum_{n=1}^∞ \frac{K}{2}·b_n$ konverguje $\implies$ $\sum_{n=1}^∞ b_n$ konverguje.
 
-                (ii) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = 0$ plyne, k $\epsilon = 1 \exists n_0$ $\forall n≥n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = 1$, tedy $a_n < b_n$, a pokud $\sum_{n=1}^∞ b_n$ konverguje, tak$\sum_{n=1}^∞ a_n$ konverguje podle srovnávacího kritéria.
+                (ii) Z $\lim_{n \rightarrow ∞} \frac{a_n}{b_n} = 0$ plyne, k $\epsilon = 1\ \exists n_0\ \forall n≥n_0: \left| \frac{a_n}{b_n} - K \right| < \epsilon = 1$, tedy $a_n < b_n$, a pokud $\sum_{n=1}^∞ b_n$ konverguje, tak $\sum_{n=1}^∞ a_n$ konverguje podle srovnávacího kritéria.
 
                 (iii) Úplně stejně jako (ii).
             \end{dukazin}
@@ -119,12 +126,13 @@
             \begin{dukazin}
                 Pro $k \in ®N:$ $s_k = \sum_{j=1}^k a_j$ $t_k = \sum_{j=0}^k 2^j·a_{2^j}$.
 
-                $\Leftarrow$: Označme $A = \sum_{j=0}^k 2^j·a_{2^j}$, pak $A \in ®R$. Nechť $m \in ®N$ a nalezneme $k in ®N$, $m < 2^k$. Pak $t_k ≤ A$ a:
+                $\Leftarrow$: Označme $A = \sum_{j=0}^∞ 2^j·a_{2^j}$, pak $A \in ®R$. Nechť $m \in ®N$ a nalezneme $k \in ®N$, $m < 2^k$. Pak $t_k ≤ A$ a:
                 $$ s_m ≤ a_1 + \(a_2 + a_3\) + \(a_4 + a_5 + a_6 + a_7\) + … + \(a_{2^{k-1}} + … + a_{2^k-1}\) ≤ t_{k-1} ≤ A. $$ 
                 Tedy $s_m$ je shora omezená a rostoucí $\implies \exists \lim_{m \rightarrow ∞} s_m \in ®R$ $\implies \sum_{n=1}^∞ a_n$ konverguje.
 
                 $\implies$: Označme $B = \sum_{n=1}^∞ a_n \in ®R$. Zvolme $k \in ®N$ a nalezneme $m \in ®N$, aby $2^k ≤ m$. Pak $s_m ≤ B$ a platí:
-                $$ s_m ≥ a_1 + a_2 + \(a_3 + a_4\) + \(a_5 + a_6 + a_7 + a_8\) + … +\(a_{2^{k-1}+1} + … + a_{2^k}\) ≥ a_1 + \frac{1}{2} \(t_k - 1·a_1\) ≤ \frac{1}{2} t_k \implies t_k ≤ 2·B. $$ 
+                $$ s_m ≥ a_1 + a_2 + \(a_3 + a_4\) + \(a_5 + a_6 + a_7 + a_8\) + … +\(a_{2^{k-1}+1} + … + a_{2^k}\) ≥ $$
+                $$ ≥ a_1 + \frac{1}{2} \(t_k - 1·a_1\) ≥ \frac{1}{2} t_k \implies t_k ≤ 2·B. $$ 
                 $t_k$ je shora omezená rostoucí posloupnost $\implies \sum_{n=1}^∞ 2^na_{2^n}$ konverguje.
             \end{dukazin}
         \end{veta}
@@ -168,11 +176,12 @@
         \end{veta}
 
         \begin{lemma}[Abelova parciální sumace]
-            Nechť $m, n \in ®N$ a $m ≤ n$ a nechť $a_m, …„, a_n, b_m, …, b_n \in ®R$. Označme $s_k = \sum_{i=m}^k a_i$. Pak platí
+            Nechť $m, n \in ®N$ a $m ≤ n$ a nechť $a_m, …, a_n, b_m, …, b_n \in ®R$. Označme $s_k = \sum_{i=m}^k a_i$. Pak platí
             $$ \sum_{i=m}^n a_i·b_i = \sum_{i=m}^n s_i·(b_i - b_{i+1}) + s_n·b_n. $$
             
             \begin{dukazin}
-                $$ = a_m · b_m + a_{m+1} · b_{m+1} + … + a_n·b_n = s_m·b_m + (s_{m+1} - s_m)· b_{m+1} + … + (s_n - s_{n-1})·b_n = \sum_{i=m}^n s_i·(b_i - b_{i+1}) + s_n·b_n. $$ 
+                $$ = a_m · b_m + a_{m+1} · b_{m+1} + … + a_n·b_n = s_m·b_m + (s_{m+1} - s_m)· b_{m+1} + … + (s_n - s_{n-1})·b_n = $$
+                $$ = \sum_{i=m}^n s_i·(b_i - b_{i+1}) + s_n·b_n. $$ 
             \end{dukazin}
         \end{lemma}
 
@@ -189,13 +198,15 @@
                 Podle V 5.8 budeme ověřovat BC podmínku pro $\sum_{n=1}^∞ a_n·b_n$. Označme $s_k = \sum_{n=m}^k a_n$. $b_n$ je nerostoucí a $b_n > 0$ $\implies$ $\forall i: b_i - b_{i+1} ≥ 0$ a $\exists K\ \forall n: |b_n| ≤ K$.
 
                 (A): $\sum_{n=1}^∞ a_n$ konverguje
-                $$ \implies \forall \epsilon > 0\ \exists n_0\ \forall i ≥ m ≥ n_0 |\sum_{n=m}^i a_n| = |s_i| < \epsilon. $$
+                $$ \implies \forall \epsilon > 0\ \exists n_0\ \forall i ≥ m ≥ n_0: |\sum_{n=m}^i a_n| = |s_i| < \epsilon. $$
                 Nyní k $\epsilon > 0$ volme $n_0$ jako výše a nechť $n ≥ m ≥ n_0$:
-                $$ |\sum_{i=m}^n a_i · b_i| \overset{\text{Abel PS}}{≤} \sum_{i=m}^{n-1} |s_i·(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \epsilon · \sum_{n=1}^∞ (b_i - b_{i+1}) + \epsilon·b_n = \epsilon·(b_m - b_n) + \epsilon · b_n ≤ \epsilon·K. $$
+                $$ |\sum_{i=m}^n a_i · b_i| \overset{\text{Abel PS}}{≤} \sum_{i=m}^{n-1} |s_i·(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \epsilon · \sum_{n=1}^∞ (b_i - b_{i+1}) + \epsilon·b_n = \epsilon·(b_m - b_n) + \epsilon · b_n $$
+                $$ ≤ \epsilon·K. $$
                 A podle BC podmínky máme $\sum_{n=1}^∞ a_n·b_n$ konverguje.
 
                 (D) Z předpokladů víme, že $\exists M > 0\ \forall i ≥ m: |s_i| = |\sum_{n=1}^i  a_n - \sum_{n=1}^{m-1} a_n| ≤ M$ (volme $M = 2K$). Z $\lim_{n \rightarrow ∞} b_n = 0$ k $\epsilon > 0\ \exists n_0\ \forall n ≥ n_0: |b_n|<\epsilon$. Nyní 
-                $$ \forall n ≥ m ≥ n_0: |\sum_{i=m}^n a_i·b_i| ≤ \sum_{i=m}^{n-1} |s_i(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \sum_{i=m}^{n-1} M·(b_i - b_{i+1}) + M·b_n = M·(b_m - b_n) + M·b_n ≤ M·\epsilon. $$
+                $$ \forall n ≥ m ≥ n_0: |\sum_{i=m}^n a_i·b_i| ≤ \sum_{i=m}^{n-1} |s_i(b_i - b_{i+1})| + |s_n|·|b_n| ≤ \sum_{i=m}^{n-1} M·(b_i - b_{i+1}) + M·b_n = $$
+                $$ = M·(b_m - b_n) + M·b_n ≤ M·\epsilon. $$
                 A podle BC podmínky máme $\sum_{n=1}^∞ a_n·b_n$ konverguje.
             \end{dukazin}
         \end{veta}
@@ -209,7 +220,8 @@
                 Nebo dokážeme dokonce $\forall x ≠ 2k\pi$ $\sin nx$ a $\cos nx$ má omezené částečné součty.
                 $$ e^ix = \cos x + i·\sin x \implies \sum_{k=0}^n e^{i·k·x} = \sum_{k=0}^n \cos k·x + i·\sum_{k=0}^n \sin k·x. $$
                 Z geometrické řady ale víme, že
-                $$ \sum_{k=0}^n e^{i·k·x} = \frac{1 - \(e^{ix}\)^{n+1}}{1 - e^{ix}} = \frac{1 - \cos x·(n+1) - i·\sin x·(n+1)}{1 - \cos x - i\sin x} · \frac{1 - \cos x + i·\sin x}{1 - \cos x + i·\sin x} = \frac{A_n·B}{(1 - \cos x)^2 + (\sin x)^2}. $$
+                $$ \sum_{k=0}^n e^{i·k·x} = \frac{1 - \(e^{ix}\)^{n+1}}{1 - e^{ix}} = \frac{1 - \cos x·(n+1) - i·\sin x·(n+1)}{1 - \cos x - i\sin x} · \frac{1 - \cos x + i·\sin x}{1 - \cos x + i·\sin x} = $$
+                $$ = \frac{A_n·B}{(1 - \cos x)^2 + (\sin x)^2}. $$
                 Zřejmě $|A_n| ≤ 3$ a $|B|≤3$, jmenovatel je nenulový a není závislý na $n$, tedy pro všechna $n$ je výraz omezen konstantou.
             \end{dukazin}
         \end{priklad}
@@ -220,23 +232,23 @@
         \end{definice}
 
         \begin{veta}[O přerovnání absolutně konvergentní řady]
-            Nechť $\sum_{n=1}^∞ a_n$ je absolutně konvergentní řada a $\sum_{n=1}^∞ a_{p(n)}$ je její přerovnání. Pak $\sum_{n=1}^∞ a_{p(n)}$ je absolutně konvergentní a má stejný součet.
+            Nechť $\sum_{n=1}^∞ a_n$ je absolutně konvergentní řada a $\sum_{n=1}^∞ a_{p(n)}$ je její přerovnání. Potom $\sum_{n=1}^∞ a_{p(n)}$ je absolutně konvergentní a má stejný součet.
 
             \begin{dukazin}
                 $\sum_{n=1}^∞ |a_n|$ konverguje $\implies$ splňuje BC podmínku. Tedy 
                 $$ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ m ≥ n_0 |\sum_{i=n}^m a_i| < \epsilon \implies \sum_{i=n_0}^∞ |a_i| ≤ \epsilon. $$
-                Zvolme $n_0' = \max\{p(1), p(2), …, p(n_0)\}$. Pak $\forall n'≥ n_0': p^{-1}(n') ≥ n_0$. Tedy
-                $$ \forall n' ≥ m' ≥ n_0': \sum_{i=m'}^{n'} |a_{p(i)}| ≤ \sum_{i=n_0}^∞ |a_i| < \epsilon. $$
+                Zvolme $n_0' = \max\{p^{-1}(1), p^{-1}(2), …, p^{-1}(n_0)\}$. Pak $\forall n'≥ n_0': p^{-1}(n') ≥ n_0$. Tedy
+                $$ \forall n' ≥ m' > n_0': \sum_{i=m'}^{n'} |a_{p(i)}| ≤ \sum_{i=n_0}^∞ |a_i| < \epsilon. $$
                 Tedy podle BC podmínky $\sum_{n=1}^∞ |a_{p(n)}|$ konverguje, tedy i $\sum_{n=1}^∞ a_{p(n)}$ konverguje.
 
-                Konverguje k tomu samému? $\sum_{n=1}^∞ a_n = A$, $\sum_{n=1}^∞ a_{p(n)} = A'$. Víme, že k $\epsilon > 0\ \exists n_0 \sum_{i=n_0}^∞ |a_i| ≤ \epsilon$. Zvolme $n_0' ≥ \max_{i ≤ n_0} p(i)$, aby $\sum_{i=n_0'}^∞ |a_{p(i)}| ≤ \epsilon$. Pak $|\sum_{i=1}^{n_0} a_i - A| ≤ \epsilon$ a $|\sum_{i=1}^{n_0'} a_{p(i)} - A'| ≤ \epsilon$. Nyní
+                Konverguje přerovnání k tomu samému? $\sum_{n=1}^∞ a_n = A$, $\sum_{n=1}^∞ a_{p(n)} = A'$. K $\epsilon > 0$ $\exists n_0 \sum_{i=n_0}^∞ |a_i| ≤ \epsilon$. Zvolme $n_0' ≥ \max_{i ≤ n_0} p(i)$, aby $\sum_{i=n_0'}^∞ |a_{p(i)}| ≤ \epsilon$. Pak $|\sum_{i=1}^{n_0} a_i - A| ≤ \epsilon$ a $|\sum_{i=1}^{n_0'} a_{p(i)} - A'| ≤ \epsilon$. Nyní
                 $$ |A - A'| ≤ |\sum_{i=1}^{n_0} a_i - A| + |\sum_{i=1}^{n_0'} a_{p(i)} - A'| + |\sum_{i=1}^{n_0} a_i - \sum_{i=1}^{n_0'} a_{p(i)}| ≤ \epsilon + \epsilon + \sum_{i=n_0}^∞ |a_i| ≤ 3\epsilon $$ 
             \end{dukazin}
         \end{veta}
 
 % 17. 3. 2021
 
-        \begin{veta}[Rieman]
+        \begin{veta}[Riemann]
             Neabsolutně konvergentní řadu lze přerovnat k libovolnému součtu $s \in ®R^*$.
 
             \begin{dukazin}
@@ -249,10 +261,11 @@
         \end{definice}
 
         \begin{veta}[O součinu řad]
-            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují absolutně. Pak $\(\sum_{n=1}^∞ a_n\)·\(\sum_{n=1}^∞ b_n\) = \sum_{k=2}^∞ \sum_{i=1}^{k-1} (a_{k-i}·b_i)$.
+            Nechť $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují absolutně. Pak 
+            $$ \(\sum_{n=1}^∞ a_n\)·\(\sum_{n=1}^∞ b_n\) = \sum_{k=2}^∞ \sum_{i=1}^{k-1} (a_{k-i}·b_i). $$
 
             \begin{dukazin}
-                Označme $s_n = \sum_{i=1}^n a_i \rightarrow A \in ®R$, $\sigma_n = \sum_{i=1}^n b_i \rightarrow B \in ®R$ a $\rho_n = \sum_{k=2}^n\(\sum_{i=1}^{k-1} a_{k-i}b_i\) \overset{\text{Chceme}}{\rightarrow} A·B \in ®R$. Nechť $\epsilon > 0$. Pak $\exists n_0: \sum_{i=n_0}^∞ |a_i| < \epsilon$ a $\sum_{j=n_0}^∞ |b_j| < \epsilon$ (z BC podmínky) a zároveň $|s_{n_0}·\sigma_{n_0} - A·B| < \epsilon$. Nechť $n ≥ 2n_0$, pak
+                Ať $s_n = \sum_{i=1}^n a_i \rightarrow A \in ®R$, $\sigma_n = \sum_{i=1}^n b_i \rightarrow B \in ®R$ a $\rho_n = \sum_{k=2}^n\(\sum_{i=1}^{k-1} a_{k-i}b_i\) \overset{\text{Chceme}}{\rightarrow} A·B \in ®R$. Nechť $\epsilon > 0$. Pak $\exists n_0: \sum_{i=n_0}^∞ |a_i| < \epsilon$ a $\sum_{j=n_0}^∞ |b_j| < \epsilon$ (z BC podmínky) a zároveň $|s_{n_0}·\sigma_{n_0} - A·B| < \epsilon$. Nechť $n ≥ 2n_0$, pak
                 $$ |\rho_n - A·B| ≤ |\rho_n - s_{n_0}·\sigma_{n_0}| + |s_{n_0}·\sigma_{n_0} - A·B| ≤ $$
                 $$ ≤ |(a_1b_1) + (a_1b_2 + a_2b_1) + … + (a_{n-1}·b_1 + … + a_1·b_{n-1}) - (a_1 + … +a_{n_0})·(b_1+…+b_{n_0})| + \epsilon ≤ $$
                 $$ ≤ \sum_{i ≥ n_0 \lor j ≥ n_0} |a_ib_j| + \epsilon ≤ \sum_{i=1}^∞ |a_i| · \sum_{j=n_0}^∞ |b_j| + \sum_{i=n_0}^∞ |a_i| · \sum_{j=1}^∞ |b_j| + \epsilon ≤ A\epsilon + B\epsilon + \epsilon = \epsilon·\text{konst}. $$
@@ -278,7 +291,7 @@
                 $$ \forall \epsilon > 0\ \exists n_0\ \forall m ≥ n ≥ n_0: \sum_{j=n}^m |c_j| < \epsilon. $$ 
                 Víme $c_n = a_n + ib_n$. Nyní $\forall m ≥ n ≥ n_0:$
                 $$ \sum_{j=n}^m |a_j| ≤ \sum_{j=n}^m |c_j| < \epsilon \land \sum_{j=n}^m |b_j| ≤ \sum_{j=n}^m |c_j| < \epsilon. $$ 
-                Tedy $\sum_{n=1}^∞ |a_n|$ a $\sum_{n=1}^∞ |b_n|$ splňují BC podmínku, tedy konvergují. Podle V5.9 (vztah KaAK), tedy $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují, tedy konverguje i $\sum_{n=1}^∞ c_n$.
+                Tedy $\sum_{n=1}^∞ |a_n|$ a $\sum_{n=1}^∞ |b_n|$ splňují BC podmínku, tedy konvergují. Podle V5.9 (vztah K a AK), tedy $\sum_{n=1}^∞ a_n$ a $\sum_{n=1}^∞ b_n$ konvergují, tedy konverguje i $\sum_{n=1}^∞ c_n$.
             \end{dukazin}
         \end{veta}
 
@@ -323,10 +336,16 @@
         \begin{poznamka}[Tabulkové integrály]
             \ 
             \begin{itemize}
-                \item $ \int x^n\,dx = \frac{x^n}{n+1} + C, ((x \in ®R \land n \in ®N) \lor (x \in ®R \setminus\{0\} \land n \in ®Z \setminus \{1\}))$.
+                \item $ \int x^n\,dx = \frac{x^{n+1}}{n+1} + C, ((x \in ®R \land n \in ®N) \lor (x \in ®R \setminus\{0\} \land n \in ®Z \setminus \{1\}))$.
                 \item $\int \frac{1}{x}\, dx = \log|x| + C, (x \in ®R \setminus \{0\})$.
                 \item $\int e^x\, dx = e^x + C, (x \in ®R)$.
-                \item TODO
+                \item $\int \sin x\,dx = -\cos x + C$, $(x \in ®R)$.
+                \item $\int \cos x\,dx = \sin x + C$, $(x \in ®R)$.
+                \item $\int \frac{1}{\cos^2 x}\, dx = \tan x + C$, $(x \in \(-\frac{\pi}{2}, \frac{\pi}{2}\) + k\pi, k \in ®Z)$.
+                \item $\int \frac{1}{-\sin^2 x}\, dx = \cotg x + C$, $(x \in \(0, \pi\) + k\pi, k \in ®Z)$.
+                \item $\int \frac{1}{1 + x^2}\, dx = \arctan x + C$, $(x \in ®R)$.
+                \item $\int \frac{1}{\sqrt{1 - x^2}}\, dx = \arcsin x + C$, $(x \in (-1, 1))$.
+                \item $\int \frac{-1}{\sqrt{1 - x^2}}\, dx = \arccos x + C$, $(x \in (-1, 1))$.
             \end{itemize}
         \end{poznamka}
 
@@ -343,7 +362,7 @@
 % 24. 3. 2021
 
         \begin{veta}[Integrace per partes]
-            Nechť $I$ je otevřený interval a funkce $f$ a $g$ jsou spojité na $I$. Nechť $F$ je primitivní k $f$ a $G$ je primitivní k $g$ na $I$. Pak platí $\int g(x)·F(x)\,dx = G(x)·F(x) - \int G(x)·f(x)\,dx$ ne $I$.
+            Nechť $I$ je otevřený interval a funkce $f$ a $g$ jsou spojité na $I$. Nechť $F$ je primitivní k $f$ a $G$ je primitivní k $g$ na $I$. Pak platí $\int g(x)·F(x)\,dx = G(x)·F(x) - \int G(x)·f(x)\,dx$ na $I$.
 
             \begin{dukazin}
                 $G$ je spojitá, tedy $G(x)·f(x)$ je spojitá (tedy integrál vpravo existuje). Mějme funkci $G·F - H$, kde $H$ je primitivní k $G·f$, pak
@@ -442,7 +461,8 @@
             \begin{itemize}
                 \item polynom $ax^2 + bx + c$ má dvojnásobný kořen a $a > 0$, pak $\sqrt{ax^2 + bx + c} = \sqrt{a}|x-\alpha|$ a řešíme na $x>\alpha$ a $x<\alpha$ jako racionální funkce.
                 \item polynom $ax^2 + bx + c$ má dva reálné kořeny $\alpha_1$ a $\alpha_2$. Pak úpravou převedeme na tvar $\sqrt{a\frac{x-\alpha_1}{x-\alpha_2}}$ nebo $\sqrt{a·\frac{\alpha_1-x}{x-\alpha_2}}$.
-                \item polynom $ax^2 + bx + c$ nemá reálný kořen a $a > 0$. Pak používáme substituci $\sqrt{ax^2 + bx + c} = \sqrt{a}·x + t$.
+                \item polynom $ax^2 + bx + c$ nemá reálný kořen a $a > 0$. Pak používáme substituci
+                    $$ \sqrt{ax^2 + bx + c} = \sqrt{a}·x + t. $$
             \end{itemize}
 
             \begin{upozorneni}
@@ -462,8 +482,8 @@
 
         \begin{definice}[Horní a dolní součty, Riemanovy integrály]
             Nechť $f$ je omezená funkce definovaná na intervalu $[a, b]$ a $D$ je dělení $[a, b]$, definujme horní a dolní součty
-            $$ S(f, d) = \sum_{i=1}^n \sup\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}), $$
-            $$ s(f, d) = \sum_{i=1}^n \inf\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}). $$
+            $$ S(f, D) = \sum_{i=1}^n \sup\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}), $$
+            $$ s(f, D) = \sum_{i=1}^n \inf\{f(x)| x \in [x_{i-1}, x_i]\}·(x_i - x_{i-i}). $$
 
             Horní a dolní Riemannův integrál definujeme jako
             $$ (R)\overline{\int_a^b} f(x)\,dx = \inf\{S(f, D) | D \text{ je dělení } [a, b]\}, $$ 
@@ -481,13 +501,17 @@
         \end{poznamka}
 
         \begin{veta}[O zjemnění dělení]
-            Nechť $f$ je omezená funkce na $[a, b]$, $D$ a $D'$ jsou dělení intervalu $[a, b]$ a $D'$ zjemňuje $D$. Pak $s(f, D) ≤ s(f, D') ≤ S(f, D') ≤ (f, D)$.
+            Nechť $f$ je omezená funkce na $[a, b]$, $D$ a $D'$ jsou dělení intervalu $[a, b]$ a $D'$ zjemňuje $D$. Pak $s(f, D) ≤ s(f, D') ≤ S(f, D') ≤ S(f, D)$.
 
             \begin{dukazin}
                 Prostřední nerovnost je triviální z $\sup ≥ \inf$.
 
-                Předpokládejme, že $D = \{x_0, x_1, …, x_n\}$ a $D' = \{x_0, x_1, …, x_{j-1}, z, x_{x_j}, …, x_n\}$. Pak $\inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}$ a $\inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [z, x_j]\}$. Vynásobením $(z - x_{j-1})$ a $(x_j - z)$ dostaneme
-                $$ \inf\{f(x), x \in [x_{j - 1}, x_j]\}·(x_j - x_{j-1}) ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}·(z - x_{j-1}) + \inf\{f(x), x \in [z, x_j]\}·(x_j - z) \implies s(f, D) ≤ s(f, D'). $$
+                Předpokládejme, že $D = \{x_0, x_1, …, x_n\}$ a $D' = \{x_0, x_1, …, x_{j-1}, z, x_{x_j}, …, x_n\}$. Pak 
+                $$ \inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}, $$
+                $$ \inf\{f(x), x \in [x_{j - 1}, x_j]\} ≤ \inf\{f(x), x \in [z, x_j]\}. $$
+                Vynásobením $(z - x_{j-1})$ a $(x_j - z)$ dostaneme
+                $$ \inf\{f(x), x \in [x_{j - 1}, x_j]\}·(x_j - x_{j-1}) ≤ $$
+                $$ ≤ \inf\{f(x), x \in [x_{j - 1}, z]\}·(z - x_{j-1}) + \inf\{f(x), x \in [z, x_j]\}·(x_j - z) \implies s(f, D) ≤ s(f, D').\!\!\! $$
 
                 Pokud se $D$ a $D'$ liší o více bodů, pak postupujeme indukcí. Analogicky pro horní součty.
             \end{dukazin}
@@ -508,17 +532,18 @@
         \end{dusledek}
 
         \begin{definice}[Norma dělení]
-            Nechť $D$ je dělení $[a, b]$. Číslo $\ni(D) = \max_{j = 1, …, n} |x_j - x_{j-1}|$ nazveme normou dělení $D$.
+            Nechť $D$ je dělení $[a, b]$. Číslo $\nu(D) = \max_{j = 1, …, n} |x_j - x_{j-1}|$ nazveme normou dělení $D$.
         \end{definice}
 
         \begin{veta}[Aproximace R. integrálu pomocí součtů]
-            Nechť $f$ je omezená funkce na $[a, b]$ a $\{D_n\}_{n=1}^∞$ je posloupnost dělení $[a, b]$ taková, že $\lim_{n \rightarrow ∞} \ni(D_n) = 0$. Potom $(R) \overline{\int_a^b} f(x)\,dx = \inf_{n \in ®N} S(f, D_n)$ a $(R) \underline{\int_a^b} f(x)\,dx = \sup_{n \in ®N} s(f, D_n)$.
+            Nechť $f$ je omezená funkce na $[a, b]$ a $\{D_n\}_{n=1}^∞$ je posloupnost dělení $[a, b]$ taková, že $\lim_{n \rightarrow ∞} \nu(D_n) = 0$. Pak $(R) \overline{\int_a^b} f(x)\,dx = \inf_{n \in ®N} S(f, D_n)$ a $(R) \underline{\int_a^b} f(x)\,dx = \sup_{n \in ®N} s(f, D_n)$.
 
             \begin{dukazin}
                 BÚNO $f ≥ 0$ (jinak přičteme k $f$ konstantu). Stačí dokázat druhá rovnost, první je analogická. Nechť $D$ je libovolné dělení a $\epsilon > 0$. Stačí dokázat, že $\exists n_0: s(f, D_{n_0}) ≥ s(f, D) - \epsilon$. Pak
                 $$ (R) \underline{\int_a^b} f(x)\,dx = \sup_D S(f, D) ≥ \sup_{D_n} s(f, D_n) ≥ \sup_D(s(f, D) - \epsilon) = (R) \underline{\int_a^b} f(x)\,dx - \epsilon. $$
-                Nechť $0≤ f ≤ K$ a zvolme $n_0$, aby $\ni(D_{n_0}) ≤ \frac{\epsilon}{K·4·\#\text{intervalů } D}$. Označme $H = $ intervaly vzniklé dělením $P = D \cup D_{n_0}$ a $\gamma = $ intervaly z $P$, v kterých není žádný bod dělení $D$. $P$ je jemnější než $D$, a proto z věty výše dostáváme
-                $$ s(f, D) ≤ s(f, P) = \sum_{L \in H} \inf_{L}f·\text{délka } L = \sum_{L \in \gamma} \inf_{L}f·\text{délka } L + \sum_{L \in H \setminus \gamma} \inf_{L}f·\text{délka } L ≤ s(f, D_{n_0}) + 2·\#\text{intervalů }D·(K·\ni(D_{n_0})) < s(f, D_{n_0}) + \epsilon. $$
+                Nechť $0≤ f ≤ K$ a zvolme $n_0$, aby $\nu(D_{n_0}) ≤ \frac{\epsilon}{K·4·\#\text{intervalů } D}$. Označme $H = $ intervaly vzniklé dělením $P = D \cup D_{n_0}$ a $\gamma = $ intervaly z $P$, v kterých není žádný bod dělení $D$. $P$ je jemnější než $D$, a proto z věty výše dostáváme
+                $$ s(f, D) ≤ s(f, P) = \sum_{L \in H} \inf_{L}f·\text{délka } L = \sum_{L \in \gamma} \inf_{L}f·\text{délka } L + \sum_{L \in H \setminus \gamma} \inf_{L}f·\text{délka } L ≤ $$
+                $$ ≤ s(f, D_{n_0}) + 2·\#\text{intervalů }D·(K·\nu(D_{n_0})) < s(f, D_{n_0}) + \epsilon. $$
             \end{dukazin}
         \end{veta}
 
@@ -534,8 +559,9 @@
                 $$\lim_{n \rightarrow ∞} s(f, D_n) = (R) \underline{\int_a^b}f(x)\,dx = (R) \int_a^bf(x)\,dx. $$
                 Tedy $\exists n_0\ \forall n ≥ n_0: S(f, D_n) - s(f, D_n) < \epsilon$.
 
-                $\Rightarrow$: Zvolme $\epsilon > 0$ a k němu nalezneme $D$ z předpokladu. 
-                $$ 0 ≤ (R) \overline{\int_a^b}f(x)\,dx - (R) \underline{\int_a^b}f(x)\,dx ≤ S(f, D) - s(f, D) < \epsilon \implies (R) \overline{\int_a^b}f(x)\,dx = (R) \underline{\int_a^b}f(x)\,dx. $$
+                $\Leftarrow$: Zvolme $\epsilon > 0$ a k němu nalezneme $D$ z předpokladu. 
+                $$ 0 ≤ (R) \overline{\int_a^b}f(x)\,dx - (R) \underline{\int_a^b}f(x)\,dx ≤ S(f, D) - s(f, D) < \epsilon \implies $$
+                $$ \implies (R) \overline{\int_a^b}f(x)\,dx = (R) \underline{\int_a^b}f(x)\,dx. $$
             \end{dukazin}
         \end{veta}
 
@@ -561,10 +587,11 @@
             Nechť $f$ je spojitá na omezeném intervalu $[a, b]$, pak $f \in R([a, b])$.
 
             \begin{dukazin}
-                Podle věty ze zimy je spojitá funkce na omezeném intervalu spojitá. Z předchozí věty víme, že $f$ je dokonce stejnoměrně spojitá na $[a, b]$. Pak
-                $$ \exists \delta > 0: \forall x, y \in [a, b]: |x - y| < \delta \implies |f(x) - f(y)| < \epsilon. $$
-                Zvolme dělení $D$ intervalu $[a, b]$ tak, že $\ni(D) < \delta$. Nechť $D = \{x_j\}_{j = 0}^n$. Označme $M_j = \sup_{x_j, x_{j + 1}}f$, $m_j = \inf_{x_j, x_{j + 1}}f$. Pak platí $M_j ≤ m_j + \epsilon \forall j \in [n]$.
-                $$ S(f, D) - s(f, D) = \sum_{j=1}^n M_j(x_j - x_{j-1}) - \sum_{j=1}^n m_j(x_j - x_{j-1}) = \sum_{j=1}^n (M_j - m_j)·(x_j - x_{j-1}) ≤ \epsilon·\sum_{j=1}^n (x_j - x_{j-1}) = \epsilon·(b - a). $$
+                Podle věty ze zimy je spojitá funkce na omezeném intervalu otevřená. Z předchozí věty víme, že $f$ je dokonce stejnoměrně spojitá na $[a, b]$. Pak
+                $$ \forall \epsilon > 0\ \exists \delta > 0: \forall x, y \in [a, b]: |x - y| < \delta \implies |f(x) - f(y)| < \epsilon. $$
+                Zvolme dělení $D$ intervalu $[a, b]$ tak, že $\nu(D) < \delta$. Nechť $D = \{x_j\}_{j = 0}^n$. Označme $M_j = \sup_{x_j, x_{j + 1}}f$, $m_j = \inf_{x_j, x_{j + 1}}f$. Pak platí $M_j ≤ m_j + \epsilon\ \forall j \in [n]$.
+                $$ S(f, D) - s(f, D) = \sum_{j=1}^n M_j(x_j - x_{j-1}) - \sum_{j=1}^n m_j(x_j - x_{j-1}) = \sum_{j=1}^n (M_j - m_j)·(x_j - x_{j-1}) ≤ $$
+                $$ ≤ \epsilon·\sum_{j=1}^n (x_j - x_{j-1}) = \epsilon·(b - a). $$
                 Podle věty výše tedy $f \in R([a, b])$.
             \end{dukazin}
         \end{veta}
@@ -573,7 +600,7 @@
             Nechť $f$ je (omezená) monotonní funkce na intervalu $[a, b]$. Pak $f \in R([a, b])$.
 
             \begin{dukazin}
-                BÚNO $f$ je neklesající. Budeme kritérium existence R integrálu. Nechť $\epsilon > 0$. Zvolme ekvidistantní dělení $D = \{a + (b - a)\frac{j}{n}\}_{j=0}^n$ a volíme $n$, aby $n > \frac{1}{\epsilon}(b-a)·(f(b) - f(a))$. Nyní
+                BÚNO $f$ je neklesající. Budeme dokazovat kritérium existence R integrálu. Nechť $\epsilon > 0$. Zvolme ekvidistantní dělení $D = \{a + (b - a)\frac{j}{n}\}_{j=0}^n$ a volíme $n$, aby $n > \frac{1}{\epsilon}(b-a)·(f(b) - f(a))$. Nyní
                 $$ S(f, D) = \sum_{j = 1}^n \sup_{[x_{j-1}, x_j]}f·(x_j - x_{j-1}) = \sum_{j=1}^n f(x_j)·(x_j - x_{j-1}) = \frac{b - a}{n} \sum_{j=1}^n f(x_j), $$ 
                 $$ s(f, D) = \sum_{j = 1}^n \inf_{[x_{j-1}, x_j]}f·(x_j - x_{j-1}) = \sum_{j=1}^n f(x_{j-1})·(x_j - x_{j-1}) = \frac{b - a}{n} \sum_{j=1}^n f(x_{j-1}). $$ 
                 Odtud
@@ -603,7 +630,7 @@
                 Je-li $f \in R([a, b])$, $\alpha ≥ 0$, je $\alpha·f$ omezená na $[a, b]$. Pro každý interval $I \subseteq [a, b]$
                 $$ \sup_I \alpha·f = \alpha·\sup_I f, \qquad \inf_I \alpha·f = \alpha·\inf_I f \implies $$
                 $$ S(\alpha f, D) = \alpha·S(f, D), \qquad s(\alpha·f, D) = \alpha·s(f, D). $$
-                Nechť $\{D_n\}$ je posloupnost dělení $[a, b]$, že $\nu|D_n| \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$. Pak
+                Nechť $\{D_n\}$ je posloupnost dělení $[a, b]$, že $\nu(D_n) \rightarrow 0$ a $D_{n+1}$ je jemnější než $D_n$. Pak
                 $$ \lim_{n \rightarrow ∞} S(\alpha f, D_n) = \lim_{n \rightarrow ∞} \alpha·S(f, D_n) = \alpha·(R) \int_a^b f(x)\,dx, $$
                 $$ \lim_{n \rightarrow ∞} s(\alpha f, D_n) = \lim_{n \rightarrow ∞} \alpha·s(f, D_n) = \alpha·(R) \int_a^b f(x)\,dx. $$
                 Podle věty výše je pro $\alpha f: \alpha f \in R([a, b])$ a $(R)\int_a^b \alpha f = \alpha (R)\int_a^b f$.
@@ -631,8 +658,8 @@
                 Podle věty výše je $f \in R([a, b])$ a $(R) \int_a^b f(x)\,dx = (R) \int_a^c f(x)\,dx + (R)\int_c^b f(x)\,dx$.
 
                 Nechť $f \in R([a, b])$. Pak
-                $$ 0 ≤ S(f, D_n^1) - s(f, D_n^1) ≤ S(f, D_n^1) - s(f, D_n^1) + S(f, D_n^2) - s(f, D_n^2) = S(f, D_n) - s(f, D_n) \rightarrow 0 \implies $$ 
-                $$ \implies \lim_{n \rightarrow ∞} S(f, D_n^1) - s(f, D_n^1) = 0 \implies f \in R([a, c]). $$
+                $$ 0 ≤ S(f, D_n^1) - s(f, D_n^1) ≤ S(f, D_n^1) - s(f, D_n^1) + S(f, D_n^2) - s(f, D_n^2) = S(f, D_n) - s(f, D_n) $$
+                $$ S(f, D_n) - s(f, D_n) \rightarrow 0 \implies \lim_{n \rightarrow ∞} S(f, D_n^1) - s(f, D_n^1) = 0 \implies f \in R([a, c]). $$
                 Analogicky $f \in R([c, b])$. Rovnost $(R) \int_a^b f(x)\,dx = (R) \int_a^c f(x)\,dx + (R) \int_c^b f(x)\,dx$ plyne z předchozí části důkazu.
             \end{dukazin}
         \end{veta}
@@ -663,7 +690,8 @@
             jelikož $f$ je Riemannovsky integrovatelná, tedy je omezená $f(t) < K$. Policií dokážeme $F(y) - F(y_0) \rightarrow 0$. Analogicky pro limitu zleva.
 
             2) Víme 
-            $$ F'(x_0) = \lim_{h \rightarrow 0} \frac{F(x_0 + h) - F(x_0)}{h} = \lim_{h \rightarrow 0} \frac{(R) \int_0^{x_0 + h} f(t)\,dt - (R)\int_0^{x_0} f(t)\,dt}{h} = \lim_{h \rightarrow 0} \frac{1}{h}·\int_{x_0}^{x_0 + h} f(t)\,dt. $$
+            $$ F'(x_0) = \lim_{h \rightarrow 0} \frac{F(x_0 + h) - F(x_0)}{h} = \lim_{h \rightarrow 0} \frac{(R) \int_0^{x_0 + h} f(t)\,dt - (R)\int_0^{x_0} f(t)\,dt}{h} = $$
+            $$ = \lim_{h \rightarrow 0} \frac{1}{h}·\int_{x_0}^{x_0 + h} f(t)\,dt. $$
             Nyní
             $$ \frac{1}{h}·\int_{x_0}^{x_0 + h} f(t)\,dt - f(x_0) = \frac{1}{h}·\int_{x_0}^{x_0 + h} (f(t) - f(x_0))\,dt. $$ 
             Zvolme $\epsilon > 0$. K němu nalezneme $\delta > 0$ tak, že $\forall t \in [x_0 - \delta, x_0 + \delta]$ platí $|f(t) - f(x_0)| < \epsilon$. Pak platí
@@ -686,7 +714,7 @@
         \end{dusledek}
 
         \begin{veta}[Per partes pro určitý integrál]
-            Nechť $f, f', g, g'$ jsou spojité na intervalu $[a, b]$. Potom $\int_a^b f(x) g'(x)\,dx = [f·g]_a^b - \int_a^b f'(x) g(x)\,dx$, kde $[fg]_a^b = f(b)g(b) - f(a)g(a)$ a obecněji $\lim_{x \rightarrow b_+} f(x)g(x) - \lim_{x \rightarrow a_-} f(x)g(x)$.
+            Nechť $f, f', g, g'$ jsou spojité na intervalu $[a, b]$. Pak $\int_a^b f(x) g'(x)dx = [f·g]_a^b - \int_a^b f'(x) g(x)dx$, kde $[fg]_a^b = f(b)g(b) - f(a)g(a)$ a obecněji $\lim_{x \rightarrow b_+} f(x)g(x) - \lim_{x \rightarrow a_-} f(x)g(x)$.
 
             \begin{dukazin}
                 Víme, že $f$ je primitivní k $f'$ a $g$ je primitivní k $g'$. Tedy pro primitivní funkci platí $\int f·g' = f·g - \int f'·g$. Dále $\int_a^b f(x)·g'(x)\,dx = Primit(b) - Primit(a) = f(b)·g(b) - f(a)·g(a) - \int_a^b f'(x)g(x)\,dx$. Všechny integrály existují ze spojitosti.
@@ -695,7 +723,7 @@
 
         \begin{veta}[O substituci pro určitý integrál]
             Nechť $f$ je spojitá na intervalu $[a, b]$ a $\phi:[\alpha, \beta] \rightarrow [a, b]$ je funkce, která má na $[\alpha, \beta]$ spojitou první derivaci. Pak
-            $$ \int_\alpha^\beta f(\phi(t))·\phi'(t)\,dt = \int_{\phi\alpha}^{\phi\beta}f(x)\,dx. $$
+            $$ \int_\alpha^\beta f(\phi(t))·\phi'(t)\,dt = \int_{\phi(\alpha)}^{\phi(\beta)}f(x)\,dx. $$
 
             Nechť $f$ je spojitá na intervalu $[a, b]$ a $\phi: [\alpha, \beta] \rightarrow [a, b]$ je na a má na $[\alpha, \beta]$ vlastní spojitou nenulovou derivaci. Pak
             $$ \int_a^b f(x)\,dx = [\Phi(\phi^{-1}(t))]_a^b = [\Phi(t)]_{\phi^{-1}(a)}^{\phi^{-1}(b)} = \int_{\phi^{-1}(a)}^{\phi^{-1}(b)} f(\phi(t))·\phi'(t)\,dt, $$
@@ -718,7 +746,7 @@
             Nechť $a \in ®R, b \in ®R^*$ a $a < b$. Nechť jsou funkce $f, g: [a, b) \rightarrow ®R$ spojité na $[a, b)$ a nechť $0 ≤ f(x) ≤ g(x)$ $\forall x \in [a, b)$. Pak $g \in N(a, b) \implies f \in N(a, b)$.
 
             \begin{dukazin}
-                    Zvolme $c \in (a, b)$ a označme $G$ a $F$ primitivní funkce k $f$ a $g$. BÚNO $G(c) = F(c)$ (jinak odečti konstantu). $(G-F)'(x) = (g - f)(x) ≥ 0$ na $[c, b) \implies G-F$ je neklesající na $[c, b)$. Dále $G(c) = F(c) \implies \forall x \in [c, b): G(x) ≥ F(x)$. Dále $G'=g≥0$ a $F'=f≥0$, tedy jsou neklesající. $g \in N(a, b) \implies \lim_{x \rightarrow b_-} G(x) \in ®R$. $F$ je neklesající a omezená $\lim_{x \rightarrow b_-} G(x)$, tedy $\lim_{x \rightarrow b_-} F(x) \in ®R \implies f\in N(c, b)$. $f$ je spojitá na $[a,c]$, tj. $f \in N(a, c)$. Tudíž $f \in N(a, b)$.
+                Zvolme $c \in (a, b)$ a označme $G$ a $F$ primitivní funkce k $f$ a $g$. BÚNO $G(c) = F(c)$ (jinak odečti konstantu). $(G-F)'(x) = (g - f)(x) ≥ 0$ na $[c, b) \implies G-F$ je neklesající na $[c, b)$. Dále $G(c) = F(c) \implies \forall x \in [c, b): G(x) ≥ F(x)$. Dále $G'=g≥0$ a $F'=f≥0$, tedy jsou neklesající. $g \in N(a, b) \implies \lim_{x \rightarrow b_-} G(x) \in ®R$. $F$ je neklesající a omezená $\lim_{x \rightarrow b_-} G(x)$, tedy $\lim_{x \rightarrow b_-} F(x) \in ®R \implies f\in N(c, b)$. $f$ je spojitá na $[a,c]$, tj. $f \in N(a, c)$. Tudíž $f \in N(a, b)$.
             \end{dukazin}
         \end{veta}
 
@@ -731,7 +759,7 @@
 
             \begin{dukazin}
                 Označme $A = \lim_{x \rightarrow b_-} \frac{f(x)}{g(x)}$. Z definice limity pro
-                $$ \epsilon = \frac{A}{2}\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |\frac{f(x)}{g(x)} - A| < \epsilon = \frac{A}{2}. $$
+                $$ \epsilon = \frac{A}{2}\ \exists \delta > 0\ \forall x \in P_-(b, \delta): \left|\frac{f(x)}{g(x)} - A\right| < \epsilon = \frac{A}{2}. $$
                 Neboli $\exists x_0 \in (a, b)\ \forall x \in [x_0, b]: \frac{3}{2}A ≥ \frac{f(x)}{g(x)} ≥ \frac{1}{2}A$. Tudíž $\frac{3}{2}A·g(x) ≥ f(x) ≥ \frac{1}{2}A·g(x)$. $g \in N(a, b) \implies \frac{2}{3}A·g(x) \in N(a, b) \implies \frac{3}{2}A·g(x)\in N(x_0, b) \implies f\in N(x_0, b)$ podle předchozí věty. $f$ je spojitá na $[a, x_0]$, tedy $f \in N(a, x_0) \implies f \in N(a, b)$.
 
                 Pokud naopak $f \in N(a, b)$, pak $f(x) \in N(x_0, b) \implies \frac{1}{2}A·g(x) \in N(x_0, b) \implies g(x) \in N(x_0, b)$. $g$ je spojitá na $[a, x_0]$, tedy $g \in N(a, x_0) \implies g \in N(a, b)$.
@@ -764,7 +792,8 @@
             Označme $F(x) = \int_a^x f(t)\,dt, x \in [a, b]$. Pak $F(a) = 0$. Zvolme dělení $D$ intervalu $[a, b]$ s normou $< \delta$. Ze stejnoměrné spojitosti $\forall i \in \{1, …, n\}\ \forall t \in [x_{i-1}, x_i]: f(t) ≥ f(x_{i-1}) - \epsilon$. Tedy $\int_{x_{i-1}^{x_i} f(t)\,dt ≥ f(x_{i-1}·(x_i - x_{i-1}) - \epsilon·(x_i - x_{i-1}))}$. Analogicky z $f(t)·g(t) ≤ f(x_{i-1})·g(x_{i-1}) + \epsilon$ dostaneme $\int_{x_{i-1}}^{x_i} f(t)g(t)\,dt ≤ f(x_{i-1})·g(x_{i-1})·(x_i - x_{i-1}) + \epsilon·(x_i - x_{i-1})$. Nyní aplikujeme předchozí nerovnost:
             $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i} f(t)\,dt + \epsilon·(x_i - x_{i-1})\) + \epsilon·(x_i - x_{i-1}) ≤ $$
             $g$ nerostoucí
-            $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + g(a)·\epsilon·(x_i - x_{i-1}) + \epsilon·(x_i - x_{i-1}) ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + \frac{x_i - x_{i-1}}{a-b}\tilde{\epsilon}, $$
+            $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + g(a)·\epsilon·(x_i - x_{i-1}) + \epsilon·(x_i - x_{i-1}) ≤ $$
+            $$ ≤ g(x_{i-1})·\(\int_{x_{i-1}}^{x_i}f(t)\,dt\) + \frac{x_i - x_{i-1}}{a-b}\tilde{\epsilon}, $$
             kde $\tilde{\epsilon} = \epsilon(g(a) + 1)·(b-a)$.
 
             Nyní
@@ -782,16 +811,20 @@
             (A) BÚNO $g≥0$: víme, že $g$ je omezená $\exists K > 0\ \forall x \in [a, b):|g(x)|<K$. Vezmeme funkci $g(x) + K ≥ 0$ a konvergence se nám nezmění. $g ≥ 0$ omezená, tedy $\exists c > 0\ \forall x \in [a, b): 0 ≤ g(x) < c$. $f \in N(a, b) \implies \lim_{x \rightarrow b_-} F(x) \in ®R$. Nechť $\epsilon > 0$. Z Bolzano-Cauchyovy podmínky pro limitu funkce k tomuto
             $$ \epsilon > 0\ \exists \delta > 0\ \forall x, y \in P_-(b, \delta): -\epsilon < F(x) - F(y) < \epsilon. $$
             Nechť $x, y \in P_-(b, \delta)$, podle lemmatu:
-            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ g(x)·\epsilon ≤ c·\epsilon. $$
-            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ -g(x)·\epsilon ≥ -c·\epsilon. $$
+            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ $$
+            $$ ≤ g(x)·\epsilon ≤ c·\epsilon. $$
+            $$ H(y) - H(x) = \int_x^y f(t)·g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^s f(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ $$
+            $$ ≥ -g(x)·\epsilon ≥ -c·\epsilon. $$
             Tedy $\forall \epsilon > 0\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |H(x) - H(y)| < c·\epsilon$. Tedy z BC podmínky pro limitu funkce $\exists \lim_{x \rightarrow b_-} H(x)$. Nechť $u \in (a, b)$, $f·g$ je spojitá na $[a, u] \implies f·g \in N(a, c)$. $H$ je spojitá v $u$ $\implies$ $\exists \lim_{x \rightarrow u_-} H(x)$ $\implies$ $f·g \in N(u, b)$. Tudíž $f·g \in N(a, b)$.
 
             (D) Víme $g$ nerostoucí a $\lim_{x \rightarrow b_-} g(x) = 0 \implies g ≥ 0$. $F(x)$ omezená, tj. $\exists K > 0\ \forall x \in (a, b): |F(x)| ≤ K$. Nechť $\epsilon > 0$:
             $$ \text{Z } \lim_{x \rightarrow b_-} g(x) = 0\ \exists \delta > 0\ \forall x \in P_-(b, \delta): |g(x)|<\epsilon. $$ 
             Nyní $\forall x, y \in P_-(b, \delta)$, $x < y$ platí
-            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ \epsilon·\sup_{z \in [x, y]}F(z) - F(x) ≤ \epsilon · 2K. $$ 
+            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≤ g(x)·\sup_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\sup_{z \in [x, y]} (F(z) - F(x)) ≤ $$
+            $$ ≤ \epsilon·\sup_{z \in [x, y]}F(z) - F(x) ≤ \epsilon · 2K. $$ 
             Analogicky
-            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ \epsilon·\inf_{z \in [x, y]}F(z) - F(x) ≥ - \epsilon · 2K. $$
+            $$ H(y) - H(x) = \int_x^y f(t)g(t)\,dt ≥ g(x)·\inf_{z \in [x, y]} \int_x^zf(t)\,dt = g(x)·\inf_{z \in [x, y]} (F(z) - F(x)) ≥ $$
+            $$ ≥ \epsilon·\inf_{z \in [x, y]}F(z) - F(x) ≥ - \epsilon · 2K. $$
             Tedy $H$ splňuje BC podmínku a $\exists \lim_{x \rightarrow b_-} H(x)$. A z toho dostaneme $f·g \in N(a, b)$.
         \end{dukaz}
 
@@ -822,7 +855,8 @@
 
             \begin{dukazin}
                 Označme $g(x) = \sqrt{1 + (f'(x))^2}$. Mějme dělení $D = \{x_j\}_{j=0}^n$. Pak
-                $$ L(f, [a, b]) = \sum_{j=1}^n \sqrt{(x_j - x_{j-1})^2 + (f(x_j) - f(x_{j-1}))^2} = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + \(\frac{f(x_j) - f(x_{j-1})}{x_j - x_{j-1}}\)^2} = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + (f'(\zeta_j))^2}, $$
+                $$ L(f, [a, b]) = \sum_{j=1}^n \sqrt{(x_j - x_{j-1})^2 + (f(x_j) - f(x_{j-1}))^2} = $$
+                $$ = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + \(\frac{f(x_j) - f(x_{j-1})}{x_j - x_{j-1}}\)^2} = \sum_{j=1}^n (x_j - x_{j-1})\sqrt{1 + (f'(\zeta_j))^2}, $$
                 podle Lagrangeovy věty o střední hodnotě, kde $\zeta_j \in (x_{j-1}, x_j)$. Odtud snadno odvodíme, že $s(g, D) ≤ L(f, D) ≤ S(g, D)$. Tedy $\sup_D s(g, D) = \int_a^b g ≤ \sup_D L(f, D) = L(f)$.
 
                 Sporem: Nechť $L(f) > \int_a^b g(x)\,dx$. Tedy $\exists$ dělení $D$, že $L(f, D) > \int_a^b g(x)\,dx$. Zvolme posloupnost dělení $\{D_n\}$ tak, že $D_1$ zjemňuje $D$, $D_{n+1}$ zjemňuje $D_n$ a $\lim_{n \rightarrow ∞} \nu(D_n) = 0$. Pak $L(f, D) ≤ L(f, D_1) ≤ L(f, D_2) ≤ …$ (jemnější dělení dává delší „délku“). Z nerovnosti v prvním odstavci je $L(f, D_n) ≤ S(g, D_n)$, tedy $\lim_{n \rightarrow ∞} S(g, D_n) ≥ L(f, D)$. \lightning.
@@ -843,7 +877,9 @@
         \end{poznamka}
 
         \begin{veta}[Objem a povrch rotačního tělesa]
-            Nechť $f: [a, b] \rightarrow ®R$ je spojitá a nezáporná. Označme $T = \{[x, y, z] \in ®R^2 | x \in [a, b] \land \sqrt{y^2 + z^2} ≤ f(x)\}$. Pak $Objem(T) = \pi · \int_a^b (f^x)^2\,dx$.
+            Nechť $f: [a, b] \rightarrow ®R$ je spojitá a nezáporná. Označme
+            $$ T = \{[x, y, z] \in ®R^2 | x \in [a, b] \land \sqrt{y^2 + z^2} ≤ f(x)\}. $$
+            Pak $Objem(T) = \pi · \int_a^b (f^x)^2\,dx$.
 
             Je-li navíc $f$ spojitá na $[a, b]$, pak $Obsah povrchu(T) = 2\pi·\int_a^b f(x)·\sqrt{1 + (f'(x))^2}\,dx$.
 
@@ -923,8 +959,8 @@
         \end{definice}
 
         \begin{veta}[Peano s $y^{(n)}$]
-            Nechť $I \subset ®R^{n+1}$ otevřený interval, $f: I \rightarrow ®R$ je spojitá. $a[x_0, y_0, …, y_{n-1}] \in I$. Pak existuje $\delta > 0$ a okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR
-            $$ y^{(n)}(x) = f(x, y(x), y'(x), …, y^{(n-1)}(x)) \forall x \in (x_0 - \delta, x_0 + \delta) $$
+            Nechť $I \subset ®R^{n+1}$ otevřený interval, $f: I \rightarrow ®R$ je spojitá. $[x_0, y_0, …, y_{n-1}] \in I$. Pak existuje $\delta > 0$ a okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR
+            $$ y^{(n)}(x) = f(x, y(x), y'(x), …, y^{(n-1)}(x))\ \forall x \in (x_0 - \delta, x_0 + \delta) $$
             s počáteční podmínkou $y(x_0) = y_0, y'(x_0) = y_1, …, y^{(n-1)}(x_0) = y_{n-1}$.
 
             \begin{dukazin}
@@ -953,16 +989,16 @@
 
     \subsection{Rovnice prvního řádu}
         \begin{definice}
-            Nechť $I \subseteq ®R^2$ je otevřený interval a $f: ®R \rightarrow ®R$ je spojitá, kde $\omega \subseteq ®R$. V této kapitole studujeme pouze rovnice typu $y'(x) = f(x, y(x))$.
+            Nechť $\Omega \subseteq ®R^2$ je otevřený interval a $f: \Omega \rightarrow ®R$ je spojitá, kde $\omega \subseteq ®R$. V této kapitole studujeme pouze rovnice typu $y'(x) = f(x, y(x))$.
         \end{definice}
 
         \begin{poznamka}[Speciální tvary]
             $$ y' = f(x) \implies y(x) = c + \int_{x_0}^x f(t)\,dt, $$
             $$ y'(x) = g(y(x)), $$ 
             $$ y'(x) = g(y(x))·h(x) (\text{separované proměnné}), $$
-            $$ y'(x) = h\(\frac{y(x)}{x}\) (\text{homogenní rovnice}) (\text{substitucí převedeme na předchozí}), $$
-            $$ y'(x) = a(x)·y + b(x) (\text{lineární rovnice 1. řádu}), $$
-            $$ y'(x) = a(x)·y(x) + b(x)·y^{\alpha}(x) (\text{Bernouliho rovnice}) (\text{substitucí převedeme na předchozí}). $$ 
+            $$ y'(x) = h\(\frac{y(x)}{x}\) (\text{homogenní rovnice})\ (\text{substitucí převedeme na předchozí}), $$
+            $$ y'(x) = a(x)·y + b(x)\ (\text{lineární rovnice 1. řádu}), $$
+            $$ y'(x) = a(x)·y(x) + b(x)·y^{\alpha}(x)\ (\text{Bernouliho rovnice})\ (\text{substitucí převedeme na předchozí}). $$ 
         \end{poznamka}
 
         \begin{veta}[O existenci řešení separované rovnice]
@@ -970,13 +1006,15 @@
 
             \begin{dukazin}
                 $g$ je spojitá a nenulová $\implies$ nemění znaménko. Můžeme definovat $H(x) = \int_{x_0}^x h(t)\,dt$ a $G(y) = \int_{y_0}^y \frac{1}{g(s)}\, ds$. $g$ nemění znaménko, tedy $G$ je monotónní, tj. $\exists G^{-1}$. Chceme ukázat, že $y(x) = G^{-1}(H(x))$ je řešení. $h, g$ spojité $\implies$ $H', G', (G^{-1})'$ je spojitá. Podle derivace složené funkce a derivace inverzní funkce
-                $$ y'(x) = \(G^{-1}(H(x))\)' = (G^{-1})'(H(x))·H'(x) = \frac{1}{G'(G^{-1}(H(x)))}·h(x) = \frac{1}{\frac{1}{g(y(x))}}h(x) = g(y(x))·h(x). $$
+                $$ y'(x) = \(G^{-1}(H(x))\)' = (G^{-1})'(H(x))·H'(x) = $$
+                $$ = \frac{1}{G'(G^{-1}(H(x)))}·h(x) = \frac{1}{\frac{1}{g(y(x))}}h(x) = g(y(x))·h(x). $$
 
-                Ověříme, že splňuje počáteční podmínku: $H(x_0) = 0$, $G(y_0) = 0$, $y(x_0) = G^{-1}(H(x_0)) = G^{-1}(0) = y_0$.
+                Ověříme, že splňuje počáteční podmínku: 
+                $$ H(x_0) = 0, \qquad G(y_0) = 0, \qquad y(x_0) = G^{-1}(H(x_0)) = G^{-1}(0) = y_0. $$
 
                 Jednoznačnost: Nechť $y(x)$ a $a(x)$ jsou řešení: $y'(x) = g(y(x))·h(x)$, $a'(x) = g(a(x))·h(x)$, $y(x_0) = y_0 = a(x_0)$ $\implies$ ($g$ nenulové) $\frac{y'(x)}{g(y(x))} = h(x) = \frac{a'(x)}{g(a(x))}$.
                 $$ G(y(x)) - G(y(x_0)) = \int_{x_0}^x \frac{y'(x)}{g(y(x))}\,dx = \int_{x_0}^x \frac{a'(x)}{g(a(x))} = G(a(x)) - G(a(x_0)) \implies $$ 
-                $$ \implies G(y(x)) = G(a(x)) \implies (G\text{ monotónní}) y(x) = a(x). $$
+                $$ \implies G(y(x)) = G(a(x)) \overset{G\text{ monotónní}}{\implies} y(x) = a(x). $$
             \end{dukazin}
         \end{veta}
 
@@ -984,11 +1022,13 @@
 
         \begin{veta}[O řešení lineární diferenciálni rovnice prvního řádu]
             Nechť $(c, d) \subseteq ®R$ je interval, $x_0 \in (c, d)$ a $a, b: (c, d) \rightarrow ®R$ jsou spojité funkce. Maximální řešení rovnice $y'(x) = a(x)·y(x) + b(x)$ s počáteční podmínkou $y(x_0) = y_0$ má tvar
-            $$ y(x) = \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)} = y_0·e^{A(x)}, $$
+            $$ y(x) = \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)} + y_0·e^{A(x)}, $$
             pro $x \in (c, d)$, kde $A$ je primitivní k $a$ splňující $A(x_0) = 0$.
 
             \begin{dukazin}
-                Zřejmě $y(x_0) = 0·e^{A(x_0)} + y_0·e^{A(x_0)} = y_0$. Z věty o derivaci podle horní meze $ \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)' = b(x)·e^{-A(x)}$, tedy 
+                Zřejmě $y(x_0) = 0·e^{A(x_0)} + y_0·e^{A(x_0)} = y_0$. Z věty o derivaci podle horní meze
+                $$ \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)' = b(x)·e^{-A(x)}, $$
+                tedy 
                 $$ y'(x) = b(x)·e^{-A(x)}·e^{A(x)} + \(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)}·a(x) + y_0·e^{A(x)}·a(x), $$
                 $$ a(x)·y(x) + b(x) = a(x)·\(\int_{x_0}^x b(t)·e^{-A(t)}\,dt\)·e^{A(x)} + a(x)·y_0·e^{A(x)} + b(x). $$
                 Tyto výrazy se rovnají, tudíž $y$ řeší naši ODR s počáteční podmínkou $y(x_0) = y_0$ na celém $(c, d)$.
@@ -999,7 +1039,7 @@
             \end{dukazin}
         \end{veta}
 
-    \subsection{Systémy lineárních ODR a linearní rovnice $n$-tého řádu}
+    \subsection{Systémy lineárních ODR a lineární rovnice n-tého řádu}
         \begin{definice}
             Nechť $I$ je interval a mějme funkce $a_0, a_1, …, a_{n-1}, b: I \rightarrow ®R$. Lineární ODR řádu $n$ nazveme rovnici
             $$ y^{(n)} + a_{n-1}(x)·y^{(n-1)} + … + a_1(x)·y' + a_0·y = f(x), \qquad x \in I. $$
@@ -1051,7 +1091,7 @@
             Libovolnou bázi $\{¦y_1, …, ¦y_n\}$ prostoru $H = \Ker(¦y' - A¦y)$ (tj. libovolných $n$ lineárně nezávislých řešení homogenní rovnice $¦y' = A¦y$) nazýváme fundamentálním systémem řešení (FSŘ) homogenní rovnice $¦y' = A¦y$.
         \end{definice}
     
-    \subsection{Rovnice $n$-tého řádu s konstantními koeficienty}
+    \subsection{Rovnice n-tého řádu s konstantními koeficienty}
         \begin{definice}[Charakteristický polynom]
             Nechť $a0, a_1, …, a_{n-1} \in ®R$. Pak $\lambda^n + a_{n-1}·\lambda^{n-1} + … + a_1\lambda + a_0 = 0$ nazveme charakteristickým polynomem rovnice $y^{(n)} + a_{n-1}y^{(n-1)} + … + a_1y' + a_0y = 0$.
         \end{definice}
@@ -1143,7 +1183,7 @@
             \begin{dukazin}
                 Z lemmatu víme, že $\phi(x)$ je regulární $\forall x \in I$. Díky Kramerově pravidlu je $\phi^{-1}(t)$ spojitá, tedy $\int_{x_0}^x \phi^{-1}(t)·¦b(t)dt$ má smysl. Označme $¦y(x)$ jako ve větě. Podle věty o derivaci podle horní meze dostaneme
                 $$ ¦y'(x) = \phi'(x)·\phi^{-1}(x_0)·¦y^0 + \phi'(x)·\int_{x_0}^x \phi^{-1}(t)·¦b(t) dt + \phi(x)·\phi^{-1}(x)·¦b(x) = $$
-                $$ A·(\phi(x)·\phi^{-1}(x_0)·¦y^0 + \phi(x)·\int_{x_0}^x \phi^{-1}(t)¦b(t)dt) + ¦b(x) = A·¦y(x)+¦b(x). $$
+                $$ A·\(\phi(x)·\phi^{-1}(x_0)·¦y^0 + \phi(x)·\int_{x_0}^x \phi^{-1}(t)¦b(t)dt\) + ¦b(x) = A·¦y(x)+¦b(x). $$
                 Z věty výše máme navíc jednoznačnost.
             \end{dukazin}
         \end{veta}
@@ -1260,7 +1300,7 @@
         \end{dusledek}
 
         \begin{definice}[Hraniční bod, hranice, uzávěr]
-            Nechť $(®P, \rho)$ je metrický prostor, $M \subseteq ®P$ a $x \in ®P$. Řekneme, že $x$ je hraničním bodem $M$, jestliže $\forall r > 0$ platí $M \cap \cap \B(x, r) ≠ \O$ a $(®P \setminus M) \cap (\B(x, r)) ≠ \O$. Množinu všech hraničních bodů nazýváme hranicí $M$ a značíme jí $\partial M$.
+            Nechť $(®P, \rho)$ je metrický prostor, $M \subseteq ®P$ a $x \in ®P$. Řekneme, že $x$ je hraničním bodem $M$, jestliže $\forall r > 0$ platí $M \cap \B(x, r) ≠ \O$ a $(®P \setminus M) \cap (\B(x, r)) ≠ \O$. Množinu všech hraničních bodů nazýváme hranicí $M$ a značíme jí $\partial M$.
 
             Uzávěr množiny $M$ je definován jako $\overline{M} = M \cup \partial M$.
         \end{definice}

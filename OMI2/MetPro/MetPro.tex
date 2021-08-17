@@ -27,7 +27,7 @@
     \end{definice}
 
     \begin{definice}[Otevřená a uzavřená koule]
-        Ať $(®M, d)$ je MP, $x \in ®M$, $r > 0$. Pak otevřená koule o středu $x$ a poloměru $r$ je množina $\B(x, r):=\{y \in ®M; d(x, y) < r\}$. Uzavřená koule o středu $x$ a poloměru $r$ je množina $\overline{\B}(x, r):= \{y \in ®M; d(x, y) ≤ r\}$.
+        Ať $(®M, d)$ je MP, $x \in ®M$, $r > 0$. Pak otevřená koule o středu $x$ a poloměru $r$ je množina $\B(x, r):=\{y \in ®M | d(x, y) < r\}$. Uzavřená koule o středu $x$ a poloměru $r$ je množina $\overline{\B}(x, r):= \{y \in ®M | d(x, y) ≤ r\}$.
     \end{definice}
 
     \begin{veta}
@@ -61,10 +61,10 @@
 \section{Otevřené a uzavřené množiny}
     \begin{definice}[Vnitřek, vnějšek, hranice]
         Ať $(®M, d)$ je MP. $A \subseteq ®M$. Pak $x_0 \in ®M$ je vnitřní bod $A$ $≡$ $\exists r > 0: \B(x_0, r) \subseteq A$. Dále vnitřek (interior) množiny $A$ je množina
-        $$ \Int(a) = \{x_0 \in ®M| x_0 \text{ je vnitřní bod } A\}. $$ 
+        $$ \Int(A) = \{x_0 \in ®M | x_0 \text{ je vnitřní bod } A\}. $$ 
 
         Dále $x_0 \in ®M$ je vnější bod $A$ $≡$ $\exists r>0: \B(x_0, r) \subseteq ®M \setminus A$. Vnějšek (exterior) množiny $A$ je množina
-        $$ \Ext(a) = \{x_0 \in ®M| x_0 \text{ je vnější bod } A\}. $$
+        $$ \Ext(A) = \{x_0 \in ®M | x_0 \text{ je vnější bod } A\}. $$
 
         Nakonec $x_0 \in ®M$ je hraniční bod $A$ $≡$ $x \in ®M \setminus (\Int(A) \cup \Ext(A))$. Hranice množiny $A$ je množina
         $$ \partial A = \{x_0 \in ®M | x_0 \text{ je hraniční bod } A\}. $$ 
@@ -89,8 +89,8 @@
     \end{pozorovani}
 
     \begin{lemma}
-        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak $x \in \overline{A} \Leftrightarrow \exists (x_n) \subseteq N\times A: x_n \rightarrow x$. Zároveň následující podmínky jsou ekvivalentní:
-        $$ a) A \text{ je uzavřená,} \qquad b) A = \overline{A}, \qquad \forall(x_n \in A): x_n \rightarrow x \in ®M \implies x \in A. $$ 
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak $x \in \overline{A} \Leftrightarrow \exists (x_n) \subseteq ®N\times A: x_n \rightarrow x$. Zároveň následující podmínky jsou ekvivalentní:
+        $$ a)\ A \text{ je uzavřená,} \qquad b)\ A = \overline{A}, \qquad \forall(x_n \in A): x_n \rightarrow x \in ®M \implies x \in A. $$ 
 
         \begin{dukazin}
             $\implies$: Ať $x \in \overline{A}$. Pokud $x \in A$, polož $x_n = x$. Pokud $x \notin A$, pak $x \in \partial A$, tedy $\forall n\ \exists x_n \in \B(x, \frac{1}{n}) \cap A$. Pak $x_n \rightarrow x$ ($0≤d(x_n, x) < \frac{1}{n} \rightarrow 0$).
@@ -108,7 +108,7 @@
 
         \begin{itemize}
             \item[(i)] ®M a $\O$ jsou otevřené.
-            \item[(ii)] Sjednocení libovolně mnoha otevřených je otevřený.
+            \item[(ii)] Sjednocení libovolně mnoha otevřených je otevřené.
             \item[(iii)] Průnik konečně mnoha otevřených je otevřený.
         \end{itemize}
 
@@ -123,7 +123,7 @@
         \begin{dukazin}
             $\implies$: Zvol $(x_n)$ posloupnost v $®M \setminus A$, $x_n \rightarrow x$. Sporem. Nechť $x \in A$. Potom $\exists \epsilon > 0: \B(x, \epsilon) \subseteq A$, ale pak $\exists n: x_n \in A$. \lightning.
 
-            $\Rightarrow$: Zvol $x \in A$. Protože $®M \setminus A$ je uzavřená, tedy $\partial(®M \setminus A) \subseteq ®M \setminus A)$, $x \notin \partial(®M \setminus A)$, tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap A = \O$ (to nelze) nebo $\B(x, \epsilon)\cap(®M\setminus A) = \O$. Tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap (®M \setminus A) = \O$, tj. $\B(x, \epsilon) \subseteq A$, tedy $A$ je otevřená.
+            $\Leftarrow$: Zvol $x \in A$. Protože $®M \setminus A$ je uzavřená, tedy $\partial(®M \setminus A) \subseteq ®M \setminus A)$, $x \notin \partial(®M \setminus A)$, tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap A = \O$ (to nelze) nebo $\B(x, \epsilon)\cap(®M\setminus A) = \O$. Tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap (®M \setminus A) = \O$, tj. $\B(x, \epsilon) \subseteq A$, tedy $A$ je otevřená.
         \end{dukazin}
     \end{veta}
 
@@ -142,7 +142,9 @@
     \end{veta}
 
     \begin{veta}
-        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak $\Int(A) = \bigcup\{G \subseteq A | G \text{ otevřené}\}$. $\overline{A} = \bigcap\{F \supseteq A | F \text{ uzavřené}\}$.
+        Ať $(®M, d)$ je MP, $A \subseteq ®M$. Pak 
+        $$ \Int(A) = \bigcup\{G \subseteq A | G \text{ otevřené}\}, $$
+        $$ \overline{A} = \bigcap\{F \supseteq A | F \text{ uzavřené}\}. $$
 
         \begin{dukazin}
             $\subseteq$: $x \in \Int(A) \implies \exists \epsilon > 0: \B(x, \epsilon) \subseteq A$, stačí položit $G = \B(x, \epsilon)$.
@@ -158,8 +160,8 @@
 % 19. 3. 2021
 
 \section{Spojitost v metrických prostorech}
-    \begin{definice}[Spojitost v bodě, spojitost, $k$-Lipschitzovskost, Lipschitzovskost]
-        Ať $(®M, d), (®N, e)$ jsou MP, $f: ®M \rightarrow ®N$, $a \in ®M$. Potom $f$ je spojitá v $a$ $≡ \forall \epsilon > 0\ \exists \delta > 0\ \forall x \in ®M:$ $d(x, a) < \delta \implies e(f(x), f(a) < \epsilon)$.
+    \begin{definice}[Spojitost v bodě, spojitost, ($k$-)Lipschitzovskost]
+        Ať $(®M, d), (®N, e)$ jsou MP, $f: ®M \rightarrow ®N$, $a \in ®M$. Potom $f$ je spojitá v $a$ $≡ \forall \epsilon > 0\ \exists \delta > 0\ \forall x \in ®M:$ $d(x, a) < \delta \implies e(f(x), f(a)) < \epsilon$.
 
         $f$ je spojitá na ®M $≡ \forall a \in ®M:$ $f$ je spojitá v $a$.
 
@@ -227,7 +229,7 @@
 
     \begin{definice}[Stejnoměrná spojitost]
         Ať $(®M, d)$ a $(®N, e)$ jsou MP, $f: ®M \rightarrow ®N$. Pak $f$ je stejnoměrně spojitá, pokud
-        $$ \forall \epsilon > 0 \exists \delta > 0\ \forall x, y \in ®M: d(x, y) < \delta \implies e(f(x), f(y)) < \epsilon. $$
+        $$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x, y \in ®M: d(x, y) < \delta \implies e(f(x), f(y)) < \epsilon. $$
     \end{definice}
 
     \begin{dusledek}
@@ -264,11 +266,11 @@
 
     \begin{definice}[Topologicky ekvivalentní]
         Řekneme, že $\sigma$ a $\sigma_1$ jsou topologicky ekvivalentní, pokud
-        $$ \{A \subseteq ®Y: A \text{ je otevřená v } (®Y, \sigma) \} = \{A \subseteq ®Y: A \text{ je otevřená v } (®Y, \sigma_1)\}. $$
+        $$ \{A \subseteq ®Y | A \text{ je otevřená v } (®Y, \sigma) \} = \{A \subseteq ®Y | A \text{ je otevřená v } (®Y, \sigma_1)\}. $$
     \end{definice}
 
     \begin{tvrzeni}
-        Buďte $(®X, \rho)$, $(®Y, \sigma)$ MP, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ homeomorfismus. Definujeme pro všechna $y, y' \in ®Y$ zobrazení $\sigma_1 ®Y \times ®Y \rightarrow [0, ∞)$ předpisem
+        Buďte $(®X, \rho)$, $(®Y, \sigma)$ MP, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ homeomorfismus. Definujeme pro všechna $y, y' \in ®Y$ zobrazení $\sigma_1: ®Y \times ®Y \rightarrow [0, ∞)$ předpisem
         $$ \sigma_1(y, y') = \rho(f^{-1}(y), f^{-1}(y')). $$ 
         Pak $\sigma_1$ je metrika na ®Y, $f:(®X, \rho) \rightarrow (®Y, \sigma_1)$ je izometrie a metriky $\sigma$ a $\sigma_1$ jsou topologicky ekvivalentní.
 
@@ -285,21 +287,22 @@
 
     \begin{veta}
         Buďte $\rho_1$, $\rho_2$ metriky na ®X. Pak $\rho_1$ a $\rho_2$ jsou topologicky ekvivalentní $\Leftrightarrow$
-        $$ (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_1(x, y) < \delta \implies \rho_2(x, y) < \epsilon) \land (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_2(x, y) < \delta \implies \rho_1(x, y) < \epsilon). $$
+        $$ (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_1(x, y) < \delta \implies \rho_2(x, y) < \epsilon) \land $$
+        $$ \land (\forall x \in ®X\ \forall \epsilon > 0\ \exists \delta > 0\ \forall y \in ®X: \rho_2(x, y) < \delta \implies \rho_1(x, y) < \epsilon). $$
 
         \begin{dukazin}
             Snadné cvičení.
         \end{dukazin}
     \end{veta}
 
-    \begin{definice}[Diametr, omezená množína]
+    \begin{definice}[Diametr, omezená množina]
         Buď $(®X, \rho)$ MP, $A \subseteq ®X$. Definujeme $\diam_\rho(A) = \sup\{\rho(x, y): x, y \in A\}$.
 
         Řekneme, že $A$ je omezená, pokud $\diam_\rho(A) < ∞$.
     \end{definice}
 
     \begin{definice}[Omezená metrika]
-        $\rho$ je na ®X omezená pokud $®X$ je omezená.
+        $\rho$ je na ®X omezená, pokud je množina $®X$ omezená.
     \end{definice}
 
 \section{Operace s metrickými prostory}
@@ -339,7 +342,7 @@
 
     \begin{definice}[Součin (spočetně mnoha) MP]
         Buďte $\{®X_i, \rho_i\}_{i \in ®N}$ MP, že $\forall i \in ®N: \diam(®X_i) ≤ 1$. Součinem prostorů $\(®X_i, \rho_i\)$ nazýváme metrický prostor (je nutno, ale jednoduché dokázat)
-        $$ \prod_{i \in ®N} := (®X, \rho), \qquad ®X = \prod_{i \in ®N}®X_i \land \forall f, g \in ®X: \rho(f, g) = \sum_{i=1}^* \frac{\rho_i(f(i), g(i))}{2^i}. $$ 
+        $$ \prod_{i \in ®N} := (®X, \rho), \qquad ®X = \prod_{i \in ®N}®X_i \land \forall f, g \in ®X: \rho(f, g) = \sum_{i \in ®N} \frac{\rho_i(f(i), g(i))}{2^i}. $$
     \end{definice}
 
     \begin{tvrzeni}
@@ -351,16 +354,22 @@
             tj. $\rho_{i_0}(f_n(i_0), f(i_0)) < \epsilon$. tedy $\lim_{n \rightarrow ∞} f_n(i_0) = f(i_0)$.
 
             $\Leftarrow$: Nechť $\forall i \in ®N: f_n(i) \rightarrow f(i)$. Nechť $\epsilon > 0$. Najděme $i_0 \in ®N$, že $\sum_{i = i_0 + 1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro všechna $i \in \{1, 2, …, i_0\}$ najdeme $n_i$, že $\forall n ≥ n_i: \rho_i(f_n(i), f(i)) < \frac{\epsilon}{i_0}$. Položme $\tilde{n} := \max \{n_1, n_2, …, n_{i_0}\}$. Pak $n ≥ \tilde n$: jest
-            $$ \rho(f_n, f) = \sum_{i=1}^∞\frac{\rho_i(f_n(i), f(i))}{2^i} = \sum_{i=1}^{i_0} \frac{\rho_i(f_n(i), f(i))}{2^i} + \sum_{i=i_0+1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≤ \sum_{i=1}^{i_0} \frac{\epsilon/i_0}{2} + \sum_{i = i_0+1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. $$ 
+            $$ \rho(f_n, f) = \sum_{i=1}^∞\frac{\rho_i(f_n(i), f(i))}{2^i} = \sum_{i=1}^{i_0} \frac{\rho_i(f_n(i), f(i))}{2^i} + \sum_{i=i_0+1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≤ $$
+            $$ ≤ \sum_{i=1}^{i_0} \frac{\epsilon/i_0}{2} + \sum_{i = i_0+1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. $$ 
         \end{dukazin}
     \end{tvrzeni}
 
 \section{Totálně omezené a separabilní MP}
-    \begin{definice}[$\epsilon$-síť, $\epsilon$-separovanost, totální omezenost]
-        Buď $(®M, d)$ MP, $A \subseteq ®M$, $\epsilon > 0$. Řekneme, že $A$ je $\epsilon$-síť pro ®M, jestliže $\forall x \in ®M\ \exists a \in A\ \forall x \in \B(a, \epsilon): d(x, a) < \epsilon$.
+    \begin{definice}[$\epsilon$-síť, $\epsilon$-separovanost]
+        Buď $(®M, d)$ MP, $A \subseteq ®M$, $\epsilon > 0$.
+
+        Řekneme, že $A$ je $\epsilon$-síť pro ®M, jestliže $\forall x \in ®M\ \exists a \in A: d(x, a) < \epsilon$.
 
         $A$ je $\epsilon$-separovaná, pokud $\forall x, y \in A: d(x, y) ≥ \epsilon$.
 
+    \end{definice}
+
+    \begin{definice}[Totálně omezený prostor, separabilní prostor]
         ®M je totálně omezený, jestliže $\forall \epsilon > 0\ \exists A \subseteq ®M: A$ je konečná $\epsilon$-síť pro ®M.
 
         ®M je separabilní, pokud $\exists A \subseteq ®M$ spočetná: $\overline{A} = ®M$. (Tj. $A$ je hustá v ®M.)
@@ -478,7 +487,7 @@
         Buď $(®M, \rho)$ MP, $®N \subseteq ®M$ jeho podprostor. Potom $(®N, \rho)$ je úplný $\Leftrightarrow$ ®N je uzavřený v ®M.
 
         \begin{dukazin}
-            $\implies$: Kdyby ®N nebyla uzavřená množina, existuvala by posloupnost $\{x_n\}_{n=1}^∞ \subseteq ®N$, že $\lim_{n \rightarrow ∞} x_n \in ®M \setminus ®N$. Ale protože $\{x_n\}$ je konvergentní v ®M, je cauchyovská v ®M, a tedy i v ®N. Nemá ale v ®N limitu a tak ®N není úplný.
+            $\implies$: Kdyby ®N nebyla uzavřená množina, existovala by posloupnost $\{x_n\}_{n=1}^∞ \subseteq ®N$, že $\lim_{n \rightarrow ∞} x_n \in ®M \setminus ®N$. Ale protože $\{x_n\}$ je konvergentní v ®M, je cauchyovská v ®M, a tedy i v ®N. Nemá ale v ®N limitu a tak ®N není úplný.
 
             $\Leftrightarrow$: Nechť $®N \subseteq ®M$ je uzavřená v ®M. Nechť $\{x_n\}$ je cauchyovská v ®N, pak je cauchyovská i v ®M, a protože ®M je úplný, tak $\exists x \in ®M: x = \lim_{n \rightarrow ∞} x_n$. Ale ®N je uzavřený, takže $x \in ®N$.
         \end{dukazin}
@@ -500,7 +509,7 @@
         Nechť $(®M, \rho)$ je úplný MP. Nechť $U_n$ jsou otevřené, husté podmnožiny ®M, $n \in ®N$. Pak $\bigcap_{n=1}^∞ U_n$ je hustá.
 
         \begin{dukazin}
-            Stačí, že $\bigcap_{n=1}^∞ U_n$ protne libovolnou kouli. Mějme tedy dáno $x, \epsilon$. Buď $B := \B(x, \epsilon)$. Protože $U_1$ je hustá, existuje $x_1 \in U_1 \cap B$. Ale $U_1$ i $B$ jsou otevřené, takže i $U_1 \cap B$ je otevřená, takže existuje $\epsilon_1 > 0$, že $\B(x_1, 2\epsilon_1) \subseteq U_1 \cap B$. Tedy $\overset{\B(x_1, \epsilon_1)} \subseteq U_1 \cap B$. Analogicky pokračujeme (navíc chceme, aby $\epsilon_i > \epsilon_{i+1}$).
+            Stačí, že $\bigcap_{n=1}^∞ U_n$ protne libovolnou kouli. Mějme tedy dáno $x, \epsilon$. Buď $B := \B(x, \epsilon)$. Protože $U_1$ je hustá, existuje $x_1 \in U_1 \cap B$. Ale $U_1$ i $B$ jsou otevřené, takže i $U_1 \cap B$ je otevřená, takže existuje $\epsilon_1 > 0$, že $\B(x_1, 2\epsilon_1) \subseteq U_1 \cap B$. Tedy $\overline{\B(x_1, \epsilon_1)} \subseteq U_1 \cap B$. Analogicky pokračujeme (navíc chceme, aby $\epsilon_i > \epsilon_{i+1}$).
 
             Tím jsme dostali klesající (co do inkluze) posloupnost uzavřených množin, jejichž diametr jde k 0. Tedy průnik těchto množin je neprázdný podle Cantorova principu.
         \end{dukazin}
@@ -531,7 +540,7 @@
 
         Je-li $(®X, \rho)$ MP, $©S \subseteq ©P(®X)$, říkáme, že ©S je otevřené pokrytí ®X, pokud ©S je pokrytí ®X a každá $S \in ©S$ je otevřená množina v $(®X, \rho)$.
 
-        $©S \subseteq ©P(X)$ má konečnou průnikovou vlastnost, pokud $\forall n \in ®N\ \forall S_1, …, S_n \in ©S: \bigcap S_i ≠ \O$
+        $©S \subseteq ©P(X)$ má konečnou průnikovou vlastnost $≡$ $\forall n \in ®N\ \forall S_1, …, S_n \in ©S: \bigcap S_i ≠ \O$.
     \end{definice}
 
     \begin{definice}[Kompaktní prostor]
@@ -539,7 +548,7 @@
     \end{definice}
 
     \begin{definice}
-        Ať $(®M, \rho)$ je MP, $A \subseteq ®M$. Řekneme, že $x \in ®M$ je hromadným bodem množiny $A$, pokud $\forall \epsilon > 0 (\B(x, \epsilon) \setminus \{x\}) \cap A ≠ \O$.
+        Ať $(®M, \rho)$ je MP, $A \subseteq ®M$. Řekneme, že $x \in ®M$ je hromadným bodem množiny $A$, pokud $\forall \epsilon > 0: (\B(x, \epsilon) \setminus \{x\}) \cap A ≠ \O$.
     \end{definice}
 
     \begin{veta}[Charakterizace kompaktnosti]
@@ -557,21 +566,31 @@
     
         \begin{dukazin}
             $1 \implies 2$: Ať ©F je soubor uzavřených množin v $(®M, \rho)$ s konečnou průnikovou vlastností. Pro spor ať $\bigcap ©F = \O$. Ať $©S := \{®M \setminus F | F \in ©F\}$. $®M \setminus F$ je otevřená pro $F \in ©F$. $\bigcup ©S = ®M \setminus \bigcap ©F = ®M \setminus \O = ®M$. Tedy ©S je otevřené pokrytí ®M. ®M je kompaktní, tedy $S_1, …, S_n \in ©S: S_1 \cup S_2 \cup … \cup S_n = ®M$. $\forall i ≤ n\ \exists F_i \in ©F: S_i = ®M \setminus F_i$. $F_1 \cap … \cap F_n = ®M \setminus (S_1 \cup … \cup S_n) = ®M \setminus ®M = \O$. Tedy ©F nemá konečnou průnikovou vlastnost. \lightning.
+        \end{dukazin}
 
+        \begin{dukazin}
             $2 \implies 3$: Ať $A \subseteq ®M$ je nekonečná. Ať pro spor $A$ nemá hromadný bod. Uvažujme $a \in A$, $A \setminus \{a\}$ je uzavřená množina (protože jinak by bod z $\overline{A} \setminus A$ byl hromadným bodem). $©F:= \{A \setminus \{a\} | a \in A\}$ je soubor uzavřených množina a navíc má konečnou průnikovou vlastnost (můžeme odečíst pouze konečně mnoho $a_i \in A$, ale těch je nekonečně). Dle 2) je $\bigcap ©F ≠ \O$. Ale $\bigcap \{A \setminus \{a\} | a \in A\} = A \setminus A = \O$. \lightning.
+        \end{dukazin}
 
+        \begin{dukazin}
             $3 \implies 4$: Ať $x_n \in ®M$. Pokud $A := \{x_n | n \in ®N\}$ je konečná, najdeme konstantní (tedy konvergentní) podposloupnost. Jinak $A$ má hromadný bod $x \in ®M$. Najdeme podposloupnost konvergující k $x$, indukcí $n_1 := 1$, $n_i < n_{i+1}$: $\rho(x_{n_k}) < \frac{1}{k}$, $k > 1$:
 
             $\B(x_{n_k}, \frac{1}{k+1}) \cap A$ je nekonečná, tedy existuje $n_{k+1} > n_k$, že je splněna chtěná podmínka. Jednoduše následně ukážeme i to, že tato posloupnost konverguje k $x$.
+        \end{dukazin}
 
+        \begin{dukazin}
             $4 \implies 5$: Zase sporem: Ať $f: ®M \rightarrow ®R$ je spojitá neomezená funkce. Tj. $\forall n \in ®N\ \exists x_n \in ®M: |f(x_n)| ≥ n$. Dle 4) ale víme, že posloupnost $x_n$ má konvergentní podposloupnost $x_{n_k}$. $x_{n_k} \rightarrow x \in ®M$. Ale $f$ je spojitá, tedy $f(x_{n_k}) \rightarrow f(x)$. \lightning.
 
             $5 \implies 6$: $f: ®M \rightarrow ®R$ spojitá, $f$ nenabývá maxima (búno). Dle 5 je $f$ omezená, tedy $\sup_{x \in ®M} f(x) = \alpha < ∞$. $g := \frac{1}{\alpha - f}$, $\forall x \in ®M: f(x) ≠ \alpha$, tedy $g$ je spojitá (a dobře definovaná). $\exists x_n \in ®M: \lim_{n \rightarrow ∞} f(x_n) = \alpha$. $\lim_{n \rightarrow ∞} g(x_n) = ∞$. Tedy $g$ není omezená, spor s $5$.
+        \end{dukazin}
 
-            $6 \implies 7$: Ať $©S = \{S_1, S_2, …\}$ je spočetné otevřené pokrytí ®M. Položme $V_n := S_1 \cup … \cup S_n$. Ať pro spor ©S nemá konečné podpokrytí. Tedy $V_n \subset ®M$, $V_1 \subseteq V_2 \subseteq …$, $\bigcup V_n = ®M$. Můžeme předpokládat, že $V_i \subset V_{i+1}$ libovolně. Vybereme $x_i \in V_{i+1} \setminus V_i$ libovolně. Pro $i \in ®N$ ať $\epsilon_i = \min_{j ≤ i} \rho(x_i, x_j)$ a splňuje $\B(x_i, \epsilon_i) \subseteq V_{i + 1}$.
+        \begin{dukazin}
+            $6 \implies 7$: Ať $©S = \{S_1, S_2, …\}$ je spočetné otevřené pokrytí ®M. Položme $V_n := S_1 \cup … \cup S_n$. Ať pro spor ©S nemá konečné podpokrytí. Tedy $V_n \subset ®M$, $V_1 \subseteq V_2 \subseteq …$, $\bigcup V_n = ®M$. Můžeme předpokládat, že $V_i \subset V_{i+1}$. Vybereme $x_i \in V_{i+1} \setminus V_i$ libovolně. Pro $i \in ®N$ ať $\epsilon_i = \min_{j ≤ i} \rho(x_i, x_j)$ a splňuje $\B(x_i, \epsilon_i) \subseteq V_{i + 1}$.
             $$ f(x) = \frac{4k}{\epsilon_k}\(\frac{\epsilon_k}{4} - \rho(x, x_n)\), \text{ pro } x \in \B(x_{n_k}, \frac{\epsilon_k}{4}), \text{ a } f(x) = 0 \text{ jinak}. $$
             $f(x_k) = k$, $k \in ®N$, tedy $f$ není omezená. Ale je spojitá. Spor s $6$.
+        \end{dukazin}
 
+        \begin{dukazin}
             $7 \implies 1$: Nejprve ukážeme, že ®M je separabilní, sporem: ®M není separabilní, tedy podle charakterizace separability existuje $\epsilon > 0$ a existuje $A \subseteq ®M$, $A$ nespočetná, $A$ je $\epsilon$-separovaná. Ať $A' \subseteq A$ je spočetná, nekonečná. Zřejmě $A'$ je $\epsilon$-separovaná. $A'$ je uzavřená v ®M. $\{M \setminus A'\} \cup \{\B(a, \frac{\epsilon}{2}) | a \in A'\}$ spočetné otevřené pokrytí ®M. Tento systém ale nemá konečné podpokrytí, což je spor s $7$, tedy ®M je separabilní.
 
             Ať ©S je otevřené pokrytí ®M. ®M je separabilní, tedy existuje systém $\{B_n | n \in ®N\}$ otevřených množin, že $\forall G \subseteq ®M$ otevřenou $\exists J \subseteq ®N$:
@@ -605,7 +624,7 @@
 
         2. Je-li $(®X, \rho)$ kompaktní MP a $(®Y, \rho)$ MP, $f: (®X, \rho) \rightarrow (®Y, \sigma)$ spojité, pak $(f(®X), \sigma_{f(®X)})$ je kompaktní.
 
-        3. Je-li $(®X< \rho)$ MP a $®Y \subseteq ®X$, že $(®Y, \rho|_{®Y})$ je kompaktní, pak ®Y je uzavřená v $(®X, \rho)$.
+        3. Je-li $(®X, \rho)$ MP a $®Y \subseteq ®X$, že $(®Y, \rho|_{®Y})$ je kompaktní, pak ®Y je uzavřená v $(®X, \rho)$.
 
         4. Jsou-li $(®X_i, \rho_i)$ kompaktní MP, $i \in ®N$, $\rho_i ≤ 1$, pak $\prod_{i \in ®N}(®X_i, \rho_i)$ je kompaktní.
 
@@ -624,7 +643,7 @@
 
             $\forall i \in I: ®X_i$ je kompaktní: $®X_i$ je uzavřená podmnožina $\sum(…®X_i, \rho_i)$. Podle 1. je $®X_i$ kompaktní.
 
-            $\leftarrow$: $\{i \in I | ®X_i ≠ \O\}$ je konečná, $\forall i \in I: ®X_i$ kompaktní. Chceme, že $\sum(®X_i, \rho_i)$ je kompaktní. Ať $A \subseteq \sum(®X_i, \rho_i)$ je nekonečná. Nutně existuje $i \in I: ®X_i \cap A$ má hromadný bod v $®X_i$. Ten je zřejmě hromadným bodem celé množiny $A$. Tedy podle charakterizace kompaktnosti pomocí hromadných bodů nekonečných množin je $\sum (®X_i, \rho_i)$.
+            $\Leftarrow$: $\{i \in I | ®X_i ≠ \O\}$ je konečná, $\forall i \in I: ®X_i$ kompaktní. Chceme, že $\sum(®X_i, \rho_i)$ je kompaktní. Ať $A \subseteq \sum(®X_i, \rho_i)$ je nekonečná. Nutně existuje $i \in I: ®X_i \cap A$ má hromadný bod v $®X_i$. Ten je zřejmě hromadným bodem celé množiny $A$. Tedy podle charakterizace kompaktnosti pomocí hromadných bodů nekonečných množin je $\sum (®X_i, \rho_i)$.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -632,7 +651,7 @@
         Ať $(®X, \rho)$ je kompaktní MP a ©U otevřené pokrytí ®X. Pak existuje $\delta > 0$, ze pro každé $x \in ®X$ existuje $U \in ©U: \B(x, \delta) \subseteq U$.
 
         \begin{dukazin}
-            ®X kompaktní, tedy existuje konečné podpokrytí ©U: $\{U_1, …, U_n\} \subseteq ©U$. Pokud $\exists i \in \{1, …, n\} : U_i = ®X$, jsme hotovi, $\delta = 1$. Předpokládejme tedy, že $\forall i ≤ n: U_i \subsetneq ®X$. Ať $C_i := ®X \setminus U_i$, $C_i$ uzavřené, $C_i ≠ \O$. Ať $f(x) = \frac{1}{n} \sum_{i=1}^n \dist_\rho(x, C_i)$. $f$ je spojité. $f: ®X \rightarrow [0, ∞)$, $\forall x \in ®X: \exists i \in \{1, …, n\} : x \in U_i$, $x \notin C_i, \dist_\rho(x, C_i) > 0$. tedy $f: ®X \rightarrow (0, ∞)$. ®X kompakt, tedy $f$ nabývá svého minima $\delta := \min f(®X) > 0$.
+            ®X kompaktní, tedy existuje konečné podpokrytí ©U: $\{U_1, …, U_n\} \subseteq ©U$. Pokud existuje $i \in \{1, …, n\}$ tak, že $U_i = ®X$, jsme hotovi, $\delta = 1$. Předpokládejme tedy, že $\forall i ≤ n: U_i \subsetneq ®X$. Ať $C_i := ®X \setminus U_i$, $C_i$ uzavřené, $C_i ≠ \O$. Ať $f(x) = \frac{1}{n} \sum_{i=1}^n \dist_\rho(x, C_i)$. $f$ je spojité. $f: ®X \rightarrow [0, ∞)$, $\forall x \in ®X: \exists i \in \{1, …, n\} : x \in U_i$, $x \notin C_i, \dist_\rho(x, C_i) > 0$. tedy $f: ®X \rightarrow (0, ∞)$. ®X kompakt, tedy $f$ nabývá svého minima $\delta := \min f(®X) > 0$.
 
             Nyní pro $x \in ®X: f(x) ≥ \delta$. $f(x) =$ aritmetický průměr $n$ čísel, tedy $\exists i \in \{1, …, n\}: \dist_\rho(x, C_i) ≥ \delta$. Tj. $\B_\rho(x, \delta) \cap C_i = O$, tj. $\B_\rho(x, \delta) \subseteq U_i$.
         \end{dukazin}
