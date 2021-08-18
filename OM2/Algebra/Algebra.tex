@@ -2260,4 +2260,149 @@
             \end{dukazin}
         \end{tvrzeni}
 
+% 2. 6. 2021
+
+\section{(Ne)řešitelnost polynomů v radikálech (=odmocninách)}
+    \begin{definice}[Vyjádřitelnost v radikálech]
+        Buď $®T≤®U$ tělesové rozšíření a $a \in U$. Potom $a$ je vyjádřitelný v radikálech na ®T, pokud existuje řada rozšíření $®T = ®T_0 ≤ … ≤ ®T_k ≤ U$ tak, že $a \in ®T_k$ a $\forall i: ®T_i$ je rozkladové nadtěleso nějakého polynomu $x^{n_i}-a_i \in ®T_{i-1}[x]$.
+    \end{definice}
+
+    \begin{definice}
+        Ať ®T je těleso, $f \in ®T[x]$. $f$ je řešitelný v radikálech nad ®T, pokud existuje $®T = ®T_0 ≤ … ≤ ®T_k$ tak, že $\forall i$, $®T_i$ je rozkladové nadtěleso nějakého polynomu $x^{n_i}-a_i \in ®T_{i-1}[x]$. $f$ se rozkládá v $®T_k$ na lineární činitele, čili rozkladové nadtěleso $f$ je obsažené v $®T_k$.
+    \end{definice}
+
+    \begin{veta}[Galoisova věta]
+        ®T těleso charakteristiky $0$, $f \in ®T[x]$, $\deg f ≥ 1$. Polynom $f$ je řešitelný v radikálech nad ®T $\Leftrightarrow$ $\Gal(f/®T)$ je řešitelná grupa.
+    \end{veta}
+
+    \begin{dusledek}
+        $\forall$ polynom stupně $≤4$ je řešitelný v radikálech.
+
+        Naopak jsme viděli, že $S_n$, $n≥5$ nejsou řešitelné, tedy pokud najdeme $f$, $\deg f = 5$ tak, že $\Gal(f/®Q) \simeq S_5$, pak je tento polynom neřešitelný.
+    \end{dusledek}
+
+    \begin{tvrzeni}
+        $p$ prvočíslo, $f \in ®Q[x]$ ireducibilní polynom, $\deg f=p$ tak, že $f$ má $p-2$ reálných a 2 komplexní nereálné kořeny. Pak $\Gal(f/®Q) \simeq S_5$.
+
+        \begin{dukazin}
+            Buď ®U rozkladové nadtěleso $f$ nad ®Q, z tvrzení výše je pak $\Gal(®U/®Q) \simeq H ≤ S_p$. Chceme $H$ obsahuje transpozici a $p$-cyklus, jelikož pak $H=S_p$.
+
+            $f$ má $p-2$ reálných a 2 imaginární kořeny, $®Q≤®U≤®C$. Na ®C máme ®Q-automorfismus = komplexní konjugaci. Uvažujme její zúžení na ®U, což je ®Q-automorfismus ®U. Fixuje reálné kořeny a prohazuje imaginární, tedy jako permutace na kořenech je to transpozice.
+
+            $H$ působí na množině kořenů $f$. Dle tvrzení výše je její působení tranzitivní (neboli má jen 1 orbitu) ta má velikost $p$ (=počet kořenů $f$). Velikost orbity dělí řád $H$, tedy $H$ obsahuje prvek řádu $p$, což je právě hledaný $p$-cyklus.
+        \end{dukazin}
+    \end{tvrzeni}
+
+    \begin{priklady}
+        $x^5-4x+2$ je ireducibilní díky Eisensteinovi pro 2. Počet reálných kořenů spočítáme z MA (najdeme extrémy a spočítáme, zda jsou kladné/záporné), má jich 3. 2 jsou tedy imaginární.
+    \end{priklady}
+
+    \begin{dusledek}[Abelova-Ruffiniho věta]
+        Existují racionální polynomy stupně $≥5$, které nejsou řešitelné v radikálech nad ®Q.
+    \end{dusledek}
+
+    \begin{dukaz}[Galoisova věta, pouze 1 implikace (druhá nás nezajímá)]
+        Myšlenka: Pokud je $f$ Řešitelná, tak posloupnost z definice nám dává indukovanou posloupnost Galoisových grup, jejichž faktogrupy jsou řešitelné.
+
+        \begin{lemmain}
+            ®S je rozkladové nadtěleso nějakého polynomu $f$ nad tělesem ®T. $g \in ®T[x]$ ireducibilní polynom. Pokud $g$ má v $S$ nějaký kořen, pak se tam rozkládá na lineární činitele.
+
+            \begin{dukazin}[Nezkouší se, jen myšlenka]
+                Když ®U je rozkladové nadtěleso $fg$ a $a$ kořen $g$ v ®S, $b$ kořen $g$ v ®U, pak z jednoznačnosti rozkladového nadtělesa plyne, že $\exists \phi \in \Gal(®U/®T)$ tak, že $\phi(a)=b$. $\phi$ permutuje kořeny polynomu $f$ v $(®U)$, ty generují $®S$, tedy $\phi(®S)\subseteq ®S$. Pak $b = \phi(a)\in ®S$.
+            \end{dukazin}
+        \end{lemmain}
+
+        \begin{lemmain}
+            ®T těleso charakteristiky 0, $®T≤®S≤®U$ tělesová rozšíření, kde ®S je rozkladové nadtěleso nějakého polynomu nad ®T a ®U je rozkladové nadtěleso $x^n-a \in ®S[x]$ nad ®S. Pak $\exists$ rozšíření $®U ≤ ®V$ tak, že $®V$ je rozkladově nadtěleso nějakého polynomu nad ®T a $\Gal(®V/®S)$ je řešitelná grupa.
+
+            \begin{dukazin}
+                BÚNO $®U ≤ ®C$. $g = m_{a;®T}(x^n) \in ®T[x]$. $®C≥®V$ je rozkladové nadtěleso $fg$ nad ®T. $®U ≤ ®V$ neboť $x-a|m_{a;®T}$ v $®S[x]$, tedy $x^n - a|m_{a;®T}(x^n)=g$, tedy navíc se $x^n-a$ v ®V rozkládá na lineární činitele.
+
+                $m_{a;®T}$ je ireducibilní a má kořen v ®S. Tedy $m_{a;®T}$ se v ®S rozkládá na lineární činitele, tedy $g=(x^n-a_1)(x^n-a_2)… \in ®S[x]$. Chceme, že $\Gal(®V/®S)$ je řešitelné, tedy máme $®S=®S_0≤…≤®S_m=®V$. $®S_i$ je rozkladové nadtěleso $x^n-a_i$ nad $®S_{i-1}$. Všechny $®S_i$ jsou rozklad nad ®S, tedy můžeme použít tvrzení výše a máme $\Gal(®V/®S)$ je řešitelná.
+            \end{dukazin}
+        \end{lemmain}
+
+        Chceme $f$ řešitelný $\implies$ $\Gal(f/®T)$ řešitelná. Máme z definice $®T = ®T_0≤…≤®T_k$ a $®W ≤ ®T_k$, kde $®W$ je rozkladové nadtěleso $f$ nad ®T. Chceme $\Gal(f/®T)=\Gal(®W/®T)$ je řešitelná.
+
+        Vyrobíme $®T=®U_0=®V_0 ≤ ®U_1 ≤ ®V_1 ≤ … ≤ ®U_k ≤ ®V_k$ tak, že $®U_i$ je rozkladové nadtěleso $x^{n_i}-a_i$ nad tělesem $®V_{i-1}$ a $®V_i$ je těleso ®V z lemmatu výše aplikovaného na $®T ≤ ®V_{i-1}≤®U$. Čili $®V_i$ je rozkladové nadtěleso nějakého polynomu nad ®T a $\Gal(®V_i/®V_{i-1})$ je řešitelná. Tedy $\Gal(®V_k/®T)$ je řešitelná a nakonec $\Gal(®W/®T)$ také.
+    \end{dukaz}
+
+% 4. 6. 2021
+
+\section{Konečná tělesa}
+    \subsection{Derivace}
+        \begin{definice}[Derivace polynomu]
+            Pro $f=\sum_{i=0}^n a_ix^i \in R[x]$ definujeme derivaci polynomu $f$ jako $f'=\sum_{i=1}^n i a_i x^{i-1}$.
+        \end{definice}
+
+        \begin{lemma}[Cvičení]
+            $(f+g)'=f'+g'$ a $(fg)'=f'g+fg'$.
+        \end{lemma}
+
+        \begin{dusledek}[O derivaci a vícenásobných kořenech]
+            Je-li $R$ obor, $0≠f \in R[x]$. Pak pokud $\NSD(f,f')=1$, pak $f$ nemá žádný vícenásobný kořen v $R$.
+
+            \begin{dukazin}
+                $a$ je $n$-násobný kořen, $n≥2$, $f=(x-a)^2g$.
+                $$ f'=[(x-a)^2 g]' = 2(x-a)g + (x-a)^2g' \implies x-a | f' \implies x-a|NSD(f,f'). $$ 
+            \end{dukazin}
+        \end{dusledek}
+
+        \begin{tvrzeni}[Frobeniův endomorfismus]
+            $R$ je komutativní okruh s 1 a prvočíselnou charakteristikou $p$. Uvažujme zobrazení (tzv. Frobeniův endomorfismus) $\phi_p: R \rightarrow R$, $a \mapsto a^p$.
+            
+            \begin{enumerate}
+                \item $\phi_p$ je homomorfismus okruhů,
+                \item $R$ obor $\implies$ $\phi_p$ prosté,
+                \item $R$ konečné těleso $\implies$ $\phi_p$ automorfismus (tj. tzv. Frobeniův automorfismus).
+            \end{enumerate}
+
+            \begin{dukazin}
+                Jednoduchý (násobení triviálně, sčítání podle binomické věty, 2 z toho, že je jádro prosté, 3 z toho, že je to prosté zobrazení na konečné množině).
+            \end{dukazin}
+        \end{tvrzeni}
+
+    \subsection{Klasifikace konečných těles}
+        \begin{lemma}
+            Rozkladové nadtěleso polynomu $x^{p^k}-x$ nad tělesem $®Z_p$ má přesně $p^k$ prvků.
+
+            \begin{dukazin}
+                Kořeny $f$ v ®T tvoří podtěleso: Frobeniův endomorfismus $\phi: ®T \rightarrow ®T, a\mapsto a^p$ je homomorfimus. $\phi^k$ je tedy také homomorfismus. Jsou-li $a,b \in ®T$ kořeny $f$, pak také součet, opačná hodnota a inverzní prvek jsou kořeny. Tedy kořeny jsou těleso.
+
+                $f$ se v ®T rozkládá na kořenové činitele. Pokud $f$ nemá vícenásobné kořeny, pak $|T|=p^k$. A vícenásobné kořeny nemá, protože $f'=p^kx^{p^k - 1} - 1 = -1$, tj. $\NSD(f, f')=1$.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{lemma}
+            ®T konečné těleso, $|®T|=p^k=q$. Pak ®T je rozkladové nadtěleso polynomu $x^q - x$ nad $®Z_p$ a v $®T[x]$ platí
+            $$ x^q - x = \prod_{a \in ®T}(x-a). $$
+
+            \begin{dukazin}
+                $\forall a \in ®T$ je kořen $f$. Pro $a=0$ platí, pro $a≠0$ máme $a \in ®T^*$ a můžeme použít Lagrangeovu větu, tj. $a^{q-1}=1$, tj. $a^q=a$ a $f(a) = 0$.
+
+                $\prod_{a \in ®T}(x-a)|f$, ale tyhle polynomy mají oba stupeň $q$, oba jsou monické, takže se rovnají.
+            \end{dukazin}
+        \end{lemma}
+
+        \begin{veta}[Klasifikace konečných těles]
+            Konečné těleso velkosti $n$ existuje $\Leftrightarrow$ $n=p^k$ pro nějaké prvočíslo $p$ a $k \in ®N$.
+
+            Konečná tělesa stejné velikosti jsou izomorfní.
+
+            \begin{dukazin}
+                1. $\implies$ tvrzení kdesi dříve, $\Leftarrow$ rozkladové nadtělesa existují a předposlední lemma.
+
+                2. Konečné těleso velikosti $q=p^k$ je rozkladové nadtěleso $x^q-x$ nad $®Z_p$. Ale rozkladová nadtělesa jsou jednoznačná až na izomorfismus.
+            \end{dukazin}
+        \end{veta}
+
+        \begin{veta}[Reprezentace konečných těles]
+            Pro každé prvočíslo $p$ a $k \in ®N$ existuje ireducibilní polynom $m \in ®Z_p[\alpha]$ stupně $k$ a $®F_{p^k} \simeq ®Z_p[\alpha]/m$.
+
+            \begin{dukazin}
+                Podle předchozí věty $\exists ®T ≥ ®Z_p$, $|®T|=p^k$. $®T^*$ je konečná multiplikativní grupa v tělese, tedy $®T^*$ je cyklické, čili generované BÚNO $a$. Pak $®T=\{0,1=a^0,…\}=®Z_p(a)$. Búď $m = m_{a®Z_p}=[®Z_p(a):®Z_p]=[®T:®Z_p]=k$. Tedy $m$ je ireducibilní a má stupeň $k$.
+                $$ ®Z_p(a) \simeq ®Z_p[\alpha]/(m(\alpha)). $$
+            \end{dukazin}
+        \end{veta}
+
 \end{document}
