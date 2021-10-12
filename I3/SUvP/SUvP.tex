@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2021
+
+\section*{Organizační úvod}
+	Domácí úkoly, slidy a spol. budou na webu, šablony na domácí úkoly jsou na GitHubu. Jako komunikační platforma bude využívána Piazza.
+\section*{Úvod}
+
+\begin{definice}[Klasifikace, regrese]
+	Klasifikace = Přiřazení jednu z kategorií každému vstupu.
+
+	Regrese = Přiřazení nějaké číslo každému vstupu.
+\end{definice}
+
+\begin{definice}[Typy učení]
+	S učitelem = někdo / něco říká, jaká je správná odpověď.
+
+	Bez učitele = učení se na datech, kde nejsou žádné odpovědi (např. dělení do skupin).
+
+	Zpětnovazebné = nikdo neřekne, zda to děláš správně, ale dozvídáš nějaké výsledky (např. hry, testy, …)
+\end{definice}
+
+\begin{poznamka}
+	Předpokládejme, že $¦x \in ®R^D$ je vstup. Dvě základní úlohy jsou pak:
+
+	Regrese: Vrátit číslo $t \in ®R$.
+
+	Klasifikace: Buď vrátit 1 třídu, nebo vrátit pravděpodobnostní distribuci tříd.
+\end{poznamka}
+
+\begin{poznamka}
+	Většinou máme trénovací dataset, kde jsou příklady $(¦x, t)$ vygenerovány náhodně z data generating distribuce.
+
+	Optimalizace se snaží získat co nejlepší výsledek na trénovacích datech, strojové učení na obecných.
+\end{poznamka}
+
+\begin{definice}[Featury]
+	Featury budeme říkat to, co předhazujeme danému programu (ať je to přímo vstup, nebo už nějak změněný vstup). Česky jsou to „klasifikační rysy“.
+\end{definice}
+
+\begin{definice}[Lineární regrese]
+	Mějme $¦x \in ®R^D$. Lineární regrese pak vypadá tak, že výstup počítáme jako
+	$$ y\left(¦x, ¦w, b\right) = x_1w_1 + … + x_Dw_D + b = ¦x·¦w + b. $$
+	¦w nazýváme váhy a $b$ bias. (Bias se dá často zahrnout do vah tak, že vektory doplníme o $b$ a váhy o 1.)
+
+	K určení ¦w a $b$ se hodí chybová funkce průměrná kvadratická odchylka (dělená 2 místo $N$). Předpokládejme, že $¦X \in ®R^{N\times D}$ je matice vstupů a $¦t \in ®R^N$ je vektor odpovídajících výstupů, pak se dá tato funkce zapsat jako $\frac{1}{2}||¦X¦w - ¦t||^2$. Fermatova věta nám říká, že minimum bude nejvýše tam, kde je derivace nulová. To můžeme zobecnit do více rozměrů, tedy máme rovnice
+	$$ \frac{\partial}{\partial w_j}\frac{1}{2} \sum_i^N\left(¦x_i^T¦w - t_i\right)^2 = \sum_i^N x_{ij}\left(¦x_i^T¦w - t_i\right) = 0, $$
+	což lze přepsat na $¦X^T\left(¦X¦w - ¦t\right) = 0 $ a to na:
+	$$ ¦X^t¦X¦w = ¦X^T¦t. $$
+	
+	To už lze spočítat (buď metodou nejmenších čtverců, nebo přímo inverzí).
+\end{definice}
+
+\begin{poznamka}
+	S featurami musíme pracovat opatrně, protože může nastat buď underfitting (model je moc slabí, takže i trénovací chyba je moc velká) nebo overfitting (model je moc naučený na trénovací data a tak už na testovacích dává velkou chybu).
+\end{poznamka}
+
+% 11. 10. 2021
+
+\begin{definice}[Regularizace]
+	Chceme zmenšit váhy (protože čekáme, že to zmenší overfitting). To se dělá například tzv. $L_2$-regularizací, kde upravíme error funkci na
+	$$ \frac{1}{2}\sum_{i=1}^N (y(¦x_i, ¦w) - t_i)^2 + \frac{\lambda}{2}||¦w||^2. $$
+	($y$ je predikce, $t_i$ ideální odpověď).
+
+	Zároveň tato metoda vyřeší, že soustava výše může mít více řešení. (To se vlastně děje proto, že např. jestli se model řídí cm nebo desítkami milimetrů, které jsou obě uvedené ve featurech je jedno).
+\end{definice}
+
+\begin{poznamka}
+	Abychom určili $\lambda$, tak rozdělíme data na trénovací a testovací, jako předtím, a navíc na validační (development). Natrénujeme s různými lambdami na trénovacích datech a pak vybereme nejlepší podle validačních dat.
+\end{poznamka}
+
+TODO
+
+\begin{definice}[Gradient Descent]
+	Spočítáme gradient v bodě a poté se posuneme proti němu (jeho velikost násobíme parametrem „learning rate“, který snižujeme). Tím zminimalizujeme (lokálně) funkci.
+\end{definice}
+
+\end{document}

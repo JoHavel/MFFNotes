@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 29. 09. 2021
+
+\section*{Organizační úvod}
+TODO!!!
+
+\section*{Úvod}
+TODO!!!
+
+% 06. 10. 2021
+
+\begin{veta}[Spojitý obraz kompaktu]
+	Nechť $(P, \rho)$ a $(Q, \tau)$ jsou metrické prostory a $f: P \rightarrow Q$ je spojité zobrazení. Nechť $K \subset P$ je kompaktní množina. Potom $f(K)$ je kompaktní.
+
+	\begin{dukazin}
+		Nechť $y_n \in f(K)$. Pak $\exists x_n \in K$, $f\(x_n\) = y_n$. Z definice kompaktnosti $\exists x \in K, x_{n_k} \rightarrow x \in K$. Podle Heineho věty $f\(x_{n_k}\) = f\(y_{n_k}\) \rightarrow f(x) \in f(K)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Nechť $(®P, \rho)$ a $(®Q, \tau)$ jsou metrické prostory, $K \subset ®P$ a $f: K \rightarrow ®Q$. Řekneme, že $f$ je na $K$ stejnoměrně spojitá, pokud
+	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x, y \in K: \left(\rho(x, y) < \delta \implies \tau\left(f(x), f(y)\right) \right). $$
+\end{definice}
+
+\begin{veta}[O vztahu spojitosti a stejnoměrné spojitosti na MP]
+	Nechť $(®P, \rho)$ a $(®Q, \tau)$ jsou MP, $K \subset ®P$ je kompaktní a nechť $f: K \rightarrow ®Q$ je spojitá. Pak $f$ je stejnoměrně spojitá na $K$.
+
+	\begin{dukazin}
+		Nechť $f$ je spojitá, ale ne stejnoměrně. Potom
+		$$ \exists \epsilon > 0\ \forall \delta > 0\ \exists x, y \in K: \rho(x, y) < \delta \land \tau\(f(x), f(y)\) ≥ \epsilon. $$
+		Zvolíme $\delta_n = \frac{1}{n}$ a pro každé si najdeme $x_n, y_n$. $K$ je kompaktní, tedy existuje podposloupnost $x_{n_k} \rightarrow x_0 \in K$.
+		$$ \rho(y_{n_k}, x_{0}) ≤ \rho(x_{n_k}, y_{n_k}) + \rho(x_n, x_0) ≤ \frac{1}{n_k} + \rho(x_n, x_0) \rightarrow 0 \implies y_{n_k} \rightarrow x_0 $$
+		Z Heineho věty $f(x_{n_k}) \rightarrow f\(x_0\)$ a $f\(y_{n_k}\) \rightarrow f\(x_0\)$. Ale my máme, že jsou od sebe vzdáleny o $\epsilon$. \lightning
+	\end{dukazin}
+\end{veta}
+
+\section{Úplné metrické prostory}
+\begin{definice}[Cauchyovská posloupnost]
+	Nechť $(®P, \rho)$ je metrický prostor a $\{x_n\}_{n=1}^∞$ je posloupnost bodů z ®P. Řekneme, že $x_n$ splňuje Bolzano-Cauchyovu podmínku (případně, že je cauchyovská), jestliže platí:
+	$$ \forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n \in ®N, m,n ≥ n_0: \rho\left(x_n, x_m\right) < \epsilon. $$
+\end{definice}
+
+\begin{dusledek}
+	Každá konvergentní posloupnost je cauchyovská.
+\end{dusledek}
+
+\begin{definice}[Úplný prostor]
+	Řekneme, že metrický prostor $(®P, \rho)$ je úplný, jestliže každá cauchyovská posloupnost je konvergentní.
+\end{definice}
+
+\begin{veta}[Vztah kompaktnosti a úplnosti]
+	Nechť $(®P, \rho)$ je MP a ®P je kompaktní. Pak ®P je úplný metrický prostor.
+
+	\begin{dukazin}
+		Nechť $\{x_n\}_{n=1}^∞$ je cauchyovská posloupnost. ®P kompaktní $\implies$ $\exists x_{n_k} \rightarrow x \in ®P$. Nechť $\epsilon > 0$. Najdu $n_0$ z BC podmínky. Z $x_n \rightarrow x \exists k_0 \forall k ≥ k_0: \rho\left(x_{n_k}, x\right) < \epsilon$. Nalezneme $n_k$, $k ≥ k_0$, $n_k ≥ n_0$. Pak
+		$$ \forall n ≥ n_0: \rho\(x_n, x\) ≤ \rho\(x_n, x_{n_k}\) + \rho\left(x_{n_k}, x\right) < 2\epsilon. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Úplnost a prostor spojitých funkcí]
+	Metrický prostor $C([0, 1])$ se supremovou metrikou je úplný.
+
+	\begin{dukazin}
+		Nechť $\{f_n\}_{n=1}^∞$ je cauchyovská posloupnost. Tedy
+		$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: \rho\(f_n, f_m\) = \sup_{x \in [0, 1]} |f_n(x) - f_m(x)| < \epsilon. \qquad (*) $$
+		Zvolme $x \in [0, 1]$ pevné. Potom máme posloupnost reálných čísel místo funkcí, tedy z BC podmínky v ®R je $f_n(x)$ cauchyovská, tedy existuje $\lim_{n \rightarrow ∞} f_n(x) = f(x) \in ®R$. Takto jsme si zadefinovali novou funkci $f$.
+
+		$f_n \rightarrow f$. Provedeme limitu $n \rightarrow ∞$ na $(*)$.
+		$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: \sup_{x \in [0, 1]}|f(x) - f_n(x)| ≤ \epsilon. $$
+		Tedy $\rho(f, f_n) ≤ \epsilon \implies f_n \rightarrow f$.
+
+		$f$ je spojitá: Nechť $y \in [0, 1]$. Chceme dokázat, že $f$ je spojitá v $y$. Nechť $\epsilon > 0$. Z BC $\exists n_0\ \forall x \in [0, 1]: |f_n(x) - f_m(x)| < \epsilon$. Zafixujeme $n_0$. $f_{n_0}$ je spojitá v $y$, tedy $\exists \delta > 0\ \forall x \in [0, 1], |x - y| < \delta: |f_{n_0}(x) - f_{n_0}(y)| < \epsilon$. Nyní
+		$$ \forall x \in [0, 1], |x - y| < \delta: |f(x) - f(y)| ≤ |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_n(y)| + |f_{n_0}(y) - f(y)| ≤ 3\epsilon. $$
+		(Třetí člen dostaneme tak, že zafixujeme $m = n_0$ a $n$ pošleme do nekonečna v BC podmínce výše.)
+	\end{dukazin}
+\end{veta}
+
+% 07. 10. 2021
+
+\begin{veta}[Banachova, o kontrakci]
+	Nechť $(®P, \rho)$ je úplný MP a $T: ®P \rightarrow ®P$ je kontrakce (tedy $\exists \gamma \in (0, 1)\ \forall x, y \in P: \rho\(T(x), T(y)\) ≤ \gamma · \rho (x, y)$). Pak existuje právě jedno $x \in ®P$ tak, že $T(x) = x$.
+
+	\begin{dukazin}
+		Zvolme $x_1 \in P$ libovolně. Definujeme indukcí $x_{n+1} = T\left(x_n\right)$. Tvrdíme, že $x_n$ je cauchyovská:
+		$$ \forall n \in ®N: \rho(x_{n+1}, x_n) = \rho(T(x_n), T(x_{n+1})) ≤ \gamma \rho\left(x_n, x_{n+1}\right) ≤ \gamma^2 \rho\left(x_{n-1}, x_n\right) ≤ … ≤ \gamma^n \rho\left(x_1, x_2\right). $$
+		Nechť $\epsilon > 0$, zvolme $n_0$, aby $\rho\(x_2, x_1\) \gamma^{n_0 - 1} \frac{1}{1 - \gamma} < \epsilon$. Nyní $\forall m$, $n ≥ n_0$, $m < n$:
+		$$ \rho\(x_m, x_n\) ≤ \rho\(x_{m+1}, x_m\) + … + \rho\(x_n, x_{n-1}\) ≤ \rho(x_1, x_2)·\(\gamma^{m-1} + … + \gamma^{n-2}\) ≤ \rho\(x_2, x_1\) \gamma^{n_0 - 1} \frac{1}{1 - \gamma}. $$
+		Tedy $x_n$ je cauchyovská a má limitu.
+
+		Tvrdíme, že $T\(x_n\) \rightarrow T(x)$: $T$ je spojité v $x$. K $\epsilon > 0$ volme $\delta = \epsilon$. Pak 
+		$$ \forall y \in B(x, \delta): \rho(x, y) < \delta \implies \rho(T(x), T(y)) ≤ \gamma · \rho(x, y) ≤ \gamma \delta < \epsilon. $$
+		Podle Heineho věty $x_n \rightarrow x \implies T\left(x_n\right) \rightarrow T(x)$. Víme, že $x_{n+1} = T(x_n)$, tj. $\lim_{n \rightarrow ∞} x_{n+1} = \lim_{n \rightarrow ∞} T\left(x_n\right)$.
+
+		Jednoxznačnost: Nechť $\exists x, y$, $T(x) = x$ a $T(y) = y$. Pak
+		$$ \rho(x, y) = \rho(T(x), T(y)) ≤ \gamma·\rho(x, y) \implies \rho(x, y) = 0 \implies x = y. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O převedení na integrální tvar]
+	Nechť $I \subset ®R$ je otevřený interval, $x_0 \in I$, $f: I \times ®R \rightarrow ®R$ spojité a $y: I \rightarrow ®R$ je spojitá. Pak $y$ je řešení ODR $y' = f(x, y(x))$ na $I$ s počáteční podmínkou $y(x_0) = y_0$ právě tehdy, když $y(x) = y_0 + \int_{x_0}^x f(s, y(s)) ds$, $\forall x z \in I$.
+
+	\begin{dukazin}
+		$\implies:$ víme $y'(s) = f(s, y(s))$ je spojité, tj. lze integrovat:
+		$$ y(x) - y_0 = y(x) - y(x_0) = \int_{x_0}^x y'(s) ds = \int_{x_0}^x f(s, y(s))ds. $$
+
+		$\Leftarrow:$ zderivujeme (integrant je spojitý $\implies$ integrál lze zderivovat) $y'(x) = f(x, y(x))$. Zřejmě také $f\left(x_0\right) = y_0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Picard]
+	Nechť $I \subset ®R^2$ je otevřený interval a $(x_0, y_0) \in I$.
+
+	\begin{poznamkain}
+		Stačí libovolná otevřená množina.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Nechť $f: I \rightarrow ®R$ je spojitá a lokálně lipschitzovská vůči $Y$. Pak existuje $\left(x_0 - \delta, x_0 + \delta\right)$ okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR $y'(x, y(x))$ na $(x_0 - \delta, x_0 + \delta)$ s počáteční podmínkou $y(x_0) = y_0$. Navíc $y$ je jediné řešení na $(y_0 - \delta, y_0 + \delta)$.
+	\end{dukazin}
+
+	\begin{dukazin}
+		Zvolme $\delta, \Delta > 0$, aby $\[x_0 - \delta, x_0 + \delta\] \times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. Definujeme $X = \{y \in C([x_0 - \delta, x_0 + \delta]) | y(x) \in [y_0 - \Delta, y_0 + \Delta] \}$. Definujeme operátor $T: C(\[x_0 - \delta, x_0 + \delta\]) \rightarrow C(\[x_0 - \delta, x_0 + \delta\])$ tak, že $T[y](x) = y_0 + \int_{x_0}^x f(s, y(s)) ds$.
+
+		Klíčové pozorování: $y$ řeší naši ODR $\Leftrightarrow$ $T[y] = y$. (Z předchozí věty.)
+
+		$X$ je úplný: Později.
+
+		Máme pevné $\delta, \Delta > 0$, že $A := \[x_0 - \delta, x_0 + \delta\]\times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. $f$ spojitá na tomto kompaktu $\implies \exists M > 0$, $|f(x, y)| ≤ M$ na $A$. Z lipschitzovskosti $\exists x > 0: \forall [x, y] \in A, \forall [x, \tilde{y}] |f(x, y) - f(x, \tilde{y})| ≤ K·|y - \tilde{y}|$. Případným zmenšením $\delta > 0$ dosáhneme
+		$$ \delta ≤ \min\{\frac{\Delta}{M}, \frac{1}{2K}\}. $$
+
+		Ukážeme $T: X \rightarrow X$: $y \in X$, $y(x) \in \[y_0 - \Delta, y_0 + \Delta\]$.
+		$$ |T[y](x) - y_0| = |\int_{x_0}^x f(s, y(x)) ds| ≤ |x - x_0| M ≤ \delta·M ≤ \Delta. $$
+		$$ \implies T[y](x) \in \[y_0 - \Delta, y_0 + \Delta\] \implies T[y] \in X. $$
+
+		Dokážeme, že je toto zobrazení kontrakce a pak už máme hotovo z věty výše. Kontrakce: Nechť $y, \tilde{y} \in X$ a $x \in [x_0 - \delta, x_0 + \delta]$.
+		$$ T[y](x) - T[\tilde{y}](x)| = |\int_{x_0}^x (f(s, y(s)) - f(s, \tilde{y}(s))) ds| ≤ \int || ≤ $$
+		$$ ≤ \int_{x_0}^x |K·(y(s) - \tilde{y}(s))|ds < |x_0 - x|·K·\sup_{s \in \[x_0 - \delta, x_0 + \delta\]}(y(s) - \tilde{y}(s)) ≤ \delta·K·\rho(y, \tilde{y}) ≤ \frac{1}{2}\rho(y, \tilde{y}). $$
+		Supremum dá $\rho(T[y], T[\tilde{y}]) ≤ \frac{1}{2} \rho(y, \tilde{y})$.
+
+	\end{dukazin}
+\end{veta}
+
+
+
+\end{document}

@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 30. 09. 2021
+
+\section*{Organizační úvod}
+	TODO!!!
+
+\section*{Úvod}
+	TODO!!!
+\begin{definice}[Derivace]
+	$$ f'(z) = \lim_{w \rightarrow z} \frac{f(w) - f(z)}{w - z} = (d, e) $$
+\end{definice}
+
+\begin{definice}[Holomorfní funkce]
+	Funkce je holomorfní, pokud má derivaci.
+\end{definice}
+	TODO!!!
+
+% 07. 10. 2021
+
+\begin{veta}
+	Nechť $z = a + bi$, pokud existuje $f'(z)$, je Jacobiho determinant $\tilde{f}$ v bodě $(a, b)$ roven $|f'(z)|^2$.
+
+	\begin{dukazin}
+		$$ f'(z) = (d, e) \implies |f'(z)|^2 = d^2 + e^2, |D_f| = \left|\begin{array}[cc] d & -e \\ e & d \end{array}\right| = d^2 + e^2. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Věty o aritmetice a skládání derivací fungují v ®C stejně jako v ®R.
+
+	Pokud $f: ®C \rightarrow ®C$ a $g: ®R \rightarrow ®C$, pak $(f(y(x)))' = f'(y(x))(x)$.
+
+	Pokud $f: ®C \rightarrow ®C$ má v $z$ derivaci, pak je $f$ v $z$ spojitá.
+
+	Pokud $\Omega$ je otevřená konvexní (souvislost ještě neumíme definovat) množina a pro každé $z \in \Omega$ platí $f'(z) = 0$, pak je $f$ na $\Omega$ konstantní.
+\end{poznamka}
+
+\section{Mocninné řady}
+\begin{definice}
+	Nechť $a \in ®C$ a $\{c_n\}_{n=0}^∞$ je posloupnost komplexních čísel. Nekonečnou řadu funkcí ve tvaru
+	$$ \sum_{n=0}^∞ c_n(z - a)^n $$
+	nazveme mocninnou řadou o středu $a$.
+
+	Poloměrem konvergence této řady rozumíme $R \in [0, ∞]$ definované vzorcem $R = \sup\{r \in [0, ∞] | \sum_{n=1}^∞ |c_n|r^n \text{ konverguje}\}$.
+
+	Množinu $U(a, R) = \{z \in ®C | |z - a| < R\}$ nazveme kruhem konvergence řady.
+\end{definice}
+
+\begin{veta}
+	Každá mocninná řada konverguje absolutně a lokálně stejnoměrně na svém kruhu konvergence.
+
+	\begin{dukazin}
+		Podobný jako v normální analýze.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Položme
+	$$ L = \limsup_{n \rightarrow ∞} \sqrt[n]{|c_n|}. $$
+	Pokud $L > 0$ pak $R = \frac{1}{L}$. Pokud $L = 0$, pak $R = ∞$. Pokud existuje $k = \lim_{n \rightarrow ∞} \frac{|c_{n+1}|}{|c_n|}$, pak k = L.
+
+	\begin{dukazin}
+		?
+	\end{dukazin}
+\end{veta}
+
+\begin{pozorovani}
+	Řady
+	$$ \sum_{n=1}^∞ n c_n (z - a)^{n-1} = g(z) $$
+	a
+	$$ \sum_{n=0}^∞ \frac{c_n}{n+1} (z - a)^{n+1} = F(z) $$
+	mají stejný poloměr konvergence jako
+	$$ f(z) = \sum_{n=0}^∞ c_n (z - a)^n. $$
+\end{pozorovani}
+
+\begin{veta}
+	Funkce $f$ z minulého pozorování je holomorfní na $U(a, R)$ a $f'(z) = g(z)$ na $U(a, R)$ a $F'(z) = f(z)$ na $U(a, R)$.
+
+	\begin{dukazin}
+		Zase jako v normální analýze. Nezkouší se.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Exponenciální funkce]
+	$$ \exp(z) = e^z = \sum_{n = 0}^∞ = \sum_{n=0}^∞ \frac{z^n}{n!}. $$
+	
+	\begin{poznamkain}[Vlastnosti]
+		$\exp$ je definovaná na ®C, je celá, a platí $(\exp(z))' = \exp(z)$.
+		$$ \forall z, w \in ®C: \exp(z + w) = \exp(z)·\exp(w). $$
+		$$ \forall b \in ®R: e^{ib} = \cos b + i\sin b. $$
+		$$ \forall z \in ®C, z = a + bi: e^z = e^a(\cos b + i \sin b). $$
+		$$ \forall z \in ®C: e^z ≠ 0, e^{\overline{z}} = \overline{e^z}, |e^z| = e^{\Re z}. $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Sin, cos, sinh, cosh]
+	$$ \sin z = \frac{e^{iz} - e^{-iz}}{2i}, $$
+	$$ \cos z = \frac{e^{iz} + e^{-iz}}{2}, $$
+	$$ \sinh z = \frac{e^{z} - e^{-z}}{2}, $$
+	$$ \cosh z = \frac{e^{z} + e^{-z}}{2}, $$
+	
+\end{definice}
+
+
+
+\end{document}

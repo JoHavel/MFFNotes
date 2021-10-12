@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 29. 09. 2021
+
+\section*{Organizační úvod}
+	TODO!!!
+
+\section*{Úvod}
+	TODO!!!
+
+% 06. 10. 2021
+
+\section{Shodná zobrazení}
+\begin{definice}
+	Zobrazení $f: ®R^n \rightarrow ®R^n$ se nazývá shodné (nebo shodnost), jestliže pro každé dva body $¦X, ¦Y \in ®R^n$ platí $||f(¦X) - f(¦Y)|| = ||¦X - ¦Y||$.
+\end{definice}
+
+\begin{lemma}
+	Přímo z definice plyne, že složení dvou shodností je shodnost, shodnosti jsou prostá zobrazení a inverzní zobrazení ke shodnosti je opět shodnost.
+
+	\begin{dukazin}
+		Triviální.
+	\end{dukazin}
+\end{lemma}
+
+TODO!!!
+
+\begin{definice}[Grupa]
+	Množinu s jedinou binární operací $(M, \circ)$ nazveme grupou, jestliže je tato operace asociativní, existuje pro ní neutrální (jednotkový) prvek a ke každému prvku existuje prvek inverzní.
+\end{definice}
+
+\begin{dusledek}[Grupa shodností]
+	Shodnosti jsou surjektivní a vzhledem ke skládání tvoří grupu, kterou budeme označovat $®E(n)$.
+
+	\begin{dukazin}
+		Shodná zobrazení jsou tvaru $f(¦X) = ¦A·¦X + ¦p$, $g(¦X) = ¦B·¦X + ¦q$, kde ¦A a ¦B jsou ortogonální. Potom
+		$$ f^{-1} = ¦A^{-1}·¦X - ¦A^{-1}·¦p, (g \circ f)(¦X) = (¦B·¦A)·¦X + ¦B·¦p + ¦q. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}[Přímé zobrazení]
+	Zobrazení $f$ nazveme přímé, jestliže $\det ¦A = 1$, a nepřímé, jestliže $\det ¦A = -1$. Přímá zobrazení tvoří podgrupu $®E_+(n)$. Zobrazení, pro která je $¦A$ jednotková matice nazýváme posunutí a tvoří podgrupu označovanou (pokud nehrozí nedorozumění) rovněž $®R^n$. Zobrazení, pro která je ¦p nulový vektor tvoří podgrupu označovanou $®{ON}(n)$ (ortonormální grupa).
+
+	\begin{dukazin}
+		To, že jsou to podgrupy se dokáže jednoduše přes uzavřenosti.
+	\end{dukazin}
+
+	\begin{poznamka}
+		Shodná zobrazení můžeme vyjádřit jako kartézský součin, ale grupové operace by pak nefungovali. Proto je množina shodných zobrazení definovaná tzv. semidirektním součinem: $\{(¦A, ¦p)\} = ®{ON} \ltimes ®R^n$.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}
+	Pro každou shodnost $f \in ®E(n)$ tvaru $f(¦X) = ¦A·¦X + ¦p$ platí maticová rovnost zapsaná blokově jako
+	$$ \binom{f(¦X)}{1} = \begin{pmatrix} ¦A & ¦p \\ 0 & 1 \end{pmatrix}\binom{¦X}{1}. $$
+
+	Navíc zobrazení, které každé shodnosti přiřazuje tuto matici rozměrů $(n+1) \times (n+1)$, tj.
+	$$ f \mapsto \begin{pmatrix} ¦A & ¦p \\ 0 & 1 \end{pmatrix},  $$
+	je vnoření grupy $®E(n)$ do grupy regulárních matic $®{GL}(n+1)$.
+
+	\begin{dukazin}
+		Plyne z maticového násobení.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Asociovaný homomorfismus, samodružné směry, samodružné body]
+	Mějme shodné zobrazení $f(¦X) = ¦A·¦X + ¦p$. Jeho body splňující $f(¦X) = ¦X$ nazýváme samodružné body. Lineární zobrazení $f_{¦A}: ®R^n \rightarrow ®R^n$ dané maticí ¦A nazýváme asociovaným homomorfismem k zobrazení $f$ a vlastní směry tohoto zobrazení nazýváme samodružné směry zobrazení $f$.
+
+	Řekneme, že množina $M$ je samodružná množina zobrazení $f$, jestliže ji zobrazení zachovává (jako celek, ne nutně každý její bod zvlášť). Přesněji jestliže platí
+	$$ \forall ¦X \in ®R^n: ¦X \in ®M \implies f(¦X) \in M. $$
+\end{definice}
+
+\begin{lemma}
+	Přímka $p: C + <¦v>$ je samodružnou množinou shodnosti $f$ právě tehdy, když $<¦v>$ je jeho samodružný směr a $f(C) - C$ je násobkem ¦v.
+
+	\begin{dukazin}
+		Ať $¦D = ¦C + ¦v$. Z linearity je $p$ samodružná právě tehdy, když $f(¦C), f(¦D) \in p$. To už dokážeme rozepsáním.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Klasifikační věta v $®R^2$]
+	Pro každou shodnost $f \in ®E(2)$ nastane právě jedna z těchto možností:
+
+	f je přímá shodnost a
+	\begin{itemize}
+		\item má všechny body samodružné a všechny směry samodružné s vlastním číslem 1. Pak jde o identitu.
+		\item má právě jeden samodružný bod, pak ji nazýváme otočení. Samodružné směry pak nemá buď žádné, nebo všechny s vlastním číslem -1. Tedy jde libovolné otočení nebo o otočení o $\pi$ (= středová souměrnost).
+		\item nemá žádný samodružný bod a všechny směry jsou samodružné s vlastním číslem 1. Pak ji nazýváme posunutí.
+	\end{itemize}
+
+	f je nepřímá shodnost. Pak má právě dva samodružné směry, jeden s vlastním číslem 1 a jeden s vlastím číslem −1 a
+	\begin{itemize}
+		\item buď má právě jednu přímku samodružných bodů, pak ji nazýváme osová souměrnost,
+		\item nebo nemá žádné samodružné body, pak ji nazýváme posunutá osová souměrnost.
+	\end{itemize}
+\end{veta}
+
+\end{document}

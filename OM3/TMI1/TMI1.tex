@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 29. 09. 2021
+
+\section*{Organizační úvod}
+	TODO!!!
+\section*{Úvod}
+	TODO!!!
+
+% 06. 10. 2021
+
+\begin{definice}
+	Zúplnění míry $\lambda^n_B$ nazveme Lebesgueovou mírou v $®R^n$.
+\end{definice}
+
+\begin{poznamka}
+	\begin{enumerate}
+		\item Lebesgueova míra je $\sigma$-konečná.
+		\item Množinu $©B_0\left(®R^n\right) := \sigma(©B(®R^n)\cup©N)$ nazýváme $\sigma$-algebrou lebesgueovsky měřitelných množin. Platí $©B\left(®R^n\right)  \subsetneq ©B_0\left(®R^n\right) \subsetneq ©P\left(®R^n\right)$.
+		\item Lebesgueova míra je regulární v následujícím smyslu:
+			$$ \forall E \in ©B_0\left(®R^n\right) \forall \epsilon > 0\ \exists \text{otevřená množina } G\ \exists \text{uzavřená množina } F: F \subset E \subset G \land \mu(G \setminus F) < \epsilon. $$
+	\end{enumerate}
+\end{poznamka}
+
+\begin{definice}[Značení]
+	Nechť $X, Y$ jsou množiny a $f: X \rightarrow Y$. Je-li $©S \subset ©P(Y)$, pak $f^{-1}(©S) := \{f^{-1}(S) | S \in ©S\}$.
+\end{definice}
+
+\begin{veta}[O zobrazení $f: X \rightarrow Y$]
+	Nechť $X, Y$jsou množiny a $f: X \rightarrow Y$.
+
+	\begin{enumerate}
+		\item Je-li ©M $\sigma$-algebra na $Y$, pak $f^{-1}(©M)$ je $\sigma$-algebra na $X$.
+		\item Je-li $©S \subset ©P(Y)$, pak $f^{-1}(\sigma(©S)) = \sigma\left(f^{-1}(©S)\right)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+\section{Měřitelná zobrazení}
+\begin{definice}[Měřitelné zobrazení]
+	Nechť $(X, ©A)$, $(Y, ©M)$ jsou měřitelné prostory. Zobrazení $f: X \rightarrow Y$ nazveme měřitelným (vzhledem k ©A a ©M), jestliže $f^{-1}(©M) \subset ©A$.
+
+	Jestliže některý z prostorů $X, Y$ je metrický prostor, pak za příslušnou $\sigma$-algebru bereme $\sigma$-algebru borelovských podmnožin (pokud není řečeno jinak).
+
+	Měřitelné zobrazení mezi dvěma metrickými prostory se nazývá borelovsky měřitelné (krátce borelovské).
+\end{definice}
+
+\begin{poznamka}
+	\begin{enumerate}
+		\item Snadno se ověří, e kompozice dvou měřitelných zobrazení je měřitelné zobrazení.
+		\item Z věty O zobrazení… plyne, že jsou-li $(X, ©A)$, $(Y, ©M)$ měřitelné prostory, pak zobrazení $f: X \rightarrow Y$ je měřitelné právě tehdy, když $f^{-1}(©S) \subset ©A$, kde $©S \subset ©P(Y)$ je generátor $\sigma$-algebry ©M. Speciálně je-li $(X, ©A)$ a $Y$ metrický prostor, pak zobrazení $f: X \rightarrow Y$ je měřitelné $\Leftrightarrow$ $f^{-1}(G) \in ©A\ \forall \text{otevřenou množinu }G \subset Y$.
+	\end{enumerate}
+\end{poznamka}
+
+\begin{dusledek}
+	Každé spojité zobrazení mezi dvěma metrickými prostory je měřitelné (borelovské).
+
+	\begin{dukazin}
+		Z věty O zobrazení… (vzory otevřených množin při spojitém zobrazení jsou otevřené množiny).
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Generátory $©B^n := ©B\left(®R^n\right) $]
+	Borelovská $\sigma$-algebra $©B^n$ je generována
+	
+	\begin{enumerate}
+		\item otevřenými intervaly $\(a_1, b_1\)\times … \times \(a_n, b_n\)$, kde $-∞ < a_i < b_i < +∞$,
+		\item systémem $©S := \{(-∞, a_1) \times … \times (-∞, a_n)\}$, kde $a_i \in ®R$.
+	\end{enumerate}
+\end{veta}
+
+\begin{veta}[O měřitelných zobrazeních]
+	Nechť $(X, ©A)$ je měřitelný prostor.
+
+	\begin{enumerate}
+		\item Jsou-li $f: X \rightarrow ®R^n$ a $g: X \rightarrow ®R^n$ měřitelná zobrazení, pak zobrazení $(f, g): X \rightarrow ®R^{n+m}$ je měřitelné.
+
+		\item Jsou-li $f, g: X \rightarrow ®R^n$ měřitelná zobrazení, pak zobrazení $f ± g$ jsou měřitelná zobrazení.
+
+		\item Jsou-li $f, g: X \rightarrow ®R$ měřitelné funkce, pak také $f·g, \max(f, g), \min(f, g)$ jsou měřitelné.
+	\end{enumerate}
+\end{veta}
+
+\begin{poznamka}
+	Prostor $®R^*$ je metrický prostor s metrikou např. $\rho^*$ danou předpisem $\rho^*(x, y) = |\phi(x) - \phi(y)|$, kde $\phi(x) := \frac{x}{1 + |x|}$ pro konečné $x$ a $\phi(±∞) = ±1$ (tzv. redukovaná metrika).
+
+	Redukovaná metrika má následující vlastnosti (viz Jarník – Diferenciální počet 2, str. 245, 246):
+
+	\begin{enumerate}
+		\item V množině ®R je ekvivalentní s eukleidovskou metrikou.
+		\item Konvergence v prostoru $\(®R^*, \rho^*\)$ splývá s konvergencí zavedenou v $®R^*$ pomocí okolí bodů.
+	\end{enumerate}
+
+	Platí $©B^* := ©B\left(®R^*\right) = \sigma\left(\{\<-∞, a\) | a \in ®R\}\right)$. Plyne z:
+	
+	\begin{enumerate}
+		\item $\forall$ otevřenou množinu $G \subset ®R^*$ lze psát jako spočetné sjednocení intervalů typu $\<-∞, a\), (a, b), \(b, ∞\>$.
+		\item $\<-∞, a\)$ je stejný jako v $®R^*$.
+		\item $\(a, +∞\>$ je $®R^* \setminus \<-∞, a\)$.
+		\item $\(a, +∞\> = \bigcup_{n \in ®N}\left<a + \frac{1}{n}, +∞\right>$.
+		\item $(a, b) = \<-∞, b\) \cap \(a, +∞\>$.
+	\end{enumerate}
+\end{poznamka}
+
+\begin{veta}[O měřitelných funkcích]
+	Buď $(X, ©A)$ měřitelný prostor. Pak platí
+
+	\begin{enumerate}
+		\item $f: (X, ©A) \rightarrow ®R$ je měřitelná funkce právě tehdy, když $f^{-1}\left((-∞, a)\right) \in ©A, \forall a \in ®R$.
+		\item $f: (X, ©A) \rightarrow ®R^*$ je měřitelná funkce právě tehdy, když $f^{-1}\left(\<-∞, a\)\right) \in ©A, \forall a \in ®R$.
+	\end{enumerate}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $f, g: (X, ©A) \rightarrow ®R^*$ jsou měřitelné funkce. Pak
+
+	\begin{enumerate}
+		\item množiny $\{x \in X | f(x) < g(x)\}, \{f ≤ g\}, \{f = g\}$ jsou měřitelné.
+		\item funkce $\max(f, g), \min(f, g)$ jsou měřitelné funkce.
+	\end{enumerate}
+\end{dusledek}
+
+\begin{veta}[O měřitelných funkcích podruhé]
+	Jsou-li funkce $\(f_n\)_{n=1}^∞$ množiny $(X, ©A)$ do $®R^*$ měřitelné funkce, pak funkce $\sup_{n \in ®N} f_n, \inf_{n \in ®N} f_n, \limsup_{n \in ®N} f_n, \liminf_{n \in ®N} f_n$ jsou měřitelné.
+\end{veta}
+
+
+
+\begin{definice}[Jednoduchá funkce]
+	Funkce $S: X \rightarrow \[0, +∞\)$ se nazývá jednoduchá, jestliže množina $S(X)$ je konečná.
+
+	Platí, že $s(x) = \sum_{\alpha \in S(X)} \alpha·\chi_{S = \alpha}$. Součet na pravé straně této rovnosti nazveme kanonickým vyjádřením jednoduché funkce.
+\end{definice}
+
+\section{Abstraktní Lebesgueův integrál}
+
+\begin{veta}[O nezáporné měřitelné funkci]
+	Nechť $f: (X, ©A) \rightarrow \<0, +∞\>$ je měřitelná funkce. Pak existuje posloupnost jednoduchých (nezáporných) měřitelných funkcí $\{s_n\}_{n \in ®N}$ tak, že $s_n \nearrow f$ (konverguje nahoru).
+
+	Jestliže navíc $f$ je omezená, pak $s_n \rightrightarrows f$.
+\end{veta}
+
+\begin{definice}
+	Nechť $(X, ©A, \mu)$ je prostor s mírou.
+
+	\begin{enumerate}
+		\item Je-li $s: (X, ©A) \rightarrow [0, +∞)$ jednoduchá měřitelná funkce, zapíšeme ji v kanonickém tvaru $s = \sum_{j=1}^k \alpha_j \chi_{E_j}$ a definujeme
+			$$ \int_X s d\mu = \int_X s(x) d \mu(x) := \sum_{j=1}^k \alpha_j \mu (E_j). $$
+		\item Je-li $f: (X, ©A) \rightarrow \[0, +∞\]$ měřitelná funkce, pak definujeme
+			$$ \int_X f d\mu = \sup \{\int_X s d\mu | 0 ≤ s ≤ f \land s \text{ je jednoduchá}\}. $$
+		\item Je-li $f: (X, ©A) \rightarrow ®R*$, pak definujeme
+			$$ \int_X f d\mu = \int_X f^+ d\mu - \int_X f^- d\mu, \text{ má li pravá strana smysl}.$$
+	\end{enumerate}
+\end{definice}
+
+\end{document}

@@ -1,0 +1,375 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2021
+
+\section*{Organizační úvod}
+	%TODO
+\section*{Úvod}
+
+\begin{poznamka}[Motivace]
+	Hledání řešení diferenciálních rovnic. (Např. nahradíme rovnici definicí operátoru a hledáme, kde je operátor identita. Tedy neřešíme rovnice, ale prostory, na kterých máme funkce.)
+\end{poznamka}
+
+\begin{definice}
+	$$ ®K = ®C \lor ®K = ®R. $$ 
+\end{definice}
+
+\section{Banachovy a Hilbertovy prostory}
+
+\begin{definice}[Normovaný lineární prostor]
+	Nechť $X$ je vektorový prostor nad ®K. Funkci $||·||: X \rightarrow [0, ∞)$ nazveme normou na $X$, pokud
+	$$ || x || = 0 \Leftrightarrow x = ¦o, $$
+	$$ || x + y || ≤ || x || + || y ||, $$ 
+	$$ || \alpha·x || = | \alpha | · || x | |. $$ 
+\end{definice}
+
+\begin{tvrzeni}
+	Nechť $\left( X, || · || \right) $ je normovaný lineární prostor nad ®K.
+	
+	Funkce $\rho\left( x, y  \right) = || x - y ||$ je translačně invariantní metrika na $X$.
+
+	Norma  je $1$-lipschitzovská (a tedy spojitá) funkce na $x$.
+
+	Zobrazení $+: X \times X \rightarrow X$ a $·: ®K \times X \rightarrow X$ jsou spojitá.
+
+	\begin{dukazin}
+		První část byla na MA3. Druhá: Zvol $x, y \in X$. Pak $||y||, ||x|| ≤ ||x|| + ||x - y||$, tudíž $\left|||x|| - ||y|| \right| ≤ ||x - y||$.
+
+		Třetí část: Připomenutí: Součin metrických prostorů s maximovou metrikou je metrický prostor. Důkaz tohoto i třetí části je pak jednoduché cvičení.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Uzavřená a otevřená koule]
+	$$ B_X\left(x, r\right) = \{ y \in X | ||x - y|| ≤ r \}.  $$ 
+	$$ U_X\left(x, r\right) = \{ y \in X | ||x - y|| < r \}.  $$ 
+	$$ S_X\left(x, r\right) = \{ y \in X | ||x - y|| = r \}.  $$ 
+
+	$$ B_X = B\left(0, 1\right)  $$ 
+	$$ U_X = U\left(0, 1\right)  $$ 
+	$$ S_X = S\left(0, 1\right)  $$ 
+\end{definice}
+
+\begin{definice}[Banachův prostor]
+	Banachův prostor je normovaný lineární prostor, který je úplný v metrice dané normou.
+\end{definice}
+
+Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
+
+\begin{tvrzeni}
+	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor. Potom a) Je-li $Y$ Banachův, pak je $Y$ uzavřený v $X$. Pokud je naopak $X$ Banachův, pak $Y$ je Banachův právě tehdy, když je uzavřený.
+
+	\begin{dukazin}
+		Je-li $\left(P,\rho\right)$ úplný, pak $M \subseteq P$ je úplný $\Leftrightarrow$ $M$ je uzavřený. To dává speciálně b).
+
+		$\left(P, \rho\right)$ je MP, pak $M \subseteq P$ je úplný $\implies$ $M$ uzavřený. To dává speciálně a).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{priklady}
+	$\left(®K, ||·||_p\right)$, $L_p(\Omega, ©A, \mu, ®K)$, kde funkce je $\Omega \rightarrow ®K$ a norma je definována jako $p$-tá odmocnina z integrálu funkce na $p$. $l_p(l)$ resp. $l_p(l, ®K)$ je diskrétní verze předchozího (tj. se sumou). $®C(K)$, kde $K$ je hausdorfův a kompaktní TP.
+
+	$c$ jsou všechny posloupnosti se supremovou normou, $c_0$ jsou všechny posloupnosti konvergující k 0 se supremovou normou. $c_{00}$ sestává z těch posloupností, kde je jen konečně mnoho nenulových prvků (norma je maximová), je to lineární prostor, ale není Banachův. $c_0(I)$ je zobecnění z $c_0(®N)$ na libovolnou diskrétní množinu $I$, tj. obsahuje „posloupnosti“, kde pro každé $\epsilon$ je pouze konečně mnoho členů větších než $\epsilon$ (pak $(c_0(I), ||·||_∞)$ je Banachův).
+
+	$©L^1([0, 1], || · ||_{©L^1})$ (prostor hladkých funkcí na intervalu $[0, 1]$), kde $||f||_{©L^1} = ||f||_∞ + ||f'||_∞$. $©M(K) = \{\mu : Borel(K) \rightarrow ®K | \mu \text{ regulární míra}\}$, $||\mu|| := \sup\{\sum_{i=1}^∞|\mu(B_i)|, \bigcup B_i = K, B_i \text{ Borelovská}\}$.
+\end{priklady}
+
+\begin{veta}
+	Na konečněrozměrném vektorovém prostoru jsou všechny normy ekvivalentní.
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $X$ je vektorový prostor, $||·||_1$ a $||·||_2$ jsou normy na $X$, $B_1 = B_{X, ||·||_1}$, $B_2 = B_{X, ||·||_2}$ a $a, b > 0$. Pak $a||x||^2 ≤ ||x||_1 ≤ b||x||_2$ pro každé $x \in X$, právě když $a B_1 \subset B_2 \subset b B_1$. Speciálně $||·||_1 = ||·||_2$ právě tehdy, když $B_1 = B_2$.
+
+	\begin{dukazin}
+		$\implies:$ Zvol $x \in a B_1$, pak $||\frac{x}{a}||_1 ≤ 1 \implies x \in B_2$. Opačně: Zvol $x \in B_2$, pak $||x||_2 ≤ 1 \implies x \in B_1$.
+
+		$\Leftarrow:$ Pokud $x = 0$, pak jsou nerovnosti jasné. Zvol $x≠0$. Pak $\frac{x}{||x||_1} \in B_1$. Pak $\frac{ax}{||x||_1} \in B_1 \subseteq B_2 \implies a||x||_2 ≤ ||x||_1$. Analogicky pro druhý směr.  
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	Nechť $X$ je vektorový prostor a $||·||_1$ a $||·||_2$ jsou normy na $X$ a $B_1$ a $B_2$ jako minule. Následující tvrzení jsou ekvivalentní:
+	\begin{enumerate}
+		\item Normy $||·||_1$ a $||·||_2$ jsou ekvivalentní.
+		\item Existují $a, b > 0$ taková, že $aB_1 \subset B_2 \subset bB_1$.
+		\item Zobrazení $\id: (X, ||·||_1) \rightarrow \left(X, ||·||_2\right)$ je homeomorfismus.
+		\item Otevřené množiny v $\left(X, ||·||_1\right)X$ splývají s otevřenými množinami $\left(X, ||·||_2\right)$.
+		\item $||x_n - x||_1 \rightarrow 0$, právě když $||x_n - x||_2 \rightarrow 0$ pro $\{x_n\} \subset X$, $x \in X$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$1 \Leftrightarrow 2$ plyne z předchozího lemmatu. $3 \Leftrightarrow 4 \Leftrightarrow 5$ je lehké a platí ve všech MP. $1 \implies 5$ jasné.
+
+		$5 \implies 1:$ Sporem posloupností jdoucí k 1. TODO
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	Nechť $X$ je vektorový prostor. Řekneme, že množina $M \subset X$ je konvexní, pokud pro každé $x, y \in M$ a $\lambda \in [0, 1]$ platí, že $\lambda x + (1-\lambda)y \in M$.
+\end{definice}
+
+\begin{poznamka}[Fakt]
+	Koule v normovaném lineárním prostoru jsou konvexní množiny. (A naopak každá konvexní množina může být koulí v nějaké normě.)
+\end{poznamka}
+
+\begin{definice}[Konvexní obal]
+	Nechť $X$ je vektorový prostor a $M \subset X$. Konvexním obalem $M$ nazveme množinu $\conv M = \bigcap \{C \supset M | C \subset X \text{ je konvexní}\}$.
+\end{definice}
+
+\begin{tvrzeni}
+	Nechť $X$ je vektorový prostor a $M \subset X$. Pak
+	$$ \conv M = \{\sum_{i=1}^n \lambda_ix_i | x_i \in M, \lambda_i ≥ 0, \sum \lambda = 1, n \in ®N\}. $$
+
+	\begin{dukazin}
+		$\subseteq:$ Stačí dokázat, že množina vpravo je konvexní. Přímočaré.
+
+		$\supseteq:$ Stačí dokázat, že každý prvek vlevo je v konvexním obalu. Indukcí podle $n$, přímočaré.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	Nechť $X$ je vektorový prostor. Řekneme, že množina $M \subset X$ je symetrická, pokud $-M = M$.
+\end{definice}
+
+\begin{poznamka}[Fakt]
+	Nechť $M$ je symetrická konvexní podmnožina normovaného lineárního prostoru $X$, která obsahuje $U(x, r)$ respektive $B(x, r)$ pro nějaké $x \in X$ a $r ≥ 0$. Pak $U(0, r) \subset M$, resp. $B(0, r) \subset M$.
+
+	\begin{dukazin}
+		Jednoduchý.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{definice}
+	Nechť $X$ je normovaný lineární prostor a $M \subset X$. Pak definujeme uzavřený lineární obal $M$ jako $$ \overline{\spn}M = \bigcap \{Y \supset M | Y \text{ uzavřený podprostor } X\} $$ a uzavřený konvexní obal jako $\overline{\conv} M = \bigcap \{TODO\}$.
+\end{definice}
+
+\begin{poznamka}[Fakt]
+	Nechť $X$ je normovaný lineární prostor, $Y$ je podprostor $X$ a $C \subset X$ je konvexní. Pak $\overline{Y}$ je podprostor $X$ a $\overline{C}$ je konvexní množina.
+\end{poznamka}
+
+\begin{poznamka}[Fakt]
+	Nechť $X$ je normovaný lineární prostor a $M \subset X$. Pak $\overline{\spn} M = \overline{\spn M}$ a $\overline{\conv} M = \overline{\conv M}$.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor, $Y \subset X$ uzavřený podprostor a $Z \subset X$ konečněrozměrný podprostor. Pak $\spn(Y \cup Z)$ je uzavřený.
+
+	\begin{dukazin}
+		Stačí dokázat pro $\dim Z = 1$ (pak indukcí). Ať $Z = \spn(e)$, $e \notin Y$. Ověřme, že $\spn(Y \cup \{e\}) = \{y + ke | k \in ®K\}$ je uzavřený: Ať $x_n = y_n + k_n e \rightarrow x \in X$. Chci $x \in \spn Y$.
+
+		1. krok: $(t_n)$ je omezená. (Kdyby ne, pak má limitu nekonečno.) Pak ale $||\frac{y_{n_k}}{t_{n_k}} + e || = \frac{1}{|t_{n_k}|} ||x_{n_k}|| \rightarrow 0$, tedy $\frac{y_{n_k}}{t_{n_k}} \rightarrow -e \notin Y$, tedy $Y$ není uzavřená. \lightning
+
+		Tedy existuje posloupnost $(n_k)$, že $t_{n_k} \rightarrow t \in ®K$. Pak ale $y_{n_k} = x_{n_k} - t_{n_k}e \rightarrow x - t e \in Y$. Tedy $\exists z \in Y: x - t e = z$, tj. $x = z + t e \in \spn(Y \cup \{e\})$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $X$ je normovaný lineární prostor. Každý konečněrozměrný podprostor $X$ je uzavřený v $X$.
+\end{dusledek}
+
+% 11. 10. 2021
+
+TODO
+
+\begin{veta}[Test úplnosti]
+	Nechť $X$ je normovaný lineární prostor. Pak $X$ je Banachův, právě když každá absolutně konvergentní řada je konvergentní.
+
+	\begin{dukazin}
+		$\implies$: Ať $X$ je Borelovský, $\sum_{n=1}^∞ x_n$ je AK řada. $s_N = \sum_{n=1}^N x_n$. Chceme $(s_n)$ je cauchy: Buď $\epsilon > 0$. Ať $n_0 \in ®N$ je takové, že $\sum_{n=N}^M ||x_n|| < \epsilon$, $n_0 ≤ N < M$. Pak ale pro $n_0 ≤ N < M$ je
+		$$ ||s_N - s_M|| = ||\sum_{n=N+1}^M x_n|| ≤ \sum_{N+1}^M||x_N|| < \epsilon. $$
+		Tedy $(s_n)$ je konvergentní.
+
+		$\Leftarrow$: Ať $(x_n)$ je cauchyovská. Indukcí najdeme podposloupnost, že $||x_{n_k} - x_{n_{k+1}} < 2^{-k}$, $k \in ®N$. Pak
+		$$ z = \sum_{k=1}^∞(x_{n_{k+1}} - x_{n_k}) = \lim_{k \rightarrow ∞}(x_{n_{k+1}} - x_{n_1}) $$
+		$$ \implies \lim_{k \rightarrow ∞} x_{n_k} = \lim_{k \rightarrow ∞} (x_{n_k} - x_{n_1} + x_{n+1}) = \lim(x_{n_k} - x_{n_1}) + \lim x_{n_1} = z + x_{n_1}. $$
+		Celkem $\exists (n_k) \nearrow$, že $\lim(x_{n_k})$ existuje. Značme $x = lim_{k \rightarrow ∞} x_{n_k}$.
+		Chceme $\lim_{n \rightarrow ∞} x_n = x$. V metrickém prostoru konverguje Cauchyovská posloupnost právě tehdy, pokud existuje její konvergentní podposloupnost.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Zobecněná řada]
+	Nechť $X$ je normovaný lineární prostor, $\Gamma$ je množina a $\{x_\gamma\}_{\gamma \in \Gamma}$ je kolekce prvků prostoru $X$. Symbol $\sum_{\gamma \in \Gamma} x_\gamma$ nazveme zobecněnou řadou.
+
+	Dále $©F(\Gamma)$ značí systém všech konečných podmnožin $\Gamma$. Řekneme, že zobecněná řada … konverguje (též konverguje bezpodmínečně) k $x \in X$, pokud platí
+	$$ \forall \epsilon > 0\ \exists F \in ©F(\Gamma)\ \forall F' \in ©F(\Gamma), F' \subseteq F: ||x - \sum_{\gamma \in F'} x_\gamma|| < \epsilon. $$
+
+	Existuje-li $x \in X$, říkáme, že je zobecněná řada … (bezpodmínečně) konvergentn a $x$ nazýváme jejím součtem. Konverguje-li zobecněná řada reálných čísel $\sum_{\gamma \in \Gamma} ||x_\gamma||$, pak se zobecněná řada $\sum_{\gamma \in \Gamma} x_\gamma$ nazývá absolutně konvergentní.
+\end{definice}
+
+\begin{definice}[Bolzanova-Cauchyova podmínka]
+	Řekneme, že zobecněná řada TODO
+\end{definice}
+
+\begin{veta}[Nutná podmínka konvergence]
+	Nechť $\sum_{\gamma \in \Gamma} x_\gamma$ je konvergentní zobecněná řada v normovaném lineárním prostoru $X$. Pak je její součet určen jednoznačně a $(||x_\gamma||)_{\gamma \in \Gamma} \in c_0(\Gamma)$.
+
+	\begin{dukazin}[Jednoznačnost]
+		Ať $\sum_{\gamma \in \Gamma} x_\gamma = x ≠ y = \sum_{\gamma \in \Gamma} = \sum_{\gamma \in \Gamma}x_\gamma$. Pak $\forall \epsilon > 0$:
+		$$ \exists F_x \in ©F(\Gamma)\ \forall F \supseteq F_x: ||x - \sum_{\gamma \in \Gamma} x_\gamma|| < \frac{\epsilon}{2}, $$
+		$$ \exists F_y \in ©F(\Gamma)\ \forall F \supseteq F_y: ||x - \sum_{\gamma \in \Gamma} x_\gamma|| < \frac{\epsilon}{2}. $$
+		Pak pro $\epsilon = ||x - y|| ≤ ||x - \sum_{F_x \cup F_y} x_\gamma || + ||\sum_{F_x \cup F_y} x_\gamma - y|| < \epsilon$. \lightning
+	\end{dukazin}
+
+	\begin{dukazin}[Existence]
+		Chceme $(||x_\gamma||) \in c_0(\Gamma)$: Ať $\epsilon > 0$ libovolné. Najdeme 
+		$$ F \in ©F(\Gamma)\ \forall F' \supset F: ||x - \sum_{\gamma \in F'}x_\gamma || < \frac{\epsilon}{2}. $$
+		Pak pro $\gamma_0 \notin F$ máme
+		$$ ||x_{\gamma_0}|| = ||\sum_{\gamma \in F \cup \{\gamma_0\}} x_\gamma - x + x - \sum_{\gamma \in F}x_\gamma|| ≤ ||…|| + ||…|| < \epsilon. $$
+		Tedy $\{\gamma \in \Gamma | ||x_\gamma|| > \epsilon\} \subseteq F \in ©F(\Gamma) \implies (||x_\gamma||) \in c_0(\Gamma)$. (Je tam pouze konečný počet prvků větších než $\epsilon$.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X$ je Banachův prostor.
+	
+	\begin{enumerate}
+		\item Zobecněná řada v $X$ je konvergentní právě tehdy, když splňuje Bolzanovu-Cauchyovu podmínku.
+		\item Každá absolutně konvergentní zobecněná řada v $X$ je konvergentní.
+		\item Je-li zobecněná řada $\sum_{\gamma \in \Gamma} x_\gamma$ v $X$ konvergentní a $\Lambda \subset \Gamma$, pak je i zobecněná řada $\sum_{\gamma \in \Lambda} x_\gamma$ konvergentní.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		$\implies$: Ať $\sum_{\gamma \in \Gamma} x_\gamma$ je konvergentní. Zvol $\epsilon > 0$. Zvolíme 
+		$$ F \in ©F(\Gamma)\ \forall F' \supseteq F: ||\sum_{\gamma \in \Gamma}x_\gamma - \sum_{\gamma \in F'}x_\gamma|| < \frac{\epsilon}{2}. $$
+		Pak pro $\tilde{F} \in ©F(\Gamma)$, že $\tilde{F} \cap F = \O$ máme:
+		$$ ||\sum_{\gamma \in \tilde{F}} x_\gamma|| = ||\sum_{\gamma \in F \cup \tilde{F}} x_\gamma - \sum_{\gamma \in \Gamma} x_\gamma + \sum_{\gamma \in \Gamma} x_\gamma - \sum_{\gamma \in F} x_\gamma|| ≤ ||…|| + ||…|| < \epsilon. $$
+
+		$\Leftarrow$: Ať $\sum_{\gamma \in \Gamma} x_\gamma$ splňuje B-C podmínku. Pak najdeme posloupnost $(F_n)_{n=1}^∞ \in ©F(\Gamma)^{®N}$, že
+		$$ F_1 \subset F_2 \subset … \land \forall F' ©F(\Gamma): F' \cap F_n = \O: ||\sum_{\gamma \in F'} x_{\gamma}|| < \frac{1}{n}. $$
+		Označ $y_n = \sum_{\gamma \in F_n} x_\gamma$.
+		1. krok: $(y_n)$ je cauchyovská. (Dokáže se snadno.) 2. krok: Tedy existuje $y \in X: \lim y_n = y$. Chceme $y = \sum_{\gamma \in \Gamma} x_\gamma$: Ať $\epsilon > 0$. 
+		$$ \forall F' \supset F: ||y  - \sum_{\gamma \in F'} x_\gamma|| ≤ ||y_{n_0} - \sum_{\gamma \in F'} x_\gamma|| + ||y_{n_0} - y|| = \sum_{\gamma \in F' \setminus F_{n_0}} x_\gamma ≤ \frac{1}{n_0} + ||y_{n_0} - y|| < \epsilon. $$
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Víme, že $\sum_{\gamma \in \Gamma}||x_\gamma||$ je konvergentní. Dle tvrzení níže tedy
+		$$ \sum_{\gamma \in \Gamma}||x_\gamma|| = S = \sup\{\sum_{\gamma \in \Gamma} | ||x_\gamma|| | F \in ©F(\Gamma)\}. $$
+		Ověříme, že $\sum x_\gamma$ splní B-C podmínku: Ať $\epsilon > 0$. Ať $F \in ©F(\Gamma)$ tak, že $S - \epsilon < \sum_{\gamma \in F}||x_\gamma||$. Pak $\forall F' \in ©F(\Gamma)$, že $F' \cap F = \O$:
+		$$ ||\sum_{\gamma \in F'} x_\gamma || ≤ \sum_{\gamma \in F'} || x_\gamma || = \sum_{\gamma \in F' \cup F} ||x_\gamma|| - \sum_{\gamma \in F} ||x_\gamma|| < \epsilon. $$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Snadný důsledek 1., protože B-C podmínka se zjevně dědí na podmnožiny.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	Nechť $\sum_{\gamma \in \Gamma} a_\gamma$ je zobecněná řada nezáporných čísel. Pak tato řada konverguje, právě když $\sup\{\sum_{\gamma \in F} a_\gamma: F \in ©F(\Gamma)\} < +∞$. A navíc platí $\sum_{\gamma \in \Gamma} a_\gamma = \sup\{\sum_{\gamma \in F} a_\gamma: F \in ©F(\Gamma)\}$.
+
+	\begin{dukazin}
+		$\implies$: Ať $\sum_{\gamma \in \Gamma} a_\gamma$ konverguje. Pak zvolíme $F \in ©F(\Gamma)\ \forall F' \supset F: ||\sum_{\gamma \in \Gamma} a_\gamma - \sum_{\gamma \in F} a_\gamma|| < 1$.
+		Pak $\forall H \in ©F(\Gamma): \sum_{\gamma \in H} a_\gamma ≤ \sum_{\gamma \in H \cup F} a_\gamma ≤ \sum_{\gamma \in \Gamma}a_\gamma + 1.$ Tedy $\sup… ≤ \sum_{\gamma \in \Gamma} a_p + 1 < ∞$.
+
+		$\Leftarrow$: Ať $S:= \sup… < ∞$. Chceme $\sum_{\gamma \in \Gamma} a_\gamma = S$. Ať $\epsilon > 0$. Ať $H \in ©F(\Gamma)$ (z definice suprema) taková, že $S - \epsilon < \sum_{\gamma \in H} a_\gamma$. Pak pro $F' \supset H$ máme
+		$$ |S - \sum_{\gamma \in F'} a_\gamma| = S - \sum_{\gamma \in F'} a_\gamma < S - \sum_{\gamma \in H}a_\gamma < \epsilon. $$
+		Tedy $\sum a_\gamma = S$.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 12. 10. 2021
+
+\begin{tvrzeni}
+	Nechť $X$ je normovaný lineární prostor a $\{x_n\} \subset X$. Pak zobecněná řada $\sum_{n \in ®N}x_n$ je absolutně konvergentní, právě když řada $\sum_{n=1}^∞ x_n$ je konvergentní.
+
+	\begin{dukazin}
+		$\implies$: Ať $\sum_{n=1}^∞ ||x_n|| =: S < ∞$. Pak
+		$$ \sup_{F \in ®F(®N)} \sum_{n \in F} ||x_n|| ≤ \sup_{N \in ®N} \sum_{n=1}^N ||x_n|| = \sum_{n=1}^∞ ||x_n|| = S < ∞, $$
+		neboť každá konečná množina v přirozených číslech má maximum (a odebráním kladných prvků sumu zmenšíme).
+
+		$\Leftarrow$: Ať $\sum_{n \in ®N} ||x_n||$ je konvergentní, pak dle předchozího tvrzení $S:=\sup_{F \in ©F(®N)} \sum_{n \in F} ||x_n|| < ∞$. Tedy
+		$$ \sum_{n=1}^∞||x_n|| = \sup_{N \in ®N} \sum_{n \in [N]} ||x_n|| ≤ S < ∞. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $\{x_n\}$ je posloupnost v Banachově (pro normovaný lineární prostor je důkaz složitější) prostoru $X$. Pak následující tvrzení jsou konvergentní:
+	
+	\begin{enumerate}
+		\item $\sum_{n \in ®N} x_n$ konverguje (říkáme $\sum_{n=1}^∞ x_n$ konverguje bezpodmínečně).
+		\item $\sum_{n=1}^∞ x_{\pi(n)}$ konverguje pro každou permutaci $\pi: ®N \rightarrow ®N$ ke stejnému součtu.
+		\item $\sum_{n=1}^∞ x_{\pi(n)}$ konverguje pro každou permutaci $\pi: ®N \rightarrow ®N$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$1 \implies 2$: Ať $\epsilon > 0$ a $\pi \in ®S(®N)$. Ať $F \in ©F(®N)$ splňuje, že $\forall F' \supseteq F: ||\sum_{n \in F'} x_n - x|| < \epsilon$, kde $x = \sum_{n \in ®N}x_n$. Zvolme $n_0 \in ®N: F \subseteq \{\pi(1), …, \pi(n_0)\}$. Pak $\forall n ≥ n_0: ||\sum_{i=1}^n x_{\pi(i)} - x|| < \epsilon$. Tedy $\sum_{n=1}^∞ x_{\pi(n)} = x$.
+
+		$2 \implies 3$: okamžitě. $3 \implies 1$: Pro spor předpokládejme, že $\sum_{n=1}^∞ x_{\pi(n)}$ konverguje pro každou $\pi \in ®S(®N)$, ale $\sum_{n \in ®N} x_n$ nesplňuje B-C podmínku. Zvolme $\epsilon > 0$ svědčící o tom, že B-C podmínka není splněna. Pak existuje $\(F_n\)_{n=1}^∞ \in ©F(®N)^{®N}$, že $F_n \cap F_m = \O$ $\forall n ≠ m$, $\max F_n < \min F_{n+1}, n \in ®N$ a $||\sum_{i \in F_n} x_i||$.
+
+	Zvolme $\pi \in ®S(®N)$ splňující, že existuje $\(n_k\)\nearrow$ a $\(p_k\)_{k=1}^∞ \in ®N^{®N}$, že $\pi\(\{n_k, n_k + 1, …, n_k + p_k\}\) = F_k$ $\forall k \in ®N$. Tedy $\forall k \in ®N: ||\sum_{i = n_k}^{n_k + p_k} x_{\pi(i)}|| = ||\sum_{i \in F_k} x_i || ≥ \epsilon$. To však znamená, že $\sum_{i=1}^∞ x_{\pi(i)}$ nesplňuje B-C podmínku, tedy není konvergentní. \lightning
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Každá absolutně konvergentní řada v Banachově prostoru je bezpodmínečně konvergentní.
+
+	\begin{dukazin}
+		Jasný z minulé věty.
+	\end{dukazin}
+
+	Navíc v ®R platí ekvivalence.
+\end{veta}
+
+\begin{veta}
+	Pokud $\dim X = +∞$, pak $\exists(x_n): \sum_{n=1}^∞ ||x_n||$ konverguje, ale $\sum_{n \in ®N}x_n$ není konvergentní.
+\end{veta}
+
+\section{Lineární operátory a funkcionály}
+\begin{poznamka}[Opakovali jsme]
+	Lineární zobrazení (viz lingebra), dále:
+	
+	\begin{veta}
+		Nechť $X, Y$ jsou normované lineární prostory a $T: X \rightarrow Y$ je lineární zobrazení. Pak následující tvrzení jsou ekvivalentní:
+		
+		\begin{enumerate}
+			\item $T$ je spojité.
+			\item $T$ je spojité v jednom bodě.
+			\item $T$ je spojité v 0.
+			\item $\exists C ≥ 0$ tak, že $||T(x)|| ≤ C ||x||$ $\forall x \in X$.
+			\item $T$ je Lipschitzovské.
+			\item $T$ je stejnoměrně spojité.
+			\item $T(A)$ je omezená pro každou omezenou $A \subset X$.
+			\item $T(B_X)$ je omezená.
+			\item $T(U(0, \delta))$ je omezená pro nějaké $\delta > 0$.
+		\end{enumerate}
+	\end{veta}
+
+	Prostor $©L(X< Y)$ s normou $||T|| = \sup_{x \in B_x}||T(x)||$ je normovaný lineární prostor.
+\end{poznamka}
+
+\begin{lemma}
+	Nechť $X, Y$ jsou normované lineární prostory a $T \in ©L(X, Y)$.
+	
+	\begin{itemize}
+		\item $||T(x)|| ≤ ||T||·||x||$ pro každé $x \in X$.
+		\item $||T|| = \sup_{x \in S_X}||T(x)|| = \sup_{x \in X\setminus\{¦o\}}\frac{||T(x)||}{||x||} = \sup_{x \in U_X}||T(x)||$.
+		\item $||T|| = \inf\{C ≥ 0 | ||T(x)|| ≤ C||x|| \forall x \in X\}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Pro $x \in X \setminus\{¦o\}$ platí $||T(x)|| = ||T(\frac{x}{||x||})||·||x|| ≤ ||T||·||x||$.
+
+		$S_X \subseteq B_X$, tedy $||T|| ≥ \sup_{x \in S_X}||T(x)||$. $\forall x \in X \setminus\{¦o\}$:
+		$$ \frac{||T(x)||}{||x||} = ||T(\frac{x}{||x||})|| ≤ \sup_{y \in S_X} ||T(y)||, $$
+		tedy $\sup_{x \in S_X} ||T(x)|| ≥ \sup_{x \in X\setminus\{¦o\}} \frac{||T(x)||}{||x||} =: S_3$. Pro $x \in U_X\setminus\{¦o\}$ platí $||T(x)|| ≤ \frac{||T(x)||}{||x||} ≤ S_3$, tedy $\sup_{x \in U_x} ||T(x)|| ≤ S_3$. Konečně, pro $x \in B_x$: $||T(x)|| \leftarrow ||T\(\(1 - \frac{1}{n}\)x\)|| ≤ \sup_{x \in U_X} =: S_4$, tedy $||T_x|| = \lim_{n \rightarrow ∞} ||T\(1-\frac{1}{n}\)x|| ≤ S_4$ $\implies$ $\sup_{x \in B(x)} ||T(x)|| ≤ S_4$.
+
+		Dle prvního bodu máme nerovnost „$≥$“. Pro „$≤$“ zvolme $\epsilon > 0$ … ať $\tilde{c} > 0$ je takové, že $\tilde{c} < \inf\{…\} + \epsilon$. Pak $||T|| = \sup_{x \in B_x} \frac{||T_x||}{||x||} ≤ \inf\{…\}$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	Nechť $X$ je normovaný lineární prostor nad ®K. Prostor $©L(X, ®K)$ značíme $X^*$ a nazýváme jej duálním prostorem k prostoru $X$.
+\end{definice}
+
+
+
+
+\end{document}

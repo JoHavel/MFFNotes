@@ -1,0 +1,22 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[indukce]
+	Je při vypisování intervalu hodnot v binárním vyhledávacím stromu délka absolvované cesty (nemáme explicitní next pointery) $\in O(h + r)$, kde $h$ je hloubka stromu a $r$ počet vypsaných hodnot? Přesvědčivě zdůvodněte!
+
+	\begin{dukazin}[Ano je!]
+		Nejprve ukážeme, že pro vypsání $n$ listů vyváženého binárního podstromu vrcholu, ve kterém se nacházíme, je délka absolvované cesty $O(n)$. Z ADS1 víme, že takový strom má $O(n)$ vrcholů. Každý navštívíme nejvýše 3krát (při průchodu do levého podstromu, při přechodu z levého do pravého podstromu a nakonec při návratu do otce), tedy cesta musí mít délku $O(3n) = O(n)$.
+
+		Teď ukážeme celý průchod. Půjdeme podle algoritmu, který hledá levý a pravý okraj intervalu (a klasicky se používá v intervalových stromech na např. součet intervalu): Dokud jsou oba konce v podstromu jednoho ze synů, jdeme do tohoto syna a nic neřešíme. Ve chvíli, kdy se tyto „větve“ oddělí, projdeme nejprve levou a pak (symetricky) pravou. V levé větvi:\\[-2em]
+		\begin{itemize}
+			\item Pokud jdeme doprava, tak nic neřešíme.
+			\item Pokud jdeme vlevo, tak až se vrátíme, tak vypíšeme pravý podstrom. To jsme ukázali, že bude trvat $O(r_i)$, kde $r_i$ je počet prvků v tomto podstromu. Pak se vrátíme výš.
+			\item V listu pak jen vypíšeme daný prvek a vrátíme se.
+		\end{itemize}
+		Pravá větev bude symetricky. Jelikož každý vypisovaný prvek je nejvýše (může to být i okraj intervalu) v jednom z podstromů, které jsme celé vypisovali, délka cesty v těchto podstromech bude v součtu $O(r_1) + O(r_2) + … = O(r)$. Navíc cesta obsahuje až 2 scházení do listu a vracení se s odbočkami (v každém vrcholu maximálně 1 odbočka), tak délka cesty mimo podstromy je $O(h)$. Celá cesta je tedy $O(h) + O(r) = O(h + r)$.
+	\end{dukazin}
+\end{priklad}
+
+\end{document}
