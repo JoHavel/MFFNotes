@@ -18,15 +18,12 @@
 		$$ 2a_{11} + 1a_{12} + b_1 = 0. $$
 		Tudíž lze pro libovolné $a_{11}$ a $a_{12}$ vybrat $b_1$ (konkrétně $b_1 = -2a_{11} - a_{12}$), aby byla druhá podmínka splněna.
 
-		Zbývá ještě jedna podmínka, která nám vznikla během řešení – matice musí být ortonormální (aby to bylo shodné zobrazení), tj.
-		$$ A^2 = I \Leftrightarrow a_{11}^2 + a_{12}·a_{21} = 1 \land a_{12}\left(a_{11} + a_{22}\right) = 0 = a_{21}\left(a_{11} + a_{22}\right) \land a_{22}^2 + a_{12}·a_{21} = 1. $$
+		Zbývá ještě jedna podmínka, která nám vznikla během řešení – matice musí být ortogonální (aby to bylo shodné zobrazení), tj.
+		$$ A\cdot A^T = I \Leftrightarrow a_{11}^2 + a_{12}^2 = 1 = a_{21}^2 + a_{22}^2 \land a_{21}a_{11} + a_{12}a_{22} = 0. $$
 
-		Nyní máme 2 možnosti:
-		\begin{itemize}
-			\item $a_{12} = 0 = a_{21}$, pak ale $0 = a_{22} = ±1$ z rovnic $a_{22}^2 + a_{12}·a_{21} = 1$ a $a_{21} = \frac{3}{4}a_{22}$. To však není možné, tedy tato možnost nedává žádné řešení.
-			\item $a_{11} + a_{22} = 0$, což odpovídá řešení (pro $a_{11} = c \in ®R\setminus\{0\}$ libovolné, pro $a_{11} = 0$ nemá řešení)
-				$$ ¦z \mapsto \begin{pmatrix} c & \frac{4}{3}c - \frac{4}{3c} \\ -\frac{3}{4}c & -c \end{pmatrix}¦z + \begin{pmatrix} -\frac{10}{3}c + \frac{4}{3c} \\ \frac{5}{4}c \end{pmatrix}.$$
-		\end{itemize}
+		Nyní můžeme dosadit $a_{21} = \frac{3}{4}a_{22}$. Dostaneme $1 = \(\frac{9}{16} + 1\)a_{22}^2$, tj. $a_{22} = ±\frac{4}{5}$ a $a_{21} = ±\frac{3}{5}$. Z poslední rovnice pak máme $±\frac{3}{5} a_{11} = \mp \frac{4}{5}a_{12}$. Tj. $\(1 + \frac{9}{16}\)a_{11}^2 = 1$ a $a_{11} = ±\frac{4}{5}$, $a_{12} = \mp\frac{3}{5}$. Tudíž máme 4 zobrazení:
+		$$ ¦z \mapsto \begin{pmatrix} +\frac{4}{5} & -\frac{3}{5} \\ +\frac{3}{5} & +\frac{4}{5} \end{pmatrix} ¦z + \begin{pmatrix} -1 \\ -1 \end{pmatrix}, \qquad ¦z \mapsto \begin{pmatrix} +\frac{4}{5} & -\frac{3}{5} \\ -\frac{3}{5} & -\frac{4}{5} \end{pmatrix} ¦z + \begin{pmatrix} -1 \\ +1 \end{pmatrix}, $$
+		$$ ¦z \mapsto \begin{pmatrix} -\frac{4}{5} & +\frac{3}{5} \\ +\frac{3}{5} & +\frac{4}{5} \end{pmatrix} ¦z + \begin{pmatrix} +1 \\ -1 \end{pmatrix}, \qquad ¦z \mapsto \begin{pmatrix} -\frac{4}{5} & +\frac{3}{5} \\ -\frac{3}{5} & -\frac{4}{5} \end{pmatrix} ¦z + \begin{pmatrix} +1 \\ +1 \end{pmatrix}. $$
 	\end{reseni}
 \end{priklad}
 

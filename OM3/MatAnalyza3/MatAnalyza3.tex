@@ -75,8 +75,8 @@ TODO!!!
 		$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: \sup_{x \in [0, 1]}|f(x) - f_n(x)| ≤ \epsilon. $$
 		Tedy $\rho(f, f_n) ≤ \epsilon \implies f_n \rightarrow f$.
 
-		$f$ je spojitá: Nechť $y \in [0, 1]$. Chceme dokázat, že $f$ je spojitá v $y$. Nechť $\epsilon > 0$. Z BC $\exists n_0\ \forall x \in [0, 1]: |f_n(x) - f_m(x)| < \epsilon$. Zafixujeme $n_0$. $f_{n_0}$ je spojitá v $y$, tedy $\exists \delta > 0\ \forall x \in [0, 1], |x - y| < \delta: |f_{n_0}(x) - f_{n_0}(y)| < \epsilon$. Nyní
-		$$ \forall x \in [0, 1], |x - y| < \delta: |f(x) - f(y)| ≤ |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_n(y)| + |f_{n_0}(y) - f(y)| ≤ 3\epsilon. $$
+		$f$ je spojitá: Nechť $y \in [0, 1]$. Chceme dokázat, že $f$ je spojitá v $y$. Nechť $\epsilon > 0$. Z BC $\exists n_0\ \forall x \in [0, 1]: |f_n(x) - f_m(x)| < \epsilon$. Zafixujeme $n_0$. $f_{n_0}$ je spojitá v $y$, tedy $\exists \delta > 0\ \forall x \in [0, 1], |x - y| < \delta: |f_{n_0}(x) - f_{n_0}(y)| < \epsilon$. Nyní $\forall x \in [0, 1], |x - y| < \delta$:
+		$$ |f(x) - f(y)| ≤ |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - f_n(y)| + |f_{n_0}(y) - f(y)| ≤ 3\epsilon. $$
 		(Třetí člen dostaneme tak, že zafixujeme $m = n_0$ a $n$ pošleme do nekonečna v BC podmínce výše.)
 	\end{dukazin}
 \end{veta}
@@ -87,15 +87,17 @@ TODO!!!
 	Nechť $(®P, \rho)$ je úplný MP a $T: ®P \rightarrow ®P$ je kontrakce (tedy $\exists \gamma \in (0, 1)\ \forall x, y \in P: \rho\(T(x), T(y)\) ≤ \gamma · \rho (x, y)$). Pak existuje právě jedno $x \in ®P$ tak, že $T(x) = x$.
 
 	\begin{dukazin}
-		Zvolme $x_1 \in P$ libovolně. Definujeme indukcí $x_{n+1} = T\left(x_n\right)$. Tvrdíme, že $x_n$ je cauchyovská:
-		$$ \forall n \in ®N: \rho(x_{n+1}, x_n) = \rho(T(x_n), T(x_{n+1})) ≤ \gamma \rho\left(x_n, x_{n+1}\right) ≤ \gamma^2 \rho\left(x_{n-1}, x_n\right) ≤ … ≤ \gamma^n \rho\left(x_1, x_2\right). $$
+		Zvolme $x_1 \in P$ libovolně. Definujeme indukcí $x_{n+1} = T\left(x_n\right)$. Tvrdíme, že $x_n$ je cauchyovská, $\forall n \in ®N$:
+		$$ \rho(x_{n+1}, x_n) = \rho(T(x_n), T(x_{n+1})) ≤ \gamma \rho\left(x_n, x_{n+1}\right) ≤ \gamma^2 \rho\left(x_{n-1}, x_n\right) ≤ … ≤ \gamma^n \rho\left(x_1, x_2\right). $$
 		Nechť $\epsilon > 0$, zvolme $n_0$, aby $\rho\(x_2, x_1\) \gamma^{n_0 - 1} \frac{1}{1 - \gamma} < \epsilon$. Nyní $\forall m$, $n ≥ n_0$, $m < n$:
-		$$ \rho\(x_m, x_n\) ≤ \rho\(x_{m+1}, x_m\) + … + \rho\(x_n, x_{n-1}\) ≤ \rho(x_1, x_2)·\(\gamma^{m-1} + … + \gamma^{n-2}\) ≤ \rho\(x_2, x_1\) \gamma^{n_0 - 1} \frac{1}{1 - \gamma}. $$
+		$$ \rho\(x_m, x_n\) ≤ \rho\(x_{m+1}, x_m\) + … + \rho\(x_n, x_{n-1}\) ≤ \rho(x_1, x_2)·\(\gamma^{m-1} + … + \gamma^{n-2}\) ≤ $$
+		$$ ≤ \rho\(x_2, x_1\) \gamma^{n_0 - 1} \frac{1}{1 - \gamma}. $$
 		Tedy $x_n$ je cauchyovská a má limitu.
 
 		Tvrdíme, že $T\(x_n\) \rightarrow T(x)$: $T$ je spojité v $x$. K $\epsilon > 0$ volme $\delta = \epsilon$. Pak 
 		$$ \forall y \in B(x, \delta): \rho(x, y) < \delta \implies \rho(T(x), T(y)) ≤ \gamma · \rho(x, y) ≤ \gamma \delta < \epsilon. $$
-		Podle Heineho věty $x_n \rightarrow x \implies T\left(x_n\right) \rightarrow T(x)$. Víme, že $x_{n+1} = T(x_n)$, tj. $\lim_{n \rightarrow ∞} x_{n+1} = \lim_{n \rightarrow ∞} T\left(x_n\right)$.
+		Podle Heineho věty $x_n \rightarrow x \implies T\left(x_n\right) \rightarrow T(x)$. Víme, že $x_{n+1} = T(x_n)$, tj.
+		$$ \lim_{n \rightarrow ∞} x_{n+1} = \lim_{n \rightarrow ∞} T\left(x_n\right). $$
 
 		Jednoxznačnost: Nechť $\exists x, y$, $T(x) = x$ a $T(y) = y$. Pak
 		$$ \rho(x, y) = \rho(T(x), T(y)) ≤ \gamma·\rho(x, y) \implies \rho(x, y) = 0 \implies x = y. $$
@@ -125,11 +127,13 @@ TODO!!!
 	\end{dukazin}
 
 	\begin{dukazin}
-		Zvolme $\delta, \Delta > 0$, aby $\[x_0 - \delta, x_0 + \delta\] \times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. Definujeme $X = \{y \in C([x_0 - \delta, x_0 + \delta]) | y(x) \in [y_0 - \Delta, y_0 + \Delta] \}$. Definujeme operátor $T: C(\[x_0 - \delta, x_0 + \delta\]) \rightarrow C(\[x_0 - \delta, x_0 + \delta\])$ tak, že $T[y](x) = y_0 + \int_{x_0}^x f(s, y(s)) ds$.
+		Zvolme $\delta, \Delta > 0$, aby $\[x_0 - \delta, x_0 + \delta\] \times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. Definujeme
+		$$ X = \{y \in C([x_0 - \delta, x_0 + \delta]) | y(x) \in [y_0 - \Delta, y_0 + \Delta] \}. $$
+		Definujeme operátor $T: C(\[x_0 - \delta, x_0 + \delta\]) \rightarrow C(\[x_0 - \delta, x_0 + \delta\])$ tak, že $T[y](x) = y_0 + \int_{x_0}^x f(s, y(s)) ds$.
 
 		Klíčové pozorování: $y$ řeší naši ODR $\Leftrightarrow$ $T[y] = y$. (Z předchozí věty.)
 
-		$X$ je úplný: Později.
+		$X$ je úplný: Nejprve dokážeme, že $X$ je uzavřená podmnožina $C([x_0 - \delta, x_0 + \delta])$: $X$ lze zapsat (dokáže se velmi přímočaře) jako $\overline{B(y_0, \Delta)}$: Tj. $X$ je uzavřená a úplnost se dědí na uzavřené podmnožiny.
 
 		Máme pevné $\delta, \Delta > 0$, že $A := \[x_0 - \delta, x_0 + \delta\]\times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. $f$ spojitá na tomto kompaktu $\implies \exists M > 0$, $|f(x, y)| ≤ M$ na $A$. Z lipschitzovskosti $\exists x > 0: \forall [x, y] \in A, \forall [x, \tilde{y}] |f(x, y) - f(x, \tilde{y})| ≤ K·|y - \tilde{y}|$. Případným zmenšením $\delta > 0$ dosáhneme
 		$$ \delta ≤ \min\{\frac{\Delta}{M}, \frac{1}{2K}\}. $$
@@ -142,10 +146,193 @@ TODO!!!
 		$$ T[y](x) - T[\tilde{y}](x)| = |\int_{x_0}^x (f(s, y(s)) - f(s, \tilde{y}(s))) ds| ≤ \int || ≤ $$
 		$$ ≤ \int_{x_0}^x |K·(y(s) - \tilde{y}(s))|ds < |x_0 - x|·K·\sup_{s \in \[x_0 - \delta, x_0 + \delta\]}(y(s) - \tilde{y}(s)) ≤ \delta·K·\rho(y, \tilde{y}) ≤ \frac{1}{2}\rho(y, \tilde{y}). $$
 		Supremum dá $\rho(T[y], T[\tilde{y}]) ≤ \frac{1}{2} \rho(y, \tilde{y})$.
-
 	\end{dukazin}
 \end{veta}
 
+% 13. 10. 2021
+
+\section{Funkce více proměnných}
+	\subsection{Úvodní definice a spojitost}
+	\begin{poznamka}
+		Většina definice je jen „opakování“ z letního semestru, nebo z definice spojitých funkcí na metrických prostorech.
+	\end{poznamka}
+
+	\begin{definice}[Funkce více reálných proměnných, vektorová funkce]
+		Nechť $M \subset ®R^n$. Funkcí více reálných proměnných rozumíme zobrazení $f: M \rightarrow ®R$.
+
+		Vektorovou funkcí více reálných proměnných rozumíme zobrazení $f: M \rightarrow ®R^m$, kde $m \in ®N$.
+	\end{definice}
+
+	\begin{definice}[Eukleidovská vzdálenost]
+		Pro $[x_1, …, x_n], [y_1, …, y_n] \in ®R^n$ definujeme eukleidovskou vzdálenost (metriku) jako
+		$$ |x - y| = \sqrt{\sum_{i=1}^n \(x_i - y_i\)^2}. $$
+	\end{definice}
+
+	\begin{definice}[Koule, prstencové okolí]
+		$B(c, r) = \{x \in ®R^n | |x-c| < r\}$. $P(c, r) = B(c, r)\setminus \{c\}$.
+	\end{definice}
+
+	\begin{definice}[Limita funkce]
+		Nechť $F: G \rightarrow ®R$, kde $G \subseteq ®R^n$ je otevřená. Řekneme, že $f$ má v bodě $a \in G$ limitu rovnou $A \in ®R^*$, jestliže platí
+		$$ \forall \epsilon > 0\ \exists\delta > 0\ \forall x \in P(a, \delta): f(x) \in B(A, \epsilon). $$
+		Značíme $\lim_{x \rightarrow ∞} f(x) = A$.
+	\end{definice}
+
+	\begin{definice}[Spojitost]
+		Řekneme, že $f$ je spojitá v $a$, jestliže $\lim_{x \rightarrow a} f(x) = f(a)$.
+	\end{definice}
+
+	\begin{definice}[Spojitost a limita vektorové funkce]
+		Spojitost a limitu vektorové funkce definujeme po složkách.
+	\end{definice}
+
+	\begin{poznamka}
+		Zřejmě platí aritmetika limit, věta o dvou policajtech a věta o spojitosti složené funkce.
+	\end{poznamka}
+
+	\begin{definice}[Limita posloupnosti bodů]
+		$$ x_j \in ®R^n, \lim_{j \rightarrow ∞} x_j = a \in ®R^n \Leftrightarrow \forall \epsilon > 0\ \exists j_0 \forall j ≥ j_0: |x_j - a|<\epsilon. $$
+	\end{definice}
+
+	\begin{poznamka}
+		Následující větu lze dokázat analogicky věty výše.
+	\end{poznamka}
+
+	\begin{veta}[Heine]
+		Nechť $G \subset ®R^n$ otevřená, $a \in G$, $A \in ®R^*$ a $f: G \rightarrow ®R$. Pak je ekvivalentní
+
+		\begin{itemize}
+			\item $\lim_{x \rightarrow a} f(x) = A$.
+			\item $\forall$ posloupnost $\{x_j\}_{j=1}^∞$ splňující $x_j \in G \setminus \{a\}$, $\lim_{j \rightarrow ∞} x_j = a$ platí $\lim_{j \rightarrow ∞} f(x_j) = A$.
+		\end{itemize}
+	\end{veta}
+
+	\subsection{Parciální derivace a totální diferenciál}
+	\begin{definice}[Parciální derivace]
+		Nechť $G \subset ®R^n$ je otevřená, $i \in [n]$, $f: G \rightarrow ®R$ a $x \in ®G$. Parciální derivací funkce $f$ v bodě $x$ podle $i$-té proměnné nazveme
+		$$ \frac{\partial f}{\partial x_i}(x) = \lim_{t \rightarrow 0} \frac{f(x_1, …, x_i + t, …, x_n) - f(x_1, …, x_n)}{t} = \lim_{t \rightarrow 0} \frac{f(x+t·e_i) - f(x)}{t}, $$
+		pokud tato limita existuje.
+	\end{definice}
+
+	\begin{definice}[Extrémy]
+		Nechť $M \subset ®R^n$, $f: M \rightarrow ®R$ a $x_0 \in M$. Řekneme, že $f$ nabývá v bodě $x_0$ svého minima (resp. lokálního minima, resp. maxima, lokálního maxima) vzhledem k $M$, jestliže $\forall x \in M: f(x) ≥ f(x_0)$ (resp. $\exists \delta > 0\ \forall x \in B(x_0, \delta)$, resp. $f(x) ≤ f(x_0)$).
+	\end{definice}
+
+% 14. 10. 2021
+
+	\begin{veta}[Nutná podmínka existence extrému]
+		Nechť $G \subset ®R^n$ je otevřená, $i \in [n]$, $a \in G$ a $f: G \rightarrow ®R$. Má-li $f$ v bodě $a$ lokální minimum (maximum) a existuje-li $\frac{\partial f}{\partial x_i}(a)$, pak $\frac{\partial f}{\partial x_i}(a) = 0$.
+
+		\begin{dukazin}
+			Položme $h(t) = f(a + t·e_i)$. Pak $h$ je definováno na okolí 0. $f$ má v $a$ extrém, tedy $h$ má v 0 extrém. Dále
+			$$ h'(0) = \lim_{t \rightarrow 0} \frac{h(t) - h(0)}{t} = \lim_{t \rightarrow ∞} \frac{f(a + t·e_i) - f(a)}{t} = \frac{\partial f}{\partial x_i}(a). $$
+			Podle Fermatovy věty je $h'(0) = 0$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Derivace ve směru]
+		Nechť $G \subset ®R^n$ je otevřená, $f: G \rightarrow ®R$, $x \in G$ a $0 ≠ v \in ®R^n$. Derivací funkce $f$ v bodě $x \in G$ ve směru $v$ nazveme
+		$$ \frac{\partial f}{\partial v}(x) = \lim_{t \rightarrow 0} \frac{f(x + t·v) - f(x)}{t}, $$
+		pokud limita existuje.
+	\end{definice}
+
+	\begin{definice}[Totální diferenciál]
+		Nechť $G$ je otevřená, $f: G \rightarrow ®R$ a $a \in G$. Řekneme, že lineární zobrazení $L: ®R^n \rightarrow ®R$ je totální diferenciál funkce $f$ v bodě $a$, pokud $\lim_{h \rightarrow 0} \frac{f(a + h) - f(n) - L(h)}{|h|} = 0$.
+
+		Značíme $D_f(a)$ a hodnotu v bodě $h \in ®R^n$ značíme $D_f(a)(h)$.
+	\end{definice}
+
+	\begin{poznamka}
+		Lineární zobrazení $L: ®R^n \rightarrow ®R$ lze reprezentovat jako $L(h) = A_ih_1 + … + A_nh_n$.
+
+		Ekvivalentně lze definovat jako $\lim_{x \rightarrow a} \frac{f(x) - f(a) - L(x-a)}{|x-a|} = 0$.
+
+		Geometrický význam je, že lineární funkce $f(a) + L(x - a)$ je velmi blízko původní funkce $f(x)$ na okolí $a$.
+	\end{poznamka}
+
+	\begin{veta}[O tvaru totálního diferenciálu]
+		Nechť $G$ je otevřené, $a \in G$ a $f: G \rightarrow ®R$. Nechť existuje totální diferenciál $f$ v bodě $a$. Pak existují parciální derivace $\frac{\partial f}{\partial x_i}(a)$ a pro všechna $h \in ®R^n$ platí $D_f(a)(h) = \frac{\partial f}{\partial x_1}h_1 + … + \frac{\partial f}{\partial x_n}h_n$. Navíc pro $¦o ≠ v \in ®R^n$ platí $\frac{\partial f}{\partial v}(a) = D_f(a)(v)$.
+
+		\begin{dukazin}
+			Víme $\lim_{h \rightarrow 0} \frac{f(a + h) - f(a) - L(h)}{|h|} = 0$. Speciálně pro $h = t·e_i$:
+			$$ 0 = \lim_{t \rightarrow 0} \frac{f(a + t·e_i) - f(a) - L(t·e_i)}{t} = \lim_{t \rightarrow 0} \frac{f(a + t·e_i) - f(a) - A_i·t}{t} = \frac{\partial f}{x_i}(a) - A_i. $$
+			Tj. $\frac{\partial f}{x_i}(a) = A_i$. Obdobně pro $v$.
+		\end{dukazin}
+	\end{veta}
+
+% 20. 10. 2021
+
+TODO!!!
+
+% 21. 10. 2021
+
+TODO!!!
+
+% 27. 10. 2021
+
+	\begin{veta}[O přírůstku funkce]
+		Nechť $G \subset ®R^n$ je otevřená a $f: G \rightarrow ®R$ má totální diferenciál v každém bodě $G$. Nechť $a, b \in G$ a nechť úsečka $L$ spojující $a, b$ je obsažena v $G$, tj. $L = \{(1 - t)·a + t·b | t \in [0, 1]\} \subset G$. Pak existuje $\zeta \in L$ tak, že $f(b) - f(a) = Df(\zeta)·(b - a)$.
+
+		\begin{dukazin}
+			Položme $F(t) = f(a + t(b - a))$. Podle Lagrangeovy věty $\exists \zeta_2 \in (0, 1)$ tak, že $f(b) - f(a) = F(1) - F(0) = F'(\zeta_2)$. Položme $\zeta = a + \zeta_2(b - a)$.
+
+			Podle řetízkového pravidla $\frac{\partial F}{\partial t}(\zeta) = \sum_{j=1}^n \frac{\partial f}{\partial y_j}(\zeta) (b_j - a_j) = Df(\zeta)(b - a)$.
+		\end{dukazin}
+	\end{veta}
+
+	\subsection{Parciální derivace vyšších řádů}
+	\begin{definice}
+		Nechť $f$ má na otevřené množině $G \subset ®R^n$ parciální derivaci
+		$$ \frac{\partial f}{\partial x_i}, i \in [n], $$
+		pak definujeme pro $a \in G$ a $j \in [n]$ druhou parciální derivaci
+		$$ \frac{\partial^2 f}{\partial x_j \partial x_i}(a) = \frac{\partial}{\partial x_j}\(\frac{\partial f}{\partial x_i}\)(a), i ≠ j, $$
+		$$ \frac{\partial^2 f}{\partial x_i^2}(a) = \frac{\partial}{\partial x_i}\(\frac{\partial f}{\partial x_i}\)(a), i = j. $$
+		
+		Obdobně definujeme derivace vyšších řádů.
+	\end{definice}
+
+	\begin{definice}[$C^k(®R)$]
+		Nechť $G \subset ®R^n$ je otevřená a $f: G \rightarrow ®R$. Řekneme, že $f \in C^1(G) = C^1(G, ®R)$, pokud existují parciální derivace $\frac{\partial f}{\partial x_i}$, $i \in [n]$, a jsou to spojité funkce.
+
+		Řekneme, že $f \in C^k(G) = C^k(G, ®R)$, $k \in ®N$, pokud existují všechny parciální derivace $f$ až do řádu $k$ včetně a jsou to spojité funkce.
+	\end{definice}
+
+	\begin{dusledek}
+		Nechť $G \subset ®R^n$ je otevřená. Z věty dříve dostáváme, že je-li $f \in C^1(G)$, pak existuje totální diferenciál $f$ na $G$.
+	\end{dusledek}
+
+	\begin{veta}[Záměnnost parciálních derivací]
+		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f \in C^2(G, ®R)$. Pak
+		$$ \frac{\partial^2 f}{\partial x_j \partial x_i}(a) = \frac{\partial^2 f}{\partial x_i \partial x_j}(a). $$
+
+		\begin{dukazin}
+			SLÚNO $n = 2$. Vezměme $t$ dost malé, aby $B_{\max}([a_1, a_2], t) \subset G$. Položme $W(t) = \frac{f(a_1 + t, a_2 + t) - f(a_1, a_2 + t) - f(a_1 + t, a_2) + f(a_1, a_2)}{t^2}$. Položme $\phi(x) = f(x, a_2 + t) - f(x, a_2)$. Pak $W(t) = \frac{1}{t^2}(\phi(a_1 + t) - \phi(a_1))$.
+
+			$\phi$ je spojitá a $\exists \phi'$. Lagrange: $\exists c_1 \in (a_1, a_1 + t)$:
+			$$ \frac{1}{t^2}·\phi'(c_1)·(a_1 + t - a_1) = \frac{1}{t} \(\frac{\partial f}{\partial x}(c_1, a_2 + t) - \frac{\partial f}{\partial x}(c_1, a_2)\) = \frac{1}{t}(h(a_2 + t) - h(a_2)), $$
+			$h(a) = \frac{\partial f}{\partial x}(c_1, z)$ je spojitá a derivovatelná, tedy použijeme Lagrange:
+			$$ = \frac{1}{t}·h'(c_2)·(a_2 + t - a_2) = \frac{\partial^2 f}{\partial y\partial x}(c_1, c_2) \leftarrow \frac{\partial^2 f}{\partial y\partial x}(a_1, a_2). $$
+			($f$ má spojité druhé derivace, tedy můžeme prohodit $f$ a limitu.) Totéž provedeme pro zaměněné souřadnice.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Hessova matice]
+		Nechť $G \subset ®R^n$ je otevřená a $a \in G$. Nechť $f \in C^2(G)$. Definujeme Hessovu matici $f$ jako
+		$$ D^2f(a) = \begin{pmatrix} \frac{partial^2 f}{\partial x_1^2}(a) & … & \frac{partial^2 f}{\partial x_1 \partial x_n}(a) \\ \vdots & \ddots & \vdots \\ \frac{partial^2 f}{\partial x_n \partial x_1}(a) & … & \frac{partial^2 f}{\partial x_n^2}(a) \end{pmatrix}. $$
+
+		Podle předchozí věty je matice symetrická, a proto můžeme pracovat s následující kvadratickou formou
+		$$ D^2f(a)(¦u, ¦v) = u^TD^2f(a)·v, \forall ¦u, ¦v \in ®R^2. $$
+	\end{definice}
+
+	\begin{definice}
+		Nechť $G \subset ®R^n$ je otevřená a $a \in G$. Nechť $f \in C^2(G)$. Pak definujeme Taylorův polynom stupně 2 jako
+		$$ T_2^{f, a}(x) := f(a) + Df(a)(x - a) + \frac{1}{2}D^2f(a)(x - a, x - a). $$
+	\end{definice}
+
+	\begin{veta}[Taylorova věta pro druhý řád]
+		Nechť $f: ®R^n \rightarrow ®R$ je třídy $C^2$ na okolí bodu $a \in ®R^n$. Pak
+		$$ \lim_{x \rightarrow 0} \frac{f(x) - T_2^{f, a}(x)}{|x - a|^2} = 0. $$
+	\end{veta}
 
 
 \end{document}

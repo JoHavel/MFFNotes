@@ -42,8 +42,8 @@
 \begin{definice}[Vnější míra (outer measure)]
 	Nechť $X ≠ \O$. Funkce $\mu^*: ©P\left(X\right) \rightarrow [0, ∞]$ je vnější míra na $X$, jestliže:
 	$$ \mu^*\left(\O\right) = 0, $$
-	$$ A \subet B \implies \mu^*(A) ≤ \mu^*(B),\ \text{(monotonie)}  $$
-	$$ A_i \subet X \left(i \in ®N\right) \implies \mu^*\left(\bigcup_iA_i\right) ≤ \sum_i\mu^*(A_i).\ \text{(spočetná subadivita)}  $$
+	$$ A \subset B \implies \mu^*(A) ≤ \mu^*(B),\ \text{(monotonie)}  $$
+	$$ A_i \subset X \left(i \in ®N\right) \implies \mu^*\left(\bigcup_iA_i\right) ≤ \sum_i\mu^*(A_i).\ \text{(spočetná subadivita)}  $$
 
 	\begin{prikladyin}
 		$$ \mu^* ≡ 0, $$
@@ -94,7 +94,79 @@
 	\end{dukazin}
 \end{veta}
 
+% 19. 10. 2021
 
+TODO!!!
 
+% 26. 10. 2021
+
+\begin{veta}[Regularita Lebesgueovy míry]
+	Nechť $E \subset ®R^n$. Je ekvivalentní:
+	
+	\begin{enumerate}
+		\item $E \in ©A_{\lambda^{n*}}$,
+		\item $\forall \epsilon > 0 \ \exists F \subset E \subset G$, $F$ uzavřená, $G$ otevřená, $\lambda^n(G \setminus F) < \epsilon$,
+		\item $\exists A \subset E \subset B$, $A, B \in ©B^n$, $\lambda^n(B \setminus A) = 0$,
+		\item $E \in ©B_0^n$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$1 \implies 2$: Mějme $E \in ©A_{\lambda^{n*}}$, $\epsilon > 0$. Nechť nejprve $\lambda^{n*}(E) < ∞$. Pak $\exists I_i \in O_n$, $E \subset \bigcup_i I_i$, $\sum_i v(I_i) < \lambda^{n*}(E) + \frac{\epsilon}{2}$. Položme $G := \bigcup_i I_i$ (otevřená), $E \subset G$, $\lambda^n(G \setminus E) < \frac{\epsilon}{2}$. Je-li $\lambda^{n*}(E) = ∞$, pak ze $\sigma$-konečnosti je $E = \bigcup_m E_m$, $E_m := E \cap [-m, m]^n$. $\lambda^{n*}(E_m) < ∞ \implies \exists G_m$ otevřená, $E_m \subset G_m$, $\lambda^n(G_m \setminus E_m) < \frac{\epsilon}{2^{m+1}}$. $G := \bigcup_m G_m$ otevřené, $E \subset G$, $\lambda^n(G \setminus E) ≤ \sum_m \lambda^n(G_m \setminus E_m) < \frac{\epsilon}{2}$.
+
+		$E^c \in ©A_{\lambda^{m*}} \implies \exists H$ otevřená, $E^c \subset H$, $\lambda^n(H \setminus E^c) < \frac{\epsilon}{2}$. $F:= H^c$ uzavřená, $F \subset E$, $\lambda^n(E \setminus F) = \lambda^n(E \setminus H^c) = \lambda^n(H \setminus E^c) < \frac{\epsilon}{2}$. TODO
+
+		$2 \implies 3$: Nechť $E \subset ®R^n$ splňuje 2.
+		$$ \forall j \in ®N \ \exists F_j \subset E \subset G_j, F_j \text{ uzavřená}, G_j \text{ uzavřená}, \lambda^n(G_j \setminus F_j) < \frac{1}{j}. $$
+		Položme $A := \bigcup_j F_j$, $B := \bigcap_j G_j$, $A, B \in ©B^n$, $A \subset E \subset B$. $\lambda^n(B \setminus A)  ≤ \lambda^n(G_j \setminus F_j) < \frac{1}{j}$ pro libovolné $j \in ®N$, tedy $\lambda^n(B \setminus A) = 0$.
+
+		$3 \implies 4$: Jsou-li $A \subset E \subset B$ jako v 3, pak $B \setminus A$ je $\lambda^n$-nulová množina, a tedy $E \in ©B_0^n$.
+
+		$4 \implies 1$: $©A_{\lambda^{n*}}$ obsahuje $©B^n$ a nulové množiny, tedy obsahuje $©B_0^n$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Luzinova (běžně bývá obecnější)]
+	Buď $f: ®R^n \rightarrow ®R$ lebesgueovsky měřitelná. Buď $\epsilon > 0$. Pak existuje $G \subset ®R^n$ otevřená taková, že $\lambda^n(G) < \epsilon$ a restrikce $f|_{G^c}$ je spojitá.
+
+	\begin{dukazin}
+		Buď $U_1, U_2, …$ posloupnost všech otevřených intervalů s racionálními koncovými body. $f$ je lebesgueovsky měřitelná, tedy $\forall j, f^{-1}(U_1) \in ©B_0^n$. Podle regularity pak $\exists F_j \subset f^{-1}(U_j) \subset G_j$, $F_j$ uzavřená, $G_j$ otevřená, $\lambda^n(G_j \setminus F_j) < \frac{\epsilon}{2^j}$. Položme $G := \bigcup_j (G_j \setminus F_j)$. Zřejmě $G$ je otevřená, $\lambda^n(G) ≤ \sum_j \lambda^n (G_j \setminus F_j) < \epsilon$.
+
+		Pro restrikci $g := F|_{G^c}$ platí:
+		$$ g^{-1}(U_j) = \{x \in G^c: f(x) \in U_j\} = f^{-1}(U_j) \cap G^c = G_j \cap G^c, j \in ®N. $$
+		Zřejmě $U \subset ®R$ otevřená $\implies$ $U = \cup_{U_j \subset U} U_j$, tedy $g^{-1}(U) = \bigcup_{U_j \in U}g^{-1}(U_j)$ otevřená množina v $G^c$, tedy $g$ je spojitá na $G^c$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Obecně nelze požadovat $\lambda^n(G) = 0$. Např. charakteristická funkce diskontinua kladné míry (podobně jako Cantorovo diskontinuum, ale nenulové míry), které dostaneme tak, že z prostředků intervalů v $i$-tém kroku vždy odebereme intervaly délky $a_i$ tak, aby $a_1 + 2a_2 + 4a_3 + … < 1$. ($G$ z minulé věty pak bude sjednocení malých okolíček krajních bodů odebíraných intervalů.)
+	\end{poznamkain}
+\end{veta}
+
+\section{Regularita borelovských měr}
+\begin{definice}[Regulární borelovská míra]
+	Borelovská míra $\mu$ na topologickém (metrickém) prostoru $X$ je regulární, jestliže $\forall B \in ©B(X): \mu(B) = \inf\{\mu(G) | B \subset G, G \text{ otevřená}\}$.
+\end{definice}
+
+\begin{poznamka}
+	1) Často se hovoří o vnější regularitě (outer regular measure). 2) Pro konečné míry: $\mu$ je regulární $\implies \forall B \in ©B: \mu(B) = \sup\{\mu(F) | F \subset B, F \text{ uzavřená}\}$.
+\end{poznamka}
+
+\begin{veta}
+	Každá konečná borelovská míra na metrickém prostoru je regulární.
+
+	\begin{dukazin}
+		$(X, \rho)$ metrický prostor, $\mu$ borelovská míra na $X$, $\mu(X) < ∞$. Označme
+		$$ ©D := \{B \in ©B(X) | \epsilon > 0 \ \exists F \subset B \subset G, F \text{ uzavřená}, G \text{ otevřená}, \mu(G \setminus F) < \epsilon\}. $$
+		Ukážeme $©D := ©B(X)$. $©D$ obsahuje všechny množiny: $F \subset X$ uzavřená, $F_{<\epsilon} := \{x \in X | \rho(x, F) < \epsilon\}$ (otevřená). Zřejmě $F_{<\frac{1}{j}} \searrow F$, $j \rightarrow ∞$ z uzavřenosti $F$. $\mu$ konečna $\implies$ (spojitost míry) $\mu F_{<\frac{1}{j}} \rightarrow \mu(F)$.
+
+		$©D$ je $\sigma$-algebra: $\O \in ©D$, $D \in ©D \implies D^c \in ©D$:
+		$$ F \subset D \subset G, \mu(G \setminus F) < \epsilon \implies G^c \subset D^c \subset F^c, \mu(F^c \setminus G^c) < \epsilon. $$
+
+		$D_i \in ©D \implies \bigcup_i D_i \in ©D$:
+		$$ \exists F_i \subset D_i \subset G_i, \mu(G_i \setminus F_i) < \frac{\epsilon}{2^i}. $$
+		$$ TODO! $$
+		$$ \bigcup_{i=1}^N F_i \subset \cup_{i=1}^∞ D_i \subset \bigcup_{i = 1}^∞ G_i, N \in ®N. $$
+		$$ \bigcup_{i=1}^∞ G_i \setminus \bigcup_{i=1}^F_i $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

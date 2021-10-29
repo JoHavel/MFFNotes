@@ -24,5 +24,11 @@
 	Reprezentuje vztahy jako další objekty, kardinalitu píše na výstupní hranu. Tj. má u sebe napsaný název „orientovaného vztahu“ a kardinalitu opačného vztahu (např. dítě [0, 2]). Atributy reprezentuje jako další objekty. Pokud chci přidat atribut vlastnosti, tak to dělám stejně jako u objektu. Kardinalita atributů se píše k hraně.
 \end{definice}
 
+% 14. 10. 2021
+
+	\subsection{Omezení}
+	\begin{definice}[OCL]
+		ER nemá podmínky, tedy se využívá jazyk OCL. Píše se ve tvaru \verb|context co inv jakou|, např. \verb|context o:Osoba inv o.DatNar >= '1.1.1900'|, kde \verb|co| je typ, pro jehož všechny objekty musí platit \verb|jakou|.
+	\end{definice}
 
 \end{document}

@@ -1,8 +1,6 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-
-
 \begin{document}
 
 % 29. 09. 2021
@@ -100,4 +98,113 @@ TODO!!!
 	\end{itemize}
 \end{veta}
 
+% 13. 10. 2021
+
+\begin{definice}[Kvaterniony]
+	Kvaterniony jsou algebra nad $®R^4$, kde kanonická báze se značí $1, i, j, k$ a $i^2=j^2=k^2 = -1$, $ij=-ji=k$, $jk=-kj=i$, $ki=-ik=j$.
+\end{definice}
+
+TODO kvaterniony.
+
+% 13. 10. 2021
+
+TODO!!!
+\section{Křivky}
+TODO!!!
+
+% 27. 10. 2021
+
+\begin{definice}[Reparametrizace, změna parametru]
+	Je-li $c: I \rightarrow ®R^n$ regulární parametrická křivka a $\phi: \tilde{I} \rightarrow I$ hladký difeomorfismus intervalu $\tilde{I}$ na $I$ (tedy hladká bijekce s hladkým inverzním zobrazením), je $\tilde{c} = c \circ \phi: \tilde{I} \rightarrow ®R^n$ regulární parametrická křivka se stejným obrazem jako $c$. Difeomorfismus $\phi$ pak nazýváme změnou parametru a $\tilde{c}$ reparametrizací $c$. Je-li navíc $\phi' > 0$ na $\tilde{I}$, nazveme $\tilde{c}$ reparametrizací $c$ zachovávající orientaci.
+\end{definice}
+
+\begin{definice}[Křivka, orientovaná křivka]
+	Býti reparametrizací je relace ekvivalence na množině všech regulárních parametrizovaných křivek a každou její třídu nazýváme křivka. Každého zástupce příslušné třídy ekvivalence nazýváme parametrizací této křivky. Býti reparametrizací zachovávající orientaci je rovněž relace ekvivalence na množině všech regulárních parametrizovaných křivek a každou její třídu nazýváme orientovaná křivka.
+
+	\begin{dukazin}
+		Reflexivita: $c \circ \id = c$ (difeomorfismus s kladnou derivací). Symetrie: $\tilde{c} = c \circ \phi \Leftrightarrow c = \tilde{c} \circ \phi^{-1}$ (pokud je $\phi' > 0$, pak $\(\phi^{-1}\)' > 0$). Tranzitivita:
+		$$ \tilde{\tilde{c}} = \tilde{c} \circ \phi \land \tilde{c} = c \circ \psi \implies \tilde{\tilde{c}} = x \circ \psi \circ \phi. $$
+		(Navíc $(\psi \circ \phi)' = \psi'·\phi'$).
+	\end{dukazin}
+\end{definice}
+
+\begin{poznamka}
+	Dále budeme reparametrizaci označovat pouze změnou parametru a tečka bude značit derivaci podle $t$, čárkou pak podle $s$.
+\end{poznamka}
+
+\begin{lemma}
+	Pro derivace dvou parametrizací $c(t)$ a $c(s) = c(\phi(s))$ téže hladké regulární křivky v každém odpovídajícím bodě platí
+	$$ (\dot{c}|\ddot{c}|\dddot{c}) = (c'|c''|c''') \begin{pmatrix} \dot{\phi} & \ddot{\phi} & \dddot{\phi} \\ 0 & \dot{\phi}^2 & 3\dot{\phi}\ddot{\phi} \\ 0 & 0 & \dot{\phi}^3 \end{pmatrix}. $$
+
+	\begin{dukazin}
+		$$ \dot c = \frac{dc}{dt} · \frac{d\phi}{ds} = c' · \dot\phi \qquad \(\c{dc}{dt}|_{\phi(s_0)} · \frac{d\phi}{ds}|_{s_0}\). $$
+		$$ \ddot c = \frac{d}{ds}\(c' · \dot\phi\) = c'·\ddot\phi + \frac{dc'}{ds}·\dot \phi = c'\ddot\phi + c''(\dot\phi)^2. $$
+		$$ \dddot c = \frac{d}{ds}\(c'\ddot\phi + c''(\dot\phi)^2\) = c'·\dddot\phi + c''\dot\phi\ddot\phi + c''·2\dot\phi\ddot\phi + c'''·(\dot\phi)^3. $$
+	\end{dukazin}
+\end{lemma}
+
+	\subsection{Rovinné křivky}
+	\begin{definice}[Tečný vektor, orientovaný jednotkový normálový vektor, znaménková křivost]
+		V každém bodě hladké regulární parametrické křivky $c(t)$ v $®R^2$ definujeme jednotkový tečný vektor
+		$$ ¦t(t) = \frac{c'(t)}{||c'(t)||}, $$
+		dále orientovaný jednotkový normálový vektor
+		$$ ¦n_*(t) = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}¦t(t), $$
+		a znaménkovou křivost
+		$$ \kappa_z(t) = \frac{\det(c'(t)|c''(t))}{||c'(t)||^3}. $$
+
+		Bod, kde je znaménková křivost nulová, nazýváme inflexní.
+	\end{definice}
+
+	\begin{veta}
+		Při reparametrizaci křivky v $®R^2$ zachovávající orientaci se v daném bodě tečný vektor, orientovaný normálový vektor a znaménková křivost nemění. Při reparametrizaci, která mění orientaci se tyto vektory mění na opačné a znaménková křivost pouze změní znaménko.
+
+		\begin{dukazin}
+			Jen dosadíme z minulého lemmatu.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Znaménková křivost, tečný a normálový vektor jsou ekvivariantní vůči schodnostem $®R^2$. Přesněji, mějme shodnost ve tvaru $f(X) = AX+p$, parametrickou křivku $c(t)$ a v jejím libovolném bodě veličiny $\kappa_2$, $t$, $n_*$. Pak křivka $\tilde c = f(c(t)) = Ac(t) + p$ má v odpovídajícím bodě znaménkovou křivost $\tilde \kappa_2 = \kappa_2\det A$, normálový vektor $\tilde n_* = An_s\det A$ a tečný vektor $\tilde t = At$.
+
+		\begin{dukazin}
+			Rozepsáním.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Křivka má v každém svém bodě kontakt nejvyššího řádu s tečnou přímkou (ze všech přímek) a v každém neinflexním bodě s oskulační kružnicí (ze všech rovnic).
+	\end{veta}
+
+	\begin{veta}
+		Pro hladkou regulární parametrickou křivku $c: I \rightarrow ®R^2$ platí
+		$$ t'(t) = ||c'(t)||\kappa_2(t)n_*(t). $$
+
+		Dále platí, že existuje hladká funkce $\theta(t): I \rightarrow ®R$ splňující $t(t) = (\cos\theta(t), \sin\theta(t))$ pro $t \in I$ a pro znaménkovou křivost pak platí
+		$$ \kappa_2(t) = \frac{\theta'(t)}{||c'(t)||}, t \in I. $$
+
+		Pokud je tedy křivka parametrizována konstantní jednotkovou rychlostí $||c'(t)|| = 1$, pak je tedy znaménková křivost rychlostí změny směru křivky.
+
+		\begin{dukazin}
+			$$ t(t)' = \(\frac{c'}{||c'||}\)' = \frac{\sqrt{c'·c'}c'' - \frac{1}{2}\frac{2c'·c''}{\sqrt{c'·c'}}c'}{c'·c'} = \frac{||c'||^2c'' - (c'·c'')c'}{||c'||^3}. $$
+			Dokážeme, že $(¦t' \perp ¦t) \Leftrightarrow (¦t' \perp c')$.
+			$$ ¦t'·c' = \frac{1}{||c'||^3} \[\(||c'||^2c'' - (c'·c'')c'\)·c'\] = ||c'||^2(c''·c') - (c'·c'')(c'·c') = 0, $$
+			tedy existuje $K \in ®R$, že $¦t' = K·¦n_*$.
+			$$ \det(¦t, ¦t') = \det(¦t, K¦n_*) = K\det(¦t, ¦n_*) = K. $$
+			$$ \det(¦t, ¦t') = \det(\frac{c'}{||c'||}, \frac{||c'||^2·c'' - (c'·c'')c'}{||c'||^3}) = \frac{1}{||c'||^4}\det(c', ||c'||^2·c'') + 0 = $$
+			$$ = \frac{\det(c', c'')}{||c'||^3}||c'|| = \kappa_2·||c'||. $$
+
+			K důkazu úhlu bychom potřebovali komplexku. (Pro důkaz existence.)
+		\end{dukazin}
+	\end{veta}
+
+	\subsection{Křivky v prostoru}
+	\begin{definice}[Jednotkový tečný vektor, křivost, binormála, jednotkový normálový vektor, torze]
+		Jednotkový tečný vektor bude totožný, křivost (tentokrát není znaménková) je totožná, jen místo determinantu je velikost vektorového součinu. Dále definujeme binormálu (normovaný vektorový součin první a druhé derivace), normála je pak vektorový součin binormály a tečny.
+
+		Torze je $\tau(t) = \frac{\det(c'(t)|c''(t)|c'''(t))}{||c'(t)\times c''(t)||^2}$.
+	\end{definice}
+
+	\begin{definice}[Oskulační, retrifikační a normálová rovina]
+		Oskulační rovina je množina $¦c(t) + <¦t(t), ¦n(t)>$, retrifikační rovina je množina $¦c(t) + <¦t(t), ¦b(t)>$ a normálová rovina je $¦c(t) + <¦n(t), ¦b(t)>$.
+	\end{definice}
 \end{document}

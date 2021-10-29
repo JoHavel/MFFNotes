@@ -1,0 +1,16 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[věže]
+	Máme šachovnici $m\times n$ a na některých políčkách stojí sloupy. Na políčka (bez sloupů) je možno umísťovat věže. Každá věž ohrožuje políčka ve stejné řadě a stejném sloupci, ale pouze k nejbližšímu sloupu v daném směru. Otázkou je, kolik věží je možno rozmístit tak, aby žádná nestála na políčku ohroženém jinou věží. No a na Vás je popsat, jak nalézt odpověď (můžete používat „známé“ algoritmy jako podprogramy). 
+
+	\begin{reseni}[Přes toky]
+		Úlohu převedeme na hledání maximálního toku. To uděláme tak, že si vezmeme 2 vrcholy -- stok a zdroj -- a ze zdroje povedeme hranu ohodnocenou jedničkou do nového (pokaždé jiného) vrcholu za každý kus řádku (tj. od začátku řádku k 1. sloupu, od $i$-tého sloupu k $i+1$-nímu sloupu v daném řádku, …, od posledního sloupu ke konci řádku), do stoku povedeme z nových (jiných než u zdroje) vrcholů hrany ohodnocené jedničkou za každý kus sloupce, a nakonec povedeme jednotkové hrany z vrcholů reprezentujících kus řádku do vrcholů reprezentujících kus sloupce právě tehdy, když daná kombinace odpovídá políčku bez sloupu. (Úloha je pak hledání maximálního toku, protože tok musí splňovat, že každým kusem řádku/sloupce „teče“ nejvýše jednou, řešení úlohy pak nalezneme jako ty hrany mezi „řádky“ a „sloupci“, přes které teče tok).
+
+		Takový tok pak umíme najít v čase $O\((m·n)^2·\log(m·n)\)$, jelikož kusů řádků/sloupců (tj. vrcholů - 2) je nejvýše $2m·n$ (každé políčko může být jen 1 kus řádku a jeden sloupce) a kusů řádků/sloupců + políček (tj. počet hran) je nejvýše $3m·n$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

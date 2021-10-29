@@ -369,7 +369,229 @@ TODO
 	Nechť $X$ je normovaný lineární prostor nad ®K. Prostor $©L(X, ®K)$ značíme $X^*$ a nazýváme jej duálním prostorem k prostoru $X$.
 \end{definice}
 
+% 18. 10. 2021
 
+TODO!!!
+
+% 19. 10. 2021
+
+TODO!!!
+
+% 25. 10 2021
+
+TODO!!!
+
+\begin{poznamka}[Kvocient]
+	Nechť $X$ je vektorový prostor nad ®K a $Y$ jeho podprostor. Definujeme relaci ekvivalence $\sim$ na $X$ jako $x \sim y \Leftrightarrow x-y \in Y$.
+
+	Pro $x \in X$ pak definujeme $[x]$ jako třídu ekvivalence obsahující $x$.
+
+	Na množině $X / Y = \{[x] | x \in X\}$ definujeme operace $[x] + [y] = [x + y]$ a $\alpha [x] = [\alpha x]$.
+
+	\begin{definicein}[Kvocient]
+		Nechť $X$ je vektorový prostor a $Y$ jeho podprostor. Pak vektorový prostor $X / Y$ nazýváme faktoprostorem prostoru $X$ podle $Y$ nebo též kvocientem $X$ podle $Y$. Dále definujeme tzv. kanonecké kvocientové zobrazení $q: X \rightarrow X / Y$ předpisem $q(x) = [x]$.
+	\end{definicein}
+
+	\begin{definicein}[Norma na kvocientu]
+		Buď $X$ normovaný lineární prostor a $Y$ jeho uzavřený podprostor. Pak $(X / Y, ||·||_{X / Y})$ je normovaný lineární prostor s normou
+		$$ ||[x]||_{X / Y} = \inf_{y \in [x]}||y|| = \inf_{y \in Y}||x + y|| = \inf_{y \in Y}||x - y|| = \dist(x + Y, 0) = \dist(x, Y). $$
+		Tato norma se nazývá kanonická kvocientová norma.
+
+		\begin{dukazin}[Je to norma]
+			Triviální.
+		\end{dukazin}
+	\end{definicein}
+
+	\begin{tvrzeniin}
+		Nechť $X$ je normovaný lineární prostor a $Y$ jeho uzavřený podprostor. Pak kanonické kvocientové zobrazení $q: X \rightarrow X / Y$ je spojitý lineární operátor, který je na a splňuje $q(U_x) = U_{X / Y}$. Je-li $Y$ vlastní, pak $||q|| = 1$.
+
+		\begin{dukazin}
+			Zřejmý.
+		\end{dukazin}
+	\end{tvrzeniin}
+\end{poznamka}
+
+\begin{veta}
+	Nechť $X$ je Banachův prostor. Potom TODO!
+
+	\begin{dukazin}
+		Přes test úplnosti ($X$ je Banachův, právě když každá abs. konvergentní řada je konvergentní). Ať $\{[x]_n | n \in ®N\}$ splňuje $\sum_{n=1}^∞ < ∞$. Chceme $\sum_{[x]_n}$. Ať $\{y_n | n \in ®N\} \subseteq Y$ jsou takové, že $\sum_{n = 1}^∞ ||x_n + y_n|| < ∞$. Pak $\sum (x_n + y_n)$ je konvergentní (podle testu úplnosti) a je prvkem $X$, tedy $q\(\sum_{n=1}^∞ (x_n + y_n)\) = \sum_{n=1}^∞ q(x_n + y_n) = \sum_{n=1}^∞ [x_n]$. Tudíž $\sum_{n=1}^∞ [x_n]$ je v prostoru $q(X) = X / Y$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Zajímavosti]
+	$l_∞ / c_0$ je docela zajímavý prostor (Rosemider? + Brech? 2012: Je nerozhodnutelné, zda $l_∞ / c_0$ je izometricky univerzální Banachův prostor hustoty $|®R|$. Dokonce je nerozhodnutelné, zda takový prostor existuje.) ($l_∞ / c_0 ≡ ©C(\beta ®N \setminus ®N)$)
+\end{poznamka}
+
+\begin{definice}[Direktní součet]
+	Nechť $X$ je vektorový prostor a $A, B$ jsou jeho podprostory. Říkáme, že $X$ je direktním (též algebraickým) součtem $A$ a $B$ (značíme $X = A \oplus B$) pokud $A \cap B = \{¦o\}$ a $X = A + B = \spn\{A \cup B\}$.
+\end{definice}
+
+\begin{definice}[Projekce]
+	Nechť $X$ je vektorový prostor. Lineární zobrazení $P: X \rightarrow X$ se nazývá (lineární) projekce, pokud $P^2 = P \circ P = P$.
+\end{definice}
+
+\begin{tvrzeni}[Fakt]
+	Nechť $X$ je vektorový prostor.
+
+	\begin{itemize}
+		\item Je-li $P: X \rightarrow X$ lineární projekce, pak $P\lhook{\Rng P} = \id_{\Rng P}$.
+		\item Je-li $Y$ podprostor $X$ a $P: X \rightarrow Y$ lineární zobrazení splňující $P\lhook_Y = \id_Y$, pak $P$ je projekce $X$ na $Y$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Triviální.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Nechť $X$ je vektorový prostor. Jsou-li $P_A$ a $P_B$ projekce příslušné rozkladu $X = A \oplus B$, pak $P_A + P_B = \id_X$, $\Rng P_A = A$, $\ker P_A = B$, $\Rng P_B = B$ a $\Ker P_B = A$.
+
+	\begin{dukazin}
+		Jednoduchý.
+	\end{dukazin}
+
+	Na druhou stranu, je-li $P$ lineární projekce v $X$, pak $X = A \oplus B$, kde $A = \Rng P$, $B = \Ker P$ a $P = P_A$.
+
+	\begin{dukazin}
+		Jednoduchý.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $X$ je vektorový prostor a $Y$ jeho podprostor.
+
+	\begin{itemize}
+		\item Prostor $Y$ má algebraický doplněk v $X$.
+		\item Je-li $A$ algebraický doplněk $Y$ v $X$, je $A$ algebraicky izomorfní s $X / Y$, speciálně $\dim(A) = \dim(X / Y)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Díky Zornovu lemmatu existuje algebraická báze $B \subset Y$ prostoru $Y$. Stejně tak existuje $B' \supset B$ báze $X$. Potom $Z = \spn(B' \setminus B)$ je algebraický doplněk $Y$ v $X$, neboli $X = Y \oplus X$.
+
+% 26. 10. 2021
+
+		Ať $X = Y \oplus A$. Pak chceme $q\upharpoonright_A: A \rightarrow X / Y$ je lineární izomorfismus: Víme $q$ je lineární, $q$ je prosté (ať $x \in A, q(x) = 0$, pak $x \in Y$, tedy $x \in A \cap Y = \{¦o\}$, takže $x = ¦o$) a $q$ je na (Ať $x = y + a \in X$, pak $q(x) = q(a)$, tedy $q(x) \in q|_A(A)$). 
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Kodimenze]
+	Je-li $X$ vektorový prostor a $Y$ jeho podprostor, pak kodimenzí (značíme $\codim Y$?) $Y$ rozumíme dimenzi libovolného algebraického doplňku $Y$ (což je rovno dimenzi $X / Y$).
+\end{definice}
+
+\begin{definice}
+	Je-li $X$ normovaný lineární prostor a $X = A \oplus B$, pak říkáme, že $X$ je topologickým součtem $A$ a $B$, pokud jsou příslušné projekce $P_A$ a $P_B$ spojité. Tento fakt značíme $X = A \oplus_t B$. Je-li $A$ podprostor $X$, pak každý podprostor $B \subset X$ splňující $A \oplus_t B = X$ se nazývá topologický doplněk $A$ v $X$. Má-li $A$ topologický doplněk, pak říkáme, že je komplementovaný (v $X$).
+\end{definice}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor a $Y, Z$ jsou jeho podprostory splňující $X = Y \oplus Z$. Pak $X = Y \oplus_t Z$, právě když zobrazení $T: X \rightarrow Y \oplus_1 Z$, $T(x) = (P_Y(x), P_Z(x))$ je izomorfismus.
+
+	\begin{dukazin}
+		$\implies$: $\forall x \in X$: $||T(x)|| = ||P_Y x|| + ||P_Z x|| ≤ 2\max (||P_Y||, ||P_Z||) ||x|| ≤ ||(P_Y + P_Z)x|| = ||x||$. Tedy $T$ je izomorfismus.
+
+		$\Leftarrow$: $\forall x \in X$: $||P_yx|| ≤ ||P_yx|| + ||P_z x|| = ||T x|| ≤ ||T|| ||x||$, tedy $||P_y|| ≤ ||T||$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X$ je Banachův prostor a $Y, Z \subset X$ jeho podprostory splňující $X = Y \oplus Z$. Pak $X = Y \oplus_t Z$, právě když $Y$ a $Z$ jsou uzavřené.
+
+	\begin{dukazin}
+		Zatím bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X, Y$ jsou normované lineární prostory. Pak
+
+	\begin{itemize}
+		\item $Y$ je isomorfní komplementovanému podprostoru $X$, právě když existují lineární operátory $S: X \rightarrow Y$ a $T: Y \rightarrow X$ splňující $S \circ T = \id_Y$.
+		\item $Y$ je isometrické $1$-komplementovanému podprostoru $X$, právě když existují lineární operátory $S: X \rightarrow Y$ a $T: Y \rightarrow X$ splňující $S \circ T = \id_y$ a $\max\{||S||, ||T||\} ≤ 1$.
+	\end{itemize}
+
+	\begin{dukazin}
+		$\Leftarrow$: Polož $p := T \circ S: X \rightarrow X$. Pak $p$ je zřejmě lineární a $||p|| ≤ ||T||·||S||$, navíc $p^2 = (T\circ S)\circ(T \circ S) = p$, tedy $p$ je projekce. Zároveň $p(X) = T(S(X))$, jelikož $S \circ T$ je identita, tak $S$ je na a $p(X) = T(Y) = \Rng T$. Zbývá si uvědomit, že $T$ je izomorfismus (izometrie, pokud $||S||, ||T|| ≤ 1$): Máme
+		$$ \forall x \in X: ||S x|| = ||STS x|| ≤ ||S||·||TS x||, $$
+		tedy (protože $S$ je na):
+		$$ \forall y \in Y: ||y||\frac{1}{||S||} ≤ ||Ty||, $$
+		tudíž $T$ je izomorfismus.
+
+		$\implies$: Ať $P: X \rightarrow X$ je projekce, $L: P(X) \rightarrow Y$ izomorfismus na. Položíme $S := L \circ P$, $T := L^{-1}$, pak $S \circ T = L \circ P \circ L^{-1} = L \circ L^{-1} = \id$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Zajímavosti pro všechny (nezkouší se)]
+	Ví se ($\dim X = +∞$, $X$ Banach)
+
+	\begin{itemize}
+		\item $X$ lze komplementovaně vnořit do $l_p$ $\implies$ $X \cong l_p$, $p \in [1, ∞]$.
+		\item $X$ lze komplementovaně vnořit do $c_0$ $\implies$ $X \cong l_0$.
+		\item Existuje nespočetně neizomorfních podprostorů $L_p$, $p \in (1, ∞)$.
+	\end{itemize}
+
+	Neví se:
+
+	\begin{itemize}
+		\item $X$ lze komplementovaně vnořit do $L_1$ $\implies$ $X \in \{l_1, L_1\}$.
+		\item $X$ lze komplementovaně vnořit do $©C([0, 1])$ $\implies$ $X \cong ©C(k?)$.
+	\end{itemize}
+
+	Ví se:
+
+	\begin{itemize}
+		\item $X \cong l_2$ $\Leftrightarrow$ $(\forall Z, \dim Z = +∞, Z Banach, Z \hookrightarrow l_2 \implies Z \cong l_2)$.
+	\end{itemize}
+
+	Neví se, zda platí izometrická varianta předchozího.
+\end{poznamka}
+
+\section{Hilbertovy prostory}
+\begin{lemma}
+	$A^{\perp}$ je uzavřený podprostor.
+
+	\begin{dukazin}
+		Pro $y \in X$ ať $f_y(x) = <x, y>$. Pak $f_y$ je lineární a spojité (z Cauchy-Swartze). $A^{\perp} = \bigcap_{y \in A}f^{-1}_y(0)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	Prostor se skalárním součinem $(X, <·, ·>)$ se nazývá Hilbertův prostor, pokud je úplný v metrice indukované skalárním součinem, tj. pokud $(X, ||·||)$ je Banachův prostor, kde $||x|| = \sqrt{<x, x>}$.
+\end{definice}
+
+\begin{priklady}
+	\begin{itemize}
+		\item $l_2$ … $<x, y> := \sum_{n=1}^∞ x_n \overline{y_n}$.
+		\item $L_2([0, 1])$ … $<f, g> := \int_0^1 f(x) \overline{g(x)} dx$.
+	\end{itemize}
+\end{priklady}
+
+\begin{tvrzeni}
+	Nechť $(X, <·, ·>)$ je prostor se skalárním součinem nad ®K. Pak funkce $<·, ·>: X \times X \rightarrow ®K$ je lipschitzovská na omezených množinách (a tedy spojitá).
+
+	\begin{dukazin}
+		Přímočarý s použitím Cauchy-Swartze.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}[Polarizační vzorec]
+	Nechť $X$ je prostor se skalárním součinem. Pak pro všechna $x, y \in X$ platí
+	$$ <x, y> = \frac{1}{4}(||x + y||^2 - ||x - y||^2) $$
+	v reálném případě, resp.
+	$$ <x, y> = \frac{1}{4}(||x + y||^2 - ||x - y||^2 + i||x + iy||^2 - i||x - iy||^2) $$
+	v komplexním.
+
+	\begin{dukazin}[Reálný případ, v $®C$ analogicky]
+		$$ 4<x, y> = 2<x, y> - 2<x, -y> = ||x + y||^2 - ||x||^2 - ||y||^2 - ||x - y||^2 + ||x||^2 + ||-y||^2 = ||x + y||^2 - ||x - y||^2. $$	
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	Nechť $X, Y$ jsou prostory se skalárním součinem a $T: X \rightarrow Y$ je lineární izometrie do. Pak $T$ zachovává skalární součin, tj. $<T(x), T(y)> = <x, y>$ pro každé $x, y \in X$.
+
+	\begin{dukazin}
+		Izometrie zachovává pravé strany v polarizačním vzorci.
+	\end{dukazin}
+\end{dusledek}
 
 
 \end{document}

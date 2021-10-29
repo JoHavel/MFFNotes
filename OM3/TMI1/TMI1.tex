@@ -161,4 +161,225 @@
 	\end{enumerate}
 \end{definice}
 
+% 13. 10. 2021
+
+\begin{poznamka}
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f, g$ jsou nezáporné měřitelné funkce na $X$ splňující $0 ≤ f < g$ na $X$, pak $0 ≤ \int_X fd\mu ≤ \int_X gd\mu$.
+
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $E \in ©A$, pak $©A_E := \{A \cap E, A \in ©A\}$ je $\sigma$-algebra na $E$ a $(E, ©A_E, \mu)$ je prostor s mírou ($\implies \int_E f d\mu$ je definován).
+
+	Je-li $f$ měřitelná funkce na $X$ a $E \in ©A$, pak $\int_X (f\chi_E) d\mu = \int_E f d\mu$.
+\end{poznamka}
+
+\begin{veta}[Leviho]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n, n \in ®N$, jsou nezáporné měřitelné funkce na $X$ splňující $f_n\nearrow f$, pak $\int_X f_nd\mu \nearrow \int_X fd\mu$.
+	
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fatouovo lemma]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n, n \in ®N$, jsou nezáporné měřitelné funkce, pak
+	$$ \int_X (\liminf_{n\rightarrow ∞} f_n)d\mu ≤ \liminf_{n \rightarrow ∞}\int_X f_n d\mu. $$
+	
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Skoro všude]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $E \in ©A$, $x \in X$. Nechť $V(x)$ je nějaká vlastnost, kterou bod $x$ může, ale nemusí mít. Řekneme, že $V(x)$ platí $\mu$-skoro všude na $E$, jestliže
+	$$ \exists N \in ©A, N \subset E, \mu(N) = 0: V(x) \text{ platí } \forall x \in E \setminus N. $$
+	Je-li $E = X$, pak místo $\mu$-skoro všude na $E$, píšeme pouze $\mu$-skoro všude. Nehrozí li nedorozumění, o jakou míru se jedná, pak místo $\mu$-skoro všude píšeme skoro všude.
+\end{definice}
+
+\begin{lemma}
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f, g$ měřitelné funkce na $X$ takové, že $f = g$ skoro všude, pak $\int_X fd\mu = \int_X g d\mu$, jakmile má jedna strana rovnosti smysl.
+\end{lemma}
+
+\begin{definice}[Měřitelná funkce (skoro všude)]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $D \in ©A$, $\mu(D^c) = 0$ a $f: D \rightarrow ®R^*$. Řekneme, že $f$ je měřitelná, jestliže $\forall$ otevřenou množinu $G \subset ®R$ platí $f^{-1}(G) \cap D \in ©A$.
+
+	Pro měřitelnou funkci $f$ pak definujeme $\int_X f d\mu := \int_X \tilde{f} d\mu$, kde $\tilde{f} = \begin{cases} f \text{ na } D, \\ 0 \text{ na } D^c. \end{cases}$
+\end{definice}
+
+\begin{definice}[Prostory ©L]
+	Označíme $©L^*(\mu) := \{f:X \rightarrow ®R^* | f \text{ je měřitelná na } X \land \exists \int_X f d\mu\}$.
+
+	Dále $©L^1(\mu) := \{f \in ©L^*(\mu) | \int_X |f| d\mu \in ®R\}$.
+\end{definice}
+
+\begin{veta}[Linearita integrálů]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $f, g \in ©L^*(\mu)$ a $\lambda \in ®R$. Pak
+	$$ \int_X (\lambda f) d\mu = \lambda\int_X f d\mu, $$
+	$$ \int_X (f+g) d\mu = \int_X f d\mu + \int_X g d\mu, \text{ pokud má pravá strana smysl.} $$
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Má-li pravá strana druhého bodu smysl, pak nemůže nastat případ, kdy by jedna funkcí $f, g$ je rovna $+∞$ a druhá $-∞$ na množině kladné míry. Odtud plyne, že součet $f+g$ je definován skoro všude.
+	\end{poznamkain}
+\end{veta}
+
+\begin{dusledek}
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, nezáporné měřitelné funkce. Pak
+	$$ \int_X\(\sum_{n=1}^∞ f_n\) d\mu = \sum_{n=1}^∞ \int_X f_n d\mu. $$
+
+	\begin{dukazin}
+		Z minulé věty pro libovolné $k \in ®N$ platí $\int_X\(\sum_{n=1}^k f_n\) d\mu = \sum_{n=1}^k \int_X f_n d\mu$. Použitím limitního přechodu pro $k \rightarrow ∞$ a Leviho věty dostaneme příslušnou rovnost.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Zobecněná Leviho]
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, měřitelné funkce na $X$ splňující $f_n \nearrow f$ a $\int_X f_1 > - ∞$. Pak
+	$$ \lim_{n \rightarrow ∞} \int_X f_n d\mu = \int_X f d\mu. $$
+
+	\begin{dukazin}
+		$g_n = f_n - f_1 ≥ 0$. Z Leviho věty pak snadno plyne tato.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f_n, n \in ®N$, měřitelné funkce splňující $f_n\searrow f$ a $\int_X f_1 < +∞$. Pak též můžeme prohodit limitu a integrál.
+
+	\begin{dukazin}
+		Aplikace předchozí věty na $-f_n$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Lebesgue]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, jsou měřitelné funkce takové, že $\lim_{n \rightarrow ∞} f_n = f$ na $X$, a existuje $g \in ©L^1(\mu): |f_n| ≤ g$ skoro všude $\forall n \in ®N$. Pak
+	$$ lim_{n \rightarrow ∞} \int_X f_n d\mu = \int_X f d\mu. $$
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $(X, ©A, \mu)$ je prostor s mírou a $f_n$, $n \in ®N$, jsou měřitelné funkce na $X$ takové, že $\sum_{n=1}^∞ f_n$ konverguje skoro všude. Jestliže existuje $g \in ©L^1(\mu)$ tak, že $|\sum_{n=1}^k f_n| ≤ g$ skoro všude $\forall k \in ®N$, pak $\sum_{n=1}^∞ f_n \in ©L^1(\mu)$ a platí:
+	$$ \sum_{n=1}^∞ \int_X f_n d\mu = \int_X \(\sum_{n=1}^∞ f_n\) d\mu. $$
+
+	\begin{dukazin}
+		Aplikace předchozí věty na posloupnost částečných součtů řady $\sum_{n=1}^∞ f_n$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Další vlastnosti měřitelných funkcí a integrálu]
+	Buď $(X, ©A, \mu)$ prostor s mírou.
+
+	\begin{itemize}
+		\item Je-li $f$ nezáporná měřitelná funkce na $X$ a $\int_X f d\mu = 0$, pak $f = 0$ skoro všude.
+		\item Je-li $f \in ©L^1(\mu)$ a $\int_E f d\mu = 0\ \forall E \in ©A$, pak $f = 0$ skoro všude.
+		\item Je-li $f$ měřitelná, pak $\int_X f d\mu \in ®R \Leftrightarrow \int_X |f| d\mu$.
+		\item Je-li $f \in ©L^1(\mu)$, pak $|\int_X f d\mu| ≤ \int_X |f| d\mu$.
+		\item Je-li $f \in ©L^1(\mu)$, pak f je konečná skoro všude.
+	\end{itemize}
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
+\end{veta}
+
+	\subsection{Lebesqueův integrál v ®R}
+	\begin{poznamka}[Značení]
+		Restrikci míry $\lambda^1$ na interval $I \subset ®R$ opět značíme $\lambda^1$.
+
+		Je-li $I = (a, b) \subset ®R$, $a < b$, pak
+		$$ \int_a^b f d\lambda^1 := \int_{(a, b)} f d\lambda^1. $$
+	\end{poznamka}
+
+	\begin{veta}[Vztah Riemannova a Lebesgueova integrálu]
+		Je-li $-∞ < a < b < +∞$ a $f:<a, b> \rightarrow ®R$ taková, že $(R) \int_a^b f$ existuje, pak $\int_a^b f d\mu^1 \in ®R$ a platí
+		$$ \int_a^b f d\lambda^1 = (R) \int_a^b f. $$
+	\end{veta}
+
+	\begin{veta}[Vztah Newtonova a Lebesgueova integrálu]
+		Nechť $-∞ ≤ a < b ≤ +∞$ a $f:<a, b> \rightarrow ®R$ je spojitá a nezáporná. Pak následující tvrzení jsou ekvivalentní:
+		
+		\begin{itemize}
+			\item $(N) \int_a^b$ existuje.
+			\item $\int_a^b d\lambda^1 \in ®R$.
+		\end{itemize}
+
+		Zároveň pokud je jedna (tj. obě) z těchto podmínek splněna, potom
+		$$ \int_a^b f d\lambda^1 = (N) \int_a^b f. $$
+	\end{veta}
+
+% 20. 10. 2021
+
+TODO!!!
+
+% 27. 10. 2021
+
+\begin{definice}
+	Systém $©D \subset ©P(X)$ nazveme d-systém (nebo Dynkinův systém) na $X$, jestliže
+	
+	\begin{itemize}
+		\item $\O \in ©D$,
+		\item $D \in ©D \implies D^c \in ©D$,
+		\item $D_n \in ©D\ \forall n \in ®N, D_n \cap D_m\ \forall n≠m \implies \bigcup_n D_n \in ©D$.
+
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	Každá $\sigma$-algebra je d-systém.
+
+	D-systém je uzavřený na konečné sjednocení disjunktních množin (jelikož $\O \in ©D$).
+
+	Je-li $A, B \in ©D, A \subset B$, pak $B \setminus A \in ©D$, neboť $B \setminus A = X \setminus ((X \setminus B) \cup A)$.
+
+	Jsou-li $\mu$ a $\nu$ dvě míry na $(X, ©A)$, pak $©D := \{A \in ©A | \mu(A) = \nu(A)\}$ je d-systém.
+\end{poznamka}
+
+\begin{veta}[O průniku d-systémů]
+	Nechť $©D_\alpha$, $\alpha \in I$, jsou d-systémy na $X$ ($I$ je libovolná množina indexů). Pak $\bigcap_{\alpha \in I}$ je d-systém.
+
+	\begin{dukazin}
+		Přenechán čtenáři.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Je-li $©S \subset ©P(X)$, pak existuje nejmenší d-systém $d©S$ obsahující systém $©S$.
+\end{dusledek}
+
+\begin{poznamka}
+	Je-li $©S \subset ©P(X)$, pak $d©S \subset \sigma©S$.
+\end{poznamka}
+
+\begin{definice}
+	Systém $©S \subset ©P(X)$ nazveme $\pi$-systém, jestliže systém ©S je uzavřen na konečné průniky množin z ©S.
+\end{definice}
+
+\begin{veta}[O rovnosti $d©S = \sigma©S$]
+	Je-li $S \subset ©P(X)$ zároveň $\pi$-systémem, pak $d©S = \sigma©S$.
+
+	\begin{dukazin}
+		Využijeme následující 2 tvrzení. $d©S$ je d-systém, tedy z druhého tvrzení $d©S$ je $\pi$-systém. Z prvního tvrzení pak $d©S$ je $\sigma$ algebra, tedy $\sigma©S \subset d©S$. Opačná implikace plyne z poznámky výše, $d©S \subset \sigma©S$, tedy $d©S = \sigma ©S$.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	Je-li d-systém ©D na $X$ zároveň $\pi$-systémem, pak ©D je $\sigma$-algebra na $X$.
+
+	\begin{dukazin}
+		Ověříme body $\sigma$-algebry.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Je-li $©S \subset ©P(X)$ $\pi$-systém, pak $d©S$ je $\pi$-systém.
+
+	\begin{dukazin}
+		Ověříme, že $©D: \{D \in d©S | D \cap S \in d©S \forall S \in ©S\}$ je d-systém. Zřejmě $©D = d©D$. Nyní buď $D \in d©S$ pevné a definujeme $©D_D := \{E \in ©P(X) | E \cap D \in d©S\}$. O tom dokážeme, že je to d-systém. Následně dokážeme $®S \subset ©D_D$, tedy $D = ©D_D$. Vítězství!
+	\end{dukazin}
+\end{tvrzeni}
+
+TODO?
+
 \end{document}

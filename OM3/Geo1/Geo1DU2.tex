@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[1.7]
+	Uvažujme parabolu $[t, t^2]$, bod $F = [0, a]$ a přímku $p: y = −a$, $a \in ®R$.
+
+	Určete $a$ tak, aby měl každý bod paraboly stejnou vzdálenost od bodu $F$ (ohniska) a přímky $p$ (řídící přímky) a ukažte, že tečna k parabole půlí úhel příslušných průvodičů. Parametrizujte množinu bodů, které jsou obrazem ohniska v osové souměrnosti podle všech normálových přímek paraboly.
+
+	\begin{reseni}[Nalezení $a$]
+		Jelikož máme jen jeden parametr, stačí nám k jeho určení jen jedna „skoro lineární“ rovnice. Víme, že bod paraboly, kde $t = 1$, je $[1, 1]$. Jeho vzdálenost od přímky je zřejmě $1 + a$. Vzdálenost od ohniska je $\sqrt{1^2 + (a - 1)^2}$. Tedy
+		$$ 1 + a = \sqrt{2 - 2a + a^2}, $$
+		$$ 1 + 2a + a^2 = 2 - 2a + a^2, $$
+		$$ a = \frac{1}{4}, $$
+		což vyhovuje podmínkám, za kterých můžeme první rovnici umocnit na druhou ($a ≥ -1$). Obecně
+		$$ t^2 + \frac{1}{4} = \sqrt{t^2 + \(t^2 - \frac{1}{4}\)^2}. $$
+	\end{reseni}
+
+	\begin{dukazin}[Tečna půlí úhel průvodičů]
+		Tečnu v bodě $x_0$ k funkci jedné proměnné (kteroužto tato parabola zřejmě je, kdyby však nebyla, tak stačí jen najít správnou rotaci) získáme derivací:
+		$$ t(x) = f'(x_0)(x - x_0) + f(x_0) = 2x_0(x - x_0) + x_0^2 = 2x_0x - x_0^2. $$
+		Jeden z jejích normálových vektor (normalizaci nepotřebujeme) je tedy $\(-2x_0, 1\)$. Tudíž pokud najdeme $s$ a $x$ tak, aby $\[0, \frac{1}{4}\] - s\(-2x_0, 1\) = \[x, 2x_0x - x_0^2\]$, tak jsme našli vektor projekce $F$ na tečnu, tedy druhým odečtením $s\(-2x_0, 1\)$ dostaneme obraz $F$ v osové souměrnosti podle $t$:
+		$$ 2x_0s = x, \qquad \frac{1}{4} - s = 2x_0x - x_0^2 = 2x_0·2x_0s - x_0^2, $$
+		$$ s = \frac{\frac{1}{4} + x_0^2}{1 + 4x_0^2} = \frac{1}{4}. $$
+
+		Obraz ohniska je tedy $\[0, \frac{1}{4}\] - 2s\(-2x_0, 1\) = \[0, \frac{1}{4}\] - \(-x_0, \frac{1}{2}\) = \[x_0, \frac{1}{4}\]$, což je zřejmě bod na $p$, který je svisle (= kolmě na $p$) pod $\[x_0, x_0^2\]$ (řešeným bodem na parabole), tedy spojnice $\[x_0, x_0^2\]$ a ohniska (průvodič) se zobrazí na „nejkratší spojnici“ $\[x_0, x_0^2\]$ a $p$ (druhý průvodič). Tudíž osa (tečna paraboly) je osou úhlu mezi průvodiči.
+	\end{dukazin}
+
+	\begin{reseni}[Parametrizace obrazů ohniska podle normály]
+		Normálová přímka je dána bodem křivky a příslušným normálovým vektorem:
+		$$ n: [x_0, x_0^2] + \(-2x_0, 1\). $$
+		Vektor kolmý na normálu (tj. na normálový vektor) je $(1, 2x_0)$, tedy pro zobrazení v osové souměrnosti hledáme $s_1$ a $s_2$ tak, aby $[x_0, x_0^2] + s_2\(-2x_0, 1\) = \[0, \frac{1}{4}\] + s_1(1, 2x_0)$. To jest:
+		$$ x_0 - 2s_2x_0 = s_1, \qquad x_0^2 + s_2 = \frac{1}{4} + 2s_1x_0, $$
+		$$ s_1 = x_0 - 2\(\frac{1}{4} + 2s_1x_0 - x_0^2\)x_0, $$
+		$$ s_1 = \frac{-\frac{x_0}{2} + x_0 + 2x_0^3}{1 + 4x_0^2} = \frac{x_0}{2}. $$
+
+		Tedy hledaná množina bude parametrizována jako
+		$$ \[0, \frac{1}{4}\] + 2s_1\(1, 2x_0\) = \[0, \frac{1}{4}\] + \frac{2x_0}{2}\(1, 2x_0\) = \[x_0, \frac{1}{4} + 2x_0^2\]. $$
+	\end{reseni}
+\end{priklad}
+
+\end{document}

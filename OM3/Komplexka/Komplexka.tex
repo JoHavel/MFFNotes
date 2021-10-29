@@ -104,9 +104,85 @@
 	$$ \cos z = \frac{e^{iz} + e^{-iz}}{2}, $$
 	$$ \sinh z = \frac{e^{z} - e^{-z}}{2}, $$
 	$$ \cosh z = \frac{e^{z} + e^{-z}}{2}, $$
-	
 \end{definice}
 
+% 14. 10. 2021
+
+\begin{definice}[Log]
+	Pro $z \in ®C \setminus\{0\}$ položíme $\log z = \{w \in ®C | \exp(w) = z\}$.
+\end{definice}
+
+\begin{veta}[Vlastnosti logaritmu]
+	Pro každé $z \in ®C \setminus \{0\}$ platí:
+	$$ \log z = \ln|n| + i \arg z, $$
+	$$ \log z = \{(\ln z) + 2k\pi i, k \in z\}, $$
+	$\log z$ je holomorfní na množině $®C \setminus(-∞, 0)$ a platí $(\log z)' = \frac{1}{z}$.
+
+	\begin{dukazin}
+		První a druhá vlastnost jednoduše rozepsáním exponenciely.
+
+
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Obecná mocnina]
+	$$ z^a = \exp (a \log z) $$
+\end{definice}
+
+\section{Křivky a cesty}
+\begin{definice}[Křivka]
+	Křivkou v ®C rozumíme spojité zobrazení uzavřeného intervalu do ®C.
+\end{definice}
+
+\begin{definice}
+	Nechť $\phi: [a, b] \rightarrow ®C$ je křivka, pak
+	\begin{itemize}
+		\item Obrazem křivky rozumíme obor hodnot $\phi$, značíme $<\phi>$.
+		\item Počáteční bod je $\phi(a)$, koncový bod je $\phi(b)$.
+		\item Křivku nazýváme uzavřenou, pokud $\phi(a) = \phi(b)$.
+		\item Opačnou křivkou rozumíme křivku $\overset{.}{-} \phi: [-b, -a] \rightarrow ®C$, kde $\overset{.}{-} \phi(t) = \phi(-t)$.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Spojení]
+	Nechť $\phi: [a, b] \rightarrow ®C$ a $\psi: [c, d] \rightarrow ®C$ jsou křivky a $\phi(b) = \psi(c)$. Pak jejich spojením $\phi \overset{.}{+} \psi$ rozumíme křivku definovanou na $[a, b + d - c]$, kde $\phi \overset{.}{+} \psi = \phi(t)$ pro $t ≤ b$ a $\phi \overset{.}{+} \psi = \psi(t-b+c)$ jinak.
+\end{definice}
+
+\begin{definice}[Cesta]
+	Cesta je po částech hladká (= $©C^1$) křivka.
+\end{definice}
+
+\begin{definice}[Integrál podél cesty a délka křivky]
+	Nechť $\phi: [a, b] \rightarrow ®C$ je cesta a $f$ je spojitá funkce na $<\phi>$. Definujeme integrál z $f$ podél $\phi$ jako
+	$$ \int_\phi f(z) dz = \int_a^b f(\phi(t))\phi'(t) dt. $$
+
+	Délka křivky $\phi$ budeme rozumět
+	$$ L(\phi) = \int_a^b |\phi'|(t)dt $$
+\end{definice}
+
+\begin{poznamka}[Vlastnosti integrálu]
+	\begin{itemize}
+		\item Změna parametru neovlivňuje integrál: Nechť $h$ je rostoucí zobrazení v $©C^1$ intervalu $[c, d]$ na $[a, b]$. Pak
+			$$ \int_{\phi \circ h} f(z) dz = \int_\phi f(z) dz. $$
+		\item Změna znamínka parametru změní znaménko integrálu.
+			$$ \int_{-\phi} f(z) dz = -\int_\phi f(z) dz. $$
+		\item $|\int_\phi f(z)dz| ≤ L(\phi)\max_{z \in <\phi>}|f(z)|$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}[Primitivní funkce]
+	Nechť $G \subset ®C$ otevřená, $f: G \rightarrow ®C$ spojitá funkce, $F: G \rightarrow ®C$ nazveme primitivní funkcí k $f$ na $G$, pokud $F'(z) = f(z)$ pro každé $z \in G$.
+\end{definice}
+
+\begin{veta}
+	Nechť $G \subset ®C$ je otevřená, $f: G \rightarrow ®C$ je spojitá a $F$ je primitivní k $f$ na $G$. Nechť $\phi: [a, b] \rightarrow ®C$ je cesta tak, že $<\phi> \subset G$. Potom
+	$$ \int_\phi f(z) = F(\phi(b)) - F(\phi(a)). $$
+	Pokud $\phi$ je uzavřená, pak $\int_\phi f(z) dz = 0$.
+
+	\begin{dukazin}
+		Přímočarý.
+	\end{dukazin}
+\end{veta}
 
 
 \end{document}

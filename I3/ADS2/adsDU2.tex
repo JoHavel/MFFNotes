@@ -1,0 +1,16 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[jehly]
+	Spočtěte, kolikrát se dané jehly vyskytují v daném seně (podslova v textu). Zajímají mne počty každé jehly zvlášť.
+
+	\begin{reseni}
+		Použijeme algoritmus Aho-Corasick. Místo toho, abychom nálezy vypisovali, si v každém stavu automatu (vrcholu trie) budeme pamatovat, kolikrát jsme ho navštívili. Po projití sena si v každém stavu odpovídajícímu přímo výslednému slovu pořídíme počítadlo výskytů. Následně spočítáme výskyty tak, že projdeme automat (trii) a v každém stavu se podíváme na všechny zkratkové hrany a přičteme počet navštívení aktuálního stavu do počtu nálezu stavu, kam vedou. (Pak ještě přičteme počet navštívený těch daných stavů do počtu jejich nálezů).
+
+		Tak jsme neudělali nic víc, než použili Aho-Corasick bez výpisu (tj. časová složitost součet délek jehel a sena) a pak prošli stavy + zkratkové hrany (tj. časová složitost součet délek jehel), nakonec vypíšeme počty jednotlivých jehel (tj. časová složitost počet jehel (případně i součet jejich délek, pokud projdeme)), tedy celková časová složitost je součet délek jehel a délky sena.
+	\end{reseni}
+\end{priklad}
+
+\end{document}
