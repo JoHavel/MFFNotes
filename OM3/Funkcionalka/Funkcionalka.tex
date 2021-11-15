@@ -867,9 +867,9 @@ TODO!
 	\begin{dukazin}
 		Triviální.
 	\end{dukazin}
- \end{dusledek}
+\end{dusledek}
 
- \begin{dusledek}[Oddělování bodu a podprosotru]
+\begin{dusledek}[Oddělování bodu a podprosotru]
 	 Nechť $X$ je normovnaný lineární prostor, $Y$ je uzavřený podprostor $X$ a $x \notin Y$. Pak existuje $f \in S_{X^*}$ tak, že $f|_Y = 0$ a $f(x) = \dist(x, Y) > 0$.
 
 	 \begin{dukazin}
@@ -877,9 +877,9 @@ TODO!
 
 		 Nyní z H-B věty rozšíříme na celé $Y$: $\exists F \in X^X: F|_z = f \land ||F|| = 1$.
 	 \end{dukazin}
- \end{dusledek}
+\end{dusledek}
 
- \begin{veta}[Oddělování konvexních množín]
+\begin{veta}[Oddělování konvexních množín]
  	Nechť $X$ je normovaný lineární prostor a $A, B \subset X$ jsou disjuktní konvexní množiny. Pak platí následující tvrzení
 	
 	\begin{itemize}
@@ -900,6 +900,97 @@ TODO!
 
 		Konečně $\forall x \in A\ \forall y \in B: G(x) = G(y) + G(x - y + w) - G(w) ≤ G(y) + 1 - 1 = G(y)$. Rovnost nemůže nastat, protože $A$ je otevřené.
 	\end{dukazin}
- \end{veta}
+\end{veta}
+
+% 15. 11. 2021
+
+TODO
+
+\begin{poznamka}[Nevím, kam patří]
+	Nějaký důsledek H-B, viz foto.
+
+	\begin{dukazin}
+		Z kompaktnosti máme $\max_B g < \inf_A f$. Zvol $f = -g$ a to je ta hledaná funkce.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{dusledek}[H-B věty]
+	$X$ je NLP, $Y \subset X$ podprostor. Buď $\dim Y < ∞$ nebo $\codim Y < ∞$. Pak $Y \overset{C}{\hookrightarrow} X$. (Tj. $\exists P: X \rightarrow Y$ spojitý, že $P |_Y = \id_Y$.)
+
+	\begin{dukazin}
+		$\dim Y < ∞$: Ať $\{e_1, …, e_n\}$ je báze $Y$, $\{f_1, …, f_n\}$ je duální báze $Y$. Pak $f_1, …, f_n: Y \rightarrow ®K$ jsou spojité ($Y$ má konečnou dimenzi). Z H-B $\exists F_1, …, F_n: X \rightarrow ®K$ spojité, $||F_i|| = ||f_i||$, $F_i \supset f_i$. Definujme $P: X \rightarrow Y$ předpisem $P(x):=\sum_{i=1}^n F_i(x) e_i \in Y$. $P$ je lineární,
+		$$ ||Px|| ≤ \sum_{i=1}^n ||F_i(x)||·||e_i|| ≤ \sum_{i=1}^n ||F_i||·||x||·||e_i|| ≤ \(n·\max_{i \in [n]} ||F_i||·||e_i||\)·||x||. $$
+		$P$ je tedy spojité. Zbývá ověřit $P_y = \id_n$.
+		$$ \forall y \in Y: P(y) = P(\sum_{i=1}^n f_i(y)e_i) = \sum_{i=1}^n f_i(Y)P(e_i) = \sum_{i=1}^n f_i(y) \sum_{j=1}^n F_j(e_i) e_j = \sum_{i=1}^n f_i(y) e_i = y. $$
+
+		$\codim Y < ∞$: ($\codim Y = \dim (X/Y)$) ať $\{q(e_1), …, q(e_n)\}$ je báze $X / Y$ ($q: x \mapsto [x]$) a $\{f_1, …, f_n\}$ duální funkcionály. Ty jsou spojité. Polož $F_i = f_i \circ q$ ($i \in [n]$), což je složení dvou spojitých funkcionálů, tedy spojitý funkcionál. Definujeme $P: X \rightarrow \spn(e_1, …, e_n)$, $P(x) := \sum_{i=1}^n F_i(x) e_i$, $x \in X$. „$P$ je lineární“ je jasné, stejně tak spojitost $P$ (podobně jako v první části).
+
+		$P|_{\spn(e_1, …, e_n)} = \id$:
+		$$ \forall i \in [n]: P(e_i) = \sum_{j=1}^n F_j(e_i)e_j = \sum_{j = 1}^n f_j(q(e_j))e_j = e_i. $$
+		Tedy $P$ je spojitá lineární projekce a navíc $\Ker P = Y$: $Px = 0 \Leftrightarrow F_i(x) = 0 \forall in \in [n]$ $\Leftrightarrow f_i(q(x)) = 0$, $\Leftrightarrow q(x) = 0$. Máme $X = \Rang P \oplus_t \Ker P$. Položíme $Q = \id - P$, pak $\Rang Q = \Ker P = Y$, $Q$ spojitá projekce.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}
+	Nechť $X, Y$ jsou normované lineární prostory a $T \in ©L(x, Y)$. Operátor $T^*: Y^* \rightarrow X^*$ definovaný předpisem $T^*f(x) = f(Tx)$ pro $f \in Y^*$ a $x \in X$ se nazývá duální (nebo též adjungovaný) operátor k $T$.
+
+	Operátor $(T^*)^*$ značíme $T^{**}$.
+\end{definice}
+
+\begin{veta}
+	Nechť $X, Y, Z$ jsou normované lineární prostory.
+
+	\begin{enumerate}
+		\item Je-li $T \in ©L(X, Y)$, je $T*f \in X^*$ pro každé $f \in Y^*$. Dále $T^* \in ©L(Y^*, X^*)$ a $||T^*|| = ||T||$.
+		\item Zobrazení $T \mapsto T^*$ je lineární izometrie z $©L(X, Y)$ do $©L(Y^*, X^*)$.
+		\item $T \in ©L(X, Y)$ a $S \in ©L(Y, Z)$. Pak $(S \circ T)* = T^* \circ S^*$. Dále $\id_X^* = \id_{X^*}$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Spojitost $T*f$ je zřejmá z definice (složení dvou lineárních funkcí), stejně tak linearita $T$. Dále
+		$$ \forall y^* \in B_{Y^*}: ||T^*y^*|| = \sup_{x \in B_X} |T^* y^* (x) | = \sup_{x \in B_X} |y^*(Tx)| ≤ \sup_{x \in B_X} ||Tx|| = ||T||, $$
+		tedy $||T^*|| ≤ ||T||$ a $T$ je spojité. Zbývá $||T|| ≤ ||T^*||$. (Dokazujeme opačnou nerovnost k té výše.) Zvolme $x \in B_X$. Najdi (z jednoho z důsledků H-B) $y^* \in S_{Y^*}$. $||T_x|| = |y^*(Tx)|$. Pak
+		$$ ||Tx|| = |y^*(Tx)| = |T^*y^*(x)| ≤ ||T^*||·||y^*||·||x|| ≤ ||T^*||. $$
+		Tj. $||T|| ≤ ||T^*||$.
+
+		2. Linearita zobrazení plyne z předpisu a izometrie pak plyne z prvního bodu.
+
+		3. $\forall z^* \in Z^*\ \forall x \in X:$
+		$$ \((S \circ T)^* z^*\)(x) = z^*(S(T(x))) = S^*z^*(Tx) = \(T^*S^*z^*\)(x). $$
+		A to platí pro všechna $x$ a $z^*$, tedy funkcionály na ně aplikované musí být tytéž. Identita je triviální z definice.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $H_1, H_2$ jsou Hilbertovy prostory a $T \in ©L(H_1, H_2)$. Pak existuje jednoznačně určený operátor $T^\bigstar \in ©L(H_2, H_1)$ takový, že pro každé $y \in H_2$ a $x \in H_1$ platí
+	$$ \<Tx, y\>_{H_2} = \<x, T^\bigstar y\>_{H_1}. $$
+	Dále platí, že $T^\bigstar = I_1^{-1} \circ T^* \circ I_2$, kde $I_j: H_j \rightarrow H_j^*$, $j = 1, 2$ jsou příslušné sdružené lineární izometrie z věty výše (89 ve skriptech). ($I_i: y \mapsto \<·, y\> \in H_1^*$.)
+
+	\begin{dukazin}
+		Zvol $x \in H_1$, $y \in H_2$. Uvažuj $g \in (H_1)^*$ definované předpisem $\<Tx, y\>_{H_1}$. Dle věty 89 ve skriptech, $\exists! z \in H_1: g(x) = \<x, z\>$, $x \in H_1$. Tedy rovnost z věty platí $\Leftrightarrow T^\bigstar y = z$. Celkem $\exists! T^\bigstar: H_2 \rightarrow H_1$, pro které platí rovnost ze znění.
+
+		Zbývá: $T^\bigstar = I_1^{-1} \circ T^* \circ I_2$ (pak operátor $T^\bigstar$ je lineární a spojitý). Stačí jen, že $I_1^{-1} \circ T^* \circ I_2$ splňuje rovnost ze zadání, protože existuje právě jeden takový operátor. Z definice $I_i$ a přelévání písmenek (definice sdruženého operátoru) tedy:
+		$$ \forall x \in H_1\ \forall y \in H_2: \<x, \(I_1^{-1} \circ T^* \circ I_2\)(y)\>_{H_1} = $$
+		$$ \(I_1\(I_1^{-1} \circ T^* \circ I_2\)\)(x) = \(T^* \circ I_2\)(x) = (I_2y)(Tx) = \<Tx, y\>. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Hilbertovsky adjungovaný operátor]
+	Operátor $T^\bigstar$ z předcházející věty nazýváme hilbertovsky adjungovaným operátorem k $T$.
+\end{definice}
+
+\begin{veta}
+	Nechť $H_1, H_2, H_3$ jsou Hilbertovy prostory.
+	
+	\begin{enumerate}
+		\item Je-li $T \in ©L(H_1, H_2)$, je $T^{\bigstar\bigstar} = (T^\bigstar)^\bigstar = T$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Máme
+		$$ \forall x \in H_1\ \forall y \in H_2: \<T^{\bigstar\bigstar}x, y\>_{H_2} = \<x, T^\bigstar y\>_{H_1} = \<Tx, y\>_{H_2}. $$
+		Tedy pro každé $x, y$ jsou tyto operátory stejné, tedy $T^{\bigstar\bigstar} = T$.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
