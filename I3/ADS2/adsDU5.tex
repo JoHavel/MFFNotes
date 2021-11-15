@@ -1,0 +1,16 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[kluby]
+	Na kolejích jsou různé kluby, koleják může být součástí libovolného počtu klubů. Jste postaveni před úlohu vybrat z každého klubu předsedu a místopředsedu a to tak, aby každý koleják byl vybrán za nejvýš jeden klub a pro něj do právě jedné funkce.
+
+	\begin{reseni}[Přes toky]
+		Ze zdroje povedeme hrany o váze 2 do vrcholů odpovídajících klubům (každý klub má 2 „významné“ kolejáky). Z každého klubu povedeme hrany libovolné (tj. třeba jednotkové) váhy do vrcholů odpovídajícím kolejákům. Z každého kolejáka pak vedeme hranu o váze 1 (můžeme každého kolejáka „zvýznamnit“ pouze 1). Následně najdeme největší tok. Tím jsme přiřadili kolejáky funkcím (pokud po hraně z klubu do kolejáka, tento koleják je předsedou/místopředsedou tohoto klubu).
+
+		Nechť klubů je $k$ a kolejáků $l$. Při hledání maximálního toku nám trvá $O(k·l)$ vyhledání cesty (hran je nejvýše $k + l + k·l$) a zlepšit tok můžeme nejvýše $2k$ krát, protože pak už je každá role obsazena. Složitost je tedy $O\(k^2·l\)$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

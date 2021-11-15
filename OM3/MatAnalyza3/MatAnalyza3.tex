@@ -332,7 +332,176 @@ TODO!!!
 	\begin{veta}[Taylorova věta pro druhý řád]
 		Nechť $f: ®R^n \rightarrow ®R$ je třídy $C^2$ na okolí bodu $a \in ®R^n$. Pak
 		$$ \lim_{x \rightarrow 0} \frac{f(x) - T_2^{f, a}(x)}{|x - a|^2} = 0. $$
+
+		\begin{dukazin}
+			Bez důkazu.
+		\end{dukazin}
 	\end{veta}
+
+% 03. 11. 2021
+
+	\begin{poznamka}
+		Lze definovat i Taylorovy polynomy řádu $k$ pomocí $k$-tých parciálních derivací.
+	\end{poznamka}
+
+	\begin{veta}[O pozitivně definitní kvadratické formě]
+		Nechť $Q: ®R^n \rightarrow ®R$ je pozitivně definitní kvadratická forma. Potom
+		$$ \exists \epsilon > 0\ \forall h \in ®R^n: Q(h, h) ≥ \epsilon ||h||^2. $$
+
+		\begin{dukazin}
+			Funkce $A(h) = Q(h, h) = \sum_{i, j = 1}^n a_{ij}h_jh_i$ je spojitá. Množina $M \{h \in ®R^n | ||h|| = 1\}$ je omezená a uzavřená, tedy kompaktní. Funkce $A(h)$ tedy nabývá na $M$ svého minima v bodě $h_0$. Označme $\epsilon = Q(h_0, h_0)>0$.
+
+			Nyní
+			$$ \forall h \in ®R^n: Q(h, h) = Q\(\frac{h}{||h||}||h||, \frac{h}{||h||}||h||\) = ||h||^2 Q\(\frac{h}{||h||}, \frac{h}{||h||}\) ≥ ||h||^2 Q\(h_0, h_0\) = ||h||^2 \epsilon. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Postačující podmínky pro lokální extrém]
+		Nechť $G \subset ®R^n$ je otevřená množina, $a \in G$ a nechť $f \in ©C^2(G)$. Nechť $Df(a) = 0$ (tedy je bod podezřelý na lokální extrém).
+
+		\begin{enumerate}
+			\item Je-li $D^2f(a)$ pozitivně definitní, pak $a$ je bod lokálního minima.
+			\item Je-li $D^2f(a)$ negativně definitní, pak $a$ je bod lokálního maxima.
+			\item Je-li $D^2f(a)$ nedefinitní, pak v $a$ nemá extrém.
+		\end{enumerate}
+
+		\begin{dukazin}
+			1) Z předchozí věty víme, že
+			$$ \exists \epsilon > 0\ \forall h \in ®R^n: D^2f(a)(h, h) ≥ \epsilon ||h||^2. $$
+			Z té ještě předchozejší víme, že
+			$$ \lim_{x \rightarrow a} \frac{f(x) - f(a) - Df(a)(x - a) - \frac{1}{2}D^2f(a)(x - a, x - a)}{||x - a||^2} = 0. $$
+			K zadanému $\epsilon > 0$ nalezneme $\delta > 0$:
+			$$ \forall x \in P(a, \delta): \frac{f(x) - f(a) - Df(a)(x - a) - \frac{1}{2}D^2 f(a)(x - a, x - a)}{||x - a||^2} > -\frac{1}{4}\epsilon. $$
+
+			Odtud $f(x) - f(a) - \frac{1}{2}D^2f(a)(x - a, x - a) > -\frac{1}{4} \epsilon ||x - a||^2 \implies$
+			$$ f(x) > f(a) + \frac{1}{2}D^2f(a)(x - a, x - a) - \frac{1}{4}\epsilon ||x - a||^2 ≥ $$
+			$$ ≥ f(a) + \frac{1}{2}\epsilon ||x - a||^2 - \frac{1}{4}\epsilon ||x - a||^2 > f(a). $$
+
+			2) obdobně.
+
+			3) Tedy existují $h_1, h_2 \in ®R^n$ tak, že $D^2f(a)(h_1, h_1)>0$ a $D^2f(a)(h_2, h_2) < 0$. Uvažme funkci $\phi(t) = f(a + t·h_1)$, pak $\phi'(t) = \sum_{i=1}^n \frac{\partial f}{\partial x_1}\(a + t·h_1\)·\(h_1\)_i = Df(a + t·h_1)·h_1$. $\phi'(0) = Df(a)h_1 = 0$.
+
+			Dále $\phi''(t) = D^2f(a + t·h_1)(h_1, h_1)$, tedy $\phi''(0) = D^2f(a)(h_1, h_1) > 0$. Tedy $\phi$ má v $t = 0$ lokální minimum, tj. $f$ nemá v bodě $a$ lokální maximum. Analogicky pro $h_2$, z čehož dostaneme, že $f$ nemá v $a$ ani lokální minimum.
+		\end{dukazin}
+	\end{veta}
+
+	\subsection{Implicitní funkce a vázané extrémy}
+	\begin{veta}[O implicitní funkci]
+		Nechť $p \in ®N$, $G \subset ®R^{n+1}$ je otevřená množina, $F: G \rightarrow ®R$, $\tilde{x} \in ®R^n$, $\tilde{y} \in ®R$, $[\tilde{x}, \tilde{y}] \in G$ a nechť platí
+
+		\begin{enumerate}
+			\item $F \in ©C^p(G)$,
+			\item $F(\tilde{x}, \tilde{y}) = 0$,
+			\item $\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y}) ≠ 0$,
+		\end{enumerate}
+
+		pak existuje okolí $U \subset ®R^n$ bodu $\tilde{x}$ a okolí $V \subset ®R$ bodu $\tilde{y}$ tak, že
+		$$ \forall x \in U\ \exists! y \in V: F(x, y) = 0. $$
+		Píšeme-li $y = \phi(x)$, pak $\phi \in ©C^p(U)$ a platí
+		$$ \frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_j}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}, \forall x \in U\ \forall j \in [n]. $$
+
+% 04. 11. 2021
+
+		\begin{dukazin}
+			4 kroky: a) $\exists \phi$, b) $\phi$ je spojitá, c) $\phi \in ©C^1$, d) $\phi \in ©C^p$.
+
+			a) BÚNO $\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y}) = 0$. $F$ je $©C^2$, a tedy $\exists \delta_1 > 0\ \exists \zeta_1 > 0$, tak $\forall x \in B(\tilde{x}, \delta_1)\ \forall y \in B(\tilde{y}, \zeta_1)$, $\frac{\partial F}{\partial y}(x, y) > 0$. $\forall B(\tilde{y}, \zeta_1): \frac{\partial F}{\partial y}(\tilde{x}, y) > 0$ $\implies$ funkce $y \mapsto F(\tilde{x}, y)$ je rostoucí, tj. $F(\tilde{x}, \tilde{y} + \zeta_1) > 0$, $F(\tilde{x}, \tilde{y} - \zeta_1) < 0$. Nalezneme $\delta_2 < \delta_1$ tak, že $F(x, \tilde{y} + \zeta_1) > 0$, $F(x, \tilde{y} - \zeta_1) < 0$, $\forall x \in B(\tilde{x}, \delta_2)$. Položme $U = B(\tilde{x}, \delta_2)$ a $V = B(\tilde{y}, \zeta_1)$.
+
+			Nechť $x \in B(\tilde{x}, \delta_2)$ je libovolné pevné. Víme, že $\frac{\partial F}{\partial y}(x, y) > 0$, tedy $y \mapsto F(x, y)$ je rostoucí a spojitá, tedy podle Darbouxovy věty (o nabývání mezihodnot) $\exists! y \in (\tilde{y} - \zeta_1, \tilde{y} + \zeta 1)$ tak, že $F(x, y) = 0$. Označme $y = \phi(x)$.
+
+			b) Nechť $\epsilon > 0$, $\epsilon < \zeta_1$. Mohu použít větu část $a)$ na $F$ a $G^* = U \times (\tilde{y} - \epsilon, \tilde{y} + \epsilon)$. Dostaneme $\exists U^*$ okolí $\tilde{x}$ a $V^*$ okolí $\tilde{y}$, že $\forall x \in U^* \exists! y \in V^* F(x, y) = 0$. Speciálně $\phi(U^*) \subset V^* \subset (\tilde{y} - \epsilon, \tilde{y} + \epsilon)$. Tedy $\phi$ je spojité.
+
+			c) Chceme ukázat, že $\phi$ má totální diferenciál v $\tilde{x}$, tedy
+			$$ \forall\epsilon > 0\ \exists \delta > 0\ \forall x \in B(\tilde{x}, \delta) \subset ®R^n: |\phi(\tilde{x} + h) - \phi(\tilde{x}) - \sum_{i=1}^n - \frac{\frac{\partial F}{\partial x_j}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}h_i| < \epsilon \sum_{i=1}^n |h_i|. $$
+			Zvolme $\epsilon > 0$, $\epsilon \frac{1}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})} < \frac{1}{2}$. Víme, že $F$ má totální diferenciál v $[\tilde{x}, \tilde{y}]$, tedy
+			$$ \exists \delta > 0\ \forall h \in B(0, \delta) |F(\tilde{x} - \tilde{y}, \tilde{y} + h_{n+1}) - F(\tilde{x}, \tilde{y}) - \sum_{i=1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})h_i - TODO $$
+			$$ |F(\tilde{x} + \tilde{h}, \phi(\tilde{x} + \tilde{h})) - F(\tilde{x}, \tilde{y}) - \sum_{i = 1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})·h_i - \frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})·(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x}))| ≤ \epsilon·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
+			$$ |(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})) - \frac{\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| ≤ \frac{\epsilon}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
+
+			Tudíž stačí jen odhadnout $|\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|$.
+			$$ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})| ≤ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x}) - \sum_{i=1}^n \frac{-\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| + |\sum_{i=1}^n \frac{-\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| ≤ $$
+			$$ ≤ \frac{\epsilon}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}\(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|\) + c_i \sum_{i=1}^n |h_i| ≤ $$
+			$$ ≤ \frac{1}{2}\(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|\) + c_i \sum_{i=1}^n |h_i| \implies $$
+			$$ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})| ≤ c_2 \sum_{i=1}^n |h_i|. $$
+			Kombinací dosažených nerovností už dostaneme chtěnou nerovnost. Tedy $\frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_i}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}$.
+
+			d) $F \subset ©C^p \implies \phi \in ©C^p$. Indukcí: $p = 1$ víme. Dále nechť víme $\phi \in ©C^{p-1}$ a $F \in ©C^p$. Víme, že
+			$$ \frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_i}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}. $$
+			Toto $(p-1)$krát zderivujeme. Tím na pravé straně dostaneme výraz, kde bude $F$ nanejvýš v $((1 + p-1) = p)$-té derivaci a $\phi$ bude nanejvýš v $(p-1)$-té derivaci (podle vzorce pro derivaci složené funkce).
+		\end{dukazin}
+	\end{veta}
+
+% 10. 11. 2021
+
+	\begin{veta}[O implicitních funkcích]
+		Nechť $n, m \in ®N$, $p \in ®N$, $G \subset ®R^{n + m}$ otevřená, $F_j: G \rightarrow ®R$, $j \in [m]$, $\tilde{x} \in ®R^n$, $\tilde{y} \in ®R^m$, $[\tilde x, \tilde y] \in G$ a nechť platí
+		
+		\begin{itemize}
+			\item $F_j \in ©C^p(G)$ pro $j \in [m]$,
+			\item $F_j(\tilde x, \tilde y) = 0$, $\forall j \in [m]$,
+			\item determinant $m \times m$ matic parciálních derivací $F_j$ je nenulový.
+		\end{itemize}
+
+		Pak existuje $U \subset ®R^n$ okolí $\tilde x$ a $V \subset ®R^m$ okolí $\tilde y$ tak, že
+		$$ \forall x \in U\ \exists! y \in V, F_j(x, y) = 0\ \forall j \in [m], (y_j = \phi_j(x)) \implies \phi_j \in ©C^p(U), j \in [m]. $$
+	\end{veta}
+
+	\begin{veta}[Lagrangeova věta o vázaných extrémech]
+		Nechť $G \subset ®R^n$ je otevřená množina, $m < n$, $f$, $g_1, …, g_m \in ©C^1(G)$ a mějme množinu $M = \{z \in ®R^n | g_1(z) = … = g_m(z) = 0\}$. Je-li $a \in M$ bodem lokálního extrému $f$ vzhledem k $M$ a vektory $(\frac{\partial g_1}{\partial z_1}(a), …, \frac{\partial g_1}{\partial z_n}(a))$, …, $(\frac{\partial g_m}{\partial z_1}(a), …, \frac{\partial g_m}{\partial z_n}(a))$ jsou lineárně nezávislé, pak existují čísla $x_1, …, x_m$ tak, že\
+		$$ Df(a) + \lambda_1Dg_1(a) + … + \lambda_m·Dg_m(a) = 0. $$
+
+		\begin{dukazin}
+			Položme $k = n - m$, $®R^n = ®R^k \times ®R^m$. Víme, že $Dg_1(a), …, Dg_m(a)$ jsou LN $\implies$ $\exists$ $m$ lineárně nezávislých sloupců, BÚNO jsou to poslední sloupce. Podle věty o implicitních funkcích $\exists U$ okolí $\tilde x$ a $V$ okolí $\tilde y$ tak, že $\forall x \in U\ \exists!y \in V: g_j(x, y) = 0$, $j \in [m]$. Píšeme $y_j = \phi_j(x) \in ©C^1$, $j \in [m]$.
+
+			Položme $\psi(x) = f(x_1, …, x_k, \phi_1(x_1, …, x_k), …) \in ©C^1$. Víme $f$ má extrém vzhledem k $M$ $\implies$ $\psi$ má extrém $\implies$ $\frac{\partial\psi}{\partial x_j}(x) = 0$, $j \in [k]$.
+			$$ 0 = \frac{\partial \psi}{\partial x_j}(a) = \sum_{i=1}^k \frac{\partial f}{\partial z_i}a \frac{\partial(x_i)}{x_j} + \sum_{i=1}^m \frac{\partial f}{\partial z_{k+i}} (a) \frac{\partial \phi_i(\tilde x)}{\partial x_j} = 0 + …. $$
+
+			Zderivováním $g_l(x_1, …, \phi…, …) = 0$, $l \in [m]$, dostaneme
+			$$ \frac{\partial}{\partial z_j}g(x) = \frac{\partial g_l}{\partial z_j}(a)  + \sum_{i=1}^m \frac{\partial g_l}{\partial z_{k+i}}(a)·\frac{\partial \phi_i(\tilde x)}{\partial x_j} = 0. $$
+			Označme si vektory $v_j = (0, …, 1, …, 0, \frac{\partial \phi_1}{\partial x_j}(\tilde x), …, \frac{\partial \phi_m}{\partial x_j}(\tilde x))$ (1 je na $j$-tém místě), $j \in [k]$. Označme $A = \LO\{v_1, …, v_k\}$. $\dim A = k$. Z toho plyne $A^\perp = n - k = m$. Derivace $\psi$ říká, že $Df(a) \in A^\perp$. Derivace $g$ říká, že $Dg_l(a) \in A^\perp$, $\forall l \in [m]$. Z předpokladu tvoří $Dg_l(a)$ bázi $A^\perp$ (jelikož jsou LN). Tj. $Df(a)$ lze napsat jako L kombinaci prvků báze, tj. $Dg_l(a)$.
+		\end{dukazin}
+	\end{veta}
+	
+% 11. 11. 2021
+
+	\subsection{Regulární zobrazení}
+	\begin{definice}[Difeomorfismus]
+		Nechť $G \subset ®R^n$ je otevřené a $f: G \rightarrow ®R^n$. Řekneme, že $f$ je difeomorfismus na $G$, jestliže je $f$ prostá na $G$, $U = f(G)$ je otevřená v $®R^n$, $f \in C^1(G)$ a $f^{-1} \in C^1(U)$/
+	\end{definice}
+
+	\begin{definice}[Regulární zobrazení]
+		Nechť $G \subset ®R^n$ je otevřená a $f: G \rightarrow ®R^n$. Řekneme, že $f$ je regulární zobrazení, jestliže $f \in ©C^1(G)$ a pro každé $a \in G$ a pro každé $a \in G$ platí $J_f(a) ≠ 0$.
+	\end{definice}
+
+	\begin{veta}[O lokálním difeomorfismu]
+		Nechť $G \subset ®R^n$ je otevřená a $f: G \rightarrow ®R^n$ je třídy $©C^1$. Nechť pro $a \in G$ platí $J_f(a) ≠ 0$. Pak existuje $V \subset G$ okolí $a$ takové, že $f|_V$ je difeomorfismus na $V$.
+
+		\begin{dukazin}
+			Definujeme $\Omega = ®R^n \times G \subset ®R^{2n}$ a $F: \Omega \rightarrow ®R^n$, $F(y, x) = f(x) - y \in ®C^1$. Označme $b = f(a)$, pak $F(b, a) = f(a) - b = 0$. Dále Jacobián $F$ podle druhých $n$ souřadnic je roven $J_f(a) ≠ 0$. Podle věty o implicitních funkcích existuje $U_1$ okolí bodu $b$ a $V_1$ okolí bodu $a$ v $®R^n$, že $\forall y \in U_1\ \exists! x \in V_1: F(y, x) = 0$. Tj. při označení $x = \phi(y)$ je $\phi \in ©C^1\(U_1\)$ a $0 = f(x) - y = f(\phi(y)) - y$ $\implies$ $\phi = b^{-1} \in ©C^1$. (Na $A = V_1 \cap f^{-1}(U_1)$, což je otevřená množina jako průnik otevřené a vzoru otevřené při spojitém zobrazení. Nyní $f|_A$ je difeomorfismus a zobrazení $A$ na otevřenou $U_1$.)
+		\end{dukazin}
+	\end{veta}
+
+\section{Metrické prostory vol. II}
+	\subsection{Více o kompaktních a úplných prostorech}
+		\begin{definice}[Kompaktní prostor podruhé]
+			$(P, \rho)$ MP a $K \subset P$. Řekneme, že $K$ je kompaktní, jestliže z každé posloupnosti bodů z $K$ lze vybrat konvergentní podposloupnost s limitou v $K$.
+		\end{definice}
+
+		\begin{definice}[$\epsilon$-síť, totálně omezený]
+			Nechť $(P, \rho)$ je metrický prostor. Nechť $\epsilon > 0$ a $H \subset P$. Řekneme, že $H$ je $\epsilon$-síť prostoru $P$, pokud $P \subset \bigcup_{x \in H}B(x, \epsilon)$.
+
+			Řekneme, že $P$ je totálně omezený, pokud $\forall \epsilon > 0\ \exists$ konečná $\epsilon$-síť prostoru $P$.
+		\end{definice}
+
+		\begin{veta}[Omezenost a totální omezenost]
+			Nechť $(P, \rho)$ je totálně omezený metrický prostor. Potom je $P$ omezený.
+
+			\begin{dukazin}
+				$P$ je TO, a tedy existuje konečná $1$-síť $x_1, …, x_n$. Označme $d = \max\{\rho(x_i, x_j) | i, j \in [n]\}$. Nechť $x, y \in P$, pak $\exists i, j \in [n]: x \in B(x_i, 1), y \in B(x_j, 1)$. Nyní
+				$$ \rho(x, y) ≤ \rho(x, x_i) + \rho(x_i, x_j) + \rho(x_j, y) < 1 + d + 1. $$
+				Volme $x_0$ libovolně, pak $P \subset B(x_0, d + 2)$.
+			\end{dukazin}
+		\end{veta}
 
 
 \end{document}

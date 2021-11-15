@@ -1,0 +1,78 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[1.1]
+	Řešte soustavu diferenciálních rovnic s počáteční podmínkou:
+	$$ ¦y' = \begin{pmatrix} 1 & -1 & -1 \\ 1 & -1 & 0 \\ 1 & 0 & -1 \end{pmatrix}¦y + e^{2x} \begin{pmatrix} 1 \\ 4 \\ 4 \end{pmatrix}, \qquad ¦y(0) = \begin{pmatrix} -2 \\ 4 \\ 2 \end{pmatrix}. $$
+	\vskip -1em
+
+	\begin{reseni}
+		Převedeme pomocí operátoru $\lambda(f) = f'$ na soustavu lineárních rovnic (pro jednoduchost na pravé straně uvádím jen koeficienty) a přičtením $\lambda - 1$ násobku druhé rovnice k první, odečtením druhé od třetí a odečtením $\lambda + 1$ násobku první od poslední získáme:
+		$$ \(\begin{array}{c c c | c} \lambda - 1 & 1 & 1 & 1 \\ -1 & \lambda + 1 & 0 & 4 \\ -1 & 0 & \lambda + 1 & 4 \end{array}\) \sim \(\begin{array}{c c c | c} 0 & \lambda^2 & 1 & 4\lambda - 3 \\ -1 & \phantom{+}\lambda + 1 & 0 & 4 \\ 0 & -\lambda - 1 & \lambda + 1 & 0 \end{array}\) \sim $$
+		$$ \sim \(\begin{array}{c c c | c} 0 & \lambda^2 & 1 & 4\lambda - 3 \\ -1 & \lambda + 1 & 0 & 4 \\ 0 & -\lambda^3 - \lambda^2 - \lambda - 1 & 0 & -4\lambda^2 - \lambda + 3 \end{array}\), $$
+		$$ y_2''' + y_2'' + y_2' + y_2 = 4·4e^{2x} + 2e^{2x} - 3e^{2x} = 15e^{2x}. $$
+		
+		Tuto rovnici řešíme nejprve jako homogenní: polynom $\gamma^3 + \gamma^2 + \gamma + 1 = \(\gamma + 1\)\(\gamma^2 + 1\)$ má kořeny $-1, i, -1$, tedy homogenní verze rovnice výše má řešení $C_1e^{-x} + C_2\cos(x) + C_3\sin(x)$. Rovnice má speciální pravou stranu, pro $m = 0$, $\alpha = 2$, $\beta = 0$, (2 není kořen, tedy) $k = 0$, tedy hledáme jedno řešení ve tvaru $Qe^{2x}$:
+		$$ 8Qe^{2x} + 4Qe^{2x} + 2Qe^{2x} + Qe^{2x} = 15e^{2x}, \qquad Q = 1, $$
+		tudíž všechna řešení jsou (pro $C_1, C_2, C_3 \in ®R$):
+		$$ y_2 = e^{2x} + C_1e^{-x} + C_2\cos(x) + C_3\sin(x). $$
+
+		Nyní už z druhé rovnice dopočítáme $y_1$ a z první $y_3$:
+		$$ y_1 = y_2' + y_2 - 4e^{2x} = (C_2 + C_3)\cos(x) + (C_3 - C_2)\sin(x) - e^{2x}, $$
+		$$ y_3 = e^{2x} - y_2 + y_1 - y_1' = e^{2x} - C_1e^{-x} + C_2\cos(x) + C_3\sin(x). $$
+
+		Nakonec stačí jen najít konstanty tak, aby seděla počáteční podmínka:
+		$$ \begin{pmatrix} -2 \\ 4 \\ 2 \end{pmatrix} = ¦y(0) = \begin{pmatrix} (C_2 + C_3)\cos(0) + (C_3 - C_2)\sin(0) - e^{2·0} \\ e^{2·0} + C_1e^{-0} + C_2\cos(0) + C_3\sin(0) \\ e^{2·0} - C_1e^{-0} + C_2\cos(0) + C_3\sin(0) \end{pmatrix} = \begin{pmatrix} C_2 + C_3 - 1 \\ 1 + C_1 + C_2 \\ 1 - C_1 + C_2 \end{pmatrix}: $$
+		$$ ¦y(x) = \begin{pmatrix} - \cos(x) - 5\sin(x) - e^{2x} \\ e^{2x} + e^{-x} + 2\cos(x) - 3\sin(x) \\ e^{2x} - e^{-x} + 2\cos(x) - 3\sin(x) \end{pmatrix}  $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[1.2]
+	Spočtěte limitu
+	$$ \lim_{(x, y) \rightarrow (0, 0)} f(x, y) = \lim_{(x, y) \rightarrow (0, 0)} \frac{x^3 - 2y^3}{4x^2 + y^2}. $$
+
+	\begin{reseni}
+		Nejprve ukažme, že (mimo bod $(0, 0)$):
+		$$ \left|\frac{x^3 - 2y^3}{4x^2 + y^2}\right| ≤ 3\max\{x, y\}. $$
+		Absolutní hodnota podílu je rovna absolutním podílu absolutních hodnot. Tudíž pro $(x, y) ≠ 0$ je nerovnost ekvivalentní nerovnosti
+	$$ \left|x^3 - 2y^3\right| ≤ 3\max\{x, y\}\left|4x^2 + y^2\right|. $$
+		S použitím trojúhelníkové nerovnosti a toho, že druhá mocnina je nezáporná, dostaneme:
+		$$ \left|x^3 - 2y^3\right| = \left|x^3\right| + \left|y^3\right| + \left|y^3\right| ≤ 3\max\{\left|x^3\right|, \left|y^3\right|\} = 3\max\{|x|, |y|\}\max\{x^2, y^2\} ≤ $$
+		$$ ≤ 3\max\{|x|, |y|\}\left(x^2 + y^2\right) ≤  3\max\{|x|, |y|\}\left|4x^2 + y^2\right| $$
+
+		Funkce $(x, y) \mapsto ±3|x + y|$ jsou spojité a v počátku rovny $0$, tedy jejich limita v počátku je $0$ a jak jsme ukázali výše, „obklopují“ $f$ shora i zespodu, tedy podle věty o dvou strážnících je
+		$$ \lim_{(x, y) \rightarrow (0, 0)} f(x, y) = 0. $$
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}[1.3]
+	Nechť
+	$$ f(x, y) = \sqrt[5]{x^5 + 2y^5}. $$
+	Rozhodněte, ve kterých bodech má funkce f totální diferenciál a určete jej.
+
+	\begin{reseni}[Parciální derivace]
+		Funkce je definována všude (pátá odmocnina je definována všude na ®R, páté mocniny, součet a násobek taktéž). Kromě bodu $(x, y) = (0, 0)$ má funkce parciální derivace:
+		$$ \frac{\partial f}{\partial x}(x, y) = \frac{1}{5}\frac{1}{\sqrt[5]{x^5 + 2y^5}^4}·5x^4 = \frac{x^4}{\sqrt[5]{x^5 + 2y^5}^4}, $$
+		$$ \frac{\partial f}{\partial y}(x, y) = \frac{1}{5}\frac{1}{\sqrt[5]{x^5 + 2y^5}^4}·5·2y^4 = \frac{2y^4}{\sqrt[5]{x^5 + 2y^5}^4}. $$
+		Jediným problémovým bodem je bod $(0, 0)$, tam jsou parciální derivace z definice rovny
+		$$ \frac{\partial f}{\partial x}(0, 0) = \lim_{h \rightarrow 0}\frac{f(0 + h, 0) - f(0, 0)}{h} = \lim_{h \rightarrow 0}\frac{\sqrt[5]{(0 + h)^5 + 2·0^5} - \sqrt[5]{0^5 + 2·0^5}}{h} %= \lim_{h \rightarrow 0} \frac{h + 0}{h} 
+		= 1, $$
+		$$ \frac{\partial f}{\partial y}(0, 0) = \lim_{h \rightarrow 0}\frac{f(0, 0 + h) - f(0, 0)}{h} = \lim_{h \rightarrow 0}\frac{\sqrt[5]{0^5 + 2·(0 + h)^5} - \sqrt[5]{0^5 + 2·0^5}}{h} %= \lim_{h \rightarrow 0} \frac{h\sqrt[5]{2} + 0}{h}
+		= \sqrt[5]{2}. $$	
+	\end{reseni}
+	
+	\begin{reseni}[Totální diferenciál]
+		Parciální derivace $f$ jsou kromě $(0, 0)$ spojité, jelikož $g(x, y) = x$ resp. $g(x, y) = y$ jsou spojité a součet, mocnina, násobek, lichá odmocnina a podíl s nenulovým jmenovatelem jsou spojité, tedy pro $(x, y) ≠ (0, 0)$ je
+		$$ Df((x, y))((a, b)) = \frac{x^4}{\sqrt[5]{x^5 + 2y^5}^4}a + \frac{2y^4}{\sqrt[5]{x^5 + 2y^5}^4}b. $$
+
+		V bodě $(0, 0)$ ukážeme neexistenci totálního diferenciálu sporem: Předpokládejme, že v $(0, 0)$ $Df$ existuje. Potom z věty o tvaru totálního diferenciálu:
+		$$ Df((0, 0))((a, b)) = a + b\sqrt[5]{2}, \qquad \frac{\partial f}{\partial (1, 1)}(0, 0) = 1 + \sqrt[5]{2}. $$
+		Ale
+		$$ \frac{\partial f}{\partial (1, 1)}(0, 0) = \lim_{h \rightarrow 0}\frac{f((0, 0) + h(1, 1)) - f((0, 0))}{h} = \lim_{h \rightarrow 0} \frac{\sqrt[5]{h^5 + 2h^5}}{h} = \sqrt[5]{3} ≠ 1 + \sqrt[5]{2} $$
+	\end{reseni}
+\end{priklad}
+
+\end{document}

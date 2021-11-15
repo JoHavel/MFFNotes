@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[B.3]
+	Zkusme pro každé $a \in ®R$ definovat zobrazení $T: L_5([0, 3]) \rightarrow L_1([0, 3]^2)$ předpisem
+	$$ T f(x,y) = \frac{f(x)}{(xy)^a}, \qquad f \in L_5([0, 3]). $$
+	Pro jaká $a \in ®R \setminus \{\frac{4}{5}\}$ je zobrazení $T$ dobře definovaným spojitým lineárním operátorem z $L_5([0, 3])$ do $L_1([0, 3]^2)$?
+
+	V případech, kdy $T \in ©L(L_5([0, 3]), L_1([0, 3]^2))$, nalezněte $K > 0$ splňující $||T|| ≤ K$.
+
+	\begin{reseni}
+		Problém s definicí je zřejmě pouze v tom, zda je obraz prvkem $L_1([0, 3]^2)$. Aby byla funkce $g: [0, 3]^2 \rightarrow ®R$ prvkem tohoto prostoru, musí být $\int_{[0, 3]^2}|g(x, y)| d\, xy$ definovaný a konečný. Vyšetřujeme tedy (podle Fubiniovy věty):
+		$$ \int_{[0, 3]^2} \left|\frac{f(x)}{(xy)^a}\right| d\,xy = \int_0^3 \int_0^3 \left|\frac{f(x)}{(xy)^a}\right| dx\,dy = \(\int_0^3 \frac{1}{y^a}dy\)·\(\int_0^3 \frac{|f(x)|}{\left|x^a\right|}dx\), $$
+		kde $\int_0^3|f(x)|^5 dx \in ®R$.
+		Pokud je $a ≥ 1$, tak je levý integrál nekonečný, tedy i původní integrál je nekonečný, tedy $T$ není dobře definováno.
+
+		Pro $a > \frac{4}{5}$ zvolíme $f(x) = \frac{1}{x^{1 - a}}$, což je prvek $L_5([0, 3])$, jelikož:
+		$$ \int_0^3 |f(x)|^5 dx = \int_0^3 \frac{1}{x^{5\(\frac{1}{5} - \(a - \frac{4}{5}\)\)}} dx = \int_0^3 \frac{1}{x^{1 - 5…}} dx \in ®R. $$
+		Obraz ale není prvkem $L_1([0, 3]^2)$, neboť druhý z integrálů výše vyjde (první je nenulový):
+		$$ \int_0^3 \left|\frac{f(x)}{x^a}\right| = \int_0^3 \frac{1}{x^{a + 1 - a}}dx = \int_0^3 \frac{1}{x} dx = +∞. $$
+		$a$ tudíž musí být $≤\frac{4}{5}$.
+
+		Pro $a < \frac{4}{5}$ máme (levý integrál spočítáme, pravý odhadneme Hölderovou nerovností):
+		$$ ||Tf||_1 = \(\int_0^3 \frac{1}{y^a} dy\)·\(\int_0^3 \frac{|f(x)|}{\left|x^a\right|}dx\) ≤ \((1 - a)3^{1-a}\)·\(||f||_5·\sqrt[5 / 4]{\int_0^3 \frac{1}{x^{a·\frac{5}{4}}} dx}\) = $$
+		$$ = ||f||_5 · (1 - a)3^{1-a} · \sqrt[5 / 4]{\(1 - a·\frac{5}{4}\)·3^{1 - a·\frac{5}{4}}} = ||f||_5·(1 - a)3^{1-2a}·\sqrt[5 / 4]{3\(1 - \frac{5a}{4}\)}. $$
+
+		Tudíž pro $a < \frac{4}{5}$ je $||T||$ odhadnuto shora výrazem za „$||f||_5·$“, tudíž je $T$ dobře definováno a spojité (prvek $©L(…)$), zatímco pro $a > \frac{4}{5}$ není $T$ do $L_1([0, 3]^2)$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[3.1]
+	Uvažujme neznámou funkci $f$, pro niž jsou nám známy její funkční hodnoty $f(x_i)$ v bodech $x_i$, $i \in [n]$. Tuto funkci se budeme snažit aproximovat polynomem $p$ nejvýše $k$-tého stupně tak, aby
+	$$ p = \argmin_{\deg(q) ≤ k} \sum_{i=1}^n \(f(x_i) - q(x_i)\)^2. $$
+	Formulujte tuto rovnost jako problém nejmenších čtverců $\(\argmin_{¦x} ||A¦x - ¦b||\)$ pro vhodnou matici $A$ a vektory ¦b a ¦x.
+
+	\begin{reseni}
+		Jelikož je $q$ stupně nejvýše $k$, lze ho napsat jako: $q(y) = q_0 + q_1y + q_2y^2 + … + q_k y^k = ¦q·¦y$, kde $¦q = \(q_0, …, q_k\)^T$ a $¦y = \(y^0, …, y^k\)^T$. Rovnost výše pak můžeme přepsat na
+		$$ ¦p = \argmin_{¦q} \sum_{i=1}^n \(f_i - ¦q·¦x_i\)^2. $$
+
+		Nyní se můžeme podívat z druhé strany: na vektorech uvažujeme $l^2$ normu, tedy $\argmin_{¦x} ||A¦x - ¦b||$ zapíšeme jako $\argmin_{¦x} \sqrt{\sum_{i=1}^n (¦a_{i*}·¦x - b_i)^2}$. (Odmocnina ze součtu druhých mocnin jednotlivých složek.) Jelikož je odmocnina rostoucí funkce, bude minimální tam, kde bude minimální její argument, tedy je to totéž, co $\argmin_{¦x} \sum_{i=1}^n (¦a_{i*}·¦x - b_i)^2$. (Jelikož výraz pod odmocninou je pro reálná čísla (na komplexních by úloha nefungovala) vždy kladný, nezvětšili jsme tím množinu vektorů, přes které hledáme minimum, tedy je to opravdu ekvivalentní.)
+
+		Když do této rovnice dosadíme $¦a_{i*} = ¦x_i$, $¦x = ¦q$ a $f_i = b_i$, tak dostaneme přesně pravou stranu rovnosti pro $¦p$, tedy
+		$$ ¦p = \argmin_{¦x} \sum_{i=1}^n (¦a_{i*}·¦x - b_i)^2 = \argmin_{¦x} ||A¦x - ¦b||, $$
+		kde $¦b$ je vektor hodnot $f$ v bodech $x_i$, $A$ má za řádky řádkové vektory mocnin $x_i$ a $¦x$ je vektor koeficientů hledaného polynomu.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[3.2]
+	Definujme $g(¦x) = \frac{1}{2}||A¦x - ¦b||^2$ a nahlížejme nyní na problém nejmenších čtverců jako na hledání extrému funkce více proměnných. Ukažte, že $\nabla_{¦x}g(¦x) = A^T(A¦x - ¦b)$. Diskutujte vztah hledání minima funkce $g$ a řešení normálních rovnic.
+
+	\begin{dukazin}[Vztahu pro $\nabla$]
+		Přepíšeme $g$ pomocí definice $l^2$ normy (výraz, který je v normě odmocňován je kladný, tedy $\sqrt{\ }$ a $^2$ se „požerou“ beze zbytku, $n$ je dimenze prostoru, ve kterém problém řešíme, neboli třeba řád matice $A$):
+		$$ g(¦x) := \frac{1}{2}||A¦x - ¦b||^2 = \frac{1}{2}\sum_{i=1}^n\(¦a_{i*}·¦x - b_i\)^2 = \frac{1}{2}\sum_{i=1}^n (a_{i1}x_1 + … + a_{in}x_n - b_i)^2. $$
+		Parciální derivaci spočítáme tak, že pohlížíme na ostatní proměnné jako na konstanty, tedy z derivace složené funkce dostaneme:
+		$$ \frac{\partial g}{\partial x_j}(¦x) = \frac{1}{2}\sum_{i=1}^n 2(a_{i1}x_1 + … + a_{in}x_n - b_i)·(0 + … + a_{ij} + … 0) = \sum_{i=1}^n (¦a_{i*}¦x - b_i)a_{ij}, $$
+		$$ \frac{\partial g}{\partial x_j}(¦x) = ¦a_{*j}(A¦x - ¦b), $$
+		$$ \nabla_{¦x}g(¦x) = \(¦a_{*1}(A¦x - ¦b), …, ¦a_{*n}(A¦x - ¦b)\)^T = A^T(A¦x - ¦b). $$
+	\end{dukazin}
+
+	\begin{reseni}[Diskuze]
+		Z prvního příkladu víme, že $\argmin_{¦x} ||A¦x - ¦b|| = \argmin_{¦x} \frac{1}{2}||A¦x - ¦b||^2$ (funkce $\phi(¦x) = \frac{1}{2}¦x$ je taktéž rostoucí), tedy hledání řešení problému nejmenších čtverců odpovídá hledání $\argmin_{¦x} g(¦x)$.
+
+		Z nutné podmínky existence lokálního extrému víme, že pokud je $¦x$ extrém $g$ (a existují zde parciální derivace, což existují, když jsme je našli), tak
+		$$ \nabla_{¦x}g(¦x) = A^T(A¦x - ¦b) = ¦o. $$
+		Další extrémy mohou být už jen v $∞$, ale tam je $g(∞) = +∞$. Tedy všechna $¦x$, pro která je $g(¦x)$ minimální, musí být řešením normální soustavy rovnic.
+
+		Zároveň $A^T(A¦x - ¦b) = ¦o$ nám říká, že řádky $A^T$, tedy sloupce $A$ jsou kolmé na $\(A¦x - ¦b\)$, tudíž z Pythagorovy věty (pro libovolné ¦h)
+		$$ g(¦x + ¦h) = \frac{1}{2}||A(¦x + ¦h) - ¦b||^2 = \frac{1}{2}||A¦h + (A¦x - ¦b)||^2 $$
+		$$ = \frac{1}{2}\(||A¦h||^2 + ||A¦x - ¦b||^2\) ≥ \frac{1}{2}||A¦x - ¦b||^2 = g(¦x). $$
+		Tedy libovolné řešení normální soustavy rovnic je zároveň $\argmin_{¦x}g(¦x)$.
+
+		Tj. řešení problému nejmenších čtverců jsou právě řešení normální soustavy rovnic.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

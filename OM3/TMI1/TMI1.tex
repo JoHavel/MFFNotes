@@ -382,4 +382,172 @@ TODO!!!
 
 TODO?
 
+% 03. 11. 2021
+
+\begin{veta}[O jednoznačnosti míry]
+	Nechť $©S \subset ©P(X)$ je $\pi$-systém a $\mu, \gamma$ jsou dvě míry na $\sigma ©S$ splňující $\mu(S) = \gamma(S)$, $\forall S \in ©S$. Jestliže existují množiny $X_n \in ©S$, $X_n \nearrow X$, $\mu(X_n) < +∞$, $\forall n \in ®N$, pak $\mu = \gamma$ na $\sigma ©S$.
+
+	\begin{dukazin}
+		Nejprve předpokládejme, že $\mu(X) < +∞$. Pak definujme systém $©D := \{A \in \sigma ©S | \mu(A) = \gamma(A)\}$. Platí $©S \subset ©D$, tedy $d©S \subset d©D = ©D \subset \sigma ©S$, tedy $©D = \sigma©S$.
+
+		Je-li $\mu(X) = +∞$, pak definujeme $©D_n := \{A \in \sigma ©S | \mu(A \cap X_n) = \gamma(A \cap X_n)\}$, $n \in ®N$. Platí $©D_n$ je $d$-systém $\forall n \in ®N$ (ověř!). $©S \subset ©D_n$, $\forall n \in ®N$, neboť $S \in ©S: \mu(S \cap X_n) = \gamma(S\cap X_n)$. $d©S \subset d©D_n = ©D_n \subset \sigma ©S$, tedy $©D_n = \sigma ©S$, $\forall n \in ®N$.
+
+		Nechť $A \in \sigma ©S$. Pak $\mu(A) = \lim_{n \rightarrow ∞} \mu(A \cap X_n) = \lim_{n \rightarrow ∞} \gamma(A \cap X_n) = \gamma(A)$. Tedy $\mu = \gamma$ na $\sigma ©S$.
+	\end{dukazin}
+\end{veta}
+
+\section{Součin měr a Fubiniova věta}
+\begin{poznamka}[Předpoklady pro další 2 přednášky]
+	Nechť $(X, ©A, \mu)$, resp. $(Y, ©B, \gamma)$, je prostor se $\sigma$ konečnou mírou $\mu$, resp. $\gamma$.
+\end{poznamka}
+
+\begin{definice}[Měřitelný obdélník, ©O]
+	Množinu $A \times B \subset X \times Y$, kde $A \in ©A$, $B \in ©B$, nazveme měřitelným obdélníkem.
+
+	Symbolem ©O označíme systém všech měřitelných obdélníků.
+\end{definice}
+
+\begin{definice}[Součinová $\sigma$-algebra]
+	Definujeme $\sigma$-algebru $©A \otimes ©B$ předpisem $©A \otimes ©B := \sigma ©O$.
+
+	$\forall E \in ©A \otimes ©B\ \forall x \in X\ \forall y \in Y$ definujeme řezy $E_x$, $E^y$ množiny $E$ takto:
+	$$ E_x := \{y \in Y | [x, y] \in E\}, \qquad E^y := \{x \in X | [x, y] \in E\}. $$
+\end{definice}
+
+\begin{veta}[O součinové $\sigma$-algebře $©A \otimes ©B$]
+	Je-li $E \in ©A \otimes ©B$, tak
+
+	\begin{enumerate}
+		\item $\forall x \in X: E_x \in ©B$,
+		\item $\forall y \in Y: E^y \in ©A$,
+		\item funkce $x \mapsto \gamma(E_x)$ je měřitelná na $(X, ®A)$,
+		\item funkce $y \mapsto \mu(E^y)$ je měřitelná na $(Y, B)$.
+	\end{enumerate}
+
+	Je-li funkce $f: (X\times Y, ©A \otimes ©B) \rightarrow ®R^*$ měřitelná, pak
+
+	\begin{enumerate}
+		\item $\forall x \in X$ je funkce $f_x: y \mapsto f(x, y)$ je měřitelná na $(Y, ©B)$,
+		\item $\forall y \in Y$ je funkce $f_y: x \mapsto f(x, y)$ je měřitelná na $(X, ©A)$.
+	\end{enumerate}
+
+	\begin{dukazin}[Pouze lichá tvrzení, sudá jsou analogická]
+		Definujeme $©E = \{E \in ©A \otimes ©B | E_x \in ©B\}$. Ověříme, že $©E$ je $\sigma$-algebra.
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+% 10. 11. 2021
+
+\begin{veta}[Existence a jednoznačnost součinové míry]
+	Existuje právě jedna míra $\mu \otimes \nu$ (tzv. součinová míra) na $©A \otimes ©B$ splňující $(\mu \otimes \nu)(A \times B) = \mu(A)·\nu(B)$, $\forall A \in ©A$, $\forall B \in ©B$.
+
+	Pro tuto míru platí
+	$$ E \in ©A \otimes ©B \implies (\mu \otimes \nu)(E) = \int_X \nu(E_x) d\mu(x) \qquad \(= \int_Y \mu(E^y)d\nu(y)\). $$
+
+	\begin{dukazin}
+		1. Existence: Je-li $E \in ©A \otimes ©B$, pak definujeme $(\mu \otimes \nu)(E) = \int_X \nu(E_x) d\mu(x)$. O té dokážeme, že je mírou a že splňuje předpis v definici.
+
+		2. Jednoznačnost: Nechť $\tau$ je míra na $©A \otimes ©B$, která splňuje $\tau(A \times B) = \mu(A)\nu(B)$, $\forall A \in ©A$, $\forall B \in ©B$, tedy $\tau = \mu \otimes \nu$ na ©O to je $\pi$-systém. Prostory $(X, ©A, \mu)$, $(Y, ©B, \nu)$ jsou prostory s $\sigma$-konečnými mírami. Tj.
+		$$ \exists X_n \in ©A\ \forall n in ®N, X_n \nearrow X, \mu(X_n) < +∞\ \forall n \in ®N \land $$
+		$$ \land \exists Y_n \in ©B\ \forall n in ®N, Y_n \nearrow Y, \nu(Y_n) < +∞\ \forall n \in ®N \Leftrightarrow $$
+		$$ TODO. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Jsou-li $(X, ©A, \mu)$ a $(Y, ©B, \nu)$ prostory s úplnými $\sigma$-konečnými mírami, pak $\mu \otimes \nu$ nemusí být úplná.
+\end{poznamka}
+
+
+\begin{veta}[Fubiniova]
+	Pro $\forall f \in ©L^*(\mu \otimes \nu)$ platí
+	\begin{enumerate}
+		\item $x \mapsto \int_Y f(x, y) d\nu(y)$ je měřitelná na $X$,
+		\item $y \mapsto \int_X f(x, y) d\nu(x)$ je měřitelná na $Y$,
+		\item $\int_{X \times Y} f d(\mu \otimes \nu) = \int_X\(\int_Y f(x, y)d\nu(y)\) d\mu(x) = \int_Y\(\int_X f(x, y)d\mu(x)\) d\nu(y)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1) $f = \chi_E$, $E \in ©A \otimes ©B$: $\nu(E_x) = \int_Y$ TODO!!!(Dokáže se nejprve pro charakteristickou funkci, pak pro jednoduché nezáporné, nakonec pro všechny.)
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Značení]
+	Místo $(©A \otimes ©B)_0$ značíme $©A \overset{0}{\otimes} ©B$ (budu značit $©A \otimes_0 ©B$). A místo $(\mu \otimes \nu)_0$ píšeme \ldots (já píšu $©A \otimes_0 \nu$).
+\end{poznamka}
+
+\begin{veta}[Fubiniova věta pro zúplnění součinové míry]
+	Nechť $(X, ©A, \mu)$, $(Y, ©B, \nu)$ jsou prostory s úplnými $\sigma$-konečnými mírami. Je-li $f \in ©L^*(\mu \otimes_0 \nu)$, pak
+
+	\begin{itemize}
+		\item funkce $x \mapsto f(x, y)$ je měřitelná na $X$ pro $\mu$-skoro všechna $y \in Y$,
+		\item funkce $y \mapsto f(x, y)$ je měřitelná na $Y$ pro $\mu$-skoro všechna $x \in X$,
+		\item funkce $x \mapsto \int_Y f(x, y) d\nu(y)$ je měřitelná na $X$,
+		\item funkce $y \mapsto \int_X f(x, y) d\nu(x)$ je měřitelná na $Y$,
+		\item $\int_{X \times Y} f d(\mu \otimes_0 \nu) = \int_X\(\int_Y f(x, y)d\nu(y)\) d\mu(x) = \int_Y\(\int_X f(x, y)d\mu(x)\) d\nu(y)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Z 2 následujících tvrzení a Fubiniovy věty se věta snadno dokáže.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	Buď $(Z, ©C, \rho)$ prostor s mírou a $(Z, ©C_0, \rho_0)$ jeho zúplnění. Je-li $f: (Z, ©C_0) \rightarrow ®R^*$ $\rho_0$ měřitelná funkce, pak existuje $\rho$ měřitelná funkce $g: (Z, ©C) \rightarrow ®R^*$ tak, že $f = g$ $\rho$-skoro všude na $Z$.
+	
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Nechť $(X< ©A, \mu)$ a $(Y, ©B, \nu)$ jsou prostory s úplnými $\sigma$-konečnými mírami. Nechť $h: (X \times Y, ©A \otimes_0 ©B) \rightarrow ®R^*$ je $(\mu \otimes_0 \nu)$-měřitelná funkce a $h(x, y) = 0$ $\mu \otimes_0 \nu$-skoro všude na $X \times Y$. Pak pro $\mu$-skoro všechna $x \in X$ je $h(x, y)$ rovno 0 pro $\nu$-skoro všechna $y \in Y$.
+
+	(Tzn, že pro $\mu$-skoro všechna $x \in X$ je funkce $h_x$ rovna 0 $\nu$-skoro všude na $Y$.)
+
+	Speciálně, funkce $h_x$ je měřitelná na $X$ pro $\nu$-skoro všechna $y \in Y$.
+	
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	$\lambda^n = \(\lambda^*_{©B}\)_0$
+\end{definice}
+
+\begin{veta}[O míře $\lambda^p \otimes \lambda^q$]
+	Nechť $p, q \in ®N$. Pak
+	
+	\begin{itemize}
+		\item $©B(®R^{p + q}) = ©B(®R^p) \otimes ©B(®R^q)$,
+		\item $\lambda^{p+q} = \lambda^p \otimes \lambda^q$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Neuveden.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fubiniova věta pro $\lambda^{p + q}$]
+	Nechť $f \in ©L^*(\lambda^{p + q})$, $p, q \in ®N$. Pak
+	$$ \int_{®R^{p + q}} f d\lambda^{p + q} = \int_{®R^p} \(\int_{®R^q} f(x, y) d\lambda^q(y)\) \lambda^p(x) = \int_{®R^q} \(\int_{®R^p} f(x, y) d\lambda^p(x)\) \lambda^q(y). $$
+\end{veta}
+
+\begin{definice}[Značení]
+	$p, q \in ®N$, $x \in ®R^p$, $y \in ®R^q$. Definujeme projekce
+	$$ \pi_1(x, y) = x, \qquad \pi_2(x, y) = y. $$
+\end{definice}
+
+\begin{dusledek}
+	Nechť $p, q \in ®N$, $A \in ©B^{p + q}_0 := ©B(®R^{p + q})_0$. Je-li $f \in ©L^*(\lambda^{p + q})$ a projekce $\pi_1A, \pi_2A$ jsou měřitelné, pak
+	$$ \int_A f d\lambda^{p + q} \int_{\pi_1A} \(f(x, y) d \lambda^q(y)\)\lambda^p(x) = \int_{\pi_2A} \(f(x, y) d \lambda^p(x)\)\lambda^q(y). $$
+\end{dusledek}
+
+\begin{poznamka}[Značení]
+	Místo $d\lambda^p(x)$ píšeme $dx$ a místo $d\lambda^q(y)$ píšeme $dy$.
+\end{poznamka}
+
 \end{document}

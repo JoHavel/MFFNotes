@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[5.7]
+	Parametrizujte průnik sféry s válcovou plochou, která prochází středem sféry a má poloviční průměr. Nalezněte body s největší křivostí a v těchto bodech spočítejte křivost, torzi a Frenetův repér.
+
+	\begin{reseni}[Parametrizování]
+		Z obrázku/představy je jasné, že křivka dvakrát oběhne válec, tedy můžeme začít tím, že křivku parametrizujeme v osách „kolmých“ na válec. Válcová plocha je kružnice, jejíž parametrizace je zřejmě $(r\sin t, r\cos t, 0)$ (kde $r$ je poloměr kružnice, $t \in [0, 2\pi]$), takže pokud ji chceme „oběhnout“ dvakrát, tak jen změníme interval $t$ na $[0, 4\pi]$. Také ji chceme posunout, aby střed koule byl v počátku, tedy $(r\sin t, -r + r\cos t, 0)$, $t \in [0, 4\pi]$. Ještě můžeme zaměnit poloměr $r$ za polovinu poloměru koule $\frac{R}{2}$ a dostaneme $\(\frac{R\sin t}{2}, \frac{R + R\cos t}{2}, 0\)$, $t \in [0, 4\pi]$.
+
+		Hledaná křivka je na sféře, takže musí splňovat $x^2 + y^2 + z^2 = R^2$. Tj.
+		$$ R^2 = R^2\frac{\sin^2 t + \cos^2 t + 2\cos t + 1}{4} + z^2, $$
+		$$ z^2 = R^2\(1 - \frac{\cos t + 1}{2}\) = R^2\frac{1 - \cos t}{2}, $$
+		$$ z = ±\frac{R}{\sqrt{2}}\sqrt{1 - \cos t}. $$
+		Parametrizace naší křivky je tedy
+		$$ c(t) = \begin{cases} \(\frac{R\sin t}{2}, \frac{R + R\cos t}{2}, \frac{R}{\sqrt{2}}\sqrt{1 - \cos t}\) &\text{ pro } t \in [0, 2\pi], \\ \(\frac{R\sin t}{2}, \frac{R + R\cos t}{2}, -\frac{R}{\sqrt{2}}\sqrt{1 - \cos t}\) &\text{ pro } t \in [2\pi, 4\pi].\end{cases} $$
+		Pro $t = 2\pi$ jsou obě části křivky rovny $(0, 1, 0)$, takže $c$ je spojité.
+	\end{reseni}
+
+	\begin{reseni}[Křivost]
+		Křivost má křivka největší v bodech $t = \pi$ a $t = 3\pi$, což buď otrocky spočítáme, nahlédneme, nebo najde v Geogebře.
+
+		Derivace křivky jsou:
+		$$ c'(t) = \(\frac{R}{2}\cos t, -\frac{R}{2}\sin t, ±\frac{R}{2\sqrt{2}}\frac{\sin t}{\sqrt{1 - \cos t}}\), $$
+		$$ c''(t) = \(-\frac{R}{2}\sin t, -\frac{R}{2}\cos t, ±\frac{R}{2\sqrt{2}}\(\frac{\cos t}{\sqrt{1 - \cos t}} - \frac{1}{2}\frac{\sin^2 t}{\sqrt{1 - \cos t}^3}\)\) = $$
+		$$ = \(-\frac{R}{2}\sin t, -\frac{R}{2}\cos t, \mp\frac{R}{4\sqrt{2}}\sqrt{1 - \cos t}\), $$
+
+		(Mimochodem fungují i v $t = 2\pi$, jelikož $c'(t) \rightarrow \(\frac{R}{2}, 0, -\frac{R}{\sqrt{2}}\)$ a $c''(t) \rightarrow \(0, -\frac{R}{2}, 0\)$.)
+		V bodech $t = \pi$ a $t = 3\pi$ je $c'$ rovno $\(-\frac{R}{2}, 0, 0\)$, tedy $|c'|$ je $\frac{R}{2}$. $c''$ je zde rovno $\(0, \frac{R}{2}, \mp\frac{R}{4}\)$.
+
+		Znaménková křivost (v daných bodech, pro jednoduchost je tam nepíšu) je
+		$$ \frac{||c'\times c''||}{||c'||^3} = \frac{\sqrt{\frac{R^4}{64} + \frac{R^4}{16}}}{\frac{R^3}{8}} = \frac{\sqrt{5}}{R}. $$
+	\end{reseni}
+
+	\begin{reseni}[Torze]
+		$$ c'''(t) = \(-\frac{R}{2}\cos t, \frac{R}{2}\sin t, \mp\frac{R}{8\sqrt{2}}\frac{\sin t}{\sqrt{1 - \cos t}}\). $$
+		Ta je tedy v $\pi$ a $3\pi$ rovna $\(\frac{R}{2}, 0, 0\)$. Torze v těchto bodech je pak rovna nule (první a třetí derivace jsou lineárně závislé).
+	\end{reseni}
+
+	\begin{reseni}[Frenetův repér]
+		Tečna v daných bodech je $¦t = c'/||c'|| = (-1, 0, 0)$. Binormálové vektory jsou
+		$$ ¦b(\pi) = \frac{\(0, -\frac{R^2}{8}, -\frac{R^2}{4}\)}{\sqrt{\frac{R^4}{64} + \frac{R^4}{16}}} = \(0, \frac{-1}{\sqrt{5}}, \frac{-2}{\sqrt{5}}\), \qquad ¦b(3\pi) = \frac{\(0, \frac{R^2}{8}, -\frac{R^2}{4}\)}{\sqrt{\frac{R^4}{64} + \frac{R^4}{16}}} = \(0, \frac{1}{\sqrt{5}}, \frac{-2}{\sqrt{5}}\). $$
+		Normála je $¦n = ¦b \times ¦t$, tedy
+		$$ ¦n(\pi) = \(0, \frac{2}{\sqrt{5}}, -\frac{1}{\sqrt{5}}\), \qquad ¦n(3\pi) = \(0, \frac{2}{\sqrt{5}}, \frac{1}{\sqrt{5}}\). $$
+	\end{reseni}
+\end{priklad}
+
+\end{document}

@@ -435,7 +435,7 @@ TODO!!!
 	Nechť $X$ je vektorový prostor.
 
 	\begin{itemize}
-		\item Je-li $P: X \rightarrow X$ lineární projekce, pak $P\lhook{\Rng P} = \id_{\Rng P}$.
+		\item Je-li $P: X \rightarrow X$ lineární projekce, pak $P\lhook{\Rang P} = \id_{\Rang P}$.
 		\item Je-li $Y$ podprostor $X$ a $P: X \rightarrow Y$ lineární zobrazení splňující $P\lhook_Y = \id_Y$, pak $P$ je projekce $X$ na $Y$.
 	\end{itemize}
 
@@ -445,13 +445,13 @@ TODO!!!
 \end{tvrzeni}
 
 \begin{tvrzeni}
-	Nechť $X$ je vektorový prostor. Jsou-li $P_A$ a $P_B$ projekce příslušné rozkladu $X = A \oplus B$, pak $P_A + P_B = \id_X$, $\Rng P_A = A$, $\ker P_A = B$, $\Rng P_B = B$ a $\Ker P_B = A$.
+	Nechť $X$ je vektorový prostor. Jsou-li $P_A$ a $P_B$ projekce příslušné rozkladu $X = A \oplus B$, pak $P_A + P_B = \id_X$, $\Rang P_A = A$, $\ker P_A = B$, $\Rang P_B = B$ a $\Ker P_B = A$.
 
 	\begin{dukazin}
 		Jednoduchý.
 	\end{dukazin}
 
-	Na druhou stranu, je-li $P$ lineární projekce v $X$, pak $X = A \oplus B$, kde $A = \Rng P$, $B = \Ker P$ a $P = P_A$.
+	Na druhou stranu, je-li $P$ lineární projekce v $X$, pak $X = A \oplus B$, kde $A = \Rang P$, $B = \Ker P$ a $P = P_A$.
 
 	\begin{dukazin}
 		Jednoduchý.
@@ -510,7 +510,7 @@ TODO!!!
 	\end{itemize}
 
 	\begin{dukazin}
-		$\Leftarrow$: Polož $p := T \circ S: X \rightarrow X$. Pak $p$ je zřejmě lineární a $||p|| ≤ ||T||·||S||$, navíc $p^2 = (T\circ S)\circ(T \circ S) = p$, tedy $p$ je projekce. Zároveň $p(X) = T(S(X))$, jelikož $S \circ T$ je identita, tak $S$ je na a $p(X) = T(Y) = \Rng T$. Zbývá si uvědomit, že $T$ je izomorfismus (izometrie, pokud $||S||, ||T|| ≤ 1$): Máme
+		$\Leftarrow$: Polož $p := T \circ S: X \rightarrow X$. Pak $p$ je zřejmě lineární a $||p|| ≤ ||T||·||S||$, navíc $p^2 = (T\circ S)\circ(T \circ S) = p$, tedy $p$ je projekce. Zároveň $p(X) = T(S(X))$, jelikož $S \circ T$ je identita, tak $S$ je na a $p(X) = T(Y) = \Rang T$. Zbývá si uvědomit, že $T$ je izomorfismus (izometrie, pokud $||S||, ||T|| ≤ 1$): Máme
 		$$ \forall x \in X: ||S x|| = ||STS x|| ≤ ||S||·||TS x||, $$
 		tedy (protože $S$ je na):
 		$$ \forall y \in Y: ||y||\frac{1}{||S||} ≤ ||Ty||, $$
@@ -593,5 +593,313 @@ TODO!!!
 	\end{dukazin}
 \end{dusledek}
 
+% 01. 11. 2021
+
+TODO!
+\begin{veta}
+	$(X, ||·||)$ je NLP. Pak $||x|| = \sqrt{\<x, x\>}$ pro skalární součin $\<·,·\>$ $\Leftrightarrow$ platí:
+	$$ \forall x, y \in X: ||x + y||^2 + ||x - y||^2 = 2\(||x||^2 + ||y||^2\). $$
+
+	\begin{dukazin}[Reálný případ, komplexní analogicky]
+		$\implies$ z Polarizačního vzorce. Pro $\Leftarrow$ položme $\<x, y\> := \frac{1}{4}\(||x + y||^2 - ||x-y||^2\)$, $x, y \in X$. Následně ověříme podmínky (kromě linearity (speciálně aditivity) je ověření triviální). Aditivita: Chceme
+		$$ LS = \forall x, y, z \in X: \<x+y, z\> + \<x - y, z\> = 2\<x, z\> = PS. $$
+		$$ LS = \frac{1}{4}\(\underline{||x + y + z||^2} - ||x + y - z||^2 + \underline{||x - y + z||^2} - ||x - y - z||^2\) = $$
+		$$ \overset{\text{z předpokladu}}{=} \frac{1}{4}\(\underline{2\(||x + z||^2 + ||y||^2\)} - 2\(||x - y||^2 + ||y||^2\)\) = \frac{1}{2}\(||x + z||^2 - ||x - z||^2\) = PS. $$
+
+		Tuto rovnost aplikujeme na $x = y$: $\<2x, z\> = 2\<x, z\>$, a na $\tilde{x} = \frac{1}{2}(x + y)$, $\tilde{y} = \frac{1}{2}(x - y)$:
+		$$ \<x, z\> + \<y, z\> = 2\<\frac{1}{2}(x + y), z\> = \<x + y, z\>. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Frigyes Riesz, 1934]
+	Nechť $C$ je uzavřená neprázdná konvexní množina v Hilbertově prostoru $H$. Pak pro každé $x \in H$ existuje právě jedno $y \in C$ tak, že $||x - y|| = \dist(x, C)$.
+
+	\begin{dukazin}
+		Zvolme $\(y_n\)_{n=1}^∞$ posloupnost v $C$, že $\lim_{n \rightarrow ∞} ||y_n - x|| = d(x, C)$. Chceme, že $\(y_n\)_{n=1}^∞$ je cauchyovská. Tedy, protože $C$ je uzavřená, existuje $y \in C: y_n \rightarrow y$. Pak ale $d(x, c) = ||x - y||$.
+
+		Zbývá jednoznačnost: Ať $y, z \in C$ taková, že $||x - y|| = ||x - z|| = \dist(x, C)$. Pak $||y - z||^2 ≤ 0$, tedy $y = z$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Frigyes Riesz, 1934]
+	Nechť $X$ je prostor se skalárním součinem, $Y$ jeho podprostor a $x \in X$. Pak $y \in Y$ splňuje $||x - y|| = \dist(x, Y)$ právě tehdy, když $x - y \in Y^{\perp}$.
+
+	\begin{dukazin}
+		Jednoduchý.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Frigyes Riesz, 1934]
+	Nechť $Y$ je uzavřený podprostor Hilbertova prostoru $H$. Pak $H = Y \oplus_t Y^{\perp}$ a projekce $P_y: H \rightarrow Y$ příslušná rozkladu $H = Y \oplus Y^{\perp}$ má následující vlastnosti:
+	
+	\begin{itemize}
+		\item $||P_Y(x) - x|| = \dist(x, Y) ≤ ||x||$ pro každé $x \in H$,
+		\item $||P_Y|| ≤ 1$.
+	\end{itemize}
+
+	\begin{dukazin}
+		$Y \cap Y^{\perp} = \{¦o\}$: Ať $x \in Y \cap Y^{\perp}$. Pak $\<x, x\> = 0 \implies x = 0$.
+
+		$H = Y + Y^{\perp}$: Zvol $x \in H$. Dle vět výše existuje právě jedno $y \in Y: x - y \in Y^{\perp}$. Pak $x = y + x - y \in Y + Y^{\perp}$.
+
+		Tedy, $H = Y \oplus Y^{\perp}$, a zároveň z důkazu víme, že
+		$$ P_Y(x) = \text{ „jediný prvek $y \in Y$, že $x - y \in Y^\perp$“ } = \text{ „j. p. $y \in Y$, že $||x - y|| = d(x, Y)$“.} $$
+		
+		Tedy $||P_Y(x) - x|| = d(x, y) ≤ ||x||$. Zbývá $||P_y|| ≤ 1$: $||P_y x||^2 = $
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $H$ je Hilbertův prostor a $\{x_n\}_{n=1}^∞ \subset H$ je podposloupnost navzájem ortogonálních prvků. Pak řada $\sum_{n=1}^∞ x_n$ konverguje bezpodmínečně, právě když konverguje.
+
+	\begin{dukazin}
+		$\implies$ už víme. $\Leftrightarrow$: Víme $\sum_{n=1}^∞ x_n$ splňuje B-C podmínku. Tedy pro $\epsilon > 0 \exists n_0 \in ®N$:
+		$$ \forall m > n ≥ n_0: ||\sum_{k=n+1}^m x_k|| < \epsilon. $$
+		Polož $F = \{1, …, n_0\}$. Zvol $F' \in ©F(®N) : F' \cap F = \O$. Pak
+		$$ ||\sum_{k \in F'} x_k||^2 \overset{\text{Pyt. věta}}{=} = \sum_{k \in F'} ||x_k||^2 ≤ \sum_{k \in \min F'}^{\max F'} ||x_k||^2 = ||\sum_{…}^{…} x_k||^2 < \epsilon. $$
+	\end{dukazin}
+\end{veta}
+
+% 02. 11. 2021
+
+\begin{definice}[Ortogonální, ortonormální, maximální ortonormální, úplný ortonormální, ortonormální báze]
+	Je-li $X$ prostor se skalárním součinem a $A \subset X$, řekneme, že množina $A$ je
+
+	\begin{itemize}
+		\item ortogonální, pokud $x \perp y$ pro všechna $x, y \in A$, $x ≠ y$.
+		\item ortonormální, pokud $A$ je ortogonální a $A \subset S_X$.
+		\item maximální ortonormální, pokud $A$ je ortonormální a neexistuje ortonormální množina obsahující $A$ různá od $A$.
+		\item úplný ortonormální, pokud $A$ je ortonormální a $\overline{\spn} A = X$.
+		\item ortonormální báze, pokud $A = \{e_\gamma | \gamma \in \Gamma\}$ je ortonormální množina a každé $x \in X$ lze vyjádřit jako $x = \sum_{\gamma \in \Gamma}x_\gamma e_\gamma$ pro nějaké skaláry $x_\gamma$.
+	\end{itemize}
+	TODO
+\end{definice}
+
+\begin{tvrzeni}[Fakt]
+	Je-li $A$ ortonormáľní množina v prostoru se skalárním součinem, pak $||x - y|| = \sqrt{2}$ pro každé dva prvky $x, y \in A$, $x ≠ y$.
+
+	\begin{dukazin}
+		$$ ||x - y||^2 = ||x||^2 + ||y||^2. $$
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Tedy, pokud $X$ je separabilní se skalárním součinem $\implies$ každý ON-systém je spočetný.
+	\end{poznamkain}
+\end{tvrzeni}
+
+\begin{veta}
+	Každý prostor se skalárním součinem obsahuje maximální ortonormální systém.
+
+	\begin{dukazin}
+		$©P = \{A \subset X | A \text{ je ON-systém}\}$ s uspořádáním inkluzí. Zvol $©O \subset ©P$ lineárně uspořádané, pak $\bigcup ©O \in ©P$ je horní závora $©O$ $\implies$ (z Zornova lemmatu) $\exists A \in ©P$ maximální. To je hledaný maximální ON-systém.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Besselova nerovnost]
+	Je-li $\{e_\gamma\}_{\gamma \in \Gamma}$ ortonormální soustava v prostoru $X$ se skalárním součinem, platí $\sum_{\gamma \in \Gamma}|\<x, e_\gamma\>|^2 ≤ ||x||^2$ pro každé $x \in X$.
+
+	\begin{dukazin}
+		Ať $F \in ©F(\Gamma)$, $x_F := \sum_{\gamma \in F}\<x, e_\gamma\> e_\gamma$. Pak $||x||^2 = ||x - x_F||^2 + ||x_F||^2$ podle Pythagorovy věty ($x - x_F \perp x_F$: $\forall i \in F: \<x - x_F, e_i\> = \<x, e_i\> - \<x_F, e_i\> = \<x, e_i\> - \<\<x, e_i\>e_i, e_i\> = 0$). Tj. $||x||^2 ≥ ||x_F||^2 = \sum_{\gamma \in F}|\<x, e_\gamma\>|^2$. Tedy máme omezení pro všechny konečné součty, tudíž celý součet bude omezen stejně (celý součet je supremum z konečných podle tvrzení někde výše).
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $H$ je Hilbertův prostor a $\{e_\gamma\}_{\gamma \in \Gamma}$ je ortonormální systém v $H$. Pak následující tvrzení jsou ekvivalentní:
+
+	\begin{enumerate}
+		\item $||x||^2 = \sum_{\gamma \in \Gamma} |\<x, e_\gamma\>|^2$ pro každé $x \in H$ (tzv. Parsevalova rovnost).
+		\item $x = \sum_{\gamma \in \Gamma}\<x, e_\gamma\>e_\gamma$ pro každé $x \in H$.
+		\item $\{e_\gamma\}$ je ortonormální báze.
+		\item $H = \overline{\spn}\{e_\gamma | \gamma \in \Gamma\}$.
+		\item $\{e_\gamma\}$ je maximální ortonormální systém.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$1 \implies 2$: Nechť $\epsilon > 0$. Zvolíme $F \in ©F(\Gamma)$: $||x||^2 - \epsilon < \sum_{\gamma \in F} |\<x, e_\gamma\>|^2$. Zvolíme $F' \supset F$, $F' \in ©F(\Gamma)$. Pak
+		$$ ||x - \sum_{\gamma \in F'}\<x, e_\gamma\> e_\gamma||^2 \overset{\text{cos + Pythagorova věta}}{=} ||x||^2 + \sum_{\gamma \in F'} |\<x, e_\gamma\>|^2 - 2\Re \<x, \sum_{\gamma \in F'\<x, e_\gamma\>e_\gamma}\> = $$
+		$$ = … + … - 2\Re\sum_{\gamma \in F'}\overline{\<x, e_\gamma\>}\<x, e_\gamma\> = ||x||^2 - \sum_{\gamma \in F'} |\<x, e_\gamma\>| < \epsilon. $$
+
+		$2 \implies 3$: Triviální. $3 \implies 4$: Triviální. $4 \implies 1$: Nechť $x \in H$ a $F \in ©F(\Gamma)$, že existuje $\sum_{\gamma \in F} a_\gamma e_\gamma$ splňující $||x - \sum_{\gamma \in F}a_\gamma e_\gamma|| < \epsilon$. Položme $y := \spn(e_\gamma, \gamma \in F)$, pak $d(x, y) ≤ ||x - \sum_{\gamma \in F} a_\gamma e_\gamma|| < \epsilon$. (Jelikož $d(x, y) = ||x - \sum_{\gamma \in F}\<x, e_\gamma\>e_\gamma||$, neboť z lemmatu někde výše stačí ověřit $y \perp x - \sum_{\gamma \in F}\<x, e_\gamma\>e_\gamma$, tj. stačí $\forall i \in F: \<x - \sum_{\gamma \in F}\<x, e_\gamma\>e_\gamma, e_i\> = 0$, což je jednoduché.)
+
+		Tedy $||x|| ≤ \epsilon + ||\sum_{\gamma \in F \<x, e_\gamma\>e_\gamma}||$ (z Bsselovy nerovnosti víme, že suma konverguje a navíc víme, že v 1 platí $≥$, tj. stačí dokázat $≤$)
+		$$ ||x||^2 ≤ \(\epsilon + ||\sum_{\gamma \in F \<x, e_\gamma\>e_\gamma}||\)^2 = \epsilon^2 + 2\epsilon ||x|| + \sum_{\gamma \in F}||\<x, e_\gamma\>e\gamma|| ≤ \epsilon^2 + 2\epsilon ||x|| + \sum_{\gamma \in \Gamma}|\<x, e_\gamma\>|^2. $$
+
+		$2 \implies 5$: Ať $x \in \{e_\gamma | \gamma \in \Gamma\}^{\perp}$ (chceme, že $x = 0$). Z 2. víme, že $x = \sum_{\gamma \in \Gamma}\<x, e_\gamma\>e_\gamma = \sum 0 = 0$.
+
+		$5 \implies 4$: Ať $Y = \overline{\spn}(e_\gamma, \gamma \in \Gamma)$. Pak $H = Y \oplus_t Y^{\perp}$ (zde se používá úplnost jako předpoklad věty, ze které toto plyne). $H = Y \oplus_t \{e_\gamma | \gamma \in \Gamma\}^\perp \overset{5}{=} Y \oplus_t \{¦o\}$.
+	\end{dukazin}
+
+	\begin{poznamka}
+		Bez úplnosti jsou ekvivalentní 1, 2, 3 a 4 a vyplývá z nich 5.
+	\end{poznamka}
+\end{veta}
+
+% 08. 11. 2021
+
+TODO!
+
+\begin{veta}[Ernst Sigismund Fisher (1907), Frigyes Riesz (1907)]
+	TODO!!!
+\end{veta}
+
+\begin{veta}[?]
+	TODO!!!
+\end{veta}
+
+\begin{veta}[Heinrich Löwig (1934), F. Riesz (1934)]
+	Nechť $H$ je Hilbertův prostor. Pro každé $y \in H$ označme $f_y \in H^*$ funkcionál definovaný jako $f_y(x) = \<x, y\>$ pro $x \in H$. Pak zobrazení $l: H \rightarrow H^*$, $l(y) = f_y$ je sdruženě lineární ($I(\alpha y) = \overline{\alpha} I(y)$) izometrie $H$ na $H^*$.
+
+	\begin{dukazin}
+		$\forall y \in H$ máme: $f_y$ je lineární, $\forall x \in H$: $f_y(x) ≤ ||x||·||y||$, tedy $f_y$ je spojité a $||f_y|| ≤ ||y||$, $f_y\(\frac{y}{||y||}\) = \<\frac{y}{||y||}, y\> = ||y|| \implies ||f_y|| = ||y||, y \in H$. $\implies I$ je izometrie, sdruženě lineární. Zbývá „na“. To se dokáže z následujícího lemmatu:
+
+		Zvol $f \in H^*$, pak $H = \Ker f \oplus (\Ker f)^\perp$. Tedy existuje $z \in (\Ker f)^\perp$ splňující $H = \Ker f \oplus_t \spn\{z\}$. Položme $y:= f(z)z$. Pak $I(y) = f$, jelikož:
+		$$ \forall x \in H: I(y)(x) = \<x, y\> = \<x_{\Ker f} + \alpha_x z, y\> = \<\alpha_x z, y\> = \alpha_x\<z, \overline{f(z)}z\> = f(\alpha_x z) = f(x). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $X$ je vektorový prostor, $f$ je lineární forma na $X$ a $x \in X \setminus \Ker f$. Pak $X = \Ker f \oplus \spn\{x\}$. Tedy $\codim \Ker f = 1$.
+
+	\begin{dukazin}
+		$\Ker f \cap \spn\{x\} = \{¦o\}$: Ať $\alpha \in ®K$, pak pokud $\alpha x \in \Ker f$, pak $\alpha f(x) = f(\alpha x) = 0$, tedy $\alpha = ¦o$.
+
+		Ať $y \in X$. Pak $y = \(y - \frac{f(y)}{f(x)}x\) + \frac{f(y)}{f(x)}x$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	Nechť $X$ je komplexní normovaný lineární prostor. Symbolem $X_R$ označme prostor $X$ uvažovaný jako reálný. Tj. $X_R$ je tatáž množina jako $X$ uvažovaná s operací sčítání jako v $X$, s násobením reálným číslem jako v $X$ a stejně definovanou normou.
+\end{definice}
+
+\begin{veta}[Reálná verze komplexního normovaného lineárního prostoru]
+	Nechť $Z$ je komplexní normovaný lineární prostor. Pak platí
+	
+	\begin{enumerate}
+		\item $X_R$ je reálný normovaný lineární prostor. (Zřejmé.)
+		\item $X_R$ je úplný, právě když $X$ je úplný. (Norma je pořád tatáž.)
+		\item $\phi: X \rightarrow ®C$ je lineární, právě když $\Re \phi: X_R \rightarrow ®R$ je lineární a $\Im \phi(x) = -\Re \phi(ix)$ pro každé $x \in X$.
+		\item Je-li $\phi \in X^*$, pak funkcionál $\psi(x) = \Re \phi(x)$, $x \in X_R$, patří do $(X_R)^*$ a platí $||\psi|| = ||\phi||$.
+		\item Je-li $\psi \in (X_R)^*$, pak existuje právě jeden funkcionál $\phi \in X^*$ takový, že $\psi(x) = \Re \phi(x)$ pro $x \in X_R$. Je dán vzorcem $\phi(x) = \psi(x) - i\psi(ix)$ a splňuje $||\psi|| = ||\phi||$.
+		\item Prostory $(X_R)^*$ a $(X^*)_R$ jsou izometrické.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Nechť $X$ je reálný normovaný lineární prostor. Na $X \times X$ definujeme:
+	$$ (x_1, x_2) + (y_1, y_2) = (x_1 + y_1, x_2 + y_2), \qquad x_1, x_2, y_1, y_2 \in X, $$
+	$$ (\alpha_1 + i\alpha_2)·(x_1, x_2) = (\alpha_1x_1 - \alpha_2x_2, \alpha_1x_2 + \alpha_2 x_1), \qquad \alpha_1, \alpha_2 \in ®R, x_1, x_2 \in X, $$
+	$$ ||(x_1, x_2)||_{X_C} = \sup\{||(\cos \alpha)x_1 + (\sin \alpha)x_2||_X | \alpha \in [0, 2\pi)\}, \qquad x_1, x_2 \in X. $$
+
+	Symbolem $(X_C, ||·||)$ značíme komplexní normovaný lineární prostor $(X \times X, +, ·, ||·||_{X_C})$.
+\end{definice}
+
+\begin{veta}[Komplexifikace]
+	Je-li $X$ reálný normovaný lineární prostor, pak je $(X_C, ||·||)$ komplexní normovaný lineární prostor. Je-li navíc $X$ Banachův, pak je $X_C$ Banachův.
+
+	\begin{dukazin}
+		Linearitu nebudeme dokazovat (definice je zvolena tak, aby to vycházelo, lehké cvičení). Norma je taktéž jednoduchá, nejtěžší je dokázat, že lze vytýkat konstanty.
+
+		$X_C$ je Banachův plyne z toho, že $X \oplus_∞ X$ je Banach a norma $||·||_{X_C}$ je ekvivalentní (konstanty $1$ a $2$) maximové normě, která je v definici součinu metrických prostorů a součin úplných metrických prostorů je úplný.
+	\end{dukazin}
+\end{veta}
+
+% 9. 11. 2021
+
+\begin{definice}[Sublineární funkcionál, pseudonorma]
+	TODO!
+\end{definice}
+
+\begin{veta}[Hans Hanh (1927), Stefan Banach (1929)]
+	Nechť $X$ je vektorový prostor a $Y$ je podprostor.
+
+	\begin{itemize}
+		\item Je-li $X$ reálný, $p$ je sublineární funkcionál na $X$ a $f$ je lineární forma na $Y$ splňující $f(x) ≤ p(x)$ pro každé $x \in Y$, pak existuje lineární forma $F$ na $X$ taková, že $F|_Y = f$ a $F(x) ≤ p(x)$ pro každé $x \in X$.
+		\item Je-li $p$ pseudonorma na $X$ a $t$ je linearní forma na $Y$ splňující $|f(x)| ≤ p(x)$ pro každé $x \in Y$, pak existuje lineární forma $F$ na $X$ taková, že $F|_Y = f$ a $|F(x)| ≤ p(x)$, $x \in X$.
+	\end{itemize}
+
+	\begin{dukazin}[1. bod]
+		1. krok: rozšíříme $f$ o jednu dimenzi, tj. na $Z = Y \oplus \spn(x)$, kde $x \notin Y$. Položme $F(y + tx) := f(y) + t\alpha$, $y \in Y$, $t \in ®R$, kde $\alpha \in ®R$ je vhodně zvolená: Linearita $f$ vyplývá z definice, tedy stačí $f(y) + t\alpha ≤ p(y + t\alpha)$, $y \in Y$, $t \in R$ $\Leftrightarrow$
+		$$ \Leftrightarrow \forall t > 0 : \alpha ≤ \frac{1}{t}(p(y + tx) - f(y)) \land \forall t < 0: \alpha ≥ \frac{1}{2}(p(y+tx) - f(y)), y \in Y \Leftrightarrow $$
+		$$ \Leftrightarrow \forall t > 0: \alpha ≤ p(\frac{y}{t} + x) - f(\frac{y}{t}) \land \forall t < 0: \alpha ≥ f(\frac{-y}{t}) - p(\frac{-y}{t} - x), y \in Y \Leftrightarrow $$
+		$$ \Leftrightarrow \forall y \in Y: \alpha \in \[f(y) - p(y - x), p(y + x) - f(y)\] \Leftrightarrow $$
+		$$ \Leftrightarrow \forall y, z \in Y: f(y) - p(y - x) ≤ p(z + x) - f(z), $$
+		tedy máme $f(y) + f(z) = f(y + z) ≤ p(y + z) ≤ p(y - x) + p(z + x)$. Tedy $\alpha$ můžeme volit libovolně z intervalu $[\sup_y f(y) - p(y - x), \inf_y p(y + x) - f(y)]$.
+
+		2. krok: přidáme všechny dimenze (transfinitní) indukcí. (Hanh-Banachova věta je ekvivalentní axiomu výběru.)
+	\end{dukazin}
+
+	\begin{dukazin}[2. bod]
+		1. krok: Pro $®K = ®R$ aplikujeme první bod: VIme, že existuje $F: X \rightarrow ®R$ lineární, že $F|_Y = f$. Pak ale $F(x) ≤ p(x)$, $x \in X$ $\land -F(x) = F(-x) ≤ p(-x) = p(x), x \in X$ $\implies |F(x) ≤ p(x), x \in X|$.
+
+		2. krok: Pro $®K = ®C$: Polož $g = \Re f$. Pak podle 1. části $\exists G: X_R \rightarrow ®R$ lineární, že $G|_Y = g$ $\land$ $|G(x)| ≤ p(x), x \in X$. Pak máme $f(x) = g(x) - ig(ix)$, $x \in X$ a položíme $F(x) := G(x) - iG(ix)$, $x \in X$. Pak $f|_Y = f$, $F$ je lineární a pro $x \in X$ máme:
+
+		Zvolme $|\lambda| = 1$, $\lambda \in ®C: |F(x)| = \lambda F(x)$, pak $|F(x)| = F(\lambda x) = G(\lambda x) - i G(i \lambda x) = G(\lambda x) ≤ P(\lambda x) ≤ p(x)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Hahnova-Banachova]
+	Nechť $X$ je normovaný lineární prostor, $Y$ je podprostor $X$ a $f \in Y^*$. Pak existuje $F \in X^*$ takové, že $F|_Y = f$ a $||F|| = ||f||$.
+
+	\begin{dukazin}
+		Aplikujeme předchozí větu na $p(x) := ||f||·||x||, x \in X$. Pak $|f(x)| ≤ ||f||·||x|| = p(x)$, $x \in Y$ $\implies$ $\exists F: X \rightarrow ®K$ lineární, $F|_y = f$, $|F| ≤ p$. Pak $|F(x)| ≤ p(x) = ||f||·||x||$, $x \in X$, tedy $||F|| ≤ ||f||$ (opačná nerovnost triviální).
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $X$ je netriviální normovaný lineární prostor. Pro každé $x \in X$ existuje $f \in S_{X^*}$ takové, že $f(x) = ||x||$. Odtud plyne, že jsou-li $x, y \in X$ různé body, pak existuje $f \in X^*$ takový, že $f(x) ≠ f(y)$ (říkáme, že $X^*$ odděluje body $X$).
+
+	\begin{dukazin}
+		Zvol $x \in X$. BÚNO $x ≠ ¦o$. Polož $Y = \spn(x)$, $g : Y \rightarrow ®K$ definujeme předpisem $g(t x) := t||x||$, $\forall t \in ®K$. Pak $g$ je zřejmě lineární a $||g||=1$, protože
+		$$ |g(tx)| = |t|·||x|| = ||tx||, \forall t \in ®K. $$
+		Podle H-B $\exists f \in X^*: f|_Y = g$, $||f|| = ||y|| = 1$. Pak $f(x) = ||x||$.
+
+		Ad „speciálně“: Zvol $x + y$. Najdi $f \in S_{X^*}: f(x - y) = ||x - y||$, pak $f(x) ≠ f(t)$, protože $||x - y|| ≠ 0$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	Je-li $X$ normovaný lineární prostor a $x \in X$, pak $||x|| = \max_{t \in B_{X^*}}|f(x)|$.
+
+	\begin{dukazin}
+		Triviální.
+	\end{dukazin}
+ \end{dusledek}
+
+ \begin{dusledek}[Oddělování bodu a podprosotru]
+	 Nechť $X$ je normovnaný lineární prostor, $Y$ je uzavřený podprostor $X$ a $x \notin Y$. Pak existuje $f \in S_{X^*}$ tak, že $f|_Y = 0$ a $f(x) = \dist(x, Y) > 0$.
+
+	 \begin{dukazin}
+		 Zvolme $Z := Y \oplus \spn(x) \subset X$. $f(y + \alpha x) := \alpha \dist(x, Y)$, $y \in Y$, $\alpha \in ®K$. Pak $f: Z \rightarrow ®K$ je lineární. $||f|| = 1$: $|f(y + \alpha x)| = |\alpha|\dist(x, Y) ≤ |\alpha|·||x + \frac{y}{\alpha}|| = ||\alpha x + y||$, $y \in Y$, $\alpha \in ®K$. Zvolme $(y_n)_{n=1}^∞$ v $Y$, že $d(x, Y) = \lim_{n \rightarrow ∞} ||x - y_n||$. Pak $\frac{|f(y_n + x)}{||y_n + x||} = \frac{d(x, Y)}{||y_n + x||} \rightarrow 1$.
+
+		 Nyní z H-B věty rozšíříme na celé $Y$: $\exists F \in X^X: F|_z = f \land ||F|| = 1$.
+	 \end{dukazin}
+ \end{dusledek}
+
+ \begin{veta}[Oddělování konvexních množín]
+ 	Nechť $X$ je normovaný lineární prostor a $A, B \subset X$ jsou disjuktní konvexní množiny. Pak platí následující tvrzení
+	
+	\begin{itemize}
+		\item Je-li $A$ otevřená, pak existuje $f \in X^*$ takový, že $\Re f(x) < \inf_B \Re f$ pro každé $x \in A$.
+		\item Je-li $A$ uzavřená a $B$ kompaktní, pak existuje $f \in X^*$ takový, že $\sup_A \Re f < \inf_B \Re f$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		Ekvivalentní H-B větě.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		BÚNO $X$ je nad ®R. BÚNO $A ≠ \O ≠ B$. První bod: Zvolíme $a \in A$, $b \in B$. Polož $w = b - a$ a $C = w + A - B$. Pak $w \notin C$, $¦o \in C$, $C$ je konvexní ($A$ i $B$ jsou konvexní, takže i jejich posunutý rozdíl je konvexní) a otevřená ($A$ je otevřená, posunutý rozdíl otevřené a libovolné je otevřená). Položme $p_c(x) := \inf\{t > 0 | x \in tC\}$ (lehce se ověří, že $p_c$, tzv. Minkowského funkcionál, je sublineární). $p_c(x) < +∞$ (protože $C$ obsahuje nulu a z otevřenosti i kouli kolem ní a každé $x$ se vejde do dostatečně nafouklé koule). $p_c ≤ 1$ na $C$ a $p_c(w) ≥ 1$.
+
+		Položme $Y := \spn(w)$, $g(\alpha w) := \alpha$, $\alpha \in ®R$, $g: Y \rightarrow ®R$ (pak $g ≤ p_c$). Z H-B tedy plyne:
+		$$ \exists G: X \rightarrow ®R \text{ lineární }, G|_Y = g, G ≤ p_c. $$
+		Pak $G \in X^*$ protože $G ≤ p_c ≤ 1$ na $C$, ale to obsahuje kouli, takže je $G$ omezené na nějaké kouli $\implies$ je spojité.
+
+		Konečně $\forall x \in A\ \forall y \in B: G(x) = G(y) + G(x - y + w) - G(w) ≤ G(y) + 1 - 1 = G(y)$. Rovnost nemůže nastat, protože $A$ je otevřené.
+	\end{dukazin}
+ \end{veta}
 
 \end{document}

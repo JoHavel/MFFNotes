@@ -157,7 +157,46 @@
 
 	Semming (odříznutí koncovky, na rozdíl od lemmatizace je základním tvarem kmen slova.)
 
-	Generování (proces výběru správného slovního tvaru, pokud známe lemma a příslušnou kombinaci gramatických kategorií. Jednoduhé.)
+	Generování (proces výběru správného slovního tvaru, pokud známe lemma a příslušnou kombinaci gramatických kategorií. Jednoduché.)
 \end{poznamka}
+
+% 19. 11. 2021
+
+TODO!!!
+
+% 9. 11. 2021
+
+\begin{definice}[Systém ASIMUT]
+	Jazykový modul: Neobsahuje žádný rozsáhlý slovník. Je založen na retrográdním (seřazen podle abecedy, ale podle slov pozpátku) slovníku dr. Slavíčkové (1975). (Slova, která jsou poblíž mají podobné vlastnosti, jelikož mají stejné koncovky.)
+
+	Algoritmus: Porovnávají se jednotlivé znaky základního tvaru slova odzadu (háček a čárka jsou zvláštní znaky) dokud není možné (až na výjimky) jednoznačně určit, jak slovo skloňovat. Poté slovnímu základu (eventuálně základům v případě změn v kmeni) přidáme všechny vhodné pádové koncovky.
+
+	Problémy: Špatně se hledá, která slova chybí. Větší problém je, že některé slova se nedají rozeznat podle dokud je celé nepřečtete (speciálně životné vs. neživotné: právník vs. trávník, lazebník vs. sazebník), takže většinou je algoritmus nastaven tak, aby se generovali i neexistující tvary (používá se spíše ke kategorizaci slov). A moc nefunguje pro slovesa. Byl tedy brzy převálcován algoritmy používající slovníky.
+
+	Další pojmy: Negativní slovník (obsahuje nepodstatná slova při dotazování (spojky, citoslovce apod.)), Konkordance (předzpracování, přidělovali se adresy a frekvence pro porovnávání podobnosti významů).
+\end{definice}
+
+\begin{definice}[Systém MOZAIKA]
+	Morphemic Oriented System of Automatic Indexing and Condensation (systém pro indexaci dokumentů). Na rozdíl od standardního přístupu, kdy existuje slovník klíčových slov a podle něj se indexuje, využívá toho, že řada přípon a koncovek nese význam (v ANJ -er, -or, -tion, -ity, -ness, v češtině -ič, -ač, -čka, -ér, -or, -dlo, -metr, -graf, -fon, -skop, -ace, -kce, -áž, -ní, -za, -ost, -ita, -nce, -aný, -ený, -ací, -ecí).
+
+	Algoritmus - Vstupem je nijak nepředzpracovaný text, u kterého je zachována typografie. Lematizace a morfologická analýza poskytnou lemata a morfologické značky. Nalezená lemata jsou profiltrována negativním slovníkem a podle délky. Syntaktická analýza pomůže odhalit několikaslovné termíny. Váhy se přiřadí i podle umístění (nadpisy, první a poslední odstavce, první a poslední věty, atd.). Nakonec se vezme 10 výrazů s nejvyšším skórem, které se normalizuje (dělí se vahou nejdůležitějšího výrazu).
+	
+	Výhody: není nutné vytvářet slovníky, pouze koncovek, lokální syntaktická analýza umožňuje větší flexibilitu při hledání termínů.
+
+	Nevýhody: pracné vytváření slovníků pravidel, neobsahuje řešení odkazů (= především zájmena)
+\end{definice}
+
+\section{Syntax}
+\begin{definice}[Reprezentace]
+	Závislostní stromy -- na rozdíl od střední školy mají všechny „tokeny“ (včetně interpunkce) vrchol a kořenem je pouze přísudek. Používá se spíše méně. Dá se zapsat šipkami nad textem. Zdaleka ne vše se s ním dá zachytit.
+
+	Složkový strom -- slova/fráze (= složky) se po dvou skládají do frází, dokud nezbude jen jedna fráze. Trochu vhodnější pro pevné pořadí slov ve větě, proto se používá více. Dá se zapsat pomocí závorek. Odpovídá derivačnímu stromu bezkontextové gramatiky
+\end{definice}
+
+\begin{definice}[Neprojektivní konstrukce]
+	Při projekci slov svisle dolů protneme mnoho hran. Např. „Soubor se nepodařilo otevřít.“, „Vánoční nadešel čas.“, „Které děvčata chtěla dostat ovoce?“, „Tuto knihu jsem se mu rozhodl dát k narozeninám.“, „Proti odvolání se zítra Petr v práci nakonec důrazně rozhodl protestovat.“.
+
+	Každá cca. 7. věta je neprojektivní.
+\end{definice}
 
 \end{document}

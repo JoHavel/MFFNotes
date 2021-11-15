@@ -167,6 +167,91 @@ TODO!!!
 		$$ \bigcup_{i=1}^N F_i \subset \cup_{i=1}^∞ D_i \subset \bigcup_{i = 1}^∞ G_i, N \in ®N. $$
 		$$ \bigcup_{i=1}^∞ G_i \setminus \bigcup_{i=1}^F_i $$
 	\end{dukazin}
+
+% 02. 11. 2021
+
+	\begin{poznamkain}
+		$\sigma$-konečné míry nemusí být regulární, viz prostor spočetně přímek procházejících počátkem v $®R^2$.
+	\end{poznamkain}
 \end{veta}
+
+\begin{definice}[Těsnost (= vnitřní regularita)]
+	Borelovská míra $\mu$ na metrickém (topologickém) prostoru $X$ je těsná (= tight), jestliže $\forall B \in ©B(X): \mu(B) = \sup\{\mu(K) | K \subset B \text{ kompaktní}\}$.
+\end{definice}
+
+\begin{poznamka}
+	$\mu$ je Radonova míra, jestliže je těsná a konečná na kompaktech.
+
+	Pokud $\mu$ je konečná a těsná, pak už je $mu$ regulární.
+
+	Jestliže $\mu$ je konečná a regulární a $\mu(X) = \sup\{\mu(K) | K \subset X \text{ kompaktní}\}$, pak $\mu$ je těsná.
+\end{poznamka}
+
+\begin{veta}
+	Pokud $\mu$ je konečná borelovská míra na úplném separabilním metrickém prostoru, potom už je těsná.
+
+	\begin{dukazin}
+		Stačí ukázat $\mu(X) = \sup\{\mu(K) | K \subset X \text{ kompaktní}\}$: $S = \{x_1, x_2, …\} \subset X$ hustá spočetná (ze separability). $\forall n \in ®N: \bigcup_i ©U_{\frac{1}{n}}(x_i) = X$. Nechť je dáno $\epsilon > 0$. Pak $\forall n\ \exists k_n: \mu\(X \setminus \bigcup_{i=1}^{k_n} ©U_{\frac{1}{n}}(x_i)\) < \frac{\epsilon}{2^n}$ (ze spojitosti míry).
+
+		Definujeme $A:= \bigcap_{n=1}^∞ \bigcup_{i=1}^{k_n} ©U_{\frac{1}{n}} \(x_i\)$ ($\in ©B(X)$). $A$ je totálně omezená (tzn. $\forall \epsilon > 0\ \exists F \subset A$ kompaktní tak, že $A \subset \bigcup_{x \in F}B_{\epsilon}(x)$). $\overline{A}$ je totálně omezená a uzavřená $\implies$ $\overline{A}$ je úplný MP (+ totálně omezený), tedy $\overline{A}$ je kompaktní.
+
+		$$ \mu(X \setminus \overline{A}) ≤ \mu(X \setminus A) = \mu\(\bigcup_{n=1}^∞ \mu\(X \setminus \bigcup_{i=1}^{k_n} ©U_{\frac{1}{n}} \(x_i\)\)\). $$
+	\end{dukazin}
+\end{veta}
+
+\section{Věta o rozšíření míry}
+\begin{veta}[Hahn-Komogorov]
+	Buď $\tilde{\mu}$ pramíra na algebře $©A \subset ©P(X)$ $\implies$ existuje míra $\mu$ na $\sigma©A$ taková, že $\mu = \tilde{\mu}$ ne $©A$. Je-li $\tilde{\mu}$ $\sigma$-konečná, je $\mu$ určena jednoznačně.
+
+	\begin{dukazin}
+		Pro $E \subset X$ položme $\mu^*(E) := \inf\{\sum_{i=1}^∞ \tiled{\mu}(A_i) | A_i \in ©A, E \subset \bigcup_{i=1}^∞A_i\}$. Ověříme, že $\mu^*$ je vnější míra.
+
+		$\forall A \in ©A: \mu^*(A) = \tilde{\mu}(A)$. Zřejmě $\mu^*(A) ≤ \tilde{\mu}(A)$, jelikož můžeme pokrýt $A$ množinami $A, \O, \O, …$. Pro $≥$ mějme $A \subset \bigcup_i A_i$, $A_i \in ©A$. $B_1:= A_1 \cap A$, $B_2 := (A_2 \cap A) \setminus B_1$, … O nich víme, že $A = \bigcup_i B_i$, $B_i$ po dvou disjunktní, $B_i \in ©A$. $\tilde{\mu}(A) = \sum_i\tilde{\mu}(B_i) ≤ \sum_i\tilde{\mu}(A_i)$, tedy z definice infima $\tilde{\mu}(A) ≤ \inf_{A_i}\sum_i \tilde{\mu}(A_i) = \mu^*(A)$.
+
+		Zbývá ukázat, že $©A \subset ©A_{\mu^*}$. TODO.
+
+		Jednoznačnost: ©A uzavřená na konečné průniky, $\tilde{\mu}$ je $\sigma$-konečná $\implies$ $\exists A_n \in ©A$, $A_n \nearrow X, \tilde{\mu}(A_n) < ∞$ $\implies$ $\mu$ je jednoznačně určena (věta o jednoznačnosti míry, TMI1).
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Zobecnění příkladu z TMI1]
+	$E = \bigtimes_{i=1}^∞ E_i$, $E_i$ úplné separabilní metrické prostory (např. $E_i = ®R$), $\O ≠ I \subset ®N$ … $E_{I} = E_i$, $E, E_I$ metrické prostory. $\pi_I: E \rightarrow E_I$ kanonická projekce. A následující věta:
+\end{poznamka}
+
+\begin{veta}[Daniell-Koleuogorov]
+	$E_i$ úplné separabilní metrické prostory, $i \in ®N$. Nechť pro každou $\O ≠ I \subset ®N$ existuje borelovská pravděpodobnostní míra $\mu_I$ na $E_I$. A nechť je splněna projektivní vlastnost:
+	$$ \O ≠ I \subset J \subset ®N \text{ konečná}, \forall B \in ©B(E_I): \mu_I(B) = \mu_J\(\(\pi_I^J\)^{-1}(B)\), $$
+	pak $\exists!$ borelovská míra $\mu$ na $E = \bigtimes_{i=1}^∞ E_i$ taková, že $\forall \O ≠ I \subset ®N$ konečná, $\forall B \in ©B\(E_I\): \mu(\pi_I^{-1}(B) = \mu_I(B))$.
+\end{veta}
+
+% 09. 11. 2021
+
+\begin{lemma}
+	$$ 1) x_n, x \in E: x_n \rightarrow x \Leftrightarrow x_n(i) \rightarrow x(i), i \in ®N, $$
+	$$ x_n, x \in E_I: x_n \rightarrow x \Leftrightarrow x_n(i) \rightarrow x(i), i \in I $$
+
+	2) $\pi_I, \pi_I^J$ jsou spojitá zobrazení.
+
+	3) $\forall I \in ?_f$: $E_I$ je úplný separabilní MP.
+
+	4) $©B(E_I) = \otimes_{i \in I}©B(E_i)$.
+
+	\begin{dukazin}
+		1 jsme nedokazovali, 2 a 3 jsou triviální.
+		$$ 4) \otimes_{i \in I}©B(E_i) = \sigma \{\bigtimes_{i \in I} B_i | B_i \in ©B(E_i)\} = \sigma \{\bigtimes_{i \in I} | G_i \subset E_i \text{ otevřené}\}, $$
+		tedy $\bigtimes_{i \in I} G_i$ je otevřená v $E_I$ $\implies$ $\otimes_{i \in I} ©B(E_i) \subset ©B(E_I)$. Naopak $U \subset E_I$ otevřená $\implies$ $U = \bigcup_{n=1}^∞ U_n$, kde $U_n = \bigtimes G_i^n$, $G_i^n \subset E_i$ otevřená $\implies$ $©B(E_I) \subset \otimes_{i \in I} ©B(E_i)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Daniell-Kolmogorov]
+	$E_i$ úplné separabilní metrické prostory $i \in ®N$. Nechť pro každou $I \in ?_f$ existuje borelovská pravděpodobnostní míra $\mu_I$ na $E_I$. Nechť $I \subset J, I, J \in ?_f \implies \mu_I = \mu_J(\pi_I^J)^{-1}$. Pak existuje právě jedna borelovská pravděpodobnostní míra $\mu$ na $E$ taková, že
+	$$ \forall I \in ?_f: \mu_I = \mu(\pi_I)^{-1}. $$
+
+	\begin{dukazin}
+		TODO!
+	\end{dukazin}
+\end{veta}
+
+
 
 \end{document}

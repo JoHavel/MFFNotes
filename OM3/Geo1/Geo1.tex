@@ -207,4 +207,176 @@ TODO!!!
 	\begin{definice}[Oskulační, retrifikační a normálová rovina]
 		Oskulační rovina je množina $¦c(t) + <¦t(t), ¦n(t)>$, retrifikační rovina je množina $¦c(t) + <¦t(t), ¦b(t)>$ a normálová rovina je $¦c(t) + <¦n(t), ¦b(t)>$.
 	\end{definice}
+
+% 03. 11. 2021
+
+	\begin{veta}
+		Na otevřeném intervalu $I$ budiž zadány dvě hladké reálné funkce $k(t)$, $r(t)$, přičemž $r(t) > 0$ pro všechna $t \in I$. Pak existuje až na přímou podobnost právě jedna hladká parametrická rovinná křivka $c(t)$, $t \in I$, pro kterou platí
+		$$ ||c'(t)|| = r(t), \qquad \kappa_z(t) = f(t). $$
+
+		\begin{dukazin}
+			Zintegrujeme a vyjde nám jedna funkce až na konstanty.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Při reparametrizaci křivky v $®R^3$ zachovávající orientaci se v daném bodě křivost, torze a Frenetův repér nemění. Při reparametrizaci, která mění orientaci, se křivost, torze a normálový vektor rovněž nemění, zatímco tečný a binormálový vektor se mění na vektory opačné.
+
+		\begin{dukazin}
+			Prostě se spočítá.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Křivost, tečný a normálový vektor jsou ekvivariantní vůči shodnostem $®R^3$. TODO
+
+		\begin{dukazin}
+			Prostě se spočítá.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Tečna]
+		Pro hladkou regulární křivku $c(t)$ v $®R^3$ definujeme v každém bodě tečnou přímku jako množinu $c(t) + \<¦t(t)\>$.
+	\end{definice}
+
+	\begin{definice}[a lemma o parametrizaci obloukem]
+		O hladké parametrizované křivce $c(ť)$ řekneme, že je parametrizovaná obloukem nebo jednotkovou rychlostí, jestliže pro všechna $t \in I$ platí $||c'(t)|| = 1$. Každou hladkou regulární křivku lze parametrizovat obloukem. Je-li $c(t)$ nějaké parametrizace obloukem, pak všechny ostatní parametrizace této křivky obloukem získáme reparametrizací $t = \phi(s)$, $\phi(s) = ±s + s_0$, kde $s_0$ je libovolná konstanta.
+		
+		\begin{dukazin}
+			Zřejmé.
+		\end{dukazin}
+	\end{definice}
+
+	\begin{lemma}
+		Pro hladkou křivku $c(t)$ v $®R^3$ parametrizovanou obloukem v každém bodě platí $¦t(t) = c'(t)$ a v každém neinflexním bodě navíc platí
+		$$ n(t) = \frac{c''(t)}{||c''(t)||}, \qquad \kappa(t) = ||c''(t)|| = ||c'(t) \times c''(t)||. $$
+
+		\begin{dukazin}
+			Prostě se spočítá.
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{veta}[Frenetovy vzorce]
+		Je-li $c(t)$ hladká křivka v $®R^3$ parametrizovaná obloukem, pak v každém neinflexním bodě platí
+		$$ ¦t' = \kappa n, \qquad n' = -\kappa ¦t + \tau b, \qquad b' = -\tau n', $$
+		což lze vyjádřit maticově jako
+		$$ (t'|n'|b') = (t|n|b)\begin{pmatrix} 0 & -\kappa & 0 \\ \kappa & 0 & -\tau \\ 0 & \tau & 0 \end{pmatrix}, $$
+		nebo s využitím takzvaného Darbouxova vektoru $d = \tau¦t + \kappa b$ jako
+		$$ t' = d\times t, \qquad n' = d \times n, \qquad b' = d\times b. $$
+	\end{veta}
+
+	\begin{veta}
+		Nechť $f(t) > 0$, $g(t)$ jsou hladké funkce definované na otevřeném intervalu $I$. Pak existuje až na přímou eukleidovskou shodnost právě jedna hladká křivka $c(t)$ v $®R^3$ parametrizovaná obloukem na intervalu $I$ tak, že $\kappa(t) = f(t)$, $\tau(t) = g(t)$.
+
+		Tyto rovnice se někdy nazývají přirozené rovnice křivky.
+	\end{veta}
+
+	\begin{veta}
+		Pro regulární hladkou para TODO!
+	\end{veta}
+
+% 10. 11. 2021
+
+	TODO
+
+	\begin{veta}
+		Křivka je určena křivostí, torzí a počáteční polohou Frenetova repéru.
+
+		\begin{dukazin}
+			Technický. Chce to věty o řešení diferenciálních rovnic.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Pro regulární hladkou parametrizovanou křivku $c: I \rightarrow ®R^3$ bez inflexních bodů platí, že leží v nějaké rovině právě tehdy, když $\tau(t) = 0$, $\forall t \in I$.
+
+		\begin{dukazin}
+			$c(t)$ leží v rovině $a·x + b·y + c·z + d = 0$ $\Leftrightarrow$ $c(t)·(a, b, c) = -d$, tj. $c'·(a, b, c) = c''·(a, b, c) = c'''·(a, b, c) = 0$, tedy $c', c'', c''' \in \<(a, b, c)\>^\perp$, který je dimenze dva, tedy determinant daných vektorů (a tedy torze) musí být 0.
+
+			Naopak jestliže $\tau = 0$, pak $b' = \tau·¦n = 0$ $\implies$ $b$ je konstantní. Zvolíme $t_0 \in I$ a definujeme $h(t) = (c(t) - c(t_0))·b$. $h(t_0) = 0$ a navíc $h'(t) = c'(t)·b = ¦t·¦b = 0 \implies h ≡ 0$. $0 = (c(t) - c(t_0))·b = c(t)·b = c(t_0)·b$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}
+		Pro regulární hladkou parametrizovanou křivku $c: I \rightarrow ®R^2$ vnořenou do $®R^3$ zobrazením $(x, y) \mapsto (x, y, 0)$ platí $\kappa = |\kappa_z|$ a v neinflexních bodech $n = \sgn(\kappa_z)n_s$.
+
+		\begin{dukazin}
+			Přímým výpočtem.
+		\end{dukazin}
+	\end{veta}
+
+\section{Křivkový integrál}
+\begin{definice}[Křivkový integrál 1. druhu]
+	Mějme hladkou parametrickou křivku $c(t), t \in (\alpha, \beta)$ v $®R^n$ a reálnou funkci $f$ definovanou na $\<c\>$. Pak definujeme křivkový integrál 1. druhu
+	$$ \int_c f ds := \int_\alpha^\beta f(c(t))||c'(t)||dt, $$
+	pokud integrál napravo existuje jako Lebesgueův integrál.
+\end{definice}
+
+\begin{veta}
+	Křivkový integrál prvního druhu nezávisí na (re)parametrizaci.
+
+	\begin{dukazin}
+		Větou o substituci.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Délka křivky]
+	Délku křivky definujeme jako integrál prvního druhu z konstantní jednotkové funkce
+	$$ l(c) = \int_c 1 ds. $$
+\end{definice}
+
+\begin{definice}[Uzavřená, jednoduchá, Jordanova křivka]
+	Parametrizovaná křivka $c: [\alpha, \beta] \rightarrow ®R^2$ se nazývá uzavřená, jestliže $c(\alpha) = c(\beta)$. Tuto křivku navíc nazveme jednoduchou, je-li $c$ prosté na $[\alpha, \beta)$. Jednoduchá uzavřená rovinná křivka se rovněž nazývá Jordanova.
+\end{definice}
+
+\begin{veta}[Umlaufsatz]
+	Je-li $c(t), t \in [\alpha, \beta]$ hladká uzavřená křivka, pro kterou navíc $¦t(\alpha) = ¦t(\beta)$, pak existuje $k \in ®Z$ (nazývané index křivky) takové, že $\int_c \kappa_z ds = 2k\pi$.
+
+	Je-li navíc $c$ jednoduchá a kladně orientovaná (proti směru hodinových ručiček), pak $k = 1$.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Mějme hladkou parametrickou křivku $c(t)$, $t \in (\alpha, \beta)$ v $®R^n$ a zobrazení (vektorové pole) $F: \<c\> \rightarrow ®R^n$. Pak definujeme Křivkový integrál 2. druhu
+	$$ \int_c FdX := \int_\alpha^\beta F(c(t))·c'(t)dt, $$
+	pokud integrál napravo existuje jako Lebesgueův integrál.
+\end{definice}
+
+\begin{veta}[Greenova]
+	Nechť $c$ je jednoduchá hladká uzavřená kladně orientovaná (proti směru hodinových ručiček) křivka v $®R^2$. Nechť $F(x, y) = (F_1(x, y), F_2(x, y))$ je hladké vektorové pole definované na nějakém okolí uzávěru $\Int c$. Pak
+	$$ \int_c FdX = \int_{\Int c} \(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\)dxdy. $$
+
+	\begin{dukazin}
+		
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Buď $c(t) = (c_x(t), c_y(t))^T$, $t \in [\alpha, \beta]$ kladně orientovaná hladká jednoduchá uzavřená křivka. Pak plošný obsah obsah oblasti $\Int c$ je roven
+	$$ A = \int_\alpha^\beta c_x(t)c'_y(t) dt = - \int_\alpha^\beta c_y(t)c'_x(t) dt = \frac{1}{2} \int_\alpha^\beta (c_xc'_y - c'_xc_y)(t)dt. $$
+
+	\begin{dukazin}
+		Dosadíme správná vektorová pole do Greenovy věty a spočítáme.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Isoperimetrická nerovnost]
+	Buď $c: [a, b] \rightarrow ®R^2$ hladká jednoduchá uzavřená křivka délky $l$ a buď $A$ plošný obsah $\Int c$. Pak
+	$$ \frac{l^2}{4\pi} ≥ A, $$
+	přičemž rovnost nastane, právě když $c$ je kružnice.
+\end{veta}
+
+\begin{lemma}[Wirtinger]
+	Nechť $f(t): [0, \pi] \rightarrow ®R$ je hladká funkce, pro kterou platí $f(0) = f(\pi) = 0$. Pak
+	$$ \int_0^\pi f'^2(t)dt ≥ \int_0^\pi f^2(t)dt, $$
+	TOOD.
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{lemma}
+
 \end{document}
