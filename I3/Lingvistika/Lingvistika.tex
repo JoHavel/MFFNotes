@@ -199,4 +199,94 @@ TODO!!!
 	Každá cca. 7. věta je neprojektivní.
 \end{definice}
 
+% 16. 11. 2021
+
+\section{Významné teorie}
+\begin{definice}[Deskriptivismus]
+	Bloomfield 1933, dále Ch. Hockett a Z Harris – Chtěli zachránit jazyky před vyhynutím (indiáni).
+
+	Jazyková fakta klasifikuje a registruje, ale nevysvětluje. Zpracovává zejména povrchovou větnou strukturu. 
+\end{definice}
+
+\begin{definice}[Analytická syntax]
+	Jespersen 1937 – matematičtější přístup.
+\end{definice}
+
+\begin{definice}[Logický přístup]
+	Ajdukiewicz 1935 – z toho vznikla kategoriální gramatika
+\end{definice}
+
+\begin{definice}[Povrchová/hloubková syntaktická struktura]
+	Jedna povrchová reprezentace (věta) může odpovídat více hloubkovým. Nebo naopak, jednu hloubkovou (význam) lze vyjádřit více povrchními.
+\end{definice}
+
+\begin{definice}[Transformační gramatika]
+	Noam Chomsky: Syntactic Structures (1957) a Aspects of the Theory of Syntax (1965).
+
+	3 komponenty: báze (soubor bezkontextových pravidel generujících složkové stromy, tzv. frázové ukazatele), transformační komponenta (transformační pravidla operující na celých frázových ukazatelích), fonologický komponent (obsahuje regulární přepisovací pravidla, zaměřuje se na zvuk).
+
+	Množina přijatelných vět daného jazyka je vytvářena generativní procedurou, pomocí konečného počtu přepisovacích pravidel. Jde v podstatě o bezkontextovou nebo kontextovou gramatiku. (Ta ale není schopna zachytit vztahy mezi variantami vět, např. tázací vs. oznamovací.)
+
+	Na to je transformační složka, která obsahuje transformace, které jsou definovány strukturním indexem řetězců a strukturní změnou (rozřízne strom a prohodí podstromy, např transformace věty z aktivní na pasivní).
+
+	Transformační komponenta se však ukázala jako příliš silná (jazyky typu 0), takže se pokračovalo spíše v ústupu od této komponenty: Government-binding theory (GB) – teorie založená na obecných principech univerzální gramatiky (společné pro všechny lidi/jazyky/národnosti) a parametrech platných pro jednotlivé jazyky. Teorie minimalismu (znovu Chomsky) – obsahuje pouze dvě roviny, logickou (LF) a fonetickou (PF), sloužící jako rozhraní mezi zvukem (PF), reprezentací jazyka a významem (LF).
+\end{definice}
+
+\begin{definice}[Tree Adjoining Grammars]
+	Polovina 70. let – Joshi, Levy, Takahashi
+
+	Každému slovu je přiřazena elementární struktura (strom), kde se za další listy dá dosazovat (ale kořen dosazeného stromu musí mít stejnou kategorii jako list). Odpovídají bezkontextovým gramatikám, takže si musíme něco doplnit, aby zvládly i třeba neprojektivní struktury.
+\end{definice}
+
+\begin{definice}[Lexical Functional Grammar]
+	Rozlišuje 2 základní typy struktur: c-struktury (spojování slov do frází), f-struktury (reprezentují funkční vztahy ve větě (např. vazby sloves))
+\end{definice}
+
+\begin{definice}[Kategoriální gramatiky]
+	Každému vstupnímu tvaru je přiřazena kategorie, která fakticky reprezentuje popis syntaktických vlastností dané slovní formy.
+
+	Kategorie mají formát $a / b$ nebo $a \setminus b$, kde lomítko určuje pozici argumentu $b$, tedy zda je vpravo nebo vlevo od $a$. V čisté kategoriální gramatice se používají pouze dvě pravidla $X / Y\ Y \rightarrow Y\ X \setminus Y \rightarrow X$. (Vlastně kategorie znamenají, co je potřeba doplnit, aby věta fungovala.) Například Dexter likes Waren má kategorie $(NP, (S \setminus NP) / NP, NP)$ a skonči na $S$. Absolutně se nehodí na jazyky s volnou větnou skladbou.
+\end{definice}
+
+\begin{definice}[Unifikační gramatiky]
+	Popis vlastností objektů: Objekt je reprezentován množinou vlastností (jednoduchých rysů). Popis každé vlastnosti je dvojice název a hodnota.
+
+	Popis objektů je tvořen neuspořádanou množinou vlastností, tzv. sestavou rysů (feature structure).
+
+	\begin{priklad}
+		Slovo books: [graphematic\_form: books, POS: noun, gender: neutral, number: singular].
+	\end{priklad}
+
+	Slova se skládají tzv. Unifikací, což je sjednocení množin. Pokud tam je nějaký spor ve vlastnosti, tak je nelze spojit.
+
+	Sestavy rysů mohou obsahovat i proměnné (doplnění (při unifikaci) pak probíhá na více místech).
+
+	Problémem je, že je možné unifikovat vlastnosti, které spolu nijak nesouvisejí. Druhým problémem je zoufalá časová neefektivita.
+\end{definice}
+
+\begin{definice}[Typované sestavy rysů]
+	Problém s unifikací nesouvisejících vlastností lze vyřešit tak, že sestava má i typ a máme někde poznamenáno, které typy mohou mít které vlastnosti.
+\end{definice}
+
+\begin{definice}[HPSG]
+	Jeden z nejvyspělejších unifikačních systémů. Slovo má 2 rysy (PHON (zvuk, fonetická forma) a SYNSEM (syntaktické a sémantické informace)).
+\end{definice}
+
+	\subsection{Nástroje pro syntaktickou analýzu}
+	\begin{definice}[Augmented Transition Networks (Woods, 1970)]
+		Reprezentován pomocí sítí, kterou se procházelo (CAT – hledání kategorie, JUMP – přechod do dalšího stavu bez hledání kategorie (nepovinné větné členy), SEEK – přechod k podsíti).
+	\end{definice}
+
+	\begin{definice}[Q-systémy (Alain Colmerauer 1969)]
+		Poprvé nasazen v Kanadě při překladu meteorologických zpráv mezi angličtinou a francouzštinou.
+
+		Formalismus pro transformaci grafů (stromů). Grafy jsou linearizovány.
+
+		Atomy, stromy, seznamy a operátory a proměnné. Podle instrukcí přidává hrany (spojuje fráze). Následně čistí použité hrany a hrany vedoucí do vrcholu, ze kterého už nic jiného nevede.
+
+		Q-systém\emph{y}, protože se počítá s tím, že se budou postupně aplikovat různé systémy (rozpoznání shodných přívlastků, analýza vět, analýza celého souvětí, …).
+
+		Reálná gramatika (např. RUSLAN = překlad čeština $\rightarrow$ ruština) je příšerně složitá.
+	\end{definice}
+
 \end{document}

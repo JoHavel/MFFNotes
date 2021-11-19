@@ -984,12 +984,83 @@ TODO
 	
 	\begin{enumerate}
 		\item Je-li $T \in ©L(H_1, H_2)$, je $T^{\bigstar\bigstar} = (T^\bigstar)^\bigstar = T$.
+% 16. 11. 2021
+		\item Zobrazení $T \mapsto T^\bigstar$ je sdruženě lineární izometrie $©L(H_1, H_2)$ na $©L(H_2, H_1)$.
+		\item Nechť $T \in ©L(H_1, H_2)$ a $S \in ©L(H_2, H_1)$. Pak $(S \circ T)^\bigstar = T^\bigstar \circ S^\bigstar$. Dále $(\id_{H_1})^\bigstar = \id_{H_1}$.
 	\end{enumerate}
 
 	\begin{dukazin}
 		1. Máme
 		$$ \forall x \in H_1\ \forall y \in H_2: \<T^{\bigstar\bigstar}x, y\>_{H_2} = \<x, T^\bigstar y\>_{H_1} = \<Tx, y\>_{H_2}. $$
 		Tedy pro každé $x, y$ jsou tyto operátory stejné, tedy $T^{\bigstar\bigstar} = T$.
+
+		2. Sdružená linearita: Zachování „$+$“ plyne ze vzorce, „zachování“ „$·$“:
+		$$ \forall x, y\ \forall \alpha \in ®K: \<x, T^\bigstar \alpha y\> = \<Tx, \alpha y\> = \overline{\alpha} \<Tx, y\> = \overline{\alpha}\<x, T^\bigstar y\> $$.
+
+		Izometrie plyne z toho, že $T^\bigstar$ je složení izometrií. To že je na plyne z 1.
+
+		$$ 3. \forall x, y: \<x, (S \circ T)^\bigstar y\> = \<S(Tx), y\> - \<Tx, S\bigstar y\> = \<x, T^\bigstar S^\bigstar y\>. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Sdružený exponent]
+	Nechť $p \in ®R$, $p ≥ 1$, nebo $p = ∞$. Číslo $q \in ®R$, $q ≥ 1$, nebo $q = ∞$ nazýváme sdruženým exponentem k $p$, pokud platí $\frac{1}{p} + \frac{1}{q} = 1$.
+\end{definice}
+
+\begin{veta}[Reprezentace duálů ke klasickým prostorům]
+	Nechť $I ≠ \O$.
+
+	\begin{enumerate}
+		\item Prostor $c_0(I)*$ je lineárně izometrický s prostorem $l_1(I)$ pomocí zobrazení $I: l_1(I) \rightarrow c_0(I)^*$, $I(y) = f_y$, kde
+			$$ f_y(x) = \sum_{i \in I} x_iy_i. $$
+		\item Je-li $1 ≤ p < ∞$ a $q$ je sdružený exponent k $p$, pak prostor $l_p(I)^*$ je lineárně izometrický s prostorem $l_q(I)$ pomocí zobrazení $I: l_q(I) \rightarrow l_p(I)^*$, $I(y) = f_y$, kde
+			$$ f_y(x) = \sum_{i \in I}x_iy_i. $$
+		\item Je-li $(\Omega, S, \mu)$ libovolný prostor s mírou $1 < p < ∞$ a $q$ je sdružený exponent k $p$, pak prostor $L_p(\mu)^*$ je lineárně izometrický s prostorem $L_q(\mu)$ pomocí zobrazení $I: L_q(\mu) \rightarrow L_p(\mu)^*$, $I(g) = \phi_g$, kde
+			$$ \phi_g(f) = \int_\Omega f·g d\mu. $$
+		\item Je-li $(\Omega, S, \mu)$ prostor se $\sigma$-konečnou mírou, pak prostor $L_1(\mu)^*$ je lineárně izometrický s prostorem $L_∞(\mu)$ pomocí zobrazení $I: L_∞(\mu)$ pomocí zobrazení $I: L_∞(\mu) \rightarrow L_1(\mu)^*$, $l(g) = \phi_g$, kde
+			$$ \phi_g(f) = \int_\Omega f·g d \mu. $$
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $||I|| ≤ 1$:
+		$$ \forall y \in l_1(I)\ \forall x \in c_0(I)\ \forall F \in ©F(I): |\sum_{i \in F} y_ix_i| ≤ \sum_{i \in F}|y_ix_i| ≤ ||x||_{∞}·\sum_{i \in F}|y_i| ≤ ||x||_∞·||y||_1 \implies $$
+		$$ \implies |I(y)(x)| ≤ ||x||_∞·||y||_1, $$
+		takže opravdu $I(y) \in c_0(I)^*$ a navíc $||I(y)|| ≤ ||y||_1$, tedy $I$ je lineární, dobře definované, $||I|| ≤ 1$.
+
+		Izometrie: Zvol $y \in l_1(I)$, zvol $F \in ©F(I)$. Polož $x_F := \sum_{i \in F, y(i)≠0} \frac{|y(i)|}{y(i)}e_i \in B_{c_0(I)}$. Pak
+		$$ ||I(Y)|| ≥ |I(y)(x_F)| = |\sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)}| = \sum_{i \in F}|y(i)|. $$
+		Tedy, protože $||y||_1 = \sup_{F \in ©F(I)} \sum_{i \in F}y(i)$, dostáváme $||I(y)|| ≥ ||y||$.
+
+		Zbývá už jen „na“: Zvol $f \in c_0(I)^*$. Polož $y(i) := f(e_i)$, $i \in I$. Pak $y \in l_1(I)$: Zvol $F \in ©F(I)$. Pak
+		$$ \sum_{i \in F}|y(i)| = \sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)} = \sum_{i \in F, y(i) ≠ 0} f(e_i)·\frac{|y(i)|}{y(i)} = f\(\sum_{i \in F, y(i) ≠ 0} \frac{|y(i)|}{y(i)}·e_i\) ≤ ||f||. $$
+		Tudíž $y \in l_1(I)$ (a $||y||_1 ≤ ||f||$).
+
+		Chceme $I(y) = f$: Máme $\forall i \in I: I(y)(e_i) = y(i) = f(e_i)$. Tedy $I(y) = f$ na $e_i$, takže z linearity a spojitosti na $\overline{\spn}(e_i, i \in I) = c_0(I)$.
+
+		2. Případ $p=1$: $||I|| ≤ 1$ se dokáže jako v důkazu 1:
+		$$ \forall y \in l_∞(I)\ \forall x \in l_1(I)\ \forall F \in ©F(I): \sum_{i \in F}|y_ix_i| ≤ ||y||_∞·||x||_1. $$
+
+		$I$ izometrie: Ať $y \in l_∞(I)$, pak
+		$$ \forall i \in I: ||I(y)|| ≥ |I(y)(e_i)| = |y(i)| \implies ||I(y)|| ≥ \sup_i |y(i)| = ||y||_∞. $$
+
+		$I$ je na: Ať $f \in l_1(I)^*$. Polož $y(i) := f(e_i)$, $i \in I$. Pak $y \in l_∞(I):$
+		$$ \forall i \in I: |y(i)| = |f(e_i)| ≤ ||f|| \implies ||y||_∞ ≤ ||f||. $$
+
+		$I(y) = f$ je totožné jako v důkazu 1.
+		
+		2. Případ $p > 1$: $||I|| ≤ 1$ se dokáže podobně jen se použije Hölder:
+		$$ \forall y \in l_q(I)\ \forall x \in l_p(I)\ \forall F \in ©F(I): \sum_{i \in F}|y_ix_i| ≤ ||y||_q·||x||_p. $$
+
+		$I$ izometrie: Ať $y \in l_q(I)$. Polož $x_F = \frac{\sum_{i \in F, y(i) ≠ 0} \frac{|y(i)|}{y(i)}e_i}{||---||---||_p} \in S_{l_p(I)}$ (BÚNO $\exists i \in F: y(i) ≠ 0$).
+		$$ x_F = \(\sum |y(i)|^{p(q - 1)}\)^{-\frac{1}{p}} · \sum_{i \in F, y(i) ≠ 0}\frac{|y(i)|^q}{y(i)}e_i $$
+		a zároveň
+		$$ ||I(y)|| ≥ I(y)(x_F) = \(\sum |y(i)|^{p(q - 1)}\)^{-\frac{1}{p}} · \sum_{i \in F} |y(i)|^q = ||y(i)||_q. $$
+
+		$I$ je na: Ať $f \in l_p(I)^*$. Polož $y(i) := f(e_i)$, $i \in I$. Pak $y \in l_q(I)$: Zvol $F \in ©F(I)$. Pak polož $x_F = \sum_{i \in F, y(i) ≠ 0 \frac{|y(i)|^q}{y(i)}} e_i$.
+		$$ \sum_{i \in F}|y(i)|^q = \sum_{i \in F} f(e_i) x_F(i) = f(\sum_{i \in F} x_F(i)·e_i) ≤ ||f||·||x_F||_p = ||f||\(\sum_{i \in F} |y(i)|^q\)^{\frac{1}{p}} $$.
+		Celkem
+		$$ \inf_{F \in ©F(i)} \(\sum_{i \in F} |y(i)|^q\)^{1 - \frac{1}{p}} ≤ ||f||, $$
+		tedy $y \in l_q(I)$ a $||y||_q ≤ ||f||$.
 	\end{dukazin}
 \end{veta}
 

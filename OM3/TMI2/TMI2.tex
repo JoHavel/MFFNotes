@@ -249,9 +249,56 @@ TODO!!!
 
 	\begin{dukazin}
 		TODO!
+
+% 16. 11. 2021
+
+		TODO!
 	\end{dukazin}
 \end{veta}
 
+\section{Charakterizace Riemannovsky integrovatelných funkcí}
+\begin{veta}
+	Buď $f: [a, b] \rightarrow ®R$ omezená. Pak
+	$$ f \in R[a, b] \Leftrightarrow f \text{je spojitá v $\lambda^1$-skoro všude na $(a, b)$}. $$
+
+	\begin{dukazin}
+		$(©D_n)$ posloupnost zjemňujících se dělení intervalu $[a, b]$.
+		$$ ©D_n = \{a = x_0^{(n)} < x_1^{(n)} < … < x_{k_n}^{(n)} = b\}, n \in ®N, ||©D_n|| = \max_{1 ≤ i ≤ k_n} (x_i^{(n)} - x_{i-1}^{(n)}) \stackrel{n \rightarrow ∞}{\rightarrow} 0. $$
+		Označme $s_n(x) := \inf_{[x^{(n)_{i-1}, x_i^{(n)}}} f$, $S_n(x) := \sup_{[x^{(n)_{i-1}, x_i^{(n)}}} f$, $x \in (x_{i-1}^{(n)}, x_i^{(n)}]$, $n \in ®N$ a $S_n(x) := 0$, $S_n(x):= 0$ pro ostatní $x \in ®R$. Toto jsou jednoduché měřitelné funkce.
+
+		Horní a dolní Riemannův součet splňuje
+		$$ \underline{\int_a^b f} \stackrell{n \rightarrow ∞}{\leftarrow} s(f, ©D_n) = \int_a^b s_n d\lambda^1, \overline{\int_a^b f} \stackrell{n \rightarrow ∞}{\leftarrow} S(f, ©D_n) = \int_a^b S_n d\lambda^1. $$
+		$|f| ≤ M$, tedy $-M ≤ s_1 ≤ s_2 ≤ … ≤ f ≤ … ≤ S_2 ≤ S_1 ≤ M$. Označme $f_1 := \lim_{n \rightarrow ∞} s_n$, $f_2 := \lim_{n \rightarrow ∞} S_n$ (bodové limity funkcí).
+		$$ -M ≤ s_n \searrow f_1 ≤ f ≤ f_2 \nwarrow S_n ≤ M, qquad f_1, f_2 \text{ měřitelné}. $$
+		Ze zobecněné Leviho věty $\int_a^b s_n d\lambda^1 \rightarrow \int_a^b f_1 d\lambda^1$, $\int_a^b S_n d\lambda^1 \rightarrow \int_a^b f_2 d \lambda^1$.
+
+		$\implies$: Nechť $f \in R[a, b]$, tedy $\underline{\int_a^b f} = \overline{\int_a^b f}$.
+		$$ \implies \int_a^b f_1 d\lambda^1 = \int_a^b f_2 d \lambda^1 \implies \int_a^b (f_2 - f_1) d\lambda^1 = 0 \implies f_1 = f_2 \lambda^1\text{-s.v.} $$
+		$$ N := \{x \in [a, b] | f_1(x) ≠ f_2(x)\} \cup \{x_i^{(n)} | 0 ≤ i ≤ k_n, n \in ®N\}, \qquad \lambda^1(N) = 0. $$
+		Ukážeme, že $f$ je spojitá ve všech bodech množiny $(a, b) \setminus N$: Buď $x \in (a, b) \setminus N$, $\epsilon > 0$. Potom $f_1(x) = f_2(x)$ $\implies$ $\exists n \in ®N$, $S_n(x) - s_n(x) < \epsilon$. $I_n$ nechť je otevřený interval dělení $©D_n$, pro nějž $x \in I_n$. Pak
+		$$ s_n(x) ≤ f(y) ≤ S_n(x), y \in I_n \implies |f(y) - f(x)| ≤ 2\epsilon, y \in I_n \implies f \text{ je spojitá v bodě $x$.} $$
+
+		$\Leftarrow$: Nechť $\lambda^1(©D) = 0$, kde $D := \{x \in (a, b): f\text{ není spojitá v }x\}$. Ukážeme, že $S_n(x) - s_n(x) \stackrel{n \rightarrow ∞}{\rightarrow} 0$
+		$$ \implies S(f, ©D_n) - s(f, ©D_n) \rightarrow 0 \implies f \in R[a, b]. $$
+		Nechť $x \in (a, b) \setminus ©D$, $\epsilon > 0$. Pak $f$ je spojitá v bodě $x$ $\implies \exists \delta > 0$, $|y - x| < \delta$ $\implies$ $|f(y) - f(x)| < \epsilon$.
+
+		Zvolme $n_0$ tak velké, aby $||©D_n|| < \delta$, $n ≥ n_0$. Pak $S_n(x) - s_n(x) ≤ 2 \sup\{|f(y) - f(x)|: |y - x| < \delta\} < 2\epsilon$.
+	\end{dukazin}
+\end{veta}
+
+\section{Pokrývací věty}
+\begin{poznamka}[Úmluva]
+	Koulí se myslí uzavřená koule, $B(x, r) = \{y \in ®R^n | ||y-x|| ≤ r\}$, $r > 0$, $\rad B = r$, $t>0 … tB = B(x, t·r)$.
+\end{poznamka}
+
+\begin{lemma}[„$5r$“ covering]
+	Nechť ©F je systém koulí v $®R^n$ (uzavřené, nedegenerované), $\sup_{B \in ©F} (\rad B) < ∞$. Pak existuje disjunktní podsystém $©F' \subset ©F$ takový, že
+	$$ \forall B \in ©F\ \exists B' \in ©F: B \cap B' ≠ \O \land B \subset 5B. $$
+\end{lemma}
+
+\begin{dusledek}
+	$$ \bigcup ©F \subset \bigcup_{B' \in ©F'} 5B' $$
+\end{dusledek}
 
 
 \end{document}

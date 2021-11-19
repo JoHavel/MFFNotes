@@ -92,4 +92,26 @@ TODO!!!
 
 TODO!!!
 
+% 08. 11. 2021
+
+TODO!!!
+
+% 15. 11. 2021
+
+\begin{definice}[Support Vector Machines]
+	Snažíme se najít lineární hranici tak, aby byla kolem ní co největší zóna bez bodů z trénovacích dat. Využívá se Lagrangeových multiplikátorů. (Tzv. hard-margin SVM. Jde použít pouze pro lineárně separovatelná data.)
+
+	Soft-margin SVM: dovoluje se mít body v zóně, ale „platí“ se za ně (tzv. slack variables / penalta = 0, když bod je na hranici / správné straně, $ = |t_i - y(x_i)|$, jinak).
+\end{definice}
+
+TODO!!!
+
+\begin{definice}[Více tříd z binary klasifikátorů]
+	\begin{itemize}
+		\item one-versus-rest schéma: ke každé třídě si pořídíme, který rozlišuje mezi ní a zbytkem. Důležité je, aby vracel i pravděpodobnost (takže SVD třeba ne).
+		\item one-versus-one schéma: ke každé dvojici tříd si pořídíme klasifikátor, který je rozlišuje. Poté se dá hlasovat, která třída to je. Sice budeme trénovat $\frac{n·(n-1)}{2}$ klasifikátorů, ale na menších datech. Na spoustě míst však dopadne hlasování špatně.
+		\item 
+	\end{itemize}
+\end{definice}
+
 \end{document}

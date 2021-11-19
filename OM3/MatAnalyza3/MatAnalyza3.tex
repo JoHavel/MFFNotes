@@ -503,5 +503,51 @@ TODO!!!
 			\end{dukazin}
 		\end{veta}
 
+% 18. 11. 2021
 
+		\begin{veta}[Kompaktnost a totální omezenost]
+			Nechť $(P, \rho)$ je kompaktní metrický prostor. Potom je $P$ totálně omezený.
+
+			\begin{dukazin}
+				Sporem: Nechť $\exists \epsilon > 0\ \forall x_1, …, x_n \in P: P \not\subset \bigcup_{i=1}^n B(x_i, \epsilon)$. Zvolme $x_1 \in P$ libovolně. Víme $P \not\subset B(x_1, \epsilon)$, tedy $\exists x_2: \rho(x_2, x_1) ≥ \epsilon$. Indukcí: Mějme $x_1, …, x_{n-1}$ tak, že $\rho(x_i, x_j) ≥ \epsilon\ \forall i ≠ j$. Víme $P \not\subset \bigcup_{i=1}^n B(x_i, \epsilon)$, tedy $\exists x_n \rho(x_n, x_i) ≥ \epsilon \forall i \in [n-1]$. Nakonec máme posloupnost $\{x_n\}_{n=1}^∞$.
+
+				Z definice kompaktnosti $\exists x_{n_k} \rightarrow x \in P$. Ale toto není možné, protože $\rho(x_i, x_j) ≥ \epsilon \forall i ≠ j$.
+			\end{dukazin}
+		\end{veta}
+		
+		\begin{veta}[Kompaktnost a otevřené pokrytí]
+			Metrický prostor $(P, \rho)$ je kompaktní právě tehdy, když z každého otevřeného pokrytí lze vybrat konečné podpokrytí. Tedy platí (pro libovolnou indexovou množinu a $G_\alpha$ otevřené)
+			$$ P \subset \bigcup_{\alpha \in A} G_\alpha \implies \exists \text{konečná } A_0 \subset A: P \subset \bigcup_{\alpha A_0} G_\alpha. $$
+
+			\begin{dukazin}
+				„$\implies$“: Tvrdím, že $\exists m \in ®N$ tak, že $\forall x \in P\ \alpha \in A: x \in B(x, \frac{1}{m}) \subset G_\alpha$. To dokážeme sporem: Nechť $\exists x_m \in P\ \forall \alpha \in A: B(x_m, \frac{1}{m}) \not\subset G_\alpha$. $P$ je kompaktní, tedy $\exists x_{m_k} \rightarrow x$. Z otevřeného pokrytí $\exists \alpha \in A: x \in G_\alpha$, $G_\alpha$.
+
+				$G_\alpha$ je otevřená, tedy $\exists \delta > 0: B(x, \delta) \subset G_\alpha$. Zvolme $k$, aby $\frac{1}{m_k} \in B(x, \frac{\delta}{2})$. Nyní $\forall y \in B(x_{m_k}, \frac{1}{m_k})$ platí
+				$$ \rho(x, y) ≤ \rho(x, x_{m_k}) + \rho(x_{m_k}, y) < \frac{\delta}{2} + \frac{1}{m_k} < \delta \implies y \in B(x, \delta) \implies B(x_{m_k}, \frac{1}{m_k}) \subset G_\alpha, \text{\lightning}. $$
+
+				Takže tvrzení výše platí. $(P, \rho)$ je kompaktní, tedy podle věty 11.2 (ve výuce) je totálně omezený. Tedy pro naše $m \in ®N\ \exists$ konečná $\frac{1}{n}$ síť $x_1, …, x_n$. Nyní z toho tvrzení výše $\forall j \in [n]\ \exists G_{\alpha_j}: B(x_j, \frac{1}{m}) \subset G_{\alpha_j}$. Nyní $P \subset \bigcup_{j=1}^n B(x_j, \frac{1}{n}) \subset \bigcup_{j=1}^n G_{\alpha_j}$.
+
+				„$\Leftarrow$“: Nechť $\{x_n\} \in P$. Chceme $x_{n_k} \rightarrow x \in P$. Označme $D = \{x_n, n \in ®N\}$. Je-li $D$ konečná, pak se nějaké $x_n$ opakuje a je snadné vybrat konvergentní ($=$ konstantní) podposloupnost.
+
+				Dále nechť $D$ je nekonečná. Máme 2 možnosti:
+				$$ A \exists y \in P\ \forall r > 0: B(y, r) \cap D \text{ je nekonečná, nebo} $$
+				$$ D \forall y \in P\ \exists r_y > 0: B(y, r_y) \cap D \text{ konečná}. $$
+				$A$: $r = 1$: $\exists x_{n_1} \in B(y, 1) \cap D$, $r = \frac{1}{2}$, protože prvků v libovolné kouli je nekonečno, tak $\exists n_2 > n_1, x_{n_2} \in B(y, \frac{1}{2}) \cap D$. Dále pokračujeme indukcí a dostaneme $\{x_{n_k}\}_{k=1}^∞, x_{n_k} \stackrel{k \rightarrow ∞}{\rightarrow} y$.
+
+				$B$: Víme $P \subset \bigcup_{y \in P} B(y, r_y)$ je otevřené pokrytí, tedy $\exists y_1, …, y_n: P \subset \bigcup_{i=1}^n B(y_1, r_{y_i})$. $D = D \cap P \subset \bigcup_{i=1}^n (B(y_i, r_{y_i}) \cap F)$. $D$ je nekonečné, ale podle $B$ je vpravo konečné sjednocení konečných množin, tedy konečná množina. \lightning.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{dusledek}[Borelova věta]
+			Nechť $a, b \in ®K$, $a < b$ a $\{I_\alpha\}$ je systém otevřených intervalů. Pak
+			$$ [a, b] \subset \bigcup_{\alpha \in A}I_\alpha \implies \exists A_0 \subset \text{ konečná } [a, b] \subset_{\alpha \in A_0} I_\alpha. $$
+		\end{dusledek}
+
+		\begin{dusledek}
+			Spojitá funkce na $[a, b]$ je omezená.
+		\end{dusledek}
+
+		\begin{dusledek}
+			$f$ je spojitá na $[a, b]$ $\implies$ $f$ je stejnoměrně spojitá na $[a, b]$.
+		\end{dusledek}
 \end{document}
