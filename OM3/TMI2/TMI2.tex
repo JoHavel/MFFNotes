@@ -165,7 +165,7 @@ TODO!!!
 		$$ \exists F_i \subset D_i \subset G_i, \mu(G_i \setminus F_i) < \frac{\epsilon}{2^i}. $$
 		$$ TODO! $$
 		$$ \bigcup_{i=1}^N F_i \subset \cup_{i=1}^∞ D_i \subset \bigcup_{i = 1}^∞ G_i, N \in ®N. $$
-		$$ \bigcup_{i=1}^∞ G_i \setminus \bigcup_{i=1}^F_i $$
+		$$ \bigcup_{i=1}^∞ G_i \setminus \bigcup_{i=1}^?F_i $$
 	\end{dukazin}
 
 % 02. 11. 2021
@@ -204,7 +204,7 @@ TODO!!!
 	Buď $\tilde{\mu}$ pramíra na algebře $©A \subset ©P(X)$ $\implies$ existuje míra $\mu$ na $\sigma©A$ taková, že $\mu = \tilde{\mu}$ ne $©A$. Je-li $\tilde{\mu}$ $\sigma$-konečná, je $\mu$ určena jednoznačně.
 
 	\begin{dukazin}
-		Pro $E \subset X$ položme $\mu^*(E) := \inf\{\sum_{i=1}^∞ \tiled{\mu}(A_i) | A_i \in ©A, E \subset \bigcup_{i=1}^∞A_i\}$. Ověříme, že $\mu^*$ je vnější míra.
+		Pro $E \subset X$ položme $\mu^*(E) := \inf\{\sum_{i=1}^∞ \tilde{\mu}(A_i) | A_i \in ©A, E \subset \bigcup_{i=1}^∞A_i\}$. Ověříme, že $\mu^*$ je vnější míra.
 
 		$\forall A \in ©A: \mu^*(A) = \tilde{\mu}(A)$. Zřejmě $\mu^*(A) ≤ \tilde{\mu}(A)$, jelikož můžeme pokrýt $A$ množinami $A, \O, \O, …$. Pro $≥$ mějme $A \subset \bigcup_i A_i$, $A_i \in ©A$. $B_1:= A_1 \cap A$, $B_2 := (A_2 \cap A) \setminus B_1$, … O nich víme, že $A = \bigcup_i B_i$, $B_i$ po dvou disjunktní, $B_i \in ©A$. $\tilde{\mu}(A) = \sum_i\tilde{\mu}(B_i) ≤ \sum_i\tilde{\mu}(A_i)$, tedy z definice infima $\tilde{\mu}(A) ≤ \inf_{A_i}\sum_i \tilde{\mu}(A_i) = \mu^*(A)$.
 
@@ -267,7 +267,7 @@ TODO!!!
 		Označme $s_n(x) := \inf_{[x^{(n)_{i-1}, x_i^{(n)}}} f$, $S_n(x) := \sup_{[x^{(n)_{i-1}, x_i^{(n)}}} f$, $x \in (x_{i-1}^{(n)}, x_i^{(n)}]$, $n \in ®N$ a $S_n(x) := 0$, $S_n(x):= 0$ pro ostatní $x \in ®R$. Toto jsou jednoduché měřitelné funkce.
 
 		Horní a dolní Riemannův součet splňuje
-		$$ \underline{\int_a^b f} \stackrell{n \rightarrow ∞}{\leftarrow} s(f, ©D_n) = \int_a^b s_n d\lambda^1, \overline{\int_a^b f} \stackrell{n \rightarrow ∞}{\leftarrow} S(f, ©D_n) = \int_a^b S_n d\lambda^1. $$
+		$$ \underline{\int_a^b f} \stackrel{n \rightarrow ∞}{\leftarrow} s(f, ©D_n) = \int_a^b s_n d\lambda^1, \overline{\int_a^b f} \stackrel{n \rightarrow ∞}{\leftarrow} S(f, ©D_n) = \int_a^b S_n d\lambda^1. $$
 		$|f| ≤ M$, tedy $-M ≤ s_1 ≤ s_2 ≤ … ≤ f ≤ … ≤ S_2 ≤ S_1 ≤ M$. Označme $f_1 := \lim_{n \rightarrow ∞} s_n$, $f_2 := \lim_{n \rightarrow ∞} S_n$ (bodové limity funkcí).
 		$$ -M ≤ s_n \searrow f_1 ≤ f ≤ f_2 \nwarrow S_n ≤ M, qquad f_1, f_2 \text{ měřitelné}. $$
 		Ze zobecněné Leviho věty $\int_a^b s_n d\lambda^1 \rightarrow \int_a^b f_1 d\lambda^1$, $\int_a^b S_n d\lambda^1 \rightarrow \int_a^b f_2 d \lambda^1$.
@@ -293,12 +293,50 @@ TODO!!!
 
 \begin{lemma}[„$5r$“ covering]
 	Nechť ©F je systém koulí v $®R^n$ (uzavřené, nedegenerované), $\sup_{B \in ©F} (\rad B) < ∞$. Pak existuje disjunktní podsystém $©F' \subset ©F$ takový, že
-	$$ \forall B \in ©F\ \exists B' \in ©F: B \cap B' ≠ \O \land B \subset 5B. $$
+	$$ \forall B \in ©F\ \exists B' \in ©F': B \cap B' ≠ \O \land B \subset 5B. $$
 \end{lemma}
 
 \begin{dusledek}
 	$$ \bigcup ©F \subset \bigcup_{B' \in ©F'} 5B' $$
 \end{dusledek}
 
+% 23. 11. 2021
+
+\begin{dukaz}[„$5r$“ covering]
+	Označme $R := \sup_{B \in ©F} \rad B$. $©F_k := \{B \in ©F | \rad B \in \(\frac{R}{2^{k+1}}, \frac{R}{2^k}\]\}$, $k = 0, 1, …$ Dále definujeme indukcí systémy $©B_k$, $k = 0, 1, …$: $©B_0$ libovolný maximální disjunktní podsystém $©F_0$. Máme-li $©B_0, …, ©B_k$: $©B_{k+1}$ libovolný maximální disjunktní podsystém $\{B \in ©F_{k+1} | \forall B' \in ©B_0 \cup … \cup ©B_k: B \bigcup B: = \O\}$, $©F' := \bigcup_{k=0}^∞ ©B_k$ disjunktní podsystém $©F$.
+
+	Nyní už jen ověříme vztah ze znění: Nechť $B \in ©F$, pak $B \in ©F_k$ $\implies$ $\exists B' \in ©B_0 \cup … \cup ©B_k$, $B \cap B' ≠ \O$ (z maximality). Dále víme, že $\frac{R}{2^{k+1}} < \rad B ≤ \frac{R}{2^k}$ a $\frac{R}{2^{k+1}} < \rad B'$, tedy $\rad B < 2\rad B'$. Navíc $B = B(x, r)$ a $B' = B(x', r')$, $r < 2r'$, $B \cap B' ≠ \O$, tedy $||x - x'|| ≤ r + r'$, tj. $\forall y \in B: ||y - x'|| ≤ ||y - x|| + ||x - x'|| ≤ r + r + r' < 5r'$.
+\end{dukaz}
+
+\begin{definice}[Vitaliovo pokrytí]
+	Nechť $A \subset ®R^n$. Řekneme, že systém uzavřených koulí ©F je Vitaliovým pokrytím (Vitaly Cover) množiny $A$, jestliže
+	$$ \forall a \in A\ \forall \epsilon > 0\ \exists B \in ©F: a \in B, \rad B < \epsilon. $$
+\end{definice}
+
+\begin{veta}[Vitaly Covering Theorem]
+	Nechť $A \subset ®R^n$ a ©F je Vitaliovo pokrytí $A$. Pak existuje disjuktní $©F' \subset ©F$ takový, že $\lambda^n(A \setminus \bigcup ©F') = 0$.
+
+	\begin{dukazin}
+		BÚNO nechť $\sup_{B \in ©F}(\rad B) ≤ 1$. „$5r$“ covering lemma nám pak říká, že $\exists ©F' \subset ©F$ disjuktní takový, že platí
+		$$ \forall B \in ©F\ \exists B' \in ©F': B \cap B' ≠ \O \land B \subset 5B. $$
+		Ukážeme, že $\lambda^n(A \setminus \bigcup ©F') = 0$. Označme $Z_r := (A \setminus \bigcup ©F') \cap U_r(¦o)$, $\forall r > 0$. Ukážeme, že $\lambda^n(Z_r) = 0$.
+		
+		Označme $©F'' := \{B' \in ©F' | ©B' \cap U_r(¦o) ≠ \O\}$ a $©F''_k := \{B' \in ©F'' | \rad B' \in \(\frac{1}{2^{k+1}}, \frac{1}{2^k}\]\}$, $k = 0, 1, 2, …$ $©F'$ je disjuktní, tudíž
+		$$ \sum_{B' \in ©F''} \lambda^n(B') = \sum_{k=0}^∞ \sum_{B' \in ©F''_k} \lambda^n(B') ≤ \lambda^n(B(0, r+2)) < ∞ $$
+		$\implies$ $©F_k''$ je konečný $\forall k$. Nechť je dáno $\epsilon > 0$. Pak
+		$$ \exists k_0 \in ®N: \sum_{k > k_0} \sum_{B' \in ©F''_k}\lambda^n(B') < \epsilon. $$
+		Zvolme pevně $z \in Z_r$. Zřejmě $z \notin \bigcup_{k=0}^{k_0} \bigcup_{B' \in ©F''_k} B' =: K$ (kompakt). Z vlastnosti Vitaliova pokrytí pak:
+		$$ \exists B \in ©F: B \cap K = \O, z \in B, B \subset U_r(0). $$
+		Z vlastnosti pokrytí $F'$ zřejmě $B' \in ©F''$, $B' \notin \bigcup_{k=0}^{k_0} \bigcup ©F''_k$, tj. $z \in 5B' \implies Z_r \subset \bigcup_{k > k_0} \bigcup_{B' \in ©F''_k} 5B'$ $\implies$ $\lambda^{n*}(Z_r) ≤ \sum_{k > k_0}\sum_{B' \in ©F''_k} \lambda^n(5B') < 5^n \epsilon$. $\epsilon \rightarrow 0$ nám dá $\lambda^n(Z_r) = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Lebesgueova hustota]
+	Pro $A \subset ®R^n$, $a \in ®R^n$ definujeme $\Theta^{n*}(A, a) = \limsup_{\epsilon \rightarrow 0_+} \frac{\lambda^{n*}(A \cap B(a, \epsilon)}{\lambda^n(B(a, \epsilon))}$ ($≤ 1$) a $\Theta^n_*(A, a) = \liminf_{\epsilon \rightarrow 0_+} \frac{\lambda^{n*}(A \cap B(a, \epsilon)}{\lambda^n(B(a, \epsilon))}$, tzv. horní a dolní hustota množiny $A$ v $a$. Pokud $\Theta^{n*}(A, a) = \Theta^n_* (A, a)$, pak definujeme Lebesgueovu hustotu $A$ v $a$ vztahem $\Theta^n(A, a) = \Theta^{n*}(A, a)$.
+\end{definice}
+
+\begin{veta}[Lebesgueova o hustotě (Lebesgue Density Theorem)]
+	Pokud $A \subset ®R^n$ je lebesgueovsky měřitelná, potom $\Theta^n(A, ·) = \chi_A(·)$ $\lambda^n$-skoro všude.
+\end{veta}
 
 \end{document}

@@ -999,7 +999,7 @@ TODO
 
 		Izometrie plyne z toho, že $T^\bigstar$ je složení izometrií. To že je na plyne z 1.
 
-		$$ 3. \forall x, y: \<x, (S \circ T)^\bigstar y\> = \<S(Tx), y\> - \<Tx, S\bigstar y\> = \<x, T^\bigstar S^\bigstar y\>. $$
+		$$ 3. \forall x, y: \<x, (S \circ T)^\bigstar y\> = \<S(Tx), y\> - \<Tx, S^\bigstar y\> = \<x, T^\bigstar S^\bigstar y\>. $$
 	\end{dukazin}
 \end{veta}
 
@@ -1021,8 +1021,8 @@ TODO
 			$$ \phi_g(f) = \int_\Omega f·g d \mu. $$
 	\end{enumerate}
 
-	\begin{dukazin}
-		1. $||I|| ≤ 1$:
+	\begin{dukazin}[1.]
+		$||I|| ≤ 1$:
 		$$ \forall y \in l_1(I)\ \forall x \in c_0(I)\ \forall F \in ©F(I): |\sum_{i \in F} y_ix_i| ≤ \sum_{i \in F}|y_ix_i| ≤ ||x||_{∞}·\sum_{i \in F}|y_i| ≤ ||x||_∞·||y||_1 \implies $$
 		$$ \implies |I(y)(x)| ≤ ||x||_∞·||y||_1, $$
 		takže opravdu $I(y) \in c_0(I)^*$ a navíc $||I(y)|| ≤ ||y||_1$, tedy $I$ je lineární, dobře definované, $||I|| ≤ 1$.
@@ -1036,8 +1036,10 @@ TODO
 		Tudíž $y \in l_1(I)$ (a $||y||_1 ≤ ||f||$).
 
 		Chceme $I(y) = f$: Máme $\forall i \in I: I(y)(e_i) = y(i) = f(e_i)$. Tedy $I(y) = f$ na $e_i$, takže z linearity a spojitosti na $\overline{\spn}(e_i, i \in I) = c_0(I)$.
+	\end{dukazin}
 
-		2. Případ $p=1$: $||I|| ≤ 1$ se dokáže jako v důkazu 1:
+	\begin{dukazin}[2.]
+		Případ $p=1$: $||I|| ≤ 1$ se dokáže jako v důkazu 1:
 		$$ \forall y \in l_∞(I)\ \forall x \in l_1(I)\ \forall F \in ©F(I): \sum_{i \in F}|y_ix_i| ≤ ||y||_∞·||x||_1. $$
 
 		$I$ izometrie: Ať $y \in l_∞(I)$, pak
@@ -1062,6 +1064,198 @@ TODO
 		$$ \inf_{F \in ©F(i)} \(\sum_{i \in F} |y(i)|^q\)^{1 - \frac{1}{p}} ≤ ||f||, $$
 		tedy $y \in l_q(I)$ a $||y||_q ≤ ||f||$.
 	\end{dukazin}
+
+% 22. 11. 2021
+
+	\begin{dukazin}[3, 4]
+		1. krok $\mu$ konečná: $I$ je spojitý, lineární a $||I|| ≤ 1$: $p = 1$:
+		$$ |I(f)(g)| ≤ \int_{\Omega} |f g| d\mu ≤ ||f||_∞ \int_{\Omega}|g| d\mu = ||f||_∞·||g||_1. $$
+		Tedy $I$ je dobře definované, lineární a $||I|| ≤ 1$. $p > 1$:
+		$$ |I(f)(g)| ≤ \int_{\Omega} |f g| d\mu ≤ ||f||_q·||g||_p. $$
+		Tedy $I$ je dobře definované, lineární a $||I|| ≤ 1$.
+
+		$I$ je izometrie: $p > 1$: Ať $f \in L_q(\Omega)$, BÚNO $f ≠ 0$. Zvol
+		$$ g(x) := \frac{\frac{|f(x)|^q}{f(x)} \chi_{\{x|f(x) ≠ 0\}}}{||--||--||} \in S_{L_p(\mu)} = \(\int_\Omega |f(x)|^{p(q-1)} dx\)^{\frac{1}{p}}·\frac{|f(x)|^q}{f(x)} \chi_{\{x | f(x) ≠ 0\}}, $$
+		$$ ||f|| ≥ ||I(f)|| ≥ I(f)(g) = \(\int_\Omega |f(x)|^q d\mu(x) \)^{-\frac{1}{p}}·\int_\Omega |f(x)|^q d\mu(x) = ||f||_q. $$
+		Tedy $||I(f)|| = ||f||$ a $I$ je izometrie.
+
+		$p=1$: Ať $f \in L_∞(r)$, BÚNO $f ≠ 0$. Zvol $||f||_∞ > \epsilon > 0$ je libovolné, ať
+		$$ A = \{x | f(x) > ||f||_∞ - \epsilon\}. $$
+		Pak $\mu(A) > 0$. Ať $\mu(A) < ∞$ (v případě $\sigma$-konečné míry můžeme $A$ aproximovat). Polož $g(x) := \frac{|f(x)|}{f(x)} \frac{\chi_A}{\mu(A)} \in B_{L_{1, \mu}}$. Pak
+		$$ ||f|| ≥ ||I(f)|| ≥ I(f)(g) = \int_\Omega |f(x)| \chi_A(x)·\frac{1}{\mu(A)} d\mu(x) > \frac{||f||_∞ - \epsilon}{\mu(A)} \int_A 1 d\mu(x) = ||f||_∞ - \epsilon. $$
+
+		$I$ je na: Ať $x^* \in (L_p)^*$. Položme $\nu(A) := x^*(\chi_A)$, $A \in ©A$. Pak $\nu$ je ®K-hodnotová míra: $\nu(\O) = x^*(0) = 0$. Ať $(A_j)_{j=1}^∞$ posloupnost množin z ©A, po 2 disjunktní. Pak
+		$$ ||\chi_{\bigcup_{j=1}^∞ A_j} - \chi_{\bigcup_{j=1}^n A_j}||_p = \mu(TODO) $$
+		Tedy
+		$$ \nu(\bigcup_{j=1}^∞ A_j) = x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{A_1}) + … + x^*(\chi_{A_n}) = $$
+		$$ = \lim_{n \rightarrow ∞} \sum_{i=1}^n \nu(A_i) = \sum_{i=1}^∞ \nu(A_i). $$
+		Zároveň $\nu << \mu$:
+		$$ \mu(A) = 0 \implies \chi_A = 0 \text{ skoro všude } \implies x^*(\chi_A) = 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Pokračování 3, 4]
+		Tedy z R-M věty $\exists g \in L_1(\mu)$: $\nu(A) = \int_A g d\mu$, $A \in ©A$. Pak $x^*(s) = \int_{\Omega} g·s d\mu$, pro $s$ jednoduchou funkci. Tedy pro $f \in (L_p(\mu))$ najdu $s_k \rightarrow f$, $|s_k| ≤ 4f$, $s_k$ jednoduché. Pak ale $s_k \stackrel{L_p}{\rightarrow} f$ (z Lebesgueovy věty, jelikož $5f$ je integrovatelná majoranta). Tedy
+		$$ x^*(f) = \lim_{k} x^*(s_k) = \lim_k \int_\Omega g·s_k d\mu = \int_\Omega g·f d\mu. $$
+
+		Poslední věc, co zbývá je $g \in L_q(\mu)$: $p = 1$: Chceme $|g(x)| ≤ ||x^*||$ skoro všude. Pokud ne, pak $A = \{x | |g(x)| > ||x^*||\}$ má kladnou míru. Ať $A_+ = \{x | g(x) > ||x^*||\}$ má kladnou míru. Pak
+		$$ ||x^*|| \mu(A_+) ≤ | \int_{A_+} g d\mu | = |x^*(\chi_{A_+})| ≤ ||x^*||\mu(A_+). \text{\lightning}. $$
+		Podobně pro $A_- := \{x | g(x) < -||x^*||\}$. $p > 1$ vynecháme.
+
+		Další kroky byly vynechány.
+	\end{dukazin}
 \end{veta}
+
+\begin{veta}
+	Nechť $X, Y$ jsou normované lineární prostory a $1 ≤ p ≤ ∞$. Nechť $q$ je sdružený exponent k $p$. Pak zobrazení $I: X^* \oplus_q Y^* \rightarrow (X \oplus_p Y)^*$ dané předpisem
+	$$ I(f, g)(x, y) = f(x) + g(y) $$
+	je lineární izometrie $X^* \oplus_q Y^*$ na $(X \oplus_p Y)^*$.
+
+	\begin{dukazin}
+		$I(f, g)$ lineární pro $(f, g) \in X^* \oplus_q Y^*$ lehké. Zvol $(f, g) \in X^* \oplus_q Y^*$. Pak
+		$$ ||I(f, g)|| = \sup_{(x, y) \in B_{X \oplus_p Y}} |f(x) + g(y)| ≤ \sup_{(x, y) \in B_{X \oplus_p Y}} (||f||·||x|| + ||g||·||y||) = $$
+		$$ = \sup_{(\alpha, \beta) \in B_{(®K^2, ||·||_p)}} \tilde{I}(||f||, ||g||)(\alpha, \beta) = ||\tilde{I}(||f||, ||g||)|| = ||(||f||, ||g||)||_q = \sqrt[q]{||f||^q + ||g||^q} = $$
+		$$ = ||(f, g)||_{X^* \oplus_q Y^*}. $$
+		Tedy $||I|| ≤ 1$.
+
+		$I$ je izometrie: Ať $(f, g) \in X^* \oplus_q Y^*$, BÚNO $(f, g) ≠ 0$. Zvol $\epsilon > 0$ libovolné. Ať $\eta > 0$ je „dost malé“: Zvolme
+		$$ x \in B_x: |f(x)| > ||f|| - \eta, |\alpha| = 1, |f(x)| = \alpha f(x), $$
+		$$ y \in B_y: |f(y)| > ||f|| - \eta, |\beta| = 1, |f(x)| = \beta f(y). $$
+		Položme
+		$$ u = \frac{(||f||^{q-1} \alpha x, ||g||^{q-1} \beta y)}{(||f||^q + ||g||^q)^{\frac{1}{p}}} = \frac{…}{C}. $$
+		$$ ||u|| = \(\frac{1}{C} ||f||^{p(q-1)}||\alpha x||^p + ||g||^{p(q - 1) ||\beta y||^p}\)^{\frac{1}{p}} ≤ \frac{1}{C}(||f||^q + ||g||^q)^{\frac{1}{p}} = 1, $$
+		tedy $u \in B_{…}$.
+		Pak ale
+		$$ ||I(f, g)|| ≥ I(f, g)(u) = \frac{1}{c} (||f||^{q-1} f(\alpha x) + ||g||^{q-1} g(\beta y)) ≥ $$
+		$$ ≥ \frac{1}{C}(||f||^{q-1} (||f|| - \eta) + ||g||^{q-1} (||g|| - \eta)) \rightarrow \frac{1}{C}· (||f||^q + ||g||^q) = ||(f, g)||. $$
+
+% 23. 11. 2021
+
+		$I$ je na: Ať $\phi \in (X \oplus_p Y)^*$. Polož $f(x) := \phi(x, 0)$, $x \in X$ a $g(x) := \phi(0, y)$, $y \in Y$. Pak $f \in X^*$, $g \in Y^*$ a $I(f, g) = \phi$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Nechť $K$ je kompaktní prostor. Řekneme, že lineární funkcionál $\Lambda$ na $C(K)$ je nezáporný, jestliže $\Lambda(f) ≥ 0$ pro každou nezápornou funkci $f \in C(K)$.
+\end{definice}
+
+\begin{veta}[O reprezentaci nezáporných lineárních funkcionálů na $C(K)$]
+	Nechť $K$ je kompaktní prostor a $\Lambda$ je nezáporný lineární funkcionál na $C(K)$. Pak existuje jednoznačně určená regulární borelovská nezáporná míra $\mu$ na $K$ splňující $\Lambda(f) = \int_K f d\mu$ pro každé $f \in C(K)$.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Rieszova věta o reprezentaci $C(K)^*$]
+	Je-li $K$ kompaktní prostor, pak prostor $C(K)^*$ je lineárně izometrický s prostorem $M(K)$ všech regulárních borelovských komplexních (resp. znaménkových) měr na $K$ pomocí zobrazení $I: M(K) \rightarrow C(K)^*$, $I(\mu)_k = \phi_k$, kde
+	$$ \phi_{\mu}(f) = \int_K f d\mu. $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\section{Anihilátory, dualita kvocientů a podprostorů}
+\begin{definice}[Horní a dolní anihilátor]
+	Je-li $X$ normovaný lineární prostor a $A \subset X$, pak definujeme tzv. anihilátor množiny $A$ jako
+	$$ A^\perp = \{f \in X^* | f(x) = 0\ \forall x \in A\}. $$
+
+	\begin{poznamka}
+		Vlastně je to zobecnění kolmého prostoru (v Hilbertových prostorech je to „totéž“).
+	\end{poznamka}
+
+	Pro množinu $B \subset X^*$ pak definujeme tzv. zpětný anihilátor jako
+	$$ B_\perp = \{x \in X | f(x) = 0\ \forall f \in B\}. $$
+\end{definice}
+
+\begin{lemma}
+	Nechť $X$ je normovaný lineární prostor a $A \subset X$, $B \subset X^*$. Pak
+
+	\begin{itemize}
+		\item $A^\perp$ je uzavřený podprostor $X^*$,
+		\item $B_\perp$ je uzavřený podprostor,
+		\item $(A^\perp)_\perp = \overline{\spn}A$,
+		\item $(B_\perp)^\perp \supset \overline{\spn}B$.
+	\end{itemize}
+
+	\begin{dukazin}
+		První dva body triviální cvičení. Další dva body jsou lehké.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor.
+
+	\begin{enumerate}
+		\item Nechť $Y$ je uzavřený. Zobrazení $I: Y^\perp \rightarrow (X / Y)^*$ dané předpisem
+			$$ I(f)(\hat{x}) = f(x) $$
+			je lineární izometrie $Y^\perp$ na $(X / Y)^*$.
+
+		\item Zobrazení $I: X^* / Y^\perp \rightarrow Y^*$ dané předpisem
+			$$ I(\hat{f}) = f|_Y $$
+			je lineární izometrie $X^* / Y^\perp$ na $Y^*$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. a) $I(f)$ je dobře definované: Ať $\hat{x} = \hat{y}$, pak $x - y \in Y$ a $f \in Y^\perp$ (tj. $f(x - y) = 0$), tedy $f(x) = f(y)$.
+
+		b) Zároveň $||I(f)|| = \sup_{\hat{x} U_{X / Y}} |I(f)(\hat{x})| = \sup_{x \in U_x} |I(f)(\hat{x})| = \sup_{x \in U_x} |f(x)| = ||f||$, tedy $I$ je spojité a izometrie (linearita je triviální).
+
+		c) Ať $\phi \in (X / Y)^*$. Pak $\phi \circ q \in X^*$ a $I(\phi \circ q) = \phi$ $\land$ $\phi \circ q \in Y^\perp$: $\forall y \in Y: \phi(q(y)) = \phi(\hat{0}) = 0$. Tedy $\phi \circ q \in Y^\perp$. $\forall \hat{x} \in X / Y: I(\phi\circ q)(\hat{x}) = (\phi \circ q)(x) = \phi(\hat{x})$, tedy $I(\phi \circ q) = \phi$.
+
+		2. a) $I(\hat{f})$ je dobře definované: Ať $\hat{f} = \hat{g}$, pak $f - g \in Y^\perp$, tedy $f|_Y = g|_Y$.
+
+		b) $I$ zřejmě lineární. Zároveň $||I(\hat{f})|| = \sup_{y \in B_y} ||f(y)|| = ||f|_Y|| ≤ \inf_{h \in \hat{f}} ||h|| = ||\hat{f}||$.
+
+		c) $I$ je izometrie: Ať $\hat{f} \in X^* / Y^\perp$. Zvol $g \in X^*: g|_Y = f|_Y \land ||g|| = ||f|_Y||$ z H-B věty. Pak $\hat{g} = \hat{f}$ a $||I(\hat{f})|| = ||I(\hat{g})|| = ||g|_Y|| = ||g|| ≥ \inf_{h \in \hat{f}} ||h|| = ||f_|Y||$.
+
+		d) $I$ je na: Ať $\phi \in Y^*$. Z H-B věty existuje $f \in X^*: f|_Y = \phi$. Pak $I(\hat{f}) = f|_Y = \phi$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Jsou-li $X, Y$ normované lineární prostory a $T \in ©L(X, Y)$, pak platí
+
+	\begin{enumerate}
+		\item $\Ker T^* = (\Rang T)^\perp$,
+		\item $\Ker T = (\Rang T^*)_\perp$,
+		\item $\overline{\Rang T} = (\Ker T^*)_\perp$,
+		\item $T^*$ je prostý, právě když $\Rang T$ je hustý.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $y^* \in \Ker T^* \Leftrightarrow T^*y^* = 0 \Leftrightarrow y^*\circ T = 0 \Leftrightarrow y^*|_{\Rang T} = 0$.
+
+		2. $x \in \Ker T \Leftrightarrow Tx = 0 \Leftrightarrow \forall y^* \in Y^*: y^*(Tx) = 0 \Leftrightarrow \forall y^* \in Y^*: T^*y^*(x) = 0 \Leftrightarrow x \in (\Rang T^*)_\perp$.
+
+		3. $\overline{\Rang T} = ((\Rang T)^\perp)_\perp = (\Ker T^*)_\perp$.
+
+		4. $T^*$ prostý $\Leftrightarrow$ $\Ker T = \{¦o\}$, ale $\{¦o\}\perp = Y$, tedy dle 3. $\overline{\Rang R} = Y$. Naopak sporem: Ať $\exists x \in Y / \overline{\Rang T}$. Potom dle H-B věty $\exists f \in Y^*: f(x) ≠ 0 \land f|_{\Rang T} = 0$. Pak ale
+		$$ T^* f(x_0) = f(Tx_0) = 0, \forall x_0 \in X \implies T^*f = 0 \implies f \in \Ker T^*. \text{\lightning}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Druhý duál, evaluační funkcionál]
+	Nechť $X$ je normovaný lineární prostor. Symbolem $X^{**}$ značíme $(X^*)^*$, tj. duál k prostoru $X^*$. Tento prostor nazýváme druhým duálem.
+
+	Je-li $x \in X$, pak definujeme tzv. evaluační funkcionál $\epsilon_x \in X^{**}$ předpisem $\epsilon_x(f) = f(x)$ pro každé $f \in X^*$. Zobrazení $\epsilon: X \rightarrow X^{**}$ dané předpisem $\epsilon(x) = \epsilon_x$ se nazývá kanonické vnoření $X$ do $X^{**}$.
+\end{definice}
+
+\begin{tvrzeni}
+	Nechť $X$ je normovaný lineární prostor. Pak kanonické vnoření $\epsilon: X \rightarrow X^{**}$ je lineární izometrie do. Je-li tedy navíc $X$ Bansachův, pak $\epsilon(X)$ je uzavřený podprostor $X^{**}$.
+
+	\begin{dukazin}
+		Linearita zřejmá. Izometrie
+		$$ ||\epsilon_x|| = \sup_{x^* \in B_{X^*}} |\epsilon_* (x^*)| = \sup_{x^* \in B_{X^*}} |x^*(x)| = ||x||. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	TODO.
+\end{dusledek}
+
+\begin{tvrzeni}[J. P. Schauder, 1930]
+	Nechť $X$, $Y$ jsou normované lineární prostory, $\epsilon_X: X \rightarrow X^{**}$ a $\epsilon_Y: $
+\end{tvrzeni}
 
 \end{document}
