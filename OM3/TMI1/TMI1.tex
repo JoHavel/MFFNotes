@@ -550,4 +550,82 @@ TODO?
 	Místo $d\lambda^p(x)$ píšeme $dx$ a místo $d\lambda^q(y)$ píšeme $dy$.
 \end{poznamka}
 
+% 24. 11. 2021
+
+\begin{lemma}
+	Lebesgueova míra $\lambda^n$ je translačně invariantní (tzn. $\lambda^n(B + r) = \lambda^n(B)$).
+
+	\begin{dukazin}
+		$\lambda^n$ a $\mu(B) := \lambda^n(B + r)$, $\forall B \in ©B_0^n$, $r \in ®R^n$, jsou míry, které se shodují na systémech otevřených intervalů v $®R^n$. Ty spolu s prázdnou množinou tvoří $\pi$-systém, takže se míry shodují i na Borelovských množinách $\implies$ jsou shodné.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O obrazu míry]
+	Nechť $(X, ©A, \mu)$ je prostor s mírou a $(Y, ©B)$ je měřitelný prostor. Buď $\phi: (X, ©A) \rightarrow (Y, ©B)$ měřitelné zobrazení. Pak množinová funkce $\phi(\mu)$ daná předpisem
+	$$ \phi(\mu)(B) = \mu(\phi^{-1}(B)), \forall B \in ©B $$
+	je míra na $Y$ (nazýváme ji obraz míry $\mu$ při zobrazení $\phi$) a platí (má-li alespoň jedna strana smysl):
+	$$ \int_Y f d\phi(\mu) = \int_X f(\phi(x)) d\mu(x). $$
+
+	\begin{dukazin}
+		Ověří se, že je to míra (bod po bodu). Rovnost integrálů pak postupně ověříme na charakteristické funkce, pro jednoduché funkce, pro „jednoznaménkové“ (jako monotónní limity jednoduchých) a potom pro všechny (jako součty kladných a záporných funkcí).
+
+		Pro charakteristické funkce:
+		$$ \int_X f(\phi(x)) d\mu(x) = \int)X \chi_B(phi(x)) d\mu = \int_X \chi_{\phi^{-1}(B)}(x) = d\mu(x) = \mu(\phi^{-1}(B)) = $$
+		$$ \phi(\mu)(B) = \int_Y \chi_B d\phi(\mu) = \int_Y f d\phi(\mu). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $L: ®R^n \rightarrow ®R^n$ je invertibilní lineární zobrazení.
+
+	1. Je-li $\nu(A) := \lambda^n(L(A))$, $\forall A \in ©B^n := ©B(®R^n)$, pak $\nu$ je míra a platí $\nu = |\det L|\lambda_{©B}^n$.
+
+	2. Je-li $\mu := |\det L| \lambda_{©B}^n$, pak $L \mu = \lambda_{©B}^n$ a $\forall f \in ©L^*(\lambda_{©B}^n)$ platí
+	$$ \int_{®R^n} f d\lambda^n = \int_{®R^n} (f\circ L) |\det L| d\lambda_{©B}^n. $$
+
+	\begin{dukazin}
+		1. $L$ je lineární zobrazení z $®R^n$ do $®R^n$, a tedy $L$ je spojité. $L$ je invertibilní $\implies \exists$inverzní zobrazení $L^{-1}$, které je opět lineární a spojité. Tedy $L$ je měřitelné.
+		$$ (L^{-1}\lambda^n)(A) = \lambda^n(L(A)) = \nu(A), \forall A \in ©B^n $$
+		$\implies$ $nu$ je míra dle předchozí věty.
+
+		Z lineární algebry je známo, že $L$ lze vyjádřit jako kompozici konečně mnoha „elementárních“ lineárních zobrazení jednoho z následujících typů: $L_1(x_1, …, x_n) = (\alpha x_1, x_2, …, x_n)$, $\forall (x_1, …, x_n) \in ®R^n$, kde $\alpha \in ®R\setminus\{0\}$, $L_2(x_1, …, x_n) = (x_1, …, x_j, …, x_i, …, x_n)$, $\forall (x_1, …, x_n) \in ®R^n$, $j > i \in ®N$, $L_3(x_1, …, x_n) = (x_1 + x_2, x_2, …, x_n)$, $\forall (x_1, …, x_n) \in ®R^n$, $i, j \in ®N$.
+
+		Protože determinant součinu matic se rovná součinu determinantů, stačí tvrzení ověřit pro „elementární“ zobrazení. Ověříme na intervalech, $L_1$ ho jen natáhne o $\alpha$, tedy na determinant násobek, $L_2$ „otočí“ interval, ale $\lambda^n$ se otočením nezmění, $L_3$ posune a zdeformuje interval, ale tím se $\lambda^n$ nezmění (dokážeme přes Fubiniovu větu). Všechny 3 zobrazení stejně operují na prázdné množině, takže i na $\pi$ systému $I \cup \{\O\}$, tedy míry se rovnají všude.
+
+		2.
+		$$ (L(\mu))(A) \overset{1.}{=} \mu(L^{-1}(A)) = |\det L| \lambda_{©B}^n(L^{-1}(A)) = |\det L|·|\det L^{-1}| \lambda_{©B}^n(A) = \lambda_{©B}^n(A) \forall A \in ©B^n, $$
+		tedy $L(\mu) = \lambda_{©B}^n$. Z předchozí věty pak plyne rovnost integrálů.
+	\end{dukazin}
+
+	\begin{lemma}
+		Buď $T: ®R^n \rightarrow ®R^n$ zobrazení splňující Li. podmínku (tzn. $\exists C \in <0, +∞): ||T(x) - T(y)|| ≤ C||x - y||, \forall x, y \in ®R^n$). Je-li $A$ $\lambda^n$-měřitelná, pak také $T(A)$ je $\lambda^n$-měřitelná množina.
+
+		\begin{dukazin}
+			Bez důkazu (není čas a důkaz je jednoduchý).
+		\end{dukazin}
+	\end{lemma}
+\end{veta}
+
+\begin{veta}
+	Je-li $L$ invertibilní zobrazení $®R^n$ do $®R^n$, pak
+	$$ \int_{R^n} f d\lambda^n = \int_{®R^n} (f \circ L) |\det L| d\lambda^n, $$
+	má-li alespoň jedna strana smysl.
+\end{veta}
+
+\begin{tvrzeni}[Opakování]
+	Je-li $G \subset ®R^n$ otevřená množina a $T: G \rightarrow ®R^n$ je zobrazení třídy $C^1$ na $G$, pak $Tx - Tx_0$, kde  $x_0 \in G$, lze lokálně aproximovat lineárním zobrazením, jehož matice je $(\frac{\partial T_i}{\partial x_j} (x_0))_{i, j = 1}^n$ a jehož determinant je $\Jac(T)(x_0)$.
+\end{tvrzeni}
+
+\begin{lemma}
+	$$ \lambda^n(®R^{n-1}) = 0. $$
+\end{lemma}
+
+\veta[O substituci]
+	Buď $G \subset ®R^n$ otevřená množina a $\phi: G \rightarrow ®R^n$ difeomorfimsus. Je-li $f: \phi(G) \rightarrow ®R$ $\lambda^n$-měřitelná funkce, pak
+	$$ \int_G f(\phi(x)) |\Jac \phi(x)| dx = \int_{\phi(G)} f(y) dy, $$
+	má li alespoň jedna strana smysl.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
 \end{document}

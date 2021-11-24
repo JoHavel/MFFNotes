@@ -550,4 +550,53 @@ TODO!!!
 		\begin{dusledek}
 			$f$ je spojitá na $[a, b]$ $\implies$ $f$ je stejnoměrně spojitá na $[a, b]$.
 		\end{dusledek}
+
+% 24. 11. 2021
+
+		\begin{veta}[Cantorova, o uzavřených množinách]
+			Nechť $(P, \rho)$ je úplný metrický prostor a $F_n$ je posloupnost uzavřených neprázdných množin v $P$ tak, že $F_{n+1} \subset F_n$ a $\lim_{n \rightarrow ∞} \diam F_n = 0$. Pak $|\bigcap_{n=1}^∞ F_n| = 1$.
+
+			\begin{dukazin}[Viz OM2/MetPro/MetPro.pdf Věta 6.1]
+				Zvolme $x_n \in F_n$ libovolně. Tvrdíme, že $\{x_n\}_{n=1}^∞$ je cauchyovská. Nechť $\epsilon > 0$. $\exists n_0 \diam F_{n_0} < \epsilon$. Nyní
+				$$ \forall m, n ≥ n_0: x_n \in F_n \subset F_{n_0}, x_m \in F_m \subset F_{n_0}: \rho(x_n, x_m) ≤ \diam F_{n_0} < \epsilon. $$
+				$P$ je úplný, a tedy $x_n \rightarrow x \in P$. Nechť $j \in ®N$ je pevné a $n ≥ j$, pak $x_n \in F_n \subset F_j$ a $x_n \rightarrow x$, tedy ($F_j$ je uzavřené) $x \in F_j \forall j$, tedy $x \in \bigcap_{j=1}^∞ F_j$. Naopak pokud $x, y \in \bigcap_{j=1}^∞ F_j$, pak zvolíme $j$ tak, aby $\diam F_j < \rho(x, y)$, tedy buď $x \notin F_j$ nebo $y \notin F_j$.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{veta}[O totální omezenosti a úplnosti]
+			Metrický prostor $(P, \rho)$ je kompaktní právě tehdy, když je totálně omezený a úplný.
+
+			\begin{dukazin}
+				$\implies$ už máme hotové z věty výše a věty Kompaktnost a totální omezenost. $\Leftarrow$: Nechť $\{x_n\}_{n=1}^∞ \subset P$, chceme $\exists x_{n_k} \rightarrow x$. $P$ je totálně omezený, tedy existuje konečná $1$-síť $P \subset \bigcup_{i=1}^{h_1} B(s_i, 1)$. $\{x_n\}$ je nekonečná $\implies$ $\exists$ kulička $B_1 = B(s_i, 1)$ tak, že $|\{x_n | x_n \in B_1\}| = +∞$. Zvolme $x_{n_1} \in B_1$.
+
+				Dále indukcí: Mějme $B_1, …, B_{k-1}$ kuličky o poloměrech $1, …, \frac{1}{k-1}$ tak, že pro $A_{k-1} = B_1 \cap … \cap B_{k-1}$ platí $|\{x_n | x_n \in A_{k-1}\}| = +∞$, a mějme $n_1 < … < n_{k-1}$ tak, že $x_{n_j} \in A_j$, $\forall j \in [k-1]$. $P$ je totálně omezený $\implies$ $\exists$ konečná $\frac{1}{k}$-síť $A_{k-1} \subset P \subset \bigcup_{i=1}^{h_k} B(s_i, \frac{1}{k})$. V $A_{k-1}$ je nekonečně mnoho $x_n$, tedy $\exists B_k = B(s_i, \frac{1}{k})$, že pro $A_k = A_{k-1} \cap B_k$ platí $|\{x_n | x_n \in A_k\}| = +∞$. Dále zvolme $n_k$ tak, aby $n_k > n_{k-1}$ a $x_{n_k} \in A_k$.
+
+				$x_{n_k}$ je cauchyovská, neboť pro $\epsilon > 0$ $\exists n_0: \frac{1}{n_0} < \epsilon$, nechť $k, l ≥ n_0$, pak $x_{n_k} \in A_k \subset A_{n_0}$ a $x_{n_l} \in A_l \subset A_{n_0}$, tedy jelikož $A_{n_0} \subset B_{n_0}$, $\rho(x_{n_k}, x_{n_l}) < \frac{2}{n_0} < 2\epsilon$. $P$ je úplný, tedy existuje $x$ tak, že $x_{n_k} \rightarrow x$.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{veta}[O zúplnění metrickéůo prostoru]
+			Nechť $(P, \rho)$ je metrický prostor. Pak existuje úplný metrický prostor $(\tilde P, \tilde \rho)$ tak, že $P \subset \tilde P$ a $\forall x, y \in P$ platí $\rho(x, y) = \tilde \rho(x, y)$.
+
+			\begin{dukazin}
+				Bez důkazu.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{veta}[Arzela-Ascoli]
+			Nechť $A \subset C([0, 1])$. Pak $\overline{A}$ je kompaktní právě tehdy, když jsou funkce z $A$ stejně omezené a stejně stejnoměrně spojité. Tedy pokud $\exists K > 0$:
+			$$ \forall f \in A\ \forall x \in [0, 1]: |f(x)| ≤ K, $$
+			$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x, y \in [0, 1]\ \forall f \in A: |x - y| < \delta \implies |f(x) - f(y)| < \epsilon. $$
+
+			\begin{dukazin}
+				$\implies$: $\overline{A}$ je kompaktní $\implies$ $\overline{A}$ je omezená $\implies$ $A$ je omezená $\subset B(0, K)$. Tedy $\forall f \in A\ \forall x \in [0, 1]: |f(x)| ≤ K$.
+
+				$\overline{A}$ je kompaktní $\implies$ $\overline{A}$ je totálně omezená. Nechť $\epsilon > 0$ $\implies \exists$konečná $\epsilon$-síť $\overline{A} \subset \bigcup_{i = 1}^k B(f_i, \epsilon)$. Funkce $f_i$ je spojitá na $[0, 1]$ $\implies$ $f$ je stejnoměrně spojitá na $[0, 1]$. Tedy
+				$$ \exists \delta_i>0\ \forall x, y: |x - y| < \delta_i \implies |f_i(x) - f_i(y)| < \epsilon. $$
+				Položme $\delta = \min\{\delta_1, …, \delta_k\}$. Nechť $f \in A$, $x, y \in [0, 1]$: $|x - y| < \delta$. K tomuto $f \in A$ najdu $f_i$, aby $f \in B(f_i, \epsilon)$. Potom
+				$$ |f(x) - f(y)| ≤ |f(x) - f_i(x)| + |f_i(x) - f_i(y)| + |f_i(y) - f(y)| < 2\epsilon + \epsilon = 3\epsilon $$
+			\end{dukazin}
+		\end{veta}
+
+
 \end{document}
