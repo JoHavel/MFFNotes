@@ -595,8 +595,78 @@ TODO!!!
 				$$ \exists \delta_i>0\ \forall x, y: |x - y| < \delta_i \implies |f_i(x) - f_i(y)| < \epsilon. $$
 				Položme $\delta = \min\{\delta_1, …, \delta_k\}$. Nechť $f \in A$, $x, y \in [0, 1]$: $|x - y| < \delta$. K tomuto $f \in A$ najdu $f_i$, aby $f \in B(f_i, \epsilon)$. Potom
 				$$ |f(x) - f(y)| ≤ |f(x) - f_i(x)| + |f_i(x) - f_i(y)| + |f_i(y) - f(y)| < 2\epsilon + \epsilon = 3\epsilon $$
+
+% 25. 11. 2021
+
+				$\Leftarrow$: Chceme dokázat, že pro $\{f_n\}_{n=1}^∞ \subset \overline{A}$ $\exists f_{n + k} \rightarrow f$. 1. krok, volba $C$: Nechť $m \in ®N$. Ze stejnoměrné spojitosti pro $\epsilon = \frac{1}{m}$
+				$$ \exists \delta_m\ \forall x, y\ \forall n: |x - y| < \delta_m \implies |f_n(x) - f_n(y)| < \epsilon = \frac{1}{m}. $$
+				Nyní $[0, 1]$ pokryjeme $[0, 1] \subset \bigcup_{j=1}^{k_m} B(c_{j}^m, \delta_m)$. Položme $C = \{C_j^m | m \in ®N, j \in [k_{m}]\}$. $C$ je zřejmě spočetné (spočetné sjednocení konečných).
+
+				2. krok, volba $f_{n_k}$, aby $\forall c \in C: f_{n_k}(c)$ konverguje. $C$ je spočetná, tedy $C = \{c_i, i \in ®N\}$. Ze stejné omezenosti $|f_n(c_1)| ≤ K$, tedy existuje podposloupnost $f_{n_{k, 1}}(c_1)$ posloupnosti $f_{n_k}(c_1)$, která konverguje. Nyní ze stejné omezenosti víme, že $|f_{n_{k, 1}}(c_2)| ≤ K$, tedy opět vybereme podposloupnost $f_{n_{k, 2}}(c_2)$, která konverguje. Dále pokračujeme indukcí.
+
+				Položme $f_{n_k} = f_{n_{k, k}}$. Tato vybraná podposloupnost z $f_n$ konverguje ve všech bodech $C$.
+
+				3. krok, $f_{n_k}$ je cauchyovská. Nechť $\epsilon > 0$, k čemuž nalezneme $\frac{1}{m} < \epsilon$. Z 1. kroku máme $\delta_m$ a $c_1^m, …, c_{k_m}^m$. Z 2. kroku víme, že $f_{n_k}(c_j^m) \rightarrow …(c_j^m)$, $\forall j \in [k_m]$. Tedy z BC podmínky v těchto bodech
+				$$ \exists k_0\ \forall k, l ≥ k_0: |f_{n_k}(c_j^m) - f_{n_k}(c_j^m)| < \epsilon, \qquad \forall j \in [k_m]. $$
+				Nechť nyní $x \in [0, 1]$. Nalezneme $c_j^m·|x - c_j^m|< \delta_m$:
+				$$ |f_{n_k}(x) - f_{n_l}(x)| ≤ |f_{n_k}(x) - f_{n_k}(c_j^m)| + |f_{n_k}(c_j^m) - f_{n_l}(c_j^m)| + |f_{n_l} - f_{n_l}(c_j^m)| < \frac{1}{m} + \epsilon + \frac{1}{m} ≤ 3\epsilon. $$
+
+				Tedy $f_{n_k}$ je cauchyovská a jelikož $C([0, 1])$ je úplný, tak $\exists f \in C([0, 1])f_{n_k} \rightarrow f$. Nyní z uzavřenosti $\overline{A}$ je $f \in \overline{A}$.
 			\end{dukazin}
 		\end{veta}
 
+	\subsection{Prostory $L^p$}
+		\begin{poznamka}
+			Většina vět této podsekce i s důkazy se dá najít v W. Radim – Analýza v reálném a komplexním oboru.
+		\end{poznamka}
 
+		\begin{poznamka}[Slovníček pro MIT a slabší povahy]
+			„Tyto skupiny nejsou totéž.“
+			
+			\begin{itemize}
+				\item $\int_x f d\mu$ čteme $(R)\int_0^1 f(x) dx$.
+				\item $f$ je měřitelná čteme $f$ je spojitá.
+				\item $f=0$, $\mu$-s. v. čteme jako $f=0$ všude.
+				\item $(X, ©A, \mu)$ čteme jako $([0, 1], dx)$.
+			\end{itemize}
+		\end{poznamka}
+
+		\begin{veta}[Jensenova nerovnost]
+			Nechť $(X, ©A, \mu)$ je pravděpodobnostní prostor ($\mu$ nezáporná), $f \in L^1(\mu)$, $a, b \in [-∞, ∞]$ a $f: X \rightarrow (a, b)$. Je-li $\phi: (a, b) \rightarrow ®R$ konvexní funkce, pak
+			$$ \phi(\int_X f d\mu) ≤ \int_X (\phi \circ f) d\mu. $$
+
+			\begin{dukazin}
+				„Integrál je vlastně průměr a konvexní funkce je v průměru menší, než průměr jejich hodnot.“
+				
+				Označme $t = \int_x f d\mu$. $\mu(X) = 1 \implies a < t < b$. $\phi$ je konvexní $\implies$
+				$$ \implies \exists \beta \in ®R: \phi(s) ≥ \phi(t) + \beta(s - t)\qquad \forall s \in (a, b). $$
+				Toto použijeme pro $s = f(x)$:
+				$$ \phi(f(x)) ≥ \phi(t) + \beta·(f(x) - t). $$
+				$f$ je měřitelná a $\phi$ spojitá (neboť je konvexní) $\implies \phi(f(x))$ je měřitelná.
+
+				Zintegrujeme:
+				$$ \int_X \phi(f(x)) \mu(x) ≥ \int_X \phi(t) d\mu(x) + \beta \int_X(f(x) - t) d\mu(x), $$
+				$$ \int_X \phi(f(x)) \mu(x) ≥ \phi(t) + \beta·0 = \phi(t). $$
+			\end{dukazin}
+		\end{veta}
+
+		\begin{priklad}
+			Při $f(x_i) = a_i \in ®R$, $\mu = \sum_{i=1}^n \frac{1}{n} \delta_{x_i}$, $\phi = \exp$ dostaneme z minulé věty AG nerovnost.
+		\end{priklad}
+
+		\begin{priklad}
+			$$ ab ≤ \frac{1}{p}a^p + \frac{1}{q}b^q $$, kde $\frac{1}{p} + \frac{1}{q} = 1$ a $a, b ≥ 0$.
+
+			\begin{reseni}
+				$$ \exp(\frac{1}{p}x + \frac{1}{q}y) ≤ \frac{1}{p}e^x + \frac{1}{q}e^y, $$
+				$$ e^{\frac{x}{p}}·e^{\frac{y}{q}} ≤ \frac{1}{p}e^x + \frac{1}{q}e^y. $$
+				K zadanému $a, b > 0$ vezmeme $x, y$ aby $e^{\frac{x}{p}} = a$ a $e^{\frac{y}{q}} = b$. Pak
+				$$ ab ≤ \frac{1}{p} a^p + \frac{1}{q} b^q. $$
+				Pro $a = 0$ nebo $b = 0$ je důkaz triviální.
+			\end{reseni}
+		\end{priklad}
+
+		\begin{definice}[Sdružený index]
+			Nechť $1 < p < ∞$, pak číslo $q$ splňující $\frac{1}{p} + \frac{1}{q} = 1$ nazveme sdružení. Pro $p = 1$ definujeme $q = ∞$ a opačně.
+		\end{definice}
 \end{document}
