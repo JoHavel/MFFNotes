@@ -745,5 +745,79 @@ TODO!!!
 				$$ \implies f - f_m \in L^p \implies (f - f_m) + f_m \in L^p \land \rho(f, f_m) ≤ \epsilon^{\frac{1}{p}}. $$
 				Tedy $f_n \rightarrow f$.
 			\end{dukazin}
+
+% 02. 12. 2021
+
+			\begin{dukazin}[$p = ∞$, nebude na zkoušce]
+				Nechť $f_n \in L^∞(X, \mu)$ je cauchyovská posloupnost. Pak existují $N_n$, $\mu(N_n)$, $||f_n||_{L^∞} = \sup_{x \in X\setminus N_n} |f_n(x)| = \sup_{x \setminus N} |f_n(x)|$.
+
+				Dokazovali jsme, že $C([0, 1])$ je úplný metrický prostor. Analogicky to lze dokázat zde.
+			\end{dukazin}
 		\end{veta}
+
+	\subsection{Husté a řídké množiny}
+		\begin{definice}[Hustá množina]
+			Nechť $(P, \rho)$ je metrický prostor. Řekneme, že $A \subset P$ je hustá, pokud $\overline{A} = P$.
+		\end{definice}
+
+		\begin{veta}[Charakterizace hustých množin]
+			Nechť $(P, \rho)$ je metrický prostor a $A \subset P$. Potom je $A$ hustá v $P$ právě tehdy, když pro každou otevřenou neprázdnou $G \subset P$ platí $G \cap A ≠ \O$.
+
+			\begin{dukazin}
+				„$\implies$“: Sporem: Nechť $\exists G \subset P$ otevřená, $G \cap A = \O$, tedy $\exists B(x, r) \subset G$. Pak $\dist(x, A) ≥ r$ $\implies$ $x \notin \overline{A}$. \lightning.
+
+				„$\Leftarrow$“: Sporem: $A$ není hustá $\implies$ $P \setminus \overline{A} ≠ \O$. $G = P \setminus \overline{A}$ je otevřená. Podle předpokladu $(P \setminus \overline{A}) \cap A ≠ \O$.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{dusledek}
+			Nechť $G_1, G_2 \subset P$ jsou otevřené a husté v $(P, \rho)$. Pak $G_1 \cap G_2$ je otevřená a hustá v $P$.
+
+			\begin{dukazin}
+				Nechť $G \subset P$, $G ≠ \O$ je otevřená, potom $G_1 \cap G ≠ \O$ otevřená, $G_2 \cap G_1 \cap G ≠ \O$, tedy $G_1 \cap G_2$ je hustá. (Libovolné $G$ tedy protne $G_1 \cap G_2$.)
+			\end{dukazin}
+		\end{dusledek}
+
+		\begin{definice}[Řídká množina]
+			Nechť $(P, \rho)$ je metrický prostor. Řekneme, že $A \subset P$ je řídká, jestliže je $P \setminus \overline{A}$ hustá.
+		\end{definice}
+
+		\begin{veta}[Vlastnosti řídkých množin]
+			Nechť $(P, \rho)$ je metrický prostor a nechť $A, B \subset P$. Potom
+			
+			\begin{enumerate}
+				\item Je-li $A$ řídká v $P$ a $B \subset A$, pak je také $B$ řídká v $P$.
+				\item Jsou-li $A, B$ řídké v $P$, pak $A \cup B$ je řídké v $P$.
+				\item $A$ je řídká v $P$ $\Leftrightarrow$ $\overline{A}$ je řídká v $P$.
+			\end{enumerate}
+
+			\begin{dukazin}
+				1. $B \subset A \implies \overline{B} \subset \overline{A} \implies P \setminus \overline{A} \subset P \setminus \overline{B} \implies P = \overline{P\setminus \overline{A}} \subset \overline{P\setminus \overline{B}} \implies P = \overline{P\setminus \overline{B}}$.
+
+				3. Víme $\overline{\overline{A}} = \overline{P} \implies P \setminus\overline{A} = P \setminus\overline{\overline{A}} \implies \overline{\setminus\overline{A}} = \overline{\setminus\overline{\overline{A}}}$.
+
+				2. $\overline{A \cup B} = \{x | \rho(x, A \subset B) = 0\} = \{x | \rho(x, A) = 0\} \cup \{x | \rho(x, B) = 0\} = \overline{A} \cup \overline{B}$. Tedy $P \setminus \overline{A \cup B} = P \setminus(\overline{A} \cup \overline{B}) = (P\setminus\overline{A}) \cup (P \setminus \overline{B})$. Tato množina už je zřejmě hustá (průnik dvou otevřených hustých množin), tedy $A \cup B$ je řídká.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{definice}[Množiny 1. kategorie a 2. kategorie]
+			Nechť $(P, \rho)$ je metrický prostor. Řekneme, že $A \subset P$ je 1. kategorie, jestliže existují řídké množiny $A_n$ tak, že $A = \bigcup_{n=1}^∞ A_n$. Řekneme, že $C \subset P$ je 2. kategorie, jestliže $C$ není 1. kategorie.
+		\end{definice}
+
+		\begin{veta}[Baire]
+			Nechť $(P, \rho)$ je úplný metrický prostor. Nechť $G_{n, m} \in ®N$ jsou otevřené a husté v $(P, \rho)$. Pak $\bigcup_{n=1}^∞ G_n$ je hustá v $(P, \rho)$.
+
+			\begin{dukazin}
+				Příště.
+			\end{dukazin}
+		\end{veta}
+
+		\begin{dusledek}
+			Úplný metrický prostor není 1. kategorie sám v sobě.
+
+			\begin{dukazin}
+				Sporem nechť $P = \bigcup_{n=1}^∞ A_n$, $A_n$ řídké. Pak $P \setminus \overline{A_n}$ jsou husté a otevřené $\implies$ $\bigcup_{n=1}^∞ P \setminus \overline{A_n} ≠ \O$. Ale $\O = P \setminus \bigcup_{n=1}^∞ A_n = \bigcup_{n=1}^∞ (P \setminus A_n) \supset \bigcup_{n=1}^∞ (P \setminus \overline{A_n})$. \lightning.
+			\end{dukazin}
+		\end{dusledek}
+
 \end{document}
