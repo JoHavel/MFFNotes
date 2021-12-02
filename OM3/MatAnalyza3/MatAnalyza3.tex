@@ -669,4 +669,81 @@ TODO!!!
 		\begin{definice}[Sdružený index]
 			Nechť $1 < p < ∞$, pak číslo $q$ splňující $\frac{1}{p} + \frac{1}{q} = 1$ nazveme sdružení. Pro $p = 1$ definujeme $q = ∞$ a opačně.
 		\end{definice}
+
+% 01. 12. 2021
+
+		\begin{veta}[Hölderova a Minkowského]
+			Nechť $X, ©A, \mu$ je prostor s mírou, $1 < p < ∞$, $q$ je sdružený exponent k $p$ a $f, g: X \rightarrow [0, ∞]$ jsou měřitelné funkce. Potom platí Hölderova nerovnost:
+			$$ \int_X f·g dx ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}·\(\int_X g^q d\mu\)^{\frac{1}{q}} $$
+			a Minkowského nerovnost
+			$$ \(\int_X (f + g)^p d\mu\)^{\frac{1}{p}} ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}. $$
+
+			\begin{dukazin}
+				Označme $A = \(\int_X f^p d\mu\)^{\frac{1}{p}}$ a $B = \(\int_X g^q d\mu\)^{\frac{1}{q}}$. Pokud $A = 0$ (nebo $B = 0$), pak $f = 0$ skoro všude a nerovnost platí. Pokud $A = ∞$ nebo $B = ∞$, pak nerovnost také triviálně platí.
+
+				Položme $F(x) = \frac{1}{A}f(x)$ a $G(x) = \frac{1}{B}·g(x)$. Pak
+				$$ \int_X F(x)^p d\mu = \frac{1}{A^p} \int_X f(x)^p d\mu = 1, \qquad \int_XG(x)^q d\mu = 1. $$
+				Z $F(x) · G(x) ≤ \frac{1}{p}(F(x))^p + \frac{1}{q}(G(x))^q$ (Jangova? nerovnost: $\forall a, b ≥ 0: ab ≤ \frac{1}{p}a^p + \frac{1}{q}b^q$) dostaneme:
+				$$ \int_X F(x) G(x) d\mu(x) ≤ \frac{1}{p} \int_X (F(x))^p + \frac{1}{q} \int_X(G(x))^q = \frac{1}{p} + \frac{1}{q} = 1,\qquad /·AB $$
+				$$ \int_X f(x) g(x) d\mu(x) ≤ AB = \(\int_X f^p d\mu\)^{\frac{1}{p}}·\(\int_X g^q d\mu\)^{\frac{1}{q}}. $$
+
+				$$ \int_X (f + g)^p d\mu = \int_X f·(f + g)^{p-1} + g·(f + g)^{p-1} d\mu ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}\(\int_X (f = g)^{(p-1)q}\)^{\frac{1}{q}} + \(\int_X g^p d\mu\)^{\frac{1}{p}} \(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} ≤ $$
+				$$ ≤ \[\(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}\]·\(\int_X (f + g)^p d\mu\)^{\frac{1}{q}}. $$
+				Je-li $\int_{X} (f + g)^p d\mu ≠ 0$ (triviální) a $≠ ∞$ vydělíme
+				$$ \(\int_X (f + g)^p d\mu\)^{p = 1 - \frac{1}{q}} ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}. $$
+				Pokud je integrál výše roven $∞$, pak využijeme konvexity funkce $t \mapsto t^p$:
+				$$ ∞ = \int_X\(\frac{f(x) + g(x)}{2}\)^p d\mu ≤ \int_X \(\frac{f(x)^p}{2} + \frac{g(x)^p}{2}\)d\mu \implies \int f^p = ∞ \lor \int g^p = ∞. $$
+			\end{dukazin}
+		\end{veta}
+
+		\begin{definice}[$L^p$ prostory]
+			Nechť $(X, ©A, \mu)$ je prostor s mírou a $1 ≤ p < ∞$. Definujeme prostor $L^p$ jako
+			$$ L^p(X, \mu) := \{f: X \rightarrow ®R| ||f||_{L^p} < ∞\}, \text{ kde } ||f||_{L^p} := \(\int_X |f|^p d\mu\)^{\frac{1}{p}}. $$
+
+			Nechť $g: X \rightarrow [0, ∞]$ je měřitelná. Esenciální supremum $g$ definujeme jako
+			$$ \esssup g:= \inf\{\alpha | \mu(q > \alpha) = 0\}. $$
+
+			(Pro $p = ∞$) tedy definujeme
+			$$ L^∞(X, \mu) := \{f: X \rightarrow ®R| ||f||_{L^p} < ∞\}, \text{ kde } ||f||_{L^∞} := \esssup_x |f|. $$
+		\end{definice}
+
+		\begin{veta}[Trojúhelníková nerovnost v $L^p$]
+			Nechť $1 ≤ p ≤ ∞$. Pak pro $f, g \in L^p(X, \mu)$ platí
+			$$ ||f + g||_{L^p} ≤ ||f||_{L^p} + ||g||_{L^p}. $$
+
+			\begin{dukazin}
+				Pro $1 ≤ p < ∞$ viz Minkowski: $f(x) = a(x) - c(x)$, $g(x) = c(x) - b(x)$, $f(x) + g(x) = a(x) - b(x)$:
+				$$ \(\int_X |a(x) - b(x)|^p d\mu\)^{\frac{1}{p}} ≤ \(\int_X |a(x) - c(x)|^p d\mu\)^{\frac{1}{p}} + \(\int_X |c(x) - b(x)|^p d\mu\)^{\frac{1}{p}}. $$
+
+				Pro $p = ∞$: z definice $\esssup$ $\exists N_1, N_2, N_3$, $\mu(N_1) = \mu(N_2) = \mu(N_3) = 0$,
+				$$ ||f||_{L^∞} = \sup_{x \in X \setminus N_1} |f(x)|, ||g||_{L^∞} = \sup_{X \setminus N_2} |g(x)|, ||f + g||_{L^∞} = \sup_{x \in X \setminus N_3} |f(x) + g(x)|, \qquad N = N_1 \cup N_2 \cup N_3. $$
+				$$ \sup_{x \in X\setminus N} |f(x) + g(x)| ≤ \sup_{x \in X \setminus N} |f(x)| + |g(x)| ≤ \sup_{x \in X \setminus N} |f(x)| + \sup_{x \in X \setminus N} |g(x)|. $$
+			\end{dukazin}
+		\end{veta}
+
+		\begin{poznamka}
+			Pokud budeme uvažovat $L_p$ jako jeho kvocient podle rovnosti skoro všude, pak je $||·||_{L^p}$ norma a $L^p$ je metrický prostor s metrikou.
+		\end{poznamka}
+
+		\begin{veta}[Úplnost $L^p$ prostorů]
+			Nechť $1 ≤ p ≤ ∞$. Pak je prostor $L^p(X, \mu)$ úplný.
+
+			\begin{dukazin}
+				$1 ≤ p < ∞$. Mějme $f_n$ cacuhyovskou nerovnost v $L^p$. Tj.
+				$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: \(\int_X |f_n(x) - f_m(x)|^p d\mu\)^{\frac{1}{p}}. $$
+				Najdeme $f(x)$ jako bodovou limitu (skoro všude) vhodně vybrané podposloupnost. Z cauchyovskosti $\exists k_1 < k_2 < … < k_j < …$ tak, že
+				$$ \forall j: \int_X |f_{k_j}(x) - f_{k_{j+1}}(x)|^p d\mu ≤ \frac{1}{2^j}. $$
+				Položme $g_n(x) = \sum_{j=1}^n |f_{k_j}(x) - f_{k_{j+1}(x)}|$ a $g(x) = \sum_{j=1}^∞ |f_{k_j}(x) - f_{k_{j+1}}(x)|$. Pak z Minkowského nerovnosti $||g_n||_{L^{p}} ≤ \sum_{j=1}^n ||f_{k_j} - f_{k_{j+1}}||_{L^p} ≤ \sum_{j=1}^n \(\frac{1}{2^j}\)^{\frac{1}{p}} ≤ C_p$.
+
+				Z Fatouova lemmatu
+				$$ \int_X \liminf_{n \rightarrow ∞} g_n^p d\mu(x) ≤ \liminf_{n \rightarrow ∞} \int_X g_n^p(x) d\mu ≤ C_p. $$
+				Tedy řada $\sum_{j=1}^∞ (f_{k_j}(x) - f_{k_{j+1}(x)})$ konverguje absolutně skoro všude $\implies$ funkce $f(x) = f_{k_1}(x) - \sum_{j=1}^∞ (f_{k_j} - f_{k_{j+1}})$ je definována skoro všude. Nyní
+				$$ f_{k_n}(x) = f_{k_1}(x) - \sum_{j=1}^{n-1}(-f_{k_j}(x) - f_{k_j}(x)) \rightarrow f(x) \text{ skoro všude.} $$
+
+				Zbývá $f \in L^p$ a $f_n \overset{L^p}{\rightarrow} f$. Víme, že $f_n$ je cauchyovská. Z Fatouova lemmatu
+				$$ \int_X |f(x) - f_n(x)|^p d\mu = \int_X \liminf_{n \rightarrow ∞} |f_{k_n} - f_m|^p d\mu ≤ \liminf_{n \rightarrow ∞} \int_X |f_{k_n} - f_m|^p d\mu ≤ \epsilon \implies $$
+				$$ \implies f - f_m \in L^p \implies (f - f_m) + f_m \in L^p \land \rho(f, f_m) ≤ \epsilon^{\frac{1}{p}}. $$
+				Tedy $f_n \rightarrow f$.
+			\end{dukazin}
+		\end{veta}
 \end{document}

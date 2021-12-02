@@ -379,4 +379,58 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 24. 11. 2021
+
+TODO!!!
+
+% 01. 12. 2021
+
+\begin{definice}[Afinní zobrazení]
+	Mějme afinní prostory $A$, $B$ se zaměřeními $V$, $W$ nad stejným tělesem $T$. Řekneme, že zobrazení $f: A \rightarrow B$ je afinní, jestliže zachovává afinní kombinace, tedy jestliže pro libovolné body $B_1, …, B_k \in A$ a koeficienty $c_1, …, c_k \in T$ splňující $c_1 + … + c_k = 1$ platí
+	$$ f(\sum_{i=1}^k c_iB_i) = \sum_{i=1}^k c_i f(B_i). $$
+\end{definice}
+
+\begin{definice}[Asociovaný homomorfismus]
+	Mějme afinní prostory $A, B$ se zaměřeními $V, W$ nad stejným tělesem ®T a $f: A \rightarrow B$ afinní zobrazení. Definujeme zobrazení $\overline{f}: V \rightarrow W$ předpisem
+	$$ \overline{f}(¦v) = f(¦X + ¦v) - f(¦X), $$
+	kde $¦X \in A$ je libovolný bod. Tato definice na volbě bodu $¦X$ nezávisí a navíc takto definované $\overline{f}$ je lineární a nazývá se asociovaný homomorfismus.
+
+	\begin{dukazin}
+		Rozepsáním.
+	\end{dukazin}
+\end{definice}
+
+\begin{dusledek}
+	Obrazem afinního podprostoru v afinním zobrazení je opět afinní podprostor. Afinní zobrazení navíc zachovávají rovnoběžnost podprostorů.
+\end{dusledek}
+
+\begin{dusledek}
+	Afinní zobrazení je injektivní, surjektivní či bijektivní právě tehdy, když tuto vlastnost má asociovaný homomorfismus.
+\end{dusledek}
+
+\begin{definice}[Afinita]
+	Afinní zobrazení $f: A \rightarrow A$ z afinního prostoru do sebe nazveme afinita, jestliže je bijektivní. Všechny afinity daného prostoru tvoří grupu vzhledem ke skládání, která se nazývá afinní grupa.
+\end{definice}
+
+\begin{veta}
+	Zobrazení $f: ®R^m \rightarrow ®R^n$ je afinní právě tehdy, když má tvar
+	$$ f(X) = A X + p, $$
+	kde $A$ je matice $n \times m$ a $p$ je vektor $n \times 1$. V případě $m = n$ je toto zobrazení afinitou právě tehdy, když je matice $A$ regulární.
+\end{veta}
+
+\section{Projektivní geometrie}
+\begin{definice}
+	Mějme vektorový prostor $V^{n+1}$ dimenze $(n+1)$ nad tělesem ®T. Množinu všech $1$-dimenzionálních podprostorů $V$ nazveme projektivním prostorem dimenze $n$ nad tělesem ®T a označujeme ho $®P(¦V^{n+1})$ nebo zkráceně $®P^n$.
+
+	Projektivní podprostor dimenze 0 nazýváme bod, podprostor dimenze 1 přímka, podprostor dimenze 2 rovina a podprostor (maximální) dimenze $(n-1)$ nadrovina.
+\end{definice}
+
+TODO
+
+\begin{veta}
+	Projektivní zobrazení $F: ®P^n \rightarrow ®P^n$ z afinního prostoru do sebe jsou bijektivní právě tehdy, když
+\end{veta}
+
+TODO
+
 \end{document}

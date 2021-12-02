@@ -618,6 +618,12 @@ TODO?
 
 \begin{lemma}
 	$$ \lambda^n(®R^{n-1}) = 0. $$
+
+	\begin{dukazin}
+		$®R^{n-1}$ je uzavřená v $®R^n$, tedy je $\lambda$-měřitelná.
+		$$ ®R^{n-1} \subset \bigcup_{k=1}^∞ I_{k, \epsilon}, I_{k, \epsilon} = (-k, k)^{n-1} \times \(\frac{-\epsilon}{(2k)^{n-1}}\frac{1}{2^k}, \frac{\epsilon}{(2k)^{n-1}}\frac{1}{2^k}\), $$
+		$$ 0 ≤ \lambda^n(®R^{n-1}) ≤ \sum_{k=1}^∞ \lambda^n(I_{k, \epsilon}) = \sum_{k=1}^∞ (2k)^{n-1} \frac{2\epsilon}{(2k)^{n-1}}\frac{1}{2^k} = 2\epsilon \implies \lambda^n(®R^{n-1}) = 0. $$
+	\end{dukazin}
 \end{lemma}
 
 \veta[O substituci]
@@ -628,4 +634,45 @@ TODO?
 	\begin{dukazin}
 		Bez důkazu.
 	\end{dukazin}
+
+% 01. 12. 2021
+\section{Důkazy}
+\begin{dukaz}[Věta 1.4?]
+	Označme $\tilde{©A}_0 = \{E \subset X | \exists A, B \in ©A: A \subset E \subset B, \mu(B \setminus A) = 0\}$. Ověříme, že $\tilde{©A}_0$ je $\sigma$-algebra.
+
+	TODO!!!
+\end{dukaz}
+
+\begin{lemma}
+	Buď $(X, ©A, \mu)$ prostor s mírou a $s$ jednoduchá nezáporná měřitelná funkce na $X$. Definujeme-li
+	$$ \phi(A) = \int_A s d\mu, \forall A \in ©A, $$
+	pak $\phi$ je míra na ©A.
+
+	\begin{dukazin}
+		$s = \sum_{j=1}^k \alpha_j·\chi_{E_j}$ kanonický tvar funkce $s$.
+		$$ A \in ©A \implies \phi(A) = \int_A s d\mu = \int_X \chi_A · s d\mu = \int_X \tilde{s} d\mu = \sum_{j=1}^k \alpha_j \mu(A \cap E_j), \forall A \in ©A. $$
+		Následně ověříme body definice míry:
+		$\phi(\O) = 0$.
+		$$ A \in ©A\ \forall i \in ®N, i ≠ j \implies A_i \cap A_j = \O. $$
+		$$ \phi(\bigcup_l A_l) = \sum_{j=1}^k \alpha_j \mu((\bigcup_l A_l) \cap E_j) = \sum_{j=1}^k \alpha_l \sum_{i \in ®N} \mu(A_l \cup E_j) = $$
+		$$ = \lim_{n \rightarrow ∞} \sum_{j=1}^k \sum_{i=1}^n \alpha_j \mu(A_i \cap E_j) = \lim_{n \rightarrow ∞} \sum_{l=1}^n \sum_{j=1}^k \alpha_l \mu(A_l \cap E_j) = \sum_{l=1}^∞ \phi(A_i). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Leviho věty]
+	$$ f_n ≤ f_{n+1} \implies \int_X f_n d\mu ≤ \int_X f_{n+1}d\mu \implies \exists \alpha \in \<0, +∞\>: \int_X f_n d\mu \rightarrow \alpha. $$
+	$$ \int_X f_n d\mu ≤ \int_X f d\mu, \forall n \in ®N. $$
+
+	Obrácená nerovnost (pro $s$ jednoduché měřitelné funkce):
+	$$ \int_\lambda f d\mu = \sup_{0 ≤ s ≤ f} \int_X s d\mu. $$
+	$$ \forall c: c \in (0, 1) \implies f > cs. $$
+	
+	$E_n = \{x \in X | f_n(x) ≥ c·s(x)\}$, $n \in ®N$:
+	$$ E_1 \subset E_2 \subset … \subset X, X = \bigcup_{n \in ®N} E_n, $$
+	TODO.
+\end{dukaz}
+
+
+
+
 \end{document}

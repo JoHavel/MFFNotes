@@ -1258,4 +1258,219 @@ TODO
 	Nechť $X$, $Y$ jsou normované lineární prostory, $\epsilon_X: X \rightarrow X^{**}$ a $\epsilon_Y: $
 \end{tvrzeni}
 
+% 29. 11. 2021
+
+\begin{tvrzeni}
+	Komutování kanonických vnoření do duálů? TODO
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Pro každý normovaný lineární prostor $X$ existuje jeho zúplnění, tj. Banachův prostor takový, že $X$ je jeho hustý podprostor. Pro každý prostor se skalárním součinem $X$ existuje jeho zúplnění, tj. Hilbertův prostor takový, že $X$ je jeho hustý podprostor.
+
+	Tato rozšíření jsou určena jednoznačně až na izometrii, tj. jsou-li $X_1$, $X_2$ dvě zúplnění $X$, pak existuje lineární izometrie $X_1$ na $X_2$, která je na $X$ identitou.
+
+	\begin{dukazin}
+		Položme $\hat{X} = \overline{©\epsilon(X)} \subseteq X^{**}$. Ztoho plyne existunce.
+
+		Pokud $X$ má skalární součin, pak platí rovnoběžníkové pravidlo. To platí i v $\hat{X}$, tedy $\hat{X}$ je Hilbertův.
+
+		Ať $I_1: X \rightarrow X_1$ je izometrie, $\overline{I_1(X)} = X_1$, $I_2: X \rightarrow X_2$ je izometrie, $\overline{I_2(X)} = X_2$. Pak $I_1 \circ I_2^{-1}|_{I_2(X)}: I_2(X) \rightarrow X_1$ je spojitý lineární operátor, tedy $\exists! S_1: X_2 \rightarrow X_1$ spojitý lineární, že $S_1 \supset I_1 \circ I_2^{-1}|_{I_2(X)}$. Obdobně existuje $S_2: X_1 \rightarrow X_2$. Pak se snadno ověří, že $(S_2 \circ S_1)|_{I_2(x)} = \id|_{I_2(x)}$, tedy $S_2 \circ S_1 = \id$. Analogicky $S_1 \circ S_2 = \id$.
+
+		Následně se ukáže, že $S_1$ je izometrie: Zvol $x \in X_2$, ať pro $(x_n)_{n=1}^∞$, posloupnost v $X$, je $I_2(x_n) \rightarrow x$. Pak
+		$$ ||S_1 x|| = \lim_{n \rightarrow ∞}||S_1(I_2(x_n))|| = \lim_{n \rightarrow ∞} ||I_1(x_n)|| = \lim_{n \rightarrow ∞}||x_n|| = ||x||. $$
+		Analogicky $S_2$ je izometrie, tedy $X_1$, $X_2$ jsou izometrické.
+	\end{dukazin}
+
+\end{veta}
+	
+\begin{veta}
+	Nechť $X$, $Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$.
+
+	\begin{enumerate}
+		\item $T$ je izomorfismus na, právě když $T^*$ je izomorfismus na. V tomto případě navíc platí $(T^*)^{-1} = (T^{-1})^*$.
+		\item $T$ je izometrie na, právě když $T^*$ je izometrie na.
+	\end{enumerate}
+
+	Speciálně, jsou-li $X$ a $Y$ lineárně izometrické, pak jsou také $X^*$ a $Y^*$ lineárně izometrické.
+
+	\begin{dukazin}
+		$\implies$ (1.):
+		$$ \forall y^* \in Y^*: ((T^{-1})^* T^*(y^*))(y) = T^*y^*(T^{-1}y) = y^*(T T^{-1} y) = y^{*}(y). $$
+		Analogicky $T^*\circ (T^{-1})^* = \id x^{*}$.
+
+		$\Leftarrow$ (1.): Dle první části: $T^*$ je izomorfismus $\implies$ $T^{**}$ je izomorfismus $\implies$ $\epsilon_Y\circ T$ je izomorfismus $\implies$ $T$ je izomorfismus.
+
+		$\implies$ (2.): Dle 1. stačí: $T^*$ je izometrie:
+		$$ \forall y^* \in Y^*: ||T^*y^*|| = \sup_{x \in B_X} |y^*(Tx)| = \sup_{y \in B_y} |y^*(y)| = ||y^*||. $$
+		Opačná implikace analogicky jako v 1.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Reflexivní prostor]
+	Banachův prostor $X$ se nazývá reflexivní, pokud $X^{**} = \epsilon(X)$.
+
+	\begin{upozorneni}
+		Existují i prostory, pro které je $X$ izometrické $X^{**}$, ale ne pomocí $\epsilon$.
+	\end{upozorneni}
+\end{definice}
+
+\begin{veta}
+	Nechť $X, Y$ jsou Banachovy prostory.
+
+	\begin{itemize}
+		\item Je-li $X$ izomorfní s reflexivním prostorem, pak je i $X$ reflexivní.
+		\item Je-li $Y$ uzavřený podprostor $X$, $X$ reflexivní $\implies$ $Y$ reflexivní.
+		\item Prostor $X$ je reflexivní právě tehdy, když jeho duál $X^*$ je reflexivní.
+		\item Je-li $X$ reflexivní a $Y$ jeho uzavřený podprostor, pak je $X / Y$ reflexivní.
+	\end{itemize}
+
+	\begin{dukazin}
+		1. Zvol $y^{**} \in Y^{**}$. Ať $T: Y \rightarrow X$ je izomorfismus. Pak $T^{**}y^{**} \in X^{**}$ $\implies$ $\exists x \in X: \epsilon_X(x) = T^{**}y^{**}$. Polož $y = T^{-1}x \in Y$. Následně dokážeme, že $\epsilon_Y(y) = y^{**}$:
+		$$ \forall y^* \in Y^*: \epsilon_Y(y)(y^*) = y^*(y) = y^*(T^{-1}x) = (T^{-1})^* y^*(x) = T^{**}y^{**} ((T^{-1})^*y^*) = $$
+		$$ = y^{**}(T^*(T^{-1})^* y^*) = y^{**}(y^*). $$
+
+		2. Zvol $y^{**} \in Y^{**}$ a uvažujme
+		$$ F(X^*) = y^{**}(x^*|_Y), x^* \in X^*. $$
+		Pak $F \in X^{**}$ (lehké ověřit) $\implies \exists x \in X: F = \epsilon_X(x)$. $x \in Y$, jelikož: Ať ne, pak (dle H-B) $\exists f \in X^*: 0 ≠ f(x)\land f|_Y ≡ 0$. Pak $F(f) = y^{**}(0) = 0$, \lightning.
+
+		Teď už jen ověříme, že $\epsilon_Y(x) = y^{**}$: Zvol $y^* \in Y^*$. Dle H-B existuje $x^* \in X^*$, že $x^*|_Y = y^*$. Pak
+		$$ y^{**}(y^*) = y^{**}(x|_Y) = F(x^*) = x^*(x) = \epsilon_Y (x) (x^*) $$
+
+		3. $\implies$: Zvol $x^{***} \in X^{***}$. Uvažuj $x^* = x^{***}\circ \epsilon_X \in X^*$. Pak
+		$$ \forall x \in X: x^{***}(\epsilon_X(x)) = x^*(x) = \epsilon_X(x)(x^*) = \epsilon_{X^*}(x^*)(\epsilon_X(x)) $$
+		$$ \implies x^{***} = \epsilon_{X^*}(x^*), \text{ na } \epsilon_X(x) = x^{**}. $$
+		Ať $\phi \in (X / Y)^{**}$, pak
+		$$ I^*(\phi) = (Y^\perp)^* \implies \exists F \in X^{**}: I^*(\phi) \subset F \implies \exists x \in X: F = \epsilon_X(x). $$
+		Potom už jen chceme $\epsilon_{X / Y}(q(x)) = \phi$:
+		$$ \forall f \in Y^\perp: \epsilon_{X / Y}(q(x))(I(f)) = I(f)(q(x)) = f(x) = F(f) = (I^*(\phi))(f) = \phi(I f) \implies $$
+		$$ \implies \epsilon_{X / Y}(q(x)) = \phi. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Banachův prostor $X$ je reflexivní, právě když pro každé $x^* \in X^*$ existuje $x \in B_X$ splňující $||x^*|| = x^*(x)$.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+% 30. 11. 2021
+
+\section{Slabá konvergence}
+\begin{definice}[Slabá konvergence, s. konvergence s hvězdičkou]
+	Nechť $X$ je normovaný lineární prostor.
+
+	\begin{itemize}
+		\item Řekneme, že posloupnost $\{x_n\}$ v prostoru $X$ slabě konverguje k $x \in X$ (značíme $x_n \overset{w}{\rightarrow} x$) pokud pro každé $x^* \in X^*$ platí $x^*(x_n) \rightarrow x^*(x)$.
+		\item Řekneme, že posloupnost $\{x_n^*\}$ v prostoru $X^*$ slabě s hvězdičkou konverguje k $x^* \in X^*$ (značíme $x_n^* \overset{w^*}{\rightarrow} x^*$) pokud pro každé $x \in X$ platí $x_n^*(x) \rightarrow x^*(x)$.
+	\end{itemize}
+\end{definice}
+
+\begin{lemma}
+	Nechť $X$ je normovaný lineární prostor, $\{x_n\}$ posloupnost v $X$ a $\{x_n^*\}$ posloupnost v $X^*$.
+
+	\begin{enumerate}
+		\item Existuje nejvýše jedno $x \in X$ splňující $x_n \overset{w}{\rightarrow} w$.
+		\item Existuje nejvýše jedno $x^* \in X^*$ splňující $x_n^* \overset{w^*}{\rightarrow} x^*$.
+		\item Pokud $x \in X$ a $x_n \rightarrow x$, pak $x_n \overset{w}{\rightarrow} x$.
+		\item Pokud $x^* \in X^*$ a $x_n^* \overset{w}{\rightarrow} x^*$, pak $x_n^* \overset{w^*}{\rightarrow} x^*$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1.–4. triviální.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $X$ je separabilní normovaný lineární prostor a $\{x_n^*\}$ omezená posloupnost v $X^*$. Pak $\{x_n^*\}$ má $w^*$-konvergentní podposloupnost.
+
+	\begin{dukazin}
+		Ať $\{x_n | n \in ®N\} \subseteq B_x$ hustá v $B_x$. 1. krok: Najdeme $(x^*_{n_k})$, že $x_{n_k}^*(x_n)$ je konvergentní pro $n \in ®N$: Ať $A_1 \subset ®N$ nekonečná. K $((x_k^*)(x_1))_{k \in A_1}$ je konvergentní. Totéž pro $A_2$ a $x_2$, $A_3$ a $x_3$, … Potom vybereme prvky na diagonále.
+
+		2. krok: Pak $x_{n_k}^*(x)$ konverguje pro $x \in B_x$: $\epsilon > 0$ dáno. Ať $n \in ®N$, že $||x_n - x|| < \epsilon$.
+		$$ k_0 \in ®N \forall k, l ≥ k_0: |x_{n_k}^*(x_n) - x_{n_k}^*(x_n)| < \epsilon. $$
+		Pak
+		$$ \forall k, l ≥ k_0: |x_{n_k}^*(x) - x_{n_k}^*(x)| ≤ |x_{n_k}^*(x - x_n)| + |x_{n_k}^*(x_n) - x_{n_l}^*(x_n)| + |x_{n_l}^*(x_n) - x_{n_l}^*(x)| < \epsilon(||x_{n_k}^*|| + 1 + ||x_{n_l}^*||). $$
+
+		3. kror: Tedy z linearity $x_{n_k}^*(x)$ konverguje pro $x \in X$: Polož $x^*(x) = \lim_{k \rightarrow ∞} x_{n_k}^*(x)$. Pak $x* \in X^*$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Banachův prostor $X$ je reflexivní, právě když každá omezená posloupnost $\{x_n\}$ v $X$ má slabě konvergentní podposloupnost.
+
+	\begin{dukazin}
+		$\Leftarrow$ nebude (teď je těžký, bude v funkcionální analýze). $\implies$ plyne z následující věty: $X^*$ separabilní $\implies$ $X$ separabilní. Polož $Y = \overline{\spn}(x_n) \subset X$, pak $Y$ je separabilní a reflexivní $\implies$ $Y^*$ je (reflexivní +) separabilní, dle následující věty. $\implies \exists (x_{n_k})$, $w^*$-konvergentní podposloupnost v $Y^{**} ≡ \epsilon(Y)$ $\implies$ $\exists y \in Y: \epsilon(x_{n_k}) \overset{w^*}{\rightarrow} \epsilon(y)$ $\Leftrightarrow$ $x_{n_k} \overset{w}{\rightarrow} y$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor a $X^*$ je separabilní. Pak $X$ je separabilní.
+
+	\begin{dukazin}
+		Zvol $\{x_n^* | n \in ®N\} \subset S_{X^*}$ TODO. Pro $n \in ®N$ najdi $x_n \in B_x: x_n^*(x_n) > \frac{1}{2}$. Pak $\overline{\spn}\{x_n | n \in ®N\} = X$ (a tím bude hotovo, protože $\overline{\spn}(x_n) = \overline{\spn_*}(x_n)$): Ať ne, pak existuje $f \in S_{X^*}: f |_{\overline{\spn}} = 0$, $f ≠ 0$. Zvol $n \in ®N$, že $||x_n^* - f|| < \frac{1}{4}$. Pak
+		$$ 0 = |f(x_n)| ≥ |x_n^*(x_n)| - |(x_n^* - f)(x_n)| > \frac{1}{2} - \frac{1}{4} > 0.\text{ \lightning} $$
+	\end{dukazin}
+\end{veta}
+
+\section{Omezené operátory v Banachových prostorech}
+\begin{definice}[Kompaktní operátor, konečněrozměrný operátor]
+	Nechť $X, Y$ jsou normované lineární prostory a $T: X \rightarrow Y$ je lineární zobrazení. Pak $T$ se nazývá kompaktní operátor, pokud pro každou omezenou $A \subset X$ je množina $T(A)$ relativně kompaktní (tj. její uzávěr je kompaktní) v $Y$.
+
+	Množinu všech kompaktních lineárních operátorů z $X$ do $Y$ značíme $©K(X, Y)$.
+
+	Lineární operátor $T$ se nazývá konečněrozměrný, pokud $\Rang T$ má konečnou dimenzi.
+
+	$©F(X, Y)$ značí množinu všech konečněrozměrných spojitých lineárních operátorů z $X$ do $Y$.
+\end{definice}
+
+\begin{poznamka}
+	$X$ je MP, $A \subset X$. Pak
+
+	\begin{itemize}
+		\item $A$ je relativně kompaktní $\leftrightarrow$ z každé posloupnosti v $A$ lze vybrat konvergentní posloupnost v $X$.
+		\item Pokud $X$ je úplný, pak $A$ je relativně kompaktní $\leftrightarrow$ $A$ je totálně omezená.
+	\end{itemize}
+\end{poznamka}
+
+\begin{tvrzeni}
+	Nechť $X$, $Y$ jsou normované lineární prostory. Každý kompaktní lineární operátor z $X$ do $Y$ je automaticky spojitý. Dále, je-li $T: X \rightarrow Y$ lineární, pak následující tvrzení jsou ekvivalentní:
+
+	\begin{enumerate}
+		\item $T$ je kompaktní.
+		\item $T(B_X)$ je relativně kompaktní.
+		\item Je-li $\{x_n\}$ omezená posloupnost v $X$, pak posloupnost $\{T(x_n)\}$ má konvergentní podposloupnost.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $\implies$ 2: triviální. 2. $\implies$ 3: Ať $(x_n)$ je posloupnost v $B(O, r)$ (kde $r > 0$). Pak $(\frac{x_n}{r})$ je posloupnost v $B_x$ $\implies$ dle 2. $\exists (n_k)$, že $T(\frac{x_{n_k}}{r})$ je konvergentní, tedy $T(x_{n_k})$ je konvergentní.
+
+		3. $\implies$ 1.: Ať $A \subset X$ omezená, ať $(y_n)$ je posloupnost v $T(a)$. Pak $\exists x_n \in A: T x_n = y_n$, $n \in ®N$. $\implies \exists (n_k): T_{x_{n_k}}$ je konvergentní v $Y$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $X$, $Y$ jsou Banachovy prostory.
+
+	\begin{enumerate}
+		\item Operátor $T \in ©L(X, Y)$ je konečněrozměrný právě tehdy, když existují $f_1, …, f_n \in X^*$ a $y_1, …, y_n \in Y$ takové, že $T(x) = \sum_{i = 1}^n f_i(x)y_i$ pro každé $x \in X$.
+		\item $©K(X, Y)$ je podprostor $©L(X, Y)$ a $©F(X, Y)$ podprostor $©K(X, Y)$.
+		\item $©K(X, Y)$ je uzavřený podprostor $©L(x, Y)$.
+		\item Složíme-li kompaktní lineární operátor se spojitým lineárním operátorem (zleva či zprava), dostaneme opět kompaktní operátor.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $\Leftarrow$: Jasné protože pak $\Rang T \subset \spn\{y_1, …, y_n\}$. $\implies$: Ať $y_1, …, y_n$ je báze $\Rang T$. Uvažujme $g_i \in (\Rang T)^*$, $g_i(y_j) = \delta_{ij}$. Polož $f_i = g_i \circ T \in X^*$, $i \in [n]$. Pak $T(x) = \sum_{i=1}^n g_i(Tx)y_i = \sum_{i=1}^n f_i(x)y_i$.
+
+		2. Ať $S, T \in ©K(X, Y)$. Pak $(S + T)(B_x) = S(B_X) + T(B_X) \subseteq \overline{S(B_X)} + \overline{T(B_X)}$, což jsou kompaktní prostory. Protože součet kompaktů je kompakt (a uzavřený podprostor kompaktu také), $\overline{(S + T)(B_x)}$ je kompaktní. Násobení triviálně.
+
+		$T \in ©F(x, y)$ $\implies$ $\Rang T$ je konečnědimenzionální, tedy uzavřená $\implies$ $\overline{T(B_x)} \subseteq \Rang T \cong ®K^n$.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -337,6 +337,59 @@ TODO!!!
 
 \begin{veta}[Lebesgueova o hustotě (Lebesgue Density Theorem)]
 	Pokud $A \subset ®R^n$ je lebesgueovsky měřitelná, potom $\Theta^n(A, ·) = \chi_A(·)$ $\lambda^n$-skoro všude.
+
+% 30. 11. 2021
+	
+	\begin{dukazin}
+		Stačí ukázast, že $\Theta^n(A, a) = 1$ pro $\lambda^n$-skoro všechna $a \in A$. BÚNO nechť $A$ je omezená (obecně: $A \cap B(0, n)$, $n \rightarrow ∞$) TODO.
+	\end{dukazin}
 \end{veta}
+
+
+TODO
+
+\begin{veta}
+	Je-li $A \subset ®R^n$ lebesgueovsky měřitelná a $f: A \rightarrow ®R^n$ $L$-lipschitzovské, platí $\lambda^{n*}(f(A)) ≤ L^n\lambda^n(A)$.
+
+	\begin{dukazin}
+		Je-li $A \subset B = B(x, r)$, pak $f(A) \subset f(b) \subset B(f(x), L·r)$. $\implies \lambda^{n*}(f(A)) ≤ L^n \lambda^n(B)$.
+
+		Ukážeme, že pro $N \subset ®R^n$ nulovou (tj. $\lambda^n(N) = 0$) je $\lambda^n(f(N)) = 0$: $N$ nulová $\implies$ $\forall \epsilon > 0\ \exists I_i$ otevřené kvádry, $N \subset \bigcup_i I_i$, $\sum_i \lambda^n(I_i) < \epsilon$.
+
+		Můžeme zařídit, aby $\frac{r(I_i)}{R(I_i)} ≥ \eta > 0$, $i \in ®N$, kde $R(I)$ a $r(I)$ jsou poloměry opsané a vepsané koule $I$: Rozdělíme intervaly vůči delší straně.
+
+		Když $B_i$ jsou koule opsané $\overline{I_i}$, pak $\lambda^n(B_i) ≤ \eta^{-n} \lambda^n(I_i)$ ($B_i' \subset I_i \subset B_i … \lambda^n(I_i) > \lambda^n(B_i') ≥ \eta^n \lambda^n (B_i)$).
+
+		$$ \lambda^{n*}(f(N)) ≤ \lambda^{n*} (\bigcup_i f(I_i)) ≤ \lambda^{n*}(\bigcup_if(B_i)) ≤ \sum_i \lambda^{n*}(f B_i) ≤ L^n \sum_i \lambda^n(B_i) ≤ \(\frac{L}{\eta}\)^n \sum_i \lambda^n(I_i) < \(\frac{L}{\eta}\)^n\epsilon. $$
+		$$ \epsilon \rightarrow 0 … \lambda^{n*}(f(N)) = 0. $$
+
+		$A \subset ®R^n$ měřitelná, $\epsilon > 0$, BÚNO nechť $\lambda^n(A) < ∞$ (jinak je nerovnost triviálni). $\lambda^n$ regulární $\implies$ $\exists G \supset A$ otevřená, že $\lambda^n(G) < \lambda^n(A) + \epsilon$. $©F := \{B \text{ uzavřená koule}| B \subset G\}$ Vitaliovo pokrytí $G$ $\implies$ $B_1, B_2, … \in ©F$ disjunktní, $\lambda^n(G \setminus \bigcup_i B_i) = 0$.
+
+		$$ \lambda^{n*}(f(A)) ≤ \lambda^{n*}(f(G)) ≤ \lambda^{n*}(\bigcup_i f(B_i) \cup f(N)) ≤ \sum_i \lambda^{n*}(f(B_i)) + \lambda^{n*}(f(N)) ≤ L^n \sum_i \lambda^n(B_i) = L^n \lambda^n(G) < L^n \lambda^n(G) < L^n \lambda^n(A) + L^n \epsilon \rightarrow L^n \lambda^n(A). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Funkcionální norma]
+	Pro $L: ®R^n \rightarrow ®R^n$ lineární zobrazení, definujeme $||L||:=\sup_{||u|| ≤ 1} ||Lu||$.
+\end{definice}
+
+\begin{poznamka}
+	Označme $\delta(L) := \inf_{||u|| = 1} ||L u||$, $L$ regulární $\Leftrightarrow \delta(L) > 0$. Tedy platí
+	$$ \delta(L) ||u|| ≤ ||L u|| ≤ ||L||·||u||, u \in ®R^n. $$
+\end{poznamka}
+
+\begin{tvrzeni}
+	$L, M: ®R^n \rightarrow ®R^n$ dvě regulární lineární zobrazení. Nechť existuje $\gamma > 0$ takové, že $\forall u \in ®R^n: ||Lu|| ≤ \gamma ||Mu||$. Pak $|\det L| ≤ \gamma^n |\det M|$.
+
+	\begin{dukazin}
+		a) Nechť $M = \id$. Z předpokladů plyne, že pro každou kouli $B = B(O, R)$ je $L(B) \subset \gamma B$, tedy
+		$$ |\det L|\lambda^n(B) = \lambda^n(L(B)) ≤ \gamma^n \lambda^n(B) \implies |\det L| ≤ \gamma^n. $$
+
+		b) Pro $M$ obecné: $(v = Mu)$,
+		$$ ||LM^{-1} v|| ≤ \gamma ||v||, v \in ®R^n \implies |\det LM^{-1}| ≤ \gamma^n \implies |\det L| ≤ \gamma^n|\det M|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+
 
 \end{document}
