@@ -61,7 +61,7 @@
 Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 \begin{tvrzeni}
-	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor. Potom a) Je-li $Y$ Banachův, pak je $Y$ uzavřený v $X$. Pokud je naopak $X$ Banachův, pak $Y$ je Banachův právě tehdy, když je uzavřený.
+	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor. Potom a) Je-li $Y$ Banachův, pak je $Y$ uzavřený v $X$. b) Pokud je naopak $X$ Banachův, pak $Y$ je Banachův právě tehdy, když je uzavřený.
 
 	\begin{dukazin}
 		Je-li $\left(P,\rho\right)$ úplný, pak $M \subseteq P$ je úplný $\Leftrightarrow$ $M$ je uzavřený. To dává speciálně b).
@@ -1472,5 +1472,126 @@ TODO
 		$T \in ©F(x, y)$ $\implies$ $\Rang T$ je konečnědimenzionální, tedy uzavřená $\implies$ $\overline{T(B_x)} \subseteq \Rang T \cong ®K^n$.
 	\end{dukazin}
 \end{veta}
+
+% 06. 12. 2021
+
+TODO!!! (06. 12. 2021)
+
+% 07. 12. 2021
+\begin{definice}[Otevřené zobrazení]
+	Zobrazení $f: X \rightarrow Y$ mezi metrickými prostory $X$, $Y$ se nazývá otevřené, pokud $f(G)$ je otevřená množina v $Y$ pro každou otevřenou množinu $G \subset X$.
+\end{definice}
+
+\begin{veta}[O otevřeném zobrazení (Juliusz Pawel Schauder 1930)]
+	Nechť $X, Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$ je na. Pak $T$ je otevřené zobrazení.
+\end{veta}
+
+\begin{lemma}[J. P. Schauder, 1930]
+	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $T \in ©L(X, Y)$. Jestliže $r, s > 0$ jsou taková, že $U(0, s) \subset \overline{T(©U(0, r))}$, pak dokonce $U(0, s) \subset T(©U(0, r))$
+
+	\begin{dukazin}
+		Zvol $z \in ©U_Y$, $\delta > 0$, že $||z|| < 1 - \delta$. Chceme $y = \frac{z}{1 - \delta} \in T(\frac{1}{1-\delta} ©U_x)$. Minule (TODO!!!) jsme dělali $\exists (y_n)_{n=0}^∞$, že $y_0 = 0$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$.
+
+		Zvolme $x_n \in \delta^{n-1}©U_x$, že $Tx_n = y_n - y_{n + 1}$, $n \in ®N$. Pak
+		$$ \sum_{n=1}^∞ ||x_n|| < \sum_{n=0}^∞ \delta^n = \frac{1}{1 - \delta} < ∞ \overset{X \text{ je Banachův}}{\implies} $$
+		$$ \implies \exists x = \sum_{n=1}^∞ x_n, ||x|| < \frac{1}{1 - \delta} \implies x \in \frac{1}{1-\delta}©U_x. $$
+		Zároveň $Tx = \sum_{n=1}^∞ T_{x_n} = \sum_{n=1}^∞ y_n - y_{n-1} = \lim_{n \rightarrow ∞} y_n - 0 = y$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukazin}[Věty o otevřeném zobrazení]
+	Úvod: stačí $\exists \delta > 0: ©U(0, \delta) \subset T(©U_x)$: Zvol $G \subset X$ otevřená, $x \in G$. Pak $y = Tx \in T(G)$. $G$ otevřená $\implies$ $\exists R > 0: ©U(x, R) \subset G$. Pak $©U(y, \delta R) = y + R©U(0, \delta) \subset y + RT(©U(0, 1)) = T(©U(x, R)) \subseteq T(G)$.
+
+	Stať:
+
+	$Y$ úplný $\implies$ z Banachovy věty $\exists n_0 : \Int(\overline{T(n_0©U_x)}) ≠ \O$ $\implies$ $\overline{n_0©U_x}$ (symetrická, konvexní, uzavřená) obsahuje kouli $\implies$ $\exists \delta > 0: ©U(0, \delta) \subseteq \overline{T(n_0©U_x)}$. Z předchozího lemmatu $©U(0, \delta) \subseteq T(n_0©U_x) = nT(©U_x)$.
+
+	Závěr:$©U(0, \frac{\delta}{n_0}) \subset T(U_x)$.
+\end{dukazin}
+
+\begin{dusledek}[S. Banach, 1929]
+	Nechť $X$, $Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$. Pak $T$ je izomorfismus $X$ na $Y$, právě když $T$ je prostý a na.
+
+	\begin{dukazin}
+		„$\implies$“ jasné. „$\Leftarrow$“: $T^{-1}$ je spojitý plyne z předchozí věty ($(T^{-1})^{-1}(O) = T(O)$ je otevřené podle předchozí věty ($O$ otevřená)).
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	Nechť $X$, $Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$ je na. Pak platí
+	
+	\begin{itemize}
+		\item Existuje $c>0$ takové, že pro každé $y \in Y$ existuje $x \in T^{-1}(y)$ splňující $||x|| ≤ c||y||$.
+		\item Zobrazení $\hat{T}: X / \Ker T \rightarrow Y$ dané předpisem $\hat{T}(\hat{x}) = T(x)$ je lineární izomorfismus na. Tedy prostor $Y$ je izomorfní s $X / \Ker T$.
+	\end{itemize}
+
+	\begin{dukazin}
+		První bod: Dle předchozí věty $\exists R > 0: ©B(0, R) \subset T(©U_x)$. Zvolíme $y \in Y\setminus \{0\}$. Pak $\exists x \in ©U_x: Tx = \frac{y}{||y||}·R \land ||\frac{x||y||}{R}|| ≤ \frac{1}{R}||y||$. (Položíme $c = \frac{1}{R}$.) 
+
+		Druhý bod: 1. krok: Je dobře definovaný: $\hat{x} = \hat{y} \Leftrightarrow x - y \in \Ker T \Leftrightarrow Tx = Ty$. 2. krok $\hat{T}$ je lineární a spojité: lineární triviálně, spojité z normy:
+		$$ \forall \hat{x} \in ©U_{X / \Ker T}: ||\hat{T}(\hat{h})|| ≤ ||T||·||x|| ≤ ||T||·||\hat{x}|| \implies ||\hat{T}|| ≤ ||T||. $$
+		3. krok: $\hat{T}$ je na, protože $T$ je na a navíc $\hat{T}$ je prosté, neboť $\hat{T}\hat{x} = 0 \Leftrightarrow Tx = 0 \Leftrightarrow x \in \Ker T$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}[Graf]
+	Je-li $f: X \rightarrow Y$ zobrazení množiny $X$ do množiny $Y$, pak množinu
+	$$ \graf f = \{(x, y) \in X \times Y | y = f(x)\} $$
+	nazýváme grafem zobrazení $f$. Říkáme, že zobrazení $f: X \rightarrow Y$, kde $X$, $Y$ jsou metrické prostory, má uzavřený graf, pokud množina $\graf f$ je uzavřená v $X \times Y$.
+\end{definice}
+
+\begin{veta}[O uzavřeném grafu (S. Banach, 1932)]
+	Nechť $X$, $Y$ jsou Banachovy prostory a $T: X \rightarrow Y$ je lineární zobrazení. Pak $T$ je spojité, právě když má uzavřený graf.
+
+	\begin{dukazin}
+		„$\implies$“ trivální, platí vždy. „$\Leftarrow$“: $G:= \{(x, Tx) | x \in X\} \subset X \oplus_∞ Y$ je uzavřený (tedy Banachův). Ať $P_x$, $P_y$ jsou kanonické projekce (jsou spojité: $||P_x(x, y)|| = ||x||_x ≤ ||(x, y)||_∞$).
+
+		Uvažujme $S: X \rightarrow G$, $Sx = (x, Tx)$, to je lineární a prosté. Ale nevíme, zda je $S$ spojité. To dokážeme tak, že dokážeme spojitost $S^{-1}$ a to, že je to izomorfismus. Z toho pak plyne spojitost $S$ i $T$. $S^{-1} = P_x|_G$ je spojité, prosté a na, tudíž je izomorfismus z věty výše. Tedy $S$ je spojité. Tedy je spojité $T = P_y \circ S$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Z dřívějška, zopakovaná, důkaz je nový]
+	Nechť $X$ je Banachův prostor a $Y, Z \subset X$ jeho podprostory splňující $X = Y \oplus Z$. Pak $X = Y\oplus_t Z$, právě když $Y$ a $Z$ jsou uzavřené.
+
+	\begin{dukazin}
+		„$P_y$ spojitá $\implies$ $Y, Z$ uzavřené“: lehké, protože $P_Z = \id - P_y$ spojitá a $Y = \Ker P_z = P_z^{-1}(0)$ je uzavřená a $Z = \Ker P_y = P_z^{-1}(0)$ je uzavřená.
+
+		Naopak ať $Y, Z$ jsou uzavřené, pak chceme $P_y$ má uzavřený graf (pak aplikujeme předchozí větu): Ať $(y_n, P(x_n)) \rightarrow (x, Z) \in Y \oplus_∞ Z \cong X$. Pak $x_n \rightarrow x$, $P_y(x_n) \rightarrow z$. Tedy $x_n - P_y(x_n) \rightarrow x - z \implies x - z \in Z$. Tudíž $x = z + x - z \implies P_y x = z$. Tudíž $(x, z) = (x, P_yx) \in \graf P_y$
+	\end{dukazin}
+\end{veta}
+
+\section{Spektrální teorie (zejména) kompaktních operátorů}
+\begin{tvrzeni}
+	Nechť $X$ je Banachův prostor a $T \in ©(X)$. Pak $T$ je invertibilní, právě když $T$ je bijekce.
+
+	\begin{dukazin}
+		„$\implies$“ $TS = \id$ $\implies$ $T$ je na, $ST = \id$ $\implies$ $T$ je prosté.
+
+		„$\Leftarrow$“: Plyne z důsledku výše.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Nechť $X$ je Banachův prosotr.
+
+	\begin{itemize}
+		\item Pokud $T \in @L(X)$ a $||T|| < 1$, pak $\id_x - T$ je invertibilní a platí $(\id_X - T)^{-1} = \sum_{n=0}^∞ T^n$.
+		\item Pokud je $T$ invertovatelný a $||S - T|| < \frac{1}{||T||^{-1}}$, pak $S$ je invertovatelný a $S^{-1} = T^{-1} \sum_{n=0}^∞ (\id - ST^{-1})^n$. Speciálně, množina všech invertibilních operátorů v $©L(X)$ je otevřená.
+	\end{itemize}
+
+	\begin{dukazin}
+		1. bod: máme $\sum_{n=0}^∞ ||T^n|| ≤ \sum_{n=0}^∞ ||T||^n = \frac{1}{1 - ||T||} \implies \sum_{n=0}^∞ T^n \in ©L(X)$. Zároveň
+		$$ \forall x \in X: \((\id - T) \circ \sum_{n=0}^∞ T^n\) (x) = \lim_{N \rightarrow ∞} \sum_{n=0}^∞ (T^n - T^{n+1})(x) = \lim_{n \rightarrow ∞} (x - T^{n+1}(x)) = x. $$
+		Analogicky $\sum_{n=0}^∞ T^n \circ (\id - T) = \id_X$.
+
+		2. bod: Idea: $\frac{1}{S} = \frac{1}{S - T + T} = \frac{1}{T(T^{-1}(S - T) + \id)}$.
+
+		Důkaz: Platí
+		$$ S = S - T + T = T(T^{-1}(S - T) + \id) = T(\id - T^{-1}(T - S)) $$
+		$T$ má inverz, člen za mínus má normu menší 1, tedy $\id$ mínus on má inverz dle 1. bodu, tedy $S^{-1}$ existuje a
+		$$ S^{-1} = \(\sum_{n=0}^∞ (T^{-1}(T - S))^n\) \circ T^{-1} = \(\sum_{n=0}^∞ (\id - T^{-1}S)^n\) \circ T^{-1} = T^{-1}\circ\(\sum_{n=0}^∞ (\id - ST^{-1})^n\). $$
+	\end{dukazin}
+\end{tvrzeni}
+
 
 \end{document}
