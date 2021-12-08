@@ -351,8 +351,8 @@ TODO!!!
 		\begin{dukazin}
 			Funkce $A(h) = Q(h, h) = \sum_{i, j = 1}^n a_{ij}h_jh_i$ je spojitá. Množina $M \{h \in ®R^n | ||h|| = 1\}$ je omezená a uzavřená, tedy kompaktní. Funkce $A(h)$ tedy nabývá na $M$ svého minima v bodě $h_0$. Označme $\epsilon = Q(h_0, h_0)>0$.
 
-			Nyní
-			$$ \forall h \in ®R^n: Q(h, h) = Q\(\frac{h}{||h||}||h||, \frac{h}{||h||}||h||\) = ||h||^2 Q\(\frac{h}{||h||}, \frac{h}{||h||}\) ≥ ||h||^2 Q\(h_0, h_0\) = ||h||^2 \epsilon. $$
+			Nyní $\forall h \in ®R^n:$
+			$$ Q(h, h) = Q\(\frac{h}{||h||}||h||, \frac{h}{||h||}||h||\) = ||h||^2 Q\(\frac{h}{||h||}, \frac{h}{||h||}\) ≥ ||h||^2 Q\(h_0, h_0\) = ||h||^2 \epsilon. $$
 		\end{dukazin}
 	\end{veta}
 
@@ -415,16 +415,20 @@ TODO!!!
 			$$ \forall\epsilon > 0\ \exists \delta > 0\ \forall x \in B(\tilde{x}, \delta) \subset ®R^n: |\phi(\tilde{x} + h) - \phi(\tilde{x}) - \sum_{i=1}^n - \frac{\frac{\partial F}{\partial x_j}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}h_i| < \epsilon \sum_{i=1}^n |h_i|. $$
 			Zvolme $\epsilon > 0$, $\epsilon \frac{1}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})} < \frac{1}{2}$. Víme, že $F$ má totální diferenciál v $[\tilde{x}, \tilde{y}]$, tedy
 			$$ \exists \delta > 0\ \forall h \in B(0, \delta) |F(\tilde{x} - \tilde{y}, \tilde{y} + h_{n+1}) - F(\tilde{x}, \tilde{y}) - \sum_{i=1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})h_i - TODO $$
-			$$ |F(\tilde{x} + \tilde{h}, \phi(\tilde{x} + \tilde{h})) - F(\tilde{x}, \tilde{y}) - \sum_{i = 1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})·h_i - \frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})·(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x}))| ≤ \epsilon·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
+			$$ |F(\tilde{x} + \tilde{h}, \phi(\tilde{x} + \tilde{h})) - F(\tilde{x}, \tilde{y}) - \sum_{i = 1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})·h_i - \frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})·(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x}))| ≤ $$
+			$$ ≤ \epsilon·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
 			$$ |(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})) - \frac{\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| ≤ \frac{\epsilon}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
 
 			Tudíž stačí jen odhadnout $|\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|$.
 			$$ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})| ≤ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x}) - \sum_{i=1}^n \frac{-\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| + |\sum_{i=1}^n \frac{-\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| ≤ $$
 			$$ ≤ \frac{\epsilon}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}\(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|\) + c_i \sum_{i=1}^n |h_i| ≤ $$
+		\end{dukazin}
+
+		\begin{dukazin}[Pokračování]
 			$$ ≤ \frac{1}{2}\(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})|\) + c_i \sum_{i=1}^n |h_i| \implies $$
 			$$ |\phi(\tilde{x} + \tilde{h}) - \phi'(\tilde{x})| ≤ c_2 \sum_{i=1}^n |h_i|. $$
-			Kombinací dosažených nerovností už dostaneme chtěnou nerovnost. Tedy $\frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_i}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}$.
-
+			Kombinací dosažených nerovností už dostaneme chtěnou nerovnost. Tedy
+			$$ \frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_i}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}. $$
 			d) $F \subset ©C^p \implies \phi \in ©C^p$. Indukcí: $p = 1$ víme. Dále nechť víme $\phi \in ©C^{p-1}$ a $F \in ©C^p$. Víme, že
 			$$ \frac{\partial \phi}{\partial x_j}(x) = - \frac{\frac{\partial F}{\partial x_i}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}. $$
 			Toto $(p-1)$krát zderivujeme. Tím na pravé straně dostaneme výraz, kde bude $F$ nanejvýš v $((1 + p-1) = p)$-té derivaci a $\phi$ bude nanejvýš v $(p-1)$-té derivaci (podle vzorce pro derivaci složené funkce).
@@ -557,7 +561,7 @@ TODO!!!
 			Nechť $(P, \rho)$ je úplný metrický prostor a $F_n$ je posloupnost uzavřených neprázdných množin v $P$ tak, že $F_{n+1} \subset F_n$ a $\lim_{n \rightarrow ∞} \diam F_n = 0$. Pak $|\bigcap_{n=1}^∞ F_n| = 1$.
 
 			\begin{dukazin}[Viz OM2/MetPro/MetPro.pdf Věta 6.1]
-				Zvolme $x_n \in F_n$ libovolně. Tvrdíme, že $\{x_n\}_{n=1}^∞$ je cauchyovská. Nechť $\epsilon > 0$. $\exists n_0 \diam F_{n_0} < \epsilon$. Nyní
+				Zvolme $x_n \in F_n$. Tvrdíme, že $\{x_n\}_{n=1}^∞$ je cauchyovská. Ať $\epsilon > 0$. $\exists n_0: \diam F_{n_0} < \epsilon$. Nyní
 				$$ \forall m, n ≥ n_0: x_n \in F_n \subset F_{n_0}, x_m \in F_m \subset F_{n_0}: \rho(x_n, x_m) ≤ \diam F_{n_0} < \epsilon. $$
 				$P$ je úplný, a tedy $x_n \rightarrow x \in P$. Nechť $j \in ®N$ je pevné a $n ≥ j$, pak $x_n \in F_n \subset F_j$ a $x_n \rightarrow x$, tedy ($F_j$ je uzavřené) $x \in F_j \forall j$, tedy $x \in \bigcap_{j=1}^∞ F_j$. Naopak pokud $x, y \in \bigcap_{j=1}^∞ F_j$, pak zvolíme $j$ tak, aby $\diam F_j < \rho(x, y)$, tedy buď $x \notin F_j$ nebo $y \notin F_j$.
 			\end{dukazin}
@@ -687,7 +691,8 @@ TODO!!!
 				$$ \int_X F(x) G(x) d\mu(x) ≤ \frac{1}{p} \int_X (F(x))^p + \frac{1}{q} \int_X(G(x))^q = \frac{1}{p} + \frac{1}{q} = 1,\qquad /·AB $$
 				$$ \int_X f(x) g(x) d\mu(x) ≤ AB = \(\int_X f^p d\mu\)^{\frac{1}{p}}·\(\int_X g^q d\mu\)^{\frac{1}{q}}. $$
 
-				$$ \int_X (f + g)^p d\mu = \int_X f·(f + g)^{p-1} + g·(f + g)^{p-1} d\mu ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}\(\int_X (f = g)^{(p-1)q}\)^{\frac{1}{q}} + \(\int_X g^p d\mu\)^{\frac{1}{p}} \(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} ≤ $$
+				$$ \int_X (f + g)^p d\mu = \int_X f·(f + g)^{p-1} + g·(f + g)^{p-1} d\mu ≤ $$
+				$$ ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}\(\int_X (f = g)^{(p-1)q}\)^{\frac{1}{q}} + \(\int_X g^p d\mu\)^{\frac{1}{p}} \(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} ≤ $$
 				$$ ≤ \[\(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}\]·\(\int_X (f + g)^p d\mu\)^{\frac{1}{q}}. $$
 				Je-li $\int_{X} (f + g)^p d\mu ≠ 0$ (triviální) a $≠ ∞$ vydělíme
 				$$ \(\int_X (f + g)^p d\mu\)^{p = 1 - \frac{1}{q}} ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}. $$
@@ -715,8 +720,8 @@ TODO!!!
 				Pro $1 ≤ p < ∞$ viz Minkowski: $f(x) = a(x) - c(x)$, $g(x) = c(x) - b(x)$, $f(x) + g(x) = a(x) - b(x)$:
 				$$ \(\int_X |a(x) - b(x)|^p d\mu\)^{\frac{1}{p}} ≤ \(\int_X |a(x) - c(x)|^p d\mu\)^{\frac{1}{p}} + \(\int_X |c(x) - b(x)|^p d\mu\)^{\frac{1}{p}}. $$
 
-				Pro $p = ∞$: z definice $\esssup$ $\exists N_1, N_2, N_3$, $\mu(N_1) = \mu(N_2) = \mu(N_3) = 0$,
-				$$ ||f||_{L^∞} = \sup_{x \in X \setminus N_1} |f(x)|, ||g||_{L^∞} = \sup_{X \setminus N_2} |g(x)|, ||f + g||_{L^∞} = \sup_{x \in X \setminus N_3} |f(x) + g(x)|, \qquad N = N_1 \cup N_2 \cup N_3. $$
+				Pro $p = ∞$: z definice $\esssup$ $\exists N_1, N_2, N_3$, $\mu(N_1) = \mu(N_2) = \mu(N_3) = 0$, ($N = N_1 \cup N_2 \cup N_3$)
+				$$ ||f||_{L^∞} = \sup_{x \in X \setminus N_1} |f(x)|, ||g||_{L^∞} = \sup_{X \setminus N_2} |g(x)|, ||f + g||_{L^∞} = \sup_{x \in X \setminus N_3} |f(x) + g(x)|. $$
 				$$ \sup_{x \in X\setminus N} |f(x) + g(x)| ≤ \sup_{x \in X \setminus N} |f(x)| + |g(x)| ≤ \sup_{x \in X \setminus N} |f(x)| + \sup_{x \in X \setminus N} |g(x)|. $$
 			\end{dukazin}
 		\end{veta}
@@ -819,5 +824,64 @@ TODO!!!
 				Sporem nechť $P = \bigcup_{n=1}^∞ A_n$, $A_n$ řídké. Pak $P \setminus \overline{A_n}$ jsou husté a otevřené $\implies$ $\bigcup_{n=1}^∞ P \setminus \overline{A_n} ≠ \O$. Ale $\O = P \setminus \bigcup_{n=1}^∞ A_n = \bigcup_{n=1}^∞ (P \setminus A_n) \supset \bigcup_{n=1}^∞ (P \setminus \overline{A_n})$. \lightning.
 			\end{dukazin}
 		\end{dusledek}
+
+% 08. 12. 2021
+
+		\begin{dukaz}[Bairova věta (o kategoriích)]
+			Podle věty výše stačí ukázat, že $\forall G \subset P$ otevřenou $G \cap \bigcap_{n=1}^∞ G_n ≠ \O$. Máme $G$ otevřenou a $G_1$ je hustá tedy $\exists B(x_1, 2r_1) \subset G_1 \cap G$, $r_1 < 1$. Tedy $\overline{B(x_1, r_1)} \subset G_1 \cap G$.
+
+			$G_2$ je hustá, $B(x_1, r_1)$ otevřená, tedy $\exists B(x_2, 2r_2) \subset G_2 \cap B(x_1, r_1) \subset G_2 \cap G_1 \cap G$.
+
+			Dále indukcí. $(P, \rho)$ je úplný, $\overline{B(x_k, r_k)}$ jsou uzavřené, $\diam_{k \rightarrow ∞} \overline{B(x_k, r_k)} = 0$. Podle věty ještě výše $\exists a \in \bigcap_{k=1}^∞ \overline{B(x_k, r_k)} \subset \bigcap G_k \cap G ≠ \O$. Tedy $\bigcap_{k=1}^∞ G_k$ je hustá.
+		\end{dukaz}
+
+		\begin{veta}[O nediferencovatelné funkce]
+			Existuje spojitá funkce $f:[0, 1] \rightarrow ®R$, která nemá derivaci v žádném bodě z $(0, 1)$.
+
+			\begin{dukazin}
+				Pro $n \in ®N$ definujeme
+				$$ A_n := \{f \in C([0, 1]) | \exists t \in [0, 1], \forall s \in [0, 1]: |f(t) - f(s)| ≤ n·|t - s|\}. $$
+				Plán: Dokážeme, že $A_n$ je uzavřená. Dále, že $f$ má derivaci v nějakém bodě $t$, pak $\exists ni: f \in A_n$. Potom dokážeme $A_n$ řídká. Potom již $Dif \subset \bigcup_{n=1}^∞ A_n$, tedy $Dif$ jsou 1. kategorie $\implies$ (z důsledku Baira) $\exists f \in C([0, 1]) \setminus Dif$.
+			\end{dukazin}
+
+			\begin{dukazin}[1. krok – $A_n$ uzavřená]
+				Podle věty ze dříve stačí ukázat $f_k \in A_n$, $f_k \rightarrow f$ $\implies$ $f \in A_n$.
+				$$ f_k \in A_n \implies \exists t_k \in [0, 1] \ \forall s \in [0, 1]: |f_k(t_k) - f_k(s)| ≤ n |t_k - s|. $$
+				Podle Weistrassovy věty $\exists$ podposloupnost $t_{k_j} \rightarrow t$, označme ji $t_k$.
+
+				Nyní $\forall s \in [0, 1]$:
+				$$ |f(t) - f(s)| ≤ |f(t) - f_k(t)| + |f_k(t) - f_k(t_k)| + |f_k(t_k) - f_k(s)| + |f_k(s) - f(s)| ≤ $$
+				To odhadneme podle nerovnosti výše (jednou s $s = s$ a jednou s $s = t$):
+				$$ ≤ |f(t) - f_k(t)| + n·|t_k - t| + n·|t_k - t| + |f_k(s) - f(s)| $$
+				$$ \lim_{k \rightarrow ∞} |f(t) - f(s)| ≤ 0 + n·0 + n·|t - s| + 0. $$
+				Tedy $f \in A_n$.
+			\end{dukazin}
+
+			\begin{dukazin}[2. krok – derivovatelné jsou v $A_n$]
+				Mějme $f \in C([0, 1])$, $\exists f'(t) = a$. Z definice derivace pro
+				$$ \epsilon = 1\ \exists \delta > 0\ \forall s \in (t - \delta, t + \delta): \left|\frac{f(t) - f(s)}{t - s} - a\right| < 1 $$
+				$$ \implies \left| \frac{f(t) - f(s)}{t - s}\right| ≤ \left|\frac{f(t) - f(s)}{t - s} - a\right| + |a| ≤ 1 + |a| \implies $$
+				$$ \implies |f(t) - f(s)| ≤ (1 + |a|)·|t - s|. $$
+				Dále $\forall s \in [0, 1] \setminus (t - \delta, t + \delta):$
+				$$ |f(t) - f(s)| ≤ 2 \sup_{[0, 1]}f ≤ \frac{2 \sup f}{\delta} |t - p|. $$
+				Zvolme $n > \max\{|a| + 1, \frac{2 \sup f}{\delta}\}$, pak $f \in A_n$.
+			\end{dukazin}
+
+			\begin{dukazin}[3. krok – $A_n$ řídká]
+				Chceme $P \setminus \overline{A_n} = P \setminus A_n$ je hustá. Podle věty výše tedy stačí ukázat, že
+				$$ \forall g \in C([0, 1])\ \forall r \in 0 (P \setminus A_n) \cap B(g, r) ≠ \O. $$
+				$g$ je spojitá $\implies$ stejnoměrně spojitá na $[0, 1]$. Tedy k zadanému $r$
+				$$ \exists \delta > 0 \forall x, y \in [0, 1]: |x - y| < \delta \implies |g(x) - g(y)| < \frac{r}{10}. $$
+
+				Tím jsme omezili „kmitání“ $g$, aby nám nevyrušilo následné přičtení kmitající funkce: Definujme funkci $p: /\backslash/\backslash/\backslash$ (zubatě kmitající funkce) tak, aby $p' = ±c$, kde $c = \max\{3n, \frac{r}{2\delta}\}$. Definujeme $f(x) = g(x) + p(x)$. Zřejmě $f \in C([0, 1])$ a $f \in B(g, r)$.
+
+				Tvrdíme $f \notin A_n$: Pro spor nechť
+				$$ \exists t \in [0, 1]\ \forall s \in [0, 1]: |f(x) - f(t)| ≤ n·|t - s|. $$
+				K tomuto $t$ nalezneme $s$ „na stejném zubu“, aby $|p(s) - p(t)| = \frac{r}{2}$, $\left|\frac{p(s) - p(t)}{s - t}\right| = c$ a $|s - t| ≤ \delta$.
+
+				Nyní $\frac{r}{2} = |p(s) - p(t)| = c·|t - s| ≥ 3n|t - s|$.
+				$$ |f(t) - f(s)| ≥ |p(t) - p(s)| - |g(t) - g(s)| ≥ \frac{r}{2} - \frac{r}{10} = \frac{2}{5}r ≥ \frac{2}{5}6n|t - s| > n·|t - s|. $$
+			\end{dukazin}
+		\end{veta}
 
 \end{document}
