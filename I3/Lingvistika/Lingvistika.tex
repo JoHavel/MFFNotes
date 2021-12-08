@@ -322,4 +322,52 @@ TODO!!!
 	\begin{definice}[LanGR]
 		TODO
 	\end{definice}
+
+% 07. 12. 2021
+
+\section{Automatický překlad}
+\begin{poznamka}
+	Slovník nám nestačí (Sejít se hlava skupina jeden pět hodina velký muž.) Je třeba i tvarosloví, to však také nestačí (Sejde se hlava skupina jeden pět v hodině velký u muže). Je třeba i syntaxe\footnote{VSO = Sloveso + podmět + předmět (pořadí větných členů).}, to už skoro je, ale (Sejde se hlava skupina ve čtyři hodiny u velkého muže). Chybí ustálená spojení – idiomy (Rada starších se sejde ve čtyři hodiny u náčelníka). To však stejně nemuselo být všechno. Zvykem (jednou z tzv. reálií) totiž v tomto smyšleném příběhu je počítat hodiny od východu Slunce, věta:překlad – 1:0.
+
+	„Lidský překlad:“ Rada starších se sejde v 11 hodin dopoledne u náčelníka.
+\end{poznamka}
+
+\begin{poznamka}[Prehistorie]
+	1933 první patenty pro překladové stroje (George Artsruni a P. P. Smirnov-Trojanskij). Trojúhelník (Vopuázův):
+\begin{verbatim}
+Zdrojový text  Cílový text
+        \    *    /            *=Transfer
+Analýza  \_______/ Generování
+          \     /
+	   \   /
+	Interlingua (formální jazyk, znázorňuje význam)
+\end{verbatim}
+
+	Dále 1946 (A. D. Booth) – idea automatického dvojjazyčného slovníku, text zpracováván slovo od slova.
+
+	1948 (R. M. Richens) – ve slovníku nejsou zachycená celá slova, ale předpony, kmeny a přípony zvlášť.
+
+	1950 (E. Reifler) – zavádí pre- a post- editing (člověk, ne nutně lingvista / překladatel, který upraví text, aby se lépe překládal (zpřesnit výrazy atd.) / aby dával větší smysl (po překladu)).
+
+	1952 – První konference o strojovém překladu na MIT, (L. E. Dostert) – pivotní jazyk pro překlad více jazyků (např. angličtina).
+
+	7. 1. 1954 – Georgetownský experiment (do roku 1956) – 45 vět s 250 slovy, 6 syntaktických „zákonů“, jednoduché oznamovací věty bez negací, slovesa ve 3. osobě, málo předložek. Ruština -> Angličtina.
+
+	1956 – První mezinárodní konference (12 vědeckých skupin na amerických univerzitách).
+
+	? – zpráva ALPAC (má se více investovat do lingvistiky – vedlo k zatrhnutí veškerých financí v USA).
+
+	1857 – N. Chomsky.
+
+	1960 (Y. Bar Hillel) – „Vysoce kvalitní plně automatický překlad nemůže být nikdy dosažen.“ („The box was in the pen.“)
+
+	1976 – METEO (TAUM, 1976) – překlad meteorologických zpráv $A \to  F$. Dobře definovaná a výrazně syntakticky i sémanticky omezená množina. Systém umí poznat, že něco neumí přeložit.
+
+	Další významné systémy: SYSTRAN (překlad dokumentů EU, přímý překlad mezi 20 páry, ovšem uspokojivá kvalita pouze u nejstarších párů (A-F-N), problémy řešeny ad hoc), EUROTRA (projekt EU v 80. letech, 72 jazykových párů, nezvládnutá modularita, do jisté míry podobný negativní efekt jako zpráva ALPAC), VERBMOBIL (německý nástupce EUROTRy, překlad mluvené řeči, předváděn na Světové výstavě v Hannoveru, od té doby se o něm příliš nepíše)
+\end{poznamka}
+
+\begin{poznamka}[Současné trendy]
+	Statistické metody (využívají paralelní značkované korpusy, rychle se zlepšují, pro měření kvality však používají technické metody založené na referenčních překladech – BLEU score)
+\end{poznamka}
+
 \end{document}

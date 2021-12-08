@@ -75,7 +75,8 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 	$c$ jsou všechny posloupnosti se supremovou normou, $c_0$ jsou všechny posloupnosti konvergující k 0 se supremovou normou. $c_{00}$ sestává z těch posloupností, kde je jen konečně mnoho nenulových prvků (norma je maximová), je to lineární prostor, ale není Banachův. $c_0(I)$ je zobecnění z $c_0(®N)$ na libovolnou diskrétní množinu $I$, tj. obsahuje „posloupnosti“, kde pro každé $\epsilon$ je pouze konečně mnoho členů větších než $\epsilon$ (pak $(c_0(I), ||·||_∞)$ je Banachův).
 
-	$©L^1([0, 1], || · ||_{©L^1})$ (prostor hladkých funkcí na intervalu $[0, 1]$), kde $||f||_{©L^1} = ||f||_∞ + ||f'||_∞$. $©M(K) = \{\mu : Borel(K) \rightarrow ®K | \mu \text{ regulární míra}\}$, $||\mu|| := \sup\{\sum_{i=1}^∞|\mu(B_i)|, \bigcup B_i = K, B_i \text{ Borelovská}\}$.
+	$©L^1([0, 1], || · ||_{©L^1})$ (prostor hladkých funkcí na intervalu $[0, 1]$), kde $||f||_{©L^1} = ||f||_∞ + ||f'||_∞$. $©M(K) = \{\mu : Borel(K) \rightarrow ®K | \mu \text{ regulární míra}\}$,
+	$$ ||\mu|| := \sup\{\sum_{i=1}^∞|\mu(B_i)|, \bigcup B_i = K, B_i \text{ Borelovská}\}. $$
 \end{priklady}
 
 \begin{veta}
@@ -285,7 +286,9 @@ TODO
 		$$ \sup_{F \in ®F(®N)} \sum_{n \in F} ||x_n|| ≤ \sup_{N \in ®N} \sum_{n=1}^N ||x_n|| = \sum_{n=1}^∞ ||x_n|| = S < ∞, $$
 		neboť každá konečná množina v přirozených číslech má maximum (a odebráním kladných prvků sumu zmenšíme).
 
-		$\Leftarrow$: Ať $\sum_{n \in ®N} ||x_n||$ je konvergentní, pak dle předchozího tvrzení $S:=\sup_{F \in ©F(®N)} \sum_{n \in F} ||x_n|| < ∞$. Tedy
+		$\Leftarrow$: Ať $\sum_{n \in ®N} ||x_n||$ je konvergentní, pak dle předchozího tvrzení
+		$$ S:=\sup_{F \in ©F(®N)} \sum_{n \in F} ||x_n|| < ∞. $$
+		Tedy
 		$$ \sum_{n=1}^∞||x_n|| = \sup_{N \in ®N} \sum_{n \in [N]} ||x_n|| ≤ S < ∞. $$
 	\end{dukazin}
 \end{tvrzeni}
@@ -304,7 +307,9 @@ TODO
 
 		$2 \implies 3$: okamžitě. $3 \implies 1$: Pro spor předpokládejme, že $\sum_{n=1}^∞ x_{\pi(n)}$ konverguje pro každou $\pi \in ®S(®N)$, ale $\sum_{n \in ®N} x_n$ nesplňuje B-C podmínku. Zvolme $\epsilon > 0$ svědčící o tom, že B-C podmínka není splněna. Pak existuje $\(F_n\)_{n=1}^∞ \in ©F(®N)^{®N}$, že $F_n \cap F_m = \O$ $\forall n ≠ m$, $\max F_n < \min F_{n+1}, n \in ®N$ a $||\sum_{i \in F_n} x_i||$.
 
-	Zvolme $\pi \in ®S(®N)$ splňující, že existuje $\(n_k\)\nearrow$ a $\(p_k\)_{k=1}^∞ \in ®N^{®N}$, že $\pi\(\{n_k, n_k + 1, …, n_k + p_k\}\) = F_k$ $\forall k \in ®N$. Tedy $\forall k \in ®N: ||\sum_{i = n_k}^{n_k + p_k} x_{\pi(i)}|| = ||\sum_{i \in F_k} x_i || ≥ \epsilon$. To však znamená, že $\sum_{i=1}^∞ x_{\pi(i)}$ nesplňuje B-C podmínku, tedy není konvergentní. \lightning
+	Zvolme $\pi \in ®S(®N)$ splňující, že existuje $\(n_k\)\nearrow$ a $\(p_k\)_{k=1}^∞ \in ®N^{®N}$, že 
+	$$ \pi\(\{n_k, n_k + 1, …, n_k + p_k\}\) = F_k, \qquad \forall k \in ®N. $$
+	Tedy $\forall k \in ®N: ||\sum_{i = n_k}^{n_k + p_k} x_{\pi(i)}|| = ||\sum_{i \in F_k} x_i || ≥ \epsilon$. To však znamená, že $\sum_{i=1}^∞ x_{\pi(i)}$ nesplňuje B-C podmínku, tedy není konvergentní. \lightning
 	\end{dukazin}
 \end{veta}
 
@@ -581,7 +586,8 @@ TODO!!!
 	v komplexním.
 
 	\begin{dukazin}[Reálný případ, v $®C$ analogicky]
-		$$ 4<x, y> = 2<x, y> - 2<x, -y> = ||x + y||^2 - ||x||^2 - ||y||^2 - ||x - y||^2 + ||x||^2 + ||-y||^2 = ||x + y||^2 - ||x - y||^2. $$	
+		$$ 4<x, y> = 2<x, y> - 2<x, -y> = ||x + y||^2 - ||x||^2 - ||y||^2 - ||x - y||^2 + ||x||^2 + ||-y||^2 = $$
+		$$ = ||x + y||^2 - ||x - y||^2. $$	
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -603,8 +609,8 @@ TODO!
 	\begin{dukazin}[Reálný případ, komplexní analogicky]
 		$\implies$ z Polarizačního vzorce. Pro $\Leftarrow$ položme $\<x, y\> := \frac{1}{4}\(||x + y||^2 - ||x-y||^2\)$, $x, y \in X$. Následně ověříme podmínky (kromě linearity (speciálně aditivity) je ověření triviální). Aditivita: Chceme
 		$$ LS = \forall x, y, z \in X: \<x+y, z\> + \<x - y, z\> = 2\<x, z\> = PS. $$
-		$$ LS = \frac{1}{4}\(\underline{||x + y + z||^2} - ||x + y - z||^2 + \underline{||x - y + z||^2} - ||x - y - z||^2\) = $$
-		$$ \overset{\text{z předpokladu}}{=} \frac{1}{4}\(\underline{2\(||x + z||^2 + ||y||^2\)} - 2\(||x - y||^2 + ||y||^2\)\) = \frac{1}{2}\(||x + z||^2 - ||x - z||^2\) = PS. $$
+		$$ LS = \frac{1}{4}\(\underline{||x + y + z||^2} - ||x + y - z||^2 + \underline{||x - y + z||^2} - ||x - y - z||^2\) \overset{\text{z předpokladu}}{=} $$
+		$$ = \frac{1}{4}\(\underline{2\(||x + z||^2 + ||y||^2\)} - 2\(||x - y||^2 + ||y||^2\)\) = \frac{1}{2}\(||x + z||^2 - ||x - z||^2\) = PS. $$
 
 		Tuto rovnost aplikujeme na $x = y$: $\<2x, z\> = 2\<x, z\>$, a na $\tilde{x} = \frac{1}{2}(x + y)$, $\tilde{y} = \frac{1}{2}(x - y)$:
 		$$ \<x, z\> + \<y, z\> = 2\<\frac{1}{2}(x + y), z\> = \<x + y, z\>. $$
@@ -612,7 +618,7 @@ TODO!
 \end{veta}
 
 \begin{veta}[Frigyes Riesz, 1934]
-	Nechť $C$ je uzavřená neprázdná konvexní množina v Hilbertově prostoru $H$. Pak pro každé $x \in H$ existuje právě jedno $y \in C$ tak, že $||x - y|| = \dist(x, C)$.
+	Nechť $C$ je uzavřená neprázdná konvexní množina v Hilbertově prostoru $H$. Pak pro každé \break$x \in H$ existuje právě jedno $y \in C$ tak, že $||x - y|| = \dist(x, C)$.
 
 	\begin{dukazin}
 		Zvolme $\(y_n\)_{n=1}^∞$ posloupnost v $C$, že $\lim_{n \rightarrow ∞} ||y_n - x|| = d(x, C)$. Chceme, že $\(y_n\)_{n=1}^∞$ je cauchyovská. Tedy, protože $C$ je uzavřená, existuje $y \in C: y_n \rightarrow y$. Pak ale $d(x, c) = ||x - y||$.
@@ -696,7 +702,9 @@ TODO!
 \end{veta}
 
 \begin{veta}[Besselova nerovnost]
-	Je-li $\{e_\gamma\}_{\gamma \in \Gamma}$ ortonormální soustava v prostoru $X$ se skalárním součinem, platí $\sum_{\gamma \in \Gamma}|\<x, e_\gamma\>|^2 ≤ ||x||^2$ pro každé $x \in X$.
+	Je-li $\{e_\gamma\}_{\gamma \in \Gamma}$ ortonormální soustava v prostoru $X$ se skalárním součinem, platí
+	$$ \sum_{\gamma \in \Gamma}|\<x, e_\gamma\>|^2 ≤ ||x||^2 $$
+	pro každé $x \in X$.
 
 	\begin{dukazin}
 		Ať $F \in ©F(\Gamma)$, $x_F := \sum_{\gamma \in F}\<x, e_\gamma\> e_\gamma$. Pak $||x||^2 = ||x - x_F||^2 + ||x_F||^2$ podle Pythagorovy věty ($x - x_F \perp x_F$: $\forall i \in F: \<x - x_F, e_i\> = \<x, e_i\> - \<x_F, e_i\> = \<x, e_i\> - \<\<x, e_i\>e_i, e_i\> = 0$). Tj. $||x||^2 ≥ ||x_F||^2 = \sum_{\gamma \in F}|\<x, e_\gamma\>|^2$. Tedy máme omezení pro všechny konečné součty, tudíž celý součet bude omezen stejně (celý součet je supremum z konečných podle tvrzení někde výše).
@@ -753,7 +761,7 @@ TODO!
 		$\forall y \in H$ máme: $f_y$ je lineární, $\forall x \in H$: $f_y(x) ≤ ||x||·||y||$, tedy $f_y$ je spojité a $||f_y|| ≤ ||y||$, $f_y\(\frac{y}{||y||}\) = \<\frac{y}{||y||}, y\> = ||y|| \implies ||f_y|| = ||y||, y \in H$. $\implies I$ je izometrie, sdruženě lineární. Zbývá „na“. To se dokáže z následujícího lemmatu:
 
 		Zvol $f \in H^*$, pak $H = \Ker f \oplus (\Ker f)^\perp$. Tedy existuje $z \in (\Ker f)^\perp$ splňující $H = \Ker f \oplus_t \spn\{z\}$. Položme $y:= f(z)z$. Pak $I(y) = f$, jelikož:
-		$$ \forall x \in H: I(y)(x) = \<x, y\> = \<x_{\Ker f} + \alpha_x z, y\> = \<\alpha_x z, y\> = \alpha_x\<z, \overline{f(z)}z\> = f(\alpha_x z) = f(x). $$
+		$$ \forall x \in H: I(y)(x) = \<x, y\> = \<x_{\Ker f} + \alpha_x z, y\> = \<\alpha_x z, y\> = \alpha_x\<z, \overline{f(z)}z\> = f(\alpha_x z) = f(x).\hspace{-0.3em} $$
 	\end{dukazin}
 \end{veta}
 
@@ -920,8 +928,8 @@ TODO
 	\begin{dukazin}
 		$\dim Y < ∞$: Ať $\{e_1, …, e_n\}$ je báze $Y$, $\{f_1, …, f_n\}$ je duální báze $Y$. Pak $f_1, …, f_n: Y \rightarrow ®K$ jsou spojité ($Y$ má konečnou dimenzi). Z H-B $\exists F_1, …, F_n: X \rightarrow ®K$ spojité, $||F_i|| = ||f_i||$, $F_i \supset f_i$. Definujme $P: X \rightarrow Y$ předpisem $P(x):=\sum_{i=1}^n F_i(x) e_i \in Y$. $P$ je lineární,
 		$$ ||Px|| ≤ \sum_{i=1}^n ||F_i(x)||·||e_i|| ≤ \sum_{i=1}^n ||F_i||·||x||·||e_i|| ≤ \(n·\max_{i \in [n]} ||F_i||·||e_i||\)·||x||. $$
-		$P$ je tedy spojité. Zbývá ověřit $P_y = \id_n$.
-		$$ \forall y \in Y: P(y) = P(\sum_{i=1}^n f_i(y)e_i) = \sum_{i=1}^n f_i(Y)P(e_i) = \sum_{i=1}^n f_i(y) \sum_{j=1}^n F_j(e_i) e_j = \sum_{i=1}^n f_i(y) e_i = y. $$
+		$P$ je tedy spojité. Zbývá ověřit $P_y = \id_n$. $\forall y \in Y:$
+		$$ P(y) = P(\sum_{i=1}^n f_i(y)e_i) = \sum_{i=1}^n f_i(Y)P(e_i) = \sum_{i=1}^n f_i(y) \sum_{j=1}^n F_j(e_i) e_j = \sum_{i=1}^n f_i(y) e_i = y. $$
 
 		$\codim Y < ∞$: ($\codim Y = \dim (X/Y)$) ať $\{q(e_1), …, q(e_n)\}$ je báze $X / Y$ ($q: x \mapsto [x]$) a $\{f_1, …, f_n\}$ duální funkcionály. Ty jsou spojité. Polož $F_i = f_i \circ q$ ($i \in [n]$), což je složení dvou spojitých funkcionálů, tedy spojitý funkcionál. Definujeme $P: X \rightarrow \spn(e_1, …, e_n)$, $P(x) := \sum_{i=1}^n F_i(x) e_i$, $x \in X$. „$P$ je lineární“ je jasné, stejně tak spojitost $P$ (podobně jako v první části).
 
@@ -1023,7 +1031,7 @@ TODO
 
 	\begin{dukazin}[1.]
 		$||I|| ≤ 1$:
-		$$ \forall y \in l_1(I)\ \forall x \in c_0(I)\ \forall F \in ©F(I): |\sum_{i \in F} y_ix_i| ≤ \sum_{i \in F}|y_ix_i| ≤ ||x||_{∞}·\sum_{i \in F}|y_i| ≤ ||x||_∞·||y||_1 \implies $$
+		$$ \forall y \in l_1(I)\ \forall x \in c_0(I)\ \forall F \in ©F(I): |\sum_{i \in F} y_ix_i| ≤ \sum_{i \in F}|y_ix_i| ≤ ||x||_{∞}·\sum_{i \in F}|y_i| ≤ ||x||_∞·||y||_1 $$
 		$$ \implies |I(y)(x)| ≤ ||x||_∞·||y||_1, $$
 		takže opravdu $I(y) \in c_0(I)^*$ a navíc $||I(y)|| ≤ ||y||_1$, tedy $I$ je lineární, dobře definované, $||I|| ≤ 1$.
 
@@ -1032,7 +1040,7 @@ TODO
 		Tedy, protože $||y||_1 = \sup_{F \in ©F(I)} \sum_{i \in F}y(i)$, dostáváme $||I(y)|| ≥ ||y||$.
 
 		Zbývá už jen „na“: Zvol $f \in c_0(I)^*$. Polož $y(i) := f(e_i)$, $i \in I$. Pak $y \in l_1(I)$: Zvol $F \in ©F(I)$. Pak
-		$$ \sum_{i \in F}|y(i)| = \sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)} = \sum_{i \in F, y(i) ≠ 0} f(e_i)·\frac{|y(i)|}{y(i)} = f\(\sum_{i \in F, y(i) ≠ 0} \frac{|y(i)|}{y(i)}·e_i\) ≤ ||f||. $$
+		$$ \sum_{i \in F}|y(i)| = \sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)} = \sum_{i \in F, y(i) ≠ 0} f(e_i)·\frac{|y(i)|}{y(i)} = f\(\sum_{i \in F, y(i) ≠ 0} \frac{|y(i)|}{y(i)}·e_i\) ≤ ||f||.\hspace{-0.3em} $$
 		Tudíž $y \in l_1(I)$ (a $||y||_1 ≤ ||f||$).
 
 		Chceme $I(y) = f$: Máme $\forall i \in I: I(y)(e_i) = y(i) = f(e_i)$. Tedy $I(y) = f$ na $e_i$, takže z linearity a spojitosti na $\overline{\spn}(e_i, i \in I) = c_0(I)$.
@@ -1082,18 +1090,18 @@ TODO
 		$p=1$: Ať $f \in L_∞(r)$, BÚNO $f ≠ 0$. Zvol $||f||_∞ > \epsilon > 0$ je libovolné, ať
 		$$ A = \{x | f(x) > ||f||_∞ - \epsilon\}. $$
 		Pak $\mu(A) > 0$. Ať $\mu(A) < ∞$ (v případě $\sigma$-konečné míry můžeme $A$ aproximovat). Polož $g(x) := \frac{|f(x)|}{f(x)} \frac{\chi_A}{\mu(A)} \in B_{L_{1, \mu}}$. Pak
-		$$ ||f|| ≥ ||I(f)|| ≥ I(f)(g) = \int_\Omega |f(x)| \chi_A(x)·\frac{1}{\mu(A)} d\mu(x) > \frac{||f||_∞ - \epsilon}{\mu(A)} \int_A 1 d\mu(x) = ||f||_∞ - \epsilon. $$
+		$$ ||f|| ≥ ||I(f)|| ≥ I(f)(g) = \int_\Omega |f(x)| \chi_A(x)·\frac{1}{\mu(A)} d\mu(x) > \frac{||f||_∞ - \epsilon}{\mu(A)} \int_A 1 d\mu(x) = ||f||_∞ - \epsilon.\hspace{-0.3em} $$
 
 		$I$ je na: Ať $x^* \in (L_p)^*$. Položme $\nu(A) := x^*(\chi_A)$, $A \in ©A$. Pak $\nu$ je ®K-hodnotová míra: $\nu(\O) = x^*(0) = 0$. Ať $(A_j)_{j=1}^∞$ posloupnost množin z ©A, po 2 disjunktní. Pak
 		$$ ||\chi_{\bigcup_{j=1}^∞ A_j} - \chi_{\bigcup_{j=1}^n A_j}||_p = \mu(TODO) $$
 		Tedy
 		$$ \nu(\bigcup_{j=1}^∞ A_j) = x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{A_1}) + … + x^*(\chi_{A_n}) = $$
 		$$ = \lim_{n \rightarrow ∞} \sum_{i=1}^n \nu(A_i) = \sum_{i=1}^∞ \nu(A_i). $$
-		Zároveň $\nu << \mu$:
-		$$ \mu(A) = 0 \implies \chi_A = 0 \text{ skoro všude } \implies x^*(\chi_A) = 0. $$
 	\end{dukazin}
 
 	\begin{dukazin}[Pokračování 3, 4]
+		Zároveň $\nu << \mu$:
+		$$ \mu(A) = 0 \implies \chi_A = 0 \text{ skoro všude } \implies x^*(\chi_A) = 0. $$
 		Tedy z R-M věty $\exists g \in L_1(\mu)$: $\nu(A) = \int_A g d\mu$, $A \in ©A$. Pak $x^*(s) = \int_{\Omega} g·s d\mu$, pro $s$ jednoduchou funkci. Tedy pro $f \in (L_p(\mu))$ najdu $s_k \rightarrow f$, $|s_k| ≤ 4f$, $s_k$ jednoduché. Pak ale $s_k \stackrel{L_p}{\rightarrow} f$ (z Lebesgueovy věty, jelikož $5f$ je integrovatelná majoranta). Tedy
 		$$ x^*(f) = \lim_{k} x^*(s_k) = \lim_k \int_\Omega g·s_k d\mu = \int_\Omega g·f d\mu. $$
 
@@ -1395,7 +1403,8 @@ TODO
 		2. krok: Pak $x_{n_k}^*(x)$ konverguje pro $x \in B_x$: $\epsilon > 0$ dáno. Ať $n \in ®N$, že $||x_n - x|| < \epsilon$.
 		$$ k_0 \in ®N \forall k, l ≥ k_0: |x_{n_k}^*(x_n) - x_{n_k}^*(x_n)| < \epsilon. $$
 		Pak
-		$$ \forall k, l ≥ k_0: |x_{n_k}^*(x) - x_{n_k}^*(x)| ≤ |x_{n_k}^*(x - x_n)| + |x_{n_k}^*(x_n) - x_{n_l}^*(x_n)| + |x_{n_l}^*(x_n) - x_{n_l}^*(x)| < \epsilon(||x_{n_k}^*|| + 1 + ||x_{n_l}^*||). $$
+		$$ \forall k, l ≥ k_0: |x_{n_k}^*(x) - x_{n_k}^*(x)| ≤ |x_{n_k}^*(x - x_n)| + |x_{n_k}^*(x_n) - x_{n_l}^*(x_n)| + |x_{n_l}^*(x_n) - x_{n_l}^*(x)| < $$
+		$$ < \epsilon(||x_{n_k}^*|| + 1 + ||x_{n_l}^*||). $$
 
 		3. kror: Tedy z linearity $x_{n_k}^*(x)$ konverguje pro $x \in X$: Polož $x^*(x) = \lim_{k \rightarrow ∞} x_{n_k}^*(x)$. Pak $x* \in X^*$
 	\end{dukazin}
@@ -1413,7 +1422,7 @@ TODO
 	Nechť $X$ je normovaný lineární prostor a $X^*$ je separabilní. Pak $X$ je separabilní.
 
 	\begin{dukazin}
-		Zvol $\{x_n^* | n \in ®N\} \subset S_{X^*}$ TODO. Pro $n \in ®N$ najdi $x_n \in B_x: x_n^*(x_n) > \frac{1}{2}$. Pak $\overline{\spn}\{x_n | n \in ®N\} = X$ (a tím bude hotovo, protože $\overline{\spn}(x_n) = \overline{\spn_*}(x_n)$): Ať ne, pak existuje $f \in S_{X^*}: f |_{\overline{\spn}} = 0$, $f ≠ 0$. Zvol $n \in ®N$, že $||x_n^* - f|| < \frac{1}{4}$. Pak
+		Zvol $\{x_n^* | n \in ®N\} \subset S_{X^*}$ TODOTODOTODO. Pro $n \in ®N$ najdi $x_n \in B_x: x_n^*(x_n) > \frac{1}{2}$. Pak $\overline{\spn}\{x_n | n \in ®N\} = X$ (a tím bude hotovo, protože $\overline{\spn}(x_n) = \overline{\spn_*}(x_n)$): Ať ne, pak existuje $f \in S_{X^*}: f |_{\overline{\spn}} = 0$, $f ≠ 0$. Zvol $n \in ®N$, že $||x_n^* - f|| < \frac{1}{4}$. Pak
 		$$ 0 = |f(x_n)| ≥ |x_n^*(x_n)| - |(x_n^* - f)(x_n)| > \frac{1}{2} - \frac{1}{4} > 0.\text{ \lightning} $$
 	\end{dukazin}
 \end{veta}
@@ -1589,7 +1598,7 @@ TODO!!! (06. 12. 2021)
 		Důkaz: Platí
 		$$ S = S - T + T = T(T^{-1}(S - T) + \id) = T(\id - T^{-1}(T - S)) $$
 		$T$ má inverz, člen za mínus má normu menší 1, tedy $\id$ mínus on má inverz dle 1. bodu, tedy $S^{-1}$ existuje a
-		$$ S^{-1} = \(\sum_{n=0}^∞ (T^{-1}(T - S))^n\) \circ T^{-1} = \(\sum_{n=0}^∞ (\id - T^{-1}S)^n\) \circ T^{-1} = T^{-1}\circ\(\sum_{n=0}^∞ (\id - ST^{-1})^n\). $$
+		$$ S^{-1} = \(\sum_{n=0}^∞ (T^{-1}(T - S))^n\) \circ T^{-1} = \(\sum_{n=0}^∞ (\id - T^{-1}S)^n\) \circ T^{-1} = T^{-1}\circ\(\sum_{n=0}^∞ (\id - ST^{-1})^n\).\hspace{-0.4em} $$
 	\end{dukazin}
 \end{tvrzeni}
 

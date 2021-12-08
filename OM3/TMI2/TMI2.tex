@@ -81,7 +81,9 @@
 
 		Nyní chceme ukázat, že $\mu^*$ je $\sigma$-aditivní na $©A_{\mu^*}$: Buďte $A_i \in ©A_{\mu^*}$ po dvou disjunktní. Volbou $T = A_1 \cup A_2$ dostaneme $\mu^*(A_1 \cup A_2) = \mu^*(A_1) + \mu^*(A_2)$ $\implies$ $\mu^*$ je konečně aditivní na $©A_{\mu^*}$.
 		$$ \forall n \in ®N: \sum_{i=1}^∞ \mu^*(A_i) = \lim_{n \rightarrow ∞} \sum_{i=1}^n \mu^*(A_i) = \lim_{n \rightarrow ∞} \mu^*\left(\bigcup_{i=1}^n A_i\right) ≤ \mu^*\left(\bigcup_{i=1}^∞ A_i\right). $$
-		Opačná nerovnost plyne ze spočetné subaditivity. To znamená, že $\mu^*\left(\bigcup_iA_i\right) = \sum_i\mu^*\left(A_i\right), A_i \in ©A_{\mu^*}$, po dvou disjunktní.
+		Opačná nerovnost plyne ze spočetné subaditivity. To znamená, že
+		$$ \mu^*\left(\bigcup_iA_i\right) = \sum_i\mu^*\left(A_i\right), A_i \in ©A_{\mu^*}, $$
+		po dvou disjunktní.
 
 		$©A_{\mu^*}$ je uzavřená na disjunktní spočetné sjednocení: $A_i \in ©A_{\mu^*}$, po dvou disjunktní, $T \subset X$.
 		$$ \mu^*(T) = \mu^*\left(T \setminus \bigcup_{i=1}^n A_i\right) + \mu^*\left(T \cap \bigcup_{i=1}^n A_i\right) ≥ \mu^*\left(T\setminus \bigcup_{i=1}^∞ A_i\right) + \left(\mu^*|_T\right)\left(\bigcup_{i=1}^∞ A_i\right) = TODO $$
@@ -156,7 +158,7 @@ TODO!!!
 	\begin{dukazin}
 		$(X, \rho)$ metrický prostor, $\mu$ borelovská míra na $X$, $\mu(X) < ∞$. Označme
 		$$ ©D := \{B \in ©B(X) | \epsilon > 0 \ \exists F \subset B \subset G, F \text{ uzavřená}, G \text{ otevřená}, \mu(G \setminus F) < \epsilon\}. $$
-		Ukážeme $©D := ©B(X)$. $©D$ obsahuje všechny množiny: $F \subset X$ uzavřená, $F_{<\epsilon} := \{x \in X | \rho(x, F) < \epsilon\}$ (otevřená). Zřejmě $F_{<\frac{1}{j}} \searrow F$, $j \rightarrow ∞$ z uzavřenosti $F$. $\mu$ konečna $\implies$ (spojitost míry) $\mu F_{<\frac{1}{j}} \rightarrow \mu(F)$.
+		Ukážeme, že $©D := ©B(X)$. Nejprve $©D$ obsahuje všechny množiny: $F \subset X$ uzavřená, $F_{<\epsilon} := \{x \in X | \rho(x, F) < \epsilon\}$ (otevřená). Zřejmě $F_{<\frac{1}{j}} \searrow F$, $j \rightarrow ∞$ z uzavřenosti $F$. $\mu$ konečna $\implies$ (spojitost míry) $\mu F_{<\frac{1}{j}} \rightarrow \mu(F)$.
 
 		$©D$ je $\sigma$-algebra: $\O \in ©D$, $D \in ©D \implies D^c \in ©D$:
 		$$ F \subset D \subset G, \mu(G \setminus F) < \epsilon \implies G^c \subset D^c \subset F^c, \mu(F^c \setminus G^c) < \epsilon. $$
@@ -282,7 +284,8 @@ TODO!!!
 		$$ \implies S(f, ©D_n) - s(f, ©D_n) \rightarrow 0 \implies f \in R[a, b]. $$
 		Nechť $x \in (a, b) \setminus ©D$, $\epsilon > 0$. Pak $f$ je spojitá v bodě $x$ $\implies \exists \delta > 0$, $|y - x| < \delta$ $\implies$ $|f(y) - f(x)| < \epsilon$.
 
-		Zvolme $n_0$ tak velké, aby $||©D_n|| < \delta$, $n ≥ n_0$. Pak $S_n(x) - s_n(x) ≤ 2 \sup\{|f(y) - f(x)|: |y - x| < \delta\} < 2\epsilon$.
+		Zvolme $n_0$ tak velké, aby $||©D_n|| < \delta$, $n ≥ n_0$. Pak 
+		$$ S_n(x) - s_n(x) ≤ 2 \sup\{|f(y) - f(x)|: |y - x| < \delta\} < 2\epsilon. $$
 	\end{dukazin}
 \end{veta}
 
@@ -303,7 +306,9 @@ TODO!!!
 % 23. 11. 2021
 
 \begin{dukaz}[„$5r$“ covering]
-	Označme $R := \sup_{B \in ©F} \rad B$. $©F_k := \{B \in ©F | \rad B \in \(\frac{R}{2^{k+1}}, \frac{R}{2^k}\]\}$, $k = 0, 1, …$ Dále definujeme indukcí systémy $©B_k$, $k = 0, 1, …$: $©B_0$ libovolný maximální disjunktní podsystém $©F_0$. Máme-li $©B_0, …, ©B_k$: $©B_{k+1}$ libovolný maximální disjunktní podsystém $\{B \in ©F_{k+1} | \forall B' \in ©B_0 \cup … \cup ©B_k: B \bigcup B: = \O\}$, $©F' := \bigcup_{k=0}^∞ ©B_k$ disjunktní podsystém $©F$.
+	Označme $R := \sup_{B \in ©F} \rad B$. $©F_k := \{B \in ©F | \rad B \in \(\frac{R}{2^{k+1}}, \frac{R}{2^k}\]\}$, $k = 0, 1, …$ Dále definujeme indukcí systémy $©B_k$, $k = 0, 1, …$: $©B_0$ libovolný maximální disjunktní podsystém $©F_0$. Máme-li $©B_0, …, ©B_k$: $©B_{k+1}$ libovolný maximální disjunktní podsystém
+	$$ \{B \in ©F_{k+1} | \forall B' \in ©B_0 \cup … \cup ©B_k: B \bigcup B: = \O\}, $$
+	$©F' := \bigcup_{k=0}^∞ ©B_k$ disjunktní podsystém $©F$.
 
 	Nyní už jen ověříme vztah ze znění: Nechť $B \in ©F$, pak $B \in ©F_k$ $\implies$ $\exists B' \in ©B_0 \cup … \cup ©B_k$, $B \cap B' ≠ \O$ (z maximality). Dále víme, že $\frac{R}{2^{k+1}} < \rad B ≤ \frac{R}{2^k}$ a $\frac{R}{2^{k+1}} < \rad B'$, tedy $\rad B < 2\rad B'$. Navíc $B = B(x, r)$ a $B' = B(x', r')$, $r < 2r'$, $B \cap B' ≠ \O$, tedy $||x - x'|| ≤ r + r'$, tj. $\forall y \in B: ||y - x'|| ≤ ||y - x|| + ||x - x'|| ≤ r + r + r' < 5r'$.
 \end{dukaz}
@@ -360,12 +365,14 @@ TODO
 
 		Když $B_i$ jsou koule opsané $\overline{I_i}$, pak $\lambda^n(B_i) ≤ \eta^{-n} \lambda^n(I_i)$ ($B_i' \subset I_i \subset B_i … \lambda^n(I_i) > \lambda^n(B_i') ≥ \eta^n \lambda^n (B_i)$).
 
-		$$ \lambda^{n*}(f(N)) ≤ \lambda^{n*} (\bigcup_i f(I_i)) ≤ \lambda^{n*}(\bigcup_if(B_i)) ≤ \sum_i \lambda^{n*}(f B_i) ≤ L^n \sum_i \lambda^n(B_i) ≤ \(\frac{L}{\eta}\)^n \sum_i \lambda^n(I_i) < \(\frac{L}{\eta}\)^n\epsilon. $$
+		$$ \lambda^{n*}(f(N)) ≤ \lambda^{n*} (\bigcup_i f(I_i)) ≤ \lambda^{n*}(\bigcup_if(B_i)) ≤ \sum_i \lambda^{n*}(f B_i) ≤ L^n \sum_i \lambda^n(B_i) ≤ $$
+		$$ ≤ \(\frac{L}{\eta}\)^n \sum_i \lambda^n(I_i) < \(\frac{L}{\eta}\)^n\epsilon. $$
 		$$ \epsilon \rightarrow 0 … \lambda^{n*}(f(N)) = 0. $$
 
 		$A \subset ®R^n$ měřitelná, $\epsilon > 0$, BÚNO nechť $\lambda^n(A) < ∞$ (jinak je nerovnost triviálni). $\lambda^n$ regulární $\implies$ $\exists G \supset A$ otevřená, že $\lambda^n(G) < \lambda^n(A) + \epsilon$. $©F := \{B \text{ uzavřená koule}| B \subset G\}$ Vitaliovo pokrytí $G$ $\implies$ $B_1, B_2, … \in ©F$ disjunktní, $\lambda^n(G \setminus \bigcup_i B_i) = 0$.
 
-		$$ \lambda^{n*}(f(A)) ≤ \lambda^{n*}(f(G)) ≤ \lambda^{n*}(\bigcup_i f(B_i) \cup f(N)) ≤ \sum_i \lambda^{n*}(f(B_i)) + \lambda^{n*}(f(N)) ≤ L^n \sum_i \lambda^n(B_i) = L^n \lambda^n(G) < L^n \lambda^n(G) < L^n \lambda^n(A) + L^n \epsilon \rightarrow L^n \lambda^n(A). $$
+		$$ \lambda^{n*}(f(A)) ≤ \lambda^{n*}(f(G)) ≤ \lambda^{n*}(\bigcup_i f(B_i) \cup f(N)) ≤ \sum_i \lambda^{n*}(f(B_i)) + \lambda^{n*}(f(N)) ≤ $$
+		$$ ≤ L^n \sum_i \lambda^n(B_i) = L^n \lambda^n(G) < L^n \lambda^n(G) < L^n \lambda^n(A) + L^n \epsilon \rightarrow L^n \lambda^n(A). $$
 	\end{dukazin}
 \end{veta}
 
@@ -389,6 +396,68 @@ TODO
 		$$ ||LM^{-1} v|| ≤ \gamma ||v||, v \in ®R^n \implies |\det LM^{-1}| ≤ \gamma^n \implies |\det L| ≤ \gamma^n|\det M|. $$
 	\end{dukazin}
 \end{tvrzeni}
+
+% 07. 12. 2021
+
+\begin{dukaz}[Věty o substituci]
+	Ať je dáno $\epsilon > 0$. $\forall x \in ©U\ \exists r_x > 0\ \forall y \in B(x, r_x)$:
+	$$ 1. ||Dg(y) - Dg(x)|| < \epsilon·\delta(Dg(x)) \qquad \text{(ze spojitosti diferenciálu $(Dg(·))$)}, $$
+	$$ 2. ||g(y) - g(x) - Dg(x)(y - x)|| < \epsilon·\delta(Dg(x))||y - x|| \qquad \text{(ze spojitosti diferenciálu $(Dg(x))$)}. $$
+
+	Z $\delta(L)||u|| ≤ ||Lu|| ≤ ||L||·||u||$ je
+	$$ 1.' ||Dg(y)u - Dg(x)u|| < \epsilon·||Dg(x)u||, \qquad u \in ®R^n, $$
+	$$ 2.' ||g(y) - g(x) - Dg(x)(y - x)|| < \epsilon·||Dg(x))(y - x)||. $$
+
+	$\exists \{x_1, x_2, …\} \subset ©U$ (spočetná) taková, že $©U = \bigcup_i B(x_i, r_{x_i})$. (Neboť existují $K_j$ kompaktní, které $K_j \nearrow ©U$.) $B_i := B(x_i, r_{x_i})$, $L_i = Dg(x_i)$, $i \in ®N$.
+	$$ 1.' \implies 1.'' (1 - \epsilon)||L_iu|| ≤ ||Dg(x)u|| ≤ (1 + \epsilon)||L_iu||, u \in ®R^n, x \in B_i, i \in ®N. $$
+	Existuje měřitelný rozklad $U = \bigcup_{i, j = 1}^∞ E_{i, j}$ tak, že:
+	$$ (a) E_{i, j} \subset B_i, \qquad (b) \diam E_{i, j} < \frac{1}{j}, \qquad (c) \forall x \in E_{i, j}: r_x > \frac{1}{j}. $$
+
+	$$ \implies \forall x, y \in E_{i, j}: ||g(y) - g(x)|| \overset{2.'}{≤} (1 + \epsilon)||Dg(x)(y-x)|| \overset{1''}{≤} (1 + \epsilon)^2 ||L_i(y - x)||, $$
+	$$ ||g(y) - g(x)|| ≥ (1 - \epsilon)||Dg(x)(y - x) ≥ (1 - \epsilon)^2 ||L_i(y - x)||. $$
+	$\implies$ zobrazení $g \circ L_i^{-1}: L_i(©U) \rightarrow g(©U)$ je $(1 + \epsilon)^2$-lipschitzovské, stejně jako zobrazení $L_i \circ g^{-1}: g(©U) \rightarrow L_i(©U)$ je $(1 - \epsilon)^{-2}$-lipschitzovské. Označme $\eta := \max\{(1 + \epsilon)^2, (1 - \epsilon)^{-2}\}$.
+
+	$$ \lambda^n(g(A)) = \lambda^n(g(\bigcup_{i, j} E_{i, j})) = \lambda^n(\bigcup_{i, j} g(E_{i, j})) = \sum_{i, j} \lambda^n(g(E_{i, j})) ≤ \eta^n \sum_{i, j}\lambda^n(L_i(E_{i, j})) \overset{\text{TMI1}}{=} $$
+	$$ = \eta^n \sum_{i, j} |\det L_i| \lambda^n(E_{i, j}) = \eta^n \sum_{i, j}\int_{E_{i, j}} |\det L_i| dx ≤ \eta^{2n} \sum_{i, j} \int_{E_{i, j}} |J g(x)|dx = $$
+	$$ = \eta^{2n} \int_A |Jg(x)|dx. $$
+	Podobně
+	$$ \lambda^n(g(A)) ≥ \eta^{-n}\sum_{i, j} \lambda^n(L(E_{i, j})) ≥ \eta^{-n} \sum_{i, j} \int_{E_{i, j}}\eta^{-n}|Jg(x)| dx = \eta^{-2n}\int_A |Jg(x)| dx. $$
+	Následně pro $\epsilon \rightarrow 0$ je $\eta \rightarrow 1$ a $\lambda^n(g(A)) = \int_A|J(g(x))|dx$.
+\end{dukaz}
+
+\section{Konvergence posloupnosti funkcí}
+\begin{poznamka}[Přípomenutí TMI1]
+	$f_n, f: (X, ©A, \mu) \rightarrow ®R$ nebo $®C$ jsou měřitelné.
+
+	$$ f_n \overset{\text{s. v.}}{\rightarrow} f ≡ \mu\{x | f_n(x) \not\rightarrow f(x)\} = 0. $$
+	$$ f_n \overset{L^p}{\rightarrow} f ≡ ||f_n - f||_p \rightarrow 0. $$
+	$$ f_n \overset{\mu}{\rightarrow} f ≡ \forall \epsilon > 0: \mu\{x | ||f_n(x) - f(x)|| ≥ \epsilon\} \rightarrow 0. $$
+
+	\begin{tvrzeniin}
+		$$ f_n, f \in L^p(\mu), f_n \overset{L^p}{\rightarrow} f \implies f_n \overset{\mu}{\rightarrow} f. $$
+		$$ \mu(X) < ∞: f_n \overset{\text{s. v.}}{\rightarrow} \implies f_n \overset{\mu}{\rightarrow} f. $$
+		$$ \mu(X) < ∞: f_n \overset{\mu}{\rightarrow} f \implies \exists f_{n_k}, f_{n_k} \overset{\text{s. v.}}{\rightarrow} f. $$
+		$$ \mu(X) < ∞: 1 ≤ p < q ≤ ∞ \implies L^p(\mu) \supset L^q(\mu), f_n \overset{L^q}{\rightarrow} f \implies f_n \overset{L^p}{\rightarrow} f. $$
+	\end{tvrzeniin}
+\end{poznamka}
+
+\begin{veta}[Lebesgueova věta + upgrade]
+	$f_n \overset{\text{s. v.}}{\rightarrow} f$, $\exists g \in L^1(\mu), |f_n| ≤ g\ \forall n \implies \int f_n d\mu \rightarrow \int fd\mu$.
+
+	Dokonce $f_n \overset{L^1}{\rightarrow} f$.
+
+	\begin{dukazin}
+		BÚNO $f_n(x) \rightarrow f(x)$, $x \in X$ (například v těch bodech předefinujeme všechny funkce na 0).
+		$$ g_n := \inf\{f_n, f_{n+1}, …\}, h_n := \sup\{f_n, f_{n+1}\}. $$
+		$$ -g ≤ g_n ≤ f_n ≤ h_n ≤ g, \qquad g_n \nearrow f \swarrow h_n. $$
+		$$ |f_n - f| ≤ h_n - g_n ≤ 2g \in L^1(\mu), \qquad h_n - g_n \searrow \overset{\text{Levi}}{\implies} \int(h_n - g_n) d\mu \rightarrow 0 \implies $$
+		$$ \implies \int |f_n - f| d\mu \rightarrow 0 \Leftrightarrow f_n \overset{L^1}{\rightarrow} f. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$f \in L^1(\mu) \implies \lim_{c \rightarrow ∞} \int_{x: |f(x)| ≤ c} |f(x)| d\mu(x) = 0$.
+\end{poznamka}
 
 
 

@@ -433,4 +433,64 @@ TODO
 
 TODO
 
+% 08.12. 2021
+
+\begin{veta}
+	V projektivním prostoru $®P^n$ nad tělesem ®T mějme dáno $n+2$ bodů $X_1, …, X_{n+2}$ z nichž žádných $n+1$ neleží v jedné nadrovině. Pak existuje projektivní soustava souřadnic taková, že
+	$$ X_1 = (1, 0, …, 0, 0), $$
+	$$ X_2 = (0, 1, …, 0, 0), $$
+	$$ \vdots $$
+	$$ X_n = (0, 0, …, 1, 0), $$
+	$$ X_{n+1} = (0, 0, …, 0, 1), $$
+	$$ X_{n+2} = (1, 1, …, 1, 1). $$
+
+	\begin{dukazin}
+		Za bázi vezmeme $B = (X_1, …, X_{n+1})$ a její členy správně přenásobíme (nebudeme násobit 0, jelikož jsou v obecné poloze), aby jejich součet byl $X_{n+2}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	V projektivním prostoru $®P^n$ nad tělesem ®T mějme dáno $n+2$ bodů $X_1, …, X_{n+2}$ z nichž žádných $n+1$ neleží v jedné nadrovině a také $n+2$ bodů $Y_1, …, Y_{n+2}$ z nichž žádných $n+1$ neleží v jedné nadrovině. Pak existuje právě jedno projektivní zobrazení $F: ®P^n \rightarrow ®P^n$, pro které platí
+	$$ F(X_i) = Y_i, \qquad i \in [n+2]. $$
+\end{dusledek}
+
+\begin{veta}[Pappova věta]
+	V reálné projektivní rovině $®P^2$ nad ®R mějme dvě přímky $p, q$, které se protínají v bodě $S$. Na přímce $p$ mějme body $P_1$, $P_2$, $P_3$ různé navzájem a různé od $S$. Podobně na přímce $q$ mějme body $Q_1$, $Q_2$, $Q_3$ různé navzájem a různé od $S$. Pak platí, že body
+	$$ X := \overline{P_1Q_2} \cap \overline{P_2Q_1}, \qquad Y := \overline{P_1Q_3} \cap \overline{P_3Q_1}, \qquad Z := \overline{P_2Q_3} \cap \overline{P_3Q_2} $$
+	leží na přímce.
+
+	\begin{dukazin}
+		Zvolíme si body $S, P_1, Q_1, X$ a použijeme předchozí větu. $\overline{SP_1} = (0, 0, 1)^*$, $\overline{SQ_1} = (0, 1, 0)^*$, $\overline{Q_1P_2} = (1, -1, 0)^*$, $\overline{P_1Q_2} = (1, 0, -1)^*$, $P_3 = (1, \alpha, 0)$, $Q_3 = (1, 0, \beta)$. Zbytek dopočítáme (můžeme si všimnout, že máme jen 2 stupně volnosti).
+
+		$\overline{Q_1P_3} = (\alpha, -1, 0)^*$, $\overline{P_1Q_3} = (\beta, 0, -1)^*$, $P_2 = (1, 1, 0)$, $Q_2 = (1, 0, 1)$, $\overline{P_2Q_3} = (\beta, -\beta, -1)$, $\overline{Q_2P_3} = (\alpha, -1, -\alpha)$, $Y = (1, \alpha, \beta)$, $Z = ()$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Dvojpoměr]
+	TODO
+\end{definice}
+
+\begin{veta}
+	Projektivní transformace zachovávají dvojpoměr. Jestliže je tedy $F$ projektivní transformace, pak
+	$$ (A, B, C, D) = (F(A), F(B), F(C), F(D)). $$
+
+	\begin{dukazin}
+		Rozepíše se pomocí homomorfismu.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Mějme $n$-dimenzionální afinni prostor $A$ se zaměřením $V^n$ nad tělesem ®T a $(n+1)$-dimenzionální afinní prostor $B$ se zaměřením $V^{n+1}$ nad stejným tělesem a prosté afinní zobrazení $\phi: A \rightarrow B$ a bod $P \in B \ \im(\phi)$. Pak je zobrazení $\Phi: A \rightarrow ®P(V^{n+1})$ zadané předpisem
+	$$ \Phi(x) := \LO \{\phi(X) - P\}, $$
+	je prosté a nazývá se vnoření $A$ do projektivního prostoru $®P(V^{n+1})$
+\end{definice}
+
+\begin{definice}
+	Pro libovolné těleso splňuje zobrazení $\Phi: ®T^n \rightarrow ®P(TODO)$ TODO.
+\end{definice}
+
+\begin{veta}
+	V projektivně rozšířené rovině $®R^2$ má každá afinní přímka $p$ v $®R^2$ se směrovým vektorem $v = (v_x, v_y)$ pravě jeden nevlastní bod $(v_x, v_y, 0)$. Tento bod budeme rovněž nazývat směr $p$.
+\end{veta}
+
 \end{document}

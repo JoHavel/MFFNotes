@@ -1,0 +1,154 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 2. přednáška (z minulého roku)
+
+\section*{Organizační úvod}
+\begin{poznamka}[Organizační úvod]
+	Přednáška rozdělena na 2 části. Materiály na stránkách / studentském úložišti.
+\end{poznamka}
+
+\section*{Úvod}
+\begin{poznamka}[O čem vlastně Numerická matematika je]
+	Nejprve musíme problém diskretizovat (většinou bývá nekonečně dimenzionální/spojitý a my chceme konečnou dimenzi a diskrétní problém). Inverze k diskretizaci je relevance.
+\end{poznamka}
+
+\section{Chování algoritmů v počítačové aritmetice}
+\begin{definice}[Double precision]
+	Obsahuje 64 bitů – znaménko (1b) + exponent (11b) + mantisa (52b). Reprezentuje číslo v normalizovaném tvaru ($±1,\text{mantisa}·2^{e = \text{exponent}}$), je-li $-1022 = e_{min} ≤ e ≤ e_{max} = 1023$.
+
+	Speciální hodnoty jsou $e = e_min - 1$, kde pokud je mantisa $0$, tak reprezentujeme $0$, jinak máme $±0,\text{mantisa}·2^e$. Pro $e = e_{max} + 1$ je při mantise nula hodnota $±∞$, jinak tzv. NaN (not-a-number).
+
+	Toto „těleso“ označujeme ®F.
+
+	\begin{poznamkain}
+		V intervalu mezi dvěma exponenty jsou čísla rozloženy rovnoměrně.
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		Samozřejmě existují i jiné přesnosti, standardně binary32. binary128 je málo podporované, binary16 je spíše pro grafické karty.
+	\end{poznamkain}
+\end{definice}	
+
+\begin{definice}[Operace s ®F]
+	První, co potřebujeme je schopnost zaokrouhlit. V standardu je zaokrouhlení na nejbližší číslo (tj. $round(x) = x(1 + \delta)$, kde $|\delta| ≤ u$ je minimální a záleží na reprezentaci).
+
+	Standardní model aritmetiky s konečnou přesností předpokládá, že výsledek každé operace je rozmazán nějakým $(1 + \delta)$, kde $|\delta| ≤ u$.
+\end{definice}
+
+\begin{definice}[Škálování, kancelace (vyrušení, ztráta informace)]
+	Může se nám stát, že přičítáme tak malá čísla, že se výsledek neliší od původní hodnoty. Tomu se předchází škálováním dat.
+
+	Také se může stát, že odčítáme dvě téměř stejná čísla ($|a - b| \ll |a| + |b|$), tak se odečtou úplně, protože drobná změna se ztratila v jejich reprezentaci. Takové výrazy je třeba vyjádřit jinak, aby se předešlo odčítání blízkých čísel.
+\end{definice}
+
+	\subsection{Analýza chyb}
+	\begin{poznamka}
+		Na chyby při výpočtech se můžeme dívat 2 způsoby: jako na chybu výsledku, nebo jako na chybu zadání.
+	\end{poznamka}
+
+	\begin{lemma}
+		Nechť $|\alpha_i| ≤ u$, $i \in [n]$ a nechť $n·u < 0.01$. Potom platí
+		$$ \prod_{i=1}^n (1 + \alpha_i) = 1 + \beta_n, $$
+		kde $|\beta_n| ≤ 1.01·n·u$.
+
+		\begin{dukazin}
+			Vyjádříme si $\beta_n$, omezíme $|\beta_n| ≤ (1 + u)^n - 1$. Jelikož $1 + x ≤ e^x$ pro $x ≥ 0$, pak tuto hodnotu dále omezíme $e^{n·u} - 1 < n·u(1 + \frac{n·u}{2} + \(\frac{n·u}{2}\)^2 + …) = \frac{n·u}{1 - n·u / 2} < 1.01·n·u$.
+		\end{dukazin}
+	\end{lemma}
+
+% 3. přednáška
+
+	\begin{definice}[Přímá analýza chyb]
+		Popis šíření zaokrouhlovacích chyb v algoritmu, odhad přímé chyby je
+		$$ ||a(x) - fl(a(x))||, $$
+		kde $fl$ je strojové zaokrouhlování. Nezávislý (tzv. efektivní) odhad možný zřídka.
+	\end{definice}
+
+	\begin{definice}[Zpětná analýza chyb]
+		Snaha interpretovat zaokrouhlovací chyby pomocí změn vstupních dat, tj. odhad zpětné chyby, která je
+		$$ ||x - \hat{x}||, $$
+		kde $\hat{x}$ je vstupní dato, se kterým by se dospělo stejného výsledku, ale přesnou cestou.
+	\end{definice}
+
+	\subsection{Stabilita algoritmu}
+	\begin{definice}[$O(u)$]
+		$O(u)$ je neurčité číslo,
+		$$ |O(u)| ≤ K·u, $$
+		kde $K$ nezávisí na datech (jedině na dimenzi, na které může závisel libovolně).
+	\end{definice}
+
+	\begin{definice}[Zpětně stabilní algoritmus]
+		Algoritmus $a(x)$ je zpětně stabilní, pokud
+		$$ \forall x\ \exists \hat{x}: fl(a(x)) = a(\hat{x}) \land \frac{||x - \hat{x}||}{||x||} = O(u). $$
+
+		(Tj. jestliže se chyby výpočtu způsobené zaokrouhlováním promítnou do dostatečně malých změn vstupních dat.)
+	\end{definice}
+
+	\begin{definice}[Numerická stabilita algoritmu]
+		Algoritmus $a(x)$ je numericky stabilní, pokud
+		$$\forall x\ \exists \hat{x}: \frac{||x - \hat{x}||}{||x||} = O(u) \land \frac{||a(\hat{x} - fl(a(x)))}{a(\hat{x})} = O(u). $$
+	\end{definice}
+
+	\subsection{Podmíněnost problému}
+	\begin{poznamka}
+		Mějme matematický problém $f: X \rightarrow Y$, kde $X$, $Y$ jsou normované lineární prostory, $f$ je spojité zobrazení, mající vlastnosti, že zkoumáme existenci, jednoznačnost řešení a že problém je citlivý na změny dat. Co to ale je?
+	\end{poznamka}
+
+	\begin{definice}[Číslo podmíněnosti]
+		Označme $\Delta x$ malou změnu dat (perturbace), $\Delta f(x) = f(x + \Delta x) - f(x)$ změnu řešení.
+
+		Číslo podmíněnosti problému $f$ v $x$ ke
+		$$ \kappa_f(x) ≡ \lim_{\delta \rightarrow 0} \sup_{||\Delta x|| ≤ \delta} \(\frac{||\Delta f(x)||}{||f(x)||} / \frac{||\Delta x||}{||x||}\). $$
+
+		Špatně či dobře podmíněný problém je, že malé změny $x$ vedou na velké či malé změny v $f(x)$.
+	\end{definice}
+
+	\begin{definice}[Generovaná maticová norma]
+		Mějme vektorovou normu $||·||$ na $®C^n$ a $®C^m$. Generovanou maticovou normou nazveme funkcionál $g: ®C^{n \times m} \rightarrow ®R$,
+		$$ g(A) ≡ \max_{x ≠ ¦o} \frac{||Ax||}{||x||} = \max_{||x|| = 1} ||Ax||. $$
+		$g(A)$ je norma, značíme ji $||A||$. Je navíc „skoro multiplikativní“: $||AB|| ≤ ||A||·||B||$. A z definice $||Ax|| ≤ ||A||·||x||$. Je-li $A$ čtvercová, pak $||I|| = 1$.
+	\end{definice}
+
+	\begin{definice}[Frobeniova norma]
+		$||A||_F = \sqrt{\sum_{i, j} a_{ij}^2}$.
+	\end{definice}
+
+	\begin{poznamka}[Podmíněnost $Ax$]
+		Pokud je problém $f: x \mapsto Ax$, $\kappa_f(x) = \frac{||x||}{||Ax||}||A||$.
+
+		Pokud $A$ je regulární, pak z $||x|| = ||A^{-1}Ax|| ≤ ||A^{-1}||·||Ax||$ plyne $\kappa_f(x) ≤ ||A||·||A^{-1}||$.
+	\end{poznamka}
+
+	\begin{definice}
+		Číslo z předchozí poznámky nazveme číslo podmíněnosti matice $A$ a značíme ho $\kappa(A) ≡ ||A||·||A^{-1}||$.
+
+		\begin{poznamkain}
+			Zřejmě $1 = ||A^{-1}A|| ≤ \kappa(A)$.
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{definice}[Přesnost výpočtu]
+		Nechť $a(x)$ je algoritmus. Pak (relativní) přesnost výpočtu je
+		$$ \frac{||a(x) - fl(a(x))||}{||a(x)||}. $$
+	\end{definice}
+
+	\begin{poznamka}
+		Je-li algoritmus $a$ řešící problém $f$ v ®F zpětně stabilní, potom $fl(a(x)) = a(\hat{x})$ pro nějaké $\hat{x}$ splňující
+		$$ \frac{||x - \hat{x}||}{||x||} = O(u) ≡ \delta. $$
+
+		Algoritmus řeší daný problém znamená $f(x) = a(x)$, proto
+		$$ \frac{||a(x) - a(\hat{x})||}{||a(x)||} = \frac{||f(x) - f(\hat{x})||}{||f(x)||}. $$
+
+		Potom
+		$$ \frac{\frac{||f(x) - f(\hat{x})||}{||f(x)||}}{\frac{||x - \hat{x}||}{||x||}} ≤ \sup_{\frac{||x - \tilde x||}{||x||} ≤ \delta} \frac{\frac{||f(x) - f(\tilde{x})||}{||f(x)||}}{\frac{||x - \tilde{x}||}{||x||}} \approx \kappa_f(x) $$
+		pro „rozumně“ spojitý problém $f$. Tj.
+		$$ \frac{||a(x) - fl(a(x))||}{||a(x)||} \lesssim \kappa_f(x) O(u). $$
+
+		Tedy přesnost zpětně stabilního algoritmu je (může být) ovlivněna podmíněností problému a strojovou přesností.
+	\end{poznamka}
+\end{document}

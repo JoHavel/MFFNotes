@@ -672,7 +672,72 @@ TODO?
 	TODO.
 \end{dukaz}
 
+% 08. 12. 2021
 
+\begin{lemma}[O míře s hustotou $f$]
+	Buď $f$ nezáporná měřitelná funkce na $(X, ©A, \mu)$ a definujme $\nu(A) := \int_A f d\mu$, $\forall A \in ©A$. Pak $\nu$ je míra na ®A a
+	$$ \int_X g d\nu = \int_X g·f d\mu. $$
+	Pro každou nezápornou měřitelnou funkci $g$ na $X$.
 
+	\begin{dukazin}
+		Je jasné, že $\nu ≥ 0$ a $\nu(\O) = \int_{\O}fd\mu = \int_X \chi_{\O} f d\mu = \int_X 0 d\mu = 0$.
+
+		Buď $A = \bigcup_{j=1}^∞ A_j$, $A_j \in ©A$, $\forall j \in ®N$, $A_i \cap A_j = \O$ ($i ≠ j$).
+		$$ \nu(A) = \nu(\bigcup_j A_j) = \int_{\bigcup_j A_j} f d\mu = \int_X \chi_{\bigcup_j A_j} fd\mu = \int_X(\sum_j \chi_{A_j}) f d\mu \overset{\text{Levi}}{=} \sum_j \int_X \chi_{A_j} f d\mu = $$
+		$$ = \sum_{j=1}^∞ \nu(A_j). $$
+
+		Rovnost ověříme postupně pro: $g = \chi_E$, $E \in ©A$:
+		$$ \int_X g d\nu = \int_X \chi_E d\nu = \int_E d\nu = \nu(E) = \int_E f d\mu = \int_X \chi_E f d\mu = \int_X gf d\mu. $$
+		Obdobně pokračujeme i pro další „typy“ funkcí.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Hustota míry]
+	Funkci $f$ z předchozího lemmatu se říká hustota míry $\nu$ vzhledem k míře $\mu$.
+\end{definice}
+
+\begin{definice}[Absolutně spojitá míra]
+	Nechť $\mu$, $\nu$ jsou míry na $(X, ©A)$. Řekneme, že míra $\nu$ je absolutně spojitá vzhledem k míře $\mu$ (značíme $\nu \ll \mu$), jestliže platí
+	$$ \forall A \in ©A: \mu(A) = 0 \implies \nu(A) = 0. $$
+\end{definice}
+
+\begin{veta}
+	TODO?
+\end{veta}
+
+\begin{veta}[Charakterizace faktu $\nu \ll \mu$ pro konečné míry]
+	Nechť $\nu$, $\mu$ jsou konečné míry na $(X, ©A)$. Pak $\nu \ll \mu$ právě tehdy, když
+	$$ \forall \epsilon > 0\ \exists \delta\ \forall A \in ©A, \mu(A) < \delta: \nu(A) < \epsilon. $$
+
+	\begin{dukazin}
+		„$\Leftarrow$“: Buď $A \in ©A$, $\mu(A) = 0$. Pro $\epsilon = \frac{1}{k}$ nám podmínka dává $\exists \delta_k > 0$, $\mu(A) < \delta_k \implies \nu(A) = \frac{1}{k}$, tedy $\nu(A) = 0$ (jelikož levá strana předchozí implikace je splněna vždy).
+
+		„$\implies$“: Sporem. Nechť $\nu \ll \mu$ a předpokládejme, že podmínka neplatí, tj.
+		$$ \exists \epsilon > 0\ \forall \delta > 0 \exists A \in ©A, \mu(A) < \delta: \nu(A) ≥ \epsilon. $$
+		Volíme $\delta = \frac{1}{2^n}$, $n \in ®N$. Tedy $\exists A_n \in ©A$, $\mu(A_n) < \frac{1}{2^n}$ a $\nu(A_n) ≥ \epsilon$. Nechť $B_k := \bigcup_{n = k+1}^∞ A_n$, $k \in ®N$. Tedy $B_1 \supset B_2 \supset …$. Z nějaké věty výše plyne $\mu\(\bigcap_{k=1}^∞ B_k\) = \lim_{k \rightarrow ∞} \mu(B_k)$ a obdobně $\nu\(\bigcap_{k=1}^∞ B_k\) = \lim_{k \rightarrow ∞} \nu(B_k)$.
+
+		$\mu(B_k) \rightarrow 0$, $\nu(B_k) \rightarrow L ≥ \epsilon$. \lightning
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Jestliže $\mu, \nu$ jsou konečné míry na $(X, ©A)$ takové, že $\forall A \in ©A: \nu(A) ≤ \mu(A)$. Pak existuje měřitelná funkce $f$ splňující $0 ≤ f ≤ 1$ $\mu$-skoro všude a platí
+	$$ \forall A \in ©A: \nu(A) = \int_A f d\mu. $$
+
+	\begin{dukazin}
+		Definujeme funkcionál
+		$$ Jg := \int_X g^2 d\mu - 2\int_X g d\nu, \qquad \forall g \in ©L^2(\mu). $$
+		Definice $J$ je korektní, protože konvergence v $L^2$ je silnější než konvergence v $L^1$ (nebo z Hölderovy nerovnosti), tedy oba integrály jsou pro $g \in L^2$ konečné. Dále definujeme $c := \inf_{g \in L^2(\mu)} Jg$.
+		$$ Jg = \int_X g^2 d\mu - 2 \int_X g d\nu ≥ \int_X g^2 d\mu - 2\int_X |g| d\mu = \int_X(|g| - 1)^2 d\mu - \mu(X) ≥ -\mu(X) > -∞, \forall g \in L^2(\mu). $$
+
+		Předpokládejme, že $\exists f\: c = Jf$. Buď $A \in ©A$ pevná množina, definujeme $g(t) := J(f + t\chi_A)$, $\forall t \in ®R$. Tedy $g$ má minimum v bodě $0$. Tudíž $g'(0) = 0$, pokud $g'$ existuje. Ověříme výpočtem z definice existenci a dosadíme 0:
+		$$ g'(0) = \lim_{t \rightarrow 0} \frac{g(t) - g(0)}{t} = \lim_{t \rightarrow 0} \frac{J(f + t\chi_A) - J(f)}{t} = \lim_{t \rightarrow 0} \frac{1}{t}\[\int_X (f + t\chi_A)^2 d\mu - 2\int_X(f + t\chi_A) d\nu - \int_X f^2 d\mu + 2\int_X fd\nu\] = $$
+		$$ \lim_{t \rightarrow 0} \[\int_X 2f \chi_A d\mu + t\int_X \chi_A d\mu - 2 \int_X \chi_A d\nu\] = 2\[\int_X f \chi_A d\mu - \int_X \chi_A d\nu\] = 0 $$
+		Tedy $\forall A \in ©A: \nu(A) = \int_A f d\mu$.
+
+		$$ 0 ≤ \int_{\{f > 1\}}(f - 1)^+ d\mu = \int_{\{f > 1\}} (f - 1) d\mu = \int_{\{f > 1\}} d\mu - \int_{\{f > 1\}} 1d\mu = \nu(\{f > 1\}) - \mu(\{f > 1\}) ≤ 0 \implies f ≤ 1 \mu\text{-skoro všude} $$
+		$$ 0 ≤ \int_{\{f < 0\}} f^- d\mu = - \int_{\{f < 0\}} f d\mu = - nu(\{f < 0\}) ≤ 0 \implies f ≥ 0 \mu\text{-skoro všude} $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}
