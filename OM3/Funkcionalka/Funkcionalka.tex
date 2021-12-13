@@ -1602,5 +1602,96 @@ TODO!!! (06. 12. 2021)
 	\end{dukazin}
 \end{tvrzeni}
 
+% 13. 12. 2021
+
+TODO.
+
+\begin{veta}
+	Nechť $X$ je Banachův nad ®K a $T \in ©L(x)$. Pak $\sigma(T)$ je kompaktní podmnožina ®K splňující $\sigma(T) \subset B_x(0, ||T||)$. Je-li $X$ komplexní, pak $\sigma(T)$ je neprázdné.
+
+	\begin{dukazin}
+		„$\sigma(T) \subset B(0, ||T||)$“: Pokud $|\lambda| > ||T||$, pak $(\lambda I - T) = \lambda(I - \frac{I}{\lambda}) \implies (\lambda I - T)^{-1}$ existuje.
+		
+		„$\sigma(T)$ uzavřená“: $®K \setminus \sigma(T)$ je otevřená podle tvrzení výše bod 2.
+
+		Důkaz druhé části vynechán (těžký a je potřeba Komplexka).
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X$ je Banachův prostor a $T \in ©L(X)$. Pak $\sigma(T^*) = \sigma(T)$. Navíc, pokud je $X$ Hilbertův, pak $\sigma(T^*) = \overline{\sigma(T)}$.
+
+	\begin{dukazin}
+		Plyne z toho, že $S^{-1}$ existuje $\Leftrightarrow$ $\(S^*\)^{-1}$ existuje a
+		$$ (\lambda I - T)^* = \lambda I - T^*,\qquad (\lambda I - T)^\bigstar = \lambda I - T^\bigstar. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $X$ je Banachův prostor a $T \in ©K(X)$.
+
+	\begin{enumerate}
+		\item Jestliže $\Rang(T)$ je uzavřený, pak $\dim \Rang(T) < ∞$.
+		\item Jestliže $\dim X = ∞$, pak $0 \in \sigma(T)$
+		\item Jestliže $\lambda \in ®K \setminus \{0\}$, pak $\dim \Ker(\lambda I - T) < ∞$ a $\Rang(\lambda I - T)$ je uzavřený.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Máme $T: X \rightarrow \overbrace{\Rang T}_{\text{Banach}}$ je na. Z věty o otevřeném zobrazení $\overline{T(B_X)}_{\text{relativně kompaktní}} \supseteq ©U(¦o, r) \cap \Rang T \implies B(¦o, r) \cap \Rang T$ je kompaktní $\implies \dim \Rang T < ∞$ (je v něm kompaktní koule, tak musí být kompaktní).
+
+		2. $0 \notin \sigma(T) \implies \exists T^{-1} \implies \id = T \circ T^{-1} \in ©K(x)$. Tedy $B_X$ je kompakt, a tudíž $\dim X < ∞$.
+
+		3. První krok „$\dim \Ker (\lambda I - T) < ∞$“: BÚNO $\lambda I - T$ není prostý. Na $\Ker (\lambda I - T)$ máme $T = \lambda I$. Uvažujme $T|_{\Ker (\lambda I - T)}$, to je kompaktní operátor.
+		$$ \implies \overline{T(\Ker(\lambda I - T) \cap B_x)} = \overline{\lambda(\Ker (\lambda I - T) \cap B_x)} = \lambda(\Ker (\lambda I - T) \cap B_x) $$
+		$\implies$ $\Ker (\lambda I - T)$ je konečnědimenzionální.
+
+		Druhý krok: Tedy $\exists Z \subset X$ uzavřený, že $X = \Ker(\lambda I - T) \oplus_t Z$. Polož $S = (\lambda I - T)|_Z$. Pak $S$ je prostý (tam kde není prosté, tak jsme v druhé souřadnici), $\Rang S = \Rang(\lambda I - T)$ („$\subseteq$“ zřejmě, „$\supseteq$“:
+		$$ \forall x \in X: (\lambda I - T)x = (\lambda I - T)(\underbrace{y}_{\Ker(\lambda I - T)} + \underbrace{z}_{Z}) = S z $$
+		). Zbývá „$S$ je izomorfismus“ (pak $\Rang S$ je uzavřený): Ať ne, pak $\exists (x_n)_{n=1}^∞$ v $©S_Z$, že $||S x_n|| \rightarrow 0$. Protože $T$ je kompaktní, existuje $(n_k) \nearrow$ a $x \in X: T(x_{n_k}) \rightarrow x \in X$. Pak ale $\lambda x_{n_k} = (\lambda I - T)(x_{n_k}) + T(x_{n_k}) \rightarrow X$. Tedy $S(x_{n_k}) \rightarrow S(\frac{x}{\lambda}) \implies x = 0$, ale $||\lambda x_{n_k}|| = |\lambda| \rightarrow ||x|| = 0$, nebo $S(x_{n_k}) \rightarrow 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fredholmova alternativa]
+	Nechť $X$ je Banachův prostor nad ®K, $T \in ©K(X)$ a $\lambda \in ®K \setminus \{0\}$. Pak operátor $\lambda I - T$ je na, právě když je prostý.
+
+	\begin{dukazin}
+		„$\implies$“: Pro spor předpokládejme, že $S$ je prosté, ale není na. Polož $S = \lambda I - T$, $X_0 := X$, $X_{n+1} := S(X_n)$. Pak $X_{n+1} \subsetneq X_m$ (dokáže se indukcí) a $X_n$ je uzavřený (dle předchozí věty bodu 3. $\Rang S$ je uzavřený, tedy $S: X \rightarrow \Rang S$ je prostý a na, tj. $S$ je izomorfismus).
+
+		Z lemma o skoro kolmici najdeme $(x_n)_{n=1}^∞$ posloupnost ve sféře, že $x_n \in S_{X_n}$ a $d(x_n, X_{n+1}) ≥ \frac{1}{2}$, $n \in ®N$. Pak pro $m < n$:
+		$$ T(x_n) - T(x_m) = \overbrace{\lambda x_n}^{X_n} - \overbrace{\lambda x_m}^{X_{n+1}}- \overbrace{S x_n}^{\in X_{n+1}} + \overbrace{S x_m}^{\in X_{n+1}}. $$
+		Polož $? = \lambda x_n - S x_n + S x_n \in X_{m+1}$. Pak
+		$$ ||T(x_n) - T(x_m)|| = |\lambda|·||x_m  - \frac{?}{\lambda}|| ≥ |\lambda| d(x_m, X_{m+1}) ≥ \frac{|\lambda|}{2} > 0. \text{\lightning} $$
+
+		„$\Leftarrow$“: $\lambda I - T$ je na $\implies$ (z nějaké předchozí věty) $(\lambda I - T)^* = \lambda I - T^*$ je prostý $\implies \lambda I - T^*$ je na $\implies \Ker (\lambda I - T) = (X^*)_\perp = \{0\} \implies \lambda I - T$ je prostý.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $X$ je Banachův prostor a $T \in ©K(X)$. Pak $\sigma(T) \subset TODO$.
+\end{dusledek}
+
+\begin{lemma}
+	Nechť $X$ je normovaný lineární prostor a $T \in ©L(X)$. Jsou-li $\lambda_1, …, \lambda_n$ různá vlastní čísla operátoru $T$ a $x_1, …, x_n \in X$ vlastní vektory příslušné číslům $\lambda_1, …, \lambda_n$, pak jsou tyto vektory lineárně nezávislé.
+
+	\begin{dukazin}
+		$n = 1$ jasné, „$n \implies n+1$“: Ať $x_1, …, x_{n+1} \in X$ jsou vlastní vektory příslušné vlastním číslům $\lambda_1, …, \lambda_{n+1} \in ®K$. Ať $\sum_{i=1}^{n+1} \alpha_i x_i = 0$. Pak $0 = T(\sum_i \alpha_i x_i) - \lambda_{n+1}(\sum_i \alpha_i x_i) = \sum_i \alpha_i (\lambda_i - \lambda_{n+1}) x_i = \sum_{i=1}^n \alpha_i (\lambda_i - \lambda_{n+1}) x_i \implies \alpha_i = 0, i ≤ n \implies \alpha_{n+1} = 0$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor nad ®K a $T \in ©K(X)$. Pak pro každé $r > 0$ je množina $\sigma(T) \cap \{\lambda \in ®K | |\lambda > r|\}$ konečná.
+
+	\begin{dukazin}
+		Pro spor ať ne. Tj. $\exists r > 0\ \exists (\lambda_n)_{n=1}^∞$ po dvou různých $\lambda_n$, $|\lambda_n| > R$, $\lambda_n \in \sigma(T)$. Ať $x_n$ je vlastní vektor příslušný $\lambda_n$. Položme $X_n \spn\{x_1, …, x_n\}$. Pak dle předchozího lemmatu $X_1 \subsetneq X_2 \subsetneq X_3 \subsetneq …$.
+
+		Z lemmatu o skoro kolmici najdeme $(z_n)_{n=2}^∞$, že $z_n \in S_{X_n} \land d(z_n, X_{n-1}) ≥ \frac{1}{2}$. Ať $z_n = \sum_{i=1}^n \alpha_i x_i$, pak $T(z_n) = \sum_i \alpha_i \lambda_i x_i$, $\lambda_n z_n - T(z_n) = \sum_i d_i(\lambda_i - \lambda_n) x_i = \sum_i^{n-1} … \in X_{n-1}$. Tedy
+		$$ \forall m > n: ||T(z_m) - T(z_n)|| = ||\lambda_m z_m - (\underbrace{\lambda_m z_m - T(z_m)}_{\in X_{m - 1}} + T(z_n))|| = |\lambda_m|· ||z_m - \frac{…}{\lambda_m}|| ≥ \frac{R}{2} > 0. $$
+		Tedy jsme nalezli $\frac{R}{2}$ separovanou množinu, tedy $T$ není kompaktní. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $X$ je nekonečněrozměrný Banachův prostor a $T \in ©K(X)$. Potom $\sigma(T) = \{0\} \cup \{\lambda_n\}$, kde $\{\lambda_n\}$ je posloupnost, která je buď konečná, nebo nekonečná a konvergující k 0, a je tvořena nenulovými vlastními čísly operátoru $T$, přičemž každé z nich má konečněrozměrný vlastní podprostor.
+\end{dusledek}
 
 \end{document}

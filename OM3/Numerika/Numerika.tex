@@ -5,6 +5,8 @@
 
 \begin{document}
 
+\part{Lineární algebra}
+
 % 2. přednáška (z minulého roku)
 
 \section*{Organizační úvod}
@@ -151,4 +153,1212 @@
 
 		Tedy přesnost zpětně stabilního algoritmu je (může být) ovlivněna podmíněností problému a strojovou přesností.
 	\end{poznamka}
+
+% 4. přednáška
+
+\section{Schurův rozklad}
+\begin{definice}
+	V dalším bude $||x||$ euklidovská norma, stejně tak $||A||$ bude tzv. spektrální norma, která je odvozena právě od Eukleidovské. $\kappa(S) = ||S||·||S^{-1}||$ je číslo podmíněnosti $S$.
+\end{definice}
+
+\begin{poznamka}
+	Jestliže jsou vstupní data (matice $A$) zatížena chybou $E$, tak transformace prováděné na $A$ budeme provádět i na $E$.
+\end{poznamka}
+
+\begin{poznamka}
+	Matice, které nám nezvětší chybu (tedy ty, co bychom chtěli používat) jsou unitární matice. Platí totiž
+	$$ ||x|| = \sqrt{x^*x} = \sqrt{x^*U^*Ux} = ||Ux||. $$
+	$$ \kappa(U) = 1, \kappa(U^*EU) = \kappa(E). $$
+
+	Tomuto se říká unitární invariantnost spektrální normy. Unitární invariantnost Frobeniovy normy se dokáže také jednoduše $||A||_F^2 = \trace(A^*A) = \trace(A^*U^*UA)$.
+
+	Naopak platí i opačná implikace ($\kappa = 1 \implies$ unitarita), ale tu dokážeme později.
+\end{poznamka}
+
+\begin{veta}[Schurova]
+	Pro libovolnou čtvercovou matici $A$ existuje unitární matice $U$ tak, že
+	$$ R = U^*AU, $$
+	kde $R$ je horní trojúhelníková matice s vlastními čísly matice $A$ na diagonále v libovolném předepsaném pořadí.
+
+	\begin{dukazin}
+		Indukcí podle řádu matice $A$. Pro řád $n = 1$ věta platí. Předpokládejme, že věta platí pro $n$: Nechť je dáno $A \in ®C^{(n+1)\times(n+1)}$ a uspořádání vlastních čísel. Označme $\lambda$ první vlastní číslo v tomto uspořádání, $x$ je příslušný vektor. Doplníme $x$ na čtvercovou unitární $H = (x|X)$,
+		$$ H^* A H = \begin{pmatrix} x^*Ax & x^*AX \\ X^*Ax & X^* AX \end{pmatrix} = \begin{pmatrix} \lambda& b^* \\ 0 & C \end{pmatrix}. $$
+		Na matici $C$ aplikujeme předpoklad indukčního kroku. Součinem $H$ a získané matice (rozšířené o id na první souřadnici).
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Hledání Schurova rozkladu lze převést na hledání kořenů polynomu (a zpět), tedy (z neřešitelnosti hledání kořenů polynomu řádu většího než 5) Schurův rozklad nelze spočítat obecně přesně v konečném množství korků.
+\end{poznamka}
+
+\begin{definice}[Kvazi-trojúhelníková matice]
+	Čtvercová matice $T$ je horní kvazi-trojúhelníková, pokud je blokově horní trojúhelníková a na diagonále má bloky $1 \times 1$ nebo $2 \times 2$.
+\end{definice}
+
+\begin{veta}
+	Nechť $A$ je reálná čtvercová matice. Potom existují ortogonální $U$ a reálná kvazi-trojúhelníková $T$ takové, že
+	$$ T = U^TAU, $$
+	Navíc vlastní čísla každého $2 \times 2$ diagonálního bloku matice $T$ tvoří komplexně sdružený pár.
+
+	\begin{dukazin}
+		Bez důkazu
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$A \in ®C^{n \times n}$ je normální $\Leftrightarrow$ $\exists$ unitární $U$ a diagonální $D$ tak, že
+	$$ U^*AU = D, \qquad A = UDU^*. $$
+\end{dusledek}
+
+\begin{dusledek}[Důsledku]
+	$$ Au_j = \lambda_ju_j. $$
+\end{dusledek}
+
+\begin{dusledek}[Dyadický rozvoj]
+	$$ A = UDU^* = \sum_{i=1}^n \lambda_i u_i u_i^*. $$
+
+	\begin{poznamkain}
+		$||\lambda_i u_i u_i^*|| = |\lambda_i|$.
+	\end{poznamkain}
+\end{dusledek}
+
+\begin{veta}[O hustotě diagonalizovatelných matic]
+	$\forall A \in ®C^{n \times n}$ a pro libovolně malé $\epsilon > 0$ $\exists$ diagonalizovatelná $A_{\epsilon} \in ®C^{n \times n}$ s navzájem různými vlastními čísly tak, že $||A - A_\epsilon|| < \epsilon$.
+
+	\begin{dukazin}
+		Schurova věta nám dává rozklad $A = URU^*$. Není-li $A$ diagonalizovatelná, pak musí mít alespoň jedno násobné vlastní číslo. Zvolme si
+		$$ R_\epsilon = R + D \epsilon, $$
+		aby na diagonále $R_\epsilon$ byly různé hodnoty a $||D_\epsilon|| < \epsilon$. Uvažujme $A_\epsilon := UR_\epsilon U^*$. $A_\epsilon$ má různá vlastní čísla, tedy je diagonalizovatelná a
+		$$ ||A - A_\epsilon|| = ||URU^* - U(R + D_\epsilon)U^*|| = ||UD_\epsilon U^*|| = ||D_\epsilon|| < \epsilon. $$
+	\end{dukazin}
+\end{veta}
+
+% 5. přednáška
+\section{Ortogonální transformace}
+	\subsection{Givensovy rotace}
+	\begin{definice}[Matice Givensovy rotace]
+		Matice
+		$$ G(\phi) = \begin{pmatrix} \cos \phi & -\sin \phi \\ \sin \phi & \cos \phi \end{pmatrix} $$
+		nazveme maticí Givensovy rotace.
+
+		Obdobně definujeme $G_{ij}(\phi)$ (matici elementární Givensovy rotace) pro více rozměrů, kde $G_{ij}(\phi)$ otáčí v rovině $x_ix_j$.
+	\end{definice}
+
+	\begin{poznamka}
+		Vynásobením maticí G. rotace lze např. vynulovat složku vektoru (resp. postupně všechny až na 1).
+		$$ \sin\phi = -\frac{x_j}{\sqrt{x_i^2 + x_j^2}}, \cos\phi = \frac{x_j}{x_i^2 + x_j^2}. $$
+	\end{poznamka}
+
+	\subsection{Householderovy reflexe}
+	\begin{definice}
+		Nechť $q \in ®R^n$ a $||q|| = 1$. Pak matici
+		$$ H(q) = I - 2qq^T \in ®R^{n \times n} $$
+		nazýváme maticí Householderovy reflexe vzhledem k nadrovině určené vektorem $q$.
+
+		\begin{poznamkain}
+			Tato matice je zřejmě ortonormální symetrická a $H^2(q) = I$, $\det(H(q)) = -1$.
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{veta}[O zrcadlení]
+		Nechť jsou dány dva různé vektory $x \in ®R^n$ a $y \in ®R^m$, $||x|| = ||y||$, a nechť
+
+		$$ q_1 := \frac{x - y}{||x - y||}, \qquad q_2 := \frac{x + y}{||x + y||}. $$
+		Potom
+		$$ H(q_1)x = y, \qquad H(q_2)x = -y. $$
+
+		\begin{dukazin}
+			Vektor $x - y$ je kolmý k nadrovině zrcadlení vektoru $x$ na vektor $y$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{poznamka}
+		I pomocí Householderovy reflexe se dá nulovat, za $y$ zvolíme $±||x||e_1$ a najdeme $H(q)$. Můžeme zde narazit na kancelaci (pokud je první složka $x$ „nejvýraznější“), ale té se vyhneme tak, že správně zvolíme znaménko.
+	\end{poznamka}
+
+	\subsection{QR rozklad}
+	\begin{definice}[QR rozklad, ekonomický tvar]
+		Buď $A \in ®C^{n \times m}$ obecně obdélníková. Rozklad
+		$$ A = QR, $$
+		kde $Q$ je matice s ortonormálními sloupci ($Q*Q = I$), $R$ má všechny prvky pod hlavní diagonálou nulové.
+
+		Když odstraníme nulové řádky/sloupce, tak dostaneme tzv. ekonomický tvar QR rozkladu.
+
+		\begin{poznamkain}
+			Lze ho dostat například Gram-Smidtovy ortogonalizace.
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{definice}[Hessenbergův tvar]
+		Matice v horním Hessenbergově tvaru je matice, která je „skoro horní trojúhelníková“ tak, že má ještě jednu diagonálu (pod hlavní) navíc potenciálně nenulovou.
+	\end{definice}
+
+	\begin{poznamka}[Použití QR rozkladu]
+		Řešení soustav, hledání Schurova rozkladu pomocí QR algoritmu: Převedeme na Hessenbergův tvar a následně iteračně $A_i = Q_iR_i$, $A_{i+1} = R_iQ_i$.
+	\end{poznamka}
+
+	\begin{definice}[QR rozklad pomocí reflexí či rotací]
+		Vynulujeme poddiagonální prvky $A$ tak, že nejprve vynulujeme téměř celý první sloupec, pak druhý (bez dvou prvků), pak třetí, …
+	\end{definice}
+
+	\begin{poznamka}
+		Existence plyne z konstrukce, jednoznačný obecně není (pouze pokud $\diag(R)$ jsou jen kladná čísla).
+	\end{poznamka}
+
+% 6. přednáška
+
+	\begin{poznamka}
+		Dále se probírala projekce, viz LA. (Projektor = matice projekce, komplementární projektor = $I - $ matice projekce). A Gram-Smidt + modifikovaná verze.
+	\end{poznamka}
+
+	\begin{definice}[Iterační zpřesnění]
+		Postačuje iterovat dvakrát = projektujeme originální vektor a projektujeme výsledek (= rozdíl originálního vektoru a jeho projekce). (Zde klasický i modifikovaný GS dává podobné)
+	\end{definice}
+
+	\begin{definice}[Cena výpočtu]
+		Cenu výpočtu měříme jako počet aritmetických operací (tzv. flops).
+	\end{definice}
+
+	\begin{poznamka}
+		GS potřebuje $O(n^3)$ operací.
+	\end{poznamka}
+
+	\begin{definice}[Ztráta ortogonality]
+		Ztrátu ortogonality matic vypočtených v ®F budeme měřit pomocí $||E_Q||_2$, kde $E_Q := \hat{Q^*}\hat{Q} - I$.
+
+		\begin{prikladyin}
+			Householderův QR rozklad má ztrátu $O(u)$ stejně jako Givensův a ICGS. CGS má $\kappa^2(A)O(u)$ a MGS má $\kappa(A) O(u)$.
+		\end{prikladyin}
+	\end{definice}
+
+	\begin{poznamka}
+		Householder, Given i MGS jsou zpětně stabilní.
+	\end{poznamka}
+
+	\begin{definice}[Norma rezidua $A - \hat{Q}\hat{R}$]
+		Matice $\hat{Q}$ a $\hat{R}$ vypočtené všemi uvažovanými variantami QR rozkladů splňují
+		$$ ||A - \hat{Q}\hat{R}|| \approx u||A||. $$
+	\end{definice}
+
+% 7. přednáška
+
+\section{LU rozklad}
+\begin{definice}[Eliminační matice]
+	Eliminační matice je $n \times n$ matice $M_k$, která má na diagonále jedničky, v jednom sloupci má pod touto jedničkou nějaké prvky a jinde jsou nuly.
+
+	\begin{poznamkain}
+		Součin eliminačních matic je součet jich bez $I$ sečtený s $I$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[LU rozklad]
+	LU rozklad je rozklad matice $A \in ®C^{n \times n}$ na součin $L·U$, kde $L$ je dolní trojúhelníková s jedničkami na diagonále a $U$ je horní trojúhelníková.
+\end{definice}
+
+\begin{poznamka}
+	S $LU$ rozkladem lze počítat rovnice tak, že nejprve vyřešíme $Ly = b$ a pak $Ux = y$.
+\end{poznamka}
+
+\begin{veta}[O proveditelnosti GE]
+	Gausovu eliminaci (bez prohazování řádků) lze provést právě tehdy, je-li matice $A$ silně regulární (tj. každá hlavní (11, 1122, 1133, 1144, …) podmatice $k \times k$ je regulární).
+
+	\begin{dukazin}
+		Indukcí (podíváme se, co se děje s hlavními podmaticemi a zjistíme, že se upravují tak, že jsou regulární právě tehdy, když po úpravách prvek vpravo dole není nulový).
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Je-li $A \in ®C^{n \times n}$ hermitovská pozitivně definitní (HPD), pak je silně regulární.
+\end{lemma}
+
+\begin{definice}[Choleského rozklad]
+	Nechť $A$ je (HPD). Pak lze provést GE a získat $LU = A = A^* = U^*L^* \implies UL^{-1*}U^* = L^{-1}U^*$ a $D := UL^{-1*}$ je diagonální. Tudíž
+	$$ A = LDL^*. $$
+	Navíc $\forall x ≠ 0: 0 < (L^*x)^* D(L^*x)$ neboli
+	$$ A = LD^{\frac{1}{2}}D^{\frac{1}{2}}L^* = \tilde L· \tilde L^*. $$
+	Tento jednoznačný rozklad nazveme Choleského.
+\end{definice}
+
+\begin{poznamka}
+	Ch rozklad se používá např. pro určení pozitivní definitnosti matice.
+\end{poznamka}
+
+\begin{definice}[GE s částečnou pivotací (GEPP)]
+	Provádíme GE za pomoci eliminačních matic a zároveň prohazujeme řádky, aby aktuálně zpracovávaný pivot byl co největší (z ještě nepoužitých řádků). (Prohození řádků nám jen prohodí řádky v maticích, nemění to dosavadní hodnoty ani eliminovanou část.)
+\end{definice}
+
+\begin{tvrzeni}[Proveditelnost GEPP]
+	GE s částečnou pivotací funguje pro všechny regulární matice.
+
+	\begin{dukazin}
+		Zřejmý.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}[Zpětná stabilita GE]
+	$$ A + E = \hat{L}\hat{U} $$
+	$$ ||E||_∞ ≤ 2nu ||\hat{L}||_∞||\hat{U}||_∞ + O(u^2). $$
+
+	GE jako taková stabilní není, ale s částečnou pivotací už je tzv. podmíněně stabilní, jelikož je to GE na $P·A$, kde $P$ je matice permutace a jelikož pro ni $\hat{L} ≤ 1$, tedy
+	$$ \frac{||\Delta A||_∞}{||A||_∞} ≤ 6n^2 u \frac{||\hat{U}||_∞}{||A||_∞} + O(u^2), $$
+	tedy pokud $\hat{U}$ příliš neroste (pozor, nesouvisí s podmíněností).
+\end{tvrzeni}
+
+\begin{definice}[Škálování]
+	Rovnici $Ax = b$ lze přenásobit diagonální maticí, čímž lze zpřesnit algoritmus.
+\end{definice}
+
+% 8. přednáška
+
+\begin{tvrzeni}
+	Nechť $\hat{L}$ je vypočtený faktor Choleského rozkladu HPD matice $A \in ®C^{n \times n}$ a nechť $2n^{\frac{3}{2}}u < 1$. Potom pro $E$ takovou, že $A + E = \hat{L}\hat{L}^*$, platí
+	$$ ||E||_F ≤ \(\frac{2 n^{\frac{3}{2}}}{1 - 2n^{\frac{3}{2}}u}\)u ||A||_F + O(u^2). $$
+\end{tvrzeni}
+
+\begin{definice}
+	Iterační zpřesnění řešení $Ax = b$ je to, že spočítáme $\hat{x}$, následně reziduum $r = b - Ax$, a s ním jako pravou stranou řešíme další soustavu a výsledek přičteme k $\hat{x}$ a počítáme znovu reziduum…
+
+	Předpokládejme, že $n \kappa(A) \ll 1$. Navíc abychom dosáhli lepšího výsledku, je třeba reziduum spočítat ve vyšší přesnosti než ostatní operace.
+\end{definice}
+
+\begin{definice}[Řídká matice]
+	Matice, kterou je lepší uložit jako seznam nenulových prvků s jejich indexy.
+\end{definice}
+
+\begin{poznamka}
+	Pro řídké matice je třeba matici nejprve správně zpermutovat než budeme provádět GE, aby nevznikalo moc nových prvků.
+\end{poznamka}
+
+\section{Singulární rozklad}
+\begin{veta}[Vztahy mezi spektrálními rozklady $A^*A$ a $\forall ^*$]
+	Uvažujme spektrální rozklad $A^*A$. Potom jsou
+	$$ u_j := \frac{Av_j}{\sqrt{\lambda_j}}, \qquad j \in [r], $$
+	ortonormální vlastní vektory matice $A A^*$ a platí
+	$$ A A^* u_j = \lambda_j u_j, ||u_j|| = 1, \qquad j \in [r]. $$
+\end{veta}
+
+\begin{dusledek}
+	Nenulová vlastní čísla $A^*A$ a $A A^*$ se rovnají. $Av_j = u_j\sqrt{\lambda_j}$.
+
+	$u_1, …, u_r$ je ortonormální báze $R(A A^*) = R(A)$. Doplníme-li $u_1, …, u_r$ na ortonormální bázi prostoru $®C^n$ pomocí $u_{r+1}, …, u_n$, dostaneme $N(A A^*) = N(A^*)$.
+
+	$U := [u_1, …, u_n]$ je unitární a $A A^* U = U\diag(\lambda_1, …, \lambda_r, 0, …, 0)$.
+\end{dusledek}
+
+\begin{definice}[Singulární čísla]
+	$A v_j = \sigma_j u_j$, $\sigma_j := \sqrt{\lambda_1}$, $j \in [r]$. $\sigma_j$ nazveme singulární čísla matice $A$ a označíme
+	$$ \sigma_1 ≥ \sigma_2 ≥ … ≥ \sigma_r > 0. $$
+\end{definice}
+
+\begin{veta}[O singulárním rozkladu]
+	Matici $A \in ®C^{n \times m}$ hodnosti $r$ lze rozložit na součin
+	$$ A = U \Sigma V^*, $$
+	kde $U \in ®C^{n \times n}$ a $V \in ®C^{m \times m}$ jsou unitární, $\Sigma \in ®R^{n \times m}$, kde $\Sigma = \begin{pmatrix} \Sigma_r & 0 \\ 0 & 0 \end{pmatrix}$, $\Sigma_r = \diag(\sigma_1, …, \sigma_r) \in ®R^{r \times r}$.
+\end{veta}
+
+\begin{tvrzeni}
+	Pro HPD matici je singulární rozklad totéž jako spektrální.
+\end{tvrzeni}
+
+% 9. přednáška
+
+\begin{poznamka}
+	Singulární rozklad má také ekonomický tvar i dyadický rozvoj.
+\end{poznamka}
+
+\begin{poznamka}[Aplikace – normy]
+	Spektrální a Frobeniovu normu díky tomu spočítáme jako
+	$$ ||A|| = ||U\Sigma V^*|| = ||\Sigma|| = \sigma_1, $$
+	$$ ||A||_F = ||\Sigma||_F = \sqrt{(\sigma_1^2 + … + \sigma_r^2)}. $$
+
+	Tedy $||A|| ≤ ||A||_F ≤ \sqrt{r}||A||$ a $\kappa(A) := ||A||·||A^{-1}|| = \frac{\sigma_1}{\sigma_n}$. $\kappa(A) = 1 \Leftrightarrow \gamma U$, kde $\gamma ≠ 0$ a $U$ je unitární.
+\end{poznamka}
+
+\begin{definice}[Zobecnění čísla podmíněnosti]
+	Zobecníme $\kappa(A)$ pomocí veličin
+	$$ \maxmag(A) := \max_{||x|| = 1}||Ax||, \minmag(A) := \min_{||x||=1}||Ax||, $$
+	jako
+	$$ \kappa(A) := \frac{\maxmag(A)}{\minmag(A)}. $$
+\end{definice}
+
+\begin{definice}[Pseudoinverze]
+	Pseudoinverzi (Moore-Penroseovu zobecněnou inverzi) matice $A \in ®C^{n \times m}$ definujeme jako
+	$A^\dagger := V \Sigma^\dagger U^*$, kde
+	$$ \Sigma^\dagger = \begin{pmatrix} \Sigma_r^{-1} & 0 \\ 0 & 0 \end{pmatrix} \in ®R^{m \times n}. $$
+\end{definice}
+
+\begin{tvrzeni}
+	Pseudoinverze splňuje následující (a je tím jednoznačně určena):
+	$$ A A^\dagger A = A, \qquad (A A^\dagger)^* = A A^\dagger, \qquad A^\dagger A A^\dagger = A^\dagger, \qquad (A^\dagger A)^* = A^\dagger A. $$
+
+	\begin{dukazin}
+		Jednoznačnost se upočítá převodem jedné na druhou pomocí rovností z tvrzení.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}[O vyjádření pseudoinverze]
+	 Nechť $A \in ®C^{n \times m}$. Je-li $n ≥ m$ a $\rank(A) = m$, potom
+	 $$ A^\dagger = (A^* A)^{-1} A^*. $$
+	 Je-li $n < m$ a $\rank(A) = n$, potom $A^\dagger = A^*(A A^*)^{-1}$.
+
+	 \begin{dukazin}
+	 	Pro $n ≥ m = r$ je $V_m$ unitární čtvercová,
+		$$ A^\dagger = V_m \Sigma_m^{-1} U_m^* = (V_m\Sigma^{-2}V_m^*)(V_m \Sigma U_m^*) = (A^* A)^{-1} A^*. $$
+
+		Druhá analogicky.
+	 \end{dukazin}
+\end{lemma}
+
+\begin{lemma}[O vzdálenosti nejlepší aproximace hodnoci $k$]
+	Nechť $A \in ®C^{n \times m}$. Potom $\forall X \in ®C^{n \times m}$ hodnosti $k < r$ je
+	$$ ||A - X|| ≥ \sigma_{k+1}. $$
+\end{lemma}
+
+\begin{veta}[Eckart, Young, Mirsky]
+	Dána $A \in ®C^{n \times m}$ hodnosti $r$
+	$$ A = \sum_{j=1}^r \sigma_j u_j v_j^*. $$
+	Potom je pro $k < r$ matice
+	$$ A^{(k)} := \sum_{j=1}^k \sigma_j u_j v_j^* $$
+	nejlepší aproximace $A$ hodnosti $k$, $||A - A^{(k)}|| = \sigma_{k+1}$.
+\end{veta}
+
+\begin{dusledek}
+	Nejbližší singulární matice k $A$ je $\frac{\sigma_n}{\sigma_1} = \frac{1}{\kappa(A)}$.
+\end{dusledek}
+
+\begin{definice}[Numerická hodnost]
+	Numerická hodnost $A$ je takové $k$, že
+	$$ \sigma_1 ≥ … ≥ \sigma_k \gg \sigma_{k+1} \approx u. $$
+\end{definice}
+
+\begin{poznamka}[Výpočet SVD]
+	Buď pomocí spektrálního rozkladu $A A^*$ resp. $A^* A$. To má nevýhodu $\kappa(A^* A) = \frac{\sigma_1^2}{\sigma_m^2} = \kappa(A)^2$.
+
+	Nebo algoritmus Golub-Kahan-Reinsch – aplikace Householderových reflexí střídavě zprava a zleva, tím dostaneme tzv. bidiagonální tvar:
+	$$ B = WAQ, W^*W = I, Q^*Q = I. $$
+	Následně iteračně pomocí varianty QR algoritmu spočítáme singulární rozklad $B$. Takto dostaneme přesnost až na úrovni $u$.
+\end{poznamka}
+
+% 10. přednáška
+
+\section{Problém nejmenších čtverců}
+\begin{definice}[Problém nejmenších čtverců (LS)]
+	Nechť $A \in ®C^{n \times m}$, $b \in ®C^n$. Problémem nejmenších čtverců (LS) budeme nazývat úlohu určení $x \in ®C^m$, které minimalizuje
+	$$ ||b - Ax||. $$
+\end{definice}
+
+\begin{definice}[Úplný problém nejmenších čtverců]
+	Stejně jako LS, jen budeme minimalizovat $[\Delta b, \Delta A]_F$, kde
+	$$ (A + \Delta A)x = b + \Delta b. $$
+\end{definice}
+
+\begin{veta}[O řešení LS]
+	Nechť $A \in ®C^{n \times m}$, $b \in ®C^n$.
+	$$ x \text{ řeší LS } \Leftrightarrow Ax = b|_{R(A)}. $$
+
+	\begin{dukazin}
+		V LA.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Řešení LS a soustava normálních rovnic]
+	Nechť $A \in ®C^{n \times m}$, $b \in ®C^n$. Vektor $x$ je řešením problému LS $\Leftrightarrow$ je-li řešením soustavy normálních rovnic,
+	$$ A^*Ax = A^*b. $$
+
+	\begin{dukazin}
+		V LA.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Má-li $A$ plnou sloupcovou hodnost, je $A^*A$ regulární a soustava normálních rovnic má jednoznačné řešení,
+	$$ x = A^\dagger b. $$
+\end{poznamka}
+
+\begin{veta}[Řešení LS minimalní v normě]
+	Nechť $A \in ®C^{n \times m}$, $b \in ®C^n$. Potom existuje právě jedno řešení $x$ problému LS minimální v normě a je dáno vztahy
+	$$ Ax = b|_{R(A)} a x \in R(A^*). $$
+	
+	\begin{dukazin}
+		Rozepíšeme z Pythagorovy věty a omezíme normu.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Řešení LS]
+	Buď pomocí $A^*Ax = A^*b$, kde použijeme Choleského rozklad.
+
+	Nebo použijeme QR rozklad a řešíme $\min_x ||b - QRx|| = \min_x||Q^*b - Rx||$ a
+	$$ \binom{Q^*_m b}{\tilde Q_m^*b} - \binom{R_m}{0}x = \binom{Q_m^* b - R_m x}{\tilde Q_m^* b}. $$
+
+	Rozšířenou soustavou rovnic (tzv. sedlobodová matice):
+	$$ A^*Ax = A^*b \Leftrightarrow A^*(b - Ax) = 0, $$
+	$$ \begin{pmatrix} I & A \\ A^* & 0 \end{pmatrix} \binom{b - Ax}{x} = \binom{b}{0}. $$
+\end{poznamka}
+
+\begin{lemma}[O sedlobodové matici]
+	Uvažujme matici
+	$$ C = \begin{pmatrix} B & A \\ A^* & 0 \end{pmatrix}, $$
+	kde $B \in ®C^{n \times n}$ je hermitovská pozitivně definitní a $A \in ®C^{n \times m}$, $n ≥ m$, má plnou sloupcovou hodnost. Potom je $C$ regulární, hermitovská a indefinitní.
+
+	\begin{dukazin}
+		Hermitovskost zřejmá, regularita:
+		$$ \begin{pmatrix} B & A \\ A^* & 0 \end{pmatrix} \binom{\delta}{x} = \binom{0}{0} \implies \binom{\delta}{x} = 0. $$
+		Protože pro první rovnici $B\delta + Ax = 0$ přenásobíme $A^*B^{-1}$ a s využitím $A^*\delta = 0$ získáme $A^*B^{-1}Ax = 0$. $A^*B^{-1}A$ je regulářní, tj. $x = 0$ a $B \delta = 0 \implies \delta = 0$.
+
+		Indefinitnost dostaneme ze spektrálního rozkladu $C = U\Lambda U^*$. Pro $v ≠ 0$, $v = (0, \nu_{n+1}, …, \nu_{n + m})^T$ platí
+		$$ v^* C v = v^* U \Lambda U^* v = \sum_{j=1}^{m+n} \lambda_j |u_j^*v|^2, $$
+		tedy musí existovat kladná i záporná čísla.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[LS a rozšířená soustava rovnic]
+	$A \in ®C^{n \times m}$, $n ≥ m$, $b \in ®C^n$, $\rank(A) = m$. Řešení $x$ problému LS lze nalézt řešením rozšířené soustavy
+	$$ \begin{pmatrix} I & A \\ A^* & 0 \end{pmatrix} \binom{b - Ax}{x} = \binom{b}{0}. $$
+\end{veta}
+
+\begin{veta}[LS a singulární rozklad]
+	Nechť $A \in ®C^{n \times m}$, $b \in ®C^n$, $A = U_r \Sigma_r V_r^*$ je ekonomický SVD, pak
+	$$ x = A^\dagger b $$
+	je řešení LS minimální v normě.
+	
+	\begin{dukazin}
+		Řešení $x$ minimální v normě je dáno jednoznačně
+		$$ Ax = b|_{R(A)} \land x \in R(A^*). $$
+		Ze SVD známe ortogonální projektor na $R(A)$:
+		$$ b|_{R(A)} = (U_rU_r^*)b. $$
+		
+		Dosazením za $A$ a $b|_{R(A)}$ dostaneme
+		$$ U_r\Sigma_rV_r^* x = U_rU_r^* b, $$
+		$$ V_r^* x = \Sigma_r^{-1} U_r^* b. $$
+
+		Ve $V_r$ je ortonormální báze $R(A)$ a $x \in R(A^*) \implies x = V_r y$. Dosazením dostaneme $y = V_r^* x = \sigma_r^{-1} U_r^* b$.
+	\end{dukazin}
+\end{veta}
+
+% 11. přednáška
+
+\section{Klasické iterační metody}
+\begin{definice}[Matrixfree computation]
+	Výpočet s maticí, kterou ani nemáme nikde uloženou (jen mohu např. dopočítávat její prvky).
+\end{definice}
+
+\begin{poznamka}
+	Když provádíme matrixfree výpočty nebo výpočty s velmi řídkými metodami, tak rozklady nefungují a musíme použít iterační metody.
+\end{poznamka}
+
+\begin{definice}[Částečný problém vlastních čísel]
+	Úkolem je nalézt část vlastních čísel. (Úplný problém vlastních čísel, tj. najít všechna čísla se musí řešit Schurovým rozkladem.)
+\end{definice}
+
+\begin{definice}[Mocninná metoda]
+	Nechť $A \in ®C^{n \times n}$ je diagonalizovatelná, $A = S \Lambda S^{-1}$, $\Lambda = \diag(\lambda_1, …, \lambda_n)$ vlastní čísla $A$, $|\lambda_1| ≥ |\lambda_2| ≥ … ≥ |\lambda_n|$, $S = [s_1, …, s_n]$ normované vlastní vektory.
+
+	Pro jednoduchost nechť $|\lambda_1| > |\lambda_2|$. Nechť $v$ je nenulový startovací vektor. Mocninná metoda je pak: $v_0 = \frac{v}{||v||}$ následované opakováním $w = Av_{k-1}$, $v_k = \frac{w}{||w||}$, $\mu_k = v_k^* A v_k$.
+
+	\begin{poznamka}
+		$v_k = \frac{A^k v}{||A^k v||}$, neboť $v_k$ je $A$ $k$-krát aplikované na $v_0$ dělené nějakými čísly, ale víme, že $||v_k|| = 1$. Tedy (za předpokladu $\zeta_1 ≠ 0$)
+		$$ A^kv = \sum_{j=1}^n \zeta_j \lambda_j^k s_j, \qquad v_k = \frac{A^k v}{||A^kv||} = \frac{\zeta_1 \lambda_j^k · \sum_{j=2}^n \frac{\zeta_j}{\zeta_1}\(\frac{\lambda_j}{\lambda_1}\)^k s_j}{|\zeta_1 \lambda_1^k| · ||…||} \rightarrow e^{i \alpha_k}s_1, $$
+		tj. $v_k \rightarrow e^{i \alpha_k}s_1$, $\mu_k = v_k^* A v_k \rightarrow \lambda_1$.
+	\end{poznamka}
+\end{definice}
+
+\begin{definice}[Modifikace mocninné metody]
+	$Ax = \lambda x \Leftrightarrow A^{-1} x = \frac{1}{\lambda} x$.
+	Tedy spočítáme LU rozklad a pomocí něho $w = A^{-1}v_{k-1}$ jako řešení
+	$$ Aw = v_{k-1}. $$
+
+	Navíc pokud známe aproximaci $\mu$ vlastního čísla $\lambda$, pak můžeme pomocí
+	$$ Ax = \lambda x \Leftrightarrow (A - \mu I)x = (\lambda - \mu) x \Leftrightarrow (A - \mu I)^{-1} x = \frac{1}{\lambda - \mu}x, $$
+	kde budu hledat $\frac{1}{\lambda - \mu}$ jako největší vlastní číslo $(A - \mu I)^{-1}$.
+\end{definice}
+
+\begin{definice}[Obecné iterační schéma]
+	Formálně rozštěpíme $A$ na $A = M - N$, kde $M$ je regulární a systém s $M$ je lehce řešitelný. Potom
+	$$ Ax = b \Leftrightarrow (M - N)x = b \Leftrightarrow Mx = Nx + b. $$
+	Iterační proces je pak, že $x_0$ je dáno a $Mx_k = Nx_{k-1} + b$. Použijeme-li $Mx = Nx + b$, dostáváme
+	$$ M(x - x_k) = N(x - x_{k-1}), $$
+	$$ x - x_k = M^{-1}N(x - x_{k-1}) = … = \(M^{-1}N\)^k. $$
+	Tedy pokud $\(M^{-1}N\)^k$ konverguje k 0, tak nám chyba konverguje k 0.
+
+	$M^{-1}N$ můžeme přepsat jako $I - M^{-1}A$. Ideálně tedy $A \approx M$. Stejně tak $Mx_k = Nx_{k-1} + b$ můžeme přepsat na $x_{k-1} + M^{-1} (b - Ax_{k-1})$, kde $r_{k-1} := b - Ax_{k-1}$ nazveme reziduum.
+\end{definice}
+
+\begin{definice}[Spektrální poloměr]
+	 Pro $B \in ®C^{n \times n}$ nazveme $\rho(B) := \max \{|\lambda| | \lambda \text{ je vlastní číslo }B\}$ spektrálním poloměrem matice $B$.
+\end{definice}
+
+\begin{veta}[Oldenburgova]
+	Nechť $B \in ®C^{n \times n}$. Platí
+	$$ B^{k} \rightarrow 0 \Leftrightarrow \rho(B) < 1. $$
+
+	\begin{dukazin}
+		Jordanův rozklad.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Posloupnost $x_k$ generovaná
+	$$ x - x_k = (M^{-1} N)^k (x - x_0) $$
+	konverguje k řešení $\forall x_0$ právě tehdy, když
+	$$ \rho(M^{-1}N) < 1. $$
+\end{dusledek}
+
+\begin{tvrzeni}[Postačující podmínka konvergence iteračního schématu]
+	$||M^{-1}N|| < 1 \implies \rho(M^{-1}N) < 1$, kde $||·||$ je generovaná nebo Frobeniova norma.
+
+	\begin{dukazin}
+		$$ |\lambda| = ||\lambda v|| = ||B v|| ≤ ||B||. $$
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Platí pro každou multiplikativní normu.
+	\end{poznamkain}
+\end{tvrzeni}
+
+% 12. přednáška
+
+\begin{definice}[Richardsonova metoda]
+	$M = \frac{1}{\omega} I$, $N = \frac{1}{\omega}I - A$, iterační matice je pak $I - \omega A$ a iterační schéma
+	$$ x_k = x_{k-1} + \omega(b - Ax_{k-1}). $$
+
+	Vhodná, pokud je $A$ blízká násobku jednotkové matice.
+\end{definice}
+
+\begin{definice}[Jacobiova iterační metoda]
+	Dále uvažujme štěpení ve tvaru $A = D - L - U$, kde $D$ je diagonála, $L$ je dolní trojúhelníková a $U$ je horní. Pak (pokud jsme $A$ zpermutovali tak, aby na diagonále nebyly 0)
+	$$ M = D, N = L + U, $$
+	iterační matice je $I - D^{-1}A$, iterační schéma $x_k = x_{k-1} + D^{-1}(b - Ax_{k-1})$.
+
+	Vhodná, pokud je $A$ blízká diagonální matici.
+\end{definice}
+
+\begin{definice}[Gauss-Seidelova metoda]
+	Většinou Jacobiovu iterační metodu najdeme rozepsanou po složkách:
+	$$ \zeta_{k, i} = \frac{1}{a_{i, i}} \(- \sum_{j=1, j ≠ i}^{n} A_{i, j} \zeta_{k-1, j} + b_i\). $$
+	Tady můžeme dokonce využít i již spočtené složky ($\zeta_{j, k}$ pro $j < i$), tedy přesněji spočítané složky, pak dostaneme tzv Gauss-Seidelovu metodu. Navíc si stačí pamatovat jen 1 vektor.
+\end{definice}
+
+\begin{definice}[Superrelaxační metoda]
+	$$ A = \frac{1}{\omega}D - L - \[(\frac{1}{\omega} - 1)D + U\]. $$
+	Tou se dále nebudeme zabývat.
+\end{definice}
+
+\begin{definice}[Ostře diagonálně dominantní]
+	O matici $A \in ®C^{n \times n}$ budeme říkat, že je ostře diagonálně dominantní, pokud
+	$$ \sum_{j=1, j≠i}^n |a_{i, j}| < |a_{i, i}|, \forall i \in [n]. $$
+\end{definice}
+
+\begin{veta}[Ostře diagonálně dominantní matice]
+	Je-li $A \in ®C^{n \times n}$ ostře diagonálně dominantní, pak aproximace $x_k$ spočtené Jacobihe nebo Gauss-Seidelovou metodou konvergují k řešení $Ax = b$ pro libovolné počáteční přiblížení $x_0$.
+
+	\begin{dukazin}
+		Stačí ukázat $||D^{-1}(L + U)|| < 1$ pro nějakou generovanou maticovou normu. Zvolme $||·||_∞$. Platí (jelikož $A$ je ostře diagonálně dominantní).
+		$$ ||D^{-1}(L + U)||_∞ = \max_{1 ≤ i ≤ n} \sum_{j=1, j≠i}^n \frac{|a_{i, j}|}{|a_{i, i}|} < 1. $$
+
+		Ukažme $||(D - L)^{-1}U ||_∞ < 1$: Generovaná norma $\implies$ $\exists v, ||v||_∞ = 1:$
+		$$ ||(D - L)^{-1} U||_∞ = ||(D - L)^{-1}Uv||_∞ =: ||u||_∞ $$
+		a platí
+		$$ (D - L)u = Uv. $$
+		Nechť $s$ je takové, že $|u_s| = ||u||_∞$. Pak
+		$$ \sum_{i=1}^s a_{s, i}u_i = - \sum_{i=s+1}^n a_{s, i} v_i $$
+		a odtud
+		$$ ||u||_∞ = |u_s| ≤ ||u||_∞ \underbrace{\sum_{i=1}^{s - 1} |\frac{a_{s, i}}{a_{s, s}}|}_\alpha + \underbrace{\sum_{i=s+1}^n |\frac{a_{s, i}}{a_{s, s}}|}_\beta. $$
+		Platí $\alpha + \beta < 1$ (ostře diagonálně dominantní) a 
+		$$ ||u||_∞ ≤ \frac{\beta}{1 - \alpha} < 1. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Pozitivně definitní matice]
+	Je-li $A \in ®C^{n \times n}$ hermitovská pozitivně definitní, pak $x_k$ generované GS metodou konvergují k řešení $Ax = b$ pro každé $x_0$.
+
+	\begin{dukazin}
+		$$ A = D - L - L^* = \sqrt{D}\sqrt{D} - L - L^*. $$
+		Chceme ukázat, že vlastní čísla iterační matice $G := (D - L)^{-1} L^*$ leží uvnitř jednotkového kruhu.
+		$$ G = \frac{1}{\sqrt{D}} (I - \underbrace{\frac{1}{\sqrt{D}}L\frac{1}{\sqrt{D}}}_Z)^{-1 \underbrace{\frac{1}{\sqrt{D}}L^*\frac{1}{\sqrt{D}}}_{Z^*}} \sqrt{D}, $$
+		tj. $G$ je podobná $(I - Z)^{-1}Z^*$. Uvažujme vlastní pár $(\lambda, v)$ této matice
+		$$ (I - Z)^{-1}Z^*v = \lambda v, v^* v = 1. $$
+		Potom
+		$$ v^*Z^*v = \lambda v^* (I - Z)v = \lambda(1 - v^* Z v), $$
+		$$ \lambda = \frac{v^* Z v}{1 - v^* Z v}, $$
+		Stačí ukázat (z rozepsání), že $1 - 2\Re(v^* Z v) > 0$. Matice
+		$$ D^{-\frac{1}{2}}(D - L - L^*)D^{-\frac{1}{2}} = I - Z - Z^* $$
+		je pozitivně definitní a proto
+		$$ 0 < v^*(I - Z - Z^*)v = 1 - 2\Re(v^* Z v). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Přechodový jev]
+	Přechodový jev je jev, kdy se při iterační metodě (při $||I - M^{-1}A|| > 1$ a $\rho(I - M^{-1}A) < 1$) stane, že se na chvíli $x_k$ začne zase vzdalovat od řešení.
+\end{definice}
+
+\section{Metody Krylovových podprostorů}
+\begin{definice}[Krylovův podprostor]
+	Prostor
+	$$ ©K_k(A, v) := \spn\{v, Av, A^2v, …, A^{k-1}v\}, $$
+	se nazývá $k$-tý Krylovův podprostor generovaný $A$ a $v$.
+
+	Platí $w_{k-1} \in ©K_k(A, w)$, $x_k \in ©K_k(A, b)$.
+\end{definice}
+
+\begin{definice}[Metoda sdružených gradientů]
+	$A \in ®R^{n \times n}$ symetrická, pozitivně definitní, problém $Ax = b$. Označme $x_*$ řešení. $A$, $b$ definují kvadratický funkcionál $©F: ®R^n \rightarrow ®R$
+	$$ ©F(x) := \frac{1}{2}x^T A x - x^T b, $$
+	jelikož je $A$ pozitivně definitní a symetrická, tak definuje skalární součin a normu. Platí
+	$$ ©F(x) = \frac{1}{2}x(x_* - x)^T A(x_* - x) - \frac{1}{2}x_*^T Ax_* = \frac{1}{2} ||x_* - x||_A^2 - \frac{1}{2}||x_*||_A^2 = \frac{1}{2}||x_* - x||_A^2 + ©F(x_*). $$
+
+	Tudíž $Ax_* = b \Leftrightarrow x_*$ minimalizuje $©F$.
+
+% 13. přednáška
+
+	Funkcionál budeme minimalizovat tak, že $x_{k+1} = x_k + \gamma_k p_k$, kde $\gamma_k$ je správná velikost a $p_k$ správný směr. Protože $©F$ je kvadratický, můžeme volit $\gamma_k = \frac{p_k^Tr_k}{p_k^T A p_k}$, kde $r_k := b - Ax_k$ je reziduum.
+
+	O reziduu víme
+	$$ r_{k+1} = r_k - \gamma_k A p_k, $$
+	tedy nemusíme pro jeho výpočet znovu násobit.
+
+	Volbou $p_k = r_k$ dostaneme metodu největšího spádu. Tato metoda však může konvergovat velmi pomalu.
+\end{definice}
+
+\begin{definice}[Volba směrového vektoru]
+	TODO.
+\end{definice}
+
+\begin{veta}[O metodě sdružených směrů]
+	Buď $A \in ®R^{n \times n}$ symetrická pozitivně definitní, $b \in ®R^n$. Nechť $\{p_i\}_{i=0}^{n-1}$ tvoří $A$-ortogonální bázi $®R^n$ a nechť $x_0 \in ®R^n$ je libovolné počáteční přiblížení. Uvažujme posloupnost vektorů $x_{k+1} = x_k + \gamma_k p_k$, kde
+	$$ \gamma_k = \frac{p_k^T r_k}{p_k^T Ap_k}, \qquad r_k = b - Ax_k. $$
+	Potom $x_n = x_*$, kde $x_*$ je řešení systému $Ax = b$. Navíc platí, že $x_k - x_0$ je $A$-ortogonální projekcí počáteční chyby $x_* - x_0$ na prostor $S_k := \spn\{p_0, …, p_{k-1}\}$.
+
+	\begin{dukazin}
+		Vyjádřeme $x_* - x_0$ v bázi $p_0, …, p_{n-1}$,
+		$$ x_* - x_0 = \sum_{i=1}^{n-1} \alpha_i p_i, \qquad \alpha_i = \frac{p_i^T A (x_* - x_0)}{p_i^T A p_i}. $$
+		Z definice metody plyne
+		$$ x_k - x_0 = \gamma_0 p_0 + … + \gamma_{k-1}p_{k-1} $$
+		a pro další koeficient $\gamma_k$ platí
+		$$ \gamma_k = … = \alpha_k. $$
+		Koeficienty $\gamma_i$ se rovnají koeficientům $\alpha_i$ a $x_n = x_0 + \sum_{i=0}^{n-1} \alpha_i p_i = x_*$.
+
+		Navíc
+		$$ x_* - x_0 = (x_k - x_0) + (x_* - x_k) $$
+		a $x_* - x_0 \perp_A S_k$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$©F(x_k) = \min_{x \in x_0 + S_k} ©F(x)$.
+
+	Navíc
+	$$ x_* - x_k \perp_A S_k \Leftrightarrow r_k \in S_k. $$
+\end{dusledek}
+
+\begin{poznamka}[Jak generovat $A$-ortogonální bázi, metoda sdružených gradientů]
+	Pokud $r_{k+1}$ je nulové, tak $r_{k+1}$ je řešení, jinak $r_{k+1} \perp S_{k+1} = \spn \{p_0, …, p_k\}$. K rozšíření ortogonální báze použijeme reziduum $r_{k+1}$:
+	$$ p_{k+1} = r_{k+1} - \sum_{j=0}^k c_{k, j}p_j, \qquad c_{k, j} = \frac{\<r_{k+1}, p_j\>_A}{\<p_j, p_j\>_A}. $$
+
+	Abychom si nemuseli pamatovat všechna $p_j$, tak si všimneme, že
+	$$ c_{k, j} = \frac{r_{k+1}^T A p_j}{p_j^T A p_j} = 0, \qquad j < k. $$
+	Tj. $p_{k+1} = r_{k+1} - c_{k, k}p_k$.
+
+	TODO kosmetické úpravy výpočtů.
+\end{poznamka}
+
+\begin{lemma}[CG a Krylovovy podprostory]
+	Po $k$ iteracích metody sdružených gradientů s $r_j ≠ 0$, $j \in [k]$, platí
+	$$ S_{k+1} = ©K_{k+1}(A, r_0). $$
+
+	\begin{dukazin}
+		Indukcí: pro $k = 0$ platí triviálně. Nechť $S_k = ©K_k(A, r_0)$. Pak z
+		$$ r_k = r_{k-1} - \gamma_{k-1} A p_{k-1}, \qquad p_k = r_k + \delta_k p_{k-1} $$
+		plyne $p_k, r_k \in ©K_{k+1}(A, r_0)$, a proto
+		$$ S_{k+1} \subseteq ©K_{k+1}(A, r_0). $$
+		Z lineární nezávislosti $r_0, …, r_k$ pak plyne rovnost.
+	\end{dukazin}
+\end{lemma}
+
+% 14. přednáška
+
+TODO.
+
+\begin{definice}[Stupeň vektoru vzhledem k matici]
+	Maximální dimenzi, jež mohou Krylovy podprostory generované maticí $A$ a vektorem $v$ dosáhnout, budeme nazývat stupněm $v$ vzhledem k $A$ a značit $d(A, v)$.
+\end{definice}
+
+\begin{definice}[Arnoldiho algoritmus]
+	Báze $v, Av, …, A^{k-1}v$ Krylovových podprostorů není vhodná k výpočtům (je velmi podmíněná). Chtěli bychom ortogonální bázi. Nechť $k < d(A, v)$ a nechť $v_1, …, v_k$ splňují
+	$$ v_{i_1} \in ©K_{i+1}(a, v) \setminus ©K_i(A, v), \spn \{v_{[i]}\} = ©K_i(A, v), i \in [k-1]. $$
+	Potom $A v_k \in ©K_{k+1}(A, v) \setminus ©K_k(A, v)$. Idea je projekce:
+	$$ w = A_{v_k} - \sum_{i=1}^k h_{i, k}v_i, \qquad v_{k+1} = \frac{w}{||w||}, $$
+	kde $h_{i, k}$ jsou vhodně zvolené koeficienty, aby $w \perp v_i$.
+
+	Tomuto algoritmu se říká Arnoldiho algoritmus a najde ortogonální bázi celého invariantního prostoru $©K_d(A, v)$. Je to vlastně QR rozklad matice $(v_1|Av_1|…|Av_k)$.
+\end{definice}
+
+\begin{definice}[Arnoldiho metoda]
+	TODO.
+\end{definice}
+
+\begin{definice}[Lanczosův algoritmus]
+	Arnoldiho algoritmus na symetrickou $A$ se nazývá Lanczosův algoritmus. Ortogonální bázi Krylovova prostoru lze pro symetrickou matici $A$ počítat tříčlennou rekurencí.
+\end{definice}
+
+% 15. přednáška
+
+\part{Matematická analýza}
+\section{Nelineární algebraické rovnice}
+\begin{definice}[Nelineární algebraické rovnice]
+	Základním problémem je, že máme \emph{spojitou} funkci $f: [a, b] \rightarrow ®R$ a hledáme $f(x_*) = 0$.
+\end{definice}
+
+\begin{definice}[Metoda bisekce (půlení intervalů)]
+	Na začátku potřebujeme dva body, kde je funkce kladná a záporná. Dokud je interval větší než požadovaná přesnosti, tak interval rozpůlíme a zahodíme jeden z původních bodů tak, aby funkce v zbylých bodech byla zase kladná a záporná.
+
+	Z Darbouxovy věty víme, že mezi dvěma body v libovolné iteraci algoritmu je $x_*$. Zároveň interval se zmenšuje vždy na polovinu (to je pomalé, ale jisté). Nedá se zobecnit na soustavy.
+\end{definice}
+
+\begin{definice}[Regula falsi]
+	Jako bijekce, jen nepůlíme, ale dělíme interval v poměru funkčních hodnot (vezmeme kořen lineární funkce, která odpovídá funkční hodnotě v těchto 2 bodech). Obecně je rychlejší než bijekce, ale někdy je pomalejší. Stále vždy funguje.
+\end{definice}
+
+\begin{definice}[Newtonova metoda (metoda tečen)]
+	Pracujeme pouze s jedním bodem $x_0$. Vychází z $0 = f(x_*) = f(x_0) + f'(x_0)(x_* - x_0) + R \implies x_* \approx x_0 - \frac{f(x_0)}{f'(x_0)}$.
+
+	Problém je, že metoda konverguje jen lokálně, jinak se můžeme naopak vzdalovat nebo se zacyklit. Dokonce platí věta (Li-Yoshe), že pro polynom s alespoň 3 různými kořeny v ®R a $p \in ®N$ existuje $x_0$, tak, že Newton má periodu $p$. Nebo může nastat úplný chaos.
+\end{definice}
+
+\begin{definice}[Řád konvergence, rychlost konvergence]
+	Mějme posloupnost $\{x_n\}_{n=0}^∞$, $x_n \rightarrow x_*$, $e_n := x_n - x_*$ je chyba v $n$-té iteraci.
+
+	Nechť $\exists p > 0$, $c > 0$: $\lim_{n \rightarrow ∞} \frac{|e_{n+1}}{e_n}^p = C$, řekneme, že $\{x_n\}_{n=0}^∞$ má řád konvergence $p$. Metoda je řádu $p$, jestliže $\forall$ posloupnost generovaná touto metodou má řád alespoň $p$ a alespoň jedna posloupnost má řád přesně $p$.
+\end{definice}
+
+\begin{veta}[Lokální kvadratická konvergence Newtona]
+	Předpokládejme $f \in C^2([a, b])$, $f'(x_*) ≠ 0$, $\exists x_* \in (a, b)$, $x_0$ je dostatečně (dá se rigorózně napsat jak) blízko $x_*$. Pak $\{x_n\}_{n=0}^∞$ z Newtonovy metody konverguje kvadraticky k $x_*$.
+
+	\begin{dukazin}
+		1. Nechť $x_k \rightarrow x_*$, dokážeme že konverguje kvadraticky:
+		$$ 0 = f(x_*) = f(x_k) + f'(x_k)(x_* - x_k) + \frac{1}{2}f''(\xi_k)(x_* - x_k)^2, \qquad \xi_k \in [x_k, x_*]. $$
+		$$ - \frac{f(x_k)}{f'(x_k)} + x_k - x_* = \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} (x_k - x_*)^2 \implies e_{k+1} = \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2 \implies $$
+		$$ \lim_{k \rightarrow ∞} \frac{|e_{k+1}|}{|e_k|^2} = \lim_{k \rightarrow ∞} \frac{1}{2} |\frac{f''(\xi_k)}{f'(x_k)}| = \frac{1}{2} \frac{f''(x_*)}{f'(x_*)} = C > 0. $$
+
+		2. $x_k \rightarrow x_*$: $e_{k+1} = \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e^2_k$. $|f''|$ omezená na $[a, b]$, $f'(x_*) ≠ 0$, $f'$ je spojitá $\implies$ $\exists U \in ©U(x_*): |f'| > 0$ na $U$. Tedy 
+		$$ \exists M < ∞: |\frac{f''(x)}{f'(y)}| ≤ M \forall x, y \in U. $$
+		$$ |e_{k+1}| ≤ \frac{1}{2} M |e_k|·|e_k| ≤ \frac{1}{2}|e_k| $$
+		pro dostatečně malé $e_k$.
+	\end{dukazin}
+\end{veta}
+
+% 16. přednáška
+
+\begin{poznamka}[Cayley 1879]
+	Newton funguje i pro ®C. Ale je nemožné uhádnout, ke kterému kořeni. Viz \url{https://demonstrations.wolfram.com/ComplexNewtonIterationForACubicPolynomial/}
+\end{poznamka}
+
+\begin{definice}[Zastavovací kritéria]
+	Konvergence, splnění nerovnice, 
+
+	Absolutní = nezávisí na hodnotě cíle, relativní = chybu měřím relativně vůči hodnotě cíle.
+\end{definice}
+
+\begin{definice}[Modifikace Newtona]
+	Diference: místo derivace používáme diferenci.
+
+	Metoda sečen: použijeme $x_{k+1} = x_k - \frac{f(x_k)}{\frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}}$. (Řád = $\frac{1 + \sqrt{5}}{2}$.)
+\end{definice}
+
+	\subsection{Iterace funkcí}
+	\begin{definice}[Iterace funkcí]
+		$f(x_*) = 0$. Metoda $x_{k+1} = g(x_k)$. Nechť $x_k \rightarrow x_*$, $g$ spojité, pak $x_* = g(x_*)$.
+	\end{definice}
+
+	\begin{definice}[Kontrakce]
+		$g: [a, b] \rightarrow ®R$ je kontrakce (kontrahující), pokud $\exists L < 1:$
+		$$ \forall x, y \in [a, b]: |g(x) - g(y)| ≤ L|x-y|. $$
+		Tj. $g$ je $L$-lipschitzovská $L < 1$.
+	\end{definice}
+
+	\begin{veta}[Banachova věta o kontrakci]
+		Nechť $g: [a, b] \rightarrow [a, b]$ je kontrakce. Pak $\exists!$ pevný bod $x_* \in [a, b]$. Dále $\forall x_0 \in [a, b]: x_k \rightarrow x_*$, kde $x_{k + 1} = g(x_k)$. Platí odtud $|x_k - x_*| ≤ \frac{L^k}{1 - L}|x_1 - x_0| \rightarrow 0$ pro $k \rightarrow ∞$.
+
+		\begin{dukazin}
+			$$ |x_k - x_{k-1}| = |g(x_{k-1}) - g(x_{k-2})| ≤ L|x_{k-1} - x_{k-2}| ≤ … ≤ L^{k-1} |x_1 - x_0|. $$
+			$\{x_k\}$ je cauchyovská: $k > l: |x_k - x_l| ≤ (L^{k-1} + … + L^l) |x_1 - x_0| ≤ \frac{L^l}{1 - L}|x_1 - x_0| \rightarrow 0$. Tj. $\exists x_*: x_k \rightarrow x_*$. $g$ je kontrahující, tedy $g$ je spojitá $\implies g(x_*) = g(\lim_{n \rightarrow ∞} x_n) = \lim_{n \rightarrow ∞} g(x_n) = \lim_{n \rightarrow ∞} x_{n+1} = x_*$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{poznamka}[Soustavy nelineárních rovnic]
+		Jsou složitější, výpočetní náklady velmi rostou s $N$. Lze použít Newtonovu metodu ($x_{k+1} = x_k - J_f(x_k)^{-1} F(x_k)$).
+	\end{poznamka}
+
+% 17. přednáška
+
+\section{Optimalizace}	
+\begin{definice}[Optimalizace, nepodmíněná a podmíněná optimalizace]
+	Máme $f: ®R^n \rightarrow ®R$ a chceme $\overline{x} = \argmin_{x \in M} f(x)$, kde $M \subseteq ®R^n$. Pokud $M = ®R^n$, pak je to nepodmíněná, jinak podmíněná.
+
+	Minimum můžeme hledat i lokální (a většinou nic víc neumíme).
+\end{definice}
+
+	\subsection{Minimalizace v ®R}
+	\begin{definice}[Metoda zlatého řezu]
+		Podobně jako metoda bisekce, jen se podíváme na funkční hodnoty ve dvou bodech a posuneme kraj intervalu, který je „u“ větší hodnoty do daného bodu.
+
+		Body budeme volit tak, abychom mohli „recyklovat“ spočtené funkční hodnoty. Tedy pokud jsou krajní body $a, b$, tak nové body zvolíme $a + \rho(b - a)$ a $b - \rho(b - a)$, kde $\rho$ je $1 -$ zlatý řez.
+
+		\begin{poznamkain}
+			Vždy funguje. (Ale hledá pouze lokální minimum.)
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{definice}[Newtonova metoda pro minimalizaci]
+		Jako Newtonova metoda. Aproximujeme $f \approx p$, $p$ kvadratický polynom, $\overline{x} \approx \argmin p$. Pokud je $f \in C^2(®R)$, zvolíme
+		$$ f(x) \approx f(x_0) + f'(x_0)(x - x_0) + \frac{1}{2}f''(x_0)(x - x_0)^2. $$
+		Pak hledáme $p'(x) = 0$, tj. $f'(x_0) + f''(x_0)(x - x_0) = 0$. Tedy iterujeme $x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}$. Je to vlastně Newtonova metoda pro hledání $f'(x) = 0$.
+	\end{definice}
+
+	\subsection{Optimalizace v $®R^n$}
+	\begin{definice}[Spádový směr]
+		Dáno $x \in ®R^n$, pak směr $d \in ®R^n$ je spádový, pokud $\exists \overline{\alpha} > 0: f(x + \alpha d) < f(x) \forall \alpha \in (0, \overline{\alpha})$.
+	\end{definice}
+
+	\begin{definice}[Metody spádových směrů]
+		Dáno $x_0 \in ®R^n$, chceme $\{x_k\}_{k \in ®N}$, $x_k \rightarrow \overline{x}$. Hledáme tuto posloupnost tvaru $x_{k+1} = x_k + \alpha_k d_k$, kde $d_k$ je směr a $\alpha \in ®R^+$ je koeficient tak, aby $f(x_{k+1}) < f(x_k)$.
+	\end{definice}
+
+	\begin{lemma}
+		Nechť $\exists \nabla f(x)$, pak $d$ je spádový směr v $x$ $\Leftrightarrow$ $\nabla f(x)·d < 0$.
+
+		\begin{dukazin}
+			Triviální.
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{lemma}[Metoda největšího spádu]
+		Největší spád ma $f$ ve směru $- \nabla f(x)$.
+
+		\begin{dukazin}
+			BÚNO $||d|| = 1$. Derivace $f$ ve směru $d$, tj. $\nabla f(x)·d$, chceme co nejzápornější. Z Cauchy-Swarze:
+			$$ |\nabla f(x)·d| ≤ ||\nabla f(x)||·||d|| \implies \nabla f(x)· ≥ - ||\nabla f(x)||. $$
+			Pro $d = \frac{-\nabla f(x)}{||\nabla f(x)||}$ je $\nabla f(x)·d = - ||\nabla f(x)||$ a větší spát z nerovnosti výše být nemůže.
+		\end{dukazin}
+	\end{lemma}
+	
+	\begin{poznamka}[Volba $\alpha_k$]
+		$\alpha_k = \alpha$ dostatečně malé.
+
+		$\alpha_k \rightarrow 0$, ale $\sum_k \alpha_k = ∞$, abychom mohli kamkoliv dokonvergovat, tedy například $\alpha_k = \frac{1}{k}$.
+
+		Line search: $g(\alpha) = f(x_k - \alpha d_k)$, a minimalizujeme $g(\alpha)$ – 1D problém a stačí přibližně.
+
+		Přesný line search $\alpha_k = \argmin_{\alpha > 0} g(\alpha)$. (Špatná – zig-zag efekt, dá se dokázat, že $d_k$ a $d_{k+1}$ jsou na sebe kolmé, takže konverguje velmi pomalu).
+	\end{poznamka}
+
+% 18. přednáška
+
+	\begin{definice}[Newtonova metoda]
+		Funguje úplně stejně i pro $®R^n$. Může se však stát, že nenajdeme (stejně jako v ®R, ale tady je efekt markantnější, proto ho bereme zde) minimum, ale např. inflexní bod.
+
+		Netrpí zig-zag efektem.
+	\end{definice}
+
+	\begin{lemma}
+		Nechť $\exists \nabla f(x) ≠ 0$. Nechť $B$ je pozitivně definitní matice, pak $- B \nabla (x)$ je spádový směr v bodě x.
+
+		\begin{dukazin}
+			$\nabla f(x) · (-B \nabla f(x)) = - \nabla f(x)^T B \nabla f(x) < 0$, tj. $-B \nabla f(x)$ je spádový směr.
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{dusledek}
+		Newton $-(\nabla^2 f(x_k))^{-1} \nabla f(x_k)$ je spádový směr, pokud $\nabla^2 f(x_k)$ je pozitivně definitní.
+	\end{dusledek}
+
+	\begin{definice}[Obecný algoritmus]
+		$$ x_{k+1} = x_k - \alpha_k M_k \nabla f(x_k), $$
+		kde $M_k$ je pozitivně definitní a $\alpha_k$ určíme pomocí line search.
+
+		\begin{poznamkain}
+			Volba $M_k$: $\id$ = metoda největšího spádu, $(\nabla^2 f(x_k))^{-1}$ = Newton + line search, $(\diag \nabla^2 f(x_k))^{-1}$ = diagonální aproximace Newtona, $(\beta_k \id + \nabla^2 f(x_k))^{-1}$ = kompromis mezi největším spádem a Newtonem (užitečné, pokud $\nabla^2 f(x_k)$ není pozitivně definitní).
+		\end{poznamkain}
+	\end{definice}
+
+\section{Ortogonální polynomy}
+Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
+
+\begin{veta}[Tříčlenná rekurence]
+	$\exists A_n, B_n \in ®R: \phi_{n+1}(x) = (x + A_n)\phi_n(x) + B_n\phi_{n-1}(x)$. ($\phi_n$ je polynomiální ortonormální báze prostoru polynomů.)
+
+	\begin{dukazin}
+		$x \phi_n(x) \in P_{n+1}$ (prostor polynomů stupně nejvýše $n+1$) $\implies$ $x\phi_n(x) = \alpha_{n+1} \phi_{n+1}(x) + … + \alpha_0 \phi_0$. TODO
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Legenderovy polynomy]
+	$(a, b) = (-1, 1)$, $w(x) = 1$, tj. $(f, g) = \int_{-1}^1 f g dx$. Vyjde $1, x, \frac{2}(3x^2 - 1), …$ Rekurence vyjde $(n+1) ©L_{n+1}(x) = (2n+1)x ©L_n(x) - n©L_{n-1}(x)$.
+\end{definice}
+
+\begin{definice}[Čebyševovy polynomy]
+	Na $(-1, 1)$, $w(x) = \frac{1}{\sqrt{1 - x^2}}$.
+
+	$$ T_n(x) = \cos(n \arccos x). $$
+	$$ T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x). $$
+
+	\begin{dukazin}[Ortogonalita]
+		Zintegruje se a zasubstituuje.
+	\end{dukazin}
+\end{definice}
+
+\begin{veta}
+	Nechť $p_n$ je monický polynom stupně $n$. Pak $\max_{x \in [-1, 1]}|p_n(x)| ≥ \max_{x \in [-1, 1]} |T_n(x)| = \frac{1}{2^{n-1}}$.
+
+	\begin{dukazin}
+		1. $|T_n|$ nabývá maxima v bodech $x_k = \cos \frac{k\pi}{n}$, $k = 0, …, n$. Platí $T_n(x_k) = \frac{(-1)^k}{2^{n-1}}$.
+
+		2. Sporem: Nechť $\exists p_n: \max_{[-1, 1]} |p_n| < \frac{1}{2^{n-1}}$. Definujeme $m = T_n - p_n$. Pak $m(x_k) = \frac{(-1)^k}{2^{n-=1}} - p_n(x_k)$ $\implies$ $m(x_k)$ $>0$ pro $k$ sudé a $<0$ pro $k$ liché, tj. $\forall k \in [n]$ $\exists$ kořen polynomu $m \in (x_k, x_{k+1})$, ale $m$ má stupeň nejvýše $n - 1$, tedy $m=0$, což je spor s $p_n < T_n$.
+	\end{dukazin}
+\end{veta}
+
+% 19. přednáška
+
+\section{Interpolace}
+\begin{definice}[Interpolace]
+	Máme zadanou funkční hodnoty v nějakých bodech a snažíme se najít funkci, která je tam má.
+\end{definice}
+
+\begin{definice}[Lagrangeova interpolace]
+	Dáno $f: [a, b] \rightarrow ®R$ a $a ≤ x_0 < x_1 < … < x_n ≤ b$. Hledáme $L_n \in P_n: L_n(x_i) = f(x_i)$, $i \in [n]$.
+
+	\begin{definicein}
+		Říkáme, že $L_n$ interpoluje $f$ v uzlech $\{x_i\}_{i=0}^n$.
+	\end{definicein}
+
+	\begin{definicein}[Lagrangeovy polynomy]
+		$l_i(x_j) = \delta_{ij}$, tj. $l_i(x) = \prod_{k\in [n] \setminus \{i\}} \frac{(x - x_k)}{(x_i - x_k)}$, $i \in [n]$.
+	\end{definicein}
+
+	\begin{vetain}
+		Dány $f$, $\{x_i\}_{i=0}^n$ jako výše. Pak $\exists ! L_n \in P_n$ interpolující $f$ v uzlech $\{x_i\}$, platí $L_n(x) = \sum_{i=0}^n l_i(x) f(x_i)$.
+
+		Důkaz je triviální.
+	\end{vetain}
+
+	$L_n$ se nazývá Lagrangeův interpolační polynom.
+\end{definice}
+
+\begin{veta}[Odhad chyby L, Cauchy]
+	Nechť $f \in ®C^{n+1}[a, b]$, $a ≤ x_0 < x_1 < … < x_n ≤ b$, $L_n$ = Lagrangeův interpolační polynom. Pak $\forall x \in [a, b]\ \exists \xi_x \in [a, b]:$
+	$$ f(x) - L_n(x) = \frac{1}{(n+1)!} f^{(n+1)}(\xi_x) \prod_{i=0}^n (x - x_i). $$
+
+	\begin{dukazin}
+		Pokud $x = x_i$, pak $f(x) - L_n(x) = 0 = …·0$.
+
+		Pokud $x ≠ x_i$ $\forall i$, pak zafixujeme $x$ a definujeme si pomocné funkce $g(t) = f(t) - L_n(t) - (f(x) - L_n(x)) \prod_{i=0}^n \frac{t - x_i}{x - x_i}$. $g(x_i) = 0$ a $g(x) = 0$. $g(t)$ má $n+2$ různých kořenů $x_0, …, x_n, x$. Navíc $g \in C^{n+1}[a, b]$. Z Rolleovy věty má $g'(t)$ $n+1$ různých kořenů (mezi každými $x_i$ nebo $x$). $g''(t)$ má $n$ různých kořenů… $g^{(n+1)}(t)$ má 1 kořen v $[a, b]$ $\implies \exists \xi_x \in [a, b]: g^{(n+1)}(\xi_x) = 0$.
+
+		Vyjádříme a dostaneme výraz ze znění.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Konvergence]
+	$L_n \rightarrow f$ pro $n \rightarrow ∞$? Ne. (Tzv Rungeho jev. Například $f(x) = \frac{1}{1 + 25x^2}$.)
+\end{poznamka}
+
+\begin{definice}[Čebyševova interpolace]
+	Lepší volba $x_i =$ uzly čebyševova polynomu, tedy $\cos\(\frac{2i - 1}{2n} \pi\)$ na $[-1, 1]$. Pak $\prod_{i=0}^n (x - x_i)$ je nejmenší možný (co do maxima).
+
+	Zde $\forall f \in C^1[a, b]$, pak $L_n \rightrightarrows f$.
+\end{definice}
+
+% 20. přednáška
+
+\begin{definice}[Extrapolace]
+	Interpolace na $[a, b]$ a chceme odhad $f(x)$ pro $x \notin [a, b]$.
+
+	Čebyševovy polynomy se na to absolutně nehodí (nejrychleji rostou mimo interval).
+
+	Hermiteova interpolace: Snažíme se najít polynom tak, aby měl stejné i derivace do $j$-tého stupně.
+\end{definice}
+
+	\subsection{Spline funkce}
+	\begin{definice}[Lineární interpolační spline]
+		Dáno $f: [a, b] \rightarrow ®R$ a $a = x_0 < x_1 < … < x_n = b$, $x_{i+1} - x_i = h$. Hledáme funkci $S_L$:
+		$$ S_L \in C[a, b], S_L|_{I_i} \text{ je lin. funkce}, S_L(x_i) = f(x_i). $$
+		Dostáváme $S_L(x)|_{I_i} = \frac{x_{i+1} - x}{h}f(x_i) + \frac{x - x_i}{h} f(x_{i+1})$.
+
+		Jelikož je to Lagrangeova interpolace (na jednotlivých intervalech), dostáváme $\max_{x \in [a, b]} |f(x) - S_L(x)| ≤ \frac{1}{8} h^2 \max_{x \in [a, b]} |f''(x)|$.
+	\end{definice}
+
+	\begin{definice}[Kubické interpolační spliny]
+		Hledáme $S$: $S \in C^2[a, b]$, $S|_{I_i}$ je kubická funkce, $S(x_i) = f(x_i)$. Doplněním 2 podmínek dostaneme jednoznačnost. Většinou se volí $s'(a) = f'(a)$ a $s'(b) = f'(b)$. Nebo $s''(a) = f''(a)$ a $s''(b) = f''(b)$. Nebo tzv. přirozený kubický spline: $s''(a) = s''(b) = 0$.
+	\end{definice}
+
+	\begin{definice}[Momenty splinu]
+		$M_i = S''(x_i)$.
+	\end{definice}
+
+	\begin{lemma}[Soustava lineárních rovnic pro $M_i$]
+		Pro $i \in [n-1]$ platí
+		$$ M_{i-1} + 4M_i + M_{i+1} = \frac{6}{h^2} (f(x_{i+1}) - 2f(x_i) + f(x_{i-1})). $$
+
+		\begin{dukazin}
+			Taylor pro $S$: $S(x_{i+1}) = S(x_i) + S'(x_i) h + S''(x_i) \frac{h^2}{2} + S'''(x, +) \frac{h^3}{6}$. Obdobně $S(x_{i-1}) = S(x_i) - S'(x_i)h + S''(x_i) \frac{h^2}{2} - S'''(x_i, -) \frac{h^3}{6}$. Součtem
+			$$ f(x_{i+1}) + f(x_{i-1}) = 2f(x_i) + M_ih^2 + (S'''(x_i, +) - S'''(x_i, -)) \frac{h^3}{6}. $$
+			Sečteme-li Taylory pro $S''$ dostaneme (a to už dopočítáme)
+			$$ f(x_{i+1}) + f(x_{i-1}) = 2f(x_i) + M_ih^2 + (\frac{M_{i+1} - 2M_i + M_{i-1}}{h}) \frac{h^3}{6}. $$
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{poznamka}
+		Je to tedy $A·¦M = \frac{6}{h^2} ¦g$, kde $g_i = f(x_{i+1}) - 2f_i + f_{i-1}$, resp. od $g_1$ a $g_{n-1}$ jsou odečtené druhé derivace $f$ v daných bodech. Matice $A$ je ostře diagonálně dominantní, tedy regulární a $\exists ! S$.
+	\end{poznamka}
+
+	\begin{poznamka}[Konstrukce $S$]
+		$S(x_i) = f(x_i)$, $S(x_{i+1}) = f(x_{i+1})$, $S''(x_i) = M_i$, $S''(x_{i+1}) = M_{i+1}$.
+		$$ S(x) = \frac{(x - x_i)^3}{6h}M_{i+1} + \frac{(x_{i+1} - x)^3}{6h}M_{i} + \(\frac{f(x_{i+1}) - f(x_i)}{h} - \frac{h}{6}(M_{i+1} - M_i)\)(x - x_i) + f(x_i) - \frac{h^2}{6}M_i. $$
+	\end{poznamka}
+
+	\begin{veta}
+		Nechť $f \in C^4[a, b]$. Pak $\exists C_0, C_1, C_2$ nezávislá na $f$ a $\{x_i\}_{i=0}^n$:
+		$$ \max_{x \in [a, b]} |f^{(j)}(x) - S^{(j)}(x)| ≤ C_j \max_{x \in [a, b]} |f^{(4)}(x)|·h^{4 - j}. $$
+	\end{veta}
+
+% 21. přednáška
+\section{Numerická kvadratura = integrace}
+\begin{definice}[Obdélníkové pravidlo]
+	Chceme integrál $I(f)$ aproximovat $Q(f) := \sum_{i=0}^u w_i f(x_i)$. Například
+	$$ I(f) \approx (b - a)f(\frac{a + b}{2}) =: Q_0(f), $$
+	což se nazývá obdélníkové pravidlo (midpoint rule).
+\end{definice}
+
+\begin{definice}[Newton-Cotes, lichoběžníkové pravidlo, Simpsonovo pravidlo]
+	$f \approx L_n$, $Q(f):= \int_a^b L_n(x) dx$.
+	$$ L_n(x) = \sum_{i=0}^n f(x_i) l_i(x), \qquad l_i(x) = \prod_{k≠i} \frac{x - x_k}{x_i - x_k}, $$
+	$$ \int_a^b f(x) \approx \int_a^b L_n(x)dx = \sum_i f(x_i) \int_a^b l_i(x) dx = \sum_{i=0}^n w_i f(x_i) =: Q(f). $$
+
+	\begin{poznamkain}
+		Takto definované $w$ nezávisí na $f$.
+	\end{poznamkain}
+
+	Metoda Newton-Cotes je tato metoda pro rovnoměrné rozložení uzlů. Pro $n = 1$ je to tzv. Lichoběžníkové pravidlo. Pro $n=2$ je to Simpsonovo pravidlo (Simpsons' rules), což zintegruje správně i polynom třetího stupně (jelikož $x^3$ je liché). Pro $n=3$ se nazývá Simpsonovo 3/8-pravidlo, které je přesné pro polynomy 3. stupně, ale pro 4. stupně ne (jelikož $x^4$ je sudé). $n=4$ je Booleovo pravidlo, které je přesné pro polynomy 5. stupně.
+\end{definice}
+
+\begin{definice}
+	$Q(f)$ má (algebraický) řád $N \in ®N_0$, pokud $Q(p) = I(p)$ $\forall p \in P_N$. (Polynomy stupně nejvýše $N$).
+\end{definice}
+
+\begin{veta}
+	Newton-Cotes s uzly rozmístěnými rovnoměrně má řád $n$, pokud $n$ je liché, a $n+1$, pokud je sudé.
+	
+	\begin{dukazin}
+		$$ \int_a^b \(x - \frac{a + b}{2}\)^{n+1} dx = 0 = Q(f), $$
+		jelikož aproximace je zřejmě symetrická podle osy $x = \frac{a + b}{2}$.
+
+		Ostatní polynomy jdou „šoupnout“ na tento.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Odhad chyby]
+	$Q$ … NC kvadratura s obecnými uzly $x_0, …, x_n$. Nechť $f \in C^{n+1}[a, b]$. Pak $|I(f) - Q(f)| ≤ \frac{1}{(n+1)!} \max_{x \in [a, b]} |f^{(n+1)}(x)| \int_a^b |\prod_{i=0}^n (x - x_i)| dx$.
+
+	\begin{dukazin}
+		$$ |I(f) - Q(f)| = |I(f) - I(L-n)| = |\int_a^b f(x) - L_n(x)| dx ≤ \int_a^b \frac{1}{(n+1)!}|f^{(n+1)}(\xi_x)| |\prod_{i=0}^n (x - x_i)| dx ≤ … $$
+	\end{dukazin}
+\end{veta}
+
+% 22. přednáška
+
+\begin{definice}[Gaussova kvadratura]
+	Chceme najít $\{x_i\}$ a $\{w_i\}$ tak, aby $Q(t) = \sum_{i=0}^n w_i f(x_i)$ měla co nejvyšší řád (nejvýše $2n + 1$, jelikož máme $2(n+1)$ neznámých). Pro jednoduchost na $[-1, 1]$.
+
+	Pro $n=1$ vyjde (chceme, aby bylo přesné pro $f = 1, x, x^2, x^3$) $Q(t) = f(-\frac{\sqrt{3}}{3}) + f(\frac{\sqrt{3}}{3})$.
+
+	\begin{vetain}
+		Nechť $\{x_i\}_{i=0}^n$ jsou kořeny Legendrova polynomu $©L_{n+1}$. Pak příslušná $Q$ je řádu $2n + 1$.
+
+		\begin{dukazin}
+			Nechť $p \in P_{2n+1}$, chceme $Q(p) = I(p)$. Vydělíme $p / ©L_{n+1}$ se zbytkem: $p(x) = ©L_{n+1}(x) p_n(x) + r_n(x)$.
+			$$ I(p) = \int_{-1}^1 p(x) dx = \int_{-1}^1 ©L_{n+1} p_n dx + \int_{-1}^1 r_n dx = \int_{-1}^1 r_n dx = Q(r_n) = \sum_{i=0}^n w_i r_n(x_i) = \sum_{i=0}^n w_i p(x_i) = Q(p). $$
+		\end{dukazin}
+	\end{vetain}
+
+	\begin{poznamkain}
+		Neexistuje způsob jak dostat přesně uzly G. kvadratury, existují jen aproximace.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[Odhad chyby G. kvadratury na obecném intervalu]
+	$f \in C^{2n + 2}[a, b]$. Pak Gaussova kvadratura splňuje
+	$$ |I(f) - Q(f)| ≤ \frac{1}{(2n + 2)!} (b - a)^{2n + 3} \max_{x \in [a, b]} |f^{(2n + 2)} (x)|. $$
+
+	\begin{dukazin}
+		K uzlům přidáme libovolné další $x_{n+1}, …, x_{2n + 1}$. $L_n$ Lagrangeova interpolace na $x_0, …, x_n$ a $L_{2n+1}$ Lagrangeova interpolace na $x_0, …, x_{2n+1}$. Pak $Q(f) := \int_a^b L_n dx = \int_a^b L_{2n + 1} dx$, neboť: $L_n(x_i) = L_{2n + 1}(x_i) = f(x_i)$. Tedy $L_n - L_{2n + 1}$ má kořeny $x_0, …, x_n$.
+
+		Tedy $L_n(x) - L_{2n + 1}(x) = (x - x_0)…(x - x_n) p_n(x) = ©L_{n+1}(x) p_n(x)$, tudíž $\int_a^b L_n - L_{2n + 1} dx = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Složené kvadratické vzorce]
+	Interpolace nemusí fungovat pro $n \rightarrow ∞$. Takže se používá např. složené lichoběžníkové pravidlo, kdy se l. pravidlo aplikuje na každý interval dělení. Stejně tak složené Simpsonovo pravidlo, kde například uděláme dělení s krokem $2h$ a pak v těchto intervalech přidáme chtěný 3. bod.
+\end{poznamka}
+
+\begin{veta}[Chyba složeného lichoběžníkového pravidla]
+	TODO
+
+	\begin{dukazin}
+		TODO (odhadne se normálním lichoběžníkovým a $\sum_{i=1}^m h = a - b$).
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Metoda polovičního kroku]
+	Doteď jsme dělali apriori odhad chyby (před výpočtem). To má nevýhodu, že nemusíme znát konstanty a derivace v odhadech.
+
+	Nyní aposteriorní odhad chyby (počítán z vypočteného výsledku). $Q_h$ složená kvadraturní formule s krokem $h$. Nechť platí $I(f) - Q_k(f) \approx C h^N$. Spočítáme $Q_{\frac{h}{2}} \approx C(\frac{h}{2})^N$. Odečteme $Q_{\frac{h}{2}}(f) - Q_h(f) \approx C h^n(1 - 2^{-N}) = C(\frac{h}{2})^N (2^n - 1)$. Tedy
+	$$ I(f) - Q_{\frac{h}{2}}(f) \approx \frac{Q_{\frac{h}{2}(f) - Q_h(f)}}{2^N - 1}. $$
+
+	Není to odhad, ale spíš indikátor.
+\end{definice}
+
+\section{Numerické řešení ODR}
+\begin{poznamka}[Diskretizace]
+	Zavedeme si dělení $a = x_0 < x_1 < … < x_N = b$. Pro jednoduchost nechť je rovnoměrné, tedy $x_n = a + nh$, $h$ je krok metody.
+
+	Budeme aproximovat správně řešení $y(x_n)$ hodnotou $y_n \in ®R$.
+\end{poznamka}
+
+\begin{definice}[Eulerova metoda]
+	$$ y(x_{n+1}) = y(x_n + h) \approx y(x_n) + y'(x_n)·h = y(x_n) + f(x_n, y(x_n)). $$
+
+	$y_0$ je počáteční podmínka, která je dána.
+\end{definice}
+
+\begin{definice}[Explicitní metoda]
+	Explicitní metoda je metoda, kdy máme explicitní vzorec pro $y_{n+1}$. Implicitní Eulerova metoda by byla $y_{n+1} = y_n + hf(x_{n+1}, y_{n+1})$. Zde je třeba vyřešit nějaký nelineární problém.
+
+	Tento problém odpovídá $\frac{y_{n + 1} - y_n}{h} = f(x_n, y_n)$, čemuž budeme říkat metoda 1. řádu (zanedbaný člen je $O(h)$).
+\end{definice}
+
+\begin{definice}[Heunova metoda (modifikovaná Eulerova metoda)]
+	$y' = f(x, y)$ odpovídá $y(x_{n+1} - y(x_n)) = \int_{x_n}^{x_{n+1}} f(x, y(x)) dx$, což je hrozná aproximace integrálu. Zkusme použít lichoběžníkové pravidlo:
+	$$ y_{n+1} - y_n = \frac{h}{2} (f(x_n, y_n) + f(x_{n + 1}, y_{n+1})) \approx \frac{h}{2} (f(x_n, y_n) + f(x_n, y_n + h f(x_{n+1}, y_n))). $$
+
+	\begin{poznamkain}
+		Heunova metoda je metoda 2. řádu.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Jednobodové metody (JKM)]
+	Jednobodová metoda je metoda, kde počítáme $y_{n+1}$ pouze z $y_n$. Tedy $y_{n+1} = y_n + h\phi(x_n, y_n, h)$, kde $\Phi$ je tzv. přírůstková funkce.
+
+	\begin{prikladyin}
+		Euler: $\Phi(x, y, h) = f(x, y)$.
+
+		Heun: $\Phi(x, y, h) = \frac{1}{2} \[f(x, y) + f(x + h, y+ h·f(x, y))\]$.
+	\end{prikladyin}
+
+	O $\Phi$ předpokládáme, (že souvisí s $f$) že je spojité, že je lipschitzovské vzhledem k $y$ (jako $f$).
+
+	\begin{definicein}
+		Metoda je konzistentní, pokud $\Phi(x, y, 0) = f(x, y)$.
+	\end{definicein}
+\end{definice}
+
+% 24. přednáška
+
 \end{document}

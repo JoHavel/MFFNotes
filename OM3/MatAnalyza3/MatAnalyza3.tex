@@ -884,4 +884,89 @@ TODO!!!
 			\end{dukazin}
 		\end{veta}
 
+\section{Hilbertovy prostory}
+\begin{poznamka}
+	Většina vět této sekce i s důkazy se dá najít v knize W. Rudim: Analýza v reálném a komplexním oboru.
+\end{poznamka}
+	\subsection{Základní definice}
+	\begin{definice}[]
+		Nechť $H$ je reálný vektorový prostor. Řekneme, že $H$ je prostor se skalárním součinem, jestliže existuje zobrazení $\<·, ·\>: H^2 \rightarrow ®R$ takové, že
+
+		\begin{itemize}
+			\item $\<x, y\> = \<y, x\>$, $\forall x, y \in H$,
+			\item $\<x + y, z\> = \<x, z\> + \<y, z\>$, $\forall x, y, z \in H$,
+			\item $\<\alpha x, y\> = \alpha\<x, y\>$, $\forall x, y \in H \ \forall \alpha \in ®R$,
+			\item $\<x, x\> ≥ 0$, $\forall x \in H$,
+			\item $\<x, x\> = 0 \Leftrightarrow x = 0$.
+		\end{itemize}
+
+		Definujeme $||x|| = \sqrt{\<x, x\>}$. Řekneme, že prvek $x \in H$ je ortogonální k $y \in H$, značeno $x \perp y$, pokud $\<x, y\> = 0$.
+	\end{definice}
+
+	\begin{veta}[Schwarzova nerovnost]
+		Pro každé $x, y \in H$ platí $\<x, y\> ≤ ||x||·||y||$.
+
+		\begin{dukazin}
+			$\forall t \in ®R$ platí $h(t) = <x - ty, x - ty> ≥ 0$.
+			$$ h(t) = <x, x - ty> - <ty, x - ty> = <x, x> - t<x, y> - t<y, x> + t<y, y> = ||x||^2 - 2t<x, y> + t^2||y||^2 ≥ 0. $$
+			Toto je nezáporná kvadratická funkce s determinantem $4<x, y>^2 - 4||x||^2·||y||^2 > 0$, tedy $||x||^2·||y||^2 ≥ <x, y>^2$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Trojúhelníková nerovnost]
+		Pro každé $x, y \in H$ platí $||x + y|| ≤ ||x|| + ||y||$. Speciálně $(H, ||·||)$ tvoří metrický prostor.
+
+		\begin{dukazin}
+			$$ ||x + y||^2 = \<x + y, x + y\> = <x, x> + <x, y> + <y, x> + <y, y> ≤ ||x||^2 + ||x||·||y|| + ||y||·||x|| + ||y||^2 = (||x|| + ||y||)^2. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}
+		Nechť $H$ je prostor se skalárním součinem. Řekneme, že $H$ je Hilbertův prostor, pokud je metrický prostor $(H, ||·||)$ úplný.
+	\end{definice}
+
+	\begin{veta}[Spojitost skalárního součinu]
+		Nechť $H$ je Hilbertův prostor, potom jsou zobrazení $x \mapsto <x, y>$ a $x \mapsto ||x||$ spojitá na $H$.
+
+		\begin{dukazin}
+			$|<x_1, y> - <x_2, y>| = |<x_1 - x_2, y>| ≤ ||x_1 - x_2||·||y|| \implies$ spojitost.
+
+			Druhá část: Z trojúhelníkové nerovnosti plyne $||x_1|| - ||x_2|| ≤ ||x_1 - x_2||$ a $||x_2|| - ||x_1|| ≤ ||x_2 - x_1||$ $\implies$ spojitost $||·||$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}
+		Nechť $H$ je Hilbertův prostor a $E \subset H$. Řekneme, že $E$ je konvexní, jestliže $\forall x, y \in E\ \forall t \in [0, 1]$ platí $t·x + (1 - t)·y \in E$.
+	\end{definice}
+
+	\begin{veta}[O existenci prvku s nejmenší normou]
+		Nechť $H$ je Hilbertův prostor a $E \subset H$ je konvexní, neprázdná a uzavřená. Potom existuje právě jeden prvek $E$ s nejmenší normou.
+
+		\begin{dukazin}
+			Platí tzv. rovnoběžníkové pravidlo (dokážeme rozepsáním přes skalární součin, platí pouze pro normy ze skalárního součinu):
+			$$ 2||x||^2 + 2||y||^2 = ||x + y||^2 + ||x - y||^2 $$
+			
+			Označme $\delta = \inf_{y \in E} ||y||$. Jednoznačnost nejbližšího prvku: Nechť $y_1, y_2 \in E$, $||y_1|| = ||y_2|| = \delta$.
+			$$ ||y_1 - y_2||^2 = 2·||y_1||^2 + 2·||y_2||^2 - 4·||\underbrace{\frac{y_1 + y_2}{2}}_{\in E}||^2 ≤ 2·||y_1||^2 + 2||y_2||^2 - 4\delta^2 = 0 \implies y_1 = y_2. $$
+
+			Existence: Mějme $y_n \in E$, že $||y_n|| \overset{n \rightarrow ∞}{\rightarrow} \delta$. $||y_n - y_m||^2 = 2·||y_n||^2 + 2·||y_m||^2 - 4||\frac{y_n + y_m}{2}||^2 ≤ 2||y_n||^2 - 2||y_m||^2 - 4\delta^2 \implies y_n$ je cauchyovská posloupnost. $H$ je úplný, takže $\exists y \in H: y_n \rightarrow y$. $E$ je uzavřená, tedy $y \in E$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}
+		Nechť $M \subset H$ je lineární podprostor Hilbertova prostoru $H$. Definujeme ortogonální podprostor $M^\perp = \{y \in H|\<x, y\> = 0\ \forall x \in M\}$.
+	\end{definice}
+
+	\begin{veta}[O projekci na podprostor]
+		Nechť $M$ je uzavřený podprostor Hilbertova prostoru $H$.
+
+		\begin{enumerate}
+			\item Každý prvek z $H$ má jednoznačný rozklad $x = P(x) + Q(x)$ tak, že $P(x) \in M$ a $Q(x) \in M^\perp$.
+			\item $P(x)$ je bod z $M$ nejbližší k $x$, $Q(x)$ je bod z $M^\perp$ nejbližší k $x$.
+			\item Zobrazení $P: H \rightarrow M$ a $Q: H \rightarrow M^\perp$ jsou lineární.
+			\item $||x||^2 = ||P(x)||^2 + ||Q(x)||^2$.
+		\end{enumerate}
+	\end{veta}
+
+
 \end{document}

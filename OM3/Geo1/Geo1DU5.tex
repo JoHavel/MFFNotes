@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+\begin{priklad}[10.6]
+	Je dána afinní kuželosečka $\tilde Q$ s rovnicí
+	$$ 11 x^2 + 4xy + 14 y^2 - 4x - 28y - 16 = 0. $$
+
+	\begin{itemize}
+		\item Ukažte, že $\tilde Q$ je regulární kuželosečka.
+		\item Určete její afinní typ.
+		\item Určete tečny k $\tilde Q$ z bodu $[-1, -1]$.
+		\item Nalezněte její střed a asymptoty $\tilde Q$, jestliže existují.
+		\item Nalezněte její osy, vrcholy a délky poloos.
+		\item Nalezněte nějakou parametrizaci $\tilde Q$ a ukažte, že všechny vrcholy jsou body s nejmenší či největší znaménkovou křivostí.
+	\end{itemize}
+
+	\begin{reseni}
+		$\tilde Q$ lze ztotožnit s průnikem projektivní kuželosečky
+		$$ Q = \{¦x \in ®P^2 \middle| ¦x^T \begin{pmatrix} 11 & 2 & -2 \\ 2 & 14 & -14 \\ -2 & -14 & -16 \end{pmatrix} ¦x = 0 \} $$
+		s projektivní rovinou „$x_3 = 1$“. Matice má determinant
+		{\small
+		$$ 11·14·(-16) + 2·(-14)·(-2) + (-2)·2·(-14) - (-2)·14·(-2) - 2·2·(-16) - 11·(-14)·(-14) = -4500, $$}
+		tedy je regulární a určuje tudíž regulární kuželosečku.
+		
+		Body mimo $x_3 = 1$ jsou právě ty, pro které $x_3 = 0$, tedy:
+		$$ \begin{pmatrix} x_1 & x_2 & 0 \end{pmatrix} \begin{pmatrix} 11 & 2 & -2 \\ 2 & 14 & -14 \\ -2 & -14 & -16 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ 0 \end{pmatrix} = 0, $$
+		$$ \begin{pmatrix} x_1 & x_2 \end{pmatrix} \begin{pmatrix} 11 & 2 \\ 2 & 14 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = 0 $$
+		Tato matice má hlavní minory $11$ a $150$, tedy je pozitivně definitní, tudíž jediné řešení je $x_1 = x_2 = 0$, ale $¦o \notin ®P^2$.
+
+		Tudíž kuželosečka nemá žádné nevlastní body, takže je to elipsa.
+
+		Je to elipsa tedy nemá žádné asymptoty. Rovnici můžeme upravit:
+		$$  $$
+	\end{reseni}
+\end{priklad}
+
+\end{document}
