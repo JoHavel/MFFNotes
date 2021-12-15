@@ -966,7 +966,46 @@ TODO!!!
 			\item Zobrazení $P: H \rightarrow M$ a $Q: H \rightarrow M^\perp$ jsou lineární.
 			\item $||x||^2 = ||P(x)||^2 + ||Q(x)||^2$.
 		\end{enumerate}
+
+% 15. 12. 2021
+
+		\begin{dukazin}
+			1. Jednoznačnost: Nechť $x = x_1 + y_1 = x_2 + y_2$, $x_1, x_2 \in M$ a $y_1, y_2 \in M^\perp$
+			$$ \implies M \ni x_1 - x_2 = y_2 - y_1 \in M^\perp \implies 0 = x_1 - x_2 = y_2 - y_1. $$
+
+			Existence: $x + M$ je uzavřený podprostor $\implies$ podle předchozí věty $\exists Q(x) \in x + M$ s nejmenší normou. Položme $P(x) = x - Q(x)$, tj. $P(x) + Q(x) = x$.
+			$$ P(x) \in M: Q(x) \in x + M \implies Q(x) - x \in M \implies P(x) \in M. $$
+			$Q(x) \in M^\perp$: Neboli $\forall y \in M$: $\<y, Q(x)\> = 0$. BÚNO $y \in M$ a $||y|| = 1$. $Q(x)$ je nejbližší v $x + M$
+			$$ \implies ||Q(x)||^2 ≤ ||Q(x) - \alpha y||^2 = \<Q(x) - \alpha y, Q(x) - \alpha y\> = ||Q(x)||^2 - 2\alpha\<Q(x), y\> + \alpha^2\<y, y\> \implies $$
+			$$ \implies 0 ≤ -2\alpha \<Q(x), y\> + \alpha^2. $$
+			Pro $\alpha = \<Q(x), y\>$ je $0 ≤ -\<Q(x), y\>^2$, tedy $\<Q(x), y\> = 0$.
+
+			2. Nechť $y \in M$ je libovolné. Pak
+			$$ ||x - y||^2 = ||Q(x) + P(x) - y||^2 = \<Q(x) + P(x) - y, Q(x) + P(x) - y\> = $$
+			$$ = ||Q(x)||^2 + ||P(x) - y||^2, $$
+			takže je to nejmenší právě tehdy, když $y = P(x)$. Stejně se ověří i $y = Q(x)$ pro libovolné $y \in M^\perp$.
+
+			4. $||x||^2 =$ skalární součiny, jeden je nulový $= ||P(x)||^2 + ||Q(x)||^2$.
+
+			3. Chceme $P(\alpha x + \beta y) = \alpha · P(x) + \beta · P(y)$. $x = P(x) + Q(x)$, $y = P(y) + Q(y)$. $\alpha x + \beta y = P(\alpha x + \beta y) + Q(\alpha x + \beta y)$. Odečteme $\alpha$ a $\beta$ násobek rovnic od třetí, tím dostaneme
+			$$ M^\perp \ni \alpha Q(x) + \beta Q(y) - Q(\alpha x + \beta y) = P(\alpha x + \beta y) - \alpha P(x) - \beta P(y) \in M. $$
+			A protože $M \cap M^\perp = \{\O\}$, tak se to rovná 0, tedy
+			$$ P(\alpha x + \beta y) = \alpha P(x) + \beta P(y), Q(\alpha x + \beta y) = \alpha Q(x) + \beta Q(y). $$
+		\end{dukazin}
 	\end{veta}
 
+	\begin{dusledek}
+		Nechť $M$ je uzavřený podprostor Hilbertova prostoru $H$ a $M ≠ H$. Pak existuje $y \in M^\perp$, $y ≠ 0$.
+	\end{dusledek}
+
+	\begin{veta}[O reprezentaci lineárního funkcionálu]
+		Nechť $H$ je Hilbertův prostor a $L: H \rightarrow ®R$ je spojité lineární zobrazení. Pak existuje právě jedno $y \in H$ tak, že $L(x) = \<x, y\>$.
+
+		\begin{dukazin}
+			Jednoznačnost: Nechť $L(x) = \<x, y_1\> = \<x, y_2\>$. Pak $\forall x: \<x, y_1 - y_2\> = 0 \implies ||y_1 - y_2|| = 0$.
+
+			Existence: Pro $L = 0$ zvolme $y = 0$. Jinak mějme $M = \{x \in H | L(x) = 0\}$. Toto je lineární podprostor a je uzavřený ($M = L^{-1}(\{0\})$). Podle předchozího důsledku $\exists a \in M^\perp$, $a ≠ 0$. BÚNO $||a|| = 1$. Položme $z = xL(a) - L(x)a$, pak $L(z) = L(x)·L(a) - L(x)·L(a) = 0 \implies z \in M$. Nyní $0 = \<a, z\> = \<a, xL(a) - L(x)a\> = \<a, x\>L(a) - L(x)\<a, a\> \implies L(x) = \<a, x\>L(a) = \<x, aL(a)\>$.
+		\end{dukazin}
+	\end{veta}
 
 \end{document}

@@ -459,6 +459,45 @@ TODO
 	$f \in L^1(\mu) \implies \lim_{c \rightarrow ∞} \int_{x: |f(x)| ≤ c} |f(x)| d\mu(x) = 0$.
 \end{poznamka}
 
+% 14. 12. 2021
+
+\begin{definice}[Stejnoměrně integrovatelná posloupnost]
+	Řekneme, že posloupnost $(f_n)$ měřitelných funkcí na $(X, ©A, \mu)$ je stejnoměrně integrovatelná (uniformly integrable), jestliže
+	$$ \lim_{c \rightarrow ∞} \sup_n \int_{|f_n| ≥ C} |f_n| d\mu = 0. $$
+\end{definice}
+
+\begin{tvrzeni}
+	$\mu$ konečná, $(f_n)$ stejnoměrně integrovatelná $\implies f_n \in L^1(\mu)$, $\sup_n ||f_n||_1 < ∞$.
+
+	\begin{dukazin}
+		$\int |f_n| = \underbrace{\int_{|f_n| < c} |f_n| d\mu}_{≤ c · \mu(X)} + \underbrace{\int_{|f_n| > c} |f_n| d\mu}_{<1\text{ pro $c$ dostatečně velké}} ≤ c \mu(X) + 1$ pro dostatečně velká $c$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $\mu(X) < ∞$ a $f_n \overset{\mu}{\rightarrow} f$. Pak $f_n \overset{L_1}{\rightarrow} f$ $\Leftrightarrow$ $(f_n)$ je stejnoměrně integrovatelná.
+
+	\begin{dukazin}
+		„$\Leftarrow$“: Nechť $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ je stejnoměrně integrovatelná. Pak $f_n \in L^1(\mu)$ a existuje vybraná podposloupnost $(f_{n_j})$, $f_{n_j} \overset{s. v.}{\rightarrow} f$.
+		$$ \int |f| d\mu = \int(\lim_{j \rightarrow ∞} |f_{n_j}|)d \mu ≤ \liminf_{j \rightarrow ∞} \int |f_{n_j}| d\mu < ∞ \implies f \in L^1(\mu). $$
+
+		Předpokládejme nejprve, že $\exists c \in ®R$, $|f_n| < c$, $|f| ≤ c$ skoro všude. Buď $\epsilon > 0$, položme $\delta := \frac{\epsilon}{2 \mu(X)}$.
+		$$ \int |f_n - f| d\mu = \int_{\{|f_n - f| ≤ \delta\}} |f_n - f| d\mu + \int_{\{|f_n - f| > \delta\}} |f_n - f| ≤ \delta \mu(X) + 2c \mu(\{x | |f_n(x) - f(x)| > \delta\}) \overset{n ≥ n_0}{<} \frac{\epsilon}{2} + 2c\frac{\epsilon}{4c} < \epsilon \implies f_n \overset{L_1}{\rightarrow} f. $$
+
+		Nyní $f_n, f \in L^1$ libovolné, $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ stejnoměrně integrovatelná, $\epsilon > 0$.
+		$$ \int |f_n - f| d\mu ≤ \int_{\{|f_n| ≤ c \land |f| ≤ c\}} |f_n - f| d\mu + \int_{\{|f_n| > c\}} |f_n - f| d\mu + \int_{\{|f| > c\}} |f_n - f| d\mu=: I_n^1(c) + I_n^2(c) + I_n^3(c), $$
+		$$ I_n^2(c) ≤ \int_{\{|f_n| > c\}} |f_n| d\mu + \int_{\{|f_n| > c \land |f| ≤ c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f| d\mu ≤ 2 \int_{\{|f_n| > c\}} |f_n| + \int_{\{|f| > c\}} |f|, $$
+		$$ I_n^3(c) ≤ \int_{\{|f| > c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f_n| d\mu + \int_{\{|f_n| ≤ c \land |f| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n| + 2\int_{\{|f| > c\}} |f|, $$
+		$$ I_n^2(c) + I_n^3(c) < \frac{\epsilon}{3}, \qquad \forall c ≥ c_0, $$
+		z první části navíc
+		$$ I_n^1(c) < \frac{\epsilon}{2}, \qquad \forall n ≥ n_0. $$
+		Tedy
+		$$ \int |f_n - f| d\mu < \epsilon. $$
+
+		„$\implies$“ Nechť $f_n \overset{L_1}{\rightarrow f}$, $\epsilon >0$.
+		$$ \forall c: \int_{\{|f_n| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n - f|d\mu + \int_{\{|f_n| > c \land |f| ≤ \frac{c}{2}\}} |f| + \int_{\{|f_n| > c \land |f| > \frac{c}{2}\}} |f| ≤ \int |f_n - f|d\mu + \frac{c}{2} \mu \{x | |f_n(x) - f(x)| ≥ \frac{c}{2}\} + \int_{\{|f| > \frac{c}{2}\}} |f| d\mu ≤ 2||f_n - f||_1 + \frac{\epsilon}{2} < \epsilon. TODO $$
+	\end{dukazin}
+\end{veta}
 
 
 \end{document}

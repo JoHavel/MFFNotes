@@ -493,4 +493,44 @@ TODO
 	V projektivně rozšířené rovině $®R^2$ má každá afinní přímka $p$ v $®R^2$ se směrovým vektorem $v = (v_x, v_y)$ pravě jeden nevlastní bod $(v_x, v_y, 0)$. Tento bod budeme rovněž nazývat směr $p$.
 \end{veta}
 
+% 15. 12. 2021
+
+\begin{definice}[Dělící poměr]
+	Mějme tři body $A, B, X$ na afinní přímce nad tělesem ®T, přičemž $A ≠ B$ a $X ≠ B$. Pak dělící poměr
+	$$ \frac{AX}{XB} := \lambda\qquad (=: (A, B; X)), $$
+	jako jediný skalár, pro který platí $\lambda(B - X) = (X - A)$. Potom platí, že $X$ je afinní kombinací bodů $A, B$
+	$$ X = \frac{1}{\lambda + 1}A + \frac{\lambda}{\lambda + 1}B $$
+	a tedy naopak, jsou-li $(c_1, c_2)$ barycentrické souřadnice $X$ v soustavě $(A, B)$, pak
+	$$ \frac{AX}{XB} = \frac{c_2}{c_1}. $$
+
+	\begin{dukazin}
+		Upočítá se.
+	\end{dukazin}
+\end{definice}
+
+\begin{veta}
+	V projektivně rozšířené rovině $®R^2$ uvažujme různé body $A, B, C, D$ ležící na jedné přímce. Pak pro dvojpoměry a dělící poměry platí
+
+	\begin{enumerate}
+		\item Jestliže jsou všechny tyto body vlastní, pak
+			$$ (A, B, C, D) = \frac{\frac{AC}{CB}}{\frac{BD}{DA}} = \frac{AC}{CB}·\frac{BD}{DA}. $$
+		\item Jestliže $D$ je nevlastní, pak $(A, B, C, D) = -\frac{AC}{CB}$.
+		\item Speciálně je-li …
+	\end{enumerate}
+
+	\begin{dukazin}
+		Rozepsáním.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Uvažujme kanonicky projektivně rozšířený afinní prostor $®T^n$. Projektivní transformace uvažovaná na vlastních bodech mají tvar lineárních lomených zobrazení. Afinity tvoří podgrupu projektivních transformací a jsou to právě ta zobrazení, které vlastní body zobrazují na vlastní body a nevlastní body na nevlastní body.
+
+	\begin{dukazin}
+		$F$ je dáno regulární maticí. Touto maticí to můžeme bod zobrazit a pak ho vydělit příslušnou jeho souřadnicí, abychom dostali jeho reprezentaci v afinním prostoru.
+	\end{dukazin}
+\end{veta}
+
+TODO (definice okolo kvadrik).
+
 \end{document}

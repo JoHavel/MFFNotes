@@ -1361,4 +1361,66 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 
 % 24. přednáška
 
+\begin{definice}[Globální chyba metody]
+	$e_n = y(x_n) - y_n$.
+\end{definice}
+
+\begin{definice}[Lokální diskretizační chyba]
+	$\tau(x, h) = \frac{y(x + h) - y(x)}{h} - \Phi(x, y(x), h)$
+
+	$$ (\frac{y_{n+1} - y_n}{h} - \Phi(x_n, y_n, h) = 0) $$
+\end{definice}
+
+\begin{definice}
+	JKM (jednokroková metoda) je řádu $p$, pokud $\exists k, h_0 > 0: |\tau(x, h) ≤ Kh^p$, $\forall x \in [a, b], \forall h \in (0, h_0)$.
+\end{definice}
+
+\begin{lemma}
+	JKM je konzistentní $\Leftrightarrow$ $\lim_{h \rightarrow 0+} \tau(x, h) = 0, \forall x$.
+
+	\begin{dukazin}
+		„$\implies$“: $\tau(x, h) = \frac{y(x + h) - y(x)}{h} - \Phi(x, y(x), h) \rightarrow y'(x) - f(x, y(x)) \rightarrow 0$.
+
+		„$\Leftarrow$“: $\tau(x, h) = \frac{y(x + h) - y(x)}{h} - \Phi(x, y(x), h) \rightarrow y'(x) - f(x, y(x)) \rightarrow 0 \implies f(x, y(x)) = \Phi(x, y(x), 0)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $\Phi$ je lipschitzovské vzhledem k $y$: $|\Phi(x, y, h) - \Phi(x, \tilde y, h)| ≤ L|y - \tilde y|, \forall x, y, \tilde y, h$. Nechť $|\tau(x, h)| ≤ Kh^p$ (řád $p$). Pak
+	$$ \max_{a ≤ x_n ≤ b} |y(x_n) - y_n| ≤ K h^p \frac{e^{L(b - a) - 1}}{L}. $$
+
+	\begin{dukazin}
+		$$ y_{n+1} = y_n + h \Phi(x_n, y_n, h), $$
+		$$ y(x_{n+1}) = y(x_n) + h \Phi(x_n, y(x_n), h) + h\tau(x_n, h), $$
+		$$ e_{n+1} = e_n + h(\Phi(x_n, y(x_n), h) - \Phi(x_n, y_n, h)) + h \tau(x_n, h) \implies |e_{n+1}| ≤ (1 + kL) |e_n| + Kh^{p + 1}, $$
+		$$ |e_{n+1}| ≤ … ≤ (1+hL)^{n+1} |e_0| + Kh^{p+1} \frac{(1 + hL)^n}{(1 + hL) - 1} ≤ 0 + Kh^p \frac{e^{hL(n+1)} - 1}{L} ≤ Kh^p \frac{e^{K(b - a)}}{L}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	JKM je konvergentní, pokud $\max_{a ≤ x_n ≤ b} |y(x_n) - y_n| \rightarrow 0$ pro $h \rightarrow 0$.
+\end{definice}
+
+\begin{veta}
+	$\Phi$ lipschitzovská vzhledem k $y$. Pak JKM konzistentní $\Leftrightarrow$ JKM konvergentní.
+
+	\begin{dukazin}
+		„$\implies$“ jako v minulé větě.
+
+		„$\Leftarrow$“ jinak bychom řešili jinou rovnici.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	JKM je $A$-stabilní, pokud $|A| := |1 + h\frac{\partial f}{\partial y}| < 1$ pro problémy s $\frac{\partial f}{\partial y} < 0$.
+
+	Tzv. podmíněná stabilita.
+
+	\begin{prikladyin}
+		Implicitní Euler je nepodmíněně $A$-stabilní.
+	\end{prikladyin}
+\end{definice}
+
+	\subsection{Konstrukce metod (JKM, vyšší řády)}
+
 \end{document}

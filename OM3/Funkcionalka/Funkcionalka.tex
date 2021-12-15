@@ -1694,4 +1694,101 @@ TODO.
 	Nechť $X$ je nekonečněrozměrný Banachův prostor a $T \in ©K(X)$. Potom $\sigma(T) = \{0\} \cup \{\lambda_n\}$, kde $\{\lambda_n\}$ je posloupnost, která je buď konečná, nebo nekonečná a konvergující k 0, a je tvořena nenulovými vlastními čísly operátoru $T$, přičemž každé z nich má konečněrozměrný vlastní podprostor.
 \end{dusledek}
 
+% 14. 12. 2021
+
+\begin{definice}
+	TODO
+\end{definice}
+
+\begin{tvrzeni}
+	TODO
+
+	\begin{dukazin}
+		1. $\forall x \in S_HL \<(\alpha I + \beta T)x, x\> = \alpha\<x, x\> + \beta\<Tx, x\> = 1 + \beta\<Tx, x\>$.
+
+		2. $\sigma_P(T) \subseteq N_T$: Ať TODO $\implies \exists x_0 \in S_H: \lambda x_0 = Tx$.
+		$$ = \<Tx_0, x_0\> = \<\lambda x_0, x_0\> = \lambda $$
+
+		3. Ať $\lambda \in \sigma(T) \setminus \sigma_z(T)$. 1. případ: Ať $\lambda I - T$ je isomorfismus do (a ne na), pak $\Rang(\lambda I - T) \subsetneq H$ je uzavřený podprostor $\implies$ $\exists x \in S_H \cap (\Rang(\lambda I - T))^\perp$, speciálně $0 = \<\lambda x - Tx, x\> = \lambda - \<Tx, x\> \implies \lambda \in N_T$.
+
+		2. případ: $\lambda I - T$ není izomorfismus, pak $\lambda I - T$ není sdola omezený, ted $\exists (x_n)$ v $S_H$, že $(\lambda I - T)(x_n) \rightarrow 0$, pak
+		$$ |\lambda - \<Tx_n, x_n\>| = |\<\lambda x_n - Tx_n, x_n\>| $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Samoadjungovaný operátor]
+	Nechť $H$ je Hilbertův prostor a $T \in ©L(H)$. Řekneme, že $T$ je samoadjungovaný, pokud $T = T^\bigstar$.
+\end{definice}
+
+\begin{veta}
+	Nechť $H$ je netriviální Hilbertův prostor a $T \in ©L(H)$. Pak $T$ je samoadjungovaný, právě když $\<Tx, y\> = \<x, Ty\>$ pro každé $x, y \in H$. Pro $T$ samoadjungovaný platí následující tvrzení:
+ 	
+	\begin{itemize}
+		\item $\<Tx, x\> \in ®R$, $\forall x \in H$.
+		\item $N_T \subset ®R$ a označíme-li $m_T = \inf N_T$, $M_T = \sup N_T$, pak $||T|| = \max \{|m_T|, |M_T|\}$ a $\{m_T, M_T\} \subset \sigma(T) \subset [m_T, M_T]$, a tedy číslo $||T||$ nebo $-||T||$ leží v $\sigma_T$.
+	\end{itemize}
+
+	\begin{dukazin}
+		První bod: Víme $\forall x \in H: \<Tx, x\> = \<x, Tx\> = \overline{\<Tx, x\>}$. Tedy $\<Tx, x\> \in ®R$.
+
+		Druhý bod: Položme $M = \sup\{|x| | \lambda \in N_T\}$. Chceme $||T|| = M$. „$≥$“: $\forall x \in S_H: |\<Tx, x\>| ≤ ||T||$, „$≤$“: Pro $x, y \in H$ polož $S(x, y) := \<Tx, y\>$. Pak platí
+		$$ \Re S(x, y) = \frac{1}{4} \(S(x + y, x + y) - S(x - y, x - y)\) $$
+		Neboť (pravou stranu tupě rozepíšeme dostaneme to, co na levé:)
+		$$ LS = \frac{1}{2} (S(x, y) + \overline{S(x, y)}) = \frac{1}{2}(\<Tx, y\> + \<Ty, x\>). $$
+
+		Zvol $x \in S_H$, chceme „$||Tx|| ≤ M$“: BÚNO $Tx ≠ 0$. Položme $y = \frac{Tx}{||Tx||} \in S_H$. Pak $||Tx|| = \<Tx, y\> = S(x, y) = |\Re S(x, y)| ≤ \frac{1}{4} (|S(x + y, x + y)| + |S(x - y, x - y)|) ≤ \frac{1}{4} M(||x + y||^2 + ||x - y||^2) = \frac{1}{2} M (||x||^2 + ||y||^2) = M$.
+
+		Tedy $||T|| = \sup\{|\lambda| | \lambda \in N_T\} = \max\{m_T, M_T\}$ (Jelikož $A \subseteq ®R$ je omezená $\implies \sup\{|\lambda| | \lambda \in A\} = \max\{|\inf A|, TODO\}$).
+
+		A tedy $\sigma(T) \subseteq \overline{N_T} \subseteq [m_T, M_T]$. Zbývá „$\{m_T, M_T\} \subseteq \sigma(T)$“: Polož $R = T - m_T I$. Pak $R = R^\bigstar$, $N_R = N_T - m_T$, tedy $M_R = M_T - m_T ≥ 0 = m_R$ $\implies$ $||R|| = M_R$. Zvol $(x_n)_{n=1}^∞$ z $S_H$, že $\<R x_n, x_n\> \rightarrow ||R|| = M_R$. Chceme „$||R|| I - R$ není izomorfismus“: Máme $|| (||R||) x_n  - Rx_n||^2 = ||R||^2 ||x_n||^2 + ||Rx_n||^2 + 2\Re\<-Rx_n, ||R||x_n\> ≤ 2(||R||^2  - ||R||\Re\<Rx_n, x_n\>) = 2||R||·(||R||  - \<Rx_n, x_n\>) \rightarrow 0$. Tedy $||R|| I - R$ není zdola omezený.
+
+		Tedy $M_R = ||R|| \in \sigma(R)$. Pak $M_T \in \sigma(T)$ (neboť máme $M_T I - T = (m_T + M_R) I - (m_T I + R) = M_R I - R$ nemá inverz).
+
+		Zbývá „$m_T \in \sigma(T)$“: Máme $N_T = - N_T$, tedy $m_T = \inf N_T = -(\sup (- N_T)) = -M_{-T}$. $-M_{-T}$ je ve spektru (dle již dokázané části), tedy máme $m_T I - T = (-M_{-T} I - T = -(M_{-T} I - (-T)))$ nemá inverz, tedy $m_T \in \sigma(T)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Invariantní zobrazení]
+	Nechť $A$ je množina a $f: A \rightarrow A$ je zobrazení. Množina $B \subset A$ se nazývá invariantní vůči $f$, pokud $f(B) \subset B$, tj. $f|_B: B \rightarrow B$.
+\end{definice}
+
+\begin{lemma}
+	Nechť $H$ je Hilbertův prostor a označme
+	$$ SA(H) = \{T \in ©L(H)|T = T^*\}. $$
+	Pak pro $T \in SA(H)$ platí následující tvrzení:
+
+	\begin{enumerate}
+		\item $\lambda \in \sigma_p(T)$ právě tehdy, když $\sigma_p(T^\bigstar)$. Vlastní prostor $T$ příslušný vlastnímu číslu $\lambda$ je shodný s vlastním prostorem $T^\bigstar$ příslušným vlastnímu číslu $\overline{\lambda}$.
+		\item Pokud $\lambda_1, \lambda_2$ jsou různá vlastní čísla $T$, pak $\Ker(\lambda_1 I - T) \perp \Ker(\lambda_2 I - T)$.
+		\item Pokud $\sigma(T) = \{0\}$, pak $T = 0$.
+		\item $Y \in H$ uzavřený podprostor invariantní vůči $T$ a $T^\bigstar$ $\implies T|_Y$ je samoadjungovaný.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Pro $T = T^\bigstar$ je $\sigma(T) \subseteq ®R$ a tedy to je trivialita.
+
+		2. Ať $x_1 \in \Ker (\lambda_1 I - T)$, $x_2 \in \Ker(\lambda_2 I - T)$, pak $\lambda_1\<x_1, x_2\> = \<Tx_1, x_2\> = \<x_1, Tx_2\> = \overline{\lambda_2}\<x_1, x_2\>$. Tedy $\<x_1, x_2\> = 0$.
+
+		3. Plyne ihned z předchozí věty 2. bod.
+
+		4. $\forall x, y \in Y$ máme $\<Tx, y\> = \<x, Ty\>$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Spektrální rozklad samoadjungovaného kompaktního operátoru (D. Hilbert (1904), Erhard Schmidt (1907))]
+	Nechť $H$ je netriviální Hilbertův prostor a $T \in ©K(H)$ je samoadjungovaný. Pak existuje ortonormální báze $B$ prostoru $H$ tvořená vlastními vektory $T$. Vektorů z $B$ příslušných nenulovým vlastním číslům $T$ je spočetně mnoho, a seřadíme-li je libovolně do prosté posloupnosti $\{e_n\}_{n=1}^N$, $N \in ®N \cup \{∞\}$, pak $\{e_n\}$ je ortonormální báze $\overline{\Rang T}$ a pro každé $x \in X$ je
+	$$ Tx = \sum_{n=1}^N \lambda_n \<x, e_n\>e_n, $$
+	kde $\lambda_n$ je vlastní číslo příslušné vlastnímu vektoru $e_n$.
+
+	\begin{dukazin}[Jen za pomoci minulého lemmatu]
+		Ať $B$ je sjednocením ON bází vlastních podprostorů. Označíme $Y = \overline{\spn} B$. Chceme „$Y^\perp = \{0\}$“: 1. krok: $Y$ je invariantní vůči $T$ a $T^\bigstar$. Ať $e_n \in B$, pak $T(e_n) = \lambda_n e_n \in Y$, $T^\bigstar(e_n) = \overline{\lambda_n} e_n \in Y$ $\implies$ $T(\overline{\spn} (e_n)) \subseteq Y$ a $T^\bigstar(\overline{\spn} (e_n)) \subseteq Y$.
+
+		2. krok: $Y^\perp$ je invariantní vůči $T$ a $T^\bigstar$. Ať $Z \in Y^\perp$, pak
+		$$ \forall y \in Y: \<Tz, y\> = \<z, T^\bigstar y\> = 0, \qquad \<T^\bigstar z, y\> = \<z, T y\> = 0. $$
+		Dle 1. bodu minulého lemmatu $T|_{Y^\perp}$ je samoadjungovaný a kompaktní. Navíc $\sigma_P(T|_{Y^\perp}) = \O$ $\implies$ $T|_{Y^\perp} = 0$.
+
+		3. krok: $Y^\perp \subseteq \Ker T \subseteq Y \implies Y^\perp = Y^\perp \cap Y = \{0\}$.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

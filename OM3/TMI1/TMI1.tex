@@ -737,7 +737,77 @@ TODO?
 
 		$$ 0 ≤ \int_{\{f > 1\}}(f - 1)^+ d\mu = \int_{\{f > 1\}} (f - 1) d\mu = \int_{\{f > 1\}} d\mu - \int_{\{f > 1\}} 1d\mu = \nu(\{f > 1\}) - \mu(\{f > 1\}) ≤ 0 \implies f ≤ 1 \mu\text{-skoro všude} $$
 		$$ 0 ≤ \int_{\{f < 0\}} f^- d\mu = - \int_{\{f < 0\}} f d\mu = - nu(\{f < 0\}) ≤ 0 \implies f ≥ 0 \mu\text{-skoro všude} $$
+
+% 15. 12. 2021
+
+		$$ J(g) + J(h) - J\(\frac{g + h}{2}\) = \int_X \frac{g^2 - 2gh + h^2}{2} d\mu = \frac{1}{2} \int_X (g - h)^2 d\mu = \frac{1}{2} ||g - h||_{L^2(\mu)}^2. $$
+		$\exists \{f_n\} \subset L^2(\mu)$. $J(f_n) \rightarrow c$ pro $n \rightarrow ∞$. $g = f_n$, $h = f_m$:
+		$$ J(f_n) + J(f_m) - 2J\(\frac{f_n + f_m}{2}\) = \frac{1}{2} ||f_n - f_m||_{L^2(\mu)}^2, \forall n, m \in ®N $$
+		$$ ≤ J(f_n) + J(f_n) - 2c \rightarrow 0 \implies \exists f \in L^2(\mu): f_n \rightarrow f \in L^2(\mu). $$
+		$$ \int_X |f_n - f|d\nu ≤ \int_X |f_n - f| d\mu ≤ \(\int_X |f_n - f|^2\)^{\frac{1}{2}}·(\mu(X))^{\frac{1}{2}} \rightarrow 0 \implies $$
+		$$ \implies ||f_n - f||_{L^2(M)} \rightarrow 0 \implies J(f_n) \rightarrow J(f). $$
 	\end{dukazin}
 \end{lemma}
+
+\begin{veta}[Radonova-Nikodymova věta]
+	Nechť $\mu$, $\nu$ jsou $\sigma$-konečné míry na $(X, ©A)$ splňující $\nu \ll \mu$. Pak existuje nezáporná měřitelná funkce $f$ na $X$ tak, že
+	$$ \nu(A) = \int_A f d\mu, \forall A \in ©A. $$
+	Této funkci se říká derivace míry $\nu$ vzhledem k $mu$, nebo také Radonova-Nikodymova hustota…
+
+	\begin{dukazin}
+		1. krok: Nejprve předpokládejme, že $\mu, \nu$ jsou konečné míry. Platí $\nu ≤ \mu + \nu$. (Z lemmatu někde výše $\exists h, 0 ≤ h ≤ 1$ $(\mu + \nu)$-skoro všude, že $\nu(A) = \int_A h d(\mu + \nu)$ $\forall A \in ©A$, $ = \int_A h d\mu + \int_A h d\nu = \int_X \xi_A h d\mu + \int_X \xi_A h d\nu$).
+
+		$\int_X \xi_A (1 - h) d\nu = \int_X \xi_A h d\mu$. Z linearity $\int$ + $(h < 1, \text{skoro všude})$
+		$$ \int_X g(1 - h) d\nu = \int_X g h d\mu, \qquad \forall g \text{ jednoduchou, nezápornou, měřitelnou funkci na } X. $$
+
+		Volbou $g = \frac{1}{1 - h}\xi_A$, $A \in ©A$, $\nu(A) = \int … = \int \xi_A d\mu$?
+
+		2. krok Nechť $\nu$, $\mu$ jsou $\sigma$-konečné
+		$$ X = \bigcup_{i=1}^∞ E_i, \mu(E_i) < ∞, E_i \cap E_j = \O, i ≠ j, $$
+		$$ X = \bigcup_{i=1}^∞ F_i, \nu(F_i), F_i \cap F_j = \O, i ≠ j, $$
+		$$ D_{ij} = E_i \cap F_j, X = \bigcup_{i, j = 1}^∞ D_{ij}, \nu(D_{ij}) < +∞, \mu(D_{ij}) < +∞, \forall i, j \in ®N $$
+		tedy jako v první části důkazu zvolíme $f_{ij}$ měřitelné nezáporné na $D_{ij}$, aby $\nu|_{D_{ij}}(A) = \int_{D_{ij}} f_{ij} d\mu|_{D_{ij}}$. Nyní již $\forall x \in X \exists! i \in ®N\ \exists! j \in ®N: x \in D_{ij} \implies f(x) = f_{ij}(x)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Singulární míra]
+	Nechť $\nu, \mu$ jsou míry na měřitelném prostoru $(X, ©A)$. Řekneme, že míra $\nu$ je singulární vzhledem k míře $\mu$ (značení $\nu \perp \mu$), jestliže
+	$$ \exists S \in ©AL \mu(S) = 0 \land \nu(X\setminus S) = 0. $$
+\end{definice}
+
+\begin{veta}[Lebesgueova dekompozice]
+	Buď $(X, ©A)$ měřitelný prostor, $\mu$ míra na $X$, $\nu$ $\sigma$-konečná míra na $X$. Pak existují jednoznačně určené míry $\nu_a$, $\nu_s$ na $X$ tak, že $\nu_a \ll \mu$, $\nu_s \perp \mu$ a $\nu_a + \nu_s = \nu$.
+
+	\begin{dukazin}
+		1. krok: Nechť $\nu$ je konečná míra. Pak existence plyne z:
+		$$ ©N_\mu := \{B \in ©A | \mu(B) = 0\}, $$
+		$$ c := \sup\{\nu(B) | V \in ©N_\mu\} ≤ \nu(X) < ∞ $$
+		$$ \exists \{B_j\} \subset ©A, \lim_{j \rightarrow ∞} \nu(B_j) = e $$
+		$$ N := \bigcup_{j=1}^∞ B_j \implies \mu(N) ≤ \sum_{j=1}^∞ \mu(B_j) = 0. $$
+		$$ \nu_s(A) := \nu(A \cap N) \forall A \in ©A, $$
+		$$ \nu(X \setminus N) - \nu(X \setminus N \cap N) = 0. $$
+		$$ \nu_a(A) = \nu(A) - \nu_s(A) = \nu(A) - \nu(A \cap N) = \nu(A \setminus N) = \nu(A \cap N) $$.
+
+		$\nu_a \ll \mu$: Buď $A \in ©A$, $\mu(A) = 0$.
+		$$ N \cup (A \cap N^c) \implies \mu(N \cup (A \cap N^c)) ≤ \mu(N) + \mu(A \cap N^c) = 0. $$
+
+		Platí $\nu(A \cap N^c) = 0$, neboť (sporem) kdyby $\nu(A \cap N^c) > 0$, pak by
+		$$ \nu(N \cup (A \cup N^c)) = \nu(N) + \nu(A \cap N^c) = c + (>0). \text{\lightning}. $$
+		$$ \nu(A \cup N^c) = \nu_a(A) $$
+
+		Jednoznačnost: Nechť $\nu = \nu_a + \nu_s$ a $\nu = \tilde \nu_a + \tilde \nu_s$, $\nu_a \ll \mu$, $\tilde \nu_a \ll \mu$, $\nu_s \perp \mu$, $\tilde \nu_s \perp \mu$.
+		$$  \implies \exists N \in ©A: \mu(N) = 0 \land \nu_s(N^c) = 0 \land $$
+		$$ \land \exists \tilde N \in ©A: \mu(\tilde N) = 0 \land \tilde\nu_s(\tilde N^c) = 0 $$
+		$$ \implies \nu_a(N) = 0, \tilde \nu_a(N) = 0, N_0 := N \cup \tilde N \implies \mu(N_0) = 0 $$
+		$$ \nu_s(C_0^c) = \nu_s(X \setminus N_0) ≤ \nu_s(X \setminus N) = \nu_s(N^c) = 0 \implies \nu_s(N_0^c). $$
+
+		$$ \nu_s(A) = \nu_s(A \cap N_0) = \nu(A \cap N_0) - \nu_a(A \cap N_0) = \nu(A \cap N_0). $$
+		Analogicky
+		$$ \tilde \nu_s(A) = \tilde \nu_s(A \cap N_0) = \nu(A \cap N_0) - \tilde \nu_a(A \cap N_0) = \nu(A \cap N_0). $$
+		$$ \implies \nu_s = \tilde \nu_s, \nu_a = \tilde \nu_a. $$
+
+		2. krok: Předpokládejme, že $\nu$ je $\sigma$-konečná. $X = \bigcup_{k=1}^∞ D_k$, $D_k \in ©A$, $D_k \cap D_l$, $k ≠ l$, $\nu(D_k) < ∞$. Provedeme první krok na každé množině zvlášť a pak je dáme dohromady.
+	\end{dukazin}
+\end{veta}
 
 \end{document}

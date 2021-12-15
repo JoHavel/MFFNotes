@@ -31,8 +31,50 @@
 
 		Tudíž kuželosečka nemá žádné nevlastní body, takže je to elipsa.
 
-		Je to elipsa tedy nemá žádné asymptoty. Rovnici můžeme upravit:
-		$$  $$
+		Tečné body jsou průnikem poláry s kuželosečkou a poláru spočítáme z definice jak
+		$$ (p_1, p_2, 1) \begin{pmatrix} 11 & 2 & -2 \\ 2 & 14 & -14 \\ -2 & -14 & -16 \end{pmatrix} \begin{pmatrix} -1 \\ -1 \\ 1 \end{pmatrix} = -15p_1 -30p_2 = 0, \qquad p_1 = -2p_2. $$
+		Najdeme průsečíky tak, že dosadíme do rovnice kuželosečky:
+		$$ 44p_2^2 - 8p_2^2 + 14p_2^2 + 8p_2 - 28p_2 - 16 = 0, \qquad p_2 = \frac{1 ± 3}{5}, \qquad p_1 = -\frac{2 ± 6}{5}, $$
+		tedy tečny jsou
+		$$ t_{(1)}: \begin{pmatrix} -1 \\ -1 \end{pmatrix} + \alpha \begin{pmatrix} -3 / 5 \\ 9 / 5 \end{pmatrix}, \qquad t_{(2)}: \begin{pmatrix} -1 \\ -1 \end{pmatrix} + \beta \begin{pmatrix} 9 / 5 \\ 3 / 5 \end{pmatrix} $$
+	\end{reseni}
+
+	\begin{reseni}[Afinní zobrazení]
+		Je to elipsa tedy nemá žádné asymptoty. Pro další části chceme najít afinní zobrazení převádějící elipsu $x_1^2 + x_2^2 - r^2 = 0$ na $\tilde Q$. To je tvaru (aby zobrazovalo zase do afinní roviny $x_3 = 1$)
+		$$ ¦x \mapsto \begin{pmatrix} a_{11} & a_{12} & 0 \\ a_{21} & a_{22} & 0 \\ 0 & 0 & 1 \end{pmatrix}¦x  + \begin{pmatrix} b_1 \\ b_2 \\ 0 \end{pmatrix} = A¦x + ¦b, $$
+		tak, aby $x_1^2 + x_2^2 - r^2 = 0$ právě tehdy, když ($¦x = (x_1, x_2, 1)^T$)
+		$$ (A¦x + ¦b)^T\begin{pmatrix} 11 & 2 & -2 \\ 2 & 14 & -14 \\ -2 & -14 & -16 \end{pmatrix} (A¦x + ¦b) = 0. $$
+		Ještě chceme, aby se osy zobrazily na osy $\tilde Q$, tedy vhodným kandidátem na $A_{22}$ –„horní čtverec“ $A$ – je matice přechodu od kanonické báze k bázi vlastních vektorů $\begin{pmatrix} 11 & 2 \\ 2 & 14 \end{pmatrix}$ „vydělená“ odmocninami vlastními čísly\footnote{Ty spočítáme přes charakteristický polynom a jádro matice mínus vlastní číslo krát jednotková.}
+		$$ A_{22} = \frac{1}{\sqrt{5}}\begin{pmatrix} -2 & 1 \\ 1 & 2 \end{pmatrix} · \begin{pmatrix} \frac{1}{\sqrt{10}} & 0 \\ 0 & \frac{1}{\sqrt{15}} \end{pmatrix} $$
+
+		Nyní se můžeme podívat jak by vypadala kuželosečka, kdyby $¦b = ¦o$:
+		$$ (A¦x)^T · (…) · A¦x = ¦x^T · A^T(…)A ¦x = \begin{pmatrix} x_1 & x_2 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0 & -\sqrt{2} \\ 0 & 1 & -2 \\ -\sqrt{2} & -2\sqrt{3} & -16 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ 1 \end{pmatrix} = 0, $$
+		$$ x_1^2 + x_2^2 - 2\sqrt{2}x_1 - 4\sqrt{3}x_2 - 16 = (x_1 - \sqrt{2})^2 + (x_2 - 2\sqrt{3})^2 - 30 = 0. $$
+		Z toho je vidět, že $r = \sqrt{30}$ a že kdybychom posunuly kuželosečku před zobrazením maticí, tak by to bylo o vektor $(\sqrt{2}, 2\sqrt{3})^T$. Z toho však snadno dostaneme posunutí výsledné kuželosečky:
+		$$ \begin{pmatrix} b_1 \\ b_2 \end{pmatrix} = A_{22} \begin{pmatrix} \sqrt{2} \\ 2\sqrt{3} \end{pmatrix} = \begin{pmatrix} -\frac{2}{\sqrt{50}}·\sqrt{2} + \frac{1}{\sqrt{75}}·2sqrt{3} \\ \frac{1}{\sqrt{50}}·\sqrt{2} + \frac{2}{\sqrt{75}}·2\sqrt{3} \end{pmatrix} = \begin{pmatrix} 0 \\ 1 \end{pmatrix}. $$
+
+		Tedy $\tilde Q$ můžeme vyjádřit jako obraz $x_1^2 + x_2^x - 30 = 0$ při zobrazení
+		$$ (x_1, x_2) \mapsto \begin{pmatrix} -\frac{2}{\sqrt{50}} & \frac{1}{\sqrt{75}} \\ \frac{1}{\sqrt{50}} & \frac{2}{\sqrt{75}} \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \text{ resp. } (x_1, x_2, 1) \mapsto \begin{pmatrix} -\frac{2}{\sqrt{50}} & \frac{1}{\sqrt{75}} & 0 \\ \frac{1}{\sqrt{50}} & \frac{2}{\sqrt{75}} & 1 \\ 0 & 0 & 1 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ 1 \end{pmatrix} . $$
+	\end{reseni}
+
+	\begin{reseni}[Střed, asymptoty, osy, vrcholy, délky poloos, parametrizace]
+		Střed vidíme ze zápisu zobrazení hned, je to bod $(0, -1)$ (tam se zobrazí počátek). Asymptoty elipsa nemá.
+
+		Osy jsou obrazy úseček $\overline{(-\sqrt{30}, 0)\ (\sqrt{30}, 0)}$ a $\overline{(0, -\sqrt{30})\ (0, \sqrt{30})}$ a (a vrcholy jsou jejich krajní body), tedy
+		$$ \overline{\begin{pmatrix} \frac{2\sqrt{3}}{\sqrt{5}} \\ -\frac{\sqrt{3}}{\sqrt{5}} + 1 \end{pmatrix}\ \begin{pmatrix} -\frac{2\sqrt{3}}{\sqrt{5}} \\ \frac{\sqrt{3}}{\sqrt{5}} + 1 \end{pmatrix}}, \qquad \overline{\begin{pmatrix} -\frac{\sqrt{2}}{\sqrt{5}} \\ -\frac{2\sqrt{2}}{\sqrt{5}} + 1 \end{pmatrix}\ \begin{pmatrix} \frac{\sqrt{2}}{\sqrt{5}} \\ \frac{2\sqrt{2}}{\sqrt{5}} + 1 \end{pmatrix}} $$
+		poloviny jejich délek (tj. délky poloos) jsou
+		$$ \sqrt{\(2\frac{2\sqrt{3}}{\sqrt{5}}\)^2 + \(2\frac{\sqrt{3}}{\sqrt{5}}\)^2}/2 = \sqrt{3}, \qquad \sqrt{\(2\frac{\sqrt{2}}{\sqrt{5}}\)^2 + \(2\frac{2\sqrt{2}}{\sqrt{5}}\)^2}/2 = \sqrt{2}. $$
+
+		Pro parametrizaci můžeme vzít triviální parametrizaci vzorové kuželosečky $x_1^2 + x_2^2 - 30 = 0$, tedy $(\sqrt{30} \sin t, \sqrt{30} \cos t)^T$ pro $t \in [0, 2\pi=0]$ (zřejmě je „hladce uzavřená“, takže můžeme v $0$ a $2\pi$ počítat jako by zde pokračovala). Tuto parametrizaci zobrazíme:
+		$$ c(t) = \(-\frac{2\sqrt{3}}{\sqrt{5}} \sin t + \frac{\sqrt{2}}{\sqrt{5}} \cos t, \frac{\sqrt{3}}{\sqrt{5}} \sin t + \frac{2\sqrt{2}}{\sqrt{5}} \cos t + 1\)^T, \qquad t \in [0, 2\pi]. $$
+
+		Pro znaménkovou křivost potřebujeme první a druhou derivaci:
+		$$ c'(t) = \(-\frac{2\sqrt{3}}{\sqrt{5}} \cos t - \frac{\sqrt{2}}{\sqrt{5}} \sin t, \frac{\sqrt{3}}{\sqrt{5}} \cos t - \frac{2\sqrt{2}}{\sqrt{5}} \sin t\)^T, $$
+		$$ ||c'(t)|| = \sqrt{\frac{12}{5} \cos^2 t + \frac{2}{5} \sin^t t + \frac{3}{5} \cos^2 t + \frac{8}{5} \sin^2 t} = \sqrt{3\cos^2 t + 2 \sin^2 t}, $$
+		$$ c''(t) = \(\frac{2\sqrt{3}}{\sqrt{5}} \sin t - \frac{\sqrt{2}}{\sqrt{5}} \cos t, -\frac{\sqrt{3}}{\sqrt{5}} \sin t - \frac{2\sqrt{2}}{\sqrt{5}} \cos t\)^T. $$
+		Znaménkovou křivost pak spočítáme přímo z definice:
+		$$ \kappa_z(t) = \frac{\det(c'(t)|c''(t))}{||c'(t)||^3} = \frac{5\sqrt{6} (\cos^2 t + \sin^2 t) + 0 \sin t \cos t}{5 \sqrt{3\cos^2 t + 2 \sin^2 t}^3} = \sqrt{6} \frac{1}{\sqrt{3\cos^2 t + 2 \sin^2 t}^3}, $$
+		což je zřejmě minimální v bodech, kde nabývá největší hodnoty $\cos$ a opačně, tedy minimum jsou $t = 0, \pi$ a maximum $t = \frac{\pi}{2}, \frac{3\pi}{2}$, což přesně odpovídá vrcholům (jsou to body na osách na původní kružnici).
 	\end{reseni}
 \end{priklad}
 

@@ -370,4 +370,35 @@ Analýza  \_______/ Generování
 	Statistické metody (využívají paralelní značkované korpusy, rychle se zlepšují, pro měření kvality však používají technické metody založené na referenčních překladech – BLEU score)
 \end{poznamka}
 
+% 14. 12. 2021
+
+\begin{definice}[Současné trendy, statistické metody, překladová paměť]
+	Používají se systémy, které jen rozpoznávají shodu v textu a nabízejí překladateli informace. Zejména se hodí na manuály, dokumentace, atd. Protože tam se mění jen část, tedy se překládá pořád to samé.
+
+	První IBM Translation Manager, Dejá Vu (pouze překladatelská tabulka neznámých frází bez kontextu, ale mnohokrát využitá fráze se přeloží jen jednou), TRADOS Translator's Workbench (překlad přímo textu, tedy s kontextem).
+\end{definice}
+
+\begin{definice}[České systémy]
+	První věta přeložena v r. 1957 na počítači SAPO.
+
+	„The consonants have not by far been investigated to the same extent as the vowels.“
+
+	„Souhlásky zdaleka nebyly prozkoumány do stejné míry jako samohlásky.“
+
+	Poté se moc nedělo, až když byly přivezeny Q systémy. Pak vznikl systém APAČ (překlad z angličtiny do češtiny, autor Dr. Zdeněk Kirschner, vytvořen ve stejném formalismu jako METEO, překlad textů z oblasti vodních pump, transdukční slovník (-action => -ace, -ic => -ický, …)), systém RUSLAN (překlad manuálů k operačním systémům sálových počítačů, překlad 1 věty trval cca 4 minuty, transdukční slovník (fungoval jen na cizí názvy i mezi slovanskými jazyky), minimální transfer, výzkum zastaven v roce 1990 těsně před provozními zkouškami), nakonec systém Česílko (chtěl překládat ručně do češtiny a z ní pak do všech slovanských jazyků (stejná syntaxe), první pokusy se slovenštinou, už tehdy se přišlo na to, že je potřeba plný dvojjazyčný slovník a že je úplně jiné tvarosloví).
+\end{definice}
+
+\section{Sestavování korpusů}
+\begin{definice}[Korpus]
+	Sbírka textů doplněná o nějaké informace. (Podle informací můžeme mít různé druhy korpusů.)
+
+	Chceme po nich: výběr vzorků a reprezentativnost, konečnou velikost (aby spočítané výsledky platily, lze vyřešit verzováním), strojem čitelná forma, standardní reference (aby sloužil širšímu publiku musí značkovat tak, aby se v tom lidé vyznaly, tedy nechceme vyrábět svoje vlastní značky).
+
+	\begin{prikladyin}
+		První korpus Brown?
+
+		První a nejznámější syntakticky anotovaný korpus PennTreebank, který měl texty z burzy.
+	\end{prikladyin}
+\end{definice}
+
 \end{document}
