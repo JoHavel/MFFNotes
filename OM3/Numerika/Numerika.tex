@@ -1422,5 +1422,127 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 \end{definice}
 
 	\subsection{Konstrukce metod (JKM, vyšší řády)}
+	\begin{definice}[Metody založené na Taylorovi]
+		Zanedbáním členů Taylorova polynomu. Problémem je, že většinou je potřeba znát derivaci vyšších řádů.
+	\end{definice}
 
+	\begin{definice}[Runge-Kuttovy metody]
+		$K_1 = f(x, y)$, $K_2 = f(x + \alpha h, y + \beta h K_1)$. $\Phi(x, y, h) := w_1 K_1 + w_2 K_2$.
+
+		Chceme $\alpha$, $\beta$, $w_1$, $w_2$, aby to bylo 2. řádu. Tedy
+		$$ \frac{y(x+ h) - u(x)}{h} - \Phi(x, y, h) = \tau(x, y) = O(h^2). $$
+		$$ \tilde \Phi(x, y, h) := f(x, y) + \frac{h}{2} \(\frac{\partial f}{x}(x, y) + \frac{\partial f}{\partial y}(x, y) f(x, y)\). $$
+		Kdyby $\Phi - \tilde \Phi = O(h^2)$, tak jsme vyhráli.
+		$$ \Phi(x, y, h) = w_1 f(x, y) + w_2f(x + \alpha h, y + \beta h f(x, y)) = $$
+		$$ = w_1 f(x, y) + w_2 \[f(x, y) + \frac{\partial f}{\partial x}(x, y) \alpha h + \frac{\partial f}{\partial y}(x, y) \beta h f(x, y) + O(h^2)\]. $$
+		Koeficienty porovnáme s $\tilde \Phi$ a vyjde $w_1 = 1 - w_2$, $\alpha = \beta = \frac{1}{2w_2}$.
+
+		$w_2 = \frac{1}{2}$ je Heun. $w_2 = 1$ je Vylepšený Euler. $w_2 = \frac{3}{4}$ je Ralsfonova metoda, která by měla mít nejlepší konstantu v $O(h^2)$.
+
+		Obecné Runge-Kuttovy metody volí $\Phi(x, y, h) = \sum_{i=1}^s w_i k_i$, kde $K_1 = f(x, y)$, $K_2 = f(x + \alpha_1 h, y + \beta_2 h K_1)$, $K_i = f(x + \alpha_i h, y + \sum_{i=2}^i \beta_i h K_{i-1})$.
+
+		Explicitní metoda, v praxi $s = 4$ – metoda 4. řádu.
+	\end{definice}
+
+% 25. přednáška
+
+	\subsection{Vícekrokové metody (VKM)}
+	\begin{definice}[$k$-kroková metoda]
+		$k$-kroková metoda je $\sum_{i=0}^k \alpha_i y_{n+i} = h \sum_{i=0}^k \beta_i f(x_{n+i}, y_{n+i})$, kde $\alpha_i, \beta_i \in ®R$, $\alpha_k ≠ 0$, $|\alpha_0| + |\beta_0| > 0$.
+
+		\begin{poznamkain}
+			Tyto metody nejsou self-started, je dáno jen $y_0$ a $y_1, …, y_{k-1}$ je třeba dopočítat např R-K.
+		\end{poznamkain}
+
+		Explicitní je $\beta_k = 0$, implicitní $\beta_k ≠ 0$.
+	\end{definice}
+
+	\begin{veta}
+		Nechť $h$ je dost malé $\implies$ $G(y_{n+k}) := \frac{\beta_k}{\alpha_k} h f(x_{n+k}, y_{n+k}) + \frac{1}{\alpha_k} \[h \sum_{i=0}^{k-1} \beta_i f_{n+i} - \sum_{i=0}^{k-1} \alpha_i y_{n+i}\]$ je kontrakce $\implies$ pro libovolné $y_{n+k}^{(0)}$ platí $y_{n+k}^{(l)} \rightarrow y_{n+k}$ (hledané řešení VKM) pro $l \rightarrow 0$.
+
+		\begin{dukazin}
+			$$ |G(y) - G(\tilde y)| = |\frac{\beta_k}{\alpha_k} h f(x_{n+k}, y) - \frac{\beta_k}{\alpha_k} h f(x_{n+k}, \tilde y)| ≤ |\frac{\beta_k}{\alpha_k}| h L |y - \tilde y|. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Konstrukce: Adam-Bashfonth]
+		Explicitní.
+
+		$$ \int_{x_n}^{x_{n+1}} ODR dx \implies y(x_{n+1}) - y(x_{n}) = \int_{x_n}^{x_{n+1}} f(x, y(x)) dx \approx $$
+		$\approx$ interpolujeme $f$ v uzlech $x_n, x_{n-1}, …$ polynomem stupně $k-1$ Lagrangeovými polynomy.
+
+		Metody řádu $k$.
+	\end{definice}
+
+	\begin{definice}[Adams-Moulton]
+		Implicitní.
+
+		Jako výše, ale interpoluje se i v $x_{n+1}$. Řád $k+1$.
+	\end{definice}
+
+	\begin{definice}[Backward difference formulae]
+		Implicitní. $y'(x_n) \approx f(x_n, y_n)$
+		$$ y'(x_n) \approx L'(x_n), \text{ kde $L$ je Lagrangeův polynom funkce $y$ na $k$ předchozích uzlech.} $$
+	\end{definice}
+
+	\begin{definice}[Lokální diskretizační chyba]
+		$$ \tau(x, h) := \frac{1}{h} \sum_{i=0}^k \alpha_i y(x + i h) - \sum_{i=0}^k \beta_i f(x + ih, y(x + ih)). $$
+	\end{definice}
+
+	\begin{definice}[Řád VKM]
+		VKM je řádu $p$, pokud $\exists C, h_0 > 0: |\tau(x, y)| ≤ C h^p$. $\forall x \in [a, b]$, $\forall h \in (0, h_0)$.
+	\end{definice}
+
+	\begin{veta}
+		VKM je řádu $p$ $\Leftrightarrow$ $\sum_{i=0}^k \alpha_i = 0$, $\sum_{i=0}^k \frac{\alpha_i i^l}{l!} = \sum_{i=0}^k \beta_i \frac{i^{l-1}}{(l-1)!}$ pro $l = 1, 2, …, p$, zde $0^0 = 0! = \frac{0}{0} = 1$.
+
+		\begin{dukazin}
+			$$ \tau(x, h) = \frac{1}{h} \sum_{i=0}^k \alpha_i y(x + ih) - \overbrace{\sum_{i=0}^k \beta_i f(x + ih, y(x + ih))}^{=y'(x + ih)} = $$
+			$$ \frac{1}{h} \sum_{i=0}^k \alpha_i \sum_{l=0}^p y^{(l)} \frac{(ih)^l}{l!} - \sum_{i=0}^k b_i \sum_{l=0}^p y^{(l+1)}(x) \frac{(ih)^l}{l!} + O(h^p). $$
+			Koeficienty u $y^{(l)}(x)$ musí být rovné nule pro $l \in [p]_0$.
+			$$ l = 0: \frac{1}{h} \sum_{i=0}^k \alpha_i - 0 = 0 \implies \sum \alpha_i = 0, $$
+			$$ l \in [p]: \frac{1}{h} \sum_{i=0}^k \alpha_i \frac{(ih)^l}{l!} - \sum_{i=0}^k \beta_i \frac{(ih)^{l-1}}{(l-1)!} = 0. \qquad / ·h^{1-l} $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Konzistentní VKM]
+		VKM je konzistentní, když $\lim_{h \rightarrow 0+} \tau(x, h) = 0$ $\forall x$.
+	\end{definice}
+
+	\begin{lemma}
+		VKM je konzistentní tehdy a jen tehdy, když je alespoň 1. řádu.
+	\end{lemma}
+
+	\begin{definice}[Charakteristický polynom]
+		Charakteristický polynom diferenční rovnice je $\rho(x) := \sum_{i=0}^k \alpha_i x^i$.
+	\end{definice}
+
+	\begin{lemma}
+		$\xi$ je kořen $\rho(x)$ $\Leftrightarrow$ posloupnost $\{\xi^n\}_{n=0}^∞$ je řešení DR.
+	\end{lemma}
+
+	\begin{poznamka}[1. požadavek na stabilitu VKN]
+		$|\xi| ≤ 1$ $\forall \xi$ kořen charakteristického polynomu $\rho$.
+	\end{poznamka}
+
+	\begin{lemma}
+		Nechť $\xi$ je $l$-násobný kořen $\rho(x)$. Pak posloupnosti $\{\xi^n\}_{n \in ®N}$, $\{n \xi^{n-1}\}_{n \in ®N}$, …, $\{n(n-1)·…·(n - l + 2)\xi^{n - l + 2}\}_{n \in ®N}$ řeší DR, obecné řešení je lineární kombinací.
+
+		\begin{dukazin}
+			Dokazuje se „derivací“.
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{definice}
+		VKM je stabilní, pokud $\forall$ kořen charakteristického polynomu $\rho(x) = \sum_{i=0}^k \alpha_i x^i$ platí:
+		$$ |\xi| ≤ 1 \land (|\xi| = 1 \implies \xi \text{ je jednoduchý kořen}). $$
+	\end{definice}
+
+	\begin{veta}[?]
+		VKM je konvergentní $\Leftrightarrow$ VKM je stabilní a konzistentní.
+	\end{veta}
+
+	\begin{poznamka}
+		Soustavy rovnic se řeší po složkách.
+	\end{poznamka}
 \end{document}

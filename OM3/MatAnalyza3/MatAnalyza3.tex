@@ -1008,4 +1008,76 @@ TODO!!!
 		\end{dukazin}
 	\end{veta}
 
+% 16. 12. 2021
+
+	\subsection{Rozklad do Schauderovy báze}
+	\begin{definice}[Ortogonální a ortonormální množina, Fourierovy koeficienty]
+		Nechť $H$ je Hilbertův prostor a $A$ je indexová množina. Množina prvků $u_\alpha \in H$, kde $\alpha \in A$, se nazývá ortogonální, pokud je $\<u_\alpha, u_\beta\> = 0$ $\forall \alpha, \beta \in A$ různé.
+
+		Ortogonální množina se nazývá ortonormální, pokud navíc $||u_\alpha|| = 1$, $\forall \alpha \in A$.
+
+		Jestliže $\{u_\alpha | \alpha \in A\}$ je ortonormální množina, pak pro každé $x \in H$ definujeme Fourierovy $x$ vzhledem k $u_\alpha$ jako
+		$$ \hat{x}(a) = \<x, u_\alpha\>. $$
+	\end{definice}
+
+	\begin{veta}[O konečné ortonormální množině]
+		Nechť $H$ je Hilbertův prostor, $\{u_\alpha\}_{\alpha \in A}$ je ortonormální množina a $F \subset A$ je konečná množina. Označme $M_F = \spn\{u_{\alpha} | \alpha \in F\}$.
+
+		\begin{enumerate}
+			\item Nechť $\phi: A \rightarrow ®R$ je 0 mimo $F$. Pro vektor $y = \sum_{\alpha \in F} \phi(\alpha)·u_\alpha$ platí $\hat{y}(\alpha) = \phi(\alpha)$ a $||y||^2 = \sum_{\alpha \in F} |\phi(\alpha)|^2$.
+			\item Je-li $x \in H$ a $s_F(x) = \sum_{\alpha \in F} \hat{x}(\alpha)·u_\alpha$, pak $s_F (x) = P(x)$ je projekce na $M$. Navíc platí $\sum_{\alpha \in F} |\hat{x}(\alpha)|^2 ≤ ||x||^2$ (Besselova nerovnost).
+		\end{enumerate}
+
+		\begin{dukazin}
+			1. $\hat{(\alpha)} = \<y, u_\alpha\> = \<\sum_{\beta \in F} \phi(\beta) u_\beta, u_\alpha\> =$ (jelikož suma je konečná)
+			$$ = \sum_{\beta \in F} \phi(\beta)·\<u_\beta, u_\alpha\> = \phi(\alpha). $$
+
+			$$ ||y||^2 = \<\sum_{\beta \in F} \phi(\beta)u_\beta, \sum_{\alpha \in F} \phi(\alpha) u_\alpha\> = \sum_{\alpha, \beta \in F} \phi(\alpha)·\phi(\beta)·\<u_\alpha, u_\beta\> = \sum_{\alpha \in F} (\phi(\alpha))^2. $$
+
+			2. $\<x - s_F(x), u_\alpha\> = \<x, u_\alpha\> - \<\sum_{\beta \in F}\hat{x}(\beta)·u_\beta, u_\alpha\> = \<x, u_\alpha\> - \hat{x}(\alpha) = 0$. Tedy $x - s_F(x) \in M_F^\perp$.
+
+			Nechť $y \in M_F$: $||x - y||^2 = \<x - s_f + s_f - y, x - s_F + s_F - y\> = \<x - s_F, x - s_F\> + 2·\<x - s_F, s_F - y\> + \<s_F - y, s_F - y\> = ||x - s_F||^2 + ||s_F - y|| ≥ ||x - s_F||^2$. Tedy $s_F(x)$ je nejbližší k $x$ v $M_F$, tedy projekce.
+
+			Pro $y = 0$ máme $||x||^2 ≥ ||x - s_F||^2 + ||s_F||^2 ≥ ||s_F||^2 = \sum_{\alpha \in F} |\hat{x}(\alpha)|^2$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Izometrie]
+		Nechť $(X, \rho)$ a $(Y, \tau)$ jsou MP. Pak $f: X \rightarrow Y$ je izometrie, když $\forall x_1, x_2 \in X: \rho(x_1, x_2) = \tau(f(x_1), f(x_2))$
+	\end{definice}
+
+	\begin{lemma}
+		Nechť $X, Y$ jsou metrické prostory, $X$ je úplný a $f: X \rightarrow Y$ je spojité. Nechť $X_0$ je hustá podmnožina $X$ a nechť $f(X_0)$ je hustá podmnožina $Y$. Nechť $f$ je izometrie na $X_0$, pak $f$ je izometrie $X$ na $Y$.
+
+		\begin{dukazin}
+			Izometrie: Nechť $x, a \in X$, $X_0$ hustá $\implies$ $\exists x_n (\in X_0) \rightarrow x$, $a_n (\in X_0) \rightarrow a$. Víme, že $f$ je izometrie na $X_0$: $\rho(x_n, a_n) = \tau(f(x_n), f(a_n))$, $\rho(x_n, a_n) \rightarrow \rho(x, a)$, $\tau(f(x_n), f(a_n)) \rightarrow \tau(f(x), f(a))$.
+
+			Na: Nechť $y \in Y$, $f(X_0)$ je hustá v $Y$ $\implies$ $\exists x_n \in X$, $f(x_n) \rightarrow y$ $\implies$ $f(x_n)$ je cauchyovská v $Y$, ale $f$ je izometrie, tedy i $x_n$ je cauchyovská a $X$ je úplný, tedy $\exists x \in X: x_n \rightarrow x$. Tudíž nutně $f(x_n) \rightarrow f(x) = y \leftarrow f(x_n)$, jelikož $f$ je spojitá.
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{veta}[Piezz-Fischerova věta]
+		Nechť $H$ je Hilbertův prostor a $\{u_i\}_{i=1}^∞$ je ortonormální množina. Nechť $P$ je prostor všech konečných lineární kombinací vektorů $u_i$. Potom pro každé $x \in H$ platí
+		$$ \sum_{i=1}^∞ |\hat{x}(i)|^2 ≤ ||x||^2. $$
+		Zobrazení $x \rightarrow \hat{x}$ je spojité lineární zobrazení $H$ na $l_2$, jehož restrikce na $\overline{P}$ je izometrie $\overline{P}$ na $l^2$.
+
+		\begin{dukazin}
+			Z předchozí věty víme, že $\sum_{i=1}^n |\hat{x}(i)|^2 ≤ ||x||^2 \implies$
+			$$ \implies \sum_{i=1}^∞ |\hat{x}(i)|^2 ≤ ||x||^2. $$
+			Tedy $x \mapsto \hat{x}$ je z $H$ do $l^2$. Toto zobrazení je lineární
+			$$ \hat{x + y}(i) = \<x + y, u_i\> = \<x, u_i\> + \<y, u_i\> = \hat{x}(i) + \hat{y}(i). $$
+			Spojitost: $\forall x, y \in H$
+			$$ ||x - y||^2 ≥ \sum_{i=1}^∞ |\hat{x}(i) - \hat{y}(i)|^2 $$
+			a z toho již plyne spojitost $x \mapsto \hat{x}$.
+
+			Podle předchozí věty je $x \mapsto \hat{x}$ izometrie na $P$.
+
+			Použijeme předchozí lemma na $X = \overline{P}$, $X_0 = P$, $Y = l^2$. ($X$ je uzavřená podmnožina úplného, tedy úplný, $X_0$ je husté v $X$ z definice uzávěru a $x \mapsto \hat{x}$ je spojité). $f(X_0) = \{\{a_n\}_{n=1}^∞ \in l^2 | \exists k a_n = 0 \forall n > k\}$ je podle příkladu na přednášce husté v $l^2$.
+		\end{dukazin}
+	\end{veta}
+
+
+
+
+
 \end{document}
