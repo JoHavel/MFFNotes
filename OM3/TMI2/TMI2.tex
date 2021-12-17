@@ -5,7 +5,7 @@
 
 \begin{document}
 
-% 04. 10. 2021
+% 05. 10. 2021
 
 \section*{Organizační úvod}
 	\begin{poznamka}
@@ -18,7 +18,7 @@
 	$$ \lambda^n\left(\bigtimes_{i=1}^n[a_i, b_i]\right) = \prod_{i=1}^n \left(b_i - a_i\right), -∞ < a_i ≤ b_i < ∞, 1 ≤ i ≤ n. $$
 
 	\begin{poznamkain}
-		Zúplněnou $\sigma$-algebru značíme $B_0^n$ a platí $B^n \subsetneq B_0^n$ (pro $n ≥ 2$ jednoduché, pro $n = 1$ možná někdy příště).
+		Zúplnění $B^n$ značíme $B_0^n$ a platí $B^n \subsetneq B_0^n \subsetneq ©P(®R^n)$ (pro $n ≥ 2$ jednoduché, pro $n = 1$ možná někdy příště).
 
 		$\lambda^n$ je translačně a rotačně invariantní (posunutím a otočením se nezmění).
 
@@ -28,7 +28,7 @@
 	\end{poznamkain}
 \end{veta}
 
-\begin{definice}
+\begin{definice}[Pramíra]
 	$\tilde{\mu}: ©A \rightarrow [0, ∞]$ je pramíra (premeasure) na algebře ©A podmnožin $X$, jestliže:
 	$$ \tilde{\mu}\left(\O\right) = 0, $$
 	$$ A_i \in ©A, \bigcup_i A_i \in ©A, A_i \text{ po dvou disjunktní} \implies \tilde{mu}\left(\bigcup_iA_i\right) = \sum_i \tilde{\mu}\left(A_i\right). $$
@@ -86,7 +86,8 @@
 		po dvou disjunktní.
 
 		$©A_{\mu^*}$ je uzavřená na disjunktní spočetné sjednocení: $A_i \in ©A_{\mu^*}$, po dvou disjunktní, $T \subset X$.
-		$$ \mu^*(T) = \mu^*\left(T \setminus \bigcup_{i=1}^n A_i\right) + \mu^*\left(T \cap \bigcup_{i=1}^n A_i\right) ≥ \mu^*\left(T\setminus \bigcup_{i=1}^∞ A_i\right) + \left(\mu^*|_T\right)\left(\bigcup_{i=1}^∞ A_i\right) = TODO $$
+		$$ \mu^*(T) = \mu^*\left(T \setminus \bigcup_{i=1}^n A_i\right) + \mu^*\left(T \cap \bigcup_{i=1}^n A_i\right) ≥ \mu^*\left(T\setminus \bigcup_{i=1}^∞ A_i\right) + \left(\mu^*|_T\right)\left(\bigcup_{i=1}^∞ A_i\right) = $$
+		$$ = \mu^*\(T \setminus \bigcup_{i=1}^∞ A_i\) + \sum_{i=1}^n(\mu^*|T)(A_i). $$
 
 		Limitním přechodem $n \rightarrow ∞$ dostaneme
 		$$ \mu^*(T) ≥ \mu^*(T \setminus \bigcup_{i=1}^∞ A_i) + \sum_{i=1}^∞\left(\mu^*|_T\right)\left(A_i\right) = \mu^*\left(T \setminus \bigcup_{i=1}^∞\right) \left(\mu^*|_T\right)\left(\bigcup_{i=1}^∞ A_i\right) \implies \bigcup_{i=1}^∞ A_i \in ©A_{\mu^*}. $$
@@ -96,9 +97,163 @@
 	\end{dukazin}
 \end{veta}
 
+% 12. 10. 2021 (z materiálů)
+
+\begin{definice}[Metrická vnější míra]
+	Buď $(X, \rho)$ metrický prostor. Řekneme, že vnější míra $\mu^*$ na $X$ je metrická, jestliže pro dvě množiny $A, B \subset X$ splňující $\dist(A, B) > 0$ platí
+	$$ \mu^*(A \cup B) = \mu^*(A) + \mu^*(B). $$
+\end{definice}
+
+\begin{veta}
+	Nechť $\mu^*$ je metrická vnější míra na metrickém prostoru $(X, \rho)$. Pak $B(X) \subset ©A_{\mu^*}$.
+
+	\begin{dukazin}
+		Buď $F \subset X$ uzavřená. Ukážeme, že $F \in ©A_{\mu^*}$. Označme
+		$$ F_{\epsilon} := \{x \in X | \rho(x, F) ≤ \epsilon\}, \qquad \epsilon > 0. $$
+		Nechť je dána $T \subset X$. Ověříme, že
+		$$ \mu^*(T) ≥ \mu^*(T \cap F) + \mu^*(T \setminus F). $$
+		BÚNO $\mu^*(T) < ∞$. Protože $\dist(T \cap F, T \setminus F_\epsilon) ≥ \epsilon > 0$, tak
+		$$ \mu^*(T) ≥ \mu^*(T \cap F) + \mu^*(T \setminus F_\epsilon,) $$
+		protože $\mu^* $ je metrická. Nyní stačí $\mu^*(T \setminus F_{\frac{1}{j}}) \overset{j \rightarrow ∞}{\rightarrow} \mu^*(T \setminus F)$. Označme $D_i := (F_{\frac{1}{i} \setminus F_{\frac{1}{(i+1)}}}) \cap T, i \in ®N$. Platí $T \setminus F = (T \setminus F_{\frac{1}{j}}) \cup \bigcup_{i=j}^∞ D_i$, a tedy ze spočetné subadivity $\mu^*$ plyne
+		$$ \mu^*(T \setminus F) ≤ \mu^*(T \setminus F_{\frac{1}{j}}) + \sum_{i=j}^∞ \mu^*(D_i). $$
+		Je-li $|i - j| > 2$ je $\dist(D_i, D_j) > 0$ a tedy
+		$$ \sum_{i=1}^n \mu^*(D_{2i}) = \mu^* \(\bigcup_{i=1}^n D_{2i}\) ≤ \mu^*(T) < ∞, $$
+		$$ \sum_{i=1}^n \mu^*(D_{2i - 1}) = \mu^* \(\bigcup_{i=1}^n D_{2i - 1}\) ≤ \mu^*(T) < ∞. $$
+		Z toho už plyne, že $\sum_{i=j}^∞ \mu{D_{i}} \overset{j \rightarrow ∞}{\rightarrow} 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Kvádry v $®R^n$, objem kvádru]
+	Symbolem $©O_n$ budeme značit množinu všech otevřených omezených kvádrů v $®R^n$ (včetně prázdné množiny). Objemem kvádru $I = (a_1, b_1) \times … \times (a_n, b_n) \in ©O_n$ budeme myslet
+	$$ v(I) := (b_1 - a_1)·…·(b_n - a_n). $$
+\end{definice}
+
+\begin{tvrzeni}
+	Buďte $I, I_1, …, I_k \in ©O_n$
+
+	\begin{enumerate}
+		\item Je-li $I \subset \overline{I_1} \cup … \cup \overline{I_k}$, platí $v(I) ≤ v(I_1) + … + v(I_k)$.
+		\item Je-li $\overline{I} = \overline{I_1} \cup … \cup \overline{I_k}$ a jsou-li kvádry $I_{[k]}$ po dvou disjunktní, platí $v(I) = v(I_1) + … + v(I_k)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. krok: Nechť $I = (a_1, b_1) \times … \times (a_n, b_n)$, $©D_i$ je dělení intervalu $(a_i, b_i)$, $i \in [n]$ a označme symbolem ©J systém všech otevřených kvádrů $J_1 \times … \times J_n$, kde $J_i$ je otevřený interval z dělení $©D_i$. Pak zřejmě
+		$$ \overline{I} = \bigcup_{J \in ©J}, \qquad v(I) = \sum_{J \in ©J}v(J). $$
+
+		2. krok: Jsou-li $I_1, …, I_k$ jako v druhém bodě, převedeme situaci snadno na případ uvažovaný v 1. kroku. Tím je dokázán druhý bod.
+
+		3. krok: První bod plyne z druhého, jelikož z libovolného pokrytí kvádru $I$ kvádry $I_1, …, I_k$ snadno vyrobíme disjunktní pokrytí.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	Pro množinu $E \subset ®R^n$ klademe
+	$$ \lambda^{n*}(E) := \inf\{\sum_{i=1}^∞ v(I_i) | E \subset \bigcup_{i=1}^∞ I_i \land I_i \in ©O_n\}. $$
+	Pro $\delta > 0$ definujeme
+	$$ \lambda_\delta^{n*}(E) = \inf\{\sum_{i=1}^∞ v(I_i) | E \subset \bigcup_{i=1}^∞ I_i \land I_i \in ©O_n \land \diam(I_i) < \delta\}. $$
+\end{definice}
+
+\begin{tvrzeni}
+	Pro $E \subset ®R^n$ a $\delta > 0$ platí $\lambda^*(E) = \lambda_\delta^{n*}(E)$.
+
+	\begin{dukazin}
+		Nerovnost $\lambda^{n*}(E) ≤ \lambda_\delta^{n*}$ je z definice. „$≥$“ BÚNO $\lambda^{n*}(E) < ∞$. Zvolme $\epsilon > 0$. Z definice $\lambda^{n*}(E)$ existují $I_1, … \in ©O_n$ takové, že $E \subset \bigcup_i I_i$ a
+		$$ \sum_i v(I_i) < \lambda^{n*}(E) + \epsilon. $$
+		Každý z kvádrů $I_i$ můžeme rozdělit na konečný počet disjunktních kvádrů $J_s^{[k(i)]}$ s diametry menšími než $\delta$, přitom $\overline{I_i} = \bigcup \overline{J_i^{[k(i)]}}$. Podle předchozího tvrzení platí $v(I_i) = \sum v(J_i^{[k(i)]})$. Zřejmě existují $I_i^j \in ©O_n$ takové že $\overline{J_i^j} \subset I_i^j$, $\diam I_i^j < \delta$ a $v(I_i^j) < v(J_i^j) + \frac{\epsilon}{k(i)2^i}$. Pak $E \subset \bigcup_{i=1}^∞ \bigcup_{j \in [k(i)]} I_i^j$, a tedy
+		$$ \lambda_\delta^{n*}(E) ≤ \sum_{i=1}^∞ \sum_{j \in [k(i)]} v(I_i) + \epsilon < \lambda^{n*}(E) + 2\epsilon. $$
+		Nyní už limitním přechodem $\epsilon \rightarrow 0$ dostaneme $\lambda_\delta^{n*}(E) ≤ \lambda^{n*}(E)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$\lambda^{n*}$ je metrická vnější míra na $®R^n$ a $\forall I \in ©O_n$ platí $\lambda^{n*}(I) = v(I)$.
+
+	\begin{dukazin}
+		Množinová funkce $\lambda^{n*}$ je zřejmě monotónní a platí $\lambda^{n*}(\O) = 0$. Ukážeme spočetnou subaditivitu. Buďte $E_i \subset ®R^n$ a předpokládejme, že $\lambda^{n*}(E_i) < ∞$. Zvolme $\epsilon > 0$. Podle definice $\lambda^{n*}$ existují $I_i^j \in ©O_n$ takové, že $E_i \subset \bigcup_j I_i^j$ a $\sum_j v(I_i^j) < \lambda^{n*}(E_i) + \frac{\epsilon}{2^i}$. Pak ale platí $\bigcup_i E_i \subset \bigcup_{i, j} I_i^j$, a tedy
+		$$ \lambda^{n*}\(\bigcup_i E_i\) ≤ \sum_{i, j} v(I_i^j) < \sum_i \lambda^{n*}(E_i) + \epsilon. $$
+		Limitním přechodem $\epsilon \rightarrow 0$ dostáváme spočetnou subaditivitu. $\lambda^{n*}$ je tedy vnější míra.
+
+		Dále ukážeme, že $\lambda^{n*}$ je metrická, tedy pro $A, B \subset ®R^n$ takové, že $\dist(A, B) > 0$ platí
+		$$ \lambda^{n*}(A \cup B) ≥ \lambda^{n*}(A)  + \lambda^{n*}(B). $$
+		Je-li $\lambda^{n*}(A \cup B) = ∞$, nerovnost zřejmě platí. BÚNO ted $\lambda^{n*}(A \cup B) < ∞$. Zvolme $\epsilon > 0$. Podle předchozího tvrzení existují $I_i \in ©O_n$ takové že $\diam(I_i) < \dist\frac{A, B}{2}$ a $\sum_i v(I_i) < \lambda^{n*}(A \cup B) + \epsilon$. Označme
+		$$ ©I_A := \{i \in ®N | I_i \cap A ≠ \O\}, ©I_B := \{i \in ®N | I_i \cap B ≠ \O\}. $$
+		Žádný z kvádrů $I_i$ nemůže zasáhnout obě množiny $A, B$, proto jsou tyto množiny disjunktní. Navíc zřejmě $A \subset \bigcup_{i \in ©I_A} I_i$ a $B \subset \bigcup_{i \in ©I_B} I_i$. Proto
+		$$ \lambda^{n*}(A) + \lambda^{n*}(B) ≤ \sum_{i \in ©I_A \cup ©I_B}v(I_i) ≤ \sum_{i=1}^∞ v(I_i) < \lambda^{n*} (A \cup B) + \epsilon. $$
+		Limitním přechodem $\epsilon \rightarrow 0$ dostaneme požadovanou nerovnost.
+
+		Zbývá „$\forall I \in ©O_n: \lambda^{n*}(I) = v(I)$“. Nerovnost $\lambda^{n*}(I) ≤ v(I)$ je zřejmá, stačí zvolit pokrytí $I_1 = I$.
+
+		Předpokládejme pro spor, že $\lambda^{n*}(I) < v(I)$. Pak existují $I_i \in ©O_i$ takové, že $I \subset \bigcup_i I_i$ a $\sum_i v(I_i) < v(I)$. Zřejmě existuje $J \in ©O_n$ takový, že $\overline{J} \subset I$ a $\sum_i v(I_i) < v(J)$. Protože $\overline{J}$ je kompaktní, existuje $k \in ®N$ takové, že $\overline{J} \subset \bigcup I_{[k]}$. Pak ale $v(J) ≤ \sum v(I_{[k]})$ podle tvrzení výše, což je spor.
+	\end{dukazin}
+\end{veta}
+
 % 19. 10. 2021
 
-TODO!!!
+\section{Znaménkové míry}
+\begin{definice}[Znaménková míra, náboj]
+	Řekneme, že funkce $\sigma: ©A \rightarrow ®R^*$ je znaménková míra na měřitelném prostoru $(X, ©A)$, jestliže
+
+	\begin{itemize}
+		\item $\sigma(\O) = 0$,
+		\item $\sigma$ nabývá nejvýše jedné z hodnot $±∞$,
+		\item ($\sigma$-aditivita) pro libovolnou posloupnost po dvou disjunktních množin $A_n \in ©A$ platí
+			$$ \sigma\(\bigcup_{n=1}^∞ A_n\) = \sum_{n=1}^∞ \sigma(A_n). $$
+	\end{itemize}
+
+	Konečná znaménková míra se též nazývá náboj.
+\end{definice}
+
+\begin{definice}[Kladná a záporná množina]
+	Buď $\sigma$ znaménková míra na $(X, ©A)$ Řekneme, že množina $A \in ©A$ je kladná pro $\sigma$, jestliže pro každou měřitelnou množinu $E \subset A$ platí $\sigma(E) ≥ 0$. Množina $A \in ©A$ je záporná pro $\sigma$, jestliže pro každou měřitelnou množinu $E \subset A$ platí $\sigma(E) ≤ 0$.
+\end{definice}
+
+\begin{tvrzeni}
+	Buď $\sigma$ znaménková míra na $(X, ©A)$ a $E \in ©A$ množina taková, že $0 < \sigma(E) < ∞$. Pak existuje kladná množina $A \subset E$ taková, že $\sigma(A) > 0$.
+
+	\begin{dukazin}
+		Kdyby sama $E$ byla kladná, položíme $A := E$. Pokud ne, definujeme
+		$$ t_1 := \inf \{\sigma(B) | B \subset E \land B \in ©A\} < 0 $$
+		a vybereme $E_1 \subset E$ takovou, že $\sigma(E_1) < \max \{\frac{t_1}{2}, -1\}$. Platí $\sigma(E \setminus E_1) = \sigma(E) - \sigma(E_1) > \sigma(E) > 0$, a pokud je množina $E \setminus E_1$ již kladná, vybereme ji za $A$ a jsme hotovi.
+
+		Pokud ne, pokračujeme stejnou konstrukcí, tedy položíme
+		$$ t_2 := \inf\{\sigma(B) | B \subset E \setminus E_1 \land B\in ©A\} < 0 $$
+		a zvolíme $E_2 \subset E \setminus E_1$ takovou, že $\sigma(E_2) < \max\{\frac{t_2}{2}, -1\}$. Tímto způsobem buď po konečném počtu kroků najdeme kladnou množinu $A \subset E$ kladné míry, nebo sestrojíme posloupnost disjunktních měřitelných množin $E_1, E_2, …, \subset E$ a posloupnost záporných čísel $t_1, t_2, …$ takové, že $\sigma(E_i) < \max\{t_\frac{i}{2}, -1\} < 0$, $i \in ®N$.
+
+		Položme $A := E \setminus \bigcup_{i=1}^∞ E_i$. Ze spočetné aditivity dostaneme
+		$$ \sigma(A) + \sum_{i=1}^∞ \sigma(E_i) = \sigma(E) > 0, $$
+		tedy $\sigma(A) > \sigma(E) > 0$ a řada $\sum_{i=1}^∞ \sigma(E_i)$ konverguje, tedy nutně $\sigma(E_i) \rightarrow 0$. Pak ale i $t_i \rightarrow 0$. Ukážeme, že $A$ je kladná: Pro libovolnou $B \subset A$ měřitelnou platí $B \cap E_i = \O$, $i \in ®N$, tedy $\sigma(B) ≥ t_i$, $i \in ®N$ a protože $t_i \rightarrow 0$ je $\sigma(B) ≥ 0$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Hahn-Banachův rozklad]
+	Buď $\sigma$ znaménková míra na $(X, ©A)$. Pak existuje rozklad $X = P \cup N$ takový, že $P$ je kladná a $N$ záporná množina pro $\sigma$.
+
+	\begin{dukazin}
+		BÚNO $\sigma(E) < ∞$ pro každou $E \in ©A$. (Kdyby ne, pracovali bychom s mírou $-\sigma$.) Položme $\lambda := \sup\{\sigma(E) | E \in ©A \land E \text{ kladná pro } \sigma\}$. Zřejmě $\lambda ≥ 0$ ($\O$ je kladná).
+
+		Buďte $A_i \in ©A$ kladné takové, že $\sigma(A_i) \rightarrow \lambda$ (existence plyne z definice suprema). Pak množina $P := \bigcup_{i=1}^∞ A_i$ je kladná a ze vztahu
+		$$ \sigma(P) = \sigma(A_i) + \sigma(P \setminus A_i) ≥ \sigma(A_i), \qquad i \in ®N, $$
+		plyne $\sigma(P) = \lambda$. Ukážeme dále, že množina $N := X \setminus P$ je záporná. Nechť $B \subset N$ je měřitelná. Kdyby $\sigma(B) > 0$, pak by podle předchozího tvrzení existovala měřitelná kladná množina $B' \subset B$, pro niž $\sigma(B') > 0$. Pak by ale $P \cup B'$ byla rovněž kladná množina s mírou
+		$$ \sigma(P \cup B') = \sigma(P) + \sigma(B') > \sigma(B) = \lambda, $$
+		což by byl spor s definicí $\lambda$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Jordanův rozklad]
+	Buď $\sigma$ znaménková míra na $(X, ©A)$. Pak (nezáporné míry) $\sigma_+(·) := \sigma(· \cap P)$ a $\sigma_-(·) := - \sigma(· \cap N)$ nazýváme kladnou a zápornou částí $\sigma$ a platí $\sigma = \sigma_+ - \sigma_-$.
+
+	Míru $|\sigma|:= \sigma_+ + \sigma_-$ nazýváme totální variací znaménkové míry $\sigma$.
+\end{definice}
+
+\begin{tvrzeni}
+	Je-li $\sigma = \sigma_+' - \sigma_-'$ jiný rozklad znaménkové míry $\sigma$ na rozdíl dvou nezáporných měr, pak $\sigma_+' ≥ \sigma_+$ a $\sigma_-\ ≥ \sigma_-$.
+
+	\begin{dukazin}
+		Pro libovolnou $E \in ©A$ platí
+		$$ \sigma_+(E) = \sigma(E \cap P) = \sigma_+'(E \cap P) - \sigma_-'(E \cap P) ≤ \sigma_+'(E \cap P) ≤ \sigma_+'(E). $$
+		Podobné se ukáže, že $\sigma_-'(E) ≥ \sigma_-(E)$.
+	\end{dukazin}
+\end{tvrzeni}
 
 % 26. 10. 2021
 
@@ -115,7 +270,7 @@ TODO!!!
 	\begin{dukazin}
 		$1 \implies 2$: Mějme $E \in ©A_{\lambda^{n*}}$, $\epsilon > 0$. Nechť nejprve $\lambda^{n*}(E) < ∞$. Pak $\exists I_i \in O_n$, $E \subset \bigcup_i I_i$, $\sum_i v(I_i) < \lambda^{n*}(E) + \frac{\epsilon}{2}$. Položme $G := \bigcup_i I_i$ (otevřená), $E \subset G$, $\lambda^n(G \setminus E) < \frac{\epsilon}{2}$. Je-li $\lambda^{n*}(E) = ∞$, pak ze $\sigma$-konečnosti je $E = \bigcup_m E_m$, $E_m := E \cap [-m, m]^n$. $\lambda^{n*}(E_m) < ∞ \implies \exists G_m$ otevřená, $E_m \subset G_m$, $\lambda^n(G_m \setminus E_m) < \frac{\epsilon}{2^{m+1}}$. $G := \bigcup_m G_m$ otevřené, $E \subset G$, $\lambda^n(G \setminus E) ≤ \sum_m \lambda^n(G_m \setminus E_m) < \frac{\epsilon}{2}$.
 
-		$E^c \in ©A_{\lambda^{m*}} \implies \exists H$ otevřená, $E^c \subset H$, $\lambda^n(H \setminus E^c) < \frac{\epsilon}{2}$. $F:= H^c$ uzavřená, $F \subset E$, $\lambda^n(E \setminus F) = \lambda^n(E \setminus H^c) = \lambda^n(H \setminus E^c) < \frac{\epsilon}{2}$. TODO
+		$E^c \in ©A_{\lambda^{m*}} \implies \exists H$ otevřená, $E^c \subset H$, $\lambda^n(H \setminus E^c) < \frac{\epsilon}{2}$. $F:= H^c$ uzavřená, $F \subset E \subset G$, $\lambda^n(G \setminus F) = \lambda^n(G \setminus E) = \lambda^n(E \setminus F) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$.
 
 		$2 \implies 3$: Nechť $E \subset ®R^n$ splňuje 2.
 		$$ \forall j \in ®N \ \exists F_j \subset E \subset G_j, F_j \text{ uzavřená}, G_j \text{ uzavřená}, \lambda^n(G_j \setminus F_j) < \frac{1}{j}. $$
@@ -165,9 +320,9 @@ TODO!!!
 
 		$D_i \in ©D \implies \bigcup_i D_i \in ©D$:
 		$$ \exists F_i \subset D_i \subset G_i, \mu(G_i \setminus F_i) < \frac{\epsilon}{2^i}. $$
-		$$ TODO! $$
 		$$ \bigcup_{i=1}^N F_i \subset \cup_{i=1}^∞ D_i \subset \bigcup_{i = 1}^∞ G_i, N \in ®N. $$
 		$$ \bigcup_{i=1}^∞ G_i \setminus \bigcup_{i=1}^?F_i $$
+		FIXME?
 	\end{dukazin}
 
 % 02. 11. 2021
@@ -210,7 +365,11 @@ TODO!!!
 
 		$\forall A \in ©A: \mu^*(A) = \tilde{\mu}(A)$. Zřejmě $\mu^*(A) ≤ \tilde{\mu}(A)$, jelikož můžeme pokrýt $A$ množinami $A, \O, \O, …$. Pro $≥$ mějme $A \subset \bigcup_i A_i$, $A_i \in ©A$. $B_1:= A_1 \cap A$, $B_2 := (A_2 \cap A) \setminus B_1$, … O nich víme, že $A = \bigcup_i B_i$, $B_i$ po dvou disjunktní, $B_i \in ©A$. $\tilde{\mu}(A) = \sum_i\tilde{\mu}(B_i) ≤ \sum_i\tilde{\mu}(A_i)$, tedy z definice infima $\tilde{\mu}(A) ≤ \inf_{A_i}\sum_i \tilde{\mu}(A_i) = \mu^*(A)$.
 
-		Zbývá ukázat, že $©A \subset ©A_{\mu^*}$. TODO.
+		Zbývá ukázat, že $©A \subset ©A_{\mu^*}$. Nechť $A \in ©A$, $T \subset X$, $\mu^*(T) < ∞$. Stačí ukázat, že $\mu^*(T) ≥ \mu(T \cap A) + \mu^*(T \setminus A)$. K danému $\epsilon > 0$ existuje pokrytí $T \subset \bigcup_i A_i$ množinami $A_i \in ©A$ takové že $\sum_i \tilde \mu(A_i) < \mu^*(T) + \epsilon$. Protože $T \cap A \subset \bigcup_i(A_i \cap A)$, $T \setminus A \subset \bigcup_i(A_i \setminus A)$ a množiny $A_i \cap A$ i $A_i \setminus A$ patří do ©A, platí
+		$$ \mu^*(T \cap A) ≤ \sum_i \tilde \mu(A_i \cap A), \qquad \mu^*(T \setminus A) ≤ \sum_i \tilde \mu(A_i \setminus A). $$
+		Sečtením dostaneme
+		$$ \mu^*(T \cap A) + \mu^*(T \setminus A) ≤ \sum_i \tilde \mu(A_i \cap A) + \sum_i \tilde (A_i \setminus A) = \sum_i \tilde \mu(A_i) < \mu^*(T) + \epsilon, $$
+		z čehož plyne dokazovaná nerovnost. Podle C. věty je $\mu := \mu^*|A_{\mu^*}$ míra, která navíc podle druhé části důkazu rozšiřuje pramíru $\tilde \mu$ a podle třetí je definovaná na $\sigma ©A$.
 
 		Jednoznačnost: ©A uzavřená na konečné průniky, $\tilde{\mu}$ je $\sigma$-konečná $\implies$ $\exists A_n \in ©A$, $A_n \nearrow X, \tilde{\mu}(A_n) < ∞$ $\implies$ $\mu$ je jednoznačně určena (věta o jednoznačnosti míry, TMI1).
 	\end{dukazin}
@@ -220,7 +379,7 @@ TODO!!!
 	$E = \bigtimes_{i=1}^∞ E_i$, $E_i$ úplné separabilní metrické prostory (např. $E_i = ®R$), $\O ≠ I \subset ®N$ … $E_{I} = E_i$, $E, E_I$ metrické prostory. $\pi_I: E \rightarrow E_I$ kanonická projekce. A následující věta:
 \end{poznamka}
 
-\begin{veta}[Daniell-Koleuogorov]
+\begin{veta}[Daniell-Kolmogorov]
 	$E_i$ úplné separabilní metrické prostory, $i \in ®N$. Nechť pro každou $\O ≠ I \subset ®N$ existuje borelovská pravděpodobnostní míra $\mu_I$ na $E_I$. A nechť je splněna projektivní vlastnost:
 	$$ \O ≠ I \subset J \subset ®N \text{ konečná}, \forall B \in ©B(E_I): \mu_I(B) = \mu_J\(\(\pi_I^J\)^{-1}(B)\), $$
 	pak $\exists!$ borelovská míra $\mu$ na $E = \bigtimes_{i=1}^∞ E_i$ taková, že $\forall \O ≠ I \subset ®N$ konečná, $\forall B \in ©B\(E_I\): \mu(\pi_I^{-1}(B) = \mu_I(B))$.
@@ -246,15 +405,24 @@ TODO!!!
 \end{lemma}
 
 \begin{veta}[Daniell-Kolmogorov]
-	$E_i$ úplné separabilní metrické prostory $i \in ®N$. Nechť pro každou $I \in ?_f$ existuje borelovská pravděpodobnostní míra $\mu_I$ na $E_I$. Nechť $I \subset J, I, J \in ?_f \implies \mu_I = \mu_J(\pi_I^J)^{-1}$. Pak existuje právě jedna borelovská pravděpodobnostní míra $\mu$ na $E$ taková, že
-	$$ \forall I \in ?_f: \mu_I = \mu(\pi_I)^{-1}. $$
+	$E_i$ úplné separabilní metrické prostory $i \in ®N$. Nechť pro každou $I \in ©I_f$ existuje borelovská pravděpodobnostní míra $\mu_I$ na $E_I$. Nechť $I \subset J \land I, J \in ©I_f \implies \mu_I = \mu_J(\pi_I^J)^{-1}$. Pak existuje právě jedna borelovská pravděpodobnostní míra $\mu$ na $E$ taková, že
+	$$ \forall I \in ©I_f: \mu_I = \mu(\pi_I)^{-1}. $$
 
 	\begin{dukazin}
-		TODO!
+		Položme $©A := \{\pi_I^{-1}(B) | B \in ©B(E_i), I \in ©I_f\}$. Ukážeme nejprve, že systém $©A$ je algebra. (Prostě se ověří podmínky.)
+
+		Definujeme množinovou funkci $\tilde \mu$ na ©A předpisem
+		$$ \tilde \mu(A) = \mu_I(B), A = \pi_I^{-1}(B), B \in ©B_I. $$
+		Ukážeme nejprve konzistenci této definice (dvě vyjádření podle předpokladů dávají stejný výsledek, když se rozepíší).
+
+		Dále se ukáže, že $\tilde \mu$ je konečně aditivní množinová funkce. (Jednoduché.) Dále dokážeme, že je to pramíra (že splňuje podmínku spojitosti v prázdné množině).
+
+		Podle Hahn-Kolmogorovovy věty lze tedy pramíru $\tilde \mu$ jednoznačně rozšířit na pravděpodobnostní míru $\mu$ na $\sigma ©A$. Zbývá ukázat, že $\sigma ©A = ©B(E)$. Protože projekce jsou spojité, je vzor každé otevřené množiny otevřená, tedy borelovská množina. Platí tedy $\sigma ©A \subset ©B(E)$. Pro opačnou inkluzi si uvědomme, že borelovská $\sigma$-algebra separabilního prostoru $E$ je generována uzavřenými okolími $\overline{U}_\epsilon(x)$ bodů $x \in E$, $\epsilon >0$. Z definice metriky v $E$ a $E_{[n]}$ snadno dostaneme vztah
+		$$ \overline{U}_\epsilon(x) = \bigcup_{n=1}^∞ \pi_{[n]}^{-1}(\overline{U}_\epsilon(\pi_{[n](x)})), $$
+		tedy $\overline{U}_\epsilon(x) \in \sigma ©A$. Platí tedy i $©B(E) \subset \sigma ©A$ a důkaz je ukončen.
 
 % 16. 11. 2021
 
-		TODO!
 	\end{dukazin}
 \end{veta}
 
@@ -346,13 +514,20 @@ TODO!!!
 % 30. 11. 2021
 	
 	\begin{dukazin}
-		Stačí ukázast, že $\Theta^n(A, a) = 1$ pro $\lambda^n$-skoro všechna $a \in A$. BÚNO nechť $A$ je omezená (obecně: $A \cap B(0, n)$, $n \rightarrow ∞$) TODO.
+		Stačí ukázat, že $\Theta^n(A, a) = 1$ pro $\lambda^n$-skoro všechna $a \in A$. BÚNO nechť $A$ je omezená (obecně: $A \cap B(0, n)$, $n \rightarrow ∞$). Pro číslo $0 < \delta < 1$ označme
+		$$ A_{\delta}:= \{a \in A | \liminf_{r \rightarrow 0+} \frac{\lambda^n(A \cap B(a, r))}{\lambda^n(B(a, r))} < \delta\}. $$
+
+		Ukážeme, že $\lambda^n(A_\delta) = 0$. Z toho pak bude plynout, že $\Theta_*^n(A, a) = 1$, a tedy $\Theta^n(A, a) = 1$, pro skoro všechna $a \in A$.
+
+		Nechť pro spor $\lambda^{n*}(A_\delta) > 0$ pro nějaké $\delta < 1$. Z regularity Lebesgueovy míry (nebo z definice vnější míry $\lambda^{n*}$) víme, že existuje otevřená množina $G \supseteq A_\delta$ taková, že $\lambda^n(G) < \delta^{-1} \lambda^{n*}(A_\delta)$. Položme
+		$$ ©F := \{B(a, r) | a \in A_\delta, B(a, r) \subset G, \lambda^n(A \cap B(a, r)) < \delta \lambda^n(B(a, r))\}. $$
+		Z definice množiny $A_\delta$, je vidět, že ©F je Vitaliovým pokrytím množiny $A_\delta$. Podle Vitaliovy věty tedy existují po dvou disjunktní koule $B_1, B_2, … \in ©F$ takové, že $\lambda^n(A_\delta \setminus \bigcup_i B_i) = 0$. Pak ale
+		$$ \lambda^{n*}(A_\delta) = \lambda^{n*}(A_\delta \cap \bigcup_i B_i) ≤ \sum_i \lambda^{n*}(A_\delta \cap B_i) ≤ \sum_i\lambda^n(A \cap B_i) < $$
+		$$ < \delta \sum_i \lambda^n(B_i) ≤ \delta \lambda^n(G) < \lambda^{n*}(A_\delta). \text{ \lightning.} $$
 	\end{dukazin}
 \end{veta}
 
-
-TODO
-
+\section{Důkaz věty o substituci}
 \begin{veta}
 	Je-li $A \subset ®R^n$ lebesgueovsky měřitelná a $f: A \rightarrow ®R^n$ $L$-lipschitzovské, platí $\lambda^{n*}(f(A)) ≤ L^n\lambda^n(A)$.
 
@@ -480,22 +655,24 @@ TODO
 	\begin{dukazin}
 		„$\Leftarrow$“: Nechť $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ je stejnoměrně integrovatelná. Pak $f_n \in L^1(\mu)$ a existuje vybraná podposloupnost $(f_{n_j})$, $f_{n_j} \overset{s. v.}{\rightarrow} f$.
 		$$ \int |f| d\mu = \int(\lim_{j \rightarrow ∞} |f_{n_j}|)d \mu ≤ \liminf_{j \rightarrow ∞} \int |f_{n_j}| d\mu < ∞ \implies f \in L^1(\mu). $$
-
 		Předpokládejme nejprve, že $\exists c \in ®R$, $|f_n| < c$, $|f| ≤ c$ skoro všude. Buď $\epsilon > 0$, položme $\delta := \frac{\epsilon}{2 \mu(X)}$.
-		$$ \int |f_n - f| d\mu = \int_{\{|f_n - f| ≤ \delta\}} |f_n - f| d\mu + \int_{\{|f_n - f| > \delta\}} |f_n - f| ≤ \delta \mu(X) + 2c \mu(\{x | |f_n(x) - f(x)| > \delta\}) \overset{n ≥ n_0}{<} \frac{\epsilon}{2} + 2c\frac{\epsilon}{4c} < \epsilon \implies f_n \overset{L_1}{\rightarrow} f. $$
-
+		$$ \int |f_n - f| d\mu = \int_{\{|f_n - f| ≤ \delta\}} |f_n - f| d\mu + \int_{\{|f_n - f| > \delta\}} |f_n - f| ≤ $$
+		$$ ≤ \delta \mu(X) + 2c \mu(\{x | |f_n(x) - f(x)| > \delta\}) \overset{n ≥ n_0}{<} \frac{\epsilon}{2} + 2c\frac{\epsilon}{4c} < \epsilon \implies f_n \overset{L_1}{\rightarrow} f. $$
 		Nyní $f_n, f \in L^1$ libovolné, $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ stejnoměrně integrovatelná, $\epsilon > 0$.
-		$$ \int |f_n - f| d\mu ≤ \int_{\{|f_n| ≤ c \land |f| ≤ c\}} |f_n - f| d\mu + \int_{\{|f_n| > c\}} |f_n - f| d\mu + \int_{\{|f| > c\}} |f_n - f| d\mu=: I_n^1(c) + I_n^2(c) + I_n^3(c), $$
-		$$ I_n^2(c) ≤ \int_{\{|f_n| > c\}} |f_n| d\mu + \int_{\{|f_n| > c \land |f| ≤ c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f| d\mu ≤ 2 \int_{\{|f_n| > c\}} |f_n| + \int_{\{|f| > c\}} |f|, $$
-		$$ I_n^3(c) ≤ \int_{\{|f| > c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f_n| d\mu + \int_{\{|f_n| ≤ c \land |f| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n| + 2\int_{\{|f| > c\}} |f|, $$
+		$$ \int |f_n - f| d\mu ≤ $$
+		$$ ≤ \int_{\{|f_n| ≤ c \land |f| ≤ c\}} |f_n - f| d\mu + \int_{\{|f_n| > c\}} |f_n - f| d\mu + \int_{\{|f| > c\}} |f_n - f| d\mu=: I_n^1(c) + I_n^2(c) + I_n^3(c), $$
+		$$ I_n^2(c) ≤ $$
+		$$ ≤ \int_{\{|f_n| > c\}} |f_n| d\mu + \int_{\{|f_n| > c \land |f| ≤ c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f| d\mu ≤ 2 \int_{\{|f_n| > c\}} |f_n| + \int_{\{|f| > c\}} |f|, $$
+		$$ I_n^3(c) ≤ $$
+		$$ ≤ \int_{\{|f| > c\}} |f| d\mu + \int_{\{|f_n| > c \land |f| > c\}} |f_n| d\mu + \int_{\{|f_n| ≤ c \land |f| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n| + 2\int_{\{|f| > c\}} |f|, $$
 		$$ I_n^2(c) + I_n^3(c) < \frac{\epsilon}{3}, \qquad \forall c ≥ c_0, $$
-		z první části navíc
-		$$ I_n^1(c) < \frac{\epsilon}{2}, \qquad \forall n ≥ n_0. $$
-		Tedy
-		$$ \int |f_n - f| d\mu < \epsilon. $$
+		z první části navíc $I_n^1(c) < \frac{\epsilon}{2}$, $\forall n ≥ n_0$. Tedy $\int |f_n - f| d\mu < \epsilon$.
 
 		„$\implies$“ Nechť $f_n \overset{L_1}{\rightarrow f}$, $\epsilon >0$.
-		$$ \forall c: \int_{\{|f_n| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n - f|d\mu + \int_{\{|f_n| > c \land |f| ≤ \frac{c}{2}\}} |f| + \int_{\{|f_n| > c \land |f| > \frac{c}{2}\}} |f| ≤ \int |f_n - f|d\mu + \frac{c}{2} \mu \{x | |f_n(x) - f(x)| ≥ \frac{c}{2}\} + \int_{\{|f| > \frac{c}{2}\}} |f| d\mu ≤ 2||f_n - f||_1 + \frac{\epsilon}{2} < \epsilon. TODO $$
+		$$ \forall c: \int_{\{|f_n| > c\}} |f_n| d\mu ≤ \int_{\{|f_n| > c\}} |f_n - f|d\mu + \int_{\{|f_n| > c \land |f| ≤ \frac{c}{2}\}} |f| + \int_{\{|f_n| > c \land |f| > \frac{c}{2}\}} |f| ≤ $$
+		$$ ≤ \int |f_n - f|d\mu + \frac{c}{2} \mu \{x | |f_n(x) - f(x)| ≥ \frac{c}{2}\} + \int_{\{|f| > \frac{c}{2}\}} |f| d\mu ≤ 2||f_n - f||_1 + \frac{\epsilon}{2} < \epsilon. $$
+
+		Protože $f \in L^1$, existuje $c_0>0$ takové, že $\int_{|f|>\frac{c}{2}} |f| < \frac{\epsilon}{2}$ pro $c > c_0$. Rovněž pro každou funkci $f_1, …, f_{n_0}$ existuje $c_i > 0$ takové, že $\int_{|f_i| > c} |f_i| < \epsilon$, $c > c_i$, $i \in [n_0]$. Pro $c > \max\{c_{[n_0]_0}\}$ pak platí $\int_{|f_n| > c} |f_n| < \epsilon$ pro všechna $n \in ®N$. Tím je dokázána stejnoměrná integrovatelnost $f_n$.
 	\end{dukazin}
 \end{veta}
 
