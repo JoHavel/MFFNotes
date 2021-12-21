@@ -401,4 +401,59 @@ Analýza  \_______/ Generování
 	\end{prikladyin}
 \end{definice}
 
+% 21. 12. 2021
+
+\begin{poznamka}
+	Na začátku jsme si říkali o anglických, německých a dalších korpusech.
+\end{poznamka}
+
+\begin{definice}[Český národní korpus]
+	Výsledek společného úsilí UK, MU, ÚJČ. Ústav českého národního korpusu existuje od 1994 na FF UK.
+
+	ČNK je značkován na morfologické úrovni. Stovky milionů slov. Ze začátku 15~\% literatury, 60~\% noviny, 25~\% technické a odborné texty.
+\end{definice}
+
+\begin{definice}[Pražský závislostní korpus]
+	Malá podmnožina ČNK. Syntakticky anotovaný.
+
+	Vznikal cca 10 let, paralelně vznikala příručka, jak anotovat syntaxi.
+
+	Založen na teorii Funkčního generativního popisu profesora P. Sgalla.
+
+	Úrovně anotace: Morfologie, analytická rovina (povrchově syntaktická) i tektogramatická (závislostní struktura, jádr / ohnisko a hloubkový pořádek slov, korference, vše ostatní).
+
+	Poměrně jedinečný, většina syntaktických korpusů je dělána automaticky.
+\end{definice}
+
+\begin{definice}[Universal Dependencies]
+	Pokus o sjednocení způsobu anotací v korpusech. (Švédsko, Upsala.)
+\end{definice}
+
+\section{Pravděpodobnostní a statistické metody}
+\begin{definice}[Vyhlazování]
+	Pokud chceme studovat pravděpodobnost věty podle pravděpodobnosti trigramů (delší gramy už jsou nemyslitelné), tak selžeme na tom, že nemáme dostatečně velká data, takže nám často vyjde pravděpodobnost věty (součin pravděpodobnosti trigramů) rovná 0.
+
+	Opravou je tzv. vyhlazování – nahrazení nul miniaturními čísly. (Tím však ztratíme možnost říct, že je něco 100\% špatně.)
+\end{definice}
+
+\begin{definice}[Statistický překlad]
+	Základní myšlenka = použít paralelní korpus jako trénovací data. (Např. korpus dokumentů EU.) 
+\end{definice}
+
+\begin{definice}[Metoda zašumněného kanálu]
+	Hledáme pravděpodobnostní model, podmíněnou pravděpodobnost libovolné např. anglické věty, máme-li např. francouzskou.
+
+	Francouzskou větu bereme jako anglickou, která přišla „zašumněným“ kanálem a hledáme anglickou, která byla nejpravděpodobněji „zdrojem“.
+\end{definice}
+
+\begin{definice}[Metrika BLEU]
+	Oceňuje kandidáty na překlad podle referenčních překladů vytvořených lidmi. Nejprve hledá v kolika unigramech, pak bigramech, pak trigramech nakonec 4gramech se překlad shoduje s nějakým (libovolným) referenčním překladem. Celkové skóre je pak čtvrtá odmocnina ze součinu poměrů počtu nalezených a nenalezených n-gramů vynásobená penalizací za menší počet slov?
+
+	Rozbíjí se na jazycích s velkou flexí, jazycích s volnou větnou stavbou, …
+
+	Je třeba cca 4 překlady a 1000 různých vět.
+
+	Nehodí se na porovnávání systémů, lze ji používat jako vývojovou metriku (tj. metriku na porovnávání, jak jde vývoj – rychlé zhodnocení).
+\end{definice}
+
 \end{document}

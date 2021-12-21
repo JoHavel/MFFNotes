@@ -1,8 +1,6 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-
-
 \begin{document}
 
 \part{Lineární algebra}
@@ -93,7 +91,7 @@
 
 	\begin{definice}[Numerická stabilita algoritmu]
 		Algoritmus $a(x)$ je numericky stabilní, pokud
-		$$\forall x\ \exists \hat{x}: \frac{||x - \hat{x}||}{||x||} = O(u) \land \frac{||a(\hat{x} - fl(a(x)))}{a(\hat{x})} = O(u). $$
+		$$\forall x\ \exists \hat{x}: \frac{||x - \hat{x}||}{||x||} = O(u) \land \frac{||a(\hat{x}) - fl(a(x))||}{a(\hat{x})} = O(u). $$
 	\end{definice}
 
 	\subsection{Podmíněnost problému}
@@ -196,7 +194,7 @@
 \end{definice}
 
 \begin{veta}
-	Nechť $A$ je reálná čtvercová matice. Potom existují ortogonální $U$ a reálná kvazi-trojúhelníková $T$ takové, že
+	Nechť $A$ je reálná čtvercová matice. Potom existují ortogonální matice $U$ a reálná kvazi-trojúhelníková $T$ takové, že
 	$$ T = U^TAU, $$
 	Navíc vlastní čísla každého $2 \times 2$ diagonálního bloku matice $T$ tvoří komplexně sdružený pár.
 
@@ -246,7 +244,7 @@
 
 	\begin{poznamka}
 		Vynásobením maticí G. rotace lze např. vynulovat složku vektoru (resp. postupně všechny až na 1).
-		$$ \sin\phi = -\frac{x_j}{\sqrt{x_i^2 + x_j^2}}, \cos\phi = \frac{x_j}{x_i^2 + x_j^2}. $$
+		$$ \sin\phi = -\frac{x_j}{\sqrt{x_i^2 + x_j^2}}, \cos\phi = \frac{x_i}{\sqrt{x_i^2 + x_j^2}}. $$
 	\end{poznamka}
 
 	\subsection{Householderovy reflexe}
@@ -280,12 +278,12 @@
 	\begin{definice}[QR rozklad, ekonomický tvar]
 		Buď $A \in ®C^{n \times m}$ obecně obdélníková. Rozklad
 		$$ A = QR, $$
-		kde $Q$ je matice s ortonormálními sloupci ($Q*Q = I$), $R$ má všechny prvky pod hlavní diagonálou nulové.
+		kde $Q$ je matice s ortonormálními sloupci ($Q^*Q = I$), $R$ má všechny prvky pod hlavní diagonálou nulové.
 
 		Když odstraníme nulové řádky/sloupce, tak dostaneme tzv. ekonomický tvar QR rozkladu.
 
 		\begin{poznamkain}
-			Lze ho dostat například Gram-Smidtovy ortogonalizace.
+			Lze ho dostat například pomocí Gram-Schmidtovy ortogonalizace.
 		\end{poznamkain}
 	\end{definice}
 
@@ -324,10 +322,11 @@
 	\end{poznamka}
 
 	\begin{definice}[Ztráta ortogonality]
-		Ztrátu ortogonality matic vypočtených v ®F budeme měřit pomocí $||E_Q||_2$, kde $E_Q := \hat{Q^*}\hat{Q} - I$.
+		Ztrátu ortogonality matic vypočtených v ®F budeme měřit pomocí $||E_Q||_2$, kde
+		$$ E_Q := \hat{Q}^*\hat{Q} - I. $$
 
 		\begin{prikladyin}
-			Householderův QR rozklad má ztrátu $O(u)$ stejně jako Givensův a ICGS. CGS má $\kappa^2(A)O(u)$ a MGS má $\kappa(A) O(u)$.
+			Householderův QR rozklad má ztrátu $O(u)$ stejně jako Givensův a ICGS. CGS má ztrátu $\kappa^2(A)O(u)$ a MGS má $\kappa(A) O(u)$.
 		\end{prikladyin}
 	\end{definice}
 
@@ -372,7 +371,7 @@
 \end{lemma}
 
 \begin{definice}[Choleského rozklad]
-	Nechť $A$ je (HPD). Pak lze provést GE a získat $LU = A = A^* = U^*L^* \implies UL^{-1*}U^* = L^{-1}U^*$ a $D := UL^{-1*}$ je diagonální. Tudíž
+	Nechť $A$ je (HPD). Pak lze provést GE a získat $LU = A = A^* = U^*L^* \implies UL^{-1*} = L^{-1}U^*$ a $D := UL^{-1*}$ je diagonální. Tudíž
 	$$ A = LDL^*. $$
 	Navíc $\forall x ≠ 0: 0 < (L^*x)^* D(L^*x)$ neboli
 	$$ A = LD^{\frac{1}{2}}D^{\frac{1}{2}}L^* = \tilde L· \tilde L^*. $$
@@ -430,7 +429,7 @@
 \end{poznamka}
 
 \section{Singulární rozklad}
-\begin{veta}[Vztahy mezi spektrálními rozklady $A^*A$ a $\forall ^*$]
+\begin{veta}[Vztahy mezi spektrálními rozklady $A^*A$ a $A A^*$]
 	Uvažujme spektrální rozklad $A^*A$. Potom jsou
 	$$ u_j := \frac{Av_j}{\sqrt{\lambda_j}}, \qquad j \in [r], $$
 	ortonormální vlastní vektory matice $A A^*$ a platí
@@ -476,7 +475,7 @@
 
 \begin{definice}[Zobecnění čísla podmíněnosti]
 	Zobecníme $\kappa(A)$ pomocí veličin
-	$$ \maxmag(A) := \max_{||x|| = 1}||Ax||, \minmag(A) := \min_{||x||=1}||Ax||, $$
+	$$ \maxmag(A) := \max_{||x|| = 1}||Ax||, \qquad \minmag(A) := \min_{||x||=1}||Ax||, $$
 	jako
 	$$ \kappa(A) := \frac{\maxmag(A)}{\minmag(A)}. $$
 \end{definice}
@@ -605,7 +604,9 @@
 		$$ \begin{pmatrix} B & A \\ A^* & 0 \end{pmatrix} \binom{\delta}{x} = \binom{0}{0} \implies \binom{\delta}{x} = 0. $$
 		Protože pro první rovnici $B\delta + Ax = 0$ přenásobíme $A^*B^{-1}$ a s využitím $A^*\delta = 0$ získáme $A^*B^{-1}Ax = 0$. $A^*B^{-1}A$ je regulářní, tj. $x = 0$ a $B \delta = 0 \implies \delta = 0$.
 
-		Indefinitnost dostaneme ze spektrálního rozkladu $C = U\Lambda U^*$. Pro $v ≠ 0$, $v = (0, \nu_{n+1}, …, \nu_{n + m})^T$ platí
+		Indefinitnost dostaneme ze spektrálního rozkladu $C = U\Lambda U^*$. Pro
+		$$ v ≠ 0, \qquad v = (0, \nu_{n+1}, …, \nu_{n + m})^T $$
+		platí
 		$$ v^* C v = v^* U \Lambda U^* v = \sum_{j=1}^{m+n} \lambda_j |u_j^*v|^2, $$
 		tedy musí existovat kladná i záporná čísla.
 	\end{dukazin}
@@ -739,7 +740,7 @@
 \end{definice}
 
 \begin{definice}[Superrelaxační metoda]
-	$$ A = \frac{1}{\omega}D - L - \[(\frac{1}{\omega} - 1)D + U\]. $$
+	$$ A = \frac{1}{\omega}D - L - \[\(\frac{1}{\omega} - 1\)D + U\]. $$
 	Tou se dále nebudeme zabývat.
 \end{definice}
 
@@ -927,7 +928,7 @@ TODO.
 \begin{definice}[Řád konvergence, rychlost konvergence]
 	Mějme posloupnost $\{x_n\}_{n=0}^∞$, $x_n \rightarrow x_*$, $e_n := x_n - x_*$ je chyba v $n$-té iteraci.
 
-	Nechť $\exists p > 0$, $c > 0$: $\lim_{n \rightarrow ∞} \frac{|e_{n+1}}{e_n}^p = C$, řekneme, že $\{x_n\}_{n=0}^∞$ má řád konvergence $p$. Metoda je řádu $p$, jestliže $\forall$ posloupnost generovaná touto metodou má řád alespoň $p$ a alespoň jedna posloupnost má řád přesně $p$.
+	Nechť $\exists p > 0$, $c > 0$: $\lim_{n \rightarrow ∞} |\frac{e_{n+1}}{e_n}|^p = C$, řekneme, že $\{x_n\}_{n=0}^∞$ má řád konvergence $p$. Metoda je řádu $p$, jestliže $\forall$ posloupnost generovaná touto metodou má řád alespoň $p$ a alespoň jedna posloupnost má řád přesně $p$.
 \end{definice}
 
 \begin{veta}[Lokální kvadratická konvergence Newtona]
@@ -1076,7 +1077,7 @@ TODO.
 		kde $M_k$ je pozitivně definitní a $\alpha_k$ určíme pomocí line search.
 
 		\begin{poznamkain}
-			Volba $M_k$: $\id$ = metoda největšího spádu, $(\nabla^2 f(x_k))^{-1}$ = Newton + line search, $(\diag \nabla^2 f(x_k))^{-1}$ = diagonální aproximace Newtona, $(\beta_k \id + \nabla^2 f(x_k))^{-1}$ = kompromis mezi největším spádem a Newtonem (užitečné, pokud $\nabla^2 f(x_k)$ není pozitivně definitní).
+			Volba $M_k$: $\id$ = metoda největšího spádu, $(\nabla^2 f(x_k))^{-1}$ = Newton + line search, \break$(\diag \nabla^2 f(x_k))^{-1}$ = diagonální aproximace Newtona, $(\beta_k \id + \nabla^2 f(x_k))^{-1}$ = kompromis mezi největším spádem a Newtonem (užitečné, pokud $\nabla^2 f(x_k)$ není pozitivně definitní).
 		\end{poznamkain}
 	\end{definice}
 
@@ -1092,7 +1093,7 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 \end{veta}
 
 \begin{definice}[Legenderovy polynomy]
-	$(a, b) = (-1, 1)$, $w(x) = 1$, tj. $(f, g) = \int_{-1}^1 f g dx$. Vyjde $1, x, \frac{2}(3x^2 - 1), …$ Rekurence vyjde $(n+1) ©L_{n+1}(x) = (2n+1)x ©L_n(x) - n©L_{n-1}(x)$.
+	$(a, b) = (-1, 1)$, $w(x) = 1$, tj. $(f, g) = \int_{-1}^1 f g dx$. Vyjde $1, x, \frac{1}{2}(3x^2 - 1), …$ Rekurence vyjde $(n+1) ©L_{n+1}(x) = (2n+1)x ©L_n(x) - n©L_{n-1}(x)$.
 \end{definice}
 
 \begin{definice}[Čebyševovy polynomy]
@@ -1182,7 +1183,8 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 		$$ S_L \in C[a, b], S_L|_{I_i} \text{ je lin. funkce}, S_L(x_i) = f(x_i). $$
 		Dostáváme $S_L(x)|_{I_i} = \frac{x_{i+1} - x}{h}f(x_i) + \frac{x - x_i}{h} f(x_{i+1})$.
 
-		Jelikož je to Lagrangeova interpolace (na jednotlivých intervalech), dostáváme $\max_{x \in [a, b]} |f(x) - S_L(x)| ≤ \frac{1}{8} h^2 \max_{x \in [a, b]} |f''(x)|$.
+		Jelikož je to Lagrangeova interpolace (na jednotlivých intervalech), dostáváme
+		$$ \max_{x \in [a, b]} |f(x) - S_L(x)| ≤ \frac{1}{8} h^2 \max_{x \in [a, b]} |f''(x)|. $$
 	\end{definice}
 
 	\begin{definice}[Kubické interpolační spliny]
@@ -1201,7 +1203,7 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 			Taylor pro $S$: $S(x_{i+1}) = S(x_i) + S'(x_i) h + S''(x_i) \frac{h^2}{2} + S'''(x, +) \frac{h^3}{6}$. Obdobně $S(x_{i-1}) = S(x_i) - S'(x_i)h + S''(x_i) \frac{h^2}{2} - S'''(x_i, -) \frac{h^3}{6}$. Součtem
 			$$ f(x_{i+1}) + f(x_{i-1}) = 2f(x_i) + M_ih^2 + (S'''(x_i, +) - S'''(x_i, -)) \frac{h^3}{6}. $$
 			Sečteme-li Taylory pro $S''$ dostaneme (a to už dopočítáme)
-			$$ f(x_{i+1}) + f(x_{i-1}) = 2f(x_i) + M_ih^2 + (\frac{M_{i+1} - 2M_i + M_{i-1}}{h}) \frac{h^3}{6}. $$
+			$$ f(x_{i+1}) + f(x_{i-1}) = 2f(x_i) + M_ih^2 + \(\frac{M_{i+1} - 2M_i + M_{i-1}}{h}\) \frac{h^3}{6}. $$
 		\end{dukazin}
 	\end{lemma}
 
@@ -1211,7 +1213,8 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 
 	\begin{poznamka}[Konstrukce $S$]
 		$S(x_i) = f(x_i)$, $S(x_{i+1}) = f(x_{i+1})$, $S''(x_i) = M_i$, $S''(x_{i+1}) = M_{i+1}$.
-		$$ S(x) = \frac{(x - x_i)^3}{6h}M_{i+1} + \frac{(x_{i+1} - x)^3}{6h}M_{i} + \(\frac{f(x_{i+1}) - f(x_i)}{h} - \frac{h}{6}(M_{i+1} - M_i)\)(x - x_i) + f(x_i) - \frac{h^2}{6}M_i. $$
+		$$ S(x) = $$
+		$$ \frac{(x - x_i)^3}{6h}M_{i+1} + \frac{(x_{i+1} - x)^3}{6h}M_{i} + \(\frac{f(x_{i+1}) - f(x_i)}{h} - \frac{h}{6}(M_{i+1} - M_i)\)(x - x_i) + f(x_i) - \frac{h^2}{6}M_i.\!\! $$
 	\end{poznamka}
 
 	\begin{veta}
@@ -1258,7 +1261,8 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 	$Q$ … NC kvadratura s obecnými uzly $x_0, …, x_n$. Nechť $f \in C^{n+1}[a, b]$. Pak $|I(f) - Q(f)| ≤ \frac{1}{(n+1)!} \max_{x \in [a, b]} |f^{(n+1)}(x)| \int_a^b |\prod_{i=0}^n (x - x_i)| dx$.
 
 	\begin{dukazin}
-		$$ |I(f) - Q(f)| = |I(f) - I(L-n)| = |\int_a^b f(x) - L_n(x)| dx ≤ \int_a^b \frac{1}{(n+1)!}|f^{(n+1)}(\xi_x)| |\prod_{i=0}^n (x - x_i)| dx ≤ … $$
+		$$ |I(f) - Q(f)| = |I(f) - I(L-n)| = \left|\int_a^b f(x) - L_n(x)\right| dx ≤ $$
+		$$ ≤ \int_a^b \frac{1}{(n+1)!}|f^{(n+1)}(\xi_x)|·|\prod_{i=0}^n (x - x_i)| dx ≤ … $$
 	\end{dukazin}
 \end{veta}
 
@@ -1273,8 +1277,10 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 		Nechť $\{x_i\}_{i=0}^n$ jsou kořeny Legendrova polynomu $©L_{n+1}$. Pak příslušná $Q$ je řádu $2n + 1$.
 
 		\begin{dukazin}
-			Nechť $p \in P_{2n+1}$, chceme $Q(p) = I(p)$. Vydělíme $p / ©L_{n+1}$ se zbytkem: $p(x) = ©L_{n+1}(x) p_n(x) + r_n(x)$.
-			$$ I(p) = \int_{-1}^1 p(x) dx = \int_{-1}^1 ©L_{n+1} p_n dx + \int_{-1}^1 r_n dx = \int_{-1}^1 r_n dx = Q(r_n) = \sum_{i=0}^n w_i r_n(x_i) = \sum_{i=0}^n w_i p(x_i) = Q(p). $$
+			Nechť $p \in P_{2n+1}$, chceme $Q(p) = I(p)$. Vydělíme $p / ©L_{n+1}$ se zbytkem:
+			$$ p(x) = ©L_{n+1}(x) p_n(x) + r_n(x). $$
+			$$ I(p) = \int_{-1}^1 p(x) dx = \int_{-1}^1 ©L_{n+1} p_n dx + \int_{-1}^1 r_n dx = \int_{-1}^1 r_n dx = Q(r_n) = $$
+			$$ = \sum_{i=0}^n w_i r_n(x_i) = \sum_{i=0}^n w_i p(x_i) = Q(p). $$
 		\end{dukazin}
 	\end{vetain}
 
@@ -1344,7 +1350,7 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 \end{definice}
 
 \begin{definice}[Jednobodové metody (JKM)]
-	Jednobodová metoda je metoda, kde počítáme $y_{n+1}$ pouze z $y_n$. Tedy $y_{n+1} = y_n + h\phi(x_n, y_n, h)$, kde $\Phi$ je tzv. přírůstková funkce.
+	Jednobodová metoda je metoda, kde počítáme $y_{n+1}$ pouze z $y_n$. Tj. $y_{n+1} = y_n + h\phi(x_n, y_n, h)$, kde $\Phi$ je tzv. přírůstková funkce.
 
 	\begin{prikladyin}
 		Euler: $\Phi(x, y, h) = f(x, y)$.
@@ -1368,11 +1374,11 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 \begin{definice}[Lokální diskretizační chyba]
 	$\tau(x, h) = \frac{y(x + h) - y(x)}{h} - \Phi(x, y(x), h)$
 
-	$$ (\frac{y_{n+1} - y_n}{h} - \Phi(x_n, y_n, h) = 0) $$
+	$$ \(\frac{y_{n+1} - y_n}{h} - \Phi(x_n, y_n, h) = 0\) $$
 \end{definice}
 
 \begin{definice}
-	JKM (jednokroková metoda) je řádu $p$, pokud $\exists k, h_0 > 0: |\tau(x, h) ≤ Kh^p$, $\forall x \in [a, b], \forall h \in (0, h_0)$.
+	JKM (jednokroková metoda) je řádu $p$, pokud $\exists k, h_0 > 0: |\tau(x, h)| ≤ Kh^p$, $\forall x \in [a, b], \forall h \in (0, h_0)$.
 \end{definice}
 
 \begin{lemma}
@@ -1526,7 +1532,9 @@ Viz MA3 nebo UFA. Konstrukce Gram-Schmidtem jako v UFA.
 	\end{poznamka}
 
 	\begin{lemma}
-		Nechť $\xi$ je $l$-násobný kořen $\rho(x)$. Pak posloupnosti $\{\xi^n\}_{n \in ®N}$, $\{n \xi^{n-1}\}_{n \in ®N}$, …, $\{n(n-1)·…·(n - l + 2)\xi^{n - l + 2}\}_{n \in ®N}$ řeší DR, obecné řešení je lineární kombinací.
+		Nechť $\xi$ je $l$-násobný kořen $\rho(x)$. Pak posloupnosti
+		$$ \{\xi^n\}_{n \in ®N}, \{n \xi^{n-1}\}_{n \in ®N}, …, \{n(n-1)·…·(n - l + 2)\xi^{n - l + 2}\}_{n \in ®N} $$
+		řeší DR, obecné řešení je lineární kombinací.
 
 		\begin{dukazin}
 			Dokazuje se „derivací“.

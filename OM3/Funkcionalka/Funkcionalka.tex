@@ -1791,4 +1791,192 @@ TODO.
 	\end{dukazin}
 \end{veta}
 
+% 20. 12. 2021
+
+\section{Konvoluce funkcí a Fourierova transformace}
+\begin{definice}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g: ®R^d \rightarrow ®K$. Konvoluce funkce $f$ s funkcí $g$ je funkce $f * g$ definovaná jako
+	$$ (f*g)(x) = \int_{®R^d} f(y)g(x - y) d\mu(y) $$
+	pro taková $x \in ®R^d$, pro která integrál konverguje.
+\end{definice}
+
+\begin{veta}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g, h: ®R^d \rightarrow ®K$.
+
+	\begin{enumerate}
+		\item Operace $*$ je komutativní (funkce $f*g$ a $g * f$ mají stejný definiční obor a jsou si na něm rovny).
+		\item Operace $*$ je distributivní vzhledem ke sčítání ($(f + g) * h = f*h + g*h$ na definičních oborech pravých stran).
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $(f*g)(x) = C\int f(y) g(x - y) dy = C\int f(x - z)g(z) dz = (g * f)(x)$.
+
+		2. $(f*(g + h))(x) = C \int f(y) (g + h)(x - y) d\lambda^d(y) = C \(\int_{®R^d} f(y) g(x - y) d\lambda^d(y) + \int_{®R^d} f(y) h(x - y) d\lambda^d(y)\) = (f*g)(x) + (f*h)(x)$
+		$$ (f + g)*h = h * (f + h) = h*f + h*g = f*h + g*h. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g \in L_1(\mu)$. Položíme-li $F(x, y) = f(y)g(x - y)$ pro $x, y \in ®R^d$, pak $L_1(\mu \times \mu)$ a $||F||_1 = ||f||_1·||g||_1$.
+
+	\begin{dukazin}
+		$$ \int \int |F(x, y)| d(\mu \times \mu)(x, y) = \int |f(y)| \int |g(x - y)| dx dy = \int |f(y)|·||g||_1 dy = ||f(y)||_1 · ||g||_1. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Posun]
+	TODO.
+\end{definice}
+
+\begin{veta}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f \in L_p(\mu)$, $1 ≤ p < ∞$. Pak zobrazení $\tau: ®R^d \rightarrow L_p(u)$ dané předpisem $\tau(x) = \tau_x f$ je stejnoměrně spojité.
+
+	\begin{dukazin}
+		$$ \tau_x f \in L_p: \int |\tau_x f(y)|^p dy = \int |f(x - y)|^p dy = \int |f(z)|^p dz \implies ||\tau_x f||_p = ||f||_p. $$
+
+		Zvol $\epsilon > 0$, $f \in L_p$. Ať $g \in ©L_C (®R^d)$, že $||f - g||_p < \frac{\epsilon}{3}$. Ať $B = B(0, r)$, že $\overline{g ≠ 0} \subseteq B(0, r - 1)$ (pro nějaké $r > 1$). Protože $g$ je stejnoměrně spojitá na $B$,
+		$$ \exists \sigma \in (0, 1)\ \forall x, y \in ®R^d: ||x - y|| < \delta \implies |g(x) - g(y)| < \epsilon'. $$
+
+		Ať $x, y \in ®R^d$, $||x - y|| < \delta$. Pak
+		$$ ||\tau_x f - \tau y f||_p ≤ ||\tau_y (f - g)|| + ||\tau_y g - \tau_x g|| + ||\tau_x(g - f)|| ≤ \frac{\epsilon}{3} + ||\tau_y f - \tau_x g|| + \frac{\epsilon}{3}. $$
+		$$ ||\tau_x g - \tau_y g||_p^p = \int |g(t - x) - g(t - y)|^p dt = \int |g(z) - g(z + x - y)|^p dz = $$
+		(Jelikož pokud $g(z) ≠ 0$, pak $z + x - y \in B(0, r - 1 + 1) = B$. Obdobné pro $g(z + x - y)$.)
+		$$ = \int_B g(z) - g(z + x - y)|^p dz ≤ (\epsilon')^p·\mu(B) ≤ \frac{\epsilon}{3}, $$
+		pokud $\epsilon'$ zvolíme jako $\sqrt[p]{\frac{\epsilon}{3\mu(B)}}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g: ®R^d \rightarrow ®K$.
+
+	\begin{enumerate}
+		\item Je-li $f \in L_p(\mu)$ a $g \in L_q(\mu)$, kde $1 ≤ p, q ≤ ∞$ jsou sdružené exponenty, pak funkce $f*g$ je definována v každém bodě $®R^n$, je stejnoměrně spojitá a omezená a platí $||f * g||_∞ ≤ ||f||_p ||g||_q$.
+		\item Je-li $f \in L_1^{loc}(\mu)$ s jestliže $g \in L_∞(\mu)$ má kompaktní nosič, pak funkce $f * g$ je definována v každém bodě $®R^d$, je spojitá a platí $\supp f*g \subset \supp f + \supp g$.\footnote{$$ L_1^{loc} ≡ \forall x \in ®R^d\ \exists B(x, r): \int_{B(x, r)} (f) < ∞ $$ $$ \Leftrightarrow \forall K \subset ©R^d \text{ kompaktní}: \int_K |f| < ∞. $$}
+		\item Jsou-li $f, d$ měřitelné, $D \subset ®R^d$ měřitelná a $f*g$ je definována alespoň na $D$, pak $f*g$ je měřitelná na $D$.
+		\item Jsou-li $f, g \in L_1(\mu)$, pak $f*g$ je definovaná $\mu$-skoro všude na $®R^d$, $f*g \in L_1(\mu)$ a platí $||f * g||_1 ≤ ||f||1·||g||_1$.
+		\item TODO(Nedokazovalo se.)
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $\forall x \in ®R^d: |f*g(x)| ≤ \int |f(y)g(x - y)| dy ≤ ||f||_p·||g||_q$ z Höldera, pokud $p ≠ 1, ∞$, $≤ ||g||_∞ \int|f(y)| dy = ||g||_∞ ||f||_1$, pokud $p = 1$ a analogicky, pokud $p = ∞$.
+
+		Tedy $f * g$ je definována všude a $||f + g||_∞ ≤ ||f||_p·||g||_q$. Zbývá „$f*g$ je stejnoměrně spojitá“: máme ($h(t) := g(-t)$, $\tau$ jsou správně posuny) pro $p ≠ 1$:
+		$$ |(f * g)(x) - (f * g)(y)| = |\int_{®R^d} f(z)(g(x - z) - g(y - z))dz | ≤ \int_{®R^d} |f(z)(h(z - x) - h(z - y))| dz ≤ ||f||_p · ||\tau_x h - \tau_y h||_q. $$
+		Dle předchozí věty je $f * g$ stejnoměrně spojitá ($p ≠ 1$). Pro $p = 1$ můžeme použít komutativitu a prohodit $p$ a $q$.
+
+		2. Máme $|(f * g)(x)| ≤ \int |f(y)g(x - y)|dy = \int_{y \in x - K} |f(y)|·|g(x - y)| dy ≤ ||g||_∞ \int_{y \in x - K} |f(y)| dy < ∞ \implies f*g$ je definovaná všude.
+
+		Supporty: Ať $x \notin \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$ pak $(f * g)(x) = \int f(y) g(x - y) dy = \int_{f ≠ 0} f(y) g(x - y) dy = 0$. Tedy $\{f * g ≠ 0\} \subset \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$, tudíž (vpravo je kompakt) $\overline{\{f * g ≠ 0\}} \subset \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$
+
+		Spojitost: Ať $x$ dáno, $y \in B(x, 1)$. Pak ($h(z) = (\xi_{B(x, 1) - K} f)(-z)$, $\tau$ jsou správné posuny)
+		$$ |(f*g)(x) - (f*g)(y)| = |\int_K g(z) (f(x - z) - f(y - z)) dz| = |\int_K g(z)(\tau_x h(z) - \tau_y(h(z)))dz| ≤ ||g||_∞ · ||\tau_x h - \tau_y h||_1. $$
+		To je stejnoměrně spojitý a z toho již plyne spojitost $(f * g)$ (v bodě $x$).
+
+		3. Vynechán. 4.: $F(x, y) = f(y)g(x - y)$. Dle lemmatu výše je $F \in L_1(\mu \times \mu)$, $||F|| = ||f||·||g||$.
+		$$ ∞ > \int_{\(®R^d\)} F = \int_{®R^d} \int_{®R^d} f(y) g(x - y) dy dx \implies |(f * g)(x)| < ∞ \text{ skoro všude}. $$
+		Dále $||f*g||_1 ≤ \int_{®R^d} \int_{®R^d} |F(x, y)| dy dx = ||f||·||g||$.
+	\end{dukazin}
+\end{veta}
+
+% 21. 12. 2021
+
+\begin{definice}
+	Nechť $d \in ®N$. Pak $\alpha = (\alpha_1, …, \alpha_d) \in ®N^d_0$ nazýváme multiindexem délky $d$. Řádem multiindexu $\alpha$ nazýváme číslo $\sum_{i=1}^d \alpha_j$ a značíme jej $|\alpha|$.
+
+	Je-li $\alpha$ multiindex délky $d$, pak symbolem $D^\alpha$ označíme parciální derivaci řádu $|\alpha|$ danou multiindexem $\alpha$, tj.
+	$$ D^\alpha  = \frac{\partial^{|\alpha|}}{\partial x_1^{\alpha_1} … \partial x_d^{\alpha_d}}. $$
+
+	Symbol $D^\alpha$ se též nazývá diferenciální operátor.
+\end{definice}
+
+\begin{definice}
+	Nechť $A \subset ®R^d$. Množina
+	$$ D(A, ®K) = \{\phi \in C^{∞} (®R^d, ®K) | \supp \phi \text{ je kompaktní podmnožina $A$}\} $$
+	se nazývá prostor testovacích funkcí na $A$.
+\end{definice}
+
+\begin{veta}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g: ®R^d \rightarrow ®K$. Je-li $f \in L_1^{loc}(\mu)$ a $g \in D(®R^d)$, pak $f*g \in C^{∞}(®R^d)$ a $D^\alpha(f*g) = f*D^\alpha g$ pro každý multiindex $\alpha$ délky $d$.
+		
+	\begin{dukazin}
+		1. Víme $f*D^\alpha g$ je spojitá pro každé $\alpha$ dle předchozí věty bod 2. Tedy stačí $D^\alpha(f * g) = f*D^\alpha g$. To dokážeme indukcí podle $|\alpha| = k$: Pro $k=1$ zafixujme $x \in ®R^d$, $j \in [d]$. $\phi(t) = \int_{®R^d} f(y) g(x + te_j - y) dy$. Pak $\phi'(0) = \frac{\partial(f*g)}{\partial x_j}(x)$.
+
+		Chceme prohodit integrál a derivaci:
+		$$ |\frac{\partial}{\partial t}F(t, y)| = |y \mapsto f(y) \frac{\partial g}{\partial x_j}(x + t e_j - y)| ≤ $$
+		(to je nenula jen na kompaktu $K$)
+		$$ ≤ |\xi_K f|·|\frac{\partial g}{\partial x_j}| \in L_1. $$
+		Ověřili jsme předpoklady o integrálu závislém na parametru, tedy
+		$$ \phi'(0) = \int f(y) \frac{\partial g}{\partial x_j}(x - y) dy = \(f * \frac{\partial g}{\partial x_j}\)(x). $$
+
+		Ať $D^\alpha = \frac{\partial}{\partial x_j} D^{\alpha - e_j}$. Pak
+		$$ D^\alpha(f * g) = \frac{\partial}{\partial x_j}(f * D^{\alpha - e_j} g) = f * \frac{\partial}{\partial x_j} D^{\alpha - e_j} g = f * D^\alpha. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$. Funkci $g: ®R^d \rightarrow ®R$ budeme nazývat regularizačním jádrem (vzhledem k $\mu$), pokud $g$ je nezáporná, $g \in L_1(\mu)$ a $||g||_1 = 1$.
+\end{definice}
+
+\begin{veta}
+	Nechť $\mu$ je kladným násobkem Lebesqgueovy míry na $®R^d$, $g$ je regularizační jádro na $®R^d$ a $f: ®R^d \rightarrow ®K$. Položme $g_n(x) = n^d g(nx)$ pro $x \in ®R^d$ a $n \in ®N$.
+
+	\begin{enumerate}
+		\item Pokud je $f$ stejnoměrně spojitá a omezená na $®R^d$, potom $f* g_n \rightarrow f$ stejnoměrně na $®R^d$.
+		\item Pokud $f \in L_p(\mu)$ a $1 ≤ p < ∞$, potom $f * g_n \overline{L_p}{\rightarrow} f$.
+	\end{enumerate}
+
+	\begin{poznamkain}
+		$$ \int g_n(x) dx = \int g(y) dy = 1 $$
+		podle věty o substituci.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		1. $f \in L_∞ \implies f*g_n$ definována všude (podle předchozí poznámky a tvrzení výše). Zafixujeme $\epsilon > 0$.
+
+		Zvolme $R > 0$, že $\int_{B(0, R)} g > 1 - \frac{\epsilon}{4||f||_∞}$. Dále $\delta > 0$, že $|x - x'| < \delta \implies |f(x) - f(x')| < \frac{\epsilon}{2}$. $n$ zvolíme tak, že $\frac{R}{n} < \delta$.
+
+		$$ \forall x \in ®R^d |\(f * g_n\)(x) - f(x)| = |\int_{®R^d}g_n(y)f(x - y)dy - f(x)\int_{®R^d} g_n(y) dy| ≤ $$
+		$$ ≤ \int_{®R^d} g_n(y) |f(x - y) - f(x)| dy = $$
+		$$ = \int_{B(0, \frac{R}{n})} g_n(y) \underbrace{|f(x - y) - f(x)|}_{\frac{\epsilon}{2}} dy + \int_{®R^d \setminus B(0, \frac{R}{n})} … dy ≤ $$
+		$$ ≤ \frac{\epsilon}{2} \int_{B(0, \frac{R}{n})} n^d g(ny) dy + 2||f||_∞ \int_{®R^d \setminus B(0, \frac{R}{n})} n^d g(ny) dy = $$
+		$$ \frac{\epsilon}{2} \int_{B(0, R)} g(z) dz + 2||f||_∞ \int_{®R^d \setminus B(0, \frac{R}{2})} g(z) dz < \epsilon. $$
+
+		2. Důkaz vynecháme.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$, $\Omega \subset ®R^d$ otevřená a $1 ≤ p < ∞$. Pak množina $D(\Omega)$ je hustá v prostoru $L_p(\Omega, \mu)$ (ve smyslu restrikce na $\Omega$).
+\end{dusledek}
+
+\begin{definice}
+	Nechť $f \in L_1(\mu_d)$. Pak Fourierovou transformací funkce $f$ rozumíme funkci $\hat{f}: ®R^d \rightarrow ®K$ definovanou jako
+	$$ \hat{f}(t) = \int_{®R^d} f(x) e^{i\<t, x\>} d\mu_d(x) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d} f(x) e^{-i \<t, x\>} d\lambda_d(x), \qquad t \in ®R^d. $$
+\end{definice}
+
+\begin{definice}
+	Prostorem $C_b(®R^d) = C_b(®R^d, ®K)$ rozumíme normovaný lineární prostor všech omezených spojitých funkcí na $®R^d$ s normou $||f||_∞ = \sup_{x \in ®R^d}|f(x)|$.
+\end{definice}
+
+\begin{definice}
+	Prostorem $C_0(®R^d) = C_0(®R^d, ®K)$ rozumíme prostor spojitých funkcí na $®R^d$ takových, že pro každé $\epsilon > 0$ je množina $\{x \in ®R^d | |f(x)| ≥ \epsilon\}$ omezená. Na $C_0(®R^d)$ uvažujeme normu $||f||_∞ = \sup_{x \in ®R^d} |f(x)|$.
+\end{definice}
+
+\begin{poznamka}
+	$C_b$ i $C_0$ jsou Banachovy.
+\end{poznamka}
+
+\begin{lemma}[Georg Friedrich Bernhard Riemann (1835), H. Lebesgue (1903)]
+	Ať $f \in L_1(\mu_d)$. Pak
+	$$ \lim_{||t|| \rightarrow ∞} \int f(x)e^{-i\<t, x\>} d \mu_d(x) = 0 $$
+
+	\begin{dukazin}
+		$$ \forall t \in ®R^d \setminus \{¦o\}: |\int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x)| = \int_{®R^d} -f(x) e^{-i\<t, x + \pi \frac{t}{||t||^2}\>} = $$
+		$$ = \int_{®R^d} - f\(u - \pi\frac{t}{||t||^2}\)e^{-i\<t, u\>} du. $$
+		Sečtením polovin obou stran rovnice dostaneme
+		$$ \frac{1}{2} |\int_{®R^d} \(f(x) - f\(x - \pi \frac{t}{||t||^2}\)\) e^{-i \<t, x\>} dx| ≤ \frac{1}{2}\int_{®R^d}|f(x) - f\(x - \pi \frac{t}{||t||^2}\)|dx = $$
+		$$ = \frac{1}{2} ||\tau_0 f - \tau_P{\pi \frac{t}{||t||^2}} f||_1 \rightarrow 0. $$
+	\end{dukazin}
+\end{lemma}
+
 \end{document}
