@@ -807,7 +807,86 @@ TODO?
 		$$ \implies \nu_s = \tilde \nu_s, \nu_a = \tilde \nu_a. $$
 
 		2. krok: Předpokládejme, že $\nu$ je $\sigma$-konečná. $X = \bigcup_{k=1}^∞ D_k$, $D_k \in ©A$, $D_k \cap D_l$, $k ≠ l$, $\nu(D_k) < ∞$. Provedeme první krok na každé množině zvlášť a pak je dáme dohromady.
+
+% 22. 12. 2021
+
+		TODO
 	\end{dukazin}
 \end{veta}
+
+\begin{definice}[Distribuční funkce]
+	Buď $\mu$ konečná borelovská míra na ®R. Pak funkci
+	$$ F_\mu := \mu(\(-∞, x\>), \forall x \in ®R, $$
+	nazýváme distribuční funkcí míry $\mu$.
+\end{definice}
+
+\begin{lemma}[O distribuční funkci]
+	Funkce $F_\mu$ splňuje:
+
+	\begin{itemize}
+		\item $F_\mu$ je neklesající.
+		\item $F_\mu(-∞) = 0$, $F_\mu(+∞) = \mu(®R) < +∞$.
+		\item $F_\mu$ je zprava spojitá.
+	\end{itemize}
+
+	\begin{dukazin}
+		První bod: $x < y$, $x, y \in ®R$. $F_\mu(x) = \mu(\(-∞, x\>) ≤ \mu(\(-∞, y\>) = F_\mu(y)$.
+
+		Druhý bod:
+		$$ F_\mu(-∞) = \lim_{n \rightarrow ∞} F_\mu(-n) = \lim_{n \rightarrow ∞} \mu(\(-∞, -n\>) = \mu\(\bigcup_{n \in ®N} \(-∞, n\>\) = \mu(\O) = 0. $$
+		$$ F_\mu(+∞) = \lim_{n \rightarrow ∞} F_\mu(n) = \lim_{n \rightarrow ∞} \mu(\(-∞, n\>) = \mu\(\bigcup_{n \in ®N} \(-∞, n\>\) = \mu(®R) < +∞. $$
+
+		Třetí bod: $x \in ®R$
+		$$ \lim_{y \rightarrow x_+} F_\mu(y) = \lim_{n \rightarrow +∞} F_\mu\(x + \frac{1}{n}\) = \lim_{n \rightarrow ∞} \mu\(\(-∞, x + \frac{1}{n}\>\) = \mu\(\bigcap_{n \in ®N} \(-∞, x + \frac{1}{n}\>\) = \mu(\(-∞, x\>) = F_\mu(x). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O Lebesgueově-Stieltjesově míře]
+	Nechť $F: ®R \rightarrow ®R$ je funkce splňující
+	\begin{itemize}
+		\item $F$ je neklesající,
+		\item $F_\mu(-∞) = 0$, $F_\mu(+∞) < +∞$,
+		\item $F$ je zprava spojitá.
+	\end{itemize}
+	Pak existuje právě jedna konečná borelovská míra na prostoru ®R, že $F = F_\mu$.
+
+	\begin{dukazin}
+		Nedokazovali jsme.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Lebesgueův-Stieltjesův integrál]
+	Je-li $F$ distribuční funkce (konečné borelovské míry $\mu$) na ®R a $A \in ©B(®R)$, pak
+	$$ \int_A f dF := \int_A f d\mu,\qquad \text{pokud má pravá strana smysl.} $$
+\end{definice}
+
+\begin{veta}[Per partes pro L-S integrál]
+	Je-li $F_\mu$ distribuční funkce míry $\mu$ a $G_\nu$ distribuční funkce míry $\nu$, pak platí
+	$$ \forall -∞ < a < b < +∞ \in ®R: F(b)G(b) - F(a)G(a) = \int_{\<a, b\>} F(x) dG(x) + \int_{\<a, b\>} G(x) dF(x). $$
+
+	\begin{dukazin}
+		$\Omega = \{[x, y] \in ®R^2 | a < x ≤ y ≤ b\}$. Z Fubiniovy věty si spočteme dvěma způsoby:
+		$$ (\mu \otimes \nu)(\Omega) = \int_{\(a, b\>} \(\int_{\<x, b\>} dG(y)\)dF(x) = $$
+		$$ = \int_{\(a, b\>} (G(b) - G(x)) dF(x) = G(b)(F(b) - F(a)) - \int_{\(a, b\>} G(x) dF(x). $$
+		$$ (\mu \otimes \nu)(\Omega) = \int_{\(a, b\>} \(\int_{\<a, y\>} dF(x)\)dG(y) = $$
+		$$ = \int_{\(a, b\>} (F(y) - F(a)) dG(y) = F(a)(G(b) - G(a)) - \int_{\(a, b\>} F(y) dG(y) $$
+		Odečtením dostáváme dokazovanou rovnost.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[O míře absolutně spojité k $\lambda^1$]
+	Nechť $\mu$ je konečná borelovská míra na ®R. Jestliže $F_\mu \in C^1(®R)$ a $\mu \ll \lambda^1$, pak platí
+	$$ \frac{d \mu}{d \lambda^1} = F_\mu'. $$
+
+	\begin{dukazin}
+		©S systém množin, který se skládá z $\O$ a všech intervalů typu $\(a, b\>$, kde $-∞ < a < b < +∞$. Pak ©S je $\pi$-systém.
+
+		Buď $\nu$ mír daná předpisem $\nu(A) := \int_A F_\mu' d\lambda^1$, $\forall A \in ©B(®R)$. Pak $\nu = \mu$ na ©S, neboť $\nu(\O) = 0 = \mu(\O)$, $\mu(\(a, b\>) = F_\mu(b) - F_\mu(a) = \int_a^b F'_\mu(x) dx - \int_{\(a, b\>} F'_\mu d\lambda^1 = \mu(\<-u, u\>)$.
+
+		Z nějaké věty dříve plyne $\mu = \nu$ na $\sigma ©S = ©B(®R)$ $\implies$ $\mu(A) = \int_A F'_\mu d\lambda^1$, $\forall A \in ©B(®R)$.
+	\end{dukazin}
+\end{lemma}
+
+TODO Důkaz Lebesgueovy věty.
 
 \end{document}

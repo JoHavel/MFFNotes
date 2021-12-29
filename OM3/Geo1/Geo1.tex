@@ -533,4 +533,54 @@ TODO
 
 TODO (definice okolo kvadrik).
 
+% 22. 12. 2021
+
+\begin{definice}
+	Pro trojúhelník $ABC$ v $®R^2$ definujeme jeho orientovaný obsah jako
+	$$ S_{ABC} := \frac{1}{2} \det(B - A | C - A). $$
+\end{definice}
+
+\begin{veta}
+	Afinity zachovávají dělící poměry. Je-li $f$ afinita v $®R^2$ tvaru $f(X) = T X + p$, pak
+	$$ S_{f(A)f(B)f(C)} = (\det T)S_{ABC}. $$
+	Afinity v rovině tedy zachovávají poměry obsahů.
+
+	\begin{dukazin}
+		Upočítá se.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $Z = (A, B, C)$ tvoří barycentrickou soustavu souřadnic v $®R^2$ a $P, Q, R$ jsou libovolné body $®R^2$. Pak platí
+
+	\begin{itemize}
+		\item Body $P$, $Q$, $R$ leží na přímce právě tehdy, když $\det([P]_Z | [Q]_Z | [R]_Z) = 0$.
+		\item Obecněji platí $S_{PQR} = \det([P]_Z | [Q]_Z | [R]_Z) S_{ABC}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		První bod plyne jednoduše z druhého a definice obsahu trojúhelníku.
+
+		Druhý TODO.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Cevova]
+	Mějme trojúhelník $ABC$ a bod $X$, který neleží na žádné ze stran trojúhelníka (ani po prodloužení do přímek). Předpokládejme, že existují průsečíky $P = AX \cap BC$, $Q = BX \cap CA$ a $R = CX \cap AB$. Pak platí
+	$$ \frac{AR}{RB}·\frac{BP}{PC}·\frac{CQ}{QA} = 1. $$
+
+	\begin{dukazin}
+		Zobrazíme afinním zobrazením na trojúhelník $(0, 0), (0, 1), (1, 0)$. Tam už se to upočítá analyticky.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Menelaova]
+	Mějme trojúhelník $ABC$ a přímku $p$, která neprochází žádným z vrcholů a není rovnoběžná se žádnou se stran. Označme si $P = p \cap BC$, $Q = p \cap CA$ a $R = p \cap AB$. Pak platí 
+	$$ \frac{AR}{RB}·\frac{BP}{PC}·\frac{CQ}{QA} = -1. $$
+
+	\begin{dukazin}
+		TODO.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -1076,8 +1076,60 @@ TODO!!!
 		\end{dukazin}
 	\end{veta}
 
+% 22. 12. 2021
 
+	\begin{definice}
+		Nechť $H$ je Hilbertův prostor a $h_i \in H$, $i \in ®N$. Řekneme, že $\sum_{i=1}^∞ h_i$ konverguje k $s \in H$, pokud $\lim_{n \rightarrow ∞} ||s - \sum_{i=1}^n h_1||_H = 0$.
+	\end{definice}
 
+	\begin{veta}[O maximální ortonormální množině]
+		Nechť $H$ je Hilbertův prostor a $\{u_i\}_{i=1}^∞$ je ortonormální množina. NPJE
 
+		\begin{enumerate}
+			\item $\{u_i\}_{i=1}^∞$ je maximální ortonormální množina.
+			\item Množina $P$ všech konečných lineárních kombinací prvků z $\{u_i\}$ je hustá v $H$.
+			\item $\forall x \in H$: $||x||^2 = \sum_{i=1}^∞ |\hat{x}_i|^2$.
+			\item $\forall x, y \in H: \<x, y\> = \sum_{i=1}^∞ \hat{x}_i \hat{y}_i$.
+			\item $x = \sum_{i=1}^∞ \hat{x}_i u_i$.
+		\end{enumerate}
+
+		\begin{dukazin}
+			„$1. \implies 2.$“: Sporem: Nechť $\overline{P} ≠ H$. $\overline{P}$ je uzavřený lineární podprostor $H$. Podle důsledku jedné z předchozích vět $\exists u \in \(\overline{P}\)^\perp$, $u ≠ 0$. Pak ale $\<u, u_i\> = 0$, $\forall i$. \lightning.
+
+			„$2. \implies 3.$“: Podle předchozí věty $x \mapsto \hat{x}$ je izometrie na $\overline{P} = H$ na $l^2$. Tedy $||x||^2 = ||\hat{x}||_{l^2} = \sum_{i=1}^∞ |\hat{x}_i|^2$.
+
+			„$3. \implies 4.$“:
+			$$ ||x + y||^2 - ||x - y||^2 = \<x, x\> + 2\<x, y\> + \<y, y\> - \(\<x, x\> - 2\<x, y\> + \<y, y\>\) = 4\<x, y\>. $$
+			Analogicky
+			$$ ||\hat{x} + \hat{y}||^2 - ||\hat{x} - \hat{y}||^2 = 4\sum_{i=1}^∞ \hat{x}_i \hat{y}_i. $$
+			Podle 3. pak dokazovaná rovnost platí.
+
+			„$4. \implies 3.$“: Prostým dosazením $x = y$.
+
+			„$5. \implies 1.$“: Pro spor ať máme $x \perp u_i$, $\forall u_i$. Pak $x = \sum_{i=1}^∞ \hat{x}_i u_i = \sum_{i=1}^∞ ¦o = ¦o$.
+
+			„$3. \implies 5.$“: Chceme $y^n = \sum_{i=1}^n \hat{x}_i·u_i \rightarrow x \Leftrightarrow ||y^n - x||_H \rightarrow 0$.
+			$$ x - y^n, i ≤ n: \<x - y^n, u_i\> = \<x, u_i\> - \sum_{j=1}^n \hat{x}_j \<u_j, u_i\> = \<x, u_i\> - \hat{x}_i = 0. $$
+			$$ i > n: \<x - y^n, u_i\> = \<x, y_i\> - \sum_{j=1}^n \hat{x}_i \<u_j, u_i\> = \<x, u_i\>. $$
+			Použijeme 3. pro $x - y^n$:
+			$$ ||x - y^n||_H^2 = \sum_{i=n+1}^∞ |\hat{x}_i|^2 \rightarrow 0. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{poznamka}
+		Obdoba této věty platí i pro Hilbertův prostor s „nespočetnou“ bází.
+	\end{poznamka}
+
+	\subsection{Trigonometrické řady}
+	\begin{definice}[Fourierovy koeficienty funkce, Fourierova řada]
+		Nechť $f \in L^2(0, 2R)$. Potom čísla
+		$$ a_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \cos k x dx,\qquad k \in ®N_0 \text{ a} $$
+		$$ b_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin k x dx,\qquad k \in ®N $$
+		nazýváme Fuourierovy koeficienty funkce $f$. Trigonometrickou řadu
+		$$ F_f(x) = \frac{a_0}{2} + \sum_{k=1}^∞ (a_k · \cos k x + b_k · \sin k x) $$
+		nazýváme Fourierovou řadou funkce $f$.
+	\end{definice}
+
+	TODO!!!
 
 \end{document}
