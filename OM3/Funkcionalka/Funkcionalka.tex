@@ -38,7 +38,7 @@
 	Zobrazení $+: X \times X \rightarrow X$ a $·: ®K \times X \rightarrow X$ jsou spojitá.
 
 	\begin{dukazin}
-		První část byla na MA3. Druhá: Zvol $x, y \in X$. Pak $||y||, ||x|| ≤ ||x|| + ||x - y||$, tudíž $\left|||x|| - ||y|| \right| ≤ ||x - y||$.
+		První část byla na MA3. Druhá: Zvol $x, y \in X$. Pak z trojúhelníkové nerovnosti máme $||y|| ≤ ||x|| + ||x - y||$, $||x|| ≤ ||y|| + ||x - y||$, tudíž (podle toho, zda je v absolutní hodnotě kladná nebo záporná hodnota, tak z první/druhé rovnice) $\big|||x|| - ||y|| \big| ≤ ||x - y||$.
 
 		Třetí část: Připomenutí: Součin metrických prostorů s maximovou metrikou je metrický prostor. Důkaz tohoto i třetí části je pak jednoduché cvičení.
 	\end{dukazin}
@@ -61,7 +61,12 @@
 Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 \begin{tvrzeni}
-	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor. Potom a) Je-li $Y$ Banachův, pak je $Y$ uzavřený v $X$. b) Pokud je naopak $X$ Banachův, pak $Y$ je Banachův právě tehdy, když je uzavřený.
+	Nechť $X$ je normovaný lineární prostor a $Y$ jeho podprostor. Potom 
+
+	\begin{itemize}
+		\item[a)] Je-li $Y$ Banachův, pak je $Y$ uzavřený v $X$.
+		\item[b)] Pokud je naopak $X$ Banachův, pak $Y$ je Banachův právě tehdy, když je uzavřený.
+	\end{itemize}
 
 	\begin{dukazin}
 		Je-li $\left(P,\rho\right)$ úplný, pak $M \subseteq P$ je úplný $\Leftrightarrow$ $M$ je uzavřený. To dává speciálně b).
@@ -110,7 +115,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\begin{dukazin}
 		$1 \Leftrightarrow 2$ plyne z předchozího lemmatu. $3 \Leftrightarrow 4 \Leftrightarrow 5$ je lehké a platí ve všech MP. $1 \implies 5$ jasné.
 
-		$5 \implies 1:$ Sporem posloupností jdoucí k 1. TODO
+		$5 \implies 1:$ Sporem posloupností jdoucí k 1. TODO (Netuším, co by sem mělo přijít…)
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -150,7 +155,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{poznamka}
 
 \begin{definice}
-	Nechť $X$ je normovaný lineární prostor a $M \subset X$. Pak definujeme uzavřený lineární obal $M$ jako $$ \overline{\spn}M = \bigcap \{Y \supset M | Y \text{ uzavřený podprostor } X\} $$ a uzavřený konvexní obal jako $\overline{\conv} M = \bigcap \{TODO\}$.
+	Nechť $X$ je normovaný lineární prostor a $M \subset X$. Pak definujeme uzavřený lineární obal $M$ jako $$ \overline{\spn}M = \bigcap \{Y \supset M | Y \text{ uzavřený podprostor } X\} $$ a uzavřený konvexní obal jako $\overline{\conv} M = \bigcap \{C \supset M | C \subset X \text{ je uzavřená konvexní}\}$.
 \end{definice}
 
 \begin{poznamka}[Fakt]
@@ -179,7 +184,14 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 % 11. 10. 2021
 
-TODO
+\begin{definice}[Konvergence řady v normovaných lineárních prostorech]
+	Nechť $\{x_n\} \subset X$. Řekneme, že řada $\sum_{n=1}^∞ x_n$ konverguje k $x \in X$, pokud $x = {\displaystyle \lim_{N \rightarrow ∞}} \sum_{n=1}^N x_n$. Řada je konvergentní, pokud existuje takové $x$. Řada je absolutně konvergentní, pokud $\sum_{n=1}^∞ ||x_n|| < +∞$.
+\end{definice}
+
+\begin{poznamka}[Fakt]
+	Nechť $X$ je normovaný lineární prostor a $\sum_{n = 1}^∞ x_n$ je konvergentní řada v $X$. Pak
+	$$ \left|\left| \sum_{n=1}^∞ x_n \right|\right| ≤ \sum_{n=1}^∞ ||x_n||. $$
+\end{poznamka}
 
 \begin{veta}[Test úplnosti]
 	Nechť $X$ je normovaný lineární prostor. Pak $X$ je Banachův, právě když každá absolutně konvergentní řada je konvergentní.
@@ -203,11 +215,12 @@ TODO
 	Dále $©F(\Gamma)$ značí systém všech konečných podmnožin $\Gamma$. Řekneme, že zobecněná řada … konverguje (též konverguje bezpodmínečně) k $x \in X$, pokud platí
 	$$ \forall \epsilon > 0\ \exists F \in ©F(\Gamma)\ \forall F' \in ©F(\Gamma), F' \subseteq F: ||x - \sum_{\gamma \in F'} x_\gamma|| < \epsilon. $$
 
-	Existuje-li $x \in X$, říkáme, že je zobecněná řada … (bezpodmínečně) konvergentn a $x$ nazýváme jejím součtem. Konverguje-li zobecněná řada reálných čísel $\sum_{\gamma \in \Gamma} ||x_\gamma||$, pak se zobecněná řada $\sum_{\gamma \in \Gamma} x_\gamma$ nazývá absolutně konvergentní.
+	Existuje-li $x \in X$, říkáme, že je zobecněná řada … (bezpodmínečně) konvergentní a $x$ nazýváme jejím součtem. Konverguje-li zobecněná řada reálných čísel $\sum_{\gamma \in \Gamma} ||x_\gamma||$, pak se zobecněná řada $\sum_{\gamma \in \Gamma} x_\gamma$ nazývá absolutně konvergentní.
 \end{definice}
 
 \begin{definice}[Bolzanova-Cauchyova podmínka]
-	Řekneme, že zobecněná řada TODO
+	Řekneme, že zobecněná řada $\sum_{\gamma \in \Gamma} x_\gamma$ v normovaném lineárním prostoru splňuje BC podmínku, pokud
+	$$ \forall \epsilon > 0\ \exists F \in ©F(\Gamma)\ \forall F' \in ©F(\Gamma), F' \cap F = \O: \left|\left| \sum_{\gamma \in F'} x_\gamma \right|\right| < \epsilon. $$
 \end{definice}
 
 \begin{veta}[Nutná podmínka konvergence]
@@ -347,7 +360,7 @@ TODO
 		\end{enumerate}
 	\end{veta}
 
-	Prostor $©L(X< Y)$ s normou $||T|| = \sup_{x \in B_x}||T(x)||$ je normovaný lineární prostor.
+	Prostor $©L(X, Y)$ s normou $||T|| = \sup_{x \in B_x}||T(x)||$ je normovaný lineární prostor.
 \end{poznamka}
 
 \begin{lemma}
@@ -376,15 +389,87 @@ TODO
 
 % 18. 10. 2021
 
-TODO!!!
+\begin{veta}
+	Je-li $X$ normovaný lineární prostor, je prostor $X^*$ úplný.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Izomorfismus, izomorfismus do, izometrie, izometrie do, izomorfní a izometrické prostory, izomorfně vnořený a izometricky vnořený prostor]
+	TODO	
+\end{definice}
+
+\begin{poznamka}
+	Lineární zobrazení $T$ je izometrie do, právě tehdy, když $\forall z: ||Tz|| = ||z||$.
+\end{poznamka}
+
+\begin{tvrzeni}
+	Nechť $X$, $Y$ jsou normované lineární prostory.
+
+	\begin{enumerate}
+		\item $T \in ©L(X, Y)$ je izomorfismus do právě tehdy, když existují konstanty $C_1, C_2 > 0$ takové, že $C_1 ||x|| ≤ ||T(x)|| ≤ C_2 ||x||$ pro každé $x \in X$.
+		\item Je-li $X$ izomorfní s $Y$ a $X$ je Banachův, pak je i $Y$ Banachův.
+		\item Je-li $X$ Banachův a $T \in ©L(X, Y)$ je izomorfismus do, pak $\Rang T$ je uzavřený v $Y$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[Fakt]
+	Nechť $X$, $Y$, $Z$ jsou normované lineární prostory a $T \in ©L(X, Y)$, $S \in ©L(Y, Z)$.
+
+	Jsou-li $S$, $T$ izomorfismy do, pak $S \circ T$ je izomorfismus do.
+	
+	Jsou-li $S$, $T$ izometrie do, pak $S \circ T$ je izometrie do.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $X$, $\hat{X}$ a $Y$ jsou normované lineární prostory, $X$ je hustý v $\hat{X}$ a $Y$ je úplný. Nechť dále $T \in ©L(X, Y)$. Pak existuje právě jeden operátor $\hat{T} \in ©L(\hat{X}, Y)$ rozšiřující $T$, tj. $\hat{T}|_X = T$. Navíc platí $||\hat{T}|| = ||T||$.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
 
 % 19. 10. 2021
 
-TODO!!!
+\section{Konečně rozměrné prostory}
+\begin{lemma}[O skoro kolmici]
+	Nechť $X$ je normovaný lineární prostor. Je-li $Y$ vlastní uzavřený podprostor $X$, pak pro každé $\epsilon > 0$ existuje $x \in S_X$ takové, že $\dist(x, Y) > 1 - \epsilon$.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $X$ je normovaný lineární prostor nad ®K. Pak následující tvrzení jsou ekvivalentní:
+	
+	\begin{enumerate}
+		\item $\dim X < ∞$.
+		\item Existuje $n \in ®N$ takové, že $X$ je izomorfní s $(®K^n, ||·||_2)$.
+		\item $B_X$ je kompaktní.
+		\item Každé lineární zobrazení z $X$ do nějakého normovaného lineárního prostoru je spojité.
+		\item Každá lineární forma na $X$ je spojitá.
+		\item Každé dvě normy na $X$ jsou ekvivalentní.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
+
+\section{Operace s normovanými lineárními prostory, projekce a doplňky}
+\begin{definice}
+	Nechť $(X, ||·||_X)$ a $(Y, ||·||_Y)$ jsou normované lineární prostory a $1 ≤ p ≤ ∞$. Pak prostorem $X \oplus_p Y$ rozumíme normovaný lineární prostor $(X \times Y, ||·||_p)$, kde norma $||·||_p$ je daná vzorcem
+	$$ ||(x, y)||_p = \begin{cases}(||x||^p_X + ||y||^p_Y)^{\frac{1}{p}}, & \text{ pro } p < ∞, \\ \max\{||x||_X, ||y||_Y\}, & \text{ pro } p = ∞.\end{cases} $$
+\end{definice}
 
 % 25. 10 2021
-
-TODO!!!
 
 \begin{poznamka}[Kvocient]
 	Nechť $X$ je vektorový prostor nad ®K a $Y$ jeho podprostor. Definujeme relaci ekvivalence $\sim$ na $X$ jako $x \sim y \Leftrightarrow x-y \in Y$.
@@ -417,7 +502,7 @@ TODO!!!
 \end{poznamka}
 
 \begin{veta}
-	Nechť $X$ je Banachův prostor. Potom TODO!
+	Nechť $X$ je Banachův prostor a $Y$ jeho uzavřený podprostor. Pak $X / Y$ je též Banachův prostor.
 
 	\begin{dukazin}
 		Přes test úplnosti ($X$ je Banachův, právě když každá abs. konvergentní řada je konvergentní). Ať $\{[x]_n | n \in ®N\}$ splňuje $\sum_{n=1}^∞ < ∞$. Chceme $\sum_{[x]_n}$. Ať $\{y_n | n \in ®N\} \subseteq Y$ jsou takové, že $\sum_{n = 1}^∞ ||x_n + y_n|| < ∞$. Pak $\sum (x_n + y_n)$ je konvergentní (podle testu úplnosti) a je prvkem $X$, tedy $q\(\sum_{n=1}^∞ (x_n + y_n)\) = \sum_{n=1}^∞ q(x_n + y_n) = \sum_{n=1}^∞ [x_n]$. Tudíž $\sum_{n=1}^∞ [x_n]$ je v prostoru $q(X) = X / Y$.
@@ -433,15 +518,15 @@ TODO!!!
 \end{definice}
 
 \begin{definice}[Projekce]
-	Nechť $X$ je vektorový prostor. Lineární zobrazení $P: X \rightarrow X$ se nazývá (lineární) projekce, pokud $P^2 = P \circ P = P$.
+	Nechť $X$ je vektorový prostor. Lineární zobrazení $P: X \rightarrow X$ se nazývá (lineární) projekce, pokud $P^2 := P \circ P = P$.
 \end{definice}
 
 \begin{tvrzeni}[Fakt]
 	Nechť $X$ je vektorový prostor.
 
 	\begin{itemize}
-		\item Je-li $P: X \rightarrow X$ lineární projekce, pak $P\lhook{\Rang P} = \id_{\Rang P}$.
-		\item Je-li $Y$ podprostor $X$ a $P: X \rightarrow Y$ lineární zobrazení splňující $P\lhook_Y = \id_Y$, pak $P$ je projekce $X$ na $Y$.
+		\item Je-li $P: X \rightarrow X$ lineární projekce, pak $P\upharpoonright_{\Rang P} = \id_{\Rang P}$.
+		\item Je-li $Y$ podprostor $X$ a $P: X \rightarrow Y$ lineární zobrazení splňující $P\upharpoonright_Y = \id_Y$, pak $P$ je projekce $X$ na $Y$.
 	\end{itemize}
 
 	\begin{dukazin}
@@ -481,7 +566,7 @@ TODO!!!
 \end{veta}
 
 \begin{definice}[Kodimenze]
-	Je-li $X$ vektorový prostor a $Y$ jeho podprostor, pak kodimenzí (značíme $\codim Y$?) $Y$ rozumíme dimenzi libovolného algebraického doplňku $Y$ (což je rovno dimenzi $X / Y$).
+	Je-li $X$ vektorový prostor a $Y$ jeho podprostor, pak kodimenzí (značíme $\codim Y$) $Y$ rozumíme dimenzi libovolného algebraického doplňku $Y$ (což je rovno dimenzi $X / Y$).
 \end{definice}
 
 \begin{definice}
@@ -601,7 +686,6 @@ TODO!!!
 
 % 01. 11. 2021
 
-TODO!
 \begin{veta}
 	$(X, ||·||)$ je NLP. Pak $||x|| = \sqrt{\<x, x\>}$ pro skalární součin $\<·,·\>$ $\Leftrightarrow$ platí:
 	$$ \forall x, y \in X: ||x + y||^2 + ||x - y||^2 = 2\(||x||^2 + ||y||^2\). $$
@@ -659,7 +743,7 @@ TODO!
 	Nechť $H$ je Hilbertův prostor a $\{x_n\}_{n=1}^∞ \subset H$ je podposloupnost navzájem ortogonálních prvků. Pak řada $\sum_{n=1}^∞ x_n$ konverguje bezpodmínečně, právě když konverguje.
 
 	\begin{dukazin}
-		$\implies$ už víme. $\Leftrightarrow$: Víme $\sum_{n=1}^∞ x_n$ splňuje B-C podmínku. Tedy pro $\epsilon > 0 \exists n_0 \in ®N$:
+		$\implies$ už víme. $\Leftrightarrow$: Víme $\sum_{n=1}^∞ x_n$ splňuje B-C podmínku. Tedy pro $\epsilon > 0\ \exists n_0 \in ®N$:
 		$$ \forall m > n ≥ n_0: ||\sum_{k=n+1}^m x_k|| < \epsilon. $$
 		Polož $F = \{1, …, n_0\}$. Zvol $F' \in ©F(®N) : F' \cap F = \O$. Pak
 		$$ ||\sum_{k \in F'} x_k||^2 \overset{\text{Pyt. věta}}{=} = \sum_{k \in F'} ||x_k||^2 ≤ \sum_{k \in \min F'}^{\max F'} ||x_k||^2 = ||\sum_{…}^{…} x_k||^2 < \epsilon. $$
@@ -678,7 +762,6 @@ TODO!
 		\item úplný ortonormální, pokud $A$ je ortonormální a $\overline{\spn} A = X$.
 		\item ortonormální báze, pokud $A = \{e_\gamma | \gamma \in \Gamma\}$ je ortonormální množina a každé $x \in X$ lze vyjádřit jako $x = \sum_{\gamma \in \Gamma}x_\gamma e_\gamma$ pro nějaké skaláry $x_\gamma$.
 	\end{itemize}
-	TODO
 \end{definice}
 
 \begin{tvrzeni}[Fakt]
@@ -744,14 +827,21 @@ TODO!
 
 % 08. 11. 2021
 
-TODO!
-
 \begin{veta}[Ernst Sigismund Fisher (1907), Frigyes Riesz (1907)]
-	TODO!!!
+	Je-li $\{e_\gamma\}_{\gamma \in \Gamma}$ ortonormální báze Hilbertova prostoru $H$, je zobrazení $T: H \rightarrow l_2(\Gamma)$, $T(x) = \{\<x, e_\gamma\>\}_{\gamma \in \Gamma}$ izometrie $H$ a $l_2(\Gamma)$. Tedy každý Hilbertův prostor je izometrický $l_2(\Gamma)$ pro vhodnou množinu $\Gamma$.
+
+	\begin{dukazin}[Ze skript]
+		Zjevně $T$ je lineární. Z Parsevalovy nerovnosti plyne, že $||x||^2 = \sum_{\gamma \in \Gamma} |\<x, e_y\>|^2$ pro každé $x \in H$, a tedy $T$ je izometrie do $l_2(\Gamma)$. $\{T(e_\gamma)\}_{\gamma \in \Gamma}$ je množina kanonických bázových vektorů v $l_2(\Gamma)$. Díky linearitě tedy $\Rang T$ obsahuje všechny vektory v $l_2(\Gamma)$, které mají jen konečně mnoho nenulových souřadnic. Tyto vektory tvoří hustou podmnožinu v $l_2(\Gamma)$. Podle tvrzení ze začátku předměty je $\Rng$ uzavřený, tudíž je roven celému $l_2(\Gamma)$.
+	\end{dukazin}
 \end{veta}
 
-\begin{veta}[?]
-	TODO!!!
+\begin{veta}[Vyjádření ortogonální projekce]
+	Nechť $H$ je Hilbertův prostor a $Y$ jeho uzavřený podprostor. Nechť $(e_j)_{j \in J}$ je nějaká ortonormální báze prostoru $Y$. Pak projekci na $Y$ podél $Y^\perp$ (tzv. ortogonální projekci) lze vyjádřit vzorcem
+	$$ Px = \sum_{j \in J}\<x, e_j\>e_j, \qquad x \in H. $$
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
 \end{veta}
 
 \begin{veta}[Heinrich Löwig (1934), F. Riesz (1934)]
@@ -780,7 +870,7 @@ TODO!
 \end{definice}
 
 \begin{veta}[Reálná verze komplexního normovaného lineárního prostoru]
-	Nechť $Z$ je komplexní normovaný lineární prostor. Pak platí
+	Nechť $X$ je komplexní normovaný lineární prostor. Pak platí
 	
 	\begin{enumerate}
 		\item $X_R$ je reálný normovaný lineární prostor. (Zřejmé.)
@@ -818,10 +908,20 @@ TODO!
 % 9. 11. 2021
 
 \begin{definice}[Sublineární funkcionál, pseudonorma]
-	TODO!
+	Nechť $X$ je vektorový prostor nad ®K. Funkce $p: X \rightarrow ®R$ se nazývá sublineární funkcionál, pokud platí
+	\begin{itemize}
+		\item $p(x + y) ≤ p(x) + p(y)$ pro každé $x, y \in X$,
+		\item $p(t x) = t p(x)$ pro každé $x \in X$ a $t \in [0, +∞)$.
+	\end{itemize}
+
+	Funkce $p: X → [0, +∞)$ se nazývá pseudonorma, pokud platí
+	\begin{itemize}
+		\item $p(x + y) ≤ p(x) + p(y)$ pro každé $x, y \in X$,
+		\item $p(\alpha x) = |\alpha|p(x)$ pro každé $x \in X$ a $\alpha \in ®K$.
+	\end{itemize}
 \end{definice}
 
-\begin{veta}[Hans Hanh (1927), Stefan Banach (1929)]
+\begin{veta}[Hans Hahn (1927), Stefan Banach (1929)]
 	Nechť $X$ je vektorový prostor a $Y$ je podprostor.
 
 	\begin{itemize}
@@ -881,7 +981,7 @@ TODO!
 	 Nechť $X$ je normovnaný lineární prostor, $Y$ je uzavřený podprostor $X$ a $x \notin Y$. Pak existuje $f \in S_{X^*}$ tak, že $f|_Y = 0$ a $f(x) = \dist(x, Y) > 0$.
 
 	 \begin{dukazin}
-		 Zvolme $Z := Y \oplus \spn(x) \subset X$. $f(y + \alpha x) := \alpha \dist(x, Y)$, $y \in Y$, $\alpha \in ®K$. Pak $f: Z \rightarrow ®K$ je lineární. $||f|| = 1$: $|f(y + \alpha x)| = |\alpha|\dist(x, Y) ≤ |\alpha|·||x + \frac{y}{\alpha}|| = ||\alpha x + y||$, $y \in Y$, $\alpha \in ®K$. Zvolme $(y_n)_{n=1}^∞$ v $Y$, že $d(x, Y) = \lim_{n \rightarrow ∞} ||x - y_n||$. Pak $\frac{|f(y_n + x)}{||y_n + x||} = \frac{d(x, Y)}{||y_n + x||} \rightarrow 1$.
+		 Zvolme $Z := Y \oplus \spn(x) \subset X$. $f(y + \alpha x) := \alpha \dist(x, Y)$, $y \in Y$, $\alpha \in ®K$. Pak $f: Z \rightarrow ®K$ je lineární. $||f|| = 1$: $|f(y + \alpha x)| = |\alpha|\dist(x, Y) ≤ |\alpha|·||x + \frac{y}{\alpha}|| = ||\alpha x + y||$, $y \in Y$, $\alpha \in ®K$. Zvolme $(y_n)_{n=1}^∞$ v $Y$, že $d(x, Y) = \lim_{n \rightarrow ∞} ||x - y_n||$. Pak $\frac{|f(y_n + x)|}{||y_n + x||} = \frac{d(x, Y)}{||y_n + x||} \rightarrow 1$.
 
 		 Nyní z H-B věty rozšíříme na celé $Y$: $\exists F \in X^X: F|_z = f \land ||F|| = 1$.
 	 \end{dukazin}
@@ -912,15 +1012,7 @@ TODO!
 
 % 15. 11. 2021
 
-TODO
-
-\begin{poznamka}[Nevím, kam patří]
-	Nějaký důsledek H-B, viz foto.
-
-	\begin{dukazin}
-		Z kompaktnosti máme $\max_B g < \inf_A f$. Zvol $f = -g$ a to je ta hledaná funkce.
-	\end{dukazin}
-\end{poznamka}
+% Tady byl ještě nějaký důsledek HB věty, ale nedospěl jsem k tomu, jaký (ani podle seznamu k přednášce ani podle skript). Podle fotky tabule jsem také nic nerozluštil.
 
 \begin{dusledek}[H-B věty]
 	$X$ je NLP, $Y \subset X$ podprostor. Buď $\dim Y < ∞$ nebo $\codim Y < ∞$. Pak $Y \overset{C}{\hookrightarrow} X$. (Tj. $\exists P: X \rightarrow Y$ spojitý, že $P |_Y = \id_Y$.)
@@ -935,7 +1027,7 @@ TODO
 
 		$P|_{\spn(e_1, …, e_n)} = \id$:
 		$$ \forall i \in [n]: P(e_i) = \sum_{j=1}^n F_j(e_i)e_j = \sum_{j = 1}^n f_j(q(e_j))e_j = e_i. $$
-		Tedy $P$ je spojitá lineární projekce a navíc $\Ker P = Y$: $Px = 0 \Leftrightarrow F_i(x) = 0 \forall in \in [n]$ $\Leftrightarrow f_i(q(x)) = 0$, $\Leftrightarrow q(x) = 0$. Máme $X = \Rang P \oplus_t \Ker P$. Položíme $Q = \id - P$, pak $\Rang Q = \Ker P = Y$, $Q$ spojitá projekce.
+		Tedy $P$ je spojitá lineární projekce a navíc $\Ker P = Y$: $Px = 0 \Leftrightarrow F_i(x) = 0 \forall\ i \in [n]$ $\Leftrightarrow f_i(q(x)) = 0$, $\Leftrightarrow q(x) = 0$. Máme $X = \Rang P \oplus_t \Ker P$. Položíme $Q = \id - P$, pak $\Rang Q = \Ker P = Y$, $Q$ spojitá projekce.
 	\end{dukazin}
 \end{dusledek}
 
@@ -951,11 +1043,11 @@ TODO
 	\begin{enumerate}
 		\item Je-li $T \in ©L(X, Y)$, je $T*f \in X^*$ pro každé $f \in Y^*$. Dále $T^* \in ©L(Y^*, X^*)$ a $||T^*|| = ||T||$.
 		\item Zobrazení $T \mapsto T^*$ je lineární izometrie z $©L(X, Y)$ do $©L(Y^*, X^*)$.
-		\item $T \in ©L(X, Y)$ a $S \in ©L(Y, Z)$. Pak $(S \circ T)* = T^* \circ S^*$. Dále $\id_X^* = \id_{X^*}$.
+		\item $T \in ©L(X, Y)$ a $S \in ©L(Y, Z)$. Pak $(S \circ T)^* = T^* \circ S^*$. Dále $\id_X^* = \id_{X^*}$.
 	\end{enumerate}
 
 	\begin{dukazin}
-		1. Spojitost $T*f$ je zřejmá z definice (složení dvou lineárních funkcí), stejně tak linearita $T$. Dále
+		1. Spojitost $T^*f$ je zřejmá z definice (složení dvou lineárních funkcí), stejně tak linearita $T$. Dále
 		$$ \forall y^* \in B_{Y^*}: ||T^*y^*|| = \sup_{x \in B_X} |T^* y^* (x) | = \sup_{x \in B_X} |y^*(Tx)| ≤ \sup_{x \in B_X} ||Tx|| = ||T||, $$
 		tedy $||T^*|| ≤ ||T||$ a $T$ je spojité. Zbývá $||T|| ≤ ||T^*||$. (Dokazujeme opačnou nerovnost k té výše.) Zvolme $x \in B_X$. Najdi (z jednoho z důsledků H-B) $y^* \in S_{Y^*}$. $||T_x|| = |y^*(Tx)|$. Pak
 		$$ ||Tx|| = |y^*(Tx)| = |T^*y^*(x)| ≤ ||T^*||·||y^*||·||x|| ≤ ||T^*||. $$
@@ -1019,7 +1111,7 @@ TODO
 	Nechť $I ≠ \O$.
 
 	\begin{enumerate}
-		\item Prostor $c_0(I)*$ je lineárně izometrický s prostorem $l_1(I)$ pomocí zobrazení $I: l_1(I) \rightarrow c_0(I)^*$, $I(y) = f_y$, kde
+		\item Prostor $c_0(I)^*$ je lineárně izometrický s prostorem $l_1(I)$ pomocí zobrazení $I: l_1(I) \rightarrow c_0(I)^*$, $I(y) = f_y$, kde
 			$$ f_y(x) = \sum_{i \in I} x_iy_i. $$
 		\item Je-li $1 ≤ p < ∞$ a $q$ je sdružený exponent k $p$, pak prostor $l_p(I)^*$ je lineárně izometrický s prostorem $l_q(I)$ pomocí zobrazení $I: l_q(I) \rightarrow l_p(I)^*$, $I(y) = f_y$, kde
 			$$ f_y(x) = \sum_{i \in I}x_iy_i. $$
@@ -1250,7 +1342,7 @@ TODO
 \end{definice}
 
 \begin{tvrzeni}
-	Nechť $X$ je normovaný lineární prostor. Pak kanonické vnoření $\epsilon: X \rightarrow X^{**}$ je lineární izometrie do. Je-li tedy navíc $X$ Bansachův, pak $\epsilon(X)$ je uzavřený podprostor $X^{**}$.
+	Nechť $X$ je normovaný lineární prostor. Pak kanonické vnoření $\epsilon: X \rightarrow X^{**}$ je lineární izometrie do. Je-li tedy navíc $X$ Banachův, pak $\epsilon(X)$ je uzavřený podprostor $X^{**}$.
 
 	\begin{dukazin}
 		Linearita zřejmá. Izometrie
@@ -1258,21 +1350,14 @@ TODO
 	\end{dukazin}
 \end{tvrzeni}
 
-\begin{dusledek}
-	TODO.
-\end{dusledek}
-
 \begin{tvrzeni}[J. P. Schauder, 1930]
-	Nechť $X$, $Y$ jsou normované lineární prostory, $\epsilon_X: X \rightarrow X^{**}$ a $\epsilon_Y: $
-\end{tvrzeni}
+	Nechť $X$, $Y$ jsou normované lineární prostory, $\epsilon_X: X \rightarrow X^{**}$ a $\epsilon_Y: Y \rightarrow Y^{**}$ jsou kanonická vnoření do druhých duálů a $T \in ©L(X, Y)$. Pak
+	$$ T^{**} \circ \epsilon_X = \epsilon_Y \circ T. $$
 
 % 29. 11. 2021
 
-\begin{tvrzeni}
-	Komutování kanonických vnoření do duálů? TODO
-
 	\begin{dukazin}
-		TODO
+		TODO?
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1422,7 +1507,7 @@ TODO
 	Nechť $X$ je normovaný lineární prostor a $X^*$ je separabilní. Pak $X$ je separabilní.
 
 	\begin{dukazin}
-		Zvol $\{x_n^* | n \in ®N\} \subset S_{X^*}$ TODOTODOTODO. Pro $n \in ®N$ najdi $x_n \in B_x: x_n^*(x_n) > \frac{1}{2}$. Pak $\overline{\spn}\{x_n | n \in ®N\} = X$ (a tím bude hotovo, protože $\overline{\spn}(x_n) = \overline{\spn_*}(x_n)$): Ať ne, pak existuje $f \in S_{X^*}: f |_{\overline{\spn}} = 0$, $f ≠ 0$. Zvol $n \in ®N$, že $||x_n^* - f|| < \frac{1}{4}$. Pak
+		Zvol $\{x_n^* | n \in ®N\} \subset S_{X^*}$ hustou podmnožinu (existuje ze separability). Pro $n \in ®N$ najdi $x_n \in B_x: x_n^*(x_n) > \frac{1}{2}$. Pak $\overline{\spn}\{x_n | n \in ®N\} = X$ (a tím bude hotovo, protože $\overline{\spn}(x_n) = \overline{\spn_*}(x_n)$): Ať ne, pak existuje $f \in S_{X^*}: f |_{\overline{\spn}} = 0$, $f ≠ 0$. Zvol $n \in ®N$, že $||x_n^* - f|| < \frac{1}{4}$. Pak
 		$$ 0 = |f(x_n)| ≥ |x_n^*(x_n)| - |(x_n^* - f)(x_n)| > \frac{1}{2} - \frac{1}{4} > 0.\text{ \lightning} $$
 	\end{dukazin}
 \end{veta}
@@ -1442,8 +1527,8 @@ TODO
 	$X$ je MP, $A \subset X$. Pak
 
 	\begin{itemize}
-		\item $A$ je relativně kompaktní $\leftrightarrow$ z každé posloupnosti v $A$ lze vybrat konvergentní posloupnost v $X$.
-		\item Pokud $X$ je úplný, pak $A$ je relativně kompaktní $\leftrightarrow$ $A$ je totálně omezená.
+		\item $A$ je relativně kompaktní $\Leftrightarrow$ z každé posloupnosti v $A$ lze vybrat konvergentní posloupnost v $X$.
+		\item Pokud $X$ je úplný, pak $A$ je relativně kompaktní $\Leftrightarrow$ $A$ je totálně omezená.
 	\end{itemize}
 \end{poznamka}
 
@@ -1484,7 +1569,47 @@ TODO
 
 % 06. 12. 2021
 
-TODO!!! (06. 12. 2021)
+\begin{veta}[J. P. Schauder, 1930]
+	Nechť $X$ je normovaný lineární prostor, $Y$ je Banachův prostor a $T \in ©L(X, Y)$. Pak $T^*$ je kompaktní, právě když $T$ je kompaktní.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
+
+\section{Úplnost v Banachových prostorech}
+\begin{veta}[Princip stejnoměrné omezenosti]
+	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $A \subset ©L(X, Y)$. Pak
+	$$ \sup\{||T||\ |\ T \in A\} < +∞ \Leftrightarrow \forall x \in X: \sup\{||T(x)||\ |\ T \in A\} < +∞. $$
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $\{T_n\}$ je posloupnost v $©L(X, Y)$ taková, že pro $\forall x \in X\ \exists T(x) = \lim_{n \rightarrow ∞} T_n(x)$. Pak $T \in ©L(X, Y)$ a $||T|| ≤ \liminf ||T_n|| \in ®R$.
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	Nechť $X$ je Banachův prostor, $\{x^*_n\}$ je posloupnost v $X^*$, $x^* \in X^*$ a $D \subset X$ splňuje $\overline{\spn} D = X$. Pak $x^*_n \overset{w^*}{\rightarrow} x^*$, právě když $\{x^*_n\}$ je omezená a $x^*_n(d) \rightarrow x^*(d)$ pro každé $d \in D$.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Nechť $X$ je Banachův prostor, $\{x_n\}$ je posloupnost v $X$, $x \in X$ a $D \subset X^*$ splňuje $\overline{\spn} D = X^*$. Pak $x_n \overset{w}{\rightarrow} x$, právě když $\{x_n\}$ je omezená a $d(x_n) \rightarrow d(x^*)$ pro každé $d \in D$.
+
+	\begin{dukazin}
+		TODO
+	\end{dukazin}
+\end{tvrzeni}
 
 % 07. 12. 2021
 \begin{definice}[Otevřené zobrazení]
@@ -1493,6 +1618,10 @@ TODO!!! (06. 12. 2021)
 
 \begin{veta}[O otevřeném zobrazení (Juliusz Pawel Schauder 1930)]
 	Nechť $X, Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$ je na. Pak $T$ je otevřené zobrazení.
+
+	\begin{dukazin}
+		Později.
+	\end{dukazin}
 \end{veta}
 
 \begin{lemma}[J. P. Schauder, 1930]
@@ -1508,15 +1637,15 @@ TODO!!! (06. 12. 2021)
 	\end{dukazin}
 \end{lemma}
 
-\begin{dukazin}[Věty o otevřeném zobrazení]
+\begin{dukaz}[Věty o otevřeném zobrazení]
 	Úvod: stačí $\exists \delta > 0: ©U(0, \delta) \subset T(©U_x)$: Zvol $G \subset X$ otevřená, $x \in G$. Pak $y = Tx \in T(G)$. $G$ otevřená $\implies$ $\exists R > 0: ©U(x, R) \subset G$. Pak $©U(y, \delta R) = y + R©U(0, \delta) \subset y + RT(©U(0, 1)) = T(©U(x, R)) \subseteq T(G)$.
 
 	Stať:
 
 	$Y$ úplný $\implies$ z Banachovy věty $\exists n_0 : \Int(\overline{T(n_0©U_x)}) ≠ \O$ $\implies$ $\overline{n_0©U_x}$ (symetrická, konvexní, uzavřená) obsahuje kouli $\implies$ $\exists \delta > 0: ©U(0, \delta) \subseteq \overline{T(n_0©U_x)}$. Z předchozího lemmatu $©U(0, \delta) \subseteq T(n_0©U_x) = nT(©U_x)$.
 
-	Závěr:$©U(0, \frac{\delta}{n_0}) \subset T(U_x)$.
-\end{dukazin}
+	Závěr: $©U(0, \frac{\delta}{n_0}) \subset T(U_x)$.
+\end{dukaz}
 
 \begin{dusledek}[S. Banach, 1929]
 	Nechť $X$, $Y$ jsou Banachovy prostory a $T \in ©L(X, Y)$. Pak $T$ je izomorfismus $X$ na $Y$, právě když $T$ je prostý a na.
@@ -1571,7 +1700,7 @@ TODO!!! (06. 12. 2021)
 
 \section{Spektrální teorie (zejména) kompaktních operátorů}
 \begin{tvrzeni}
-	Nechť $X$ je Banachův prostor a $T \in ©(X)$. Pak $T$ je invertibilní, právě když $T$ je bijekce.
+	Nechť $X$ je Banachův prostor a $T \in ©L(X)$. Pak $T$ je invertibilní, právě když $T$ je bijekce.
 
 	\begin{dukazin}
 		„$\implies$“ $TS = \id$ $\implies$ $T$ je na, $ST = \id$ $\implies$ $T$ je prosté.
@@ -1584,7 +1713,7 @@ TODO!!! (06. 12. 2021)
 	Nechť $X$ je Banachův prosotr.
 
 	\begin{itemize}
-		\item Pokud $T \in @L(X)$ a $||T|| < 1$, pak $\id_x - T$ je invertibilní a platí $(\id_X - T)^{-1} = \sum_{n=0}^∞ T^n$.
+		\item Pokud $T \in ©L(X)$ a $||T|| < 1$, pak $\id_X - T$ je invertibilní a platí $(\id_X - T)^{-1} = \sum_{n=0}^∞ T^n$.
 		\item Pokud je $T$ invertovatelný a $||S - T|| < \frac{1}{||T||^{-1}}$, pak $S$ je invertovatelný a $S^{-1} = T^{-1} \sum_{n=0}^∞ (\id - ST^{-1})^n$. Speciálně, množina všech invertibilních operátorů v $©L(X)$ je otevřená.
 	\end{itemize}
 
@@ -1604,7 +1733,11 @@ TODO!!! (06. 12. 2021)
 
 % 13. 12. 2021
 
-TODO.
+\begin{definice}[Vlastní číslo, vlastní prostor, vlastní vektory, bodové spektrum, spektrum operátoru]
+	Nechť $X$ je normovaný lineární prostor nad ®K a $T \in ©L(X)$. Číslo $\lambda \in ®K$ nazýváme vlastním číslem operátoru $T$, pokud $\Ker(\lambda I − T) ≠ \{0\}$, tj. pokud $T(x) = \lambda x$ pro nějaké $x \in X$, $x ̸≠ 0$. Prostor $\Ker(\lambda I − T)$ pak nazýváme vlastním prostorem příslušným číslu $\lambda$. Nenulové prvky vlastního prostoru příslušného číslu $\lambda$ se nazývají vlastní vektory příslušné číslu $\lambda$. Množina všech vlastních čísel operátoru $T$ se nazývá bodové spektrum operátoru $T$ a značí se $\sigma_p(T)$.
+
+	Spektrum operátoru $T$ je množina všech čísel $\lambda \in ®K$, pro která operátor $\lambda I − T$ není invertibilní. Spektrum operátoru $T$ značíme $\sigma(T)$.
+\end{definice}
 
 \begin{veta}
 	Nechť $X$ je Banachův nad ®K a $T \in ©L(x)$. Pak $\sigma(T)$ je kompaktní podmnožina ®K splňující $\sigma(T) \subset B_x(0, ||T||)$. Je-li $X$ komplexní, pak $\sigma(T)$ je neprázdné.
@@ -1628,7 +1761,7 @@ TODO.
 \end{veta}
 
 \begin{veta}
-	Nechť $X$ je Banachův prostor a $T \in ©K(X)$.
+	Nechť $X$ je Banachův prostor a $T \in ©K(X)$.
 
 	\begin{enumerate}
 		\item Jestliže $\Rang(T)$ je uzavřený, pak $\dim \Rang(T) < ∞$.
@@ -1637,7 +1770,7 @@ TODO.
 	\end{enumerate}
 
 	\begin{dukazin}
-		1. Máme $T: X \rightarrow \overbrace{\Rang T}_{\text{Banach}}$ je na. Z věty o otevřeném zobrazení $\overline{T(B_X)}_{\text{relativně kompaktní}} \supseteq ©U(¦o, r) \cap \Rang T \implies B(¦o, r) \cap \Rang T$ je kompaktní $\implies \dim \Rang T < ∞$ (je v něm kompaktní koule, tak musí být kompaktní).
+		1. Máme $T: X \rightarrow \overbrace{\Rang T}^{\text{Banach}}$ je na. Z věty o otevřeném zobrazení $\overline{T(B_X)}_{\text{relativně kompaktní}} \supseteq ©U(¦o, r) \cap \Rang T \implies B(¦o, r) \cap \Rang T$ je kompaktní $\implies \dim \Rang T < ∞$ (je v něm kompaktní koule, tak musí být kompaktní).
 
 		2. $0 \notin \sigma(T) \implies \exists T^{-1} \implies \id = T \circ T^{-1} \in ©K(x)$. Tedy $B_X$ je kompakt, a tudíž $\dim X < ∞$.
 
@@ -1657,7 +1790,7 @@ TODO.
 	\begin{dukazin}
 		„$\implies$“: Pro spor předpokládejme, že $S$ je prosté, ale není na. Polož $S = \lambda I - T$, $X_0 := X$, $X_{n+1} := S(X_n)$. Pak $X_{n+1} \subsetneq X_m$ (dokáže se indukcí) a $X_n$ je uzavřený (dle předchozí věty bodu 3. $\Rang S$ je uzavřený, tedy $S: X \rightarrow \Rang S$ je prostý a na, tj. $S$ je izomorfismus).
 
-		Z lemma o skoro kolmici najdeme $(x_n)_{n=1}^∞$ posloupnost ve sféře, že $x_n \in S_{X_n}$ a $d(x_n, X_{n+1}) ≥ \frac{1}{2}$, $n \in ®N$. Pak pro $m < n$:
+		Z lemmatu o skoro kolmici najdeme $(x_n)_{n=1}^∞$ posloupnost ve sféře, že $d(x_n, X_{n+1}) ≥ \frac{1}{2}$, $n \in ®N$. Pak pro $m < n$:
 		$$ T(x_n) - T(x_m) = \overbrace{\lambda x_n}^{X_n} - \overbrace{\lambda x_m}^{X_{n+1}}- \overbrace{S x_n}^{\in X_{n+1}} + \overbrace{S x_m}^{\in X_{n+1}}. $$
 		Polož $? = \lambda x_n - S x_n + S x_n \in X_{m+1}$. Pak
 		$$ ||T(x_n) - T(x_m)|| = |\lambda|·||x_m  - \frac{?}{\lambda}|| ≥ |\lambda| d(x_m, X_{m+1}) ≥ \frac{|\lambda|}{2} > 0. \text{\lightning} $$
@@ -1667,7 +1800,7 @@ TODO.
 \end{veta}
 
 \begin{dusledek}
-	Nechť $X$ je Banachův prostor a $T \in ©K(X)$. Pak $\sigma(T) \subset TODO$.
+	Nechť $X$ je Banachův prostor a $T \in ©K(X)$. Pak $\sigma(T) \subset \{0\} \cup \sigma_p(T)$.
 \end{dusledek}
 
 \begin{lemma}
@@ -1679,13 +1812,14 @@ TODO.
 \end{lemma}
 
 \begin{veta}
-	Nechť $X$ je normovaný lineární prostor nad ®K a $T \in ©K(X)$. Pak pro každé $r > 0$ je množina $\sigma(T) \cap \{\lambda \in ®K | |\lambda > r|\}$ konečná.
+	Nechť $X$ je normovaný lineární prostor nad ®K a $T \in ©K(X)$. Pak pro každé $r > 0$ je množina $\sigma(T) \cap \{\lambda \in ®K | |\lambda| > r\}$ konečná.
 
 	\begin{dukazin}
 		Pro spor ať ne. Tj. $\exists r > 0\ \exists (\lambda_n)_{n=1}^∞$ po dvou různých $\lambda_n$, $|\lambda_n| > R$, $\lambda_n \in \sigma(T)$. Ať $x_n$ je vlastní vektor příslušný $\lambda_n$. Položme $X_n \spn\{x_1, …, x_n\}$. Pak dle předchozího lemmatu $X_1 \subsetneq X_2 \subsetneq X_3 \subsetneq …$.
 
 		Z lemmatu o skoro kolmici najdeme $(z_n)_{n=2}^∞$, že $z_n \in S_{X_n} \land d(z_n, X_{n-1}) ≥ \frac{1}{2}$. Ať $z_n = \sum_{i=1}^n \alpha_i x_i$, pak $T(z_n) = \sum_i \alpha_i \lambda_i x_i$, $\lambda_n z_n - T(z_n) = \sum_i d_i(\lambda_i - \lambda_n) x_i = \sum_i^{n-1} … \in X_{n-1}$. Tedy
-		$$ \forall m > n: ||T(z_m) - T(z_n)|| = ||\lambda_m z_m - (\underbrace{\lambda_m z_m - T(z_m)}_{\in X_{m - 1}} + T(z_n))|| = |\lambda_m|· ||z_m - \frac{…}{\lambda_m}|| ≥ \frac{R}{2} > 0. $$
+		$$ \forall m > n: ||T(z_m) - T(z_n)|| = ||\lambda_m z_m - (\underbrace{\lambda_m z_m - T(z_m)}_{\in X_{m - 1}} + T(z_n))|| = $$
+		$$ = |\lambda_m|· ||z_m - \frac{…}{\lambda_m}|| ≥ \frac{R}{2} > 0. $$
 		Tedy jsme nalezli $\frac{R}{2}$ separovanou množinu, tedy $T$ není kompaktní. \lightning.
 	\end{dukazin}
 \end{veta}
@@ -1696,12 +1830,38 @@ TODO.
 
 % 14. 12. 2021
 
-\begin{definice}
-	TODO
+\begin{veta}[Druhá Fredholmova věta]
+	Nechť $X$ je Banachův prostor nad ®K, $T \in ©K(X)$ a $\lambda \in ®K \setminus \{0\}$. Pak
+	$$ \Rng(\lambda I_X - T) = \(\Ker(\lambda I_{X^*} - T^*)\)_\perp, $$
+	$$ \Rng(\lambda I_{X^*} - T^*) = \(\Ker(\lambda I_X - T)\)^\perp. $$
+
+	\begin{dukazin}
+		Bez důkazu
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Třetí Fredholmova věta]
+	Nechť $X$ je Banachův prostor, $T \in ©K(X)$ a $\lambda \in ®K \setminus \{0\}$. Pak
+	$$ \dim \Ker(\lambda I_X - T) = \codim \Rng(\lambda I_X - T) = \dim \Ker (\lambda I_{X^*} - T^*) = $$
+	$$ = \codim \Rng(\lambda I_{X^*} - T^*) < ∞. $$
+
+	\begin{dukazin}
+		Bez důkazu
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Numerický range operátoru]
+	Nechť $H$ je Hilbertův prostor a $T \in ©L(H)$. Množina $N_T = \{\<Tx, x\> | x \in S_H\}$ se nazývá numerický range operátoru $T$.
 \end{definice}
 
 \begin{tvrzeni}
-	TODO
+	Nechť $H$ je Hilbertův prostor a $T \in ©L(H)$.
+
+	\begin{enumerate}
+		\item $N_{\alpha I + \beta T} = \alpha + \beta N_T$ pro libovolná $\alpha, \beta \in ®K$.
+		\item $\sigma_p(T) \subset N_T \subset B_{®K}(0, ||T||)$.
+		\item $\sigma(T) \subset \overline{N_T}$.
+	\end{enumerate}
 
 	\begin{dukazin}
 		1. $\forall x \in S_HL \<(\alpha I + \beta T)x, x\> = \alpha\<x, x\> + \beta\<Tx, x\> = 1 + \beta\<Tx, x\>$.
@@ -1811,7 +1971,8 @@ TODO.
 	\begin{dukazin}
 		1. $(f*g)(x) = C\int f(y) g(x - y) dy = C\int f(x - z)g(z) dz = (g * f)(x)$.
 
-		2. $(f*(g + h))(x) = C \int f(y) (g + h)(x - y) d\lambda^d(y) = C \(\int_{®R^d} f(y) g(x - y) d\lambda^d(y) + \int_{®R^d} f(y) h(x - y) d\lambda^d(y)\) = (f*g)(x) + (f*h)(x)$
+		2. $(f*(g + h))(x) = C \int f(y) (g + h)(x - y) d\lambda^d(y) =$
+		$$ = C \(\int_{®R^d} f(y) g(x - y) d\lambda^d(y) + \int_{®R^d} f(y) h(x - y) d\lambda^d(y)\) = (f*g)(x) + (f*h)(x) $$
 		$$ (f + g)*h = h * (f + h) = h*f + h*g = f*h + g*h. $$
 	\end{dukazin}
 \end{veta}
@@ -1820,12 +1981,13 @@ TODO.
 	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g \in L_1(\mu)$. Položíme-li $F(x, y) = f(y)g(x - y)$ pro $x, y \in ®R^d$, pak $L_1(\mu \times \mu)$ a $||F||_1 = ||f||_1·||g||_1$.
 
 	\begin{dukazin}
-		$$ \int \int |F(x, y)| d(\mu \times \mu)(x, y) = \int |f(y)| \int |g(x - y)| dx dy = \int |f(y)|·||g||_1 dy = ||f(y)||_1 · ||g||_1. $$
+		$$ \int \int |F(x, y)| d(\mu \times \mu)(x, y) = \int |f(y)| \int |g(x - y)| dx dy = \int |f(y)|·||g||_1 dy = $$
+		$$ = ||f(y)||_1 · ||g||_1. $$
 	\end{dukazin}
 \end{lemma}
 
 \begin{definice}[Posun]
-	TODO.
+	Nechť $f : ®R^d \rightarrow ®K$ a $y \in ®R^d$. Pak definujeme posun funkce $f$ do bodu $y$ jako funkci $\tau_y f: ®R^d \rightarrow ®K$ danou předpisem $\tau_y f(x) = f(x − y)$ pro $x \in ®R^d$.
 \end{definice}
 
 \begin{veta}
@@ -1854,25 +2016,28 @@ TODO.
 		\item Je-li $f \in L_1^{loc}(\mu)$ s jestliže $g \in L_∞(\mu)$ má kompaktní nosič, pak funkce $f * g$ je definována v každém bodě $®R^d$, je spojitá a platí $\supp f*g \subset \supp f + \supp g$.\footnote{$$ L_1^{loc} ≡ \forall x \in ®R^d\ \exists B(x, r): \int_{B(x, r)} (f) < ∞ $$ $$ \Leftrightarrow \forall K \subset ©R^d \text{ kompaktní}: \int_K |f| < ∞. $$}
 		\item Jsou-li $f, d$ měřitelné, $D \subset ®R^d$ měřitelná a $f*g$ je definována alespoň na $D$, pak $f*g$ je měřitelná na $D$.
 		\item Jsou-li $f, g \in L_1(\mu)$, pak $f*g$ je definovaná $\mu$-skoro všude na $®R^d$, $f*g \in L_1(\mu)$ a platí $||f * g||_1 ≤ ||f||1·||g||_1$.
-		\item TODO(Nedokazovalo se.)
 	\end{enumerate}
 
 	\begin{dukazin}
 		1. $\forall x \in ®R^d: |f*g(x)| ≤ \int |f(y)g(x - y)| dy ≤ ||f||_p·||g||_q$ z Höldera, pokud $p ≠ 1, ∞$, $≤ ||g||_∞ \int|f(y)| dy = ||g||_∞ ||f||_1$, pokud $p = 1$ a analogicky, pokud $p = ∞$.
 
 		Tedy $f * g$ je definována všude a $||f + g||_∞ ≤ ||f||_p·||g||_q$. Zbývá „$f*g$ je stejnoměrně spojitá“: máme ($h(t) := g(-t)$, $\tau$ jsou správně posuny) pro $p ≠ 1$:
-		$$ |(f * g)(x) - (f * g)(y)| = |\int_{®R^d} f(z)(g(x - z) - g(y - z))dz | ≤ \int_{®R^d} |f(z)(h(z - x) - h(z - y))| dz ≤ ||f||_p · ||\tau_x h - \tau_y h||_q. $$
+		$$ |(f * g)(x) - (f * g)(y)| = \left|\int_{®R^d} f(z)(g(x - z) - g(y - z))dz \right| ≤ $$
+		$$ ≤ \int_{®R^d} |f(z)(h(z - x) - h(z - y))| dz ≤ ||f||_p · ||\tau_x h - \tau_y h||_q. $$
 		Dle předchozí věty je $f * g$ stejnoměrně spojitá ($p ≠ 1$). Pro $p = 1$ můžeme použít komutativitu a prohodit $p$ a $q$.
 
-		2. Máme $|(f * g)(x)| ≤ \int |f(y)g(x - y)|dy = \int_{y \in x - K} |f(y)|·|g(x - y)| dy ≤ ||g||_∞ \int_{y \in x - K} |f(y)| dy < ∞ \implies f*g$ je definovaná všude.
+		2. Máme
+		$$ |(f * g)(x)| ≤ \int |f(y)g(x - y)|dy = \int_{y \in x - K} |f(y)|·|g(x - y)| dy ≤ ||g||_∞ \int_{y \in x - K} |f(y)| dy < ∞ $$
+		$\implies f*g$ je definovaná všude.
 
 		Supporty: Ať $x \notin \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$ pak $(f * g)(x) = \int f(y) g(x - y) dy = \int_{f ≠ 0} f(y) g(x - y) dy = 0$. Tedy $\{f * g ≠ 0\} \subset \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$, tudíž (vpravo je kompakt) $\overline{\{f * g ≠ 0\}} \subset \overline{\{f ≠ 0\}} + \overline{\{g ≠ 0\}}$
 
 		Spojitost: Ať $x$ dáno, $y \in B(x, 1)$. Pak ($h(z) = (\xi_{B(x, 1) - K} f)(-z)$, $\tau$ jsou správné posuny)
-		$$ |(f*g)(x) - (f*g)(y)| = |\int_K g(z) (f(x - z) - f(y - z)) dz| = |\int_K g(z)(\tau_x h(z) - \tau_y(h(z)))dz| ≤ ||g||_∞ · ||\tau_x h - \tau_y h||_1. $$
+		$$ |(f*g)(x) - (f*g)(y)| = \left|\int_K g(z) (f(x - z) - f(y - z)) dz\right| = $$
+		$$ = \left|\int_K g(z)(\tau_x h(z) - \tau_y(h(z)))dz\right| ≤ ||g||_∞ · ||\tau_x h - \tau_y h||_1. $$
 		To je stejnoměrně spojitý a z toho již plyne spojitost $(f * g)$ (v bodě $x$).
 
-		3. Vynechán. 4.: $F(x, y) = f(y)g(x - y)$. Dle lemmatu výše je $F \in L_1(\mu \times \mu)$, $||F|| = ||f||·||g||$.
+		3. Vynechán. 4. (nemusí být ke zkoušce): $F(x, y) = f(y)g(x - y)$. Dle lemmatu výše je $F \in L_1(\mu \times \mu)$, $||F|| = ||f||·||g||$.
 		$$ ∞ > \int_{\(®R^d\)} F = \int_{®R^d} \int_{®R^d} f(y) g(x - y) dy dx \implies |(f * g)(x)| < ∞ \text{ skoro všude}. $$
 		Dále $||f*g||_1 ≤ \int_{®R^d} \int_{®R^d} |F(x, y)| dy dx = ||f||·||g||$.
 	\end{dukazin}
@@ -1880,7 +2045,7 @@ TODO.
 
 % 21. 12. 2021
 
-\begin{definice}
+\begin{definice}[Multiindex]
 	Nechť $d \in ®N$. Pak $\alpha = (\alpha_1, …, \alpha_d) \in ®N^d_0$ nazýváme multiindexem délky $d$. Řádem multiindexu $\alpha$ nazýváme číslo $\sum_{i=1}^d \alpha_j$ a značíme jej $|\alpha|$.
 
 	Je-li $\alpha$ multiindex délky $d$, pak symbolem $D^\alpha$ označíme parciální derivaci řádu $|\alpha|$ danou multiindexem $\alpha$, tj.
@@ -1889,7 +2054,7 @@ TODO.
 	Symbol $D^\alpha$ se též nazývá diferenciální operátor.
 \end{definice}
 
-\begin{definice}
+\begin{definice}[Prostor testovacích funkcí]
 	Nechť $A \subset ®R^d$. Množina
 	$$ D(A, ®K) = \{\phi \in C^{∞} (®R^d, ®K) | \supp \phi \text{ je kompaktní podmnožina $A$}\} $$
 	se nazývá prostor testovacích funkcí na $A$.
@@ -1913,7 +2078,7 @@ TODO.
 	\end{dukazin}
 \end{veta}
 
-\begin{definice}
+\begin{definice}[Regularizační jádro]
 	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$. Funkci $g: ®R^d \rightarrow ®R$ budeme nazývat regularizačním jádrem (vzhledem k $\mu$), pokud $g$ je nezáporná, $g \in L_1(\mu)$ a $||g||_1 = 1$.
 \end{definice}
 
@@ -1935,7 +2100,7 @@ TODO.
 
 		Zvolme $R > 0$, že $\int_{B(0, R)} g > 1 - \frac{\epsilon}{4||f||_∞}$. Dále $\delta > 0$, že $|x - x'| < \delta \implies |f(x) - f(x')| < \frac{\epsilon}{2}$. $n$ zvolíme tak, že $\frac{R}{n} < \delta$.
 
-		$$ \forall x \in ®R^d |\(f * g_n\)(x) - f(x)| = |\int_{®R^d}g_n(y)f(x - y)dy - f(x)\int_{®R^d} g_n(y) dy| ≤ $$
+		$$ \forall x \in ®R^d |\(f * g_n\)(x) - f(x)| = \left|\int_{®R^d}g_n(y)f(x - y)dy - f(x)\int_{®R^d} g_n(y) dy\right| ≤ $$
 		$$ ≤ \int_{®R^d} g_n(y) |f(x - y) - f(x)| dy = $$
 		$$ = \int_{B(0, \frac{R}{n})} g_n(y) \underbrace{|f(x - y) - f(x)|}_{\frac{\epsilon}{2}} dy + \int_{®R^d \setminus B(0, \frac{R}{n})} … dy ≤ $$
 		$$ ≤ \frac{\epsilon}{2} \int_{B(0, \frac{R}{n})} n^d g(ny) dy + 2||f||_∞ \int_{®R^d \setminus B(0, \frac{R}{n})} n^d g(ny) dy = $$
@@ -1971,10 +2136,10 @@ TODO.
 	$$ \lim_{||t|| \rightarrow ∞} \int f(x)e^{-i\<t, x\>} d \mu_d(x) = 0 $$
 
 	\begin{dukazin}
-		$$ \forall t \in ®R^d \setminus \{¦o\}: |\int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x)| = \int_{®R^d} -f(x) e^{-i\<t, x + \pi \frac{t}{||t||^2}\>} = $$
+		$$ \forall t \in ®R^d \setminus \{¦o\}: \left|\int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x)\right| = \int_{®R^d} -f(x) e^{-i\<t, x + \pi \frac{t}{||t||^2}\>} = $$
 		$$ = \int_{®R^d} - f\(u - \pi\frac{t}{||t||^2}\)e^{-i\<t, u\>} du. $$
 		Sečtením polovin obou stran rovnice dostaneme
-		$$ \frac{1}{2} |\int_{®R^d} \(f(x) - f\(x - \pi \frac{t}{||t||^2}\)\) e^{-i \<t, x\>} dx| ≤ \frac{1}{2}\int_{®R^d}|f(x) - f\(x - \pi \frac{t}{||t||^2}\)|dx = $$
+		$$ \frac{1}{2} \left|\int_{®R^d} \(f(x) - f\(x - \pi \frac{t}{||t||^2}\)\) e^{-i \<t, x\>} dx\right| ≤ \frac{1}{2}\int_{®R^d}\left|f(x) - f\(x - \pi \frac{t}{||t||^2}\)\right|dx = $$
 		$$ = \frac{1}{2} ||\tau_0 f - \tau_P{\pi \frac{t}{||t||^2}} f||_1 \rightarrow 0. $$
 	\end{dukazin}
 \end{lemma}
