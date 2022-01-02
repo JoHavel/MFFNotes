@@ -583,4 +583,130 @@ TODO (definice okolo kvadrik).
 	\end{dukazin}
 \end{veta}
 
+% 05. 01. 2022
+
+\begin{veta}
+	Každá regulární kuželosečka v reálném projektivní rovině $®P^2$ je projektivní transformací kuželosečky dané rovnicí
+	$$ x_1^2 + x_2^2 - x_3^2 = 0. $$
+
+	\begin{dukazin}
+		BÚNO matice má signaturu $++-$. Potom existují symetrické úpravy, které matici převedou na tvar $\diag(1, 1, -1)$. Matice těchto úprav (tj. matice, kterou matici kuželosečky násobíme zleva a zprava transponovaně) je pak hledané projektivní zobrazení.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Mějme projektivní prostor $®P(V^{n+1})$ nad tělesem ®T a v něm kvadriku $Q$ danou kvadratickou formou $q$ a nechť $b$ je příslušná symetrická bilineární forma, tedy $q(v) = b(b, b)$. Řekneme, že dva body $X = \LO(v)$, $Y=\LO(w)$ jsou polárně sdružené, jestliže $b(v, w) = 0$.
+\end{definice}
+
+\begin{veta}[O polaritě]
+	Mějme projektivní prostor $®P(V^{n+1})$ nad tělesem ®T a v něm regulární kvadriku $Q$. Pak
+
+	\begin{enumerate}
+		\item Body sdružené s libovolným bodem $X \in ®P(V^{n+1})$ tvoří nadrovinu, kterou nazveme polára k $X$ a označíme $p_X$.
+		\item Naopak každá nadrovina je polárou k právě jednomu bodu, který se nazývá jejím pólem.
+		\item Pro libovolné dva body $X, Y$ platí
+			$$ X \in p_Y \Leftrightarrow Y \in p_X. $$
+		\item Bod $X$ je sdružen sám se sebou (nebo-li leží na své poláře $p_X$) právě tehdy, když leží na $Q$.
+			$$ (X \in p_X \Leftrightarrow X \in Q.) $$
+			V tomto případě $p_X$ nazýváme tečnou nadrovinou ke $Q$ v bodě $X$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Vyjádříme si, co to znamená být polárou. 2. Obdobně jako 1. 3. ze symetrie matice. 4. z definice.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Afinní pojmy]
+	Nechť $®P^n$ je kanonickým projektivním rozšířením afinního prostoru $®T^n$, pak
+	
+	\begin{itemize}
+		\item O množině $\tilde{Q} \subset ®T^n$ řekneme, že je to regulární afinní kvadrika, jestliže to je množina vlastních bodů regulární kvadriky $Q$ v $®P^n$. O $Q$ hovoříme jako o projektivním rozšířením/zúplněním $\tilde{Q}$ a o $\tilde{Q}$ hovoříme jako o afinní verzi $Q$. Nevlastní body $Q$ považujeme i za nevlastní body $\tilde{Q}$.
+		\item Tečné nadroviny ke $\tilde{Q}$ definujeme jako afinní verze tečných nadrovin ke $Q$ ve vlastních bodech.
+		\item jestliže je pól nevlastní nadroviny $p_∞$ vlastním bodem, pak jej nazýváme středem kvadriky $\tilde{Q}$.
+		\item Jestliže má kvadrika v nevlastním bodě tečnou nadroviny, která není nevlastní, nazýváme tuto nadrovinu asymptotickou k $\tilde{Q}$.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Elipsa, parabola, hyperbola, afinní typ kuželosečky]
+	Regulární kuželosečku v $®R^2$ nazveme elipsa, jestliže nemá žádný nevlastní bod, parabola, jestliže má právě jeden nevlastní bod, a hyperbola, jestliže má dva nevlastní body, jiné možnosti nejsou.
+
+	Těmto názvům říkáme afinní typ kuželosečky. Elipsa a hyperbola mají střed, parabola střed nemá. Hyperbola má dvě různé asymptoty, parabola ani elipsa asymptoty nemají.
+
+	\begin{dukazin}
+		Rozmyslí se.
+	\end{dukazin}
+\end{definice}
+
+\begin{definice}[Sdružené směry]
+	 V projektivně rozšířené rovině $®R^2$ mějme regulární kuželosečku $Q$. O dvou vlastních přímkách řekneme, že mají sdružené směry, jestliže jsou jejich nevlastní body polárně sdružené vůči $Q$.
+
+	 Pro elipsu jsou vždy dva různé směry po dvou sdružené. Pro hyperbolu jsou směry asymptot sdružené vždy samy se sebou a ostatní směry jsou po dvou sdružené. Pro parabolu existuje jeden směr (její nevlastní bod), který je sdružen sám se sebou i se všemi ostatními směry.
+
+	 \begin{dukazin}
+	 	Rozmyslí se.
+	 \end{dukazin}
+\end{definice}
+
+\begin{definice}
+	V projektivně rozšířené rovině $®R^2$ s kanonickým skalárním součinem mějme regulární kuželosečku $Q$. Směr (nevlastní bod) nazýváme hlavní, jestliže existuje směr sdružený, který je na něj kolmý. Osu kuželosečky definujeme jako poláru hlavního směru, pokud tato polára není nevlastní přímkou. Vrcholy kuželosečky definujeme jako vlastní průsečíky os s kuželosečkou. Úsečka spojující střed a vrchol se nazývá poloosa.
+\end{definice}
+
+\begin{lemma}
+	V projektivní rovině $®P(®R^2)$ mějme regulární kuželosečku $Q$. Nechť přímka $p$ protíná $Q$ ve dvou různých bodech $A$, $B$. Nechť $C \in p$ různé od $A, B$ a nechť $D \in p$ je polárně sdružené s $C$. Pak $(A, B, C, D)$ tvoří harmonickou čtveřici.
+
+	\begin{dukazin}
+		Upočítá se.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť přímka $p$ prochází středem $S$ kuželosečky $Q$ (elipsy nebo hyperboly) a protíná kuželosečku ve dvou různých bodech $A$, $B$. Pak $S$ je středem úsečky $AB$.
+
+	Tečny ke $Q$ v bodech $A, B$ jsou rovnoběžné a mají směr sdružený se směrem $p$.
+
+	Jestliže ma přímka se směrem sdruženým k $p$ s kuželosečkou $Q$ dva průsečíky $X$, $Y$, pak přímka $p$ půlí úsečku $XY$.
+
+	\begin{dukazin}
+		S využitím pojmů a minulého lemmatu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť vlastní přímka $p$ prochází jediným nevlastním bodem $X$ paraboly a protíná ji v dalším (nevlastním) bodě $Y$. Nechť přímka rovnoběžná s tečnou v bodě $Y$ protíná parabolu ve dvou bodech $A$, $B$. Pak přímka $p$ půlí úsečku $AB$.
+
+	\begin{dukazin}
+		Z předchozí věty.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Příklad afinně zachovaného pojmu]
+	V projektivně rozšířené rovině $®R^2$ mějme elipsu $Q$ se středem $S$. Jestliže $F$ je afinita, pak $F(Q)$ je opět elipsa a $F(S)$ je jejím středem.
+
+	\begin{dukazin}
+		Triviální.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Projektivní klasifikace kvadrik v prostoru]
+	Každá regulární kvadrika v reálném projektivním prostoru $®P(®R^4)$ je projektivní transformací právě jedné z kvadrik
+	$$ x_1^2 + x_2^2 + x_3^2 - x_4^2 = 0, \qquad \text{(nepřímková kvadrika)} $$
+	$$ x_1^2 + x_2^2 - x_3^2 - x_4^2 = 0. \qquad \text{(přímková kvadrika)} $$
+
+	V projektivně rozšířeném prostoru $®R^3$ definujeme tyto afinní typy regulárních kvadrik
+
+	\begin{itemize}
+		\item elipsoid jako nepřímkovou kvadriku, která nemá žádný nevlastní bod,
+		\item eliptický paraboloid jako nepřímkovou kvadriku, která má právě jeden nevlastní bod,
+		\item dvojdílný hyperboloid jako nepřímkovou kvadriku, jejíž nevlastní body tvoří regulární kuželosečku,
+		\item jednodílný hyperboloid jako přímkovou kvadriku, jejíž nevlastní body tvoří regulární kuželosečku,
+		\item hyperbolický paraboloid jako přímkovou kvadriku, jejíž nevlastní body tvoří dvě přímky.
+	\end{itemize}
+
+	Každé dvě kvadriky stejného afinního typu jsou mezi sebou zobrazitelné afinní transformací.
+
+	\begin{dukazin}
+		Nebyl?
+	\end{dukazin}
+\end{definice}
+
 \end{document}
