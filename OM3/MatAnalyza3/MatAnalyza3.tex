@@ -5,13 +5,113 @@
 
 \begin{document}
 
-% 29. 09. 2021
+% 29. 09. 2021 Důkazy z poznámek spolužáků, děkuji, a znění + definice ze záznamu přednášky.
 
-\section*{Organizační úvod}
-TODO!!!
+% \section*{Organizační úvod}
+% Chyběl jsem...
 
-\section*{Úvod}
-TODO!!!
+\section{Metrické prostory}
+
+\begin{poznamka}[Opakovalo se:]
+	Metrický prostor, otevřená a uzavřená koule, otevřené a uzavřené množiny a jejich vlastnosti, vnitřní body, vnitřek, charakterizace vnitřku, hraniční bod, uzávěr, uzávěr a uzavřené množiny a nakonec vlastnosti uzávěru.
+\end{poznamka}
+
+\subsection{Konvergence a spojitá zobrazení v metrických prostorech}
+	\begin{definice}[Konvergence v MP]
+		Nechť $(P, \rho)$ je MP a $\{x_n\}_{n=1}^∞$ je posloupnost prvků $P$ a $x \in P$. Řekneme, že $\{x_n\}$ konverguje k $x$ (v $(P, \rho)$), pokud $\lim_{n \rightarrow ∞} \rho(x_n, x) = 0$. Značíme $\lim_{n \rightarrow ∞} x_n = x$, nebo $x_n \overset{\rho}{\rightarrow} x$.
+	\end{definice}
+
+	\begin{veta}[Vlastnosti konvergence]
+		Nechť $(P, \rho)$ je metrický prostor. Pak platí
+		
+		\begin{enumerate}
+			\item Nechť pro posloupnost $\{x_n\}_{n=1}^∞$ z $P$ existuje $n_0 \in ®N$ a $x \in P$ tak, že pro všechna $n ≥ n_0$ platí $x_n = x$. Pak $\lim_{n \rightarrow ∞} x_n = x$.
+			\item $\lim_{n \rightarrow ∞} x_n = x \land \lim_{n \rightarrow ∞} x_n = y \implies x = y$. (Jednoznačnost limity.)
+			\item Nechť $\{x_{n_k}\}_{k=1}^∞$ je vybraná posloupnost z $\{x_n\}_{n=1}^∞$ a nechť $\lim_{n \rightarrow ∞} x_n = x$. Pak $\lim_{k \rightarrow ∞} x_{n_k} = x$.
+		\end{enumerate}
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Spojitost v bodě a na množině]
+		Nechť $(P, \rho)$ a $(Q, \sigma)$ jsou metrické prostory. Nechť $M \subset P$, $f: M \rightarrow Q$ a $x_0 \in M$. Řekneme, že $f$ je spojitá v bodě $x_0$ (vzhledem k $M$), jestliže
+		$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x \in B_\rho(x_0, \delta) \cap M: f(x) \in B_\sigma(f(x_0), \epsilon). $$
+
+		Řekneme, že $f$ je spojitá na $M$ (vzhledem k $M$), jestliže je spojitá v každém bodě $M$ (vzhledem k $M$).
+
+		Nechť pro každé $\delta > 0$ platí $B_\rho(x_0) \cap M \setminus \{x_0\} ≠ \O$. Řekneme, že $f$ má v bodě $x_0$ limitu (vzhledem k $M$) rovnou $y \in Q$, jestliže
+		$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall x \in B_\rho(x_0, \delta) \cap M \setminus \{x_0\}: f(x) \in B_\sigma(y, \epsilon). $$
+	\end{definice}
+
+	\begin{veta}[Charakterizace spojitosti]
+		Nechť $(P, \rho)$ a $(Q, \sigma)$ jsou metrické prostory a $f: P \rightarrow Q$. Pak následující tvrzení jsou ekvivalentní:
+
+		\begin{enumerate}
+			\item $f$ je spojitá na $P$,
+			\item $\forall G \subset Q$ otevřenou, je $f^{-1}(G)$ otevřená,
+			\item $\forall F \subset Q$ uzavřenou, je $f^{-1}(F)$ uzavřená.
+		\end{enumerate}
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Spojitsot složeného zobrazení]
+		Nechť $(P, \rho)$, $(Q, \sigma)$ a $(Z, \tau)$ jsou metrické prostory. Nechť $f: P \rightarrow Q$ je spojité zobrazení a $g: Q \rightarrow Z$ je spojité zobrazení. Pak $g \circ f: P \rightarrow Z$ je spojité zobrazení.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+% 30. 09. 2021
+
+	\begin{veta}[Heine]
+		Nechť $(P, \rho)$ a $(Q, \sigma)$ jsou metrické prostory. Nechť $M \subset P$, $x_0 \in M$ a $f: M \rightarrow Q$. Pak je ekvivalentní:
+
+		\begin{enumerate}
+			\item $\lim_{x \rightarrow x_0, x \in M} f(x) = f(x_0)$, neboli $f$ je spojitá v $x_0$,
+			\item pro každou posloupnost $\{x_n\}_{n=1}^∞$ splňující $x_n \in M$ a $\lim_{n \rightarrow ∞} x_n = x_0$ platí
+				$$ \lim_{n \rightarrow ∞} f(x_n) = f(x_0). $$
+		\end{enumerate}
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+\subsection{Kompaktní množiny}
+	\begin{veta}[Charakterizace uzavřených množin]
+		Nechť $(P, \rho)$ je metrický prostor a $F \subset P$. Pak
+		$$ F \text{ je uzavřená } \Leftrightarrow (x_n \overset{\rho}{\rightarrow} x \land x_n \in F \implies x \in F). $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Kompaktní množina]
+		Nechť $(P, \rho)$ je metrický prostor a $K \subset P$. Řekneme, že $K$ je kompaktní, jestliže z každé posloupnosti prvků $K$ lze vybrat konvergentní podposloupnost s limitou v $K$.
+	\end{definice}
+
+	\begin{veta}[Charakterizace kompaktních množin $®R^n$]
+		Množina $K \subset ®R^n$ je kompaktní, právě když je omezená a uzavřená.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Nabývá extrémů na kompaktu]
+		Nechť $(P, \rho)$ je metrický prostor a $K \subset P$ je kompaktní. Nechť $f: K \rightarrow R$ je spojitá. Pak $f$ nabývá na $K$ svého maxima i minima. Speciálně je tedy $f$ na $K$ omezená.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
 
 % 06. 10. 2021
 
@@ -260,13 +360,89 @@ TODO!!!
 		\end{dukazin}
 	\end{veta}
 
-% 20. 10. 2021
+% 20. 10. 2021 Důkazy z poznámek spolužáků, děkuji, a znění + definice ze záznamu přednášky.
 
-TODO!!!
+	\begin{definice}[Gradient]
+		Nechť $G \subset ®R^n$ je otevřená, $f: G \rightarrow ®R$ a $a \in G$. Nechť $f$ má v bodě $a$ totální diferenciál. Pak definujeme gradient funkce $f$ v bodě $a$ jako vektor
+		$$ \nabla f(a) = \[\frac{\partial f}{\partial x_1}(a), …, \frac{\partial f}{\partial x_n}(a)\]. $$
+		Můžeme tedy psát $D f(a)(h) = \<\nabla f(a), h\>$.
+	\end{definice}
 
-% 21. 10. 2021
+	\begin{veta}[Geometrický význam gradientu]
+		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f: G \rightarrow ®R$. Nechť existuje totální diferenciál $f$ v bodě $a$, pak
+		$$ \max\{\frac{\partial f}{\partial v}(a): ||v|| = 1\} = || \nabla f(a)||. $$
 
-TODO!!!
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[O vztahu spojitosti a totálního diferenciálu]
+		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f: G \rightarrow ®R$. Nechť $f$ má v bodě $a \in ®R^n$ spojité parciální derivace, tedy funkce
+		$$ x \mapsto \frac{\partial f}{\partial x_j}(x), j \in [n] $$
+		jsou spojité v $a$. Pak $D f(a)$ existuje.
+
+		\begin{dukazin}
+			TODO!!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[O aritmetice totálního diferenciálu]
+		Nechť $a \in ®R^n$, $f, g: ®R^n \rightarrow ®R$ a $D f(a)$, $D g(a)$ existují. Pak existují i $D(f + g)(a)$, $D(c f)(a)$ pro $c \in ®R$, $D(f g)(a)$, a pokud $g(a) ≠ 0$ pak i $D(f / g)(a)$ a platí
+		
+		\begin{itemize}
+			\item $D(f + g)(a) = D f(a) + D g(a)$,
+			\item $D(c f)(a) = c D(f)(a)$,
+			\item $D(f g)(a) = f(a) D g(a) + D f(a) g(a)$,
+			\item $D(f / g)(a) = \frac{D f(a) g(a) - f(a) D g(a)}{g(a)^2}$.
+		\end{itemize}
+
+		\begin{dukazin}[Pouze třetí bod]
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}
+		Nechť $G \subset ®R^n$ je otevřená, $f: G \rightarrow ®R^k$ a $a \in G$. Řekneme, že lineární zobrazení $L: ®R^n \rightarrow ®R^k$ je derivací funkce $f$ v bodě $a$, jestliže
+		$$ \lim_{h \rightarrow 0} \frac{|f(a + h) - f(a) - L(h)|}{|h|} = 0. $$
+		Značíme $D f(a)$ a hodnotu v bodě $h \in ®R^n$ značíme $D f(a)(h)$.
+	\end{definice}
+
+	\begin{poznamka}
+		Nechť $L: ®R^n \rightarrow ®R^k$ je lineární zobrazení. Potom existuje právě jedna $n \times k$ matice $A$ tak, že $L(h) = A h$.
+	\end{poznamka}
+
+% 21. 10. 2021 Důkazy z poznámek spolužáků, děkuji, a znění + definice ze záznamu přednášky.
+
+	\begin{veta}[Reprezentace derivace maticí]
+		Nechť $G \subset ®R^n$ je otevřená a $f = [f_1, …, f_k]: G \rightarrow ®R^k$ má derivaci v bodě $a \in G$. Pak $D f(a)$ je reprezentováno maticí
+		$$ \begin{pmatrix} \frac{\partial f_1(a)}{\partial x_1} & … & \frac{\partial f_1(a)}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_k(a)}{\partial x_1} & … & \frac{\partial f_k(a)}{\partial x_n} \end{pmatrix}. $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{lemma}[Derivace složeného zobrazení]
+		Nechť $f: ®R^n \rightarrow ®R^k$, $g: ®R^k \rightarrow ®R^s$, $f$ má derivaci v $a \in ®R^n$ a $g$ má derivaci v $b = f(a) \in ®R^k$. Pak existuje derivace $D g \circ f(a)$ a platí
+		$$ D g \circ f(a) = D g(b) · D f(a) = D g(f(a)) · D f(a). $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{veta}[Řetízkové pravidlo]
+		Nechť $f: ®R^n \rightarrow ®R^k$ má derivaci v $a \in ®R^n$ a $g: ®R^k \rightarrow ®R$ má totální diferenciál v bodě $b = f(a) = [f_1(a), …, f_k(a)]$. Pak funkce
+		$$ h(x) = g(f_1(x), …, f_k(x)) $$
+		má totální diferenciál v $a$ a platí
+		$$ \frac{\partial h}{\partial x_i}(a) = \sum_{j=1}^k \frac{\partial g}{\partial y_j}(b) \frac{\partial f_j}{\partial x_i}(a). $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
 
 % 27. 10. 2021
 
@@ -489,6 +665,8 @@ TODO!!!
 	\subsection{Více o kompaktních a úplných prostorech}
 		\begin{definice}[Kompaktní prostor podruhé]
 			$(P, \rho)$ MP a $K \subset P$. Řekneme, že $K$ je kompaktní, jestliže z každé posloupnosti bodů z $K$ lze vybrat konvergentní podposloupnost s limitou v $K$.
+
+			Prostor $P$ je kompaktní, pokud je jako svá podmnožina ($K = P$) kompaktní.
 		\end{definice}
 
 		\begin{definice}[$\epsilon$-síť, totálně omezený]
@@ -555,6 +733,15 @@ TODO!!!
 			$f$ je spojitá na $[a, b]$ $\implies$ $f$ je stejnoměrně spojitá na $[a, b]$.
 		\end{dusledek}
 
+		\begin{definice}[B-C podmínka]
+			Nechť $(P, \rho)$ je metrický prostor a $\{x_n\}_{n=1}^∞$ je posloupnost bodů z $P$. Řekneme, že $x_n$ splňuje Bolzano-Cauchyovu podmínku (případně, že je cauchyovská), jestliže platí
+			$$ \forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n \in ®N,\ m, n ≥ n_0 : \rho(x_n, x_m) < \epsilon. $$
+		\end{definice}
+
+		\begin{definice}[Úplný prostor]
+			Řekneme, že metrický prostor $(P, \rho)$ je úplný, jestliže každá cauchyovská posloupnost bodů z $P$ je konvergentní
+		\end{definice}
+
 % 24. 11. 2021
 
 		\begin{veta}[Cantorova, o uzavřených množinách]
@@ -579,7 +766,7 @@ TODO!!!
 			\end{dukazin}
 		\end{veta}
 
-		\begin{veta}[O zúplnění metrickéůo prostoru]
+		\begin{veta}[O zúplnění metrického prostoru]
 			Nechť $(P, \rho)$ je metrický prostor. Pak existuje úplný metrický prostor $(\tilde P, \tilde \rho)$ tak, že $P \subset \tilde P$ a $\forall x, y \in P$ platí $\rho(x, y) = \tilde \rho(x, y)$.
 
 			\begin{dukazin}
@@ -908,7 +1095,8 @@ TODO!!!
 
 		\begin{dukazin}
 			$\forall t \in ®R$ platí $h(t) = <x - ty, x - ty> ≥ 0$.
-			$$ h(t) = <x, x - ty> - <ty, x - ty> = <x, x> - t<x, y> - t<y, x> + t<y, y> = ||x||^2 - 2t<x, y> + t^2||y||^2 ≥ 0. $$
+			$$ h(t) = <x, x - ty> - <ty, x - ty> = <x, x> - t<x, y> - t<y, x> + t<y, y> = $$
+			$$ = ||x||^2 - 2t<x, y> + t^2||y||^2 ≥ 0. $$
 			Toto je nezáporná kvadratická funkce s determinantem $4<x, y>^2 - 4||x||^2·||y||^2 > 0$, tedy $||x||^2·||y||^2 ≥ <x, y>^2$.
 		\end{dukazin}
 	\end{veta}
@@ -917,7 +1105,8 @@ TODO!!!
 		Pro každé $x, y \in H$ platí $||x + y|| ≤ ||x|| + ||y||$. Speciálně $(H, ||·||)$ tvoří metrický prostor.
 
 		\begin{dukazin}
-			$$ ||x + y||^2 = \<x + y, x + y\> = <x, x> + <x, y> + <y, x> + <y, y> ≤ ||x||^2 + ||x||·||y|| + ||y||·||x|| + ||y||^2 = (||x|| + ||y||)^2. $$
+			$$ ||x + y||^2 = \<x + y, x + y\> = <x, x> + <x, y> + <y, x> + <y, y> ≤ $$
+			$$ ≤ ||x||^2 + ||x||·||y|| + ||y||·||x|| + ||y||^2 = (||x|| + ||y||)^2. $$
 		\end{dukazin}
 	\end{veta}
 
@@ -975,8 +1164,8 @@ TODO!!!
 
 			Existence: $x + M$ je uzavřený podprostor $\implies$ podle předchozí věty $\exists Q(x) \in x + M$ s nejmenší normou. Položme $P(x) = x - Q(x)$, tj. $P(x) + Q(x) = x$.
 			$$ P(x) \in M: Q(x) \in x + M \implies Q(x) - x \in M \implies P(x) \in M. $$
-			$Q(x) \in M^\perp$: Neboli $\forall y \in M$: $\<y, Q(x)\> = 0$. BÚNO $y \in M$ a $||y|| = 1$. $Q(x)$ je nejbližší v $x + M$
-			$$ \implies ||Q(x)||^2 ≤ ||Q(x) - \alpha y||^2 = \<Q(x) - \alpha y, Q(x) - \alpha y\> = ||Q(x)||^2 - 2\alpha\<Q(x), y\> + \alpha^2\<y, y\> \implies $$
+			$Q(x) \in M^\perp$: Neboli $\forall y \in M$: $\<y, Q(x)\> = 0$. BÚNO $y \in M$ a $||y|| = 1$. $Q(x)$ je nejbližší v $x + M$ $\implies$
+			$$ ||Q(x)||^2 ≤ ||Q(x) - \alpha y||^2 = \<Q(x) - \alpha y, Q(x) - \alpha y\> = ||Q(x)||^2 - 2\alpha\<Q(x), y\> + \alpha^2\<y, y\> $$
 			$$ \implies 0 ≤ -2\alpha \<Q(x), y\> + \alpha^2. $$
 			Pro $\alpha = \<Q(x), y\>$ je $0 ≤ -\<Q(x), y\>^2$, tedy $\<Q(x), y\> = 0$.
 
@@ -1056,7 +1245,7 @@ TODO!!!
 		\end{dukazin}
 	\end{lemma}
 
-	\begin{veta}[Piezz-Fischerova věta]
+	\begin{veta}[Riesz-Fischerova věta]
 		Nechť $H$ je Hilbertův prostor a $\{u_i\}_{i=1}^∞$ je ortonormální množina. Nechť $P$ je prostor všech konečných lineární kombinací vektorů $u_i$. Potom pro každé $x \in H$ platí
 		$$ \sum_{i=1}^∞ |\hat{x}(i)|^2 ≤ ||x||^2. $$
 		Zobrazení $x \rightarrow \hat{x}$ je spojité lineární zobrazení $H$ na $l_2$, jehož restrikce na $\overline{P}$ je izometrie $\overline{P}$ na $l^2$.
@@ -1075,6 +1264,10 @@ TODO!!!
 			Použijeme předchozí lemma na $X = \overline{P}$, $X_0 = P$, $Y = l^2$. ($X$ je uzavřená podmnožina úplného, tedy úplný, $X_0$ je husté v $X$ z definice uzávěru a $x \mapsto \hat{x}$ je spojité). $f(X_0) = \{\{a_n\}_{n=1}^∞ \in l^2 | \exists k a_n = 0 \forall n > k\}$ je podle příkladu na přednášce husté v $l^2$.
 		\end{dukazin}
 	\end{veta}
+
+	\begin{dusledek}
+		$L^2(0, 1)$ je izometricky izomorfní $l^2$.
+	\end{dusledek}
 
 % 22. 12. 2021
 
@@ -1130,6 +1323,55 @@ TODO!!!
 		nazýváme Fourierovou řadou funkce $f$.
 	\end{definice}
 
-	TODO!!!
+	\begin{veta}[O maximalitě trigonometrických funkcí]
+		Systém trigonometrických funkcí
+		$$ \{\frac{1}{\sqrt{\pi}} \sin(nx)\}_{n=1}^∞, \qquad \{\frac{1}{\sqrt{\pi}} \cos(nx)\}, \qquad \frac{1}{\sqrt{2\pi}} $$
+		tvoří maximální ortonormální množinu v $L^2(0, 2\pi)$. Tedy existuje jediné $f \in L^2(0, 2\pi)$ takové, že
+		$$ \int_0^{2\pi} f(x) \sin(n x) dx = 0\ \forall n in ®N \land \int_0^{2\pi} f(x) \cos(n x) dx = 0\ \forall n in ®N_0 $$
+		je identicky nulová funkce.
+
+		\begin{dukazin}
+			Bez důkazu.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}
+		TODO!!!
+	\end{dusledek}
+
+% 05. 01. 2022
+
+	\subsection{Separabilní metrické prostory}
+	\begin{definice}[Separabilní prostor]
+		Metrický prostor $(P, \rho)$ se nazývá separabilní, jestliže existuje spočetná množina $A \subset P$, která je hustá v $P$.
+	\end{definice}
+
+	\begin{veta}[Nutná podmínka separability]
+		Nechť $(P, \rho)$ je metrický prostor. Nechť existují nespočetná množina $A$ a $\delta > 0$ taková, že pro každá $x, y \in A$, $x ≠ y$, platí $\rho(x, y) ≥ \delta$. Potom $P$ není separabilní.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}
+		Nechť $(P, \rho)$ je metrický prostor a ©B je nějaký systém otevřených podmnožin $P$. Řekneme, že ©B je báze otevřených množin $(P, \rho)$, jestliže pro každou otevřenou množinu $G \subset P$ existuje $©B^* \subset ©B$ taková, že $\bigcup ©B^* = G$.
+	\end{definice}
+
+	\begin{veta}[Charakterizace separabilních prostorů]
+		Metrický prostor je separabilní právě tehdy, když v něm existuje spočetná báze otevřených množin.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Vztah totální omezenosti a separability]
+		Nechť je metrický prostor $(P, \rho)$ totálně omezený. Pak je separabilní.
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
 
 \end{document}
