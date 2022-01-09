@@ -31,7 +31,11 @@
 		\end{enumerate}
 
 		\begin{dukazin}
-			TODO!!!
+			1. $\forall n ≥ n_0: \rho(x_n, x) = 0 \implies \lim_{n \rightarrow ∞} \rho(x_n, x) = 0 \implies x_n \rightarrow x$.
+
+			2. $\rho(x, y) ≤ \rho(x, x_n) + \rho(x_n, y) \rightarrow 0 \implies \rho(x, y) = 0 \implies x = y$.
+
+			3. $\rho(x_{n_k}, x)$ je vybraná podposloupnost z $\rho(x_n, x)$. Podle věty o hodnotě limity vybrané podposloupnost $\lim_{k \rightarrow ∞} x_{n_k} = x$.
 		\end{dukazin}
 	\end{veta}
 
@@ -55,7 +59,19 @@
 		\end{enumerate}
 
 		\begin{dukazin}
-			TODO!!!
+			1. $\implies$ 2.: Nechť $G$ je otevřená. Pokud $f^{-1}(G) = \O$, pak jsme hotovy. Nechť je tedy $x_0 \in f^{-1}(G)$. $G$ je otevřená, tedy $\exists \epsilon > 0: B_\sigma(f(x_0), \epsilon) \subset G$. Z definice spojitosti
+			$$ \exists \delta > 0: f(B_\rho(x_0, \delta)) \subset B_\sigma(f(x_0), \epsilon) \subset G \implies B_\rho(x_0, \delta) \subset f^{-1}(B_\sigma(f(x_0), \epsilon)) \implies $$
+			$\implies f^{-1}(G)$ je otevřená.
+
+			2. $\implies$ 1.: Nechť $x_0 \in P$, chceme spojitost v $P$. Nechť $\epsilon > 0$. $B_{\delta}(f(x_0), \epsilon)$ je otevřená množina, tedy podle 2. je $f^{-1}(B_\delta(f(x_0), \epsilon))$ je otevřená.
+
+			$x_0$ je prvkem této otevřené množiny $\implies$ $\exists \delta > 0: B_\rho(x_0, \delta) \subset f^{-1}(B_\sigma(f(x_0), \epsilon))$ $\implies$ $f$ je spojitá v $x_0$.
+
+			2. $\implies$ 3.: Nechť $F$ je uzavřená
+			$$ f^{-1}(F) = f^{-1}(Q \setminus (Q \setminus F)) = f^{-1}(Q \setminus F) = f^{-1}(Q) \setminus \underbrace{f^{-1}(\overbrace{Q \setminus F}^{\text{otevřená}})}_{\text{otevřená}} = P \setminus \text{ot. } = \text{ uzavřená}. $$
+
+			3. $\implies$ 2.: Nechť $G$ je otevřená
+			$$ f^{-1}(G) = f^{-1}(Q \setminus (Q \setminus G)) = f^{-1}(Q) \setminus \underbrace{f^{-1}(\overbrace{Q \setminus G}^{\text{uzavřená}})}_{\text{uzavřená}} = P \setminus \text{uz. } = \text{ otevřená}. $$
 		\end{dukazin}
 	\end{veta}
 
@@ -63,7 +79,7 @@
 		Nechť $(P, \rho)$, $(Q, \sigma)$ a $(Z, \tau)$ jsou metrické prostory. Nechť $f: P \rightarrow Q$ je spojité zobrazení a $g: Q \rightarrow Z$ je spojité zobrazení. Pak $g \circ f: P \rightarrow Z$ je spojité zobrazení.
 
 		\begin{dukazin}
-			TODO!!!
+			Pro spojitost $g \circ f$ použijeme předchozí větu 2. $\implies$ 1. Nechť $G \subset Z$ je otevřená, potom $g^{-1}(G)$ je otevřená v $Q$, potom $f^{-1}(g^{-1}(G)) = (g \circ f)^{-1}(G)$ je otevřená v $P$ $\implies$ $g \circ f$ je spojité.
 		\end{dukazin}
 	\end{veta}
 
@@ -72,14 +88,20 @@
 	\begin{veta}[Heine]
 		Nechť $(P, \rho)$ a $(Q, \sigma)$ jsou metrické prostory. Nechť $M \subset P$, $x_0 \in M$ a $f: M \rightarrow Q$. Pak je ekvivalentní:
 
-		\begin{enumerate}
+		\begin{itemize}
 			\item $\lim_{x \rightarrow x_0, x \in M} f(x) = f(x_0)$, neboli $f$ je spojitá v $x_0$,
 			\item pro každou posloupnost $\{x_n\}_{n=1}^∞$ splňující $x_n \in M$ a $\lim_{n \rightarrow ∞} x_n = x_0$ platí
 				$$ \lim_{n \rightarrow ∞} f(x_n) = f(x_0). $$
-		\end{enumerate}
+		\end{itemize}
 
 		\begin{dukazin}
-			TODO!!!
+			$\implies$: Mějme $x_n \in M$ tak že $x_n \rightarrow x_0$. Nechť $\epsilon > 0$. Pak existuje $\delta > 0$ tak, že platí:
+			$$ f(B_\rho(x_0, \delta) \cap M) \subset B_\sigma(f(x_0), \epsilon). $$
+			K tomuto $\delta$ existuje $n_0 \in ®N$ tak, že $\forall n ≥ n_0$ platí $f(x_n) \in B_\sigma(f(x_0), \epsilon)$.
+
+			$\Rightarrow$: Sporem:
+			$$ \exists \epsilon > 0\ \forall n \in ®N\ \forall \delta > 0, \delta = \frac{1}{n}\ \exists x_n \in B_\rho\(x_0, \frac{1}{n}\) \cap M: f(x_n) \notin B_\sigma(f(x_0), \epsilon). $$
+			Víme, že $x_n \in B_\rho\(x_0, \frac{1}{n}\)$. Z toho plyne, že $x_n \rightarrow x_0$, ale $f(x_n)$ nekonverguje k $f(x_0)$. \lightning.
 		\end{dukazin}
 	\end{veta}
 
@@ -89,7 +111,13 @@
 		$$ F \text{ je uzavřená } \Leftrightarrow (x_n \overset{\rho}{\rightarrow} x \land x_n \in F \implies x \in F). $$
 
 		\begin{dukazin}
-			TODO!!!
+			$\implies$: Sporem: Nechť existuje $x_n \in F$, $x_n \rightarrow x$ a $x \notin F$. Pak $x \in P \setminus F$. Množina $P \setminus F$ je otevřená, a tedy existuje $r > 0$ tak, že $B(x, r) \subset P \setminus F$.
+
+			Z toho plyne, že $\forall n$ platí $x_n \notin B(x, r)$, protože $x_n \in F$. Pak ale $x_n$ nekonverguje k $x$ a dostáváme spor.
+
+			$\Leftarrow$: Sporem: Nechť $F$ není uzavřená. Pak $P \setminus F$ není otevřená a tedy existuje $x \in P \setminus F$ tak, že $\forall r > 0$ platí, že $B(x, r)$ není podmnožinou $P \setminus F$. Této vlastnosti využijeme pro $r = \frac{1}{n}$, $n \in ®N$. Tedy
+			$$ \forall n \in ®N\ \exists x_n \in B\(x, \frac{1}{n}\): x_n \notin P \setminus F \Leftrightarrow x_n \in F. $$
+			Celkem $x_n \rightarrow x$, $x_n \in F$, ale $x \notin F$, jelikož $x \in P \setminus F$. \lightning.
 		\end{dukazin}
 	\end{veta}
 
@@ -97,11 +125,31 @@
 		Nechť $(P, \rho)$ je metrický prostor a $K \subset P$. Řekneme, že $K$ je kompaktní, jestliže z každé posloupnosti prvků $K$ lze vybrat konvergentní podposloupnost s limitou v $K$.
 	\end{definice}
 
+	\begin{veta}[Vlastnosti uzavřených množin]
+		Nechť $(P, \rho)$ je MP a $K \subset P$ je kompaktní. Pak platí
+
+		\begin{enumerate}
+			\item $K$ je uzavřená.
+			\item Je-li $F \subset K$ uzavřená, pak je $F$ kompaktní.
+			\item $K$ je omezená (tedy $\exists x \in P$, $r > 0$, že $K \subset B(x, r)$).
+		\end{enumerate}
+
+		\begin{dukazin}
+			1. Z předchozí věty: Nechť $x_n \in K$ a $x_n \rightarrow x$. Z definice kompaktnosti existuje posloupnost $x_{n_k} \rightarrow y \in K$. Podposloupnost konverguje k tomu samému jako původní posloupnost, tedy $x = y \in K$. $K$ je tedy uzavřená.
+
+			2. Nechť $x_n \in F$. $K$ je kompaktní, tedy existuje podposloupnost $x_{n_k} \rightarrow x \in K$. Dále jistě $x_{n_k} \in F$ a navíc je $F$ uzavřená. To znamená, že $x \in F$ $\implies$ $F$ je kompaktní.
+
+			3. Sporem: Zvolme $x_0 \in K$ libovolně. $K$ není omezená. Z toho plyne, že $\forall n \in ®N$ existuje $x_n \in K$ tak, že $x_n \notin B(x_0, n)$. $K$ je ale kompaktní, a tedy existuje $x_{n_k} \rightarrow y \in K$. Tedy:
+			$$ n_k ≤ \rho(x_0, x_{n_k}) ≤ \rho(x_0, y) + \rho(y, x_{n_k}). $$
+			Dále $\rho(y, x_{n_k}) \rightarrow 0$, $\rho(x_0, y) \rightarrow \rho(x_0, y)$ a $n_k \rightarrow +∞$, tedy $+∞ ≤ \rho(x_0, y)$. \lightning.
+		\end{dukazin}
+	\end{veta}
+
 	\begin{veta}[Charakterizace kompaktních množin $®R^n$]
 		Množina $K \subset ®R^n$ je kompaktní, právě když je omezená a uzavřená.
 
 		\begin{dukazin}
-			TODO!!!
+			$\implies$ z předchozí věty. $\Leftarrow$: víme z dřívějška? (Každá omezená posloupnost v $®R$ má konvergující podposloupnost (vybereme podposloupnost pro jednu dimenzi, z té pak pro další, …) a posloupnost nemůže vykonvergovat z uzavřené množiny z charakterizace uzavřených množin)?
 		\end{dukazin}
 	\end{veta}
 
@@ -109,7 +157,7 @@
 		Nechť $(P, \rho)$ je metrický prostor a $K \subset P$ je kompaktní. Nechť $f: K \rightarrow R$ je spojitá. Pak $f$ nabývá na $K$ svého maxima i minima. Speciálně je tedy $f$ na $K$ omezená.
 
 		\begin{dukazin}
-			TODO!!!
+			Dokážeme jen pro maximum (minimum je ze stejného pro $-f$). Jistě existuje $x_n \in K$ tak, že $f(x_n) \rightarrow \sup f$. Dále $x_n \in K$ a $K$ je kompaktní, tedy existuje konvergentní podposloupnost $x_n \rightarrow x$. Zároveň $f$ je spojitá v $x$, tedy dle Heineho věty $f(x) = \lim_{k \rightarrow ∞} f_{n_k} = \sup f$.
 		\end{dukazin}
 	\end{veta}
 
@@ -136,7 +184,7 @@
 		$$ \exists \epsilon > 0\ \forall \delta > 0\ \exists x, y \in K: \rho(x, y) < \delta \land \tau\(f(x), f(y)\) ≥ \epsilon. $$
 		Zvolíme $\delta_n = \frac{1}{n}$ a pro každé si najdeme $x_n, y_n$. $K$ je kompaktní, tedy existuje podposloupnost $x_{n_k} \rightarrow x_0 \in K$.
 		$$ \rho(y_{n_k}, x_{0}) ≤ \rho(x_{n_k}, y_{n_k}) + \rho(x_n, x_0) ≤ \frac{1}{n_k} + \rho(x_n, x_0) \rightarrow 0 \implies y_{n_k} \rightarrow x_0 $$
-		Z Heineho věty $f(x_{n_k}) \rightarrow f\(x_0\)$ a $f\(y_{n_k}\) \rightarrow f\(x_0\)$. Ale my máme, že jsou od sebe vzdáleny o $\epsilon$. \lightning
+		Z Heineho věty $f(x_{n_k}) \rightarrow f\(x_0\)$ a $f\(y_{n_k}\) \rightarrow f\(x_0\)$. Ale my máme, že jsou od sebe vzdáleny o $\epsilon$. \lightning.
 	\end{dukazin}
 \end{veta}
 
@@ -373,7 +421,11 @@
 		$$ \max\{\frac{\partial f}{\partial v}(a): ||v|| = 1\} = || \nabla f(a)||. $$
 
 		\begin{dukazin}
-			TODO!!!
+			$≤$: Z minulé věty a Cauchyovy nerovnosti máme
+			$$ \frac{\partial f}{\partial v}(a) = D f(a)(v) ≤ \sqrt{\sum_{n=1}^n \(\frac{\partial f}{\partial x_i}(a)\)^2} \sqrt{\sum_{i=1}^n v_i^2} = ||\nabla f(a)||·||v||. $$
+
+			$≥$: Položme $v = \frac{\nabla f(a)}{||\nabla f(a)||}$, tedy $||v|| = 1$. Potom
+			$$ \frac{\partial f}{\partial v}(a) = \sum_{i=1}^n \frac{\partial f}{\partial x_i}(a) \frac{\frac{\partial f}{\partial x_i}(a)}{||\nabla f(a)||} = \frac{||\nabla f(a)||^2}{||\nabla f(a)||} = ||\nabla f(a)||. $$
 		\end{dukazin}
 	\end{veta}
 
@@ -383,7 +435,10 @@
 		jsou spojité v $a$. Pak $D f(a)$ existuje.
 
 		\begin{dukazin}
-			TODO!!!!
+			Přímým výpočtem:
+			$$ \lim_{h \rightarrow 0} f(a + h) = \lim_{h \rightarrow 0} \frac{f(a + h) - f(a) - D f(a)(h)}{||h||}||h|| + f(a) + D f(a)(h) = $$
+			$$ = \lim_{h \rightarrow 0} \frac{f(a + h) - f(a) - D f(a)(h)}{||h||}||h|| \lim_{h \rightarrow 0}||h|| + \lim_{h \rightarrow 0} f(a) + \lim_{h \rightarrow 0} D f(a)(h) = $$
+			$$ = …·0 + f(a) + 0 = f(a). $$
 		\end{dukazin}
 	\end{veta}
 
@@ -398,7 +453,12 @@
 		\end{itemize}
 
 		\begin{dukazin}[Pouze třetí bod]
-			TODO!!!
+			$f(a) D g(a) + D f(a) g(a)$ je zřejmě lineární zobrazení. Navíc platí
+			$$ \lim_{h \rightarrow 0} \frac{f(a + h) g(a + h) - f(a) D g(a)(h) - D f(a)(h)g(a) - f(a + h)g(a) + f(a + h)g(a)}{||h||} = $$
+			$$ = \lim_{h → 0} g(a) \frac{f(a + h) - f(a) - D f(a)(h)}{||h||} + \lim_{h → 0} f(a + h) \frac{g(a + h) - g(a) - D g(a)(h)}{||h||} + $$
+			$$ + \lim_{h → 0} \frac{\(f(a + h) - f(a)\)D g(a)(h)}{||h||} = 0, $$
+			jelikož první dva členy jsou 0 z definice diferenciálu a pro třetí platí:
+			$$ 0 ≤ |f(a + h) - f(a)| \left|\frac{D g(a)(h)}{||h||}\right| ≤ |f(a + h) - f(a)| \frac{||\nabla g(a)||·||h||}{||h||} \rightarrow 0. $$
 		\end{dukazin}
 	\end{veta}
 
@@ -419,29 +479,61 @@
 		$$ \begin{pmatrix} \frac{\partial f_1(a)}{\partial x_1} & … & \frac{\partial f_1(a)}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_k(a)}{\partial x_1} & … & \frac{\partial f_k(a)}{\partial x_n} \end{pmatrix}. $$
 
 		\begin{dukazin}
-			TODO!!!
+			Máme $\lim_{h → 0} g(a) \frac{||f(a + h) - f(a) - D f(a)(h)||}{||h||} = 0$, tedy
+			$$ \lim_{h → 0} g(a) \frac{f_i(a + h) - f_i(a) - D f_i(a)(h)}{||h||} = 0, $$
+			tudíž $f_i$ má totální diferenciál v bodě $a$ a ten můžeme zapsat jako
+			$$ (D f(a))_i(h) = \frac{\partial f_i}{\partial x_1}(a) h_1 + … + \frac{\partial f_i}{\partial x_n}(a)h_n. $$
 		\end{dukazin}
 	\end{veta}
 
-	\begin{lemma}[Derivace složeného zobrazení]
+	\begin{poznamka}
+		Nechť $L = A h: ®R^n \rightarrow ®R^k$ je lineární zobrazení reprezentované maticí $A$. Pak existuje $C > 0$ tak, že
+		$$ |A h| ≤ C |h| $$
+	\end{poznamka}
+
+	\begin{lemma}
+		Nechť $f: ®R^n \rightarrow ®R^k$ má derivaci v bodě $a \in ®R^n$. Pak existuje $\delta_0 > 0$ a $C \in ®R$ tak, že
+		$$ |f(a + h) - f(a)| ≤ C|h|, \qquad \forall h \in B(0, \delta_0). $$
+
+		\begin{dukazin}
+			Z $\lim_{h \rightarrow 0} \frac{||f(a + g) - f(a) - D f(a)(h)||}{||h||}$ existuje $\delta_0 > 0$ tak, že $\forall h \in B$ platí
+			$$ \frac{||f(a + g) - f(a) - D f(a)(h)||}{||h||} < 1 \implies $$
+			$$ \implies ||f(a + h) - f(a)|| = \left|\left| \frac{||f(a + g) - f(a) - D f(a)(h)||}{||h||}||h||| + D f(a)(h)\right|\right| ≤ $$
+			$$ ≤ ||h|| + ||D f(a)(h)|| ≤ (1 + \tilde C)||h|| =: C ||h||. $$
+		\end{dukazin}
+	\end{lemma}
+
+	\begin{veta}[Derivace složeného zobrazení]
 		Nechť $f: ®R^n \rightarrow ®R^k$, $g: ®R^k \rightarrow ®R^s$, $f$ má derivaci v $a \in ®R^n$ a $g$ má derivaci v $b = f(a) \in ®R^k$. Pak existuje derivace $D g \circ f(a)$ a platí
 		$$ D g \circ f(a) = D g(b) · D f(a) = D g(f(a)) · D f(a). $$
 
 		\begin{dukazin}
-			TODO!!!
-		\end{dukazin}
-	\end{lemma}
+			Podle předchozího lemmatu $\exists$ $\delta_0 > 0$ a $C > 0$ tak, že $\forall h \in B(0, \delta)$ platí $||f(a + h) - f(a)|| ≤ C ||h||$. Nechť $\epsilon > 0$. Z definice $D g(b)$ existuje $\eta > 0$ tak, že $\forall y \in B(0, \eta)$ platí $||g(b + y) - g(b) - D g(b)(y)|| < \epsilon ||y||$.
 
-	\begin{veta}[Řetízkové pravidlo]
+			Z definice $D f(a)$ existuje $\delta > 0$, $\delta < \delta_0$, $\delta < \frac{\eta}{C}$, tak, že $\forall h \in B(0, \delta)$ platí
+			$$ ||f(a + h) - f(a) - D f(a)(h)|| < \epsilon ||h|| \implies ||f(a + h) - f(a)|| ≤ C ||h|| ≤ C \delta ≤ \eta. $$
+			Položme $y = f(a + h) - f(a)$. Potom:
+			$$ ||g(b + f(a + h) - f(a)) - g(b) - D g(b)(f(a + h) - f(a))|| ≤ \epsilon ||f(a + h) - f(a)|| ≤ \epsilon C ||h||. $$
+			$$ ||D g(b)(f(a + h) - f(a)) - D g(b) D f(a)(h)|| ≤ \tilde C ||f(a + h) - f(a) - D f(a)(h)|| ≤ \epsilon \tilde C ||h||. $$
+			Dohromady
+			$$ \frac{||g(f(a + h)) - g(f(a)) - D g(b) D f(a)(h)||}{||h||} ≤ $$
+			$$ ≤ \frac{||g(b + f(a + h) - f(a)) - g(f(a)) - D g(b)(f(a + h) - f(a))||}{||h||} + $$
+			$$ + \frac{||D g(b)(f(a + h) - f(a)) - D g(b) F g(a)(h)||}{||h||} ≤ $$
+			$$ ≤ \epsilon C + \epsilon \tilde C = \epsilon(C + \tilde C). $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{lemma}[Řetízkové pravidlo]
 		Nechť $f: ®R^n \rightarrow ®R^k$ má derivaci v $a \in ®R^n$ a $g: ®R^k \rightarrow ®R$ má totální diferenciál v bodě $b = f(a) = [f_1(a), …, f_k(a)]$. Pak funkce
 		$$ h(x) = g(f_1(x), …, f_k(x)) $$
 		má totální diferenciál v $a$ a platí
 		$$ \frac{\partial h}{\partial x_i}(a) = \sum_{j=1}^k \frac{\partial g}{\partial y_j}(b) \frac{\partial f_j}{\partial x_i}(a). $$
 
 		\begin{dukazin}
-			TODO!!!
+			Z minulé věty:
+			$$ \begin{pmatrix} \frac{\partial h}{\partial x_1}(a) \\ \vdots \\ \frac{\partial h}{\partial x_n}(a) \end{pmatrix} = D g(a) = D g(b) D f(a) = \(\frac{\partial g}{\partial y_1}(b), …, \frac{\partial g}{\partial y_k}(b)\) \begin{pmatrix} \frac{\partial f_1(a)}{\partial x_1} & … & \frac{\partial f_1(a)}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_k(a)}{\partial x_1} & … & \frac{\partial f_k(a)}{\partial x_n} \end{pmatrix}. $$
 		\end{dukazin}
-	\end{veta}
+	\end{lemma}
 
 
 % 27. 10. 2021
@@ -589,9 +681,9 @@
 
 			c) Chceme ukázat, že $\phi$ má totální diferenciál v $\tilde{x}$, tedy
 			$$ \forall\epsilon > 0\ \exists \delta > 0\ \forall x \in B(\tilde{x}, \delta) \subset ®R^n: |\phi(\tilde{x} + h) - \phi(\tilde{x}) - \sum_{i=1}^n - \frac{\frac{\partial F}{\partial x_j}(x, \phi(x))}{\frac{\partial F}{\partial y}(x, \phi(x))}h_i| < \epsilon \sum_{i=1}^n |h_i|. $$
-			Zvolme $\epsilon > 0$, $\epsilon \frac{1}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})} < \frac{1}{2}$. Víme, že $F$ má totální diferenciál v $[\tilde{x}, \tilde{y}]$, tedy
-			$$ \exists \delta > 0\ \forall h \in B(0, \delta) |F(\tilde{x} - \tilde{y}, \tilde{y} + h_{n+1}) - F(\tilde{x}, \tilde{y}) - \sum_{i=1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})h_i - TODO $$
-			$$ |F(\tilde{x} + \tilde{h}, \phi(\tilde{x} + \tilde{h})) - F(\tilde{x}, \tilde{y}) - \sum_{i = 1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})·h_i - \frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})·(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x}))| ≤ $$
+			Zvolme $\epsilon > 0$, $\epsilon \frac{1}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})} < \frac{1}{2}$. Víme, že $F$ má totální diferenciál v $[\tilde{x}, \tilde{y}]$, tedy $\exists \delta > 0$
+			$$ \forall h \in B(0, \delta) |F(\tilde{x} - \tilde{y}, \tilde{y} + h_{n+1}) - F(\tilde{x}, \tilde{y}) - \sum_{i=1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})h_i - \frac{\partial F}{\partial y}(\tilde x, \tilde y)h_{n+1}| < \epsilon \sum_{i=1}^{n+1}||h_i||, $$
+			$$ \left|F(\tilde{x} + \tilde{h}, \phi(\tilde{x} + \tilde{h})) - F(\tilde{x}, \tilde{y}) - \sum_{i = 1}^n \frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})·h_i - \frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})·(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x}))\right| ≤ $$
 			$$ ≤ \epsilon·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
 			$$ |(\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})) - \frac{\frac{\partial F}{\partial x_i}(\tilde{x}, \tilde{y})}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·h_i| ≤ \frac{\epsilon}{\frac{\partial F}{\partial y}(\tilde{x}, \tilde{y})}·(\sum_{i=1}^n |h_i| + |\phi(\tilde{x} + \tilde{h}) - \phi(\tilde{x})|). $$
 
@@ -1327,7 +1419,7 @@
 		Systém trigonometrických funkcí
 		$$ \{\frac{1}{\sqrt{\pi}} \sin(nx)\}_{n=1}^∞, \qquad \{\frac{1}{\sqrt{\pi}} \cos(nx)\}, \qquad \frac{1}{\sqrt{2\pi}} $$
 		tvoří maximální ortonormální množinu v $L^2(0, 2\pi)$. Tedy existuje jediné $f \in L^2(0, 2\pi)$ takové, že
-		$$ \int_0^{2\pi} f(x) \sin(n x) dx = 0\ \forall n in ®N \land \int_0^{2\pi} f(x) \cos(n x) dx = 0\ \forall n in ®N_0 $$
+		$$ \int_0^{2\pi} f(x) \sin(n x) dx = 0\ \forall n \in ®N \land \int_0^{2\pi} f(x) \cos(n x) dx = 0\ \forall n \in ®N_0 $$
 		je identicky nulová funkce.
 
 		\begin{dukazin}
@@ -1336,10 +1428,16 @@
 	\end{veta}
 
 	\begin{dusledek}
-		TODO!!!
+		Pro každé $f \in L^2(0, 2\pi)$ a $a_k, b_k$ Fourierovy koeficienty $f$. Pak platí
+		$$ f(x) = F_f(x) = \frac{a_0}{2} + \sum_{k=1}^∞(a_k \cos k x + b_k \sin k x) $$
+		ve smyslu rovnosti rovnosti $L^2$ funkcí. Tedy v příslušném metrickém prostoru platí
+		$$ f(x) = \frac{a_0}{2} + \lim_{n \rightarrow ∞} \sum_{k=1}^n (a_k \cos k x + b_k \sin k x). $$
+		Navíc platí Parsevalova rovnost
+		$$ \int_0^{2\pi} |f(x)|^2 dx = \pi \frac{a_0^2}{2} + \pi \sum_{k=1}^∞ (a_k^2 + b_k^2). $$
+		Speciálně tedy dostáváme, že trigonometrické polynomy jsou husté v $L^2$, a tedy spojité funkce $C([0, 2\pi])$ jsou husté v $L^2(0, 2\pi)$.
 	\end{dusledek}
 
-% 05. 01. 2022
+% 05. 01. 2022 Důkazy z poznámek spolužáků, děkuji, a znění + definice ze záznamu přednášky.
 
 	\subsection{Separabilní metrické prostory}
 	\begin{definice}[Separabilní prostor]
@@ -1350,7 +1448,7 @@
 		Nechť $(P, \rho)$ je metrický prostor. Nechť existují nespočetná množina $A$ a $\delta > 0$ taková, že pro každá $x, y \in A$, $x ≠ y$, platí $\rho(x, y) ≥ \delta$. Potom $P$ není separabilní.
 
 		\begin{dukazin}
-			TODO!!!
+			Sporem: Nechť $\Lambda$ a $\delta$ jsou jako ve znění a $M \subset P$ je spočetná množina taková, že $\overline{M} = P$. Pro $a \in A$ uvažujeme $B(a, \frac{\delta}{2})$. Tyto koule jsou po dvou disjunktní. Z $\overline{M} = P$ víme, že existuje, že existuje $m_a \in M \cap B(a, \frac{\delta}{2})$. Jelikož jsou koule disjunktní, tak zobrazení $a \mapsto m_a$ je prosté. Je to ale zobrazení nespočetné množiny do spočetné. \lightning.
 		\end{dukazin}
 	\end{veta}
 
@@ -1362,7 +1460,13 @@
 		Metrický prostor je separabilní právě tehdy, když v něm existuje spočetná báze otevřených množin.
 
 		\begin{dukazin}
-			TODO!!!
+			$\implies$: Nechť $A$ je spočetná a $\overline{A} = P$. Položme $©B = \{B(a, r) | a \in A \land r \in Q \land r > 0\}$. ©B je spočetná. Dokážeme, že ©B je báze. Nechť $G \subset P$ je otevřená. Položme $©B^* = \{B(a, r) \in ©B | B(a, r) \subset G\}$. Dokážeme, že $\bigcup ©B^* = G$:
+
+			Zřejmě $\bigcup ©B \subset G$. Zbývá ověřit druhou inkluzi. Nechť $z \in G$. Chceme ukázat, že $z \in ©B^*$. $G$ je otevřená, a tedy existuje $B(z, r) \subset G$. $A$ je hustá, tudíž existuje $a \in A \cap B\(z, \frac{r}{4}\)$. Dále existuje $r^* \in ®Q \cap \(\frac{r}{2}, \frac{3}{4}r\)$. Pak $B(a, r^*) \in ©B$. Navíc $r^* > \frac{r}{2}$, takže $z \in B(a, r^*)$. Dále $\rho(a, z) < \frac{r}{4}$ a $r^* < \frac{3}{4} r$, a tedy $B(a, r^*) \subset B(z, r)$, z čehož dostáváme, že $B(a, r^*) \subset G$. Pak také $B(a, r^*) \in ©B^*$, tudíž $\{z\} \in \bigcup ©B^*$. Nakonec máme, že $G = \subset ©B^*$.
+
+			$\Leftarrow$: Nechť ©B je spočetná báze otevřených množin, tedy $©B = \bigcup_{i=1}^∞ \{S_i\}$. $A$ zvolíme tak, že z každé množiny vybereme libovolně jeden prvek. Pak $A$ je spočetná. Chceme ukázat, že $\overline{A} = P$:
+
+			Nechť $G \subset P$ je otevřená. Dále existuje $©B^* \subset ©B$ tak, že $G = \bigcup ©B^*$. Pak existuje $S_i$ tak, že $S_i \subset G$, a tedy prvek vybraný z $S_i$ je v $G$. Z toho máme, že $G \cap A ≠ \O$, tudíž $A$ je hustá.
 		\end{dukazin}
 	\end{veta}
 
@@ -1370,7 +1474,7 @@
 		Nechť je metrický prostor $(P, \rho)$ totálně omezený. Pak je separabilní.
 
 		\begin{dukazin}
-			TODO!!!
+			Je-li $(P, \rho)$ totálně omezený, pak $\forall \epsilon > 0$ existuje konečná $\epsilon$-síť. Speciálně $\forall n \in ®N$ existuje konečná $\frac{1}{n}$-síť tak, že $P \subset \bigcup_{i=1}^{k_n} B\(c_i^n, \frac{1}{n}\)$. Pak $A = \{c_i^n | n \in ®N \land i \in [k_n]\}$. Tato množina je spočetná. Dokážeme, ze $\overline{A} = P$. Nechť $x \in P$. Z definice $\frac{1}{n}$-sítě existuje $x_n = c_i^n$ tak, že $\rho(x_n, x) < \frac{1}{n}$. Pak jistě $x_n \rightarrow x$, což znamená, že $A$ je hustá.
 		\end{dukazin}
 	\end{veta}
 
