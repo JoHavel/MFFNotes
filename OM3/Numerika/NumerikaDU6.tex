@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}                   % Začátek dokumentu
+\usepackage{../../MFFStyle}                     % Import stylu
+
+\begin{document}
+
+Uvažujme skalární lineární diferenciální rovnici $y' = \lambda y$. Mějme midpoint metodu zadanou pomocí Butcherovy tabulky:
+$$ \begin{array}{c|cc} 0 & & \\ \frac{1}{2} & \frac{1}{2} & \\ \hline & 0 & 1 \end{array} $$
+
+\begin{priklad}[6.1]
+	Vyjádřete přírůstkovou funkci $\Phi(t, y, h)$ midpoint metody. Poté napište předpis $y_{k+1}$ pro zadanou rovnici a midpoint metodu (v závislosti na $t_k$, $y_k$, $h$, $\lambda$).
+
+	\begin{reseni}
+		Máme $f(t, y) = \lambda y(t)$. Tedy koeficienty jsou
+		$$ K_1 = f(t + 0·h, y) = \lambda · y(t), $$
+		$$ K_2 = f\(t + \frac{1}{2}h, y + \frac{1}{2}K_1 h\) = \lambda · \(y(t) + \frac{1}{2}K_1 h\) = \lambda · \(y(t) + \frac{1}{2}\lambda · y(t) h\). $$
+		Přírůstková funkce je pak $\Phi(t, y, h) = 0 + \lambda · \(y(t) + \frac{1}{2} \lambda · y(t) h\)$. Předpis je pak
+		$$ y_{n+1} = y_n + h\Phi(t_n, y_n, h) = y_n + h · \lambda · \(y_n + \frac{1}{2} \lambda · y_n h\) = y_n · \(1 + h·\lambda + \frac{1}{2}·h^2·\lambda^2\). $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[6.2]
+	Vyšetřete midpoint metodu z hlediska A-stability vzhledem k rovnici. Určete, pro jaké délky časového kroku je metoda A-stabilní, když $\lambda = -25$. Poté ověřte konzistenci a řád $2$ midpoint metody.
+
+	\begin{reseni}
+		Metoda je A-stabilní, pokud amplifikační faktor je (v absolutní hodnotě) menší než 1. Tj. $1 + h·(-25) + \frac{1}{2} · h^2 · (-25)^2$, tedy chceme aby $\frac{625}{2}h^2 - 25 h = 25h\(\frac{25}{2}h - 1\) < 0$, takže je stabilní, pokud $h < \frac{2}{25}$.
+
+		Metoda je konzistentní pokud $\lim_{h \rightarrow 0} \Phi(t, y, h) = f(x, y)$. To zřejmě je, neboť
+		$$ \lim_{h \rightarrow 0} \Phi(t, y, h) = \lim_{h \rightarrow 0} \lambda · \(y(t) + \frac{1}{2} \lambda · y(t) h\) = \lambda y + \lim_{h \rightarrow 0} h·(…) = \lambda y. $$
+
+		K řádu použijeme, že podle Taylora je $y(x + h) = y(x) + \frac{y'(x)}{1}h + \frac{y''(x)}{2}h^2 + o(h^3)$: $|\tau(x, y)| =$
+		$$ \left|\frac{y(x + h) - y(x)}{h} - y'(x) - \frac{h}{2} y''(x)\right| = \left|y'(x) + \frac{y''(x)}{2}h + o(h^2) - y'(x) - \frac{h}{2}y''(x)\right| = o(h^2). $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[5.3]
+	Použijte předpis z první úlohy pro výpočet numerického řešení rovnice v čase $t = 1$ s $\lambda = -25$ a počáteční podmínkou $y(0) = 1$ pro časové kroky $h_1 = 0.1$ a $h_2 = 0.05$. Spočtěte globální chybu v čase $t = 1$. Odpovídá chování globální chyby výsledkům o A-stabilitě z druhé úlohy?
+
+	\begin{reseni}
+		Pro $h_1 = 0.1$ dává metoda řešení přibližně $128.39$, což je úplně mimo. Pro druhou hodnotu $h_2 = 0.05 < \frac{2}{25} = 0.08$ dává metoda řešení přibližně $3.2 · 10^{-6}$, což je pořád daleko od $\exp(-25) \approx 1.3888 · 10^{-11}$, ale alespoň správným směrem a řádově „na půl cesty“. (Globální chyba je v prvním případě přibližně $128.39$ a v druhém $3.2 · 10^{-6}$.)
+	\end{reseni}
+\end{priklad}
+
+\end{document}
