@@ -106,7 +106,7 @@
 	\end{veta}
 
 \subsection{Kompaktní množiny}
-	\begin{veta}[Charakterizace uzavřených množin]
+	\begin{veta}[Charakterizace kompaktních množin]
 		Nechť $(P, \rho)$ je metrický prostor a $F \subset P$. Pak
 		$$ F \text{ je uzavřená } \Leftrightarrow (x_n \overset{\rho}{\rightarrow} x \land x_n \in F \implies x \in F). $$
 
@@ -264,15 +264,7 @@
 \end{veta}
 
 \begin{veta}[Picard]
-	Nechť $I \subset ®R^2$ je otevřený interval a $(x_0, y_0) \in I$.
-
-	\begin{poznamkain}
-		Stačí libovolná otevřená množina.
-	\end{poznamkain}
-
-	\begin{dukazin}
-		Nechť $f: I \rightarrow ®R$ je spojitá a lokálně lipschitzovská vůči $Y$. Pak existuje $\left(x_0 - \delta, x_0 + \delta\right)$ okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR $y'(x, y(x))$ na $(x_0 - \delta, x_0 + \delta)$ s počáteční podmínkou $y(x_0) = y_0$. Navíc $y$ je jediné řešení na $(y_0 - \delta, y_0 + \delta)$.
-	\end{dukazin}
+	Nechť $I \subset ®R^2$ je otevřený interval a $(x_0, y_0) \in I$. Nechť $f: I \rightarrow ®R$ je spojitá a lokálně lipschitzovská vůči $Y$. Pak existuje $\left(x_0 - \delta, x_0 + \delta\right)$ okolí $x_0$ a funkce $y(x)$ definovaná na $(x_0 - \delta, x_0 + \delta)$ tak, že $y(x)$ splňuje ODR $y'(x, y(x))$ na $(x_0 - \delta, x_0 + \delta)$ s počáteční podmínkou $y(x_0) = y_0$. Navíc $y$ je jediné řešení na $(y_0 - \delta, y_0 + \delta)$.
 
 	\begin{dukazin}
 		Zvolme $\delta, \Delta > 0$, aby $\[x_0 - \delta, x_0 + \delta\] \times \[y_0 - \Delta, y_0 + \Delta\] \subset I$. Definujeme
@@ -302,7 +294,7 @@
 \section{Funkce více proměnných}
 	\subsection{Úvodní definice a spojitost}
 	\begin{poznamka}
-		Většina definice je jen „opakování“ z letního semestru, nebo z definice spojitých funkcí na metrických prostorech.
+		Většina definic je jen „opakování“ z letního semestru, nebo z definice spojitých funkcí na metrických prostorech.
 	\end{poznamka}
 
 	\begin{definice}[Funkce více reálných proměnných, vektorová funkce]
@@ -339,7 +331,7 @@
 	\end{poznamka}
 
 	\begin{definice}[Limita posloupnosti bodů]
-		$$ x_j \in ®R^n, \lim_{j \rightarrow ∞} x_j = a \in ®R^n \Leftrightarrow \forall \epsilon > 0\ \exists j_0 \forall j ≥ j_0: |x_j - a|<\epsilon. $$
+		$$ x_j \in ®R^n, \lim_{j \rightarrow ∞} x_j = a \in ®R^n ≡ \forall \epsilon > 0\ \exists j_0\ \forall j ≥ j_0: |x_j - a|<\epsilon. $$
 	\end{definice}
 
 	\begin{poznamka}
@@ -479,8 +471,8 @@
 		$$ \begin{pmatrix} \frac{\partial f_1(a)}{\partial x_1} & … & \frac{\partial f_1(a)}{\partial x_n} \\ \vdots & \ddots & \vdots \\ \frac{\partial f_k(a)}{\partial x_1} & … & \frac{\partial f_k(a)}{\partial x_n} \end{pmatrix}. $$
 
 		\begin{dukazin}
-			Máme $\lim_{h → 0} g(a) \frac{||f(a + h) - f(a) - D f(a)(h)||}{||h||} = 0$, tedy
-			$$ \lim_{h → 0} g(a) \frac{f_i(a + h) - f_i(a) - D f_i(a)(h)}{||h||} = 0, $$
+			Máme $\lim_{h → 0} \frac{||f(a + h) - f(a) - D f(a)(h)||}{||h||} = 0$, tedy
+			$$ \lim_{h → 0} \frac{f_i(a + h) - f_i(a) - D f_i(a)(h)}{||h||} = 0, $$
 			tudíž $f_i$ má totální diferenciál v bodě $a$ a ten můžeme zapsat jako
 			$$ (D f(a))_i(h) = \frac{\partial f_i}{\partial x_1}(a) h_1 + … + \frac{\partial f_i}{\partial x_n}(a)h_n. $$
 		\end{dukazin}
@@ -488,12 +480,12 @@
 
 	\begin{poznamka}
 		Nechť $L = A h: ®R^n \rightarrow ®R^k$ je lineární zobrazení reprezentované maticí $A$. Pak existuje $C > 0$ tak, že
-		$$ |A h| ≤ C |h| $$
+		$$ ||A h|| ≤ C ||h|| $$
 	\end{poznamka}
 
 	\begin{lemma}
 		Nechť $f: ®R^n \rightarrow ®R^k$ má derivaci v bodě $a \in ®R^n$. Pak existuje $\delta_0 > 0$ a $C \in ®R$ tak, že
-		$$ |f(a + h) - f(a)| ≤ C|h|, \qquad \forall h \in B(0, \delta_0). $$
+		$$ ||f(a + h) - f(a)|| ≤ C||h||, \qquad \forall h \in B(0, \delta_0). $$
 
 		\begin{dukazin}
 			Z $\lim_{h \rightarrow 0} \frac{||f(a + g) - f(a) - D f(a)(h)||}{||h||}$ existuje $\delta_0 > 0$ tak, že $\forall h \in B$ platí
@@ -738,7 +730,7 @@
 
 	\subsection{Regulární zobrazení}
 	\begin{definice}[Difeomorfismus]
-		Nechť $G \subset ®R^n$ je otevřené a $f: G \rightarrow ®R^n$. Řekneme, že $f$ je difeomorfismus na $G$, jestliže je $f$ prostá na $G$, $U = f(G)$ je otevřená v $®R^n$, $f \in C^1(G)$ a $f^{-1} \in C^1(U)$/
+		Nechť $G \subset ®R^n$ je otevřené a $f: G \rightarrow ®R^n$. Řekneme, že $f$ je difeomorfismus na $G$, jestliže je $f$ prostá na $G$, $U = f(G)$ je otevřená v $®R^n$, $f \in C^1(G)$ a $f^{-1} \in C^1(U)$.
 	\end{definice}
 
 	\begin{definice}[Regulární zobrazení]
@@ -799,7 +791,7 @@
 				$G_\alpha$ je otevřená, tedy $\exists \delta > 0: B(x, \delta) \subset G_\alpha$. Zvolme $k$, aby $\frac{1}{m_k} \in B(x, \frac{\delta}{2})$. Nyní $\forall y \in B(x_{m_k}, \frac{1}{m_k})$ platí
 				$$ \rho(x, y) ≤ \rho(x, x_{m_k}) + \rho(x_{m_k}, y) < \frac{\delta}{2} + \frac{1}{m_k} < \delta \implies y \in B(x, \delta) \implies B(x_{m_k}, \frac{1}{m_k}) \subset G_\alpha, \text{\lightning}. $$
 
-				Takže tvrzení výše platí. $(P, \rho)$ je kompaktní, tedy podle věty 11.2 (ve výuce) je totálně omezený. Tedy pro naše $m \in ®N\ \exists$ konečná $\frac{1}{n}$ síť $x_1, …, x_n$. Nyní z toho tvrzení výše $\forall j \in [n]\ \exists G_{\alpha_j}: B(x_j, \frac{1}{m}) \subset G_{\alpha_j}$. Nyní $P \subset \bigcup_{j=1}^n B(x_j, \frac{1}{n}) \subset \bigcup_{j=1}^n G_{\alpha_j}$.
+				Takže tvrzení výše platí. $(P, \rho)$ je kompaktní, tedy podle věty 11.2 (ve výuce) je totálně omezený. Tedy pro naše $m \in ®N\ \exists$ konečná $\frac{1}{m}$-síť $x_1, …, x_n$. Nyní z toho tvrzení výše $\forall j \in [n]\ \exists G_{\alpha_j}: B(x_j, \frac{1}{m}) \subset G_{\alpha_j}$. Nyní $P \subset \bigcup_{j=1}^n B(x_j, \frac{1}{n}) \subset \bigcup_{j=1}^n G_{\alpha_j}$.
 
 				„$\Leftarrow$“: Nechť $\{x_n\} \in P$. Chceme $x_{n_k} \rightarrow x \in P$. Označme $D = \{x_n, n \in ®N\}$. Je-li $D$ konečná, pak se nějaké $x_n$ opakuje a je snadné vybrat konvergentní ($=$ konstantní) podposloupnost.
 
@@ -916,7 +908,7 @@
 
 		\begin{veta}[Jensenova nerovnost]
 			Nechť $(X, ©A, \mu)$ je pravděpodobnostní prostor ($\mu$ nezáporná), $f \in L^1(\mu)$, $a, b \in [-∞, ∞]$ a $f: X \rightarrow (a, b)$. Je-li $\phi: (a, b) \rightarrow ®R$ konvexní funkce, pak
-			$$ \phi(\int_X f d\mu) ≤ \int_X (\phi \circ f) d\mu. $$
+			$$ \phi\(\int_X f d\mu\) ≤ \int_X (\phi \circ f) d\mu. $$
 
 			\begin{dukazin}
 				„Integrál je vlastně průměr a konvexní funkce je v průměru menší, než průměr jejich hodnot.“
@@ -970,8 +962,10 @@
 				$$ \int_X F(x) G(x) d\mu(x) ≤ \frac{1}{p} \int_X (F(x))^p + \frac{1}{q} \int_X(G(x))^q = \frac{1}{p} + \frac{1}{q} = 1,\qquad /·AB $$
 				$$ \int_X f(x) g(x) d\mu(x) ≤ AB = \(\int_X f^p d\mu\)^{\frac{1}{p}}·\(\int_X g^q d\mu\)^{\frac{1}{q}}. $$
 
+				\noindent\rule{\textwidth}{0.4pt}
+
 				$$ \int_X (f + g)^p d\mu = \int_X f·(f + g)^{p-1} + g·(f + g)^{p-1} d\mu ≤ $$
-				$$ ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}\(\int_X (f = g)^{(p-1)q}\)^{\frac{1}{q}} + \(\int_X g^p d\mu\)^{\frac{1}{p}} \(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} ≤ $$
+				$$ ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}}\(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} + \(\int_X g^p d\mu\)^{\frac{1}{p}} \(\int_X (f + g)^{(p-1)q}\)^{\frac{1}{q}} ≤ $$
 				$$ ≤ \[\(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}\]·\(\int_X (f + g)^p d\mu\)^{\frac{1}{q}}. $$
 				Je-li $\int_{X} (f + g)^p d\mu ≠ 0$ (triviální) a $≠ ∞$ vydělíme
 				$$ \(\int_X (f + g)^p d\mu\)^{p = 1 - \frac{1}{q}} ≤ \(\int_X f^p d\mu\)^{\frac{1}{p}} + \(\int_X g^p d\mu\)^{\frac{1}{p}}. $$
@@ -1017,11 +1011,11 @@
 				$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: \(\int_X |f_n(x) - f_m(x)|^p d\mu\)^{\frac{1}{p}}. $$
 				Najdeme $f(x)$ jako bodovou limitu (skoro všude) vhodně vybrané podposloupnost. Z cauchyovskosti $\exists k_1 < k_2 < … < k_j < …$ tak, že
 				$$ \forall j: \int_X |f_{k_j}(x) - f_{k_{j+1}}(x)|^p d\mu ≤ \frac{1}{2^j}. $$
-				Položme $g_n(x) = \sum_{j=1}^n |f_{k_j}(x) - f_{k_{j+1}(x)}|$ a $g(x) = \sum_{j=1}^∞ |f_{k_j}(x) - f_{k_{j+1}}(x)|$. Pak z Minkowského nerovnosti $||g_n||_{L^{p}} ≤ \sum_{j=1}^n ||f_{k_j} - f_{k_{j+1}}||_{L^p} ≤ \sum_{j=1}^n \(\frac{1}{2^j}\)^{\frac{1}{p}} ≤ C_p$.
+				Položme $g_n(x) = \sum_{j=1}^n |f_{k_j}(x) - f_{k_{j+1}}(x)|$ a $g(x) = \sum_{j=1}^∞ |f_{k_j}(x) - f_{k_{j+1}}(x)|$. Pak z Minkowského nerovnosti $||g_n||_{L^{p}} ≤ \sum_{j=1}^n ||f_{k_j} - f_{k_{j+1}}||_{L^p} ≤ \sum_{j=1}^n \(\frac{1}{2^j}\)^{\frac{1}{p}} ≤ C_p$.
 
 				Z Fatouova lemmatu
 				$$ \int_X \liminf_{n \rightarrow ∞} g_n^p d\mu(x) ≤ \liminf_{n \rightarrow ∞} \int_X g_n^p(x) d\mu ≤ C_p. $$
-				Tedy řada $\sum_{j=1}^∞ (f_{k_j}(x) - f_{k_{j+1}(x)})$ konverguje absolutně skoro všude $\implies$ funkce $f(x) = f_{k_1}(x) - \sum_{j=1}^∞ (f_{k_j} - f_{k_{j+1}})$ je definována skoro všude. Nyní
+				Tedy řada $\sum_{j=1}^∞ (f_{k_j}(x) - f_{k_{j+1}}(x))$ konverguje absolutně skoro všude $\implies$ funkce $f(x) = f_{k_1}(x) - \sum_{j=1}^∞ (f_{k_j} - f_{k_{j+1}})$ je definována skoro všude. Nyní
 				$$ f_{k_n}(x) = f_{k_1}(x) - \sum_{j=1}^{n-1}(-f_{k_j}(x) - f_{k_j}(x)) \rightarrow f(x) \text{ skoro všude.} $$
 
 				Zbývá $f \in L^p$ a $f_n \overset{L^p}{\rightarrow} f$. Víme, že $f_n$ je cauchyovská. Z Fatouova lemmatu
@@ -1120,7 +1114,7 @@
 			\begin{dukazin}
 				Pro $n \in ®N$ definujeme
 				$$ A_n := \{f \in C([0, 1]) | \exists t \in [0, 1], \forall s \in [0, 1]: |f(t) - f(s)| ≤ n·|t - s|\}. $$
-				Plán: Dokážeme, že $A_n$ je uzavřená. Dále, že $f$ má derivaci v nějakém bodě $t$, pak $\exists ni: f \in A_n$. Potom dokážeme $A_n$ řídká. Potom již $Dif \subset \bigcup_{n=1}^∞ A_n$, tedy $Dif$ jsou 1. kategorie $\implies$ (z důsledku Baira) $\exists f \in C([0, 1]) \setminus Dif$.
+				Plán: Dokážeme, že $A_n$ je uzavřená. Dále, že $f$ má derivaci v nějakém bodě $t$, pak $\exists n: f \in A_n$. Potom dokážeme $A_n$ řídká. Potom již $Dif \subset \bigcup_{n=1}^∞ A_n$, tedy $Dif$ jsou 1. kategorie $\implies$ (z důsledku Baira) $\exists f \in C([0, 1]) \setminus Dif$.
 			\end{dukazin}
 
 			\begin{dukazin}[1. krok – $A_n$ uzavřená]
