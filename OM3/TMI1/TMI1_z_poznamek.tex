@@ -1,0 +1,995 @@
+	\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 1. přednáška
+
+\part{Definice}
+\begin{definice}[Množinová funkce]
+	Buď $X$ množina a $©P(X)$ její potenční množina, tj. $©P(X) := \{A | A \subset X\}$. Nechť $©A \subset ©P(X)$. Pak zobrazení $\tau: ©A \rightarrow ®R^*$ se nazývá množinová funkce.
+\end{definice}
+
+\begin{definice}[$\sigma$-algebra a algebra]
+	Systém $©A \subset ©P(X)$ nazveme $\sigma$-algebra na $X$, jestliže
+
+	\begin{itemize}
+		\item $\O \in ©A$;
+		\item $A \in ©A \implies A^c := X \setminus A \in ©A$;
+		\item $A_i \in ©A\ \forall i \in ®N \implies \bigcup_{i \in ®N} A_i \in ©A$.
+	\end{itemize}
+
+	Jestliže nahradíme třetí podmínku za $A, B \in ©A \implies A \cup B \in ®A$, pak se systém ©A nazývá algebra.
+\end{definice}
+
+\begin{definice}[$\sigma ©S$]
+	Je-li $©S \subset ©P(X)$ libovolný množinový systém, pak nejmenší $\sigma$-algebru obsahující systém ©S označíme $\sigma ©S$. (Existence vyplývá z věty o průniku $\sigma$-algeber.)
+\end{definice}
+
+\begin{definice}[Generátor $\sigma$-algebry]
+	Je-li $©S \subset ©P(X)$ a $©A = \sigma ©S$, pak ©S nazveme generátor $\sigma$-algebry ©A (také říkáme, že ©A je generováno systémem ©S).
+\end{definice}
+
+\begin{definice}[Borelovská $\sigma$-algebra]
+	Je-li $(X, \rho)$ metrický prostor a ©G systém všech otevřených podmnožin $X$, pak $©B(X) := \partial ©G$ se nazývá borelovská $\sigma$-algebra na $X$.
+\end{definice}
+
+\begin{definice}[Měřitelný prostor a měřitelná množina]
+	Je-li ©A $\sigma$-algebra na $X$, pak dvojice $(X, ©A)$ se nazývá měřitelný prostor. Množiny $A \in ©A$ se nazývají ©A-měřitelné (krátce měřitelné, pokud nehrozí nedorozumění).
+\end{definice}
+
+\begin{definice}[Míra, prostor s mírou]
+	Buď $(X, ©A)$ měřitelný prostor. Zobrazení $\mu: ©A \rightarrow [0, +∞]$ splňující
+
+	\begin{itemize}
+		\item[(M1)] $\mu(\O) = 0$;
+		\item[(M2)] jestliže $A_i \in ©A$, $i \in ®N$, jsou po dvou disjunktní, pak $\mu\(\bigcup_{i=1}^∞ A_i\) = \sum_{i=1}^∞ \mu(A_i)$,
+	\end{itemize}
+
+	se nazývá míra. (M2 se také nazývá spočetná/sigma aditivita)
+
+	Trojice $(X, ©A, \mu)$ se nazývá prostor s mírou.
+\end{definice}
+
+\begin{definice}[Nulová množina, úplný prostor, zúplnění]
+	Buď $(X, ©A, \mu)$ prostor s mírou. Řekneme, že množina $N \subset X$ je nulová množina, jestliže existuje $A \in ©A$ tak, že $N \subset ©A$ a $\mu(A) = 0$. Symbolem ©N označíme systém všech nulových množin.
+
+	Řekneme, že prostor $(X, ©A, \mu)$ je úplný, pokud $©N \subset ©A$. $\sigma$-algebru $©A_0 := \sigma(©A \cup ©N)$ nazveme zúplněním $\sigma$-algebry ©A vzhledem k míře $\mu$.
+\end{definice}
+
+\begin{definice}[Borelovská, konečná, pravděpodobnostní a $\sigma$-konečná míra]
+	Buď $(X, ©A, \mu)$ prostor s mírou. Řekneme, že míra $\mu$ je:
+
+	\begin{itemize}
+		\item borelovská, je-li $X$ metrický prostor a $©A = ©B(X)$;
+		\item konečná, je-li $\mu(X) < +∞$;
+		\item pravděpodobnostní, je-li $\mu(X) = 1$;
+		\item $\sigma$-konečná, existují-li množiny $X_i \in ©A$, $i \in ®N$, tak, že $\mu(X_i) < +∞$, $\forall i \in ®N$, a $X = \bigcup_{i \in ®N} X_i$.
+	\end{itemize}
+\end{definice}
+
+% 2. přednáška
+
+\begin{definice}[Lebesgueova míra]
+	Zúplněné míry $\lambda_{©B}^n$ nazveme Lebesgueovou mírou v $®R^n$ a označíme $\lambda^n$.
+
+	($\lambda_{©B}^n$ je borelovská míra na $®R^n$ taková, že $\lambda_{©B}^n([a_1, b_1] \times … \times [a_n, b_n]) = (b_1-a_1)·…·(b_n - a_n)$.)
+\end{definice}
+
+\begin{definice}[Vzor systému]
+	Ať $X$, $Y$ jsou množiny, $f: X \rightarrow Y$ zobrazení a $©S \subset ©P(Y)$. Pak $f^{-1}(©S) := \{f^{-1}(S) | S \in ©S\}$.
+\end{definice}
+
+\begin{definice}[Měřitelné zobrazení, borelovsky měřitelné zobrazení]
+	Nechť $(X, ©A)$ a $(Y, ©M)$ jsou měřitelné prostory. Zobrazení $f: X \rightarrow Y$ nazýváme měřitelné (vzhledem k $©A$ a $©M$), jestliže $f^{-1}(©M) \subset ©A$. Pak píšeme $f: (X, ©A) \rightarrow (Y, ©M)$.
+
+	Je-li některý z prostorů $X$, $Y$ metrický prostor, pak za příslušnou $\sigma$-algebru bereme borelovskou $\sigma$-algebru (pokud není řečeno jinak). Měřitelné zobrazení mezi dvěma metrickými prostory se nazývá borelovsky měřitelné (stručně borelovské).
+\end{definice}
+
+\begin{definice}[Jednoduchá funkce]
+	Funkce $s: X \rightarrow [0, +∞)$ se nazývá jednoduchá, jestliže $s(X)$ je konečná množina.
+
+	Pak platí $s = \sum_{\alpha \in s(x)} \alpha·\chi_{\{s=\alpha\}}$. Součet na pravé straně této rovnosti nazýváme kanonickým tvarem jednoduché funkce $s$.
+\end{definice}
+
+\begin{definice}[Lebesgueův integrál]
+	Buď $(X, ©A, \mu)$ prostor s mírou.
+
+	\begin{itemize}
+		\item Je-li $s: (X, ©A) \rightarrow [0, +∞)$ jednoduchá měřitelná funkce, zapíšeme ji v kanonickém tvaru $s = \sum_{j=1}^k \alpha_j \chi_{E_j}$, pro $E_j := \{x \in X | s(x) = \alpha_j\}$, a definujeme
+		$$ \int_X s d\mu = \int_X s(x) d\mu(x) := \sum_{j=1}^k \alpha_j \mu(E_j). $$
+	\item Je-li $f: (X, ©A) \rightarrow [0, +∞]$ měřitelná funkce, pak definujeme
+		$$ \int_X f d\mu := \sup\{\int_X s d\mu | 0 ≤ s ≤ f, s \text{ jednoduchá, měřitelná}\}. $$
+	\item Je-li $f: (X, ©A) \rightarrow ®R^*$, pak definujeme
+		$$ \int_X f d\mu := \int_X f^+ d\mu - \int_X f^- d\mu, $$
+		má-li rozdíl smysl.
+	\end{itemize}
+\end{definice}
+
+% 3. přednáška
+
+\begin{definice}[Skoro všude]
+	Buď $(X, ©A, \mu)$ prostor s mírou a $V(x)$ vlastnost, kterou bod $x$ může, ale nemusí mít. Je-li $E \in ©A$, pak výrok $V(x)$ platí $\mu$-s. v. na $E$ znamená:
+	$$ \exists N \in ©A \cap ©N, N \subset E\ \forall x \in E \setminus N: V(x). $$
+
+	Je-li $E = X$, pak místo $\mu$-s. v. na $E$ píšeme pouze $\mu$-s. v. Pokud nehrozí nedorozumění, o jakou míru se jedná, tak píšeme pouze s. v. místo $\mu$-s. v.
+\end{definice}
+
+\begin{definice}[Měřitelná funkce]
+	Buď $(X, ©A, \mu)$ prostor s mírou. Řekneme, že funkce $f$ definovaná na množině $D \in ©A$ s hodnotami v $®R^*$ je měřitelná na $X$, jestliže $\mu(D^c) = 0$ a $\forall$ otevřenou množinu $G \subset ®R^*$ platí $f^{-1}(G) \cap D \in ©A$.
+
+	Pro měřitelnou funkci $f$ pak definujeme
+	$$ \int_X f d\mu := \int_X \tilde f d\mu, \qquad \tilde f(x) := \begin{cases}f(x), & \forall x \in D, \\ 0, & \forall x \in D^c.\end{cases} $$
+\end{definice}
+
+\begin{definice}[$©L^*$ a $©L^1$]
+	Je-li $(X, ©A, \mu)$ prostor s mírou, pak označujeme
+	$$ ©L^*(\mu) := \{f | (X, ©A) \rightarrow ®R^*, f \text{ je měřitelná na } X, \exists \int_X f d\mu\}, $$
+	$$ ©L^1(\mu) := \{f \in ©L^*(\mu) | \int_X |f| d\mu < +∞\}. $$
+\end{definice}
+
+% 4. přednáška
+
+% 5. přednáška
+
+\begin{definice}[Dynkinův systém (d-systém)]
+	Systém $©D \subset ©P(X)$ se nazývá d-systém (nebo Dynkinův systém) na $X$, jestliže
+
+	\begin{itemize}
+		\item $\O \in ©D$;
+		\item $D \in ©D \implies D^c \in ©D$;
+		\item $D_n \in ©D$, $\forall n \in ®N$, $D_n \cap D_m = \O$ pro $n ≠ m$ $\implies \bigcup_{n \in ®N}D_n \in ©D$.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[$\pi$-systém]
+	Je-li systém $©S \subset ©P(X)$ uzavřen na konečné průniky (neboli $\forall S, T \in ©S: S \cap T \in ©S$), pak systém $©S$ nazveme $\pi$-systém.
+\end{definice}
+
+% 6. přednáška
+
+\begin{definice}[Měřitelný obdélník, součinová $\sigma$-algebra, řezy]
+	Je-li $A \in ©A$, $B \in ©B$, pak množinu $A \times B \subset X \times Y$ nazveme měřitelným obdélníkem. Systém všech měřitelných obdélníků označíme symbolem $©O$.
+
+	Součinová $\sigma$-algebra $©A \otimes ©B$ na prostoru $X \times Y$ je dána předpisem
+	$$ ©A \otimes B := \sigma ©O. $$
+	Pro $E \in ©A \otimes ©B$ a $x \in X$, $y \in Y$ definujeme řezy $E_x$, $E^y$ množiny $E$ předpisy
+	$$ E_x := \{y \in Y | [x, y] \in E\}, \qquad E^y := \{x \in X | [x, y] \in E\}. $$
+\end{definice}
+
+% 7. přednáška
+
+% 8. přednáška
+
+\begin{definice}[$C^1$-difeomorfismus]
+	Buď $G \subset ®R^n$ otevřená množina. Zobrazení $\phi: G \rightarrow ®R^m$ se nazývá difeomorfismus, je-li prosté, třídy $C^1$ na $G$ a $\forall x \in G: J \phi(x) ≠ 0$.
+\end{definice}
+
+% 9. přednáška
+
+% 10. přednáška
+
+\begin{definice}[Absolutní spojitost měr]
+	Nechť $\mu$, $\nu$ jsou míry na $(X, ©A)$. Řekneme, že míra $\nu$ je absolutně spojitá vzhledem k míře $\mu$ (a značíme $\nu \ll \mu$), jestliže
+	$$ \forall A \in ©A: \mu(A) = 0 \implies \nu(A) = 0. $$
+\end{definice}
+
+\begin{definice}[(Radonova-Nikodymova) hustota / derivace míry]
+	Funkce $f$ z Radonovy-Nikodymovy věty se nazývá (Radonova-Nikodymova) hustota nebo derivace míry $\nu$ vzhledem k míře $\mu$ a vztah
+	$$ \nu(A) = \int_A f d\mu \qquad \forall A \in ©A $$
+	se někdy zapisuje ve tvaru $d\nu = f d\mu$ nebo také $f = \frac{d\nu}{d\mu}$.
+\end{definice}
+
+% 11. přednáška
+
+\begin{definice}[(Vzájemně) singulární míry]
+	Řekneme, že míry $\mu$, $\nu$ na měřitelném prostoru $(X, ©A)$ jsou vzájemně singulární (a píšeme $\mu \perp \nu$), jestliže
+	$$ \exists S \in ©A: \mu(S) = 0 \land \nu(X \setminus S) = 0. $$
+\end{definice}
+
+% 12. přednáška
+
+\begin{definice}[Distribuční funkce]
+	Buď $\mu$ konečná borelovská míra na ®R. Pak funkci
+	$$ F_\mu (x) := \mu(\(-∞, x\>), \qquad x \in ®R, $$
+	nazýváme distribuční funkcí míry $\mu$.
+\end{definice}
+
+\begin{definice}[Lebesgueův-Stieltjesův integrál]
+	Je-li $F$ distribuční funkce konečné borelovské míry $\mu$ a $A \subset ©R$ borelovská množina, pak
+	$$ \int_A f dF := \int_A f d\mu, \qquad (\text{má-li pravá strana smysl}). $$
+\end{definice}
+
+% 13. přednáška
+
+\begin{definice}[Konvergence podle míry]
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f$, $f_n, n \in ®N$, měřitelné funkce na $X$. Řekneme, že funkce $f_n$ konvergují k funkci $f$ podle míry $\mu$ (značení $f_n \overset{\mu}{\rightarrow} f$), jestliže
+	$$ \forall \epsilon > 0: \lim_{n \rightarrow ∞} \mu(\{x \in X\ |\ |f_n(x) - f(x)| ≥ \epsilon\}) = 0. $$
+\end{definice}
+
+\part{Tvrzení}
+
+% 1. přednáška
+
+\begin{veta}[O průniku $\sigma$-algeber]
+	Nechť $©A_\alpha$, $\alpha \in I$, jsou $\sigma$-algebry na $X$ (kde $I$ je libovolná indexová množina). Pak $\bigcap_{\alpha \in I} ©A_\alpha$ je $\sigma$-algebra na $X$.
+
+	\begin{dukazin}
+		Triviální, přenechán čtenáři.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Je-li $©S \subset ©P(X)$ libovolný množinový systém, pak existuje nejmenší $\sigma$-algebra $\sigma ©S$ obsahující systém ©S.
+
+	\begin{dukazin}
+		$$ \sigma ©S := \bigcap \{©A \subset ©P(X) | ©S \subset ©A \lambda ©A \text{ je $\sigma$-algebra}\}. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Vlastnosti míry]
+	Buď $(X, ©A, \mu)$ prostor s mírou. Pak
+
+	\begin{enumerate}
+		\item $A, B \in ©A, A \cap B = \O \implies \mu(A \cup B) = \mu(A) + \mu(B)$;
+		\item $A, B \in ©A, A \subset B \implies \mu(A) ≤ \mu(B)$;
+		\item $A_i \in ©A, i \in ®N \implies \mu\(\bigcup_i A_i\) ≤ \sum_i \mu(A_i)$, (subaditivita míry);
+		\item $A_1 \subset A_2 \subset … \implies \mu(A_i) \nearrow \mu\(\bigcup A_i\)$;
+		\item $A_1 \supset A_2 \supset …, \mu(A_1) < +∞ \implies \mu(A_i) \searrow \mu\(\bigcap_i A_i\)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		% Ze 4. přednášky
+		Ad 1.: $A, B \in ©A$, $A \cap B = \O$, $A, B \in ©A$ $\implies$ $$ \implies A \cup B = A \cup B \cup \O \cup \O \cup … \implies $$
+		$$ \implies \mu(A \cup B) = \mu(A) + \mu(B) + \mu(\O) + \mu(\O) + … = \mu(A) + \mu(B) $$
+
+		Ad 2.: $A, B \in ©A$, $A \subset B$ $\implies$
+		$$ \implies B = A \cup B \setminus A \implies \mu(B) = \mu(A) + \mu(B \setminus A) ≥ \mu(A). $$
+
+		Ad 3.: $A_i \in ©A \forall i \in ®N$:
+		$$ \bigcup_{i=1}^∞ A_i = A_1 \cup (A_2 \setminus A_1) \cup (A_3 \setminus (A_1 \cup A_2)) \cup … \implies $$
+		$$ \implies \mu\(\bigcup_{i=1}^∞ A_i\) = \mu(A_1) + \mu(A_2 \setminus A_1) + … ≤ \mu(A_1) + \mu(A_2) + … $$
+
+		Ad 4.: $A_1 \subset A_2 \subset …$, $A_i \in ©A \forall i \in ®N$
+		$$ \implies A_k = \bigcup_{i=1}^k A_i = A_1 \cup (A_2 \setminus A_1) \cup (A_3 \setminus A_2) \cup … \cup (A_k \setminus A_{k-1}) \forall k \in ®N, k ≥ 2, $$
+		$$ \bigcup_{i=1}^∞ A_i = A_1 \cup (A_2 \setminus A_1) \cup … \implies $$
+		$$ \implies \mu(A_k) = \mu(A_1) + \sum_{i=2}^k \mu(A_i \setminus A_{i-1}) \forall k \in ®N, k ≥ 2, $$
+		$$ \mu\(\bigcup_i^∞ A_i\) = \mu(A_1) + \sum_{i=2}^∞ \mu(A_i \setminus A_{i-1}). $$
+		Z toho plyne $\mu(A_k) \nearrow \mu\(\bigcup_{i=1}^∞ A_i\)$.
+
+		Ad 5. $A_1 \supset A_2 \supset …$, $A_i \in ©A \forall i \in ®N$, $\mu(A_1) < +∞$. Položíme $B_i = A_1 \setminus A_i \forall i \in ®N$. Pak na posloupnost $B_i$ aplikujeme 4.:
+		$$ \mu(A_1) - \mu(A_i) \nearrow \mu(A_1) - \mu\(\bigcup_{i=1}^∞ A_i\) \implies -\mu(A_i) \nearrow \mu\(\bigcap_{i=1}^∞ A_i\) \implies $$
+		$$ \implies \mu(A_i) \searrow \mu\(\bigcap_{i=1}^∞ A_i\). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Zúplnění míry]
+	Buď $(X, ©A, \mu)$ prostor s mírou. Pak platí
+	
+	\begin{enumerate}
+		\item $©A_0 = \{R \subset X | \exists A, B \in ©A \land A \subset E \subset B \land \mu(B \setminus A) = 0\}$.
+		\item Míru $\mu$ lze jednoznačně rozšířit na $©A_0$ (rozšířenou míru označíme $\mu_0$).
+		\item Prostor $(X, ©A_0, \mu_0)$ je úplný.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O míře $\lambda_{©B}^n$]
+	Existuje právě jedna borelovská míra $\lambda_{©B}^n$ na $®R^n$ taková, že
+	$$ \lambda_{©B}^n([a_1, b_1] \times … \times [a_n, b_n]) = (b_1 - a_1) \times … \times (b_n - a_n), $$
+	jestliže $-∞ < a_i < b_i < + ∞$, $\forall i \in [n]$.
+
+	\begin{dukazin}
+		V TMI2.
+	\end{dukazin}
+\end{veta}
+
+% 2. přednáška
+
+\begin{veta}[O zobrazení $f: X \rightarrow Y$]
+	Nechť $X$, $Y$ jsou množiny a $f: X \rightarrow Y$ zobrazení. Pak platí:
+
+	\begin{enumerate}
+		\item Je-li $©M$ $\sigma$-algebra na $Y$, pak $f^{-1}(©M)$ je $\sigma$-algebra na $X$.
+		\item Je-li $©S \subset ©P(Y)$, pak $\sigma(f^{-1}(S)) = f^{-1}(\sigma ©S)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Jsou-li $(X, ©A)$, $(Y, ©M)$ měřitelné prostory a $©S \subset ©M$ generátor $©M$, pak $f: X \rightarrow Y$ je měřitelné $\Leftrightarrow$ $f^{-1}(©S) \subset ©A$.
+\end{dusledek}
+
+\begin{dusledek}
+	Je-li $X, ©A$ měřitelný prostor a $Y$ metrický prostor, pak $f: X \rightarrow Y$ je měřitelné právě tehdy, když $f^{-1}(G) \in ©A$ pro všechny otevřené množiny $G \subset Y$.
+\end{dusledek}
+
+\begin{dusledek}
+	Každé spojité zobrazení $f$ mezi metrickými prostory je borelovsky měřitelné.
+\end{dusledek}
+
+\begin{veta}[Generátory $©B^n := ©B(®R^n)$]
+	Borelovská $\sigma$-algebra $B^n$ je generována:
+
+	\begin{itemize}
+		\item otevřenými intervaly $(a_1, b_1) \times … \times (a_n, b_n)$, kde $-∞ < a_i < b_i < +∞$, $i \in [n]$;
+		\item systémem $©S := \{(-∞, a_1) \times … \times (-∞, a_n) | a_i \in ®R\ \forall i \in [n]\}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O měřitelných zobrazeních]
+	\ 
+
+	\begin{enumerate}
+		\item Jsou-li $f: (X, ©A) \rightarrow ®R^n$ a $g: (X, ©A) \rightarrow ®R^m$ měřitelné zobrazení, pak $(f, g): (X, ©A) \rightarrow ®R^{n + m}$ je měřitelné zobrazení.
+		\item Jsou-li $f, g: (X, ©A) \rightarrow ®R^n$ měřitelná zobrazení, pak $f ± g$ je měřitelné zobrazení.
+		\item Jsou-li $f, g : (X, ©A) \rightarrow ®R$ měřitelné funkce, pak také funkce $f·g$, $\max\{f, g\}$, $\min\{f, g\}$ jsou měřitelné.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O měřitelných funkcích]
+	Buď $(X, ©A)$ měřitelný prostor. Pak platí:
+
+	\begin{enumerate}
+		\item $f: (X, ©A) \rightarrow ®R$ je měřitelná funkce $\Leftrightarrow$ $f^{-1}((-∞, a)) \in ©A$ $\forall a in ®R$.
+		\item $f: (X, ©A) \rightarrow ®R^*$ je měřitelná funkce $\Leftrightarrow$ $f^{-1}(\<-∞, a\)) \in ©A$ $\forall a in ®R$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $f, g: (X, ©A) \rightarrow ®R^*$ jsou měřitelné funkce. Pak:
+
+	\begin{enumerate}
+		\item Množiny $\{x \in X | f(x) < g(x)\}$, $\{x \in X | f(x) ≤ g(x)\}$, $\{x \in X | f(x) = g(x)\}$ jsou měřitelné.
+		\item $\max\{f, g\}$, $\min\{f, g\}$ jsou měřitelné funkce. (Speciálně funkce $f^+ = \max\{f, 0\}$ a $f^- = \min\{f, 0\}$ jsou měřitelné.)
+	\end{enumerate}
+\end{dusledek}
+
+\begin{veta}[O měřitelných funkcích podruhé]
+	Jsou-li funkce $f_n: (X, ©A) \rightarrow ®R^*$, $n \in ®N$, měřitelné, pak i funkce $\sup_{n \in ®N} f_n$, $\inf_{n \in ®N} f_n$, $\limsup_{n \rightarrow ∞} f_n$ a $\liminf_{n \rightarrow ∞} f_n$ měřitelné.
+
+	Speciálně bodová limita posloupnosti měřitelných funkcí je měřitelná funkce.
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O nezáporné měřitelné funkci]
+	Nechť $f: (X, ©A) \rightarrow \<0, +∞\>$ je měřitelná funkce. Pak existují jednoduché nezáporné měřitelné funkce $s_n$ na $X$, $n \in ®N$, tak, že
+	$$ \forall x \in X: s_n(x) \nearrow f(x). $$
+	Je-li navíc funkce $f$ omezená, pak $s_n \rightrightarrows f$ na $X$.
+
+	\begin{dukazin}
+		% Ze 13. přednášky
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+% 3. přednáška
+
+\begin{veta}[Levi]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$ jsou nezáporné měřitelné funkce na $X$ splňující $f_n \nearrow f$, pak $\int_X f_n d\mu \nearrow \int_X f d\mu$.
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fatouovo lemma]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, jsou nezáporné měřitelné funkce na $X$, pak
+	$$ \int_X (\liminf_{n \rightarrow ∞} f_n) d\mu ≤ \liminf_{n \rightarrow ∞} \int_X f_n d\mu. $$
+
+	\begin{dukazin}
+		% Ze 4. přednášky
+		Buď
+		$$ g_n(x) := \inf \{f_k(x) | k ≥ n\}, x \in X, n \in ®N. $$
+		Pak $g_n$ jsou měřitelné a platí
+		$$ g_n \nearrow g := \lim_{n \rightarrow ∞} g_n := \liminf_{n \rightarrow ∞} f_n. $$
+		
+		Podle Leviho věty $\int_X g_n d\mu \nearrow \int_X g d\mu$. Protože $g_n ≤ f_n \forall n \in ®N$, tak $\int_X g_n d\mu ≤ \int_X f_n d\mu \forall n \in ®N$. Z uvedeného limitním přechodem dostaneme
+		$$ \liminf_{n \rightarrow ∞} \int_X g_n d\mu ≤ \liminf_{n \rightarrow ∞} \int_X f_n d\mu. $$
+		Pravá strana je rovna
+		$$ \lim_{n \rightarrow ∞} \int_X g_n d\mu = \int_X g d\mu = \int_X \liminf_{n \rightarrow ∞} f_n d\mu. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f$, $g$ jsou měřitelné funkce na $X$ splňující $f = g$ skoro všude, pak $\int_X f d\mu = \int_X g d\mu$, má-li jedna strana rovnosti smysl.
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Linearita integrálu]
+	Jestliže $f, g \in ©L^*(\mu)$ a $\lambda \in ®R$, pak
+	$$ \int_X(\lambda f) d\mu = \lambda \int_X f d\mu, $$
+	$$ \int_X (f + g) d\mu = \int_X f d\mu + \int_x g d\mu, \qquad \text{má-li pravá strana smysl}. $$
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Linearity a Leviho]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, jsou nezáporné měřitelné funkce na $X$, pak
+	$$ \int_X \(\sum_{n=1}^∞ f_n\) d\mu = \sum_{n=1}^∞ \int_X f_n d\mu. $$
+
+	\begin{dukazin}
+		Z předchozí věty máme
+		$$ \int_X \(\sum_{n=1}^k f_n\) d\mu = \sum_{n=1}^k \int_X f_n d\mu \qquad \forall k \in ®N. $$
+		Odtud limitním přechodem pro $k \rightarrow +∞$ pomocí Leviho věty dostaneme dané tvrzení.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Zobecněná Leviho věta]
+	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$, měřitelné funkce na $X$ splňující $f_n \nearrow f$ a $\int_X f_1 d\mu > -∞$, pak
+	$$ \int_X f_n d\mu \nearrow \int_X f d\mu. $$
+
+	\begin{dukazin}
+		BÚNO $\int_X f_1 < +∞$, jinak vztah plyne z monotonie integrálu. Buď $g_n := f_n - f_1$, $n \in ®N$, $g:= f - f_1$. Pak $g_n ≥ 0$, $g_n \nearrow g$ a z Leviho věty dostaneme $\int_X g_n d\mu \nearrow \int_X g d\mu$. Odtud pak, s využitím aditivity integrálu z předpředchozí věty, plyne $\int_X f_n d\mu = \int_X f d\mu$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Totéž platí pro obrácená znamínka.
+\end{dusledek}
+
+\begin{veta}[Lebesgueova]
+	Nechť $(X, ©A, \mu)$ je prostor s mírou a $f$, $f_n, n \in ®N$, jsou měřitelné funkce na $X$ splňující $f_n \rightarrow f$ skoro všude. jestliže existuje funkce $g \in ©L^1(\mu)$ tak, že $|f_n| ≤ g$ skoro všude $\forall n \in ®N$, pak $f \in ©L^1(\mu)$ a $\int_X f_n d\mu \implies \int_X f d\mu$.
+
+	\begin{dukazin}
+		% Z 12. přednášky
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $(X, ©A, \mu)$ je prostor s mírou a $f_n, n \in ®N$, jsou měřitelné funkce na $X$ takové, že $\sum_{n=1}^∞ f_n$ konverguje skoro všude. Jestliže existuje funkce $g \in ©L^1(\mu)$ tak, že $\left|\sum_{n=1}^k f_n\right| ≤ g$ skoro všude $\forall k \in ®N$, pak $\sum_{n=1}^∞ f_n \in ©L^1(\mu)$ a $\int_X\(\sum_{n=1}^∞ f_n\) d\mu = \sum_{n=1}^∞ \int_X f_n d\mu$.
+
+	\begin{dukazin}
+		Aplikujeme předchozí větu na posloupnost částečných součtů $\sum_{n=1}^∞ f_n$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Další vlastnosti integrálů a měřitelných funkcí]
+	Buď $(X, ©A, \mu)$ prostor s mírou.
+
+	\begin{itemize}
+		\item Jestliže $f$ je nezáporná měřitelná funkce na $X$ a $\int_X f d\mu = 0$, pak $f = 0$ skoro všude.
+		\item Je-li $f \in ©L^1(\mu)$ a $\int_E f d\mu = 0\ \forall E \in ©A$, pak $f = 0$ skoro všude.
+		\item Je-li $f$ měřitelná funkce na $X$, pak
+			$$ \int_X f d\mu \in ®R \Leftrightarrow \int_X |f| d\mu \in ®R. $$
+		\item Je-li $f \in ©L^1(\mu)$, pak $\left| \int_X f d\mu \right| ≤ \int_X |f| d\mu$.
+		\item Je-li $f \in ©L^1(\mu)$, pak $f$ je konečná skoro všude.
+	\end{itemize}
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Vztah Riemannova a Lebesgueova integrálu]
+	Nechť $-∞ < a < b < +∞$ a $f: \<a, b\> \rightarrow ®R$. Jestliže $(R) \int_a^b f$ existuje, pak $\int_a^b f d\lambda^1 \in ®R$ a platí
+	$$ (R) \int_a^b f = \int_a^b f d\lambda^1. $$
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Vztah Newtonova a Lebesgueova integrálu]
+	Nechť $-∞ ≤ a < b ≤ +∞$ a $f: (a, b) \rightarrow ®R$ je spojitá a nezáporná funkce. Pak $(N) \int_a^b f$ existuje právě tehdy, když $\int_a^b f d\lambda^1 \in ®R$.
+	
+	V takovém případě navíc $(N) \int_a^b = \int_a^b f d\lambda^1$.
+
+	\begin{dukazin}
+		Bez důkazu?
+	\end{dukazin}
+\end{veta}
+
+% 4. přednáška
+
+\begin{veta}[O limitě integrálu závislém na parametru]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $(T, \rho)$ metrický prostor, $M \subset T$, $t_0 \in M'$ a $f: X \times T \rightarrow ®R$. Nechť platí:
+
+	\begin{itemize}
+		\item Pro $\mu$-skoro všechna $x \in X$ existuje
+			$$ \lim_{t \rightarrow t_0, t \in M} f(x, t) =: \phi(x). $$
+		\item $\forall t \in M \setminus \{t_0\}$ je funkce $f(·, t)$ $\mu$-měřitelná.
+		\item Existuje funkce $g \in ©L^1(\mu)$ tak, že $|f(x, t)| ≤ g(x)$ pro $\mu$-skoro všechna $x \in X$ a $\forall t \in M \setminus \{t_0\}$.
+	\end{itemize}
+
+	Pak $\phi \in ©L^1(\mu)$ a $\lim_{t \rightarrow t_0, t \in M} \int_X f(x, t) d\mu = \int_X \phi(x) d\mu$.
+
+	\begin{dukazin}
+		K ověření rovnosti integrálů dle Heineho věty stačí dokázat: Je-li $t_n \in M \setminus \{t_0\}$, $n \in ®N$, $t_n \rightarrow t_0$, pak $\int_X f(x, t_n) d\mu \rightarrow \int_X \phi(x) d\mu$:
+
+		Z první podmínky máme $f(x, t_n)$ pro $\mu$-skoro všechna $x \in X$. Dále platí (z druhé podmínky) $|f(x, t_n)| ≤ g(x)$ pro $\mu$-skoro všechna $x \in X$ a $\forall n \in ®N$.
+
+		Tedy rovnost integrálů (a také existence integrálu) plyne z Lebesgueovy věty, položíme-li v ní $f_n(x) := f(x, t_n) \forall n \in ®N$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O spojitosti integrálu závislém na parametru]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $(T, \rho)$ metrický prostor, $M \subset T$ a $f: X \times T \rightarrow ®R$. Nechť platí:
+
+	\begin{itemize}
+		\item Pro $\mu$-skoro všechna $x \in X$ je funkce $f(x, ·)$ spojitá na $M$.
+		\item $\forall t \in M$ je funkce $f(·, t)$ $\mu$-měřitelná.
+		\item Existuje funkce $g \in ©L^1(\mu)$ tak, že $|f(x, t)| ≤ g(x)$ pro $\mu$-skoro všechna $x \in X$ a $\forall t \in M$.
+	\end{itemize}
+
+	Pak funkce $F(t) := \int_X f(x, t) d\mu$, $t \in M$, je spojitá na $M$.
+
+	\begin{dukazin}
+		Dle Heineho věty stačí dokázat: Je-li $t_0 \in M \cap M'$, pak $\lim_{t \rightarrow t_0, t \in M} F(t) = F(t_0)$, tj. $\lim_{t \rightarrow t_0, t \in M} \int_X f(x, t) d\mu = \int_X f(x, t_0) d\mu$. To ale plyne z předchozí věty.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O derivaci integrálu podle parametru]
+	Buď $(X, ©A, \mu)$ prostor s mírou, $I \subset ®R$ otevřený interval a $f: X \times I \rightarrow ®R$. Nechť platí:
+
+	\begin{itemize}
+		\item $\forall t \in I$ je funkce $f(·, t)$ $\mu$-měřitelná.
+		\item $\exists N \in ©A$, $\mu(N) = 0$, tak, že $\forall x \in X \setminus N$ a $\forall t \in I$ existuje konečná derivace $\frac{\partial f}{\partial t}(x, t)$.
+		\item Integrál $F(t) := \int_X f(x, t) d\mu$ konverguje alespoň pro jednu hodnotu $t \in I$.
+		\item $\exists g \in ©L^1(\mu)$ tak, že $\forall x \in X \setminus ®N$ a $\forall t \in I$ platí $\left| \frac{\partial f}{\partial t}(x, t)\right| ≤ g(x)$.
+	\end{itemize}
+
+	Pak $\forall t \in I$ integrál $F(t)$ konverguje a platí
+	$$ F'(t) = \int_X \frac{\partial f}{\partial t}(x, t) d\mu \qquad \forall t \in I. $$
+
+	\begin{dukazin}
+		Je-li $t$, $t + h \in I$, pak $\forall x \in X \setminus N$ dle Lagrangeovy věty dle druhé a čtvrté podmínky platí
+		$$ |f(x, t + h) - f(x, t)| = \left|h · \frac{\partial f}{\partial t}(x, t + \Theta h)\right| ≤ |h| · g(x), $$
+		kde $\Theta \in (0, 1)$. Speciálně, je-li $t \in I$ a $t_0$ onen bod, pro který integrál $F(t)$ konverguje, pak
+		$$ |f(x, t)| ≤ |f(x, t_0)| + |t - t_0|·g(x) \forall x \in X \setminus N, $$
+		odkud plyne, že integrál $F(t)$ konverguje $\forall t \in I$.
+
+		Dále, je-li $t$, $t + h \in I$, $h ≠ 0$, pak
+		$$ \frac{1}{h}(F(t + h) - F(t)) = \int_X \frac{f(x, t + h) - f(x, t)}{h} d\mu. $$
+		Protože z nerovnosti výše je
+		$$ \left|\frac{f(x, t + h) - f(x, t)}{h}\right| = \left|\frac{\partial f}{\partial t}(x, t + \Theta h)\right| ≤ g(x) \forall x \in X \setminus N, \forall t, t + h \in I, h≠0, $$
+		tedy
+		$$ \lim_{h \rightarrow 0} \int_X \frac{f(x, t + h) - f(x, t)}{h} d\mu = \int_X \(\lim_{h \rightarrow 0} \frac{f(x, t + h) - f(x, t)}{h}\) d\mu = \int_X \frac{\partial f}{\partial t}(x, t) d\mu. $$
+	\end{dukazin}
+\end{veta}
+
+% 5. přednáška
+
+\begin{veta}[O průniku d-systémů]
+	Nechť $©D_\alpha, \alpha \in I$, jsou d-systémy na $X$ ($I$ je libovolná indexová množina). Pak $\bigcap_{\alpha \in I} ©D_\alpha$ je d-systém na $X$.
+
+	\begin{dukazin}
+		Je triviální a přenechán čtenáři.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Je-li $©S \subset ©P(X)$ libovolný množinový systém, pak existuje nejmenší d-systém $d ©S$ na $X$ obsahující systém $©S$.
+
+	\begin{dukazin}
+		$$ d©S := \bigcap \{©D \subset ©P(X) | ©S \subset ©D \land ©D \text{ je d-systém}\}. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[O rovnosti $d©S = \sigma ©S$]
+	Je-li $©S \subset ©P(X)$ $\pi$-systém, pak $d©S = \sigma ©S$.
+
+	\begin{dukazin}
+		Z následujících dvou tvrzení. Protože $©S \subset ©P(X)$ je $\pi$-systém, tak je $d©S$ $\pi$-systém. Protože $d©S$ je také d-systém, tak $d©S$ je $\sigma$-algebra na $X$, která obsahuje ©S. Proto $\sigma ©S \subset d©S$, neboť $\sigma ©S$ je nejmenší $\sigma$-algebra obsahující ©S. Opačná implikace tj. $d©S \subset \sigma ©S$ platí triviálně. Tedy $d©S = \sigma ©S$.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	Je-li d-systém ©D na $X$ $\pi$-systém, pak ©D je $\sigma$-algebra na $X$.
+
+	\begin{dukazin}
+		Je třeba ověřit, že platí $A_k \in ©D\ \forall k \in ®N \implies \bigcup_{k=1}^∞ A_k \in ©D$. To provedeme v několika krocích:
+
+		Platí $A \setminus B \in ©D$, je-li $A, B \in ©D$, neboť $A \setminus B = A \setminus (A \cap B)$ a přitom $A \cap B \subset A$, tedy $A \setminus B \in ©D$.
+
+		Platí $A \cup B \in ©D$, je-li $A, B \in ©D$, neboť $A \cup B = (A \setminus B) \cup B$ a přitom $(A \setminus B) \cap B = \O$, tedy $A \cup B \in ©D$.
+
+		Je-li $n \in ®N$ a $A_1, …, A_n \in ©D$, pak $\bigcup_{i=1}^n A_i \in ©D$ (indukcí s využitím předchozího odstavce).
+
+		Nechť tedy $A_k \in ©D \forall k \in ®N$. Položíme-li $A_0 := \O \in ©D$, pak
+		$$ \bigcup_{k=1}^∞ A_k = \bigcup_{k=1}^∞\(\(\bigcup_{i=0}^k A_i\) \setminus \(\bigcup_{i=1}^{k-1} A_i\)\) = \bigcup_{k=1}^∞ \tilde A_k, $$
+		kde $\tilde A_k := \(\bigcup_{i=0}^k A_i\) \setminus \(\bigcup_{i=0}^{k-1} A_i\) \forall k \in ®N$. Protože $\bigcup_{i=0}^k A_i \in ©D \forall k \in ®N_0$, tak $\tilde A_k \in ©D \forall k \in ®N$. Navíc $\tilde A_k \cap \tilde A_m = \O$ pro $k ≠ m$, $k, m \in ®N$. Tedy $\bigcup_{k=1}^∞ \tilde A_k \in ©D$, tj. $\bigcup_{k=1}^∞ A_k \in ©D$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Je-li d-systém ©D na $X$ $\pi$-systémem, pak ©D je $\sigma$-algebra na $X$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+% 6. přednáška
+
+\begin{veta}[O jednoznačnosti míry]
+	Nechť $©S \subset ©P(X)$ je $\pi$-systém a $\mu$, $\nu$ jsou dvě míry na $\sigma ©S$ splňující $\mu(S) = \nu(S) \forall S \in ©S$. Jestliže existují množiny $X_n \in ©S, n \in ®N$, tak, že $X_n \nearrow X$ a $\mu(X_n) < +∞ \forall n \in ®N$, pak $\mu = \nu$ na $\sigma ©S$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O součinové $\sigma$-algebře $©A \otimes ©B$]
+	Je-li $E \in ©A \otimes ©B$, pak
+
+	\begin{itemize}
+		\item $\forall x \in X: E_x \in ©B$, $\forall y \in Y: E^y \in ©A$;
+		\item Funkce $x \mapsto \nu(E_x)$ je měřitelná na $(X, ©A)$, funkce $y \mapsto \mu(E^y)$ je měřitelná na $(Y, B)$.
+	\end{itemize}
+
+	Je-li funkce $f: (X \times Y, ©A \otimes ©B) \rightarrow ®R^*$ měřitelná, pak $\forall x \in X$ je funkce $f_x: y \mapsto f(x, y)$ měřitelná na $(Y, B)$ a $\forall y \in Y$ je funkce $f^y: x \mapsto f(x, y)$ měřitelná na $(X, ©A)$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Existence a jednoznačnost součinové míry]
+	Existuje právě jedna míra $\mu \otimes \nu$ na $©A \otimes ©B$ (tzv. součinová míra) splňující
+	$$ (\mu \otimes \nu)(A \times B) = \mu(A)·\nu(B) \qquad \forall A \in ©A\ \forall B \in ©B. $$
+
+	Pro tuto míru platí
+	$$ E \in ©A \otimes ©B \implies (\mu \otimes \nu)(E) = \int_X \nu(E_x) d\mu(x). $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+% 7. přednáška
+
+\begin{veta}[Fubini]
+	Pro každou funkci $f \in ©L^*(\mu \otimes \nu)$ platí
+
+	\begin{itemize}
+		\item Funkce $x \mapsto \int_Y f(x, y) d\nu(y)$ je měřitelná na $X$;
+		\item Funkce $y \mapsto \int_X f(x, y) d\nu(x)$ je měřitelná na $Y$;
+		\item $\int_{X \otimes Y} f(x, y) d(\mu \otimes \nu) = \int_X \(\int_Y f(x, y) d\nu(y)\) d\mu(x) = \int_Y \(\int_X f(x, y) d\mu(x)\) d\nu(y)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fubiniova věta pro zúplněnou součinovou míru]
+	Nechť $(X, ©A, \mu)$ a $(Y, B, \nu)$ jsou prostory s úplnými $\sigma$-konečnými mírami. Je-li $f \in ©L^*(\mu \overset{0}{\times} \nu)$, pak
+
+	\begin{itemize}
+		\item Funkce $f_y: x \mapsto f(x, y)$ je měřitelná na $X$ pro $\nu$-skoro všechna $y \in Y$ a funkce $f_x: y \mapsto f(x, y)$ je měřitelná na $Y$ pro $\mu$-skoro všechna $y \in Y$;
+		\item Funkce $x \mapsto \int_Y f(x, y) d\nu(y)$ je měřitelná na $X$ a funkce $y \mapsto \int_X f(x, y) d\nu(x)$ je měřitelná na $Y$;
+		\item $\int_{X \otimes Y} f(x, y) d(\mu \overset{0}\otimes \nu) = \int_X \(\int_Y f(x, y) d\nu(y)\) d\mu(x) = \int_Y \(\int_X f(x, y) d\mu(x)\) d\nu(y)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Důkaz se nestíhal, pouze bylo zmíněno, že se použije předchozí věta a následující 2 Lemmata.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $(Z, ©C, \rho)$ je prostor s mírou a $(Z, ©C_0, \rho_0)$ jeho zúplnění. Je-li funkce $f: (Z, ©C_0) \rightarrow ®R^*$ $\rho_0$ měřitelná, pak existuje $\rho$-měřitelná funkce $g: (Z, ©C) \rightarrow ®R^*$ tak, že $f = g$ $\rho$-skoro všude na $X$.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Nechť $(X, ©A, \mu)$ a $(Y, ©B, \nu)$ jsou prostory s úplnými $\sigma$-konečnými mírami. Nechť $h$ je $\mu \overset{0}\otimes \nu$-měřitelná funkce na $X \times U$ a $h = 0$ $\mu \overset{0}\otimes \nu$-skoro všude na $X \times Y$. Potom pro $\mu$-skoro všechna $x \in X$ platí $h(x, y) = 0$ pro $\nu$-skoro všechna $y \in Y$. Speciálně, funkce $h_x$ je měřitelná na $(Y, ©B, \nu)$ pro $\mu$-skoro všechna $x \in X$. (Obdobně pro $h^y$).
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O míře $\lambda^p \otimes \lambda^q$]
+	Je-li $p, q \in ®N$, pak:
+	$$ ©B(®R^{p + q}) = ©B(®R^p) \otimes ©B(®R^q), \qquad (\text{tj. } \lambda_{©B}^{p + q} = \lambda_{©B}^p \otimes \lambda_{©B}^q) $$
+	$$ \lambda^{p + q} = \lambda^p \overset{0}\otimes \lambda^q. $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fubiniova věta v $®R^{p + q}$]
+	Je-li $s, q \in ®N$ a $f \in ©L^*(\lambda^{p + q})$, pak
+	$$ \int_{®R^{p + q}} f d\lambda^{p + q} = \int_{®R^p} \(\int_{®R^q} f(x, y) d\lambda^q(y)\) d\lambda^p(x) = \int_{®R^q} \(\int_{®R^p} f(x, y) d\lambda^p(x)\) d\lambda^q(y). $$
+
+	\begin{dukazin}
+		Bez důkazu, ale lehký důsledek předchozí věty a Fubiniovy věty.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Značení]
+	Je-li $p, q \in ®N$, $x \in ®R^p$, $y \in ®R^q$, pak definujeme projekce předpisem
+	$$ \pi_1(x, y) := x, \qquad \pi_2(x, y) := y. $$
+\end{definice}
+
+\begin{dusledek}
+	Nechť $p, q \in ®N$, $A \in ©B_0^{p + q} := (©B(®R^{p + q}))_0$. Jestliže $f \in ©L^*(\lambda^{p + q})$ a množiny $\pi_1 A, \pi_2 A$ jsou měřitelná, pak
+	$$ \int_A f d\lambda^{p + q} = \int_{\pi_1 A} \(\int_{A_x} f(x, y) d\lambda^q(y)\)d\lambda^p(x) = \int_{\pi_2 A} \(\int_{A^y} f(x, y) d\lambda^p(x)\)d\lambda^q(y). $$
+\end{dusledek}
+
+% 8. přednáška
+
+\begin{lemma}
+	Lebesgueova míra $\lambda^n$ je translačně invariantní, tzn.
+	$$ \lambda^n(B + r) = \lambda^n(B) \qquad \forall B \in ©B_0^n\ \forall r \in ®R^n. $$
+
+	\begin{dukazin}
+		Dané tvrzení plyne z věty o jednoznačnosti míry, neboť míry $\lambda^n$ a $\mu(B) := \lambda^n(B + z)\ \forall B \in ©B_0^n$ a pro libovolné pevné $r \in ®R^n$ se shodují na systému $©B_0^n$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O obrazu míry]
+	Nechť $(X, ©A, \mu)$ je prostor s mírou a $(Y, ©B)$ je měřitelný prostor. Je-li $\phi: (X, ©A) \rightarrow (Y, ©B)$ měřitelné zobrazení, pak množinová funkce daná předpisem
+	$$ (\phi(\mu))(B) := \mu\(\phi^{-1}(B)\) \qquad \forall B \in ©B $$
+	je míra na $(Y, ©B)$ (tzn. obraz míry $\mu$ při zobrazení $\phi$) a pro každou měřitelnou funkci $f$ na $Y$ platí
+	$$ \int_Y f d\phi(\mu) = \int_X (f \circ \phi) d\mu, $$
+	pokud alespoň jedna strana má smysl.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buď $L: ®R^n \rightarrow ®R^n$ invertibilní lineární zobrazení
+
+	\begin{itemize}
+		\item Je-li $\nu(A) := \lambda^n(L(A))\ \forall A \in ©B^n := ©B(®R^n)$, pak $\nu$ je mír a platí $\nu = |\det L|·\lambda^n$.
+		\item Je-li $\mu(A) := |\det L|\lambda_{©B}^n(A)\ \forall A \in ©B^n$, pak $L(\mu) = \lambda_{©B}^n$ a pro $f \in ©L^*(\lambda_{©B}^n)$ platí
+			$$ \int_{®R^n} f d\lambda^n = \int_{®R^n} (f \circ L) |\det L| d\lambda^n. $$
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Buď $T: ®R^n \rightarrow ®R^n$ Lipschitzovské zobrazení. Je-li $A \subset ®R^n$ lebesgueovsky měřitelná množina, pak také $T(A)$ je lebesgueovsky měřitelná množina.
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Je-li $L: ®R^n \rightarrow ®R^n$ invertibilní lineární zobrazení, pak
+	$$ \int_{®R^n} f d\lambda^n = \int_{®R^n}(f \circ L) | \det L| d \lambda^n, $$
+	má-li jedna strana smysl.
+
+	\begin{dukazin}
+		Bez důkazu, ale jednoduše vyplývá z předchozího lemmatu a věty.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O substituci]
+	Buď $G \subset ®R^n$ otevřená množina a $\phi: G \rightarrow ®R^n$ difeomorfismus. Jestliže $f: \phi(G) \rightarrow ®R$ je lebesgueovsky měřitelná funkce, pak
+	$$ \int_G f(\phi(x)) |J \phi(x)| dx = \int_{\phi(G)} f(y) dy, $$
+	má-li jedna strana rovnosti smysl.
+
+	\begin{dukazin}
+		Bude v TMI2.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Je-li navíc $M \subset \phi(G)$ lebesgueovsky měřitelná množina, pak
+	$$ \int_{\phi^{-1}(M)} f(\phi(x)) |J \phi(x)| dx = \int_M f(y) dy. $$
+\end{dusledek}
+
+\begin{lemma}
+	$$ \lambda^n (®R^{n-1}) = 0. $$
+
+	\begin{dukazin}
+		Množina $®R^{n-1}$ je $\lambda^n$-měřitelná, neboť je uzavřená v $®R^n$. Dále platí $®R^{n-1} \subset \bigcup_{k=1}^∞ I_{k, \epsilon}$, kde $\epsilon > 0$ a
+		$$ I_{k, \epsilon} := (-k, k)^{n-1} \times \(\frac{- \epsilon}{(2k)^{n-1}}·\frac{1}{2^k}, \frac{\epsilon}{(2k)^{n-1}}·\frac{1}{2^k}\) \qquad \forall k \in ®N, $$
+		a tedy
+		$$ \lambda^n(®R^{n-1}) ≤ \sum_{k=1}^∞ \lambda^n(I_{k, \epsilon}) = \sum_{k=1}^∞ (2k)^{n-1}·\frac{2 \epsilon}{(2k)^{n-1}}\frac{1}{2^k} = \sum_{k=1}^∞ \frac{\epsilon}{2^{k-1}} = 2\epsilon. $$
+		Protože $\epsilon > 0$ bylo libovolné, tak $\lambda^n(®R^{n-1}) = 0$.
+	\end{dukazin}
+\end{lemma}
+
+% 9. přednáška
+
+TODO!!! (Důkazy)
+
+% 10. přednáška
+
+\begin{lemma}[O míře s hustotou $f$]
+	Buď $(X, ©A, \mu)$ prostor s mírou a $f$ nezáporná měřitelná funkce na $X$. Definujeme-li
+	$$ \nu(A) := \int_A f d\mu \qquad \forall A \in ©A, $$
+	pak $\nu$ je míra na $©A$ a pro měřitelnou funkci $g:(X, ©A) \rightarrow \<0, +∞\>$ platí
+	$$ \int_X g d\nu = \int_X g f d\mu. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Charakterizace faktu $\nu \ll \mu$ pro konečné míry]
+	Nechť $\mu$, $\nu$ jsou konečné míry na $(X, ©A)$. Pak $\nu \ll \mu$ právě tehdy, když
+	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall A \in ©A: \mu(A) < \delta \implies \nu(A) < \epsilon. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Radonova-Nikodymova]
+	Jsou-li $\mu$, $\nu$ $\sigma$-konečné míry na $(X, ©A)$ splňující $\mu \ll \nu$, pak existuje nezáporná měřitelná funkce $f$ na $X$ tak, že
+	$$ \nu(A) = \int_A f d\mu \qquad \forall A \in ©A. $$
+
+	\begin{dukazin}
+		% Z 11. přednášky
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[Radonova-Nikodymova věta -- baby verze]
+	Jestliže $\mu$, $\nu$ jsou konečné míry na $(X, ©A)$ takové, že $\nu(A) ≤ \mu(A)\ \forall A \in ©A$, pak existuje měřitelná funkce $f$ na $X$ splňující $0 ≤ f ≤ 1$ $\mu$-skoro všude a
+	$$ \nu(A) = \int_A f d\mu \qquad \forall A \in ©A. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+% 11. přednáška
+
+\begin{veta}[Lebesgueův rozklad míry]
+	Buď $\mu$ míra na $(X, d)$ a $\nu$ $\sigma$-konečná míra na $(X, ©A)$. Pak existuje rozklad $\nu = \nu_a + \nu_s$ na $\sigma$-konečné míry $\nu_a$ a $\nu_s$ takový, že $\nu_a \ll \mu$, $\nu_s \perp \mu$, přičemž míry $\nu_a$ a $\nu_s$ jsou určeny jednoznačně.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+% 12. přednáška
+
+\begin{lemma}[O distribuční funkci]
+	Distribuční funkce $F_\mu$ splňuje:
+
+	\begin{itemize}
+		\item $F_\mu$ je neklesající;
+		\item $F_\mu(-∞) := \lim_{x \rightarrow -∞} F_\mu(x) = 0$, $F_\mu(+∞) := \lim_{x \rightarrow +∞} F_\mu < ∞$;
+		\item $F_\mu$ je zprava spojitá.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O Lebesgueově-Stieltjosově míře]
+	Je-li $F: ®R \rightarrow ®R$ funkce splňující
+
+	\begin{itemize}
+		\item $F$ je neklesající;
+		\item $F_\mu(-∞) := \lim_{x \rightarrow -∞} F_\mu(x) = 0$, $F_\mu(+∞) := \lim_{x \rightarrow +∞} F_\mu < ∞$;
+		\item $F_\mu$ je zprava spojitá.
+	\end{itemize}
+
+	pak existuje právě jedna konečná borelovská míra na ®R (tzn. Lebesgueova-Stieltjesova míra příslušná funkci $F$) taková, že $F_\mu = F$.
+
+	\begin{dukazin}
+		Bude v TMI2.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Per partes pro L-S integrál]
+	Jestliže $F$, $G$ jsou distribuční funkce a $-∞ < a < b < + ∞$, pak
+	$$ F(b)G(b) - F(a)G(a) = \int_{\(a, b\>} F(x) dG(x) + \int_{\(a, b\>} G(x) dF(x). $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[O $\mu \ll \lambda^1$]
+	Nechť $\mu$ je konečná borelovská míra na ®R. Jestliže $F_\mu \in C^1(®R)$, pak $\mu \ll \lambda^1$ a $\frac{d \mu}{d \lambda^1} = F_\mu'$. (Tj. platí $\mu(A) = \int_A F_\mu' d\lambda^1\ \forall A \in ©B(®R)$.)
+
+	\begin{dukazin}
+		Nechť ©S je systém, který se skládá z $\O$ a všech intervalů $\(a, b\>$, kde $-∞ < a < b < +∞$. Pak ©S je $\pi$-systém. Buď $\nu$ míra daná předpisem
+		$$ \nu(A) := \int_A F_\mu' d\lambda^1 \qquad \forall A \in ©B(®R). $$
+		Pak $\mu = \nu$ na ©S, neboť
+		$$ \mu(\O) = 0 = \nu(\O), $$
+		$$ \mu(\(a, b\>) = F_\mu(b) - F_\mu(a) = \int_a^b F_\mu'(x) dx = \int_{\(a, b\>} F_\mu' d\lambda^1 = \nu(\(a, b\>), $$
+		je-li $-∞ < a < b < +∞$.
+
+		Dále platí $X_n := \(-n, n\> \in ©S$, $X_n \nearrow X := ®R$, $\mu(X_n) < +∞ \forall n \in ®N$. Proto, dle věty o jednoznačnosti míry platí $\mu = \nu$ na $\sigma ©S = ©B(®R)$. Tedy
+		$$ \mu(A) = \nu(A) = \int_A F_\mu' d\lambda^1\ \forall A \in ©B(®R), $$
+		tj. $\frac{d\mu}{d\lambda^1} = F_\mu'$.
+	\end{dukazin}
+\end{lemma}
+
+% 13. přednáška
+
+\begin{lemma}[Čebyševova nerovnost]
+	Je-li $1 ≤ p < +∞$, $f \in L^p(\mu)$ a $c \in (0, +∞)$, pak
+	$$ \mu(\{x \in X\ |\ |f(x)| ≥ c\}) ≤ \(\frac{||f||_p}{c}\)^p. $$
+
+	\begin{dukazin}
+		$$ \mu(\overbrace{\{x \in X\ |\ |f()x| ≥ c\}}^{M :=}) = \int_M 1 d\mu ≤ \int_M \(\frac{|f|}{c}\)^p d\mu ≤ \int_X \(\frac{|f|}{c}\)^p d\mu = \(\frac{||f||_p}{c}\)^p. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Vztah mezi konvergencí v $L^p(\mu)$ a konvergencí podle míry]
+	Je-li $1 ≤ p ≤ +∞$ a $f, f_n \in L^p(\mu)$ ($\forall n \in ®N$), pak
+	$$ f_n \overset{L^p(\mu)}\rightarrow f \implies f_n \overset{\mu} \rightarrow f. $$
+
+	\begin{dukazin}
+		Je-li $p \in \<1, +∞\)$, pak implikace plyne z Čebyševovy nerovnosti. Jinak předpokládejme $f_n \overset{L^p(\mu)}\rightarrow f$ a $\epsilon > 0$, pak
+		$$ \exists n_0 \in ®N\ \forall n \in ®N, n ≥ n_0: ||f_n - f||_∞ < \epsilon, $$
+		a tedy $\mu(\{x \in X\ |\ |f_n(x) - f(x)| ≥ \epsilon\}) = 0\ \forall n \in ®N$, $n ≥ n_0$. Proto $f_n \overset{\mu}\rightarrow f$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[1. vztah mezi konvergencí podle míry a konvergencí skoro všude]
+	Jestliže $(X, ©A, \mu)$ je prostor s mírou a $f_n \overset{\mu}\rightarrow f$, pak existuje vybraná podposloupnost $\{f_{n_k}\}_{k \in ®N}$ tak, že $f_{n_k} \rightarrow f$ $\mu$-skoro všude.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Je-li $1 ≤ p ≤ +∞$ a $f_n \overset{L^p(\mu)}\rightarrow f$, pak
+	$$ \exists \{f_{n_k}\}_{k \in ®N}: f_{n_k} \rightarrow f \mu\text{-skoro všude}. $$
+
+	\begin{dukazin}
+		Přímý důsledek předchozích dvou vět.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[2. vztah mezi konvergencí podle míry a konvergencí skoro všude]
+	Jestliže $(X, ©A, \mu)$ je prostor s konečnou mírou a $f_n \rightarrow f$ $\mu$-skoro všude, pak $f_n \overset{\mu} \rightarrow f$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Jegorov]
+	Jestliže $(X, ©A, \mu)$ je prostor s konečnou mírou, $\epsilon > 0$ a $f$, $f_n, n \in ®N$, jsou měřitelné funkce splňující $f_n \rightarrow f$ $\mu$-skoro všude, pak
+	$$ \exists B \in ©A, \mu(B^c) < \epsilon: f_n \rightrightarrows f \text{ na $B$}. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\end{document}
