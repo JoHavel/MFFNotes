@@ -1,4 +1,4 @@
-	\documentclass[12pt]{article}					% Začátek dokumentu
+\documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
 
@@ -274,8 +274,58 @@
 		\item Prostor $(X, ©A_0, \mu_0)$ je úplný.
 	\end{enumerate}
 
-	\begin{dukazin}
-		TODO?
+	\begin{dukazin}[1.]
+		Označme
+		$$ \tilde{©A}_0 := \{E \subset X | \exists A, B \in ©A \land A \subset E \subset B \land \mu(B \setminus A) = 0\}. $$
+		Ukážeme, že $\tilde{©A}_0$ je $\sigma$-algebra:
+
+		\begin{itemize}
+			\item $E = \O \in \tilde{©A}$, neboť volba $A = \O = B$ dává $A \subset E \subset B$, $\mu(B \setminus A) = \mu(\O \setminus \O) = \mu(\O) = 0$. Tedy $\O \in \tilde{©A}_0$.
+			\item Je-li $E \in \tilde{©A}_0 \implies \exists A, B \in ©A: A \subset E \subset B \land \mu(B \setminus A) = 0$. Tedy $A^c, B^c \in ©A$ a $B^c \subset E^c \subset A^c$. Protože $A^c \setminus B^c = B \setminus A$, tak $\mu(A^c \setminus B^c) = \mu(B \setminus A) = 0$, a tedy $E^c \in \tilde{©A}_0$.
+			\item Nechť $E_i \in \tilde{©A}_0\ \forall i \in ®N$. $\implies$ $\exists A_i, B_i \in ©A: A_i \subset E_i \subset B_i$, $\mu(B_i \setminus A_i) = 0$. $\implies \bigcup_i A_i \subset \bigcup_i E_i \subset \bigcup_i B_i$ a
+				$$ \mu\(\bigcup_i B_i \setminus \bigcup_i A_i\) ≤ \mu\(\bigcup_i (B_i \setminus A_i)\) ≤ \sum_i \mu(B_i \setminus A_i) = 0. $$
+				Tedy $\bigcup_i E_i \in \tilde{©A}_0$.
+		\end{itemize}
+		
+		Tudíž $\tilde{©A}_0$ je $\sigma$-algebra.
+
+		Platí $©A \cup ®N \subset \tilde{©A}_0$, neboť \vspace{-1em}
+		
+		\begin{itemize}
+			\item Je-li $N \in ©N$ $\implies$ $\exists A \in ©A: N \subset A$, $\mu(A) = 0$ $\implies$ $N \in \tilde{©A}_0$, tedy $©N \subset \tilde{©A}_0$.
+			\item Je-li $A \in ©A$, pak $A \subset A \subset A$ $\land$ $\mu(A \setminus A) = \mu(\O) = 0$ $\implies$ $A \in \tilde{©A}_0$, tedy $©A \subset \tilde{©A}_0$.
+		\end{itemize}
+		
+		Z $©A \cup ©N \subset \tilde{©A}_0$ plyne $\sigma (©A \cup ©N) \subset \sigma(\tilde{©A}_0) = \tilde{©A}_0$, tj. $©A_0 \subset \tilde{©A}_0$.
+
+		Opačnou inkluzi získáme snadno: Je-li $E \subset \tilde{©A}_0$, pak
+		$$ \exists A, B \in ©A: A \subset E \subset B \land \mu(B \setminus A) = 0 \implies E = A \cup (E \setminus A) \implies E \in \sigma(©A \cup ©N) = ©A_0. $$
+
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Buď $E \in ©A_0$. Tedy $\exists A, B \in ©A: A \subset E \subset B$, $\mu(B \setminus A) = 0$. Definujeme $\mu_0(E) := \mu(A)$. Tato definice je korektní, neboť: Je-li $A_i, B_i \in ©A$, $A_i \subset E \subset B_i$, $\mu(B_i \setminus A_i) = 0$, $i \in \{1, 2\}$, pak $A_1 = (A_1 \cap A_2) \cup (A_1 \setminus A_2)$, a tedy
+		$$ \mu(A_1) = \mu(A_1) = \mu(A_1 \cap A_2) + \mu(A_1 \setminus A_2) = \mu(A_1 \cap A_2). $$
+		Analogicky dostaneme $\mu(A_2) = \mu(A_1 \cap A_2)$. Tudíž $\mu(A_1) = \mu(A_2)$, což dokazuje korektnost definice.
+
+		Dále ověříme, že $\mu_0$ je míra: Je jasné, že $\mu_0 ≥ 0$. Taktéž zřejmě $\mu_0(\O) = 0$, neboť $\O \subset \O \subset \O$, $\mu(\O \setminus \O) = \mu(\O) = 0$ $\implies$ $\mu_0(\O) = \mu(\O) = 0$.
+
+		Je-li $E_i \in ©A_0 \forall i \in ®N$, $E_i \cap E_j = \O$ pro $i ≠ j$, pak
+		$$ \exists A_i, B_i \in ©A: A_i \subset E_i \subset B_i, \mu(B_i \setminus A_i) = 0 \qquad \forall i \in ®N \implies $$
+		$$ \implies \bigcup_i A_i \subset \bigcup_i E_i \subset \bigcup_i B_i, \qquad \bigcup_i B_i \setminus \bigcup_i A_i \subset \bigcup(B_i \subset A_i) \implies $$
+		$$ \mu(\bigcup_i B_i \setminus \bigcup_i A_i) ≤ \mu\(\bigcup_i (B_i \setminus A_i)\) ≤ \sum_i \mu(B_i \setminus A_i) = 0. $$
+		Proto $\mu_0\(\bigcup_i E_i\) = \mu\(\bigcup_i A_i\) = \sum_i \mu(A_i) = \sum_i \mu_0(E_i)$, tj. $\mu_0\(\bigcup_i E_i\) = \sum_i \mu_0(E_i)$. Takže $\mu_0$ je míra na $©A_0$.
+
+		Dále platí, že $\mu_0$ je rozšířením $\mu$, neboť je-li $A \in ©A$, pak $A \subset A \subset A$, $\mu(A \setminus A) = \mu(\O) = 0$, tudíž $\mu_0(A) = \mu(A)$.
+
+		Nakonec jednoznačnost: Buď $E \in ©A_0$. Pak $\exists A, B \in ©A: A \subset E \subset B$, $\mu(B \setminus A) = 0$. Proto $\mu_0(A) ≤ \mu_0(E) ≤ \mu_0(B)$. Ovšem $\mu(B) = \mu(A \cup (B \setminus A)) = \mu(A) + \mu(B \setminus A) = \mu(A)$. Tedy $\mu_0(E) = \mu(A)$.
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Je-li $M \subset X$ nulová množina v $(X, ©A_0, \mu_0)$, pak
+		$$ \exists N \in ©A_0: M \subset N \land \mu_0(N) = 0 \implies $$
+		$$ \implies \exists A, B \in ©A: A \subset N \subset B \land \mu(B \setminus A) = 0 \implies \mu(A) = 0, $$
+		a proto $\mu(B) = \mu(A) + \mu(B \setminus A) = 0 + 0 = 0$. Tudíž $\O \subset M \subset N \subset B$, tj. $\O \subset M \subset B$ a přitom $\mu(B \setminus \O) = \mu(B) = 0$. Tedy $M \in ©A_0$ a $\mu_0(M) = 0$.
 	\end{dukazin}
 \end{veta}
 
@@ -382,17 +432,55 @@
 
 	\begin{dukazin}
 		% Ze 13. přednášky
-		TODO!!!
+		Pro $n \in ®N$ a $i \in [n·2^n]$ definujeme
+		$$ E_{n, i} := f^{-1}\(\<\frac{i-1}{2^n}, \frac{i}{2^n}\>\), \qquad F_n := f^{-1}\(\<n, +∞\>\), $$
+		$$ s_n := \sum_{i=1}^{n·2^n} \frac{i-1}{2^n} \chi_{E_{n, i}} + n \chi_{F_n}. $$
+
+		Množiny $E_{n, i}$ a $F_n$ jsou měřitelné, tedy $s_n$ jsou měřitelné. Je jasné, že $s_n$ je jednoduchá nezáporná funkce a platí $s_n ≤ s_{n+1}$.
+
+		Je-li $x \in X$ takové, že $f(x) < +∞$, pak pro dostatečně velká $n \in ®N$ platí $f(x) - \frac{1}{2^n} ≤ s_n(x) ≤ f(x)$. Je-li $x \in X$ takové že $f(x) = +∞$, pak $s_n(x) = n \rightarrow +∞$. Tedy $s_n(x) \rightarrow f(x)\ \forall x \in X$.
+
+		Je také jasné, že $s_n \rightrightarrows f$, pokud je funkce $f$ omezená (neboť pak $|s_n(x) - f(x)| ≤ \frac{1}{2^n}\ \forall x \in X\ \forall n \in ®N$).
 	\end{dukazin}
 \end{veta}
 
 % 3. přednáška
 
+\begin{lemma}[K důkazu Leviho věty]
+	% Z 9. přednášky
+	Buď $(A, ©A, \mu)$ prostor s mírou a $S$ jednoduchá, nezáporná, měřitelná funkce na $X$. Definujeme-li
+	$$ \phi(A) := \int_A s d\mu \qquad \forall A \in ©A, $$
+	pak $\phi$ je míra na ©A.
+
+	\begin{dukazin}
+		Je jasné, že $\phi ≥ 0$. Nechť $s = \sum_{j=1}^k \alpha_j \chi_{E_j}$ je kanonický tvar funkce $s$. Je-li $A \in ©A$, pak
+		$$ \phi(A) = \int_A s d\mu = \int_X \chi_A s d\mu = \int_X \tilde{s} d\mu = \sum_{j=1}^k \alpha_j \mu(E_j \cap A), $$
+		kde $\tilde s := \sum_{j=1}^k \alpha_j·\chi_{E_j \cap A}$ je jednoduchá nezáporná měřitelná funkce, tudíž můžeme použít definici integrálu. Z této rovnosti už vyplývá $\phi(\O) = \sum_{j=1}^k \alpha_j \mu(E_j \cap \O) = 0$.
+
+		Nechť $A_i \in A\ \forall i \in ®N$, $A_i \cap A_j = \O$ pro $i ≠ j$. Buď $A = \bigcup_{i=1}^∞ A_i$. Pak
+		$$ \phi(A) = \sum_{j=1}^k \alpha_j \mu(E_j \cap A) = \sum_{j=1}^k \alpha_j \sum_{i=1}^∞\mu(E_j \cap A_i) = $$
+		$$ = \lim_{n \rightarrow ∞} \sum_{j=1}^k \sum_{i=1}^n \alpha_j \mu(E_j \cap A_i) = \lim_{n \rightarrow ∞} \sum_{i=1}^n \phi(A_i) = \sum_{i=1}^∞ \phi(A_i). $$
+	\end{dukazin}
+\end{lemma}
+
 \begin{veta}[Levi]
 	Je-li $(X, ©A, \mu)$ prostor s mírou a $f_n$, $n \in ®N$ jsou nezáporné měřitelné funkce na $X$ splňující $f_n \nearrow f$, pak $\int_X f_n d\mu \nearrow \int_X f d\mu$.
 
 	\begin{dukazin}
-		TODO?
+		Protože $f_n ≤ f_{n+1}$ tak $\int_X f_n d\mu ≤ \int_X f_{n+1} d\mu \implies$
+		$$ \exists \alpha \in \<0, +∞\>: \int_X f_n d\mu \rightarrow \alpha. $$
+		Podle věty o měřitelných zobrazeních podruhé je funkce $f$ měřitelná na $X$. Protože $f_n ≤ f$, tak $\int_X f_n d\mu ≤ \int_X f d\mu$. Odtud plyne $\alpha ≤ \int_X d\mu$.
+
+		Nyní dokážeme opačnou nerovnost: Buď $s$ libovolná jednoduchá měřitelná funkce splňující $0 ≤ s ≤ f$ a nechť $C \in (0, 1)$. Definujeme $\forall n \in ®N$
+		$$ E_n := \{x \in X | f_n(x) ≥ C s(x)\}. $$
+		Množiny $E_n$ jsou měřitelné
+		$$ E_1 \subset E_2 \subset … \qquad \land \qquad X = \bigcup_{n=1}^∞ E_n. $$
+		Dále platí
+		$$ \int_X f_n d\mu ≥ \int_{E_n} f_n d\mu ≥ C \int_{E_n} s d\mu. $$
+		Protože funkce $\phi(A) := \int_A s d\mu$ je z předchozího lemmatu míra na ©A, tak pravá strana konverguje k $c \int_X s d\mu$. Levá strana konverguje k $\alpha$, tedy $\alpha ≥ c \int_X d\mu$,
+		a limitním přechodem pro $c \nearrow 1$ máme $\alpha ≥ \int_X s d\mu$. Odtud dostaneme
+		$$ \alpha ≥ \sup_{0 ≤ s ≤ f} \int_X s d\mu = \int_X f d\mu. $$
+		Tedy $\int_X f_n d\mu \rightarrow \int_X f d\mu$.
 	\end{dukazin}
 \end{veta}
 
@@ -461,7 +549,12 @@
 
 	\begin{dukazin}
 		% Z 12. přednášky
-		TODO!!!
+		Předefinujme funkce $f_n$, $f$ na množině $\{x | f_n(x) \nrightarrow f(x)\} \cup \bigcup_{n=1}^∞ \{x\ |\ |f_n(x)| > g(x)\}$
+		nulové míry tak, aby předpoklady platily $\forall x \in X$. Je-li
+		$$ g_n := \inf \{f_n, f_{n+1}, …\}, h_n := \sup\{f_n, f_{n+1}, …\}, n \in ®N, \text{ pak} \forall n \in ®N: $$
+		$$ -g ≤ g_n ≤ f_n ≤ h_n ≤ g \implies g_n, f_n \in ©L^1(\mu), -g ≤ \lim_{n \rightarrow ∞} f_n = f ≤ g \implies f \in ©L^1(\mu). $$
+		Protože $g_n \nearrow f$, $h_n \searrow f$ pro $n \rightarrow ∞$, tak podle zobecněné Leviho věty a jejího důsledku platí $\int_X g_n d\mu \rightarrow \int_X f d\mu$ a $\int_X h_n d\mu \rightarrow \int_X f d\mu$. Protože
+		$$ \int_X g_n d\mu ≤ \int_X f_n d\mu ≤ \int_X h_n d\mu \implies \int_X f_n d\mu \rightarrow \int_X f d\mu. $$
 	\end{dukazin}
 \end{veta}
 
@@ -622,10 +715,39 @@
 \end{tvrzeni}
 
 \begin{tvrzeni}
-	Je-li d-systém ©D na $X$ $\pi$-systémem, pak ©D je $\sigma$-algebra na $X$.
+	Je-li $©S \subset ©P(X)$ $\pi$-systém, pak $d©S$ je také $\pi$-systém.
 
 	\begin{dukazin}
-		TODO!!!
+		Je-li $©D := \{D \in d ©S | D \cap S \in d ©S\ \forall S \in ©S\}$, pak ©D je d-systém, neboť:
+		
+		\begin{itemize}
+			\item $\O \in ©D$, protože $\O \in d©S$ a $\O \cap S = \O \in d ©S\ \forall S \in ©S$;
+			\item $D \in ©D \implies D \cap S \in d©S\ \forall S \in ©S \implies$
+				$$ \implies (X \setminus D) \cap S = (X \cap S) \setminus (D \cap S) = S \setminus (D \cap S) \in d ©S\ \forall S \in ©S \implies X \setminus D \in ©D; $$
+			\item $D_n \in ©D\ \forall n \in ®N, D_n \cap D_m = \O$ pro $n≠m$ $\implies$
+				$$ \implies D_n \cap S \in d©S\ \forall S \in ©S \qquad \forall n \in ®N. $$
+				a $(D_n \cap S) \cap (D_m \cap S) \subset D_n \cap D_m = \O$ pro $n ≠ m$ $\forall S \in ©S$.
+
+				Pak $\(\bigcup_n D_n\) \cap S = \bigcup_n(D_n \cap S) \in d©S$. Tj. $\bigcup_n D_n \in ©D$.
+		\end{itemize}
+
+		Dále platí $©S \subset ©D$, neboť $\forall D \in ©S$ máme $D \in d©S$ a přitom $D \cap S \in ©S\ \forall S \in ©S$. Odtud máme $D \cap S \in d©S\ \forall S \in ©S$ (neboť $©S \subset d©S$), a tedy $D \in ©D$.
+
+		Z inkluze $©S \subset ©D$ plyne $d©S \subset d©D = ©D$. Navíc (dle definice systému ©D) platí $©D \subset d©S$. Celkem tedy platí $©D = d©S$, což znamená
+		$$ \forall D \in d©S: D \cap S \in d©S \qquad \forall S \in ©S. $$
+
+		Je-li $D \in d©S$ pevné a $©D_D := \{E \in ©P(X) | E \cap D \in d©S\}$, pak $©D_D$ je d-systém, neboť:
+
+		\begin{itemize}
+			\item $\O \in ©D_D$, protože $\O \in ©P(X)$ a $\O \cap D = \O \in d©S$;
+			\item $E \in ©D_D \implies E \cap D \in d©S$, a tedy
+				$$ (X \setminus E) \cap D = (X \cap D) \setminus (E \cap D) = D \setminus (E \cap D) \in d©S \implies X \setminus E \in ©D_D; $$
+			\item $E_n \in ©D_D\ \forall n \in ®N, E_n \cap E_m = \O$ pro $n ≠ m$ $\implies$ $E_n \cap D \in d©S \forall n \in ®N$ a $(E_n \cap D) \cap (E_m \cap D) = \O$ pro $n ≠ m$. Pak $(\bigcup_n E_n) \cap D = \bigcup_n(E_n \cap D) \in d©S$, tj. $\subset_n E_n \in ©D_D$.
+		\end{itemize}
+
+		Z $©D = d©S$ plyne $©S \subset ©D_D\ \forall D \in d©S$, tj. $d©S \subset ©D_D\ \forall D \in d©S$, což znamená
+		$$ \forall E \in d©S: E \cap D \in d©S\ \forall D \in d©S, $$
+		a tedy $d©S$ je uzavřený na průniky dvou množin $\implies$ $d©S$ je uzavřený i na průniky konečného počtu množin $\implies$ $d©S$ je $\pi$-systém.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -635,7 +757,21 @@
 	Nechť $©S \subset ©P(X)$ je $\pi$-systém a $\mu$, $\nu$ jsou dvě míry na $\sigma ©S$ splňující $\mu(S) = \nu(S) \forall S \in ©S$. Jestliže existují množiny $X_n \in ©S, n \in ®N$, tak, že $X_n \nearrow X$ a $\mu(X_n) < +∞ \forall n \in ®N$, pak $\mu = \nu$ na $\sigma ©S$.
 
 	\begin{dukazin}
-		TODO!!!
+		Předpokládejme nejprve, že $\mu(X) < +∞$. Systém
+		$$ ©D := \{A \in \sigma ©S | \mu(A) = \nu(A)\} $$
+		je d-systém. Dle předpokladu $©S \subset ©D$, odtud plyne
+		$$ d ©S \subset d ©D = ©D. $$
+		Podle věty o rovnosti $d©S = \sigma ©S$
+		$$ \sigma ©S = d©S \subset ©D \subset \partial ©S $$
+		odkud dostáváme $d©S = \sigma ©S = ©D$ $\implies$ $\mu(A) = \nu(A)$ na $\sigma ©S$.
+
+		Je-li $\mu(X) = +∞$, pak definujeme
+		$$ ©D_n := \{A \in \sigma ©S | \mu(A cap X_n) = \nu(A \cup X_n)\} \qquad \forall n \in ®N. $$
+		Analogicky jako v první části důkazu lze ověřit, že $©D_n$ je d-systém ($\forall n \in ®N$), který obsahuje ©S (neboť $S \cap X_n \in ©S\ \forall n \in ®N, \forall S \in ©S$, protože ©S je $\pi$-systém). Tedy
+		$$ d©S \subset d©D_n \subset \sigma ©S \qquad \forall n \in ®N \implies $$
+		$$ \implies d©S = \sigma ©S = ©D_n \qquad \forall n \in ®N. $$
+		Z vlastnosti míry pak $\forall A \in \sigma ©S$ dostaneme
+		$$ \mu(A) = \lim_{n \rightarrow ∞} \mu(A \cap X_n) = \lim_{n \rightarrow ∞} \nu(A \cap X_n) = \nu(A). $$
 	\end{dukazin}
 \end{veta}
 
@@ -650,7 +786,54 @@
 	Je-li funkce $f: (X \times Y, ©A \otimes ©B) \rightarrow ®R^*$ měřitelná, pak $\forall x \in X$ je funkce $f_x: y \mapsto f(x, y)$ měřitelná na $(Y, B)$ a $\forall y \in Y$ je funkce $f^y: x \mapsto f(x, y)$ měřitelná na $(X, ©A)$.
 
 	\begin{dukazin}
-		TODO!!!
+		Provedem pouze pro $E_x$, funkci $x \mapsto \nu(E_x)$ a funkci $f_x$ (pro $E^y$, funkci $y \mapsto \mu(E^y)$ a funkci $f^y$ je důkaz analogický).
+	\end{dukazin}
+
+	\begin{dukazin}[1.]
+		$\forall x \in X$ je množina $©E := \{E \in ©A \otimes ©B | E_x \in ©B\}$ $\sigma$-algebra, neboť:
+		
+		\begin{itemize}
+			\item $\O \in ©E$, protože $\O_x = \O \in ©B$;
+			\item $E \in ©E \implies E_x \in ©B \implies (E^c)_x = (X \times Y \setminus E)_x = Y \setminus E_x \in ©B$, a tedy $E^c \in ©E$;
+			\item $E_n \in ©E\ \forall n \in ®N \implies (E_n)_x \in ©B\ \forall n \in ®N \implies$
+				$$ \implies (\bigcup_n E_n)_x = \bigcup_n(E_n)_x \in ©B, $$
+				a tedy $\bigcup_n E_n \in ©E$.
+		\end{itemize}
+
+		Dále platí $\O \subset ©E \implies ©A \otimes B = \sigma ©O \subset \sigma ©E = ©E$. Ovšem z definice ©E máme $©E \subset ©A \otimes ©B$. Tedy $©E = \sigma ©O = ©A \otimes ©B$, což znamená, že
+		$$ \forall x \in X\ \forall E \in ©A \otimes ©B: E_x \in ©B. $$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Buď $Y_0 \in ©B$, $\nu(Y_0) < +∞$ a
+		$$ ©D := \{E \in ©A \otimes ©B | x \mapsto \nu(E_x \cap Y_0) \text{ je měřitelná na } (X, ©A)\}. $$
+		Dokážeme-li, že a) $©O \subset ©D$, b) $©D$ je d-systém, c) ©O je $\pi$-systém, pak $d©O \subset d©D = ©D \subset ©A \otimes ©B$ $\implies$ $©D = ©A \otimes ©B$.
+
+		a) Je-li $E \subset ©O$, pak $E = A \times B$, kde $A \in ©A$, $B \in ©B$ $\implies$ $E_x = B$ pro $x \in A$ a $\O$ pro $x \notin A$ $\implies$ $E_x \cap Y_0 = B \cap Y_0$ pro $x \in A$ a $\O$ pro $x \notin A$ $\implies$ $\nu(E_x \cap Y_0) = \nu(B \cap Y_0)·\chi_A(x)$ $\implies$ funkce $x \mapsto \nu(E_x \cap Y_0)$ je $(X, ©A)$ měřitelná (neboť $A \in ©A$). Tedy $©O \subset ©D$.
+
+		b) $\O \in ©D$, neboť $\O \in ©A \otimes ©B$ a funkce $x \mapsto \nu(\O_x \cap Y_0) = \nu(\O) = 0\ \forall x \in X$ $\implies$ funkce $x \mapsto \nu(\O_k \cap Y_0)$ je $(X, ©A)$ měřitelná.
+
+		$E \in ©D$ $\implies$ $E \in ©A \otimes ©B$ a funkce $x \mapsto \nu(E_x \cap Y_0)$ je $(X, ©A)$ měřitelná. Protože
+		$$ (E^c)_x \cap Y_0 = (X \times Y \setminus E)_x \cap Y_0 = (Y \setminus E_x) \cap Y_0 = Y_0 \setminus E_x \cap Y_0, $$
+		tak $\nu((E^c)_x \cap Y_0) = \nu(Y_0) \setminus \nu(E_x \cap Y_0)$ $\implies$ funkce $x \mapsto \nu((E^c)_x \cap Y_0)$ je rozdílem dvou měřitelných funkcí $x \mapsto \nu(Y_0)$ a $x \mapsto \nu(E_x \cap Y_0)$, tedy je to měřitelná funkce (na $(X, ©A)$).
+
+		Buď $E_n \in ©D\ \forall n \in ®N$ a $E_n \cap E_m = \O$ pro $n ≠ m$. Tedy $E_n \in ©A \otimes ©B\ \forall n \in ®N$ a funkce $x \mapsto \nu((E_n)_x \cap Y_0)$ jsou měřitelné na $(X, ©A)$ $\forall n \in ®N$
+
+		Protože $(\bigcup_n E_n)_x \cap Y_0 = \(\bigcup_n(E_n)_x\) \cap Y_0 = \bigcup_n((E_n)_x \cap Y_0)$, tak
+		$$ \nu((\bigcup_n E_n)_x \cap Y_0) = \nu(\bigcup_n((E_n)_x \cap Y_0)) = \sum_n \nu((E_n)_x \cap Y_0) = \lim_{k \rightarrow ∞} \sum_{n=1}^k \nu((E_n)_x \cap Y_0) \implies $$
+		Funkce $x \mapsto \nu((\bigcup_n E_n)_x \cap Y_0)$ je limita ($k \rightarrow +∞$) měřitelných funkcí $x \mapsto \sum_{n=1}^k \nu((E_n)_x \cap Y_0)$ $\implies$ funkce $x \mapsto \nu((\bigcup_n E_n)_x \cap Y_0)$ je měřitelná funkce (na $(X, ©A)$) $\implies$ $\bigcup_n E_n \in ©D$.
+
+		c) To je jasné, neboť je-li $E_i \in ©O$, pak $E_i = A_i \times B_i$, kde $A_i \in ©A$, $B_i \in ©B$ $\implies$
+		$$ \implies E_1 \cap E_2 = (A_1 \cap A_2) \times (B_1 \cap B_2) \in ©O. $$
+		Tedy platí $d©O \subset d©D = ©D \subset ©A \otimes ©B$ $\implies$ $©D = ©A \otimes ©B$.
+
+		Protože $\nu$ je $\sigma$-konečná míra, tak existují množiny $Y_n \subset Y$ ($\forall n \in ®N$) takové, že $\nu(Y_n) < +∞$ a $\nu(Y_n) \nearrow \nu(Y)$. Pak $\forall E \in ©A \otimes ©B$ platí $\nu(E_x) = \lim_{n \rightarrow ∞} \nu(E_x \cap Y_n)$, a tedy funkce $x \mapsto \nu(E_x)$ je měřitelná na $(X, ©A)$, neboť limitou funkcí $x \mapsto \nu(E_x \cap Y_n)$, které jsou dle předchozí části důkazu měřitelné na $(X, ©A)$.
+	\end{dukazin}
+
+	\begin{dukazin}[5.]
+		Buď $a \in ®R^*$ a $E := \{[x, y] \in X \times Y | f(x, y) < a\}$. Protože $f$ je měřitelná, tak $E \in ©A \otimes ©B$. Dále $\forall x \in X$ platí
+		$$ \{y \in Y | f_x(y) < a\} = E_x \in ©B. $$
+		Tudíž $\forall x \in X$ je funkce $f_x$ měřitelná na $(Y, ©B)$.
 	\end{dukazin}
 \end{veta}
 
@@ -662,7 +845,19 @@
 	$$ E \in ©A \otimes ©B \implies (\mu \otimes \nu)(E) = \int_X \nu(E_x) d\mu(x). $$
 
 	\begin{dukazin}
-		TODO!!!
+		1. Existence: $\forall E \in ©A \otimes ©B$ definujeme
+		$$ (\mu \otimes \nu)(E) := \int_X \nu(E_x) d\mu(x). $$
+		Pak $\mu \otimes \nu$ je míra na $(X \times Y, ©A \otimes ©B)$, neboť:
+		$$ (\mu \otimes \nu)(\O) = \int_X \nu(\O_x) d\mu(x) = \int_X 0 d\mu(x) = 0; $$
+		Je-li $E_n \in ©A \otimes ©B$, $n \in ®N$, $E_n \cap E_m = \O$ pro $n ≠ m$, pak
+		$$ (\mu \otimes \nu)\(\bigcup_n E_n\) = \int_X \nu\(\(\bigcup_n E_n\)_x\) d\mu(x) = \int_X \nu\(\bigcup_n\(E_n\)_x\) = $$
+		$$ = \int_X \sum_n \nu\((E_n)_x\) d\mu(x) = \sum_n \int_X \nu\((E_n)_x\) d\mu(x) = \sum_n (\mu \otimes \nu)(E_n). $$
+
+		Z definice $\mu \otimes \nu$ na $©A \otimes ©B$ $\forall A \in ©A\ \forall B \in ©B$ dostáváme
+		$$ (\mu \otimes \nu)(A \times B) = \int_X \nu\((A \times B)_x\) d\mu(x) = \int_X \nu(B)·\chi_A(x) d\mu(x) = $$
+		$$ = \nu(B) \int_A d\mu(x) = \nu(B) ·\mu(A). $$
+
+		2. Jednoznačnost: Předpokládejme, že $\tau$ je míra na $©A \otimes ©B$ splňující $\tau(A \times B) = \mu(A)·\nu(B)\ \forall A \in ©A\ \forall B \in ©B$, tj. $\tau = \mu \otimes \nu$ na $©O$. Systém $©O$ je $\pi$-systém. Protože $\mu$ a $\nu$ jsou $\sigma$-konečné, tak existují množiny $X_n \in ©A$, $\mu(X_n) < +∞\ \forall n \in ®N$, $X_n \nearrow X$ a množiny $Y_n \in ©B$, $\nu(Y_n) < +∞\ \forall n \in ®N$, $Y_n \nearrow Y$. Pak pro množiny $X_n \times Y_n$ platí $X_n \times Y_n \in ©O$, $(\mu \otimes \nu)(X_n \times Y_n) < +∞\ \forall n \in ®N$, $X_n \times Y_n \nearrow X \times Y$. Z věty 6.1? pak plyne $\tau = \mu \otimes \nu$ na $\sigma ©O$, tj. na $©A \otimes ©B$.
 	\end{dukazin}
 \end{veta}
 
@@ -678,7 +873,29 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO!!!
+		Je-li $f = \chi_E$, kde $E \in ©A \otimes ©B$, pak 3. plyne z věty o existenci a jednoznačnost součinové míry, neboť
+		$$ \int_{X \times Y} \chi_E (x, y) d(\mu \otimes \nu) = (\mu \otimes \nu)(E) = \int_X \nu(E_x) d \mu(x) = \int_X \(\int_Y \chi_E(x, y) d\nu(y)\) d\mu(x), $$
+		neboť $\nu(E_x) = \int_Y \chi_{E_x}(y) d\nu(y) = \int_Y \chi_E(x, y) d\nu(y)\ \forall x \in X$.
+
+		Podobně dostaneme
+		$$ \int_{X \times Y} \chi_E (x, y) d(\mu \otimes \nu) = (\mu \otimes \nu)(E) = \int_Y \mu(E_y) d \nu(y) = \int_Y \(\int_X \chi_E(x, y) d\mu(x)\) d\nu(y), $$
+		neboť $\nu(E^y) = \int_X \chi_{E^y}(x) d\mu(x) = \int_X \chi_E(x, y) d\mu(x)\ \forall y \in Y$. Tedy 3. platí pro $f = \chi_E$, kde $E \in ©A \otimes ©B$.
+
+		Pro jednoduchou nezápornou měřitelnou funkci $s = \sum_{i=1}^k \alpha_i \chi_{E_i}$ na $(X \times Y, ©A \otimes ©B)$ máme
+		$$ \int_{X \times Y} s(x, y) d(\mu \otimes \nu) = \sum_{i=1}^k \alpha_i(\mu \otimes \nu)(E_i) = \sum_{i=1}^k \alpha_i \int_X \(\int_Y \chi_{E_i}(x, y) d\nu(y)\) d\mu(x) = $$
+		$$ = \int_X \(\int_Y s(x, y) d\nu(y)\) d\mu(x), $$
+		tj. pro funkci $s$ platí první rovnost v 3.
+
+		Z uvedeného také plyne, že funkce $x \mapsto \int_Y s(c, y) d\nu(y)$ je měřitelná na $X$. Druhá rovnost v 3. pro funkci $s$ se dokáže analogicky.
+
+		Buď $f ≥ 0$ měřitelná na $(X \times Y, ©A \otimes ©B)$. Dle věty o nezáporné měřitelné funkci existuje posloupnost nezáporných jednoduchých měřitelných funkcí $\{s_n\}$ tak, že $s_n \nearrow f$. Pak podle Leviho věty platí
+		$$ \int_Y s_n(x, y) d\nu(y) \nearrow \int_Y f(x, y) d\nu(y) \qquad \forall x \in X. $$
+		Protože integrály na levé straně této nerovnosti jsou měřitelnými funkcemi, tak i integrál na pravé je měřitelná funkce na $X$ a další aplikací Leviho věty dostaneme
+		$$ \int_X\(\int_Y s_n(x, y) d\nu(y)\)d\mu(x) \nearrow \int_X \(\int_Y f(x, y) d\nu(y)\) d\mu(x). $$
+
+		Druhá nerovnost v 3. se zase dokáže analogicky.
+
+		Pro $f = f^+ - f^- \in ©L^*(\mu \otimes \nu)$ dané tvrzení plyne z příslušných tvrzení pro $f^+$ a $f^-$ (a z linearity integrálu).
 	\end{dukazin}
 \end{veta}
 
@@ -760,7 +977,13 @@
 	pokud alespoň jedna strana má smysl.
 
 	\begin{dukazin}
-		TODO!!!
+		Snadno ověříme, že množinová funkce $\phi(\mu)$ daná prvním předpisem má všechny vlastnosti míry. Ověření druhé rovnosti je také jednoduché: Nejprve se ověří pro případ, že $f = \chi_B$, kde $B \in ©B$.
+
+		V tomto případě je se pravá strana druhé rovnosti rovná levé:
+		$$ \int_X (\chi_B \circ \psi) d\mu = \int_X \chi_{\psi^{-1}(B)} d\mu = \mu\(\psi^{-1}(B)\) = $$
+		$$ (\psi(\mu))(B) = \int_X \chi_B d\psi(\mu). $$
+		
+		S použitím tohoto výsledku se druhá rovnost ověří pro jednoduché funkce, pak pro nezáporné měřitelné funkce a nakonec se tento výsledek spolu s rovností $f = f^+ - f^-$ použije k ověření rovnosti pro měřitelnou funkci $f$ na $Y$.
 	\end{dukazin}
 \end{veta}
 
@@ -774,7 +997,21 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO!!!
+        % Z live přednášky (nechtělo se mi opisovat)
+		1. $L$ je lineární zobrazení z $®R^n$ do $®R^n$, a tedy $L$ je spojité. $L$ je invertibilní $\implies \exists$inverzní zobrazení $L^{-1}$, které je opět lineární a spojité. Tedy $L$ je měřitelné.
+		$$ (L^{-1}\lambda^n)(A) = \lambda^n(L(A)) = \nu(A), \forall A \in ©B^n $$
+		$\implies$ $nu$ je míra dle předchozí věty.
+
+		Z lineární algebry je známo, že $L$ lze vyjádřit jako kompozici konečně mnoha „elementárních“ lineárních zobrazení jednoho z následujících typů:
+		$$ L_1(x_1, …, x_n) = (\alpha x_1, x_2, …, x_n), \qquad \forall (x_1, …, x_n) \in ®R^n, \text{ kde }\alpha \in ®R\setminus\{0\}, $$
+		$$ L_2(x_1, …, x_n) = (x_1, …, x_j, …, x_i, …, x_n), \qquad \forall (x_1, …, x_n) \in ®R^n, j > i \in ®N, $$
+		$$ L_3(x_1, …, x_n) = (x_1 + x_2, x_2, …, x_n), \qquad \forall (x_1, …, x_n) \in ®R^n, \qquad i, j \in ®N. $$
+
+		Protože determinant součinu matic se rovná součinu determinantů, stačí tvrzení ověřit pro „elementární“ zobrazení. Ověříme na intervalech, $L_1$ ho jen natáhne o $\alpha$, tedy na determinant násobek, $L_2$ „otočí“ interval, ale $\lambda^n$ se otočením nezmění, $L_3$ posune a zdeformuje interval, ale tím se $\lambda^n$ nezmění (dokážeme přes Fubiniovu větu). Všechny 3 zobrazení stejně operují na prázdné množině, takže i na $\pi$ systému $I \cup \{\O\}$, tedy míry se rovnají všude.
+
+		2.
+		$$ (L(\mu))(A) \overset{1.}{=} \mu(L^{-1}(A)) = |\det L| \lambda_{©B}^n(L^{-1}(A)) = |\det L|·|\det L^{-1}| \lambda_{©B}^n(A) = \lambda_{©B}^n(A) \forall A \in ©B^n, $$
+		tedy $L(\mu) = \lambda_{©B}^n$. Z předchozí věty pak plyne rovnost integrálů.
 	\end{dukazin}
 \end{veta}
 
@@ -825,8 +1062,6 @@
 
 % 9. přednáška
 
-TODO!!! (Důkazy)
-
 % 10. přednáška
 
 \begin{lemma}[O míře s hustotou $f$]
@@ -836,7 +1071,18 @@ TODO!!! (Důkazy)
 	$$ \int_X g d\nu = \int_X g f d\mu. $$
 
 	\begin{dukazin}
-		TODO!!!
+		Je jasné, že $\nu ≥ 0$. Dále
+		$$ \nu(\O) = \int_{\O} f d\mu = \int_X f·\chi_{\O} d\mu = \int_X 0 d\mu = 0. $$
+		Je-li $A := \bigcup_{j=1}^∞ A_j$, kde $A_j \in ©A$, $A_j \cap A_i = \O$ pro $i ≠ j$, pak
+		$$ \nu(A) = \int_A f d\mu = \int_X f·\chi_A d\mu = \int_X f\(\sum_{j=1}^∞ \chi_{A_j}\) d\mu = $$
+		$$ = \sum_{j=1}^∞ \int_X f \chi_{A_j} d\mu = \sum_{j=1}^∞ \int_{A_j} f d\mu = \sum_{j=1}^∞ \nu(A_j). $$
+		Tedy $\nu$ je míra na ©A.
+
+		K důkazu rovnosti: Je-li $g := \chi_E$, kde $E \in ©A$, pak
+		$$ \int_X g d\nu = \int_X \chi_E d\nu = \nu(E) = \int_E f d\mu = \int_X \chi_E f d\mu = \int_X g f d\mu, $$
+		tj. rovnost platí. Z toho a linearity integrálu plyne, že rovnost platí v případě, že $g$ je jednoduchá nezáporná měřitelná funkce na $X$.
+
+		Nakonec je-li $g: (X, ©A) \rightarrow \<0, +∞\>$ měřitelná funkce, pak existují nezáporné jednoduché měřitelné funkce $g_n$ splňující $g_n \nearrow g$. Odtud z předchozího a Leviho věty pak plyne rovnost i pro $g$.
 	\end{dukazin}
 \end{lemma}
 
@@ -845,7 +1091,24 @@ TODO!!! (Důkazy)
 	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall A \in ©A: \mu(A) < \delta \implies \nu(A) < \epsilon. $$
 
 	\begin{dukazin}
-		TODO!!!
+		„$\Leftarrow$“: Buď $A \in ©A$, $\mu(A) = 0$. Pak volbou $\epsilon = \frac{1}{k}, k \in ®N$, ze znění dostaneme
+		$$ \forall k \in ®N\ \exists \delta_k > 0\ \forall A \in ©A, \mu(A) < \frac{1}{k}: \nu(A) < \frac{1}{k}. $$
+		Protože $\mu(A) = 0 < \delta_k\ \forall k \in ®N$, tak $\nu(A) < \frac{1}{k}\ \forall k \in ®N$, tj. $\nu(A) = 0$.
+
+		„$\implies$“: Nechť $\nu \ll \mu$ a předpokládejme, že podmínka ze znění neplatí, tj.
+		$$ \exists \epsilon > 0\ \forall \delta > 0\ \exists A \in ©A: \mu(A) < \delta \land \nu(A) ≥ \epsilon. $$
+		Volme $\delta = \frac{1}{2^n}, n \in ®N$. Tedy dle předchozího platí
+		$$ \exists A_n \in ©A, \mu(A_n) < \frac{1}{2^n} \land \nu(A_n) ≥ \epsilon\ \forall n \in ®N. $$
+		Položme $B_k := \bigcup_{n=k+1}^∞ A_n, k \in ®N$. Pak
+		$$ B_1 \supset B_2 \supset …, \mu(B_1) ≤ \mu(X) < +∞, \nu(B_1) ≤ \nu(X) < +∞, $$
+		a tedy
+		$$ \mu\(\bigcap_{k=1}^∞ B_k\) = \lim_{k \rightarrow ∞} \mu(B_k), $$
+		$$ \nu\(\bigcap_{k=1}^∞ B_k\) = \lim_{k \rightarrow ∞} \nu(B_k). $$
+		Protože
+		$$ \mu(B_k) = \mu\(\bigcup_{n = k + 1}^∞ A_n\) ≤ \sum_{n = k + 1}^∞ \frac{1}{2^n} = \frac{1}{2^{k+1}}·\frac{1}{1 - \frac{1}{2}} = \frac{1}{2^k}, $$
+		tj. $\mu(B_k) ≤ \frac{1}{2^k}$, tak $\lim_{k \rightarrow ∞} \mu(B_k) = 0$.
+
+		Dále platí $\nu(B_k) = \nu\(\bigcup_{n=k+1}^∞ A_n\) ≥ \nu(A_{k+1}) ≥ \epsilon\ \forall k \in ®N$, a tedy $\lim_{k \rightarrow ∞} \nu(B_k) ≥ \epsilon$. Tedy pro $B := \bigcap_{k=1}^∞ B_k$ dle předchozích výsledků důkazu máme $\mu(B) = 0 \land \nu(B) ≥ \epsilon$, což je spor, neboť $\nu \ll \mu$. Tedy podmínka z věty platí.
 	\end{dukazin}
 \end{veta}
 
@@ -855,7 +1118,24 @@ TODO!!! (Důkazy)
 
 	\begin{dukazin}
 		% Z 11. přednášky
-		TODO!!!
+		Nejprve předpokládejme, že $\mu$, $\nu$ jsou konečné míry na $(X, ©A)$ a $\nu \ll \mu$. Dle následujícího lemmatu aplikovaného na míry $\nu$, $\nu + \mu$, splňující $\nu ≤ \mu + \nu$, existuje měřitelná funkce $h$ na $X$, $0 ≤ h ≤ 1$ $(\mu + \nu)$-skoro všude tak, že
+		$$ \nu(A) = \int_A h d(\mu + \nu) = \int_A h d\mu + \int_A h d\nu \qquad \forall A \in ©A \implies $$
+		$$ \implies \nu(\{h = 1\}) = \int_{\{h=1\}} h d(\mu + \nu) = \mu(\{h = 1\}) + \nu(\{h = 1\}), $$
+		a tedy $\mu(\{h = 1\}) = 0$. Protože $\nu \ll \mu$, tak také $\nu(\{h = 1\}) = 0$. Proto $h < 1$ $(\mu + \nu)$-skoro všude.
+
+		Rovnost výše lze psát ve tvaru
+		$$ \int_X \chi_A d\nu = \int_X \chi_A h d\mu + \int_X \chi_A h d\nu, $$
+		tj.
+		$$ \int_X \chi_A (1 - h) d\nu = \int_X \chi_A h d\mu \qquad \forall A \in ©A. $$
+		Odtud a z linearity integrálu pak plyne, že platí $\int_X g (1 - h) d\nu = \int_X g h d\mu$ pro všechny nezáporné jednoduché $\mu$-měřitelné funkce $g$ na $X$. Pomocí Leviho věty lze ukázat, že tato rovnost platí pro každou nezápornou $\mu$-měřitelnou funkci $g$ na $X$. Volbou $g := \frac{1}{1 - h} \chi_A$, kde $A \in ©A$, pak dostaneme
+		$$ \int_X \chi_A d\nu = \int_X \frac{h}{1 - h} \chi_A d\mu \implies \nu(A) = \int_A f d\mu\ \forall A \in ©A, $$
+		kde $f := \frac{h}{1 - h}$ je hledaná hustota $\frac{d\nu}{d\mu}$.
+
+		Jsou-li $\mu, \nu$ $\sigma$-konečné míry, pak nalezneme posloupnosti $\{E_i\}, \{F_j\} \subset ©A$ po dvou disjunktních množin tak, aby $\mu(E_i) < +∞\ \forall i \in ®N$, $\nu(F_j) < +∞\ \forall j \in ®N$, $\bigcup_{i=1}^∞ E_i = X = \bigcup_{j=1}^∞ F_j$.
+
+		Položíme-li $D_{ij} := E_i \cap F_j, i, j \in ®N$, pak $X = \bigcup_{i,j=1}^∞ D_{ij}$ a pro konečné míry $\nu|_{D_{ij}}$, $\mu|_{D_{ij}}$ (tj. restrikce daných měr $\nu$, $\mu$ na $D_{ij}$) splňující $\nu|_{D_{ij}} \ll \mu|_{D_{ij}}$ určíme příslušnou hustotu $f_{ij} = \frac{d\nu|_{D_{ij}}}{d\mu|_{D_{ij}}}$. Hledaná hustota $f = \frac{d\nu}{d\mu}$ je pak definovaná takto:
+
+		Je-li $x \in X$, pak $\exists!i \in ®N$, $\exists!j \in ®N$ tak, že $x \in D_{ij}$ a položíme $f(x) = f_{ij}(x)$.
 	\end{dukazin}
 \end{veta}
 
@@ -864,7 +1144,28 @@ TODO!!! (Důkazy)
 	$$ \nu(A) = \int_A f d\mu \qquad \forall A \in ©A. $$
 
 	\begin{dukazin}
-		TODO!!!
+        % Z live přednášky (nechtělo se mi opisovat)
+		Definujeme funkcionál $Jg := \int_X g^2 d\mu - 2\int_X g d\nu$, $\forall g \in ©L^2(\mu)$.
+		Definice $J$ je korektní, protože konvergence v $L^2$ je silnější než konvergence v $L^1$ (nebo z Hölderovy nerovnosti), tedy oba integrály jsou pro $g \in L^2$ konečné. Dále definujeme $c := \inf_{g \in L^2(\mu)} Jg$.
+		$$ Jg = \int_X g^2 d\mu - 2 \int_X g d\nu ≥ \int_X g^2 d\mu - 2\int_X |g| d\mu = $$
+		$$ = \int_X(|g| - 1)^2 d\mu - \mu(X) ≥ -\mu(X) > -∞, \forall g \in L^2(\mu). $$
+
+		Předpokládejme, že $\exists f\: c = Jf$. Buď $A \in ©A$ pevná množina, definujeme $g(t) := J(f + t\chi_A)$, $\forall t \in ®R$. Tedy $g$ má minimum v bodě $0$. Tudíž $g'(0) = 0$, pokud $g'$ existuje. Ověříme výpočtem z definice existenci a dosadíme 0:
+		$$ g'(0) = \lim_{t \rightarrow 0} \frac{g(t) - g(0)}{t} = \lim_{t \rightarrow 0} \frac{J(f + t\chi_A) - J(f)}{t} = $$
+		$$ = \lim_{t \rightarrow 0} \frac{1}{t}\[\int_X (f + t\chi_A)^2 d\mu - 2\int_X(f + t\chi_A) d\nu - \int_X f^2 d\mu + 2\int_X fd\nu\] = $$
+		$$ \lim_{t \rightarrow 0} \[\int_X 2f \chi_A d\mu + t\int_X \chi_A d\mu - 2 \int_X \chi_A d\nu\] = 2\[\int_X f \chi_A d\mu - \int_X \chi_A d\nu\] = 0 $$
+		Tedy $\forall A \in ©A: \nu(A) = \int_A f d\mu$.
+
+		$$ 0 ≤ \int_{\{f > 1\}}(f - 1)^+ d\mu = \int_{\{f > 1\}} (f - 1) d\mu = \int_{\{f > 1\}} d\mu - \int_{\{f > 1\}} 1d\mu = $$
+		$$ = \nu(\{f > 1\}) - \mu(\{f > 1\}) ≤ 0 \implies f ≤ 1 \mu\text{-skoro všude} $$
+		$$ 0 ≤ \int_{\{f < 0\}} f^- d\mu = - \int_{\{f < 0\}} f d\mu = - nu(\{f < 0\}) ≤ 0 \implies f ≥ 0 \mu\text{-skoro všude} $$
+
+		$$ J(g) + J(h) - J\(\frac{g + h}{2}\) = \int_X \frac{g^2 - 2gh + h^2}{2} d\mu = \frac{1}{2} \int_X (g - h)^2 d\mu = \frac{1}{2} ||g - h||_{L^2(\mu)}^2. $$
+		$\exists \{f_n\} \subset L^2(\mu)$. $J(f_n) \rightarrow c$ pro $n \rightarrow ∞$. $g = f_n$, $h = f_m$:
+		$$ J(f_n) + J(f_m) - 2J\(\frac{f_n + f_m}{2}\) = \frac{1}{2} ||f_n - f_m||_{L^2(\mu)}^2, \forall n, m \in ®N $$
+		$$ ≤ J(f_n) + J(f_n) - 2c \rightarrow 0 \implies \exists f \in L^2(\mu): f_n \rightarrow f \in L^2(\mu). $$
+		$$ \int_X |f_n - f|d\nu ≤ \int_X |f_n - f| d\mu ≤ \(\int_X |f_n - f|^2\)^{\frac{1}{2}}·(\mu(X))^{\frac{1}{2}} \rightarrow 0 \implies $$
+		$$ \implies ||f_n - f||_{L^2(M)} \rightarrow 0 \implies J(f_n) \rightarrow J(f). $$
 	\end{dukazin}
 \end{lemma}
 
@@ -873,8 +1174,75 @@ TODO!!! (Důkazy)
 \begin{veta}[Lebesgueův rozklad míry]
 	Buď $\mu$ míra na $(X, d)$ a $\nu$ $\sigma$-konečná míra na $(X, ©A)$. Pak existuje rozklad $\nu = \nu_a + \nu_s$ na $\sigma$-konečné míry $\nu_a$ a $\nu_s$ takový, že $\nu_a \ll \mu$, $\nu_s \perp \mu$, přičemž míry $\nu_a$ a $\nu_s$ jsou určeny jednoznačně.
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[Konečná míra, existence rozkladu]
+		Předpokládejme nejprve, že $\nu$ je konečná míra. Nejprve se zabývejme existencí rozkladu:
+
+		Buď $©N_\mu := \{B \in ©A, \mu(B) = 0\}$. Pak
+		$$ c := \sup \{\nu(B) | B \in ©N_\mu\} ≤ \nu(X) < +∞. $$
+		Nechť $\{B_j\}_j \subset ©N_\mu$ je taková posloupnost, že $\lim_{j \rightarrow ∞} \nu(B_j) = c$. Označíme-li $N := \bigcup_{j=1}^∞ B_j$, pak $\mu(N) ≤ \sum_j \mu(B_j) = 0$, a tedy $\mu(N) = 0$, tj. $N \in ©N_\mu$.
+
+		Dále platí
+		$$ c ≥ \nu(N) = \nu(\bigcup_j B_j) ≥ \nu(i) \qquad \forall i \in ®N \implies \nu(N) = c. $$
+
+		Definujeme
+		$$ \nu_s(A) := \nu(A \cap N) \qquad \forall A \in ©A. $$
+		Pak
+		$$ \nu_s(X \setminus N) = \nu((X \setminus N) \cap N) = \nu(\O) = 0. $$
+		Odtud a z $\mu(N) = 0$ plyne $\nu_s \perp \mu$. Následně definujeme $\nu_a := \nu - \nu_s$. Tedy
+		$$ \nu_a(A) = \nu(A) - \nu_s(A) = \nu(A) - \nu(A \cap N) = \nu(A \setminus N) = \nu(A \cap N^c), $$
+		tj.
+		$$ \nu_a(A) = \nu(A \cap N^c) \qquad \forall A \in ©A. $$
+		Dokažme, že $\nu_a \ll \mu$: Nechť $\mu(a) = 0$. Pak
+		$$ N \cup (A \cap N^c) \in ©N_\mu, $$
+		a kdyby $\nu(A \cap N^c) > 0$, pak by
+		$$ \nu(N \cup (A \cap N^c)) = \nu(N) + \nu(A \cap N^c) > c, $$
+		což je spor s definicí čísla $c$. Tedy $\nu(A \cap N^c) = 0$, tj. $\nu_a(A) = 0$, tudíž $\nu_a \ll \mu$.
+	\end{dukazin}
+
+	\begin{dukazin}[Konečná míra, jednoznačnost rozkladu]
+		Nechť
+		$$ \nu = \nu_a + \nu_s \land \nu = \tilde \nu_a + \tilde \nu_s, $$
+		$$ \nu_s \perp \mu \land \tilde \nu_s \perp \mu \land \nu_a \ll \mu \land \tilde \nu_a \ll \mu. $$
+		Ze singularit měr plyne
+		$$ \exists N \in ©A: \mu(N) = 0 \land \nu_s(N^c) = 0, $$
+		$$ \exists \tilde N \in ©A: \mu(\tilde N) = 0 \land \tilde \nu_s(\tilde N^c) = 0. $$
+		Buď $N_0 := N \cup \tilde N$. Pak $\mu(N_0) ≤ \mu(N) + \mu(\tilde N) = 0$, a tedy $\mu(N_0) = 0$, odkud plyne $\nu_a(N_0) = 0 \land \tilde \nu_a(N_0) = 0$.
+
+		Dále platí
+		$$ \nu_s(N_0^c) = \nu_s (X \setminus N_0) ≤ \nu_s(N^c) = 0, $$
+		$$ \tilde \nu_s(N_0^c) = \tilde \nu_s (X \setminus N_0) ≤ \tilde \nu_s(\tilde N^c) = 0, $$
+		tj. $\nu_s(N_0^c) = 0 \land \tilde \nu_s(N_0^c) = 0$. Tedy $\forall A \in ©A$ platí
+		$$ \nu_s(A) = \nu_s(A \cap N_0) = \nu(A \cap N_0) - \nu_a(A \cap N_0) = \nu(A \cap N_0) $$
+		a analogicky
+		$$ \tilde \nu_s(A) = \tilde \nu_s(A \cap N_0) = \nu(A \cap N_0) - \tilde \nu_a(A \cap N_0) = \nu(A \cap N_0), $$
+		odkud dostáváme $\nu_s = \tilde \nu_s$, což spolu s tím, že je to rozklad dává $\nu_a = \tilde \nu_a$.
+	\end{dukazin}
+
+	\begin{dukazin}[Sigma-konečná míra]
+		Předpokládejme nyní, že $\nu$ je $\sigma$-konečná míra. Pak existuje posloupnost $\{D_k\}_{k \in ®N} \subset ©A$ po dvou disjunktních množin tak, že $X = \bigcup_k D_k$. Označme $A_k := \{A \cap D_k | A \in ©A\}$ a aplikujeme stejný postup jako pro konečnou míru na měřitelné prostory $(D_k, ©A_k)$ a restrikce měr $\mu$, $\nu$ na $©A_k$, $k \in ®N$.
+
+		Nechť $N_1, N_2, …$ jsou $\mu$-nulové množiny zkonstruovatelné jako množina $N$ v části $I$ a nechť $N = \bigcup_{k=1}^∞ N_k$. Pak míry $\nu_s$, $\nu_a$ definované předpisem
+		$$ \nu_s(A) := \nu(A \cap N), \qquad \nu_a(A) = \nu(A \cap N^c) \qquad \forall A \in ©A $$
+		tvoří Lebesgueův rozklad míry $\nu$, neboť
+		$$ \mu(N) = \mu(\bigcup_k N_k) = \sum_k \mu(N_k) = 0, $$
+		$$ \nu_s(X \setminus N) = \nu((X \setminus N) \cap N) = \nu(\O) = 0, $$
+		a tedy $\nu_s \perp \mu$.
+
+		Je-li $\mu(A) = 0$ a označíme-li $A_k = A \cap D_k$, $k \in ®N$, pak $\mu(A_k) = 0$, a tedy
+		$$ (\nu|_{D_k})_a(A_k) = 0 \qquad \forall k \in ®N \qquad (\text{neboť } (\nu_{D_k})_a \ll \mu|_{D_k}). $$
+		Dále platí
+		$$ \nu_a(A) = \nu(A \cap N^c) = \sum_k \nu(A \cap D_k \cap N^c), $$
+		a protože
+		$$ D_k \cap N^c = D_k \cap (X \setminus N) = D_k \cap (X \setminus \bigcup_j N_j) = D_k \cap \bigcup_j (X \setminus N_j) \subset D_k \cap (X \setminus N_k) = D_k \setminus N_k, $$
+		tak
+		$$ \nu_a(A) ≤ \sum_k \nu(A \cap D_k \cap (D_k \setminus N_k)) = \sum_k \nu(A_k \cap (D_k \setminus N_k)) = \sum_k (\nu|_{D_k})(A_k \cap (D_k \setminus N_k)) = $$
+		$$ = \sum_k(\nu|_{D_k})_a(A_k) = 0, $$
+		a tedy $\nu_a \ll \mu$.
+
+		Jednoznačnost rozkladu $\nu = \nu_a + \nu_s$ plyne z faktů, že $\forall A \in ©A$ platí
+		$$ \nu(A) = \sum_k \nu|_{D_k} (A \cap D_k), \qquad \nu_s(A) = \sum_k(\nu|_{D_k})_s (A \cap D_k), $$
+		$$ \nu_a(A) = \sum_k (\nu|_{D_k})_a (A \cap D_k \setminus N_k) $$
+		a „lokální rozklady“ $\nu|_{D_k} = (\nu|_{D_k})_s + (\nu|_{D_k})_a$, $k \in N$, jsou určeny jednoznačně.
 	\end{dukazin}
 \end{veta}
 
@@ -890,7 +1258,20 @@ TODO!!! (Důkazy)
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO!!!
+		První bod je jednoduchý: Je-li $x, y \in ®R$, $x < y$, pak
+		$$ F_\mu(x) = \mu(\(-∞, x\>) ≤ \mu(\(-∞, y\>) = F_\mu(y). $$
+
+		Druhý bod: Obě uvedené limity existují, neboť dle prvního bodu je funkce $F_\mu$ neklesající. Tedy
+		$$ F_{\mu}(-∞) = \lim_{n \rightarrow ∞} F_{\mu}(-n) = \lim_{n \rightarrow ∞} \mu(\(-∞, -n\>) = $$
+		$$ = \mu\(\bigcap_{n=1}^∞ \(-∞, -n\>\) = \mu(\O) = 0. $$
+
+		Analogicky dostaneme
+		$$ F_{\mu}(+∞) = \lim_{n \rightarrow ∞} F_{\mu}(n) = \lim_{n \rightarrow ∞} \mu(\(-∞, n\>) = $$
+		$$ = \mu\(\bigcap_{n=1}^∞ \(∞, n\>\) = \mu(®R) < +∞. $$
+
+		Třetí bod je také jednoduchý: Je-li $x \in ®R$, pak $\(-∞, x\> = \bigcap_{n=1}^∞ \(-∞, x + \frac{1}{n}\>$, a tedy
+		$$ F_\mu(x+) = \lim_{n \rightarrow ∞} F_\mu\(x + \frac{1}{n}\) = \lim_{n \rightarrow ∞} \mu\(\(-∞, x + \frac{1}{n}\>\) = $$
+		$$ = \mu\(\bigcap_{n=1}^∞ \(-∞, x + \frac{1}{n}\>\) = \mu(\(-∞, x\>) = F_\mu(x). $$
 	\end{dukazin}
 \end{lemma}
 
@@ -915,7 +1296,14 @@ TODO!!! (Důkazy)
 	$$ F(b)G(b) - F(a)G(a) = \int_{\(a, b\>} F(x) dG(x) + \int_{\(a, b\>} G(x) dF(x). $$
 
 	\begin{dukazin}
-		TODO!!!
+		Nechť $\Omega := \{[x, y] \in ®R^n | a < x ≤ y ≤ b\}$. Použitím Fubiniovy věty k výpočtu $(\mu_F \otimes \mu_G)(\Omega)$ obdržíme
+		$$ (\mu_F \otimes \mu_G)(\Omega) = \int_{\(a, b\>} \(\int_{\<x, b\>} d G(y)\)d F(x) = \int_{\(a, b\>} (G(b) - G(x-)) d F(x) = $$
+		$$ = G(b)(F(b) - F(a)) - \int_{\(a, b\>} G(x-) dF(x), $$
+		$$ (\mu_F \otimes \mu_G)(\Omega) = \int_{\(a, b\>} \(\int_{\(, y\>} d F(x)\) d G(y) = \int_{\(a, b\>} (F(y) - F(a))d G(y) = $$
+		$$ = \int_{\(a, b\>} F(y) d G(y) - F(a)(G(b) - G(a)). $$
+
+		Odečteme-li předchozí od sebe, dostaneme
+		$$ 0 = G(b)F(b) - G(b)F(a) - \int_{\(a, b\>} G(x-) d F(x) - \int_{\(a, b\>} F(y) d G(y) + F(a)G(b) - F(a)G(a). $$
 	\end{dukazin}
 \end{veta}
 
@@ -962,7 +1350,21 @@ TODO!!! (Důkazy)
 	Jestliže $(X, ©A, \mu)$ je prostor s mírou a $f_n \overset{\mu}\rightarrow f$, pak existuje vybraná podposloupnost $\{f_{n_k}\}_{k \in ®N}$ tak, že $f_{n_k} \rightarrow f$ $\mu$-skoro všude.
 
 	\begin{dukazin}
-		TODO!!!
+		Protože
+		$$ \lim_{n \rightarrow ∞} \mu(\{x \in X\ |\ |f_n(x) - f(x)| ≥ \epsilon\}) = 0 \qquad \forall \epsilon > 0, $$
+		tak lze konstruovat posloupnost čísel $\{n_k\}_{k \in ®N}$ tak, že
+		$$ \mu\(\{x \in X\ |\ |f_{n_1}(x) - f(x)| ≥ 1\}\) ≤ \frac{1}{2} $$
+		a zbývající členy posloupnosti $\{n_k\}$ určit induktivně tak, aby $n_k > n_{k-1}$ a
+		$$ \mu(\{x \in X\ |\ |f_{n_k}(x) - f(x)|≥ \frac{1}{k}\}) ≤ \frac{1}{2^k}, \qquad k \in ®N \setminus \{1\}. $$
+
+		Definujeme množiny $A_k$, $k \in ®N$, předpisem
+		$$ A_k := \{x \in X\ |\ |f_{n_k}(x) - f(x)|≥ \frac{1}{k}\} $$
+		a $A := \bigcap_{j=1}^∞ \bigcup_{k ≥ j} A_k$. Jestliže $x \notin A$, pak $\exists j \in ®N$ tak, že $x \notin \bigcup_{k ≥ j}A_k$, tedy
+		$$ |f_{n_k}(x) - f(x)| < \frac{1}{k} \qquad \forall k \in \{j, j+1, …\}, $$
+		tudíž $\{f_{n_k}\}_k$ konverguje k $f$ pro všechna $x \notin A$.
+
+		Protože $\forall j \in ®N$ platí
+		$$ \mu(A) ≤ \mu\(\bigcup_{k ≥ j} A_k\) ≤ \sum_{k=j}^∞ \mu(A_k) ≤ \sum_{k=j}^∞ \frac{1}{2^k} = \frac{1}{2^j}·\frac{1}{1 - \frac{1}{2}} = \frac{1}{2^{j + 1}} \implies \mu(A) = 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -979,7 +1381,13 @@ TODO!!! (Důkazy)
 	Jestliže $(X, ©A, \mu)$ je prostor s konečnou mírou a $f_n \rightarrow f$ $\mu$-skoro všude, pak $f_n \overset{\mu} \rightarrow f$.
 
 	\begin{dukazin}
-		TODO!!!
+		Máme dokázat, že $\forall \epsilon > 0$ platí
+		$$ \lim_{n \rightarrow ∞} \mu(\{x \in X\ |\ |f_n(x) - f(x)| ≥ \epsilon\}) = 0. $$
+		Buď $\epsilon > 0$. Definujeme množiny $A_n$, $B_n$, $n \in ®N$, předpisem
+		$$ A_n := \{x \in X\ |\ |f_n(x) - f(x)| ≥ \epsilon\}, \qquad B_n := \bigcup_{k=n}^∞ A_k. $$
+		Pak $B_1 \supset B_2 \supset …$ a platí
+		$$ \bigcap_{n \in ®N} B_n \subset \{x \in X | f_n(x) \nrightarrow f(x)\}. $$
+		Tedy $\mu\(\bigcap_{n \in ®N} B_n\) = 0$ dle předpokladu, což spolu s větou o vlastnostech míry dává $\lim_{n \rightarrow ∞} \mu(B_n) = 0$. Protože $A_n \subset B_n$, tak $\lim_{n \rightarrow ∞} \mu(A_n) = 0$.
 	\end{dukazin}
 \end{veta}
 
@@ -988,7 +1396,15 @@ TODO!!! (Důkazy)
 	$$ \exists B \in ©A, \mu(B^c) < \epsilon: f_n \rightrightarrows f \text{ na $B$}. $$
 
 	\begin{dukazin}
-		TODO!!!
+		Buď $\epsilon > 0$. Položme
+		$$ g_n := \sup_{j ≥ n} |f_j - f| \qquad \forall n \in ®N. $$
+		Pak $g_n \rightarrow 0$ $\mu$-skoro všude (neboť $f_n \rightarrow f$ $\mu$-skoro všude), a tedy dle předpředchozí věty $g_n \overset{\mu}\rightarrow 0$. Proto
+		$$ \forall k \in ®N\ \exists n_k \in ®N: \mu(\{x \in X | g_{n_k}(x) ≥ \frac{1}{k}\}) < \frac{\epsilon}{2^k}. $$
+		Definujeme množiny $B_1, B_2, …$ předpisem
+		$$ B_k := \{x \in X | g_{n_k}(x) < \frac{1}{k}\} $$
+		a nechť $B := \bigcap_{k \in ®N} B_k$. Pak $\mu(B^c) = \mu\(\bigcup_{k \in ®N} B_k^c\) ≤ \sum_{k \in ®N} \mu(B_k^c) < \sum_{k \in ®N} \frac{\epsilon}{2^k} = \epsilon$. Buď $\delta > 0$ a $k \in ®N$ takové číslo, že $\delta > \frac{1}{k}$. Pak
+		$$ \forall x \in B\ \forall n \in ®N, n ≥ n_k: |f_n(x) - f(x)| ≤ g_{n_k}(x) < \frac{1}{k} < \delta, $$
+		a tedy $f_n \rightrightarrows f$ na $B$.
 	\end{dukazin}
 \end{veta}
 
