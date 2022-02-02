@@ -25,7 +25,7 @@
 	Nechť $X$ je vektorový prostor nad ®K. Funkci $||·||: X \rightarrow [0, ∞)$ nazveme normou na $X$, pokud
 	$$ || x || = 0 \Leftrightarrow x = ¦o, $$
 	$$ || x + y || ≤ || x || + || y ||, $$ 
-	$$ || \alpha·x || = | \alpha | · || x | |. $$ 
+	$$ || \alpha·x || = | \alpha | · || x ||. $$ 
 \end{definice}
 
 \begin{tvrzeni}
@@ -311,7 +311,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{tvrzeni}
 
 \begin{veta}
-	Nechť $\{x_n\}$ je posloupnost v Banachově (pro normovaný lineární prostor je důkaz složitější) prostoru $X$. Pak následující tvrzení jsou konvergentní:
+	Nechť $\{x_n\}$ je posloupnost v Banachově (pro normovaný lineární prostor je důkaz složitější) prostoru $X$. Pak následující tvrzení jsou ekvivalentní:
 	
 	\begin{enumerate}
 		\item $\sum_{n \in ®N} x_n$ konverguje (říkáme $\sum_{n=1}^∞ x_n$ konverguje bezpodmínečně).
@@ -396,8 +396,8 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \begin{poznamka}[Fakt]
 	Nechť $X, Y$ jsou normované lineární prostory a $\{T_n\} \subset ©L(X, Y)$ je posloupnost operátorů konvergující k $T \in ©L(X, Y)$ v prostoru $©L(X, Y)$. Pak $\{T_n\}$ konverguje k $T$ bodově, tj. pro každé $x \in X$ platí $T_n(x) \rightarrow T(x)$ v prostoru $Y$.
 
-	\begin{dukazin}
-		TODO?
+	\begin{dukazin}[Ze skript]
+		$$ ||T_n(x) - T(x)|| = ||(T_n - T)(x)|| ≤ ||T_n - T||·||x|| \rightarrow 0. $$
 	\end{dukazin}
 \end{poznamka}
 
@@ -405,15 +405,26 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X, Y, Z$ jsou normované lineární prostory, $S \in ©L(X, Y)$ a $T \in ©L(Y, Z)$. Pak $||T \circ S|| ≤ ||T||·||S||$.
 
 	\begin{dukazin}
-		TODO??? (Navíc je jednoduchý.)
+		Jednoduchý.
 	\end{dukazin}
 \end{poznamka}
 
 \begin{veta}
 	Nechť $X$ je normovaný lineární prostor a $Y$ je Banachův. Pak $©L(X, Y)$ je Banachův prostor.
 
-	\begin{dukazin}
-		TODO
+	\begin{dukazin}[Ze skript]
+		Mějme libovolnou cauchyovskou posloupnost $\{T_n\}$ v $©L(X, Y)$. Pro libovolné pevné $x \in X$ platí
+		$$ ||T_n(x) - T_m(x)|| = ||(T_n - T_m)(x)||·||x|| \qquad \forall m, n \in ®N. $$
+		Tedy posloupnost $\{T_n(x)\}$ je cauchyovská v $Y$ a protože $Y$ je úplný, existuje limita $\lim_{n \rightarrow ∞} T_n(x)$, kterou označíme $T(x)$. Nyní stačí dokázat, že je $T$ lineární. Linearita plyne ze spojitosti součtu a násobení.
+
+		Navíc pro $x \in B_X$ platí
+		$$ ||T(x)|| = \lim_{n \rightarrow ∞} ||T_n(x)|| ≤ \(\sup_{n \in ®N} ||T_n||\)||x|| ≤ \sup_{n \in ®N}||T_n||. $$
+		Jelikož $\{T_n\}$ je cauchyovská, tak je zřejmě i $\{||T_n||\}$ cauchyovská, tudíž omezená, tedy $||T(x)||$ je konečné, tedy $T \in ©L(X, Y)$.
+
+		Nakonec je potřeba dokázat $T_n \rightarrow T$ v $©L(X, Y)$. Pro $\epsilon > 0$ zvolme $n_0 \in ®N$ takové, že $||T_n - T_m|| ≤ \epsilon$ pro každé $n, m ≥ n_0$. Pak pro $x \in B_X$ a pevné $n ≥ n_0$ máme
+		$$ ||T_n(x) - T(x)|| = \lim_{m \rightarrow ∞} ||T_n(x) - T_m(x)|| ≤ $$
+		$$ ≤ \sup_{m ≥ n_0} ||T_n(x) - T_m(x)|| ≤ \sup_{m ≥ n_0} ||T_n - T_m||·||x|| ≤ \epsilon. $$
+		Tedy $||T_n - T|| ≤ \epsilon$ pro libovolné $n ≥ n_0$. Proto $T_n \rightarrow T$.
 	\end{dukazin}
 \end{veta}
 
@@ -453,8 +464,14 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		\item Je-li $X$ Banachův a $T \in ©L(X, Y)$ je izomorfismus do, pak $\Rang T$ je uzavřený v $Y$.
 	\end{enumerate}
 
-	\begin{dukazin}
-		TODO
+	\begin{dukazin}[Ze skript]
+		1. $\implies$ Máme $||T(x)|| ≤ ||T||·||x||$ pro každé $x \in X$. Dále $T^{-1}: \Rng T \rightarrow X$ je spojité, platí tedy pro každé $y \in \Rng T$ nerovnost $||T^{-1}(y)|| ≤ ||T^{-1}||·||y||$. Tudíž $||x|| = ||T^{-1}(T(x))|| ≤ ||T^{-1}||T(x)||$ pro každé $x \in X$. Bez újmy na obecnosti můžeme předpokládat, že $X ≠ \{¦o\}$ a tedy $||T^{-1}|| > 0$. Požadovaná nerovnost tak platí s konstantami $C_1 = \frac{1}{||T^{-1}||}$ a $C_2 = ||T||$.
+
+		$\Leftarrow$ Splňují-li kladné konstanty $C_1, C_2$ požadované nerovnosti, je $T$ spojité a prosté: Je-li $T(x) = 0$, pak $||x|| ≤ \frac{1}{C_1}||T(x)|| = 0$, tedy $\Ker T = \{0\}$. Existuje tedy inverzní operátor $T^{-1}: \Rng T \rightarrow X$, který je lineární. Pro libovolné $y \in \Rng T$ máme $||T^{-1}(y)|| ≤ \frac{1}{C_1}||T(T^{-1}(y))|| = \frac{1}{C_1}||y||$. Tedy $T^{-1}$ je navíc spojité.
+
+		2. Vezmeme libovolnou cauchyovskou posloupnost $\{y_n\}$ v $Y$. Díky odhadu $||T^{-1}(y_n) - T^{-1}(y_m)|| ≤ ||T^{-1}||·||y_n - y_m||$ pro každé $m, n \in ®N$ je cauchyovská i posloupnost $\{T^{-1}(y_n)\}$. Vzhledem k tomu, že $X$ je úplný, konverguje $\{T^{-1}(y_n)\}$ k nějakému $x \in X$. Pak ovšem ze spojitosti operátoru $T$ plyne $y_n = T(T^{-1}y_n) \rightarrow T(x)$, tedy i $\{y_n\}$ je konvergentní. Proto je $Y$ úplný.
+
+		3. Podle 2. je $\Rng T$ Banachův prostor. Tedy je uzavřený v $Y$ dle tvrzení výše.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -470,7 +487,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X$, $\hat{X}$ a $Y$ jsou normované lineární prostory, $X$ je hustý v $\hat{X}$ a $Y$ je úplný. Nechť dále $T \in ©L(X, Y)$. Pak existuje právě jeden operátor $\hat{T} \in ©L(\hat{X}, Y)$ rozšiřující $T$, tj. $\hat{T}|_X = T$. Navíc platí $||\hat{T}|| = ||T||$.
 
 	\begin{dukazin}
-		TODO
+		Jednoduchý.
 	\end{dukazin}
 \end{veta}
 
@@ -480,8 +497,10 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \begin{lemma}[O skoro kolmici]
 	Nechť $X$ je normovaný lineární prostor. Je-li $Y$ vlastní uzavřený podprostor $X$, pak pro každé $\epsilon > 0$ existuje $x \in S_X$ takové, že $\dist(x, Y) > 1 - \epsilon$.
 
-	\begin{dukazin}
-		TODO
+	\begin{dukazin}[Ze skript]
+		Nechť $\epsilon > 0$ je dáno. Zvolme $u \in X \setminus Y$ a označme $d = \dist(u, Y)$. Protože $Y$ je uzavřený, je $d > 0$ a můžeme nalézt $\eta > 0$ tak, aby $\frac{d}{d + \eta} > 1 - \epsilon$. Dále existuje $v \in Y$ takové, že $||u - v|| ≤ d + \eta$. Položme $x = \frac{u - v}{||u - v||}$. Pak $x \in S_X$. Je-li $y \in Y$ libovolné, je $v + ||u - v||y \in Y$, a tedy
+		$$ ||x - y|| = \left|\left| \frac{u - v}{||u - v||} - y \right|\right| = \frac{||u - (v + ||u - v||y)||}{||u - v||} ≥ \frac{d}{d + \eta}. $$
+		Dostáváme tak, že $\dist(x, Y) = \inf_{y \in Y}||x - y|| ≥ \frac{d}{d + \eta} > 1 - \epsilon$.
 	\end{dukazin}
 \end{lemma}
 
@@ -498,7 +517,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{enumerate}
 
 	\begin{dukazin}
-		TODO
+		TODO!!!
 	\end{dukazin}
 \end{veta}
 
@@ -726,7 +745,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 % 01. 11. 2021
 
 \begin{veta}
-	$(X, ||·||)$ je NLP. Pak $||x|| = \sqrt{\<x, x\>}$ pro skalární součin $\<·,·\>$ $\Leftrightarrow$ platí:
+	$(X, ||·||)$ je NLP. Pak $||x|| = \sqrt{\<x, x\>}$ pro nějaký skalární součin $\<·,·\>$ $\Leftrightarrow$ platí:
 	$$ \forall x, y \in X: ||x + y||^2 + ||x - y||^2 = 2\(||x||^2 + ||y||^2\). $$
 
 	\begin{dukazin}[Reálný případ, komplexní analogicky]
@@ -759,7 +778,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{veta}
 
 \begin{veta}[Frigyes Riesz, 1934]
-	Nechť $Y$ je uzavřený podprostor Hilbertova prostoru $H$. Pak $H = Y \oplus_t Y^{\perp}$ a projekce $P_y: H \rightarrow Y$ příslušná rozkladu $H = Y \oplus Y^{\perp}$ má následující vlastnosti:
+	Nechť $Y$ je uzavřený podprostor Hilbertova prostoru $H$. Pak $H = Y \oplus_t Y^{\perp}$ a projekce $P_Y: H \rightarrow Y$ příslušná rozkladu $H = Y \oplus Y^{\perp}$ má následující vlastnosti:
 	
 	\begin{itemize}
 		\item $||P_Y(x) - x|| = \dist(x, Y) ≤ ||x||$ pro každé $x \in H$,
@@ -774,7 +793,8 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		Tedy, $H = Y \oplus Y^{\perp}$, a zároveň z důkazu víme, že
 		$$ P_Y(x) = \text{ „jediný prvek $y \in Y$, že $x - y \in Y^\perp$“ } = \text{ „j. p. $y \in Y$, že $||x - y|| = d(x, Y)$“.} $$
 		
-		Tedy $||P_Y(x) - x|| = d(x, y) ≤ ||x||$. Zbývá $||P_y|| ≤ 1$: $||P_y x||^2 = $TODO.
+		Tedy $||P_Y(x) - x|| = d(x, y) ≤ ||x||$. Zbývá $||P_Y|| ≤ 1$: Z Pythagorovy věty je:
+		$$ ||P_Y x||^2 = ||x||^2 - ||x - P_Y x||^2 ≤ ||x||^2. $$
 	\end{dukazin}
 \end{veta}
 
@@ -782,10 +802,10 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $H$ je Hilbertův prostor a $\{x_n\}_{n=1}^∞ \subset H$ je podposloupnost navzájem ortogonálních prvků. Pak řada $\sum_{n=1}^∞ x_n$ konverguje bezpodmínečně, právě když konverguje.
 
 	\begin{dukazin}
-		$\implies$ už víme. $\Leftrightarrow$: Víme $\sum_{n=1}^∞ x_n$ splňuje B-C podmínku. Tedy pro $\epsilon > 0\ \exists n_0 \in ®N$:
+		$\implies$ už víme. $\Leftarrow$: Víme $\sum_{n=1}^∞ x_n$ splňuje B-C podmínku. Tedy pro $\epsilon > 0\ \exists n_0 \in ®N$:
 		$$ \forall m > n ≥ n_0: ||\sum_{k=n+1}^m x_k|| < \epsilon. $$
 		Polož $F = \{1, …, n_0\}$. Zvol $F' \in ©F(®N) : F' \cap F = \O$. Pak
-		$$ ||\sum_{k \in F'} x_k||^2 \overset{\text{Pyt. věta}}{=} = \sum_{k \in F'} ||x_k||^2 ≤ \sum_{k \in \min F'}^{\max F'} ||x_k||^2 = ||\sum_{…}^{…} x_k||^2 < \epsilon. $$
+		$$ ||\sum_{k \in F'} x_k||^2 \overset{\text{Pyt. věta}}{=} \sum_{k \in F'} ||x_k||^2 ≤ \sum_{k \in \min F'}^{\max F'} ||x_k||^2 = ||\sum_{…}^{…} x_k||^2 < \epsilon. $$
 	\end{dukazin}
 \end{veta}
 
@@ -969,8 +989,8 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{itemize}
 
 	\begin{dukazin}[1. bod]
-		1. krok: rozšíříme $f$ o jednu dimenzi, tj. na $Z = Y \oplus \spn(x)$, kde $x \notin Y$. Položme $F(y + tx) := f(y) + t\alpha$, $y \in Y$, $t \in ®R$, kde $\alpha \in ®R$ je vhodně zvolená: Linearita $f$ vyplývá z definice, tedy stačí $f(y) + t\alpha ≤ p(y + t\alpha)$, $y \in Y$, $t \in R$ $\Leftrightarrow$
-		$$ \Leftrightarrow \forall t > 0 : \alpha ≤ \frac{1}{t}(p(y + tx) - f(y)) \land \forall t < 0: \alpha ≥ \frac{1}{2}(p(y+tx) - f(y)), y \in Y \Leftrightarrow $$
+		1. krok: rozšíříme $f$ o jednu dimenzi, tj. na $Z = Y \oplus \spn(x)$, kde $x \notin Y$. Položme $F(y + tx) := f(y) + t\alpha$, $y \in Y$, $t \in ®R$, kde $\alpha \in ®R$ je vhodně zvolená: Linearita $f$ vyplývá z definice, tedy stačí $f(y) + t\alpha ≤ p(y + t)$, $y \in Y$, $t \in R$ $\Leftrightarrow$
+		$$ \Leftrightarrow \forall t > 0 : \alpha ≤ \frac{1}{t}(p(y + tx) - f(y)) \land \forall t < 0: \alpha ≥ \frac{1}{t}(p(y+tx) - f(y)), y \in Y \Leftrightarrow $$
 		$$ \Leftrightarrow \forall t > 0: \alpha ≤ p(\frac{y}{t} + x) - f(\frac{y}{t}) \land \forall t < 0: \alpha ≥ f(\frac{-y}{t}) - p(\frac{-y}{t} - x), y \in Y \Leftrightarrow $$
 		$$ \Leftrightarrow \forall y \in Y: \alpha \in \[f(y) - p(y - x), p(y + x) - f(y)\] \Leftrightarrow $$
 		$$ \Leftrightarrow \forall y, z \in Y: f(y) - p(y - x) ≤ p(z + x) - f(z), $$
@@ -980,7 +1000,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{dukazin}
 
 	\begin{dukazin}[2. bod]
-		1. krok: Pro $®K = ®R$ aplikujeme první bod: Víme, že existuje $F: X \rightarrow ®R$ lineární, že $F|_Y = f$. Pak ale $F(x) ≤ p(x)$, $x \in X$ $\land -F(x) = F(-x) ≤ p(-x) = p(x), x \in X$ $\implies |F(x) ≤ p(x), x \in X|$.
+		1. krok: Pro $®K = ®R$ aplikujeme první bod: Víme, že existuje $F: X \rightarrow ®R$ lineární, že $F|_Y = f$. Pak ale $F(x) ≤ p(x)$, $x \in X$ $\land -F(x) = F(-x) ≤ p(-x) = p(x), x \in X$ $\implies |F(x)| ≤ p(x), x \in X$.
 
 		2. krok: Pro $®K = ®C$: Polož $g = \Re f$. Pak podle 1. části $\exists G: X_R \rightarrow ®R$ lineární, že $G|_Y = g$ $\land$ $|G(x)| ≤ p(x), x \in X$. Pak máme $f(x) = g(x) - ig(ix)$, $x \in X$ a položíme $F(x) := G(x) - iG(ix)$, $x \in X$. Pak $f|_Y = f$, $F$ je lineární a pro $x \in X$ máme:
 
@@ -1004,12 +1024,12 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		$$ |g(tx)| = |t|·||x|| = ||tx||, \forall t \in ®K. $$
 		Podle H-B $\exists f \in X^*: f|_Y = g$, $||f|| = ||y|| = 1$. Pak $f(x) = ||x||$.
 
-		Ad „speciálně“: Zvol $x + y$. Najdi $f \in S_{X^*}: f(x - y) = ||x - y||$, pak $f(x) ≠ f(t)$, protože $||x - y|| ≠ 0$.
+		Ad „speciálně“: Zvol $x$ a $y$. Najdi $f \in S_{X^*}: f(x - y) = ||x - y||$, pak $f(x) ≠ f(y)$, protože $||x - y|| ≠ 0$.
 	\end{dukazin}
 \end{dusledek}
 
 \begin{dusledek}
-	Je-li $X$ normovaný lineární prostor a $x \in X$, pak $||x|| = \max_{t \in B_{X^*}}|f(x)|$.
+	Je-li $X$ normovaný lineární prostor a $x \in X$, pak $||x|| = \max_{f \in B_{X^*}}|f(x)|$.
 
 	\begin{dukazin}
 		Triviální.
@@ -1022,16 +1042,16 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	 \begin{dukazin}
 		 Zvolme $Z := Y \oplus \spn(x) \subset X$. $f(y + \alpha x) := \alpha \dist(x, Y)$, $y \in Y$, $\alpha \in ®K$. Pak $f: Z \rightarrow ®K$ je lineární. $||f|| = 1$: $|f(y + \alpha x)| = |\alpha|\dist(x, Y) ≤ |\alpha|·||x + \frac{y}{\alpha}|| = ||\alpha x + y||$, $y \in Y$, $\alpha \in ®K$. Zvolme $(y_n)_{n=1}^∞$ v $Y$, že $d(x, Y) = \lim_{n \rightarrow ∞} ||x - y_n||$. Pak $\frac{|f(y_n + x)|}{||y_n + x||} = \frac{d(x, Y)}{||y_n + x||} \rightarrow 1$.
 
-		 Nyní z H-B věty rozšíříme na celé $Y$: $\exists F \in X^X: F|_z = f \land ||F|| = 1$.
+		 Nyní z H-B věty rozšíříme na celé $Y$: $\exists F \in X^*: F|_z = f \land ||F|| = 1$.
 	 \end{dukazin}
 \end{dusledek}
 
-\begin{veta}[Oddělování konvexních množín]
+\begin{veta}[Oddělování konvexních množin]
  	Nechť $X$ je normovaný lineární prostor a $A, B \subset X$ jsou disjuktní konvexní množiny. Pak platí následující tvrzení
 	
 	\begin{itemize}
 		\item Je-li $A$ otevřená, pak existuje $f \in X^*$ takový, že $\Re f(x) < \inf_B \Re f$ pro každé $x \in A$.
-		\item Je-li $A$ uzavřená a $B$ kompaktní, pak existuje $f \in X^*$ takový, že $\sup_A \Re f < \inf_B \Re f$.
+		\item Je-li $A$ otevřená a $B$ kompaktní, pak existuje $f \in X^*$ takový, že $\sup_A \Re f < \inf_B \Re f$.
 	\end{itemize}
 
 	\begin{poznamkain}
@@ -1167,7 +1187,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		takže opravdu $I(y) \in c_0(I)^*$ a navíc $||I(y)|| ≤ ||y||_1$, tedy $I$ je lineární, dobře definované, $||I|| ≤ 1$.
 
 		Izometrie: Zvol $y \in l_1(I)$, zvol $F \in ©F(I)$. Polož $x_F := \sum_{i \in F, y(i)≠0} \frac{|y(i)|}{y(i)}e_i \in B_{c_0(I)}$. Pak
-		$$ ||I(Y)|| ≥ |I(y)(x_F)| = |\sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)}| = \sum_{i \in F}|y(i)|. $$
+		$$ ||I(y)|| ≥ |I(y)(x_F)| = |\sum_{i \in F, y(i) ≠ 0} y(i)·\frac{|y(i)|}{y(i)}| = \sum_{i \in F}|y(i)|. $$
 		Tedy, protože $||y||_1 = \sup_{F \in ©F(I)} \sum_{i \in F}y(i)$, dostáváme $||I(y)|| ≥ ||y||$.
 
 		Zbývá už jen „na“: Zvol $f \in c_0(I)^*$. Polož $y(i) := f(e_i)$, $i \in I$. Pak $y \in l_1(I)$: Zvol $F \in ©F(I)$. Pak
@@ -1385,7 +1405,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 	\begin{dukazin}
 		Linearita zřejmá. Izometrie
-		$$ ||\epsilon_x|| = \sup_{x^* \in B_{X^*}} |\epsilon_* (x^*)| = \sup_{x^* \in B_{X^*}} |x^*(x)| = ||x||. $$
+		$$ ||\epsilon_x|| = \sup_{x^* \in B_{X^*}} |\epsilon_x (x^*)| = \sup_{x^* \in B_{X^*}} |x^*(x)| = ||x||. $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1395,8 +1415,10 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 % 29. 11. 2021
 
-	\begin{dukazin}
-		TODO?
+	\begin{dukazin}[Ze skript]
+		Nechť $x \in X$. Pro každé $f \in Y^*$ platí
+		$$ (\epsilon_Y(Tx))(f) = f(Tx) = T^*f(x) = (\epsilon_X(x))(T^* f) = (T^{**}(\epsilon_X(x)))(f), $$
+		tudíž $\epsilon_Y(Tx) = T^{**}(\epsilon_X(x))$. Odtud $\epsilon_Y \circ T = T^{**} \circ \epsilon_X$.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1538,7 +1560,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Banachův prostor $X$ je reflexivní, právě když každá omezená posloupnost $\{x_n\}$ v $X$ má slabě konvergentní podposloupnost.
 
 	\begin{dukazin}
-		$\Leftarrow$ nebude (teď je těžký, bude ve funkcionální analýze). $\implies$ plyne z následující věty: $X^*$ separabilní $\implies$ $X$ separabilní. Polož $Y = \overline{\spn}(x_n) \subset X$, pak $Y$ je separabilní a reflexivní $\implies$ $Y^*$ je (reflexivní +) separabilní, dle následující věty. $\implies \exists (x_{n_k})$, $w^*$-konvergentní podposloupnost v $Y^{**} ≡ \epsilon(Y)$ $\implies$ $\exists y \in Y: \epsilon(x_{n_k}) \overset{w^*}{\rightarrow} \epsilon(y)$ $\Leftrightarrow$ $x_{n_k} \overset{w}{\rightarrow} y$.
+		$\Leftarrow$ nebude (teď je těžký, bude ve funkcionální analýze). $\implies$ plyne z následující věty: Polož $Y = \overline{\spn}(x_n) \subset X$, pak $Y$ je separabilní a reflexivní $\implies$ $Y^*$ je (reflexivní +) separabilní, dle následující věty. $\implies \exists (x_{n_k})$, $w^*$-konvergentní podposloupnost v $Y^{**} ≡ \epsilon(Y)$ $\implies$ $\exists y \in Y: \epsilon(x_{n_k}) \overset{w^*}{\rightarrow} \epsilon(y)$ $\Leftrightarrow$ $x_{n_k} \overset{w}{\rightarrow} y$.
 	\end{dukazin}
 \end{veta}
 
@@ -1581,7 +1603,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{enumerate}
 
 	\begin{dukazin}
-		1. $\implies$ 2: triviální. 2. $\implies$ 3: Ať $(x_n)$ je posloupnost v $B(O, r)$ (kde $r > 0$). Pak $(\frac{x_n}{r})$ je posloupnost v $B_x$ $\implies$ dle 2. $\exists (n_k)$, že $T(\frac{x_{n_k}}{r})$ je konvergentní, tedy $T(x_{n_k})$ je konvergentní.
+		1. $\implies$ 2: triviální. 2. $\implies$ 3: Ať $(x_n)$ je posloupnost v $B(¦o, r)$ (kde $r > 0$). Pak $(\frac{x_n}{r})$ je posloupnost v $B_x$ $\implies$ dle 2. $\exists (n_k)$, že $T(\frac{x_{n_k}}{r})$ je konvergentní, tedy $T(x_{n_k})$ je konvergentní.
 
 		3. $\implies$ 1.: Ať $A \subset X$ omezená, ať $(y_n)$ je posloupnost v $T(a)$. Pak $\exists x_n \in A: T x_n = y_n$, $n \in ®N$. $\implies \exists (n_k): T_{x_{n_k}}$ je konvergentní v $Y$.
 	\end{dukazin}
@@ -1593,7 +1615,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\begin{enumerate}
 		\item Operátor $T \in ©L(X, Y)$ je konečněrozměrný právě tehdy, když existují $f_1, …, f_n \in X^*$ a $y_1, …, y_n \in Y$ takové, že $T(x) = \sum_{i = 1}^n f_i(x)y_i$ pro každé $x \in X$.
 		\item $©K(X, Y)$ je podprostor $©L(X, Y)$ a $©F(X, Y)$ podprostor $©K(X, Y)$.
-		\item $©K(X, Y)$ je uzavřený podprostor $©L(x, Y)$.
+		\item $©K(X, Y)$ je uzavřený podprostor $©L(X, Y)$.
 		\item Složíme-li kompaktní lineární operátor se spojitým lineárním operátorem (zleva či zprava), dostaneme opět kompaktní operátor.
 	\end{enumerate}
 
@@ -1604,6 +1626,14 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 		$T \in ©F(x, y)$ $\implies$ $\Rang T$ je konečnědimenzionální, tedy uzavřená $\implies$ $\overline{T(B_x)} \subseteq \Rang T \cong ®K^n$.
 	\end{dukazin}
+
+	\begin{dukazin}[Ze skript (vlastními slovy)]
+		3. Nechť $\{T_n\}$ je posloupnost v $©K(X, Y)$ konvergující k $T \in ©L(X, Y)$. Nechť $\epsilon > 0$ je dáno. Pak existuje takové $n \in ®N$, že $||T_n - T|| < \frac{\epsilon}{3}$. Dále nalezneme množinu $\{x_1, …, x_k\}\subset B_X$ takovou, že $T_n(x_i)$ je konečná $\frac{\epsilon}{3}$-síť pro $T_n(B_X)$. $T(x_i)$ je pak konečná $\epsilon$-síť v $T(B_X)$ neboť $\forall x \in B_X$ nalezneme $j$ tak, že $||T_n(x) - T_n(x_j)|| < \frac{\epsilon}{3}$. Potom
+		$$ ||T(x) - T(x_i)|| ≤ ||T(x) - T_n(x)|| + ||T_n(x) - T_n(x_j)|| + ||T_n(x_j) - T(x_j)|| < 3·\frac{\epsilon}{3} = \epsilon. $$
+		Tedy $T(B_X)$ je totálně omezená, a protože $Y$ je úplný, tak je $T$ kompaktní dle předchozího tvrzení.
+
+		4. Spojitá zobrazení zachovávají omezenost i relativní kompaktnost, tedy složení s jiným operátorem na něj klade stejné podmínky pro kompaktnost, jako by byl samotný.
+	\end{dukazin}
 \end{veta}
 
 % 06. 12. 2021
@@ -1611,8 +1641,18 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \begin{veta}[J. P. Schauder, 1930]
 	Nechť $X$ je normovaný lineární prostor, $Y$ je Banachův prostor a $T \in ©L(X, Y)$. Pak $T^*$ je kompaktní, právě když $T$ je kompaktní.
 
-	\begin{dukazin}
-		TODO
+	\begin{dukazin}[Ze skript]
+		$\Leftarrow$: Položme $K = \overline{T(B_X)}$ a $©F = \{f|_K | f \in B_{Y^*}\}$. Pak $K$ je kompaktní a $©F \subset C(K)$. Dále pro každé $f \in B_{Y^*}$ díky spojitosti $f$ platí
+		$$ ||f|_K||_{C(K)} = \sup_{y \in K}|f(y)| = \sup_{y \in T(B_X)}|f(y)| = \sup_{x \in B_X}|f(T(x))| ≤ ||f||·||T|| ≤ ||T||. $$
+		Tedy $©F \subset C(K)$ je omezená množina stejně spojitých (dokonce 1-lipschitzovských) funkcí na kompaktním prostoru $K$. Podle Arzeláovy-Ascoliovy věty to znamená, že ©F je relativně kompaktní v $C(K)$.
+
+		Nechť nyní $\{f_n\}$ je posloupnost v $B_{Y^*}$. Položme $g_n = f_n|_K$. Pak $\{g_n\}$ je posloupnost v ©F, a tedy existuje podposloupnost $\{g_{n_k}\}$ konvergentní v $C(K)$. Tvrdíme, že pak $\{T^* f_n\}$ je cauchyovská: Pro $k, l \in ®N$ máme
+		$$ ||T^* f_{n_k} - T^*f_{n_1}|| = ||T^*(f_{n_k} - f_{n_1})|| = \sup_{x \in B_X} |T^*(f_{n_k} - f_{n_1})(x)| = \sup_{x \in B_X}|(f_{n_k} - f_{n_1})(T x)| ≤ $$
+		$$ ≤ \sup_{z \in K}|(f_{n_k} - f_{n_1})(z)| = ||g_{n_k} - g_{n_1}||_{C(K)}. $$
+
+		Protože $\{g_{n_k}\}$ je cauchyovská, je i $\{T^* f_{n_k}\}$ cauchyovská, a tedy konvergentní v $X^*$. Odtud plyne, že $T^*(B_{Y^*})$ je relativně kompaktní v $X^*$.
+
+		$\implies$: Nechť $\epsilon_X: X \rightarrow X^{**}$ a $\epsilon_Y: Y \rightarrow Y^{**}$  jsou kanonická vnoření. Podle první části důkazu je $T**$ kompaktní, takže je kompaktní i $S = T^{**}|_{\epsilon_X(X)}: \epsilon_X(X)\rightarrow Y^{**}$. Podprostor $\epsilon_Y(Y)$ je uzavřený v $Y^{**}$, tedy $S$ je kompaktní. Podle tvrzení a věty výše je $T = \epsilon^{-1} \circ S \circ \epsilon_X$ kompaktní.
 	\end{dukazin}
 \end{veta}
 
@@ -1621,13 +1661,15 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $A \subset ©L(X, Y)$. Pak
 	$$ \sup\{||T||\ |\ T \in A\} < +∞ \Leftrightarrow \forall x \in X: \sup\{||T(x)||\ |\ T \in A\} < +∞. $$
 
-	\begin{dukazin}
-		TODO
+	\begin{dukazin}[Ze skript]
+		$\implies$: Zřejmé. $\Leftarrow$: Pro $n \in ®N$ položme
+		$$ F_n = \{x \in X\ |\ ||T(x)|| ≤ n \text{ pro každé } T \in A\}. $$
+		Pak jsou $F_n$ uzavřené množiny pokrývající celé $X$. Podle Baireovy věty existuje $n_0 \in ®N$ takové, že $F_{n_0}$ má neprázdný vnitřek. Existuje tedy koule $B(x_0, r) \subset F_{n_0}$. Nechť nyní $T \in ©A$ je libovolný. Pro každé $x \in B_X$ je $x_0 + r x \in B(x_0, r)$, a tedy $||T(r x)|| = ||T(x_0 + r x - x_0)|| ≤ ||T(x_0 + r x)|| + ||T(x_0)|| ≤ 2n_0$. Odtud $||T(x)|| ≤ \frac{2n_0}{r}$, což znamená, že $||T|| ≤ \frac{2n_0}{r}$. Proto je $\sup\{||T||\ |\ T \in ©A\} ≤ \frac{2n_0}{r}$.
 	\end{dukazin}
 \end{veta}
 
 \begin{dusledek}
-	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $\{T_n\}$ je posloupnost v $©L(X, Y)$ taková, že pro $\forall x \in X\ \exists T(x) = \lim_{n \rightarrow ∞} T_n(x)$. Pak $T \in ©L(X, Y)$ a $||T|| ≤ \liminf ||T_n|| \in ®R$.
+	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $\{T_n\}$ je posloupnost v $©L(X, Y)$ taková, že $\forall x \in X\ \exists T(x) = \lim_{n \rightarrow ∞} T_n(x)$. Pak $T \in ©L(X, Y)$ a $||T|| ≤ \liminf ||T_n|| \in ®R$.
 
 	\begin{dukazin}
 		TODO?
@@ -1782,7 +1824,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X$ je Banachův nad ®K a $T \in ©L(x)$. Pak $\sigma(T)$ je kompaktní podmnožina ®K splňující $\sigma(T) \subset B_x(0, ||T||)$. Je-li $X$ komplexní, pak $\sigma(T)$ je neprázdné.
 
 	\begin{dukazin}
-		„$\sigma(T) \subset B(0, ||T||)$“: Pokud $|\lambda| > ||T||$, pak $(\lambda I - T) = \lambda(I - \frac{I}{\lambda}) \implies (\lambda I - T)^{-1}$ existuje.
+		„$\sigma(T) \subset B(0, ||T||)$“: Pokud $|\lambda| > ||T||$, pak $(\lambda I - T) = \lambda(I - \frac{T}{\lambda}) \implies (\lambda I - T)^{-1}$ existuje.
 		
 		„$\sigma(T)$ uzavřená“: $®K \setminus \sigma(T)$ je otevřená podle tvrzení výše bod 2.
 
@@ -1903,9 +1945,9 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{enumerate}
 
 	\begin{dukazin}
-		1. $\forall x \in S_HL \<(\alpha I + \beta T)x, x\> = \alpha\<x, x\> + \beta\<Tx, x\> = 1 + \beta\<Tx, x\>$.
+		1. $\forall x \in S_HL \<(\alpha I + \beta T)x, x\> = \alpha\<x, x\> + \beta\<Tx, x\> = \alpha + \beta\<Tx, x\>$.
 
-		2. $\sigma_P(T) \subseteq N_T$: Ať TODO $\implies \exists x_0 \in S_H: \lambda x_0 = Tx$.
+		2. $\sigma_P(T) \subseteq N_T$: Ať $\lambda \in \sigma_p(T)$ $\implies \exists x_0 \in S_H: \lambda x_0 = Tx$.
 		$$ = \<Tx_0, x_0\> = \<\lambda x_0, x_0\> = \lambda $$
 
 		3. Ať $\lambda \in \sigma(T) \setminus \sigma_z(T)$. 1. případ: Ať $\lambda I - T$ je isomorfismus do (a ne na), pak $\Rang(\lambda I - T) \subsetneq H$ je uzavřený podprostor $\implies$ $\exists x \in S_H \cap (\Rang(\lambda I - T))^\perp$, speciálně $0 = \<\lambda x - Tx, x\> = \lambda - \<Tx, x\> \implies \lambda \in N_T$.
@@ -1924,7 +1966,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
  	
 	\begin{itemize}
 		\item $\<Tx, x\> \in ®R$, $\forall x \in H$.
-		\item $N_T \subset ®R$ a označíme-li $m_T = \inf N_T$, $M_T = \sup N_T$, pak $||T|| = \max \{|m_T|, |M_T|\}$ a $\{m_T, M_T\} \subset \sigma(T) \subset [m_T, M_T]$, a tedy číslo $||T||$ nebo $-||T||$ leží v $\sigma_T$.
+		\item $N_T \subset ®R$ a označíme-li $m_T = \inf N_T$, $M_T = \sup N_T$, pak $||T|| = \max \{|m_T|, |M_T|\}$ a $\{m_T, M_T\} \subset \sigma(T) \subset [m_T, M_T]$, a tedy číslo $||T||$ nebo $-||T||$ leží v $\sigma(T)$.
 	\end{itemize}
 
 	\begin{dukazin}
@@ -1957,7 +1999,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Pak pro $T \in SA(H)$ platí následující tvrzení:
 
 	\begin{enumerate}
-		\item $\lambda \in \sigma_p(T)$ právě tehdy, když $\sigma_p(T^\bigstar)$. Vlastní prostor $T$ příslušný vlastnímu číslu $\lambda$ je shodný s vlastním prostorem $T^\bigstar$ příslušným vlastnímu číslu $\overline{\lambda}$.
+		\item $\lambda \in \sigma_p(T)$ právě tehdy, když $\overline{\lambda} \in \sigma_p(T^\bigstar)$. Vlastní prostor $T$ příslušný vlastnímu číslu $\lambda$ je shodný s vlastním prostorem $T^\bigstar$ příslušným vlastnímu číslu $\overline{\lambda}$.
 		\item Pokud $\lambda_1, \lambda_2$ jsou různá vlastní čísla $T$, pak $\Ker(\lambda_1 I - T) \perp \Ker(\lambda_2 I - T)$.
 		\item Pokud $\sigma(T) = \{0\}$, pak $T = 0$.
 		\item $Y \in H$ uzavřený podprostor invariantní vůči $T$ a $T^\bigstar$ $\implies T|_Y$ je samoadjungovaný.
@@ -2017,7 +2059,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{veta}
 
 \begin{lemma}
-	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g \in L_1(\mu)$. Položíme-li $F(x, y) = f(y)g(x - y)$ pro $x, y \in ®R^d$, pak $L_1(\mu \times \mu)$ a $||F||_1 = ||f||_1·||g||_1$.
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g \in L_1(\mu)$. Položíme-li $F(x, y) = f(y)g(x - y)$ pro $x, y \in ®R^d$, pak $F \in L_1(\mu \times \mu)$ a $||F||_1 = ||f||_1·||g||_1$.
 
 	\begin{dukazin}
 		$$ \int \int |F(x, y)| d(\mu \times \mu)(x, y) = \int |f(y)| \int |g(x - y)| dx dy = \int |f(y)|·||g||_1 dy = $$
@@ -2030,7 +2072,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{definice}
 
 \begin{veta}
-	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f \in L_p(\mu)$, $1 ≤ p < ∞$. Pak zobrazení $\tau: ®R^d \rightarrow L_p(u)$ dané předpisem $\tau(x) = \tau_x f$ je stejnoměrně spojité.
+	Nechť $\mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f \in L_p(\mu)$, $1 ≤ p < ∞$. Pak zobrazení $\tau: ®R^d \rightarrow L_p(\mu)$ dané předpisem $\tau(x) = \tau_x f$ je stejnoměrně spojité.
 
 	\begin{dukazin}
 		$$ \tau_x f \in L_p: \int |\tau_x f(y)|^p dy = \int |f(x - y)|^p dy = \int |f(z)|^p dz \implies ||\tau_x f||_p = ||f||_p. $$
@@ -2039,10 +2081,10 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		$$ \exists \sigma \in (0, 1)\ \forall x, y \in ®R^d: ||x - y|| < \delta \implies |g(x) - g(y)| < \epsilon'. $$
 
 		Ať $x, y \in ®R^d$, $||x - y|| < \delta$. Pak
-		$$ ||\tau_x f - \tau y f||_p ≤ ||\tau_y (f - g)|| + ||\tau_y g - \tau_x g|| + ||\tau_x(g - f)|| ≤ \frac{\epsilon}{3} + ||\tau_y f - \tau_x g|| + \frac{\epsilon}{3}. $$
+		$$ ||\tau_x f - \tau_y f||_p ≤ ||\tau_y (f - g)|| + ||\tau_y g - \tau_x g|| + ||\tau_x(g - f)|| ≤ \frac{\epsilon}{3} + ||\tau_y g - \tau_x g|| + \frac{\epsilon}{3}. $$
 		$$ ||\tau_x g - \tau_y g||_p^p = \int |g(t - x) - g(t - y)|^p dt = \int |g(z) - g(z + x - y)|^p dz = $$
 		(Jelikož pokud $g(z) ≠ 0$, pak $z + x - y \in B(0, r - 1 + 1) = B$. Obdobné pro $g(z + x - y)$.)
-		$$ = \int_B g(z) - g(z + x - y)|^p dz ≤ (\epsilon')^p·\mu(B) ≤ \frac{\epsilon}{3}, $$
+		$$ = |\int_B g(z) - g(z + x - y)|^p dz ≤ (\epsilon')^p·\mu(B) ≤ \frac{\epsilon}{3}, $$
 		pokud $\epsilon'$ zvolíme jako $\sqrt[p]{\frac{\epsilon}{3\mu(B)}}$.
 	\end{dukazin}
 \end{veta}
@@ -2052,9 +2094,9 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 	\begin{enumerate}
 		\item Je-li $f \in L_p(\mu)$ a $g \in L_q(\mu)$, kde $1 ≤ p, q ≤ ∞$ jsou sdružené exponenty, pak funkce $f*g$ je definována v každém bodě $®R^n$, je stejnoměrně spojitá a omezená a platí $||f * g||_∞ ≤ ||f||_p ||g||_q$.
-		\item Je-li $f \in L_1^{loc}(\mu)$ s jestliže $g \in L_∞(\mu)$ má kompaktní nosič, pak funkce $f * g$ je definována v každém bodě $®R^d$, je spojitá a platí $\supp f*g \subset \supp f + \supp g$.\footnote{$$ L_1^{loc} ≡ \forall x \in ®R^d\ \exists B(x, r): \int_{B(x, r)} (f) < ∞ $$ $$ \Leftrightarrow \forall K \subset ©R^d \text{ kompaktní}: \int_K |f| < ∞. $$}
+		\item Je-li $f \in L_1^{loc}(\mu)$ a jestliže $g \in L_∞(\mu)$ má kompaktní nosič, pak funkce $f * g$ je definována v každém bodě $®R^d$, je spojitá a platí $\supp f*g \subset \supp f + \supp g$.\footnote{$$ L_1^{loc} ≡ \forall x \in ®R^d\ \exists B(x, r): \int_{B(x, r)} |f| < ∞ $$ $$ \Leftrightarrow \forall K \subset ©R^d \text{ kompaktní}: \int_K |f| < ∞. $$}
 		\item Jsou-li $f, d$ měřitelné, $D \subset ®R^d$ měřitelná a $f*g$ je definována alespoň na $D$, pak $f*g$ je měřitelná na $D$.
-		\item Jsou-li $f, g \in L_1(\mu)$, pak $f*g$ je definovaná $\mu$-skoro všude na $®R^d$, $f*g \in L_1(\mu)$ a platí $||f * g||_1 ≤ ||f||1·||g||_1$.
+		\item Jsou-li $f, g \in L_1(\mu)$, pak $f*g$ je definovaná $\mu$-skoro všude na $®R^d$, $f*g \in L_1(\mu)$ a platí $||f * g||_1 ≤ ||f||_1·||g||_1$.
 	\end{enumerate}
 
 	\begin{dukazin}
@@ -2126,7 +2168,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 	\begin{enumerate}
 		\item Pokud je $f$ stejnoměrně spojitá a omezená na $®R^d$, potom $f* g_n \rightarrow f$ stejnoměrně na $®R^d$.
-		\item Pokud $f \in L_p(\mu)$ a $1 ≤ p < ∞$, potom $f * g_n \overline{L_p}{\rightarrow} f$.
+		\item Pokud $f \in L_p(\mu)$ a $1 ≤ p < ∞$, potom $f * g_n \overset{L_p}{\rightarrow} f$.
 	\end{enumerate}
 
 	\begin{poznamkain}
@@ -2155,7 +2197,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 \begin{definice}
 	Nechť $f \in L_1(\mu_d)$. Pak Fourierovou transformací funkce $f$ rozumíme funkci $\hat{f}: ®R^d \rightarrow ®K$ definovanou jako
-	$$ \hat{f}(t) = \int_{®R^d} f(x) e^{i\<t, x\>} d\mu_d(x) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d} f(x) e^{-i \<t, x\>} d\lambda_d(x), \qquad t \in ®R^d. $$
+	$$ \hat{f}(t) = \int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d} f(x) e^{-i \<t, x\>} d\lambda_d(x), \qquad t \in ®R^d. $$
 \end{definice}
 
 \begin{definice}
@@ -2175,12 +2217,14 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	$$ \lim_{||t|| \rightarrow ∞} \int f(x)e^{-i\<t, x\>} d \mu_d(x) = 0 $$
 
 	\begin{dukazin}
-		$$ \forall t \in ®R^d \setminus \{¦o\}: \left|\int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x)\right| = \int_{®R^d} -f(x) e^{-i\<t, x + \pi \frac{t}{||t||^2}\>} = $$
-		$$ = \int_{®R^d} - f\(u - \pi\frac{t}{||t||^2}\)e^{-i\<t, u\>} du. $$
+		$$ \forall t \in ®R^d \setminus \{¦o\}: \left|\int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d(x)\right| = \left|\int_{®R^d} -f(x) e^{-i\<t, x + \pi \frac{t}{||t||^2}\>}\right| = $$
+		$$ = \left|\int_{®R^d} - f\(u - \pi\frac{t}{||t||^2}\)e^{-i\<t, u\>} d\mu\right|. $$
 		Sečtením polovin obou stran rovnice dostaneme
 		$$ \frac{1}{2} \left|\int_{®R^d} \(f(x) - f\(x - \pi \frac{t}{||t||^2}\)\) e^{-i \<t, x\>} dx\right| ≤ \frac{1}{2}\int_{®R^d}\left|f(x) - f\(x - \pi \frac{t}{||t||^2}\)\right|dx = $$
 		$$ = \frac{1}{2} ||\tau_0 f - \tau_P{\pi \frac{t}{||t||^2}} f||_1 \rightarrow 0. $$
 	\end{dukazin}
 \end{lemma}
+
+TODO další 2 přednášky
 
 \end{document}
