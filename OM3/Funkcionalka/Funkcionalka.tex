@@ -167,7 +167,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{poznamka}
 
 \begin{poznamka}[Fakt]
-	Nechť $X$ je normovaný lineární prostor a $M \subset X$. Pak $\overline{\spn} M = \overline{\spn M}$ a $\overline{\conv} M = \overline{\conv M}$.
+	Ať $X$ je normovaný lineární prostor a $M \subset X$. Pak $\overline{\spn} M = \overline{\spn M}$ a $\overline{\conv} M = \overline{\conv M}$.
 \end{poznamka}
 
 \begin{veta}
@@ -183,7 +183,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{veta}
 
 \begin{dusledek}
-	Nechť $X$ je normovaný lineární prostor. Každý konečněrozměrný podprostor $X$ je uzavřený v $X$.
+	Nechť $X$ je normovaný lineární prostor. Každý konečněrozměrný podprostor $X$ je uzavřený.
 \end{dusledek}
 
 % 11. 10. 2021
@@ -1736,11 +1736,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\begin{dukazin}[První část ze skript]
 		Nejprve si povšimněme, že lze bez újmy na obecnosti uvažovat pouze případ $r = s = 1$. Vskutku máme-li již dokázané tvrzení v tomto případě a $T \in ©L(X, Y)$ splňuje předpoklady pro nějaká $r, s > 0$, pak operátor $\frac{r}{s} T$ splňuje $©U(0, 1) \subset (\frac{r}{s}T)(©U(¦o, 1))$, a tedy podle případu $r = s = 1$ platí $©U(¦o, 1) \subset (\frac{r}{s} T)(©U(¦o, 1))$, odkud $©U(¦o, s) \subset T(©U(¦o, r))$.
 
-		Nechť tedy $r = s = 1$ a nechť je dáno $z \in U_Y$. Najdeme $\delta \in (0, 1)$ takové, že $||z|| < 1 - \delta$. Ukážeme, že $y = \frac{1}{1 - \delta}z \in T\(\frac{1}{1 - \delta} ©U_X\)$. Pak totiž $z = (1 - \delta)y \in (1 - \delta)T\(\frac{1}{1 - \delta}©U_X\) = T(©U_X)$.
-
-		Pomocí matematické indukce najdeme $(y_n)_{n=0}^∞$ takové, že $y_0 = ¦o$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$:
-
-		Je $||y|| < 1$, a tedy volbou $y_0 = ¦o$ je druhá podmínka splněna (a třetí se 0 netýká). Předpokládejme nyní, že $n \in ®N$ a již máme nalezeny prvky $y_0, …, y_{n-1}$. Pak
+		Nechť tedy $r = s = 1$ a nechť je dáno $z \in U_Y$. Najdeme $\delta \in (0, 1)$ takové, že $||z|| < 1 - \delta$. Ukážeme, že $y = \frac{1}{1 - \delta}z \in T\(\frac{1}{1 - \delta} ©U_X\)$. Pak totiž $z = (1 - \delta)y \in (1 - \delta)T\(\frac{1}{1 - \delta}©U_X\) = T(©U_X)$. Pomocí matematické indukce najdeme $(y_n)_{n=0}^∞$ takové, že $y_0 = ¦o$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$: Je $||y|| < 1$, a tedy volbou $y_0 = ¦o$ je druhá podmínka splněna (a třetí se 0 netýká). Předpokládejme nyní, že $n \in ®N$ a již máme nalezeny prvky $y_0, …, y_{n-1}$. Pak
 		$$ y - y_{n-1} \in \delta^{n-1} ©U_Y \subset \delta^{n-1} \overline{T(U_X)} = \overline{\delta^{n-1}T(U_X)} = \overline{T(\delta^{n-1} ©U_X)}, $$
 		a tedy existuje $w \in T(\delta^{n-1} ©U_X)$ splňující $||y - y_{n-1} - w|| < \delta^n$. Pak $y_n = y_{n-1} + w$ splňuje požadované podmínky.\\
 
@@ -2127,7 +2123,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{veta}
 
 \begin{veta}
-	Nechť $mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g: ®R^d \rightarrow ®K$.
+	Nechť $mu$ je kladným násobkem Lebesgueovy míry na $®R^d$ a $f, g: ®R^d \rightarrow ®K$.\vspace{-2em}
 
 	\begin{enumerate}
 		\item Je-li $f \in L_p(\mu)$ a $g \in L_q(\mu)$, kde $1 ≤ p, q ≤ ∞$ jsou sdružené exponenty, pak funkce $f*g$ je definována v každém bodě $®R^n$, je stejnoměrně spojitá a omezená a platí $||f * g||_∞ ≤ ||f||_p ||g||_q$.
@@ -2191,8 +2187,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		Ověřili jsme předpoklady o integrálu závislém na parametru, tedy
 		$$ \phi'(0) = \int f(y) \frac{\partial g}{\partial x_j}(x - y) dy = \(f * \frac{\partial g}{\partial x_j}\)(x). $$
 
-		Ať $D^\alpha = \frac{\partial}{\partial x_j} D^{\alpha - e_j}$. Pak
-		$$ D^\alpha(f * g) = \frac{\partial}{\partial x_j}(f * D^{\alpha - e_j} g) = f * \frac{\partial}{\partial x_j} D^{\alpha - e_j} g = f * D^\alpha. $$
+		Ať $D^\alpha = \frac{\partial}{\partial x_j} D^{\alpha - e_j}$. Pak $D^\alpha(f * g) = \frac{\partial}{\partial x_j}(f * D^{\alpha - e_j} g) = f * \frac{\partial}{\partial x_j} D^{\alpha - e_j} g = f * D^\alpha$.
 	\end{dukazin}
 \end{veta}
 
@@ -2238,16 +2233,12 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{definice}
 
 \begin{definice}
-	Prostorem $C_b(®R^d) = C_b(®R^d, ®K)$ rozumíme normovaný lineární prostor všech omezených spojitých funkcí na $®R^d$ s normou $||f||_∞ = \sup_{x \in ®R^d}|f(x)|$.
+	(Banachovým) prostorem $C_b(®R^d) = C_b(®R^d, ®K)$ rozumíme normovaný lineární prostor všech omezených spojitých funkcí na $®R^d$ s normou $||f||_∞ = \sup_{x \in ®R^d}|f(x)|$.
 \end{definice}
 
 \begin{definice}
-	Prostorem $C_0(®R^d) = C_0(®R^d, ®K)$ rozumíme prostor spojitých funkcí na $®R^d$ takových, že pro každé $\epsilon > 0$ je množina $\{x \in ®R^d | |f(x)| ≥ \epsilon\}$ omezená. Na $C_0(®R^d)$ uvažujeme normu $||f||_∞ = \sup_{x \in ®R^d} |f(x)|$.
+	(Banachovým) prostorem $C_0(®R^d) = C_0(®R^d, ®K)$ rozumíme prostor spojitých funkcí na $®R^d$ takových, že pro každé $\epsilon > 0$ je množina $\{x \in ®R^d | |f(x)| ≥ \epsilon\}$ omezená. Na $C_0(®R^d)$ uvažujeme normu $||f||_∞ = \sup_{x \in ®R^d} |f(x)|$.
 \end{definice}
-
-\begin{poznamka}
-	$C_b$ i $C_0$ jsou Banachovy.
-\end{poznamka}
 
 \begin{lemma}[Georg Friedrich Bernhard Riemann (1835), H. Lebesgue (1903)]
 	Ať $f \in L_1(\mu_d)$. Pak
