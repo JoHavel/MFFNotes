@@ -7,8 +7,8 @@
 
 % 04. 10. 2021
 
-\section*{Organizační úvod}
-	%TODO
+%Na organizační úvod jsem nebyl.
+
 \section*{Úvod}
 
 \begin{poznamka}[Motivace]
@@ -119,7 +119,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\begin{dukazin}
 		$1 \Leftrightarrow 2$ plyne z předchozího lemmatu. $3 \Leftrightarrow 4 \Leftrightarrow 5$ je lehké a platí ve všech MP. $1 \implies 5$ jasné.
 
-		$5 \implies 1:$ Sporem posloupností jdoucí k 1. TODO (Netuším, co by sem mělo přijít…)
+		$5 \implies 1:$ Sporem: Předpokládejme, že pro každé $n \in ®N$ existují $x_n, y_n \in X$ splňující $||x_n - y_n||_1 > n ||x_n - y_n||_2$. Položme $z_n = \frac{x_n - y_n}{||x_n - y_n||_1}$. Pak $||z_n||_1 = 1$, ale $||z_n||_2 < \frac{1}{n} \rightarrow 0$. \lightning.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -476,11 +476,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{tvrzeni}
 
 \begin{poznamka}[Fakt]
-	Nechť $X$, $Y$, $Z$ jsou normované lineární prostory a $T \in ©L(X, Y)$, $S \in ©L(Y, Z)$.
-
-	Jsou-li $S$, $T$ izomorfismy do, pak $S \circ T$ je izomorfismus do.
-	
-	Jsou-li $S$, $T$ izometrie do, pak $S \circ T$ je izometrie do.
+	Nechť $X$, $Y$, $Z$ jsou normované lineární prostory a $T \in ©L(X, Y)$, $S \in ©L(Y, Z)$. Jsou-li $S$, $T$ izomorfismy do, pak $S \circ T$ je izomorfismus do. Jsou-li $S$, $T$ izometrie do, pak $S \circ T$ je izometrie do.
 \end{poznamka}
 
 \begin{veta}
@@ -505,7 +501,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{lemma}
 
 \begin{veta}
-	Nechť $X$ je normovaný lineární prostor nad ®K. Pak následující tvrzení jsou ekvivalentní:
+	Nechť $X$ je normovaný lineární prostor nad ®K. Pak následující tvrzení jsou ekvivalentní:\vspace{-1em}
 	
 	\begin{enumerate}
 		\item $\dim X < ∞$.
@@ -516,8 +512,25 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		\item Každé dvě normy na $X$ jsou ekvivalentní.
 	\end{enumerate}
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[Ze skript]
+		$1. \implies 2.$: Nechť $\{e_1, …, e_n\}$ je nějaká báze $X$. Definujeme zobrazení $T: ®K^n \rightarrow X$ předpisem $(x_1, …, x_n) \mapsto \sum_{i=1}^n x_i e_i$. Snadno je vidět, že $T$ je lineární zobrazení a díky vlastnostem báze je to bijekce. Protože „projekce“ $(x_1, …, x_n) \mapsto x_i$ jsou spojité, ze spojitosti vektorových operací plyne spojitost $T$.
+
+		Ukažme nyní i spojitost inverze $T^{-1}$. Množina $S = S_{(®K^n, ||·||_2)}$ je kompaktní, neboť je uzavřená a omezená. Protože $T$ je spojitý, je množina $T(S)$ také kompaktní. Norma $||·||_X$ je spojitá na $X$, a tedy nabývá na $T(S)$ minima $C > 0$ ($T(S)$ neobsahuje $0$ díky prostotě $T$). Pro libovolné $y \in X \setminus \{0\}$ je $\frac{T^{-1}(y)}{||T^{-1}(y)||_2} \in S$, takže $C ≤ \left|\left| T\(\frac{T^{-1}(y)}{||T^{-1}(y)||_2}\)\right|\right|_X = \frac{||y||_X}{||T^{-1}(y)||_2}$, odkud $||T^{-1}(y)||_2 ≤ \frac{1}{C}||y||_X$.
+
+		$2. \implies 3.$: Je-li $T: ®K^n \rightarrow X$ izomorfismus, je $T^{-1}(B_X)$ uzavřená omezená podmnožina $(®K^n, ||·||_2)$, takže je kompaktní. Tedy i $B_X = T(T^{-1}(B_X))$ je kompaktní.
+
+		$3. \implies 1.$: Nechť $X$ je nekonečné dimenze. Indukcí najdeme posloupnost prvků $\{x_n\}$ v $S_X$ tak, že $\dist(x_{n+1}, \spn\{x_1, …, x_n\}) ≥ \frac{1}{2}$ pro každé $n \in ®N$: $x_1$ zvolíme libovolně, následně $\spn\{x_1, …, x_n\}$ je vždy uzavřený a vlastní (neboť je konečně dimenzionální), tedy podle lemmatu o skoro kolmici najdeme $x_{n+1}$ splňující $\dist(x_{n+1}, \spn\{x_1, …, x_n\}) > \frac{1}{2}$. Tedy $B_X$ není kompaktní.
+
+		$1. \implies 6.$: Nechť $||·||_1$ a $||·||_2$ jsou normy na $X$. Zafixujeme nějakou bázi $\{e_1, …, e_n\}$ prostoru $X$. Označme eukleidovskou normu na $®K^n$ jako $||·||_e$. Nechť $T_1: (X, ||·||_1) \rightarrow (®K^n, ||·||_e)$ a $T_2: (X, ||·||_2) \rightarrow (®K^n, ||·||_e)$ jsou izomorfismy z důkazu $1. \implies 2.$ Pak $T_2^{-1} \circ T_1 = \id_X$ a tedy $\id_X: (X, ||·||_1) \rightarrow (X, ||·||_2)$ je izomorfismus, tj. normy $||·||_1$ a $||·||_2$ jsou ekvivalentní.
+
+		$6. \implies 5.$: Předpokládejme, že $(X, ||·||)$ existuje nespojitá lineární forma $f$. Pro každé $x \in X$ položíme $||x||_0 = ||x|| + |f(x)|$. Snadno je vidět, že $||·||_0$ je norma na $X$, která je ovšem neomezená na $B_{(X, ||·||)}$. Tedy normy $||·||$ a $||·||_0$ nejsou ekvivalentní.
+
+		$5. \implies 1.$: Není-li $X$ konečněrozměrný, má nekonečnou algebraickou bázi $\{e_\gamma | \gamma \in \Gamma\}$. Bez újmy na obecnosti lze předpokládat, že všechny vektory $e_\gamma$ mají normu $1$. Vybereme nekonečnou spočetnou množinu $\{\gamma_n | n \in ®N\} \subset \Gamma$ a položme $f(e_{\gamma_n}) = n$ pro $n \in ®N$ a $f(e_\gamma) = 0$ pro $\gamma \in \Gamma \setminus \{\gamma_n | n \in ®N\}$. Pak $f$ lze jednoznačně rozšířit na lineární formu na $X$, která ovšem není omezená na $B_X$.
+
+		$1. \implies 4.$: Nechť $Y$ je nějaký normovaný lineární prostor a $T: (X, ||·||) \rightarrow Y$ je lineární zobrazení. Zvolme bázi $\{e_1, …, e_n\}$ prostoru $X$ a uvažujme normu $||x||_1 = ||\sum_{i=1}^n x_i e_i||_1 = \sum_{i=1}^n |x_i|$. Díky tvrzení 4. stačí dokázat, že $T: (X, ||·||_1) \rightarrow Y$ je spojité. To je ale zřejmé z odhadu
+		$$ ||T(x)|| = \left|\left| \sum_{i=1}^n x_i T(e_i) \right|\right| ≤ \sum_{i=1}^n |x_i|·||T(e_i)|| ≤ \max\{||T(e_1)||, …, ||T(e_n)\} \sum_{i=1}^n |x_i|. $$
+
+		$4. \implies 5.$: Je triviální.
 	\end{dukazin}
 \end{veta}
 
@@ -899,7 +912,12 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	$$ Px = \sum_{j \in J}\<x, e_j\>e_j, \qquad x \in H. $$
 
 	\begin{dukazin}
-		TODO?
+		% Z poznámek spolužačky, mockrát děkuji.
+		Dle vět a lemmatu F. Riesze $P_Y x = \sum_{j \in J}\<x, e_j\> e_j \Leftrightarrow x - \sum_{j \in J} \<x, e_j\>e_j \in Y^\perp$. Tedy stačí
+		$$ \forall x \in H\ \forall j_0 \in J: \<x - \sum_{j \in J}\<x, e_j\>e_j, e_{j_0}\> = 0: $$
+
+		$$ \forall x \in H\ \forall j_0 \in J: \<x - \sum_{j \in J}\<x, e_j\>, e_j | e_{j_0}\> = \<x, e_{j_0}\> - \sum_{j \in J}\<x, e_j\>\<e_j, e_{j_0}\> = $$
+		$$ = \<x, e_{j_0}\> - \<x, e_{j_0}\> = 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -929,20 +947,16 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \end{definice}
 
 \begin{veta}[Reálná verze komplexního normovaného lineárního prostoru]
-	Nechť $X$ je komplexní normovaný lineární prostor. Pak platí
+	Nechť $X$ je komplexní normovaný lineární prostor. Pak platí\vspace{-1em}
 	
 	\begin{enumerate}
 		\item $X_R$ je reálný normovaný lineární prostor. (Zřejmé.)
 		\item $X_R$ je úplný, právě když $X$ je úplný. (Norma je pořád tatáž.)
-		\item $\phi: X \rightarrow ®C$ je lineární, právě když $\Re \phi: X_R \rightarrow ®R$ je lineární a $\Im \phi(x) = -\Re \phi(ix)$ pro každé $x \in X$.
-		\item Je-li $\phi \in X^*$, pak funkcionál $\psi(x) = \Re \phi(x)$, $x \in X_R$, patří do $(X_R)^*$ a platí $||\psi|| = ||\phi||$.
-		\item Je-li $\psi \in (X_R)^*$, pak existuje právě jeden funkcionál $\phi \in X^*$ takový, že $\psi(x) = \Re \phi(x)$ pro $x \in X_R$. Je dán vzorcem $\phi(x) = \psi(x) - i\psi(ix)$ a splňuje $||\psi|| = ||\phi||$.
-		\item Prostory $(X_R)^*$ a $(X^*)_R$ jsou izometrické.
+		\item $\phi: X \rightarrow ®C$ je lineární, právě když $\Re \phi: X_R \rightarrow ®R$ je lineární a $\Im \phi(x) = -\Re \phi(ix)$ pro každé $x \in X$. (Z definice linearity.)
+		\item Je-li $\phi \in X^*$, pak funkcionál $\psi(x) = \Re \phi(x)$, $x \in X_R$, patří do $(X_R)^*$ a platí $||\psi|| = ||\phi||$. (Z předchozího bodu.)
+		\item Je-li $\psi \in (X_R)^*$, pak existuje právě jeden funkcionál $\phi \in X^*$ takový, že $\psi(x) = \Re \phi(x)$ pro $x \in X_R$. Je dán vzorcem $\phi(x) = \psi(x) - i\psi(ix)$ a splňuje $||\psi|| = ||\phi||$. (4., 5.)
+		\item Prostory $(X_R)^*$ a $(X^*)_R$ jsou izometrické.  (Vyplývá z 5.)
 	\end{enumerate}
-
-	\begin{dukazin}
-		TODO.
-	\end{dukazin}
 \end{veta}
 
 \begin{definice}
@@ -1244,7 +1258,7 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 		$$ ||f|| ≥ ||I(f)|| ≥ I(f)(g) = \int_\Omega |f(x)| \chi_A(x)·\frac{1}{\mu(A)} d\mu(x) > \frac{||f||_∞ - \epsilon}{\mu(A)} \int_A 1 d\mu(x) = ||f||_∞ - \epsilon.\hspace{-0.3em} $$
 
 		$I$ je na: Ať $x^* \in (L_p)^*$. Položme $\nu(A) := x^*(\chi_A)$, $A \in ©A$. Pak $\nu$ je ®K-hodnotová míra: $\nu(\O) = x^*(0) = 0$. Ať $(A_j)_{j=1}^∞$ posloupnost množin z ©A, po 2 disjunktní. Pak
-		$$ ||\chi_{\bigcup_{j=1}^∞ A_j} - \chi_{\bigcup_{j=1}^n A_j}||_p = \mu(TODO) $$
+		$$ ||\chi_{\bigcup_{j=1}^∞ A_j} - \chi_{\bigcup_{j=1}^n A_j}||_p = \mu\(\bigcup_{j=1}^∞ A_j \setminus \bigcup_{j=1}^n A_j\)^{\frac{1}{p}} \rightarrow 0. $$
 		Tedy
 		$$ \nu(\bigcup_{j=1}^∞ A_j) = x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{\bigcup_{j=1}^∞ A_j}) = \lim_{n \rightarrow ∞} x^*(\chi_{A_1}) + … + x^*(\chi_{A_n}) = $$
 		$$ = \lim_{n \rightarrow ∞} \sum_{i=1}^n \nu(A_i) = \sum_{i=1}^∞ \nu(A_i). $$
@@ -1671,8 +1685,14 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \begin{dusledek}
 	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $\{T_n\}$ je posloupnost v $©L(X, Y)$ taková, že $\forall x \in X\ \exists T(x) = \lim_{n \rightarrow ∞} T_n(x)$. Pak $T \in ©L(X, Y)$ a $||T|| ≤ \liminf ||T_n|| \in ®R$.
 
-	\begin{dukazin}
-		TODO?
+	\begin{dukazin}[Ze skript]
+		Nejprve ukážeme, že $T$ je lineární. Zvolme $x, y \in X$ a skalár $\alpha$ libovolně. Pak díky spojitosti vektorových operací platí
+		$$ T(x + y) = \lim_{n \rightarrow ∞} T_n(x + y) = \lim_{n \rightarrow ∞} T_n(x) + T_n(y) = \lim_{n \rightarrow ∞} T_n(x) + \lim_{n \rightarrow ∞} T_n(y) = T(x) + T(y), $$
+		$$ T(\alpha x) = \lim_{n \rightarrow ∞} T_n(\alpha x) = \lim_{n \rightarrow ∞} \alpha T_n(x) = \alpha \lim_{n \rightarrow ∞} T_n(X) = \alpha T(x). $$
+		
+		Dále, pro pevné $x \in X$ ze spojitosti normy plyne $\lim||T_n(x)|| = ||T(x)||$, speciálně posloupnost $\{||T_n(x)||\}$ je omezená. Z předchozí věty plyne, že posloupnost $\{||T(x)||\}$ je omezená. Pak pro libovolné $x \in B_X$ platí
+		$$ ||T(x)|| = \lim_{n \rightarrow ∞} ||T_n(x)|| = \liminf_{n \rightarrow ∞} ||T_n(x)|| ≤ \liminf_{n \rightarrow ∞}||T_n|| \in ®R. $$
+		Tedy $T$ je spojitý lineární operátor a $||T|| ≤ \liminf_{n \rightarrow ∞} ||T_n||$.
 	\end{dukazin}
 \end{dusledek}
 
@@ -1680,7 +1700,11 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X$ je Banachův prostor, $\{x^*_n\}$ je posloupnost v $X^*$, $x^* \in X^*$ a $D \subset X$ splňuje $\overline{\spn} D = X$. Pak $x^*_n \overset{w^*}{\rightarrow} x^*$, právě když $\{x^*_n\}$ je omezená a $x^*_n(d) \rightarrow x^*(d)$ pro každé $d \in D$.
 
 	\begin{dukazin}
-		TODO
+		% Z poznámek spolužačky, moc děkuji.
+		$\implies$: $(x^*)$ je omezená dle principu stejnoměrné omezenosti. $\Leftarrow$: Víme (aplikace linearity):
+		$$ \forall x \in \spn D: x_n^*(x) \rightarrow x^*(x). $$
+		Nechť $x \in X$ a $\epsilon > 0$. Ať $x_0 \in \spn D: ||x - x_0|| · \sup\{||x_n^*||+||x^*||\ |\ n \in ®N\} < \frac{\epsilon}{3}$. Buď $n_0 \in ®N: \forall n ≥ n_0 |x_n^*(x_0) - x^*(x_0)| < \frac{\epsilon}{3}$. Pak $\forall n ≥ n_0$:
+		$$ |x_n^*(x) - x^*(x)| ≤ ||x_n^*||·||x - x_0|| + |x_n^*(x_0) - x^*(x_0)| + ||x^*||·||x - x_0|| ≤ \epsilon. $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1688,7 +1712,8 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	Nechť $X$ je Banachův prostor, $\{x_n\}$ je posloupnost v $X$, $x \in X$ a $D \subset X^*$ splňuje $\overline{\spn} D = X^*$. Pak $x_n \overset{w}{\rightarrow} x$, právě když $\{x_n\}$ je omezená a $d(x_n) \rightarrow d(x^*)$ pro každé $d \in D$.
 
 	\begin{dukazin}
-		TODO
+		% Z poznámek spolužačky, moc děkuji.
+		$\implies$: $x_n \overset{w}{\rightarrow} x \Leftrightarrow \epsilon_X(x_n) \overset{w^*}{\rightarrow} \epsilon_X(x)$. $\Rightarrow$: Analogicky jako v předchozím tvrzení. Tedy $x_n \overset{w}{\rightarrow} x \implies \epsilon_X(x_n)$ je omezená dle předchozího tvrzení, tedy $(x_n)$ je omezená.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1708,8 +1733,20 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 \begin{lemma}[J. P. Schauder, 1930]
 	Nechť $X$ je Banachův prostor, $Y$ je normovaný lineární prostor a $T \in ©L(X, Y)$. Jestliže $r, s > 0$ jsou taková, že $U(0, s) \subset \overline{T(©U(0, r))}$, pak dokonce $U(0, s) \subset T(©U(0, r))$
 
-	\begin{dukazin}
-		Zvol $z \in ©U_Y$, $\delta > 0$, že $||z|| < 1 - \delta$. Chceme $y = \frac{z}{1 - \delta} \in T(\frac{1}{1-\delta} ©U_x)$. Minule (TODO!!!) jsme dělali $\exists (y_n)_{n=0}^∞$, že $y_0 = 0$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$.
+	\begin{dukazin}[První část ze skript]
+		Nejprve si povšimněme, že lze bez újmy na obecnosti uvažovat pouze případ $r = s = 1$. Vskutku máme-li již dokázané tvrzení v tomto případě a $T \in ©L(X, Y)$ splňuje předpoklady pro nějaká $r, s > 0$, pak operátor $\frac{r}{s} T$ splňuje $©U(0, 1) \subset (\frac{r}{s}T)(©U(¦o, 1))$, a tedy podle případu $r = s = 1$ platí $©U(¦o, 1) \subset (\frac{r}{s} T)(©U(¦o, 1))$, odkud $©U(¦o, s) \subset T(©U(¦o, r))$.
+
+		Nechť tedy $r = s = 1$ a nechť je dáno $z \in U_Y$. Najdeme $\delta \in (0, 1)$ takové, že $||z|| < 1 - \delta$. Ukážeme, že $y = \frac{1}{1 - \delta}z \in T\(\frac{1}{1 - \delta} ©U_X\)$. Pak totiž $z = (1 - \delta)y \in (1 - \delta)T\(\frac{1}{1 - \delta}©U_X\) = T(©U_X)$.
+
+		Pomocí matematické indukce najdeme $(y_n)_{n=0}^∞$ takové, že $y_0 = ¦o$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$:
+
+		Je $||y|| < 1$, a tedy volbou $y_0 = ¦o$ je druhá podmínka splněna (a třetí se 0 netýká). Předpokládejme nyní, že $n \in ®N$ a již máme nalezeny prvky $y_0, …, y_{n-1}$. Pak
+		$$ y - y_{n-1} \in \delta^{n-1} ©U_Y \subset \delta^{n-1} \overline{T(U_X)} = \overline{\delta^{n-1}T(U_X)} = \overline{T(\delta^{n-1} ©U_X)}, $$
+		a tedy existuje $w \in T(\delta^{n-1} ©U_X)$ splňující $||y - y_{n-1} - w|| < \delta^n$. Pak $y_n = y_{n-1} + w$ splňuje požadované podmínky.\\
+
+		\hrule
+
+		Z předchozí části $\exists (y_n)_{n=0}^∞$, že $y_0 = 0$, $||y - y_n|| < \delta^n$, $n \in ®N\cup\{0\}$ a $y_n - y_{n-1} \in T(\delta^{n-1} ©U_x)$.
 
 		Zvolme $x_n \in \delta^{n-1}©U_x$, že $Tx_n = y_n - y_{n + 1}$, $n \in ®N$. Pak
 		$$ \sum_{n=1}^∞ ||x_n|| < \sum_{n=0}^∞ \delta^n = \frac{1}{1 - \delta} < ∞ \overset{X \text{ je Banachův}}{\implies} $$
@@ -1979,13 +2016,13 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 
 		Zvol $x \in S_H$, chceme „$||Tx|| ≤ M$“: BÚNO $Tx ≠ 0$. Položme $y = \frac{Tx}{||Tx||} \in S_H$. Pak $||Tx|| = \<Tx, y\> = S(x, y) = |\Re S(x, y)| ≤ \frac{1}{4} (|S(x + y, x + y)| + |S(x - y, x - y)|) ≤ \frac{1}{4} M(||x + y||^2 + ||x - y||^2) = \frac{1}{2} M (||x||^2 + ||y||^2) = M$.
 
-		Tedy $||T|| = \sup\{|\lambda| | \lambda \in N_T\} = \max\{m_T, M_T\}$ (Jelikož $A \subseteq ®R$ je omezená $\implies \sup\{|\lambda| | \lambda \in A\} = \max\{|\inf A|, TODO\}$).
+		Tedy $||T|| = \sup\{|\lambda| | \lambda \in N_T\} = \max\{m_T, M_T\}$ (Jelikož $N_T \subseteq ®R$ je omezená $\implies \sup\{|\lambda| | \lambda \in N_T\} = \max\{|\inf N_T|, |\sup N_T|\}$).
 
 		A tedy $\sigma(T) \subseteq \overline{N_T} \subseteq [m_T, M_T]$. Zbývá „$\{m_T, M_T\} \subseteq \sigma(T)$“: Polož $R = T - m_T I$. Pak $R = R^\bigstar$, $N_R = N_T - m_T$, tedy $M_R = M_T - m_T ≥ 0 = m_R$ $\implies$ $||R|| = M_R$. Zvol $(x_n)_{n=1}^∞$ z $S_H$, že $\<R x_n, x_n\> \rightarrow ||R|| = M_R$. Chceme „$||R|| I - R$ není izomorfismus“: Máme $|| (||R||) x_n  - Rx_n||^2 = ||R||^2 ||x_n||^2 + ||Rx_n||^2 + 2\Re\<-Rx_n, ||R||x_n\> ≤ 2(||R||^2  - ||R||\Re\<Rx_n, x_n\>) = 2||R||·(||R||  - \<Rx_n, x_n\>) \rightarrow 0$. Tedy $||R|| I - R$ není zdola omezený.
 
-		Tedy $M_R = ||R|| \in \sigma(R)$. Pak $M_T \in \sigma(T)$ (neboť máme $M_T I - T = (m_T + M_R) I - (m_T I + R) = M_R I - R$ nemá inverz).
+		Tedy $M_R = ||R|| \in \sigma(R)$. Pak $M_T \in \sigma(T)$ (neboť máme $M_T I - T = (m_T + M_R) I - (m_T I + R) = M_R I - R$ nemá inverzi).
 
-		Zbývá „$m_T \in \sigma(T)$“: Máme $N_T = - N_T$, tedy $m_T = \inf N_T = -(\sup (- N_T)) = -M_{-T}$. $-M_{-T}$ je ve spektru (dle již dokázané části), tedy máme $m_T I - T = (-M_{-T} I - T = -(M_{-T} I - (-T)))$ nemá inverz, tedy $m_T \in \sigma(T)$.
+		Zbývá „$m_T \in \sigma(T)$“: Máme $N_T = - N_T$, tedy $m_T = \inf N_T = -(\sup (- N_T)) = -M_{-T}$. $-M_{-T}$ je ve spektru (dle již dokázané části), tedy máme $m_T I - T = (-M_{-T} I - T = -(M_{-T} I - (-T)))$ nemá inverzi, tedy $m_T \in \sigma(T)$.
 	\end{dukazin}
 \end{veta}
 
