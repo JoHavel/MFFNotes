@@ -2253,6 +2253,201 @@ Dále se opakovaly metrické prostory. Úplnost, kompaktnost a Bairova věta.
 	\end{dukazin}
 \end{lemma}
 
-TODO další 2 přednášky
+% 03. 01. 2022 Ze skript
+
+\begin{veta}
+	Nechť $f, g \in L_1(\mu_d)$ a $j \in [d]$. Fourierova transformace má následující vlastnosti:
+
+	\begin{enumerate}
+		\item $\hat{f} \in C_0(®R^d)$ a $||\hat{f}||_∞ ≤ ||f||_1$. Fourierova transformace je tedy spojité lineární zobrazení z prostoru $L_1(®R^d)$ do prostoru $C_0(®R^d)$.
+		\item Nechť $y \in ®R^d$. Pak $\widehat{\tau_y f}(t) = e^{-\<y, t\>}\hat{f}(t)$ pro každé $t \in ®R^d$ a naopak pro funkci $h(x) = e^{i\<y, x\>}f(x)$ platí $\hat{h} = \tau_y \hat{f}$.
+		\item Je-li $c > 0$ a $h(x) = f\(\frac{x}{c}\)$, pak $\hat{h}(t) = c^d \hat{f}(ct)$ pro každé $t \in ®R^d$.
+		\item Je-li $h(x) = \overline{f(-x)}$, pak $\hat{h} = \overline{\hat{f}}$.
+		\item $\widehat{f * g} = \hat{f} \hat{g}$.
+		\item $\int_{®R^d} \hat{f} g d\mu_d = \int_{®R^d}f \hat{g} \mu_d$.
+		\item Jestliže pro funkci $h(x) = -i x_j f(x)$ platí $h \in L_1(\mu_d)$, pak $\frac{\partial \hat{f}}{\partial x_j}(t) = \hat{h}(t)$ pro každé $t \in ®R^d$.
+		\item Jestliže $\frac{\partial f}{\partial x_j}$ existuje všude na $®R^d$ a jestliže $\frac{\partial f}{\partial x_j} \in L_1(\mu_d)$, pak $\widehat{\frac{\partial f}{\partial x_j}}(t) = i t_j \hat{f}(t)$ pro každé $t \in ®R^d$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		Nechť $t \in ®R^d$ a $\{t_n\}$ je posloupnost v $®R^d$ konvergující k $t$. Pak díky spojitosti skalárního součinu pro každé $x \in ®R^d$ platí $f(x) e^{-i \<t_n, x\>} \rightarrow f(x) e^{-i \<t, x\>}$. Protože $|f(x) e^{-i\<t_n, x\>}| = |f(x)|$, je podle Lebesgueovy věty
+		$$ \lim_{n \rightarrow ∞} \hat{f} (t_n) = \lim_{n \rightarrow ∞} \int_{®R^d} f(x) e^{-i \<t_n, x\>} d\mu_d = \int_{®R^d} f(x) e^{-i\<t, x\>} d\mu_d = \hat{f}(t). $$
+		Tedy $\hat{f}$ je spojitá v $t$. Dále zjevně $|\hat{f}(t)| ≤ \int_{®R^d} |f(x)| d\mu_d(x) = ||f||_1$. Fakt, že $\hat{f} \in C_0(®R^d)$ nyní plyne z předchozího lemmatu. Konečně linearita Fourierovy transformace je zřejmá z definice.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Z věty o substituci pro $t \in ®R^d$:
+		$$ \widehat{\tau_y f}(t) = \int_{®R^d} f(x - y)e^{-i \<t, x\>}d\mu_d(x) = \int_{®R^d} f(u) e^{-i\<t, u\>}e^{-i\<t, y\>} d\mu_d(u) = e^{-i \<y, t\>} \hat{f}(t). $$
+		$$ \hat{h}(t) = \int_{®R^d} e^{i\<y, x\>} f(x) e^{-i\<t, x\>} d\mu_d(x) = \int_{®R^d} f(x) e^{-i\<t - y, x\>} d\mu_d(x) = \hat{f}(t - y) = \tau_y \hat{f}(t). $$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Z věty o substituci pro $t \in ®R^d$:
+		$$ \hat{h}(t) = \int_{®R^d} f\(\frac{x}{c}\) e^{-i\<t, x\>} d \mu_d(x) = |c|^d \int_{®R^d} f(u) e^{-i \<t, c u\>} d\mu_d(u) = |c|^d \hat{f}(c t). $$
+	\end{dukazin}
+
+	\begin{dukazin}[4.]
+		Z věty o substituci pro $t \in ®R^d$:
+		$$ \hspace{-1em}\hat{h}(t) = \int_{®R^d} \overline{f(-x)} e^{-i \<t, x\>} d\mu_d(x) = \int_{®R^d} \overline{f(-x) e^{-i \<t, -x\>}} d\mu_d(x) = \int_{®R^d} \overline{f(x) e^{-i \<t, x\>}} d\mu_d(x) = \overline{\hat{f}(t)}.\hspace{-1em} $$
+	\end{dukazin}
+
+	\begin{dukazin}[5.]
+		Zvolme pevně libovolné $t \in ®R^d$. Dle lemmatu výše je funkce $F(x, y) = f(y)g(x - y) e^{-i\<t, x\>}$ měřitelná na $(®R^d)^2$. Dále $|F(x, y)| = |f(y)|·|g(x - y)|$ a aplikujeme lemma výše na $|F|$, dostaneme, že $F \in L_1(\mu_d \times \mu_d)$. Můžeme tedy použít Fubiniovu větu a substituci $\phi(u) = u + y$ k výpočtu
+		$$ \widehat{f * g}(t) = \int_{®R^d} (f * g)(x) e^{-i\<t, x\>} d\mu_d(x) = \int_®R^d \(\int_{®R^d} f(y) g(x - y) d\mu_d(y)\)e^{-i\<t, x\>} d\mu_d(x) = $$
+		$$ \hspace{-3em}= \int_{®R^d} f(y) \(\int_{®R^d} g(x - y) e^{-i \<t, x\> d\mu_d(x)}\) d\mu_d(y) = \int_{®R^d} f(y) \(\int_{®R^d} g(u) e^{-i \<t, u + y\>} d\mu_d(u)\) d\mu_d(y) = \hspace{-3em} $$
+		$$ = \int_{®R^d} f(y)e^{-i \<t, y\>} d\mu_d(y) · \int_{®R^d}g(u) e^{-i\<t, u\>} d\mu_d(u) = \hat{f}(t)\hat{g}(t). $$
+	\end{dukazin}
+
+	\begin{dukazin}[6.]
+		Položme $F(x, y) = f(y) g(x) e^{-i \<x, y\>}$. Pak $F$ je dle lemmatu výše měřitelná na $\(®R^d\)^2$. Máme
+		$$ \hspace{-1em}\int_{®R^d}\(\int_{®R^d} |F(x, y)| d\mu_d(x)\) d\mu_d(y) = \int_{®R^d}|f(y)|\(\int_{®R^d} |g(x)| d\mu_d(x)\)\mu_d(y) = ||f||_1||g||_1 < ∞,\hspace{-1em} $$
+		podle Fubiniovy věty, tedy $F \in L_1(\mu_d \times \mu_d)$. Proto můžeme použít Fubiniovu větu ještě jednou k výpočtu
+		$$ \int_{®R^d} \hat{f}(x)g(x) d\mu_d(x) = \int_{®R^d}\(\int_{®R^d}f(y) e^{-i \<x, y\>} d\mu_d(y)\)g(x)d \mu_d(x) = $$
+		$$ = \int_{®R^d}\(\int_{®R^d}f(y) e^{-i \<x, y\>} g(x) d\mu_d(x)\)d \mu_d(y) = \int_{®R^d} f(y)\hat{g}(y) d\mu_d(y). $$
+	\end{dukazin}
+
+	\begin{dukazin}[7.]
+		Zvolme pevně $t \in ®R^d$ a položme $\phi(u) = \hat{f}(t + u e_j)$ pro $u \in ®R$. Dále položme $F(u, x) = f(x) e^{-i \<t + ue_j, x\>}$ pro $u \in ®R$ a $x \in ®R^d$ a všimněme si, že $\phi(u) = \int_{®R^d} F(u, x) d\mu_d(x)$. Pak pro každé $u \in ®R$ je funkce $x \mapsto F(u, x)$ měřitelná. Dále pro každé $x \in ®R^d$ a $u \in ®R$ je $\frac{\partial f}{\partial u}(u, x) = -i x_j f(x) e^{-i \<t + u e_j, x\>} = h(x) e^{-i \<t + ue_j, x\>}$, takže $\left|\frac{\partial F}{\partial t}(u, x)\right| = |h(x)|$. Dle předpokladu je tedy $h$ integrovatelná majoranta. Konečně, zjevně $x \mapsto F(0, x) \in L_1(\mu_d)$. Podle věty o derivaci integrálu podle parametru tak máme $\frac{\partial \hat{f}}{\partial x_j}(t) = \phi'(0) = \int_{®R^d} \frac{\partial F}{\partial u}(0, x) d\mu_d(x) = \hat{h}(t)$.
+	\end{dukazin}
+
+	\begin{dukazin}[8.]
+		Díky následujícímu lemmatu máme
+		$$ \widehat{\frac{\partial f}{\partial x_j}}(t) = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d} \frac{\partial f}{\partial x_j}(x) e^{-i \<t, x\>} d\lambda(x) = -\frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d} f(x) (-i t_j) e^{-i \<t, x\>} d\lambda(x) = i t_j \hat{f}(t). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $f \in L_1(®R^d, \lambda)$, $g: ®R^d \rightarrow ®K$ je omezená a $j \in [d]$. Jestliže $\frac{\partial f}{\partial x_j}$ a $\frac{\partial g}{\partial x_j}$ existují všude na $®R^d$ a jestliže $\frac{\partial f}{\partial x_j} \in L_1(®R^d)$ a $\frac{\partial g}{\partial x_j} \in C_b(®R^d)$, pak $\int_{®R^d} \frac{\partial f}{\partial x_j} d\lambda = -\int_{®R^d} f \frac{\partial g}{\partial x_j} d\lambda$.
+
+	\begin{dukazin}[Náznak pro $d=1$]
+		Podle předpokladu je funkce $f g'$ spojitá na ®R a má konvergentní Lebesgueův integrál. Tedy existuje i konečný Newtonův integrál $\int_{-∞}^{+∞} f(x) g'(x) dx$. Dále si můžeme všimnout, že $\lim_{x \rightarrow ±∞} f(x) = 0$ (jinak by $f$ nebyla z $L_1$, důkaz existence je přenechán čtenáři). Podle věty o integraci per partes tedy máme
+		$$ \int_{-∞}^{+∞} f'(x) g(x) dx = [f(x)g(x)]_{-∞}^{+∞} - \int_{-∞}^{+∞} f(x) g'(x) dx = -\int_{-∞}^{+∞} f'(x) g(x) dx. $$
+		Integrál vlevo konverguje dle předpokladů, tedy rovnost platí.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Nechť $f, g \in L_1(\mu_d)$. Položme $g_n(x) = n^d \hat{g}(-nx)$ a $h_n(x) = g\(\frac{x}{n}\)$ pro $x \in ®R^d$ a $n \in ®N$. Pak $f*g_n(x) = \int_{®R^d} \hat{f}(t) e^{i\<t, x\>} h_n(t) d\mu_d(t)$ pro každé $x \in ®R^d$ a $n \in ®N$.
+
+	\begin{dukazin}
+		Nechť $n \in ®N$. Protože $g_n$ je omezená, je $f * g_n$ definovaná na celém $®R^d$. Pro libovolné $x \in ®R^d$ tedy máme
+		$$ (f * g_n)(x) = (g_n * f)(x) = $$
+		$$ = \int_{®R^d} f(x - y)g_n(y) d\mu_d(y) = \int_{®R^d} f(x - y)n^d \hat{g}(-n y) d\mu_d(y) = \int_{®R^d} f(x + t)n^d \hat{g}(n t) d\mu_d(t) = $$
+		$$ = \int_{®R^d} \tau_{-x}f(t) \widehat{h_n}(t) d\mu_d(t) = \int_{®R^d} \widehat{\tau_{-x} f}(t) h_n(t) d\mu_d(t) = \int_{®R^d} \hat{f}(t) e^{i \<x, t\>} h_n(t) d\mu_d(t), $$
+		přičemž při výpočtu jsme použili postupně substituci $\phi(y) = -y$ a předchozí větu.
+	\end{dukazin}
+\end{lemma}
+
+% 04. 01. 2022
+
+\begin{veta}[O inverzi]
+	Nechť $f \in L_1(\mu_d)$. Je-li $\hat{f} \in L_1(\mu_d)$, pak pro skoro všechna $x \in ®R^d$ platí
+	$$ f(x) = \int_{®R^d} \hat{f}(t) e^{i\<x, t\>} d\mu_d(t) = \hat{\hat{f}}(-x). $$
+	Je-li navíc $f$ spojitá, pak vzorec platí pro všechna $x \in ®R^d$.
+
+	\begin{dukazin}[TODO vlastnosti $g$]
+		Nechť $g: ®R^d \rightarrow ®R$ je funkce $g(x) = e^{-\sum_{j=1}^d |x_j|}$. Pak $x \mapsto \hat{g}(-x) = \(\frac{2}{\pi}\)^{\frac{d}{2}} \prod_{j=1}^d \frac{1}{1 + t_j^2}$ je regularizační jádro na $®R^d$. Všimněme si též, že $g(0) = 1$. Nechť $g_n$ a $h_n$ jsou funkce z předchozího lemmatu. Podle toho pro libovolné $x \in ®R^d$ platí, že $(f * g_n)(x) = \int_{®R^d} \hat{f}(t) e^{i \<x, t\>} d\mu_d(t)$. Pro každé $t \in ®R^d$ je $h_n(t) \rightarrow g(0) = 1$. Protože $|\hat{f}(t) e^{i\<x, t\>} h_n(t)| ≤ |\hat{f}(t)|$ pro každé $t \in ®R^d$ a dle předpokladu $\hat{f} \in L_1(\mu_d)$, můžeme použít Lebesgueovu větu. Dostáváme tak $f * g_n(x) \rightarrow \int_{®R^d} \hat{f}(t) e^{i\<x, t\>} d\mu_d(t)$ pro každé $x \in ®R^d$. Na druhou stranu podle věty o regularizačním jádru platí, že $f * g_n \rightarrow f$ v $L_1(\mu_d)$. Existuje tedy posloupnost $\{g_{n_k}\}$ taková, že $(f * g_{n_k})(x) \rightarrow f(x)$ pro skoro všechna $x \in ®R^d$. Z jednoznačnosti limity pak dostáváme, že $f(x) = \int_{®R^d} \hat{f}(t) e^{i\<x, t\>} d\mu_d(t)$ pro skoro všechna $x \in ®R^d$.
+
+		Předpokládejme nyní, že je $f$ navíc spojitá. Protože $x \mapsto \hat{\hat{f}}(-x)$ je spojitá dle věty o vlastnosti FT a $f(x) = \hat{\hat{f}}(-x)$ na husté podmnožině $®R^d$, musejí se tyto funkce rovnat všude.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Fourierova transformace $©F: L_1(\mu_d) \rightarrow C_0(®R^d)$ je prosté zobrazení. Je-li $g \in L_1(\mu_d)$ a $\hat{g} \in L_1(\mu_d)$, pak $g \in \Rng ©F$ a $©F^{-1}(g)(x) = \hat{g}(-x)$ pro skoro všechna $x \in ®R^d$.
+\end{dusledek}
+
+\begin{dusledek}
+	Jsou-li $f, g \in L_1(\mu_d)$ takové, že $\hat{f}, \hat{g}, f g, \widehat{f g} \in L_1(\mu_d)$, pak $\widehat{f g} = \hat{f} * \hat{g}$.
+\end{dusledek}
+
+\begin{definice}[Schwartzův prostor]
+	Schwartzův prostor na $®R^d$ je definován následujícím způsobem:
+	$$ ©S_d = \{f \in C^∞(®R^d, ®C) | P D^{\alpha} f \text{ je omezená pro každé } \alpha \in ®N_0^d \text{ a každý polynom $P$ na } ®R^d\}. $$
+\end{definice}
+
+\begin{lemma}
+	Pro $N \in ®N$ je funkce $x \mapsto (1 + ||x||^2)^N$ polynom na $®R^d$. Pro každý polynom $P$ na $®R^d$ existují $N \in ®N$ a $C > 0$ taková, že $|P(x)| ≤ C(1 + ||x||^2)^N$ pro každé $x \in ®R^d$.
+
+	\begin{dukazin}[Na přednášce byl pouze náznak]
+		První tvrzení je vidět z rozpisu $(1 + ||x||^2)^N = \(1 + \sum_{j=1}^d x_j^2\)^N$. Dále nechť $P(x) = \sum_{\alpha \in ®N_0^d, |\alpha| < k} c_\alpha x^\alpha$. Položme $C = \sum_{\alpha \in ®N_0^d, |\alpha| < k} |c_\alpha|$. Pro každé $x \in ®R^d$ a $j \in [d]$ máme $|x_j| ≤ ||x|| ≤ 1 + ||x||^2$ (neboť $||x|| ≤ 1$ nebo $||x|| ≤ ||x||^2$). Tedy
+		$$ P(x) ≤ \sum_{\alpha \in ®N_0^d, |\alpha| < k} |c_\alpha|·|x_1|^{\alpha_1}·…·|x_d|^{\alpha_d} ≤ \sum_{\alpha \in ®N_0^d, |\alpha| < k} |c_\alpha|(1 + ||x||^2)^{|\alpha|} ≤ C(1 + ||x||^2)^k. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Nechť $d \in ®N$, $1 ≤ p < ∞$, $N > \frac{d}{2p}$ a $h(x) = \frac{1}{(1 + ||x||^2)^N}$ pro $x \in ®R^d$. Pak $h \in L_p(\mu_d)$.
+
+	\begin{dukazin}[Na přednášce pouze náznak]
+		Podle věty o substituci použité na sférické souřadnice a dále podle Fubiniovy věty (integrujeme spojitou nezápornou funkci) platí
+		$$ \int_{®R^d}\(\frac{1}{(1 + ||x||^2)^N}\)^p d\mu_d = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_{®R^d}\frac{1}{(1 + ||x||^2)^{pN}} d\lambda_d = $$
+		$$ = \frac{1}{(2\pi)^{\frac{d}{2}}} \int_0^{+∞} \int_0^\pi … \int_0^\pi \int_0^{2\pi} \frac{r^{d-1}}{(1 + r^2)^{pN}} \sin^{d - 2} \phi_1 \sin^{d - 2} \phi_1 … \sin \phi_{d - 2} d\phi_{d - 2} … d\phi_1 dr = $$
+		$$ = C_d \int_0^{+∞} \frac{r^{d - 1}}{(1 + r^2)^{p N}} dr, $$
+		kde konstanta $C_d > 0$ závisí jen na dimenzi $d$. Poslední integrál ovšem konverguje, neboť $2p N - d + 1 > 1$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	Schwartzův prostor má následující vlastnosti:
+
+	\begin{enumerate}
+		\item $©D(®R^d) \subset ©S_d \subset C_0(®R^d) \cap \bigcap_{1 ≤ p < ∞} L_p(\mu_d)$.
+		\item Je-li $f \in ©S_d$, $a \in ®R \setminus \{0\}$, $b \in ®R^d$ a $h(x) = f(a x + b)$, pak $h \in ©S_d$.
+		\item Je-li $f \in ©S_d$ a $\alpha$ multiindex délky $d$, pak $D^\alpha f \in ©S_d$.
+		\item Je-li $f \in ©S_d$ a jestliže $g \in C^∞(®R^d)$ je omezená a má omezené všechny parciální derivace všech řádů (speciálně, je-li $g \in ©S_d$), pak $f g \in ©S_d$.
+		\item Je-li $f \in ©S_d$ a $P : ®R^d \rightarrow ®C$ polynom, pak $P f \in ©S_d$.
+	\end{enumerate}
+
+	\begin{dukazin}[Pouze 1.]
+		Vztahy $©D(®R^d) \subset ©S_d \subset C_0(®R^d)$ již známe. Nechť $1 ≤ p < ∞$. Podle předchozího lemmatu existuje $N \in ®N$ takové, že funkce $x \mapsto \frac{1}{(1 + ||x||^2)^N}$ leží v $L_p(\mu_d)$. Je-li nyní $f \in ©S_d$, pak existuje $C > 0$ takové, že $|f(x)|^p ≤ \frac{C^p}{(1 + ||x||^2)^{P n}}$ pro každé $x \in ®R^d$, takže podle srovnávacího kritéria $f \in L_p(\mu_d)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Nechť $f \in ©S_d$ a $\alpha \in ®N_0^d$. Pak $\widehat{D^\alpha f}(t) = (i t)^\alpha \hat{f}(t)$ pro každé $t \in ®R^d$ a $D^\alpha \hat{f} = \widehat{m_\alpha f}$, kde $m_\alpha(x) = (-i x)^\alpha$.
+
+	\begin{dukazin}
+		První vzorec plyne snadno indukcí dle $|\alpha|$ z věty o vlastnostech FT, přičemž v indukčním kroku jsou předpoklady splněny, neboť $D^\beta f \in ©S_d \subset L_1(\mu_d)$ pro každé $\beta \in ®N_0^d$ dle vlastností Schwartzova prostoru.
+
+		Druhý vzorec plyne snadno indukcí dle $|\alpha|$ z věty o vlastnostech FT, přičemž v indukčním kroku jsou předpoklady splněny, neboť $m_\alpha f \in ©S_d \subset L_1(\mu_d)$ dle vlastností Schwartzova prostoru.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	Pro $n \in ®N$ a $f \in ©S_d$ položme
+	$$ \nu_N(f) = \max_{|\alpha| ≤ N} \left|\left| x \mapsto (1 + ||x||^2)^N · D^\alpha f(x) \right|\right|_∞. $$
+	Definujeme dále funkci $\sigma: ©S_d \times ©S_d \rightarrow [0, ∞)$ předpisem
+	$$ \sigma(f, g) = \sum_{N=0}^∞ 2^{-N} \min \{\nu_N (f - g), 1\}, \qquad f, g \in ©S_d. $$
+\end{definice}
+
+\begin{veta}
+	$(©S_d, \sigma)$ je úplný metrický prostor splňující následující vlastnosti:
+
+	\begin{enumerate}
+		\item Je-li $(f_n)$ posloupnost v $©S_d$ a $f \in ©S_d$, pak $f_n \overset{\sigma}{\rightarrow} f$, právě když pro každé $N \in ®N_0$ a $\alpha \in ®N_0^d$ platí, že
+			$$ (1 + ||x||^2)^N · D^\alpha f_n(x) \rightarrow (1 + ||x||^2)^N · D^\alpha f(x) \text{ stejnoměrně na } ®R^d. $$
+		\item Jestliže $f_n \rightarrow f$ v prostoru $(©S_d, \sigma)$, pak $f_n \rightarrow f$ v $L_p(\mu_d)$ pro každé $1 ≤ p < ∞$.
+		\item Je-li $\alpha$ multiindex délky $d$, $P$ polynom na $®R^d$ a $g \in ©S_d$, pak zobrazení $f \mapsto D^\alpha f$, $f \mapsto P f$, $f \mapsto g f$ jsou spojitá jakožto zobrazení z $(©S_d, \sigma)$ do $(©S_d, \sigma)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Pro $f, g \in ©S_d$ platí $\widehat{f g} = \hat{f} * \hat{g}$. Speciálně, prostor $©S_d$ je uzavřený na konvoluci.
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	Existuje právě jedna lineární izometrie $F: L_2(\mu_d) \rightarrow L_2(\mu_d)$ na taková, že $F(f) = \hat{f}$ pro každou $f \in L_2(\mu_d) \cap L_1(\mu_d)$.
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
