@@ -1,0 +1,46 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 14. 02. 2022
+
+\section*{Organizační úvod}
+\begin{poznamka}[Organizační úvod]
+	Bude Moodle. DL1. Kódem je kód cvičení.
+
+	Prerekvizity nejsou formální, ale je vhodné mít za sebou ADS1 + logiku.
+
+	Zkouška má povinnou písemnou část s materiály z přednášky a překladači Prologu a Haskellu. Zadání i odevzdání prostřednictvím Moodle UK. Zápočet ke zkoušce je doporučený.
+
+	Zápočet: Zápočtový program v Prologu / Haskellu + cvičící si mohou volit další podmínky.
+\end{poznamka}
+
+\section{Úvod}
+\begin{definice}[Neprocedurální programování]
+	Programování bez přiřazovacího příkazu. Lze tak programovat dvěma způsoby: Logické programování = popisujeme problém, který chceme řešit prostředky matematické logiky (Prolog). Funkcionální programování = program je definice funkcí, výpočet je pak aplikace funkce na argumenty (Haskell, Lisp).
+\end{definice}
+
+\begin{definice}[Prolog]
+	U zrodu stáli Robert Kowalski (Edinburgh) a Alain Colmerauer (Marseille).
+
+	Aplikace: výuka a výzkum, zpracování přirozeného jazyka, AI, automatické dokazování vět, expertní systémy, dotazovací systémy, systémy řízení, …
+
+	Existuje ohromné množství implementací. My budeme používat SWI Prolog.
+\end{definice}
+
+\begin{definice}[Syntax Prologu]
+	Před tečkou je term = funktor použitý na konstantu (např. zena(eva). nebo rodic(eva, kain).). Tím (několika řádky začínající vždy stejným funktorem) jsme vytvořili proceduru, která definuje predikát (funktor/počet parametrů) tak, že dává true právě tehdy, když je použitý na tuto konstantu.
+
+	Funktor použitý na proměnnou (standardně s velkým prvním písmenem) je definice proměnné.
+
+	Čárka je konjunkce. Disjunkce se píše jako středník (využívá se také, když chceme vrátit další možné splnění formule). Konjunkce má vyšší prioritu.
+
+	Definice pomocí predikátoru se dělá pomocí \verb|:-|.
+
+	Nerovná se značí \verb|\==|.
+\end{definice}
+
+\end{document}

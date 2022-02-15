@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 15. 02. 2022
+\section*{Organizační úvod}
+\begin{poznamka}
+	Jako vždycky, jen v implikacích u zkoušky budou i pojmy z předchozích semestrů.
+\end{poznamka}
+
+\section{Stejnoměrná konvergence posloupností a řad funkcí}
+	\subsection{Bodová a stejnoměrná konvergence posloupnosti funkcí}
+	\begin{definice}
+		Nechť $J \subset ®R$ je interval a nechť máme funkce $f: J \rightarrow ®R$ a $f_n: J \rightarrow ®R$ pro $n \in ®N$. Řekneme, že posloupnost funkcí $\{f_n\}$
+
+		\begin{itemize}
+			\item konverguje bodově k $f$ na $J$, pokud $\forall x \in J: \lim_{n \rightarrow ∞} f_n(x) = f(x)$, neboli:
+				$$ \forall x \in J\ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0: |f_n(x) - f(x)| < \epsilon; $$
+			\item konverguje stejnoměrně k $f$ na $J$ (značíme $f_n \rightrightarrows f$ na $J$), pokud
+				$$ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0\ \forall x \in J: |f_n(x) - f(x)| < \epsilon; $$
+			\item konverguje lokálně stejnoměrně, pokud pro každý omezený uzavřený $[a, b] \subset J$ platí $f_n \rightrightarrows f$ na $[a, b]$ (značíme $f_n \overset{\text{Loc}}{\rightrightarrows} f$ na $J$).
+		\end{itemize}
+	\end{definice}
+
+	\begin{veta}[Kritérium stejnoměrné konvergence]
+		Nechť $f, f_n: J \rightarrow ®R$, pak
+		$$ f_n \rightrightarrows f \text{ na } J \Leftrightarrow \lim_{n \rightarrow ∞} \sup_{x \in J} |f_n(x) - f(x)| = 0. $$
+
+		\begin{dukazin}
+			$$ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0\ \forall x \in J: |f_n(x) - f(x)| ≤ \epsilon \Leftrightarrow $$
+			$$ \Leftrightarrow \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0: \sup_{x \in J} |f_n(x) - f(x)| ≤ \epsilon \Leftrightarrow $$
+			$$ \Leftrightarrow \lim_{n \rightarrow ∞} \sup_{x \in J} |f_n(x) - f(x)| = 0. $$
+		\end{dukazin}
+
+		\begin{poznamkain}[Pro spojité funkce]
+			$$ \Leftrightarrow ||f_n - f||_{©C(J)} \rightarrow 0 \Leftrightarrow f_n \overset{©C(J)} \rightarrow f. $$
+		\end{poznamkain}
+	\end{veta}
+
+	\begin{veta}[Bolzano-Cauchyova podmínka pro stejnoměrnou konvergenci]
+		Nechť $f_n: J \rightarrow ®R$, pak
+		$$ (\exists f: f_n \rightrightarrows f \text{ na } J) \Leftrightarrow (\forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon). $$
+
+		\begin{dukazin}
+			„$\implies$“: Víme $\forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0\ \forall x \in J: |f_n(x) - f(x)| < \epsilon$. Tedy
+			$$ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| ≤ |f_n(x) - f(x)| + |f(x) - f_m(x)| < 2\epsilon. $$
+
+			„$\Leftarrow$“: Víme $\forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon$. Toto použijeme pro pevné $x \in J$. Pro posloupnost $a_n = f_n(x)$ máme splněnou BC podmínku pro posloupnost reálných čísel, tj. $a_n \rightarrow a \in ®R$.
+
+			Označíme si $f(x) = \lim_{n \rightarrow ∞} f_n(x)$. Nyní v BC podmínce provedeme limitu $n \rightarrow ∞$. Tím dostaneme přesně definici stejnoměrné konvergence.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Moore-Osgood]
+		Nechť $x_0 \in ®R^*$ je krajní bod intervalu $J$. Nechť $f_n, f: J \rightarrow ®R$ splňují
+
+		\begin{itemize}
+			\item $f_n \rightrightarrows f$ na $J$,
+			\item existuje $\lim_{x \rightarrow x_0} f_n(x) = a_n \in ®R\ \forall n \in ®N$.
+		\end{itemize}
+
+		Pak existují $\lim_{n \rightarrow ∞} a_n$ a $\lim_{x \rightarrow x_0} f(x)$ a jsou si rovny.
+
+		\begin{dukazin}
+			Příště.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}
+		Nechť $f_n \rightrightarrows f$ na $I$ a nechť $f_n$ jsou spojité na $I$. Pak $f$ je spojitá na $I$.
+	\end{dusledek}
+
+	\begin{poznamka}
+		Obdobně lze definovat stejnoměrnou spojitost i pro libovolnou množinu $A \subset ®R^n$ a $f_n: A \rightarrow ®R$ a platí, že stejnoměrná limita je spojitá (stejnoměrná limita spojitých funkcí je spojitá).
+	\end{poznamka}
+
+\end{document}

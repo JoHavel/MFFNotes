@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 14. 02. 2022
+\section*{Organizační úvod}
+\begin{poznamka}
+	Podmínkou zápočtu je splnění 1 domácí práce a 1 písemného testu. Není potřeba docházka.
+
+	Bude moodle (přístup dají cvičící). Budou tam poznámky k přednášce, cvičebnice a bude se tam odevzdávat domácí práce.
+
+	Je dobré umět míru.
+\end{poznamka}
+
+\section{Úvod}
+\begin{poznamka}
+	Pravděpodobnost popisuje modely popisující náhodné jevy.
+
+	Statistika se pak snaží popsat reálné věci za pomocí těchto modelů.
+\end{poznamka}
+
+\begin{poznamka}[Historie]
+	Klasická pravděpodobnost navazuje na dílo Kolmogorova, který popisoval axiomatickou pravděpodobnost.
+\end{poznamka}
+
+\section{Pravděpodobnostní prostor}
+\begin{definice}[Pravděpodobnostní prostor, pravděpodobnost]
+	Pravděpodobnostní prostor je trojice $(\Omega, ©A, P)$, kde $\Omega$ je neprázdná množina, ©A je $\sigma$-algebra a $P$ je pravděpodobnost.
+
+	Pravděpodobnost $P$ je množinová funkce $©A \rightarrow [0, 1]$ splňující:
+	\begin{itemize}
+		\item $P(A) ≥ 0\ \forall A \in ©A$, (nezápornost)
+		\item $P(\Omega) = 1$, (normovanost)
+		\item jsou-li $A_i \in ©A$ po dvou disjunktní, pak $P\(\bigcup_{i=1}^∞ A_i\) = \sum_{i=1}^∞ P(A_i)$. ($\sigma$-aditivita)
+	\end{itemize}
+	
+	\begin{poznamkain}[Interpretace]
+		$\Omega$ se často nazývá stavový prostor a obsahuje všechny „realizace náhody“ neboli elementární jevy, tj. všechny možnosti, o kterých uvažuji.
+
+		©A je $\sigma$-algebra náhodných jevů. $P$ pak obsahuje veškerou informaci o té dané náhodné situaci.
+
+		Pokud nastal $\omega \in A \in ©A$ ($\omega \in \Omega$), pak nastal jev $A$.
+	\end{poznamkain}
+
+	\begin{definicein}[Klasický pravděpodobnostní prostor, diskrétní pravděpodobnostní prostor, spojitý pravděpodobnostní prostor, indikátor]
+		$\Omega$ konečná, $©A = 2^\Omega$, $P(\{a\}) = \frac{1}{n}\ \forall a \in \Omega$ je klasický pravděpodobnostní prostor.
+
+		$\Omega$ spočetná (včetně konečná), $©A = 2^\Omega$, $p: \Omega \rightarrow [0, 1]$ je taková, že $p(\omega) ≥ 0\ \forall \omega \in \Omega$ a $\sum_{\omega \in \Omega} = 1$. Položíme $P(A) = \sum_{\omega \in A} p(\omega)\ \forall A \in ©A$ nazýváme diskrétní pravděpodobnostní prostor.
+
+		$\Omega = ®R$, $©A = ©B(®R)$ (resp. $©B_0(®R)$) a $g: ®R \rightarrow [0, ∞)$ měřitelná, že $\int_{®R} g(x) dx = 1$, pak definujeme $P(B) = \int_B g(x) dx$, $b \in ©B(®R) = ©A$ je spojitý pravděpodobnostní prostor. Speciálním případem $g(x) = 1_{[0, 1]}(x)$ je pak tzv. indikátor.
+	\end{definicein}
+\end{definice}
+
+\begin{definice}[Jev jistý, jev nemožný, podjev, zároveň, alespoň jeden, jev opačný, neslučitelné jevy]
+	$\Omega$ je jev jistý, $\O$ je jev nemožný, $A \subset B$ znamená „$A$ je podjev $B$“, $A \cap B$ znamená „nastal $A$ a zároveň $B$“, $A \cup B$ znamená „nastal $A$ nebo $B$“, $A^C$ je jev opačný, $A \cap B = \O$ jsou neslučitelné jevy.
+\end{definice}
+
+\begin{veta}
+	Buďte $(\Omega, ©A, P)$ pravděpodobnostní prostor a $A, B, A_i \in ©A$ ($i \in ®N$) náhodné jevy. Pak platí:
+	\begin{itemize}
+		\item $P(\O) = 0$;
+		\item $P$ je konečně aditivní;
+		\item $P(A^C) = 1 - P(A)$;
+		\item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$;
+		\item $A \subset B \implies P(A) ≤ P(B)$; (monotonie)
+		\item $A_1 \subseteq A_2 \subseteq … \implies P\(\bigcup_{i=1}^∞ A_i\) = \lim_{n \rightarrow ∞} P(A_i)$; (spojitost)
+		\item $A_1 \supseteq A_2 \supseteq … \implies P\(\bigcap_{i=1}^∞ A_i\) = \lim_{n \rightarrow ∞} P(A_i)$; (spojitost)
+		\item $A_1 \supseteq A_2 \supseteq … \land \bigcap_{i=1}^∞ A_i = \O \implies \lim_{n \rightarrow ∞} P(A_i) = 0$; (spojitost v nule)
+		\item $B \subset A \implies P(A \setminus B) = P(A) - P(B)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Vše z míry. Pravdědobnost je konečná, předposlední bod vyplývá z předchozího.
+	\end{dukazin}
+\end{veta}
+
+
+
+
+\end{document}
