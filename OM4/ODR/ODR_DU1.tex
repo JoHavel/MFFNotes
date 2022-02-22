@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+	Vyšetřete průběh řešení diferenciální rovnice $x' = t^2(x + 1)$.
+
+	\begin{reseni}
+		$\Omega$ je zřejmě $®R^2$.
+
+		Stacionární řešení, tj. $t^2(x + 1) = 0$ je pouze $x = -1$.
+
+		$x' > 0$ na $(-1, +∞)\times (®R \setminus \{0\})$, jelikož $t^2 ≥ 0$ a krom 0 je $t^2 > 0$, tudíž záleží především na $x + 1$. Tedy zde je $x$ rostoucí. $x' < 0$ na $(-1, +∞) \times (®R \setminus \{0\})$ a zde je $x$ klesající. Nakonec $x' = 0$ pro $x = -1$ (tedy stacionární řešení $\implies$ z hlediska extrému a monotonie nezajímavé) a pro $t = 0$, kde je pouze inflexní bod, neboť z obou stran je řešení rostoucí nebo z obou klesající (krom $x = -1$, ale to je zas nezajímavé).
+
+		$x'' = 2t(x + 1) + x't^2 \stackrel{t ≠ 0}{=} x'(2/t + t^2)$, tedy $x'' = 0$ pro $x = -1$, $t = 0$ a $t = -\sqrt[3]{2}$. $x = -1$ je zase nezajímavé, $t = 0$ a $t = -\sqrt[3]{2}$ jsou množiny inflexních bodů. $x'' > 0$, a tedy řešení je konvexní na
+		$$ (-1, +∞) \times (0, +∞) \cup (-1, +∞) \times (-∞, -\sqrt[3]{2}) \cup (-∞, -1) \times (-\sqrt[3]{2}, 0). $$
+		Naopak $x'' < 0$, a tedy řešení je konkávní na:
+		$$ (-∞, -1) \times (0, +∞) \cup (-∞, -1) \times (-∞, -\sqrt[3]{2}) \cup (-1, +∞) \times (-\sqrt[3]{2}, 0) $$
+
+		Funkce je buď konstantní ($x = -1$), nebo klesá k $-∞$ ($x < 1$) nebo stoupá k $+∞$ ($x > 1$), tedy nás zajímá, jestli existuje vertikální asymptota. Jelikož $\int_{x_0}^∞ \frac{dx}{x+1} = +∞$, tak neexistuje?
+
+		Na druhou stranu ($t \rightarrow -∞$) jde ve všech případech k $x = -1$ a $x' \overset{x \rightarrow -1}\rightarrow 0$, tedy se k $x = -1$ blíží „rovnoběžně“.
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}
+	Vyšetřete průběh řešení diferenciální rovnice $x' = \sqrt[3]{1 - x^2}$.
+
+	\begin{reseni}
+		$\Omega$ je zřejmě $®R^2$.
+
+		Stacionární řešení, tj. $\sqrt[3]{1 - x^2} = 0$ jsou $x = ±1$.
+
+		$x' > 0$ pro $|x| < 1$, a tedy pro $|x| < 1$ je $x$ rostoucí. $x' < 0$ pro $|x| > 1$, a tedy pro $|x| > 1$ je $x$ klesající. $x' = 0$ pro $x = ±1$. Extrémy kromě $x = ±1$ tedy nejsou.
+
+		Druhá derivace v bodech $x = ±1$ neexistuje. Jinak $x'' = (1 - x^2)^{-2/3}·2x·x' = \frac{2x}{x'}$. $x'' = 0$ je pro $x = 0$, tedy zde jsou inflexní body. $x'' > 0$, a řešení je tedy konvexní na $(-∞, -1) \cup (0, 1)$. Naopak $x'' < 0$, a řešení je tedy konkávní na $(-1, 0) \cup (1, +∞)$.
+
+		Řešení v $x > -1$ jdou k $x = 1$. Naopak řešení v $x < -1$ jdou k $-∞$ a jelikož $\int_{x_0}^∞ \frac{1}{\sqrt[3]{1 - x^2}} dx = +∞$, tak neexistuje vertikální asymptota.
+
+		V druhém směru jde řešení v $x < 1$ k $-1$ a v $x > 1$ k $+∞$.
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}
+	K zastavení říčních lodí u mola se z nich háže lano, které se omotá kolem sloupku stojícího na molu. Jaká síla působí na loď, když lano udělá tři otočky kolem tyče, součinitel tření lana o tyč je $1/3$ a pracovník na molu táhne za volný konec lana silou $\SI{10}{\kilogram}$.
+
+	\begin{poznamkain}
+		Uvažujme malou část lana odpovídající úhlu $\Delta \phi$. Podívejme se, jaké síly na něj působí. Na tento malý úsek působí: napínací síly $T(\phi)$ působící v krajních bodech a směřující ve směru lana, tedy tečně ke kružnici. Dále reakční síla sloupu $N(\phi)$ působící ve středu segmentu a směřující kolmo k povrchu tyče ve směru od středu ven. Dále třecí síla $F_{tr}(\phi)$ působící v místě kontaktu a směřující proti směru možného pohybu. Gravitační sílu můžeme ignorovat.
+	\end{poznamkain}
+
+	\begin{reseni}
+		Podle poznámky výše a geometrické představy nám vyjde
+		$$ N = (T(\phi) + T(\phi + \Delta \phi))·\sin\(\frac{\Delta \phi}{2}\), \qquad F_{tr} = (T(\phi + \Delta \phi) - T(\phi)) \cos\(\frac{\Delta \phi}{2}\). $$
+		Z fyziky víme, že $N/3 = F_{tr}$, tedy že
+		$$ \tan\(\frac{\Delta \phi}{2}\) = \frac{\sin}{\cos}\(\frac{\Delta \phi}{2}\) = 3\frac{T(\phi + \Delta\phi) - T(\phi)}{T(\phi + \Delta\phi) + T(\phi)}. $$
+		Vydělení $\Delta\phi$ a limitní přechod $\Delta\phi \rightarrow 0$ dává
+		$$ \frac{1}{2} = 3\frac{T'(\phi)}{2T(\phi)} \implies T'(\phi) = \frac{T(\phi)}{3}. $$
+
+		Řešení je $T(\phi) = C\exp(\phi/3)$. Víme, že $T(0) = 10$, tedy $C = 10$. Při třech otočkách je síla $T(6\pi) = 10\exp(2\pi) \approx \SI{5355}{kg}$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}
