@@ -422,15 +422,23 @@
 	\end{veta}
 
 	\begin{veta}[O vztahu spojitosti a totálního diferenciálu]
-		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f: G \rightarrow ®R$. Nechť $f$ má v bodě $a \in ®R^n$ spojité parciální derivace, tedy funkce
-		$$ x \mapsto \frac{\partial f}{\partial x_j}(x), j \in [n] $$
-		jsou spojité v $a$. Pak $D f(a)$ existuje.
+		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f: G \rightarrow ®R$. Nechť existuje totální diferenciál $f$ v bodě $a$, pak je $f$ v bodě $a$ spojitá.
 
 		\begin{dukazin}
 			Přímým výpočtem:
 			$$ \lim_{h \rightarrow 0} f(a + h) = \lim_{h \rightarrow 0} \frac{f(a + h) - f(a) - D f(a)(h)}{||h||}||h|| + f(a) + D f(a)(h) = $$
 			$$ = \lim_{h \rightarrow 0} \frac{f(a + h) - f(a) - D f(a)(h)}{||h||}||h|| \lim_{h \rightarrow 0}||h|| + \lim_{h \rightarrow 0} f(a) + \lim_{h \rightarrow 0} D f(a)(h) = $$
 			$$ = …·0 + f(a) + 0 = f(a). $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Postačující podmínka pro existenci totálního diferenciálu]
+		Nechť $G \subset ®R^n$ je otevřená, $a \in G$ a $f: G \rightarrow ®R$. Nechť $f$ má v bodě $a \in ®R^n$ spojité parciální derivace, tedy funkce
+		$$ x \mapsto \frac{\partial f}{\partial x_j}(x), j \in [n] $$
+		jsou spojité v $a$. Pak $D f(a)$ existuje.
+
+		\begin{dukazin}
+			Bez důkazu?
 		\end{dukazin}
 	\end{veta}
 
