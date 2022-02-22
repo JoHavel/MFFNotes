@@ -77,7 +77,152 @@
 	\end{dukazin}
 \end{veta}
 
+% 16. 02. 2022
 
+\begin{poznamka}
+	28. února bude v 17:20 náhradní přednáška za poslední přednášku.
+\end{poznamka}
 
+\begin{veta}[Princip inkluze a exkluze]
+	Buď $(\Omega, ©A, P)$ pravděpodobnostní prostor. Pak pro každé $n \in ®N$ a každá $A_i \in ©A$, $i \in ®N$, platí:
+	$$ P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n P(A_i) - \sum_{1 ≤ i ≤ j ≤ n} P(A_i \cap A_j) + … + (-1)^{n-1} P(\bigcap_{i=1}^n A_i). $$
+
+	\begin{dukazin}
+		Nebude, v podstatě byl v diskrétce.
+	\end{dukazin}
+\end{veta}
+
+\section{Podmíněná pravděpodobnost}
+\begin{definice}[Podmíněná pravděpodobnost]
+	Buďte $A, B \in ©A$ takové, že $P(B) > 0$. Definujeme $P(A|B) = \frac{P(A \cap B)}{P(B)}$ a nazýváme ji podmíněnou pravděpodobností jevu $A$ za podmínky (jevu) $B$.
+\end{definice}
+
+\begin{veta}
+	Buď $B \in ©A$ takové, že $P(B) > 0$. Pak zobrazení $P(.|B): ©A \rightarrow [0, 1]$ splňuje definici pravděpodobnosti.
+
+	\begin{dukazin}
+		Ověříme po bodech: zřejmě $P(A|B) ≥ 0$ $\forall A \in ©A$, $P(\Omega|B) = \frac{P(\Omega \cap B)}{P(B)} = \frac{P(B)}{P(B)} = 1$ a $\sigma$-aditivita plyne ze $\sigma$-aditivity $P(. \cap B)$ a deMorganových pravidel ($B \cap \bigcup_{i=1}^∞ A_i = \bigcup_{i=1}^∞ A_i \cap B$), $P(B)^{-1}$ se prostě z obou stran vytkne.
+	\end{dukazin}
+\end{veta}
+
+\begin{upozorneni}
+	Podmíněná pravděpodobnost nám neříká nic o příčinné souvislosti.
+\end{upozorneni}
+
+\begin{pozorovani}[O podmíněné pravděpodobnosti]
+	Buďte $A, B, C \in ©A$ a pravděpodobnost „správných“ jevů nenulová. Pak:
+	
+	\begin{itemize}
+		\item $P(A \cup B | C) = P(A|C) + P(B|C) - P(A \cap B|C)$,
+		\item $B \subset A \implies P(A|B) = 1$,
+		\item $A \cap B = \O \implies P(A|B) = 0$,
+		\item $P(A | \Omega) = P(A)$,
+		\item pokud $P(\{\omega\}) > 0$, pak $\forall A \in ©A$ platí $P(A|\{\omega\}) = \delta_{\omega}(A)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Triviální (buď z definice, nebo z toho, že je to pravděpodobnost).
+	\end{dukazin}
+\end{pozorovani}
+
+\begin{upozorneni}[Neplatí!]
+	$P(A | B \cup C) = P(A|B) + P(A|C)$, ani v případě, že $A \cap B = \O$.
+\end{upozorneni}
+
+\begin{veta}[O násobení pravděpodobností]
+	Buďte $A_1, A_2, …, A_n \in ©A$ takové, že $P(A_1 \cap A_2 \cap … \cap A_{n-1}) > 0$. Pak
+	$$ \hspace{-0.3em}P(A_1 \cap A_2 \cap … \cap A_n) = P(A_n | A_1 \cap … \cap A_{n-1}) · P(A_{n-1} | A_1 \cap A_2 \cap … \cap A_{n-2}) · … · P(A_2 | A_1) · P(A_1).\hspace{-0.3em} $$
+
+	\begin{dukazin}
+		Z $P(A_1 \cap … \cap A_{n-1}) > 0$ plyne, že $P(A_1 \cap … \cap A_k) > 0$ pro $k \in [n-1]$, pomocí monotonie pravděpodobnosti. Tedy výraz je dobře definován.
+
+		Dokážeme indukcí: Pro $n = 2$ platí $P(A_1 \cap A_2) = P(A_2|A_1)·P(A_1)$ z definice. Z $n-1$ na $n$: ($B := A_1 \cap … \cap A_{n-1}$)
+		$$ P(A_1 \cap A_2 \cap … \cap A_n) = P(B \cap A_n) \overset{\text{def}}= P(A|B)·P(B) \overset{\text{IP}}= $$
+		$$ = P(A_n | A_1 \cap … \cap A_{n-1}) · P(A_{n-1} | A_1 \cap A_2 \cap … \cap A_{n-2}) · … · P(A_2 | A_1) · P(A_1). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O celkové pravděpodobnosti]
+	Buďte $A, B_1, B_2, …$ náhodné jevy takové, že $P(\bigcup_n B_n) = 1$ a $B_i \cap B_j = \O$ $\forall i ≠ j$ a $P(B_i) > 0\ \forall i$. Potom $P(A) = \sum_n P(A | B_n)·P(B_n)$.
+	
+	\begin{dukazin}
+		Víme $P\(\(\bigcup_n B_n\)^c\) = 0$, a tedy $P(A) = P\(A \cap \bigcup_n B_n\) + P\(A \cap \(\bigcup_n B_n\)\) = P\(A \cap \bigcup_n B_n\)$, protože $P$ je konečně-aditivní a platí monotonie. Dle de Morganových pravidel (a toho, že průnik s další množinou zachovává disjunktnost):
+		$$ P(A) = P\(\bigcup_n(A \cap B_n)\) = \sum_n P(A \cap B_n) = \sum_n P(A|B_n) · P(B_n). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Bayesova]
+	Za předpokladů věty o celkové pravděpodobnosti a $P(A) > 0$, platí $P(B_i|A) = \frac{P(A|B_i)P(B_i)}{\sum_n P(A|B_n)P(B_n)}$.
+
+	\begin{dukazin}
+		Snadný z definice podmíněné pravděpodobnosti a věty o celkové pravděpodobnosti.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Pólyovo urnové schéma]
+	Máme v urně $n$ koulí $k$ různých barev. Náhodně taháme z urny. Po vytažení koule do urny vytaženou kouli vrátíme a s ní i $\Delta$ (pevný parametr) koulí stejné barvy.
+
+	Podle volby $\Delta$ máme 2 základní schémata: $\Delta = -1$ (tahání bez vracení) a $\Delta = 0$ (tahání s vracením).
+\end{priklad}
+
+% 21. 02. 2022
+
+\begin{definice}[Nezávislé jevy]
+	Náhodné jevy $A$ a $B$ jsou nezávislé, pokud platí $P(A \cap B) = P(A)·P(B)$.
+\end{definice}
+
+\begin{upozorneni}
+	Zase to nemá nic do činění s kauzalitou.
+\end{upozorneni}
+
+\begin{veta}
+	Jsou-li dva jevy $A$ a $B$ nezávislé, pak jsou i jevy $A$ a $B^c$ nezávislé.
+
+	Je-li navíc $P(B) > 0$, pak $P(A|B) = P(A)$.
+
+	\begin{dukazin}
+		$$ P(A \cap B^c) = P(A) - P(A \cap B) = P(A) - P(A)·P(B) = P(A)·(1 - P(B)) = P(A)·P(B). $$
+
+		$$ P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A)·P(B)}{P(B)} = P(A). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Vzájemná nezávislost]
+	Buď $\{A_\lambda\}_{\lambda \in \Lambda}$ systém náhodných jevů. Pak říkáme, že tyto jevy jsou (vzájemně) nezávislé, pokud pro každou konečnou množinu $I \subset \Lambda$ (dále $I \in ©F(\Lambda)$) platí $P(\bigcap_{i \in I} A_i) = \prod_{i \in I} P(A_i)$.
+\end{definice}
+
+\begin{veta}
+	Buď $C = \{B_1, …, B_k\}$, $k \in ®N$, systém nezávislých jevů. Nahradíme-li libovolnou podmnožinu těchto jevů jejich doplňky, dostaneme opět systém nezávislých jevů
+
+	\begin{dukazin}
+		Indukcí podle velikosti nahrazované množiny. (Použije se předchozí věta.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Jsou-li jevy $A_1, …, A_n, B_1, …, B_m$ vzájemně nezávislé a $P(B_1 \cap … \cap B_m) > 0$, pak
+	$$ P(A_1 \cap … \cap A_n|B_1 \cap … \cap B_m) = P(A_1 \cap … \cap A_n) = P(A_1)·…·P(A_n). $$
+
+	\begin{dukazin}
+		Snadný.
+	\end{dukazin}
+\end{veta}
+
+\section{Náhodné veličiny}
+\begin{definice}[Náhodný element]
+	Buďte $(\Omega, ©A)$ a $(\Omega', ©A')$ stavové prostory. Pak každé měřitelné zobrazení $X: \Omega \rightarrow \Omega'$ nazveme náhodný element z $\Omega'$.
+\end{definice}
+
+\begin{definice}[Náhodná veličina]
+	Měřitelné zobrazení $X: (\Omega, ©A) \rightarrow (®R, ©B(®R))$ nazveme (reálnou) náhodnou veličinou.
+\end{definice}
+
+\begin{definice}[Značení]
+	Místo $\{\omega \in \Omega | X(\omega) ≤ a\}$ píšeme $\{X ≤ a\}$, místo $P(\{X ≤ a\})$ píšeme $P(X ≤ a)$.
+\end{definice}
+
+\begin{definice}
+	Buď $X$ náhodná veličina. $X^{-1}(©B(®R))$ značíme $\sigma(X)$ a nazýváme $\sigma$-algebrou náhodných jevů generovaných náhodnou veličinou $X$ ($\sigma$-algebra indukovaná $X$).
+\end{definice}
 
 \end{document}

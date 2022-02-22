@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 17. 02. 2022
+\section*{Organizační úvod}
+\begin{poznamka}
+\end{poznamka}
+
+\section{Úvod}
+\begin{definice}[Diferenciální rovnice]
+	Diferenciální rovnice je rovnice, která obsahuje derivaci.
+\end{definice}
+
+\begin{poznamka}[Motivace]
+	Fyzika (např. pružina: $m·\ddot{x} = -k·x$), ekonomie (např. rovnice majetku?: $k' = \alpha·k - c(t)$), biologie (např. model dravec-kořist: $d' = \alpha·d··k - \beta·d \land k' = \gamma·k - \delta·d·k$).
+\end{poznamka}
+
+\begin{poznamka}[Co nás zajímá na DR]
+	Přesné řešení (často neumíme spočítat), existence a jednoznačnost řešení, jaké vlastnosti má řešení.
+\end{poznamka}
+
+\begin{poznamka}[Předpoklady]
+	$\Omega \subset ®R^{n + 1}$ otevřená, $(x, t) \in \Omega \subset ®R^n \times I$, $f: \Omega \rightarrow ®R^n$, $x' = f(x, t)$. $I \subset ®R$.
+\end{poznamka}
+
+\begin{definice}[Obyčená diferenciální rovnice, řešení]
+	Obyčejná diferenciální rovnice je rovnice $x' = f(x, t)$ z předchozí poznámky.
+
+	Funkce $x: I \rightarrow ®R^n$ je řešení DR, jestliže
+	\begin{itemize}
+		\item $\forall t \in I: (x(t), t) \in \Omega$,
+		\item $\forall t \in I$ existuje vlastní derivace $x'(t)$,
+		\item $\forall t \in I$ platí $x'(t) = f(x(t), t)$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		První dvě podmínky jsou jen existenční podmínky k rovnici ve třetím bodě.
+	\end{poznamkain}
+
+	Typicky má DR nekonečně mnoho řešení, přidáváme proto počáteční podmínku $(x_0, t_0) \in \Omega$, $t_0 \in I$.
+\end{definice}
+
+\begin{lemma}
+	Nechť $\Omega \subset ®R^{n+1}$ otevřená, $f: \Omega \rightarrow ®R^n$ spojitá a $x: I \rightarrow ®R^n$ spojitou a takovou, že graf $x$ ($\{(x(t), t) | t \in I\}$) leží v $\Omega$. Pak následující tvrzení jsou ekvivalentní:
+
+	\begin{itemize}
+		\item $x$ je řešení DR s počáteční podmínkou $x(t_0) = x_0$;
+		\item $x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds$ $\forall t \in I$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\implies$“: $x$ a $f$ je spojitá, tedy $x' = f(x(t), t)$ je spojitá, tj. $x \in C^1(I) \implies \int_{t_0}^t x'(s) ds = x(t) - x(t_0)$.
+
+		„$\Leftarrow$“: jelikož $f$ i $s$ je spojitá, tak integral je diferencovatelný a $x(t)$ je spojitá, tedy
+		$$ x'(t) = 0 + f(x(t), t) \land x(t_0) = t_0 + 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Peanova věta o lokální existenci]
+	Nechť $\Omega \subset ®R^{n + 1}$ otevřená, $f: \Omega \rightarrow ®R^n$ spojitá a $(x_0, t_0) \in \Omega$. Potom $\exists$ $\delta > 0$ a funkce $x: B(t_0, \delta) \rightarrow ®R^n$ taková, která je řešení DR a splňuje počáteční podmínku. (Stačí spojitá $f$ a kompaktní $\Omega$.)
+
+	\begin{tvrzeni}[Pomocné tvrzení]
+		Pokud $\Omega = ®R^{n+1}$ a $f$ je omezená na $\Omega$, pak $\forall T$ existuje řešení DR $x$ na $[t_0 - T, t_0 + T]$ splňující počáteční podmínku.
+
+		\begin{dukazin}
+			Když $x_{\lambda}$ je definována na $[t_0 - \lambda, t]$, pak pravá strana má smysl $\forall t \in [t_0, t_0 + \lambda]$ tím pádem pravá strana integrálního tvaru má smysl $\forall t \in [t_0, t + \lambda]$, tím pádem definujeme $x_{\lambda}$ na $[t_0 - \lambda, t_0 + \lambda]$.
+
+			Nyní definujme $M := \{x_n|_{[t_0, t_0 + T]}\}_{n=1}^∞$ a ověříme, že $M$ splňuje podmínky Arzela-Ascoliho věty:
+			$$ |x_\lambda(t)| ≤ |x_0| + \int_{t_0}^t |f(x_\lambda(s - \lambda))| ds ≤ |x_0| + ||f||_∞ · |t - t_0| ≤ |x_0| + ||f||_a · T, $$
+			$$ |x_{\lambda}(t) - x_{\lambda}(\tau)| = \left|\int_\tau^t f(x_\lambda(s - \lambda), s) ds\right| ≤ ||f||_∞·|t - \tau|. $$
+			Podle AA věty tedy existuje podposloupnost $M$, která konverguje stejnoměrně. Limitu si označme $x$, podposloupnost $x_{n_k}$.
+
+			Chceme dokázat, že $x$ je řešení DR: TODO!
+			$$ \lambda_k := \frac{1?}{n_k} $$
+		\end{dukazin}
+	\end{tvrzeni}
+
+	\begin{dukazin}
+		
+	\end{dukazin}
+\end{veta}
+
+\end{document}

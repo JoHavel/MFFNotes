@@ -31,7 +31,7 @@
 	Existuje ohromné množství implementací. My budeme používat SWI Prolog.
 \end{definice}
 
-\begin{definice}[Syntax Prologu]
+\begin{definice}[Syntaxe Prologu]
 	Před tečkou je term = funktor použitý na konstantu (např. zena(eva). nebo rodic(eva, kain).). Tím (několika řádky začínající vždy stejným funktorem) jsme vytvořili proceduru, která definuje predikát (funktor/počet parametrů) tak, že dává true právě tehdy, když je použitý na tuto konstantu.
 
 	Funktor použitý na proměnnou (standardně s velkým prvním písmenem) je definice proměnné.
@@ -40,7 +40,56 @@
 
 	Definice pomocí predikátoru se dělá pomocí \verb|:-|.
 
-	Nerovná se značí \verb|\==|.
+	Nerovná se značí \verb|\==|. (Ve skutečnosti zjišťuje, zda se dají termy unifikovat, a pokud ano, tak vrátí false.)
+
+% 21. 02. 2022
+
+	Kanonický tvar si můžeme vypsat pomocí predikátu \verb|display/1|.
+
+	\verb|\=| je operátor, který neuspěje (vrátí \verb|false|), pokud se jeho strany dají unifikovat.
+
+	\verb|_| je anonymní proměnná („může na jejím místě být cokoliv“).
+
+	\verb|+-*| jsou binární operátory, kterým můžeme přiřadit význam.
 \end{definice}
 
+\begin{definice}[Unifikace]
+	Dva termy lze unifikovat, pokud jsou identické, nebo se stanou identickými po substituci vhodné hodnoty do proměnným v obou termech.
+
+	Prolog se vždy snaží najít nejobecnější substituci (tedy dvě proměnné položí rovné a nebude za ně nic dosazovat, pokud to stačí). Dělá to tak, že unifikuje právě tehdy, když
+
+	\begin{itemize}
+		\item oba termy jsou stejné konstanty,
+		\item jeden term je proměnná a druhý konstanta (pak se dosadí),
+		\item oba termy jsou proměnné (pak se položí rovny),
+		\item oba termy mají stejnou hlavu (první funktor) a její argumenty se dají unifikovat (rekurze).
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Algoritmus splňování cíle]
+	Unifikační algoritmus + backtracking.
+\end{definice}
+
+\begin{upozorneni}
+	Záleží na pořadí.
+
+	Platnost proměnné je omezena na pravidlo.
+\end{upozorneni}
+
+\begin{poznamka}
+	V komentářích se \verb|+| označuje vstupní argument (musí to být základní term bez volných proměnných) a \verb|-| argument výstupní (proměnná).
+\end{poznamka}
+
+\begin{definice}[Seznam]
+	\verb|[]| je prázdný seznam, neprázdný sezname napíšeme jako \verb|[a, b, …]|.
+
+	Se seznamy se pracuje hlavně za pomoci \verb$|$, kterým se oddělí konečný počet prvních termů: \verb$[HLAVA1, HLAVA2, … | ZBYTEK]$.
+
+	Asociované seznamy se vyrábí tak, že si definujeme nějaký binární operátor (ať už \verb|+-*| nebo libovolný funktor s dvěma argumenty) a v seznamu pak bude tento operátor aplikovaný na dvojici klíč–proměnná.
+
+	První prvek se tedy bere pomocí \verb$|$, poslední se musí získat rekurzí (tedy je to pomalé).
+
+	Existuje \verb|member/2|, \verb|select/3| (aplikuje se na prvek, seznam a seznam, prostřední seznam se rozpadne na jeden z jeho prvků a zbytek), \verb|delete/3| (jako select, ale vypustí všechny „instance“ prvku, pozor, má jiné pořadí argumentů), \verb|last/2|, \verb|append/3| (argumenty jsou 3 seznamy, první dva se řetězí na třetí), \verb|\permutation/2|.
+\end{definice}
+	
 \end{document}

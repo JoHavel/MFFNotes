@@ -77,4 +77,76 @@
 		Obdobně lze definovat stejnoměrnou spojitost i pro libovolnou množinu $A \subset ®R^n$ a $f_n: A \rightarrow ®R$ a platí, že stejnoměrná limita je spojitá (stejnoměrná limita spojitých funkcí je spojitá).
 	\end{poznamka}
 
+% 22. 02. 2022
+
+	\begin{dukaz}[Moore-Osgood]
+		Z BC podmínky
+		$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon. $$
+		Provedeme $\lim_{x \rightarrow x_0}$ a dostaneme
+		$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: |a_n - a_m| ≤ \epsilon. $$
+		Tedy $a_n$ splňuje BC podmínku, a tudíž $\exists \lim_{n \rightarrow ∞} a_n = a \in ®R$.
+
+		Nechť $\epsilon ≥ 0$. Z definice $f_n \rightrightarrows f$
+		$$ \exists n_0\ \forall x \in J: |f_{n_0}(x) - f(x)| < \epsilon. $$
+		Zároveň předpokládejme $|a_{n_0} - a| < \epsilon$ (zvolíme si $n_0$ jako maximum). Máme pevnou funkci $f_{n_0}$ a $\lim_{x \rightarrow x_0} f_{n_0}(x) = a_{n_0}$. Tedy
+		$$ \exists \delta > 0\ \forall x \in P(x_0, \delta) \cap J: |f_{n_0}(x) - a_{n_0}| < \epsilon. $$
+		Nyní $\forall x \in P(x_0, \delta) \cap J$ platí
+		$$ |f(x) - a| ≤ |f(x) - f_{n_0}(x)| + |f_{n_0}(x) - a_{n_0}| + |a_{n_0} - a| ≤ \epsilon + \epsilon + \epsilon = 3 \epsilon. $$
+	\end{dukaz}
+
+	\begin{veta}[O záměně limity a derivace]
+		Nechť funkce $f_n$, $n \in ®N$, mají vlastní derivaci na intervalu $(a, b)$ a nechť
+
+		\begin{itemize}
+			\item $\exists x_0 \in (a, b): \{f_n(x_0)\}_{n=1}^∞$ konverguje,
+			\item pro derivace $f_n'$ platí $f_n' \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$.
+		\end{itemize}
+
+		Potom existuje funkce $f$ tak, že $f_n \overset{\text{Loc}}{\rightrightarrows} f$ na $(a, b)$, $f$ má vlastní derivaci a platí $f_n' \overset{\text{Loc}}{\rightrightarrows} f'$ na $(a, b)$.
+
+		\begin{dukazin}
+			Nechť $x_0 \in [c, d] \subset (a, b)$. Víme $f_n' \rightrightarrows$ na $[c, d]$. Chceme ukázat $f_n \rightrightarrows f$ na $[c, d]$ ($\implies f_n \overset{\text{Loc}}{\rightrightarrows} f$ na $(a, b)$). Nechť $\epsilon > 0$. Z BC podmínky pro $f_n' \rightrightarrows$
+			$$ \exists n_0\ \forall m, n ≥ n_0\ \forall x \in [c, d]: |f_n'(x) - f_m'(x)| < \epsilon $$
+			a zároveň $\forall m, n ≥ n_0: |f_n(x_0) - f_m(x_0)| < \epsilon$. Nyní $\forall x \in [c, d]:$
+			$$ |f_n(x) - f_m(x)| ≤ |f_n(x) - f_m(x) - (f_n(x_0) - f_m(x_0))| + |f_n(x_0) - f_m(x_0)| ≤ $$
+			$$ ≤ |h(x) - h(x_0)| + \epsilon ≤ |x - x_0|·|h'(\xi)| + \epsilon ≤ (d - c)·\epsilon + \epsilon, $$
+			kde $h = f_n - f_m$ a $\xi \in (x_0, x)$ resp. $(x, x_0)$ z Lagrangeovy věty (cvičení: předpoklady jsou splněné).
+
+			Zbývá dokázat „$f_n' \rightrightarrows f'$ na $[c, d]$“: Zvolme $z \in [c, d]$ a položme $\phi_n(x) = \frac{f_n(x) - f_n(z)}{x - z}$ pro $x \in [c, d] \setminus \{z\}$. Nechť $\epsilon > 0$. Z BC podmínky pro $f_n' \rightrightarrows$
+			$$ \exists n_0\ \forall n, m ≥ n_0\ \forall x \in [c, d]: |f_n'(x) - f_m'(x)| < \epsilon. $$
+			Podobně jako v první části důkazu
+			$$ |f_n(x) - f_m(x) - (f_n(z) - f_m(z))| = |f_n'(\xi) - f_m'(\xi)|·|x - z| < \epsilon·|x - z|. $$
+			Nyní $\forall m, n ≥ n_0\ \forall x \in [c, d]\setminus\{z\}$:
+			$$ |\phi_n(x) - \phi_m(x)| = \left| \frac{f_n(x) - f_m(z) - (f_m(x) - f_m(z)}{x - z} \right| < \frac{\epsilon·|x - z|}{|x - z|} = \epsilon. $$
+			Podle BC $\phi_n \rightrightarrows$ na $[c, d] \setminus \{z\}$. Tedy $\phi_n$ splňuje předpoklady Moore-Osgoodovy věty ($\lim_{x \rightarrow z} \phi_n(x) = \lim_{x \rightarrow z} \frac{f_n(x) - f_n(z)}{x - z} = f'(z)$). Tedy
+			$$ \lim_{n \rightarrow ∞} \lim_{x \rightarrow z} \frac{f_n(x) - f_n(z)}{x - z} = \lim_{x \rightarrow z} \lim_{n \rightarrow ∞} \frac{f_n(x) - f_n(z)}{x - z} \Leftrightarrow $$
+			$$ \Leftrightarrow \lim_{n \rightarrow ∞} f_n'(z) = \lim_{x \rightarrow z} \frac{f(x) - f(z)}{x - z} = f'(z). $$
+			A jelikož víme, že $f_n' \rightrightarrows$, tak $f_n' \rightarrow f' \implies f_n' \rightrightarrows f'$.
+		\end{dukazin}
+	\end{veta}
+
+	\subsection{Stejnoměrná konvergence řady funkcí}
+	\begin{definice}
+		Řekněme, že řada funkcí $\sum_{k=1}^∞ u_k(x)$ konverguje stejnoměrně (popřípadě lokálně stejnoměrně) na intervalu $J$, pokud posloupnost částečných součtů $s_n(x) = \sum_{k=1}^n u_k(x)$ konverguje stejnoměrně (popřípadě lokálně stejnoměrně) na $J$.
+	\end{definice}
+
+	\begin{veta}[Nutná podmínka stejnoměrné konvergence řady]
+		Nechť $\sum_{n=1}^∞ u_n(x)$ je řada funkcí definovaných na intervalu $J$. Pokud $\sum_{n=1}^∞ u_n(x) \rightrightarrows$ na $J$, pak posloupnost funkcí $u_n(x) \rightrightarrows 0$ na $J$.
+
+		\begin{dukazin}
+			$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0\ \forall x \in J: |s_n(x) - s_m(x)| < \epsilon $$
+			speciálně pro $m = n + 1$:
+			$$ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0\ \forall x \in J: |\sum_{i=1}^{n+1} u_i - \sum_{i=1}^n u_i| = |u_{n+1}(x)| < \epsilon \implies u_n \rightrightarrows 0. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Weierstrassovo kritérium]
+		Nechť $\sum_{n=1}^∞ u_n(x)$ je řada funkcí definovaných na intervalu $J$. Pokud pro
+		$$ \sigma_n = \sup\{|u_n|(x) : x \in J\} $$
+		platí, že číselná řada $\sum_{n=1}^∞ \sigma_n$ konverguje, pak $\sum_{n=1}^∞ u_n(x) \rightrightarrows$ na $J$.
+
+		\begin{dukazin}
+			Příště.
+		\end{dukazin}
+	\end{veta}
 \end{document}

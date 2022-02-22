@@ -14,5 +14,92 @@
 
 \section{Úvod}
 
+% 21. 02. 2022
+
+\begin{definice}[Prostředí]
+	Prostředí může být s plnou informací nebo s částečnou informací (podle toho, zda agent dostává svými senzory vše, nebo ne), dále může být buď deterministické nebo stochastické (podle toho, zda je plně určené svým stavem a akcí), dále je buď epizodní nebo sekvenční (podle toho, zda se pořád opakuje to samé, např. návštěva u lékaře, nebo zda se neopakuje), dále statické nebo dynamické (podle toho, zda ho ovlivňuji jen já, nebo i něco jiného, semidynamické je, když přemýšlení ovlivňuje můj výkon, např. hry s hodinami), dále diskrétní nebo spojité, dále jedno-agentová nebo více-agentové (kompetitivní/kooperativení).
+\end{definice}
+
+\begin{definice}[Reflex agent]
+	Simple RA: Na základě pozorování světa vrátí akci. (V podstatě neprocedurální funkce beroucí svět a vracející akci.)
+
+	Model-based RA: Kromě vracení akce i mění svůj stav (pomocí stavového modelu).
+\end{definice}
+
+\begin{definice}[Goal-based agent]
+	Funguje podobně jako Reflexní agent, ale má ještě navíc nějaký cíl (který lze měnit např. příkazem), který ovlivňuje akci.
+\end{definice}
+
+\begin{definice}[Stav]
+	Stav může být reprezentován buď atomicky (nemá žádnou strukturu) nebo Factored? (stav je vektor hodnot) nebo strukturovaně (stav je množina objektů spojených různými relacemi).
+\end{definice}
+
+\begin{definice}[Problem solving agent]
+	PSA je typ goal-based agenta, který používá atomickou reprezentaci stavů, cíl je jedním ze stavů a akce jsou popisy, jak se stavy mění.
+
+	Úkolem je najít sekvenci akcí, která dosáhne cílového stavu. Hledá se pomocí nějakého search algoritmu.
+\end{definice}
+
+\begin{definice}[Dobře definovaný problém]
+	Dobře definovaný problém má počáteční stav, přechodový model (který má rozumnou míru abstrakce, např. neovládá každý sval zvlášť), jím implikované stavy a test určující cílové stavy.
+
+	Tím je implicitně definovaný search tree. (Na něm je algoritmus tree search, který strom prochází tak, že do „množiny“ postupně přidává syny prvků, které v ní už jsou. Často je však problém s opakováním stavů.)
+\end{definice}
+
+\begin{definice}[Graph search]
+	Graph search je skoro totéž jako tree search, jen si u každého stavu pamatuje, zda již byl navštíven, nebo ne.
+
+	Search tree tohoto algoritmu má každý stav nanejvýš jednou.
+\end{definice}
+
+\begin{definice}[Kompletní algoritmus]
+	Algoritmus je kompletní, když správně najde řešení respektive dokáže, že neexistuje, pro všechny vstupy.
+\end{definice}
+
+\begin{poznamka}[Neinformované prohledávání (prohledávání obecného stavového prostoru)]
+	Následně se probíral breadth-first search, depth-first search a backtracking (na rozdíl od DFS nenačte hned všechny následníky vrcholu, ale jde jeden po druhém, což nemusí být vždy možné).
+\end{poznamka}
+
+\begin{definice}[Informované (heuristické) algoritmy, best-first search, A$^*$]
+	Algoritmy, které využívají pro rozhodování používají navíc tzv. heuristiku.
+
+	Patří mezi ně např. best-first search, který prohledává stav, kde je nejmenší evaluační funkce $f(n)$, která kromě vzdálenosti od počátku ($g(n)$) bere v potaz i heuristiku $h(n)$. Ten podle volby $f(n)$ může být např. greedy best-first search: $f(n) = h(n)$, nebo A$^*$: $f(n) = g(n) + h(n)$.
+\end{definice}
+
+\begin{definice}[Přípustná a monotónní heuristika]
+	Přípustná heuristika je taková, která vrací hodnotu mezi nulou a nejlepší cestou.
+
+	Monotónní (nebo také konzistentní) heuristika je taková, která splňuje „trojúhelníkovou nerovnost“ (tedy rozdíl heuristik nemůže být větší než cesta mezi nimi).
+\end{definice}
+
+\begin{tvrzeni}
+	Je-li heuristika monotónní (a nezáporná), pak už je přípustná.
+
+	\begin{dukazin}
+		$$ h(\text{start}) - h(\text{cíl}) ≤ |\text{nejkratší cesta}|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	A$^*$ v tree-search je optimální (první nalezená cesta je nejkratší).
+
+	\begin{dukazin}
+		V otevřených vrcholech je vždy vrchol nejkratší cesty (jelikož počáteční stav je a vždy když vrchol uzavíráme, tak přidáme všechny sousedy).
+
+		Cíl musíme najít po nejkratší cestě, protože v cíli je $f(n) = g(n)$ a my jsme ho poprvé potkali při nejmenším $f(n)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Je-li použitá heuristika monotónní, pak A$^*$ v graph-search je optimální.
+
+	\begin{dukazin}
+		Jednoduchý, podobně jako u tree-search, navíc se dokazuje jen, že do každého vrcholu přijde po nejkratší cestě.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Dominance]
+	Heuristika $h_1$ dominuje heuristice $h_2$, když $\forall n: h_1(n) ≥ h_2(n)$.
+\end{definice}
 
 \end{document}

@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 17. 02. 2022
+
+\section*{Organizační úvod}
+\begin{poznamka}[Organizační úvod]
+	Zápočet není nutný na zkoušku. Zkouška bude mít dvě části: první bude problém, který máme nějak vyřešit pomocí probraných algoritmů, druhá pak 2 otázky z teorie. Streemování nebude, budou pravděpodobně přednášky z minulého roku (asi na Teams).
+\end{poznamka}
+
+\section{Úvod}
+\begin{definice}[AI]
+	Umělou inteligenci máme hlavně dvou druhů, symbolickou (pracuje nad symbolicky (formálním jazykem – např. matematickou logikou) popsaným světem, řeší například plánování a reprezentaci znalostí) a výpočetní (pracuje přímo s „reálným světem“ = daty, například ML (NN, DL, k-means, stromy), evoluční algoritmy a další přírodou inspirované algoritmy).
+
+	Symbolická AI může být třeba (klasicky taková AI má počáteční stav a akci se jménem, předpokladem, přidáním efektů a ubráním efektů):
+	\begin{verbatim}
+on(B, A)
+on(table, C)
+clear(A), clear(C)
+
+pick(X)
+	predpoklad: clear(X), on(A, X)
+	+efekty: holding(X), clear(A)
+	-efekty: clear(X), on(A, X)
+	\end{verbatim}
+\end{definice}
+
+\begin{poznamka}
+	Dále jsme si povídali o jednoduchých základech NN.
+\end{poznamka}
+
+\begin{definice}[Evoluční algoritmy]
+	Řeší nějakou optimalizaci (hledání minima/maxima). Funguje tak, že máme nějakou populaci bodů, nějakým způsobem je křížíme + mutujeme a udržujeme velikost populace odebráním horších členů (hodnocení členů se nazývá fitness).
+\end{definice}
+
+\begin{definice}[Učení s učitelem, učení bez učitele, zpětnovazebné učení]
+	Učení s učitelem je, že máme zadaná nějaká data i s výsledky (dělí se na klasifikaci = předpověď kategorie a regresi = předpověď „spojitého“ čísla).
+
+	Učení bez učitele není, „že bych vás tu teď opustil a učte se sami“, ale že nejsou dané správné odpovědi.
+
+	Zpětnovazebné učení je, když cílem agenta je maximalizovat nějakou zpětnou vazbu z prostředí (většinou vyjadřovanou jako číslo, kladné je „odměna“, záporná „trest“).
+\end{definice}
+
+
+\end{document}

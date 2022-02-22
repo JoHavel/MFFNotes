@@ -23,5 +23,70 @@
 	Binární soubor je takový, kde je struktura popsána na úrovni bitů (bit po bitu). Není čitelný textovými editory.
 \end{definice}
 
+TODO!!!
+
+% 21. 02. 2022
+
+\section{RDF}
+\begin{definice}[RDF -- resource description framework]
+	RDF je formát popisu grafu, kde se každé tvrzení (tedy trojice) má tvar „subjekt predikát objekt“, tj. „kdo co s-čím“. Vše se identifikuje pomocí IRI odkazující na definici (nebo v případě některých objektů (často Stringů/čísel/datumů) -- literálem).
+\end{definice}
+
+\begin{poznamka}
+	Uri budeme často zkracovat (takové zkrácení se zapisuje jako např. \verb|@prefix dcterms: https://…|). Obecné zkratky lze najít na \url{prefix.cc}.
+\end{poznamka}
+
+\begin{definice}[Literál]
+	Literál má dvě části -- text odpovídající formátu a uri na ?XML schéma toho typu. Nebo je tvaru \verb|"text"@jazyk|.
+\end{definice}
+
+\begin{priklady}
+	Nejčastější predikát je \verb|rdf:type| -- „je typu“.
+\end{priklady}
+
+\begin{definice}[Blank node]
+	Existují i nepojmenované uzly.
+\end{definice}
+
+\begin{definice}[RDF serializace]
+	(Jak zapsat RDF do textu.)
+
+	\begin{itemize}
+		\item RDF 1.1 N-Triples = každá trojice se zapíše jako \verb|<uri> <uri> <uri> .   # comment|.
+		\item RDF 1.1 Turtle = použijí se prefixy, středníky na shodný subjekt a čárku na shodný subjekt i predikát + se používají relativní IRI (base se definuje pomocí \verb|@base IRI|, implicitní je URL dokumentu) + multiline stringy a odescapované znaky + \verb|rdf: type| má zkratku \verb|a| + blank nody se píší pomocí hranatých závorek + běžné literály nemusí mít typ.
+		\item RDF 1.1 N-Quads = místo trojice se kóduje i pojmenování grafu.
+		\item RDF Trig = Turtle + pojmenované grafy (jsou reprezentovány jako bloky).
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Reifikace]
+	Pokud chci něco říct o naší trojici, můžu to udělat tak, že si definuji (zase pomocí trojic) objekt, který jako subjekt bude mít subjekt, atd. a navíc bude mít doplňující informace. Tato metoda se nazývá reifikace.
+\end{definice}
+
+\begin{definice}[Pojmenovaný graf, dataset]
+	Vztahy lze seskupit do tzv. pojmenovaného grafu.
+
+	Pojmenované grafy + defaultní graf se nazývá dataset.
+\end{definice}
+
+\begin{definice}[RDFS]
+	Nadstavba RDF, které umožňuje definovat třídy a dědičnost. \verb|rdfs:Class|, \verb|rdfs:subClassOf|, \verb|rdf:Property|, \verb|rdfs:range|, \verb|rdfs:domain|, \verb|rdfs:subPropertyOf|.
+
+	Oproti OOP není třeba definovat třídy, lze definovat property jako takové.
+
+	Také umožňuje label, comment, seeAlso: \verb|rdfs:label|, \verb|rdfs:comment|, \verb|rdfs:seeAlso|, \verb|rdfs:isDefinedBy?|.
+\end{definice}
+
+\begin{definice}[rdf:List a jiné kolekce]
+	Ve specifikaci RDF je přímo definován spojový seznam (\verb|rdf:List| + anonymní prvky + \verb|rdf:nil|).
+
+	\verb|rdf:_i|, kde $i$ je libovolné číslo jsou predikáty náležení do kolekce (\verb|rdf:TODO|).
+\end{definice}
+
+\begin{definice}[Open World Assumption (OWA)]
+	Tvrzení může být pravdivé, i když to nevíme. (Tj. máme i odpověď nevím.)
+\end{definice}
+
+TODO!!!
 
 \end{document}
