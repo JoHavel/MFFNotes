@@ -157,4 +157,47 @@
 			Tedy podle BC podmínky $\sum u_k \rightrightarrows$.
 		\end{dukazin}
 	\end{veta}
+
+	\begin{veta}[O spojitosti a derivování řady funkcí]
+		Nechť $\sum_{n=1}^∞ u_n(x)$ je řada funkcí definovaná na intervalu $(a, b)$.
+
+		\begin{itemize}
+			\item Nechť $u_n$ jsou spojité na $(a, b)$ a nechť $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak $F(x) = \sum_{n=1}^∞ u_n(x)$ je spojitá na $(a, b)$.
+			\item Nechť funkce $u_n$, $n \in ®N$, mají vlastní derivaci na $(a, b)$ a nechť $\exists x_0 \in (a, b): \sum_{n=1}^∞ u_n(x_0)$ konverguje a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak je funkce $F(x) = \sum_{n=1}^∞ u_n(x)$ dobře definovaná a diferencovatelná na $(a, b)$ a navíc $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows} F(x)$ a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows} F(x)$ na $(a, b)$.
+		\end{itemize}
+
+		\begin{dukazin}
+			„První bod“: Funkce $s_n(x) = \sum_{n=1}^k u_n(x)$ jsou spojité a $s_k \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Tedy podle důsledku věty z dřívějška (stejnoměrná limita spojitých funkcí je spojitá) je jejich limita lokálně spojitá, tedy spojitá.
+
+			„Druhý bod“: Na $s_k$ použijeme větu z dřívějška (pokud mají derivace stejnoměrnou limitu, pak i funkce ji mají a shoduje se až na derivaci). Ověříme podmínky, tedy že $s_k(x) = \sum_{n=1}^k u_n(x)$ konverguje a $s_k' = \sum_{n=1}^k u_k' \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Podle tamté věty tedy $\exists F(x) = \lim_{k \rightarrow ∞} s_k(x) = \sum_{n=1}^∞ u_n(x)$ a tato funkce je diferencovatelná a
+			$$ \sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows} F(x) \quad \land \quad \sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows} F'(x) \qquad \text{na } (a, b). $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Abel-Dirichletovo kritérium pro stejnoměrnou konvergenci]
+		Nechť $\{a_n(x)\}_{n=1}^∞$ je posloupnost funkcí definovaných na intervalu $J$ a nechť $\{f_n(x)\}_{n=1}^∞$ je posloupnost funkcí na $J$ taková, že $f_1(x) ≥ f_2(x) ≥ … ≥ 0$. Jestliže je splněna některá z následujících podmínek, pak $\sum_{n=1}^∞ a_n(x)·b_n(x) \rightrightarrows$ na $J$.
+
+		\begin{itemize}
+			\item[(A)] $\sum_{n=1}^∞ a_n(x) \rightrightarrows$ na $J$ a $b_1$ je omezená.
+			\item [(D)] $b_n \rightrightarrows 0$ na $J$ a $\sum_{n=1}^∞ a_n(x)$ má omezené částečné součty, tedy
+				$$ \exists K > 0\ \forall m \in ®N\ \forall x \in J: |s_n(x)| = \left|\sum_{i=1}^m a_i(x)\right| < K. $$
+		\end{itemize}
+		
+		\begin{dukazin}
+			„Dirichlet“: Nechť $\epsilon > 0$. Nalezneme $n_0$ $\forall n ≥ n_0\ \forall x \in J: |f_n(x)| < \epsilon$. Nechť $m, n ≥ n_0$. Označme $\sigma_i(x) := \sum_{j=m}^i a_j(x)$. Pak
+			$$ |\sigma_i(x)| ≤ \left|\sum_{j=1}^i a_j(x) - \sum_{j=1}^{n_0-1} a_j(x)\right| ≤ K + K. $$
+			$$ \forall m, n ≥ n_0\ \forall x \in J: \left| \sum_{j=n}^m a_j(x)·b_j(x) \right| = \left|a_n·b_n + (\sigma_{n+1} - \sigma_n)b_{n+1} + … + (\sigma_m - \sigma_{m-1})b_m\right| ≤ \sup_{j = n, …, m} |\sigma_j(k)| \(b_n - b_{n-1} + b_{n-1} - b_{n-2} + … + b_{m-1} - b_m + b_m\) = \sup_{j=n, …, m} |\sigma_j(x)|·|b_n(x)| ≤ 2K·\epsilon. $$
+			A z BC podmínky už $\sum a_i(x)b_i(x) \rightrightarrows$ na $J$.
+
+			„Abel“: Nechť $\epsilon > 0$. Z BC podmínky pro $\rightrightarrows$
+			$$ \exists n_0\ \forall m, n ≥ n_0: \left|\sum_{j=n}^m a_j(x)\right| < \epsilon. $$
+			Tedy pro $\sigma_1(x) = \sum_{j=n}^m a_j(x)$ platí $|\sigma_i(x)| < \epsilon$. Analogicky odhadu výše
+			$$ \left|\sum_{j=n}^m a_j(x)·b_j(x)\right| ≤ \sup_{j=n, …, m} |\sigma_j(x)|·|b_n(x)| ≤ \epsilon \sup_{x \in J}(b_1(x)) ≤ \epsilon · K. $$
+			Tedy $\sum a_i(x)·b_i(x)$ splňuje BX podmínku.
+		\end{dukazin}
+	\end{veta}
+
+
+
 \end{document}
+
