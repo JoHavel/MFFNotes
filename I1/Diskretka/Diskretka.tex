@@ -413,7 +413,7 @@
         Posloupnost $D = d_1 ≤ … ≤ d_n$ pro $n≥2$ je skóre grafu $\Leftrightarrow$ $D' = d'_1, …, d'_{n-1}$ je skóre grafu a $0≤d_n≤n-1$. ($d'_i = d_i$ pro $i < n-d_n$ a $d'_i = d_i - 1$ pro $i ≥ n-d_n$.)
 
         \begin{dukazin}
-            $(\Leftarrow)$ nechť $G'$ je graf se skóre $D'$ a vrcholy $v_1, …, v_{n-1}$ tak, že $\forall i: \deg_{G'}(v_i)=d'_i$. Vytvořím $G$ doplněním vrcholu $v_n$ a hran $\{v_i, v_n\}$ pro $i \in \{n-d_n, …, n-1\}$. $G$ má skóre $D$.
+            $(\impliedby)$ nechť $G'$ je graf se skóre $D'$ a vrcholy $v_1, …, v_{n-1}$ tak, že $\forall i: \deg_{G'}(v_i)=d'_i$. Vytvořím $G$ doplněním vrcholu $v_n$ a hran $\{v_i, v_n\}$ pro $i \in \{n-d_n, …, n-1\}$. $G$ má skóre $D$.
 
             $(\implies)$ Lemma: Nechť ©G je množina všech grafů se skóre $D$, $©G ≠ \O$. Potom $\exists G \in ©G: \{v_n, v_i\}\in E(G)$ pro všechna $i \in \{n-d_n, …, n-1\}$.
 
@@ -492,7 +492,7 @@
     \begin{lemma}[Lemmátko]
         $\exists$ cesta mezi $u, v$ $\Leftrightarrow \exists$ sled mezi $u, v$.
         \begin{dukazin}
-            $(\implies)$ triviální. $(\Leftarrow)$ Uvažujme sled $S$. Kdyby se v $S$ neopakovaly vrcholy, je to cesta. Pokud $v_k = v_l$, potom $(v_0, e_1, v_1, …, e_k, (v_k = v_l), e_{l+1}, v_{l+1}, …, e_n, v_n)$ je kratší sled, označme ho $S$. Opakujeme dokud $S$ není cesta.
+            $(\implies)$ triviální. $(\impliedby)$ Uvažujme sled $S$. Kdyby se v $S$ neopakovaly vrcholy, je to cesta. Pokud $v_k = v_l$, potom $(v_0, e_1, v_1, …, e_k, (v_k = v_l), e_{l+1}, v_{l+1}, …, e_n, v_n)$ je kratší sled, označme ho $S$. Opakujeme dokud $S$ není cesta.
         \end{dukazin}
     \end{lemma}
 
@@ -562,7 +562,7 @@
         \begin{dukazin}
             $(\implies)$ Zřejmé z toho, že mezi každými vrcholy vede tah a že musí do vrcholu „vstupovat“ a „vystupovat“ z něho.
 
-            $(\Leftarrow)$ Uvažme $T := $ libovolný nejdelší tah. 1. $T$ je uzavřený (sporem: Krajní vrchol má „použito“ lichý počet hran, tedy existuje ještě jedna hrana jdoucí z tohoto vrcholu. Tu ale můžeme přidat do $T$, tedy nebyl nejdelší \lightning.) 2. $T$ je eulerovský: a) $\{u, v\} \in E(G),\ u, v \in T \implies \{u, v\} \in T$ (Sporem, kdyby ne, tak při některém „průchodu“ vrcholem $u$ tah $T$ „rozpojíme“ a na konec přidáme $\{u, v\}$, čímž dostaneme větší graf, \lightning.) b) $T$ obsahuje všechny vrcholy (Kdyby $\exists u \in V(E) \land u \notin T:$ zvolíme $v \in T$ libovolně a ze souvislosti $G$ víme, že existuje cesta $C$ mezi $u, v$. $\exists r, s \in C: r\in T, s \notin T, \{r, s\}\in E(C)$, tedy $T$ „rozpojíme“ v $R$ a prodloužíme o $\{r, s\}$, tedy $T$ není nejdelší \lightning.)
+            $(\impliedby)$ Uvažme $T := $ libovolný nejdelší tah. 1. $T$ je uzavřený (sporem: Krajní vrchol má „použito“ lichý počet hran, tedy existuje ještě jedna hrana jdoucí z tohoto vrcholu. Tu ale můžeme přidat do $T$, tedy nebyl nejdelší \lightning.) 2. $T$ je eulerovský: a) $\{u, v\} \in E(G),\ u, v \in T \implies \{u, v\} \in T$ (Sporem, kdyby ne, tak při některém „průchodu“ vrcholem $u$ tah $T$ „rozpojíme“ a na konec přidáme $\{u, v\}$, čímž dostaneme větší graf, \lightning.) b) $T$ obsahuje všechny vrcholy (Kdyby $\exists u \in V(E) \land u \notin T:$ zvolíme $v \in T$ libovolně a ze souvislosti $G$ víme, že existuje cesta $C$ mezi $u, v$. $\exists r, s \in C: r\in T, s \notin T, \{r, s\}\in E(C)$, tedy $T$ „rozpojíme“ v $R$ a prodloužíme o $\{r, s\}$, tedy $T$ není nejdelší \lightning.)
         \end{dukazin}
     \end{veta}
 
@@ -633,7 +633,7 @@
             \begin{dukazin}
                 $(\implies)$ Odebráním vrcholu nevznikne kružnice, přes list nemohla vést cesta (jelikož je stupně 1).
 
-                $(\Leftarrow)$ Přidáním vrcholu stupně 1 nevznikne kružnice, z tranzitivity dosažitelnosti vede z libovolného vrcholu do listu cesta.
+                $(\impliedby)$ Přidáním vrcholu stupně 1 nevznikne kružnice, z tranzitivity dosažitelnosti vede z libovolného vrcholu do listu cesta.
             \end{dukazin}
         \end{lemma}
 
@@ -670,7 +670,7 @@
         \begin{veta}
             Graf má kostru $\Leftrightarrow$ je souvislý.
             \begin{dukazin}
-                $(\implies)$ Zřejmé. $(\Leftarrow)$ Mažeme hrany na cyklech, dokud nebude strom.
+                $(\implies)$ Zřejmé. $(\impliedby)$ Mažeme hrany na cyklech, dokud nebude strom.
             \end{dukazin}
         \end{veta}
     
@@ -740,7 +740,7 @@
 
     \subsection{Kreslení na sféru (povrch koule)}
         \begin{veta}
-            Graf má nakreslení na sféru $\Leftarrow$ má nakreslení do roviny.
+            Graf má nakreslení na sféru $\impliedby$ má nakreslení do roviny.
             \begin{dukazin}
                 Stereografickou projekcí. (Spojitá bijekce mezi sférou bez severního pólu a rovinou.)
             \end{dukazin}
@@ -853,7 +853,7 @@
             \begin{dukazin}
                 $(\implies):$ už víme.
 
-                $(\Leftarrow):$ barvíme po komponentách -- BÚNO $G$ je souvislý. Nechť $T$ je nějaká kostra grafu. Tu obarvíme jako v lemmatu výše.Pro libovolnou hranu mimo kostru si můžeme všimnout, že cesta jdoucí mezi těmito vrcholy po kostře musí mít lichou délku (jinak by graf obsahoval lichou kružnici), takže vrcholy mají jinou barvu.
+                $(\impliedby):$ barvíme po komponentách -- BÚNO $G$ je souvislý. Nechť $T$ je nějaká kostra grafu. Tu obarvíme jako v lemmatu výše.Pro libovolnou hranu mimo kostru si můžeme všimnout, že cesta jdoucí mezi těmito vrcholy po kostře musí mít lichou délku (jinak by graf obsahoval lichou kružnici), takže vrcholy mají jinou barvu.
             \end{dukazin}
         \end{veta}
 

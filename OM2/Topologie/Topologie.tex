@@ -277,7 +277,7 @@
 
 % 26. 3. 2021
 
-            $\Leftarrow$: Dokážeme ve 4 částech:
+            $\impliedby$: Dokážeme ve 4 částech:
 
             1. Pro diskrétní soubor $©F = \{F_\alpha\}_{\alpha \in A}$ uzavřených množin v ®X existuje diskrétní soubor otevřených množin $©W = \{W_\alpha\}_{\alpha \in A}$, že $F_\alpha \subseteq W_\alpha$: Dle kolektivní normality existují otevřené disjunktní $U_\alpha: \alpha \in A, F_\alpha \subseteq U_\alpha$. Položme $F = \bigcup ©F$, $Z = ®X \setminus \bigcup_{\alpha \in A} U_\alpha$. $F$ uzavřená (sjednocení lokálního systému uzavřených množin), $Z$ uzavřená. ®X je kolektivně normální, tedy speciálně normální, tedy existují otevřené disjunktní $V, W$, že $Z \subseteq V$ a $F \subseteq W$. Položme $W_\alpha := U_\alpha \cap W$. Systém $\{W_\alpha\}$ už je diskrétní (je-li $x \in Z$, pak $x \in V$ a $V \cap W_\alpha = \O$, je-li naopak $x$ v $U_\alpha$, pak $U_\alpha \cap W_\beta = \O$ pro $\beta ≠ \alpha$) a $F_\alpha \subseteq W_\alpha$.
 
@@ -427,7 +427,7 @@
         \begin{dukazin}
             $(\implies)$: Ať $d$ je metrika na ®X generující ©D. Pak $\{\{(x, y): d(x, y) < \frac{1}{n}\} | n \in ®N\}$ je báze ©D.
 
-            $(\Leftarrow)$: Ať $\{C_n | n \in ®N\}$ je báze ©D. Indukcí najdeme posloupnost $D_n \in ©D$, že jsou splněny předpoklady předchozího lemmatu. A že $D_i \subseteq C_i$: Předpokládejme, že $D_0, …, D_n$ máme ($D_0 = ®X \times ®X$), pak víme, že $\exists E: E \circ E \subseteq D_n$, $\exists F: F \circ F \subseteq E$. Tedy $F \circ F \circ F \subseteq D_n$. Ať $D_{n+1} := (F \cap C_{i+1}) \cap (F \cap C_{i+1})^{-1}$. Tedy $D_{n+1}\circ D_{n+1} \circ D_{n+1} \subseteq D_n$, $D_{n+1} \subseteq C_{i+1}$. Tedy podle lemmatu o pseudometrice existuje pseudometrika $d$ na ®X, že
+            $(\impliedby)$: Ať $\{C_n | n \in ®N\}$ je báze ©D. Indukcí najdeme posloupnost $D_n \in ©D$, že jsou splněny předpoklady předchozího lemmatu. A že $D_i \subseteq C_i$: Předpokládejme, že $D_0, …, D_n$ máme ($D_0 = ®X \times ®X$), pak víme, že $\exists E: E \circ E \subseteq D_n$, $\exists F: F \circ F \subseteq E$. Tedy $F \circ F \circ F \subseteq D_n$. Ať $D_{n+1} := (F \cap C_{i+1}) \cap (F \cap C_{i+1})^{-1}$. Tedy $D_{n+1}\circ D_{n+1} \circ D_{n+1} \subseteq D_n$, $D_{n+1} \subseteq C_{i+1}$. Tedy podle lemmatu o pseudometrice existuje pseudometrika $d$ na ®X, že
             $$ \{(x, y) | d(x, y) < \frac{1}{2^i}\} \subseteq D_i \subseteq \{(x, y) | d(x, y) ≤ \frac{1}{2^i}\}. $$
             Pro $x, y \in ®X, x≠y$ $\exists C \in ©D: (x, y) \notin C$. $\exists i \in ®N: C_i \subseteq C$. $D_i \subseteq C_i$. $(x, y)\notin D_i$. Tedy $d(x, y) ≥ \frac{1}{2^i} > 0$. Tedy $d$ je metrika. $d$ generuje uniformitu ©D: Tj. pro $\epsilon > 0$ $\{(x, y | d(x, y) < \epsilon)\} \in ©D$. To platí díky vlastnosti z předchozího lemmatu. A pro $D \in ©D\ \exists \epsilon > 0: \{(x, y) | d(x, y) < \epsilon\} \subseteq D$. $D \in ©D$ dané $\exists i \in ®N: C_i \subseteq D$, $D_i \subseteq C_i \subseteq D$. $\epsilon := \frac{1}{2^i}$. To máme také díky vlastnosti z předchozího lemmatu.
         \end{dukazin}
@@ -545,7 +545,7 @@
         TG je metrizovatelná, právě když má spočetný charakter.
         
         \begin{dukazin}
-                $\implies$: Triviální (každý met. prostor má spočetný charakter). $\Leftarrow$: Ať $(®G, ·, \tau)$ má spočetný charakter. Ať $\{U_n : n \in ®N\}$ je báze okolí v $e$. $D_n := \{(x, y) \in ®G \times ®G | xy^{-1} \in U_n\}$, $\{D_n | n \in ®N\}$ je báze pravé uniformity ©D. Tedy ©D má spočetnou bázi. Tedy $(®G, ©D)$ je metrizovatelný, tedy $(©G, \tau)$ je metrizovatelný.
+                $\implies$: Triviální (každý met. prostor má spočetný charakter). $\impliedby$: Ať $(®G, ·, \tau)$ má spočetný charakter. Ať $\{U_n : n \in ®N\}$ je báze okolí v $e$. $D_n := \{(x, y) \in ®G \times ®G | xy^{-1} \in U_n\}$, $\{D_n | n \in ®N\}$ je báze pravé uniformity ©D. Tedy ©D má spočetnou bázi. Tedy $(®G, ©D)$ je metrizovatelný, tedy $(©G, \tau)$ je metrizovatelný.
         \end{dukazin}
     \end{veta}
 
@@ -557,7 +557,7 @@
         Ať $®G$, $®H$ jsou TG. $f: ®G \rightarrow ®H$ je homomorfismus grup. $f$ je spojité $\Leftrightarrow$ $f$ je spojité v $e \in ®G$.
 
         \begin{dukazin}
-            $\implies$: zřejmě. $\Leftarrow$: Ať $x \in ®G$, $(x_i)_{i \in I}$ je net v ®G, který konverguje k $x$. Chceme, že $(f(x_i))_{i \in I}$ konverguje k $f(x)$ v ®H. $(x_i · x^{-1})_{i \in I}$ je net v ®G, konverguje k $x·x^{-1} = e \in ®G$. $f$ spojité v $e$, tedy $f(x_i·x^{-1})$ konverguje k $f(e) = e \in ®H$. Tudíž $f(x_i)·\(f(x)\)^{-1} \rightarrow e \in ®H$. Tudíž (po vynásobení $f(x)$) $f(x_i) \rightarrow f(x)$. Tedy $f$ spojité v $x$. $x \in ®G$ libovolné. Tedy $f$ je spojité.
+            $\implies$: zřejmě. $\impliedby$: Ať $x \in ®G$, $(x_i)_{i \in I}$ je net v ®G, který konverguje k $x$. Chceme, že $(f(x_i))_{i \in I}$ konverguje k $f(x)$ v ®H. $(x_i · x^{-1})_{i \in I}$ je net v ®G, konverguje k $x·x^{-1} = e \in ®G$. $f$ spojité v $e$, tedy $f(x_i·x^{-1})$ konverguje k $f(e) = e \in ®H$. Tudíž $f(x_i)·\(f(x)\)^{-1} \rightarrow e \in ®H$. Tudíž (po vynásobení $f(x)$) $f(x_i) \rightarrow f(x)$. Tedy $f$ spojité v $x$. $x \in ®G$ libovolné. Tedy $f$ je spojité.
         \end{dukazin}
     \end{tvrzeni}
 
@@ -658,7 +658,7 @@
         \begin{dukazin}
             Pokud některý $®X_i = \O$, tvrzení platí. Dále ať $®X_i ≠ \O$, $i \in I$. $\implies$: Je-li $\prod ®X_i$ souvislý, $\pi_j: \prod ®X_i \rightarrow ®X_j$ je spojité a na, tedy i $®X_j$ je souvislý.
 
-            $\Leftarrow$: Nejprve pro dva prostory ®X, ®Y: $®X \times ®Y = (\{x_0\} \times ®Y) \cup \bigcup_{y \in ®Y} ®X \times \{y\}$. Tedy podle tvrzení výše je $®X \times ®Y$ souvislý. Indukcí dokážeme pro konečně mnoho. Obecně: $\forall i \in I$ fixujeme bod $x_i \in ®X_i$.
+            $\impliedby$: Nejprve pro dva prostory ®X, ®Y: $®X \times ®Y = (\{x_0\} \times ®Y) \cup \bigcup_{y \in ®Y} ®X \times \{y\}$. Tedy podle tvrzení výše je $®X \times ®Y$ souvislý. Indukcí dokážeme pro konečně mnoho. Obecně: $\forall i \in I$ fixujeme bod $x_i \in ®X_i$.
             $$ M:= \{(y_i)_{i \in I} \in \prod ®X_i: y_i = x_i \text{ pro všechna $i \in I$ až na konečně mnoho výjimek}\}. $$
             $$ M = \bigcup_{K \subseteq I \text{ konečná}} \( \prod_{i \in K}®X_i \times \prod_{i \in I \setminus K} \{x_i\}\). $$
             To znamená, že $M$ je souvislé, protože je sjednocením souvislých množin s průnikem obsahujícím $(x_i)_{i \in I}$. Ale $M$ je hustá v $\prod ®X_i$. $\overline{M}$ je souvislá, tedy $\prod ®X_i$ je souvislá.
@@ -770,7 +770,7 @@
         Kontinuum ®X je nerozložitelné, právě když každé jeho vlastní podkontinuum je v něĺ řídké (tj. uzávěr má prázdný vnitřek).
 
         \begin{dukazin}
-            $\Leftarrow$ Kdyby $X = ®A \cup ®B$, ®A, ®B vlastní podkontinua, pak ®A, ®B řídké. $®A \cup ®B$ je řídká v ®X, \lightning.
+            $\impliedby$ Kdyby $X = ®A \cup ®B$, ®A, ®B vlastní podkontinua, pak ®A, ®B řídké. $®A \cup ®B$ je řídká v ®X, \lightning.
 
             $\implies$: Ať $®Y \subseteq ®X$ je vlastní podkontinuum ®X, $\Int ®Y ≠ \O$. Ať $M = \overline{®X \setminus ®Y}$. Pak $M$ je souvislá: $®X = M \cup ®Y$ a $M$ je kontinuum, tedy ®X je rozložitelné. Nebo $M$ je nesouvislá: $M = E \cup F$, kde $E, F$ jsou uzavřené disjunktní neprázdné podmnožiny v $M$. Potom $(®Y \cup E) \cup (®Y \cup F)$. Ale tyto dvě množiny jsou vlastní uzavřené podmnožiny ®X, které jsou souvislé (neboť každá komponenta $E$ nebo $F$ protíná jejich hranici a ta je podmnožinou ®Y a sjednocení souvislých protínajících se ve stejném bodě je souvislé).
         \end{dukazin}
@@ -829,7 +829,7 @@
         \begin{dukazin}
             $\implies$: $\beta®X$ je kompaktní, tedy $\beta®X$ je silně nuldimenzionální. Ať $f: ®X \rightarrow ®R$ je spojitá. Chceme, že $f^{-1}$ a $f^{-1}(1)$ oddělíme obojetnou: Existuje spojité rozšíření $\overline{f}: \beta®X \rightarrow [0, 1]$ funkce $f$. $\overline{f}^{-1}(0)$, $\overline{f}^{-1}(1)$ funkcionálně oddělené v $\beta ®X$. Tedy existuje obojetná $Z \subseteq \beta®X$, že $\overline{f}^{-1}(0)\subseteq Z \subseteq \beta®X \setminus \overline{f}^{-1}(1)$. Nyní $Z \cap ®X$ obojetná v ®X. $f^{-1}(0) = \overline{f}^{-1}(0)\cap®X \subseteq Z \cap ®X \subseteq ®X \setminus f^{-1}(1)$. $Z \cap ®X$ je obojetná a odděluje $f^{-1}(0)$ a $f^{-1}(1)$.
 
-            $\Leftarrow$: $\beta®X$ je kompaktní, tedy stačí ukázat (díky předchozí větě), že ®X je totálně nesouvislý. Ať $a, b \in ®X$, $a ≠ b$. Existuje spojitá funkce $f: \beta®X \rightarrow [0, 1]$, $f(a) = 0$, $f(b) = 1$. $A := f^{-1}\(\[0, \frac{1}{3}\)\)$, $B := f^{-1}\(\(\frac{2}{3}, 1\]\)$. Jistě $a \in A$ a $b \in B$. $A, B$ jsou funkcionálně oddělené v $\beta®X$, otevřené. Tj. $A\cap®X$, resp. $B \cap ®X$, je hustá v $A$, resp. $B$. Navíc jsou oddělené v ®X. Ze silné nuldimenzionality ®X existuje obojetná $Z \subseteq ®X: A \cap ®X \subseteq Z \subseteq ®X \setminus B$. Uvažujme spojitou funkce $g: ®X \rightarrow \{0, 1\}$, $g|_Z = 0$, $g|_{X \setminus Z} = 1$. $g$ lze spojitě rozšířit na $\overline{g}: \beta®X \rightarrow \{0, 1\}$. Ať $W := \overline{g}^{-1}(0)$. $W \supseteq Z$, $W$ obojetná, $W \cap B = \O$. $W \supseteq A$. $a \in W$, $b \notin W$.
+            $\impliedby$: $\beta®X$ je kompaktní, tedy stačí ukázat (díky předchozí větě), že ®X je totálně nesouvislý. Ať $a, b \in ®X$, $a ≠ b$. Existuje spojitá funkce $f: \beta®X \rightarrow [0, 1]$, $f(a) = 0$, $f(b) = 1$. $A := f^{-1}\(\[0, \frac{1}{3}\)\)$, $B := f^{-1}\(\(\frac{2}{3}, 1\]\)$. Jistě $a \in A$ a $b \in B$. $A, B$ jsou funkcionálně oddělené v $\beta®X$, otevřené. Tj. $A\cap®X$, resp. $B \cap ®X$, je hustá v $A$, resp. $B$. Navíc jsou oddělené v ®X. Ze silné nuldimenzionality ®X existuje obojetná $Z \subseteq ®X: A \cap ®X \subseteq Z \subseteq ®X \setminus B$. Uvažujme spojitou funkce $g: ®X \rightarrow \{0, 1\}$, $g|_Z = 0$, $g|_{X \setminus Z} = 1$. $g$ lze spojitě rozšířit na $\overline{g}: \beta®X \rightarrow \{0, 1\}$. Ať $W := \overline{g}^{-1}(0)$. $W \supseteq Z$, $W$ obojetná, $W \cap B = \O$. $W \supseteq A$. $a \in W$, $b \notin W$.
         \end{dukazin}
     \end{veta}
 
@@ -913,7 +913,7 @@
         \begin{dukazin}
             $\implies$: Ať $E, F$ jsou uzavřené disjunktní. Ať $©U = \{®X \setminus E, ®X \setminus F\}$ otevřené pokrytí ®X. $\exists$ konečné otevřené zjemnění ©V toho ©U, které má řád $≤ 0$, tedy prvky ©V jsou navzájem disjunktní. Tedy každé $V \in ©V$ je obojetná, $\bigcup \{V \in ©V|V \subseteq ®X \setminus F\}$ obojetná, obsahující $E$ (protože pokud $V \cap E ≠ \O$ pro $V \in ©V$, pak $V \subseteq ®X \setminus F$) a disjunktní s $F$.
 
-            $\Leftarrow$: Ať ©U je otevřené konečné pokrytí ®X. Podle lemmatu o skrčení existuje uzavřené $F_U: U \in ©U, F_U \subseteq U$, $\bigcup \{F_U | U \in ©U\}$. ®X silně nuldimenzionální, tedy $\exists$ obojetné $C_U: F_U \subseteq C_U \subseteq U$, $U \in ©U$. $\{C_U | U \in ®U\}$ je konečné obojetné pokrytí ®X zjemňující ©U. Toto pokrytí můžeme „rozdisjunktnit“ a dostaneme disjunktní otevřené (obojetné) konečné pokrytí řádu 0 (zjemnění ©U).
+            $\impliedby$: Ať ©U je otevřené konečné pokrytí ®X. Podle lemmatu o skrčení existuje uzavřené $F_U: U \in ©U, F_U \subseteq U$, $\bigcup \{F_U | U \in ©U\}$. ®X silně nuldimenzionální, tedy $\exists$ obojetné $C_U: F_U \subseteq C_U \subseteq U$, $U \in ©U$. $\{C_U | U \in ®U\}$ je konečné obojetné pokrytí ®X zjemňující ©U. Toto pokrytí můžeme „rozdisjunktnit“ a dostaneme disjunktní otevřené (obojetné) konečné pokrytí řádu 0 (zjemnění ©U).
         \end{dukazin}
     \end{veta}
 

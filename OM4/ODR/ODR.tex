@@ -55,7 +55,7 @@
 	\begin{dukazin}
 		„$\implies$“: $x$ a $f$ je spojitá, tedy $x' = f(x(t), t)$ je spojitá, tj. $x \in C^1(I) \implies \int_{t_0}^t x'(s) ds = x(t) - x(t_0)$.
 
-		„$\Leftarrow$“: jelikož $f$ i $s$ je spojitá, tak integral je diferencovatelný a $x(t)$ je spojitá, tedy
+		„$\impliedby$“: jelikož $f$ i $s$ je spojitá, tak integral je diferencovatelný a $x(t)$ je spojitá, tedy
 		$$ x'(t) = 0 + f(x(t), t) \land x(t_0) = t_0 + 0. $$
 	\end{dukazin}
 \end{lemma}
@@ -106,7 +106,7 @@
 	Globální jednoznačnost je ekvivalentní lokální jednoznačnosti.
 
 	\begin{dukazin}
-		„$\implies$“ je triviální. „$\Leftarrow$“: Pro spor předpokládejme $\exists t_1 \in I \cap J$, $x(t_1) ≠ y(t_1)$. BÚNO $t_1 > t_0$. Definujme
+		„$\implies$“ je triviální. „$\impliedby$“: Pro spor předpokládejme $\exists t_1 \in I \cap J$, $x(t_1) ≠ y(t_1)$. BÚNO $t_1 > t_0$. Definujme
 		$$ M := \{T \in I \cap J, t > t_0, x(t) ≠ y(t)\} ≠ \O, \qquad t_2 = \inf M. $$
 		Víme $x(t_2) = \lim_{t \rightarrow t_2^-} x(t) = \lim_{t \rightarrow t_2^-} y(t) = y(t_2)$. Podíváme se lokální jednoznačností na bod $t_2$. Tam existuje $\sigma > 0$ tak, že $\forall t \in (t_2 - \sigma, t_2 + \sigma): x(t) = y(t)$. \lightning.
 	\end{dukazin}

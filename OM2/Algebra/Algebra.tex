@@ -245,7 +245,7 @@
             Buď $R$ obor, $f \in R[x]$, $a \in R$. $a$ je kořen $f$ $\Leftrightarrow x-a | f$.
 
             \begin{dukazin}
-                $\Leftarrow :$ $f = (x-a)·g$ pro nějaké $g \in R[x]$ $\implies f(a) = (a - a)·g(a) = 0$.
+                $\impliedby :$ $f = (x-a)·g$ pro nějaké $g \in R[x]$ $\implies f(a) = (a - a)·g(a) = 0$.
             
                 $\implies:$ Buď $q, r \in R[x]$ podíl a zbytek při dělení $f$ monickým polynomem $x - a$. $f = (x - a)·q + r$, $\deg r < \deg (x - a) = 1$ $\implies r$ je konstantní polynom. Dosadíme $a$:
                 $$ 0 = f(a) = (a-a)q(a) + r(a) = r(a). $$ 
@@ -493,7 +493,7 @@
 
             $\implies$: $f$ zobrazí $\Phi$ do $\Phi_a \times \Phi_b$, čili, že $\NSD(x, a·b) = 1$ implikuje $\NSD(x \mod a, a) = 1, \NSD(x \mod b, b) = 1$.
 
-            $\Leftarrow$: $f$ zobrazí $\Phi_{a, b}$ na $\Phi_a \times \Phi_b$, čili pokud $\NSD(u, a) = 1$, $\NSD(v, b) = 1$, pak to jediné $x$, které se zobrazí na $(u, v)$, leží v $\Phi_{a, b}$.
+            $\impliedby$: $f$ zobrazí $\Phi_{a, b}$ na $\Phi_a \times \Phi_b$, čili pokud $\NSD(u, a) = 1$, $\NSD(v, b) = 1$, pak to jediné $x$, které se zobrazí na $(u, v)$, leží v $\Phi_{a, b}$.
 
             $$ \NSD(x, ab) = 1 \Leftrightarrow \NSD(x, a) = 1 \land \NSD(x, b) = 1 \Leftrightarrow $$
             $$ \Leftrightarrow \NSD(x \bmod a, a) = 1 \land \NSD(x \bmod b, b) = 1. $$ 
@@ -519,7 +519,7 @@
             $R$ obor, $a, b \in R$. Pak $a||b$ $\Leftrightarrow$ $\exists$~invertibilní prvek $q \in R$ tak, že $a = bq$.
 
             \begin{dukazin}
-                $\Leftarrow$: ($a = bq \implies b | a) \land (b = aq^{-1} \implies a | b)$.
+                $\impliedby$: ($a = bq \implies b | a) \land (b = aq^{-1} \implies a | b)$.
 
                 $\implies$: $a = 0 \implies b = 0$. Ať $a ≠ 0$, $(b|a \implies a = bu) \land (a|b \implies b=av) \implies a = bu = auv$. Můžeme vykrátit $a ≠ 0$, tj. $1 = uv$, a $u, v$ jsou tedy invertibilní.
             \end{dukazin}
@@ -557,7 +557,7 @@
             \begin{dukazin}
                 1) vezmu a ověřím. Nebo využiji, že $\nu(u) = |u·u'|$, kde $u' = a - b\sqrt{s}$, $u = a + b\sqrt{s}$. Zjistíme, že $(u·v)' = u'·v'$. Potom $|u·v·(u·v)'| = |u·u'|·|v·v'|$.
 
-                2) $\Leftarrow$: $u·u^{-1} = 1 \implies \nu(u·u^{-1}) = \nu(1) = 1$. Následně už z 1) dostaneme $\nu(u) = 1$. $\implies$: $\nu(u) = 1 \implies u·u' = 1 \implies u'$ je hledaná inverze.
+                2) $\impliedby$: $u·u^{-1} = 1 \implies \nu(u·u^{-1}) = \nu(1) = 1$. Následně už z 1) dostaneme $\nu(u) = 1$. $\implies$: $\nu(u) = 1 \implies u·u' = 1 \implies u'$ je hledaná inverze.
 
                 3) $u = 0 \implies v = 0 \implies v|u$. Ať tedy $v = uc$ pro $c \in ®Z[\sqrt{s}]$. Ať $\nu(u) = \nu(v) = \nu(u·c) = \nu(u)·\nu(c) \implies \nu(c) = 1 \implies c$ je invert $\implies v||u$, čili $v|u$ spor.
             \end{dukazin}
@@ -1417,7 +1417,7 @@
             \begin{dukazin}
                 $\implies$: $aH = bH \ni b = b·1$, čili $b \in aH$, tedy $b = ah$ pro nějaké $h \in H$. Pak $a^{-1}b = h \in H$.
 
-                $\Leftarrow$: $a^{-1}b = h$ pro nějaké $h \in H$ $\implies$ $b·1 = a·h \in aH \cap bH \implies aH = bH$.
+                $\impliedby$: $a^{-1}b = h$ pro nějaké $h \in H$ $\implies$ $b·1 = a·h \in aH \cap bH \implies aH = bH$.
 
                 Analogicky pro pravé.
             \end{dukazin}
@@ -1462,7 +1462,7 @@
             $G, H$ jsou grupy jako výše, $\phi: G \rightarrow H$ zobrazení. Pak $\phi$ je homomorfismus $\Leftrightarrow$ $\phi(a·b) = \phi(a)*\phi(b)$.
             
             \begin{dukazin}
-                $\Leftarrow$: $\phi(1) \stackrel{?}{=} e$: $e*\phi(1) = \phi(1) = \phi(1·1) = \phi(1)*\phi(1)$. Zkrátíme $\phi(1)$ na obou stranách $\implies$ $e = \phi(1)$.
+                $\impliedby$: $\phi(1) \stackrel{?}{=} e$: $e*\phi(1) = \phi(1) = \phi(1·1) = \phi(1)*\phi(1)$. Zkrátíme $\phi(1)$ na obou stranách $\implies$ $e = \phi(1)$.
                 
                 $\phi(a)*\phi(a)' = e = \phi(1)' = \phi(a·a^{-1}) = \phi(a)*\phi(a^{-1})$. Zkrátíme $\phi(a)$ a dostáváme $\phi(a^{-1}) = \phi(a)'$.
                 
@@ -1494,7 +1494,7 @@
             \begin{dukazin}
                 $\implies$: Pro $a≠0$, prostota $\implies$ $\phi(a) ≠ \phi(1) = e$ $\implies$ $a \notin \Ker(\phi)$.
                 
-                $\Leftarrow$: $\phi(a)=\phi(b) \Leftrightarrow \phi(a·b^{-1}) = e \Leftrightarrow a·b^{-1} \in \Ker(\phi)$. Ale $\Ker(\phi) = \{1\}$, tedy $a·b^{-1} = 1 \implies a=b$. Tedy $\phi$ je prosté.
+                $\impliedby$: $\phi(a)=\phi(b) \Leftrightarrow \phi(a·b^{-1}) = e \Leftrightarrow a·b^{-1} \in \Ker(\phi)$. Ale $\Ker(\phi) = \{1\}$, tedy $a·b^{-1} = 1 \implies a=b$. Tedy $\phi$ je prosté.
             \end{dukazin}
         \end{tvrzeni}
         
@@ -1609,7 +1609,7 @@
             $G = \<a\>$. 1) $|G| = ∞$, pak generátory jsou právě $a^1, a^{-1}$. 2) $|G| = n$, pak generátory jsou právě $a^k$, kde $k \in \{1, …, n\}$ a $\NSD(k, n) = 1$.
 
             \begin{dukazin}
-                1) jasné (viz skripta). 2) Z tvrzení výše $\<a^k\> = \<a^{\NSD(k, n)}\> = H$, $H = G \Leftrightarrow \NSD(k, n) = 1$. $\implies$: Kdyby $d = \NSD(k, n) > 1$, pak $H = \<c^d\> = \{1, a^d, …, a^{d(\frac{n}{d} - 1)}\} ≠ G$. $\Leftarrow$: triviální.
+                1) jasné (viz skripta). 2) Z tvrzení výše $\<a^k\> = \<a^{\NSD(k, n)}\> = H$, $H = G \Leftrightarrow \NSD(k, n) = 1$. $\implies$: Kdyby $d = \NSD(k, n) > 1$, pak $H = \<c^d\> = \{1, a^d, …, a^{d(\frac{n}{d} - 1)}\} ≠ G$. $\impliedby$: triviální.
             \end{dukazin}
         \end{tvrzeni}
 
@@ -1784,7 +1784,7 @@
         \begin{dukazin}
             $\implies$: Buď $h \in H$, $a \in G$. Víme: $ah \in aH = Ha \implies$ existuje $h' \in H$ tak, že $ah = h'a \implies aha^{-1} = h' \in H$.
 
-            $\Leftarrow$: Dokážeme $aH \subseteq Ha$ (a analogicky $Ha \subseteq aH$). Buď $ah \in aH$. Pak $h' = aha^{-1} \in H$, a tedy $ah = h'a \in Ha$.
+            $\impliedby$: Dokážeme $aH \subseteq Ha$ (a analogicky $Ha \subseteq aH$). Buď $ah \in aH$. Pak $h' = aha^{-1} \in H$, a tedy $ah = h'a \in Ha$.
         \end{dukazin}
 
         \begin{priklady}
@@ -2040,7 +2040,7 @@
             \begin{dukazin}
                 $®T[\alpha] = \{f(\alpha) | f \in ®T[x]\}$.
 
-                $\Leftarrow$: Uvažujme homomorfismus okruhů $\phi: ®T[x] \rightarrow ®T[\alpha]$, $f \mapsto f(\alpha)$. $\im \phi = ®T[\alpha]$. $\Ker \phi = \{f | f(\alpha) = 0\} = m_{\alpha, ®T}®T[x]$. Víme, že $m = m_{\alpha, ®T}$ je ireducibilní, tedy $m®T[x]$ je maximální. Podle 1. věty o izomorfismu $®T[\alpha] \simeq ®T[x] / m®T[x]$, což je faktor podle maximálního ideálu $\implies$ $®T[\alpha]$ je těleso. A protože $®T[\alpha]$ je těleso $\implies$ nejmenší těleso obsahující $\alpha$ $\implies$ $®T[\alpha] = T(\alpha)$.
+                $\impliedby$: Uvažujme homomorfismus okruhů $\phi: ®T[x] \rightarrow ®T[\alpha]$, $f \mapsto f(\alpha)$. $\im \phi = ®T[\alpha]$. $\Ker \phi = \{f | f(\alpha) = 0\} = m_{\alpha, ®T}®T[x]$. Víme, že $m = m_{\alpha, ®T}$ je ireducibilní, tedy $m®T[x]$ je maximální. Podle 1. věty o izomorfismu $®T[\alpha] \simeq ®T[x] / m®T[x]$, což je faktor podle maximálního ideálu $\implies$ $®T[\alpha]$ je těleso. A protože $®T[\alpha]$ je těleso $\implies$ nejmenší těleso obsahující $\alpha$ $\implies$ $®T[\alpha] = T(\alpha)$.
 
                 $\implies$ $\alpha$ transcendentní. Pro spor ať $®T[\alpha] = ®T(\alpha)$. Tedy $\exists f(\alpha \in ®T[\alpha])$ tak, že $f(\alpha) = \alpha^{-1}$. Pak ale $\alpha$ je kořen polynomu $x·f - 1$, \lightning.
             \end{dukazin}
@@ -2390,7 +2390,7 @@
             Konečná tělesa stejné velikosti jsou izomorfní.
 
             \begin{dukazin}
-                1. $\implies$ tvrzení kdesi dříve, $\Leftarrow$ rozkladové nadtělesa existují a předposlední lemma.
+                1. $\implies$ tvrzení kdesi dříve, $\impliedby$ rozkladové nadtělesa existují a předposlední lemma.
 
                 2. Konečné těleso velikosti $q=p^k$ je rozkladové nadtěleso $x^q-x$ nad $®Z_p$. Ale rozkladová nadtělesa jsou jednoznačná až na izomorfismus.
             \end{dukazin}

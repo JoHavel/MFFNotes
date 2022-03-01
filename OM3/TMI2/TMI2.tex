@@ -446,7 +446,7 @@
 		Ukážeme, že $f$ je spojitá ve všech bodech množiny $(a, b) \setminus N$: Buď $x \in (a, b) \setminus N$, $\epsilon > 0$. Potom $f_1(x) = f_2(x)$ $\implies$ $\exists n \in ®N$, $S_n(x) - s_n(x) < \epsilon$. $I_n$ nechť je otevřený interval dělení $©D_n$, pro nějž $x \in I_n$. Pak
 		$$ s_n(x) ≤ f(y) ≤ S_n(x), y \in I_n \implies |f(y) - f(x)| ≤ 2\epsilon, y \in I_n \implies f \text{ je spojitá v bodě $x$.} $$
 
-		$\Leftarrow$: Nechť $\lambda^1(©D) = 0$, kde $D := \{x \in (a, b): f\text{ není spojitá v }x\}$. Ukážeme, že $S_n(x) - s_n(x) \stackrel{n \rightarrow ∞}{\rightarrow} 0$
+		$\impliedby$: Nechť $\lambda^1(©D) = 0$, kde $D := \{x \in (a, b): f\text{ není spojitá v }x\}$. Ukážeme, že $S_n(x) - s_n(x) \stackrel{n \rightarrow ∞}{\rightarrow} 0$
 		$$ \implies S(f, ©D_n) - s(f, ©D_n) \rightarrow 0 \implies f \in R[a, b]. $$
 		Nechť $x \in (a, b) \setminus ©D$, $\epsilon > 0$. Pak $f$ je spojitá v bodě $x$ $\implies \exists \delta > 0$, $|y - x| < \delta$ $\implies$ $|f(y) - f(x)| < \epsilon$.
 
@@ -651,7 +651,7 @@
 	Nechť $\mu(X) < ∞$ a $f_n \overset{\mu}{\rightarrow} f$. Pak $f_n \overset{L_1}{\rightarrow} f$ $\Leftrightarrow$ $(f_n)$ je stejnoměrně integrovatelná.
 
 	\begin{dukazin}
-		„$\Leftarrow$“: Nechť $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ je stejnoměrně integrovatelná. Pak $f_n \in L^1(\mu)$ a existuje vybraná podposloupnost $(f_{n_j})$, $f_{n_j} \overset{s. v.}{\rightarrow} f$.
+		„$\impliedby$“: Nechť $f_n \overset{\mu}{\rightarrow} f$, $(f_n)$ je stejnoměrně integrovatelná. Pak $f_n \in L^1(\mu)$ a existuje vybraná podposloupnost $(f_{n_j})$, $f_{n_j} \overset{s. v.}{\rightarrow} f$.
 		$$ \int |f| d\mu = \int(\lim_{j \rightarrow ∞} |f_{n_j}|)d \mu ≤ \liminf_{j \rightarrow ∞} \int |f_{n_j}| d\mu < ∞ \implies f \in L^1(\mu). $$
 		Předpokládejme nejprve, že $\exists c \in ®R$, $|f_n| < c$, $|f| ≤ c$ skoro všude. Buď $\epsilon > 0$, položme $\delta := \frac{\epsilon}{2 \mu(X)}$.
 		$$ \int |f_n - f| d\mu = \int_{\{|f_n - f| ≤ \delta\}} |f_n - f| d\mu + \int_{\{|f_n - f| > \delta\}} |f_n - f| ≤ $$

@@ -48,7 +48,7 @@
     \end{definice}
 
     \begin{definice}[Odsupňovaný tvar matice REF]
-        Matice $A \in \R^{m\times n}$ je v řádkově odstupňovaném tvaru, pokud existuje $r$ takové, že platí: řádky $1,…,r$ (tzv. bazické) jsou nenulové (obsahují alespoň 1 nenulový prvek), řádky $r+1,…,m$ jsou nulové, a navíc označíme-li jako $p_i=min{j; a_{ij}\neq 0}$ (tzv. pivot) pozici prvního nenulového prvku v $i$-tém řádku, tak platí: $p_1<p_2<\cdots<p_r$.
+        Matice $A \in ®R^{m\times n}$ je v řádkově odstupňovaném tvaru, pokud existuje $r$ takové, že platí: řádky $1,…,r$ (tzv. bazické) jsou nenulové (obsahují alespoň 1 nenulový prvek), řádky $r+1,…,m$ jsou nulové, a navíc označíme-li jako $p_i=min{j; a_{ij}\neq 0}$ (tzv. pivot) pozici prvního nenulového prvku v $i$-tém řádku, tak platí: $p_1<p_2<\cdots<p_r$.
         \begin{prikladyin}
             Matice, které jsou, a matice, které nejsou.
         \end{prikladyin}
@@ -61,7 +61,7 @@
     Dále jsme dělali Gaussovu eliminaci (nemá řešení ($\rank(A) \neq \rank(A|b)$), má 1 řešení ($\rank(A|b) = n$), má mnoho řešení (pak bazické proměnné vyjádřím pomocí nebazických)).
 
     \begin{definice}[Redukovaný odstupňovaný tvar matice RREF]
-        Matice v odstupňovaném tvaru je v redukovaném OT, jestliže $\forall 0≤i≤r, i \in \N: a_{ip_i} = 1 \land \forall i>x \in \R a_{xp_i} = 0$.
+        Matice v odstupňovaném tvaru je v redukovaném OT, jestliže $\forall 0≤i≤r, i \in ®N: a_{ip_i} = 1 \land \forall i>x \in ®R a_{xp_i} = 0$.
     \end{definice}
 
     \begin{poznamka}
@@ -85,7 +85,7 @@
     \end{definice}
 
     \begin{definice}[Součin matic]
-        Nechť $A \in \R^{m\times n}$ a $B \in \R^{n \times o}$ jsou matice. Potom matice $C \in \R^{m \times o}$ definovaná jako $c_{ij} = a_{i*}\cdot b_{*j}$ je jejich součinem.
+        Nechť $A \in ®R^{m\times n}$ a $B \in ®R^{n \times o}$ jsou matice. Potom matice $C \in ®R^{m \times o}$ definovaná jako $c_{ij} = a_{i*}\cdot b_{*j}$ je jejich součinem.
 
         \begin{poznamkain}[Vlastnosti]
             Komutativita neplatí.
@@ -95,7 +95,7 @@
     \end{definice}
 
     \begin{definice}[Transpozice]
-        Buď $A\in\R^{m \times n}$. Potom $A^T\in \R^{n \times m}$ definována jako $(A^T)_{ij} = a_{ji}$ je transponovaná matice $A$.
+        Buď $A \in ®R^{m \times n}$. Potom $A^T\in ®R^{n \times m}$ definována jako $(A^T)_{ij} = a_{ji}$ je transponovaná matice $A$.
         \begin{poznamka}[Vlastnosti]
             Je sama sobě inverzním zobrazením. Distributivita pro všechny operace (pozor u násobení je antisymetrická).
 
@@ -565,11 +565,11 @@
     \end{tvrzeni}
 
     \begin{definice}[LO]
-        Pro vektorový prostor ¦V nad tělesem ®T a $W \subseteq ¦V$ je průnik všech podprostorů obsahujících $W$ lineárním obalem množiny ¦W. Značíme $\span (W)$.
+        Pro vektorový prostor ¦V nad tělesem ®T a $W \subseteq ¦V$ je průnik všech podprostorů obsahujících $W$ lineárním obalem množiny ¦W. Značíme $\spn (W)$.
     \end{definice}
 
     \begin{definice}[Generátory a množiny generátorů]
-        Nechť $¦U = \span(W)$, pak říkáme, že $W$ generuje prostor ¦U a prvky množiny $W$ jsou generátory prostoru ¦U.
+        Nechť $¦U = \spn(W)$, pak říkáme, že $W$ generuje prostor ¦U a prvky množiny $W$ jsou generátory prostoru ¦U.
 
         Pokud ¦U je generovaný nějakou konečnou množinou, pak je konečně generovaný.
     \end{definice}
@@ -633,7 +633,7 @@
         Nechť ¦V je vektorový prostor, $¦x_1, …, ¦x_m$ je lineárně nezávislý systém ve ¦V a nechť $¦y_1, …, ¦y_n$ je systém generátorů ¦V. Pak platí: a) $m≤n$, b) existují navzájem různé indexy $k_1, …, k_{n-m}$ takové, že vektory $¦x_1, …, ¦x_m, ¦y_{k_1}, …, y_{k_{n-m}}$ tvoří systém generátorů prostoru ¦V.
 
         \begin{dukazin}
-            Postupujme indukcí podle $m$. Pro $m=0$ věta platí triviálně. Nechť tedy věta platí pro $m-1$. Pokud $m-1 = n$, pak z předpokladu $¦x_1, …, ¦x_{m-1}$ generují ¦V. Tedy $¦x_m \in \span \{¦x_1, …, ¦x_{m-1}\}$, což je spor s lineární nezávislostí, tedy $m ≤ n$. Tj. a) platí.
+            Postupujme indukcí podle $m$. Pro $m=0$ věta platí triviálně. Nechť tedy věta platí pro $m-1$. Pokud $m-1 = n$, pak z předpokladu $¦x_1, …, ¦x_{m-1}$ generují ¦V. Tedy $¦x_m \in \spn \{¦x_1, …, ¦x_{m-1}\}$, což je spor s lineární nezávislostí, tedy $m ≤ n$. Tj. a) platí.
 
             Protože z předpokladu $¦x_1, …, ¦x_{m-1}, ¦y_{l_1}, …, y_{l_{n-m+1}}$ generují ¦V, tak lze $¦x_m$ vyjádřit jako jejich lineární kombinaci a použít Lemma o výměně. Tím jsme dokázali část b).
         \end{dukazin}
@@ -684,10 +684,10 @@
     \end{definice}
 
     \begin{tvrzeni}
-        Pro podprostory ¦U a ¦V VP ¦W platí $¦U + ¦V = \span (¦U \cup ¦V)$.
+        Pro podprostory ¦U a ¦V VP ¦W platí $¦U + ¦V = \spn (¦U \cup ¦V)$.
 
         \begin{dukazin}
-            Inkluze $\subseteq$ je triviální z uzavřenosti na součty prostoru $\span (¦U \cup ¦V)$.
+            Inkluze $\subseteq$ je triviální z uzavřenosti na součty prostoru $\spn (¦U \cup ¦V)$.
 
             Inkluze $\supseteq$ se dokáže jako $¦U + ¦V \supseteq ¦U \cup ¦V$ a $¦U + ¦V$ je podprostor ¦W.
         \end{dukazin}
@@ -711,7 +711,7 @@
 % 19. 11. 2020
 
     \begin{definice}[Maticové prostory]
-        Pro matici $A$ definujeme sloupcový prostor $S(A) = \span \{\text{sloupců matice}\}$, řádkový prostor $R(A) = \span\{\text{řádků matice}\}$, jádro $\Ker(A) = \{¦x: A¦X = ¦o\}$.
+        Pro matici $A$ definujeme sloupcový prostor $S(A) = \spn \{\text{sloupců matice}\}$, řádkový prostor $R(A) = \spn\{\text{řádků matice}\}$, jádro $\Ker(A) = \{¦x: A¦X = ¦o\}$.
 
         \begin{poznamka}
             Všechny 3 prostory jsou podprostory příslušných VP. (2 jsou lineární obaly, jádro jistě obsahuje ¦o, protože $A¦o = ¦o$, uzavřenosti poté dokážeme z distributivity a komutativity)
@@ -915,7 +915,7 @@
         \begin{dukazin}
             $\implies:$ zobrazení je prosté a obraz je nezávislá množina z předchozích tvrzení.
 
-            $\Leftarrow:$ zobrazení je zřejmě na, následně pro spor předpokládejme, že jádro tohoto zobrazení obsahuje nějaký nenulový vektor. Zobrazíme a z linearity rozepíšeme a dojdeme ke sporu.
+            $\impliedby:$ zobrazení je zřejmě na, následně pro spor předpokládejme, že jádro tohoto zobrazení obsahuje nějaký nenulový vektor. Zobrazíme a z linearity rozepíšeme a dojdeme ke sporu.
 
             2. bod vyplývá z prvního.
         \end{dukazin}
@@ -964,7 +964,7 @@
     \end{veta}
 
     \begin{tvrzeni}
-        $f$ je prosté $\LeftRightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky, $f$ je na $\LeftRightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky.
+        $f$ je prosté $\Leftrightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky, $f$ je na $\Leftrightarrow _{B_{¦V}[f]_{B_{¦U}}}$ má lineárně nezávislé řádky.
     \end{tvrzeni}
 
 % 17. 12. 2020
@@ -991,7 +991,7 @@
     \end{definice}
 
     \begin{tvrzeni}
-        Buď ¦V vektorový prostor nad tělesem ®T a buď $\O ≠ M \subseteq ¦V$. Pak $M$ je afinní prostor $\LeftRightarrow$ $M$ je uzavřené na afinní kombinace.
+        Buď ¦V vektorový prostor nad tělesem ®T a buď $\O ≠ M \subseteq ¦V$. Pak $M$ je afinní prostor $\Leftrightarrow$ $M$ je uzavřené na afinní kombinace.
     \end{tvrzeni}
 
     \begin{veta}[Soustavy lineárních ]

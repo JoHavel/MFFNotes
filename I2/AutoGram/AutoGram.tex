@@ -175,7 +175,7 @@
         Jazyk je rozpoznatelný $\lambda$-NFA $\Leftrightarrow$ $L$ regulární.
 
         \begin{dukazin}
-            $\Leftarrow$: triviální. $\implies$: přes podmnožinovou konstrukci.
+            $\impliedby$: triviální. $\implies$: přes podmnožinovou konstrukci.
         \end{dukazin}
     \end{veta}
 
@@ -239,7 +239,7 @@
         Každý jazyk reprezentovaný konečným automatem lze zapsat jako regulární výraz. A opačně.
 
         \begin{dukazin}
-            $\Leftarrow$: triviální indukcí dle struktury regulárního výrazu.
+            $\impliedby$: triviální indukcí dle struktury regulárního výrazu.
 
             $\implies$: Zkonstruujeme induktivně (podle $k$) $R_{ij}^k$, kde $k$ značí maximální číslo mezistavu na cestě, $i$ je počáteční stav, $j$ je koncový stav. $R_{ij}^k$ tedy určuje regulární výraz všech slov, kterými se dostanu přes mezistavy $≤k$ z $i$ do $j$. Pro $k=0$ je konstrukce zřejmá (součet všech písmen vedoucích z $i$ do $j$, resp. $\O$).
 
@@ -302,7 +302,7 @@
         Jazyky přijímané dvousměrnými konečnými automaty jsou právě regulární jazyky.
 
         \begin{dukazin}
-            $\Leftarrow$: Triviální. Hlavou pohybuji jen doprava.
+            $\impliedby$: Triviální. Hlavou pohybuji jen doprava.
             
             TODO
         \end{dukazin}
@@ -758,7 +758,7 @@
             Jazyk $L$ je rekurzivní, právě když $L$ i $\overline{L}$ jsou rekurzivně spočetné.
 
             \begin{dukazin}
-                $\Leftarrow$: Necháme běžet 2 TM, pro jazyk a jeho doplňek. Jeden z nich se musí zastavit (jazyky jsou komplementární) a podle toho který, odpovíme.
+                $\impliedby$: Necháme běžet 2 TM, pro jazyk a jeho doplňek. Jeden z nich se musí zastavit (jazyky jsou komplementární) a podle toho který, odpovíme.
 
                 $\implies$: TODO. To bylo na přednášce opravdu zmateně…
             \end{dukazin}

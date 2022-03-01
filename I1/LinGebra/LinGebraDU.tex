@@ -143,7 +143,7 @@
         \begin{dukazin}
             $(\implies)$: Pokud je $®Z_p$, tak $p$ nemůže být 1, protože těleso musí mít alespoň 2 prvky. A pokud je $p$ složené, tedy $\exists x, y: x,y\in®N \setminus \{1\} \land x·y = p$, pak z definice $®Z_p$ máme, že v $®Z_p$: $x·y=0$, tedy alespoň jedno z $x$ a $y$ je nulové, tedy v ®Z násobek $p$, což je ale spor s tím, že $x·y = p \land x ≠ 1 \land y≠1 \land x, y \in ®N$.
 
-            $(\Leftarrow)$: Komutativita, asociativita a distributivita plynou jednoduše z toho, že je to v podstatě klasické sčítání a násobení. Stejně tak inverzní prvek vzhledem k sčítání a to, že 1 a 0 jsou neutrální prvky. Jediná zajímavá vlastnost na důkaz je existence inverzního prvku: Nechť je tedy $a ≠ 0 \in ®Z_p$ prvek, u kterého hledáme inverzi. Stačí ukázat, že pro $x ≠ y$ je $ax ≠ ay$, protože pak zobrazení $x \rightarrow ax$ je prosté, tedy jelikož je z konečné množiny do oné samé, tak je bijekcí, tedy existuje prvek $a^{-1}$, který se zobrazí na $a·a^{-1} = 1$. Pokud by tedy bylo $ax = ay$, tak můžeme přičíst inverzní prvek k $ay$ vzhledem ke sčítání, tedy $ax - ay = 0$. Z distributivity $a(x-y) = 0$, tedy buď $a=0$, ale to jsme vyloučili, nebo $x-y = 0$, tedy $x = y$. Tedy jsme dokázali obměnu implikace $x≠y \implies ax ≠ ay$.
+            $(\impliedby)$: Komutativita, asociativita a distributivita plynou jednoduše z toho, že je to v podstatě klasické sčítání a násobení. Stejně tak inverzní prvek vzhledem k sčítání a to, že 1 a 0 jsou neutrální prvky. Jediná zajímavá vlastnost na důkaz je existence inverzního prvku: Nechť je tedy $a ≠ 0 \in ®Z_p$ prvek, u kterého hledáme inverzi. Stačí ukázat, že pro $x ≠ y$ je $ax ≠ ay$, protože pak zobrazení $x \rightarrow ax$ je prosté, tedy jelikož je z konečné množiny do oné samé, tak je bijekcí, tedy existuje prvek $a^{-1}$, který se zobrazí na $a·a^{-1} = 1$. Pokud by tedy bylo $ax = ay$, tak můžeme přičíst inverzní prvek k $ay$ vzhledem ke sčítání, tedy $ax - ay = 0$. Z distributivity $a(x-y) = 0$, tedy buď $a=0$, ale to jsme vyloučili, nebo $x-y = 0$, tedy $x = y$. Tedy jsme dokázali obměnu implikace $x≠y \implies ax ≠ ay$.
         \end{dukazin}
     \end{priklad}
 
@@ -216,7 +216,7 @@
             Nyní se můžeme na součin $A^T ¦c$ podívat z pohledu, že výsledek je lineární kombinace sloupců $A^T$ (tj. řádků $A$) s koeficienty ¦c. A součin $¦c^T¦b$ je lineární kombinace (s koeficienty ¦c) prvků ¦b. Tedy víme, že $A^T¦y' = ¦o$ a $¦y'^T¦b = \alpha ≠ 0$, což je skoro to, co chceme. Z axiomů tělesa víme, že (jelikož je $\alpha ≠ 0$) existuje $-\alpha^{-1}$, tedy můžeme definovat $¦y = -\alpha^{-1}¦y'$. Následně z komutativity násobení skalárem $A^T ¦y = -\alpha^{-1}¦o = ¦o$ a $¦y^T¦b = -\alpha^{-1}\alpha = -1$, tedy jsme právě z levé strany ekvivalence dokázali existenci ¦y splňující podmínky pravé strany ekvivalence.
 
 
-            $(\Leftarrow)$ sporem: Nechť existuje řešení $A¦x = ¦b$. Potom můžeme rozepsat z asociativity maticového násobení $-1 = ¦y^T¦b = ¦y^T(A¦x) = (¦y^TA)¦x$. My však víme, že $(AB)^T = B^TA^T$, tedy $-1 = (¦y^TA)¦x = (A^T¦y)^T¦x = (¦o)^T¦x = 0$ (součinem nulového vektoru s jakýmkoliv jiným jistě dostaneme 0). \lightning
+            $(\impliedby)$ sporem: Nechť existuje řešení $A¦x = ¦b$. Potom můžeme rozepsat z asociativity maticového násobení $-1 = ¦y^T¦b = ¦y^T(A¦x) = (¦y^TA)¦x$. My však víme, že $(AB)^T = B^TA^T$, tedy $-1 = (¦y^TA)¦x = (A^T¦y)^T¦x = (¦o)^T¦x = 0$ (součinem nulového vektoru s jakýmkoliv jiným jistě dostaneme 0). \lightning
         \end{dukazin}
     \end{priklad}
 

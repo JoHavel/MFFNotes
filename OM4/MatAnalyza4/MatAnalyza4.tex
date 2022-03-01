@@ -48,7 +48,7 @@
 			„$\implies$“: Víme $\forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0\ \forall x \in J: |f_n(x) - f(x)| < \epsilon$. Tedy
 			$$ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| ≤ |f_n(x) - f(x)| + |f(x) - f_m(x)| < 2\epsilon. $$
 
-			„$\Leftarrow$“: Víme $\forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon$. Toto použijeme pro pevné $x \in J$. Pro posloupnost $a_n = f_n(x)$ máme splněnou BC podmínku pro posloupnost reálných čísel, tj. $a_n \rightarrow a \in ®R$.
+			„$\impliedby$“: Víme $\forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon$. Toto použijeme pro pevné $x \in J$. Pro posloupnost $a_n = f_n(x)$ máme splněnou BC podmínku pro posloupnost reálných čísel, tj. $a_n \rightarrow a \in ®R$.
 
 			Označíme si $f(x) = \lim_{n \rightarrow ∞} f_n(x)$. Nyní v BC podmínce provedeme limitu $n \rightarrow ∞$. Tím dostaneme přesně definici stejnoměrné konvergence.
 		\end{dukazin}
@@ -146,7 +146,15 @@
 		platí, že číselná řada $\sum_{n=1}^∞ \sigma_n$ konverguje, pak $\sum_{n=1}^∞ u_n(x) \rightrightarrows$ na $J$.
 
 		\begin{dukazin}
-			Příště.
+%
+% 01. 03. 2022
+%
+			Nechť $\epsilon > 0$. Z BC podmínky pro konečnou $\sum_{k=1}^∞ \sigma_k$
+			$$ \exists n_0\ \forall m, n ≥ n_0, m > n: |\sum_{k=n+1}^m \sigma_k| < \epsilon. $$
+			Chceme ověřit BC podmínku pro $s_n(x) = \sum_{k=1}^n u_k(x)$:
+			$$ \forall m, n ≥ n_0, m > n\ \forall x \in J: |s_m(x) - s_n(x)| = \left|\sum_{k=1}^m u_k(x) - \sum_{k=1}^n u_k(x)\right| = $$
+			$$ = \left|\sum_{k=n+1}^m u_k(x)\right| ≤ \sum_{k=n+1}^m |u_k(x)| ≤ \sum_{k=n+1}^m \sigma_k < \epsilon. $$
+			Tedy podle BC podmínky $\sum u_k \rightrightarrows$.
 		\end{dukazin}
 	\end{veta}
 \end{document}

@@ -106,7 +106,7 @@
         $(x, y) = (u, v) \Leftrightarrow (x = u \land y = v)$.
 
         \begin{dukazin}
-            $\Leftarrow$ $x=u$, pak $\{x\} = \{u\}$ z axiomu extenzionality, stejně tak $\{x, y\} = \{u, v\}$, a tedy $\{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}$.
+            $\impliedby$ $x=u$, pak $\{x\} = \{u\}$ z axiomu extenzionality, stejně tak $\{x, y\} = \{u, v\}$, a tedy $\{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}$.
 
             $\implies$ $\{\{x\}, \{x, y\}\} = \{\{u\}, \{u, v\}\}$ pak $\{x\} = \{u\}$ nebo $\{x\} = \{u, v\}$, každopádně $x = u$. Nyní $\{u, v\} = \{x\}$ nebo $\{u, v\} = \{x, y\}$ tedy $v = x$ nebo $v = y$. Pokud $v = y$, tak jsme skončili, pokud $v = x$ pak $v = u = x = y$.
         \end{dukazin}
@@ -654,7 +654,7 @@
             Množina $x$ je konečná $\Leftrightarrow$ $(\exists n \in \omega)(x \approx n)$.
 
             \begin{dukazin}
-                $\Leftarrow$ plyne z předchozího lemmatu a zachovávání konečnosti při $\approx$.
+                $\impliedby$ plyne z předchozího lemmatu a zachovávání konečnosti při $\approx$.
 
                 $\implies$ indukcí podle konečných množin: $\O \approx 0$. Nechť to pro $x$ platí a $y$ je množina. Máme $x \approx n$ pro nějaké $n \in ®N$. Buď $y \in x$, pak $x \cup \{y\} = x \approx n$. Jinak $x \cup \{y\} \approx S(n)$ (bijekci rozšíříme o $(y, n)$).
             \end{dukazin}
@@ -682,7 +682,7 @@
         2) $m \in n \lor m = n \lor n \in m$.
 
         \begin{dukazin}
-            1) Víme $m \in n \implies m \subseteq n$. $\implies$: Kdyby ale $m = n$, pak $n \in n$, \lightning. $\Leftarrow$: Indukcí podle $n$. $n = 0$ nelze splnit $m \subset n$. Nechť platí pro nějaké $n$ a všechna $m$. Nechť $m \subset S(n)$, pak platí $m \subseteq n$. Kdyby $n \in m$, pak $n \subseteq m$ TODO?
+            1) Víme $m \in n \implies m \subseteq n$. $\implies$: Kdyby ale $m = n$, pak $n \in n$, \lightning. $\impliedby$: Indukcí podle $n$. $n = 0$ nelze splnit $m \subset n$. Nechť platí pro nějaké $n$ a všechna $m$. Nechť $m \subset S(n)$, pak platí $m \subseteq n$. Kdyby $n \in m$, pak $n \subseteq m$ TODO?
 
             2) Pro $n \in \omega$ nechť $A(n) = \{m \in \omega; m \in n \lor m = n \lor n \in m\}$. Dokážeme, že $A(n)$ je induktivní indukcí podle $m$. $n = 0: 0 \in A(0)$, protože $0 = 0$. Pokud $m \in A(0)$, pak $0 \in m \lor m = 0…0 \in \{m\}$, tj. $0 \in m \cup \{m\} = S(m)$. Tedy $A(0) = \omega$.
 

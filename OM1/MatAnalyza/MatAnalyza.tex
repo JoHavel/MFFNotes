@@ -600,7 +600,7 @@
 
                 Podle V 2.5 o limitě a uspořádání $\lim_{n \rightarrow ∞} c_n \in \[A - \epsilon, A + \epsilon\]$, $\lim_{n \rightarrow ∞} b_n \in \[A - \epsilon, A + \epsilon\]$, pro libovolné $\epsilon$.
 
-                $\Leftarrow$ Podle definice $b_n$ a $c_n$ je $\{a_n\}_{n = 1}^∞$ omezená, tedy můžeme definovat $b_n$ a $c_n$. Z poznámky víme, že $c_n≤a_n≤b_n$ a podle věty o dvou strážnících tedy $\exists \lim_{n \rightarrow ∞} a_n = A$.
+                $\impliedby$ Podle definice $b_n$ a $c_n$ je $\{a_n\}_{n = 1}^∞$ omezená, tedy můžeme definovat $b_n$ a $c_n$. Z poznámky víme, že $c_n≤a_n≤b_n$ a podle věty o dvou strážnících tedy $\exists \lim_{n \rightarrow ∞} a_n = A$.
             \end{dukazin}
         \end{veta}
 
@@ -740,7 +740,7 @@
 
             \begin{dukazin}
                 ($\implies$): Mějme posloupnost $\{x_n\}_{n = 1}^∞$ splňující předpoklady bodu (ii). Nechť $\epsilon > 0$ Podle (i) $\exists \delta > 0 \forall x \in \P(a, \delta): f(x) \in B(A, \epsilon)$. $\lim_{n \rightarrow ∞} x_n = a$, tedy k tomuto $\delta > 0 \exists n_0 \forall n≥ n_0: x_n \in \B(c, \delta)$. Dále $x_n ≠ a$, tedy $x_n \in \P(a, \delta)$. Tudíž dostáváme $f(x_n) \in B(A, \epsilon)$.
-                ($\Leftarrow$): Dokažme $\neg (i) \implies \neg (ii)$. $\neg(i): \exists \epsilon > 0 \forall \delta > 0 \exists x \in \P(a, \delta): \neg(f(x) \in B(A, \epsilon))$. Toto použijeme pro $\delta_n = \frac{1}{n}, n \in ®N$. Dostaneme $\exists x_n \in \P(a, \frac{1}{n}): f(x_n) \notin B(A, \epsilon)$. Nyní $x_n \rightarrow a$, $\forall n \in ®N: x_n ≠ a \implies \{x_n\}$ splňuje podmínky (ii) a dostaneme $\lim_{n \rightarrow ∞} = A$. Toto je spor s $f(x_n) \notin \B(A, \epsilon)$.
+                ($\impliedby$): Dokažme $\neg (i) \implies \neg (ii)$. $\neg(i): \exists \epsilon > 0 \forall \delta > 0 \exists x \in \P(a, \delta): \neg(f(x) \in B(A, \epsilon))$. Toto použijeme pro $\delta_n = \frac{1}{n}, n \in ®N$. Dostaneme $\exists x_n \in \P(a, \frac{1}{n}): f(x_n) \notin B(A, \epsilon)$. Nyní $x_n \rightarrow a$, $\forall n \in ®N: x_n ≠ a \implies \{x_n\}$ splňuje podmínky (ii) a dostaneme $\lim_{n \rightarrow ∞} = A$. Toto je spor s $f(x_n) \notin \B(A, \epsilon)$.
             \end{dukazin}
         \end{veta}
 
@@ -840,7 +840,7 @@
             \begin{dukazin}
                 $(\implies)$ Nechť $\epsilon > 0$ a $\lim_{x \rightarrow a} f(x) = A \in ®R$. Z definice limity $\exists \delta > 0 \forall x \in \P(o, \delta): f(x) \in \B(A, \epsilon)$. Toto $\delta$ použijeme pro BC podmínku a $\forall x, y \in \P(a, \delta): |f(x) - f(y)| ≤ |f(x) - A| + |A - f(x)| < \epsilon + \epsilon = 2\epsilon$. Toto je ekvivalentní BC podmínce.
 
-                $(\Leftarrow)$ Použijeme BC podmínku pro posloupnosti a Heineho větu. Víme BC a chceme $\exists A \in ®R: \lim_{x \rightarrow a} f(x) = A$. Z heineho věty je tato „limita“ ekvivalentní s $\forall x_n \rightarrow a, x_n ≠ a: \lim_{n \rightarrow ∞} f(x_n) = A$. Nechť tedy $x_n \rightarrow a, x_n ≠ a$. Tvrdím, že $a_n = f(x_n)$ splňuje BC podmínku pro posloupnost. Nechť $\epsilon > 0$, nalezneme $\delta > 0$ z BC podmínky pro funkci. K tomuto $\delta > 0 \exists n_0 \forall n ≥ n_0: x_n \in \P(a, \delta)$, neboť $\lim_{n \rightarrow ∞} x_n = a$, tedy $\forall m, n ≥ n_0: |a_n - a_m| = |f(x_n) - f(x_m)| \overset{\text{z BC podmínky}}{<} \epsilon$. Tedy $a_n = f(x_n)$ splňuje BC podmínku pro posloupnosti, tedy $\exists \lim_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} f(x_n) \in ®R$.
+                $(\impliedby)$ Použijeme BC podmínku pro posloupnosti a Heineho větu. Víme BC a chceme $\exists A \in ®R: \lim_{x \rightarrow a} f(x) = A$. Z heineho věty je tato „limita“ ekvivalentní s $\forall x_n \rightarrow a, x_n ≠ a: \lim_{n \rightarrow ∞} f(x_n) = A$. Nechť tedy $x_n \rightarrow a, x_n ≠ a$. Tvrdím, že $a_n = f(x_n)$ splňuje BC podmínku pro posloupnost. Nechť $\epsilon > 0$, nalezneme $\delta > 0$ z BC podmínky pro funkci. K tomuto $\delta > 0 \exists n_0 \forall n ≥ n_0: x_n \in \P(a, \delta)$, neboť $\lim_{n \rightarrow ∞} x_n = a$, tedy $\forall m, n ≥ n_0: |a_n - a_m| = |f(x_n) - f(x_m)| \overset{\text{z BC podmínky}}{<} \epsilon$. Tedy $a_n = f(x_n)$ splňuje BC podmínku pro posloupnosti, tedy $\exists \lim_{n \rightarrow ∞} a_n = \lim_{n \rightarrow ∞} f(x_n) \in ®R$.
 
                 Nyní nechť $x_n \rightarrow a, x_n≠a$ a $y_n \rightarrow a, y_n ≠ a$. Podle předchozího $\exists A, B \in ®R: \lim_{n \rightarrow ∞} f(x_n) = A \land \lim_{n \rightarrow ∞} b(y_n) = B$. Nechť $x_1, y_1, x_2, y_2, …$ je nová posloupnost splňující podmínky. Pak existuje její limita $\implies A=B$ podle věty o limitě podposloupnost.
             \end{dukazin}
@@ -1370,7 +1370,7 @@
                 $$ \lim_{x \rightarrow +∞} \frac{f(x)}{a} \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} \frac{f(x) - (ax + b)}{x} + \lim_{x \rightarrow +∞} \frac{ax + b}{x} = \frac{0}{+∞} + a = a $$
                 $$ \lim_{x \rightarrow +∞} f(x) - ax \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} f(x) - (ax + b) + \lim_{x \rightarrow +∞} b = 0 + b = b $$
 
-                $(\Leftarrow)$
+                $(\impliedby)$
                 $$ \lim_{x \rightarrow +∞} [f(x) - (ax + b)] \overset{\text{AL}}{=} \lim_{x \rightarrow +∞} (f(x) - ax) + \lim_{x \rightarrow +∞} (-b) = b + (-b) = 0 $$ 
             \end{dukazin}
         \end{veta}
@@ -1410,7 +1410,7 @@
             $$ \lim_{x \rightarrow a} \frac{f(x) - P(x)}{(x-a)^n} = 0 \Leftrightarrow P(x) = T_{n}^{f, a}. $$
 
             \begin{dukazin}
-                $(\Leftarrow)$ MI: $n = 1$: $T_1^{f, a}(x) = f(a) + f'(a)(x-a)$.
+                $(\impliedby)$ MI: $n = 1$: $T_1^{f, a}(x) = f(a) + f'(a)(x-a)$.
                 $$ 0 = \lim_{x \rightarrow a} \frac{f(x) - T_1^{f, a}(x)}{x-a} = \lim_{x \rightarrow a} \frac{f(x) - f(a) - f'(a)(x-a)}{x - a} = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a} - f'(a) = 0. $$ 
 
                 $n-1 \rightarrow n$:

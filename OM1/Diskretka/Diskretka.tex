@@ -460,7 +460,7 @@
         \begin{dukazin}
             $\implies:$ triviální.
 
-            $\Leftarrow:$ Nechť $T$ je maximální možný tah. Nemůže být neuzavřený, protože jinak koncový vrchol má lichý stupeň nebo by šel tah prodloužit. Pokud by nějaká sousední hrana nebyla připojena, pak ho rozpojíme a přidáme ji. Pokud by nebyl připojen vrchol, nebo nějaká nesousední hrana, pak ze spojitosti existuje sousední hrana (vedeme cestu a první hrana mimo…).
+            $\impliedby:$ Nechť $T$ je maximální možný tah. Nemůže být neuzavřený, protože jinak koncový vrchol má lichý stupeň nebo by šel tah prodloužit. Pokud by nějaká sousední hrana nebyla připojena, pak ho rozpojíme a přidáme ji. Pokud by nebyl připojen vrchol, nebo nějaká nesousední hrana, pak ze spojitosti existuje sousední hrana (vedeme cestu a první hrana mimo…).
         \end{dukazin}
 
 % 20. 11. 2020
@@ -505,11 +505,11 @@
     \end{definice}
 
     \begin{veta}[Havel-Hakimi, věta o skóre]
-        Nechť $D = \(d_1, …, d_n\)$ je posloupnost taková, že $\forall i, d_i \in ®N$ a $d_1≤d_2≤…≤d_n$. Pak $D$ je skóre nějakého grafu $\Leftarrow$ $D' = (d'_1, …, d"_{n-1})$ je skóre grafu, kde
+        Nechť $D = \(d_1, …, d_n\)$ je posloupnost taková, že $\forall i, d_i \in ®N$ a $d_1≤d_2≤…≤d_n$. Pak $D$ je skóre nějakého grafu $\impliedby$ $D' = (d'_1, …, d"_{n-1})$ je skóre grafu, kde
         $$ d'_i = \begin{cases} d_i & \text{ pro } i < n-d_n \\ d_i - 1 & \text{ pro } i ≥ n-d_n \end{cases}. $$
 
         \begin{dukazin}
-            $\Leftarrow:$ Triviální (přidáme vrchol stupně $d_n$ a spojíme ho s 'posledními' vrcholy).
+            $\impliedby:$ Triviální (přidáme vrchol stupně $d_n$ a spojíme ho s 'posledními' vrcholy).
 
             $\implies:$ Definujeme $j(G) = $maximální index tak, že vrchol tohoto indexu není spojen s posledním. Mějme graf na 'o jedna méně vrcholech', pro nějž je $j$ největší. Potom tento graf má skóre $D'$, protože jinak bychom mohli přepojit vrcholy a získali větší $j$.
         \end{dukazin}
@@ -535,7 +535,7 @@
         \begin{dukazin}
             $\implies:$ $G$ neobsahuje kružnici $\implies$ $G-v$ neobsahuje kružnici. $G$ souvislý $\implies$ $G-v$ souvislý, protože cesty nemohli vést přes list.
 
-            $\Leftarrow:$ $G$ je souvislý, protože do $v$ vede libovolná cesta, co vede do jeho souseda. $G$ není cyklický, protože cyklus má vrcholy stupně 2, ale list je stupně 1.
+            $\impliedby:$ $G$ je souvislý, protože do $v$ vede libovolná cesta, co vede do jeho souseda. $G$ není cyklický, protože cyklus má vrcholy stupně 2, ale list je stupně 1.
         \end{dukazin}
     \end{veta}
 

@@ -1138,7 +1138,7 @@
         \begin{dukazin}
             $\implies:$ TP ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®X$. $®X = \bigcap_{n \in ®N} G_n$, $G_n$ otevřená v $\beta ®X$. Pro $x \in ®X$ a $n \in ®N$ existuje otevřená $U_{x, n} \subseteq \beta ®X$, že $x \in U_{x, n} \subseteq \overline{U_{x, n}} \subseteq G_n$. Položme $V_{x, n} = U_{x, n}\cap ®X$ … otevřené v ®X. $©U_n := \{V_{x, n}: x \in ®X\}$ … otevřené pokrytí ®X. Ať ©F je centrovaný systém uzavřených množin splňující (*). Chceme, že $\bigcap ©F ≠ \O$. Ať $©F' := \{\overline{F}^{\beta ®X}: F \in ©F\}$. $©F'$ je centrovaný systém uzavřených množin v $\beta®X$. Z charakterizace kompaktnosti je $\bigcap©F'≠\O$. Ať $x \in \bigcap©F'$. Ukážeme, že $x \in ®X$. Víme $x \in G_n, n \in ®N$. Tedy $x \in \bigcap_{n \in ®N}G_n = ®X$. $\overline{F} \cap ®X = F$ (protože $F$ je uzavřená v ®X). Proto $x \in \bigcap ©F$. Tedy $\bigcap ©F ≠ \O$.
 
-            $\Leftarrow:$ ®X splňuje druhou část věty. Pro $U \in ©U_n$ existuje otevřená množina $V_U \subseteq \beta®X$, že $®X \cap V_U = U$. $G_n := \bigcup\{V_U: U \in ©U_n\} \underset{\text{otevřená}}{\subseteq} \beta®X$, $®X \subseteq G_n$. $®X \subseteq \bigcap_{n \in ®N} G_n$. Zbývá $®X \supseteq \bigcap_{n \in ®N} G_n$. Ať $x \in \bigcap_{n \in ®N} G_n$. $©F := \{®X \cap \overline{V} | V \in ©U(x)\}$. ©F je centrovaný systém uzavřených množin v ®X. Navíc splňuje i (*), tj. $\bigcap©F ≠ \O$. Ať $y \in \bigcap©F$. Ukážeme, že $y=x$. Kdyby $y ≠ x$, pak (jelikož jsme v Hausdorffově prostoru) existuje $V \in ©U(x): y \notin \overline{V} \implies y \notin \bigcap©F$. \lightning. $x=y \in ®X$. Celkově $®X = \bigcap G_n$, tedy ®X je $G_\delta$ v $\beta®X$.
+            $\impliedby:$ ®X splňuje druhou část věty. Pro $U \in ©U_n$ existuje otevřená množina $V_U \subseteq \beta®X$, že $®X \cap V_U = U$. $G_n := \bigcup\{V_U: U \in ©U_n\} \underset{\text{otevřená}}{\subseteq} \beta®X$, $®X \subseteq G_n$. $®X \subseteq \bigcap_{n \in ®N} G_n$. Zbývá $®X \supseteq \bigcap_{n \in ®N} G_n$. Ať $x \in \bigcap_{n \in ®N} G_n$. $©F := \{®X \cap \overline{V} | V \in ©U(x)\}$. ©F je centrovaný systém uzavřených množin v ®X. Navíc splňuje i (*), tj. $\bigcap©F ≠ \O$. Ať $y \in \bigcap©F$. Ukážeme, že $y=x$. Kdyby $y ≠ x$, pak (jelikož jsme v Hausdorffově prostoru) existuje $V \in ©U(x): y \notin \overline{V} \implies y \notin \bigcap©F$. \lightning. $x=y \in ®X$. Celkově $®X = \bigcap G_n$, tedy ®X je $G_\delta$ v $\beta®X$.
         \end{dukazin}
     \end{veta}
 
@@ -1148,9 +1148,9 @@
         \begin{dukazin}
             $\implies:$ Ať ®X je úplně metrizovatelný a $\rho$ je úplná kompatibilní metrika. Ať $©V_n$ je soubor otevřených koulí o poloměru $2^{-n}$ (otevřené pokrytí ®X). $(®X, \rho)$ je úplný, tedy podle Cantorovy věty pro každý centrovaný systém ©F sestávající z uzavřených množin a splňující $\forall n \in ®N\ \exists F \in ©F\ \exists V \in ©V_n: F \subseteq V$, je $\bigcap©F≠\O$. Tudíž podle Frolíkovy charakterizace je ®X čechovsky úplný.
 
-            $\Leftarrow$: důkaz úplně totožný, jelikož všechno je ekvivalence.
+            $\impliedby$: důkaz úplně totožný, jelikož všechno je ekvivalence.
 
-            $\Leftarrow$ druhý způsob. Ať $\rho$ je nějaká kompaktní metrika na ®X. Ať $Y$ je zúplnění $(®X, \rho)$. $\beta®Y$ je kompaktifikace ®Y, ale je to také kompaktifikace ®X (®X je v ®Y hustá a ®Y je hustá v $\beta®Y$). ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®Y$. Tedy ®X je $G_\delta$ v ®Y. Podle věty Alexandrova je $®X$ úplně metrizovatelný.
+            $\impliedby$ druhý způsob. Ať $\rho$ je nějaká kompaktní metrika na ®X. Ať $Y$ je zúplnění $(®X, \rho)$. $\beta®Y$ je kompaktifikace ®Y, ale je to také kompaktifikace ®X (®X je v ®Y hustá a ®Y je hustá v $\beta®Y$). ®X je čechovsky úplný, tedy ®X je $G_\delta$ v $\beta®Y$. Tedy ®X je $G_\delta$ v ®Y. Podle věty Alexandrova je $®X$ úplně metrizovatelný.
         \end{dukazin}
     \end{dusledek}
 

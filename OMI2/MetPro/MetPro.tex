@@ -95,7 +95,7 @@
         \begin{dukazin}
             $\implies$: Ať $x \in \overline{A}$. Pokud $x \in A$, polož $x_n = x$. Pokud $x \notin A$, pak $x \in \partial A$, tedy $\forall n\ \exists x_n \in \B(x, \frac{1}{n}) \cap A$. Pak $x_n \rightarrow x$ ($0≤d(x_n, x) < \frac{1}{n} \rightarrow 0$).
 
-            $\Leftarrow$ Ať $(x_n)$ je posloupnost v $A$, $x_n \rightarrow x$. Pokud $x \in A$, jsme hotovi. Pokud $x \notin A$, pak $\forall \epsilon > 0\ \exists r_0 \forall n ≥ n_0 : x_n \in \B(x, \epsilon) \cap A$. Tedy $x \in \overline{A}$.
+            $\impliedby$ Ať $(x_n)$ je posloupnost v $A$, $x_n \rightarrow x$. Pokud $x \in A$, jsme hotovi. Pokud $x \notin A$, pak $\forall \epsilon > 0\ \exists r_0 \forall n ≥ n_0 : x_n \in \B(x, \epsilon) \cap A$. Tedy $x \in \overline{A}$.
 
             $a) \Leftrightarrow b)$ $A$ je uzavřená $\overset{\text{def}}{\Leftrightarrow} \partial A \subseteq A$ $\Leftrightarrow A = A \cup \partial A = \overline{A}$.
 
@@ -123,7 +123,7 @@
         \begin{dukazin}
             $\implies$: Zvol $(x_n)$ posloupnost v $®M \setminus A$, $x_n \rightarrow x$. Sporem. Nechť $x \in A$. Potom $\exists \epsilon > 0: \B(x, \epsilon) \subseteq A$, ale pak $\exists n: x_n \in A$. \lightning.
 
-            $\Leftarrow$: Zvol $x \in A$. Protože $®M \setminus A$ je uzavřená, tedy $\partial(®M \setminus A) \subseteq ®M \setminus A)$, $x \notin \partial(®M \setminus A)$, tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap A = \O$ (to nelze) nebo $\B(x, \epsilon)\cap(®M\setminus A) = \O$. Tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap (®M \setminus A) = \O$, tj. $\B(x, \epsilon) \subseteq A$, tedy $A$ je otevřená.
+            $\impliedby$: Zvol $x \in A$. Protože $®M \setminus A$ je uzavřená, tedy $\partial(®M \setminus A) \subseteq ®M \setminus A)$, $x \notin \partial(®M \setminus A)$, tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap A = \O$ (to nelze) nebo $\B(x, \epsilon)\cap(®M\setminus A) = \O$. Tedy $\exists \epsilon > 0: \B(x, \epsilon) \cap (®M \setminus A) = \O$, tj. $\B(x, \epsilon) \subseteq A$, tedy $A$ je otevřená.
         \end{dukazin}
     \end{veta}
 
@@ -353,7 +353,7 @@
             $$ n ≥ n_0: \epsilon · 2^{-i_0} > \rho(f_n, f) = \sum_{i=1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≥ \frac{\rho_{i_0}(f_n(i_0), f(i_0))}{2^{i_0}}, $$
             tj. $\rho_{i_0}(f_n(i_0), f(i_0)) < \epsilon$. tedy $\lim_{n \rightarrow ∞} f_n(i_0) = f(i_0)$.
 
-            $\Leftarrow$: Nechť $\forall i \in ®N: f_n(i) \rightarrow f(i)$. Nechť $\epsilon > 0$. Najděme $i_0 \in ®N$, že $\sum_{i = i_0 + 1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro všechna $i \in \{1, 2, …, i_0\}$ najdeme $n_i$, že $\forall n ≥ n_i: \rho_i(f_n(i), f(i)) < \frac{\epsilon}{i_0}$. Položme $\tilde{n} := \max \{n_1, n_2, …, n_{i_0}\}$. Pak $n ≥ \tilde n$: jest
+            $\impliedby$: Nechť $\forall i \in ®N: f_n(i) \rightarrow f(i)$. Nechť $\epsilon > 0$. Najděme $i_0 \in ®N$, že $\sum_{i = i_0 + 1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro všechna $i \in \{1, 2, …, i_0\}$ najdeme $n_i$, že $\forall n ≥ n_i: \rho_i(f_n(i), f(i)) < \frac{\epsilon}{i_0}$. Položme $\tilde{n} := \max \{n_1, n_2, …, n_{i_0}\}$. Pak $n ≥ \tilde n$: jest
             $$ \rho(f_n, f) = \sum_{i=1}^∞\frac{\rho_i(f_n(i), f(i))}{2^i} = \sum_{i=1}^{i_0} \frac{\rho_i(f_n(i), f(i))}{2^i} + \sum_{i=i_0+1}^∞ \frac{\rho_i(f_n(i), f(i))}{2^i} ≤ $$
             $$ ≤ \sum_{i=1}^{i_0} \frac{\epsilon/i_0}{2} + \sum_{i = i_0+1}^∞ \frac{1}{2^i} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon. $$ 
         \end{dukazin}
@@ -381,7 +381,7 @@
         \begin{dukazin}
             $\implies$: Nechť $\epsilon > 0$, $B \subseteq ®M$ je $\epsilon$-separovaná. Chceme $B$ je konečná. Protože ®M je TO, existuje konečná $\frac{\epsilon}{4}$-síť $A \subseteq ®M$. Pro každé $x \in B$ zvolíme nějaký bod $a_x \in A: d(x, a_x) < \frac{\epsilon}{4}$. Pak pro $x≠y$, $x, y \in B$ platí $a_x ≠ a_y$: $d(a_x, a_y) ≥ d(x, y) - d(x, a_x) - d(y, a_y) ≥ \epsilon - \frac{\epsilon}{4} - \frac{\epsilon}{4} = \frac{\epsilon}{2} > 0$. Tj. zobrazení $B \rightarrow A: x \mapsto a_x$ je prosté. Ale $A$ je konečná tedy $B$ je konečná.
 
-            $\Leftarrow$ Nechť $\epsilon > 0$; chceme najít konečnou $\epsilon$-síť. Vezmeme si $B \subseteq M$ $\epsilon$-separovaná, která je maximální (co do inkluze). Tvrdíme, že $B$ je automaticky $\epsilon$ síť: Zvolme $x \in ®M$. Pak existuje $b \in B: d(x, b) < \epsilon$. Kdyby ne: $\forall b \in B: d(x, b) ≥ \epsilon$. To by znamenalo, že $B \cup \{x\} \supset B$ je $\epsilon$-separovaná, což je spor s maximalitoui B. Tj. $B$ je opravdu $\epsilon$-síť pro ®M.
+            $\impliedby$ Nechť $\epsilon > 0$; chceme najít konečnou $\epsilon$-síť. Vezmeme si $B \subseteq M$ $\epsilon$-separovaná, která je maximální (co do inkluze). Tvrdíme, že $B$ je automaticky $\epsilon$ síť: Zvolme $x \in ®M$. Pak existuje $b \in B: d(x, b) < \epsilon$. Kdyby ne: $\forall b \in B: d(x, b) ≥ \epsilon$. To by znamenalo, že $B \cup \{x\} \supset B$ je $\epsilon$-separovaná, což je spor s maximalitoui B. Tj. $B$ je opravdu $\epsilon$-síť pro ®M.
 
             Druhá část důkazu však potřebuje tzv. Zornovo lemma, abychom mohli brát $B$ maximální.
         \end{dukazin}
@@ -413,7 +413,7 @@
         \begin{dukazin}
             $\implies$: Nechť $\sum$ je TO. Nechť $\epsilon > 0$. Pokud $\epsilon ≥ 1$, pak libovolná jednobodová množina je $\epsilon$-síť. $\epsilon < 1$. Nechť $A \subseteq \sum(®M_\alpha, d_\alpha)$ je konečná $\epsilon$-síť. Položme $A_\alpha := \{x \in ®M_\alpha | (x, \alpha) \in A\}$. Potom $A_\alpha$ je zřejmě $\epsilon$-síť $(®M_\alpha, d_\alpha)$.
 
-            $\Leftarrow$: Podle předpokladů, pro dané $\epsilon > 0$, $\forall \alpha \in I\ \exists A_\alpha \subseteq ®M_\alpha: A_\alpha$ je konečná $\epsilon$-síť (protože $(®M_\alpha, d_\alpha)$ jsou TO). $A \bigcup_{\alpha \in I} A_\alpha\times\{\alpha\}$ je $\epsilon$-síť pro $\sum_{\alpha \in I}(®M_\alpha, d_\alpha)$.
+            $\impliedby$: Podle předpokladů, pro dané $\epsilon > 0$, $\forall \alpha \in I\ \exists A_\alpha \subseteq ®M_\alpha: A_\alpha$ je konečná $\epsilon$-síť (protože $(®M_\alpha, d_\alpha)$ jsou TO). $A \bigcup_{\alpha \in I} A_\alpha\times\{\alpha\}$ je $\epsilon$-síť pro $\sum_{\alpha \in I}(®M_\alpha, d_\alpha)$.
         \end{dukazin}
     \end{veta}
 
@@ -423,7 +423,7 @@
         \begin{dukazin}
             $\implies$: (Lze provést i důkaz přímo z definic) Zvolme $a = (a_i)_{i=1}^∞ \in ®M$. Definujeme zobrazení $\phi: (®M_i, d_i) \rightarrow (®M, d)$ tak, že $\phi(x) = (a_1, a_2, …, a_{i-1}, x, a_{i+1}, a_{i+2}, …) \in ®M$. Pak $\phi$ je izometrie. Tedy $(®M_i, \frac{d_i}{2^i})$ lze chápat jako podprostor (neboli izometrickou kopii podprostoru) $(®M, d)$. Ale ®M je TO, tedy i jeho podprostor je TO.
 
-        $\Leftarrow$: Nechť $\epsilon > 0$ je dáno. Zvolíme $i_0 \in ®N: \sum_{i=i_0}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro $i \in \{1, …, i_0 - 1\}$ najdeme konečné $\epsilon/2$-síťě $A_i$ pro $®M_i$. $S = \{(x_i) \in ®M | x_i \in A_i, i \in \{1, …, i_0 - 1\} \lor x_i = a_i, i ≥ i_0\}$. $S$ je konečná, neboť $|S| \prod_{i=1}^{i_0 - 1}|A_i|$. $S$ je $\epsilon$-síť pro ®M.
+        $\impliedby$: Nechť $\epsilon > 0$ je dáno. Zvolíme $i_0 \in ®N: \sum_{i=i_0}^∞ \frac{1}{2^i} < \frac{\epsilon}{2}$. Pro $i \in \{1, …, i_0 - 1\}$ najdeme konečné $\epsilon/2$-síťě $A_i$ pro $®M_i$. $S = \{(x_i) \in ®M | x_i \in A_i, i \in \{1, …, i_0 - 1\} \lor x_i = a_i, i ≥ i_0\}$. $S$ je konečná, neboť $|S| \prod_{i=1}^{i_0 - 1}|A_i|$. $S$ je $\epsilon$-síť pro ®M.
         \end{dukazin}
     \end{veta}
 
@@ -477,7 +477,7 @@
 
             Tedy existuje $x \in ®M: \lim_{n \rightarrow ∞} x_n = x$. Tvrdíme, že $x \in \bigcap F_n$. Nechť je dána $m \in ®N$. Pak $\forall n ≥ m: x_n \in F_m$. Ale $F_m$ je uzavřená, a tedy $\lim_{n \rightarrow ∞} x_n \in F_m$.
 
-            $\Leftarrow$: Nechť platí podmínka věty. Buď $\{x_n\}_{n=1}^∞ \subseteq ®M$ cauchyovská. Chceme dokázat, že je konvergentní. Položme $F_n = \overline{\{x_i | i ≥ n\}}$. Zřejmě $F_1 \supseteq F_2 \supseteq …$. $\diam F_n \rightarrow 0$, protože $\{x_n\}$ je cauchyovská. Tedy podle předpokladů existuje $x \in \bigcap F_n$.
+            $\impliedby$: Nechť platí podmínka věty. Buď $\{x_n\}_{n=1}^∞ \subseteq ®M$ cauchyovská. Chceme dokázat, že je konvergentní. Položme $F_n = \overline{\{x_i | i ≥ n\}}$. Zřejmě $F_1 \supseteq F_2 \supseteq …$. $\diam F_n \rightarrow 0$, protože $\{x_n\}$ je cauchyovská. Tedy podle předpokladů existuje $x \in \bigcap F_n$.
 
             Ukážeme, že $x = \lim x_n$: Nechť je dáno $\epsilon > 0$. Zvolme $n_0 \in ®N: \diam F_{n_0} < \epsilon$. Pro libovolné $n ≥ n_0$ platí $\rho(x_n ,x) ≤ \diam F_n ≤ \diam F_{n_0} < \epsilon$. Tedy $x_n \rightarrow x$.
         \end{dukazin}
@@ -499,7 +499,7 @@
         \begin{dukazin}
             $\implies$: $(®M_i, \rho_i)$ lze chápat jako podprostor součinu $\prod (®M_i, \rho_i)$. Lze si snadno rozmyslet, že je uzavřený (cvičení). Tedy podle předchozí věty je úplný.
 
-            $\Leftarrow$: Nechť $\{x_n\} \subseteq \prod (®M_i, \rho_i) =: ®M$ je cauchyovská posloupnost v ®M, $x_n(i) \in ®M_i$. Tvrdíme, že $\forall i \in ®N: \{x_n(i)\}_{n=1}^∞$ je cauchyovská v $®M_i$. Buď $\epsilon > 0$. Najdeme $n_0 \in ®N$, že $\forall m, n ≥ n_0: \rho(x_n, x_m) < \frac{\epsilon}{2^i}$.
+            $\impliedby$: Nechť $\{x_n\} \subseteq \prod (®M_i, \rho_i) =: ®M$ je cauchyovská posloupnost v ®M, $x_n(i) \in ®M_i$. Tvrdíme, že $\forall i \in ®N: \{x_n(i)\}_{n=1}^∞$ je cauchyovská v $®M_i$. Buď $\epsilon > 0$. Najdeme $n_0 \in ®N$, že $\forall m, n ≥ n_0: \rho(x_n, x_m) < \frac{\epsilon}{2^i}$.
             $$ \rho(x_n, x_m) = \sum_{j=1}^∞ \frac{\rho_j(x_n(j), x_m(j))}{2^j} < \frac{\epsilon}{2^i}. $$
             Tedy $\rho_i(x_n(i), x_m(i)) < \epsilon$. Tudíž existuje limita $x(i) := \lim_{n \rightarrow ∞} x_n(i)$, tj. $x \in \prod_{j=1}^∞ (®M_j, \rho_j)$. Jednoduše (standardní zanedbatelnost „vocasu řady“) dokážeme, že $\rho(x_n, x) \rightarrow 0$.
         \end{dukazin}
@@ -607,7 +607,7 @@
 
             Totální omezenost: Ať $\epsilon > 0$. $\{\B(x, \epsilon) | x \in ®M\}$ je otevřené pokrytí ®M. Z kompaktnosti existuje konečné podpokrytí, tj. $\exists n \in ®N\ \exists x_1, …, x_n \in ®M: \B(x_1, \epsilon)\cup … \cup \B(x_n, \epsilon) = ®M$. Tedy $\{x_1, …, x_n\}$ je $\epsilon$-síť pro ®M. Tedy $(®M, \rho)$ je totálně omezený.
 
-            $\Leftarrow$: Ukážeme, že každá nekonečná $A \subseteq ®M$ má hromadný bod. Indukcí najdeme klesající posloupnost $B_n, n \in ®N$, uzavřených množin, že $\diam B_n ≤ \frac{1}{n}$, $B_n \cap A$ je nekonečná:
+            $\impliedby$: Ukážeme, že každá nekonečná $A \subseteq ®M$ má hromadný bod. Indukcí najdeme klesající posloupnost $B_n, n \in ®N$, uzavřených množin, že $\diam B_n ≤ \frac{1}{n}$, $B_n \cap A$ je nekonečná:
 
             Z totální omezenosti ®M existuje konečné pokrytí ®M uzavřenými koulemi $U_1, …, U_n$ s diametrem $≤ 1$. $\exists i ≤ n: U_i \cap A$ je nekonečná. Položme $B_1 := U_i$.
 
@@ -643,7 +643,7 @@
 
             $\forall i \in I: ®X_i$ je kompaktní: $®X_i$ je uzavřená podmnožina $\sum(…®X_i, \rho_i)$. Podle 1. je $®X_i$ kompaktní.
 
-            $\Leftarrow$: $\{i \in I | ®X_i ≠ \O\}$ je konečná, $\forall i \in I: ®X_i$ kompaktní. Chceme, že $\sum(®X_i, \rho_i)$ je kompaktní. Ať $A \subseteq \sum(®X_i, \rho_i)$ je nekonečná. Nutně existuje $i \in I: ®X_i \cap A$ má hromadný bod v $®X_i$. Ten je zřejmě hromadným bodem celé množiny $A$. Tedy podle charakterizace kompaktnosti pomocí hromadných bodů nekonečných množin je $\sum (®X_i, \rho_i)$.
+            $\impliedby$: $\{i \in I | ®X_i ≠ \O\}$ je konečná, $\forall i \in I: ®X_i$ kompaktní. Chceme, že $\sum(®X_i, \rho_i)$ je kompaktní. Ať $A \subseteq \sum(®X_i, \rho_i)$ je nekonečná. Nutně existuje $i \in I: ®X_i \cap A$ má hromadný bod v $®X_i$. Ten je zřejmě hromadným bodem celé množiny $A$. Tedy podle charakterizace kompaktnosti pomocí hromadných bodů nekonečných množin je $\sum (®X_i, \rho_i)$.
         \end{dukazin}
     \end{tvrzeni}
 

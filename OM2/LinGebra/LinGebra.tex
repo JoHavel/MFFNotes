@@ -165,7 +165,7 @@
             Buď ¦V VP s $\<¦·, ·\>$ a buďte $M, N \subseteq ¦V$. Pak $M \perp N$ $\Leftrightarrow$ $M \perp \LO (N)$ ($\Leftrightarrow$ $\LO(M) \perp \LO(N)$).
 
             \begin{dukazin}
-                $\Leftarrow$: Triviální (protože $N \subseteq \LO(N)$).
+                $\impliedby$: Triviální (protože $N \subseteq \LO(N)$).
 
                 $\implies$: Předpokládejme, že $M \perp N$. Vezměme $¦v \in M$ a $¦w = a_1¦w_1 + … + a_n¦w_n \in \LO(N)$. Pak $\<¦v, ¦w\> = a_1\<¦v_1, ¦w_1\> + … + a_n\<¦v_n, ¦w_n\> = 0$.
             \end{dukazin}
@@ -681,7 +681,7 @@
     \end{dusledek}
 
     \begin{dukaz}[Kritérium existence jordanova kanonického tvaru]
-        $\Leftarrow$: (Nebude u zkoušky?) Položme $n = \dim ¦V$. Následuje indukce podle $n$: $n = 1$ jasné, $n > 1$: Vezměme $\lambda \in ®T$ vlastní číslo $f$ (z předpokladů druhé části věty existuje) a položme $g = f - \lambda\id_{¦V}$. pak máme podprostory $g$ (tedy i $f$): $\Ker g, \dim \Ker g = k > 0$, $\im g$, $\dim \im g = n-k =: m < n$. $h:= f|_{¦W}$ splňuje předpoklad, tedy podle IP má bázi vzniklou spojením Jordanových řetízků.
+        $\impliedby$: (Nebude u zkoušky?) Položme $n = \dim ¦V$. Následuje indukce podle $n$: $n = 1$ jasné, $n > 1$: Vezměme $\lambda \in ®T$ vlastní číslo $f$ (z předpokladů druhé části věty existuje) a položme $g = f - \lambda\id_{¦V}$. pak máme podprostory $g$ (tedy i $f$): $\Ker g, \dim \Ker g = k > 0$, $\im g$, $\dim \im g = n-k =: m < n$. $h:= f|_{¦W}$ splňuje předpoklad, tedy podle IP má bázi vzniklou spojením Jordanových řetízků.
 
         Máme tedy řetízky $h$ příslušné nějakému vlastnímu číslu $\lambda$, řekněme, že jich je $r$. Potřebujeme doplnit vektory do $k$. Doplníme je tedy dalšími vlastními vektory. Pak vše jen dáme dohromady a ověříme, že je to báze.
     \end{dukaz}
@@ -823,7 +823,7 @@
         Buď $A \in ®C^{n \times n}$. Pak $A$ je normální $\Leftrightarrow$ $A$ je unitárně diagonalizovatelná.
 
         \begin{dukazin}
-            $\Leftarrow$: Buď tedy $A = UDU^*$, $D$ diagonální. Pak $D$ je normální a $A$ je normální podle tvrzení výše bod 2.
+            $\impliedby$: Buď tedy $A = UDU^*$, $D$ diagonální. Pak $D$ je normální a $A$ je normální podle tvrzení výše bod 2.
 
             $\implies$: Důkaz indukcí podle $n$. $n = 1$: $A$ je diagonální a není co dokazovat. $n > 1:$ Buď $A \in ®C^{n \times n}$ normální a $\lambda$ vlastní číslo $A$ a $¦o ≠ ¦v_1 \in ®C^n$ příslušný vlastní vektor. BÚNO $||¦v_1|| = 1$, můžeme doplnit na ortonormální bázi $B = (¦v_1, ¦v_2, …, ¦v_n)$ prostoru $®C^n$. Označme $X = [f_A]_B^B$, tj. $X$ je unitárně podobná $A$, speciálně normální. $X$ má v prvním sloupci i řádku první prvek $\lambda$, jinak 0 (jelikož $¦v_1·A¦v_i = A^*¦v_1·¦v_i = \lambda(¦v_1·¦v_i) = \lambda·0 = 0$). Tedy na její minor použijeme IP, tj. $A$ je unitárně diagonalizovatelná.
         \end{dukazin}
@@ -1008,7 +1008,7 @@
             \begin{dukazin}
                 1) $\implies$: $f$ symetrická $\implies$ $[f]_B^T = (f(¦v_i, ¦v_j))^T_{n\times n} = (f(¦v_j, ¦v_i))_{n \times n} = (f(¦v_i, ¦v_j))_{n \times n} = [f]_B$.
 
-                $\Leftarrow$: $[f]_B$ symetrická matice $\implies$ $f(¦y, ¦x) = (¦y)^T_B [f]_B [¦x]_B = ([¦y]_B^T [f]_B [¦x]_B)^T = [¦x]_B^T [f]_B^T [¦y] = f(¦x, ¦y)$.
+                $\impliedby$: $[f]_B$ symetrická matice $\implies$ $f(¦y, ¦x) = (¦y)^T_B [f]_B [¦x]_B = ([¦y]_B^T [f]_B [¦x]_B)^T = [¦x]_B^T [f]_B^T [¦y] = f(¦x, ¦y)$.
 
                 2) analogicky.
             \end{dukazin}
@@ -1037,7 +1037,7 @@
             Navíc platí $\forall ¦x, ¦y \in ¦V: f_s(¦x, ¦y) = \frac{1}{2}(f_2(¦x + ¦y) - f_2(¦x) - f_2(¦y))$.
 
             \begin{dukazin}
-                $\Leftarrow$: Předpokládejme, že $f_s = g_s$, kde $f = f_s + f_a$, $g = g_s + g_a$. Pak $\forall ¦x \in ¦V: f_2(¦x) = f(¦x, ¦x) + f_a(¦x, ¦x) = f(¦x, ¦x) = g_s(¦x, ¦x) = … = g_2(¦x)$, jelikož antisymetrie nám říká, že $f_a(¦x, ¦x) = - f_a(¦x, ¦x)$.
+                $\impliedby$: Předpokládejme, že $f_s = g_s$, kde $f = f_s + f_a$, $g = g_s + g_a$. Pak $\forall ¦x \in ¦V: f_2(¦x) = f(¦x, ¦x) + f_a(¦x, ¦x) = f(¦x, ¦x) = g_s(¦x, ¦x) = … = g_2(¦x)$, jelikož antisymetrie nám říká, že $f_a(¦x, ¦x) = - f_a(¦x, ¦x)$.
 
                 $\implies$: plyne z toho, že $\forall ¦x, ¦y \in ¦V$ platí
                 $$ \frac{1}{2}(f_2(¦x + ¦y) - f_2(¦x) - f_2(¦y)) = \frac{1}{2}(f_s(¦x + ¦y, ¦x + ¦y) - f_s(¦x, ¦x) - f_s(¦y, ¦y)) = $$

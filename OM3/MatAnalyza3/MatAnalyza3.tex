@@ -115,7 +115,7 @@
 
 			Z toho plyne, že $\forall n$ platí $x_n \notin B(x, r)$, protože $x_n \in F$. Pak ale $x_n$ nekonverguje k $x$ a dostáváme spor.
 
-			$\Leftarrow$: Sporem: Nechť $F$ není uzavřená. Pak $P \setminus F$ není otevřená a tedy existuje $x \in P \setminus F$ tak, že $\forall r > 0$ platí, že $B(x, r)$ není podmnožinou $P \setminus F$. Této vlastnosti využijeme pro $r = \frac{1}{n}$, $n \in ®N$. Tedy
+			$\impliedby$: Sporem: Nechť $F$ není uzavřená. Pak $P \setminus F$ není otevřená a tedy existuje $x \in P \setminus F$ tak, že $\forall r > 0$ platí, že $B(x, r)$ není podmnožinou $P \setminus F$. Této vlastnosti využijeme pro $r = \frac{1}{n}$, $n \in ®N$. Tedy
 			$$ \forall n \in ®N\ \exists x_n \in B\(x, \frac{1}{n}\): x_n \notin P \setminus F \Leftrightarrow x_n \in F. $$
 			Celkem $x_n \rightarrow x$, $x_n \in F$, ale $x \notin F$, jelikož $x \in P \setminus F$. \lightning.
 		\end{dukazin}
@@ -149,7 +149,7 @@
 		Množina $K \subset ®R^n$ je kompaktní, právě když je omezená a uzavřená.
 
 		\begin{dukazin}
-			$\implies$ z předchozí věty. $\Leftarrow$: víme z dřívějška? (Každá omezená posloupnost v $®R$ má konvergující podposloupnost (vybereme podposloupnost pro jednu dimenzi, z té pak pro další, …) a posloupnost nemůže vykonvergovat z uzavřené množiny z charakterizace uzavřených množin)?
+			$\implies$ z předchozí věty. $\impliedby$: víme z dřívějška? (Každá omezená posloupnost v $®R$ má konvergující podposloupnost (vybereme podposloupnost pro jednu dimenzi, z té pak pro další, …) a posloupnost nemůže vykonvergovat z uzavřené množiny z charakterizace uzavřených množin)?
 		\end{dukazin}
 	\end{veta}
 
@@ -259,7 +259,7 @@
 		$\implies:$ víme $y'(s) = f(s, y(s))$ je spojité, tj. lze integrovat:
 		$$ y(x) - y_0 = y(x) - y(x_0) = \int_{x_0}^x y'(s) ds = \int_{x_0}^x f(s, y(s))ds. $$
 
-		$\Leftarrow:$ zderivujeme (integrant je spojitý $\implies$ integrál lze zderivovat) $y'(x) = f(x, y(x))$. Zřejmě také $f\left(x_0\right) = y_0$.
+		$\impliedby:$ zderivujeme (integrant je spojitý $\implies$ integrál lze zderivovat) $y'(x) = f(x, y(x))$. Zřejmě také $f\left(x_0\right) = y_0$.
 	\end{dukazin}
 \end{veta}
 
@@ -801,7 +801,7 @@
 
 				Takže tvrzení výše platí. $(P, \rho)$ je kompaktní, tedy podle věty 11.2 (ve výuce) je totálně omezený. Tedy pro naše $m \in ®N\ \exists$ konečná $\frac{1}{m}$-síť $x_1, …, x_n$. Nyní z toho tvrzení výše $\forall j \in [n]\ \exists G_{\alpha_j}: B(x_j, \frac{1}{m}) \subset G_{\alpha_j}$. Nyní $P \subset \bigcup_{j=1}^n B(x_j, \frac{1}{n}) \subset \bigcup_{j=1}^n G_{\alpha_j}$.
 
-				„$\Leftarrow$“: Nechť $\{x_n\} \in P$. Chceme $x_{n_k} \rightarrow x \in P$. Označme $D = \{x_n, n \in ®N\}$. Je-li $D$ konečná, pak se nějaké $x_n$ opakuje a je snadné vybrat konvergentní ($=$ konstantní) podposloupnost.
+				„$\impliedby$“: Nechť $\{x_n\} \in P$. Chceme $x_{n_k} \rightarrow x \in P$. Označme $D = \{x_n, n \in ®N\}$. Je-li $D$ konečná, pak se nějaké $x_n$ opakuje a je snadné vybrat konvergentní ($=$ konstantní) podposloupnost.
 
 				Dále nechť $D$ je nekonečná. Máme 2 možnosti:
 				$$ A \exists y \in P\ \forall r > 0: B(y, r) \cap D \text{ je nekonečná, nebo} $$
@@ -850,7 +850,7 @@
 			Metrický prostor $(P, \rho)$ je kompaktní právě tehdy, když je totálně omezený a úplný.
 
 			\begin{dukazin}
-				$\implies$ už máme hotové z věty výše a věty Kompaktnost a totální omezenost. $\Leftarrow$: Nechť $\{x_n\}_{n=1}^∞ \subset P$, chceme $\exists x_{n_k} \rightarrow x$. $P$ je totálně omezený, tedy existuje konečná $1$-síť $P \subset \bigcup_{i=1}^{h_1} B(s_i, 1)$. $\{x_n\}$ je nekonečná $\implies$ $\exists$ kulička $B_1 = B(s_i, 1)$ tak, že $|\{x_n | x_n \in B_1\}| = +∞$. Zvolme $x_{n_1} \in B_1$.
+				$\implies$ už máme hotové z věty výše a věty Kompaktnost a totální omezenost. $\impliedby$: Nechť $\{x_n\}_{n=1}^∞ \subset P$, chceme $\exists x_{n_k} \rightarrow x$. $P$ je totálně omezený, tedy existuje konečná $1$-síť $P \subset \bigcup_{i=1}^{h_1} B(s_i, 1)$. $\{x_n\}$ je nekonečná $\implies$ $\exists$ kulička $B_1 = B(s_i, 1)$ tak, že $|\{x_n | x_n \in B_1\}| = +∞$. Zvolme $x_{n_1} \in B_1$.
 
 				Dále indukcí: Mějme $B_1, …, B_{k-1}$ kuličky o poloměrech $1, …, \frac{1}{k-1}$ tak, že pro $A_{k-1} = B_1 \cap … \cap B_{k-1}$ platí $|\{x_n | x_n \in A_{k-1}\}| = +∞$, a mějme $n_1 < … < n_{k-1}$ tak, že $x_{n_j} \in A_j$, $\forall j \in [k-1]$. $P$ je totálně omezený $\implies$ $\exists$ konečná $\frac{1}{k}$-síť $A_{k-1} \subset P \subset \bigcup_{i=1}^{h_k} B(s_i, \frac{1}{k})$. V $A_{k-1}$ je nekonečně mnoho $x_n$, tedy $\exists B_k = B(s_i, \frac{1}{k})$, že pro $A_k = A_{k-1} \cap B_k$ platí $|\{x_n | x_n \in A_k\}| = +∞$. Dále zvolme $n_k$ tak, aby $n_k > n_{k-1}$ a $x_{n_k} \in A_k$.
 
@@ -881,7 +881,7 @@
 
 % 25. 11. 2021
 
-				$\Leftarrow$: Chceme dokázat, že pro $\{f_n\}_{n=1}^∞ \subset \overline{A}$ $\exists f_{n + k} \rightarrow f$. 1. krok, volba $C$: Nechť $m \in ®N$. Ze stejnoměrné spojitosti pro $\epsilon = \frac{1}{m}$
+				$\impliedby$: Chceme dokázat, že pro $\{f_n\}_{n=1}^∞ \subset \overline{A}$ $\exists f_{n + k} \rightarrow f$. 1. krok, volba $C$: Nechť $m \in ®N$. Ze stejnoměrné spojitosti pro $\epsilon = \frac{1}{m}$
 				$$ \exists \delta_m\ \forall x, y\ \forall n: |x - y| < \delta_m \implies |f_n(x) - f_n(y)| < \epsilon = \frac{1}{m}. $$
 				Nyní $[0, 1]$ pokryjeme $[0, 1] \subset \bigcup_{j=1}^{k_m} B(c_{j}^m, \delta_m)$. Položme $C = \{C_j^m | m \in ®N, j \in [k_{m}]\}$. $C$ je zřejmě spočetné (spočetné sjednocení konečných).
 
@@ -1052,7 +1052,7 @@
 			\begin{dukazin}
 				„$\implies$“: Sporem: Nechť $\exists G \subset P$ otevřená, $G \cap A = \O$, tedy $\exists B(x, r) \subset G$. Pak $\dist(x, A) ≥ r$ $\implies$ $x \notin \overline{A}$. \lightning.
 
-				„$\Leftarrow$“: Sporem: $A$ není hustá $\implies$ $P \setminus \overline{A} ≠ \O$. $G = P \setminus \overline{A}$ je otevřená. Podle předpokladu $(P \setminus \overline{A}) \cap A ≠ \O$.
+				„$\impliedby$“: Sporem: $A$ není hustá $\implies$ $P \setminus \overline{A} ≠ \O$. $G = P \setminus \overline{A}$ je otevřená. Podle předpokladu $(P \setminus \overline{A}) \cap A ≠ \O$.
 			\end{dukazin}
 		\end{veta}
 
@@ -1466,7 +1466,7 @@
 
 			Zřejmě $\bigcup ©B \subset G$. Zbývá ověřit druhou inkluzi. Nechť $z \in G$. Chceme ukázat, že $z \in ©B^*$. $G$ je otevřená, a tedy existuje $B(z, r) \subset G$. $A$ je hustá, tudíž existuje $a \in A \cap B\(z, \frac{r}{4}\)$. Dále existuje $r^* \in ®Q \cap \(\frac{r}{2}, \frac{3}{4}r\)$. Pak $B(a, r^*) \in ©B$. Navíc $r^* > \frac{r}{2}$, takže $z \in B(a, r^*)$. Dále $\rho(a, z) < \frac{r}{4}$ a $r^* < \frac{3}{4} r$, a tedy $B(a, r^*) \subset B(z, r)$, z čehož dostáváme, že $B(a, r^*) \subset G$. Pak také $B(a, r^*) \in ©B^*$, tudíž $\{z\} \in \bigcup ©B^*$. Nakonec máme, že $G = \subset ©B^*$.
 
-			$\Leftarrow$: Nechť ©B je spočetná báze otevřených množin, tedy $©B = \bigcup_{i=1}^∞ \{S_i\}$. $A$ zvolíme tak, že z každé množiny vybereme libovolně jeden prvek. Pak $A$ je spočetná. Chceme ukázat, že $\overline{A} = P$:
+			$\impliedby$: Nechť ©B je spočetná báze otevřených množin, tedy $©B = \bigcup_{i=1}^∞ \{S_i\}$. $A$ zvolíme tak, že z každé množiny vybereme libovolně jeden prvek. Pak $A$ je spočetná. Chceme ukázat, že $\overline{A} = P$:
 
 			Nechť $G \subset P$ je otevřená. Dále existuje $©B^* \subset ©B$ tak, že $G = \bigcup ©B^*$. Pak existuje $S_i$ tak, že $S_i \subset G$, a tedy prvek vybraný z $S_i$ je v $G$. Z toho máme, že $G \cap A ≠ \O$, tudíž $A$ je hustá.
 		\end{dukazin}
