@@ -40,7 +40,7 @@
 
 	Definice pomocí predikátoru se dělá pomocí \verb|:-|.
 
-	Nerovná se značí \verb|\==|. (Ve skutečnosti zjišťuje, zda se dají termy unifikovat, a pokud ano, tak vrátí false.)
+	Nerovná se značí \verb|\==|.
 
 % 21. 02. 2022
 
@@ -91,5 +91,35 @@
 
 	Existuje \verb|member/2|, \verb|select/3| (aplikuje se na prvek, seznam a seznam, prostřední seznam se rozpadne na jeden z jeho prvků a zbytek), \verb|delete/3| (jako select, ale vypustí všechny „instance“ prvku, pozor, má jiné pořadí argumentů), \verb|last/2|, \verb|append/3| (argumenty jsou 3 seznamy, první dva se řetězí na třetí), \verb|\permutation/2|.
 \end{definice}
+
+% 28. 02. 2022
+
+\begin{definice}[Tail recursion (koncová rekurze)]
+	Rekurze, ve které je volání funkce až na konci, takže se dá přeložit na cyklus (a interpreti prologu to udělají).
+\end{definice}
+
+\begin{definice}[Deklarativní význam programu, deklarativní správnost]
+	Na program v Prologu se můžeme dívat jako na množinu formulí.
+
+	Program je správný deklarativně, když odpověď na dotaz existuje. (Tj. nemůže dát chybný výsledek.)
+\end{definice}
+
+\begin{definice}[Procedurální význam programu, procedurální správnost]
+	Ale také se na něj můžeme dívat jako na popis cílů, které se mají postupně splnit.
+
+	TODO procedurální správnost?
+\end{definice}
+
+\begin{definice}[Aritmetika]
+	\verb|S is T|, kde term \verb|T| je aritmetický výraz. V aritmetických výrazech můžeme používat \verb|+, -, *, /, //, ^, mod, >, <, >=, =<, =:=, =\=|, z nichž poslední dva jsou rovnost a nerovnost.
+
+	Lze použít i \verb|max, min, abs, sin, cos, tan, sqrt, log| nebo bitové operace \verb|\/, TODO, <<, >>|.
+\end{definice}
+
+\begin{poznamka}[Programování s omezujícími podmínkami]
+	\verb|use_module(library(clpfd))|
+
+	Operátory \verb|#=, #\=, #<, #>, #=<, #>=|
+\end{poznamka}
 	
 \end{document}

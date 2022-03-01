@@ -89,4 +89,33 @@ TODO!!!
 
 TODO!!!
 
+% 28. 02. 2022
+
+\begin{definice}[Otevřená data 5 hvězdičkova klasifikace dat]
+	První hvězdička je za uvedenou licenci, druhá je za strojovou čitelnost, třetí je za otevřený formát, čtvrtá za URI odkazy, pátá za připojení do systému LOD.
+\end{definice}
+
+\section{SPARQL}
+\begin{definice}[SPARQL]
+	SPARQL je dotazovací jazyk nad daty v RDF. SPARQL endpoint je HTTP služba pro dotazování v SPARQL na daných open datech.
+
+	\begin{poznamkain}
+		Doporučovaný user formulář je yasgui.
+	\end{poznamkain}
+
+	Funguje tak, že se píší RDF trojice s \verb|?nazevproměnné| v místě, kde chceme něco doplnit (a zjistit, co to je). To jsou tzv. datové vzory.
+
+	Výsledkem je pak tabulka řešení, kde je v každém řádku jeden match a v každém sloupci jedna proměnná, v políčkách je tam pak doplněno.
+
+	Do dotazu lze připsat \verb|OPTIONAL| a výsledek pak bude matchovat, i když tato část bude chybět a v tabulce pak bude \verb|NOT BOUND|. Také lze přidat \verb|FILTER| pro podmínky s proměnnými.
+
+	Oproti SQL máme ještě RDF operátory: \verb|bound, isIri, isBlank, isLiteral| a přístup k literálu: \verb|str, language, typeOf|?
+
+	Taktéž fungují \verb|/| jako v cestě k souboru, která se navíc zadává Regexem.
+
+	Jedním dotazem se můžeme ptát na více SPARQL endpointů, což uděláme pomocí příkazu \verb|SERVICE|.
+\end{definice}
+
+TODO!!!
+
 \end{document}

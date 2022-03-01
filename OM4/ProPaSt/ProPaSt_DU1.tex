@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.1 -- Bonferroniho nerovnost]
+	Buďte $A_1, …, A_n$ náhodné jevy z pravděpodobnostního prostoru $(\Omega, ©A, P)$. Pak platí
+	$$ P\(\bigcup_{i=1}^n A_i\) ≥ \sum_{i=1}^n P(A_i) - \!\!\!\!\sum_{1 ≤ i < j ≤ n} P(A_i \cap A_j). $$
+	Dokažte.
+
+	\begin{dukazin}
+		$\bigcup_{i=1}^n A_i$ můžeme také napsat jako $\bigcup_{i=1}^n A_i \setminus \(\bigcup_{j=1}^{i-1} A_i \cap A_j\)$, tedy z každé množiny necháme jen tu část, která neprotíná předchozí množiny. Tím jsme ze získali disjunktní systém, tedy z konečné aditivity pravděpodobnosti:
+		$$ P\(\bigcup_{i=1}^n A_i\) = P\(\bigcup_{i=1}^n A_i \setminus \(\bigcup_{j=1}^{i-1} A_i \cap A_j\)\) = \sum_{i=1}^n P\(A_i \setminus\(\bigcup_{j=1}^{i-1} A_i \cap A_j\)\). $$
+
+		Nyní víme, že
+		$$ \(\bigcup_{j=1}^{i-1} A_i \cap A_j\) \cup \(A_i \setminus\(\bigcup_{j=1}^{i-1} A_i \cap A_j\)\) = A_i $$
+		a že tyto dvě množiny jsou disjunktní, tedy podle konečné aditivity pravděpodobnosti je
+		$$ \sum_{i=1}^n P\(A_i \setminus\(\bigcup_{j=1}^{i-1} A_i \cap A_j\)\) = \sum_{i=1}^n P(A_i) - P\(\bigcup_{j=1}^{i-1} A_i \cap A_j\). $$
+		
+		Nakonec pravděpodobnost za mínusem můžeme zase pomocí konečné aditivity ($A_i \cap A_j$ zase „zdisjunktníme“) a monotonie pravděpodobnosti („přidáme to, co jsme odebrali zdisjunktněním“) odhadnout:
+		$$ P\(\bigcup_{j=1}^{i-1} A_i \cap A_j\) ≤ \sum_{j=1}^{i-1} P(A_i \cap A_j) \implies $$
+		$$ \implies \sum_{i=1}^n P(A_i) - P\(\bigcup_{j=1}^{i-1} A_i \cap A_j\) ≥ \sum_{i=1}^n P(A_i) - \!\!\!\!\sum_{1 ≤ i < j ≤ n} P(A_i \cap A_j). $$
+	\end{dukazin}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}[1.2 -- Úloha o dvou počtářích]
+	Alois a Bartoloměj nejsou nijak zdatní počtáři. Pravděpodobnost, že daný problém vyřeší Alois správně, je $\frac{1}{8}$. V případě Bartoloměje je to jen $\frac{1}{12}$. Protože počítají každý zvlášť, pak v případě, že oba počítají špatně, dojdou ke stejnému výsledku jen s pravděpodobností $\frac{1}{1001}$. Jestliže oba získají stejný výsledek, jaká je pravděpodobnost, že tento výsledek je správný?
+
+	\begin{reseni}
+		Máme tedy jev $A$ (Alois vyřešil správně) s pravděpodobností $P(A) = \frac{1}{8}$. Dále jev $B$ (Bartoloměj vyřešil správně) s pravděpodobností $P(B) = \frac{1}{12}$. Nakonec máme jev $S$ (vyřešili shodně) a o něm víme pravděpodobnost $P(S|A^c \cap B^c) = \frac{1}{1001}$. Zajímá nás $P(A \cap B|S)$.
+
+		Předpokládejme, že $A$ a $B$ jsou nezávislé (jinak je v zadání málo informací k výpočtu). Potom $P(A \cap B) = \frac{1}{8}·\frac{1}{12}$ a $P(A^c \cap B^c) = \frac{7}{8}·\frac{11}{8}$ (z konečné aditivity pravděpodobnosti a nezávislosti $A^c$ a $B^c$, která vyplývá z nezávislosti $A$ a $B$). Podobně $P(A \cap B^c) > 0$ a $P(A^c \cap B) > 0$. $A \cap B$, $A \cap B^c$, $A^c \cap B$ a $A^c \cap B^c$ jsou zřejmě disjunktní a dávají dohromady celý prostor, tedy součet jejich pravděpodobností je 1.
+
+		Zároveň víme, že pravděpodobnost $S$ je nenulová, neboť $P(S|A^c \cap B^c) > 0$. Tedy můžeme použít Bayesovu větu. Ještě potřebujeme znát $P(S|A \cap B)$, ale to je zřejmě 1, protože pokud počítali oba správně, tak se výsledky musí shodovat, naopak $P(S|A^c \cap B) = P(S|A \cap B^c) = 0$, jelikož pokud jeden spočítal výsledek správně a jeden špatně, tak se nemohli shodnout na výsledku. Tedy
+		$$ P(A \cap B|S) = \frac{P(S | A \cap B)·P(A \cap B)}{P(S | A \cap B)·P(A \cap B) + P(S | A^c \cap B^c)·P(A^c \cap B^c) + 0 + 0} = $$
+		$$ = \frac{1·\frac{1}{8}·\frac{1}{12}}{1·\frac{1}{8}·\frac{1}{12} + \frac{1}{1001}·\frac{7}{8}·\frac{11}{12}} = \frac{1}{1 + \frac{7·11}{1001}} = \frac{1001}{1078}. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[1.3]
+	V okolí každé z 10 jaderných elektráren je vyšetřeno 100 lidí na jistou nemoc (předpokládejme, že osoby vybíráme „s vracením“). Tato nemoc se normálně vyskytuje u $1$~\% celkové populace (národní průměr). Panuje shoda na faktu, že elektrárna by měla být označena za „podezřelou“, pokud alespoň $3$ ze $100$ vyšetřených zkoumanou nemoc mají.
+
+	\begin{itemize}
+		\item[a)] Jaká je pravděpodobnost, že alespoň jedna z elektráren bude prohlášena za podezřelou, přestože frekvence výskytu nemoci v okolí jaderných elektráren se vůbec neliší od národního průměru?
+		\item[b)] Jaká je pravděpodobnost, že žádná z elektráren nebude prohlášena za podezřelou, přestože pravděpodobnost výskytu nemoci v okolí elektráren je $2$ \% (dvojnásobná oproti národnímu průměru).
+	\end{itemize}
+
+	\begin{reseni}[a]
+		Nejprve spočítáme pravděpodobnost toho, že nebude jedna elektrárna prohlášena za podezřelou, a to tak, že si to rozložíme na tři možnosti: Pravděpodobnost, že nikdo z vyšetřených není nemocný je $0.99^{100}$ (100krát vybíráme s pravděpodobností $0.99$ zdravého člověka). Že byl nemocný právě jeden $0.99^{99}·0.01·100$ (jednou jsme vybrali nezdravého a mohlo to být v libovolné ze $100$ voleb). A že byli nemocní dva $0.99^{98}·0.01^2·\binom{100}{2}$ (dvakrát jsme vybrali nemocného tyto volby mohli být libovolné 2 ze 100).
+
+		Tyto jevy jsou disjunktní, tedy podle spočetné aditivity je pravděpodobnost, že jedna elektrárna nebude prohlášena za podezřelou:
+		$$ (0.99^{100} + 0.99^{99}·0.01·100 + 0.99^{98}·0.01^2·\binom{100}{2}) = 0.99^{99} (0.99 + 1 + 0.5) \approx 0.92. $$
+
+		Řešení příkladu pak spočítáme přes doplněk. Měření u elektráren jsou nezávislá, takže pravděpodobnost, že měření u všech dopadne „dobře“ je $\(0.99^{99} (0.99 + 1 + 0.5)\)^{10}$, tedy pravděpodobnost, že alespoň jedna bude prohlášená za „podezřelou“ je:
+		$$ 1 - \(0.99^{99} (0.99 + 1 + 0.5)\)^{10} \approx 0.563. $$
+	\end{reseni}
+
+	\begin{reseni}[b]
+		Úplně obdobně jako v minulém případě, jen s pravděpodobností $0.98$ místo $0.99$ a $0.02$ místo $0.02$. Tedy pravděpodobnost jedné elektrárny je:
+
+		$$ (0.98^{100} + 0.98^{99}·0.02·100 + 0.98^{98}·0.02^2·\binom{100}{2}) = 0.98^{98} (0.98^2 + 2·0.98 + 2·0.99) \approx 0.68. $$
+
+		Pravděpodobnost, že všechny elektrárny nebudou prohlášeny za podezřelé, je pak:
+		$$ \(0.98^{98} (0.98^2 + 2·0.98 + 2·0.99)\)^{10} \approx 0.020. $$
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}[1.4 -- Paradox s kostkami]
+	Mějme dvě kostky $D_1$ a $D_2$, jejichž strany jsou označeny čísly následujícím způsobem
+	$$ D_1: 633333, \qquad D_2: 555222. $$
+	Adam háže kostkou $D_1$, Barbora kostkou $D_2$. Kdo hodí vyšší číslo, vyhrává.
+
+	\begin{itemize}
+		\item[a)] Ukažte, že Adam má větší pravděpodobnost, že vyhraje. Budeme to značit $D_1 \succ D_2$.
+		\item[b)] Barbora si toho všimla a navrhla následující změnu: „já teď očísluji (čísly z množiny $[6]$) třetí kostku. Ty si vybereš jednu z těch tří kostek a pak já jednu ze zbylých dvou. A budeme hrát znovu.“
+
+			Je možné, aby Barbora očíslovala třetí kostku tak, že si vždy bude moci vybrat kostku s větší pravděpodobností výhry? To jest tak, že $D_1 \succ D_2 \succ D_3 \succ D_4$ (což by znamenalo, že relace $\succ$ není tranzitivní)?
+	\end{itemize}
+
+	\begin{dukazin}[a]
+		Jako prostor si zvolíme\footnote{$[n] = \{1, 2, …, n\}$.} $\Omega = [6]^2$, každý elementární jev je, která strana první (její „index“, ne číslo, které je na ní napsané) a která strana druhé kostky padla. $©A = 2^\Omega$ a $P = \frac{1}{6^2}$, tedy máme klasický pravděpodobnostní prostor.
+
+		Větší pravděpodobnost výhry má tudíž ta kostka, která má ve více (tj. více než v 18) dvojicích větší číslo. V případě kostek $D_1$ a $D_2$ máme tři dvojice $(6, 5)$, tři $(6, 2)$, patnáct $(3, 5)$ a patnáct $(3, 2)$, tedy vyhrává první kostka, jelikož pravděpodobnost, že na ní bude větší číslo je $\frac{3 + 3 + 15}{6^2} = \frac{7}{12} > \frac{1}{2}$.
+	\end{dukazin}
+
+	\begin{reseni}[b]
+		Například kostka $D_3: 444441$. Jelikož při souboji $D_2$ -- $D_3$ je patnáct dvojic $(5, 4)$, tři $(5, 1)$, patnáct $(2, 4)$ a tři $(2, 1)$, tedy $D_2$ má pravděpodobnost výhry $\frac{15 + 3 + 3}{6^2} = \frac{7}{12} > \frac{1}{2}$.
+
+		Při souboji $D_3$ -- $D_1$ máme pět dvojic $(4, 6)$, dvacet pět $(4, 3)$, jednu $(1, 6)$ a pět $(4, 6)$, tedy kostka $D_3$ má pravděpodobnost výhry $\frac{25}{36} > \frac{1}{2}$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

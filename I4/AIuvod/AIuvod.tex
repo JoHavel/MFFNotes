@@ -102,4 +102,47 @@
 	Heuristika $h_1$ dominuje heuristice $h_2$, když $\forall n: h_1(n) ≥ h_2(n)$.
 \end{definice}
 
+% 28. 02. 2022
+
+\begin{definice}[Forward checking]
+	Testuje budoucí pozice, jestli tam vůbec může být cíl.
+\end{definice}
+
+\begin{definice}[Problém splňování]
+	Problém splňování? sestává z konečného počtu proměnných (popisujících svět), oborů hodnot pro každou proměnnou a konečné množiny podmínek.
+
+	Řeší se Backtrackingem.
+\end{definice}
+
+\begin{definice}[Přípustné řešení]
+	Přípustné řešení? je takové řešení, které je úplné (každá proměnná má přiřazenou hodnotu) a konzistentní (každá podmínka je splněna).
+\end{definice}
+
+\begin{definice}[Hranová konzistence]
+	Hrana (dvojice vrcholů) je konzistentní, pokud existují hodnoty z oborů hodnot proměnných tak, že když je dosadíme, tak jsou splněny všechny podmínky mezi těmito proměnnými.
+
+	Problém splňování je hranově konzistentní, pokud každá hrana je konzistentní.
+\end{definice}
+
+\begin{definice}[k-konzistence]
+	Podobně jako hranová konzistence, jen pro více vrcholů zároveň (a splnění všech, klidně binárních, podmínek mezi nimi).
+\end{definice}
+
+\begin{definice}[Fail-first princip (pořadí proměnných)]
+	První zkoušíme dosadit do té proměnné, která nejpravděpodobněji selže.
+
+	Heuristiky na selhání jsou: dom heuristika = proměnná s nejmenším množstvím hodnot, deg heuristika = vybírá proměnnou, která je v nejvíce podmínkách.
+\end{definice}
+
+\begin{definice}[Succeed-first principe (pořadí hodnot)]
+	Vybírá hodnotu, která má největší pravděpodobnost na úspěch.
+\end{definice}
+
+\begin{definice}[Programování s podmínkami]
+	Programování s podmínkami je deklarativní přístup řešení (kombinatorických) problémů.
+\end{definice}
+
+\begin{veta}
+	Pokud je problém $\forall i \in [n]$ $i$-konzistentní, pak ho lze vyřešit bez backtracku.
+\end{veta}
 \end{document}

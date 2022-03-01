@@ -74,14 +74,59 @@
 			$$ |x_{\lambda}(t) - x_{\lambda}(\tau)| = \left|\int_\tau^t f(x_\lambda(s - \lambda), s) ds\right| ≤ ||f||_∞·|t - \tau|. $$
 			Podle AA věty tedy existuje podposloupnost $M$, která konverguje stejnoměrně. Limitu si označme $x$, podposloupnost $x_{n_k}$.
 
-			Chceme dokázat, že $x$ je řešení DR: TODO!
+			Chceme dokázat, že $x$ je řešení DR: TODO!!!
 			$$ \lambda_k := \frac{1?}{n_k} $$
 		\end{dukazin}
 	\end{tvrzeni}
 
 	\begin{dukazin}
-		
+%
+% 24. 02. 2022
+%
+		Pro $\overline{K_1} \subset K_2$, $\overline{K_2} \subset \Omega$, $(x_0, t_0) \in K$, $K_1$ a $K_2$ kompaktní definujeme
+		$$ \phi(x, t) = \begin{cases}1, & (x, t) \in K_1,\\0, & (x, t) \in \Omega \setminus \overline{K_2},\end{cases}$$
+		kterou spojitě dodefinujeme, a
+		$$ \tilde{f} (x, t) = \begin{cases}f(x, t)·\phi(x, t), & (x, t) \in \Omega \\ 0, & (x, t) \in ®R^{n+1} \setminus \Omega.\end{cases} $$
+
+		Dle prvního kroku (TODO?) $\exists \tilde{x}(t)$, $t \in [t_0 - T, t_0 + T]$, $\tilde{x}'(t) = \tilde{f}(\tilde{x}(t), t)$, $\tilde{x}(t_0) = x_0$. $\tilde{x}$ je spojitá funkce $\implies \exists \delta > 0$ tak, že graf funkce $\tilde{x}|_{[t_0 - \delta, t_0 + \delta]}$ leží v $K_1$. Na $K$ je $\tilde{f} = f$, tedy $\tilde{x}'(t) = f(\tilde{x}(t), t)$, $t \in [t_0 - \delta, t_0 + \delta]$.
 	\end{dukazin}
 \end{veta}
+
+\subsection{Jednoznačnost řešení}
+\begin{definice}[Lokální jednoznačnost, globální jednoznačnost]
+	Řekneme, že DR má vlastnost
+
+	\begin{itemize}
+		\item lokální jednoznačnosti, jestliže platí: Máme-li řešení $(x, I), (y, J)$ a $t_0 \in I \cap J$, $x(t_0) = y(t_0)$ pak $\exists \delta > 0\ \forall t \in (t_0 - \delta, t_0 + \delta)$, $x(t) = y(t)$,
+		\item globální jednoznačnosti, jestliže platí: Máme-li řešení $(x, I), (y, J)$ a $t_0 \in I \cap J$, $x(t_0) = y(t_0)$, pak $\forall t \in I \cap J: x(t) = y(t)$. 
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}
+	Globální jednoznačnost je ekvivalentní lokální jednoznačnosti.
+
+	\begin{dukazin}
+		„$\implies$“ je triviální. „$\Leftarrow$“: Pro spor předpokládejme $\exists t_1 \in I \cap J$, $x(t_1) ≠ y(t_1)$. BÚNO $t_1 > t_0$. Definujme
+		$$ M := \{T \in I \cap J, t > t_0, x(t) ≠ y(t)\} ≠ \O, \qquad t_2 = \inf M. $$
+		Víme $x(t_2) = \lim_{t \rightarrow t_2^-} x(t) = \lim_{t \rightarrow t_2^-} y(t) = y(t_2)$. Podíváme se lokální jednoznačností na bod $t_2$. Tam existuje $\sigma > 0$ tak, že $\forall t \in (t_2 - \sigma, t_2 + \sigma): x(t) = y(t)$. \lightning.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Lokálně lipschitzovská]
+	Řekneme, že funkce $f = (x, t)$ je lokálně lipschitzovská v $\Omega$ vzhledem k $x$, jestliže
+	$$ \forall (x_0, t_0) \in \Omega\ \exists \delta > 0\ \exists L > 0\ \forall t \in ©U_\delta(t_0)\ \forall x, y \in ©U_\delta(x_0): |f(x, t) - f(y, t)| ≤ L·|x - y| $$
+\end{definice}
+
+\begin{veta}
+	Buď $f$ lokáľně lipschitzovská v $\Omega$ vzhledem k $x$, pak DR má v $\Omega$ vlastnost lokální jednoznačnost.
+
+	\begin{dukazin}
+		Ať $x(t)$, $y(t)$ jsou řešení. $x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds$, $y(t) = y_0 + \int_{t_0}^t f(y(s), s) ds$. $x(t) - y(t) = \int_{t_0}^t\(f(x(s), s) - f(y(s), s)\) ds$. Vezmeme $\sigma > 0$. Grafy $x|_{[t - \sigma]}, y|_{[t - \delta, t + \delta]}$ leží v $\delta$-okolí $(x_0, t_0)$.
+		$$ \forall s \in [t - \sigma, t_0 + \sigma]: |f(x(s), s) - f(y(s), s)| ≤ L·|x(s) - y(x)|. $$
+		$$ |x(t) - y(t)| ≤ \int_{t_0}^t |f(x(s), s) - f(y(s), s)| ds ≤ \int_{t_0}^t L·|x(s) - y(s)| ds, \qquad t \in [t_0 - \sigma, t_0 + \sigma] $$
+		$$ ≤ L \max_{s \in [t - \sigma, t+\sigma]}|x(s) - y(s)|·\sigma $$
+	\end{dukazin}
+\end{veta}
+
 
 \end{document}

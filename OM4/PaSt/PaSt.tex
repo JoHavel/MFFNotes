@@ -225,4 +225,176 @@
 	Buď $X$ náhodná veličina. $X^{-1}(©B(®R))$ značíme $\sigma(X)$ a nazýváme $\sigma$-algebrou náhodných jevů generovaných náhodnou veličinou $X$ ($\sigma$-algebra indukovaná $X$).
 \end{definice}
 
+% 23. 02. 2022
+
+\begin{definice}[Rozdělení náhodné veličiny]
+	Rozdělením náhodné veličiny $X: (\Omega, ©A) \rightarrow (®R, ©B)$ rozumíme indukovanou pravděpodobnostní míru $P_X$ na $(®R, ©B)$ definovanou jako
+	$$ P_X(B) = P(\{\omega \in \Omega | X(\omega) \in B\}) = P(X^{-1}(B)), \qquad B \in ©B. $$
+
+	\begin{poznamkain}[A důkaz, že je to pravděpodobnostní míra]
+		$P_X$ je obraz míry $P$ v zobrazení $X$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[O přenosu integrace pro $P_X$]
+	Buď $X$ náhodná veličina a buď $h$ měřitelná funkce $(®R, ©B) \rightarrow (®R, ©B)$. Pak platgí
+	$$ \int_{\Omega} h(X(\omega)) d P(\omega) = \int_{®R} h(x) d P_X(x), $$
+	pokud existuje alespoň jedna strana.
+
+	\begin{dukazin}
+		Speciální případ věty o obrazu míry z TMI1.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Hustota náhodné veličiny]
+	Buď $X$ náhodná veličina, $P_X$ její rozdělení a $\mu$ $\sigma$-konečná míra na $(®R, ©B)$ taková, že $P_X \ll \mu$. Potom $f(x) = \frac{d P_X}{d\mu}(x)$ se nazývá hustota náhodné veličiny $X$ vzhledem k míře $\mu$.
+
+	\begin{poznamkain}
+		$f(x)$ je určena jednoznačně $\mu$-skoro všude. Pokud pro $g: (®R, ©B) \rightarrow (®R, ©B)$ měřitelnou platí
+		$$ \int_{®R} |g(x)| d P_X(x) < ∞ \qquad (\lor g(x) ≥ 0 \forall x), $$
+		pak $\int_{®R} g(x) d P_X(x) = \int_{®R} g(x) f(x) d\mu(x)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Buď $X$ náhodná veličina, pak platí následující rovnosti:
+	$$ P(X \in B) := P(\{\omega \in \Omega | X(\omega) \in B\}) = \int_{\Omega} 1_B(X(\omega)) d P(\omega) = \int_{®R} 1_B(x) d P_X(x) = \int_{B} d P_X(x) = P_X(B) = $$
+	$$ = \int_{®R} 1_B(x) d P_X(x) = \int_{®R} 1_B(x) f(x) d\mu(x) = \int_B f(x) d\mu(x). $$
+	
+	\begin{dukazin}
+		Je to jen sesypání faktů, které už známe.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Distribuční funkce]
+	Mějme náhodnou veličinu $X: (\Omega, ©A) \rightarrow (®R, ©B)$. Funkci $F_X: ®R \rightarrow [0, 1]$ definovanou jako $F_X(x) = P(X ≤ x)$ nazveme distribuční funkce náhodné veličiny $X$.
+
+	\begin{poznamkain}
+		Definice se shoduje s distribuční funkcí z TMI1. (A tedy platí věta o vlastnostech distribuční funkce, s tím, že dokonce $\lim_{x \rightarrow +\infty} F_X(x) = 1$.)
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Buď $F: ®R \rightarrow ®R$ splňující vlastnosti distribuční funkce a $\lim_{x \rightarrow +∞} F_X(x) = 1$. Pak existuje pravděpodobnostní prostor $(\Omega, ©A, P)$ a náhodná veličina $X: (\Omega, ©A) \rightarrow (®R, ©B)$ taková, že $F_X = F$.
+
+	\begin{dukazin}
+		Z TMI1 víme, že existuje Lebesgueova-Stieltjesova míra $\mu$, jejíž distribuční funkce je $F$. Tj. $\mu(\(-∞, a\]) = F(a)$. Teď chybí jen dodefinovat $(\Omega, ©A, P)$ a $X$. Položíme $(\Omega, ©A, P) = (®R, ©B, \mu)$ a $X = \id_{®R}$.
+	\end{dukazin}
+\end{veta}
+
+% 28. 02. 2022
+
+\begin{definice}[Názvosloví: diskrétní náhodná veličina, absolutně spojitá veličina]
+	Mějme diskrétní náhodnou veličinu $P_X ≡ \mu_d$, tj. existuje nejvýše spočetná $\{x_i\}_{i \in I} \subset ®R$ a $\{p_i\}_{i \in I} \subset \(0, 1\]$ takových, že $\sum_{i \in I} p_i = 1$ a platí $P_X = \sum_{i \in I} p_i \delta_{x_i}$.
+
+	Potom nutně $F_X(x) = \sum_{i \in I} p_i 1_{[x, ∞)}(x)$ a také platí, že $P_X \ll \nu$, kde $\nu$ je čítací míra na $\{x_i\}_{i \in I}$.
+
+	(Absolutně) spojitá náhodná veličina je taková, že $P_X = \mu_a \ll \lambda$, takže $P_X(B) \int_B f(x) d\mu$.
+\end{definice}
+
+\begin{definice}[Kvantilová funkce]
+	Buď $F_X$ distribuční funkce náhodné veličiny $X$. Funkce $F^{-1}_X (u) = \int\{x | F_X(x) ≥ u\}$, $u \in (0, 1)$ se nazývá kvantilová funkce náhodné veličiny $X$.
+
+	\begin{poznamkain}
+		Bude potřeba později. Teď jen: Je neklesající a zleva spojitá. Lze z ní jednoznačně odvodit $F_X$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{upozorneni}
+	Kvantilová funkce obecně není inverzní funkcí k $F_X$, protože inverzní funkce nemusí existovat. Ale pro $F_X$ rostoucí a spojitou je $F_X^{-1}$ inverzní funkcí k $F_X$.
+\end{upozorneni}
+
+\subsection{Střední hodnota, rozptyl a momenty náhodné veličiny}
+\begin{definice}[Střední hodnota]
+	Střední hodnota náhodné veličiny $X$ je číslo $®E X$ dané výrazem $®E X = \int_{\Omega} X(\omega) d P(\omega)$, pokud má integrál smysl.
+\end{definice}
+
+\begin{definice}[Medián]
+	Medián rozdělení náhodné veličiny $X$ je číslo $q_{\frac{1}{2}}$ splňující $P(X ≤ q_{\frac{1}{2}}) ≥ \frac{1}{2}$ a $P(X ≥ q_{\frac{1}{2}}) ≥ \frac{1}{2}$.
+\end{definice}
+
+% 28. 02. 2022
+
+\begin{veta}
+	Buď $X$ náhodná veličina a $g: ®R \rightarrow ®R$ měřitelná funkce. Pak $g(X)$ je také náhodná veličina a $®E g(X) = \int_{®R} g(x) d P_X(x) = \int_{®R} g(x) dF_X(x)$, pokud alespoň jeden z výrazů existuje.
+
+	\begin{dukazin}
+		Složení 2 měřitelných funkcí je měřitelné, tj. $g(X)$ je opravdu náhodná veličina.
+		$$ ®E g(X) = \int_{\Omega} g(X(\omega)) = d P(\omega) = \int_{®R} g(x) d P_X(x). $$
+		Druhá rovnost plyne ze vztahu mezi $P_X$ a její distribuční funkcí.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Základní vlastnosti $®E X$]
+	Buďte $X, Y$ náhodné veličiny na stejném pravděpodobnostním prostoru $(\Omega, ©A, P)$. Pak platí
+	$$ ®E(a + bX) = a + b ®E X,\qquad X \in L^1, a, b \in ®R, $$
+	$$ ®E(X + Y) = ®E X + ®E Y, \qquad X, Y \in L^1, $$
+	$$ P(X ≥ 0)  = 1 \implies ®E X ≥ 0, \qquad (\text{obecněji } P(X \in [a, b]) = 1 \implies ®E X \in [a, b]), $$
+	$$ X \in L^1 \implies |X| \in L^1, $$
+	$$ X ≤ Y, P\text{-skoro všude } \implies ®E X ≤ ®E Y (\text{pokud existují}). $$
+
+	\begin{dukazin}
+		Snadný, aplikace míry.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Názvosloví: $P$-skoro jistě]
+	$P$-skoro jistě znamená $P$-skoro všude.
+\end{definice}
+
+\begin{definice}[$n-tý$ moment]
+	$n$-tý moment náhodné veličiny $X$ definujeme jako $®E X^n$, $n \in ®N$.
+
+	$n$-tý absolutní moment náhodné veličiny $X$ definujeme jako $®E |X|^n$, $n \in ®N$.
+	
+	$n$-tý centrální moment náhodné veličiny $X$ definujeme jako $®E (X - ®E X)^n$, $n \in ®N$, pokud $®E X \in ®R$.
+	
+	$n$-tý absolutní centrální moment náhodné veličiny $X$ definujeme jako $®E |X - ®E X|^n$, $n \in ®N$, pokud $®E X \in ®R$.
+
+	\begin{poznamkain}
+		1-ní moment je $®E X$. První centrální moment je 0.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Rozptyl]
+	Rozptyl náhodné veličiny $X$ je definován jako $®E(X - ®E X)^2$. Značí se $\var X$.
+
+	\begin{poznamkain}
+		Rozptyl je střední čtvercová odchylka $X$ od $®E X$. $\var X = ®E(X - ®E X)^2 ≥ 0$. $\var X = 0$ právě tehdy, když $X = ®E X$ skoro jistě.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[Základní vlastnosti rozptylu]
+	$$ \var(a + b X) = b^2 \var X, \qquad a, b \in ®R \land X \in L^2. $$
+
+	\begin{dukazin}
+		$$ \var(a + b X) = ®E(a + bX - ®E(a + b X))^2 = ®E(a + bX - a - b ®E^X) = ®E(b X - b ®E X) = ®E(b(X - ®E X))^2 = b^2 ®E(X - ®E X)^2 = b^2 \var X. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Čebyševova nerovnost]
+	Buď $X \in L^1$ náhodná veličina. Pak $P(|X - ®E X| ≥ a) ≤ \frac{\var X}{a^2}$, $\forall a > 0$.
+
+	\begin{dukazin}
+		Viz TMI1.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Markovova nerovnost]
+	Buď $X \in L^n$, $n \in ®N$, náhodná veličina. Pak $P(|X| ≥ a) ≤ \frac{®E |X|^n}{a^n}$, $\forall a > 0$.
+
+	\begin{dukazin}
+		Obdobně Čebyševově větě.
+	\end{dukazin}
+\end{definice}
+
+\begin{veta}[Nerovnost mezi $L^p$ normami na pravděpodobnostních prostorech]
+	Buď $X$ náhodná veličina, $0 < \alpha < \beta \in ®R$ a $®E |X|^\beta < ∞$. Pak platí $\sqrt[\alpha]{®E |X|^\alpha} ≤ \sqrt[\beta]{®E |X|^\beta}$, a speciálně tedy platí $®E |X| ≤ \sqrt{®E X^2}$.
+
+	\begin{dukazin}
+		$$ ®E |X|^\alpha = \int_{®R} |x|^\alpha d P_X(x) = \int_{®E} |x|^\alpha·1 d P_X(x) \overset{\text{Hölder na $p = \frac{\beta}{\alpha}$}} ≤ \(\int_{®R} |x|^\beta d P_X(x)\)^{\frac{\alpha}{\beta}}·\(\int_{®R} 1^q dP_X(x)\)^{\frac{1}{q}} = … · 1. $$
+		(Integrál napravo je konečný z předpokladů této věty, tedy splňujeme předpoklady Höldera.) Odmocněním $\alpha$ dostáváme přesně chtěnou nerovnost.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -45,5 +45,63 @@ pick(X)
 	Zpětnovazebné učení je, když cílem agenta je maximalizovat nějakou zpětnou vazbu z prostředí (většinou vyjadřovanou jako číslo, kladné je „odměna“, záporná „trest“).
 \end{definice}
 
+% 24. 02. 2022
+
+\section{Zpětnovazebné učení}
+\begin{definice}[Mountain Car („autíčko v ďolíčku“)]
+	Auto je v 2D údolí a nemá výkon na to, aby vyjelo nahoru přímo. Cílem je samozřejmě dostat se nahoru (pomocí akcí dopředu, dozadu, neutral). Odměna je $-1$ za každý krok v prostředí (před dojetím do cíle).
+
+	(Existuje i spojitější verze, kde akce -- reálné číslo mezi $-1$ a $1$ -- udává zrychlení)
+\end{definice}
+
+\begin{definice}[Zpětnovazebné učení]
+	Ve zpětnovazebném učení máme nějakého agenta, který provádí akce v prostředí a dostává informaci o stavu a odměně (ta se často dá spočítat ze stavu, ale pro jednoduchost rozlišujeme stav a odměnu). Formálně: Agent dostává stav $s_t$ a provede akci $a_t$.
+\end{definice}
+
+\begin{definice}
+	Podobně jako v AIUvod máme spojité a diskrétní a deterministické a nedeterministické prostředí.
+\end{definice}
+
+\subsection{Markovské rozhodovací procesy}
+\begin{definice}[Markovský rozhodovací proces]
+	Markovský rozhodovací proces je čtveřice $(S, A, P, R)$, kde $S$ je množina stavů, $A$ je množina akcí (občas to bývá funkce ze stavů -- v každém stavu lze provést různé akce), $P_a(s, s')$ je přechodová funkce -- pravděpodobnost, že aplikací $a \in A$ v $s \in S$ přejde prostředí do $s' \in S$, $R_a(s, s')$ je odměna, kterou dostane agent při přechodu z $s \in S$ do $s' \in S$ pomocí $a \in A$. $P$ splňuje markovskou podmínku, tj. nezávisí na historii, závisí opravdu jen na $a, s, s'$.
+\end{definice}
+
+\begin{definice}[Strategie (policy)]
+	Chování agenta popisujeme pomocí strategie $\pi(s, a)$, což je pro každé $s$ pravděpodobnostní distribuce akcí.
+\end{definice}
+
+\begin{definice}[Diskontovaná odměna]
+	Cílem je maximalizovat odměnu (přes různé volby $\pi$): $\sum_{t=0}^∞ \gamma^t R_{a_t}(s_t, s_{t+1})$, kde $a_t = \pi(s_t)$ je akce provedená agentem v kroku $t$ a $\gamma < 1$ je diskontní faktor, který zajišťuje, že suma konverguje, nastavuje, jak moc je důležité získat odměny co nejdřív, …
+
+	$V^\pi(s) = E[R] = E[\sum_{t = 0}^∞ \gamma^t r_t | s_0 = s]$, kde $R$ je diskontovaná odměna, $r_t$ je odměna získaná v čase $t$. $Q^\pi(s, a)$ je očekávaná odměna, kterou dostaneme, když ve stavu $s$ uděláme akci $a$ a budeme pokračovat dál strategií $\pi$, říkáme tomu hodnota akce $a$ ve stavu $s$.
+
+	Cílem agenta je tedy najít optimální strategii $\pi^*$ takovou, že maximalizuje $V^{\pi}$. Hodnotu stavů a akcí pro optimální strategii budeme značit s $*$ místo $\pi$.
+\end{definice}
+
+\begin{definice}[$\epsilon$-greedy strategie]
+	S pravděpodobností $1 - \epsilon$ vybere nejlepší akci (podle známých ohodnocení) a s pravděpodobností $\epsilon$ zvolí náhodnou akci.
+\end{definice}
+
+\begin{definice}[Monte-Carlo metody]
+	Pro výpočet $V^\pi(s)$ odsimulujeme $n$-krát budoucnost a zprůměrujeme odměny.
+\end{definice}
+
+\begin{definice}[Temporal-difference metody]
+	TD metody upravují ohodnocení stavů $V(s) \leftarrow V(s) - \alpha(r + \gamma V(s') - V(s))$.
+\end{definice}
+
+\begin{definice}[Q-učení]
+	Q-učení funguje podobně jako temporal-difference metody, jen upravují $Q$ místo $V$, a to pomocí toho, že $V(s) = \max_a Q(s, a)$. Tradičně je $Q$ reprezentováno jako matice, která je na začátku nulová a následně se upravuje podle:
+	$$ Q(s_t, a_t) \leftarrow (1 - \alpha)·Q(s_t, a_t) + \alpha·\(r_t + \gamma · \max_a Q(s_{t+1}, a)\). $$
+
+	\begin{poznamkain}
+		Lze si všimnout, že tu není potřeba znát pravděpodobnosti.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[SARSA]
+	Skoro jako Q-učení, jen místo maxima se kouká o krok dále a používá aktuální strategii agenta.
+\end{definice}
 
 \end{document}
