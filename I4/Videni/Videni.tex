@@ -29,4 +29,54 @@
 	Dále se probírala clona, čočka, vady čoček, vinětace (ztmavení na okrajích, je proto, že z krajů nedopadá na čočku tolik světla, neboť na ni nedopadá kolmo)
 \end{poznamka}
 
+% 04. 03. 2022
+
+\section{Barevné modely}
+\begin{definice}[Vnímání světla]
+	Vnímáme 1. jasnost (integrál přes viditelnou část spektra) a 2. barvu 3. „typy“ receptorů (který vnímá které délky jak moc bylo určeno experimentem, kdy se lidem ukazovala barva a člověk pak měl nastavit tři jiné tak, aby výsledná barva odpovídala).
+
+	K některým vlnovým délkám se nemůžeme v rgb dostat, neboť bychom museli mít jednu barvu zápornou. Proto existuje model CIE XYZ (CIE = mezinárodní cosi pro barvy?), kdy se vybrali 3 (nereálné) barvy, pomocí kterých už lze všechno složit. Když se tento model normalizuje: $x = \frac{X}{X + Y + Z}$ a tak dále, tak dostáváme tzv. chromatické souřadnice, speciálně při zapomenutí jedné (ta jde dopočítat) dostáváme chromatický diagram. Modelu CIE XYZ je tzv. referenční model.
+\end{definice}
+
+\begin{definice}[RGB, RGBa]
+	RGB model je model, kdy máme tři (reálné) barvy, které mohou být 0 až 1. Tento model je tzv. aditivní, tedy když sečteme dvě barvy, tak se jejich intenzity sčítají.
+
+	Lze přidat ještě alpha kanál pro průhlednost.
+\end{definice}
+
+\begin{definice}[CMY, CMYK]
+	Komplementární k RGB (tj. $1 - RGB$). CMYK je pak rozšířením o černou barvu (abychom ušetřili barvy, používáme černou pro tu část barvy jednoho bodu, kde je C, M i Y, tj. černá se používá v množství $\min C, M, Y$ a teprve zbytek je barevně).
+\end{definice}
+
+\begin{definice}[Tříd Y modely]
+	Jsou založené na tom, že oko vnímá přechod červená-zelená, modrá-žlutá, tmavá-světlá. Lze k nim od RGB a zpět přecházet maticí.
+\end{definice}
+
+\begin{definice}[Uživatelsky orientované modely]
+	Jsou založené na tom, že člověk rozeznává odstín (úhel v prostoru referenčního modelu), sytost a jasnost. Tyto modely mají ale problém s přechodem z a do RGB. Další problém je s přechodem mezi $0$ stupňů a $360$ stupňů.
+\end{definice}
+
+\begin{definice}[L*a*b*]
+	Předchozí modely nezachovávají euklidovskou vzdálenost. Tenhle ano.
+\end{definice}
+
+\subsection{Qvantizace barev}
+\begin{definice}[Prahování]
+	Vezmou se intenzity, rozdělí se podle prahů a „zaokrouhlí se“. Prahy mohou být pevné (intenzity se rozdělí rovnoměrně), adaptivní (intenzity se rozdělí podle histogramu).
+\end{definice}
+
+\begin{definice}[Binarizace]
+	Nahrazení pouze 2 barvami podle intenzity. Triviálně můžeme rozdělit v polovině. Lepší je rozdělit tak, že když je průměrná intenzita $i$ (např. $0.6$), tak má být $i$ (např. šest desetin) bodů nad a $(1 - i)$ pod prahem.
+
+	Navíc se dá přidat náhodná modulace (náhodně upravit jas každého bodu), čímž se dosáhne daleko lepších výsledků.
+\end{definice}
+
+\begin{definice}[Otsu binarizace]
+	Snaží se oddělit histogram na 2 normální rozdělení?.
+\end{definice}
+
+\begin{definice}[Dithering]
+	Místo změny jasu použijeme různou hustotu černých a bílých bodů. (Např. Floid-Steinberg dithering, kdy uděláme náhodné chyby a zprůměrujeme je s jejich okolími).
+\end{definice}
+
 \end{document}

@@ -117,8 +117,8 @@
 	$$ \forall (x_0, t_0) \in \Omega\ \exists \delta > 0\ \exists L > 0\ \forall t \in ©U_\delta(t_0)\ \forall x, y \in ©U_\delta(x_0): |f(x, t) - f(y, t)| ≤ L·|x - y| $$
 \end{definice}
 
-\begin{veta}
-	Buď $f$ lokáľně lipschitzovská v $\Omega$ vzhledem k $x$, pak DR má v $\Omega$ vlastnost lokální jednoznačnost.
+\begin{veta}[Peanova věta o jednoznačnosti]
+	Buď $f$ lokálně lipschitzovská v $\Omega$ vzhledem k $x$, pak DR má v $\Omega$ vlastnost lokální jednoznačnost.
 
 	\begin{dukazin}
 		Ať $x(t)$, $y(t)$ jsou řešení. $x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds$, $y(t) = y_0 + \int_{t_0}^t f(y(s), s) ds$. $x(t) - y(t) = \int_{t_0}^t\(f(x(s), s) - f(y(s), s)\) ds$. Vezmeme $\sigma > 0$. Grafy $x|_{[t - \sigma]}, y|_{[t - \delta, t + \delta]}$ leží v $\delta$-okolí $(x_0, t_0)$.
@@ -128,5 +128,77 @@
 	\end{dukazin}
 \end{veta}
 
+% 03. 03. 2022
+
+\begin{dusledek}
+	Jestliže $f$ je lokálně lipschitzovská v $\Omega$ vzhledem k $x$ a $(x_0, t_0) \in \Omega$, pak
+	$$ \exists \delta > 0\ \exists! x: (t_0 - \delta, t_0 + \delta) \rightarrow ®R^n \text{ řešení DR s počáteční podmínkou } x(t_0) = x_0. $$
+
+	\begin{dukazin}
+		Peanova věta o jednoznačnosti.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	Pokud $\frac{\partial f}{\partial x_j}$ jsou spojité v $\Omega$, $j \in [n]$, pak $f$ je lokálně lipschitzovská v $\Omega$ vzhledem k $x$.
+
+	\begin{dukazin}
+		$$ h(s) := f(x + s(y - x), t), s \in [0, 1], h(0) = f(x, t), h(1) = f(y, t). $$
+		$$ h(1) - h(0) = \int_0^1 h'(s) ds = \int_0^1 \sum_{i=1}^n \frac{\partial f}{\partial x_i} (x + ? - ?)·(y_j - x_j)ds $$
+		$$ \forall (x_0, t_0) \in \Omega\ \exists ©U(x_0)\ \exists ©U(t_0) M = \overline{©U(x_0)} \times \overline{©U(t_0)} \subset \Omega, $$
+		$M$ je kompaktní, tedy $\exists K > 0\ \forall (x, t) \in M: \left|\frac{\partial f}{\partial x_i}(x)\right| ≤ K$. Tedy
+		$$ |h(1) - h(0)| ≤ \int_0^1 \sum_{i=1}^n \left| \frac{\partial f}{\partial x_i}\right|·|(x + s(y - x))|·|y_i - x_i| ds ≤ n K·\max|y_i - x_i| ≤ n K |x - y|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\section{Maximální řešení}
+\begin{definice}[Prodloužení řešení, maximální řešení]
+	Řešení $(\tilde x, \tilde I)$ je prodloužením řešení $(x, I)$, jestliže $\tilde I \supset I$ a $\forall t \in I: x(t) - \tilde x(ť)$.
+
+	Řešení je maximální, pokud neexistuje netriviální prodloužení.
+\end{definice}
+
+\begin{veta}[O maximálním prodloužení]
+	Každé řešení $(x, I)$ má alespoň jedno maximální prodloužení.
+
+	\begin{dukazin}
+		Ať $M$ je množina všech prodloužení $(x, I)$. Řekněme, že $(\tilde x, \tilde I) ≤ (\hat{x}, \hat{I})$ právě tehdy, když $(\hat{x}, \hat{I})$ je prodloužení $(\tilde x, \tilde I)$.
+
+		Ať $N \subset M$ je řetězec (množina, na které je $≤$ lineární). Označme $I_0 = \bigcup_{(\tilde x, \tilde I) \in N} \tilde{I}$ a definujme $x: I_0 \rightarrow ®R^n$ z toho, že $t \in I_0 \implies \exists (\tilde x, \tilde I) \in N$, $t \in \tilde I$, jako $x(t) = \tilde x(t)$.
+
+		Z Zornova lemmatu pak vyplývá, že existuje maximální řešení.
+	\end{dukazin}
+\end{veta}
+
+
+\begin{lemma}
+	$(x, I)$ řeší DR, $I = (a, b)$, $b \in ®R \cup ∞$. Pak řešení $x$ lze prodloužit za bod $b$, když zároveň
+
+	\begin{itemize}
+		\item $b < ∞$;
+		\item $\exists \lim_{t \rightarrow b} x(t) = x_0 \in ®R$;
+		\item $(x_0, b \in \Omega)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\implies$“ zřejmě, „$\impliedby$“: Uvažujme DR s počáteční podmínkou $x(b) = x_0$. Dle Peanovy věty $\exists \tilde x: (b - \delta, b + \delta) \rightarrow ®R^n$. $x_1(t) = x(t)$, pokud $t \in (a, b)$, $\tilde x(t)$ jinak. $x_1$ tedy splňuje DR na $(a, b)$ a $(b, b + \delta)$. Zbývá ověřit, že $x_1'(b) = f(x_1(b), b)$:
+
+		\begin{itemize}
+			\item $x_1$ je spojitá v $b$, neboť $\lim_{t \rightarrow b^-} x_1(t) = x_0 = \lim_{t \rightarrow b^+} x_1(t) = \tilde x(t)$.
+			\item $\exists \lim_{t \rightarrow b^-} x_1'(t) = \lim_{t \rightarrow b^-} f(x(t), t) = f(x(b), b) = f(x_0, b)$.
+			\item $\exists \lim_{t \rightarrow b^+} x_1'(t) = \lim_{t \rightarrow b^+} f(\tilde x(t), t) = f(\tilde x(b), b) = f(x_0, b_0)$.
+		\end{itemize}
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O opuštění kompaktu]
+	Buď $(x, I)$ maximální řešení DR. Nechť $K \subset \Omega$ kompaktní a $\exists t_0: (x(t_0), t_0) \in K$. Pak $\exists t_1 > t_0$, $t_1 \in I$, že $(x(t_1), t_1) \in \Omega \setminus K$. $\exists t_2 \in I_2$, $t_2 < t_0$, že $(x(t_2), t_2) \in \Omega \setminus K$.
+
+	\begin{dukazin}
+		Pro spor předpokládejme, že $\forall t_1 > t_0, t_1 \in I: (x(t_1), t_1) \in K$. Podle předchozí věty stačí dokázat $b < ∞$ (kdyby ne, tak $K$ není kompakt), $\{t_k\}_{k=1}^∞ \nearrow b$, $\{(x(t_k), t_k)\}_{k=1}^∞ \subset K$ vybereme konvergentní podposloupnost $(x(t_{k_n}), t_{k_n}) \rightarrow (x_0, t_0)$. Následně ověříme BC podmínku: víme $x(s) - x(t) = x'(\xi)(s - t), \xi \in (s, t)$, tedy
+		$$ |x(s) - x(t)| ≤ |x'(\xi)|·|s - t| = |f(x(\xi), \xi)|·|s - t| ≤ C · |s - t|. $$
+		Zřejmě $(x_0, b) \in K \subset \Omega$, protože z kompaktu se nedá vykonvergovat.
+	\end{dukazin}
+\end{veta}
 
 \end{document}

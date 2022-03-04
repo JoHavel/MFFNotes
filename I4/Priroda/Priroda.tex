@@ -104,4 +104,27 @@ pick(X)
 	Skoro jako Q-učení, jen místo maxima se kouká o krok dále a používá aktuální strategii agenta.
 \end{definice}
 
+% 03. 03. 2022
+
+\section{Evoluční algoritmy}
+\begin{definice}[OneMAX]
+	OneMAX je problém na prostoru $\{0, 1\}^N$, kde chceme dosáhnout nějaký (neznámý) pattern, např. samé jedničky. Fitness funkce bude počet správných prvků, např. počet jedniček.
+\end{definice}
+
+\begin{definice}[Evoluční algoritmus násvosloví]
+	Jeden „krok“ se jmenuje generace, jedinci použití na výrobu jiného se nazývají jeho rodiče, on se nazývá potomek.
+\end{definice}
+
+\begin{definice}[Genetický algoritmus]
+	Genetický algoritmus je evoluční algoritmus, který funguje na problému kódovaném jedničkami a nulami.
+	
+	Máme nějakou populaci jedinců. Na nich provedeme selekci (pomocí fitness), pak křížení (nejčastěji jednobodové, tedy že od jednoho bodu prohodíme posloupnost jedinců, ale může být i uniformní, tedy že vyberu u každého bodu náhodně). Následuje mutace, kde náhodně přehodíme bity jedinců a pak začínáme od znova.
+
+	Selekce může být ruletová (pravděpodobnost výběru jedince je fitness jedince dělená součtem fitness všech, předpokladem je fitness $≥$ 0).
+\end{definice}
+
+\begin{definice}[Elitismus]
+	Občas se při náhodné selekci nenáhodně vyberou do dalšího kroku dva nejlepší a nevyberou dva nejhorší jedinci.
+\end{definice}
+
 \end{document}

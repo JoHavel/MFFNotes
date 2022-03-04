@@ -397,4 +397,54 @@
 	\end{dukazin}
 \end{veta}
 
+% 02. 03. 2022
+
+\begin{priklady}[Absolutně spojitá rozdělení]
+	Rovnoměrné rozdělení intervalu $[a, b]$, $a < b \in ®R$ značíme $R([a, b])$ a jeho hustota je až na konstantu Lebesgueova míra: $f_X(x) = \frac{1}{b - a}1_{(a, b)}(x)$.
+	$$ F_X(t) = \begin{cases}0, & t ≤ a, \\ \frac{x - a}{b - a}, & t \in [a, b], \\ 1, & t ≥ b.\end{cases} \qquad ®E X = \int_a^b x · \frac{1}{b - a} d x = \frac{b + a}{2}, \var X = ®E X^2 - (®E X)^2 = \frac{(b - a)^2}{12}. $$
+
+	Exponenciální rozdělení s parametrem $\lambda > 0$ značíme $Exp(\lambda)$. $P(X > t) = e^{-t \lambda}$, $t > 0$. $F_X(t) = P(X ≤ t) = 1 - e^{-\lambda t}$ pro $t ≥ 0$ a $0$ pro $t ≤ 0$. $f_X(x) = \lambda e^{-\lambda x}$, $x ≥ 0$ a $f_X(x) = 0$ jinak. $®E X = \frac{1}{\lambda}$, $\var X = \frac{1}{\lambda^2}$.
+
+	\begin{poznamkain}
+		Exponenciální rozdělení má vlastnost ztráty paměti, tedy že $P(X > s + t | X > s) = P(X > t)$, $s, t > 0$.
+	\end{poznamkain}
+
+	Normální (Gaussovo) rozdělení: Normované $N(0, 1)$ je $f_X(x) = \frac{1}{\sqrt{2 \pi}}e^{-\frac{x^2}{2}}$, $x \in ®R$. $F_X(t) = \int_{-∞}^t \frac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}} dx$. Tyto $F_X$ a $f_X$ se často značí $\Phi$ a $\phi$. $®E X = 0$ ($x·\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$ je lichá funkce), $\var X = ®E(X - ®E X)^2 = ®E X^2 = 1$. $®E X^{2k + 1} = 0$.
+
+	Obecné $N(\mu, \sigma^2)$, $\mu \in ®R$, $\sigma^2 > 0$ má $f_X(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}·e^{-\frac{(x - \mu)^2}{2 \sigma^2}}$, $x \in ®R$.
+\end{priklady}
+
+\begin{tvrzeni}
+	Buď $X$ nezáporná (tj. $P(X ≥ 0) = 1$) absolutně spojitá náhodná veličina, která splňuje $P(X > s + t | X > s) = P(X > t)$, $\forall s, t > 0$, pak $X \sim Exp$.
+
+	\begin{dukazin}
+		Dělat nebudeme.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$X \sim N(0, 1)$ a $Y := \sigma X + \mu$, pro $\sigma > 0$, $\mu \in ®R$. Pak $Y \sim N(\mu, \sigma^2)$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$$ F_Y(t) = P(Y ≤ t) = P(\sigma Z + x ≤ t) = P\(Z ≤ \frac{t - \mu}{\sigma}\) = \Phi\(\frac{t - \mu}{\sigma}\). $$
+\end{dusledek}
+
+\begin{dusledek}
+	$$ ®E Y = ®E(\sigma Z + \mu) = \mu + \sigma ®E Z = \mu + 0 = \mu. $$
+	$$ \var Y = \var(\sigma Z + \mu) = \sigma^2·\var Z = \sigma^2. $$
+\end{dusledek}
+
+\begin{veta}[Rozdělení funkce náhodné veličiny]
+	Buď $X$ náhodná veličina s distribuční funkcí $F_X$, $g: ®R \rightarrow ®R$ měřitelná funkce. Pak $Y = g(X)$ je náhodná veličina s distribuční funkcí $F_Y(y) = \int_{\{x|g(x) ≤ Y\}} d F_X(x)$.
+
+	\begin{dukazin}
+		$$ F_Y(y) = P(Y ≤ y) = P(g(X) ≤ Y) = P_X(\{x | g(x) ≤ y\}) = \int_{\{x | g(x) ≤ y\}} d F_X(x). $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}
