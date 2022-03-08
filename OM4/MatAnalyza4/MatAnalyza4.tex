@@ -197,6 +197,65 @@
 		\end{dukazin}
 	\end{veta}
 
+% 08. 03. 2022
+
+\section{Mocninné řady}
+	\begin{definice}[Mocninná řada]
+		Nechť $x_0 \in ®R$ a $a_n \in ®R$ pro $n \in ®N_0$. Řadu funkcí $\sum_{n=0}^∞ a_n(x - x_0)^n$ nazýváme mocninnou řadou s koeficienty $a_n$ a středem $x_0$.
+	\end{definice}
+
+	\begin{definice}[Poloměr konvergence]
+		Poloměrem konvergence mocninné řady $\sum_{n=0}^∞ a_n·(x - x_0)^n$ nazveme
+		$$ R = \sup\{r \in [0, ∞) | \sum_{n=0}^∞ a_n (x - x_0)^n \text{ konverguje } \forall x \in [x_0 - r, x_0 + r]\}. $$
+	\end{definice}
+
+	\begin{veta}[O poloměru konvergence mocninné řady]
+		Nechť $\sum_{n=0}^∞ a_n·(x - x_0)^n$ je mocninná řada a $R \in [0, ∞]$ je její poloměr konvergence. Pak řada konverguje absolutně $\forall x \in (x_0 - R, x_0 + R)$ a diverguje $\forall x \in (-∞, x_0 - R) \cup (x_0 + r, +∞)$. Navíc platí $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Pokud existuje $Q = \lim_{n \rightarrow ∞} \frac{|a_n|}{|a_{n+1}|}$, potom $R = Q$.
+
+		\begin{dukazin}
+			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Pak pro $x: |x - x_0| < R$ platí
+			$$ \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n·(x - x_0)^n|} = |x - x_0| \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n|} = \frac{|x - x_0|}{R} < 1 \implies \text{ řada konverguje absolutně.} $$
+			Pro $|x - x_0| > R$ dostaneme úplně stejně $> 1$, tedy řada diverguje.
+
+			Nechť existuje $Q = \lim_{n \rightarrow ∞} \frac{|a_n|}{|a_{n+1}|}$, pak
+			$$ \lim_{n \rightarrow ∞} \frac{|a_{n+1}·(x - x_0)^{n+1}|}{|a_n·(x - x_0)^n|} = |x - x_0|·\lim_{n \rightarrow ∞} \frac{|a_{n+1}|}{a_n} = |x - x_0|·\frac{1}{Q}. $$
+			Pro $|x - x_0| < \frac{1}{Q}$ řada konverguje, pro $|x - x_0| > \frac{1}{Q}$ řada diverguje, tedy $\frac{1}{Q}$ je poloměr konvergence.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[O steejnoměrné konvergenci mocninné řady]
+		Nechť $\sum_{n=0}^∞ a_n·(x - x_0)^n$ je mocninná řada a $R \in (0, ∞]$ je její poloměr konvergence. Pak řada konverguje lokálně stejnoměrně na $(x_0 - R, x_0 + R)$.
+
+		\begin{dukazin}
+			Nechť $0 < r < R$. Podle předchozí věty $\sum_{a_n}·r^n$ konverguje absolutně. Nyní
+			$$ \forall x \in [x_0 - r, x_0 + r]: |a_n(x - x_0)^n| ≤ |a_n|·r^n. $$
+			Víme, že $\sum |a_n| r^n$ konverguje, tedy podle Weierstrassova kritéria $\sum a_n(x - x_0)^n \rightrightarrows$ na $[x_0 - r, x_0 + r]$. Tedy konverguje lokálně stejnoměrně na $(x_0 - R, x_0 + R)$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[O derivaci mocninné řady]
+		Nechť $\sum_{n=0}^∞ a_n·(x - x_0)^n$ je mocninná řada s poloměrem konvergence $R > 0$. Pak $\sum_{n=1}^∞ a_n·n·(x - x_0)^{n-1}$ je také mocninná řada se stejným středem a s poloměrem konvergence $R$.
+
+		Navíc pro $x \in (x_0 - R, x_0 + R)$ platí $\(\sum_{n=0}^∞ a_n·(x - x_0)^n\)' = \sum_{n=1}^∞ a_n·n·(x - x_0)^{n-1}$.
+
+		\begin{dukazin}
+			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Nyní poloměr konvergence $\sum_{n=1}^∞ a_i·n·(x - x_0)^{n-1} \overset{x ≠ x_0}{=} \frac{\sum_{n=1}^∞ a_i·n·(x - x_0)^n}{x - x_0}$ je podle věty výše
+			$$ \frac{1}{\limsup \sqrt[n]{|a_n|·n}} = R·\frac{1}{\limsup \sqrt[n]{n}} = R. $$
+			Následně použijeme větu o derivaci a stejnoměrné konvergenci (v bodě $x = x_0$ řada jistě konverguje a z předchozí věty řada derivací konverguje lokálně stejnoměrně)
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}[O integrování mocninné řady]
+		Nechť $\sum_{n=0}^∞ a_n·(x - x_0)^n$ je mocninná řada s poloměrem konvergence $R > 0$. Pak
+		$$ \sum_{n=0}^∞ \frac{a_n}{n+1}·(x - x_0)^{n+1} $$
+		je mocninná řada se stejným poloměrem konvergence. Navíc platí
+		$$ \int \sum_{n=0}^∞ a_n(x - x_0)^n dx = \sum_{n=0}^∞ \frac{a_n}{n+1}·(x - x_0)^{n+1} + C \text{ na } (x_0 - R, x_0 + R). $$
+
+		\begin{dukazin}[Hint k důkazu]
+			Mocninou řadu vpravo zderivujeme.
+		\end{dukazin}
+	\end{dusledek}
+
 
 
 \end{document}

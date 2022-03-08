@@ -447,4 +447,67 @@
 	\end{dukazin}
 \end{veta}
 
+% 07. 03. 2022
+
+\section{Náhodné vektory}
+\begin{definice}[Náhodný vektor]
+	Měřitelné zobrazení $¦X: (\Omega, ©A, P) \rightarrow (®R^n, ©B^n)$, $n \in ®N$, nazveme náhodným vektorem.
+\end{definice}
+
+\begin{definice}[Rozdělení náhodného vektoru]
+	Rozdělením náhodného vektoru $¦X: (\Omega, ©A, P) \rightarrow (®R^n, ©B^n)$ nazveme indukovanou pravděpodobnostní míru $P_{¦X}$ na $(®R^n, ©B^n)$ definovanou jako $P_{©X}(B) = P(\{\omega \in \Omega | ©X(\omega) \in B\})$, $B \in ©B^n$.
+\end{definice}
+
+\begin{definice}[(Sdružená) distribuční funkce]
+	(Sdružená) distribuční funkce náhodného vektoru ¦X je definována jako
+	$$ F_{¦X} (¦x) = P(\bigcup_{i=1}^b (X_i ≤ x_i)), \qquad \forall ¦x = (x_1, …, x_n) \in ®R^n. $$
+
+	\begin{poznamkain}
+		$F_{¦X}$ jednoznačně určuje $P_{¦X}$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[O marginální distribuční funkci]
+	Buď ¦X $n$-rozměrný náhodný vektor s distribuční funkcí $F_{¦X}$. Pak pro každé $¦x \in ®R^n$ platí
+	$$ \lim_{x_n \rightarrow ∞} F_{¦x}(x_1, …, x_n) = F_{(X_1, …, X_{n-1})^T} (x_1, …, x_{n-1}), $$
+	kde $F_{(X_1, …, X_{n-1})^T}$ je distribuční funkce náhodného vektoru $(X_1, …, X_{n-1})^T$.
+
+	\begin{dukazin}
+		Použijeme Heineho větu: Nechť máme posloupnost čísel $\{y_k\}_{k=1}^∞$ takových, že $y_k \rightarrow ∞$. Označme $B = \bigcup_{i=1}^{n-1} \{X_i ≤ x_i\}$. $B_k = \(\bigcup_{i=1}^{n-1} \{X_i ≤ x_i\}\) \cap \{X_n ≤ y_k\}$, $D_k = \(\bigcup_{l=k}^∞ B_l^c\)^c$, $k \in ®N$. Zřejmě $D_k \subseteq B_k \subset B = \bigcup_{k=1}^∞ B_k$ a $D_k \nearrow B$. Ze spojitosti $P$ máme $\lim_{k \rightarrow ∞} P(D_k) = P(B)$. Nakonec z monotonie $P$ máme $P(D_k) ≤ P(B_k) ≤ P(B)$, tedy ze dvou strážníků $\lim_{k\rightarrow ∞} P(B_k) = P(B)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Pro každou permutaci $\pi \in ©S_n$ platí
+	$$ F_{¦X}(x_1, …, x_n) = F_{(X_{\pi(1)}, …, X_{\pi(n)})^T}(x_{\pi(1)}, …, x_{\pi(n)}). $$
+
+	Rozdělení $P_{¦Y}$ podvektoru $¦Y = (X_j)_{j \in J}$, $J \subset \{1, …, n\} = I$ se nazývá marginální rozdělení (a distribuční funkce se nazývá marginální distribuční funkce).
+
+	Rozdělení $(X_1, …, X_n)$ určuje rozdělení $X_1, …, X_n$, ale ne naopak.
+\end{poznamka}
+
+\begin{definice}[Značení]
+	Mějme dva body $¦a, ¦b \in ®R^n$ a buď $¦c \in ®R^n$ takový, že $c_i \in \{a_i, b_i\}, \forall i \in [n]$. Potom
+	$$ \Delta_{n, k} = \{c | c_i = a_i \text{ právě pro $k$ indexů}\}, \qquad k \in [n]_0. $$
+\end{definice}
+
+\begin{veta}[O vlastnostech sdružené distribuční funkce]
+	Distribuční funkce náhodného vektoru ¦X splňuje:
+
+	\begin{enumerate}
+		\item $\lim_{x_i \rightarrow ∞ \forall i} F_{¦X} (¦x) = 1$;
+		\item $\forall j \forall x_1, …, x_{j-1}, x_{j+1}, …, x_n: \lim_{x_j \rightarrow -∞} F_{¦X}(¦x) = 0$;
+		\item $F_{¦X}$ je zprava spojitá v každé proměnné;
+		\item $\forall ¦a, ¦b \in ®R^n$, $a_i < b_i$, $\forall i \in [n]$ platí $\sum_{k=0}^n (-1)^k \sum_{¦c \in \Delta_{n, k}} F_{¦X}(¦c) ≥ 0$. („Monotonie“.)
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. Uvědomme si, že $x_i \rightarrow ∞, \forall i \in [n] \Leftrightarrow \min_{i \in [n]} x_i \rightarrow ∞$. Z monotonie pravděpodobnosti $P$ máme $1 ≥ F_{¦X}(¦x) ≥ F_¦X (\min_i x_i·(1, …, 1))$. Stačí ukázat, že pro funkci $H(x) := F_{¦X}(x·(1, …, 1))$ platí $\lim_{x \rightarrow +∞} H(x) = 1$. $H(x)$ je neklesající funkce $x$ (z monotonie pravděpodobnosti $P$ a definice distribuční funkce) a $H(x) ≤ 1, \forall x \in ®R$. Takže musí $\exists \lim_{x \rightarrow ∞} ≤ 1$ a nutně bude i rovna limitě $\lim_{®N \ni k \rightarrow ∞}(k)$. Označme $B_k = (-∞, k·(1, …, 1)]$. Platí $B_k \nearrow ®R^n$, takže ze spojitosti pravděpodobnosti $H(k) = P_{¦X}(B_k) \rightarrow 1$.
+
+		2. 3. analogicky (za domácí úkol).
+	\end{dukazin}
+\end{veta}
+
+
+
 \end{document}

@@ -145,4 +145,27 @@
 \begin{veta}
 	Pokud je problém $\forall i \in [n]$ $i$-konzistentní, pak ho lze vyřešit bez backtracku.
 \end{veta}
+
+% 07. 03. 2022
+
+\begin{definice}[CNF (Conjunctive normal form)]
+	Literál je proměnná nebo její negace, klauzule je disjunkce literálů a formule v CNF je konjunkce klauzulí.
+\end{definice}
+
+\begin{tvrzeni}[Z logiky]
+	Každá sentence ve výrokové logice je logicky ekvivalentní formuli v CNF.
+\end{tvrzeni}
+
+\begin{definice}[DPLL]
+	Jmenuje se podle autorů. Řeší SAT podobně jako jsme řešili CSP.
+
+	Nejdřív se ohodnocují jen ty proměnné, které se vyskytují pouze jednou (ty ohodnotíme BÚNO). Pak se vyřeší klauzule o jedné proměnné (ty jsou nutně určené). Nakonec se vyzkouší něco doplnit s backtrackingem.
+
+	V modernějších řešeních se ještě hledá, zda se SAT nedá rozdělit na disjunktní (co do proměnných) části. Pak se využívají heuristiky jako v CSP a dá se (stejně jako CSP) používat náhodný restart.
+\end{definice}
+
+\begin{definice}[Znalostní agent]
+	Znalostní agent funguje tak, že odvozuje neznámé části světa podle známých.
+\end{definice}
+
 \end{document}

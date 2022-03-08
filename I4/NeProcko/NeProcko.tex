@@ -121,5 +121,23 @@
 
 	Operátory \verb|#=, #\=, #<, #>, #=<, #>=|
 \end{poznamka}
+
+% 07. 03. 2022
+
+\begin{definice}[Ladění]
+	Pro ladění se hodí \verb|trace/0|, \verb|notrace/0|, \verb|guitracer/0| a \verb|noguitracer/0|.
+
+	Nebo můžeme ladit selektivně pomocí \verb|spy(predikát)|, např. \verb|spy()|. Odstranit je můžeme pomocí \verb|nospyall/0| a \verb|nospy(predikát)|. Pomocí \verb|nodebug/0| a \verb|debug/0| můžeme vypnout a zapnout ladění bez ztráty sledovaných predikátů.
+\end{definice}
+
+\begin{definice}[Řez]
+	Predikát \verb|!/0| vždy uspěje, ale když se algoritmus vrací z backtrackingu, tak ho rovnou hodí zpět (místo, aby se šlo na další definici daného predikátu).
+
+	Použití řezu lze rozdělit na dvě možnosti: červený řez (mění deklarativní význam programu – přidává negaci, např. deterministický \verb|prvek/2|) a zelený řez (nemění deklarativní význam programu, jen odřezává neperspektivní větve výpočtu, např. \verb|max/2|).
+\end{definice}
+
+\begin{definice}[Negace]
+	\verb|\+|
+\end{definice}
 	
 \end{document}
