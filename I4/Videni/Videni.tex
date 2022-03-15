@@ -79,4 +79,47 @@
 	Místo změny jasu použijeme různou hustotu černých a bílých bodů. (Např. Floid-Steinberg dithering, kdy uděláme náhodné chyby a zprůměrujeme je s jejich okolími).
 \end{definice}
 
+% 09. 03. 2022
+
+\begin{definice}[Matematická morfologie]
+	Nástroj na popis komponent obrazu, tvaru a struktury.
+
+	Pomocí jejích operací můžeme dělat: předzpracování, segmentaci, popis struktury, kvantitativní popis, …
+\end{definice}
+
+\begin{definice}[Strukturální prvek]
+	Nějaká malá množina (obrázek), kterou aplikujeme na obrázek.
+\end{definice}
+
+\begin{definice}[Minkowského součet (dilatace)]
+	$$ A \oplus E := \bigcup_{e \in E} A_e = \bigcup_{e \in E} \{a + e | a \in A\}. $$
+
+	Zvětšuje množinu, vyplňuje díry a „zálivy“.
+\end{definice}
+
+\begin{definice}[Eroze]
+	TODO!!!
+
+	Zmenšuje množinu, odstraňuje „šum“ a výběžky.
+\end{definice}
+
+\begin{definice}[Otevření]
+	$$ A \circ E := (A \ominus E) \oplus E = \bigcup \{E_s| E_s \subset A\}. $$
+\end{definice}
+
+\begin{definice}[Uzavření]
+	$$ A · E = (A \oplus E) \ominus E = \bigcup\{\hat{E_x} | \hat{E_x} \cap A = \O\}. $$
+\end{definice}
+
+TODO vlastnosti.
+
+\begin{definice}[Hit-and-Miss]
+	$$ A \otimes E = (A \ominus E_1) \setminus (A \oplus \hat{E}_2). $$
+
+	Např. detekce rohů.
+\end{definice}
+
+TODO operace na šedotónovém obrazu.
+
+
 \end{document}

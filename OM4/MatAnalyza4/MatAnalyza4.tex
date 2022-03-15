@@ -256,7 +256,67 @@
 		\end{dukazin}
 	\end{dusledek}
 
+% 15. 03. 2022
 
+	\begin{veta}[Abelova]
+		Nechť $\sum_{n=0}^∞ a_n (x - x_0)^n$ je mocninná řada s poloměrem konvergence $R > 0$. Nechť navíc $\sum_{n=0}^∞ a_n · R^n$ konverguje. Pak řada $\sum_{n=0}^∞ a_n·(x - x_0)^n$ konverguje stejnoměrně na $[x_0, x_0 + R]$ a platí $\sum_{n=0}^∞ a_n·R^n = \lim_{r \rightarrow R_-} \sum_{n=0}^∞ a_n · r^n$.
+
+		\begin{dukazin}
+			$$ \sum_{n=0}^∞ a_n · (x - x_0)^n = \sum_{n=0}^∞ \underbrace{a_n·R^n}_{a_n(x)}·\underbrace{\frac{(x - x_0)^n}{R^n}}_{b_n(x)}. $$
+			Víme, že $b_n ≥ b_{n+1} ≥ 0$, jelikož $\frac{(x - x_0)^n}{R^n} ≥ \frac{(x - x_0)^{n+1}}{R^{n+1}} \Leftrightarrow 1 ≥ \frac{x - x_0}{R}$. Navíc $b_0 = 1$. Víme, že $\sum a_n·R^n$ konverguje, tedy podle BC podmínky pro konvergenci reálné řady:
+			$$ \exists \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: |\sum_{k=n}^m a_k·R^k| < \epsilon. $$
+			Z toho ale jednoduše (jelikož $a_n(x)$ na $x$ nezávisí)
+			$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0\ \forall x \in [x_0, x_0 + R]: |\sum_{k=n}^m a_k(x)| = |\sum_{k=n}^m a_k·R^k| < \epsilon. $$
+			Tedy podle Abel-Dirichletova kritéria (části Abel) $\sum a_n(x - x_0)^n \leftleftarrows$ na $[x_0, x_0 + R]$.
+
+			Funkce $a_n (x - x_0)^n$ jsou spojité a $\sum \leftleftarrows \implies F(x) = \sum_{n=0}^∞ a_n·(x - x_0)^n$ je spojitá na $[x_0, x_0 + R]$. Tedy
+			$$ \lim_{x \rightarrow x_0 + R} F(x) = F(x_0 + R). $$
+		\end{dukazin}
+	\end{veta}
+
+\section{Absolutně spojité funkce a funkce s konečnou variací}
+	\begin{poznamka}
+		Všechny integrály v této kapitole jsou Lebesgueovy.
+	\end{poznamka}
+
+	\subsection{Derivace monotónní funkce}
+	\begin{definice}[Limes superior a limes inferior pro funkce]
+		Nechť $x \in (a, b)$ a $f: (a, b) \rightarrow ®R$. Definujeme limes superior a limes inferior jako $\limsup_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y)$ a $\liminf_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y)$.
+	\end{definice}
+
+	\begin{poznamka}
+		Analogicky jako u posloupnosti platí věta:
+		$$ \exists \lim_{h \rightarrow 0} f(x + h) \in ®R \Leftrightarrow \limsup_{h \rightarrow 0} f(x + h) = \liminf_{h \rightarrow 0} f(x + h). $$
+	\end{poznamka}
+
+	\begin{definice}
+		Nechť $I$ je interval, $x$ je vnitřní bod $I$ a $f: I \rightarrow ®R$ je funkce. Definujeme horní a dolní derivaci funkce $f$ v bodě $x$ jako
+		$$ \overline{D} f(x) = \limsup_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h}, $$
+		$$ \underline{D} f(x) = \liminf_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h}. $$
+	\end{definice}
+
+	\begin{veta}[Míra vzoru a obrazu]
+		Nechť $I \subset ®R$ je interval. Nechť $f: I \rightarrow ®R$ je neklesající funkce, $M \subset I$ je měřitelná a $c > 0$.
+
+		\begin{itemize}
+			\item Je-li $\overline{D} f(x) > c$ na $M$, potom $©L^*(f(M)) \supseteq c·©L(M)$.
+			\item Je-li $\underline{D} f(x) < c$ na $M$, potom $©L^*(f(M)) \subseteq c·©L(M)$.
+		\end{itemize}
+
+		\begin{dukazin}
+			Bez důkazu.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Derivace monotónní funkce]
+		Nechť $I \subset ®R$ je interval a $f: I \rightarrow ®R$ je monotónní funkce. Potom ve skoro každém bodě $x \in I$ existuje $f'(x)$.
+
+		\begin{dukazin}
+			Nechť $M_{p, q} = \{x \in I | \underline{D}f(x) < p < q < \overline{D}f(x)\}$. Podle předchozí věty $q·©L(M_{p, q}) \subseteq ©L^*(f(M_{p, q})) \subseteq p·©L(M_{p, q})$. Tedy, protože $p < q$, tak $©L(M_{p, q}) = 0$.
+
+			Tvrdíme, že pro množinu $M$ bodů nediferencovatelnosti platí $M = \bigcup_{p, q \in Q, p < q} M_{p, q}$ $\implies$, tedy spočetné sjednocení nulových množin, tudíž $M$ je nulová: „$\supseteq$“: $x \in M_{p, q}, p < q \implies \underline{D}f(x) < \overline{D}f(x) \implies \nexists D f(x)$. „$\subseteq$“: Nechť $x \in M \implies \nexists D f(x) \implies \underline{D} f(x) < \overline{D}f(x)$.
+		\end{dukazin}
+	\end{veta}
 
 \end{document}
 

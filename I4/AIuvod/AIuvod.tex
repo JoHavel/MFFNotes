@@ -168,4 +168,39 @@
 	Znalostní agent funguje tak, že odvozuje neznámé části světa podle známých.
 \end{definice}
 
+% 14. 03. 2022
+
+\section{Dynamický SAT}
+\begin{definice}[Fluent]
+	V podstatě dvojice \verb|proměnná| – \verb|čas|. (Ohodnocení true znamená, že v \verb|čase| platí \verb|proměnná|.)
+\end{definice}
+
+\begin{definice}[Pozorovací model]
+	Vezme pozorované prostředí a převede je do modelu (např. přidá souřadnice, nebo čas).
+\end{definice}
+
+\begin{definice}[Přechodový model]
+	Popisuje, jak evolvuje svět.
+\end{definice}
+
+\begin{definice}[Frame problem]
+	V přechodovém modelu se musí logickými formulemi zadat i proměnné, které se nemění. Pro jednoduchost se používá tzv. axiom následujícího stavu (pokud akce nemění proměnnou, tak se nemění zapíšeme jako proměnná je ekvivalentní sobě konjunkce akce měnící proměnnou).
+\end{definice}
+
+\begin{definice}[Precondition axioms]
+	Podmínky pro provedení akce se dají zapsat jako implikace.
+\end{definice}
+
+\begin{definice}[Situační kalkulus]
+	Výroková logika má nevýhodu, že nemá kvantifikátory, tedy musíme popis všeho většinou nagenerovat (například jedno pole je soused vedlejšího). S tím nám pomůže situační kalkulus, kde se používá logika 1. řádu.
+\end{definice}
+
+\begin{definice}[Klasické plánování]
+	Využívá popis situačního kalkulu, ale řeší problém pomocí např. A$^*$.
+\end{definice}
+
+\begin{poznamka}
+	Negace se lze zbavit tak, že se předpoklad duplikuje, a duplikát představuje negaci.
+\end{poznamka}
+
 \end{document}

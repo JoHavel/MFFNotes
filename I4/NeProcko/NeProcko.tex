@@ -139,5 +139,32 @@
 \begin{definice}[Negace]
 	\verb|\+|
 \end{definice}
+
+TODO matice?
+
+% 14. 03. 2022
+
+\section{Neúplně definované datové struktury}
+\begin{definice}[Rozdílový seznam]
+	Nemá nic společného s rozdílem, krom znaku mínus. Je to seznam prvků, za kterými následuje jako zbytek seznamu proměnná. Za tímto seznamem je mínus a znovu ta proměnná, tedy když unifikujeme \verb![a, b, …, | Y]-Y = L-[c, d, …]!, tak \verb|L| bude seznam \verb|[a, b, …, c, d, …]|.
+
+	Zřetězení probíhá v konstantním čase, přidávání na konec v konstantním čase.
+\end{definice}
+
+\begin{definice}[Vestavěné predikáty]
+	Dotazy na to, zda je něco: \verb|atom/1| (atom), \verb|atomic/1| (konstanta), \verb|number/1|, \verb|integer/1|, \verb|float/1|, \verb|var/1| (volná proměnná), \verb|nonvar/1|, \verb|ground/1| (term bez volných proměnných, tzv. základní term), \verb|compound/1| (složený term).
+\end{definice}
+
+\begin{definice}[univ]
+	Predikát \verb|=..| rozebere term (jednu „hladinu“) na \verb![HlavníFunktor | SeznamArgumentů]!.
+\end{definice}
+
+\begin{definice}[arg, functor]
+	\verb|arg(pořadovécislo, term, hodnota)| a \verb|functor(term, funktor, početargumentů)| nám naopak umožňují term poskládat.
+\end{definice}
+
+\begin{definice}[bagof, setof, findall]
+	Shromažďují výsledky. bagof vrací výsledky opakovaně, pokud se do nich lze dostat více způsoby. findall vždy uspěje a automaticky nebere ohled na proměnné nezadané v cíli.
+\end{definice}
 	
 \end{document}

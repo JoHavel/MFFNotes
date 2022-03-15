@@ -505,9 +505,153 @@
 		1. Uvědomme si, že $x_i \rightarrow ∞, \forall i \in [n] \Leftrightarrow \min_{i \in [n]} x_i \rightarrow ∞$. Z monotonie pravděpodobnosti $P$ máme $1 ≥ F_{¦X}(¦x) ≥ F_¦X (\min_i x_i·(1, …, 1))$. Stačí ukázat, že pro funkci $H(x) := F_{¦X}(x·(1, …, 1))$ platí $\lim_{x \rightarrow +∞} H(x) = 1$. $H(x)$ je neklesající funkce $x$ (z monotonie pravděpodobnosti $P$ a definice distribuční funkce) a $H(x) ≤ 1, \forall x \in ®R$. Takže musí $\exists \lim_{x \rightarrow ∞} ≤ 1$ a nutně bude i rovna limitě $\lim_{®N \ni k \rightarrow ∞}(k)$. Označme $B_k = (-∞, k·(1, …, 1)]$. Platí $B_k \nearrow ®R^n$, takže ze spojitosti pravděpodobnosti $H(k) = P_{¦X}(B_k) \rightarrow 1$.
 
 		2. 3. analogicky (za domácí úkol).
+
+% 09. 03. 2022
+
+		4. (jen pro $n = 2$, pro $n > 2$ je důkaz zbytečně technický):
+		$$ \sum_{k=0}^n (-1)^k \sum_{¦c \in \Delta_{n, k}} F_{¦X}(¦c) = F_{¦X}(b_1, b_2) - \[F_{¦X}(b_1, a_2) + F_{¦x}(a_1, b_2)\] + F_{¦X}(a_1, a_2) = $$
+		$$ = \[F_{¦X}(b_1, b_2) - F_{¦X}(b_1, a_2)\] - \[F_{¦X}(a_1, b_2) - F_{¦x}(a_1, a_2)\] = $$
+		$$ = P(X_1 ≤ b_1 \land a_2 < X_2 ≤ b_2) - P(X_1 ≤ a_1 \land a_2 < X_2 ≤ b_2) = $$
+		$$ = P(a_1 < X_1 ≤ b_1 \land a_2 < X_2 ≤ b_2). $$
 	\end{dukazin}
 \end{veta}
 
+\begin{poznamka}
+	Pro každý interval $(¦a, ¦b]$ v $¦R^n$ definujeme $\mu_F((¦a, ¦b]) = 4.$ z předchozího pro $F$ splňující tvrzení předchozí věty. Potom lze rozšířit $\mu_F$ na konečnou borelovskou míru na $®R^n$ a té se říká Lebesgueova-Stieltjesova míra příslušná $F$.
 
+	Pokud $F = F_{¦X}$ od ¦X s rozdělením $P_{¦X}$, pak nutně $\mu_F = P_{¦X}$, neboť se rovnají na intervalech $\{(¦a, ¦b]| ¦a < ¦b \in ®R^n\}$, což je systém uzavřený na konečné průniky generující $©B^n$.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $F$ splňuje vlastnosti sdružené distribuční funkce. Pak $\exists$ pravděpodobnostní prostor $(\Omega, ©A, P)$ a náhodný vektor ¦X takový, že $F = F_{¦X}$.
+
+	\begin{dukazin}
+		Vezměme $\Omega := ®R^n$, $©A = ©B^n$, $P = \mu_F$ a $¦X = \id$. Pak je ¦X zřejmě měřitelné, tedy je to náhodný vektor. Navíc
+		$$ F_{¦X}(¦x) = P(\{\omega \in \Omega | \omega_i ≤ x_i, \forall i \in [n]\}) = \mu_F((-∞, ¦x]) = F(¦x). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Diskrétní rozdělení]
+	Náhodný vektor ¦X má diskrétní rozdělení, pokud $\exists$ (konečná nebo spočetná) množina $\{¦x_i\}_{i \in I} \subset ®R^n$ a hodnoty $\{p_i\}_{i \in I}$ splňující $\forall i \in I: p_i \in (0, 1]$, $\sum_{i \in I} p_i = 1$, tak že $P(¦X = ¦x_i) = p_i$.
+
+	\begin{poznamkain}
+		Pak nutně $P_{¦X} = \sum_{i \in I} p_i \delta_{¦x_i}$.
+
+		Také zřejmě marginální rozdělení jsou též diskrétní.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[(Absolutně) spojité rozdělení]
+	Náhodný vektor ¦X má (absolutně) spojité rozdělení, existuje-li nezáporná měřitelná funkce $f_{¦X}: ®R^n \rightarrow ®R$ taková, že
+	$$ F_{¦X}(¦x) = \int_{(-∞, x_1]} \int_{(-∞, x_2]} … \int_{(-∞, x_n]} f_{¦x}(t_1, …, t_n) dt_n … dt_1, \qquad \forall ¦x \in ®R^n. $$
+
+	\begin{poznamka}
+		To nastává právě tehdy, když $P_{¦x} \ll \lambda^n$. Potom $f_{¦x} = \frac{\partial^n}{\partial x_1 … \partial x_n} F_{¦x}$ $\lambda^n$ skoro všude.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}[O hustotě $P_{¦X}$ vzhledem k součinové referenční míře]
+	Buď $P_{¦X}$ rozdělení $n$-rozměrného náhodného vektoru ¦X. Nechť $P_{¦X} \ll \nu_1 \otimes … \otimes \nu_n$ (součin $\sigma$-konečných měr na ®R). Pak $P_{X_i} \ll \nu_i$, $\forall i \in [n]$, a existují nezáporné měřitelné funkce $f_{¦x}: ®R^n \rightarrow [0, ∞)$, $f_{x_i}: ®R \rightarrow [0, ∞)$, $i \in [n]$ takové, že
+	$$ P_{¦X}((-∞, ¦x]) = F_{¦X}(¦x) = \int_{(-∞, x_1]} … \int_{(-∞, x_n]} f_{¦x}(t_1, …, t_n) d\nu_n(t_n) … d\nu_1(t_1), \qquad \forall ¦x \in ®R^n, $$
+	$$ P_{¦X}(B) = \int_B f_{¦x}(¦t) d(\nu_1 \otimes … \otimes \nu_n)(¦t), \qquad \forall B \in ©B^n. $$
+	Navíc pro každé $x_i \in ®R$, $i \in [n]$ platí
+	$$ F_{X_i}(x_i) = \int_{(-∞, x_i]} f_{x_i}(t) d\nu_i(t), $$
+	kde $f_{X_i}(y_i) = \int_{®R^{n-1}} f_{¦x}(y_1, …, y_n) d(\nu_1 \otimes … \otimes \nu_{i-1} \otimes \nu_{i+1} \otimes … \otimes \nu_n) (y_1, …, y_{i-1}, y_{i+1}, …, y_n)$ pro $\nu_i$-skoro všechna $y_i \in ®R$.
+
+	\begin{dukazin}
+		Snadný: existence a tvrzení o $f_{¦X}$ plyne z Radon-Nikodymovy věty a přepis v 1. vzorci a tvrzení o $f_i$ plyne z Fubiniovy věty a věty o marginální distribuční funkci.
+	\end{dukazin}
+\end{veta}
+
+\section{Nezávislé náhodné veličiny}
+\begin{definice}[(Vzájemně) nezávislé náhodné veličiny]
+	Buď $\{X_i\}_{i \in I}$ systém náhodných veličin na $(\Omega, ©A, P)$, kde $I ≠ \O$ je libovolná indexová množina. $\{X_i\}_{i \in I}$ nazveme (vzájemně) nezávislé, pokud $\forall$ konečnou neprázdnou $J \subset I$, platí
+	$$ P(\bigcap_{i \in J} \{X_i \in B_i\}) = \prod_{i \in J} P(X_i \in B_i), \qquad B_i \in ©B, i \in J. $$
+
+	\begin{poznamka}
+		Pro nezávislé náhodné veličiny jsou jevy $(X_i \in B_i)$ nezávislé.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}[O rozdělení vektoru s nezávislými složkami]
+	Buď $¦X = (X_1, …, X_n)^T$ náhodný vektro. Pak $\{X_i\}_{i=1}^n$ jsou nezávislé náhodné veličiny právě tehdy, když $P_{¦X} = P_{X_1} \otimes … \otimes P_{X_n}$.
+
+	\begin{dukazin}
+		„$\impliedby$“ zřejmě. „$\implies$“: $\forall B_1, …, B_n \in ©B$ platí $P_{¦X}(B_1 \times … \times B_n) = \prod_{i=1}^n P_{x_i}(B)$ plyne z definice nezávislosti, takže $P_{¦X}$ se rovná součinové míře na měřitelných obdélnících $\{B_1 \times … \times B_n | B_i \in ©B\}$, ale tento systém je uzavřený na konečné průniky a generuje $©B^n$, tedy z věty o jednoznačnosti míry se $P_{¦X}$ a $P_{X_1} \otimes … \otimes P_{X_n}$ rovnají na celém $©B^n$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O distribuční funkci náhodného vektoru s nezávislými složkami]
+	Za předpokladů předchozí věty platí, že $\{X_i\}_{i=1}^n$ jsou vzájemně nezávislé právě tehdy, když $F_{¦X}(¦x) = \prod_{i=1}^n F_{X_i}(x_i)$, $\forall ¦x \in ®R^n$.
+
+	\begin{dukazin}
+		„$\implies$“ zřejmě neboť $F_{¦X}(x_1, …, x_n) = P(\bigcup …) = \prod P(X_i \in (-∞, x_i]) = \prod_{i=1}^n F_{X_i}(x_i)$. „$\impliedby$“: Množiny $(-∞, …] \times …$ tvoří systém uzavřený na konečné průniky a generující $©B^n$, tedy z rovnosti $P_{¦X}$ a součinové míry na tomto systému už plyne rovnost dvou měr na $©B^n$ (pomocí věty o jednoznačnosti míry).
+	\end{dukazin}
+\end{veta}
+
+% 14. 03. 2022
+
+\begin{veta}[O hustotě vektoru s nezávislými složkami]
+	Buď $P_{¦X}$ rozdělení $n$-rozměrného náhodného vektoru ¦X splňující $P_{¦X} \ll \nu_1\otimes … \otimes \nu_n$ (součin $\sigma$-konečných měr) a buď $f_{¦X}$ hustota náhodného vektoru ¦X. Pak náhodné veličiny $X_1$, …, $X_n$ jsou vzájemně nezávislé $\Leftrightarrow$ $f_{¦X} (x_1, …, x_n) = \prod_{i=1}^n f_{X_i}(x_i)$ pro $\nu_1 \otimes … \otimes \nu_n$-skoro všechna $¦x \in ®R^n$, kde $f_{x_i} = \frac{dP_{X_i}}{d\nu_i}$, $i \in [n]$.
+
+	\begin{dukazin}
+		„$\implies$“: použijeme charakterizaci nezávislosti složek pomocí distribuční funkce:
+		$$ \int_{(-∞, ¦x]} \prod_{i=1}^n f_{X_i}(t_i) d(\nu_1 \otimes … \otimes \nu_n)(¦t) = \int_{-∞}^{x_1} … \int_{-∞}^{x_n} \prod_{i=1}^n f_{X_i}(t_i) d\nu_n(t_n) … d\nu_1(t_1) = \prod_{i=1}^∞ \int_{-∞}^{x_i} f_{x_i}(t_i) d\nu_i(t_i)\prod_{i=1}^n F_{X_i}(x_i) = F_{¦X}(¦x) = \int_{(-∞, ¦x} f_{¦X} (t_1, …, t_n) d(\nu_1 \otimes … \otimes \nu_n) (¦t) $$
+
+		Takže $f_{¦x} = \prod_{i=1}^n f_{X_i}$ $\nu_1 \otimes … \otimes \nu_n$-skoro všude. „$\impliedby$“ dokážeme obdobně obráceným postupem.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buď $\{X_i\}_{i \in I}$ systém nezávislých náhodných veličin a $g_i: ®R \rightarrow ®R, i \in I$ měřitelné funkce. Pak $\{g_i(X_i)\}_{i \in I}$.
+
+	\begin{dukazin}
+		Dokážeme z definice: Buď $J \subset I$ konečná neprázdná
+		$$ P(\bigcap_{i \in J} \{g_i(X_i) \in B_i\}) = P(\bigcap_{i \in J} \{X_i \in g_i^{-1}(B_i)\}) = \prod_{i \in J} P(X_i \in g_i^{-1}(B_i)) = \prod_{i \in J} P(g_i(x_i) \in B_i), \qquad \forall B_i \in ©B. $$
+	\end{dukazin}
+\end{veta}
+
+\section{Momenty náhodného vektoru}
+\begin{definice}[Notace: střední hodnota náhodného vektoru]
+	$$ ®E ¦X := \(®E X_1, …, ®E X_n\)^T. $$
+\end{definice}
+
+\begin{definice}[Kovariance, korelace]
+	Buďte $X$, $Y$ náhodné veličiny na pravděpodobnostním prostoru $(\Omega, ©A, P)$. Pak kovariance $X$ a $Y$ je definovaná jako $\cov(X, Y) = ®E[(X - ®E X)(Y - ®E Y)]$. Korelace $X$ a $Y$ je definována jako $\cor(X, Y) = \frac{\cov(X, Y)}{\sqrt{\var X · \var Y}}$, pokud $\var X · \var Y > 0$.
+\end{definice}
+
+\begin{veta}[Hölderova nerovnost]
+	Buďte $X_1$, $X_2$ náhodné veličiny na stejném pravděpodobnostním prostoru a nechť $®E |X_1|^p < ∞$, $®E |X_2|^q < ∞$, $p, q > 1$ a $\frac{1}{p} + \frac{1}{q} = 1$. Pak $®E |X_1·X_2| ≤ \(®E |X_1|^p\)^{\frac{1}{p}}·\(®E |X_2|^q\)^{\frac{1}{q}}$, a rovnost nastává, když $X_1 = c·X_2$ skoro jistě.
+
+	\begin{dukazin}
+		MA3.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$®E|X_1·X_2| ≤ \sqrt{®E X_1^2 · ®E X_2^2}$, takže $|\cov(X, Y)| ≤ \sqrt{\var X · \var Y}$ a $\cor (X, Y) \in [-1, 1]$. Navíc $|\cor(X, Y)| = 1 \Leftrightarrow X = a Y + b$ skoro jistě pro nějaké $a ≠ 0$, $b \in ®R$.
+\end{dusledek}
+
+\begin{veta}
+	Buďte náhodné veličiny $X_1$ a $X_2$ nezávislé a $®E |X_i| < ∞$, $i = 1, 2$. Pak $®E |X_1·X_2| < ∞$ a platí $®E(X_1·X_2) = (®E X_1) · (®E X_2)$.
+
+	\begin{dukazin}
+		$$ ®E(X_1·X_2) = \int_{®R^2} x_1·x_2 dP_{¦X}(¦x) = \int_{®R^2} x_1·x_2 d\(P_{X_1} \otimes P_{X_2}\)(¦x) = \int_{®R} x_1 d P_{x_1} · \int_{®R} x_2 d P_{x_2} = (®E X_1)·(®E X_2), $$
+		z Fubiniovy věty, pokud $®E |X_1·X_2| < ∞$. Uvažujme $\Phi_n(x_1, x_2) = |x_1|·1_{|x_1| ≤ n} · |x_2| 1_{|x_2 ≤ n|}$. Pak $®E \Phi_n(X_1, X_2) = $
+		$$ \int_{®R^2} |x_1|·|x_2| 1_{|x_1| ≥ n} ·1_{|x_2| ≤ n} dP_{X_1} \otimes dP_{X_2} (x_1, x_2) = ®E\(|X_1| 1_{\{X_1 ≤ m\}}\)·®E\(|X_2| 1_{\{|X_2| ≤ n\}}\) ≤ ®E |X_1|·®E |X_2|. $$
+		Takže $\Phi_n(X_1, X_2) \nearrow |X_1, X_2|$ z Léviho věty $®E |X_1·X_2|$ existuje a z poslední nerovnosti je $®E|X_1, X_2| ≤ ®E |X_1|·®E |X_2|$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[P $\cov$ a $\var$ pro nezávislost náhodných veličin]
+	Buďte $X_1, …, X_n$ nezávislé náhodné veličiny, $®E X_i^2 < ∞$, $\forall i \in [n]$. Pak $\cov(X_i, X_j) = 0$, $i ≠ j$. $\forall a_1, …, a_n \in ®R$ platí $\var\(\sum_{i=1}^n a_i X_i\) = \sum_{i=1}^n a_i^2 \var X_i$.
+
+	\begin{dukazin}
+		$$ \cov(X_i, X_j) = ®E[(X_i - ®E X_i)(X_j - ®E X_j)] = ®E X_i X_j - ®E X_i (®E X_j) - (®E X_i)®E X_j + ®E X_i + ®E X_k = ®E(X_i X_j) - (®E X_i)(®E X_j) = 0 $$
+		z nezávislosti a předchozí věty.
+
+		$$ \var\(\sum_{i=1}^n a_i X_i\) = ®E\(\sum_{i=1}^n a_i X_i - ®E\(\sum_{i=1}^n a_i X_i\)\)^2 = ®E\(\sum_{i=1}^n a_i(X_i - ®E X_i)\)^2 = \sum_{i=1}^n a_i^2 \var X_i + 2 \sum_{i=1}^n \sum_{j = i + 1}^n a_i a_j \cov(X_1, X_2) = \sum_{i=1}^n a_i^2 \var X_i + 0. $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

@@ -201,4 +201,53 @@
 	\end{dukazin}
 \end{veta}
 
+% 10. 03. 2022
+
+\section{Závislost řešení na počáteční podmínce}
+\begin{definice}
+	Buď $f$ v $\Omega$ lokálně Lipschitzovská vzhledem k $x_0$. Řešící funkcí (DR) nazveme funkci $\phi: G \subset ®R^{n+2} \rightarrow ®R^n: (t, t_0, x_0) \mapsto x(t)$, kde $x$ je maximální řešení odpovídající DR s počáteční podmínkou $x(t_0) = x_0$.
+\end{definice}
+
+\begin{veta}[Granwallovo Lemma]
+	Nechť $g, w: I \subset ®R \rightarrow ®R_+$, $g(t), w(t) ≥ 0$, $\forall t \in I_0$. Nechť $t_0 \in I, K ≥ 0$ a $\forall t \in I: w(t) ≤ K + \left| \int_{t_0}^t w(s) g(s) ds\right|$. Potom
+	$$ w(t) ≤ K·\exp\(\left|\int_{t_0}^t g(s) ds\right|\). $$
+
+	\begin{dukazin}
+		BÚNO $t > t_0$. Vezmeme $\epsilon > 0$. Definujeme $\Phi(t) = K + \epsilon + \int_{t_0}^t w(s) g(s) ds$. $\Phi'(t) = w(t)·g(t)$.
+		$$ \Phi'(t) ≤ g(t)\(K + \int_{t_0}^t w(s) g(s) ds\) ≤ g(t) \Phi(t), \qquad \forall t \in (t_0, \sup I). $$
+		$$ \forall t \in (t_0, \sup I): \Phi(t) ≥ 0. \qquad \frac{\Phi'(t)}{\Phi(t)} ≤ g(t), \qquad \int_{t_0}^t \frac{\Phi'(s)}{\Phi(s)}ds ≤ \int_{t_0}^t g(s) ds. $$
+		$$ \Phi(t_0) = K + \epsilon, \qquad \frac{\Phi(t)}{K + \epsilon} ≤ \exp\(\int_{t_0}^t g(s) ds\), $$
+		$$ \Phi(t) ≤ (K + \epsilon)\exp\(\int_{t_0}^t g(s) ds\) \qquad \forall \epsilon > 0 \implies \Phi(t) ≤ K·\exp\(\int_{t_0}^t g(s) ds\). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $f$ je globálně $L$-lipschitzovská v první souřadnici. Nechť $x$ a $y$ jsou řešení DR na intervalu $I$ s počáteční podmínkou $x(t_0) = x_0$, $y(t_0) = y_0$. Potom
+	$$ |x(t) - y(t)| ≤ |x_0 - y_0|·e^{L·|t - t_0|}. $$
+
+	\begin{dukazin}
+		$$ x'(t) = f(x(t), t), \qquad y'(t) = f(y(t), t). $$
+		$$ x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad y(t) = y_0 + \int_{t_0}^t f(y(s), s) ds, $$
+		$$ x(t) - y(t) = x_0 - y_0 + \int_{t_0}^t (f(x(t), t) - f(y(s), s)) ds, $$
+		$$ |x(t) - y(t)| ≤ |x_0 - y_0| + \left|\int_{t_0}^t L·(x(s) - y(s)) ds\right|, $$
+		Z Granwallova lemmatu potom $|x(t) - y(t)| ≤ |x_0 - y_0|·\exp(L·|t - t_0|)$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	Buď $G$ množina z definice řešící funkce, $f$ lokálně lipschitzovská na $G$. Pak $G \subset ®R^{n+2}$ otevřená a $\phi$ je spojitá v $G$.
+
+	\begin{dukazin}
+		Vezmeme $(t, t_0, x_0) \in G$. Buď $x$ maximální řešení DR s počáteční podmínkou $x(t_0) = x_0$. $©D_x \supset [t_0, t]$. BÚNO $t > t_0$.
+		$$ K_\delta := \{(y, s) \in ®R^{n+1} | s \in [t_0 - \delta, t + \delta], |y - x(s)| ≤ \delta\}. $$
+		Vezmeme $\epsilon > 0$. Vezmeme $y_0 \in ®R^n, s_0 \in ®R$, $|y_0 - x_0| < \epsilon$, $|t_0 - s_0| < \epsilon$. Definujeme $y$ maximální řešení splňující $y(s_0) = y_0$. Co znamená, že $(\tilde{t}, s_0, y_0) \in G$? $©D_y \supset[s_0, \tilde{t}]$. Potřebujeme dokázat, že $y$ je definováno na $K_\delta$. Odhadneme
+		$$ |y(s_0) - x(s_0)| ≤ |y(s_0) - x(t_0)| + |x(t_0) - x(s_0)| = |y_0 - x_0| + |x(t_0) - x(s_0)| ≤ \epsilon + x_0 |t_0 - s_0| ≤ \epsilon·(1 + c_0) $$
+		$$ s ≥ t_0: |x(s) - y(s)| ≤ |x(s_0) - y(s_0)| e^{L|s - s_0|} ≤ \epsilon (1 + c_0) e^{L·|s - s_0|}. $$
+		Máme, že $\forall s > t_0: |x(s) - y(s)| ≤ \frac{\delta}{2}$, tedy $y$ neopustí $K_\delta$ přes hranici $\implies$ $y$ existuje až do času $t + \delta_0$, tj. $G$ je otevřená.
+
+		Nyní „$\Phi$ je spojitá“: $(t, t_0, x_0), (s, s_0, y_0) \in G$:
+		$$ |\phi(t, t_0, x_0) - \phi(s, s_0, y_0)| = |x(t) - y(s)| ≤ |x(t) - x(s)| + |x(s) - y(s)| ≤ c_0|t - s| + |x(s_0) - y(s_0)|e^{L·|s - s_0|} ≤ TODO $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}
