@@ -250,4 +250,83 @@
 	\end{dukazin}
 \end{veta}
 
+% 17. 03. 2022
+
+\begin{veta}[Věta o derivování řešení v počáteční podmínce?]
+	Buď $f$ je třídy $C^1$ vzhledem k $x$, $\phi$ je řešící funkce diferenciální rovnice. Potom $\forall (t, t_0, x_0) \in G$ a $\forall ¦w \in ®R^n, |w| = 1$, existuje derivace $\phi$ podle $x_0$ ve směru $w$ v bodě $(t, t_0, x_0)$, tj.
+	$$ D_w \phi(t, t_0, x_0) = \lim_{h \rightarrow 0} \frac{\phi(t, t_0, x_0 + hw) - \phi(t, t_0, x_0)}{h}. $$
+	Označíme-li pro pevné $(t_0, x_0)$: $x(t) := \phi(t, t_0, x_0)$, $u(t) := D_w \phi(t, t_0, x_0)$, pak platí
+	$$ u'(t) = [\nabla_x f(x(t), t)]u(t), \qquad \text{(tzv. rovnice ve variacích)} $$
+	$$ u(t_0) = w. $$
+
+	\begin{dukazin}
+		Vezmeme $(x_0, t_0) \in \Omega$. Definujeme $x(t) := \phi(t, t_0, x_0)$, $y_h(t) := \phi(t, t_0, x_0 + h w)$. To znamená, že
+		$$ \eta_h(x) = \frac{\phi(t, t_0, x_0 + hw) - \phi(t, t_0, x_0)}{h} - u(t) = \frac{y_h(t) - x(t)}{h} - u(t). $$
+		$$ x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad y_h(t) = x_0 + h·w + \int_{t_0}^t f(y_h(s), s) ds. $$
+		$$ y_h(t) - x(t) = h·w + \int_{t_0}^t f(y_h(s), s) - f(x(s), s) ds. $$
+		Pro nějaké $s, h$ $g(\theta) = f(x(s) + \theta(y_h(s) - x(s)), s)$, tedy $g(1) = f(y_h(s), s)$, $g(0) = f(x(s), s)$,
+		$$ y_h(t) - x(t) = h·w + \int_{t_0}^t g(1) - g(0) ds =  h·w + \int_{t_0}^t \int_0^1 g'(\theta) d\theta ds = $$
+		$$ = h·w + \int_{t_0}^t \int_0^1 \nabla_x f(x(u) + \theta(y_h(s) - x(s)), s)·(y_h(s) - x(s)) d\theta ds. $$
+
+		Buď $u(t)$ maximální řešení $u'(t) = [\nabla_x f(x(t), t)]u(t), u(t_0) = w$. Tj.
+		$$ u(t) = w + \int_{t_0}^t \nabla_x f(x(s), s) u(s) ds = w + \int_{t_0}^t \int_0^1 \nabla_x f(x(s), s) u(s) d\theta ds. $$
+		Odečteme od předcházejícího a dostaneme
+		$$ \eta_h(x) = \int_{t_0}^t [\nabla_x f(x(s), s)]\eta_h(s) ds + \int_{t_0}^t \int_0^1 \[\nabla_x f(x(s) + \theta(y_h(s) - x(s))) - \nabla_x f(x(s), s)\](y_h(s) - x(s)) d\theta ds. $$
+		$$ |\eta_h(t)| ≤ \int_{t_0}^t C·|\eta_h(s)| ds + \max_{\substack{s \in [t_0, t], \\ \theta \in [0, 1]}} |\nabla_x f(x(s) + \theta(y_n(s) - x(s)), s) - \nabla_x f(x(s), s)| · \int_{t_0}^t e^{L·s-t_0} ds. $$
+		Z důsledku předpředchozí věty
+		$$ |y_h(s) - x(s)| ≤ |y_h(t_0) - x(t_0)|e^{L·|s - t_0|} = |hw|e^{L·|s - t_0|} = |h|e^{L·|s - t_0|}. $$
+		$$ |\eta_h(t)| ≤ K_h · C_2 + \int_{t_0}^t C·(\eta_h(s)) ds, $$
+		kde $K_h \rightarrow 0$. Z G. lemmatu pak plyne $|\eta_h(t) ≤ K_n·C_2·\exp[C·|t - t_0|]| \implies \lim_{h \rightarrow 0} \eta_h(t) = 0$.
+	\end{dukazin}
+\end{veta}
+
+\section{Lineární ODR}
+\begin{definice}[Lineární ODR]
+	$x' = A(t) x + b(t)$, $A: (\alpha, \beta) \rightarrow ®R^n \times ®R^n = ®R^{2n}$, $f: (\alpha, \beta) \rightarrow ®R^n$ spojité funkce.
+\end{definice}
+
+\begin{veta}
+	Nechť $t_0 \in (\alpha, \beta)$, $x_0 \in ®R^n$. Pak existuje právě jedno maximální řešení $x$ (LODR) s počáteční podmínkou $x(t_0) = x_0$. Funkce $x$ je definovaná na $(\alpha, \beta)$.
+
+	\begin{dukazin}
+		Stačí dokázat, že $x$ je definováno na celém $(\alpha, \beta)$. Předpokládejme, že $x$ je definované na $(a, b)$, BÚNO $b < \beta$, $t_0 \in [a, b]$
+		$$ x(t) = x_0 + \int_{t_0}^t \[A(s)x(s) + f(s)\]ds, $$
+		$$ |x(t)| ≤ |x_0| + \max_{s \in [t_0, f]} |A(s)| \int_{t_0}^t |x(s)| ds + \max_{s \in [t_0, b]} |f(s)|·|t - t_0|. $$
+		Z G. lemmatu plyne $|x(t)| ≤ (|x_0| + \max_{s \in [t_0, b]} |f_s|·|f - t_0|)e^{\max_{s \in [t_0, b]} |A(s)| · |f - t_0|}$. Pak na intervalu $(t_0, b)$ $x$ neopustí nějaký kompakt.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Homogenní rovnice]
+	LODR nazveme homogenní, pokud $b ≡ 0$, tedy $x'(t) = A(t)·x(t)$.
+\end{definice}
+
+\begin{veta}
+	Množina řešení $H$ je vektorový prostor dimenze $n$.
+
+	\begin{dukazin}
+		Součet řešení je řešení zřejmě. Stejně tak násobek. Dimenze $n$ se dokazuje tak, že vezmeme bod a řešení, která mají každé v tomto bodě jednu funkci 1 a ostatní 0. To jsou zřejmě LN řešení a dá se z nich složit libovolné jiné, protože máme jednoznačnost řešení s konkrétní počáteční podmínkou. Takže další řešení poskládáme z těchto.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Fundamentální řešení]
+	Fundamentálním řešením homogenní LODR nazveme každou bázi prostoru řešení. Budeme jej značit
+	$$ \Phi(t) = (\phi(t), …, \phi(t)). $$
+
+	\begin{poznamkain}
+		Zřejmě $\Phi'(t) = A(t)\Phi(t)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Wronského determinant (Wronskián)]
+	$$ W(t) = \det \Phi(t). $$
+\end{definice}
+
+\begin{veta}[Liouvilleova věta]
+	$$ W(t) = W(t_0)·\exp\(\int_{t_0}^t \tr A(s) ds\). $$
+
+	\begin{dukazin}
+		Chceme dokázat, že $W'(t) = W(t)·(\tr A(t))$. Rozepsáním.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

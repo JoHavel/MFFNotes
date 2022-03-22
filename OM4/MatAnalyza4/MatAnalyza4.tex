@@ -318,5 +318,79 @@
 		\end{dukazin}
 	\end{veta}
 
+% 22. 03. 2022
+
+	\begin{veta}[Integrál derivace monotónní funkce]
+		Nechť $a, b \in ®R$, $a < b$, a $f: [a, b] \rightarrow ®R$ je neklesající funkce. Potom $f'$ je lebesgueovsky integrovatelná na $[a, b]$ a platí
+		$$ \int_a^b f'(x) dx ≤ f(b) - f(a). $$
+
+		\begin{dukazin}
+			$f$ je neklesající, tedy je měřitelná. Dodefinujeme $f(x) = f(b)$ pro $x > b$. Z předchozí věty víme, že pro skoro všechna $x$ $\exists \lim_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h} = f'(x)$. Definujeme funkce $g_n(x) = \frac{f\(x + \frac{1}{n}\) - f(x)}{\frac{1}{n}}$. Tyto funkce jsou měřitelné a pro skoro všechna $x$ platí $\exists \lim_{n \rightarrow 0} g_n(x) = f'(x)$. Dále $f$ je neklesající, tedy $g_n(x) ≥ 0$ a $f'(x) ≥ 0$.
+
+			Podle Fatouova lemmatu
+			$$ \int_a^b f'(x) dx = \int_a^b \liminf_{n \rightarrow ∞} g_n(x) dx ≤ \liminf_{n \rightarrow ∞} \int_a^b g_n(x) dx = $$
+			$$ = \liminf_{n \rightarrow ∞} \int_a^b n·(f\(x + \frac{1}{n}\) - f(x))dx = \liminf_{n \rightarrow ∞}\(n·\int_{a + \frac{1}{n}}^{b + \frac{1}{n}} f(t) dt - n·\int_a^b f(x) dx\) = $$
+			$$ = \liminf_{n \rightarrow ∞}\(n·\int_b^{b + \frac{1}{n}} f(t) dt - n·\int_a^{a + \frac{1}{n}} f(x) dx\) ≤ \liminf_{n \rightarrow ∞} \(f(b) -  n·\int_a^{a + \frac{1}{n}} f(a) dx\) = f(b) - f(a). $$
+
+			Tedy $f'$ je integrovatelná.
+		\end{dukazin}
+	\end{veta}
+
+	\subsection{Funkce s konečnou variací}
+	\begin{definice}[Kladná, záporná a totální variace]
+		Nechť $[a, b] \subset ®R$ je uzavřený interval, $f: [a, b] \rightarrow ®R$ a $D$ dělení $[a, b]$. Definujeme kladnou variaci, zápornou variaci a (totální) variaci jako:
+		$$ V^+(f, a, b) = \sup_D \{\sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+\}, $$
+		$$ V^-(f, a, b) = \sup_D \{\sum_{i=1}^n (f(x_i) - f(x_{i-1}))^-\}, $$
+		$$ V(f, a, b) = \sup_D \{\sum_{i=1}^n |f(x_i) - f(x_{i-1})|\}. $$
+
+		Dále zavedeme značení $V_f^+(x) = V^+(f, a, x)$, atd.
+	\end{definice}
+
+	\begin{definice}[Konečná variace]
+		Řekneme, že funkce $f$ ma na intervalu $[a, b] \subset ®R$ konečnou variaci, jestliže $V(f, a, b) < ∞$. Množinu všech funkcí s konečnou variací značíme $BV([a, b])$.
+	\end{definice}
+
+	\begin{poznamka}
+		Nechť $[a, b] \in ®R$ a $f: [a, b] \rightarrow ®R$. Pak
+
+		\begin{itemize}
+			\item je-li $f$ neklesající na $[a, b]$, pak $V(f, a, b) = V^+(f, a, b) = f(b) - f(a)$;
+			\item $|V(f, a, b)| ≥ |f(a) - f(b)|$.
+		\end{itemize}
+	\end{poznamka}
+
+	\begin{veta}[Vztah omezené variace a monotonie]
+		Nechť $[a, b] \subset ®R$ a nechť $f: [a, b] \rightarrow ®R$.
+
+		\begin{itemize}
+			\item Má-li $f$ konečnou variaci na $[a, b]$, pak $V_f(x) = V_k^+ + V_f^-(x)$ a $f(x) - f(a) = V_f^+(x) - V_f^-(x)$.
+			\item $f \subset BV(a, b)$ právě tehdy, když existují neklesající funkce $u, v: [a, b] \rightarrow ®R$ tak, že $f = v - u$.
+		\end{itemize}
+
+		\begin{dukazin}
+			„První bod“: Nechť $D = \{a = x_0 < x_1 < … < x_n = b\}$. Búno stačí pro $x = b$.
+			$$ V(f, a, b) ≥ \sum_{i=1}^n |f(x_i) - f(x_{i-1})| = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ + \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^- ≤ V^+(f, a, b) + V^-(f, a, b). $$
+			Z těchto nerovností vezmeme supremum přes všechna dělení $D$ a dostaneme $V(f, a, b) = V^+(f, a, b) + V^-(f, a, b)$ ($≥$ z nerovnosti mezi prvním a třetím výrazem, $≤$ z nerovnosti mezi druhým a čtvrtým).
+
+			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≤ V^+(f, a, b) - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^-. $$
+			Infimum přes dělení $D$ dá $f(b) - f(a) ≤ V^+(f, a, b) - \sup \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- = V^+(f, a, b) - V^-(f, a, b)$.
+			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≥ \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^+ - V^-(f, a, b). $$
+			Supremum přes dělení $D$ dá $f(b) - f(a) ≥ \sup \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^+ - V^-(f, a, b) = V^+(f, a, b) - V^-(f, a, b)$.
+
+			„Druhý bod“: „$\implies$“: Z prvního bodu víme, že $f(x) = (f(a) + V^+(f, a, x)) - V^-(f, a, x) = v(x) - u(x)$.
+
+			„$\impliedby$“: Mějme tedy $f(x) = v(x) - u(x)$
+			$$ \sum_{i=1}^n (f(x_i) - f(x_{i - 1})) ≤ \sum_{i=1}^n |v(x_i) - v(x_{i-1})| + \sum_{i=1}^n |u(x_i) - u(x_{i-1})| = v(b) - v(a) + u(b) - u(a), $$
+			což dá $f \in BV(a, b)$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}
+		$f \in BV \implies f$ má derivaci skoro všude.
+
+		\begin{dukazin}
+			Z předchozí věty $f = v - u$ a věty před ní mají $u, v$ derivace skoro všude.
+		\end{dukazin}
+	\end{dusledek}
 \end{document}
 

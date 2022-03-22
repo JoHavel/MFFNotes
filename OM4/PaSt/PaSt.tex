@@ -654,4 +654,108 @@
 	\end{dukazin}
 \end{veta}
 
+% 16. 03. 2022
+
+\begin{definice}[Nekorelované náhodné veličiny]
+	Náhodné veličiny $X$ a $Y$ s $\cov(X, Y) = 0$ nazveme nekorelované.
+\end{definice}
+
+\begin{definice}[Varianční matice, korelační matice]
+	Varianční matice $n$-rozměrného náhodného vektoru ¦X je matice $n \times n$ s prvky $a_{ij} = \cov(X_i, X_j)$, $i, j \in [n]$, tj.
+	$$ \Var ¦X = ®E(¦X - ®E ¦X)(¦X - ®E ¦X)^T. $$
+	Korelační matice $n$-rozměrného náhodného vektoru ¦X je matice $n \times n$ s prvky $a_{ij} = \cov(X_i, X_j)$, $i, j \in [n]$.
+\end{definice}
+
+\begin{veta}[O vlastnostech varianční matice]
+	Buď $¦X = (X_1, …, X_n)^T$ náhodný vektor takový, že $\forall i \in [n]: ®E (X_i^2) < ∞$. Pak
+	
+	\begin{enumerate}
+		\item $\Var ¦X$ je symetrická a pozitivně semidefinitní;
+		\item pro libovolné $¦a \in ®R^m$ a matici $B$ typu $m \times n$ je $\Var(¦a + B¦X) = B (\Var ¦X) B^T$;
+		\item $|\cov(X_i, X_j)| ≤ \sqrt{\var(X_i)·\var(X_J)}$, a rovnost nastává právě tehdy, když existují konstanty $a, b$, že $X_i = a + b X_j$ skoro jistě;
+		\item jsou-li $X_1, …, X_n$ vzájemně nezávislé, pak $\Var ¦X$ je diagonální;
+		\item $\Var ¦X$ je singulární $\Leftrightarrow$ existují $a_1, …, a_n \in ®R$, alespoň jedno nenulové, taková, že $\sum_{i=1}^n a_i X_i = k$ skoro jistě, kde $k$ je nějaká konstanta.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. symetrická zřejmě, pro pozitivní semidefinitnost chceme dokázat, že $¦a (\Var ¦X) ¦a^T ≥ 0$ (rozepíšeme jako v minulé větě):
+		$$ ¦a (\Var ¦X) ¦a^T = \sum_{i=1}^n \sum_{j=1}^n a_i a_j \cov(X_i, X_j) = \var(\sum_{i=1}^n a_i X_i) ≥ 0. $$
+		
+		Ve 2. snadně dokážeme $®E(B¦X) = B ®E ¦X$. Tedy
+		$$ \Var(¦a + B¦X) = ®E(¦a + B¦X - ®E(¦a + B¦X))(¦a + B¦X - ®E(¦a + B®X))^T = ®E(B¦X - ®E(B¦X))(B¦X - ®E(B¦X))^T = ®E(B(¦X - ®E ¦X)(B(¦X - ®E ¦X))^T)  = B \Var(¦X) B^T. $$
+
+		3. už jsme ukázali jako důsledek Hölderovy nerovnosti. Bod 4. je zřejmý z věty o kovarianci pro nezávislé náhodné veličiny.
+
+		5. $\Var ¦X$ je singulární $\Leftrightarrow$ $\exists ¦a \in ®R^n$, $¦a ≠ ¦o$ tak, že $¦a (\Var ¦X) ¦a^T = 0$, ale $¦a (\Var ¦X) ¦a^T = \exists (¦a¦X - ®E ¦a ¦X)^2 = 0$ $\Leftrightarrow$ $¦a ¦X = ®E ¦a ¦X$ skoro jistě.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O momentech výběrového průměru]
+	Buďte $X_1, …, X_n$ nezávislé (nebo jen nekorelované) náhodné veličiny a buďte $®E X_i = \mu$, $\var X_i = \sigma^2$, $i \in [n]$, kde $\mu \in ®R$, $\sigma^2 ≥ 0$. Pak pro $\overline{X_n} = \frac{1}{n} \sum_{i=1}^n X_i$ platí $®E \overline{X_n} = \mu$ a $\var \overline{X_n} = \frac{\sigma^2}{n}$.
+
+	\begin{dukazin}
+		Rozepsáním z linearity střední hodnoty a z věty o vlastnostech varianční matice bod 2.
+	\end{dukazin}
+\end{veta}
+
+% 21. 03. 2022
+
+\section{Rozdělení transformovaného náhodného vektoru}
+\begin{veta}
+	Buďte $X, Y$ nezávislé náhodné veličiny a $\psi: ®R^2 \rightarrow ®R$ měřitelná. Pak náhodná veličina $U = \psi(X, Y)$ má distribuční funkci
+	$$ G_U(u) = \int_{®R} \int_{\{y | \psi(x, y) ≤ u\}} dF_Y(y) dF_X(x) = \int_{®R} \int_{\{y | \psi(x, y) ≤ u\}} dP_Y(y) dP_X(x) = $$
+	$$ G_U(u) = \int_{®R} \int_{\{x | \psi(x, y) ≤ u\}} dF_X(x) dF_Y(y) = \int_{®R} \int_{\{x | \psi(x, y) ≤ u\}} dP_X(x) dP_Y(y), \qquad \forall u \in ®R. $$
+
+	\begin{dukazin}
+		Víme, že $®E U = \int_{®R^2} \psi(x, y) d(P_X \otimes P_Y)(x, y)$. Použijeme Fubiniovu větu a vzorec použijeme pro náhodnou veličinu $\tilde{U}(u) = 1_{(U ≤ u)} = 1_{(\psi(X, Y) ≤ u)}$. To nám dá
+		$$ G_U(u) = P(U ≤ u) = ®E 1_{(U ≤ u)} = \int_{®R} \int_{®R} 1_{(\psi(x, y) ≤ u)} dP_Y(y) dP_X(x). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O rozdělení součtu]
+	Buďte $X, Y$ nezávislé náhodné veličiny. Pak náhodná veličina $U = X + Y$ má distribuční funkci
+	$$ F_U(u) = \int_{®R}F_x(u - y) dF_Y(y) = \int_{®R} F_Y(u - x) dF_X(x), \qquad \forall u \in ®R. $$
+
+	\begin{dukazin}
+		Dosazením do předchozí věty.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Konvoluce]
+	Buď $\psi(x, y) = x + y$. Pak $\psi(P_X \otimes P_Y)$ se nazývá konvoluce pravděpodobnostních rozdělení $P_X$ a $P_Y$. Buďte $F_X$ a $F_Y$ distribuční funkce. Pak $F_U$ definovaná jako $F_U(u) = \int_{®R} F_X(u - y) dF_y(y) = \int_{®R} F_y(u - x) dF_X(x)$ se nazývá konvoluce distribučních funkcí. Značíme $P_X * P_Y$, resp. $F_X * F_Y$.
+\end{definice}
+
+\begin{dusledek}[Věty o rozdělení součtu nezávislých náhodných veličin]
+	Buďte $X, Y$ nezávislé náhodné veličiny a buďte obě absolutně spojité. Pak $U = X + Y$ je také absolutně spojitá s hustotou $f_U(u) = \int_{®R}f_X(u - y) dy = \int_{®R} f_Y(u - x)f_X(x) dx$, $u \in ®R$.
+
+	\begin{dukazin}
+		Dosazením.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{poznamka}
+	Pro ne-nezávislá $X, Y$ lze snadno odvodit analogický vzorec (s jinou než součinovou mírou).
+\end{poznamka}
+
+\begin{veta}
+	Buďte nezávislé náhodné veličiny $X$ a $Y$ čítací (tj. $P(X \in ®N_0) = 1 = P(Y \in ®N_0)$). Pak $U = X + Y$ je také čítací náhodná veličina a $P(U = u) = \sum_{n=0}^u P(X = n)·P(Y = u - n)$, $u \in ®N_0$.
+
+	\begin{dukazin}
+		Snadno z věty o úplné pravděpodobnosti.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O transformaci hustot]
+	Buď ¦X $n$-rozměrný absolutně spojitý náhodný vektor s hustotou $f_{¦X}$. Buď $S_{¦X}$ otevřená množina taková, že $P(¦X \in S_{¦X}) = 1$, a $g: S_{¦X} \rightarrow ®R^n$ difeomorfismus. Pak rozdělení náhodného vektoru $¦Y = g(¦X)$ má vzhledem k $\lambda^n$ hustotu $f_{¦Y}(¦y) = f_{¦X}(g^{-1}(¦y) · |\Jac g^{-1}(¦y)| !_{g(S_{¦X})}(¦y)$, $¦y \in ®R^n$.
+
+	\begin{dukazin}
+		Z věty o obrazu míry víme, že $P_{¦X}(A) = P_{¦Y}(g(A))$, $\forall A \in ©B^n$, resp. $\forall g(A) \in ©B^n$. Pokud existuje hustota $f_{¦Y}$, pak je to také rovno $\int_{g(A)} f_{¦Y}(¦y) d¦y$. Z předpokladů máme, že $g^{-1}$ je difeomorfismus na $g(S_{¦X})$. Použijeme větu o substituci s volbami $h = f_{¦X}$, $\phi = g^{-1}$, $M = g(S_{¦x})$ a $N = A$ a dostaneme
+		$$ P_{¦X}(A) = \int_A f_{¦X}(¦x) d¦x = \int_{g(A)} f_{¦X}(g^{-1}(¦y)) |\Jac g^{-1}(¦y)| d¦y, $$
+		pro každou $A \subset g^{-1}(g(S_{¦X})) = S_{¦X}$, resp. $\forall g(A) \subset g(S_{¦X})$. Levý integrál zřejmě existuje, tedy existuje i pravý. Z předpokladů víme $\int_{S_{¦X}^c} f_{¦X}(¦x) d¦x = P(X \in S_{¦X}^c) = 0$ a také $\int_{(g(S_{¦x}))^c} f_{¦Y}(¦y) d¦y = 0$ a oba integrály jsou nulové i pro všechny podmnožiny $S_{¦X}^c$, resp. $(g(S_{¦x}))^c$. Takže $\forall B \in ©B^n$ a funkci $f_{¦y}$ ze znění dostáváme:
+		$$ P_{¦Y}(B) = P_{¦Y}(B \cap g(S_{¦X})) + P_{¦Y}(B \setminus g(S_{¦X})) = P_{¦X}(g^{-1}(B \cap g(S_{¦X}))) + 0 = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y + 0 = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y = \int_B f_{¦y} d¦y. $$
+		A tedy $f_{¦Y}$ je opravdu hustota ¦Y.
+	\end{dukazin}
+\end{veta}
+
+
 \end{document}

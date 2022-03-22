@@ -131,4 +131,28 @@ pick(X)
 
 Dále se probírali různé genetické operátory na jedincích složených s čísel $0, …, k-1$, na reálných číslech a diferenční evoluci.
 
+% 17. 03. 2022
+
+\begin{definice}[Genetické programování]
+	Nelze očekávat, že g. p. vygeneruje složité programy. Lze ho použít např. 
+\end{definice}
+
+\begin{definice}[Lineární genetické programování]
+	Vezme se nějaký triviální jazyk (stylu assembleru) a jedinci jsou posloupnost instrukcí v tomto jazyce. Pak můžeme dělat mutace: přidání, odebrání, změnění instrukce, změnění parametrů, … Jednobodové křížení pořád docela funguje.
+
+	Těžší je to s fitness. Program, který vyhodí chybu bude mít pravděpodobně fitness 0. Místo počítání času se často počítají instrukce, které se provedou.
+\end{definice}
+
+\begin{definice}[Kartézské genetické programování]
+	Kartézské genetické programování používá „síť“ uzlů, kde v uzlu volíme funkci a pak volíme, které výstupy jdou jako vstup do kterého uzlu (vždy jen zleva = od vstupu programu doprava = k výstupu programu).
+\end{definice}
+
+\begin{definice}[Gramatická evoluce]
+	Reprezentuje jedince jako posloupnost voleb, za co přepsat dotyčný neterminál..
+\end{definice}
+
+\begin{definice}[Stromové genetické programování]
+	Jedince reprezentujeme stromem.
+\end{definice}
+
 \end{document}

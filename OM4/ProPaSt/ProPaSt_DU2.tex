@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[2.1]
+	Spočítejte rozptyl Beta rozdělení s parametry $a, b > 0$.
+
+	\begin{reseni}
+		Využijeme toho, že $\var X = ®E(X^2) - (®E X)^2$. Z přednášky víme, že $®E X = \frac{a}{a+b}$. $®E(X^2)$ spočítáme pomocí hustoty $f_X(s) = \frac{1}{B(a, b)}s^{a - 1}·(1 - s)^{b - 1}·1_{[0, 1]}(s)$ jako:
+		$$ \int_{®R}s^2 f_X(s) ds = \frac{1}{B(a, b)}·\int_0^1 s^{a + 1}(1 - s)^{b - 1} ds = \frac{B(a + 2, b)}{B(a, b)} = \frac{a + 1}{a + 1 + b}\frac{a}{a + b}·\frac{B(a, b)}{B(a, b)}.  $$
+		$$ \var X = \frac{a(a + 1)}{(a + b)(a + b + 1)} - \(\frac{a}{a + b}\)^2 = \frac{a(a + 1)(a + b) - a^2(a + b + 1)}{(a + b + 1)·(a + b)^2} = $$
+		$$ = \frac{a·b}{(a + b + 1)·(a + b)^2}. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[2.2]
+	Negativně binomické rozdělení je diskrétní rozdělení s parametry $r \in ®N$ a $p \in (0, 1)$. Negativně binomicky rozdělená náhodná veličina $X$ nabývá hodnot z $®N_0$ s pravděpodobnostmi
+	$$ P_{\NBi(r, p)}(k) = P(X = k) = \binom{r - 1 + k}{r - 1}·p^r·(1 - p)^k, \qquad k \in ®N_0. $$
+	Odpovídá rozdělení počtu neúspěchů před $r$-tým úspěchem v sérii nezávislých pokusů s pravděpodobností úspěchu $p$. Je to vlastně rozdělení doby čekání na úspěch v diskrétním případě.
+
+	Označme $F_{\Gamma(\alpha, r)}$ distribuční funkci Gamma rozdělení s parametry $r \in ®N$, $\alpha > 0$.
+
+	Buď $r \in ®N$, $\alpha, t > 0$, $\{p_n\}_{n=1}^∞$ posloupnost čísel z $(0, 1)$ splňující $n·p_n \rightarrow \alpha$ a $\{t_n\}_{n=1}^∞$ posloupnost čísel ze $®Z_+$ splňující $t_n / n \rightarrow t$. Ukažte, že
+	$$ F_{\Gamma(\alpha, r)}(t) = \lim_{n \rightarrow ∞} P_{\NBi(r, p_n)}(\{0, …, t_n\}). $$
+
+	Interpretujte tento výsledek jako výrok o rozdělení dob čekání v diskrétním a spojitém modelu.
+
+	\begin{dukazin}
+		Nejprve podle nápovědy ukážeme $P_{\NBi (r, p)}(\{0, …, m\}) = P_{\Bi(r + m, p)}(\{r, …, r + m\})$. K tomu se podíváme na pravděpodobnostní prostor $X$ reprezentující $r + m$ náhodných pokusů s pravděpodobností úspěchu $p$. Podle zadání (nebo podle tvaru $P_{\NBi(r, p)}(k)$) víme, že $P_{\NBi(r, p)}(k)$ je pravděpodobnost $P$ množiny těch jevů, kde v prvních $k + r - 1$ pokusech nastalo $r - 1$ úspěchů a $(r + k)$-tý pokus byl úspěšný (a další dopadly libovolně). Na druhou stranu $P_{\Bi(r + m, p)}(r + k)$ je pravděpodobnost $P$ množiny těch jevů z $X$, kde je právě $r + k$ úspěchů.
+
+		Jelikož pravděpodobnosti jsou konečně aditivní, tak $P_{\NBi (r, p)}(\{0, …, m\})$ je součet pravděpodobností $P_{\NBi(r, p)}(k), k \in [m]_0$, tedy pravděpodobnost $P$ množiny těch jevů z $X$, kde nastalo alespoň $r$ úspěchů, neboť víme, že $r$-tý pokus někde nastal a poslední pokus, kde nás ještě zajímá $r$-tý úspěch, je $r + m$-tý. Stejně tak $P_{\Bi(r + m, p)}(\{r, …, r + m\})$ je pravděpodobnost $P$ množiny všech jevů z $X$, kde nastalo alespoň $r$ úspěchů, neboť je to právě $r + k$ pokusů, kde $r + k$ jde od $r$ do $r + m$. Tudíž $P_{\NBi (r, p)}(\{0, …, m\}) = P_{\Bi(r + m, p)}(\{r, …, r + m\})$, neboť jsou obě strany rovny pravděpodobnosti $P$ stejného jevu $\subseteq X$.
+
+		Tudíž chceme dokázat $F_{\Gamma(\alpha, r)}(t) = \lim_{n \rightarrow ∞} P_{\Bi(r + t_n, p_n)}(\{r, …, r + t_n\})$. První věc, které si můžeme všimnout, je
+		$$ P_{\Bi(r + t_n, p_n)}(\{r, …, r + t_n\}) = 1 - P_{\Bi(r + t_n, p_n)}(\{0, …, r - 1\}), $$
+		neboť pravděpodobnost, že vybereme více než $r + t_n$ nebo méně než $0$ prvků z $r + t_n$, je nulová. Z prosemináře navíc víme, že
+		$$ F_{\Gamma(\alpha, r)}(t) = 1 - P_{\Poiss(\alpha t)}(\{0, …, r - 1\}). $$
+		Také víme, že
+		$$ P_{\Poiss(\alpha t)}(k) = \lim_{\substack{m \rightarrow ∞, \\ p_m·m \rightarrow \alpha t}} P_{\Bi(m, p_m)}(k). $$
+		Z toho můžeme vybrat podposloupnost $m_n = t_n + r$ pro $t_n / n \rightarrow t$, tj. $t_n \rightarrow ∞$, a označíme $p_{m_n} = p_n$:
+		$$ P_{\Poiss(\alpha t)}(k) = \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} P_{\Bi(t_n + r, p_n)}(k). $$
+		Jelikož $p_n \rightarrow 0$, tak $p_n · r \rightarrow 0$, tedy (po troše rozmýšlení, že limita $p_n$ musí existovat) $p_n·t_n \rightarrow \alpha·t$ a $p_n · n \rightarrow \alpha$, jelikož $t_n / n \rightarrow t$ (a limita $p_n·n$ existuje). Teď už to můžeme všechno poskládat a dostaneme
+		$$ F_{\Gamma(\alpha, r)}(t) = 1 - P_{\Poiss(\alpha t)}(\{0, …, r - 1\}) = 1 - \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} P_{\Bi(t_n + r, p_n)}(\{0, …, r - 1\}) = $$
+		$$  $$
+		$$ = \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} 1 - P_{\Bi(t_n + r, p_n)}(\{0, …, r - 1\})  = \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} P_{\Bi(r + t_n, p_n)}(\{r, …, r + t_n\}). $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.3]
+	Buď $T_{r:n}$ čas $r$-té události z $n$ nezávisle rovnoměrně rozdělených časů v $(0, 1)$, tj. $T_{r:n}$ má $\Bet(r, n - r + 1)$ rozdělení.
+
+	Buď $\{s_n\}_{n=1}^∞$ posloupnost čísel z $(0, ∞)$ splňující $n / s_n \rightarrow \alpha > 0$. Ukažte, že pro každé $r \in ®N$ a $t > 0$ platí
+	$$ F_{\Gamma(\alpha, r)}(t) = \lim_{n \rightarrow ∞} P(s_n T_{r:n} ≤ t). $$
+
+	Interpretujte tento výsledek jako výrok o rozdělení časů událostí na $(0, ∞)$.
+
+	\begin{reseni}
+		Přepíšeme rovnost z definic:
+		$$ F_{\Gamma(\alpha, r)}(t) = \int_0^t \frac{\alpha^r x^{r - 1} e^{-\alpha x}}{(r - 1)!} dx = $$
+		$$ = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} \int_0^{t / s_n} \frac{1}{B(r, n - r + 1)} s^{r - 1} (1 - s)^{n-r} ds = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} P(s_n T_{r:n} ≤ t). $$
+		Podle věty o substituci pro $z = s · s_n$ dostaneme
+		$$ \int_0^t \frac{\alpha^r x^{r - 1} e^{-\alpha x}}{(r - 1)!} dx = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} \int_0^t \frac{1}{B(r, n - r + 1)} \(\frac{z}{s_n}\)^{r - 1} \(1 - \frac{z}{s_n}\)^{n-r} \frac{dz}{s_n}. $$
+		Protože $n / s_n \rightarrow \alpha$ a $\frac{1}{B(r, n - r + 1)} < n^{r - 1}$ tak se dají funkce uvnitř pravého integrálu omezit (až na nějaké první členy) konstantou, tedy podle Lebesgueovy věty můžeme prohodit integrál a limitu. Následně pokud ukážeme rovnost vnitřků integrálů, tak se integrály také rovnají. Tedy dokazujeme
+		$$ \frac{\alpha^r x^{r - 1} e^{-\alpha x}}{(r - 1)!} = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} \frac{1}{B(r, n - r + 1)} \(\frac{x}{s_n}\)^{r - 1} \(1 - \frac{x}{s_n}\)^{n-r} \frac{1}{s_n}. $$
+		Rozepíšeme $B$ z definice, vydělíme obě strany rovnosti $r$ a vynásobíme $x$:
+		$$ \frac{(\alpha·x)^r e^{-\alpha x}}{r!} = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} \frac{n!}{r!·(n - r)!} \(\frac{x}{s_n}\)^r \(1 - \frac{x}{s_n}\)^{n-r}. $$
+		A to je přesně rovnost, kterou jsme dokazovali na prosemináři u Poissonova rozdělení, pro $k = r$ a $\lambda = \alpha · x$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}
