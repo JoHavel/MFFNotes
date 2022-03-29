@@ -46,6 +46,14 @@
 		$$  $$
 		$$ = \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} 1 - P_{\Bi(t_n + r, p_n)}(\{0, …, r - 1\})  = \lim_{\substack{n \rightarrow ∞, \\ p_n·(t_n + r) \rightarrow \alpha t, \\ t_n / n \rightarrow t}} P_{\Bi(r + t_n, p_n)}(\{r, …, r + t_n\}). $$
 	\end{dukazin}
+
+	\begin{reseni}[Interpretace]
+		Na levé straně je pravděpodobnost, že do času $t$ nastala $r$-tá z událostí, které nastávají v libovolném (spojitém) čase tak, že jich v jednotkovém čase nastane ve střední hodnotě $\alpha$ (počet má Possonovo rozdělení, tedy limitní binomické – jako bychom dělali v každém časovém okamžiku pokus).
+
+		Pravou stranu si můžeme představit tak, že (limitně) každý „jednotkový“ okamžik do času $t$ namodelujeme $n$ pokusy (jelikož $t_n / n \rightarrow t$, takže vlastně $t_n \approx t·n$). V každém takovém pokusu máme pravděpodobnost (limitně) $\alpha / n$. Z četnostního pojetí pravděpodobnosti to tedy znamená, že za každý jednotkový čas se nám stane $\alpha$ událostí a my se snažíme namodelovat to, aby se mohli stát „kdykoliv“ během toho úseku. A pravá strana pak vyjadřuje pravděpodobnost, že se $r$-tá událost stala do času $t$.
+
+		Tedy je to vlastně totéž, v obou případech se díváme zda $r$-tá událost nastala do času $t$ s tím, že každá událost má šanci se stát „kdykoliv“.
+	\end{reseni}
 \end{priklad}
 
 \begin{priklad}[2.3]
@@ -67,6 +75,14 @@
 		Rozepíšeme $B$ z definice, vydělíme obě strany rovnosti $r$ a vynásobíme $x$:
 		$$ \frac{(\alpha·x)^r e^{-\alpha x}}{r!} = \lim_{\substack{n \rightarrow ∞, \\ n / s_n \rightarrow \alpha}} \frac{n!}{r!·(n - r)!} \(\frac{x}{s_n}\)^r \(1 - \frac{x}{s_n}\)^{n-r}. $$
 		A to je přesně rovnost, kterou jsme dokazovali na prosemináři u Poissonova rozdělení, pro $k = r$ a $\lambda = \alpha · x$.
+	\end{reseni}
+
+	\begin{reseni}[Interpretace]
+		Levá strana je totéž co v předchozí úloze, jen se hodí vypíchnout ne to, že události probíhají spojitě, ale to, že probíhají „do nekonečna“, zatímco v Beta rozdělení probíhají jen v časech $(0, 1)$. Na pravé straně si ale můžeme představit, že místo rozdělení v časech $(0, 1)$ máme rozdělení v časech $(0, s_n)$, kde $s_n$ jde do nekonečna, tedy prakticky máme události probíhající „do nekonečna“.
+
+		Na levé straně tedy zase za jednotkový okamžik proběhne ve střední hodnotě $\alpha$ událostí (simulovaných nekonečně pokusy). Stejně tak vpravo v časech $(0, s_n)$ máme $s_n·\alpha$ (jelikož $n / s_n \rightarrow \alpha$, tedy $n \approx s_n · \alpha$) událostí, tedy na jeden časový okamžik $\alpha$ událostí.
+
+		A zase se díváme na pravděpodobnost výskytu $r$-té události před časem $t$, v obou případech (vlevo doopravdy, vpravo limitně) na časech $(0, ∞)$ a v obou případech v každém jednotkovém okamžiku proběhne ve střední hodnotě $\alpha$ událostí.
 	\end{reseni}
 \end{priklad}
 

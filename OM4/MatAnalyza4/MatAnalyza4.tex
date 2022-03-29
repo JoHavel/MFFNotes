@@ -142,7 +142,7 @@
 
 	\begin{veta}[Weierstrassovo kritérium]
 		Nechť $\sum_{n=1}^∞ u_n(x)$ je řada funkcí definovaných na intervalu $J$. Pokud pro
-		$$ \sigma_n = \sup\{|u_n|(x) : x \in J\} $$
+		$$ \sigma_n = \sup\{|u_n(x)| : x \in J\} $$
 		platí, že číselná řada $\sum_{n=1}^∞ \sigma_n$ konverguje, pak $\sum_{n=1}^∞ u_n(x) \rightrightarrows$ na $J$.
 
 		\begin{dukazin}
@@ -162,8 +162,8 @@
 		Nechť $\sum_{n=1}^∞ u_n(x)$ je řada funkcí definovaná na intervalu $(a, b)$.
 
 		\begin{itemize}
-			\item Nechť $u_n$ jsou spojité na $(a, b)$ a nechť $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak $F(x) = \sum_{n=1}^∞ u_n(x)$ je spojitá na $(a, b)$.
-			\item Nechť funkce $u_n$, $n \in ®N$, mají vlastní derivaci na $(a, b)$ a nechť $\exists x_0 \in (a, b): \sum_{n=1}^∞ u_n(x_0)$ konverguje a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak je funkce $F(x) = \sum_{n=1}^∞ u_n(x)$ dobře definovaná a diferencovatelná na $(a, b)$ a navíc $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows} F(x)$ a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows} F(x)$ na $(a, b)$.
+			\item Nechť $u_n$ jsou spojité na $(a, b)$ a $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak $F(x) = \sum_{n=1}^∞ u_n(x)$ je spojitá na $(a, b)$.
+			\item Nechť funkce $u_n$, $n \in ®N$, mají vlastní derivaci na $(a, b)$ a nechť $\exists x_0 \in (a, b): \sum_{n=1}^∞ u_n(x_0)$ konverguje a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows}$ na $(a, b)$. Pak je funkce $F(x) = \sum_{n=1}^∞ u_n(x)$ dobře definovaná a diferencovatelná a navíc $\sum_{n=1}^∞ u_n(x) \overset{\text{Loc}}{\rightrightarrows} F(x)$ a $\sum_{n=1}^∞ u_n'(x) \overset{\text{Loc}}{\rightrightarrows} F'(x)$ na $(a, b)$.
 		\end{itemize}
 
 		\begin{dukazin}
@@ -175,7 +175,7 @@
 	\end{veta}
 
 	\begin{veta}[Abel-Dirichletovo kritérium pro stejnoměrnou konvergenci]
-		Nechť $\{a_n(x)\}_{n=1}^∞$ je posloupnost funkcí definovaných na intervalu $J$ a nechť $\{f_n(x)\}_{n=1}^∞$ je posloupnost funkcí na $J$ taková, že $f_1(x) ≥ f_2(x) ≥ … ≥ 0$. Jestliže je splněna některá z následujících podmínek, pak $\sum_{n=1}^∞ a_n(x)·b_n(x) \rightrightarrows$ na $J$.
+		Nechť $\{a_n(x)\}_{n=1}^∞$ je posloupnost funkcí definovaných na intervalu $J$ a nechť $\{b_n(x)\}_{n=1}^∞$ je posloupnost funkcí na $J$ taková, že $b_1(x) ≥ b_2(x) ≥ … ≥ 0$. Jestliže je splněna některá z následujících podmínek, pak $\sum_{n=1}^∞ a_n(x)·b_n(x) \rightrightarrows$ na $J$.
 
 		\begin{itemize}
 			\item[(A)] $\sum_{n=1}^∞ a_n(x) \rightrightarrows$ na $J$ a $b_1$ je omezená.
@@ -185,8 +185,11 @@
 		
 		\begin{dukazin}
 			„Dirichlet“: Nechť $\epsilon > 0$. Nalezneme $n_0$ $\forall n ≥ n_0\ \forall x \in J: |f_n(x)| < \epsilon$. Nechť $m, n ≥ n_0$. Označme $\sigma_i(x) := \sum_{j=m}^i a_j(x)$. Pak
-			$$ |\sigma_i(x)| ≤ \left|\sum_{j=1}^i a_j(x) - \sum_{j=1}^{n_0-1} a_j(x)\right| ≤ K + K. $$
-			$$ \forall m, n ≥ n_0\ \forall x \in J: \left| \sum_{j=n}^m a_j(x)·b_j(x) \right| = \left|a_n·b_n + (\sigma_{n+1} - \sigma_n)b_{n+1} + … + (\sigma_m - \sigma_{m-1})b_m\right| ≤ \sup_{j = n, …, m} |\sigma_j(k)| \(b_n - b_{n-1} + b_{n-1} - b_{n-2} + … + b_{m-1} - b_m + b_m\) = \sup_{j=n, …, m} |\sigma_j(x)|·|b_n(x)| ≤ 2K·\epsilon. $$
+			$$ |\sigma_i(x)| ≤ \left|\sum_{j=1}^i a_j(x) - \sum_{j=1}^{n_0-1} a_j(x)\right| ≤ K + K. $$
+			$$ \forall m, n ≥ n_0\ \forall x \in J: \left| \sum_{j=n}^m a_j(x)·b_j(x) \right| = $$
+			$$ = \left|a_n·b_n + (\sigma_{n+1} - \sigma_n)b_{n+1} + … + (\sigma_m - \sigma_{m-1})b_m\right| ≤ $$
+			$$ ≤ \sup_{j = n, …, m} |\sigma_j(k)| \(b_n - b_{n-1} + b_{n-1} - b_{n-2} + … + b_{m-1} - b_m + b_m\) = $$
+			$$ = \sup_{j=n, …, m} |\sigma_j(x)|·|b_n(x)| ≤ 2K·\epsilon. $$
 			A z BC podmínky už $\sum a_i(x)b_i(x) \rightrightarrows$ na $J$.
 
 			„Abel“: Nechť $\epsilon > 0$. Z BC podmínky pro $\rightrightarrows$
@@ -214,7 +217,7 @@
 
 		\begin{dukazin}
 			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Pak pro $x: |x - x_0| < R$ platí
-			$$ \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n·(x - x_0)^n|} = |x - x_0| \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n|} = \frac{|x - x_0|}{R} < 1 \implies \text{ řada konverguje absolutně.} $$
+			$$ \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n·(x - x_0)^n|} = |x - x_0| \limsup_{n \rightarrow ∞} \sqrt[n]{|a_n|} = \frac{|x - x_0|}{R} < 1 \implies \text{řada k. absolutně.} $$
 			Pro $|x - x_0| > R$ dostaneme úplně stejně $> 1$, tedy řada diverguje.
 
 			Nechť existuje $Q = \lim_{n \rightarrow ∞} \frac{|a_n|}{|a_{n+1}|}$, pak
@@ -223,11 +226,11 @@
 		\end{dukazin}
 	\end{veta}
 
-	\begin{veta}[O steejnoměrné konvergenci mocninné řady]
+	\begin{veta}[O stejnoměrné konvergenci mocninné řady]
 		Nechť $\sum_{n=0}^∞ a_n·(x - x_0)^n$ je mocninná řada a $R \in (0, ∞]$ je její poloměr konvergence. Pak řada konverguje lokálně stejnoměrně na $(x_0 - R, x_0 + R)$.
 
 		\begin{dukazin}
-			Nechť $0 < r < R$. Podle předchozí věty $\sum_{a_n}·r^n$ konverguje absolutně. Nyní
+			Nechť $0 < r < R$. Podle předchozí věty $\sum a_n·r^n$ konverguje absolutně. Nyní
 			$$ \forall x \in [x_0 - r, x_0 + r]: |a_n(x - x_0)^n| ≤ |a_n|·r^n. $$
 			Víme, že $\sum |a_n| r^n$ konverguje, tedy podle Weierstrassova kritéria $\sum a_n(x - x_0)^n \rightrightarrows$ na $[x_0 - r, x_0 + r]$. Tedy konverguje lokálně stejnoměrně na $(x_0 - R, x_0 + R)$.
 		\end{dukazin}
@@ -281,7 +284,8 @@
 
 	\subsection{Derivace monotónní funkce}
 	\begin{definice}[Limes superior a limes inferior pro funkce]
-		Nechť $x \in (a, b)$ a $f: (a, b) \rightarrow ®R$. Definujeme limes superior a limes inferior jako $\limsup_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y)$ a $\liminf_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y)$.
+		Nechť $x \in (a, b)$ a $f: (a, b) \rightarrow ®R$. Definujeme limes superior a limes inferior jako
+		$$ \limsup_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y), \qquad \liminf_{h \rightarrow 0} f(x + h) := \lim_{h \rightarrow 0} \sup_{y \in (x - h, x) \cup (x, x + h)} f(y).$$
 	\end{definice}
 
 	\begin{poznamka}
@@ -312,7 +316,9 @@
 		Nechť $I \subset ®R$ je interval a $f: I \rightarrow ®R$ je monotónní funkce. Potom ve skoro každém bodě $x \in I$ existuje $f'(x)$.
 
 		\begin{dukazin}
-			Nechť $M_{p, q} = \{x \in I | \underline{D}f(x) < p < q < \overline{D}f(x)\}$. Podle předchozí věty $q·©L(M_{p, q}) \subseteq ©L^*(f(M_{p, q})) \subseteq p·©L(M_{p, q})$. Tedy, protože $p < q$, tak $©L(M_{p, q}) = 0$.
+			Nechť $M_{p, q} = \{x \in I | \underline{D}f(x) < p < q < \overline{D}f(x)\}$. Podle předchozí věty
+			$$ q·©L(M_{p, q}) \subseteq ©L^*(f(M_{p, q})) \subseteq p·©L(M_{p, q}). $$
+			Tedy, protože $p < q$, tak $©L(M_{p, q}) = 0$.
 
 			Tvrdíme, že pro množinu $M$ bodů nediferencovatelnosti platí $M = \bigcup_{p, q \in Q, p < q} M_{p, q}$ $\implies$, tedy spočetné sjednocení nulových množin, tudíž $M$ je nulová: „$\supseteq$“: $x \in M_{p, q}, p < q \implies \underline{D}f(x) < \overline{D}f(x) \implies \nexists D f(x)$. „$\subseteq$“: Nechť $x \in M \implies \nexists D f(x) \implies \underline{D} f(x) < \overline{D}f(x)$.
 		\end{dukazin}
@@ -330,7 +336,8 @@
 			Podle Fatouova lemmatu
 			$$ \int_a^b f'(x) dx = \int_a^b \liminf_{n \rightarrow ∞} g_n(x) dx ≤ \liminf_{n \rightarrow ∞} \int_a^b g_n(x) dx = $$
 			$$ = \liminf_{n \rightarrow ∞} \int_a^b n·(f\(x + \frac{1}{n}\) - f(x))dx = \liminf_{n \rightarrow ∞}\(n·\int_{a + \frac{1}{n}}^{b + \frac{1}{n}} f(t) dt - n·\int_a^b f(x) dx\) = $$
-			$$ = \liminf_{n \rightarrow ∞}\(n·\int_b^{b + \frac{1}{n}} f(t) dt - n·\int_a^{a + \frac{1}{n}} f(x) dx\) ≤ \liminf_{n \rightarrow ∞} \(f(b) -  n·\int_a^{a + \frac{1}{n}} f(a) dx\) = f(b) - f(a). $$
+			$$ = \liminf_{n \rightarrow ∞}\(n·\int_b^{b + \frac{1}{n}} f(t) dt - n·\int_a^{a + \frac{1}{n}} f(x) dx\) ≤ \liminf_{n \rightarrow ∞} \(f(b) -  n·\int_a^{a + \frac{1}{n}} f(a) dx\) = $$
+			$$ = f(b) - f(a). $$
 
 			Tedy $f'$ je integrovatelná.
 		\end{dukazin}
@@ -369,12 +376,15 @@
 
 		\begin{dukazin}
 			„První bod“: Nechť $D = \{a = x_0 < x_1 < … < x_n = b\}$. Búno stačí pro $x = b$.
-			$$ V(f, a, b) ≥ \sum_{i=1}^n |f(x_i) - f(x_{i-1})| = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ + \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^- ≤ V^+(f, a, b) + V^-(f, a, b). $$
+			$$ V(f, a, b) ≥ \sum_{i=1}^n |f(x_i) - f(x_{i-1})| = $$
+			$$ = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ + \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^- ≤ V^+(f, a, b) + V^-(f, a, b). $$
 			Z těchto nerovností vezmeme supremum přes všechna dělení $D$ a dostaneme $V(f, a, b) = V^+(f, a, b) + V^-(f, a, b)$ ($≥$ z nerovnosti mezi prvním a třetím výrazem, $≤$ z nerovnosti mezi druhým a čtvrtým).
 
-			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≤ V^+(f, a, b) - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^-. $$
+			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≤ $$
+			$$ ≤ V^+(f, a, b) - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^-. $$
 			Infimum přes dělení $D$ dá $f(b) - f(a) ≤ V^+(f, a, b) - \sup \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- = V^+(f, a, b) - V^-(f, a, b)$.
-			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≥ \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^+ - V^-(f, a, b). $$
+			$$ f(b) - f(a) = \sum_{i=1}^n f(x_i) - f(x_{i-1}) = \sum_{i=1}^n (f(x_i) - f(x_{i-1}))^+ - \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^- ≥ $$
+			$$ ≥ \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^+ - V^-(f, a, b). $$
 			Supremum přes dělení $D$ dá $f(b) - f(a) ≥ \sup \sum_{i=1}^n(f(x_i) - f(x_{i-1}))^+ - V^-(f, a, b) = V^+(f, a, b) - V^-(f, a, b)$.
 
 			„Druhý bod“: „$\implies$“: Z prvního bodu víme, že $f(x) = (f(a) + V^+(f, a, x)) - V^-(f, a, x) = v(x) - u(x)$.
@@ -391,6 +401,60 @@
 		\begin{dukazin}
 			Z předchozí věty $f = v - u$ a věty před ní mají $u, v$ derivace skoro všude.
 		\end{dukazin}
+	\end{dusledek}
+
+% 29. 03. 2022
+
+	\subsection{Absolutně spojitá funkce}
+	\begin{definice}[Absolutně spojitá funkce]
+		Nechť $[a, b] \subset ®R$ a $f: [a, b] \rightarrow ®R$. Řekneme, že $f$ je absolutně spojitá na $[a, b]$, jestliže $\forall \epsilon > 0\ \exists \delta > 0:$ pro každý systém po dvou disjunktních intervalů $\{(a_j, b_j)\}_{j=1}^n$, $(a_j, b_j \subset [a, b])$ splňující $\sum_{j=1}^n (b_j - a_j) < \delta \implies \sum_{j=1}^n |f(b_j) - f(a_j)| < \epsilon$. Množinu absolutně spojitých funkcí na intervalu $[a, b]$ budeme značit $AC([a, b])$.
+	\end{definice}
+
+	\begin{poznamka}
+		$f \in Lip([a, b]) \implies f \in AC([a, b]) \implies f \in BC([a, b]) \cap C([a, b])$ a žádnou implikaci nelze obrátit.
+
+		$AC([a, b])$ je lineární prostor.
+
+		$f \in AC \implies V^+ \in AC \land V^- \in AC$.
+	\end{poznamka}
+
+	\begin{veta}[Integrál derivace absolutně spojité funkce]
+		Nechť $f \in AC([a, b])$. Potom $f' \in L^1([a, b])$ a $f(b) - f(a) = \int_a^b f'(x) dx$.
+
+		\begin{dukazin}
+			BÚNO $f$ je rostoucí ($f \in AC \implies f \in BV \implies f(x) = (v(x) + x) - (u(x) + x)$, $v(x) + x, u(x) + x$ jsou rostoucí ($u, v$ neklesající, ale my potřebujeme rostoucí, proto $+x$) a $AC$). Podle věty výše víme, že $\exists f'(x)$ skoro všude. Tedy $[a, b]$ si můžeme rozdělit na tři množiny – s kladnou $f'$ ($D$), s nulovou $f'$ ($Z$) a bez $f'$ ($N$).
+
+			Dokážeme, že $|f(N)| = 0$, $|f(Z)| = 0$, $\int_D f'(x) = |f(D)|$. Pak $\int_a^b f'(x) = \int_D f'(x) dx = |f(D)| = |f(D) \cup f(Z) \cup f(N)| = f(b) - f(a)$, neboť $f$ je rostoucí, tedy prostá.
+
+			„$|f(N)| = 0$“: Víme $|N| = 0$. K $\epsilon > 0$ nalezneme $\delta > 0$ z definice $AC$. K $N$ nalezneme otevřenou množinu $G$ tak, že $N \subset G$ a $|G| < \delta$. Také $G = \bigcup_{i=1}^∞ (a_i, b_i)$ (resp. $\bigcup_{i =1}^N (a_i, b_i)$), kde $(a_i, b_i)$ jsou po dvou disjunktní. Nyní $\forall m \in ®N: \sum_{i=1}^m b_i - a_i ≤ |G| < \delta \implies \sum_{i=1}^m f(b_i) - f(a_i) < \epsilon$. Nakonec pro $m \rightarrow ∞$ je $\sum_{i=1}^∞ |f(b_i) - f(a_i)| ≤ \epsilon$ a $f(N) \subset \bigcup_{i=1}^∞ f((a_i, b_i))$, tudíž $\sum_{i=1}^∞ f(b_i) - f(a_i) ≤ \epsilon$.
+
+			„$|f(Z)| = 0$“: Nechť $\epsilon > 0$ a víme, že $f'(x) < \epsilon$ na $Z$. Podle věty výše $|f(Z)| ≤ \epsilon · |Z| ≤ \epsilon · (b - a)$, tudíž $|f(Z)| = 0$.
+
+			„$\int_D f'(x) = |f(D)|$“: Nechť $\tau > 1$. Označme $D_k = \{x|T^k ≤ f'(x) < \tau^{k+1}\}$. Pak $D = \bigcup_{k \in ®Z} D_k$. Podle věty výše
+			$$ \frac{1}{\tau} \int_{D_k} f'(x) dx ≤ \tau^k |D_k| ≤ |f(D_k)| ≤ \tau^{k + 1} |D_k| ≤ \tau \int_{D_k} f' dx $$
+			Posčítáme a získáme $\frac{1}{\tau} \int_D f'(x) dx ≤ |f(D)| ≤ \tau \int_D f'(x) dx$. Limita přes $\tau$ nám dá požadovanou rovnost.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Neurčitý Lebesgueův integrál]
+		Nechť $\Theta \in L^1(a, b)$ a $f$ je neurčitý Lebesgueův integrál $\Theta$, tj. existuje konstanta $C$, že
+		$$ f(x) = \int_a^x \Theta(t) dt + C, \qquad \forall x \in [a, b]. $$
+		Pak $f \in AC$ a $f' = \Theta$ skoro všude.
+
+		\begin{tvrzeni}[Pozorování z TMI]
+			$$ \Theta \in L^1\ \forall \epsilon > 0\ \exists \delta\ \forall M, |M| < \delta \implies \int_M |\Theta| < \epsilon. $$
+		\end{tvrzeni}
+
+		\begin{dukazin}
+			„$f \in AC$“: K $\epsilon > 0$ zvolme $\delta > 0$ z pozorování z TMI. Nechť $(a_j, b_j)$ jsou po dvou disjunktní a $\sum_{j=1}^n (b_j - a_j) < \delta$. Nyní
+			$$ \sum_{j=1}^n |f(b_j) - f(a_j)| = \sum_{j=1}^n |\int_{a_j}^{b_j} \Theta(t) dt| ≤ \int_{\bigcup (a_j, b_j)} |\Theta(t)| dt < \epsilon \implies f \in AC. $$
+
+			„$f' = \Theta$ skoro všude“: Víme z předchozí věty, že $f(x) - f(a) = \int_a^x f'(t) dt$. Také víme $f(x) - C = \int_a^x \Theta(t) dt$. Tedy $C - f(a) = \int_a^x (f'(t) - \Theta(t)) dt$. Při $x = a$ máme $C = f(a)$, tedy $\forall x \in [a, b]: \int_a^x (f'(t) - \Theta(t)) dt$. Z TMI víme, že $f'(t) = \Theta(t)$ skoro všude.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}
+		$$ f \in AC ([a, b]) \Leftrightarrow \exists \Theta \in L^1(a, b), f(x) = \int_a^x \Theta(t) dt + C. $$
 	\end{dusledek}
 \end{document}
 

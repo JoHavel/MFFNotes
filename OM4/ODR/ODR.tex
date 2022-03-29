@@ -329,4 +329,80 @@
 	\end{dukazin}
 \end{veta}
 
+% 24. 03. 2022
+
+\begin{veta}[Variace konstant]
+	Nechť $x' = A(t) x + b(t)$, $A: (\alpha, \beta) \rightarrow ®R^{n \times n}$, $b: (\alpha, \beta) \rightarrow ®R^n$ spojité, je LODR, $\Phi(t)$ fundamentální matice homogenní rovnice $x' = A(t) x$. Potom řešení LODR s počáteční podmínkou $x(t_0) = x_0$ ($t_0 \in (\alpha, \beta)$, $x_0 \in ®R^n$) je dáno předpisem
+	$$ x(t) = \Phi(t) \Phi^{-1}(t_0) x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s) f(s) ds. $$
+
+	\begin{poznamkain}
+		Když budeme hledat řešení LODR ve tvaru $\phi(t)·C(t)$, dostaneme se k tomuto vzorci.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Zderivujeme a s použitím $\Phi'(t) = A(t)·\Phi(t)$:
+		$$ x'(t) = \Phi(t)·\Phi'(t_0)·x_0 + \Phi'(t)·\int_{t_0}^t \Phi^{-1}(s)·f(s) ds + \Phi(t)·\Phi^{-1}(t)·b(t) = $$
+		$$ = A(t)\(\Phi(t)\Phi^{-1}(t)x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s)·f(s) ds\) + b(t) = A(t)x + b(t). $$
+		
+		Navíc zjevně $x(t_0) = x_0$.
+	\end{dukazin}
+\end{veta}
+
+\section{Lineární rovnice s konstantními koeficienty}
+\begin{definice}[Lineární rovnice s konstantními koeficienty (LODRKK)]
+	$$ x' = Ax + b(t), \qquad A \in ®R^{n \times n}, b: (\alpha, \beta) \rightarrow ®R^n \text{ spojitá}. $$
+\end{definice}
+
+\begin{poznamka}
+	Ukážeme, že pro $n \in ®N$ je řešení homogenní soustavy LODRKK se dá napsat ve tvaru $e^{At} = \sum_{k=0}^∞ \frac{1}{k!} A^k t^k$.
+\end{poznamka}
+
+\begin{definice}[Norma matice]
+	$$ A \in ®R^{n \times n}. ||A|| := \sup\{|Ax|\ |\ x \in ®R^n, |x| ≤ 1\}. $$
+\end{definice}
+
+\begin{veta}
+	Nechť $A, B \in ®R^{n \times n}$. Pak
+
+	\begin{enumerate}
+		\item $||A|| ≥ 0$, $||A|| = 0 \Leftrightarrow A = 0$;
+		\item $||\lambda A|| = |\lambda|·||A||$, $\forall \lambda \in ®R$;
+		\item $||A + B|| ≤ ||A|| + ||B||$;
+		\item $||A B|| ≤ ||A||·||B||$;
+		\item $|Av| ≤ ||A||·|v|$, $v \in ®R^n$;
+		\item $|Av| ≥ \frac{|v|}{||A^{-1}||}$, $\forall v \in ®R^n$, je-li $A$ regulární.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1.–3. za domácí úkol. V 5. se pouze vezme norma, 2. a definice. Pro 4. dvakrát použijeme 5. Nakonec u 6. použijeme $y = A v$, tedy $v = A^{-1} y$, tím dostaneme samé tvrzení jako v 5..
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Funkce $U(t) = \sum_{k=0}^∞ \frac{1}{k!} t^k A^k, t \in ®R$ je fundamentální matice homogenního řešení LODRKK, $U(¦o) = I_0$.
+
+	\begin{dukazin}
+		Za prvé řada konverguje, neboť
+		$$ ||\frac{1}{k!}t^k A^k|| ≤ \frac{|t|^k}{k!} ||A||^k \land \sum_{k=0}^∞ \frac{|t|^k}{k!} ||A^k|| K. $$
+		
+		Za druhé $[U(t)]_{ij} = \sum_{k=0}^∞ \frac{1}{k!}t^k[A^k]_{ij}$ a poloměr konvergence je ∞, můžeme tedy derivovat člen po členu:
+		$$ \frac{d}{dt}[U(t)]_{ij} = … = A·U(t). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Pro $A \in ®R^{n \times n}$ definujeme $e^A = \sum_{k=0}^∞ \frac{1}{k!} A^k$. Potom platí:
+
+	\begin{itemize}
+		\item $e^{\lambda I} = e^\lambda · I$, $\lambda \in ®R$;
+		\item pokud $AB = BA$, pak $e^{A + B} = e^A · e^B$;
+		\item $e^{C^{-1} A C} = C^{-1} e^A C$, pokud je $C$ regulární;
+		\item $e^{-A} = \(e^A\)^{-1}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Rozepsáním? TODO
+	\end{dukazin}
+\end{veta}
+
 \end{document}

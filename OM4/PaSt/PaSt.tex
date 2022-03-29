@@ -757,5 +757,106 @@
 	\end{dukazin}
 \end{veta}
 
+% 23. 03. 2022
 
+\section{Mnoharozměrné normální rozdělení}
+\begin{definice}[Mnoharozměrné normální rozdělení]
+	Buď $¦Z = (Z_1, …, Z_r)^T$, $r \in ®N$, $r$-rozměrný váhový vektor, kde $Z_i$ jsou vzájemně nezávislé a $Z_i \sim N(0, 1)$, $i \in [r]$. Buď $A_{n \times r}$, $n \in ®N$ matice a $\mu = (\mu_1, …, \mu_n) \in ®R^n$ pevný vektor. Náhodný vektor definovaný jako $¦X = A¦Z + \mu$ má $n$-rozměrné normální rozdělení s parametry $\mu$ a $\Sigma = A A^T$. Značíme $N_n(\mu, \Sigma)$.
+\end{definice}
+
+\begin{dusledek}
+	\ 
+	\begin{itemize}
+		\item $¦Z \sim N_r(), I_n)$.
+		\item $®E ¦X = \mu$.
+		\item Pro $k \in ®N$ a matici $B_{k \times n}$ platí, že $¦Y = B ¦X \sim N_k(B_\mu, B \Sigma B^T)$.
+		\item Speciálně pro vektor $¦c = (c_1, …, c_n) \in ®R^n$ má $¦c¦X$ jednorozměrné normální rozdělení $N(¦c \mu, ¦c \Sigma ¦c^T)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Byl na přednášce, ale jednoduchý.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[O hustotě $n$-rozměrného normálního rozdělení]
+	Buď ¦X náhodný vektor s rozdělením $N_n(\mu, \Sigma)$, kde $\Sigma$ je regulární matice. Pak $P_{¦X} \ll \lambda^n$ a
+	$$ f_{¦X}(¦x) = \frac{1}{(2\pi)^{\frac{n}{2}}\sqrt{\det \Sigma}} e^{-\frac{1}{2} (¦x - \mu)^T \Sigma^{-1} (¦x - \mu)}, \qquad ¦x \in ®R^n. $$
+
+	\begin{dukazin}
+		Nejdříve buď $¦X \sim N_n(0, I_n)$. Pak $X_i = Z_i$ z definice a víme tedy, že $X_i \sim N(0, 1)$ a $X_i$ jsou vzájemně nezávislé, tedy
+		$$ f_{¦X}(¦x) = \prod_{i=1}^n \frac{1}{\sqrt{2 \pi}} e^{-\frac{x_i^2}{2}}, \qquad ¦x \in ®R^n. $$
+
+		Následně buď $\Sigma$ pozitivně definitní, $\mu \in ®R^n$. Pak $\exists A_{n \times n}$ taková, že $\sigma = A A^T$ a $A$ je regulární. Položme $¦Y = A¦X + \mu$, kde $¦X$ je vektor ze začátku důkazu. Tedy $¦Y \sim N_n(\mu, A^T A = \Sigma)$. Použijeme větu o transformaci hustot na odvození $f_{¦Y}$:
+
+		Mějme zobrazení $g: ®R^n \rightarrow ®R^n$, $g(¦x) = A¦x + \mu$. $g$ je difeomorfismus na $®R^n$, $|\Jac g| = |\det A| ≠ 0$, tedy můžeme volit $S_{¦X} = ®R^n$, $g(S_{¦X}) = ®R^n$, $g^{-1}(¦y) = A^{-1}(¦y - \mu)$, tedy:
+		$$ f_{¦Y}(¦y) = \frac{1}{(2\pi)^{\frac{n}{2}}} · \frac{1}{|\det A|} · e^{-\frac{1}{2}(A^{-1}(¦y - \mu))^T(A^{-1}(¦y - \mu))} = $$
+		$$ = \frac{1}{(2\pi)^{\frac{n}{2}}} · \frac{1}{\sqrt{\det \Sigma}}·e^{-\frac{1}{2} (¦y - \mu)^T \sigma^{-1} (¦y - \mu)}, \qquad ¦y \in ®R^n. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[O marginálních rozděleních v $N_n$]
+	Buď ¦X náhodný vektor $\sim N_n(\mu, \Sigma)$. Pak marginální rozdělení $X_i$ je $N(\mu_i, \sigma_i^2)$, kde $\sigma_i^2 = \Sigma_{i, i} = \var X_i$. A podvektor $(X_i, X_j)^T$, $i ≠ j$, má rozdělení $N_2\(\begin{pmatrix} \mu_1 \\ \mu_2 \end{pmatrix}, \begin{pmatrix} \sigma_i^2 & \rho_{ij}\sigma_i\sigma_j \\ \rho_{ij} \sigma_i\sigma_j & \sigma_j^2 \end{pmatrix}\)$, kde $\rho_{ij} = \cor(X_i, X_j)$.
+
+	\begin{dukazin}
+		Použijeme předchozí důsledek definice, čtvrtý bod pro první část a třetí bod pro druhou část.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	Nechť máme náhodný vektor $(X, Y)^T \sim N_2$. Pak mají $X, Y$ jednorozměrné normální rozdělení. Pokud navíc $\cov(X, Y) = 0$, pak jsou $X$ a $Y$ nezávislé.
+\end{tvrzeni}
+
+% 28. 03. 2022
+
+\begin{definice}[$\chi^2$-rozdělení]
+	Buďte $X_1, …, X_n$, $n \in ®N$ nezávislé náhodné veličiny s rozdělením $N(0, 1)$. Pak náhodná veličina $Y_n = \sum_{i=1}^n X_i^2$ má $\chi^2$-rozdělení o $n$ stupních volnosti (značíme $\chi_n^2$), s hustotou
+	$$ g_n(y) = \frac{y^{\frac{n}{2} - 1}}{2^{\frac{n}{2}} \Gamma(\frac{n}{2})}e^{-\frac{y}{2}} 1_{y > 0}, \qquad y \in ®R. $$
+
+	\begin{poznamka}
+		Střední hodnota je $n$, rozptyl $2n$.
+	\end{poznamka}
+\end{definice}
+
+\begin{definice}[Studentovo rozdělení]
+	Buďte $X \sim N(0, 1)$ a $Y \sim \chi_n^2$ nezávislé náhodné veličiny. Pak náhodná veličina $T = \frac{X}{\sqrt{\frac{Y}{n}}}$ má studentovo $t_n$ rozdělení (neboli $t$-rozdělení o $n$ stupních volnosti) s hustotou
+	$$ h_n(t) = \frac{\Gamma(\frac{n+1}{2})}{\sqrt{\phi n} \Gamma(\frac{n}{2})} \(1 + \frac{t^2}{n}\)^{-\frac{n+1}{2}}, \qquad t \in ®R. $$
+
+	\begin{poznamka}
+		Střední hodnota je 0, pokud $n > 1$. Obecně $t_n$-rozdělení má konečné momenty až do řádu $(n-1)$ včetně.
+
+		Pro $n = 1$ se toto rozdělení nazývá Cauchyho rozdělení (protože se chová jinak než ostatní studentova).
+	\end{poznamka}
+\end{definice}
+
+\section{Limitní věty}
+\begin{definice}[Značení]
+	Buďte $A_1, A_2, …$ náhodné jevy ze $\sigma$-algebry ©A. Značíme
+	$$ \limsup_{n \rightarrow ∞} A_n = \bigcap_{n=1}^∞ \bigcup_{k=n}^∞ A_k, \qquad \liminf_{n \rightarrow ∞} A_n = \bigcup_{n=1}^∞ \bigcap_{k=n}^∞ A_k. $$
+\end{definice}
+
+\begin{veta}[Cantelli]
+	Buďte $A_1, A_2, …$ náhodné jevy z ©A. Pokud $\sum_{n=1}^∞ P(A_n) < ∞$, pak $P(\limsup_{n \rightarrow ∞} A_n) = 0$.
+
+	\begin{dukazin}
+		$$ P(\limsup_{n \rightarrow ∞} A_n) = P(\bigcap_{n=1}^∞ \bigcup_{k=n}^∞ A_k)  = \lim_{n \rightarrow ∞} P(\bigcup_{k=n}^∞ A_k) = \lim_{n \rightarrow ∞} P(\bigcup_{k=n}^∞ A_k) ≤  \lim_{n \rightarrow ∞} \sum_{k=n}^∞ P(A_k) = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$$ P((\limsup_{n\rightarrow ∞} A_n)^c) = 1 = P(\liminf_{n \rightarrow ∞} A_n^c). $$
+\end{dusledek}
+
+\begin{veta}[Borelova, Borelův 0-1 zákon]
+	Buďte $A_1, …$ nezávislé náhodné jevy z ©A. Pak
+	$$ \sum_{n=1}^∞ P(A_n) < ∞ \Leftrightarrow P(\limsup_{n \rightarrow ∞} A_n) = 0, $$
+	$$ \sum_{n=1}^∞ P(A_n) = ∞ \Leftrightarrow P(\limsup_{n \rightarrow ∞} A_n) = 1. $$
+
+	\begin{dukazin}
+		Neb nic jiného než $\sum = ∞$ nebo $\sum < ∞$ nastat nemůže, stačí ukázat dvakrát $\implies$. „První $\implies$“ je Cantelliho věta.
+
+		„Druhá $\implies$“: Platí $P(\limsup_{n \rightarrow ∞} A_n) = 1 - P((\limsup_{n \rightarrow ∞} A_n)^c) = 1 - P(\liminf_{n \rightarrow ∞} A_n^c)$. Počítejme
+		$$ P(\liminf_{n \rightarrow ∞} A_n^c) = P(\bigcup_{n=1}^∞ \bigcap_{k=n}^∞ A_k^c) = \lim_{n \rightarrow ∞} P(\bigcap_{k=n}^∞ A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} P(\bigcap_{k=n}^N A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N P(A_k^c) ≤ \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N e^{-P(A_k)} = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} e^{\sum_{k=n}^N P(-A_n)} = \lim_{n \rightarrow ∞} 0 = 0. $$
+	\end{dukazin}
+\end{veta}
+	
 \end{document}
