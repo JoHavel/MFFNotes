@@ -405,4 +405,59 @@
 	\end{dukazin}
 \end{veta}
 
+% 31. 03. 2022
+
+\begin{veta}
+	$A \in ®R^{n \times m}$, $\Lambda$ je její Jordanův kanonický tvar, $A = C \Lambda C^{-1}$, a $(\lambda_1, …, \lambda_n)$ je diagonála $\Lambda$. Potom $e^{t A} = C e^{t \Lambda} C^{-1}$, kde:
+	$$ e^{t \Lambda} = \begin{pmatrix} e^{t \Lambda_1} & 0 & … \\ 0 & e^{t \Lambda_2} & 0 & … \\ 0 & 0 & e^{t \Lambda_3} & … \\ \vdots & \vdots & \vdots & \ddots \end{pmatrix} = \diag(e^{t \lambda_1}, …, e^{t \lambda_n}) · P(t), P_i(t) = \begin{pmatrix} 1 & t & \frac{t^2}{2} & \frac{t^{k-1}}{(k-1)!} \\ 0 & 1 & t & … & … \\ \vdots & \vdots & \vdots & \ddots & \vdots \end{pmatrix}. $$
+
+	\begin{dukazin}
+		Jednoduchý, byl na cvičení.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Buď $\overline a = \max \{\Re \lambda | \lambda \in eig(A)\}$, $m$ je velikost Jordanovy buňky příslušná $\lambda: \Re \lambda = \overline a$. Pak $\det(A - \lambda I) = 0$:
+	$$ \exists C > 0: ||e^{t A}|| ≤ C · t^{n-1}·e^{\overline a t}, \qquad \forall t ≥ 0. $$
+
+	Obdobně když $\underline a = \min$, pak
+	$$ \exists C > 0: ||e^{t A}|| ≤ C · |t|^{n-1}·e^{\underline a t}, \qquad \forall t ≤ 0. $$
+
+	\begin{dukazin}
+		Operátorová norma $||.||$ je ekvivalentní normě $||A||_∞$. Z toho a předchozí věty už to odhadneme…
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	Je-li $\Re \lambda < 0$, $\forall \lambda \in eig(A)$, pak $e^{A t} x_0 \rightarrow 0$, $t \rightarrow +∞$.
+\end{dusledek}
+
+\begin{definice}[Stabilní, nestabilní a centrální podprostor]
+	$$ \sigma_-(A) = \{\lambda \in eig(A) | \Re \lambda < 0\}, V_- = Lin\{v \in ®R^n | (A - \lambda I)^k v = 0, \lambda \in \sigma_-\} $$
+	$$ \sigma_+(A) = \{\lambda \in eig(A) | \Re \lambda > 0\}, V_+ = Lin\{v \in ®R^n | (A - \lambda I)^k v = 0, \lambda \in \sigma_+\} $$
+	$$ \sigma_0(A) = \{\lambda \in eig(A) | \Re \lambda = 0\}, V_0 = Lin\{v \in ®R^n | (A - \lambda I)^k v = 0, \lambda \in \sigma_0\}. $$
+\end{definice}
+
+\begin{veta}
+	$$ \exists C > 0, \alpha > 0\ \forall x_0 \in V_-: |e^{tA} x_0| ≤ C e^{-\alpha t}|x_0|, \qquad \forall t ≥ 0. $$
+	$$ \exists C > 0, \beta > 0\ \forall x_0 \in V_+: |e^{tA} x_0| ≥ C e^{\beta t}|x_0|, \qquad \forall t ≥ 0. $$
+	$$ \forall \epsilon > 0\ \exists C > 0\ \forall x_0 \in V_0: |e^{tA} x_0| ≤ C e^{\epsilon t}|x_0|, \qquad \forall t ≥ 0. $$
+
+	\begin{dukazin}
+		$$ x_0 \in V_-: |e^{tA} x_0| = |C e^{t \Lambda} · C^{-1} x_0| ≤ ||C e^{t \Lambda}|_{V_0}|| ≤ ||C|| · ||e^{t \Lambda}|_{V^{-1}}||·||C^{-1}||·|x_0| ≤ d e^{-\alpha t} |x_0|. $$
+		TODO!!! (Příště?)
+	\end{dukazin}
+\end{veta}
+
+\section{Stabilita řešení}
+\begin{definice}[Stabilní řešení, lokální atraktor, asymptotická stabilita]
+	DR $x' = f(x, t)$. Buď $\Omega \subset ®R^{n+1}$, $\tau \in ®R$, $\{¦o\} \times [\tau, +∞) \subset \Omega$. Buď $f: \Omega \rightarrow ®R^n$ spojitá a lokálně lipschitzovská vzhledem k $x$ a $f(0, t) = 0$, $\forall t > \tau$. Značme $I = [\tau, +∞)$. Nulové řešení DR se nazývá:
+
+	\begin{itemize}
+		\item stabilní, jestliže $\forall t_0 \in I\ \forall \epsilon > 0 \exists \delta > 0 \forall x_0: |x_0| < \delta \implies |\phi(t, t_0, x_0)| < \epsilon\ \forall t ≥ t_0$;
+		\item lokální atraktor, pokud $\forall t_0 \in I\ \exists \eta > 0\ \forall x_0: |x_0| < \eta \implies \lim_{t \rightarrow +∞} \phi(t, t_0, x_0) = 0$;
+		\item asymptoticky stabilní, pokud je stabilní a zároveň je lokálním atraktorem.
+	\end{itemize}
+\end{definice}
+
 \end{document}

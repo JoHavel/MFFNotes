@@ -858,5 +858,61 @@
 		$$ P(\liminf_{n \rightarrow ∞} A_n^c) = P(\bigcup_{n=1}^∞ \bigcap_{k=n}^∞ A_k^c) = \lim_{n \rightarrow ∞} P(\bigcap_{k=n}^∞ A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} P(\bigcap_{k=n}^N A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N P(A_k^c) ≤ \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N e^{-P(A_k)} = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} e^{\sum_{k=n}^N P(-A_n)} = \lim_{n \rightarrow ∞} 0 = 0. $$
 	\end{dukazin}
 \end{veta}
+
+% 30. 03. 2022
+
+\begin{definice}[Konvergence v pravděpodobnosti]
+	Buďte $Y_1, Y_2, …$ náhodné veličiny na $(\Omega, ©A, P)$. Posloupnost $\{Y_n\}_{n = 1}^∞$ konverguje v pravděpodobnosti k náhodné veličině $Y$, značíme $Y_n \overset{P}{\rightarrow} Y$, pokus $P(|Y_n - Y| > \epsilon) \rightarrow 0$, $\forall \epsilon > 0$.
+
+	\begin{poznamkain}
+		Je to konvergence podle míry. Je ekvivalentní
+		$$ \forall \epsilon > 0: P(|\frac{1}{n} \sum_{i=1}^n Y_i - ®E Y| ≤ \epsilon) \rightarrow 1? $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Konvergence skoro jistě]
+	Buďte $Y_1, …$ náhodné veličiny na $(\Omega, ©A, P)$. Posloupnost $\{Y_n\}_{n=1}^∞$ konverguje skoro jistě k náhodné veličině $Y$, značíme $Y_n \overset{\text{s.j.}}\rightarrow Y$, pokud $P(\{\omega \in \Omega | \lim_{n \rightarrow ∞}Y_n(\omega) = Y(\omega)\}) = 1$.
+
+	\begin{poznamkain}
+		Je to konvergence skoro všude.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[O konvergenci v pravděpodobnosti a součtu]
+	Buďte $Y_1, …$ náhodné veličiny na $(\Omega, ©A, P)$ náhodné veličiny a $Z_1, …$ náhodné veličiny také na $(\Omega, ©A, P)$. Pak
+	$$ (Y_n \overset{P}\rightarrow 0) \land (Z_n \overset{P}\rightarrow 0) \implies (Y_n + Z_n \overset{P}\rightarrow 0). $$
+
+	\begin{dukazin}
+		$$ P(|Y_n + Z_n| > \epsilon) ≤ P(|Y_n| > \frac{\epsilon}{2}) + P(|Z_n| > \frac{\epsilon}{2}) \rightarrow 0, \qquad \forall \epsilon > 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O konvergenci v pravděpodobnosti a násobení]
+	Za stejných předpokladů jako výše s přidáním $\{a_n\}_{n=1}^∞$ je reálná omezená posloupnost, je $Y_n \overset{P}\rightarrow 0 \implies a_nY_n \overset{P}\rightarrow 0$.
+
+	\begin{dukazin}
+		$$ P(|a_n Y_n| > \epsilon) ≤ P(|Y_n| > \frac{\epsilon}{c}) \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O spojité transformaci a konvergence]
+	Buďte $Y_1, Y_2, …$ n. v. na $(\Omega, ©A, P)$ a $g: ®R \rightarrow ®R$ funkce spojitá na otevřené množině $S_Y$ takové, že $P(Y \in S_Y) = 1$. Pak
+	$$ Y_n \overset{P} \rightarrow Y \implies g(Y_n) \overset{P}\rightarrow g(Y), $$
+	$$ Y_n \overset{\text{s. j.}}\rightarrow Y \implies g(Y_n) \overset{\text{s. j.}}\rightarrow g(Y). $$
+
+	\begin{dukazin}
+		První implikace viz literatura. Druhá: Buď $N \subset \Omega$ taková, že $Y_n(\omega) \rightarrow Y(\omega)$, $\forall \omega \in \Omega \setminus N$. Označíme $M = (\Omega \setminus N) \cap Y^{-1}(S_Y)$. Pak $P(M) = 1$. A $\forall \omega \in M$ platí, že $g$ je spojitá na otevřeném okolí $Y(\omega)$, a tedy z $Y_n(\omega) \rightarrow Y(\omega)$ dostaneme $g(Y_n(\omega)) \rightarrow g(Y(\omega))$ z věty o limitě spojitě transformované posloupnosti v ®R.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Čebyševův slabý zákon velkých čísel]
+	Buďte $X_1, X_2, …$ vzájemně nezávislé náhodné veličiny definované na tomtéž $(\Omega, ©A, P)$ splňujíxí $®E X_n^2 < ∞$, $n \in ®N$, a $\lim_{n \rightarrow ∞} \(\frac{1}{n^2} \sum_{i=1}^n \var X_i\) = 0$. Potom platí
+	$$ |\overline{X\_n} - \overline{®E X_n}| \overset{P}{\rightarrow} 0. $$
+
+	\begin{dukazin}
+		Buď $\epsilon > 0$ pevné.
+		$$ P(|\overline{X_n} - \overline{®E X_n}| > \epsilon) ≤ \frac{\var(\overline{X_n} - \overline{®E X_n})}{\epsilon^2} = \frac{\var \overline{X_n}}{\epsilon^2} = \frac{\var \frac{1}{n} \sum_{i=1}^n X_i}{\epsilon^2} = \frac{1}{n^2} \frac{\sum_{i=1}^n \var X_i}{\epsilon^2} = \frac{\frac{1}{n^2} \sum_{i=1}^n \var X_i}{\epsilon^2} \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
 	
 \end{document}
