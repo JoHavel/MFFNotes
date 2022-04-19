@@ -914,5 +914,78 @@
 		$$ P(|\overline{X_n} - \overline{®E X_n}| > \epsilon) ≤ \frac{\var(\overline{X_n} - \overline{®E X_n})}{\epsilon^2} = \frac{\var \overline{X_n}}{\epsilon^2} = \frac{\var \frac{1}{n} \sum_{i=1}^n X_i}{\epsilon^2} = \frac{1}{n^2} \frac{\sum_{i=1}^n \var X_i}{\epsilon^2} = \frac{\frac{1}{n^2} \sum_{i=1}^n \var X_i}{\epsilon^2} \rightarrow 0. $$
 	\end{dukazin}
 \end{veta}
+
+% 04. 04. 2022
+
+TODO!!! (Chyběl jsem)
+
+% 06. 04. 2022
+
+TODO!!! (Chyběl jsem)
+\begin{veta}[Silný zákon velkých čísel pro iid]
+	Buď $\{X_n\}_{n=1}^∞$ posloupnost iid náhodných veličin. Pak
+	$$ (\exists \mu \overline{X_n} \overset{\text{skoro jistě}}\rightarrow \mu) \Leftrightarrow ®E |X_1| < ∞. $$
+
+	\begin{dukazin}
+%
+% 11. 04. 2022
+%
+		„$\implies$“: $X_n = n · \overline{X_n} - (n-1)·\overline{X_{n-1}}$, $\forall n ≥ 2$,
+		$$ \frac{X_n}{n} = \overline{X_n} - \frac{n-1}{n} \overline{X_{n-1}}. $$
+
+		Tedy $\frac{X_n}{n} \rightarrow 0$ skoro jistě. Takže $P(\frac{X_n}{n} ≥ 1, \text{ pro nekonečně mnoho $n$}) = P(\limsup \frac{|X_n|}{n} ≥ 1) = 0$.
+
+		Z Borelovy věty máme, že jevy $|X_n| ≥ n$ jsou vzájemně nezávislé, neb $\{X_n\}_{n=1}^∞$ jsou vzájemně nezávislé.
+		$$ \sum_{n=1}^∞ P(|X_n| ≥ n) < ∞, \qquad \sum_{n=1}^∞ P(|X_1| ≥ n) < ∞. $$
+		Nyní z předchozího lemmatu máme $®E |X_1| < ∞$.
+
+		Navíc z jednoznačnosti limity skoro jistě máme, že $\mu = ®E X_1$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Konvergence v distribuci]
+	Buď $Y_n$ posloupnost náhodných veličin na libovolných pravděpodobnostních prostorech. Řekneme, že náhodné veličiny $Y_n$ konvergujív distribuci (značíme $\overset{D}\rightarrow$), pokud $\lim_{n \rightarrow ∞} F_{Y_n} (x) = F_Y(x)$ $\forall x \in ®R$, které jsou body spojitosti $F_Y$.
+
+	\begin{poznamkain}
+		Konvergence v distribuci mluví o konvergenci měr $P_{Y_n}$, nikoliv $Y_n$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[Centrální limitní věta (Ljapunov 1901, Lévy, Lindenberg 1922)]
+	Buďte $X_1, X_2, X_3, …$ nezávislé, stejně rozdělené náhodné veličiny s $®E X_1 = \mu \in ®R$ a $0 < \var X_1 = \sigma^2 < ∞$. Potom pro náhodné veličiny $Z_n = \frac{\sum_{n=1}^n X_i - \mu}{\sqrt{n \sigma^2}}$ platí $Z_n \overset{D}\rightarrow Z$, kde $Z \sim N(0, 1)$.
+\end{veta}
+
+% 13. 04. 2022
+
+\begin{lemma}[Ekvivalentní charakterizace $\overset{D}\rightarrow$]
+	Posloupnost náhodných veličin $\{Y_n\}_{n=1}^∞$ splňuje $Y_n \overset{D}\rightarrow Y$ právě tehdy, když $®E h(Y_n) \rightarrow ®E h(Y)$ pro každou spojitou omezenou funkci $h: ®R \rightarrow ®R$.
+
+	\begin{dukazin}
+		Důkaz je technický a byl vynechán.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Centrální limitní věty]
+	BÚNO $®E X_i = 0$ a $\var X_i = 1$, $\forall i \in ®N$, (jinak bychom následující použili pro $\tilde{X}_i = \frac{X_i - \mu}{\sqrt{\sigma^2}}$). Z předchozího lemmatu nám stačí ukázat, že $®E h(Z_n) \rightarrow ®E h(Z)$ $\forall h$ 2krát spojitě diferencovatelné, stejnoměrně spojité a s omezenými prvními a druhými derivacemi.
+
+	Buďte $\{Y_i\}_{i=1}^∞$ nezávislé náhodné veličiny $\sim N(0, 1)$ nezávislé s $\{X_i\}_{i=1}^∞$. Pak $T_n = \frac{\sum_{i=1}^∞ Y_n - 0}{\sqrt{n·1}} \sim N(0, 1)$. Teď chceme ukázat $|®E h(Z_n) - ®E h(T_n)| \rightarrow 0$ pro každé $h$ jako výše.
+
+	Označíme si $X_{i, n} = \frac{X_i}{\sqrt{n}}$, $Y_{i, n} = \frac{Y_i}{\sqrt{n}}$, $W_{i, n} = \sum_{j=0}^i Y_{j, n} + \sum_{j=i+1}^n X_{i, n}$. Platí
+	$$ h(Z_n) - h(T_n) = \sum_{i=1}^n (h(W_{i, n} + X_{i, n}) - h(W_{i, n} + Y_{i, n})), \qquad \text{neboť } W_{i, n} + X_{i, n} = W_{i + 1, n} + Y_{i-1, n}, \qquad 1 ≤ i ≤ n. $$
+	Nyní použijeme Taylorův rozvoj na omezení jednotlivých rozdílů. Platí
+	$$ h(W_{i, n} + X_{i, n}) = h(W_{i, n}) + h'(W_{i, n})X_{i, n} + \frac{1}{2} h'' (W_{i, n}) X_{i, n}^2 + R_{x, i, n}, $$
+	$$ R_{x, i, n} = \frac{1}{2 X_{i, n}^2 (h''(W_{i, n} + \zeta X_{i, n}) - h''(W_{i, n}))}, \qquad 0 ≤ \zeta ≤ 1. $$
+	A také platí $|R_{x, i, n}| ≤ X_{i, n}^2 ||h''||_∞$ a také platí $\forall \epsilon > 0\ \exists \delta > 0: |R_{x, i, n}| ≤ X_{i, n}^2 \epsilon$, pro $|X_{i, n}| < \delta$ ze stejnoměrné spojitosti $h''$. Dohromady $|R_{x, i, n}| ≤ X_{i, n}^2(\epsilon · 1_{(|X_{i, n}| < \delta)} + ||h''||_∞ 1_{(|X_{i, n}| ≥ \delta)})$. Obdobně vše pro $Y_{i, n}$.
+
+	Dosadíme Taylorův rozvoj a odhady do teleskopické sumy výše a spočítáme střední hodnotu:
+	$$ ®E(h(Z_n) - h(T_n)) = \sum_{i=1}^n \[®E (h(W_{i, n}) - h(W_{i, n})) + ®E h'(W_{i, n})(X_{i, n} - Y_{i, n}) + ®E \frac{1}{2} h''(W_{i, n})(X_{i, n}^2 - Y_{i, n}^2) + ®E R_{x, i, n} - ®E R_{y, i, n}\] = 0 + 0 + 0 + …, $$
+	neboť první člen je zřejmě nula, druhý člen je střední hodnota součinu nezávislých veličin, tedy součin středních hodnot a $X, Y$ mají stejnou střední hodnotu a střední hodnota $W_{i, n}$ existuje, tedy i druhý člen je 0. Třetí člen je úplně totéž, jen $X, Y$ mají shodný rozptyl.
+	$$ |®E (h(Z_n) - h(T_n))| ≤ \sum_{i=1}^n ®E(|R_{x, i, n}| + |R_{y, i, n}|) ≤ \sum_{i=1}^n (\epsilon ®E(X_{i, n}^2 + Y_{i, n}^2) + ||h''||_∞ ®E(X_{i, n}^2 1_{(|X_{i, n}| ≥ \delta)} + Y_{i, n}^2 1_{(|Y_{i, n}| ≥ \delta)})) = $$
+	$$ = 2\epsilon + \sum_{i=1}^n ||h''||_∞ (®E \frac{X_i^2}{n} 1_{|X_i|} > \delta·\sqrt{n} + ®E \frac{Y_i^2}{n} 1_{(|Y_i| ≥ \delta·\sqrt{n})}) = $$
+	$$ = 2\epsilon + ||h''||_∞(®E X_1^2 1_{(|X_1| ≥ \delta \sqrt{n}) + ®E Y_1^2 1_{(|Y_1| ≥ \delta \sqrt{n})}}), $$
+	A neboť $®E X_1^2 1_{(|X_1| ≥ \delta \sqrt{n})} = ®E X_1^2 - ®E X_1^2 1_{(|X_1| < \delta \sqrt{n})} \rightarrow ®E X_1^2 - ®E X_1^2 = 0$ z Lebesgueovy věty.Tak
+	$$ |®E (h(z_n) - h(t_n))| \rightarrow 2\epsilon. $$
+	Tedy $\forall \epsilon > 0$ $\exists n: |®E h(Z_n) - ®E h(T_n)| < 3\epsilon$, tedy teleskopická suma jde k nule, tudíž $|®E h(Z_n) - ®E h(T_n)| \rightarrow 0$ $\forall h$ splňující podmínky výše.
+\end{dukaz}
 	
 \end{document}

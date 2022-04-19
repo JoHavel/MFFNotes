@@ -456,5 +456,156 @@
 	\begin{dusledek}
 		$$ f \in AC ([a, b]) \Leftrightarrow \exists \Theta \in L^1(a, b), f(x) = \int_a^x \Theta(t) dt + C. $$
 	\end{dusledek}
+
+% 05. 04. 2022
+
+TODO (Chyběl jsem)
+
+% 12. 04. 2022
+
+\section{Fourierovy řady}
+	\subsection{Bodová konvergence Fourierových řad}
+	\begin{definice}[Dirichletovo jádro]
+		Nechť $n \in ®N \setminus \{0\}$. Potom funkce $D_n(x) = \frac{1}{2} + \cos x + … + \cos n · x$ nazýváme Dirichletovým jádrem.
+	\end{definice}
+
+	\begin{veta}[O částečných součtech Fourierovy řady]
+		Nechť $f \in P_{2\pi}$ a $n \in ®N \setminus \{0\}$. Potom pro každé $x \in ®R$ platí
+		$$ S_n f(x) = \frac{1}{\pi} \int_{-\pi}^\pi f(x + y) D_n(y) dy = \frac{1}{\pi} · \int_0^\pi (f(x + y) + f(x - y)) D_n(y) dy. $$
+
+		\begin{dukazin}
+			$$ S_n f(x) = \frac{a_0}{2} + \sum_{k=1}^n a_k · \cos(k·x) + b_k · \sin(k·x) = $$
+			$$ = \frac{1}{2 \pi} \int_{-\pi}^\pi f(x) + \sum_{k=1}^n \frac{1}{\pi} · \int_{-\pi}^\pi f(t)·\cos(k·t) dt · \cos(k·x) + \frac{1}{\pi} \int_{-\pi}^\pi f(t) \sin(k·t) dt · \sin(k·t) = $$
+			$$ = \frac{1}{\pi} \int_{-\pi}^\pi f(t)·\(\frac{1}{2} + \sum_{k=1}^n (\cos(k·t) \cos(k·x) + \sin(k·t)\sin(k·x))\) dt = $$
+			$$ = \frac{1}{\pi} \int_{-\pi}^\pi f(t)·\(\frac{1}{2} + \sum_{k=1}^n \cos(k·t - k·x)\)dt = \frac{1}{\pi} \int_{-\pi}^\pi f(t) · D_n(t - x) dt = $$
+			$$ = \frac{1}{\pi} · \int_{-\pi - x}^{\pi - x} f(y + x)·D_n(y) dy = \frac{1}{\pi} \int_{-\pi}^\pi f(y + x) D_n(y) dy = $$
+			$$ = \frac{1}{\pi} \(\int_0^\pi + \int_{-\pi}^0\) = \frac{1}{\pi}·\int_0^\pi (f(x + y) + f(x - y))·D_n(y) dy. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Riemannovo-Lebesgueovo lemma]
+		Nechť $(a, b) \subset ®R$ je omezený interval a nechť $f \in L^1(a, b)$. Potom $\lim_{t \rightarrow ∞} \int_a^b f(x)·\cos(t·x) dx = 0$ a $\lim_{t \rightarrow ∞} \int_a^b f(x) \sin(t·x) dx = 0$.
+
+		\begin{dukazin}
+			Pokud se nepletu, tak elegantnější důkaz je v \verb|OM3/Funkcionalka/Funkcionalka.pdf str 69|.
+
+			$$ 1. \lim_{t \rightarrow ∞} \int_a^b \chi_{(c, d)}(x)·\cos(t·x) dx = \lim_{t \rightarrow ∞} \int_c^d \cos(t·x) dx = $$
+			$$ = \lim_{t\rightarrow ∞} \[\frac{\sin(t·x)}{t}\]_c^d = \lim_{t \rightarrow ∞} \frac{\sin(t·d) - \sin(t·c)}{t} = 0. $$
+
+			$$ 2. G = \bigcup_{j=1}^∞(c_j, d_j) \implies \forall \epsilon > 0\ \exists j_0 |\bigcup_{j=j_0}^∞ (c_j, d_j)| < \epsilon. $$
+			$$ |\int_a^b \chi_G(x) \cos(t·x) dx| ≤ 0 + \int_a^b \sum_{j=j_0 + 1}^∞ \chi_{(c_j, d_j)}(x) dx < \epsilon. $$
+
+			$$ 3. f = \chi_E, E \in ©B \implies \forall \epsilon > 0\ \exists G \text{ otevřená}: E \subset G \land |G \setminus E| < \epsilon $$
+			$$ |\int_a^b \chi_E \cos(t·x) dx| ≤ |\int_a^b \chi_G(x) \cos(t·x) dx| + |\int_a^b \chi_{G \setminus E}(x) · \cos(t·x) dx| ≤ 0 + \epsilon. $$
+
+			4. Pro jednoduchou funkci je to triviální, neboť je to konečný součet 3.
+
+			5. K $\epsilon > 0$ $\exists s$ jednoduchá, že $\int_a^b |f(x) - s(x)| dx < \epsilon$.
+			$$ |\int_a^b f(x)·\cos(t·x) dx| ≤ |\int_a^b s(x) \cos(t·x) dx| + |\int_a^b(s(x) - f(x))·\cos(t·x) dx| \rightarrow 0 + \epsilon \rightarrow 0. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Riemannova věta o lokalizaci]
+		Nechť $f \in P_{2\pi}$, $x \in ®R$ a $s \in ®R$. Potom $S f(x) = s \Leftrightarrow \exists \delta \in (0, \pi)$ tak, že
+		$$ \lim_{n \rightarrow ∞} \int_0^\delta(f(x + t) + f(x - t) - 2s)·D_n(t) dt = 0. $$
+
+		\begin{dukazin}
+			Z věty výše víme, že $S_n f(x) = \frac{1}{\pi} \int_0^\pi (f(x + y) + f(x - y))·D_n(y) dy$. Dále z vlastností Dirichletova jádra
+			$$ s = \frac{1}{\pi} \int_0^\pi D_n(y)·2s dy. $$
+			Chceme $0 = \lim_{n \rightarrow ∞} (S_n f(x) - s) = \lim_{n \rightarrow ∞} \frac{1}{\pi}· \int_0^\pi (f(x + y) + f(x - y) - 2s) D_n(y) dy =$
+			$$ = \lim_{n \rightarrow ∞} \frac{1}{\pi}· \int_0^\delta (f(x + y) + f(x - y) - 2s)·D_n(y) dy + \lim_{n \rightarrow ∞} \frac{1}{\pi} \int_\delta^\pi … dy. $$
+			Stačí ukázat, že druhý integrál je roven nule. Z vlastností $D_n$ je
+			$$ \lim_{n \rightarrow ∞} \int_\delta^\pi (f(x + y) + f(x - y) - 2s) \frac{\sin((n + \frac{1}{2})·y)}{2·\sin \frac{y}{2}}dy = $$
+			$$ = \lim_{n \rightarrow ∞} \int_\delta^\pi \frac{f(x + y) + f(x - y) - 2s}{2 \sin \frac{y}{2}} \sin((n + \frac{1}{2})y) dy $$
+			Pokud je první činitel $L_1$, pak je toto rovno 0 z Riemannova-Lebesgueova lemmatu. Ale první činitel je integrovatelný, neboť $f(x + y)$, $f(x - y)$ i $2s$ jsou integrovatelné a $\sin \frac{y}{2} > \sin \frac{\delta}{2}$.
+		\end{dukazin}
+	\end{veta}
+
+% 19. 04. 2022
+
+	\begin{definice}[Značení]
+		Nechť $x \in ®R$ a $f$ je reálná funkce na okolí $x$. Značíme $f(x+) = \lim_{t \rightarrow x_+} f(t)$ a $f(x-) = \lim_{t \rightarrow x_-} f(t)$
+	\end{definice}
+
+	\begin{veta}[Diniovo kritérium]
+		Nechť $f \in P_{2\pi}$ a $x \in ®R$. Nechť existují vlastní limity $f(x+)$ a $f(x-)$ a nechť existují limity
+		$$ \lim_{t \rightarrow 0+} \frac{f(x + t) - f(x+)}{t}, \qquad \lim_{t \rightarrow 0+} \frac{f(x - t) - f(x-)}{t}. $$
+		Potom řada $S_f$ konverguje v $x$ a platí $S_f(x) = \frac{f(x+) + f(x-)}{2}$. Speciálně má-li $f$ konečné jednostranné derivace v $x$, pak $S_f(x) = f(x)$.
+
+		\begin{dukazin}
+			Podle předchozí věty stačí ukázat
+			$$ \exists \delta > 0: 0 = \lim_{n \rightarrow ∞} \int_0^\delta (f(x + t) + f(x - t) - (f(x+) + f(x-)))·D_n(t)dt = $$
+			$$ = \lim_{n \rightarrow ∞} \int_0^\delta \(\frac{f(x + t) - f(x+)}{t} + \frac{f(x - t) - f(x-)}{t}\) \frac{t}{2\sin \frac{t}{2}}·\sin((n + \frac{1}{2})·t) dt $$
+			Z definice limity jistě existuje $\delta > 0$ tak, že $\frac{f(x + t) - f(x+)}{t} + \frac{f(x - t) - f(x-)}{t}$ je omezená. Dále $\frac{t}{2 \sin \frac{t}{2}}$ je omezená na $[0, \pi]$. Takže součin (značme ho $F$) těchto dvou funkcí je v $©L^1$. Podle Riemann-Lebesgueova lemmatu je $\lim_{n \rightarrow ∞} \int_0^\delta F(t)·\sin((n + \frac{1}{2})·t) dt = 0$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{veta}[Jordan-Dirichletovo kritérium]
+		Nechť $f \in P_{2\pi}$ a nechť $f \in BV([0, 2\pi])$. Potom
+		
+		\begin{itemize}
+			\item pro každé $x \in [0, 2\pi]$ Fourierova řada konverguje a $S_f(x) = \frac{f(x+) + f(x-)}{2}$,
+			\item je-li $f$ navíc spojitá na $(a, b) \subset [0, 2\pi]$, pak $S_n f \overset{\text{Loc}}\rightrightarrows f$ na $[a, b]$.
+		\end{itemize}
+	\end{veta}
+
+	\subsection{Stejnoměrná konvergence -- Fejérova věta}
+	\begin{definice}[Konvergence v Cesarově smyslu]
+		Nechť $\{a_n\}_{n=1}^∞$ je posloupnost reálných čísel. Řekneme, že $a_n$ konverguje k $a \in ®R$ v Cesarově [Čézarově] smyslu, pokud $\sigma_n = \frac{a_0 + … + a_n}{n + 1} \rightarrow a$.
+	\end{definice}
+
+	\begin{definice}[Fejérovo jádro]
+		Nechť $n \in ®N_0$. Potom funkci $K_n(x) = \frac{1}{n+1}·\sum_{k=0}^n D_k(x)$ nazýváme Fejérovým jádrem.
+
+		\begin{poznamkain}
+			$K_n$ je sudá, $2\pi$-periodická a $K_n(0) = \frac{n+1}{2}$. Platí $\int_{-\pi}^\pi K_n(x) = \pi$. $K_n (x) = \frac{1}{2(n+1)} \(\frac{\sin((n + 1)\frac{x}{2})}{\sin \frac{x}{2}}\)^2$, $x \in ®R$, $\lambda ≠ 2k\pi$, $k \in ®Z$. (To se ukáže indukcí.)
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{definice}[Částečné Fejérovy součty]
+		Nechť $f \in P_{2\pi}$, $x \in ®R$ a $n \in ®N_0$. Pak výraz
+		$$ \sigma_n f(x) = \frac{1}{n+1} · \sum_{k_0}^n S_k f(x) $$
+		nazýváme $n$-tý částečný Fejérův součet $f$.
+
+		\begin{poznamkain}
+			To se z věty výše rovná $\frac{1}{n+1} · \sum_{k=0}^n \frac{1}{\pi} \int_{-\pi}^\pi f(x + y)·D_k(y) dy$.
+		\end{poznamkain}
+	\end{definice}
+
+	\begin{veta}[Fejérova]
+		Nechť $f \in P_{2\pi}$.
+		\begin{itemize}
+			\item Jestliže pro nějaké $x \in ®R$ existují vlastní limity $f(x+)$ a $f(x-)$, pak
+				$$ \lim_{n \rightarrow ∞} \sigma_n f(x) = \frac{f(x+) + f(x-)}{2}. $$
+			\item Je-li $f$ spojitá na $(a, b)$, pak $\sigma_n f \overset{\text{Loc}}\rightrightarrows f$ na $(a, b)$.
+		\end{itemize}
+
+		\begin{dukazin}[1. bod]
+			Podle poznámky
+			$$ \sigma_n f(x) = \frac{1}{\pi} \int_0^\pi (f(x + t) + f(x - t))·K_n(t) dt $$
+			a $s = \frac{1}{\pi} · \int_0^\pi 2s · K_n(t) dt$. Tedy
+			$$ s_n f(x) - s = \frac{1}{\pi} \int_0^\pi (f(x + t) + f(x - t) - 2s) K_n(t) dt = \frac{1}{\pi} \(\int_0^\delta + \int_\delta^\pi\). $$
+
+			K $\epsilon > 0\ \exists \delta > 0\ \forall t \in (0, \delta): |f(x + t) + f(x - t) - (f(x+) + f(x-))| < \epsilon$.
+			$$ |\frac{1}{\pi} \int_0^\pi| ≤ \frac{1}{\pi} \int_0^\delta \epsilon · |K_n(t)| dt ≤ \frac{1}{\pi} \int_0^\pi \epsilon · K_n(t) dt = \frac{\epsilon}{2}. $$
+			$$ |\frac{1}{\pi} \int_\delta^\pi| ≤ \frac{1}{\pi} \int_0^\pi | f(x + t) + f(x - t) - (f(x+) + f(x-))| dt · \frac{1}{2(n+1)}·\frac{1}{\sin^2 \frac{\delta}{2}} \rightarrow 0. $$
+		\end{dukazin}
+
+		\begin{dukazin}[2. bod]
+			Nechť $[c, d] \subset (a, b)$. Chceme $\sigma_n f(x) \rightrightarrows f(x)$ na $[c, d]$, tedy $|\sigma_n f(x) - f(x)| ≤$ něco malého, co nezávisí na $x \in [c, d]$. Nalezneme $\gamma > 0$, aby $[c - \gamma, d + \gamma] \subset (a, b)$. Ze stejnoměrné spojitosti $f$ na $[c - \gamma, d + \gamma]$ k $\epsilon > 0$ nalezneme $\delta > 0$ tak, že
+			$$ \forall s, t \in [c - \gamma, d + \gamma]: |s - t| < \delta \implies |f(s) - f(t)| < \epsilon. $$
+			Tedy $\forall x \in [c, d]$ $\forall t \in (0, \gamma)$
+			$$ |f(x + t) + f(x - t) - 2f(x)| ≤ |f(x + t) - f(x)| + |f(x - t) - f(x)| < 2\epsilon. $$
+
+			Analogicky prvnímu bodu:
+			$$ |\sigma_n f(x) - f(x)| = |\frac{1}{\pi} \(\int_0^\delta + \int_\delta^\pi\)(f(x + t) + f(x - t) - 2f(x))·K_n(t)dt|. $$
+			$$ |\frac{1}{\pi} \int_0^\delta| ≤ \frac{1}{\pi} \int_0^\delta 2\epsilon · K_n(t) dt ≤ \epsilon, $$
+			$$ |\frac{1}{\pi} \int_\delta^\pi| ≤ \frac{1}{\pi} \int_\delta^\pi |f(x + t) + f(x - t) + 2f(x)|dt \frac{1}{2(n+1)} \frac{1}{\sin^2 \frac{\delta}{2}} ≤ $$
+			$$ ≤ \frac{1}{\pi} \int_0^{2\pi} |f(x + t)| + |f(x - t)| + 2M dt · \frac{1}{2(n + 1)} \frac{1}{\sin \frac{\delta}{2}} ≤ $$
+			$$ ≤ \frac{1}{\pi} (2\int_0^{2\pi} |f(t)|dt + 2\pi 2M)· \frac{1}{2(n + 1)} \frac{1}{\sin \frac{\delta}{2}} \rightarrow 0 $$
+			($f$ je spojitá na $[c, d] \implies |f(x)| ≤ M$.)
+		\end{dukazin}
+	\end{veta}
+
 \end{document}
 

@@ -166,4 +166,43 @@ TODO syntaxe XML
 
 TODO!!!
 
+% 04. 04. 2022
+
+TODO (Nebyl jsem)
+
+% 11. 04. 2022
+
+\section{Relační datový model}
+\begin{definice}[Relační datový model]
+	V relačním modelu máme tabulku, která má řádky (záznamy) a sloupce (klíče). Pak máme primární klíč, jehož hodnoty určují jednoznačně každý záznam. A foreign klíč, tj. že se odkazujeme na cizí tabulku.
+\end{definice}
+
+\begin{definice}[SQL dump]
+	Vytvoří SQL příkaz, který vytvoří přesnou kopii dat.
+\end{definice}
+
+\begin{poznamka}[Before CSV]
+	Delimiter-Separated Values (DSV): (delmiter = označerní kusu dat vs. separator = odděluje kusy dat (neoznačuje začátek + konec)), skoro jako CSV, jen jiné separátory a jiné kódování.
+
+	Tab-Separated Values (TSV): už má specifikaci, odděluje tabulátory.
+\end{poznamka}
+
+\begin{definice}[Comma-Separated Values (CSV)]
+	Kódování defaultně UTF-8 (od 2014, předtím US-ASCII, jsou možná i jiná), oddělovačem je čárka, escape znakem je uvozovka (\verb|""| je odescapovaná uvozovka, escapuje tak, že se věc uzavře do uvozovek), 
+\end{definice}
+
+\begin{poznamka}
+	Dále jsme si povídali o správných a špatných příkladech.
+\end{poznamka}
+
+\begin{definice}[URI Fragment Identifiers pro csv]
+	Když máme uri csv, můžeme na konec přidat \verb|#col=rozsah|, \verb|#row=rozsah| nebo \verb|#cell=rozsah| rozsah může mít \verb|-| a \verb|*|.
+\end{definice}
+
+\begin{poznamka}
+	Dále jsme se bavili o tom, jak popisovat schéma csv.
+\end{poznamka}
+
+TODO!!!
+
 \end{document}

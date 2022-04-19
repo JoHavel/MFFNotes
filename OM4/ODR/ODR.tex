@@ -456,8 +456,77 @@
 	\begin{itemize}
 		\item stabilní, jestliže $\forall t_0 \in I\ \forall \epsilon > 0 \exists \delta > 0 \forall x_0: |x_0| < \delta \implies |\phi(t, t_0, x_0)| < \epsilon\ \forall t ≥ t_0$;
 		\item lokální atraktor, pokud $\forall t_0 \in I\ \exists \eta > 0\ \forall x_0: |x_0| < \eta \implies \lim_{t \rightarrow +∞} \phi(t, t_0, x_0) = 0$;
-		\item asymptoticky stabilní, pokud je stabilní a zároveň je lokálním atraktorem.
+		\item asymptoticky stabilní, pokud je stabilní a zároveň je lokálním atraktorem;
+%
+% 07. 04. 2022
+%
+		\item uniformě stabilní, pokud
+			$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall t_0 \in I: |x_0| < \delta \implies |\phi(t, t_0, x_0)| < \epsilon\ \forall t ≥ t_0; $$
+		\item uniformě asymptoticky stabilní, je-li uniformě stabilní a
+			$$ \exists \eta > 0\ \forall \epsilon > 0\ \exists \tau > 0\ \forall t_0 \in I\ \forall x_0: |x_0| < \eta \implies |\phi(t, t_0, x_0)| < \epsilon\ \forall t ≥ t_0 + \tau. $$
 	\end{itemize}
 \end{definice}
+
+
+\begin{dukaz}[Předchozí věty]
+	První bod:
+	$$ e^{t A} x_0 = V e^{t J}V^{-1} x_0 $$
+	$$ x_0 \in X_-(A) \implies V^{-1} x_0 \in V^-(J) $$
+	TODO (další část jsem nechápal, pravděpodobně to byl důkaz implikace na předchozím řádku)
+
+	Z první rovnice:
+	$$ |e^{tA}x_0| ≤ ||V||·|e^{t J}(V^{-1} x_0)| = ||V||·\left|e^{t J}|_{X^-(J)}·(V^{-1}x_0)\right| ≤ ||V||·||e^{t J}|_{X^-(J)}||·|V^{-1}x_0| ≤ ||V|| · K·e^{-\alpha t}·||V^{-1}||·|x_0| = C·e^{- \alpha t}·|x_0|. $$
+
+	Druhý bod: $x_0 \in X_+(A), e^{-A t} y_0 = x_0$. $||x_0|| = ||e^{-At} y_0|| ≤ e^{\beta t} C |y_0|$ podobně jako v prvním bodě. $y_0 = e^{At}x \in X_+(A)$, $t ≥ 0$.
+	
+	Třetí bod: $||e^{tJ}|_{X_C(J)}|| ≤ K·t^m$, $m$ je maximální velikost Jordanovy buňky odpovídající vlastním číslům z $\sigma_0(A)_0$.
+\end{dukaz}
+
+\begin{veta}
+	Nulové řešení homogenní LODRKK $x' = Ax$, $A \in ®R^{n \times n}$ je
+	\begin{itemize}
+		\item asymptoticky stabilní $\Leftrightarrow \forall \lambda \in \sigma(A): \Re \lambda < 0$;
+		\item stabilní $\Leftrightarrow \forall \lambda \in \sigma(A): \Re \lambda ≤ 0$ a Jordanovy buňky příslušné vlastním číslům s $\Re \lambda = 0$ mají velikost 0.
+	\end{itemize}
+\end{veta}
+
+\begin{definice}
+	$x_0$ je stabilní řešení $x' = f(x, t)$ $≡$ $0$ je stabilní řešení $y' = g(y(t), t) = f(x_0(t) + y(t), t) - f(x_0(t), t)$. Obdobně pro další typy stability.
+\end{definice}
+
+\begin{lemma}
+	Dána rovnice $x' = Ax + g(x, t)$. Nechť $||e^{t A}|| ≤ K e^{- \alpha t}$, $\forall t ≥ 0$, $g$ spojitá v $®R^{n + 1}$, $|g(x, t)| ≤ \gamma·|x|$, kde $\gamma < \frac{\alpha}{K}$. Pak nulové řešení je uniformě asymptoticky stabilní.
+
+	\begin{dukazin}
+		Buď $x$ řešení, $x'(t) = A·x(t) + g(x(t), t)$, což napíšeme jako $x'(t) = Ax(t) + f(t)$. Použijeme variaci konstant:
+		$$ x(t) = e^{A(t - t_0)} x_0 + \int_{t_0}^t e^{A(t - s)} f(s) ds. $$
+		Odhadneme: $t > t_0: |x(t)| ≤ |e^{A(t - t_0)}x_0| + \int_{t_0}^t |e^{A(t - s)} f(s)| ds$,
+		$$ |x(t)| ≤ K·e^{-\alpha(t - t_0)}·|x_0| + K·\int_{t_0}^t e^{-\alpha (t - s)} ·\gamma |x(s)| ds, $$
+		$$ |e^{\alpha t}x(t)| ≤ K·e^{\alpha t_0}·|x_0| + K·\int_{t_0}^t e^{\alpha s} ·\gamma |x(s)| ds. $$
+		Z G. lemmatu:
+		$$ |e^{\alpha t} x(t)| ≤ K·e^{\alpha t_0}·|x_0|·e^{K \gamma(t - t_0)}, $$
+		$$ |x(t)| ≤ K·|x_0|·e^{(K·y - \alpha)(t - t_0)}, t ≥ t_0. $$
+		Tudíž je uniformě asymptoticky stabilní.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[O linearizované stabilitě]
+	Dána rovnice (AR) $x' = f(x)$, kde $f$ je třídy $C^1$ v okolí bodu $x_0$. Nechť $f(x_0) = 0$ a $A = \nabla f(x)$ splňuje $\Re \lambda < 0\ \forall \lambda \in \sigma(A)$. Pak $x(t) ≡ x_0$ je uniformě asymptoticky stabilní.
+
+	Pokud $A$ splňuje $\exists \lambda \in \sigma(A)$, $\Re \lambda > 0$, pak $x(t) ≡ x_0$ není stabilní.
+
+	\begin{dukazin}
+		Vize:
+		$$ x' = f(x) = f(x_0) + \nabla f(x_0)·(x - x_0) + o(x - x_0) = 0 + A·(x - x_0) + o(x - x_0). $$
+
+		Búno $x_0 = 0$. $x' = A·x + g(x)$, kde $g(x) = f(x) - Ax_0$.
+		$$ \exists \alpha > 0\ \forall \lambda \in \sigma(A): \Re \lambda < -\alpha_0. $$
+		Pak $|e^{At}| ≤ K·e^{-\alpha t}$, $\forall t ≥ 0$. Pro $g$ platí, že $\lim_{x \rightarrow 0} \frac{g(x)}{|x|} = 0$, tedy $\exists \Delta > 0: \forall x: |x| < \Delta \implies \frac{|g(x)|}{|x|} < \gamma$, kde $\gamma < \frac{\alpha}{K}$. Máme, že $|g(x)| < \gamma·|x|$, $|x| < \Delta$.
+
+		Definujeme (tzv. seřazovací funkci)
+		$$ \eta(s) = \begin{cases}1,& s < \frac{\Delta}{2}, \\ \eta(s)\text{ spojitá, že} 0 < \eta(s) < 1, & s \in [\frac{\Delta}{2}, \Delta],\\ 0, s > \Delta. \end{cases} $$
+		Definujeme $h(x) := g(x)·\eta(x)$. Platí, že $|h(x)| ≤ \gamma · |x|$, $\forall x \in ®R^n$. Podívejme se na $y' = A y + h(y)$. To splňuje předpoklady předchozího lemmatu, tudíž nulové řešení je uniformě stabilní, tedy stabilní. Tj. existuje $\delta > 0: |y(t_0)| < \delta \implies |y(t)| ≤ \frac{\Delta}{2}$ $\forall t ≥ t_0$, tedy $y$ splňuje $x' = Ax + g(x)$. A podle předchozí věty je $x$ uniformě asymptoticky stabilní.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
