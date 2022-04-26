@@ -529,4 +529,66 @@
 	\end{dukazin}
 \end{veta}
 
+% 21. 04. 2022
+
+TODO!!!
+
+\begin{definice}
+	Ať $U_1, …, U_k$ jsou první integrály (AR). Řekneme, že jsou LN v bodě $x_0 \in \Omega$, pokud matice $\(\frac{\partial U_j}{\partial x_i}\)_{j \in [k], i \in [n]}$ má hodnost $k$.
+\end{definice}
+
+\begin{veta}
+	Buďte $U_1, …, U_k$ první integrály (AR), LN v bodě $x_0$. Pak řešení procházející bodem $x_0$ lze lokálně popsat soustavou $n-k$ DR.
+
+	\begin{dukazin}
+		$\rank \(\frac{\partial U_j}{\partial x_p}\)_{j \in [k], p \in [n]} = k$. BÚNO $\rank \(\frac{\partial U_j}{\partial x_p}\)_{j \in [k], p \in [k]} = k$. $x = (x_1, …, x_k, x_{k+1}, …, x_n)$, $y = (x_{k+1}, …, x_n) \in ®R^{n - k}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$$ f(x_0) ≠ 0 \implies \exists n-1 \text{ LN prvních integrálů v $x_0$.} $$
+
+	\begin{dukazin}
+		BÚNO $f_n(x_0) ≠ 0$. $x_0 = (y, a)$. $x'(t) = f(x(t))$, $x_0 = x(0) = (y, a)$. Chceme $\forall x \in O\ \exists!t\ \exists!z \in ®R^{n-1}: \phi(t, t_0=0, (z, a)) = x$.
+
+		Definujeme $\psi(t, z_1, …, z_n) = \phi(t, 0, z_1, …, z_{n-1}, a)$.
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\section{Stabilita a Ljapunovské funkce}
+\begin{definice}
+	Mějme DR $x' = f(x, t)$, $f: \Omega \times [T, +∞) \rightarrow ®R^n$, $\Omega \subset ®R^n$ otevřená, $f(0, t) = 0, \forall t \in I$.
+
+	Funkci $\omega: \Omega \rightarrow [0, +∞)$ nazveme pozitivně definitní, je-li $\omega(0) = 0$ a $\forall x \in \Omega \setminus \{¦o\}: \omega(x) ≠ 0$.
+
+	Funkci $V(t, x): I \times \Omega \rightarrow [0, +∞)$ nazveme ljapunovskou pro DR v $\Omega$, je-li
+
+	\begin{itemize}
+		\item $V$ spojitá, $\forall t \in I: V(t, 0) = 0$;
+		\item funkce $t \mapsto V(t, x(t))$ je nerostoucí $\forall x$ řešení DR;
+		\item existuje pozitivně definitní $\omega$, že $V(t, x) ≥ \omega(x)$ $\forall x \in ®R$ $\forall t \in I$.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	Nechť DR má ljapunovskou funkci. Potom nulové řešení je stabilní.
+
+	\begin{dukazin}
+		$\epsilon > 0$. Chceme najít $\delta: |x(t_0)| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0$. BÚNO $\overline{V(x_0, \epsilon)} \subset \Omega$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť DR má v $\Omega$ ljapunovskou funkci $V$, která splňuje následující podmínky: $\exists$ pozitivně definitní funkce $\omega, \lambda, \eta$ v $\Omega$, že
+
+	\begin{itemize}
+		\item $\omega(\zeta) ≤ V(t, \zeta) ≤ \lambda(\zeta)$ $\forall t \in I$ $\forall \zeta \in \Omega$;
+		\item $\frac{d}{dt}\[V(t, x(t))\] ≤ - \eta(x(t)) \forall$ řešení $x$ v $\Omega$.
+	\end{itemize}
+
+	Potom je řešení $x = 0$ asymptoticky stabilní.
+\end{veta}
+
 \end{document}

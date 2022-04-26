@@ -1,0 +1,28 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\let\dmath\displaymath
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[4.1 -- Střední hodnota versus pravděpodobnost]
+	Bob navrhne Alici následující hru: „Tady mám minci, která není spravedlivá -- pravděpodobnost, že na ní padne hlava je $p \in \(\frac{1}{3}, \frac{1}{2}\)$. Tvůj počáteční vklad je 100 Kč a pokaždé, když na minci padne hlava, tvůj kapitál zdvojnásobím. Pokud padne orel, tak mi naopak dáš polovinu svého kapitálu. Označme $X_n$ hodnotu tvého kapitálu po $n$-tém hodu mincí. Je zřejmé, že $\lim_{n \rightarrow ∞} ®E X_n = ∞$, takže očekávaná hodnota tvého kapitálu poroste nade všechny meze.“
+
+	Je pro Alici výhodné takovou hru hrát? Ověřte Bobovo tvrzení a ukažte, že $\dmath \lim_{n \rightarrow ∞} X_n = 0$ skoro jistě.
+
+	\begin{reseni}
+		Označme si $Y_n$ jako indikátor, že v $n$-tém hodu padla hlava. Potom $X_{n+1} = \frac{X_n}{2} + Y_{n + 1} · X_n · \frac{3}{2}$.
+		$$ ®E X_n = \frac{®E X_{n - 1}}{2} + \frac{3}{2}·®E(Y_n · X_{n-1}) = \frac{®E X_{n - 1}}{2} + \frac{3}{2}·®EY_n·®EX_{n-1} = \(\frac{1}{2} + \frac{3}{2}p\)®E X_{n - 1} $$
+		Neboť $Y_n$ a $X_{n - 1}$ jsou zřejmě nezávislé. To, co nám vyšlo, je ale geometrická posloupnost s koeficientem $q = \frac{1}{2} + \frac{3}{2}p > \frac{1}{2} + \frac{1}{2} = 1$, tedy $\lim_{n \rightarrow ∞} ®E X_n = 100 · q^{n-1} = ∞$.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[4.2 -- Konvergence v distribuci pro diskrétní náhodné veličiny]
+
+
+	\begin{dukazin}
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

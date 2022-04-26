@@ -1,0 +1,56 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[3.1 -- Proces obnovy (třeba žárovek)]
+	Buď $\{L_i\}_{i=1}^∞$ posloupnost nezávislých stejně rozdělených náhodných veličin s $®E L_i \in ®R^+$. Náhodnou veličinu $L_i$ můžeme interpretovat jako dobu životnosti $i$-té žárovky (která, když přestane fungovat, je okamžitě nahrazena novou žárovkou). Pro $t > 0$ definujeme
+	$$ N_t = \sup \{N ≥ 0\ \middle|\ \sum_{i=1}^N L_i ≤ t\}, $$
+	počet žárovek použitých do času $t$. Dokažte, že $\lim_{t \rightarrow ∞} \frac{N_t}{t} = \frac{1}{®E L_1}$ skoro jistě.
+
+	Co tento výsledek říká pro případ Poissonova procesu?
+
+	\begin{reseni}
+		Jelikož $L_i$ jsou doby, můžeme předpokládat, že jsou nezáporné. Pak můžeme použít SZVČ pro stejně rozdělené náhodné veličiny, jelikož $®E |L_i| = ®E L_i \in ®R^+ \subset ®R$, $L_i$ jsou nezávislé a stejně rozdělené. Tedy $\frac{\sum_{i=1}^n L_i}{n} \rightarrow ®E L_1$ skoro jistě. Tudíž $\exists M: P(M) = 1$, že $\forall \omega \in M: \frac{\sum_{i=1}^n L_i(\omega)}{n} \rightarrow ®E L_1(\omega)$. Z definice limity dostaneme
+		$$ \forall \omega \in M\ \forall \epsilon > 0\ \exists n_0\ \forall n ≥ n_0: \left|\frac{\sum_{i=1}^n L_i}{n} - ®E L_1\right| < \epsilon, $$
+		po vynásobení $n$: $\left|\sum_{i=1}^n L_i - n·®E L_1\right| < n·\epsilon$.
+
+		Pro libovolné dostatečně malé $\epsilon$ a libovolné dostatečně velké\footnote{Například můžeme brát $0 < \epsilon < \frac{1}{2} ®E L_1$ a $t ≥ \frac{n_0}{2} ®E L_1$, kde $n_0$ je už pro to dané $\epsilon$.} $t$ můžeme pak omezit $N_t \in [n_-, n_+]$, kde $n_-$ je nejmenší $n$ takové, že pro větší $n$ už se započítáním maximální „chyby“ může $\sum_{i=1}^n L_i$ překonat $t$ (menší $n$ to být nemohou, protože $N_t$ je supremum z těch $n$, kdy $\sum_{i=1}^n L_i$ nepřekoná $t$). Obdobně $n_+$ je největší $n$, pro které i se započítáním „chyby“ $\sum_{i=1}^n L_i$ ještě nepřekoná $t$. Tedy
+		\vspace{-1em}
+		$$ n_- = \min\{n \in ®N\ \middle|\ (1 + n) ®E L_1 + \epsilon·(n + 1) > t\} = \min \{n \in ®N\ \middle|\ (1 + n) > \frac{t}{\epsilon + ®E L_1}\}, $$
+		$$ n_+ = \max\{n \in ®N\ \middle|\ n ®E L_1 - \epsilon·n < t\} = \max \{n \in ®N\ \middle|\ n < \frac{t}{- \epsilon + ®E L_1}\}. $$
+		Tj. $N_t \in \[\frac{t}{\epsilon + ®E L_1} - 1, \frac{t}{-\epsilon + ®E L_1}\]$, tudíž $\frac{N_t}{t} \in \[\frac{1}{\epsilon + ®E L_1} - \frac{1}{t}, \frac{1}{-\epsilon + ®E L_1}\]$. Tedy (za předpokladu, že limita existuje\footnote{Existuje, protože místo limity můžeme vzít $\limsup$ a $\liminf$ a stejně jako pro limitu pro ně dokázat, že se rovnají $\frac{1}{®E L_1}$.}) $\lim_{t \rightarrow ∞} \frac{N_t}{t} \in \[\frac{1}{\epsilon + ®E L_1}, \frac{1}{-\epsilon + ®E L_1}\]$, jelikož $t$ můžeme volit libovolně velké. Nakonec protože můžeme volit libovolně malé $\epsilon > 0$, tak $\lim_{t \rightarrow ∞} \frac{N_t}{t} \in \[\frac{1}{®E L_1}, \frac{1}{®E L_1}\]$, tudíž
+		$$ \lim_{t \rightarrow ∞} \frac{N_t}{t} = \frac{1}{®E L_1}. $$
+		Pro Poissonův proces to znamená, že jeho intenzita je převrácenou hodnotou střední hodnoty délky čekání na další změnu.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[3.2 -- Paradox doby čekání]
+	Buď $\{L_i\}_{i=1}^∞$ stejně jako v předchozí úloze. (V kontextu paradoxu doby čekání mohou $L_i$ reprezentovat doby čekání na příjezd dalšího autobusu do zastávky.) Pro $s > 0$ označme $L_{(s)}$ dobu životnosti součástky fungující v čase $s$. Dokažte následující tvrzení:
+
+	Pro každou měřitelnou funkci $g: [0, ∞) \rightarrow [0, ∞)$, pro kterou je $®E(L_1·g(L_1)) \in ®R$, platí
+	$$ \lim_{t \rightarrow ∞} \frac{1}{t} \int_0^t g(L_{(s)}) ds = \frac{®E(L_1·g(L_1))}{®E L_1} \qquad \text{skoro jistě}. $$
+
+	Pro $g = \id$ to speciálně znamená, že pro velké $t$ doba životnosti součástky kontrolované v náhodném okamžiku v intervalu $[0, t]$ je přibližně rovna $\frac{®EL_1^2}{®E L_1}$, což je větší než $®E L_1$ (pokud tedy $L_1$ není konstanta skoro jistě). Porovnejte tento výsledek s příkladem ze sedmého prosemináře, kde $L_i \sim \Exp$.
+
+	\begin{dukazin}
+		Z definic a toho, že $g$ je nezáporná (speciálně zmenšením horní meze se integrál nezvětší a zvětšením horní meze se nezmenší) víme, že
+		$$ \frac{1}{t} \sum_{i=1}^{N_t} L_i g(L_i) ≤ \frac{1}{t} \int_0^t g(L_{(s)}) ds ≤ \frac{1}{t} \sum_{i=1}^{N_t + 1} L_i g(L_i). $$
+
+		Také si můžeme všimnout, že $\lim_{N_t \rightarrow ∞} \frac{\sum_{i=1}^{N_t} L_i g(L_i)}{N_t} = ®E(L_1 g(L_1))$ skoro jistě, neboť $L_i g(L_i)$ jsou nezávislé (a nezáporné) stejně rozdělené náhodné veličiny s existující střední hodnotou (tedy i existující střední hodnotou absolutní hodnoty těchto veličin), takže z SZVČ pro stejně rozdělené náhodné veličiny rovnost platí.
+
+		Z předchozí úlohy, aritmetiky limit a limity složené funkce (tedy spíše nějaké triviální epsilon delta gymnastiky, protože máme diskrétní hodnoty) máme (skoro jistě, protože předchozí úloha i SZVČ má limitu skoro všude a průnik dvou jistých jevů je jev jistý)
+		$$ \lim_{t \rightarrow ∞} \frac{\sum_{i=1}^{N_t} L_i g(L_i)}{t} = \lim_{t \rightarrow ∞} \frac{N_t}{t} · \frac{\sum_{i=1}^{N_t} L_i g(L_i)}{N_t} = \lim_{t \rightarrow ∞} \frac{N_t}{t} · \lim_{N_t \rightarrow ∞} \frac{\sum_{i=1}^{N_t} L_i g(L_i)}{N_t} = \frac{®E(L_1 g(L_1))}{®EL_1}. $$
+		$$ \lim_{t \rightarrow ∞} \frac{N_t + 1}{t} · \frac{\sum_{i=1}^{N_t + 1} L_i g(L_i)}{N_t + 1} = \lim_{t \rightarrow ∞} \(\frac{N_t}{t} + \frac{1}{t}\) · \lim_{N_t \rightarrow ∞} \frac{\sum_{i=1}^{N_t} L_i g(L_i)}{N_t} = \frac{1}{®EL_1}·®E(L_1 g(L_1)). $$
+
+		Tedy podle věty o dvou strážnících máme $\lim_{t \rightarrow ∞} \frac{1}{t} \int_0^t g(L_{(s)}) ds = \frac{®E(L_1·g(L_1))}{®E L_1}$ skoro jistě.
+	\end{dukazin}
+
+	\begin{reseni}[Porovnání]
+		Na rozdíl od výsledku v příkladu ze sedmého prosemináře nezáleží jen na střední hodnotě, ale záleží i na rozptylu (/ druhém momentu). Speciálně pro „placaté“ rozdělení budeme ve střední hodnotě čekat na autobus velmi dlouho, i když má krátkou střední hodnotu intervalu.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

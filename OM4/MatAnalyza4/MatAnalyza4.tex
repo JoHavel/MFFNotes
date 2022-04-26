@@ -558,7 +558,8 @@ TODO (Chyběl jsem)
 		Nechť $n \in ®N_0$. Potom funkci $K_n(x) = \frac{1}{n+1}·\sum_{k=0}^n D_k(x)$ nazýváme Fejérovým jádrem.
 
 		\begin{poznamkain}
-			$K_n$ je sudá, $2\pi$-periodická a $K_n(0) = \frac{n+1}{2}$. Platí $\int_{-\pi}^\pi K_n(x) = \pi$. $K_n (x) = \frac{1}{2(n+1)} \(\frac{\sin((n + 1)\frac{x}{2})}{\sin \frac{x}{2}}\)^2$, $x \in ®R$, $\lambda ≠ 2k\pi$, $k \in ®Z$. (To se ukáže indukcí.)
+			$K_n$ je sudá, $2\pi$-periodická a $K_n(0) = \frac{n+1}{2}$. Platí $\int_{-\pi}^\pi K_n(x) = \pi$.
+			$$ K_n (x) = \frac{1}{2(n+1)} \(\frac{\sin((n + 1)\frac{x}{2})}{\sin \frac{x}{2}}\)^2, \qquad x \in ®R, \lambda ≠ 2k\pi, k \in ®Z. (\text{To se ukáže indukcí.}) $$
 		\end{poznamkain}
 	\end{definice}
 
@@ -607,5 +608,52 @@ TODO (Chyběl jsem)
 		\end{dukazin}
 	\end{veta}
 
+% 26. 04. 2022
+
+	\begin{veta}[Weierstrassova -- trigonometrická verze]
+		Nechť $f \in P_{2\pi}$ je spojitá na ®R a nechť $\epsilon > 0$. Pak existuje trigonometrický polynom $T$ splňující $||f - T||_{C(®R)} < \epsilon$.
+
+		\begin{dukazin}
+			Z Fejerovy věty (2. bod).
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}[Weierstrass]
+		Nechť $f \in C([a, b])$ a $\epsilon > 0$. Potom existuje polynom $P$ tak, že $||f - P||_{C([a, b])} < \epsilon$.
+
+		\begin{dukazin}[Šel by udělat přes komplexní čísla, ale zde je důkaz bez nich.]
+			Z Taylorovy věty víme, že $\forall [c, d]\ \forall \epsilon > 0\ \exists$ polynomy $P, Q: |\sin x - P(x)| < \epsilon$ a $|\cos x - Q(x)| < \epsilon$ na $[c, d]$. BÚNO $[a, b] = [0, 2\pi]$ a $f$ je periodická.
+
+			Z předchozí věty nalezneme trigonometrický polynom, že $||f - T|| < \epsilon$. Nyní $T = a_0 + \sum_{k=1}^n a_k \cos kx + b_k \sin k x$. Nalezneme polynomy $P_k$ a $Q_k$, aby $|\cos k x - P_k| < \frac{\epsilon}{2^k}·\frac{1}{|a_k| + 1}$, $|\sin k x - Q_k| < \frac{\epsilon}{2^k}·\frac{1}{|b_k| + 1}$. Položme $P = a_0 + \sum_{k=1}^n a_k·P_k + b_k·Q_k$. $P$ je polynom.
+			$$ ||P - f|| ≤ ||f - T|| + ||T - P|| < \epsilon + ||\sum_{k=1}^n a_k·(\cos k x - P_k) + b_k(\sin k x - Q_k)|| < $$
+			$$ < \epsilon + \sum_{k=1}^n |a_k|·\frac{\epsilon}{2^k}·\frac{1}{|a_k| + 1} + |b_k|·\frac{\epsilon}{2^k}·\frac{1}{|b_k| + 1} < 3·\epsilon $$
+		\end{dukazin}
+	\end{dusledek}
+
+	\begin{veta}[Fourierovy koeficienty určují funkci]
+		Nechť $f, g \in P_{2\pi}$ mají stejné Fourierovy koeficienty. Potom $f = g$ skoro všude.
+
+		\begin{dukazin}
+			Funkce $f - g$ má nulové Fourierovy koeficienty. Tedy BÚNO $f ≠ 0$, $g = 0$ a $\int_0^{2 \pi} f(x) \cos n x dx = 0$ a $\int_0^{2\pi} f(x) \sin n x dx = 0$ $\forall n \in ®N_0$. Označme $©T := \{\phi \in L^∞ (0, 2\pi) | \int_0^{2\pi} f(x) · \phi(x) dx = 0\}$.
+
+			1. ©T je zřejmě lineární prostor. 2. Nechť $\phi_n \in ©T$, $\phi_n \rightarrow \phi$ skoro všude a $||\phi_n||_∞ ≤ K\ \forall n$. Pak $\phi \in ©T$ z Lebesgueovy věty. 3. Trigonometrické polynomy $\subset ©T$, neboť $\cos n x \in ©T$, $\sin n x \in ©T$ a použijeme jedničku. 4. Nechť $\phi$ je spojitá, $\phi(0) = \phi(2\pi) = 0$. Podle předchozí věty existuje trigonometrický polynom $T_n \rightrightarrows \phi$. Tedy $\phi \in ©T$ z druhého bodu. 5. $[a, b] \subset (0, 2\pi)$, pak $\chi_{(a, b)} \in ©T$, jelikož k ní konvergují „lichoběžníky“. 6. $G \subset [0, 2\pi]$ otevřená, potom $\chi_G \in ©T$, neboť $G = \bigcup_{i=1}^∞ (a_i, b_i)$ a $\sum_{i=1}^k \chi_{(a_i, b_i)} \rightarrow \chi_G$ skoro všude a sumy jsou stejně omezené $K = 1$. 7. $E \subset (0, 2\pi)$ měřitelná, pak $\chi_E \in ©T$, neboť pro každé $n$ existuje $G_n$ otevřená, že $E \subset G_n \land |G_n \setminus E| < \frac{1}{2^n}$ (z TMI).
+
+			8. $E_1 := \{f > 0\}$ a $E_2 := \{f < 0\}$:
+			$$ \int_0^{2 \pi} |f| = \int_{E_1} f - \int_{E_2} f = \int_0^{2\pi} \chi_{E_1} f - \int_0^{2\pi} \chi_{E_2} f = 0 \implies f = 0 \text{ skoro všude}. $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{dusledek}
+		Trigonometrické funkce tvoří bázi prostoru $L^2(0, 2\pi)$.
+
+		\begin{dukazin}
+			Nechť pro spor BÚNO $f ≠ 0$ a $\<f, \sin n x\> = 0$ a $\<f, \cos n x\> = 0$ $\forall n$. Pak je ale $f ≡ 0$ z předchozí věty.
+		\end{dukazin}
+	\end{dusledek}
+
+	\begin{poznamka}[Komplexní zápis]
+		$$ S f(x) = c_0 + \sum_{k=1}^∞ (c_k ·e^{i k x} + c_{-k}·e^{-i k x}), $$
+		$$ c_k = \frac{1}{2\pi} \int_0^{2\pi} f(x) e^{-i k x} dx, \qquad k \in ®Z. $$
+	\end{poznamka}
 \end{document}
 

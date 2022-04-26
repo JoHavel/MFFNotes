@@ -205,4 +205,78 @@ TODO (Nebyl jsem)
 
 TODO!!!
 
+% 25. 04. 2022 (Host)
+
+\section{Prostorové informace}
+\begin{poznamka}[Otázky, pro které potřebujeme prostorové informace]
+	Jak je to daleko? Kterým směrem to je? Co je nejbližší? Co největší, nejvyšší, atd.
+\end{poznamka}
+
+\begin{definice}[Prostorové informace]
+	Zabývá se jimi hlavně norma ISO/TC 211. Obor se nazývá Geoinformatika, Geomatika apod.
+
+	Geografická data = Geoprostorová data = Prostorová data -- data a informace, která mají implicitní/explicitní lokaci oproti zemi.
+
+	K souřadnicím se většinou používá tzv. referenční elipsoid, který máme „umístění“ kolem země a projektujeme na něj. Má chybu cca půl metru? Ale existuje i mnoho dalších možností.
+
+	Implicitní = souřadnice, vzdálenosti směry; Explicitní = pojmenování, adresy, geografická jména.
+\end{definice}
+
+\begin{definice}[Typy]
+	Points, Multipoints, Lines (Linestrings), Multilines, Polygons, Multipolygons, Surface.
+
+	Dále lze používat i křivky jako kružnice, ale spíš se to nedělá (kružnice se rozseká a udělá se z ní Polygon).
+\end{definice}
+
+\begin{definice}[Points, Multipoints]
+	Points -- určují „bodový“ objekt.
+	Mutipoints jsou například zastávky -- jednomu objektu odpovídá více „diskrétních“ bodů.
+\end{definice}
+
+\begin{definice}[Lines, Multilines, Polygons, Multipolygons]
+	Jako Points, jen s liniovými/mnohoúhelníkovými objekty.
+\end{definice}
+
+\begin{definice}[Well-Known Text (WKT)]
+	OGC standart (nebo v placeném ISU 19125?), téměř všechny knihovny předpokládají WGS-84 (referenční elipsoid, souřadnice ve stupních). Je tvaru \verb|TYP(souradnice1x souradnice1y souradnice2x souradnice2y …)|
+\end{definice}
+
+\begin{definice}[Geometry Markup Language (GLM)]
+	XML, které kromě typů obsahuje i odkaz na souřadnicový systém, dimenzi, atd.
+\end{definice}
+
+\begin{definice}[Další formáty]
+	GeoJSON, Shapefile, GeoPackage, CSV, GeoSPARQL, …
+\end{definice}
+
+\begin{definice}[Feature]
+	(Časky geografický popis objektu?, nepoužívá se.)
+
+	Objekt, který může mít nějaký geografický popis (např. dům). Featura má atributy (které mluví o negeografických vlastnostech) a geometrii (geografická data).
+\end{definice}
+
+\begin{poznamka}
+	Geografické objekty lze kreslit třeba v geojsonu… (Lze tam i převádět z geoJSONu.)
+\end{poznamka}
+
+\begin{definice}[Prostorové relace]
+	Topologické: Within, Touches, Crosses, Overlaps.
+
+	Směrové: Left, Right.
+
+	Vzdálenostní: Closer Further.
+
+	A ještě všechno může být určené v čase.
+\end{definice}
+
+\begin{definice}[Prostorové operace]
+	Buffer (nafoukne objekt na polygon všech bodů, které jsou blíže než nějaká určená vzdálenost od nějakého bodu objektu). Union, Difference, Intersection, Clip (odříznutí), Distance, Convex Hull.
+\end{definice}
+
+\begin{definice}[Geografické informační softwary a knihovny pro zpracování prostorových informací]
+	QGIS (zdarma), PostGIS (rozšíření pro PostgreSQL), ESRI ArcGIS (velký komerční projekt).
+\end{definice}
+
+TODO?
+
 \end{document}

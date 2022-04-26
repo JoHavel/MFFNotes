@@ -987,5 +987,85 @@ TODO!!! (Chyběl jsem)
 	$$ |®E (h(z_n) - h(t_n))| \rightarrow 2\epsilon. $$
 	Tedy $\forall \epsilon > 0$ $\exists n: |®E h(Z_n) - ®E h(T_n)| < 3\epsilon$, tedy teleskopická suma jde k nule, tudíž $|®E h(Z_n) - ®E h(T_n)| \rightarrow 0$ $\forall h$ splňující podmínky výše.
 \end{dukaz}
-	
+
+% 20. 04. 2022
+
+\begin{veta}[De Moivre-Laplaceova centrální limitní věta]
+	Buďte $Y_n \sim \Binom(n, p)$ náhodné veličiny pro $n \in ®N$ a $p \in (0, 1)$. Pak
+	$$ \frac{Y_n - n·p}{\sqrt{n·p·(1 - p)}} \overset{D}\rightarrow N(0, 1). $$
+
+	\begin{dukazin}[Dá se napočítat a umlátit Stirlingem, ale pro trénink]
+		Buď $\{X_i\}_{i=1}^∞$ posloupnost iid s $X_i \sim \Alt(p)$. Pak $\sum_{i=1}^n X_i = Y_n \sim \Binom(n, p)$. A také $\{X_i\}$ splňuje předpoklady CLV. A tedy
+		$$ Z_n = \frac{\sum_{i=1}^n (X_i - \mu)}{\sqrt{n·\sigma^2}} = \frac{\sum_{i=1}^n (X_i - p)}{\sqrt{n·p·(1 - p)}} \overset{D}\rightarrow N(0, 1). $$
+		Tudíž také
+		$$ \frac{-n·p + \sum_{i=1}^n X_i}{\sqrt{n·p·(1 - p)}} \overset{D} \rightarrow N(0, 1). $$
+		Takže pro $Y_n$ věta platí. Pro jiné $V_n \sim \Binom(n, p)$ platí toto také, neboť konvergence v distribuci závisí pouze na rozdělení.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[O spojité transformaci a konvergenci v distribuci]
+	Buď $\{X_i\}_{i=1}^∞$ posloupnost nezávislých veličin taková, že $X_n \overset{D} \rightarrow X$, $X$ náhodná veličina, a $g: ®R \rightarrow ®R$ buď spojitá funkce. Nechť $Y_n = g(X_n)$, $n \in ®N$, pak $Y_n \overset{D} \rightarrow Y$, kde $Y = g(X)$.
+
+	\begin{dukazin}
+		Použijeme charakterizaci konvergenci v distribuci: ukážeme, že $\lim_{n \rightarrow ∞} ®E h(Y_n) = ®E h(y)$ pro každou $h$ omezenou spojitou funkci z ®R do ®R. Ale $®E h(Y_n) = ®E h(g(X_n))$ a $h \circ g$ je spojitá a omezená funkce z ®R do ®R.
+
+		Tedy protože $X_n \overset{D} \rightarrow X$, musí $®E hg(X_n) \rightarrow ®E h(g(X))$.
+	\end{dukazin}
+
+	\begin{veta}
+		Buď $\{X_n\}_{n=1}^∞$ posloupnost náhodných veličin definovaných na $(\Omega, ©A, P)$ a $X$ náhodná veličina na $(\Omega, ©A, P)$. Pak $(X_n - X) \overset{P} \rightarrow 0$ $\implies$ $X_n \overset{D} \rightarrow X$.
+
+		\begin{dukazin}
+			Vynechán (viz TP1).
+		\end{dukazin}
+
+		\begin{upozorneni}
+			Obráceně to neplatí.
+		\end{upozorneni}
+	\end{veta}
+
+	\begin{veta}[Cramér-Slucký]
+		Buďte $\{X_n\}_{n=1}^∞$, $\{Y_n\}_{n=1}^∞$, $X$ náhodné veličiny a nechť $X_n \overset{D} \rightarrow X$ a $Y_n \overset{P} \rightarrow a \in ®R$. Pak
+		$$ X_n + Y_n \overset{D} \rightarrow (X + a) \land X_n·Y_n \overset{D} \rightarrow X·a. $$
+
+		\begin{dukazin}
+			Vynechán.
+		\end{dukazin}
+	\end{veta}
+\end{lemma}
+
+% 25. 04. 2022
+
+\part{Statistika}
+\begin{definice}[Empirická distribuční funkce]
+	Empirická distribuční funkce je definována jako $F_n(x, \omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k ≤ x)}(\omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k(\omega) ≤ x)}$.
+\end{definice}
+
+\begin{definice}[Náhodný výběr, rozsah výběru]
+	Buďte $X_1, …, X_n$ nezávislé, stejně rozdělené náhodné veličiny se stejným rozdělením $P_X$ s distribuční funkcí $F$. Pak $(X_1, …, X_n)$ nazveme náhodný výběr z rozdělení s distribuční funkcí $F$ (resp. z rozdělení $P_X$). $n$ je tzv. rozsah výběru.
+\end{definice}
+
+\begin{definice}[Model]
+	Modelem pro pozorování $X_1, …, X_n$ rozumíme předem stanovenou množinu rozdělení ©F, do níž neznámé rozdělení $P_X$, resp. jeho distribuční funkce $F$ patří.
+\end{definice}
+
+\section{Bodový odhad}
+\begin{definice}[Parametrická funkce]
+	(Máme náhodný výběr $(X_1, …, X_n)$ z modelu $©F = \{F_\theta | \theta \in \Theta\} = \{P_\theta | \theta \in \Theta\}$, kde $\Theta$ je Borelovská $\subset ®R^d$. Chceme odhadnout $\theta$ nebo $g(\theta)$.)
+
+	Borelovsky měřitelné zobrazení $g: \theta \rightarrow ®R$ nazveme parametrickou funkcí.
+\end{definice}
+
+\begin{definice}[Bodový odhad paramterické funkce]
+	Bodový odhad $\phi_n$ parametrické funkce $g(\theta)$ je borelovsky měřitelné zobrazení $\phi_n: ®R^n \rightarrow ®R$, jehož předpis nezávisí na $\theta$ ( a tedy ani na $P_\theta$ či $F_\theta$) a jehož definiční obor obsahuje obor hodnot $(X_1, …, X_n)$
+\end{definice}
+
+\begin{definice}[Nestranný bodový odhad]
+	Bodový odhad $\phi_n$ parametrické funkce $g(\theta)$ se nazývá nestranný, pokud $\forall \theta \in \Theta$ platí $®E_\theta \phi_n(X_1, …, X_n) = g(\theta)$. ($®E_\theta$ značí, že ®E počítáme vzhledem k rozdělení $P_\theta^n$ neboli $X_i \sim P_\theta$.)
+\end{definice}
+
+\begin{definice}[Silně konzistentní posloupnost bodových odhadů]
+	Posloupnost bodových odhadů $\phi_n$ parametrické funkce $g(\Theta)$ se nazývá silně konzistentní, pokud $\forall \theta \in \Theta$ platí $P(\lim_{n \rightarrow ∞} \phi(X_1, …, X_n) = g(\theta)) = 1$.
+\end{definice}
+
 \end{document}
