@@ -655,5 +655,58 @@ TODO (Chyběl jsem)
 		$$ S f(x) = c_0 + \sum_{k=1}^∞ (c_k ·e^{i k x} + c_{-k}·e^{-i k x}), $$
 		$$ c_k = \frac{1}{2\pi} \int_0^{2\pi} f(x) e^{-i k x} dx, \qquad k \in ®Z. $$
 	\end{poznamka}
+
+% 03. 05. 2022
+
+\section{Fourierova transformace}
+\begin{definice}[Fourierova transformace, inverzní Fourierova transformace]
+	Nechť $f \in ©L^1(®R)$. Pak Fourierova transformace je definována jako
+	$$ \hat{f}(\omega) = \frac{1}{\sqrt{2 \omega}}·\int_{-∞}^{+∞} f(x) e^{-i \omega x}dx. $$
+	A inverzní Fourierova transformace $f$ je definována jako
+	$$ \check f (\omega) = \frac{1}{\sqrt{2\pi}} · \int_{-∞}^{-∞} f(x) e^{i \omega x} dx. $$
+\end{definice}
+
+\begin{poznamka}
+	Pro $f \in ©L^2$ platí $\check{\hat{f}} = f$ ve smyslu rovnosti $©L^2$ funkcí.
+
+	Existuje-li vlastní derivace $f$, pak $\check{\hat{f}} = f$.
+
+	Je-li $f \in BV$, pak $\check{\hat{f}}(x) = \frac{f(x+) + f(x-)}{2}$, kde $\check{f}$ je limita pro meze jdoucí do nekonečna.
+\end{poznamka}
+
+\begin{definice}[Konvoluce, nezkouší se]
+	Nechť $f, g \in L^1(®R)$. Pak konvoluce funkcí $f$ a $g$ je definována jako
+	$$ (f * g)(x) = \int_{-∞}^{+∞} f(x - y) g(y) dy. $$
+\end{definice}
+
+\begin{veta}[Fourireova transformace konvoluce]
+	Nechť $f, g \in L^1(®R)$. Pak $\widehat{(f*g)}(u) = \sqrt{2 \pi}·\hat{f}(\omega)·\hat{g}(\omega)$.
+
+	\begin{poznamkain}
+		Analogicky lze dokázat
+		$$ \sqrt{2\pi} \widecheck{(f·g)}(x) = (\check f * \check g)(x). $$
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		$f, g \in ©L^1 \implies f * g \in ©L^1$. (Důkaz rozepsáním a prohozením integrálů.)
+	\end{poznamkain}
+
+	\begin{dukazin}
+		$$ \widehat{(f * g)} (\omega) = \frac{1}{\sqrt{2 \pi}} \int_{-∞}^{+∞} \(\int_{-∞}^{+∞} f(x - y) g(y) dy\) e^{-i\omega x} dx = $$
+		(Pomocí Fubiniovy věty, integrovatelnost máme z poznámky.)
+		$$ \frac{1}{\sqrt{2 \pi}} \int_{-∞}^{+∞} g(y) \(\int_{-∞}^{+∞} f(x - y) · e^{-i \omega (x - y)}\)e^{- i \omega y} dy = $$
+		$$ = \int_{-∞}^{+∞} g(y) · e^{-i\omega y}·\hat{f}(\omega) dy = \sqrt{2 \pi}·\hat{f}(\omega)·\hat{g}(\omega). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Fourierova transformace derivace]
+	Nechť $f \in ©L^1(®R)$, $f$ a $f'$ spojité na ®R, $\lim_{|x| \rightarrow ∞} f(x) = 0$ a $f' \in ©L^{1}(®R)$. Pak
+	$$ \widehat{f'}(\omega) = i·\omega·\hat{f}(\omega). $$
+
+	\begin{dukazin}
+		$$ \widehat{f'}(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{-∞}^∞ f'(x)·e^{-i\omega x} \overset{per partes}= 0 - \frac{1}{\sqrt{2\pi}} \int_{-∞}^{∞} -i\omega e^{-i \omega x} · f(x) dx = i\omega \hat{f}(\omega). $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}
 

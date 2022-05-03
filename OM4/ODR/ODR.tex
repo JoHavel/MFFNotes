@@ -561,7 +561,7 @@ TODO!!!
 \begin{definice}
 	Mějme DR $x' = f(x, t)$, $f: \Omega \times [T, +∞) \rightarrow ®R^n$, $\Omega \subset ®R^n$ otevřená, $f(0, t) = 0, \forall t \in I$.
 
-	Funkci $\omega: \Omega \rightarrow [0, +∞)$ nazveme pozitivně definitní, je-li $\omega(0) = 0$ a $\forall x \in \Omega \setminus \{¦o\}: \omega(x) ≠ 0$.
+	Spojitou funkci $\omega: \Omega \rightarrow [0, +∞)$ nazveme pozitivně definitní, je-li $\omega(0) = 0$ a $\forall x \in \Omega \setminus \{¦o\}: \omega(x) ≠ 0$.
 
 	Funkci $V(t, x): I \times \Omega \rightarrow [0, +∞)$ nazveme ljapunovskou pro DR v $\Omega$, je-li
 
@@ -574,10 +574,6 @@ TODO!!!
 
 \begin{veta}
 	Nechť DR má ljapunovskou funkci. Potom nulové řešení je stabilní.
-
-	\begin{dukazin}
-		$\epsilon > 0$. Chceme najít $\delta: |x(t_0)| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0$. BÚNO $\overline{V(x_0, \epsilon)} \subset \Omega$.
-	\end{dukazin}
 \end{veta}
 
 \begin{veta}
@@ -589,6 +585,59 @@ TODO!!!
 	\end{itemize}
 
 	Potom je řešení $x = 0$ asymptoticky stabilní.
+\end{veta}
+
+% 28. 04. 2022
+
+TODO!!!
+
+\begin{dukazin}[Předpředchozí věty]
+	Chceme:
+	$$ \epsilon > 0\ \exists \delta > 0\ \forall x_0: |x_0| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0. $$
+	To stačí dokázat pouze pro $\epsilon > 0$, že $\overline{©U(0, \epsilon)} \subset \Omega$. $\omega$ na $\{\zeta: |\zeta| = \epsilon\}$ nabývá minima $d$, neboť je spojitá a to je kompaktní množina.
+
+	$V(t_0, 0) = 0$ a $V$ je spojitá, tedy $\exists \delta > 0, \delta ≤ \epsilon\ \forall \zeta, |\zeta| < \delta: V(t_0, \zeta) < d$.
+
+	Pro spor nechť $\exists t_2 > t_0: |x(t_2)| > \epsilon$ a volíme $\forall x_0: |x_0| < \delta: x(t_0) = x_0$ $\implies$ $\exists t_1: t_0 < t_1 < t_2: |x(t_1) = \epsilon|$.
+	$$ \alpha > V(t_0, x(t_0)) ≥ V(t_1, x(t_1)) ≥ \omega(x(t_1)) ≥ \alpha, \text{\lightning}. $$
+\end{dukazin}
+
+\begin{lemma}
+	Buď $\omega$ pozitivně definitní funkce na $\Omega$. $\{x_n\}_{n=1}^∞ \subset ©U(0, \epsilon)$, $\overline{U(0, \epsilon)} \subset \Omega$, $\omega(x_1) \rightarrow 0$. Pak $x_n \rightarrow 0$.
+
+	\begin{dukazin}
+		$$ \forall \tilde \epsilon < \epsilon\ \exists N, x_n \subset U(0, \tilde \epsilon) $$
+		chceme. $K = \overline{©U(0, \epsilon)} \setminus ©U(0, \tilde \epsilon)$ je kompakt, tedy funkce $\omega$ na něm nabývá minima, $\exists x_0 \in K: \omega(x) ≥ \omega(x_0) >  0\ \forall x \in K_0 \implies \exists N: \forall n > N: x_n \notin K \implies x_n \in U(0, \tilde \epsilon)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukazin}
+	$$ \exists \epsilon > 0\ \overline{©U(0, \epsilon)} \subset \Omega\ \exists \delta > 0, \delta < \epsilon\ \forall x_0: |x_0| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0. $$
+	Bereme $\forall x_0: |x_0| < \delta_0$. Stačí dokázat $x(t) \rightarrow 0$: 1. $V(t, x(t)) \searrow ≥ 0 \implies \exists \lim_{t \rightarrow +∞} V(t, x(t)) = a ≥ 0$. 2. integrujeme:
+	$$ \int_{t_0}^t \frac{d}{ds} V(s, x(s)) ds ≤ - \int_{t_0}^t \eta(x(s))ds, V(t, x(t)) + \int_{t_0}^t \eta(x(s))ds ≤ V(t_0, x(t_0)). $$
+	Tedy existuje $\int_{t_0}^∞ \eta(x(s)) ds < ∞$ $\implies$ $\exists \{t_k\}_{k=1}^∞ \nearrow$. $\eta(x(t_k)) \rightarrow 0, |x(t_k)| < \epsilon(sta?) \implies x(t_k) \rightarrow 0$.
+	$$ 3. V(t_k, x(t_k)) ≤ \lambda(x(t_k)) \land x(t_k) \rightarrow 0 \implies \lambda(x(t_k)) \rightarrow 0 \implies V(t_k, x(t_k)) \rightarrow 0 \implies a = 0. $$
+	4. $\omega(x(t)) ≤ V(t, x(t))$ $\forall t ≥ t_0$. Chceme důkaz, že $\lim_{t \rightarrow ∞} \omega(x(t)) = 0$. Berme libovolnou posloupnost $©F_k \nearrow +∞$. $\omega(x(\tilde t_k)) ≤ V(\tilde t_k, x(\tilde t)k)) \rightarrow 9$.
+	$$ \lim_{k \rightarrow ∞} \omega(x(\tilde t_k)) = 0 \land |x(\tilde t_k)| < \epsilon \implies x(\tilde t_k) \rightarrow 0 \implies \exists \lim_{t \rightarrow ∞} x(t) = 0. $$
+\end{dukazin}
+
+\begin{poznamka}[Zkouška]
+	Bude písemná část cca od devíti do půl jedenácté a pak bude od dvanácti.
+\end{poznamka}
+
+\begin{veta}
+	Ať $x' = Ax$, $A \in ®R^{n \times m}$. Pak následující tvrzení jsou ekvivalentní
+
+	\begin{itemize}
+		\item 0 je uniformě asymptoticky stabilní;
+		\item $\forall \lambda \in \sigma(A): \Re \lambda < 0$;
+		\item $\exists \alpha, c > 0: ||e^{tA}|| ≤ c e^{-\alpha t} \forall t ≥ 0$;
+		\item $\exists$ symetrická pozitivně definitní $B$, že $A^TB + BA = -I$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
 \end{veta}
 
 \end{document}

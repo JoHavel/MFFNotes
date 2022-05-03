@@ -1068,4 +1068,57 @@ TODO!!! (Chyběl jsem)
 	Posloupnost bodových odhadů $\phi_n$ parametrické funkce $g(\Theta)$ se nazývá silně konzistentní, pokud $\forall \theta \in \Theta$ platí $P(\lim_{n \rightarrow ∞} \phi(X_1, …, X_n) = g(\theta)) = 1$.
 \end{definice}
 
+% 27. 04. 2022
+
+\begin{definice}[Slabě konzistentní posloupnost bodových odhadů]
+	Posloupnost bodových odhadů $\phi_n$ parametrické funkce $g(\Theta)$ se nazývá slabě konzistentní, pokud $\forall \theta \in \Theta$ platí $\phi(X_1, …, X_n) \overset{P}\rightarrow g(\theta)$.
+\end{definice}
+
+\begin{definice}[Statistika, výběrový průměr, výběrový rozptyl]
+	Statistikou nazveme libovolnou borelovsky měřitelnou funkci $T_n: ®R^n \rightarrow ®R$, jejíž definiční obor je obor hodnot náhodného výběru ($X_1, …, X_n$).
+
+	Statistika $\overline{X_n} := \frac{1}{n} \sum_{i=1}^n X_i$ se nazývá výběrový průměr. Statistika $S_n^2 := \frac{1}{n - 1} \sum_{k=1}^n (X_k - \overline{X_n})^2$ si nazývá výběrový rozptyl.
+\end{definice}
+
+\begin{veta}[O výběrovém průměru a výběrovém rozptylu]
+	Buď $X_1, …, X_n$ náhodný výběr z rozdělení se střední hodnotou $\mu = ®E X \in ®R$ a rozptylem $\sigma^2 = \var X < +∞$. Pak výběrový průměr $\overline{X_n}$ je nestranný a konzistentní odhad $\mu$ a výběrový rozptyl $S_n^2$ je nestranný a konzistentní odhad $\sigma^2$.
+
+	\begin{dukazin}
+		Nestrannost $\mu$:
+		$$ ®E \overline{X_n} = ®E (\frac{1}{n} \sum_{i=1}^n X_i) = \frac{1}{n} · n · ®EX_1 = \mu. $$
+		Konzistence $\mu$ plyne ze silného zákona velkých čísel.
+
+		Pro $S_n^2$ upravíme:
+		$$ S_n^2 = \frac{1}{n-1} \sum_{k=1}^n (X_k - \mu - (\overline{X_n} - \mu))^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \mu)^2 - 2 \frac{1}{n-1} \underbrace{\sum_{i=1}^n (X_i - \mu) (\overline{X_n} - \mu)}_{= (\overbrace{X_n} -\mu) \sum_{i=1}^n (X_i - \mu) · \frac{n}{n} = (\overbrace{X_n} -\mu) · ((\overbrace{X_n} -\mu)) · n} + \underbrace{\frac{1}{n-1} \sum_{i = 1}^n (\overline{X_n} - \mu)^2}_{= n (\overline{X_n} - \mu)^2} = $$
+		$$ = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2. $$
+
+		Nestrannost $S_n^2$:
+		$$ ®E S_n^2 = ®E \(\frac{1}{n-1} (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2\) = \frac{1}{n - 1} \sum_{i=1}^n \var X_k - \frac{n}{n-1} \var \overline{X_n} = \frac{n}{n - 1}·\sigma^2 - \frac{n}{n-1}·\frac{\sigma^2}{n} = \sigma^2. $$
+
+		Konzistence $S_n^2$:
+		$$ S_n^2 = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2 = \frac{n}{n - 1} · \frac{1}{n}\sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2 \rightarrow 1 · ®E(X_1 - \mu)^2 - 1 · 0 = \sigma^2 $$
+		skoro jistě ze silného zákona velkých čísel a silného zákona velkých čísel spojeného s větou o transformaci.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Výběrový moment]
+	Výběrový moment je definován jako $\widehat{m_r(\theta)} := \frac{1}{n} \sum_{i=1}^n X_i^r$.
+\end{definice}
+
+\begin{tvrzeni}[Platí]
+	Výběrové momenty jsou nestranné a silné konzistentní odhady $m_r(\theta)$.
+
+	\begin{dukazin}
+		Domácí úkol.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Metoda momentů]
+	Najdeme $\hat\theta$ jako řešení rovnic $m_r(\theta) = \widehat{m_r(\theta)}$.
+\end{definice}
+
+% 02. 05. 2022
+
+% Probíral se jen příklad na odhady
+
 \end{document}

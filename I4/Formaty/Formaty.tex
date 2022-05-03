@@ -279,4 +279,35 @@ TODO!!!
 
 TODO?
 
+% 02. 05. 2022
+
+\section{Key-values formáty}
+\begin{definice}[Properties file]
+	Pouze v Javě. Používá pouze Latin 1. Říká se mu také hash table.
+
+	Má i XML variantu.
+\end{definice}
+
+\begin{definice}[INI file]
+	Originálně MS-DOS, ve windows postupně nahrazován registry (ale i ve Windows 10 stále jsou INI). Bez standardu. Lze se na něj dívat jako na dvojrozměrný hashtable.
+\end{definice}
+
+\begin{definice}[TOML]
+	Podobný jako INI. Vznikl v roce 2021. Kódování je unicodové. 
+
+	Nabízí i to, že knihovny pro dané jazyky umí z tohoto souboru číst i různé typy.
+
+	Syntax: komentář se značí \#, hodnoty se ukládají jako klíč = hodnota, kde klíč může být buď bare, nebo odeskapovaný v uvozovkách (když má speciální znaky), nebo s tečkou, viz dále. Hodnota může být string, číslo (i v hexadecimálním, oktálním, binárním zápise, i $∞$, i NaN), datetime, pole, slovníky, … Mimo to můžeme mít ještě označení tabulky \verb|[nazev tabulky]|, nebo \verb|[[nazev pole tabulek]]|.
+
+	Tabulky fungují jako slovník a buď se dají vyplňovat tak, že se označí název tabulky a pak se píšou klíč = hodnota, nebo se můžou napsat i jako \verb|nazevtabulky = {klic = hodnota, …}|.
+\end{definice}
+
+\begin{definice}[YAML]
+	Nadmnožina jsonu. Přidává např. začátek \verb|---| a konec dokumentu \verb|...|. key-value (syntaxí: \verb|key: value|) se zde nazývá mapping, \emph{map}, dictionary nebo hash. Záleží v něm na odřádkování.
+\end{definice}
+
+\begin{poznamka}[Ještě existují]
+	HOCON, JSON5 (/ JSON for Humans), Strict YAML
+\end{poznamka}
+
 \end{document}

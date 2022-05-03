@@ -1,0 +1,48 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+	Pro nějakou matici $A$ známe první sloupec maticové exponenciály:
+	$$ e^{A t} = \begin{pmatrix} -3e^t + 4e^{-t} & . \\ 2e^t - 2e^{-t} & . \end{pmatrix}. $$
+	Najděte $A$, $e^{A t}$, stabilní, nestabilní a centrální podprostory.
+
+	\begin{reseni}
+		Jelikož se v exponentu vyskytují koeficienty $-1$ a $1$, jsou to vlastní čísla $A$. Tedy hledáme matici
+		$$ A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}, $$
+		$$ e^{A t} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} e^{t· \Lambda} \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix} = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} e^t & 0 \\ 0 & e^{-t} \end{pmatrix} \begin{pmatrix} \alpha & \beta \\ \gamma & \delta \end{pmatrix}. $$
+		Tedy $a·\alpha = -3$, $b·\gamma = 4$, $c·\alpha = 2$ a $d·\gamma = -2$. Jelikož sloupce první matice jsou libovolné vlastní vektory, můžeme $a$ a $c$ zvolit BÚNO, např. $a = -3$, tj. $\alpha = 1$ a $c = 2$, a $b = 2$, tj. $\gamma = 2$ a $d = -1$ (zkrátil jsem to dvěma, aby nevycházely zlomky). $\beta$ a $\delta$ dopočítáme na $2$ a $3$.
+
+		Tedy
+		$$ e^{At} = \begin{pmatrix} -3 & 2 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} e^t & 0 \\ 0 & e^{-t} \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix} = \begin{pmatrix} -3 & 2 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} e^t & 2e^t \\ 2e^{-t} & 3e^{-t} \end{pmatrix} = $$
+		$$ = \begin{pmatrix} -3e^t + 4e^{-t} & -6e^t + 6e^{-t} \\ 2e^t - 2e^{-t} & 4e^t - 3e^{-t} \end{pmatrix}. $$
+		$$ A = \begin{pmatrix} -3 & 2 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ 2 & 3 \end{pmatrix} = \begin{pmatrix} -3 & 2 \\ 2 & -1 \end{pmatrix} \begin{pmatrix} 1 & 2 \\ -2 & -3 \end{pmatrix} = \begin{pmatrix} -7 & -12 \\ 4 & 7 \end{pmatrix}  $$
+
+		Stabilní, nestabilní a centrální prostory máme přímo z definice:
+		$$ \sigma_-(A) = \{-1\}, \qquad V_-(A) = \LO \{\binom{2}{-2}\}, $$
+		$$ \sigma_+(A) = \{1\}, \qquad V_+(A) = \LO \{\binom{-3}{2}\}, $$
+		$$ \sigma_0(A) = \O, \qquad V_0(A) = \O, $$
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+\begin{priklad}
+	Nalezněte stacionární body následující soustavy a rozhodněte o jejich stabilitě:
+	\begin{align*}
+		x' &= x y - 2x - y + 2,\\
+		y' &= x y - y z + x z,\\
+		z' &= 2y(z + 1).
+	\end{align*}
+
+	\begin{reseni}
+		Stacionární body jsou ty, kde jsou derivace nulové. Tedy (z $z' = 0$) buď $y = 0$, takže potom $x' = 2 - 2x = 0$, tedy $x = 1$ a $y' = z = 0$. Nebo $z = -1$, tedy $y' = xy - x - y = 0$ a odečtením od první rovnice $x = 2$ a $y = 2$.
+
+		$$ \nabla f = \begin{pmatrix} y - 2 & y + z & 0 \\ x - 1 & x + z & 2z + 2 \\ 0 & x + y & 2y \end{pmatrix}, \nabla f(1, 0, 0) = \begin{pmatrix} -2 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 1 & 0 \end{pmatrix}, \nabla f(2, 2, -1) = \begin{pmatrix} 0 & 1 & 0 \\ 1 & 1 & 0 \\ 0 & 4 & 4 \end{pmatrix}. $$
+		Tedy podle věty o linearizované stabilitě není ani jedno stacionární řešení stabilní, neboť první matice má vlastní čísla $-2$, $2$, $1$, tedy alespoň jedno (dokonce dvě) kladné, a druhá matice má vlastní čísla $4$ (a $\phi$ a $-\frac{1}{\phi}$), tedy také alespoň jedno kladné.
+	\end{reseni}
+\end{priklad}
+
+\end{document}
