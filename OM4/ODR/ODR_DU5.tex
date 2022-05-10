@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+	Pro soustavu $x' = x$, $y' = x + y$
+
+	\begin{enumerate}
+		\item najděte vlastní čísla a (zobecněné) vlastní vektory příslušné matice;
+		\item najděte první integrál;
+		\item najděte obecné řešení;
+		\item načrtněte chování řešení v celé rovině;
+		\item zkontrolujte své výsledky pomocí softwaru sage.
+	\end{enumerate}
+
+	\begin{reseni}[1.]
+		Charakteristický polynom je $(1 - \lambda)(1 - \lambda)$, který má nulové body $\lambda = 1$, tedy vlastní číslo (dvojnásobné) je 1.
+		Když odečteme $\lambda I$, tak dostaneme matici $\begin{pmatrix} 0 & 0 \\ 1 & 0 \end{pmatrix}$, takže prvním vlastním vektorem je např. $(0, 1)^T$. Ten dostaneme tak, že tuto matici vynásobíme vektorem $(1, 0)^T$, což je tím pádem druhý vlastní vektor.
+	\end{reseni}
+
+	\begin{reseni}[2.]
+		První integrál najdeme tak, že rovnice spolu vynásobíme, použijeme první rovnici na to, abychom $x'$ převedli na $x$ a upravíme to do tvaru „derivace podílu“, takže to budeme moci zintegorvat:
+		$$ x'·(x + y) = y'·x, \qquad x'·x = y'·x - x'·y, \qquad x^2 = y'·x - x'·y, $$
+		$$ 1 = \frac{y'·x - y·x'}{x^2}, \qquad t + C = \frac{y}{x}, \qquad C = \frac{y}{x} - t. $$
+		Tím jsme dostali první integrál $\frac{y}{x} - t$.
+	\end{reseni}
+
+	\begin{reseni}[3.]
+		Vyřešíme nejprve první rovnici, protože neobsahuje $y$: $x' = x$ $\implies$ $x = C_1·e^t$. Druhou rovnici pak vyřešíme nejprve homogenní rovnici: $y' = y$ $\implies$ $y = C·e^t$. Celou rovnici $y' = C_1·e^t + y$ pak můžeme řešit variací konstant: $C = C(t) = A + B·t$.
+		$$ (C(t)·e^t)' = (A·e^t + B·t·e^t)' = A·e^t + B·e^t + B·t·e^t = C_1·e^t + A·e^t + B·t·e^{t} = x + C(t)·e^t. $$
+		Z toho už vidíme, že $B = C_1$ a $A$ můžeme zvolit libovolně, tedy $y = (C_2 + C_1·t)·e^t$.
+	\end{reseni}
+
+	\begin{reseni}[4.]
+		$\sgn x' = \sgn x$ a $\sgn y' = \sgn x + y$, tj. $\sgn y'$ záleží na tom, zda jsme „nad“, „na“ nebo „pod“ osou $x = -y$. Takže jsem načrtl gradient na osách $x$ a $y$ a na přímce $x = -y$. S tím, že velikost gradientu je zřejmě přímo úměrná vzdálenosti od počátku, už mi vyšel obrázek podobný tomu v softwaru sage.
+	\end{reseni}
+
+	\begin{reseni}[5.]
+		\tiny
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKgyAUQN-D_uEShcpcs8Ye-5NByNJNcBkmTf9-1zXYnu5R5JzrJj0libCy0BEGiDhTnnCAVBYSUbSXslg6pMW6MG7qFpwftVF2olRHDjoxDhThKDnIzOnHd28ma2a1DuRpZucJ3zWLM3NYh7PAMup71AcVAwVf1ZHgqVk5XCHtWFfQUCvxBRbR-sXEGGBOYOrUCfZRBRekHXMjb9zhP5b-_7ZdH-5F2RvrbUTB&lang=sage&interacts=eJyLjgUAARUAuQ==}{https://sagecell.sagemath.org/?z=eJxNj9EKgyAUQN-D\_uEShcpcs8Ye-5NByNJNcBkmTf9-1zXYnu5R5JzrJj0libCy0BEGiDhTnnCAVBYSUbS}\\
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKgyAUQN-D_uEShcpcs8Ye-5NByNJNcBkmTf9-1zXYnu5R5JzrJj0libCy0BEGiDhTnnCAVBYSUbSXslg6pMW6MG7qFpwftVF2olRHDjoxDhThKDnIzOnHd28ma2a1DuRpZucJ3zWLM3NYh7PAMup71AcVAwVf1ZHgqVk5XCHtWFfQUCvxBRbR-sXEGGBOYOrUCfZRBRekHXMjb9zhP5b-_7ZdH-5F2RvrbUTB&lang=sage&interacts=eJyLjgUAARUAuQ==}{Xslg6pMW6MG7qFpwftVF2olRHDjoxDhThKDnIzOnHd28ma2a1DuRpZucJ3zWLM3NYh7PAMup71AcVAwVf1ZHgqVk5XCHtWFfQUCvxBR}\\
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKgyAUQN-D_uEShcpcs8Ye-5NByNJNcBkmTf9-1zXYnu5R5JzrJj0libCy0BEGiDhTnnCAVBYSUbSXslg6pMW6MG7qFpwftVF2olRHDjoxDhThKDnIzOnHd28ma2a1DuRpZucJ3zWLM3NYh7PAMup71AcVAwVf1ZHgqVk5XCHtWFfQUCvxBRbR-sXEGGBOYOrUCfZRBRekHXMjb9zhP5b-_7ZdH-5F2RvrbUTB&lang=sage&interacts=eJyLjgUAARUAuQ==}{bR-sXEGGBOYOrUCfZRBRekHXMjb9zhP5b-\_7ZdH-5F2RvrbUTB\&lang=sage\&interacts=eJyLjgUAARUAuQ==}
+\begin{verbatim}
+var('y')
+fx = x
+fy = x + y
+a = 0.5
+p1 = plot_vector_field((fx, fy), (x, -a, a), (y, -a, a), gridlines='minor', plot_points=30)
+
+p2 = text( r"$x' = %s, \ y' = %s$" %(latex(fx), latex(fy)) , (0, a/10))
+
+total_plot = p1 + p2
+total_plot.show()
+\end{verbatim}
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Načrtněte chování řešení v blízkosti stacionárních bodů soustavy
+	$$ x' = 2x + y^2 - 1, $$
+	$$ y' = \sin x - y^2 + 1. $$
+	
+	Zkontrolujte své výsledky pomocí softwaru sage.
+
+	\begin{reseni}
+		Nejprve musíme najít stacionární body, tedy $x' = 0$, $y' = 0$. Součtem dostaneme $2x + \sin(x) = 0$, což splňuje pouze $x = 0$, a z první rovnice můžeme vyjádřit $y = ± \sqrt{1 - 2x} = ±1$.
+
+		Dále $\nabla (x, y) = \begin{pmatrix} 2 & \cos(x) \\ 2y & -2y \end{pmatrix}$. Tedy v bodě $(0, 1)$ je to $\begin{pmatrix} 2 & 1 \\ 2 & -2 \end{pmatrix}$, v bodě $(0, -1)$ je to $\begin{pmatrix} 2 & 1 \\ -2 & 2 \end{pmatrix}$.
+
+		Vlastní čísla jsou tedy $\lambda$ splňující $(2 - \lambda)(\mp 2 - \lambda) \mp 2 = \lambda^2 + (\pm 2 - 2)\lambda + \mp 6 = 0$, tedy u první bodu $\lambda = ±\sqrt{6}$ a druhého bodu $\lambda = \frac{4 ± \sqrt{16 - 24}}{2} = 2 ± i\sqrt{2}$. Tedy oba stacionární body jsou hyperbolické.
+
+		Protože v bodě $(0, -1)$ má tato matice dvě různá komplexně sdružená vlastní čísla a číslo v druhém řádku prvního sloupce je záporné, řešeni tvoří pravotočivou spirálu.
+
+		V bodě $(0, 1)$ má matice vlastní vektor příslušící zápornému vlastnímu číslu (tedy stabilní prostor) $(1, -2-\sqrt{6})^T$. To znamená, že za pomoci Hartman-Grobmanovy věty (určuje, že v nějakém směru půjde řešení k tomuto bodu a v nějakém jiném od něho, jelikož matice má jeden stabilní a jeden nestabilní podprostor) a věty o stabilní varietě (říká, že stabilní směr řešení linearizované i původní rovnice bude tentýž) můžeme říci, že na přímce $(0, 1)^T + s·(1, -2-\sqrt{6})^T$ se budou řešení blížit k bodu $(0, 1)$, kdežto ve směru „kolmém“ se budou vzdalovat.
+
+		A tak nám vyjde něco takovéhoto:\\
+		\tiny
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKwiAUhu-DvcNhbKhl0RZd7k2iIbWVYHOoLH37_m1B3cjnp_z_OZNynCUmsk0fqaF6G6817Sjh3FMFm2C9HngUEGl5hFaw1eGcbcYKNBob2qm7BevaXnfmznkfJfVJSOKAvZKkZk4_fjh9N3rofMNeerCOyTVmtHoIvjkdMRLia8SHLgZOLi8iw630ki6UVixyKrlR-IFGpH4xCUGoO85VS06wQZl2LpjHrbDEWP_bg3_aNxcfDxBJ-Q==&lang=sage&interacts=eJyLjgUAARUAuQ==}{https://sagecell.sagemath.org/?z=eJxNj9EKwiAUhu-DvcNhbKhl0RZd7k2iIbWVYHOoLH37\_m1B3cjnp\_z\_OZNynCUmsk0fqaF6G6817Sjh3F}
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKwiAUhu-DvcNhbKhl0RZd7k2iIbWVYHOoLH37_m1B3cjnp_z_OZNynCUmsk0fqaF6G6817Sjh3FMFm2C9HngUEGl5hFaw1eGcbcYKNBob2qm7BevaXnfmznkfJfVJSOKAvZKkZk4_fjh9N3rofMNeerCOyTVmtHoIvjkdMRLia8SHLgZOLi8iw630ki6UVixyKrlR-IFGpH4xCUGoO85VS06wQZl2LpjHrbDEWP_bg3_aNxcfDxBJ-Q==&lang=sage&interacts=eJyLjgUAARUAuQ==}{MFm2C9HngUEGl5hFaw1eGcbcYKNBob2qm7BevaXnfmznkfJfVJSOKAvZKkZk4\_fjh9N3rofMNeerCOyTVmtHoIvjkdMRLia8SHLgZOLi8iw63}
+		\href{https://sagecell.sagemath.org/?z=eJxNj9EKwiAUhu-DvcNhbKhl0RZd7k2iIbWVYHOoLH37_m1B3cjnp_z_OZNynCUmsk0fqaF6G6817Sjh3FMFm2C9HngUEGl5hFaw1eGcbcYKNBob2qm7BevaXnfmznkfJfVJSOKAvZKkZk4_fjh9N3rofMNeerCOyTVmtHoIvjkdMRLia8SHLgZOLi8iw630ki6UVixyKrlR-IFGpH4xCUGoO85VS06wQZl2LpjHrbDEWP_bg3_aNxcfDxBJ-Q==&lang=sage&interacts=eJyLjgUAARUAuQ==}{0ki6UVixyKrlR-IFGpH4xCUGoO85VS06wQZl2LpjHrbDEWP\_bg3\_aNxcfDxBJ-Q==\&lang=sage\&interacts=eJyLjgUAARUAuQ==}
+\begin{verbatim}
+var('y')
+fx = 2*x^2 + y^2 - 1
+fy = sin(x) - y^2 + 1
+a = 1.5
+p1 = plot_vector_field((fx, fy), (x, -a, a), (y, -a, a), gridlines='minor', plot_points=30)
+
+p2 = text( r"$x' = %s, \ y' = %s$" %(latex(fx), latex(fy)) , (0, a))
+
+total_plot = p1 + p2
+total_plot.show()
+\end{verbatim}
+	\end{reseni}
+\end{priklad}
+
+\end{document}

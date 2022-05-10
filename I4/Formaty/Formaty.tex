@@ -310,4 +310,71 @@ TODO?
 	HOCON, JSON5 (/ JSON for Humans), Strict YAML
 \end{poznamka}
 
+% 09. 05. 2022
+
+\section{Formáty pro multimédia}
+\subsection{Obrázky}
+\begin{poznamka}
+	Řešili jsme vektorová vs. rasterová grafika. Rozlišení, DPI a PPI. Barevné modely (viz Vidění).
+\end{poznamka}
+
+\begin{definice}[SVG]
+	Otevřený formát pro ukládání vektorové grafiky.
+\end{definice}
+
+\begin{definice}[Universal 3D (U3D)]
+	Vektorový formát pro 3D objekty. Je podporován formátem PDF.
+\end{definice}
+
+\begin{definice}[BMP (device-independent bitmap)]
+	Hlavičky + odspoda zleva BGR.
+\end{definice}
+
+\begin{definice}[GIF]
+	Rastrový formát s bezztrátovou kompresí. Umí animace.
+\end{definice}
+
+\begin{definice}[PNG]
+	Rastrový formát s bezztrátovou kompresí. Umí průhlednost.
+\end{definice}
+
+\begin{poznamka}
+	Dále jsme se podívali na kosinovou transformaci. A kvantizaci („ořežou“ se vysoké frekvence).
+\end{poznamka}
+
+\begin{definice}[Chroma subsampling]
+	Když budeme mít reprezentaci barvy, která má oddělený jas a „barvu“ (chroma). Člověk je ale na barvu méně citlivý, takže ji můžeme zkomprimovat.
+\end{definice}
+
+\begin{definice}[JPEG]
+	Rastrový formát se ztrátovou kompresí. Při načítání se zvětšuje detail, ne viditelná oblast.
+\end{definice}
+
+\begin{definice}[RAW]
+	Formát na uložení obrázku včetně nastavení, metadat senzorů, …
+\end{definice}
+
+\subsection{Video}
+\begin{definice}[R210]
+	Nekomprimované.
+\end{definice}
+
+\begin{definice}[MJPEG (motion JPEG)]
+	Nekomprimované v časové ose.
+\end{definice}
+
+\begin{definice}[Inter picture prediction]
+	Obrázky se rozdělí na bloky 16 krát 16 pixelů, ty se zkomprimují a pak se používá toho, že se někam pohybují.
+\end{definice}
+
+\begin{definice}[H.261]
+	Hlavně na videohovory.
+\end{definice}
+
+\begin{definice}[MPEG-1 Part 2: Video]
+	TODO!!!
+\end{definice}
+
+TODO!!!
+
 \end{document}

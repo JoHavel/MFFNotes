@@ -1,0 +1,39 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+Mějme diferenciální rovnici
+$$ x'' + q(t)·x = 0 $$
+na intervalu $I = (K, +∞)$, $K > 0$.
+
+\begin{priklad}[6.1]
+	Najděte všechna řešení rovnice $x''(t) + \frac{1}{c t^2} x(t) = 0$ na $I$, kde $c > 0$ je parametr.
+
+	\begin{reseni}
+		Hledáme fundamentální řešení ve tvaru $x(t) = t^a$. Dosadíme:
+		$$ 0 = x''(t) + \frac{1}{c·t^2}·x(t) = (t^a)'' + \frac{1}{c·t^2}·t^a = a·(a - 1)·t^{a - 2} + \frac{1}{c}·t^{a - 2} = t^{a - 2}·\(a·(a - 1) + \frac{1}{c}\) $$
+
+		Tedy $a·(a - 1) = -\frac{1}{c}$, tj. $a = \frac{1 ± \sqrt{1 - 4 / c}}{2}$. To jsou dvě fundamentální řešení, všechna řešení jsou pak lineární obal těchto.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Ukažte, že je-li $q(t) ≤ \frac{1}{4t^2}$ na $I$, pak má každé netriviální řešení rovnice nejvýše jeden nulový bod v $I$.
+
+	\begin{dukazin}
+		Rovnice $y''(t) + \frac{1}{4 t^2} y(t) = 0$ má podle předchozího příkladu jedno z řešení $y(t) = t^{1 / 2} = \sqrt{t}$. Pokud by řešení původní rovnice mělo alespoň dva nulové body (na $I$), tak z $\frac{1}{4 t^2} ≥ q(t)$ musí mít $y(t)$ mezi těmito body také nulový bod ze Šturmovy věty. Ale $y(t)$ na $I$ nulový bod nemá, tedy řešení původní rovnice má nejvýše jeden nulový bod.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}
+	Ukažte, že je-li $q(t) ≥ \frac{1}{c t^2}$ na $I$ pro nějaké $c < 4$, pak má každé netriviální řešení rovnice nekonečně mnoho nulových bodů v $I$.
+
+	\begin{dukazin}
+		Rovnice $y''(t) + \frac{1}{c t^2} y(t) = 0$ má pro $c < 4$ z prvního příkladu řešení $t^a$, kde $a$ je komplexní číslo, tedy reálná řešení budou exponenciela krát sinusoida. Takže toto řešení bude mít nekonečně nulových bodů. Z $q(t) ≥ \frac{1}{c·t^2}$ a Šturmovy věty pak vyplývá, že i řešení původní rovnice musí mít nekonečně nulových bodů (neboť musí mít nulový bod mezi každými sousedními nulovými body řešení $y(t)$).
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

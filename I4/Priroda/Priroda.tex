@@ -189,4 +189,29 @@ TODO!!!
 	Dále se probíralo hluboké zpětnovazebné učení. TODO? (Prostě používáme neuronové sítě pro předpovídání $Q$)
 \end{definice}
 
+% 05. 05. 2022
+
+\section{TODO}
+
+\begin{definice}[Particle swarn optimization (PSO)]
+	Pamatujeme si aktuální polohu $x$, rychlost $v$, lokální nejlepší místo $p_b$, které částice potkala, a globální (nejlepší lokální místo všech / nějakých okolních částic) $g_b$.
+
+	Svoji rychlost pak upravuje na základě:
+	$$ v \leftarrow \omega v + \phi_p r_p (p_b - x) + \phi_b r_b (g_b - x). $$
+\end{definice}
+
+\begin{poznamka}
+	Okolí částic si můžeme definovat geometricky (blízkost v aktuální situaci), nebo topologicky (blízkost definovaná přímo na jedincích, např. sousedi v mřížce, nemění se).
+
+	Topologické okolí se občas používá i v genetických algoritmech (genetické operace se používají jen na okolních jedincích).
+\end{poznamka}
+
+\begin{definice}[Ant colony optimization]
+	Jedinci prohledávají graf, pokud najdou dobré řešení, tak při cestě „zpět“ zanechávají feromony, které následně následují jedinci, co je potkají. Hladina feromonů v každém místě se s časem zmenšuje.
+\end{definice}
+
+\begin{definice}[Artificial bee colony]
+	TODO?
+\end{definice}
+
 \end{document}

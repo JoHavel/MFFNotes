@@ -242,7 +242,7 @@
 		Navíc pro $x \in (x_0 - R, x_0 + R)$ platí $\(\sum_{n=0}^∞ a_n·(x - x_0)^n\)' = \sum_{n=1}^∞ a_n·n·(x - x_0)^{n-1}$.
 
 		\begin{dukazin}
-			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Nyní poloměr konvergence $\sum_{n=1}^∞ a_i·n·(x - x_0)^{n-1} \overset{x ≠ x_0}{=} \frac{\sum_{n=1}^∞ a_i·n·(x - x_0)^n}{x - x_0}$ je podle věty výše
+			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Poloměr konvergence $\sum_{n=1}^∞ a_i·n·(x - x_0)^{n-1} \overset{x ≠ x_0}{=} \frac{\sum_{n=1}^∞ a_i·n·(x - x_0)^n}{x - x_0}$ je podle věty výše
 			$$ \frac{1}{\limsup \sqrt[n]{|a_n|·n}} = R·\frac{1}{\limsup \sqrt[n]{n}} = R. $$
 			Následně použijeme větu o derivaci a stejnoměrné konvergenci (v bodě $x = x_0$ řada jistě konverguje a z předchozí věty řada derivací konverguje lokálně stejnoměrně)
 		\end{dukazin}
@@ -487,7 +487,7 @@ TODO (Chyběl jsem)
 		Nechť $(a, b) \subset ®R$ je omezený interval a nechť $f \in L^1(a, b)$. Potom $\lim_{t \rightarrow ∞} \int_a^b f(x)·\cos(t·x) dx = 0$ a $\lim_{t \rightarrow ∞} \int_a^b f(x) \sin(t·x) dx = 0$.
 
 		\begin{dukazin}
-			Pokud se nepletu, tak elegantnější důkaz je v \verb|OM3/Funkcionalka/Funkcionalka.pdf str 69|.
+			Pokud se nepletu, tak elegantnější důkaz je v \verb|OM3/Funkcionalka/Funkcionalka.pdf| str.~69.
 
 			$$ 1. \lim_{t \rightarrow ∞} \int_a^b \chi_{(c, d)}(x)·\cos(t·x) dx = \lim_{t \rightarrow ∞} \int_c^d \cos(t·x) dx = $$
 			$$ = \lim_{t\rightarrow ∞} \[\frac{\sin(t·x)}{t}\]_c^d = \lim_{t \rightarrow ∞} \frac{\sin(t·d) - \sin(t·c)}{t} = 0. $$
@@ -634,7 +634,9 @@ TODO (Chyběl jsem)
 		Nechť $f, g \in P_{2\pi}$ mají stejné Fourierovy koeficienty. Potom $f = g$ skoro všude.
 
 		\begin{dukazin}
-			Funkce $f - g$ má nulové Fourierovy koeficienty. Tedy BÚNO $f ≠ 0$, $g = 0$ a $\int_0^{2 \pi} f(x) \cos n x dx = 0$ a $\int_0^{2\pi} f(x) \sin n x dx = 0$ $\forall n \in ®N_0$. Označme $©T := \{\phi \in L^∞ (0, 2\pi) | \int_0^{2\pi} f(x) · \phi(x) dx = 0\}$.
+			Funkce $f - g$ má nulové Fourierovy koeficienty. Tedy
+			$$ \int_0^{2 \pi} f(x) \cos n x dx = 0 \quad \land \quad \int_0^{2\pi} f(x) \sin n x dx = 0, \qquad \forall n \in ®N_0. $$
+			BÚNO $f ≠ 0$, $g = 0$. Označme $©T := \{\phi \in L^∞ (0, 2\pi) | \int_0^{2\pi} f(x) · \phi(x) dx = 0\}$.
 
 			1. ©T je zřejmě lineární prostor. 2. Nechť $\phi_n \in ©T$, $\phi_n \rightarrow \phi$ skoro všude a $||\phi_n||_∞ ≤ K\ \forall n$. Pak $\phi \in ©T$ z Lebesgueovy věty. 3. Trigonometrické polynomy $\subset ©T$, neboť $\cos n x \in ©T$, $\sin n x \in ©T$ a použijeme jedničku. 4. Nechť $\phi$ je spojitá, $\phi(0) = \phi(2\pi) = 0$. Podle předchozí věty existuje trigonometrický polynom $T_n \rightrightarrows \phi$. Tedy $\phi \in ©T$ z druhého bodu. 5. $[a, b] \subset (0, 2\pi)$, pak $\chi_{(a, b)} \in ©T$, jelikož k ní konvergují „lichoběžníky“. 6. $G \subset [0, 2\pi]$ otevřená, potom $\chi_G \in ©T$, neboť $G = \bigcup_{i=1}^∞ (a_i, b_i)$ a $\sum_{i=1}^k \chi_{(a_i, b_i)} \rightarrow \chi_G$ skoro všude a sumy jsou stejně omezené $K = 1$. 7. $E \subset (0, 2\pi)$ měřitelná, pak $\chi_E \in ©T$, neboť pro každé $n$ existuje $G_n$ otevřená, že $E \subset G_n \land |G_n \setminus E| < \frac{1}{2^n}$ (z TMI).
 
@@ -705,6 +707,83 @@ TODO (Chyběl jsem)
 
 	\begin{dukazin}
 		$$ \widehat{f'}(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{-∞}^∞ f'(x)·e^{-i\omega x} \overset{per partes}= 0 - \frac{1}{\sqrt{2\pi}} \int_{-∞}^{∞} -i\omega e^{-i \omega x} · f(x) dx = i\omega \hat{f}(\omega). $$
+	\end{dukazin}
+\end{veta}
+
+% 10. 05. 2022
+
+\section{Souvislé a obloukově souvislé množiny metrické prostory}
+\begin{definice}[Obojetná množina]
+	Nechť $(P, \rho)$ je metrický prostor. Řekneme, že $A \subset P$ je obojetná (clopen), jestliže je zároveň otevřená a uzavřená.
+\end{definice}
+
+\begin{definice}[Souvislý metrický prostor]
+	Řekneme, že metrický prostor $(P, \rho)$ je souvislý, jestliže není sjednocením dvou disjunktních neprázdných otevřených množin.
+
+	Řekneme, že $A \subset P$ je souvislá, jestliže je MP $(A, \rho)$ souvislý.
+\end{definice}
+
+\begin{veta}[Charakterizace souvislých prostorů]
+	Nechť $(P, \rho)$ je metrický prostor. Pak následující je ekvivalentní:
+
+	\begin{itemize}
+		\item $P$ není souvislý.
+		\item Existují dvě uzavřené neprázdné množiny $F_1, F_2 \subset P$, které jsou disjunktní a $P = F_1 \cup F_2$.
+		\item Existuje obojetná množina $H \subset P$, $H ≠ \O$ a $H ≠ P$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“: $P$ není souvislý $\implies$ $P = G_1 \cup G_2$, $G_1, G_2 ≠ \O$ otevřené, $G_1 \cap G_2 = \O$. Položme $F_1 = P \setminus G_1 = G_2$ a $F_2 = P \setminus G_2 = G_1$. Toto jsou uzavřené neprázdné disjunktní množiny a $P = F_1 \cup F_2$.
+
+		„$2. \implies 3.$“: Položme $H = F_1$. Pak $H ≠ \O$, $H ≠ P$. Navíc $H$ je uzavřená a $P \setminus H = P \setminus F_1 = F_2$ je uzavřená, tedy $H$ je otevřená.
+
+		„$3. \implies 1.$“: Položme $G_1 = H$ a $G_2 = P \setminus H$. Pak $G_1 \cup G_2 = P$ a $G_1 \cap G_2 = \O$ zřejmě, $G_1, G_2 ≠ \O$, neboť $H ≠ \O$ a $H ≠ P$. Dále $G_1$ je otevřená, neboť $H$ je otevřená a $G_2$ je otevřená, protože $P \setminus G_2 = H$ je uzavřená.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Vlastnosti souvislých prostorů]
+	Nechť $(P, \rho)$ je metrický prostor. Pak
+
+	\begin{itemize}
+		\item Nechť $(Q, \tau)$ je metrický prostor a $f: P \rightarrow Q$ je spojité. Nechť $A \subset P$ je souvislá množina, pak $f(A)$ je souvislá v $Q$.
+		\item Nechť $A \subset P$ je souvislá a $A \subset B \subset \overline{A}$. Pak $B$ je souvislá, speciálně $\overline{A}$ je souvislá.
+		\item Nechť $I ≠ \O$ a $\{A_\alpha\}_{\alpha \in I}$ jsou souvislé množiny v $(P, \rho)$. Nechť každé dvě množiny $A_\alpha a A_\beta$, $\alpha, \beta \in I$ jsou disjunktní. Pak $A = \bigcup_{\alpha \in I} A_\alpha$ je souvislá.
+	\end{itemize}
+
+	\begin{dukazin}
+		„První bod“ sporem: nechť $f(A) = G_1 \cup G_2$, $G_1, G_2$ otevřené v $Q ≠ \O$ disjunktní. Pak $A = f^{-1}(G_1) \cup f^{-1}(G_2)$ jsou neprázdné disjunktní otevřené, což je spor se souvislostí $A$.
+
+		„Druhý bod“: nechť pro spor $B = G_1 \cup G_2$ jsou neprázdné disjunktní otevřené v množiny $(B, \rho)$. Pak $A = (A \cap G_1) \cup (A \cap G_2)$ jsou disjunktní otevřené (průnik otevřené množiny a $X$ je otevřený v $X$) množiny v $(A, \rho)$.
+
+		Pokud $A \cap G_1 ≠ \O$ a $A \cap G_2 ≠ \O$, pak máme spor se souvislostí $A$. Tedy BÚNO $A \cap G_1 = \O \implies A \subset G_2$. Víme $\exists x \in B \cap G_1 \implies x \in \overline{A} \implies \rho(x, A) = 0$. Ale $B \cap G_1$ je otevřená v $(B, \rho)$ $\implies \exists r > 0: B(x, r) \subset G_1 \implies \rho(x, G_2) ≥ r \implies \rho(x, A) ≥ r$, \lightning.
+
+		„Třetí bod“ sporem: $A = G_1 \cup G_2$ otevřené, neprázdné, disjunktní. Pak $A_\alpha = (A_\alpha \cap G_1) \cup (A_\alpha \cap G_2)$, disjunktní, otevřené v $(A_\alpha, \rho)$. $A_\alpha$ souvislá $\implies A_\alpha \cap G_1 = \O$ nebo $A_\alpha \cap G_2 = \O$. Zvolme pevné $A_{\alpha_0}$ a BÚNO $A_{\alpha_0} \subset G_1$. Pak $\forall \alpha: A_\alpha \cap A_{\alpha_0} ≠ \O \implies A_{\alpha} \cap G_1 ≠ \O$. Tedy $A \subset G_1$ $\implies$ $G_2 = \O$, \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $f$ je spojité zobrazení $I = [0, 1]$ do metrického prostoru. Pak $f(I)$ je souvislá množina.
+\end{dusledek}
+
+\begin{definice}[Komponenta]
+	Řekneme, že $A$ je komponenta $P$, jestliže $A$ je maximální souvislá podmnožina $P$.
+\end{definice}
+
+\begin{veta}[Charakterizace komponent]
+	Nechť $(P, \rho)$ je neprázdný metrický prostor.
+
+	\begin{enumerate}
+		\item Komponenty $P$ jsou neprázdné a uzavřené.
+		\item Každý bod $P$ je obsažen v nějaké komponentě.
+		\item Komponenty jsou navzájem disjunktní.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: Jednobodové množiny jsou souvislé, takže $\O$ není maximální. Uzávěr souvislé množiny je také souvislý, tedy neuzavřené množiny také nejsou maximální.
+
+		„2.“: Nechť $x \in P$. Definujme $A = \bigcup\{M | M\text{ souvislá } \land x \in M\}$. $A$ je neprázdná, protože $\{x\}$ je souvislá. Podle předchozí věty (třetí bod) je $A$ souvislá ($x \in M_1 \cap M_2$). $A$ je maximální, neboť $A$ je jedna z množin přes které sjednocujeme. $x \in A$.
+
+		„3.“: Nechť pro spor $A ≠ B$ komponenty a $A \cap B ≠ \O$. Potom z minulé věty (třetí bod) $A \cap B$ je souvislá množina, tedy $A, B$ nejsou maximální.
 	\end{dukazin}
 \end{veta}
 

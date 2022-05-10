@@ -640,4 +640,98 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 05. 05. 2022
+
+\section{Šturnova srovnávací věta}
+\begin{poznamka}
+	$$ a_0(t)x'' + a_1(t)x' + a_2(t)x = 0, $$
+	$t \in I$, $I$ interval, $a_j$ spojité v $I$, $a_0(t) ≠ 0$, $t \in I$.
+
+	Buď $t_0 \in I$, $\eta_0, \eta_1 \in ®R \implies \exists! x$ splňující předchozí rovnici, $x(t_0) = \eta_0$, $x'(t_0) = \eta_1$.
+
+	Problém: rozložení nulových bodů netriviálního řešení.
+\end{poznamka}
+
+\begin{lemma}
+	$x(t)$ netriviální řešení předchozí poznámky na $I$. Potom
+
+	\begin{itemize}
+		\item je-li $x(t_0) = 0$, pak $x'(t_0) ≠ 0$;
+		\item je-li $x(t_0) = 0$, $y(t_0) = 0$ ($y$ taktéž řešení), pak $\exists \lambda: y(t) = \lambda x(t)$ $\forall t \in I$;
+		\item $N(x) = \{t \in I | x(t) = 0\}$ nemá v $I$ hromadný bod.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	Každý kompakt má konečný průnik s $N(x)$, tj. má smysl mluvit o sousedních nulových bodech.
+\end{poznamka}
+
+\begin{lemma}
+	Rovnice z poznámky výše (kde $\exists b'$ spojitá) je převoditelná na tvar $y''(t) + q(t) y(t) = 0$, $q \in C(I)$.
+
+	\begin{dukazin}
+		$$ x''(t) + b_0(t) x'(t) + b_0(t)x(t) = 0, \qquad b_j = \frac{a_j}{a_0(t))}. $$
+		$$ x(t) = v(t)·y(t) \implies v(t)·y''(t) + y'(t)(2v'(t) + b_1(t)v(t)) + y(t)(\overbrace{v''(t) + b_1(t)v'(t) + b_0(t)v(t)}^q) = 0. $$
+		Chceme vynulovat člen u $y'(t)$, tedy hledáme $v$, aby
+		$$ \frac{v'(t)}{v(t)} = -\frac{b_1(t)}{2}, \qquad v(t) = \exp(-\frac{1}{2} \int^t b_1(s) ds). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Rovnici z poznámky výše lze převést na tvar $(p(t)x')' + q(t) x = 0$, $p ≠ 0$, $p, q, p'$ spojité.
+
+	\begin{dukazin}
+		$$ p·x'' + p'x' + qx = 0, \qquad x'' + \frac{p'}{p}x' + \frac{q}{p}x = 0, $$
+		$$ \frac{p'}{p} = \frac{a_1(t)}{a_0(t)} = : b_1(t), \qquad p(t) = \exp \(\int_{t_0}^t b_1(s) ds\), $$
+		$$ q(t) := p(t)·\frac{a_2(t)}{a_0(t)}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$$ (p(t) x')' + q_1(t)x = 0, \quad (p(t) y')' + q_2(t)yt = 0 \qquad p, p', q_1, q_2 \text{ spojité v } I, p(t) > 0, q_2(t) ≥ q_1(t) \text{ na } I. $$
+	Buď $t_1, t_2 \in I$ sousední nulové body $x$, $t_1 < t_2$, potom buď
+	$$ \exists t_3 \in (t_1, t_2): y(t_3) = 0, $$
+	nebo
+	$$ q_1(t) = q_2(t)\ \forall t \in [t_1, t_2] \land \exists \lambda: y(t) = \lambda x(t). $$
+
+	\begin{dukazin}
+		$$ (p(t)x'(t))'y(t) - (p(t)y'(t))'x(t) = (q_2(t) - q_1(t))x(t)y(t) \qquad \int $$
+		$$ \int_{t_1}^{t_2}[…] = \int_{t_1}^{t_2}(q_2(t) - q_1(t)) x(t) y(t) dt \text{ per partes:} $$
+		$$ \[p(t) x'(t) · y(t)\]_{t_1}^{t_2} - [p(t) · y'(t) x(t)]_{t_1}^{t_2} + \int_{t_1}^{t_2} 0 dt = \int_{t_1}^{t_2} x(t) y(t)(q_2(t) · q_1(t)) dt $$
+		$$ p(t_2)·x'(t_2)·y(t_2) - p(t_1) x'(t_1) y(t_1) = \int … $$
+
+		Pro spor předpokládejme $y ≠ 0$ na $(t_1, t_2)$, potom BÚNO $y > 0$ na $(t_1, t_2)$. BÚNO také tam $x > 0$. $x'(t_1) > 0$, $x'(t_2) < 0$. Pak
+		$$ p(t_2)·x'(t_2)y(t_2) = 0 \implies y(t_2) = 0 \implies p(y_1)x'(y_1)y(t_1) = 0, q_2(t) = q_1(t)\ \forall t \in (t_1, t_2). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Šturnova]
+	$$ (p(t)x'(t))' + q(t)x(t) = 0, \qquad p, p', q \text{ spojité na } I, p≠0 \text{ na } I. $$
+	$\{u(t), v(t)\}$ libovolný fundamentální systém funkcí této rovnice. Potom
+	$$ N(u) \cap N(v) = \O; $$
+	$$ \forall t_1, t_2 \in N(u)\ \exists t_3 \in (t_1, t_2) \cap N(v). $$
+
+	\begin{dukazin}
+		1. vztah sporem: $\exists t_0 \in N(u) \cap N(v) \implies u(t_0) = v(t_0) = 0 \implies \exists \lambda \in ®R: v(t) = \lambda u(t)$.
+
+		2. vztah: předchozí věta: $q_1 = q_2$, $x = u$, $y  = v$. Pak $\forall t_1, t_2 \in N(u)\ \exists t_3 \in N(v): t_3 \in (t_1, t_2)$.
+	\end{dukazin}
+\end{veta}
+
+\section{Flaquetova teorie}
+\begin{lemma}
+	$$ A \in ®R^{n \times n}, \det A ≠ 0 \implies \exists B \in ®C^{n \times n}: e^B = A. \qquad (B = \log A). $$
+
+	\begin{dukazin}
+		$$ \log(I + M) = \sum_{i=1}^∞ \frac{(-1)^n M^n}{n}. $$
+		Pokud je $M$ horní trojúhelníková s nulami na diagonále, tak je tento součet konečný. Pro obecnou $A$ můžeme $A$ rozdělit na Jordanovu matici a matici přechodů:
+		$$ A = VJV^{-1} = V·D(I + M)V^{-1} \implies \log A := V(\log D + \log(I + M))V^{-1} $$
+		kde logaritmus je v komplexním oboru.
+	\end{dukazin}
+\end{lemma}
+
 \end{document}

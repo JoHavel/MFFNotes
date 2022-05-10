@@ -1121,4 +1121,85 @@ TODO!!! (Chyběl jsem)
 
 % Probíral se jen příklad na odhady
 
+% 04. 05. 2022
+
+\section{Intervalový odhad}
+\begin{definice}[(Oboustranný) intervalový odhad]
+	Buď $¦X = (X_1, …, X_n)$ náhodný výběr o rozsahu $n$ z $P_\theta$ a buď $\alpha \in (0, 1)$. (Oboustranným) intervalovým odhadem parametrické funkce $g(\theta)$ o spolehlivosti $(1 - \alpha)$ nazveme dvojici borelovských funkcí $\eta_L, \eta_U: ®R^n \rightarrow ®R$, jejichž předpis nezávisí na $\theta$ a $\forall \theta \in \Theta$ platí
+	$$ P_\theta(\eta_L(¦X) < g(\theta) < \eta_U(¦X)) ≥ 1 - \alpha. $$
+\end{definice}
+
+\begin{definice}[Horní a dolní oboustranný odhad]
+	Buď ¦X náhodný výběr z $P_\theta$ o rozsahu $n$ a buď $\alpha \in (0, 1)$. Dolním intervalovým odhadem parametrické funkce $g(\theta)$ o spolehlivosti $(1 - \alpha)$ nazveme borelovskou funkci $\eta_D: ®R^n \rightarrow ®R$, jejíž předpis nezávisí na $\theta$ a $\forall \theta \in \Theta$ platí
+	$$ P_\theta(\eta_D(¦X) < g(\theta)) ≥ 1 - \alpha. $$
+	Horním intervalovým odhadem $g(\theta)$ o spolehlivosti $(1 - \alpha)$ nazveme borelovskou funkci $\eta_H: ®R^n \rightarrow ®R$ jejíž předpis nezávisí na $\theta$ a $\forall \theta \in \Theta$ platí
+	$$ P_\theta(g(\theta) < \eta_H(¦X)) ≥ 1 - \alpha. $$
+\end{definice}
+
+\begin{definice}[$\beta$-kvantil]
+	Buď $F$ distribuční funkce spojitá a ryze rostoucí na $F^{-1}(0, 1)$ a $\beta \in (0, 1)$. $\beta$-kvantil rozdělení s distribuční funkcí $F$ nazveme $q_\beta = F^{-1}(\beta)$.
+\end{definice}
+
+% 09. 05. 2022
+
+\subsection{Intervalové odhady v normálním modelu}
+\begin{veta}
+	Buď $¦X = (X_1, …, X_n)^T$ náhodný výběr z $N(\mu, \sigma^2)$, kde $\theta = \mu \in ®R$ je neznámý parametr a $\sigma^2 > 0$ je známá konstanta. A buď $\alpha \in (0, 1)$. Pak
+	$$ (\overline{X_n} - u_{1 - \frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}, \overline{X_n} + u_{1 - \frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}) $$
+	je intervalový odhad $\mu$ o spolehlivosti $(1 - \alpha)$.
+
+	\begin{dukazin}
+		Postupujeme podle obecného postupu odvození intervalového odhadu:
+
+		Volíme $H(¦X, \mu) = \sqrt{n} \frac{\overline{X_n} - \mu}{\sigma} \sim N(0, 1)$. Pak
+		$$ P_\mu(u_{\frac{\alpha}{2}} < H(¦X, \mu) < u_{1 - \frac{\alpha}{2}}) = \Phi(u_{1 - \frac{\alpha}{2}}) - \Phi(u_{\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2} - \frac{\alpha}{2} = 1 - \alpha, \qquad \forall \mu \in ®R\ \forall \alpha \in (0, 1). $$
+		Ekvivalentní úpravou (za pomoci $u_{\frac{\alpha}{2}} = u_{1 - \frac{\alpha}{2}}$) upravíme na:
+		$$ P_\mu(\overline{X_n} - u_{1 - \frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}} < \mu < \overline{X_n} + u_{1 - \frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}}). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O vlastnostech $\overline{X_n}$ a $S_n^2$ v normálním modelu]
+	Buď $¦X = (X_1, …, X_n)^T$ náhodný výběr z $N(\mu, \sigma^2)$, $\mu \in ®R$, $\sigma^2 > 0$. (Oba neznáme.) Pak
+
+	\begin{enumerate}
+		\item $\overline{X_n}$ a $S_n^2 = \frac{1}{n - 1} \sum_{i=1}^n (X_i - \overline{X_n})^2$ jsou nezávislé;
+		\item náhodná veličina $\frac{n-1}{\sigma^2} S_n^2 = \frac{\sum_{i=1}^n (X_i - \overline{X_n})^2}{\sigma^2} \sim \chi^2_{n - 1}$;
+		\item náhodná veličina $T_n = \frac{\overline{X_n} - \mu}{S_n} \sqrt{n} \sim t_{n-1}$ (Studentovo $t$-rozdělení o $(n-1)$ stupních volnosti, $S_n := \sqrt{S_n^2}$).
+	\end{enumerate}
+
+	\begin{dukazin}
+		Zatím vynecháme. (Pravděpodobně úplně vynecháme.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buď $¦X = (X_1, …, X_n)^T$ náhodný výběr z rozdělení $N(\mu, \sigma^2)$, kde $\mu \in ®R$, $\sigma^2 \in ®R^+$ jsou neznámé parametry. Buď $\alpha \in (0, 1)$. Pak
+
+	\begin{itemize}
+		\item $(\overline{X_n} - t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}}, \overline{X_n} + t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}})$ je intervalový odhad parametru $\mu$ o spolehlivosti $(1 - \alpha)$;
+		\item $\(\frac{(n - 1)S_n^2}{\chi_{n-1}^2 (1 - \frac{\alpha}{2})}, \frac{(n - 1)S_n^2}{\chi_{n-1}^2 (\frac{\alpha}{2})}\)$ je intervalový odhad parametru $\sigma^2$ o spolehlivosti $(1 - \alpha)$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		$\chi_{n-1}^2(\beta)$ je $\beta$-kvantil $\chi^2$-rozdělení o $(n-1)$ stupních volnosti a $t_{n-1}(\beta)$ je $\beta$-kvantil Studentova $t_{n-1}$ rozdělení.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Podle obecného postupu odvození intervalového odhadu. Volíme $H(¦X, \mu, \sigma^2) = \frac{\overline{X_n} - \mu}{\sqrt{S_n^2}} \sqrt{n} \sim t_{n-1}$ (z třetího bodu předchozí věty). 
+		$$ P_{\mu, \sigma^2}(t_{n - 1}(\frac{\alpha}{2}) < \frac{\overline{X}_n - \mu}{S_n}\sqrt{n} < t_{n-1}(1 - \frac{\alpha}{2})) = 1 - \alpha, \qquad \forall \alpha \in (0, 1)\ \forall \mu \in ®R\ \forall \sigma^2 > 0. $$
+		Upravíme nerovnosti:
+		$$ P\(\overline{X_n} - t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}} < \mu < \overline{X_n} + t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}}\) = 1 - \alpha. $$
+
+		Obecným postupem odvození intervalového odhadu dostaneme ze statistiky $H(¦X, \mu, \sigma^2) = \frac{(n-1)S_n^2}{\sigma^2}$ druhý intervalový odhad:
+		$$ P_{\mu, \sigma^2}(…) = F_{\chi_{n-1}^2}(\chi_{n-1}^2(1 - \frac{\alpha}{2})) - F_{\chi_{n-1}^2}(\chi_{n-1}^2(\frac{\alpha}{2})) = 1 - \frac{\alpha}{2} - \frac{\alpha}{2} = 1 - \alpha. $$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Intervalové odhady založené na CLV}
+\begin{definice}[Intervalový odhad s asymptotickou spolehlivostí]
+	Buďte $¦X = (X_1, …, X_n)^T$ náhodná veličina z $P_\theta$, $\theta \in \Theta$. Pokud $\eta_L(¦X)$ a $\eta_U(¦X)$ splňuje
+	$$ \lim_{n \rightarrow ∞} P_\theta(\eta_L(¦X) < g(\theta) < \eta_U(¦X)) = 1 - \alpha, $$
+	pak mluvíme o intervalovém odhadu s asymptotickou spolehlivostí $1 - \alpha$.
+\end{definice}
+
 \end{document}
