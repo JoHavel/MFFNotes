@@ -457,13 +457,67 @@
 		$$ f \in AC ([a, b]) \Leftrightarrow \exists \Theta \in L^1(a, b), f(x) = \int_a^x \Theta(t) dt + C. $$
 	\end{dusledek}
 
-% 05. 04. 2022
+% 05. 04. 2022 Z poznámek přednášejícího
 
-TODO (Chyběl jsem)
+	\begin{veta}[Integrace per partes pro absolutně spojité funkce]
+		Nechť $f, g \in AC([a, b])$. Potom
+		$$ \int_a^b f' g = [f g]_a^b - \int_a^b f g'. $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+\section{Fourierovy řady}
+	\begin{definice}
+		Symbolem $P_{2\pi}$ značíme množinu všech lokálně integrovatelných $2\pi$-periodických funkcí na ®R.
+	\end{definice}
+
+	\begin{definice}[Trigonometrická řada, trigonometrický polynom]
+		Nechť $a_k, k \in ®N_0$ a $b_k, k \in ®N$ jsou posloupnosti reálných čísel. Pak řadu funkcí
+		$$ \frac{a_0}{2} + \sum_{k=1}^∞ (a_k \cos(k x) + b_k \sin(k x)), \qquad x \in ®R, $$
+		nazýváme trigonometrickou řadou. Je-li navíc $n \in ®N$, pak funkci
+		$$ \frac{a_0}{2} + \sum_{k=1}^n (a_k \cos(k x) + b_k \sin(k x)), \qquad x \in ®R, $$
+		nazýváme trigonometrickým polynomem stupně $n$.
+	\end{definice}
+
+	\begin{veta}[Fourierovy vzorce]
+		Nechť $\{a_k\}_{k=0}^∞$ a $\{b_k\}_{k=1}^∞$ jsou posloupnosti reálných čísel a řada
+		$$ \frac{a_0}{2} + \sum_{k=1}^∞(a_k \cos(k x) + b_k \sin (k·x)) $$
+		konverguje stejnoměrně k funkci $f$ na ®R. Potom
+		$$ a_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(k·x) dx, \qquad k \in ®N_0, $$
+		$$ b_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(k·x) dx, \qquad k \in ®N. $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Fourierovy koeficienty, Fourierova řada, částečný součet Fourierovy řady]
+		Nechť $f \in P_{2\pi}$. Pak posloupnosti reálných čísel $\{a_k\}_{k=0}^∞$ a $\{b_k\}_{k=1}^∞$, definované předpisy
+		$$ a_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(k·x) dx, \qquad k \in ®N_0, $$
+		$$ b_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(k·x) dx, \qquad k \in ®N, $$
+		nazýváme Fourierovými koeficienty funkce $f$. Trigonometrickou řadu
+		$$ S_f(x) = \frac{a_0}{2} + \sum_{k=1}^∞ (a_k \cos(k·x) + b_k \sin(k·x)), \qquad x \in ®R, $$
+		nazýváme Fourierovou řadou funkce $f$. Vztah mezi funkcí $f$ a její Fourierovou řadou $S f$ značíme symbolem $f \sim S f$. Pro $n \in ®N_0$ dále definujeme částečný součet Fourierovy řady funkce $f$ předpisem
+		$$ S_n f(x) = \frac{a_0}{2} + \sum_{k=1}^n (a_k \cos(k·x) + b_k \sin(k·x)), \qquad x \in ®R. $$
+	\end{definice}
+	
+	\begin{dusledek}[Vět z minulého semestru]
+		Nechť $f \in L^2(0, 2\pi)$ a $a_k, b_k$ jsou Fourierovy koeficienty $f$. Pak platí
+		$$ f(x) = S_f(x) = \frac{a_0}{2} + \sum_{k=1}^∞ (a_k \cos(k·x) + b_k \sin(k·x)) $$
+		ve smyslu rovnosti $L^2$ funkcí.
+
+		Navíc platí tzv. Parsevalova rovnost
+		$$ \int_0^{2\pi} |f(x)|^2 dx = \pi \frac{a_0^2}{2} + \pi \sum_{k=1}^∞ (a_k^2 + b_k^2). $$
+
+		\begin{dukazin}
+			TODO!!!
+		\end{dukazin}
+	\end{dusledek}
 
 % 12. 04. 2022
 
-\section{Fourierovy řady}
 	\subsection{Bodová konvergence Fourierových řad}
 	\begin{definice}[Dirichletovo jádro]
 		Nechť $n \in ®N \setminus \{0\}$. Potom funkce $D_n(x) = \frac{1}{2} + \cos x + … + \cos n · x$ nazýváme Dirichletovým jádrem.
@@ -784,6 +838,42 @@ TODO (Chyběl jsem)
 		„2.“: Nechť $x \in P$. Definujme $A = \bigcup\{M | M\text{ souvislá } \land x \in M\}$. $A$ je neprázdná, protože $\{x\}$ je souvislá. Podle předchozí věty (třetí bod) je $A$ souvislá ($x \in M_1 \cap M_2$). $A$ je maximální, neboť $A$ je jedna z množin přes které sjednocujeme. $x \in A$.
 
 		„3.“: Nechť pro spor $A ≠ B$ komponenty a $A \cap B ≠ \O$. Potom z minulé věty (třetí bod) $A \cap B$ je souvislá množina, tedy $A, B$ nejsou maximální.
+	\end{dukazin}
+\end{veta}
+
+% 17. 05. 2022
+
+\begin{definice}[Křivková souvislost]
+	Řekneme, že metrický prostor $(P, \rho)$ je křivkově souvislý, jestliže pro každé $x, y \in P$ existuje spojité zobrazení $\gamma: [0, 1] \rightarrow (P, \rho)$ takové, že $\gamma(0) = x$ a $\gamma(1) = y$.
+
+	Řekneme, že $A \subset P$ je křivkově souvislý, jestliže je metrický prostor $(A, \rho)$ křivkově souvislý.
+\end{definice}
+
+\begin{veta}[Souvislost souvislosti a křivkové souvislosti]
+	Každá křivkově souvislá množina v metrickém prostoru je souvislá.
+
+	\begin{dukazin}
+		Sporem: Nechť $(A, \rho)$ je křivkově souvislý, ale není souvislý. Tedy $A = G_1 \cup G_2$, $G_1$ a $G_2$ otevřené neprázdné disjunktní množiny. Nalezneme $x \in G_1$, $x \in G_2$ a $\gamma: [0, 1] \rightarrow A$, $\gamma(0) = x$, $\gamma(1) = y$.
+
+		Nyní $[0, 1] = \gamma^{-1}(G_1) \cup \gamma^{-1}(G_2)$. Obě tyto množiny jsou otevřené disjunktní a neprázdné, tedy $[0, 1]$ není souvislý. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Souvislá křivkově nesouvislá množina]
+	$\begin{cases} 0, & x ≤ 0,\\ \sin \frac{1}{x}, & x > 0.\end{cases}$
+\end{poznamka}
+
+\begin{veta}[Souvislost a otevřené množiny v $®R^n$]
+	Nechť $G \subset ®R^n$ je otevřená. Pak $G$ je souvislá právě tehdy, když je křivkově souvislá.
+
+	\begin{dukazin}
+		„$\impliedby$“ víme. „$\implies$“: Nechť $G$ je souvislá. Zvolme $x \in G$ libovolně. Definujme $A = \{y \in G | \exists \text{spojitá křivka z $x$ do $y$}\}$. Chceme $A = G$, pak vždy dvojice bodů lze spojit křivkou (například skrz $x$).
+
+		„$A$ je otevřené“: Nechť $y \in A$, $G$ je otevřené $\implies \exists r > 0: B(y, r) \subset G$. Pak každý bod $z \in B(y, r)$ lze spojit s $x$, neboť lze spojit $x$ s $y$ a $y$ se $z$. Tedy $B(y, r) \subset A$ $\implies$ $A$ otevřená.
+
+		„$A$ je uzavřené“: Nechť $y \in \overline{A}$, $G$ je otevřené $\implies \exists B(y, r) \subset G$. Tedy $y \in \overline{A} \implies \exists z \in A \cap B(y, r)$. $x$ lze spojit se $z$ křivkou a $z$ lze spojit s $y$, tedy $y \in A$ $\implies$ $\overline{A} = A$ $\implies$ $A$ je uzavřená.
+
+		Nyní $G$ je souvislá a $A$ je obojetná, tedy $G \setminus A = \O$ (neboť $A$ je neprázdná, obsahuje $x$), tedy $A = G$.
 	\end{dukazin}
 \end{veta}
 
