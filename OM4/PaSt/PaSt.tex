@@ -1202,4 +1202,27 @@ TODO!!! (Chyběl jsem)
 	pak mluvíme o intervalovém odhadu s asymptotickou spolehlivostí $1 - \alpha$.
 \end{definice}
 
+% 16. 05. 2022
+
+\begin{veta}
+	Buď $¦X = (X_1, …, X_n)$ náhodný výběr z rozdělení, jež je prvkem modelu $©F = \{P_\theta, \theta \in \Theta\}$, ve kterém platí $\var_\theta X_1 \in ®R^+$. Buď $\alpha \in (0, 1)$. Potom intervalovým odhadem střední hodnoty $\mu = E_\theta X$ o asymptotické spolehlivosti $(1 - \alpha)$ je interval $(\overline{X}_n - u_{1 - \frac{\alpha}{2}} \frac{S_n}{\sqrt{n}}, \overline{X}_n + u_{1 - \frac{\alpha}{2}} \frac{S_n}{\sqrt{n}})$.
+
+	\begin{dukazin}
+		Za domácí úkol (použije se standardní postup odvození intervalového odhadu se statistikou $H(¦X, \theta) = \frac{\overline{X_n} - \mu}{\sqrt{S_n^2}} \sqrt{n}$).
+	\end{dukazin}
+\end{veta}
+
+\section{Testování hypotéz}
+\begin{poznamka}
+	1. Formulujeme statistický model: $(X_1, …, X_n) \sim P_{\theta_0} \in ©F = \{P_\theta | \theta \in \Theta\}$.
+
+	2. Formulujeme nulovou a alternativní hypotézu, tedy $\Theta = \Theta_0 \cup \Theta_1$ disjunktní, taková, že $\theta \in \Theta_0$ znamená, že $\theta$ je uspokojivé, a $\theta \in \Theta_1$ znamená, že $\theta$ je problematická (klasicky ta hypotéza, kterou testujeme). Mluvíme o tom, že testujeme nulovou hypotézu $H_0: \theta \in \Theta_0$ proti alternativní hypotéze $H_1: \theta \in \Theta_1$.
+
+	3. Volíme hladinu testu $\alpha$ = maximální pravděpodobnost chyby prvního druhu ($H_0$ zamítnuta i když platí). Většinou $\alpha = 0.01$.
+
+	4. Volba rozhodovacího pravidla / kritického oboru $W \subset ®R^n$, tj. $¦X \in W \implies$ zamítám $H_0$, $¦X \notin W \implies$ nezamítám $H_1$.
+
+	5. Až teď! Provedeme experiment.
+\end{poznamka}
+
 \end{document}

@@ -734,4 +734,70 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 12. 05. 2022
+
+\begin{poznamka}
+	Řešíme rovnici (LRP) $x' = A(t) x + b(t)$, $A \in C(®R, ®R^{n \times n})$, $T > 0$, $A(t + T) = A(T)$, $b(t) = b(t + T)$, $\forall t \in ®R$.
+	\begin{itemize}
+		\item $\forall x_0 \in ®R^n: \exists!$ maximální řešení definované na celém ®R.
+		\item $x(t)$ je řešení homogenní rovnice $\implies$ $y(t) = x(t + T)$ je řešení homogenní rovnice.
+		\item $x$ je řešení homogenní rovnice, pak $x$ je $T$-periodické $\Leftrightarrow x(0) = x(T)$.
+		\item $\phi(t)$ je fundamentální matice homogenní rovnice, $\phi(0) = I$. $x$ je řešení homogenní rovnice. Pak $x$ je $T$-periodické $\Leftrightarrow \phi(T)x_0 = x_0$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}
+	$C = \phi(T)$ se nazývá maticí monotonie.
+\end{definice}
+
+\begin{veta}
+	$\phi(t) = Q(t) e^{B t}$, kde $B \in ®C^{n \times n}$, $Q \in C(®R, ®C^{n \times n})$ $T$-periodická.
+
+	\begin{dukazin}
+		$\phi(T) = C$ regulární, $\exists \tilde B: e^{\tilde B} = C = e^{T B}$, $B := \frac{1}{T} \tilde B_0$. $\psi(t) = \phi(t + T)C^{-1}$,
+		$$ \psi'(t) = \phi'(t + T)C^{-1} = A(t + T)·\phi'(t + T) C^{-1} = A(t)·\psi(t). $$
+		$\psi(0) = \phi(T)·C^{-1} = I$. Z toho $\psi(t) = \phi(t)$.
+		$$ \phi(t + T)·\phi(T^{-1}) = \psi(t), \forall t, \phi(t + T) = \phi(t)·\phi(T). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	Pokud $\sigma(C) \subset \{z \in ®C: |z| < 1\}$, pak $0$ je asymptoticky stabilním řešením.
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Následující tvrzení jsou ekvivalentní:
+
+	\begin{itemize}
+		\item LRP má právě jedno $T$-periodické řešení.
+		\item Homogenní rovnice má pouze triviální $T$-periodické řešení.
+		\item $1 \notin \sigma(C)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„Z prvního do druhého bodu“: Pro spor předpokládejme $y' = A(t)y$, $y ≠ 0$. Pokud $x$ je řešení LRP, pak $x + y$ je jiné řešení LRP, které je též $T$-periodické.
+
+		„Z druhého do prvního bodu“: Pro spor předpokládejme, že $y_1, y_2$ jsou $T$-periodická řešení LRP. Potom $y_1 - y_2$ je netriviální $T$-periodické řešení homogenní soustavy.
+
+		„Ze třetího do druhého bodu“: Pokud $x$ je nenulové řešení homogenní rovnice. $x$ je $T$-periodické $\Leftrightarrow$ $x(T) = x(0)$. $x(t) = \phi(t) x_0$, $x_0 = x(T) = \phi(T)x_0 = Cx_0$. Tedy $x_0$ je vlastní vektor příslušící vlastnímu číslu $1$. \lightning.
+
+		„Z druhého do třetího bodu“: Kdyby 1 byla vlastní číslo, pak existuje nenulový vlastní vektor matice $C$ jemu příslušející, tedy existuje nenulové řešení.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nulové řešení homogenní rovnice je stabilní (asymptoticky stabilní) $\Leftrightarrow$ nulové řešení rovnice $y' = By$ je stabilní (asymptoticky stabilní).
+
+	\begin{dukazin}
+		„$\impliedby$“: $x(t) = \phi(t) x_0 = Q(t)·\underbrace{e^{Bt}x_0}_{y(t)}$. $||x(t)|| ≤ ||Q(t)||·|y(t)| ≤ \max_{t \in [0, T]}||Q(t)|| · ||y(t)|| ≤ const |y(t)|$.
+
+		„$\implies$“: $y(t) = Q(t)^{-1} x(t) \implies |y(t)| ≤ \max_{[0, 1]} |Q^{-1}(t)|·|x(t)|$.
+	\end{dukazin}
+\end{dusledek}
+
+
 \end{document}

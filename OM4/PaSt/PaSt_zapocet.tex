@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1]
+	Buď $(\Omega, ©A, P) := ((0, 1), ©B((0, 1)), \lambda)$.
+
+	1. Nechť $\{Y_n\}_{n \in ®N}$ je posloupnost nezávislých náhodných veličin definovaných na $\Omega$ takových, že $P(Y_n = 0) = 1 - \frac{1}{n}$ a $P(Y_n = 1) = \frac{1}{n}$. Určete $P\(\limsup_{n \rightarrow ∞} [Y_n > \epsilon]\)$ pro $\epsilon \in (0, 1)$. Konverguje tato posloupnost skoro jistě?
+
+	\begin{reseni}
+		Mějme tedy $\epsilon \in (0, 1)$. Označme si $A_n := [Y_n > \epsilon] = [Y_n = 1]$ jevy z limity ze zadání. Potom víme, že $A_n$ jsou nezávislé, neboť $Y_n$ byly nezávislé, a $\sum_{n=1}^∞ P(A_n) = \sum_{n=1}^∞ \frac{1}{n} = ∞$, tedy podle Borelovy věty $P(\limsup_{n \rightarrow ∞} A_n) = 1$.
+
+		Jestliže si označíme $B_n := [Y_n < \epsilon] = [Y_n = 0]$, potom $B_n$ jsou nezávislé, $\sum_{n=1}^∞ B_n = \sum_{n=1}^∞ 1 - \frac{1}{n} ≥ \frac{1}{2} + \sum_{n=1}^∞ \frac{1}{2} = ∞$. Tedy podle Borelovy věty je $P(\limsup_{n \rightarrow ∞} B_n) = 1$. Tedy $Y_n$ s pravděpodobností $1$ nabývá pro nekonečně $n$ hodnoty $1$ a s pravděpodobností $1$ nabývá pro nekonečně $n$ hodnoty $0$. Tam, kde nabývá nekonečněkrát hodnoty 0 i 1, konvergovat nemůže, tedy konverguje s nulovou pravděpodobností\footnote{S pravděpodobností $1$ nabývá pro nekonečně $n$ hodnoty 1, tedy z pravděpodobnosti doplňku, nenabývá nekonečněkrát hodnotu 1 s pravděpodobností 0. Stejně tak pro hodnotu 0. A sjednocení dvou nulových množin je pořád nulová.}, tj. rozhodně nekonverguje skoro jistě.
+	\end{reseni}
+
+	2. Nechť $\{Z_n\}_{n \in ®N}$ je posloupnost náhodných veličin definovaná $Z_n(\omega) := \frac{1}{n}(2 \omega - 1)$, $\omega \in \Omega$, $n \in ®N$.
+	\begin{itemize}
+		\item[a)] Jaké má náhodná veličina $Z_n$ rozdělení?
+		\item[b)] Konverguje posloupnost $\{Z_n\}_{n \in ®N}$ k nule v pravděpodobnosti?
+		\item[c)] Nechť $g(x) := ¦1_{(0, 1)}(x)$, $x \in ®R$. Platí $g(Z_n) \overset{P}{\underset{n \rightarrow ∞}\longrightarrow} g(0)$?
+		\item[d)] Označme $W_n := g(Z_n)$. Konverguje posloupnost $\{W_n\}_{n \in ®N}$ v distribuci?
+	\end{itemize}
+
+	\begin{reseni}[a)]
+		$Z_n$ má rovnoměrné rozdělení na intervalu $(-\frac{1}{n}, \frac{1}{n})$, neboť
+		$$ F(x) = P(Z_n ≤ x) = P\(\frac{1}{n}(2\omega - 1) ≤ x\) = P\(\omega ≤ \frac{n·x + 1}{2}\) = \lambda\(\omega ≤ \frac{n·x + 1}{2}\) = $$
+		$$ = \lambda\((0, 1) \cap \(-∞, \frac{n·x + 1}{2}\)\) = \begin{cases}0, &\text{pokud } x < -\frac{1}{n}, \\ \frac{n·x + 1}{2}, &\text{pokud } \frac{1}{n} ≤ x ≤ \frac{1}{n} \\ 1, &\text{pokud } \frac{1}{n} < x. \end{cases} $$
+	\end{reseni}
+
+	\begin{reseni}[b)]
+		Ano, neboť $P(|Z_n - 0| > \epsilon) = 0$ pro $n > \frac{1}{\epsilon}$, tedy $\lim_{n \rightarrow ∞} P(|Z_n - 0| > \epsilon) = 0$.
+	\end{reseni}
+
+	\begin{reseni}[c)]
+		Ne, protože $g(0) = 0$, ale $\forall \epsilon \in (0, 1):$
+		$$ P(|g(Z_n) - 0| > \epsilon) = P(g(Z_n) = 1) = P(Z_n > 0) = 1 - F(0) = 1 - \frac{0 + 1}{2} = \frac{1}{2} \underset{n \rightarrow ∞}\longrightarrow \frac{1}{2} ≠ 0 $$
+	\end{reseni}
+
+	\begin{reseni}[d)]
+		Ano, neboť $F_{W_n}(x)$ nezávisí na $n$ a limita konstanty vždy existuje:
+		$$ F_{W_n}(x) = P(W_n ≤ x) = \begin{cases}0, & \text{pokud } x < 0\\P(W_n = 0) = P(Z_n ≤ 0) = \frac{1}{2}, & \text{pokud } 0 ≤ x < 1, \\ 1, & \text{pokud } x ≥ 1.\end{cases} $$
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}
+	Při příležitosti mistrovství světa v ledním hokeji vyhlásil nejmenovaný výrobce brambůrek následující soutěž: sáčky brambůrek uvnitř obsahují kartičku s kódem, po jehož zadání na internet se dozvíme, zda je kód výherní. Jedno balení obsahuje právě jeden kód. Výrobce tvrdí, že každý desátý balíček vyhrává.
+
+	a) Zformulujte a explicitně ověřte předpoklady limitní věty, která vám pomůže zodpovědět otázky z části b) a c). Jsou tyto předpoklady reálné.
+
+	\begin{reseni}[a)]
+		Tou větou bude třeba\footnote{Mohli bychom použít i De Moivre-Laplaceovu centrální limitní větu.} centrální limitní věta:
+		
+		\emph{Buďte $X_1, X_2, X_3, …$ nezávislé stejně rozdělené náhodné veličiny s $®E X_1 = \mu \in ®R$ a $0 < \var X_1 = \sigma^2 < ∞$. Potom pro $Z_n = \frac{\sum_{i=1}^n X_i - \mu}{\sqrt{n \sigma^2}}$ platí $Z_n \overset{D}\rightarrow Z \sim N(0, 1)$.}
+
+		Jednotlivé veličiny budou indikátory, že se v tom daném balení vyskytuje výherní kód. Tvařme se, že jsou nezávislé (k tomu později). Jelikož mezi balíčky není rozdíl, tak jsou stejně rozdělené. A indikátory mají alternativní rozdělení (tj. nabývají omezených hodnot), takže střední hodnota a rozptyl jsou konečné. Navíc je nenulová pravděpodobnost, že v balíčku nebude/bude vyhrávající kartička, tedy rozptyl není 0.
+
+		Jak již zaznělo, předpoklad, že jsou stejně rozdělené je reálný. S nezávislostí už to není tak jednoduché, protože balíčků je reálně omezený počet a výrobce do nich neumisťuje odměny tak, že ji tam umístí s pravděpodobností 1 / 10, ale tak, že vezme \#balíčků / 10 odměn a ty rozmístí. Takže pokud jsme v jednom balíčku našli odměnu, tak to trochu sníží šanci na nalezení odměny v dalších balíčcích. Ale při obrovském (vůči tomu, kolik jich my koupíme) počtu balíčků to stejně nebude zmenšení, které by měnilo výsledky více než o zaokrouhlovací chybu.
+	\end{reseni}
+
+	b) S jakou pravděpodobností budete mít po skončení turnaje alespoň sedm výherních kódů, jestliže v průběhu celého turnaje zakoupíte právě 100 sáčků brambůrek (a všechny kódy uplatníte).
+
+	\begin{reseni}
+		Nahradíme ve větě výše limitu za přibližnou rovnost ($\#_n = \sum_{i = 1}^n$ značí počet výher, $X_i$ tedy ty indikátory, $P(X_i = 1)$ je 1 / 10 podle (mírně interpretovaného) zadání, $®E = 0.1$ a $\sigma^2 = 0.1·0.9 = 0.09$, jelikož indikátory mají alternativní rozdělení):
+		$$ Z_n = \frac{\sum_{i=1}^n X_i - \mu}{\sqrt{n·\sigma^2}} = \frac{\#_n - n·0.1}{\sqrt{n·0.09}} ≈ Z \sim N(0, 1). $$
+		Tedy pokud chceme $n = 100$ a $\#_n ≥ 7$, tak chceme $Z ≥ \frac{7 - 10}{\sqrt{9}} = -1$ a $P(Z > -1) = \Phi(-1) = 1 - \Phi(1) ≈ 1 - 0.8413 = 0.1587$.
+	\end{reseni}
+
+	c) Plánujete pozvat přátele na sledování utkání Česko–Finsko.  V rámci občerstvení nakoupíte 36 sáčků brambůrek. Každého kamaráda byste po utkání rádi obdarovali výherním kódem. Kolik kamarádů si můžete pozvat, aby pravděpodobnost výše popsané situace byla alespoň 90 \%?
+
+	\begin{reseni}
+		Víme, že $n = 36$ a $P(\#_{36} ≥ ?) = 0.9$. My bychom ale chtěli mít v tom porovnání $Z$ a ne $\#_{36}$. Tedy ekvivalentně upravíme:
+		$$ P(\#_{36} ≥ ?) = P\(\frac{\# - 36·0.1}{\sqrt{36·0.09}} ≥ \frac{? - 36·0.1}{\sqrt{36·0.09}}\) ≈ P\(Z ≥ \frac{? - 3.6}{1.8}\) = 0.9. $$
+		Tedy chceme $1 - \Phi\(\frac{? - 3.6}{1.8}\) = 0.9$ a $\frac{? - 3.6}{1.8} = -u_{0.9}$, tj.
+		$$ ? = -u_{0.9}·1.8 + 3.6 ≈ -1.282·1.8 + 3.6 = 1.2924. $$
+		Tedy si můžeme pozvat nejvýše jednoho kamaráda.
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}
+	Uvažujme náhodný výběr $X_1, …, X_n$  ze spojitého rozdělení s hustotou
+	$$ f(x) = \frac{2M^2}{x^3} ¦1_{(M, ∞)}(x), \qquad M > 0. $$
+
+	1. Uvažujme odhad neznámého parametru $M$ ve tvaru $\hat{M} := \min_{1 ≤ i ≤ n} X_i$. Zjistěte, zda je tento odhad:
+
+	\begin{itemize}
+		\item[a)] nestranný;
+		\item[b)] asymptoticky nestranný;
+		\item[c)] slabě konzistentní;
+		\item[d)] silně konzistentní.
+	\end{itemize}
+
+	\begin{reseni}[a)]
+		Prvně (za pomoci definic, pravděpodobnosti doplňku a nezávislosti $X_i$, tedy $X_i > x$)
+		$$ F_{\hat{M}}(x) = P(\hat{M} ≤ x) = 1 - P(\hat{M} > x) = 1 - P(\forall i \in [n]: X_i > x) = 1 - \prod_{i = 1}^n P(X_i > x) = $$
+		$$ = 1 - \(P(X_1 > x)\)^n = \begin{cases}1 - 1 = 0, & x ≤ M, \\ 1 - \(\int_x^∞ \frac{2M^2}{y^3} dy\)^n = 1 - \(\frac{M^2}{x^2}\)^n = 1 - \(\frac{M}{x}\)^{2n}, & x > M.\end{cases} $$
+		$$ f_{\hat{M}}(x) = F_{\hat{M}}'(x) = \begin{cases}0, & x < M,\\ \(1 - \(\frac{M}{x}\)^{2n}\)' = \frac{2n}{x}·\(\frac{M}{x}\)^{2n}, & x > M.\end{cases} $$
+
+		Nestranný je právě tehdy, když se střední hodnota odhadu pro libovolné $n$ rovná odhadované hodnotě. Tedy
+		$$ ®E\hat{M} = \int x · f_{\hat{M}}(x) dx = \int_M^∞ x·\frac{2n·M^{2n}}{x^{2n + 1}} dx = \[- \frac{2n M^{2n}}{(2n - 1)·x^{2n - 1}}\]_M^∞ = M·\frac{2n}{2n - 1} ≠ M. $$
+	\end{reseni}
+
+	\begin{reseni}[b)]
+		Asymptoticky nestranný je, neboť $®E\hat{M} = M·\frac{2n}{2n - 1} \rightarrow M·1 = M$.
+	\end{reseni}
+
+	\begin{reseni}[c)]
+		Slabě konzistentní je, (protože je silně konzistentní, nebo) protože $\forall \epsilon > 0$:
+		$$ P(|\hat{M} - M| ≤ \epsilon) = P(\hat{M} ≤ \epsilon + M) = F_{\hat{M}}(M + \epsilon) = 1 - \(\frac{M}{M + \epsilon}\)^{2n} \rightarrow 1. \quad \(\frac{M}{M + \epsilon} < 1\) $$
+		$$ \(P(|\hat{M} - M| > \epsilon) = 1 - P(|\hat{M} - M| ≤ \epsilon) \rightarrow 0.\) $$
+	\end{reseni}
+
+	\begin{reseni}[d)]
+		Pokud se nám povede dokázat $P(\limsup_{n \rightarrow ∞} \[X_n < M + \frac{1}{n}\]) = 1$, tak jsme dokázali, že $\lim_{n \rightarrow ∞} \hat{M} = 0$ skoro jistě, neboť s pravděpodobností $1$ je pro nekonečně mnoho $n$ je $X_n < M + \frac{1}{n}$, tedy s pravděpodobností $1$ najdu pro každé $\epsilon > 0$ $n$ takové, že $X_n < M + \epsilon$, tedy $\lim_{n \rightarrow ∞} \hat{M} ≤ M + \epsilon$.
+
+		$\[X_n < M + \frac{1}{n}\]$ jsou nezávislé jevy, jelikož $X_n$ jsou nezávislé. Zároveň
+		$$ P\(X_n < M + \frac{1}{n}\) = \int_M^{M + \frac{1}{n}} \frac{2M^2}{x^3} dx = \[-\frac{M^2}{x^2}\]_M^{M + \frac{1}{n}} = 1 - \frac{M^2}{\(M + \frac{1}{n}\)^2} = \frac{\frac{2M}{n} + \frac{1}{n^2}}{\(M + \frac{1}{n}\)^2}, $$
+		$$ \sum_{n=1}^∞ P\(X_n < M + \frac{1}{n}\) = \sum_{n=1}^∞ \frac{\frac{2M}{n} + \frac{1}{n^2}}{\(M + \frac{1}{n}\)^2} ≥ \sum_{n=1}^∞ \frac{1}{n}· \frac{2M}{(M + 1)^2} = \frac{2M}{(M + 1)^2}·∞ = ∞, $$
+		tedy podle Borelovy věty je opravdu $P(\limsup_{n \rightarrow ∞} [X_n < M + \frac{1}{n}]) = 1$. Tudíž podle začátku řešení $\lim_{n \rightarrow ∞} \hat{M} = M$ (víme $\hat{M} > M$ a dostali jsme „$\hat{M} ≤ M + \epsilon$“) skoro jistě a odhad je tak silně konzistentní.
+	\end{reseni}
+
+	2. Upravte odhad $\hat{M}$ z kroku 1. tak, aby byl nestranný. Zůstává i takto upravený odhad silně konzistentní?
+
+	\begin{reseni}
+		Úprava je zřejmě $\tilde M = \frac{2n - 1}{2n}·\hat{M}$, neboť potom (z linearity střední hodnoty)
+		$$ ®E \tilde M = \frac{2n - 1}{2n}·®E \hat{M} = \frac{2n - 1}{2n}·\frac{2n}{2n - 1}M = M. $$
+
+		$\tilde M$ je silně konzistentní, neboť $\tilde M < \hat{M}$ a $\forall \epsilon > 0$ můžeme najít $n_0$ tak, že $\tilde M > \hat{M} - \epsilon$ (neboť $\frac{2n - 1}{2n} \rightarrow 1$). Tedy pokud konverguje $\hat{M}$ (k $M$), tak musí konvergovat i $\tilde M$ (k $M$).
+	\end{reseni}
+\end{priklad}
+
+\end{document}
