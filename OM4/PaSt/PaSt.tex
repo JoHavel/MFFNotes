@@ -131,7 +131,7 @@
 
 \begin{veta}[O násobení pravděpodobností]
 	Buďte $A_1, A_2, …, A_n \in ©A$ takové, že $P(A_1 \cap A_2 \cap … \cap A_{n-1}) > 0$. Pak
-	$$ \hspace{-0.3em}P(A_1 \cap A_2 \cap … \cap A_n) = P(A_n | A_1 \cap … \cap A_{n-1}) · P(A_{n-1} | A_1 \cap A_2 \cap … \cap A_{n-2}) · … · P(A_2 | A_1) · P(A_1).\hspace{-0.3em} $$
+	$$ \hspace{-0.3em}P(A_1 \cap A_2 \cap … \cap A_n) = P(A_n | A_1 \cap … \cap A_{n-1}) · P(A_{n-1} | A_1 \cap … \cap A_{n-2}) · … · P(A_2 | A_1) · P(A_1).\hspace{-0.3em} $$
 
 	\begin{dukazin}
 		Z $P(A_1 \cap … \cap A_{n-1}) > 0$ plyne, že $P(A_1 \cap … \cap A_k) > 0$ pro $k \in [n-1]$, pomocí monotonie pravděpodobnosti. Tedy výraz je dobře definován.
@@ -146,7 +146,7 @@
 	Buďte $A, B_1, B_2, …$ náhodné jevy takové, že $P(\bigcup_n B_n) = 1$ a $B_i \cap B_j = \O$ $\forall i ≠ j$ a $P(B_i) > 0\ \forall i$. Potom $P(A) = \sum_n P(A | B_n)·P(B_n)$.
 	
 	\begin{dukazin}
-		Víme $P\(\(\bigcup_n B_n\)^c\) = 0$, a tedy $P(A) = P\(A \cap \bigcup_n B_n\) + P\(A \cap \(\bigcup_n B_n\)\) = P\(A \cap \bigcup_n B_n\)$, protože $P$ je konečně-aditivní a platí monotonie. Dle de Morganových pravidel (a toho, že průnik s další množinou zachovává disjunktnost):
+		Víme $P\(\(\bigcup_n B_n\)^c\) = 0$, tj. $P(A) = P\(A \cap \bigcup_n B_n\) + P\(A \cap \(\bigcup_n B_n\)\) = P\(A \cap \bigcup_n B_n\)$, protože $P$ je konečně-aditivní a platí monotonie. Dle de Morganových pravidel (a toho, že průnik s další množinou zachovává disjunktnost):
 		$$ P(A) = P\(\bigcup_n(A \cap B_n)\) = \sum_n P(A \cap B_n) = \sum_n P(A|B_n) · P(B_n). $$
 	\end{dukazin}
 \end{veta}
@@ -237,7 +237,7 @@
 \end{definice}
 
 \begin{veta}[O přenosu integrace pro $P_X$]
-	Buď $X$ náhodná veličina a buď $h$ měřitelná funkce $(®R, ©B) \rightarrow (®R, ©B)$. Pak platgí
+	Buď $X$ náhodná veličina a buď $h$ měřitelná funkce $(\Omega, ©A) \rightarrow (®R, ©B)$. Pak platgí
 	$$ \int_{\Omega} h(X(\omega)) d P(\omega) = \int_{®R} h(x) d P_X(x), $$
 	pokud existuje alespoň jedna strana.
 
@@ -258,8 +258,8 @@
 
 \begin{veta}
 	Buď $X$ náhodná veličina, pak platí následující rovnosti:
-	$$ P(X \in B) := P(\{\omega \in \Omega | X(\omega) \in B\}) = \int_{\Omega} 1_B(X(\omega)) d P(\omega) = \int_{®R} 1_B(x) d P_X(x) = \int_{B} d P_X(x) = P_X(B) = $$
-	$$ = \int_{®R} 1_B(x) d P_X(x) = \int_{®R} 1_B(x) f(x) d\mu(x) = \int_B f(x) d\mu(x). $$
+	$$ P(X \in B) := P(\{\omega \in \Omega | X(\omega) \in B\}) = \int_{\Omega} 1_B(X(\omega)) d P(\omega) = \int_{®R} 1_B(x) d P_X(x) = $$
+	$$ = \int_{B} d P_X(x) = P_X(B) = \int_{®R} 1_B(x) d P_X(x) = \int_{®R} 1_B(x) f(x) d\mu(x) = \int_B f(x) d\mu(x). $$
 	
 	\begin{dukazin}
 		Je to jen sesypání faktů, které už známe.
@@ -293,7 +293,7 @@
 \end{definice}
 
 \begin{definice}[Kvantilová funkce]
-	Buď $F_X$ distribuční funkce náhodné veličiny $X$. Funkce $F^{-1}_X (u) = \int\{x | F_X(x) ≥ u\}$, $u \in (0, 1)$ se nazývá kvantilová funkce náhodné veličiny $X$.
+	Buď $F_X$ distribuční funkce náhodné veličiny $X$. Funkce $F^{-1}_X (u) = \inf\{x | F_X(x) ≥ u\}$, $u \in (0, 1)$ se nazývá kvantilová funkce náhodné veličiny $X$.
 
 	\begin{poznamkain}
 		Bude potřeba později. Teď jen: Je neklesající a zleva spojitá. Lze z ní jednoznačně odvodit $F_X$.
@@ -320,7 +320,7 @@
 
 	\begin{dukazin}
 		Složení 2 měřitelných funkcí je měřitelné, tj. $g(X)$ je opravdu náhodná veličina.
-		$$ ®E g(X) = \int_{\Omega} g(X(\omega)) = d P(\omega) = \int_{®R} g(x) d P_X(x). $$
+		$$ ®E g(X) = \int_{\Omega} g(X(\omega)) d P(\omega) = \int_{®R} g(x) d P_X(x). $$
 		Druhá rovnost plyne ze vztahu mezi $P_X$ a její distribuční funkcí.
 	\end{dukazin}
 \end{veta}
@@ -368,7 +368,8 @@
 	$$ \var(a + b X) = b^2 \var X, \qquad a, b \in ®R \land X \in L^2. $$
 
 	\begin{dukazin}
-		$$ \var(a + b X) = ®E(a + bX - ®E(a + b X))^2 = ®E(a + bX - a - b ®E^X) = ®E(b X - b ®E X) = ®E(b(X - ®E X))^2 = b^2 ®E(X - ®E X)^2 = b^2 \var X. $$
+		$$ \var(a + b X) = ®E(a + bX - ®E(a + b X))^2 = ®E(a + bX - a - b ®E^X) = ®E(b X - b ®E X) = $$
+		$$ = ®E(b(X - ®E X))^2 = b^2 ®E(X - ®E X)^2 = b^2 \var X. $$
 	\end{dukazin}
 \end{veta}
 
@@ -392,7 +393,8 @@
 	Buď $X$ náhodná veličina, $0 < \alpha < \beta \in ®R$ a $®E |X|^\beta < ∞$. Pak platí $\sqrt[\alpha]{®E |X|^\alpha} ≤ \sqrt[\beta]{®E |X|^\beta}$, a speciálně tedy platí $®E |X| ≤ \sqrt{®E X^2}$.
 
 	\begin{dukazin}
-		$$ ®E |X|^\alpha = \int_{®R} |x|^\alpha d P_X(x) = \int_{®E} |x|^\alpha·1 d P_X(x) \overset{\text{Hölder na $p = \frac{\beta}{\alpha}$}} ≤ \(\int_{®R} |x|^\beta d P_X(x)\)^{\frac{\alpha}{\beta}}·\(\int_{®R} 1^q dP_X(x)\)^{\frac{1}{q}} = … · 1. $$
+		$$ ®E |X|^\alpha = \int_{®R} |x|^\alpha d P_X(x) = \int_{®E} |x|^\alpha·1 d P_X(x) \overset{\text{Hölder na $p = \frac{\beta}{\alpha}$}} ≤ $$
+		$$ ≤ \(\int_{®R} |x|^\beta d P_X(x)\)^{\frac{\alpha}{\beta}}·\(\int_{®R} 1^q dP_X(x)\)^{\frac{1}{q}} = … · 1. $$
 		(Integrál napravo je konečný z předpokladů této věty, tedy splňujeme předpoklady Höldera.) Odmocněním $\alpha$ dostáváme přesně chtěnou nerovnost.
 	\end{dukazin}
 \end{veta}
@@ -401,7 +403,7 @@
 
 \begin{priklady}[Absolutně spojitá rozdělení]
 	Rovnoměrné rozdělení intervalu $[a, b]$, $a < b \in ®R$ značíme $R([a, b])$ a jeho hustota je až na konstantu Lebesgueova míra: $f_X(x) = \frac{1}{b - a}1_{(a, b)}(x)$.
-	$$ F_X(t) = \begin{cases}0, & t ≤ a, \\ \frac{x - a}{b - a}, & t \in [a, b], \\ 1, & t ≥ b.\end{cases} \qquad ®E X = \int_a^b x · \frac{1}{b - a} d x = \frac{b + a}{2}, \var X = ®E X^2 - (®E X)^2 = \frac{(b - a)^2}{12}. $$
+	$$ F_X(t) = \begin{cases}0, & t ≤ a, \\ \frac{x - a}{b - a}, & t \in [a, b], \\ 1, & t ≥ b.\end{cases} \ ®E X = \int_a^b x · \frac{1}{b - a} d x = \frac{b + a}{2}, \var X = ®E X^2 - (®E X)^2 = \frac{(b - a)^2}{12}. $$
 
 	Exponenciální rozdělení s parametrem $\lambda > 0$ značíme $Exp(\lambda)$. $P(X > t) = e^{-t \lambda}$, $t > 0$. $F_X(t) = P(X ≤ t) = 1 - e^{-\lambda t}$ pro $t ≥ 0$ a $0$ pro $t ≤ 0$. $f_X(x) = \lambda e^{-\lambda x}$, $x ≥ 0$ a $f_X(x) = 0$ jinak. $®E X = \frac{1}{\lambda}$, $\var X = \frac{1}{\lambda^2}$.
 
@@ -426,7 +428,7 @@
 	$X \sim N(0, 1)$ a $Y := \sigma X + \mu$, pro $\sigma > 0$, $\mu \in ®R$. Pak $Y \sim N(\mu, \sigma^2)$.
 
 	\begin{dukazin}
-		TODO!!!
+		Použije se např. věta o rozdělení funkce náhodné veličiny.
 	\end{dukazin}
 \end{veta}
 
@@ -519,7 +521,7 @@
 \begin{poznamka}
 	Pro každý interval $(¦a, ¦b]$ v $¦R^n$ definujeme $\mu_F((¦a, ¦b]) = 4.$ z předchozího pro $F$ splňující tvrzení předchozí věty. Potom lze rozšířit $\mu_F$ na konečnou borelovskou míru na $®R^n$ a té se říká Lebesgueova-Stieltjesova míra příslušná $F$.
 
-	Pokud $F = F_{¦X}$ od ¦X s rozdělením $P_{¦X}$, pak nutně $\mu_F = P_{¦X}$, neboť se rovnají na intervalech $\{(¦a, ¦b]| ¦a < ¦b \in ®R^n\}$, což je systém uzavřený na konečné průniky generující $©B^n$.
+	Pokud $F = F_{¦X}$ od ¦X s rozdělením $P_{¦X}$, pak nutně $\mu_F = P_{¦X}$, neboť se rovnají na $\{(¦a, ¦b]| ¦a < ¦b \in ®R^n\}$, což je systém uzavřený na konečné průniky generující $©B^n$.
 \end{poznamka}
 
 \begin{veta}
@@ -582,7 +584,7 @@
 \end{veta}
 
 \begin{veta}[O distribuční funkci náhodného vektoru s nezávislými složkami]
-	Za předpokladů předchozí věty platí, že $\{X_i\}_{i=1}^n$ jsou vzájemně nezávislé právě tehdy, když $F_{¦X}(¦x) = \prod_{i=1}^n F_{X_i}(x_i)$, $\forall ¦x \in ®R^n$.
+	Za předpokladů předchozí věty platí, že $\{X_i\}_{i=1}^n$ jsou vzájemně nezávislé, právě když $F_{¦X}(¦x) = \prod_{i=1}^n F_{X_i}(x_i)$, $\forall ¦x \in ®R^n$.
 
 	\begin{dukazin}
 		„$\implies$“ zřejmě neboť $F_{¦X}(x_1, …, x_n) = P(\bigcup …) = \prod P(X_i \in (-∞, x_i]) = \prod_{i=1}^n F_{X_i}(x_i)$. „$\impliedby$“: Množiny $(-∞, …] \times …$ tvoří systém uzavřený na konečné průniky a generující $©B^n$, tedy z rovnosti $P_{¦X}$ a součinové míry na tomto systému už plyne rovnost dvou měr na $©B^n$ (pomocí věty o jednoznačnosti míry).
@@ -596,18 +598,19 @@
 
 	\begin{dukazin}
 		„$\implies$“: použijeme charakterizaci nezávislosti složek pomocí distribuční funkce:
-		$$ \int_{(-∞, ¦x]} \prod_{i=1}^n f_{X_i}(t_i) d(\nu_1 \otimes … \otimes \nu_n)(¦t) = \int_{-∞}^{x_1} … \int_{-∞}^{x_n} \prod_{i=1}^n f_{X_i}(t_i) d\nu_n(t_n) … d\nu_1(t_1) = \prod_{i=1}^∞ \int_{-∞}^{x_i} f_{x_i}(t_i) d\nu_i(t_i)\prod_{i=1}^n F_{X_i}(x_i) = F_{¦X}(¦x) = \int_{(-∞, ¦x} f_{¦X} (t_1, …, t_n) d(\nu_1 \otimes … \otimes \nu_n) (¦t) $$
+		$$ \int_{(-∞, ¦x]} \prod_{i=1}^n f_{X_i}(t_i) d(\nu_1 \otimes … \otimes \nu_n)(¦t) = \int_{-∞}^{x_1} … \int_{-∞}^{x_n} \prod_{i=1}^n f_{X_i}(t_i) d\nu_n(t_n) … d\nu_1(t_1) = $$
+		$$ = \prod_{i=1}^∞ \int_{-∞}^{x_i} f_{x_i}(t_i) d\nu_i(t_i)\prod_{i=1}^n F_{X_i}(x_i) = F_{¦X}(¦x) = \int_{(-∞, ¦x} f_{¦X} (t_1, …, t_n) d(\nu_1 \otimes … \otimes \nu_n) (¦t) $$
 
 		Takže $f_{¦x} = \prod_{i=1}^n f_{X_i}$ $\nu_1 \otimes … \otimes \nu_n$-skoro všude. „$\impliedby$“ dokážeme obdobně obráceným postupem.
 	\end{dukazin}
 \end{veta}
 
 \begin{veta}
-	Buď $\{X_i\}_{i \in I}$ systém nezávislých náhodných veličin a $g_i: ®R \rightarrow ®R, i \in I$ měřitelné funkce. Pak $\{g_i(X_i)\}_{i \in I}$.
+	Buď $\{X_i\}_{i \in I}$ systém nezávislých náhodných veličin a $g_i: ®R \rightarrow ®R, i \in I$ měřitelné funkce. Pak $\{g_i(X_i)\}_{i \in I}$ jsou nezávislé.
 
 	\begin{dukazin}
-		Dokážeme z definice: Buď $J \subset I$ konečná neprázdná
-		$$ P(\bigcap_{i \in J} \{g_i(X_i) \in B_i\}) = P(\bigcap_{i \in J} \{X_i \in g_i^{-1}(B_i)\}) = \prod_{i \in J} P(X_i \in g_i^{-1}(B_i)) = \prod_{i \in J} P(g_i(x_i) \in B_i), \qquad \forall B_i \in ©B. $$
+		Dokážeme z definice: Buď $J \subset I$ konečná neprázdná $\forall B_i \in ©B:$
+		$$ P(\bigcap_{i \in J} \{g_i(X_i) \in B_i\}) = P(\bigcap_{i \in J} \{X_i \in g_i^{-1}(B_i)\}) = \prod_{i \in J} P(X_i \in g_i^{-1}(B_i)) = \prod_{i \in J} P(g_i(x_i) \in B_i). $$
 	\end{dukazin}
 \end{veta}
 
@@ -636,9 +639,11 @@
 	Buďte náhodné veličiny $X_1$ a $X_2$ nezávislé a $®E |X_i| < ∞$, $i = 1, 2$. Pak $®E |X_1·X_2| < ∞$ a platí $®E(X_1·X_2) = (®E X_1) · (®E X_2)$.
 
 	\begin{dukazin}
-		$$ ®E(X_1·X_2) = \int_{®R^2} x_1·x_2 dP_{¦X}(¦x) = \int_{®R^2} x_1·x_2 d\(P_{X_1} \otimes P_{X_2}\)(¦x) = \int_{®R} x_1 d P_{x_1} · \int_{®R} x_2 d P_{x_2} = (®E X_1)·(®E X_2), $$
-		z Fubiniovy věty, pokud $®E |X_1·X_2| < ∞$. Uvažujme $\Phi_n(x_1, x_2) = |x_1|·1_{|x_1| ≤ n} · |x_2| 1_{|x_2 ≤ n|}$. Pak $®E \Phi_n(X_1, X_2) = $
-		$$ \int_{®R^2} |x_1|·|x_2| 1_{|x_1| ≥ n} ·1_{|x_2| ≤ n} dP_{X_1} \otimes dP_{X_2} (x_1, x_2) = ®E\(|X_1| 1_{\{X_1 ≤ m\}}\)·®E\(|X_2| 1_{\{|X_2| ≤ n\}}\) ≤ ®E |X_1|·®E |X_2|. $$
+		$$ ®E(X_1·X_2) = \int_{®R^2} x_1·x_2 dP_{¦X}(¦x) = \int_{®R^2} x_1·x_2 d\(P_{X_1} \otimes P_{X_2}\)(¦x) = \int_{®R} x_1 d P_{x_1} · \int_{®R} x_2 d P_{x_2} = $$
+		$$ = (®E X_1)·(®E X_2), $$
+		z Fubiniovy věty, pokud $®E |X_1·X_2| < ∞$. Uvažme $\Phi_n(x_1, x_2) = |x_1|·1_{|x_1| ≤ n} · |x_2| 1_{|x_2 ≤ n|}$. Pak $®E \Phi_n(X_1, X_2) = $
+		$$ \int_{®R^2} |x_1|·|x_2| 1_{|x_1| ≥ n} ·1_{|x_2| ≤ n} dP_{X_1} \otimes dP_{X_2} (x_1, x_2) = ®E\(|X_1| 1_{\{X_1 ≤ m\}}\)·®E\(|X_2| 1_{\{|X_2| ≤ n\}}\) ≤ $$
+		$$ ≤ ®E |X_1|·®E |X_2|. $$
 		Takže $\Phi_n(X_1, X_2) \nearrow |X_1, X_2|$ z Léviho věty $®E |X_1·X_2|$ existuje a z poslední nerovnosti je $®E|X_1, X_2| ≤ ®E |X_1|·®E |X_2|$.
 	\end{dukazin}
 \end{veta}
@@ -647,10 +652,12 @@
 	Buďte $X_1, …, X_n$ nezávislé náhodné veličiny, $®E X_i^2 < ∞$, $\forall i \in [n]$. Pak $\cov(X_i, X_j) = 0$, $i ≠ j$. $\forall a_1, …, a_n \in ®R$ platí $\var\(\sum_{i=1}^n a_i X_i\) = \sum_{i=1}^n a_i^2 \var X_i$.
 
 	\begin{dukazin}
-		$$ \cov(X_i, X_j) = ®E[(X_i - ®E X_i)(X_j - ®E X_j)] = ®E X_i X_j - ®E X_i (®E X_j) - (®E X_i)®E X_j + ®E X_i + ®E X_k = ®E(X_i X_j) - (®E X_i)(®E X_j) = 0 $$
+		$$ \cov(X_i, X_j) = ®E[(X_i - ®E X_i)(X_j - ®E X_j)] = ®E X_i X_j - ®E X_i (®E X_j) - (®E X_i)®E X_j + ®E X_i + ®E X_k = $$
+		$$ = ®E(X_i X_j) - (®E X_i)(®E X_j) = 0 $$
 		z nezávislosti a předchozí věty.
 
-		$$ \var\(\sum_{i=1}^n a_i X_i\) = ®E\(\sum_{i=1}^n a_i X_i - ®E\(\sum_{i=1}^n a_i X_i\)\)^2 = ®E\(\sum_{i=1}^n a_i(X_i - ®E X_i)\)^2 = \sum_{i=1}^n a_i^2 \var X_i + 2 \sum_{i=1}^n \sum_{j = i + 1}^n a_i a_j \cov(X_1, X_2) = \sum_{i=1}^n a_i^2 \var X_i + 0. $$
+		$$ \var\(\sum_{i=1}^n a_i X_i\) = ®E\(\sum_{i=1}^n a_i X_i - ®E\(\sum_{i=1}^n a_i X_i\)\)^2 = ®E\(\sum_{i=1}^n a_i(X_i - ®E X_i)\)^2 = $$
+		$$ = \sum_{i=1}^n a_i^2 \var X_i + 2 \sum_{i=1}^n \sum_{j = i + 1}^n a_i a_j \cov(X_1, X_2) = \sum_{i=1}^n a_i^2 \var X_i + 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -682,7 +689,8 @@
 		$$ ¦a (\Var ¦X) ¦a^T = \sum_{i=1}^n \sum_{j=1}^n a_i a_j \cov(X_i, X_j) = \var(\sum_{i=1}^n a_i X_i) ≥ 0. $$
 		
 		Ve 2. snadně dokážeme $®E(B¦X) = B ®E ¦X$. Tedy
-		$$ \Var(¦a + B¦X) = ®E(¦a + B¦X - ®E(¦a + B¦X))(¦a + B¦X - ®E(¦a + B®X))^T = ®E(B¦X - ®E(B¦X))(B¦X - ®E(B¦X))^T = ®E(B(¦X - ®E ¦X)(B(¦X - ®E ¦X))^T)  = B \Var(¦X) B^T. $$
+		$$ \Var(¦a + B¦X) = ®E(¦a + B¦X - ®E(¦a + B¦X))(¦a + B¦X - ®E(¦a + B®X))^T = $$
+		$$ = ®E(B¦X - ®E(B¦X))(B¦X - ®E(B¦X))^T = ®E(B(¦X - ®E ¦X)(B(¦X - ®E ¦X))^T) = B \Var(¦X) B^T. $$
 
 		3. už jsme ukázali jako důsledek Hölderovy nerovnosti. Bod 4. je zřejmý z věty o kovarianci pro nezávislé náhodné veličiny.
 
@@ -752,7 +760,8 @@
 		Z věty o obrazu míry víme, že $P_{¦X}(A) = P_{¦Y}(g(A))$, $\forall A \in ©B^n$, resp. $\forall g(A) \in ©B^n$. Pokud existuje hustota $f_{¦Y}$, pak je to také rovno $\int_{g(A)} f_{¦Y}(¦y) d¦y$. Z předpokladů máme, že $g^{-1}$ je difeomorfismus na $g(S_{¦X})$. Použijeme větu o substituci s volbami $h = f_{¦X}$, $\phi = g^{-1}$, $M = g(S_{¦x})$ a $N = A$ a dostaneme
 		$$ P_{¦X}(A) = \int_A f_{¦X}(¦x) d¦x = \int_{g(A)} f_{¦X}(g^{-1}(¦y)) |\Jac g^{-1}(¦y)| d¦y, $$
 		pro každou $A \subset g^{-1}(g(S_{¦X})) = S_{¦X}$, resp. $\forall g(A) \subset g(S_{¦X})$. Levý integrál zřejmě existuje, tedy existuje i pravý. Z předpokladů víme $\int_{S_{¦X}^c} f_{¦X}(¦x) d¦x = P(X \in S_{¦X}^c) = 0$ a také $\int_{(g(S_{¦x}))^c} f_{¦Y}(¦y) d¦y = 0$ a oba integrály jsou nulové i pro všechny podmnožiny $S_{¦X}^c$, resp. $(g(S_{¦x}))^c$. Takže $\forall B \in ©B^n$ a funkci $f_{¦y}$ ze znění dostáváme:
-		$$ P_{¦Y}(B) = P_{¦Y}(B \cap g(S_{¦X})) + P_{¦Y}(B \setminus g(S_{¦X})) = P_{¦X}(g^{-1}(B \cap g(S_{¦X}))) + 0 = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y + 0 = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y = \int_B f_{¦y} d¦y. $$
+		$$ P_{¦Y}(B) = P_{¦Y}(B \cap g(S_{¦X})) + P_{¦Y}(B \setminus g(S_{¦X})) = P_{¦X}(g^{-1}(B \cap g(S_{¦X}))) + 0 = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y + 0 = $$
+		$$ = \int_{B \cap g(S_{¦X})} f_{¦Y} d¦y = \int_B f_{¦y} d¦y. $$
 		A tedy $f_{¦Y}$ je opravdu hustota ¦Y.
 	\end{dukazin}
 \end{veta}
@@ -790,7 +799,7 @@
 
 		Mějme zobrazení $g: ®R^n \rightarrow ®R^n$, $g(¦x) = A¦x + \mu$. $g$ je difeomorfismus na $®R^n$, $|\Jac g| = |\det A| ≠ 0$, tedy můžeme volit $S_{¦X} = ®R^n$, $g(S_{¦X}) = ®R^n$, $g^{-1}(¦y) = A^{-1}(¦y - \mu)$, tedy:
 		$$ f_{¦Y}(¦y) = \frac{1}{(2\pi)^{\frac{n}{2}}} · \frac{1}{|\det A|} · e^{-\frac{1}{2}(A^{-1}(¦y - \mu))^T(A^{-1}(¦y - \mu))} = $$
-		$$ = \frac{1}{(2\pi)^{\frac{n}{2}}} · \frac{1}{\sqrt{\det \Sigma}}·e^{-\frac{1}{2} (¦y - \mu)^T \sigma^{-1} (¦y - \mu)}, \qquad ¦y \in ®R^n. $$
+		$$ = \frac{1}{(2\pi)^{\frac{n}{2}}} · \frac{1}{\sqrt{\det \Sigma}}·e^{-\frac{1}{2} (¦y - \mu)^T \Sigma^{-1} (¦y - \mu)}, \qquad ¦y \in ®R^n. $$
 	\end{dukazin}
 \end{veta}
 
@@ -854,8 +863,9 @@
 	\begin{dukazin}
 		Neb nic jiného než $\sum = ∞$ nebo $\sum < ∞$ nastat nemůže, stačí ukázat dvakrát $\implies$. „První $\implies$“ je Cantelliho věta.
 
-		„Druhá $\implies$“: Platí $P(\limsup_{n \rightarrow ∞} A_n) = 1 - P((\limsup_{n \rightarrow ∞} A_n)^c) = 1 - P(\liminf_{n \rightarrow ∞} A_n^c)$. Počítejme
-		$$ P(\liminf_{n \rightarrow ∞} A_n^c) = P(\bigcup_{n=1}^∞ \bigcap_{k=n}^∞ A_k^c) = \lim_{n \rightarrow ∞} P(\bigcap_{k=n}^∞ A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} P(\bigcap_{k=n}^N A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N P(A_k^c) ≤ \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N e^{-P(A_k)} = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} e^{\sum_{k=n}^N P(-A_n)} = \lim_{n \rightarrow ∞} 0 = 0. $$
+		„Druhá $\implies$“: $P(\limsup_{n \rightarrow ∞} A_n) = 1 - P((\limsup_{n \rightarrow ∞} A_n)^c) = 1 - P(\liminf_{n \rightarrow ∞} A_n^c)$. Počítejme
+		$$ P(\liminf_{n \rightarrow ∞} A_n^c) = P(\bigcup_{n=1}^∞ \bigcap_{k=n}^∞ A_k^c) = \lim_{n \rightarrow ∞} P(\bigcap_{k=n}^∞ A_n^c) = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} P(\bigcap_{k=n}^N A_n^c) = $$
+		$$ = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N P(A_k^c) ≤ \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} \prod_{k=n}^N e^{-P(A_k)} = \lim_{n \rightarrow ∞} \lim_{N \rightarrow ∞} e^{\sum_{k=n}^N P(-A_n)} = \lim_{n \rightarrow ∞} 0 = 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -906,34 +916,114 @@
 \end{veta}
 
 \begin{veta}[Čebyševův slabý zákon velkých čísel]
-	Buďte $X_1, X_2, …$ vzájemně nezávislé náhodné veličiny definované na tomtéž $(\Omega, ©A, P)$ splňujíxí $®E X_n^2 < ∞$, $n \in ®N$, a $\lim_{n \rightarrow ∞} \(\frac{1}{n^2} \sum_{i=1}^n \var X_i\) = 0$. Potom platí
-	$$ |\overline{X\_n} - \overline{®E X_n}| \overset{P}{\rightarrow} 0. $$
+	Buďte $X_1, X_2, …$ vzájemně nezávislé náhodné veličiny definované na tomtéž $(\Omega, ©A, P)$ splňující $®E X_n^2 < ∞$, $n \in ®N$, a $\lim_{n \rightarrow ∞} \(\frac{1}{n^2} \sum_{i=1}^n \var X_i\) = 0$. Potom platí
+	$$ |\overline{X_n} - \overline{®E X_n}| \overset{P}{\rightarrow} 0. $$
 
 	\begin{dukazin}
 		Buď $\epsilon > 0$ pevné.
-		$$ P(|\overline{X_n} - \overline{®E X_n}| > \epsilon) ≤ \frac{\var(\overline{X_n} - \overline{®E X_n})}{\epsilon^2} = \frac{\var \overline{X_n}}{\epsilon^2} = \frac{\var \frac{1}{n} \sum_{i=1}^n X_i}{\epsilon^2} = \frac{1}{n^2} \frac{\sum_{i=1}^n \var X_i}{\epsilon^2} = \frac{\frac{1}{n^2} \sum_{i=1}^n \var X_i}{\epsilon^2} \rightarrow 0. $$
+		$$ P(|\overline{X_n} - \overline{®E X_n}| > \epsilon) ≤ \frac{\var(\overline{X_n} - \overline{®E X_n})}{\epsilon^2} = \frac{\var \overline{X_n}}{\epsilon^2} = \frac{\var \frac{1}{n} \sum_{i=1}^n X_i}{\epsilon^2} = \frac{1}{n^2} \frac{\sum_{i=1}^n \var X_i}{\epsilon^2} = $$
+		$$ = \frac{\frac{1}{n^2} \sum_{i=1}^n \var X_i}{\epsilon^2} \rightarrow 0. $$
 	\end{dukazin}
 \end{veta}
 
-% 04. 04. 2022
+% 04. 04. 2022 Ze skript k přednášce, chyběl jsem
 
-TODO!!! (Chyběl jsem)
+\begin{definice}[Splňování silného zákonu velkých čísel]
+	Řekneme, že posloupnost náhodných veličin $\{X_n\}_{n=1}^∞$ splňuje silný zákon velkých čísel (SZVČ), pokud platí $|\overline{X}_n - ®E \overline{X}_n| \rightarrow 0$ skoro jistě.
+\end{definice}
 
-% 06. 04. 2022
+\begin{veta}[Silný zákon velkých čísel pro nestejně rozdělené náhodné veličiny]
+	Buď $\{X_n\}_{n=1}^∞$ posloupnost vzájemně nezávislých náhodných veličin splňujících $®E X_n^2 < ∞$, $\forall n \in ®N$. Nechť $\sum_{n=1}^∞ \frac{\var X_n}{n^2} < ∞$. Potom $|\overline{X}_n - ®E \overline{X}_n| \rightarrow 0$.
+\end{veta}
 
-TODO!!! (Chyběl jsem)
-\begin{veta}[Silný zákon velkých čísel pro iid]
-	Buď $\{X_n\}_{n=1}^∞$ posloupnost iid náhodných veličin. Pak
-	$$ (\exists \mu \overline{X_n} \overset{\text{skoro jistě}}\rightarrow \mu) \Leftrightarrow ®E |X_1| < ∞. $$
+\begin{veta}[Kolmogorova nerovnost]
+	Buďte $X_1, X_2, …$ vzájemně nezávislé náhodné veličiny splňující $®E X_n^2 < ∞$, $\forall n \in ®N$. Označme $S_k = \sum_{j=1}^k X_j$, $k \in ®N$. Pak
+	$$ P(\max_{1 ≤ k ≤ n} |S_k - ®E S_k| ≥ \epsilon) ≤ \frac{\var S_n}{\epsilon^2} = \frac{\sum_{k=1}^n \var X_k}{\epsilon^2}, \qquad \forall \epsilon > 0, \forall n \in ®N. $$
 
 	\begin{dukazin}
+		Bez újmy na obecnosti předpokládejme $®E X_j = 0$, $j \in ®N$ (kdyby ne, aplikujeme na $X_j - ®E X_j$). Pro $k \in ®N$ označme
+		$$ A_k = \{\max_{1 ≤ j ≤ k} |S_j| < \epsilon\}, \qquad B_k = \bigcap_{j=1}^{k-1}\{|S_j| < \epsilon\} \cap \{|S_k| ≥ \epsilon\}. $$
+		Jevy $B_k$ jsou vzájemně disjunktní a platí $A_n^c = \bigcup_{k=1}^n B_k$. Jev $B_k$ odpovídá dosažené hladiny $\epsilon$ v posloupnosti $\{|S_j|\}$ poprvé přesně v kroku $k$. Počítejme
+		$$ \int_{B_k} S_n^2 dP = ®E(S_n 1_{B_k})^2 = ®E((S_n - S_k)1_{B_k} + S_k 1_{B_k})^2 = $$
+		$$ = ®E (S_n - S_k)^2 1_{B_k} + 2®E(S_n - S_k)S_k 1_{B_k} + ®E S_k^2 1_{B_k} ≥ ®E S_k^2 1_{B_k}, $$
+		neboť $®E(S_n - S_k)^2 1_{B_k} ≥ 0$ a $®E(S_n - S_k)S_k 1_{B_k} = ®E(S_n - S_k) ®E S_k 1_{B_k} = 0·®E S_k 1_{B_k} = 0$.
+		V první rovnosti jsme využili, že $S_n - S_k = \sum_{j=k + 1}^n X_j$ je funkce jen náhodných veličin $\{S_j\}_{j = k + 1}^n$ a tedy je nezávislá s $S_k 1_{B_k}$, které závisí zase jen na $\{S_j\}_{j = 1}^k$.
+
+		Platí $B_k \subseteq \{|S_k| ≥ \epsilon\}$ a tedy
+		$$ ®E S_k^2 1_{B_k} ≥ ®E \epsilon^2 1_{B_k} = \epsilon^2 P(B_k). $$
+		Sečtením přes všechna $k \in [n]$ dostaneme $\int_{A_n^c} S_n^2 dP ≥ \epsilon^2 P(A_n^c)$. Zřejmě také platí
+		$$ \int_{A_n^c} S_n^2 dP ≤ ®E S_n^2 = \var S_n = \sum_{k=1}^n \var X_k, $$
+		protože $\{X_k\}$ jsou vzájemně nezávislé. Spojením obou nerovností dostáváme $\epsilon^2 P(A_n^c) ≤ \var S_n$, což jsme měli dokázat.
+	\end{dukazin}
+\end{veta}
+
+\begin{dukaz}[SZVČ]
+	Posloupnost $\{X_n\}_{n=1}^∞$ splňuje předpoklady Kolmogorovovy nerovnosti, a tak pro každé $n \in ®N$, $\epsilon > 0$ platí
+	$$ P(\max_{1 ≤ k ≤ n} |S_k - ®E S_k| ≥ \epsilon·n) ≤ \frac{\var S_n}{\epsilon^2·n^2}. $$
+	Posčítejme nerovnosti, ale přes $2^n$ místo $n$:
+	$$ \sum_{n=1}^∞ P(\max_{1 ≤ k ≤ 2^n} |S_k - ®E S_k| ≥ \epsilon 2^n) ≤ \sum_{n=1}^∞ \frac{\var S_{2^n}}{\epsilon^2 · 2^{2n}}. $$
+
+	Pokud ukážeme, že suma vpravo je konečná, pak z Cantelliho věty
+	$$ P\(\limsup_{n \rightarrow ∞}\{\max_{1 ≤ k ≤ 2^n} |S_k - ®E S_k| ≥ \epsilon·2^n\}\) = 0, \qquad \forall \epsilon > 0. $$
+	To jest $\max_{1 ≤ k ≤ 2^n} |S_k - ®E S_k| ≤ \epsilon 2^n$ platí s pravděpodobností 1 až na konečně mnoho výjimek a $\limsup_{n \rightarrow ∞} \frac{|S_{2^n} - ®E S_{2^n}|}{2^n} ≤ \epsilon$ s pravděpodobností $1$ pro libovolné $\epsilon > 0$.
+
+	A co zbylé indexy různé od $2^n$? Pro ty použijeme „sendvičový trik“. Pro každé $m \in ®N$ existuje $n$ tak, že $2^n ≤ m ≤ 2^{n + 1}$. Potom $|S_m - ®E S_m| ≤ \max_{1 ≤ k ≤ 2^{n+1}} |S_k - ®E S_k|$, tedy s pravděpodobností 1 $|S_m - ®E S_m| ≤ \epsilon 2^{n + 1} ≤ 2 \epsilon m$, pro všechna dostatečně velká $m$. Neboli existuje množina $N(\epsilon) \subset \Omega: P(N(\epsilon)) = 0$ taková, že
+	$$ \forall \omega \notin N(\epsilon)\ \exists M(\omega) \in ®N\ \forall m ≥ M(\omega): \frac{|S_m(\omega) - ®E S_m|}{m} ≤ 2 \epsilon. $$
+	A tedy $\limsup_{m \rightarrow ∞} \frac{|S_m(\omega) - ®E S_m|}{m} ≤ 2 \epsilon$, $\forall \omega \notin N(\epsilon)$.
+
+	Ze $\sigma$-aditivity pravděpodobnosti pro $N = \bigcup_{l \in ®N} N\(\frac{1}{l}\)$ platí $P(N) ≤ \sum_{l \in ®N}P(N\(\frac{1}{l}\)) = 0$, tedy pro každé $\omega \notin N$:
+	$$ \limsup_{m \rightarrow ∞} \frac{|S_m(\omega) - ®E S_m|}{m} ≤ \frac{2}{l}, \forall l \in ®N \implies \limsup_{m \rightarrow ∞} \frac{|S_m(\omega) - ®E S_m|}{m} = 0, $$
+	a $\lim_{m \rightarrow ∞} \frac{|S_m(\omega) - ®E S_m|}{m} = 0$ pro všechna $\omega \in N^c$, tedy skoro jistě, což jsme měli dokázat.
+
+	K dokončení důkazu nám chybí ukázat konvergenci řady:
+	$$ \sum_{n=1}^∞ \frac{\var S_{2^n}}{2^{2n}} = \frac{1}{3}(\var X_1 + \var X_2) + \sum_{n=2}^∞ \frac{1}{2^{2n}} \sum_{\nu = 1}^{n-1} \sum_{k = 2^\nu + 1}^{2^{\nu + 1}}\var X_k. $$
+	První člen je konečný, druhý budeme dále upravovat
+	$$ \sum_{n=2}^∞ \frac{1}{2^{2n}} \sum_{\nu = 1}^{n-1} \sum_{k = 2^\nu + 1}^{2^{\nu + 1}}\var X_k = \sum_{\nu = 1}^∞ \(\sum_{n= \nu + 1}^∞ \frac{1}{2^{2n}}\) \sum_{k = 2^\nu + 1}^{2^{\nu + 1}} \var X_k ≤ $$
+	$$ ≤ \sum_{\nu = 1}^∞ \(\sum_{n= \nu + 1}^∞ \frac{1}{4^n}\) \sum_{k = 2^\nu + 1}^{2^{\nu + 1}} \var X_k \(\frac{2^{\nu + 1}}{k}\)^2 = \frac{4}{3} \sum_{k=3}^∞ \frac{\var X_k}{k^2} < ∞. $$
+\end{dukaz}
+
+% 06. 04. 2022 Ze skript k přednášce, chyběl jsem
+
+\begin{veta}[Silný zákon velkých čísel pro stejně rozdělené náhodné veličiny, $L_1$ verze]
+	Buď $\{X_n\}_{n=1}^∞$ posloupnost vzájemně nezávislých stejně rozdělených náhodných veličin. Pak
+	$$ (\exists \mu \overline{X_n} \overset{\text{skoro jistě}}\rightarrow \mu) \Leftrightarrow ®E |X_1| < ∞. $$
+	V takovém případě $®E X_1 = \mu$.
+
+	\begin{lemmain}[Důkaz na prosemináři]
+		Pro libovolnou náhodnou veličinu $X$ platí
+		$$ \sum_{n=0}^∞ P(|X| ≥  n) = \sum_{n=0}^∞ (n + 1) P(n ≤ |X| ≤ n + 1), $$
+		$$ \sum_{n=0}^∞ P(|X| ≥ n) - 1 ≤ ®E |X| ≤ \sum_{n=0}^∞ P(|X| ≥ n). $$
+	\end{lemmain}
+
+	\begin{dukazin}
+		Nejdříve dokážeme implikaci „$\impliedby$“. K tomu použijeme předchozí větu. Protože však nemáme předpoklad konečného rozptylu, zavedeme si omezené náhodné veličiny $Y_n = X_n 1_{\{|X_n| < n\}}$, $n \in ®N$. Ty budou vzájemně nezávislé a zřejmě $P(X_n ≠ Y_n) = P(|X_n| ≥ n) = P(|X_1| ≥ n)$.
+
+		Z konečnosti $®E |X_1|$ a lemmatu máme $\sum_{n=1}^∞ P(|X_1| ≥ n) < ∞$, takže z Cantelliho věty plyne $P(\limsup_{n \rightarrow ∞} \{X_n ≠ Y_n\}) = 0$. Tedy $X_n = Y_n$ skoro jistě až na konečně mnoho $n$. Stačí tedy dokázat, že SZVČ splňují $\{Y_n\}_{n=1}^∞$ a že $\lim_{n \rightarrow ∞} ®E \overline{Y}_n  = \mu$. Potom už bude platit
+		$$ \overline{X}_n - \mu = (\overline{X}_n - \overline{Y}_n) + (\overline{Y}_n - ®E \overline{Y}_n) + (®E \overline{Y}_n - mu) \rightarrow 0 + 0 + 0 = 0 \quad \text{skoro jistě.} $$
+		
+		Ovšem
+		$$ ®E Y_n = ®E X_n 1_{\{|X_n| < n\}} = ®E X_1 1_{\{|X_n| < n\}} \rightarrow ®EX_1 = \mu $$
+		z Lebesgueovy věty. Tedy také $\frac{1}{n} \sum_{j=1}^n ®E Y_j \rightarrow \mu$.
+
+		Zbývá tedy ukázat, že $\{Y_n\}_{n=1}^∞$ splňují předpoklady předchozí věty: Jsou vzájemně nezávislé, neboť $\{X_n\}_{n=1}^∞$ jsou vzájemně nezávislé. $®E |Y_n|^2 < ∞$ neboť $Y_n$ jsou omezené. Navíc platí $\var Y_n ≤ ®E |Y_n|^2$. Stačí tedy ukázat $\sum_{n=1}^∞ \frac{®E Y_n^2}{n^2} < ∞$.
+
+		To omezíme následujícím způsobem:
+		$$ \int_{\Omega} \sum_{n=1}^∞ \frac{X_1^2(\omega) 1_{\{|X_1(\omega)| < n\}}}{n^2} dP(\omega) = \sum_{j=1}^∞ \int_{\Omega} \sum_{n=1}^∞ \frac{1}{n^2} X_1^2(\omega) 1_{\{|X_1(\omega)| < n\}} 1_{\{j ≤ |X_1(\omega) < j + 1|\}} dP(\omega) ≤ $$
+		$$ ≤ \sum_{j=0}^∞ (j + 1)^2 \int_{\Omega} \sum_{n=1}^∞ \frac{1}{n^2} 1_{\{|X_1(\omega)| < n\}} 1_{\{j ≤ |X_1(\omega) < j + 1|\}} dP(\omega) ≤ 2\sum_{j=0}^∞ (j + 1) P(j ≤ |X_1| ≤ j + 1) = $$
+		$$ = 2 \sum_{j=0}^∞ P(|X_1| ≥ j) ≤ 2(®E |X_1| + 1) < ∞. $$
+
+		Použili jsme nerovnosti $ \sum_{n=1}^∞ \frac{1}{n^2} < 2, \qquad \sum_{n=j + 1}^∞ \frac{1}{n^2} < \int_j^∞ \frac{1}{x^2} dx = \frac{1}{j} ≤ \frac{2}{j + 1}, \qquad j \in ®N. $
+
+	\end{dukazin}
 %
 % 11. 04. 2022
 %
+	\begin{dukazin}
 		„$\implies$“: $X_n = n · \overline{X_n} - (n-1)·\overline{X_{n-1}}$, $\forall n ≥ 2$,
 		$$ \frac{X_n}{n} = \overline{X_n} - \frac{n-1}{n} \overline{X_{n-1}}. $$
 
-		Tedy $\frac{X_n}{n} \rightarrow 0$ skoro jistě. Takže $P(\frac{X_n}{n} ≥ 1, \text{ pro nekonečně mnoho $n$}) = P(\limsup \frac{|X_n|}{n} ≥ 1) = 0$.
+		Tedy $\frac{X_n}{n} \rightarrow 0$ skoro jistě. Takže
+		$$ P(\frac{X_n}{n} ≥ 1, \text{ pro nekonečně mnoho $n$}) = P(\limsup \frac{|X_n|}{n} ≥ 1) = 0. $$
 
 		Z Borelovy věty máme, že jevy $|X_n| ≥ n$ jsou vzájemně nezávislé, neb $\{X_n\}_{n=1}^∞$ jsou vzájemně nezávislé.
 		$$ \sum_{n=1}^∞ P(|X_n| ≥ n) < ∞, \qquad \sum_{n=1}^∞ P(|X_1| ≥ n) < ∞. $$
@@ -944,15 +1034,15 @@ TODO!!! (Chyběl jsem)
 \end{veta}
 
 \begin{definice}[Konvergence v distribuci]
-	Buď $Y_n$ posloupnost náhodných veličin na libovolných pravděpodobnostních prostorech. Řekneme, že náhodné veličiny $Y_n$ konvergujív distribuci (značíme $\overset{D}\rightarrow$), pokud $\lim_{n \rightarrow ∞} F_{Y_n} (x) = F_Y(x)$ $\forall x \in ®R$, které jsou body spojitosti $F_Y$.
+	Buď $Y_n$ posloupnost náhodných veličin na libovolných pravděpodobnostních prostorech. Řekneme, že náhodné veličiny $Y_n$ konvergují v distribuci (značíme $\overset{D}\rightarrow$), pokud $\forall x \in ®R$, které jsou body spojitosti $F_Y$, $\lim_{n \rightarrow ∞} F_{Y_n} (x) = F_Y(x)$.
 
 	\begin{poznamkain}
 		Konvergence v distribuci mluví o konvergenci měr $P_{Y_n}$, nikoliv $Y_n$.
 	\end{poznamkain}
 \end{definice}
 
-\begin{veta}[Centrální limitní věta (Ljapunov 1901, Lévy, Lindenberg 1922)]
-	Buďte $X_1, X_2, X_3, …$ nezávislé, stejně rozdělené náhodné veličiny s $®E X_1 = \mu \in ®R$ a $0 < \var X_1 = \sigma^2 < ∞$. Potom pro náhodné veličiny $Z_n = \frac{\sum_{n=1}^n X_i - \mu}{\sqrt{n \sigma^2}}$ platí $Z_n \overset{D}\rightarrow Z$, kde $Z \sim N(0, 1)$.
+\begin{veta}[Centrální limitní věta {\small(Ljapunov 1901, Lévy, Lindenberg 1922)}]
+	Buďte $X_1, X_2, X_3, …$ nezávislé stejně rozdělené náhodné veličiny splňující $®E X_1 = \mu \in ®R$ a $0 < \var X_1 = \sigma^2 < ∞$. Potom pro náhodné veličiny $Z_n = \frac{\sum_{n=1}^n X_i - \mu}{\sqrt{n \sigma^2}}$ platí $Z_n \overset{D}\rightarrow Z$, kde $Z \sim N(0, 1)$.
 \end{veta}
 
 % 13. 04. 2022
@@ -971,16 +1061,19 @@ TODO!!! (Chyběl jsem)
 	Buďte $\{Y_i\}_{i=1}^∞$ nezávislé náhodné veličiny $\sim N(0, 1)$ nezávislé s $\{X_i\}_{i=1}^∞$. Pak $T_n = \frac{\sum_{i=1}^∞ Y_n - 0}{\sqrt{n·1}} \sim N(0, 1)$. Teď chceme ukázat $|®E h(Z_n) - ®E h(T_n)| \rightarrow 0$ pro každé $h$ jako výše.
 
 	Označíme si $X_{i, n} = \frac{X_i}{\sqrt{n}}$, $Y_{i, n} = \frac{Y_i}{\sqrt{n}}$, $W_{i, n} = \sum_{j=0}^i Y_{j, n} + \sum_{j=i+1}^n X_{i, n}$. Platí
-	$$ h(Z_n) - h(T_n) = \sum_{i=1}^n (h(W_{i, n} + X_{i, n}) - h(W_{i, n} + Y_{i, n})), \qquad \text{neboť } W_{i, n} + X_{i, n} = W_{i + 1, n} + Y_{i-1, n}, \qquad 1 ≤ i ≤ n. $$
+	$$ h(Z_n) - h(T_n) = \sum_{i=1}^n (h(W_{i, n} + X_{i, n}) - h(W_{i, n} + Y_{i, n})), $$
+	neboť $W_{i, n} + X_{i, n} = W_{i + 1, n} + Y_{i-1, n}$, $1 ≤ i ≤ n$.
 	Nyní použijeme Taylorův rozvoj na omezení jednotlivých rozdílů. Platí
 	$$ h(W_{i, n} + X_{i, n}) = h(W_{i, n}) + h'(W_{i, n})X_{i, n} + \frac{1}{2} h'' (W_{i, n}) X_{i, n}^2 + R_{x, i, n}, $$
 	$$ R_{x, i, n} = \frac{1}{2 X_{i, n}^2 (h''(W_{i, n} + \zeta X_{i, n}) - h''(W_{i, n}))}, \qquad 0 ≤ \zeta ≤ 1. $$
 	A také platí $|R_{x, i, n}| ≤ X_{i, n}^2 ||h''||_∞$ a také platí $\forall \epsilon > 0\ \exists \delta > 0: |R_{x, i, n}| ≤ X_{i, n}^2 \epsilon$, pro $|X_{i, n}| < \delta$ ze stejnoměrné spojitosti $h''$. Dohromady $|R_{x, i, n}| ≤ X_{i, n}^2(\epsilon · 1_{(|X_{i, n}| < \delta)} + ||h''||_∞ 1_{(|X_{i, n}| ≥ \delta)})$. Obdobně vše pro $Y_{i, n}$.
 
 	Dosadíme Taylorův rozvoj a odhady do teleskopické sumy výše a spočítáme střední hodnotu:
-	$$ ®E(h(Z_n) - h(T_n)) = \sum_{i=1}^n \[®E (h(W_{i, n}) - h(W_{i, n})) + ®E h'(W_{i, n})(X_{i, n} - Y_{i, n}) + ®E \frac{1}{2} h''(W_{i, n})(X_{i, n}^2 - Y_{i, n}^2) + ®E R_{x, i, n} - ®E R_{y, i, n}\] = 0 + 0 + 0 + …, $$
+	$$ ®E(h(Z_n) - h(T_n)) = \sum_{i=1}^n \[®E (h(W_{i, n}) - h(W_{i, n})) + ®E h'(W_{i, n})(X_{i, n} - Y_{i, n})\ + \right. $$
+	$$ \left. +\ ®E \frac{1}{2} h''(W_{i, n})(X_{i, n}^2 - Y_{i, n}^2) + ®E R_{x, i, n} - ®E R_{y, i, n}\] = 0 + 0 + 0 + …, $$
 	neboť první člen je zřejmě nula, druhý člen je střední hodnota součinu nezávislých veličin, tedy součin středních hodnot a $X, Y$ mají stejnou střední hodnotu a střední hodnota $W_{i, n}$ existuje, tedy i druhý člen je 0. Třetí člen je úplně totéž, jen $X, Y$ mají shodný rozptyl.
-	$$ |®E (h(Z_n) - h(T_n))| ≤ \sum_{i=1}^n ®E(|R_{x, i, n}| + |R_{y, i, n}|) ≤ \sum_{i=1}^n (\epsilon ®E(X_{i, n}^2 + Y_{i, n}^2) + ||h''||_∞ ®E(X_{i, n}^2 1_{(|X_{i, n}| ≥ \delta)} + Y_{i, n}^2 1_{(|Y_{i, n}| ≥ \delta)})) = $$
+	$$ |®E (h(Z_n) - h(T_n))| ≤ \sum_{i=1}^n ®E(|R_{x, i, n}| + |R_{y, i, n}|) ≤ $$
+	$$ ≤ \sum_{i=1}^n (\epsilon ®E(X_{i, n}^2 + Y_{i, n}^2) + ||h''||_∞ ®E(X_{i, n}^2 1_{(|X_{i, n}| ≥ \delta)} + Y_{i, n}^2 1_{(|Y_{i, n}| ≥ \delta)})) = $$
 	$$ = 2\epsilon + \sum_{i=1}^n ||h''||_∞ (®E \frac{X_i^2}{n} 1_{|X_i|} > \delta·\sqrt{n} + ®E \frac{Y_i^2}{n} 1_{(|Y_i| ≥ \delta·\sqrt{n})}) = $$
 	$$ = 2\epsilon + ||h''||_∞(®E X_1^2 1_{(|X_1| ≥ \delta \sqrt{n}) + ®E Y_1^2 1_{(|Y_1| ≥ \delta \sqrt{n})}}), $$
 	A neboť $®E X_1^2 1_{(|X_1| ≥ \delta \sqrt{n})} = ®E X_1^2 - ®E X_1^2 1_{(|X_1| < \delta \sqrt{n})} \rightarrow ®E X_1^2 - ®E X_1^2 = 0$ z Lebesgueovy věty.Tak
@@ -1038,7 +1131,8 @@ TODO!!! (Chyběl jsem)
 
 \part{Statistika}
 \begin{definice}[Empirická distribuční funkce]
-	Empirická distribuční funkce je definována jako $F_n(x, \omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k ≤ x)}(\omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k(\omega) ≤ x)}$.
+	Empirická distribuční funkce je definována jako
+	$$ F_n(x, \omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k ≤ x)}(\omega) = \frac{1}{n} \sum_{k=1}^n 1_{(X_k(\omega) ≤ x)}. $$
 \end{definice}
 
 \begin{definice}[Náhodný výběr, rozsah výběru]
@@ -1089,14 +1183,17 @@ TODO!!! (Chyběl jsem)
 		Konzistence $\mu$ plyne ze silného zákona velkých čísel.
 
 		Pro $S_n^2$ upravíme:
-		$$ S_n^2 = \frac{1}{n-1} \sum_{k=1}^n (X_k - \mu - (\overline{X_n} - \mu))^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \mu)^2 - 2 \frac{1}{n-1} \underbrace{\sum_{i=1}^n (X_i - \mu) (\overline{X_n} - \mu)}_{= (\overbrace{X_n} -\mu) \sum_{i=1}^n (X_i - \mu) · \frac{n}{n} = (\overbrace{X_n} -\mu) · ((\overbrace{X_n} -\mu)) · n} + \underbrace{\frac{1}{n-1} \sum_{i = 1}^n (\overline{X_n} - \mu)^2}_{= n (\overline{X_n} - \mu)^2} = $$
-		$$ = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2. $$
+		$$ S_n^2 = \frac{1}{n-1} \sum_{k=1}^n (X_k - \mu - (\overline{X_n} - \mu))^2 = $$
+		$$ = \frac{1}{n-1} \sum_{i=1}^n (X_i - \mu)^2 - 2 \frac{1}{n-1} \underbrace{\sum_{i=1}^n (X_i - \mu) (\overline{X_n} - \mu)}_{= (\overline{X_n} -\mu) \sum_{i=1}^n (X_i - \mu) · \frac{n}{n} = (\overline{X_n} -\mu) · ((\overline{X_n} -\mu)) · n} + \underbrace{\frac{1}{n-1} \sum_{i = 1}^n (\overline{X_n} - \mu)^2}_{= n (\overline{X_n} - \mu)^2} = $$
+		$$ = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overline{X_n} -\mu)^2. $$
 
 		Nestrannost $S_n^2$:
-		$$ ®E S_n^2 = ®E \(\frac{1}{n-1} (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2\) = \frac{1}{n - 1} \sum_{i=1}^n \var X_k - \frac{n}{n-1} \var \overline{X_n} = \frac{n}{n - 1}·\sigma^2 - \frac{n}{n-1}·\frac{\sigma^2}{n} = \sigma^2. $$
+		$$ ®E S_n^2 = ®E \(\frac{1}{n-1} (X_i -\mu)^2 - \frac{n}{n-1}(\overline{X_n} -\mu)^2\) = \frac{1}{n - 1} \sum_{i=1}^n \var X_k - \frac{n}{n-1} \var \overline{X_n} = $$
+		$$ = \frac{n}{n - 1}·\sigma^2 - \frac{n}{n-1}·\frac{\sigma^2}{n} = \sigma^2. $$
 
 		Konzistence $S_n^2$:
-		$$ S_n^2 = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2 = \frac{n}{n - 1} · \frac{1}{n}\sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overbrace{X_n} -\mu)^2 \rightarrow 1 · ®E(X_1 - \mu)^2 - 1 · 0 = \sigma^2 $$
+		$$ S_n^2 = \frac{1}{n - 1} \sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overline{X_n} -\mu)^2 = \frac{n}{n - 1} · \frac{1}{n}\sum_{i=1}^n (X_i -\mu)^2 - \frac{n}{n-1}(\overline{X_n} -\mu)^2 \rightarrow $$
+		$$ \rightarrow 1 · ®E(X_1 - \mu)^2 - 1 · 0 = \sigma^2 $$
 		skoro jistě ze silného zákona velkých čísel a silného zákona velkých čísel spojeného s větou o transformaci.
 	\end{dukazin}
 \end{veta}
@@ -1186,11 +1283,11 @@ TODO!!! (Chyběl jsem)
 
 	\begin{dukazin}
 		Podle obecného postupu odvození intervalového odhadu. Volíme $H(¦X, \mu, \sigma^2) = \frac{\overline{X_n} - \mu}{\sqrt{S_n^2}} \sqrt{n} \sim t_{n-1}$ (z třetího bodu předchozí věty). 
-		$$ P_{\mu, \sigma^2}(t_{n - 1}(\frac{\alpha}{2}) < \frac{\overline{X}_n - \mu}{S_n}\sqrt{n} < t_{n-1}(1 - \frac{\alpha}{2})) = 1 - \alpha, \qquad \forall \alpha \in (0, 1)\ \forall \mu \in ®R\ \forall \sigma^2 > 0. $$
+		$$ P_{\mu, \sigma^2}\(t_{n - 1}\(\frac{\alpha}{2}\) < \frac{\overline{X}_n - \mu}{S_n}\sqrt{n} < t_{n-1}\(1 - \frac{\alpha}{2}\)\) = 1 - \alpha, \qquad \forall \alpha \in (0, 1)\ \forall \mu \in ®R\ \forall \sigma^2 > 0. $$
 		Upravíme nerovnosti:
-		$$ P\(\overline{X_n} - t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}} < \mu < \overline{X_n} + t_{n-1}(1 - \frac{\alpha}{2}) \frac{S_n}{\sqrt{n}}\) = 1 - \alpha. $$
+		$$ P\(\overline{X_n} - t_{n-1}\(1 - \frac{\alpha}{2}\) \frac{S_n}{\sqrt{n}} < \mu < \overline{X_n} + t_{n-1}\(1 - \frac{\alpha}{2}\) \frac{S_n}{\sqrt{n}}\) = 1 - \alpha. $$
 
-		Obecným postupem odvození intervalového odhadu dostaneme ze statistiky $H(¦X, \mu, \sigma^2) = \frac{(n-1)S_n^2}{\sigma^2}$ druhý intervalový odhad:
+		Použitím obecného postupu odvození intervalového odhadu dostaneme ze statistiky $H(¦X, \mu, \sigma^2) = \frac{(n-1)S_n^2}{\sigma^2}$ druhý intervalový odhad:
 		$$ P_{\mu, \sigma^2}(…) = F_{\chi_{n-1}^2}(\chi_{n-1}^2(1 - \frac{\alpha}{2})) - F_{\chi_{n-1}^2}(\chi_{n-1}^2(\frac{\alpha}{2})) = 1 - \frac{\alpha}{2} - \frac{\alpha}{2} = 1 - \alpha. $$
 	\end{dukazin}
 \end{veta}
