@@ -40,7 +40,7 @@
 		\end{poznamkain}
 	\end{veta}
 
-	\begin{veta}[Bolzano-Cauchyova podmínka pro stejnoměrnou konvergenci]
+	\begin{veta}[Bolzanova-Cauchyova podmínka pro stejnoměrnou konvergenci]
 		Nechť $f_n: J \rightarrow ®R$, pak
 		$$ (\exists f: f_n \rightrightarrows f \text{ na } J) \Leftrightarrow (\forall \epsilon > 0\ \exists n_0 \in ®N\ \forall m, n ≥ n_0\ \forall x \in J: |f_n(x) - f_m(x)| < \epsilon). $$
 
@@ -174,7 +174,7 @@
 		\end{dukazin}
 	\end{veta}
 
-	\begin{veta}[Abel-Dirichletovo kritérium pro stejnoměrnou konvergenci]
+	\begin{veta}[Abelovo-Dirichletovo kritérium pro stejnoměrnou konvergenci]
 		Nechť $\{a_n(x)\}_{n=1}^∞$ je posloupnost funkcí definovaných na intervalu $J$ a nechť $\{b_n(x)\}_{n=1}^∞$ je posloupnost funkcí na $J$ taková, že $b_1(x) ≥ b_2(x) ≥ … ≥ 0$. Jestliže je splněna některá z následujících podmínek, pak $\sum_{n=1}^∞ a_n(x)·b_n(x) \rightrightarrows$ na $J$.
 
 		\begin{itemize}
@@ -196,7 +196,7 @@
 			$$ \exists n_0\ \forall m, n ≥ n_0: \left|\sum_{j=n}^m a_j(x)\right| < \epsilon. $$
 			Tedy pro $\sigma_1(x) = \sum_{j=n}^m a_j(x)$ platí $|\sigma_i(x)| < \epsilon$. Analogicky odhadu výše
 			$$ \left|\sum_{j=n}^m a_j(x)·b_j(x)\right| ≤ \sup_{j=n, …, m} |\sigma_j(x)|·|b_n(x)| ≤ \epsilon \sup_{x \in J}(b_1(x)) ≤ \epsilon · K. $$
-			Tedy $\sum a_i(x)·b_i(x)$ splňuje BX podmínku.
+			Tedy $\sum a_i(x)·b_i(x)$ splňuje BC podmínku.
 		\end{dukazin}
 	\end{veta}
 
@@ -242,9 +242,9 @@
 		Navíc pro $x \in (x_0 - R, x_0 + R)$ platí $\(\sum_{n=0}^∞ a_n·(x - x_0)^n\)' = \sum_{n=1}^∞ a_n·n·(x - x_0)^{n-1}$.
 
 		\begin{dukazin}
-			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Poloměr konvergence $\sum_{n=1}^∞ a_i·n·(x - x_0)^{n-1} \overset{x ≠ x_0}{=} \frac{\sum_{n=1}^∞ a_i·n·(x - x_0)^n}{x - x_0}$ je podle věty výše
+			Položme $R = \frac{1}{\limsup \sqrt[n]{|a_n|}}$. Poloměr konvergence $\sum_{n=1}^∞ a_n·n·(x - x_0)^{n-1} \overset{x ≠ x_0}{=} \frac{\sum_{n=1}^∞ a_n·n·(x - x_0)^n}{x - x_0}$ je podle věty výše
 			$$ \frac{1}{\limsup \sqrt[n]{|a_n|·n}} = R·\frac{1}{\limsup \sqrt[n]{n}} = R. $$
-			Následně použijeme větu o derivaci a stejnoměrné konvergenci (v bodě $x = x_0$ řada jistě konverguje a z předchozí věty řada derivací konverguje lokálně stejnoměrně)
+			Následně použijeme větu o derivaci a stejnoměrné konvergenci (v bodě $x = x_0$ řada jistě konverguje a z předchozí věty řada derivací konverguje lokálně stejnoměrně.)
 		\end{dukazin}
 	\end{veta}
 
@@ -270,9 +270,9 @@
 			$$ \exists \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0: |\sum_{k=n}^m a_k·R^k| < \epsilon. $$
 			Z toho ale jednoduše (jelikož $a_n(x)$ na $x$ nezávisí)
 			$$ \forall \epsilon > 0\ \exists n_0\ \forall m, n ≥ n_0\ \forall x \in [x_0, x_0 + R]: |\sum_{k=n}^m a_k(x)| = |\sum_{k=n}^m a_k·R^k| < \epsilon. $$
-			Tedy podle Abel-Dirichletova kritéria (části Abel) $\sum a_n(x - x_0)^n \leftleftarrows$ na $[x_0, x_0 + R]$.
+			Tedy podle Abel-Dirichletova kritéria (části Abel) $\sum a_n(x - x_0)^n \rightrightarrows$ na $[x_0, x_0 + R]$.
 
-			Funkce $a_n (x - x_0)^n$ jsou spojité a $\sum \leftleftarrows \implies F(x) = \sum_{n=0}^∞ a_n·(x - x_0)^n$ je spojitá na $[x_0, x_0 + R]$. Tedy
+			Funkce $a_n (x - x_0)^n$ jsou spojité a $\sum \rightrightarrows \implies F(x) = \sum_{n=0}^∞ a_n·(x - x_0)^n$ je spojitá na $[x_0, x_0 + R]$. Tedy
 			$$ \lim_{x \rightarrow x_0 + R} F(x) = F(x_0 + R). $$
 		\end{dukazin}
 	\end{veta}
@@ -293,7 +293,7 @@
 		$$ \exists \lim_{h \rightarrow 0} f(x + h) \in ®R \Leftrightarrow \limsup_{h \rightarrow 0} f(x + h) = \liminf_{h \rightarrow 0} f(x + h). $$
 	\end{poznamka}
 
-	\begin{definice}
+	\begin{definice}[Horní a dolní derivace]
 		Nechť $I$ je interval, $x$ je vnitřní bod $I$ a $f: I \rightarrow ®R$ je funkce. Definujeme horní a dolní derivaci funkce $f$ v bodě $x$ jako
 		$$ \overline{D} f(x) = \limsup_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h}, $$
 		$$ \underline{D} f(x) = \liminf_{h \rightarrow 0} \frac{f(x + h) - f(x)}{h}. $$
@@ -303,8 +303,8 @@
 		Nechť $I \subset ®R$ je interval. Nechť $f: I \rightarrow ®R$ je neklesající funkce, $M \subset I$ je měřitelná a $c > 0$.
 
 		\begin{itemize}
-			\item Je-li $\overline{D} f(x) > c$ na $M$, potom $©L^*(f(M)) \supseteq c·©L(M)$.
-			\item Je-li $\underline{D} f(x) < c$ na $M$, potom $©L^*(f(M)) \subseteq c·©L(M)$.
+			\item Je-li $\overline{D} f(x) > c$ na $M$, potom $\lambda^*(f(M)) ≥ c·\lambda(M)$.
+			\item Je-li $\underline{D} f(x) < c$ na $M$, potom $\lambda^*(f(M)) ≤ c·\lambda(M)$.
 		\end{itemize}
 
 		\begin{dukazin}
@@ -317,10 +317,10 @@
 
 		\begin{dukazin}
 			Nechť $M_{p, q} = \{x \in I | \underline{D}f(x) < p < q < \overline{D}f(x)\}$. Podle předchozí věty
-			$$ q·©L(M_{p, q}) \subseteq ©L^*(f(M_{p, q})) \subseteq p·©L(M_{p, q}). $$
-			Tedy, protože $p < q$, tak $©L(M_{p, q}) = 0$.
+			$$ q·\lambda(M_{p, q}) ≤ \lambda^*(f(M_{p, q})) ≤ p·\lambda(M_{p, q}). $$
+			Tedy, protože $p < q$, tak $\lambda(M_{p, q}) = 0$.
 
-			Tvrdíme, že pro množinu $M$ bodů nediferencovatelnosti platí $M = \bigcup_{p, q \in Q, p < q} M_{p, q}$ $\implies$, tedy spočetné sjednocení nulových množin, tudíž $M$ je nulová: „$\supseteq$“: $x \in M_{p, q}, p < q \implies \underline{D}f(x) < \overline{D}f(x) \implies \nexists D f(x)$. „$\subseteq$“: Nechť $x \in M \implies \nexists D f(x) \implies \underline{D} f(x) < \overline{D}f(x)$.
+			Tvrdíme, že pro množinu $M$ bodů nediferencovatelnosti platí $M = \bigcup_{p, q \in Q, p < q} M_{p, q}$, tedy spočetné sjednocení nulových množin, tudíž $M$ je nulová: „$\supseteq$“: $x \in M_{p, q}, p < q \implies \underline{D}f(x) < \overline{D}f(x) \implies \nexists D f(x)$. „$\subseteq$“: Nechť $x \in M \implies \nexists D f(x) \implies \underline{D} f(x) < \overline{D}f(x)$.
 		\end{dukazin}
 	\end{veta}
 
@@ -354,7 +354,7 @@
 	\end{definice}
 
 	\begin{definice}[Konečná variace]
-		Řekneme, že funkce $f$ ma na intervalu $[a, b] \subset ®R$ konečnou variaci, jestliže $V(f, a, b) < ∞$. Množinu všech funkcí s konečnou variací značíme $BV([a, b])$.
+		Řekneme, že funkce $f$ má na intervalu $[a, b] \subset ®R$ konečnou variaci, jestliže $V(f, a, b) < ∞$. Množinu všech funkcí s konečnou variací značíme $BV([a, b])$.
 	\end{definice}
 
 	\begin{poznamka}
@@ -362,7 +362,8 @@
 
 		\begin{itemize}
 			\item je-li $f$ neklesající na $[a, b]$, pak $V(f, a, b) = V^+(f, a, b) = f(b) - f(a)$;
-			\item $|V(f, a, b)| ≥ |f(a) - f(b)|$.
+			\item $V(f, a, b) ≥ |f(a) - f(b)|$;
+			\item pro $a < c < b$ platí $V(f, a, b) = V(f, a, c) + V(f, c, b)$.
 		\end{itemize}
 	\end{poznamka}
 
@@ -370,7 +371,7 @@
 		Nechť $[a, b] \subset ®R$ a nechť $f: [a, b] \rightarrow ®R$.
 
 		\begin{itemize}
-			\item Má-li $f$ konečnou variaci na $[a, b]$, pak $V_f(x) = V_k^+ + V_f^-(x)$ a $f(x) - f(a) = V_f^+(x) - V_f^-(x)$.
+			\item Má-li $f$ konečnou variaci na $[a, b]$, pak $V_f(x) = V_k^+(x) + V_f^-(x)$ a $f(x) - f(a) = V_f^+(x) - V_f^-(x)$.
 			\item $f \subset BV(a, b)$ právě tehdy, když existují neklesající funkce $u, v: [a, b] \rightarrow ®R$ tak, že $f = v - u$.
 		\end{itemize}
 
@@ -411,7 +412,7 @@
 	\end{definice}
 
 	\begin{poznamka}
-		$f \in Lip([a, b]) \implies f \in AC([a, b]) \implies f \in BC([a, b]) \cap C([a, b])$ a žádnou implikaci nelze obrátit.
+		$f \in Lip([a, b]) \implies f \in AC([a, b]) \implies f \in BV([a, b]) \cap C([a, b])$ a žádnou implikaci nelze obrátit.
 
 		$AC([a, b])$ je lineární prostor.
 
@@ -463,8 +464,21 @@
 		Nechť $f, g \in AC([a, b])$. Potom
 		$$ \int_a^b f' g = [f g]_a^b - \int_a^b f g'. $$
 
-		\begin{dukazin}
-			TODO!!!
+		\begin{dukazin} % Z poznámek spolužáků
+			Nejprve dokážeme, že pokud jsou $f$ a $g$ absolutně spojité funkce, pak i $f g$ je absolutně spojitá. Nechť $\epsilon > 0$. Jelikož $f, g \in AC([a, b])$, tak existuje $\delta > 0$ tak, že $\forall (a_i, b_i) \subset [a, b]$ disjunktní platí:
+			$$ \sum_{i=1}^n (b_i - a_i) < \delta \implies \sum_{i=1}^n |f(b_i) - f(a_i)| < \epsilon \land \sum_{i=1}^n |g(b_i) - g(a_i)| < \epsilon. $$
+
+			Dále $f$ a $g$ jsou spojité na uzavřeném intervalu $[a, b]$, a tedy existuje $M > 0$ tak, že $|f| ≤ M$ a $|g| ≤ M$. Tedy:
+			$$ \sum_{i=1}^n |f(b_i)g(b_i) - f(a_i)g(a_i)| = \sum_{i=1}^n |f(b_i)g(b_i) - f(a_i)g(a_i) + f(b_i)g(a_i) - f(b_i)g(a_i)| ≤ $$
+			$$ ≤ \sum_{i=1}^n |f(b_i)g(b_i) - f(b_i)g(a_i)| + \sum_{i=1}^n |f(b_i)g(a_i) - f(a_i)g(a_i)| ≤ $$
+			$$ ≤ \sum_{i=1}^n M·|g(b_i) - g(a_i)| + \sum_{i=1}^n M·|f(b_i) - f(a_i)| ≤ 2M\epsilon. $$
+
+			Nyní si uvědomme, že jelikož je $F = f g$ absolutně spojitá, tak podle věty o integrálu derivace absolutně spojité funkce platí: $\int_a^b F'(x) dx = F(b) - F(a)$.
+
+			Jelikož $f$ a $g$ jsou absolutně spojité, tak existují jejich derivace skoro všude. Dále:
+			$$ F'(x) = (f(x)g(x))' = \underbrace{f'(x)}_{\in L^1([a, b])} · \underbrace{g(x)}_{\in ©C([a, b])} + \underbrace{f(x)}_{\in ©C([a, b])} · \underbrace{g'(x)}_{\in L^1([a, b])} \in L^1([a, b]). $$
+			$$ F(b) - F(a) = f(b)g(b) - f(a)g(a) = \int_a^bF'(x) dx = \int_a^b f'(x)g(x) + f(x)g'(x) dx. $$
+			Jelikož jsou integrály konečné, lze je z linearity rozdělit a dostáváme dokazovanou rovnost.
 		\end{dukazin}
 	\end{veta}
 
@@ -488,8 +502,17 @@
 		$$ a_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \cos(k·x) dx, \qquad k \in ®N_0, $$
 		$$ b_k = \frac{1}{\pi} \int_0^{2\pi} f(x) \sin(k·x) dx, \qquad k \in ®N. $$
 
-		\begin{dukazin}
-			TODO!!!
+		\begin{dukazin} % Podle poznámek spolužáků
+			Řada stejnoměrně konverguje k $f$ a $a_k \cos(k·x)$ a $b_k \sin(k·x)$ jsou spojité funkce, tedy $f$ je spojitá funkce. Spojitá funkce na uzavřeném intervalu (kompaktu) je omezená, tedy existuje $M$ tak, že $|f(x)| ≤ M\ \forall x \in [0, 2 \pi]$. Dále existuje $j_0 \in ®N$ tak, že $\forall j ≥ j_0$ platí:
+			$$ \left|\frac{a_0}{2} + \sum_{k=1}^j (a_k \cos(k·x) + b_k \sin(k·x))\right| ≤ M + 1. $$
+			Dále pro $n \in ®N_0$ máme:
+			$$ \(\frac{a_0}{2} + \sum_{k=1}^j (a_k \cos(k·x) + b_k \sin(k·x))\)\cos(n·x) \rightrightarrows f(x)\cos(n·x). $$
+			Navíc $|(M + 1)\cos(n·x)| ≤ M + 1$, tedy podle Lebesgueovy věty s majorantou $M + 1$ dostaneme
+			$$ \lim_{j \rightarrow ∞} \int_0^{2 \pi} \(\frac{a_0}{2} + \sum_{k=1}^j (a_k \cos(k·x) + b_k \sin(k·x))\)\cos(n·x) dx = \int_0^{2\pi} f(x) \cos(n·x) dx. $$
+			Pro $j > n$ máme
+			$$ \int_0^{2\pi}\(\frac{a_0}{2} + \sum_{k=1}^j (a_k \cos(k·x) + b_k \sin(k·x))\)\cos(n·x) = \int_0^{2\pi} a_n \cos^2(n·x) = a_n \pi. $$
+
+			Tedy vzorec pro $a_n$ platí. Pro $b_n$ je důkaz obdobný.
 		\end{dukazin}
 	\end{veta}
 
@@ -510,10 +533,6 @@
 
 		Navíc platí tzv. Parsevalova rovnost
 		$$ \int_0^{2\pi} |f(x)|^2 dx = \pi \frac{a_0^2}{2} + \pi \sum_{k=1}^∞ (a_k^2 + b_k^2). $$
-
-		\begin{dukazin}
-			TODO!!!
-		\end{dukazin}
 	\end{dusledek}
 
 % 12. 04. 2022
@@ -582,7 +601,7 @@
 	\end{definice}
 
 	\begin{veta}[Diniovo kritérium]
-		Nechť $f \in P_{2\pi}$ a $x \in ®R$. Nechť existují vlastní limity $f(x+)$ a $f(x-)$ a nechť existují limity
+		Nechť $f \in P_{2\pi}$ a $x \in ®R$. Nechť existují vlastní limity $f(x+)$ a $f(x-)$ a nechť existují vlastní
 		$$ \lim_{t \rightarrow 0+} \frac{f(x + t) - f(x+)}{t}, \qquad \lim_{t \rightarrow 0+} \frac{f(x - t) - f(x-)}{t}. $$
 		Potom řada $S_f$ konverguje v $x$ a platí $S_f(x) = \frac{f(x+) + f(x-)}{2}$. Speciálně má-li $f$ konečné jednostranné derivace v $x$, pak $S_f(x) = f(x)$.
 
@@ -594,7 +613,7 @@
 		\end{dukazin}
 	\end{veta}
 
-	\begin{veta}[Jordan-Dirichletovo kritérium]
+	\begin{veta}[Jordanovo-Dirichletovo kritérium]
 		Nechť $f \in P_{2\pi}$ a nechť $f \in BV([0, 2\pi])$. Potom
 		
 		\begin{itemize}
@@ -605,7 +624,7 @@
 
 	\subsection{Stejnoměrná konvergence -- Fejérova věta}
 	\begin{definice}[Konvergence v Cesarově smyslu]
-		Nechť $\{a_n\}_{n=1}^∞$ je posloupnost reálných čísel. Řekneme, že $a_n$ konverguje k $a \in ®R$ v Cesarově [Čézarově] smyslu, pokud $\sigma_n = \frac{a_0 + … + a_n}{n + 1} \rightarrow a$.
+		Nechť $\{a_n\}_{n=0}^∞$ je posloupnost reálných čísel. Řekneme, že $a_n$ konverguje k $a \in ®R$ v Cesarově [Čézarově] smyslu, pokud $\sigma_n = \frac{a_0 + … + a_n}{n + 1} \rightarrow a$.
 	\end{definice}
 
 	\begin{definice}[Fejérovo jádro]
@@ -613,7 +632,7 @@
 
 		\begin{poznamkain}
 			$K_n$ je sudá, $2\pi$-periodická a $K_n(0) = \frac{n+1}{2}$. Platí $\int_{-\pi}^\pi K_n(x) = \pi$.
-			$$ K_n (x) = \frac{1}{2(n+1)} \(\frac{\sin((n + 1)\frac{x}{2})}{\sin \frac{x}{2}}\)^2, \qquad x \in ®R, \lambda ≠ 2k\pi, k \in ®Z. (\text{To se ukáže indukcí.}) $$
+			$$ K_n (x) = \frac{1}{2(n+1)} \(\frac{\sin((n + 1)\frac{x}{2})}{\sin \frac{x}{2}}\)^2, \quad x \in ®R, \lambda ≠ 2k\pi, k \in ®Z. \quad (\text{To se ukáže indukcí.}) $$
 		\end{poznamkain}
 	\end{definice}
 
@@ -642,8 +661,8 @@
 			$$ s_n f(x) - s = \frac{1}{\pi} \int_0^\pi (f(x + t) + f(x - t) - 2s) K_n(t) dt = \frac{1}{\pi} \(\int_0^\delta + \int_\delta^\pi\). $$
 
 			K $\epsilon > 0\ \exists \delta > 0\ \forall t \in (0, \delta): |f(x + t) + f(x - t) - (f(x+) + f(x-))| < \epsilon$.
-			$$ |\frac{1}{\pi} \int_0^\pi| ≤ \frac{1}{\pi} \int_0^\delta \epsilon · |K_n(t)| dt ≤ \frac{1}{\pi} \int_0^\pi \epsilon · K_n(t) dt = \frac{\epsilon}{2}. $$
-			$$ |\frac{1}{\pi} \int_\delta^\pi| ≤ \frac{1}{\pi} \int_0^\pi | f(x + t) + f(x - t) - (f(x+) + f(x-))| dt · \frac{1}{2(n+1)}·\frac{1}{\sin^2 \frac{\delta}{2}} \rightarrow 0. $$
+			$$ \left|\frac{1}{\pi} \int_0^\delta\right| ≤ \frac{1}{\pi} \int_0^\delta \epsilon · |K_n(t)| dt ≤ \frac{1}{\pi} \int_0^\pi \epsilon · K_n(t) dt = \frac{\epsilon}{2}. $$
+			$$ \left|\frac{1}{\pi} \int_\delta^\pi\right| ≤ \frac{1}{\pi} \int_0^\pi | f(x + t) + f(x - t) - (f(x+) + f(x-))| dt · \frac{1}{2(n+1)}·\frac{1}{\sin^2 \frac{\delta}{2}} \rightarrow 0. $$
 		\end{dukazin}
 
 		\begin{dukazin}[2. bod]
@@ -653,11 +672,11 @@
 			$$ |f(x + t) + f(x - t) - 2f(x)| ≤ |f(x + t) - f(x)| + |f(x - t) - f(x)| < 2\epsilon. $$
 
 			Analogicky prvnímu bodu:
-			$$ |\sigma_n f(x) - f(x)| = |\frac{1}{\pi} \(\int_0^\delta + \int_\delta^\pi\)(f(x + t) + f(x - t) - 2f(x))·K_n(t)dt|. $$
-			$$ |\frac{1}{\pi} \int_0^\delta| ≤ \frac{1}{\pi} \int_0^\delta 2\epsilon · K_n(t) dt ≤ \epsilon, $$
-			$$ |\frac{1}{\pi} \int_\delta^\pi| ≤ \frac{1}{\pi} \int_\delta^\pi |f(x + t) + f(x - t) + 2f(x)|dt \frac{1}{2(n+1)} \frac{1}{\sin^2 \frac{\delta}{2}} ≤ $$
+			$$ |\sigma_n f(x) - f(x)| = \left|\frac{1}{\pi} \(\int_0^\delta + \int_\delta^\pi\)(f(x + t) + f(x - t) - 2f(x))·K_n(t)dt\right|. $$
+			$$ \left|\frac{1}{\pi} \int_0^\delta\right| ≤ \frac{1}{\pi} \int_0^\delta 2\epsilon · K_n(t) dt ≤ \epsilon, $$
+			$$ \left|\frac{1}{\pi} \int_\delta^\pi\right| ≤ \frac{1}{\pi} \int_\delta^\pi |f(x + t) + f(x - t) + 2f(x)|dt \frac{1}{2(n+1)} \frac{1}{\sin^2 \frac{\delta}{2}} ≤ $$
 			$$ ≤ \frac{1}{\pi} \int_0^{2\pi} |f(x + t)| + |f(x - t)| + 2M dt · \frac{1}{2(n + 1)} \frac{1}{\sin \frac{\delta}{2}} ≤ $$
-			$$ ≤ \frac{1}{\pi} (2\int_0^{2\pi} |f(t)|dt + 2\pi 2M)· \frac{1}{2(n + 1)} \frac{1}{\sin \frac{\delta}{2}} \rightarrow 0 $$
+			$$ ≤ \frac{1}{\pi} \(2\int_0^{2\pi} |f(t)|dt + 2\pi 2M\) · \frac{1}{2(n + 1)} \frac{1}{\sin \frac{\delta}{2}} \rightarrow 0 $$
 			($f$ je spojitá na $[c, d] \implies |f(x)| ≤ M$.)
 		\end{dukazin}
 	\end{veta}
@@ -676,10 +695,10 @@
 		Nechť $f \in C([a, b])$ a $\epsilon > 0$. Potom existuje polynom $P$ tak, že $||f - P||_{C([a, b])} < \epsilon$.
 
 		\begin{dukazin}[Šel by udělat přes komplexní čísla, ale zde je důkaz bez nich.]
-			Z Taylorovy věty víme, že $\forall [c, d]\ \forall \epsilon > 0\ \exists$ polynomy $P, Q: |\sin x - P(x)| < \epsilon$ a $|\cos x - Q(x)| < \epsilon$ na $[c, d]$. BÚNO $[a, b] = [0, 2\pi]$ a $f$ je periodická.
+			Z Taylorovy věty víme, že $\forall [c, d]\ \forall \epsilon > 0\ \exists$polynomy $P, Q: |\sin x - P(x)| < \epsilon$ a $|\cos x - Q(x)| < \epsilon$ na $[c, d]$. BÚNO $[a, b] = [0, 2\pi]$ a $f$ je periodická.
 
 			Z předchozí věty nalezneme trigonometrický polynom, že $||f - T|| < \epsilon$. Nyní $T = a_0 + \sum_{k=1}^n a_k \cos kx + b_k \sin k x$. Nalezneme polynomy $P_k$ a $Q_k$, aby $|\cos k x - P_k| < \frac{\epsilon}{2^k}·\frac{1}{|a_k| + 1}$, $|\sin k x - Q_k| < \frac{\epsilon}{2^k}·\frac{1}{|b_k| + 1}$. Položme $P = a_0 + \sum_{k=1}^n a_k·P_k + b_k·Q_k$. $P$ je polynom.
-			$$ ||P - f|| ≤ ||f - T|| + ||T - P|| < \epsilon + ||\sum_{k=1}^n a_k·(\cos k x - P_k) + b_k(\sin k x - Q_k)|| < $$
+			$$ ||P - f|| ≤ ||f - T|| + ||T - P|| < \epsilon + \left|\left|\sum_{k=1}^n a_k·(\cos k x - P_k) + b_k(\sin k x - Q_k)\right|\right| < $$
 			$$ < \epsilon + \sum_{k=1}^n |a_k|·\frac{\epsilon}{2^k}·\frac{1}{|a_k| + 1} + |b_k|·\frac{\epsilon}{2^k}·\frac{1}{|b_k| + 1} < 3·\epsilon $$
 		\end{dukazin}
 	\end{dusledek}
@@ -688,9 +707,9 @@
 		Nechť $f, g \in P_{2\pi}$ mají stejné Fourierovy koeficienty. Potom $f = g$ skoro všude.
 
 		\begin{dukazin}
-			Funkce $f - g$ má nulové Fourierovy koeficienty. Tedy
+			Funkce $f - g$ má nulové Fourierovy koeficienty. BÚNO $f ≠ 0$, $g = 0$. Tedy
 			$$ \int_0^{2 \pi} f(x) \cos n x dx = 0 \quad \land \quad \int_0^{2\pi} f(x) \sin n x dx = 0, \qquad \forall n \in ®N_0. $$
-			BÚNO $f ≠ 0$, $g = 0$. Označme $©T := \{\phi \in L^∞ (0, 2\pi) | \int_0^{2\pi} f(x) · \phi(x) dx = 0\}$.
+			Označme $©T := \{\phi \in L^∞ (0, 2\pi) | \int_0^{2\pi} f(x) · \phi(x) dx = 0\}$.
 
 			1. ©T je zřejmě lineární prostor. 2. Nechť $\phi_n \in ©T$, $\phi_n \rightarrow \phi$ skoro všude a $||\phi_n||_∞ ≤ K\ \forall n$. Pak $\phi \in ©T$ z Lebesgueovy věty. 3. Trigonometrické polynomy $\subset ©T$, neboť $\cos n x \in ©T$, $\sin n x \in ©T$ a použijeme jedničku. 4. Nechť $\phi$ je spojitá, $\phi(0) = \phi(2\pi) = 0$. Podle předchozí věty existuje trigonometrický polynom $T_n \rightrightarrows \phi$. Tedy $\phi \in ©T$ z druhého bodu. 5. $[a, b] \subset (0, 2\pi)$, pak $\chi_{(a, b)} \in ©T$, jelikož k ní konvergují „lichoběžníky“. 6. $G \subset [0, 2\pi]$ otevřená, potom $\chi_G \in ©T$, neboť $G = \bigcup_{i=1}^∞ (a_i, b_i)$ a $\sum_{i=1}^k \chi_{(a_i, b_i)} \rightarrow \chi_G$ skoro všude a sumy jsou stejně omezené $K = 1$. 7. $E \subset (0, 2\pi)$ měřitelná, pak $\chi_E \in ©T$, neboť pro každé $n$ existuje $G_n$ otevřená, že $E \subset G_n \land |G_n \setminus E| < \frac{1}{2^n}$ (z TMI).
 
@@ -717,9 +736,9 @@
 \section{Fourierova transformace}
 \begin{definice}[Fourierova transformace, inverzní Fourierova transformace]
 	Nechť $f \in ©L^1(®R)$. Pak Fourierova transformace je definována jako
-	$$ \hat{f}(\omega) = \frac{1}{\sqrt{2 \omega}}·\int_{-∞}^{+∞} f(x) e^{-i \omega x}dx. $$
+	$$ \hat{f}(\omega) = \frac{1}{\sqrt{2 \pi}}·\int_{-∞}^{+∞} f(x) e^{-i \omega x}dx. $$
 	A inverzní Fourierova transformace $f$ je definována jako
-	$$ \check f (\omega) = \frac{1}{\sqrt{2\pi}} · \int_{-∞}^{-∞} f(x) e^{i \omega x} dx. $$
+	$$ \check f (\omega) = \frac{1}{\sqrt{2\pi}} · \int_{+∞}^{-∞} f(x) e^{i \omega x} dx. $$
 \end{definice}
 
 \begin{poznamka}
@@ -760,13 +779,13 @@
 	$$ \widehat{f'}(\omega) = i·\omega·\hat{f}(\omega). $$
 
 	\begin{dukazin}
-		$$ \widehat{f'}(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{-∞}^∞ f'(x)·e^{-i\omega x} \overset{per partes}= 0 - \frac{1}{\sqrt{2\pi}} \int_{-∞}^{∞} -i\omega e^{-i \omega x} · f(x) dx = i\omega \hat{f}(\omega). $$
+		$$ \widehat{f'}(\omega) = \frac{1}{\sqrt{2 \pi}}\int_{-∞}^∞ f'(x)·e^{-i\omega x} \overset{\text{per partes}}= 0 - \frac{1}{\sqrt{2\pi}} \int_{-∞}^{∞} -i\omega e^{-i \omega x} · f(x) dx = i\omega \hat{f}(\omega). $$
 	\end{dukazin}
 \end{veta}
 
 % 10. 05. 2022
 
-\section{Souvislé a obloukově souvislé množiny metrické prostory}
+\section{Souvislé a obloukově souvislé množiny a metrické prostory}
 \begin{definice}[Obojetná množina]
 	Nechť $(P, \rho)$ je metrický prostor. Řekneme, že $A \subset P$ je obojetná (clopen), jestliže je zároveň otevřená a uzavřená.
 \end{definice}
@@ -801,7 +820,7 @@
 	\begin{itemize}
 		\item Nechť $(Q, \tau)$ je metrický prostor a $f: P \rightarrow Q$ je spojité. Nechť $A \subset P$ je souvislá množina, pak $f(A)$ je souvislá v $Q$.
 		\item Nechť $A \subset P$ je souvislá a $A \subset B \subset \overline{A}$. Pak $B$ je souvislá, speciálně $\overline{A}$ je souvislá.
-		\item Nechť $I ≠ \O$ a $\{A_\alpha\}_{\alpha \in I}$ jsou souvislé množiny v $(P, \rho)$. Nechť každé dvě množiny $A_\alpha a A_\beta$, $\alpha, \beta \in I$ jsou disjunktní. Pak $A = \bigcup_{\alpha \in I} A_\alpha$ je souvislá.
+		\item Nechť $I ≠ \O$ a $\{A_\alpha\}_{\alpha \in I}$ jsou souvislé množiny v $(P, \rho)$. Nechť každé dvě množiny $A_\alpha$ a $A_\beta$, $\alpha, \beta \in I$ nejsou disjunktní. Pak $A = \bigcup_{\alpha \in I} A_\alpha$ je souvislá.
 	\end{itemize}
 
 	\begin{dukazin}
@@ -846,7 +865,7 @@
 \begin{definice}[Křivková souvislost]
 	Řekneme, že metrický prostor $(P, \rho)$ je křivkově souvislý, jestliže pro každé $x, y \in P$ existuje spojité zobrazení $\gamma: [0, 1] \rightarrow (P, \rho)$ takové, že $\gamma(0) = x$ a $\gamma(1) = y$.
 
-	Řekneme, že $A \subset P$ je křivkově souvislý, jestliže je metrický prostor $(A, \rho)$ křivkově souvislý.
+	Řekneme, že $A \subset P$ je křivkově souvislá, jestliže je metrický prostor $(A, \rho)$ křivkově souvislý.
 \end{definice}
 
 \begin{veta}[Souvislost souvislosti a křivkové souvislosti]
