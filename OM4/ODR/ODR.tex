@@ -6,10 +6,6 @@
 \begin{document}
 
 % 17. 02. 2022
-\section*{Organizační úvod}
-\begin{poznamka}
-\end{poznamka}
-
 \section{Úvod}
 \begin{definice}[Diferenciální rovnice]
 	Diferenciální rovnice je rovnice, která obsahuje derivaci.
@@ -41,7 +37,8 @@
 		První dvě podmínky jsou jen existenční podmínky k rovnici ve třetím bodě.
 	\end{poznamkain}
 
-	Typicky má DR nekonečně mnoho řešení, přidáváme proto počáteční podmínku $(x_0, t_0) \in \Omega$, $t_0 \in I$.
+	Typicky má DR nekonečně mnoho řešení, přidáváme proto počáteční podmínku
+	$$ (x_0, t_0) \in \Omega, \qquad t_0 \in I. $$
 \end{definice}
 
 \begin{lemma}
@@ -55,31 +52,30 @@
 	\begin{dukazin}
 		„$\implies$“: $x$ a $f$ je spojitá, tedy $x' = f(x(t), t)$ je spojitá, tj. $x \in C^1(I) \implies \int_{t_0}^t x'(s) ds = x(t) - x(t_0)$.
 
-		„$\impliedby$“: jelikož $f$ i $s$ je spojitá, tak integral je diferencovatelný a $x(t)$ je spojitá, tedy
+		„$\impliedby$“: jelikož $f$ i $x$ je spojitá, tak integral je diferencovatelný a $x(t)$ je spojitá, tedy
 		$$ x'(t) = 0 + f(x(t), t) \land x(t_0) = t_0 + 0. $$
 	\end{dukazin}
 \end{lemma}
 
 \begin{veta}[Peanova věta o lokální existenci]
-	Nechť $\Omega \subset ®R^{n + 1}$ otevřená, $f: \Omega \rightarrow ®R^n$ spojitá a $(x_0, t_0) \in \Omega$. Potom $\exists$ $\delta > 0$ a funkce $x: B(t_0, \delta) \rightarrow ®R^n$ taková, která je řešení DR a splňuje počáteční podmínku. (Stačí spojitá $f$ a kompaktní $\Omega$.)
+	Nechť $\Omega \subset ®R^{n + 1}$ otevřená, $f: \Omega \rightarrow ®R^n$ spojitá a $(x_0, t_0) \in \Omega$. Potom $\exists\delta > 0$ a funkce $x: B(t_0, \delta) \rightarrow ®R^n$ taková, která je řešení DR a splňuje počáteční podmínku. (Stačí spojitá $f$ a kompaktní $\Omega$.)
 
 	\begin{tvrzeni}[Pomocné tvrzení]
-		Pokud $\Omega = ®R^{n+1}$ a $f$ je omezená na $\Omega$, pak $\forall T$ existuje řešení DR $x$ na $[t_0 - T, t_0 + T]$ splňující počáteční podmínku.
+		Pokud $\Omega = ®R^{n+1}$ a $f$ je omezená na $\Omega$, pak $\forall T$ existuje řešení DR $x$ na $[t_0 - T, t_0 + T]$ splňující $x(t) = x_0$ pro $x \in [t_0 - T, t_0]$ a $x(t) = x_0 + \int_{t_0}^t f(x(s - \lambda), s) ds$ jinak.
 
 		\begin{dukazin}
 			Když $x_{\lambda}$ je definována na $[t_0 - \lambda, t]$, pak pravá strana má smysl $\forall t \in [t_0, t_0 + \lambda]$ tím pádem pravá strana integrálního tvaru má smysl $\forall t \in [t_0, t + \lambda]$, tím pádem definujeme $x_{\lambda}$ na $[t_0 - \lambda, t_0 + \lambda]$.
-
-			Nyní definujme $M := \{x_n|_{[t_0, t_0 + T]}\}_{n=1}^∞$ a ověříme, že $M$ splňuje podmínky Arzela-Ascoliho věty:
-			$$ |x_\lambda(t)| ≤ |x_0| + \int_{t_0}^t |f(x_\lambda(s - \lambda))| ds ≤ |x_0| + ||f||_∞ · |t - t_0| ≤ |x_0| + ||f||_a · T, $$
-			$$ |x_{\lambda}(t) - x_{\lambda}(\tau)| = \left|\int_\tau^t f(x_\lambda(s - \lambda), s) ds\right| ≤ ||f||_∞·|t - \tau|. $$
-			Podle AA věty tedy existuje podposloupnost $M$, která konverguje stejnoměrně. Limitu si označme $x$, podposloupnost $x_{n_k}$.
-
-			Chceme dokázat, že $x$ je řešení DR: TODO!!!
-			$$ \lambda_k := \frac{1?}{n_k} $$
 		\end{dukazin}
 	\end{tvrzeni}
 
 	\begin{dukazin}
+		Nyní definujme $M := \{x_n|_{[t_0, t_0 + T]}\}_{n=1}^∞$ a ověříme, že $M$ splňuje podmínky Arzela-Ascoliho věty:
+		$$ |x_\lambda(t)| ≤ |x_0| + \int_{t_0}^t |f(x_\lambda(s - \lambda))| ds ≤ |x_0| + ||f||_∞ · |t - t_0| ≤ |x_0| + ||f||_a · T, $$
+		$$ |x_{\lambda}(t) - x_{\lambda}(\tau)| = \left|\int_\tau^t f(x_\lambda(s - \lambda), s) ds\right| ≤ ||f||_∞·|t - \tau|. $$
+		Podle AA věty tedy existuje podposloupnost $M$, která konverguje stejnoměrně. Limitu si označme $x$, podposloupnost $x_{n_k}$.
+
+		Chceme dokázat, že $x$ je řešení DR:
+		$$ \lambda_k := \frac{1}{n_k}, \qquad x_{n_k}(t) = x_0 + \int_{t_0}^{t} f(x_{n_k}(s - \lambda_k), s) ds \rightarrow \int_{t_0}^t f(x(s), s) ds. $$
 %
 % 24. 02. 2022
 %
@@ -89,6 +85,10 @@
 		$$ \tilde{f} (x, t) = \begin{cases}f(x, t)·\phi(x, t), & (x, t) \in \Omega \\ 0, & (x, t) \in ®R^{n+1} \setminus \Omega.\end{cases} $$
 
 		Dle prvního kroku (TODO?) $\exists \tilde{x}(t)$, $t \in [t_0 - T, t_0 + T]$, $\tilde{x}'(t) = \tilde{f}(\tilde{x}(t), t)$, $\tilde{x}(t_0) = x_0$. $\tilde{x}$ je spojitá funkce $\implies \exists \delta > 0$ tak, že graf funkce $\tilde{x}|_{[t_0 - \delta, t_0 + \delta]}$ leží v $K_1$. Na $K$ je $\tilde{f} = f$, tedy $\tilde{x}'(t) = f(\tilde{x}(t), t)$, $t \in [t_0 - \delta, t_0 + \delta]$.
+	\end{dukazin}
+
+	\begin{dukazin}[Vzhledem k rozbitosti předchozího důkazu tu nanačím myšlenku:]
+		Definujeme si $x_\lambda$ z pomocného tvrzení. Pak ověříme, že splňují podmínky AA, tedy z posloupnosti $x_{\frac{1}{n}}$ můžeme vybrat konvergující podposloupnost. O její limitě pak epsilon delta gymnastikou ověříme, že splňuje integrální formu DR.
 	\end{dukazin}
 \end{veta}
 
@@ -143,8 +143,8 @@
 	Pokud $\frac{\partial f}{\partial x_j}$ jsou spojité v $\Omega$, $j \in [n]$, pak $f$ je lokálně lipschitzovská v $\Omega$ vzhledem k $x$.
 
 	\begin{dukazin}
-		$$ h(s) := f(x + s(y - x), t), s \in [0, 1], h(0) = f(x, t), h(1) = f(y, t). $$
-		$$ h(1) - h(0) = \int_0^1 h'(s) ds = \int_0^1 \sum_{i=1}^n \frac{\partial f}{\partial x_i} (x + ? - ?)·(y_j - x_j)ds $$
+		$$ h(s) := f(x + s(y - x), t), s \in [0, 1], h(0) = f(x, t), h(1) = f(y, t). $$
+		$$ h(1) - h(0) = \int_0^1 h'(s) ds = \int_0^1 \sum_{i=1}^n \frac{\partial f}{\partial x_i} (x + s(y - x), t)·(y_j - x_j)ds $$
 		$$ \forall (x_0, t_0) \in \Omega\ \exists ©U(x_0)\ \exists ©U(t_0) M = \overline{©U(x_0)} \times \overline{©U(t_0)} \subset \Omega, $$
 		$M$ je kompaktní, tedy $\exists K > 0\ \forall (x, t) \in M: \left|\frac{\partial f}{\partial x_i}(x)\right| ≤ K$. Tedy
 		$$ |h(1) - h(0)| ≤ \int_0^1 \sum_{i=1}^n \left| \frac{\partial f}{\partial x_i}\right|·|(x + s(y - x))|·|y_i - x_i| ds ≤ n K·\max|y_i - x_i| ≤ n K |x - y|. $$
@@ -208,7 +208,7 @@
 	Buď $f$ v $\Omega$ lokálně Lipschitzovská vzhledem k $x_0$. Řešící funkcí (DR) nazveme funkci $\phi: G \subset ®R^{n+2} \rightarrow ®R^n: (t, t_0, x_0) \mapsto x(t)$, kde $x$ je maximální řešení odpovídající DR s počáteční podmínkou $x(t_0) = x_0$.
 \end{definice}
 
-\begin{veta}[Granwallovo Lemma]
+\begin{veta}[Grönwallovo Lemma]
 	Nechť $g, w: I \subset ®R \rightarrow ®R_+$, $g(t), w(t) ≥ 0$, $\forall t \in I_0$. Nechť $t_0 \in I, K ≥ 0$ a $\forall t \in I: w(t) ≤ K + \left| \int_{t_0}^t w(s) g(s) ds\right|$. Potom
 	$$ w(t) ≤ K·\exp\(\left|\int_{t_0}^t g(s) ds\right|\). $$
 
@@ -230,51 +230,54 @@
 		$$ x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad y(t) = y_0 + \int_{t_0}^t f(y(s), s) ds, $$
 		$$ x(t) - y(t) = x_0 - y_0 + \int_{t_0}^t (f(x(t), t) - f(y(s), s)) ds, $$
 		$$ |x(t) - y(t)| ≤ |x_0 - y_0| + \left|\int_{t_0}^t L·(x(s) - y(s)) ds\right|, $$
-		Z Granwallova lemmatu potom $|x(t) - y(t)| ≤ |x_0 - y_0|·\exp(L·|t - t_0|)$.
+		Z Grönwallova lemmatu potom $|x(t) - y(t)| ≤ |x_0 - y_0|·\exp(L·|t - t_0|)$.
 	\end{dukazin}
 \end{dusledek}
 
 \begin{veta}
-	Buď $G$ množina z definice řešící funkce, $f$ lokálně lipschitzovská na $G$. Pak $G \subset ®R^{n+2}$ otevřená a $\phi$ je spojitá v $G$.
+	Buď $G$ množina z definice řešicí funkce, $f$ lokálně lipschitzovská na $G$. Pak $G \subset ®R^{n+2}$ otevřená a $\phi$ je spojitá v $G$.
 
 	\begin{dukazin}
 		Vezmeme $(t, t_0, x_0) \in G$. Buď $x$ maximální řešení DR s počáteční podmínkou $x(t_0) = x_0$. $©D_x \supset [t_0, t]$. BÚNO $t > t_0$.
 		$$ K_\delta := \{(y, s) \in ®R^{n+1} | s \in [t_0 - \delta, t + \delta], |y - x(s)| ≤ \delta\}. $$
 		Vezmeme $\epsilon > 0$. Vezmeme $y_0 \in ®R^n, s_0 \in ®R$, $|y_0 - x_0| < \epsilon$, $|t_0 - s_0| < \epsilon$. Definujeme $y$ maximální řešení splňující $y(s_0) = y_0$. Co znamená, že $(\tilde{t}, s_0, y_0) \in G$? $©D_y \supset[s_0, \tilde{t}]$. Potřebujeme dokázat, že $y$ je definováno na $K_\delta$. Odhadneme
-		$$ |y(s_0) - x(s_0)| ≤ |y(s_0) - x(t_0)| + |x(t_0) - x(s_0)| = |y_0 - x_0| + |x(t_0) - x(s_0)| ≤ \epsilon + x_0 |t_0 - s_0| ≤ \epsilon·(1 + c_0) $$
+		$$ |y(s_0) - x(s_0)| ≤ |y(s_0) - x(t_0)| + |x(t_0) - x(s_0)| = |y_0 - x_0| + |x(t_0) - x(s_0)| ≤ \epsilon + x_0 |t_0 - s_0| ≤ $$
+		$$ ≤ \epsilon·(1 + c_0) $$
 		$$ s ≥ t_0: |x(s) - y(s)| ≤ |x(s_0) - y(s_0)| e^{L|s - s_0|} ≤ \epsilon (1 + c_0) e^{L·|s - s_0|}. $$
 		Máme, že $\forall s > t_0: |x(s) - y(s)| ≤ \frac{\delta}{2}$, tedy $y$ neopustí $K_\delta$ přes hranici $\implies$ $y$ existuje až do času $t + \delta_0$, tj. $G$ je otevřená.
 
 		Nyní „$\Phi$ je spojitá“: $(t, t_0, x_0), (s, s_0, y_0) \in G$:
-		$$ |\phi(t, t_0, x_0) - \phi(s, s_0, y_0)| = |x(t) - y(s)| ≤ |x(t) - x(s)| + |x(s) - y(s)| ≤ c_0|t - s| + |x(s_0) - y(s_0)|e^{L·|s - s_0|} ≤ TODO $$
+		$$ |\phi(t, t_0, x_0) - \phi(s, s_0, y_0)| = |x(t) - y(s)| ≤ |x(t) - x(s)| + |x(s) - y(s)| ≤ $$
+		$$ ≤ c_0|t - s| + |x(s_0) - y(s_0)|e^{L·|s - s_0|} ≤ TODO $$
 	\end{dukazin}
 \end{veta}
 
 % 17. 03. 2022
 
-\begin{veta}[Věta o derivování řešení v počáteční podmínce?]
-	Buď $f$ je třídy $C^1$ vzhledem k $x$, $\phi$ je řešící funkce diferenciální rovnice. Potom $\forall (t, t_0, x_0) \in G$ a $\forall ¦w \in ®R^n, |w| = 1$, existuje derivace $\phi$ podle $x_0$ ve směru $w$ v bodě $(t, t_0, x_0)$, tj.
+\begin{veta}[Diferencovatelnost řešicí funkce]
+	Buď $f$ je třídy $C^1$ vzhledem k $x$, $\phi$ je řešicí funkce diferenciální rovnice. Potom $\forall (t, t_0, x_0) \in G$ a $\forall ¦w \in ®R^n, |w| = 1$, existuje derivace $\phi$ podle $x_0$ ve směru $w$ v bodě $(t, t_0, x_0)$, tj.
 	$$ D_w \phi(t, t_0, x_0) = \lim_{h \rightarrow 0} \frac{\phi(t, t_0, x_0 + hw) - \phi(t, t_0, x_0)}{h}. $$
-	Označíme-li pro pevné $(t_0, x_0)$: $x(t) := \phi(t, t_0, x_0)$, $u(t) := D_w \phi(t, t_0, x_0)$, pak platí
+	Označíme-li pro pevné $(t_0, x_0)$: $x(t) := \phi(t, t_0, x_0)$, $u(t) := D_{¦w} \phi(t, t_0, x_0)$, pak platí
 	$$ u'(t) = [\nabla_x f(x(t), t)]u(t), \qquad \text{(tzv. rovnice ve variacích)} $$
-	$$ u(t_0) = w. $$
+	$$ u(t_0) = ¦w. $$
 
 	\begin{dukazin}
-		Vezmeme $(x_0, t_0) \in \Omega$. Definujeme $x(t) := \phi(t, t_0, x_0)$, $y_h(t) := \phi(t, t_0, x_0 + h w)$. To znamená, že
-		$$ \eta_h(x) = \frac{\phi(t, t_0, x_0 + hw) - \phi(t, t_0, x_0)}{h} - u(t) = \frac{y_h(t) - x(t)}{h} - u(t). $$
-		$$ x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad y_h(t) = x_0 + h·w + \int_{t_0}^t f(y_h(s), s) ds. $$
-		$$ y_h(t) - x(t) = h·w + \int_{t_0}^t f(y_h(s), s) - f(x(s), s) ds. $$
+		Vezmeme $(x_0, t_0) \in \Omega$. Definujeme $x(t) := \phi(t, t_0, x_0)$, $y_h(t) := \phi(t, t_0, x_0 + h ¦w)$. To znamená, že
+		$$ \eta_h(x) = \frac{\phi(t, t_0, x_0 + h¦w) - \phi(t, t_0, x_0)}{h} - u(t) = \frac{y_h(t) - x(t)}{h} - u(t). $$
+		$$ x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad y_h(t) = x_0 + h·¦w + \int_{t_0}^t f(y_h(s), s) ds. $$
+		$$ y_h(t) - x(t) = h·¦w + \int_{t_0}^t f(y_h(s), s) - f(x(s), s) ds. $$
 		Pro nějaké $s, h$ $g(\theta) = f(x(s) + \theta(y_h(s) - x(s)), s)$, tedy $g(1) = f(y_h(s), s)$, $g(0) = f(x(s), s)$,
-		$$ y_h(t) - x(t) = h·w + \int_{t_0}^t g(1) - g(0) ds =  h·w + \int_{t_0}^t \int_0^1 g'(\theta) d\theta ds = $$
-		$$ = h·w + \int_{t_0}^t \int_0^1 \nabla_x f(x(u) + \theta(y_h(s) - x(s)), s)·(y_h(s) - x(s)) d\theta ds. $$
+		$$ y_h(t) - x(t) = h·¦w + \int_{t_0}^t g(1) - g(0) ds =  h·¦w + \int_{t_0}^t \int_0^1 g'(\theta) d\theta ds = $$
+		$$ = h·¦w + \int_{t_0}^t \int_0^1 \nabla_x f(x(u) + \theta(y_h(s) - x(s)), s)·(y_h(s) - x(s)) d\theta ds. $$
 
-		Buď $u(t)$ maximální řešení $u'(t) = [\nabla_x f(x(t), t)]u(t), u(t_0) = w$. Tj.
-		$$ u(t) = w + \int_{t_0}^t \nabla_x f(x(s), s) u(s) ds = w + \int_{t_0}^t \int_0^1 \nabla_x f(x(s), s) u(s) d\theta ds. $$
+		Buď $u(t)$ maximální řešení $u'(t) = [\nabla_x f(x(t), t)]u(t), u(t_0) = ¦w$. Tj.
+		$$ u(t) = ¦w + \int_{t_0}^t \nabla_x f(x(s), s) u(s) ds = ¦w + \int_{t_0}^t \int_0^1 \nabla_x f(x(s), s) u(s) d\theta ds. $$
 		Odečteme od předcházejícího a dostaneme
-		$$ \eta_h(x) = \int_{t_0}^t [\nabla_x f(x(s), s)]\eta_h(s) ds + \int_{t_0}^t \int_0^1 \[\nabla_x f(x(s) + \theta(y_h(s) - x(s))) - \nabla_x f(x(s), s)\](y_h(s) - x(s)) d\theta ds. $$
+		$$ \eta_h(x) = \int_{t_0}^t [\nabla_x f(x(s), s)]\eta_h(s) ds + $$
+		$$ + \int_{t_0}^t \int_0^1 \[\nabla_x f(x(s) + \theta(y_h(s) - x(s))) - \nabla_x f(x(s), s)\](y_h(s) - x(s)) d\theta ds. $$
 		$$ |\eta_h(t)| ≤ \int_{t_0}^t C·|\eta_h(s)| ds + \max_{\substack{s \in [t_0, t], \\ \theta \in [0, 1]}} |\nabla_x f(x(s) + \theta(y_n(s) - x(s)), s) - \nabla_x f(x(s), s)| · \int_{t_0}^t e^{L·s-t_0} ds. $$
 		Z důsledku předpředchozí věty
-		$$ |y_h(s) - x(s)| ≤ |y_h(t_0) - x(t_0)|e^{L·|s - t_0|} = |hw|e^{L·|s - t_0|} = |h|e^{L·|s - t_0|}. $$
+		$$ |y_h(s) - x(s)| ≤ |y_h(t_0) - x(t_0)|e^{L·|s - t_0|} = |h¦w|e^{L·|s - t_0|} = |h|e^{L·|s - t_0|}. $$
 		$$ |\eta_h(t)| ≤ K_h · C_2 + \int_{t_0}^t C·(\eta_h(s)) ds, $$
 		kde $K_h \rightarrow 0$. Z G. lemmatu pak plyne $|\eta_h(t) ≤ K_n·C_2·\exp[C·|t - t_0|]| \implies \lim_{h \rightarrow 0} \eta_h(t) = 0$.
 	\end{dukazin}
@@ -333,16 +336,16 @@
 
 \begin{veta}[Variace konstant]
 	Nechť $x' = A(t) x + b(t)$, $A: (\alpha, \beta) \rightarrow ®R^{n \times n}$, $b: (\alpha, \beta) \rightarrow ®R^n$ spojité, je LODR, $\Phi(t)$ fundamentální matice homogenní rovnice $x' = A(t) x$. Potom řešení LODR s počáteční podmínkou $x(t_0) = x_0$ ($t_0 \in (\alpha, \beta)$, $x_0 \in ®R^n$) je dáno předpisem
-	$$ x(t) = \Phi(t) \Phi^{-1}(t_0) x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s) f(s) ds. $$
+	$$ x(t) = \Phi(t) \Phi^{-1}(t_0) x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s) b(s) ds. $$
 
 	\begin{poznamkain}
-		Když budeme hledat řešení LODR ve tvaru $\phi(t)·C(t)$, dostaneme se k tomuto vzorci.
+		Když budeme hledat řešení LODR ve tvaru $\Phi(t)·C(t)$, dostaneme se k tomuto vzorci.
 	\end{poznamkain}
 
 	\begin{dukazin}
 		Zderivujeme a s použitím $\Phi'(t) = A(t)·\Phi(t)$:
-		$$ x'(t) = \Phi(t)·\Phi'(t_0)·x_0 + \Phi'(t)·\int_{t_0}^t \Phi^{-1}(s)·f(s) ds + \Phi(t)·\Phi^{-1}(t)·b(t) = $$
-		$$ = A(t)\(\Phi(t)\Phi^{-1}(t)x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s)·f(s) ds\) + b(t) = A(t)x + b(t). $$
+		$$ x'(t) = \Phi(t)·\Phi'(t_0)·x_0 + \Phi'(t)·\int_{t_0}^t \Phi^{-1}(s)·b(s) ds + \Phi(t)·\Phi^{-1}(t)·b(t) = $$
+		$$ = A(t)\(\Phi(t)\Phi^{-1}(t)x_0 + \Phi(t) \int_{t_0}^t \Phi^{-1}(s)·b(s) ds\) + b(t) = A(t)x + b(t). $$
 		
 		Navíc zjevně $x(t_0) = x_0$.
 	\end{dukazin}
@@ -383,7 +386,7 @@
 
 	\begin{dukazin}
 		Za prvé řada konverguje, neboť
-		$$ ||\frac{1}{k!}t^k A^k|| ≤ \frac{|t|^k}{k!} ||A||^k \land \sum_{k=0}^∞ \frac{|t|^k}{k!} ||A^k|| K. $$
+		$$ \left|\left|\frac{1}{k!}t^k A^k\right|\right| ≤ \frac{|t|^k}{k!} ||A||^k \land \sum_{k=0}^∞ \frac{|t|^k}{k!} ||A^k|| K. $$
 		
 		Za druhé $[U(t)]_{ij} = \sum_{k=0}^∞ \frac{1}{k!}t^k[A^k]_{ij}$ a poloměr konvergence je ∞, můžeme tedy derivovat člen po členu:
 		$$ \frac{d}{dt}[U(t)]_{ij} = … = A·U(t). $$
@@ -401,7 +404,7 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		Rozepsáním? TODO
+		TODO %(kdybych to někdy chtěl opravit, tak z fotky z 24. 3.)
 	\end{dukazin}
 \end{veta}
 
@@ -409,7 +412,7 @@
 
 \begin{veta}
 	$A \in ®R^{n \times m}$, $\Lambda$ je její Jordanův kanonický tvar, $A = C \Lambda C^{-1}$, a $(\lambda_1, …, \lambda_n)$ je diagonála $\Lambda$. Potom $e^{t A} = C e^{t \Lambda} C^{-1}$, kde:
-	$$ e^{t \Lambda} = \begin{pmatrix} e^{t \Lambda_1} & 0 & … \\ 0 & e^{t \Lambda_2} & 0 & … \\ 0 & 0 & e^{t \Lambda_3} & … \\ \vdots & \vdots & \vdots & \ddots \end{pmatrix} = \diag(e^{t \lambda_1}, …, e^{t \lambda_n}) · P(t), P_i(t) = \begin{pmatrix} 1 & t & \frac{t^2}{2} & \frac{t^{k-1}}{(k-1)!} \\ 0 & 1 & t & … & … \\ \vdots & \vdots & \vdots & \ddots & \vdots \end{pmatrix}. $$
+	$$ e^{t \Lambda} = \begin{pmatrix} e^{t \Lambda_1} & 0 & … \\ 0 & e^{t \Lambda_2} & 0 & … \\ 0 & 0 & e^{t \Lambda_3} & … \\ \vdots & \vdots & \vdots & \ddots \end{pmatrix} = \diag(e^{t \lambda_1}, …, e^{t \lambda_n}) · P(t), P_i(t) = \begin{pmatrix} 1 & t & \frac{t^2}{2} & \ldots & \frac{t^{k-1}}{(k-1)!} \\ 0 & 1 & t & … & … \\ \vdots & \vdots & \vdots & \ddots & \vdots \end{pmatrix}\hspace{-0.3em}. $$
 
 	\begin{dukazin}
 		Jednoduchý, byl na cvičení.
@@ -442,11 +445,6 @@
 	$$ \exists C > 0, \alpha > 0\ \forall x_0 \in V_-: |e^{tA} x_0| ≤ C e^{-\alpha t}|x_0|, \qquad \forall t ≥ 0. $$
 	$$ \exists C > 0, \beta > 0\ \forall x_0 \in V_+: |e^{tA} x_0| ≥ C e^{\beta t}|x_0|, \qquad \forall t ≥ 0. $$
 	$$ \forall \epsilon > 0\ \exists C > 0\ \forall x_0 \in V_0: |e^{tA} x_0| ≤ C e^{\epsilon t}|x_0|, \qquad \forall t ≥ 0. $$
-
-	\begin{dukazin}
-		$$ x_0 \in V_-: |e^{tA} x_0| = |C e^{t \Lambda} · C^{-1} x_0| ≤ ||C e^{t \Lambda}|_{V_0}|| ≤ ||C|| · ||e^{t \Lambda}|_{V^{-1}}||·||C^{-1}||·|x_0| ≤ d e^{-\alpha t} |x_0|. $$
-		TODO!!! (Příště?)
-	\end{dukazin}
 \end{veta}
 
 \section{Stabilita řešení}
@@ -475,7 +473,8 @@
 	TODO (další část jsem nechápal, pravděpodobně to byl důkaz implikace na předchozím řádku)
 
 	Z první rovnice:
-	$$ |e^{tA}x_0| ≤ ||V||·|e^{t J}(V^{-1} x_0)| = ||V||·\left|e^{t J}|_{X^-(J)}·(V^{-1}x_0)\right| ≤ ||V||·||e^{t J}|_{X^-(J)}||·|V^{-1}x_0| ≤ ||V|| · K·e^{-\alpha t}·||V^{-1}||·|x_0| = C·e^{- \alpha t}·|x_0|. $$
+	$$ |e^{tA}x_0| ≤ ||V||·|e^{t J}(V^{-1} x_0)| = ||V||·\left|e^{t J}|_{X^-(J)}·(V^{-1}x_0)\right| ≤ ||V||·||e^{t J}|_{X^-(J)}||·|V^{-1}x_0| ≤ $$
+	$$ ≤ ||V|| · K·e^{-\alpha t}·||V^{-1}||·|x_0| = C·e^{- \alpha t}·|x_0|. $$
 
 	Druhý bod: $x_0 \in X_+(A), e^{-A t} y_0 = x_0$. $||x_0|| = ||e^{-At} y_0|| ≤ e^{\beta t} C |y_0|$ podobně jako v prvním bodě. $y_0 = e^{At}x \in X_+(A)$, $t ≥ 0$.
 	
@@ -531,9 +530,34 @@
 
 % 21. 04. 2022
 
-TODO!!!
+\section{První integrál}
 
-\begin{definice}
+\begin{definice}[AR]
+	$$ x' = f(x), \qquad f \text{ spojitá lokálně lipschitzovská v otevřené množině } \Omega \subset ®R^n. $$
+\end{definice}
+
+\begin{definice}[První integrál]
+	Funkce $U: \Omega \rightarrow ®R$ nazveme 1. integrálem AR, jestliže $U$ není konstantní a funkce $t \mapsto U(x(t))$ je konstantní $\forall x$ řešení AR.
+\end{definice}
+
+\begin{veta}
+	$\Omega \subset ®R^n$ otevřená, $f: \Omega \rightarrow ®R^n$ spojitá, $U: \Omega \rightarrow ®R$ třídy $C^1$. Pak následující je ekvivalentní:
+	\begin{itemize}
+		\item $U$ je první integrál AR.
+		\item $\nabla U(\zeta) · f(\zeta) = 0\ \forall \zeta \in \Omega$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\impliedby$“: $x'(t) = f(x(t))$. Chceme dokázat, že $U(x(t))$ je konstantní.
+		$$ \frac{d}{dt} U(x(t)) = \nabla U(x(t))·x'(t) = \nabla U(x(t))·f(x(t)) = 0. $$
+
+		„$\implies$“: $\zeta \in \Omega$ pevné. Existuje řešení $x(t)$, že $x(0) = \zeta$. Tedy $U(x(t)) = U(x(0))$ a zderivováním
+		$$ 0 = \nabla U(x(t))·x'(t) = \nabla U(x(t))·f(x(t))\qquad \forall t $$
+		$$ \implies t = 0: \nabla U(x(0))·f(x(0)) = \nabla U(\zeta)·f(\zeta) = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[LN první integrály]
 	Ať $U_1, …, U_k$ jsou první integrály (AR). Řekneme, že jsou LN v bodě $x_0 \in \Omega$, pokud matice $\(\frac{\partial U_j}{\partial x_i}\)_{j \in [k], i \in [n]}$ má hodnost $k$.
 \end{definice}
 
@@ -589,9 +613,7 @@ TODO!!!
 
 % 28. 04. 2022
 
-TODO!!!
-
-\begin{dukazin}[Předpředchozí věty]
+\begin{dukaz}[Předpředchozí věty]
 	Chceme:
 	$$ \epsilon > 0\ \exists \delta > 0\ \forall x_0: |x_0| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0. $$
 	To stačí dokázat pouze pro $\epsilon > 0$, že $\overline{©U(0, \epsilon)} \subset \Omega$. $\omega$ na $\{\zeta: |\zeta| = \epsilon\}$ nabývá minima $d$, neboť je spojitá a to je kompaktní množina.
@@ -600,10 +622,10 @@ TODO!!!
 
 	Pro spor nechť $\exists t_2 > t_0: |x(t_2)| > \epsilon$ a volíme $\forall x_0: |x_0| < \delta: x(t_0) = x_0$ $\implies$ $\exists t_1: t_0 < t_1 < t_2: |x(t_1) = \epsilon|$.
 	$$ \alpha > V(t_0, x(t_0)) ≥ V(t_1, x(t_1)) ≥ \omega(x(t_1)) ≥ \alpha, \text{\lightning}. $$
-\end{dukazin}
+\end{dukaz}
 
 \begin{lemma}
-	Buď $\omega$ pozitivně definitní funkce na $\Omega$. $\{x_n\}_{n=1}^∞ \subset ©U(0, \epsilon)$, $\overline{U(0, \epsilon)} \subset \Omega$, $\omega(x_1) \rightarrow 0$. Pak $x_n \rightarrow 0$.
+	Buď $\omega$ pozitivně definitní funkce na $\Omega$. $\{x_n\}_{n=1}^∞ \subset ©U(0, \epsilon)$, $\overline{U(0, \epsilon)} \subset \Omega$, $\omega(x_n) \rightarrow 0$. Pak $x_n \rightarrow 0$.
 
 	\begin{dukazin}
 		$$ \forall \tilde \epsilon < \epsilon\ \exists N, x_n \subset U(0, \tilde \epsilon) $$
@@ -611,15 +633,16 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
-\begin{dukazin}
+\begin{dukaz}
 	$$ \exists \epsilon > 0\ \overline{©U(0, \epsilon)} \subset \Omega\ \exists \delta > 0, \delta < \epsilon\ \forall x_0: |x_0| < \delta \implies |x(t)| < \epsilon\ \forall t ≥ t_0. $$
-	Bereme $\forall x_0: |x_0| < \delta_0$. Stačí dokázat $x(t) \rightarrow 0$: 1. $V(t, x(t)) \searrow ≥ 0 \implies \exists \lim_{t \rightarrow +∞} V(t, x(t)) = a ≥ 0$. 2. integrujeme:
+	Bereme $\forall x_0: |x_0| < \delta_0$. Stačí dokázat „$x(t) \rightarrow 0$“:
+	$$ V(t, x(t)) \searrow C ≥ 0 \implies \exists \lim_{t \rightarrow +∞} V(t, x(t)) = a ≥ 0. $$
 	$$ \int_{t_0}^t \frac{d}{ds} V(s, x(s)) ds ≤ - \int_{t_0}^t \eta(x(s))ds, V(t, x(t)) + \int_{t_0}^t \eta(x(s))ds ≤ V(t_0, x(t_0)). $$
 	Tedy existuje $\int_{t_0}^∞ \eta(x(s)) ds < ∞$ $\implies$ $\exists \{t_k\}_{k=1}^∞ \nearrow$. $\eta(x(t_k)) \rightarrow 0, |x(t_k)| < \epsilon(sta?) \implies x(t_k) \rightarrow 0$.
 	$$ 3. V(t_k, x(t_k)) ≤ \lambda(x(t_k)) \land x(t_k) \rightarrow 0 \implies \lambda(x(t_k)) \rightarrow 0 \implies V(t_k, x(t_k)) \rightarrow 0 \implies a = 0. $$
 	4. $\omega(x(t)) ≤ V(t, x(t))$ $\forall t ≥ t_0$. Chceme důkaz, že $\lim_{t \rightarrow ∞} \omega(x(t)) = 0$. Berme libovolnou posloupnost $©F_k \nearrow +∞$. $\omega(x(\tilde t_k)) ≤ V(\tilde t_k, x(\tilde t)k)) \rightarrow 9$.
 	$$ \lim_{k \rightarrow ∞} \omega(x(\tilde t_k)) = 0 \land |x(\tilde t_k)| < \epsilon \implies x(\tilde t_k) \rightarrow 0 \implies \exists \lim_{t \rightarrow ∞} x(t) = 0. $$
-\end{dukazin}
+\end{dukaz}
 
 \begin{poznamka}[Zkouška]
 	Bude písemná část cca od devíti do půl jedenácté a pak bude od dvanácti.
@@ -631,7 +654,7 @@ TODO!!!
 	\begin{itemize}
 		\item 0 je uniformě asymptoticky stabilní;
 		\item $\forall \lambda \in \sigma(A): \Re \lambda < 0$;
-		\item $\exists \alpha, c > 0: ||e^{tA}|| ≤ c e^{-\alpha t} \forall t ≥ 0$;
+		\item $\exists \alpha, c > 0: ||e^{tA}|| ≤ c e^{-\alpha t}\ \forall t ≥ 0$;
 		\item $\exists$ symetrická pozitivně definitní $B$, že $A^TB + BA = -I$.
 	\end{itemize}
 
@@ -662,7 +685,17 @@ TODO!!!
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO!!!
+		„První bod“: $x(t_0) = x'(t_0) = 0$ $\implies$ $x(t) = 0\ \forall t \in I$.
+		
+		„Druhý bod“:
+		$$ y(t_0) = 0, x(t_0) = 0, x \not\equiv 0 \implies x'(t_0) ≠ 0 $$
+		$$ z(t) = \frac{y'(t_0)}{x'(t_0)}·x(t), t \in I_0. $$
+		$$ z(t_0) = 0, z'(t_0) = \frac{y'(t_0)}{x'(t_0)}·x'(t_0) = y'(t_0). $$
+		$$ z(t_0) = y(t_0), z'(t_0) = y'(t_0) \implies z(t) = y(t)\ \forall t \in I_0. $$
+
+		„Třetí bod“: $\exists t_0 \in (a, b)$, $\exists t_n \rightarrow t_0$, $x(t_n) = 0$.
+		$$ x'(t_0) = \lim_{t \rightarrow t_0} \frac{x(t) - x(t_0)}{t - t_0}, \text{ Heine } x'(t_0) = \lim_{n \rightarrow ∞} \frac{x(t_n) - x(t_0)}{t_n - t_0} = 0. $$
+		$$ x(t_n) = 0, x'(t_n) = 0 \implies x(t_0) = 0\ \forall t \in I_0. $$
 	\end{dukazin}
 \end{lemma}
 
@@ -674,8 +707,9 @@ TODO!!!
 	Rovnice z poznámky výše (kde $\exists b'$ spojitá) je převoditelná na tvar $y''(t) + q(t) y(t) = 0$, $q \in C(I)$.
 
 	\begin{dukazin}
-		$$ x''(t) + b_0(t) x'(t) + b_0(t)x(t) = 0, \qquad b_j = \frac{a_j}{a_0(t))}. $$
-		$$ x(t) = v(t)·y(t) \implies v(t)·y''(t) + y'(t)(2v'(t) + b_1(t)v(t)) + y(t)(\overbrace{v''(t) + b_1(t)v'(t) + b_0(t)v(t)}^q) = 0. $$
+		$$ x''(t) + b_1(t) x'(t) + b_2(t)x(t) = 0, \qquad b_j = \frac{a_j}{a_0(t))}. $$
+		$$ x(t) = v(t)·y(t) \implies $$
+		$$ \implies v(t)·y''(t) + y'(t)(2v'(t) + b_1(t)v(t)) + y(t)(\overbrace{v''(t) + b_1(t)v'(t) + b_0(t)v(t)}^q) = 0. $$
 		Chceme vynulovat člen u $y'(t)$, tedy hledáme $v$, aby
 		$$ \frac{v'(t)}{v(t)} = -\frac{b_1(t)}{2}, \qquad v(t) = \exp(-\frac{1}{2} \int^t b_1(s) ds). $$
 	\end{dukazin}
@@ -692,7 +726,8 @@ TODO!!!
 \end{lemma}
 
 \begin{veta}
-	$$ (p(t) x')' + q_1(t)x = 0, \quad (p(t) y')' + q_2(t)yt = 0 \qquad p, p', q_1, q_2 \text{ spojité v } I, p(t) > 0, q_2(t) ≥ q_1(t) \text{ na } I. $$
+	$$ (p(t) x')' + q_1(t)x = 0, \qquad (p(t) y')' + q_2(t)yt = 0 $$
+	$$ p, p', q_1, q_2 \text{ spojité v } I, p(t) > 0, q_2(t) ≥ q_1(t) \text{ na } I. $$
 	Buď $t_1, t_2 \in I$ sousední nulové body $x$, $t_1 < t_2$, potom buď
 	$$ \exists t_3 \in (t_1, t_2): y(t_3) = 0, $$
 	nebo
@@ -700,7 +735,7 @@ TODO!!!
 
 	\begin{dukazin}
 		$$ (p(t)x'(t))'y(t) - (p(t)y'(t))'x(t) = (q_2(t) - q_1(t))x(t)y(t) \qquad \int $$
-		$$ \int_{t_1}^{t_2}[…] = \int_{t_1}^{t_2}(q_2(t) - q_1(t)) x(t) y(t) dt \text{ per partes:} $$
+		$$ \int_{t_1}^{t_2}[…] = \int_{t_1}^{t_2}(q_2(t) - q_1(t)) x(t) y(t) dt \qquad\text{per partes:} $$
 		$$ \[p(t) x'(t) · y(t)\]_{t_1}^{t_2} - [p(t) · y'(t) x(t)]_{t_1}^{t_2} + \int_{t_1}^{t_2} 0 dt = \int_{t_1}^{t_2} x(t) y(t)(q_2(t) · q_1(t)) dt $$
 		$$ p(t_2)·x'(t_2)·y(t_2) - p(t_1) x'(t_1) y(t_1) = \int … $$
 
