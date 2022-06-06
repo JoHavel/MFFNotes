@@ -32,10 +32,14 @@
 % 04. 03. 2022
 
 \section{Barevné modely}
+\begin{definice}[Metamerism]
+	Více různých spekter vidíme jako stejnou barvu.
+\end{definice}
+
 \begin{definice}[Vnímání světla]
 	Vnímáme 1. jasnost (integrál přes viditelnou část spektra) a 2. barvu 3. „typy“ receptorů (který vnímá které délky jak moc bylo určeno experimentem, kdy se lidem ukazovala barva a člověk pak měl nastavit tři jiné tak, aby výsledná barva odpovídala).
 
-	K některým vlnovým délkám se nemůžeme v rgb dostat, neboť bychom museli mít jednu barvu zápornou. Proto existuje model CIE XYZ (CIE = mezinárodní cosi pro barvy?), kdy se vybrali 3 (nereálné) barvy, pomocí kterých už lze všechno složit. Když se tento model normalizuje: $x = \frac{X}{X + Y + Z}$ a tak dále, tak dostáváme tzv. chromatické souřadnice, speciálně při zapomenutí jedné (ta jde dopočítat) dostáváme chromatický diagram. Modelu CIE XYZ je tzv. referenční model.
+	K některým vlnovým délkám se nemůžeme v rgb dostat, neboť bychom museli mít jednu barvu zápornou. Proto existuje model CIE XYZ (CIE = mezinárodní komise pro barvy), kdy se vybrali 3 (nereálné) barvy, pomocí kterých už lze všechno složit. Když se tento model normalizuje: $x = \frac{X}{X + Y + Z}$ a tak dále, tak dostáváme tzv. chromatické souřadnice, speciálně při zapomenutí jedné (ta jde dopočítat) dostáváme chromatický diagram. Modelu CIE XYZ je tzv. referenční model.
 \end{definice}
 
 \begin{definice}[RGB, RGBa]
@@ -81,6 +85,10 @@
 
 % 09. 03. 2022
 
+\begin{poznamka}
+	Ještě se probírali palety, median cut (rozdělujeme barvy vždy mediánem, který (z 3 souřadnic) dá největší rozdíl)
+\end{poznamka}
+
 \begin{definice}[Matematická morfologie]
 	Nástroj na popis komponent obrazu, tvaru a struktury.
 
@@ -94,39 +102,325 @@
 \begin{definice}[Minkowského součet (dilatace)]
 	$$ A \oplus E := \bigcup_{e \in E} A_e = \bigcup_{e \in E} \{a + e | a \in A\}. $$
 
-	Zvětšuje množinu, vyplňuje díry a „zálivy“.
+	Zvětšuje množinu, vyplňuje díry a „zálivy“. Spojuje.
 \end{definice}
 
 \begin{definice}[Eroze]
-	TODO!!!
+	$$ A \ominus E := \bigcap_{e \in E} A_{-e} = \bigcap_{e \in E} \{a - e | a \in A\} = \{x | E_x \subseteq A\}. $$
 
-	Zmenšuje množinu, odstraňuje „šum“ a výběžky.
+	Zmenšuje množinu, odstraňuje „šum“ a výběžky. Rozděluje.
 \end{definice}
 
 \begin{definice}[Otevření]
 	$$ A \circ E := (A \ominus E) \oplus E = \bigcup \{E_s| E_s \subset A\}. $$
+
+	(Dolní odhad množiny. Ořezává výstupky, ale „nezmenšuje“. Dvojnásobné aplikování se stejným prvkem nic nezmění.)
 \end{definice}
 
 \begin{definice}[Uzavření]
 	$$ A · E = (A \oplus E) \ominus E = \bigcup\{\hat{E_x} | \hat{E_x} \cap A = \O\}. $$
+
+	(Horní odhad množiny. Vyplňuje, ale „nezvětšuje“. Dvojnásobné aplikování se stejným prvkem nic nezmění.)
 \end{definice}
 
-TODO vlastnosti.
+TODO vlastnosti (jako +, - a něco málo navíc, viz prezentace).
+
+\begin{definice}[Zrcadlení]
+	$$ \hat{E} = -E = \{e | -e \in E\}. $$
+\end{definice}
 
 \begin{definice}[Hit-and-Miss]
 	$$ A \otimes E = (A \ominus E_1) \setminus (A \oplus \hat{E}_2). $$
 
-	Např. detekce rohů.
+	Např. detekce rohů. Funguje tak, že jednu strukturu to musí „hitnout“ a druhou „missnout“.
 \end{definice}
 
-TODO operace na šedotónovém obrazu.
+\begin{definice}[Šedotónový obraz, nosič]
+	$$ X = \{a; f_X(a) | a \in E^{n-1}, f_X(a) \in R \cup \{∞\} \cup \{-∞\}\}, $$
+	tedy $n$-dimenzionální graf (souřadnice + jas).
+
+	$$ \supp(X) = \{E^{n-1}, f(a) \in R\}. $$
+
+	Obraz je podmnožinou jiného, když nosič je podmnožinou a na něm jsou v podobrazu menší hodnoty.
+\end{definice}
+
+\begin{definice}
+	Dilatace je maximum součtu obrazu a strukturálního prvku.
+
+	Eroze je minimum rozdílu (pozor, při předchozí erozi jsme brali zrcadlený prvek, teď se používá tak, jak je.)
+
+	Otevření a uzavření jsou definované za pomoci dilatace a eroze, takže není rozdíl v definici.
+\end{definice}
 
 % 16. 03. 2022
 
-TODO Další operace
+\begin{definice}[Rekurzivní eroze]
+	Postupná aplikace eroze jednoho prvku (v nekonečnu bude vše odstraněno).
+\end{definice}
 
-TODO Metriky?
+\begin{definice}[Rekurzivní dilatace]
+	Postupná aplikace dilatace jednoho prvku (v nekonečnu bude vše přidáno).
+\end{definice}
 
+\begin{definice}[Ultimátní eroze]
+	Rekurzivní eroze až do 1 bodu.
+\end{definice}
 
+\begin{definice}[Geodetická vzdálenost]
+	Nejkratší délka cesty mezi body procházející objektem.
+\end{definice}
+
+\begin{definice}[Geodetická dilatace a eroze]
+	Podmiňujeme operace množinou a na ní geodetickou vzdáleností.
+\end{definice}
+
+\begin{definice}[Geodetický vplyv]
+	Rekurzivní geodetická dilatace. Rozdělí množinu.
+\end{definice}
+
+\begin{definice}[Distance transform]
+	Operátor aplikovaný na binární obrázky. Dá nám úroveň šedé podle vzdálenosti k nejbližšímu okraji.
+\end{definice}
+
+\begin{definice}
+	Následně se probírali metriky: Euklidovská, Manhattanská, Šachovnicová (maximová). Odpovídají svým kruhům (= strukturální prvek).
+\end{definice}
+
+\begin{poznamka}
+	Rekurzivní eroze lze udělat pomocí distance transform. Dilatace je pozadu. (Efektivní implementace operací velkým prvkem.)
+\end{poznamka}
+
+\begin{definice}[Zúžení]
+	$$ A \oslash B = A - (A \otimes B). $$
+	
+	Existuje i sekvenční zužování, kde se zužuje posloupností strukturálních prvků (vždy na výsledek). (Např. při hledání aproximace kostry.)
+\end{definice}
+
+\begin{definice}[Rozšíření]
+	$$ A \odot B = A \cup (A \otimes B). $$
+\end{definice}
+
+\begin{definice}[Kostra]
+	Zachovává topologii. Redukuje počet bodů.
+
+	Formálně jsou to středy vepsaných kružnic s alespoň 2 dotyku s objektem.
+
+	Lze ji vytvořit postupným zužováním, nebo lokálními maximy v distance transform.
+\end{definice}
+
+\begin{definice}[Hranice]
+	Bod je na hranici, když alespoň jeden z jeho sousedů nepatří do oblasti.
+
+	Lze ji najít pomocí dilatace a eroze (standardní = $Edge_s(F) = (F \oplus K) - (F \ominus K)$, externí = $Edge_E(F) = (F \oplus K) - F$ a interní = $Edge_I(F) = F - (F \ominus K)$).
+\end{definice}
+
+\begin{definice}[Gradient]
+	$$ grad(F) = (A \oplus B) - (A \ominus B) $$
+	na šedotónový obraz. (Hledání hran.)
+\end{definice}
+
+\begin{definice}[Top-hat transformace]
+	Nástroj na segmentaci (výběr světlých/tmavých objektů z nekonstantního pozadí)
+
+	White = $A - (A \circ B)$, black = $(A \cdot B) - A$.
+
+	Opravdu vlastně nechává jen „čepičky“ intenzity.
+\end{definice}
+
+\begin{poznamka}
+	Ještě se probíral convex hull a ořezávání, ale to už je jen správné použití operací.
+\end{poznamka}
+
+% 23. 03. 2022
+
+\section{Segmentace obrázku}
+\begin{definice}[Segmentace]
+	Hlavním cílem je identifikovat (rozdělením na komponenty) oblasti objektů (úplná segmentace) nebo oblasti nějaké podobné vlastnosti (částečná segmentace).
+
+	4. skupiny: metody založené na prahování, na hranicích, na oblastech a ostatní metody.
+\end{definice}
+
+\begin{definice}[Nadsegmentace, podsegmentace]
+	Nadsegmentace je, když rozdělíme obraz na více segmentů, podsegmentovaný je, když rozdělíme na méně segmentů.
+\end{definice}
+
+\begin{definice}[Prahování]
+	Globální = jeden práh pro celý obrázek, lokální = každé okno má vlastní práh, adaptivní (= dynamické) = pro každý pixel použijeme nějak spočítaný práh (průměr, medián, průměr maxima a minima, standardní odchylka, atd.)
+\end{definice}
+
+\begin{definice}[Hranice]
+	Často se hledá gradientem, ale tomu vadí šum. Takže se opravdu vezme gradient, ten se odprahuje a použije se relaxace hran.
+\end{definice}
+
+\begin{definice}[Relaxace (optimalizace) hran]
+	Slabá hrana mezi spojující silné hrany se posiluje a opačně
+\end{definice}
+
+\begin{definice}[Heuristické hledání]
+	Hledáme hrany průchodem grafu, který tvoříme podle nalezených částí hran, spojujeme ty, co se mění o 0 nebo o 45 stupňů (ne o 90).
+\end{definice}
+
+\begin{definice}[Houghova transformace]
+	Používá se tehdy, když se mají detekovat objekty s analyticky známým průběhem hranice (odhaduje parametry této křivky).
+\end{definice}
+
+\begin{definice}[Oblast]
+	Oblasti hledáme shlukováním (hierarchické = tvoříme hierarchii zespodu nebo shora, nehierarchické = rovnou se rozdělí například růstem oblastí kolem jader a pak spojováním nebo dělením, nebo se rozdělí nějakým algoritmem jako K-means).
+\end{definice}
+
+% 30. 03. 2022
+
+\begin{definice}[Mean-shift]
+	Shlukuje body pomocí konvergence do lokálních maxim hustoty. Nepotřebuje parametr K. Pro každý bod jdeme po „gradientu hustoty“ (přiložíme nějaké okno a spočítáme těžiště). Body, které došly do stejného bodu pak shlukneme.
+
+	Pro optimalizaci si můžeme pamatovat, kterými body jsme prošli (ty pak jdou také tam, kam jsme došli). Nebo můžeme nejprve udělat K-means a pak na clusterech pustit mean-shift.
+\end{definice}
+
+\begin{poznamka}
+	Další metody je template matching, segmentace na principu povodí (představíme si intenzitu jako výšku a pustíme na ni „déšť“ nebo postupně zvyšujeme hladinu, můžeme také vodu vypouštět ze značek (zárodků) získaných jiným algoritmem).
+\end{poznamka}
+
+\begin{definice}[Hledání objektů]
+	Můžeme použít různou míru podobnosti (korelace, korelace s nulovým průměrem, sumu čtvercových vzdáleností, normovanou korelovanost).
+
+	Na různě velké objekty můžeme buď měnit velikost obrázku nebo šablony. To je ale výpočetně náročné.
+\end{definice}
+
+\begin{definice}[Škálování, gaussovská pyramida, laplaceovská pyramida]
+	Při zahazování sloupců a řádků (nebo jiného vzorku) bychom mohli trefit např jen černá pole na šachovnici. Proto se používá škálování s rozostřením (gaussovská pyramida).
+
+	Místo uložení jednotlivých vrstev můžeme uložit jen jejich chyby (vysoké frekvence) = tzv. laplaceovská pyramida.
+\end{definice}
+
+\begin{definice}[Prostorové prohledávání]
+	Vyrobíme gaussovské pyramidy jak obrázku tak šablony a prohledáme nejprve nejmenší šablonou nejmenší obrázek a pak můžeme pro podezřelé body pokračovat do vyšších stupňů.
+\end{definice}
+
+\begin{poznamka}
+	Laplaceovská pyramida se dá použít na kombinování obrázků (provedeme jejich laplaceovské pyramidy a spojíme je, pak zrekonstruujeme původní obrázek).
+\end{poznamka}
+
+% 06. 04. 2022
+
+\subsection{Lokální příznaky}
+\begin{definice}[Lokální příznaky]
+	1) Detekce: Najdeme zajímavé body.
+
+	2) Deskripce: Vytvoříme vektory popisující okolí těchto bodů.
+
+	3) Párování: Hledáme korespondenci mezi příznaky (body).
+\end{definice}
+
+\begin{definice}[Detekce]
+	Naivní: všechny, náhodné, rovnoměrně rozmístěné.
+
+	Detektory: Harris corners, SUSAN, SIFT, SURF, FAST.
+\end{definice}
+
+\begin{poznamka}
+	Aby byly body použitelné, tak musí splňovat invariantnost: geometrickou (otočení, škálování, někdy afinní transformace a výjimečně projektivní), fotometrické (škálování intenzity = násobení konstantou a přičítání konstanty)
+\end{poznamka}
+
+\begin{poznamka}[LoG]
+	K vyhlazování se používá Gausián $G(x, y, \sigma) = \frac{1}{2\pi \sigma^2}e^{-\frac{x^2 + y^2}{2\sigma^2}}$, který se k obrázku přidá konvolucí. Když chceme druhou derivaci, tak vzhledem k vlastnostem konvoluce stačí udělat konvoluci původního signálu (intenzity) s druhou derivací Gausiánu, tzv. Laplacián Gausiánu (LoG)
+	$$ \nabla^2 G = \frac{\partial^2 G}{\partial x^2} + \frac{\partial^2 G}{\partial y^2} = \frac{1}{\sigma}\cdot \frac{\partial G}{\partial \sigma} \approx \frac{G(k\sigma) - G(\sigma)}{(k - 1) \sigma^2}. $$
+	$$ (k - 1)\nabla^2_{norm} G := (k - 1) \sigma^2 \nabla^2 G = G(k\sigma) - G(\sigma), $$
+	kde $\nabla^2_{norm} G$ je normalizovaný LoG.
+
+	$$ \nabla^2_{norm} G * I \approx G(k\sigma)*I - G(\sigma)*I $$
+	dává lepší výsledky (lépe hledá skvrny) než obyčejný LoG.
+\end{poznamka}
+
+\begin{definice}[Moravcův a Harrisův detektor rohů]
+	Vezmeme nějaký filtr (např. Gaussián) a rohovitost udá jako nejmenší hodnotu toho, jak se liší o jedna posunutý (postupně všemi 8 směry) filtr.
+
+	Vylepšený tzv. Harrisův detektor pak používá Taylora, aby se posunul všemi ($∞$) směry (počítá vlastní čísla matice součinů dvou derivací).
+
+	Vlastní čísla nahrazujeme výrazem v $\det$ a $\trace$, protože se lépe počítají. Například $R = \det - \alpha \trace^2$ (dále se používá nejmenší vlastní číslo, $\lambda_{min} - \alpha \lambda_{max}$ nebo $\frac{\det}{\trace}$).
+
+	Tyto detektory mají problém se škálováním.
+\end{definice}
+
+\begin{definice}[Detektor SUSAN]
+	Vezme okno a porovná jeho body s intenzitou centra (nucleus). Vyznačí oblast okna, kde mají body podobnou intenzitu (USAN). A najdeme místo, kde je těchto podobných bodů nejméně (\emph{S}USAN).
+
+	Podobný je FAST, který ale zkoumá body jen na okraji (kružnici).
+\end{definice}
+
+\begin{definice}[SIFT]
+	Hledá zajímavé body v DoG prostoru. Vyrobí Gaussovu pyramidu, kde každou vrstvu rozostří několika různými gausiány (tzv. oktáva). Extrém pak hledá ve 3 směrech (dva v obrázku, třetí v oktávě). Ještě se odstraní málo kontrastní body a hrany (totéž jako Harrisův, jen matice je druhých derivací místo součinu dvou derivací).
+
+	SIFT je patentovaný, tedy není volně dostupný. Proto se používá SURF, který pracuje podobně (místo derivací používá integrální obrazy = 2D prefixové součty).
+\end{definice}
+
+\begin{definice}[HOG deskriptor (Histogram of oriented gradients)]
+	Spočítáme gradienty v každém bodě, provedeme histogram v každé $8\times 8$ buňce, znormalizujeme přes $16\times 16$ bloků.
+
+	Toto využívá SIFT deskriptor.
+\end{definice}
+
+\begin{definice}[BRIEF deskriptor]
+	Deskriptor, který porovnává intenzitu dvojic pixelů v okolí zajímavých bodů. Není použitelný při otočení.
+\end{definice}
+
+% 13. 04. 2022
+
+\begin{definice}[Párování deskriptorů]
+	Můžeme například párovat k nejbližšímu (co do deskripce, ne polohy) bodu. Můžeme se dívat i rozdíl mezi prvním a druhým nejbližším a odstranit ty deskriptory, kde je rozdíl moc malý. (Dává se podíl rozdílu k prvnímu a k druhému je menší než 80 \%.)
+\end{definice}
+
+\begin{definice}[RANSAC = RANdom SAmple Consensus]
+	Iterativní metoda na určení parametrů matematického modelu z množiny naměřených bodů (které obsahují vzdálené body). (Vezmeme několikrát náhodný vzorek, na ten pak najdeme nejlepší model, u toho spočítáme kolik původních dat mu odpovídá a ze všech takových modelů pak zvolíme ten s největším množstvím podporovatelů.)
+\end{definice}
+
+\begin{definice}[Bag of visual words (BOVW)]
+	Rozkrájím objekt na výrazné kousky a porovnávám tyto kousky (oči, nos, …).
+\end{definice}
+
+% 20. 04. 2022
+
+\begin{poznamka}
+	Probíralo se strojové učení (ADA boost, PCA, …)
+\end{poznamka}
+
+% 27. 04. 2022
+
+\begin{poznamka}
+	Probírala se „lidská pozornost“.
+\end{poznamka}
+
+% 04. 5. 2022
+
+\section{Pohyb, sledování objektů}
+\begin{definice}[Pohybové pole]
+	Viděli jsme na přednášce pohyb proti stěně, rotační pohyb kolmo na stěnu, pohyb při stěně a pohyb kolem blízké překážky při stěně.
+\end{definice}
+
+\begin{poznamka}
+	Vždy můžeme měřit pouze optický tok. Takže objekt se ve skutečnosti nemusí měnit. A můžeme mít např. problém clony (nevidíme, co se děje mimo scénu)
+\end{poznamka}
+
+\begin{poznamka}[Předpoklady]
+	Optické vlastnosti předmětů se nemění (nejlépe intenzita sledovaného bodu se nemění).
+
+	Body se nehýbou příliš daleko.
+
+	Body se pohybují spolu.
+\end{poznamka}
+
+TODO (detekce pohybu)!!!
+
+% 11. 5. 2022 Sportovní den
+
+% 18. 5. 2022
+
+\subsection{CBIR (content-based image retrieval)}
+\begin{definice}[Text-based]
+	Hledání na základě textu. Není jasné, jaký text by se měl používat (můžeme například dát kategorie).
+
+	Obrázky se dají anotovat ručně, z metadat, …
+\end{definice}
+
+TODO!!!
 
 \end{document}
