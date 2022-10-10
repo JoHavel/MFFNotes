@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 03. 10. 2022
+\section*{Úvod}
+\begin{poznamka}[Organizační úvod]
+	K ukončení předmětu je třeba pouze udělat zkoušku: 2 příklady na definice, 2 věta-důkaz.
+
+	Literatura:
+	\begin{itemize}
+		\item L.C. Evans, R.F. Gariepy, Measure Theory and Fine Properties of Functions, CRC Press, Boca Raton, 1992.
+		\item W. Rudin, Analýza v reálném a komplexním oboru, Academia, 2003.
+	\end{itemize}
+\end{poznamka}
+
+\section{Differentiation of measures}
+\subsection{Covering theorems}
+
+\begin{definice}[Vitali cover]
+	Let $A \subset ®R^n$ we say that a system ©V consisting of closed balls from $®R^n$ forms Vitali cover of $A$, if
+	$$ \forall x \in A\ \forall \epsilon > 0 \exists B \in ©V: x \in B \land \diam B < \epsilon. $$
+\end{definice}
+
+\begin{definice}[Notation]
+	$\lambda_n$ is Lebesgue measure on $®R^n$. $\lambda_n^*$ is outer Lebesgue measure on $®R^n$. If $B \subset ®R^n$ is a ball and $\alpha > 0$, then $\alpha · B$ stands for the ball, which is concentric with B and with $\alpha$-times greater radius than $B$.
+\end{definice}
+
+\begin{veta}[Vitali]
+	Let $A \subset ®R^n$ and ©V be a system of closed balls forming a Vitali cover of $A$. Then there exists a countable disjoint subsystem $©A \subseteq ©V$ such that $\lambda_n(A \setminus \bigcup ©A) = 0$.
+
+	\begin{dukazin}
+		First assume that A is bounded. Take an open bounded set $G \subset ®R^n$ with $A \subset G$. We set
+		$$ ©V^* = \{B \in ©V | V \subset G\}. $$
+		Then $©V^*$ is a Vitali cover of $A$. If there exists a finite disjoint subsystem of $©V^*$ covering $A$, we are done. So Assume that there is no such subsystem. Mathematical induction:
+
+		First step: We set $s_1 = \sup\{\diam B | B \in ©V^*\}$. We choose a ball $B_1 \in ©V^*$ such that $B_1 > \frac{1}{2} s_1$.
+
+		$k$-th step: Suppose that we have already constructed balls $B_1, B_2, …, B_{k-1}$. We set
+		$$ s_k = \sup\{\diam B | B \in ©V^* \land B \cap \bigcup_{i=1}^{k-1} B_i = \O\}. $$
+		We find $B_k \in ©V^*$ such that $\diam B_k > \frac{1}{2} s_k > 0$, $B_k \cap \bigcup_{i=1}^{k-1} B_i = \O$.
+
+		Let $©A = \{B_k | k \in ®N\}$. It is disjoint, it is countable, it holds $\lambda_n(A \setminus \bigcup ©A) = 0$:
+
+		$$ \sum_{i=1}^∞ \lambda_n (B_i) = \lambda_n(\bigcup_{i=1}^∞ B_i) ≤ \lambda_n(G) < ∞ \implies $$
+		$$ \implies \lim_{i \rightarrow ∞} = 0 \implies \lim_{i \rightarrow ∞} \diam(B_i) = 0 \implies \lim_{i \rightarrow ∞} s_i = 0. $$
+		We show that
+		$$ \forall x \in A \setminus \bigcup ©A\ \forall i \in ®N \exists j \in ®N, j > i: x \in 5 · B_j $$
+		$$ \Leftrightarrow A \setminus \bigcup ©A \subseteq \bigcup_{j = i + 1}^∞ 5·B_j $$
+		Take $x \in A \setminus \bigcup ©A$ and $i \in ®N$. Denote $\delta = \dist(x, \bigcup_{k=1}^i B_k) > 0$. There exists $B \in ©V^*$ such that $x \in B$ and $\diam B < \delta$ $\implies$ $B \cap \bigcup_{k=1}^i B_k = \O$. Then we have $\diam B > s_p$ for some $p \in ®N$.
+
+		Therefore there exists $j > i$ with $B_j \cap B ≠ \O$. Let $j$ be the smallest number with this property. Then we have $s_j ≥ \diam B$ since $B \cap \bigcup_{l=1}^{j-1} B_l = \O$. Further we have $\diam B_j > \frac{1}{2} s_j ≥ \frac{1}{2} \diam B$ $\implies 2 \diam B_j ≥ \diam B$ This implies that $x \in B \subset 5·B_j$.
+
+		$$ \lambda_n^*(A \setminus \bigcup A) ≤ \lambda_n \(\bigcup_{j=i+1}^∞ 5·B_j\) ≤ \sum_{j=i+1}^∞ \lambda_n (5·B_j) = \sum_{j=i+1}^∞ 5^n \lambda_n(B_j) = 5^n · \sum_{j = i+1}^∞ \lambda_n(B_j) \rightarrow 0 \implies \lambda_n(A \setminus \bigcup ©A) = 0. $$
+
+		
+		General case ($A$ not bounded): Let $(G_j)_{j=1}^∞$ be a sequence of disjoint open sets such that $\lambda_n(®R^n \setminus \bigcup_{j=1}^∞ G_j) = 0$. We define $©V_j = \{B \in ©V_i, B \subseteq G_j\}$. $©V_j$ is a Vitali cover of $A \cap G_j$ $\implies \exists ©A_j \subseteq ©V_j$ countable disjoint and $\lambda_n(A \cap G_j \setminus \bigcup A_j) = 0$. We set $©A = \bigcup_{j=1}^∞ ©A_j$. $©A$ is countable, disjoint and $\lambda_n(A \setminus \bigcup ©A) = 0$.
+	\end{dukazin}
+\end{veta}
+
+\end{document}

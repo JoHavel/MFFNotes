@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 05. 10. 2022
+\begin{poznamka}[Note of Me -- autor of notes]
+	Bad English in this text is my fault, not lecturer's one.
+\end{poznamka}
+
+\section*{Úvod}
+\begin{poznamka}
+	3 part exam: theorem -> proof; scientific paper -> understand + explain; therms + concepts -> explain
+
+	credits: homework (time demanding)
+
+	Microsoft teams
+\end{poznamka}
+
+\subsection{Matrix analysis / linear algebra}
+\begin{poznamka}
+	Scalar product: $¦u, ¦v \in ®R^3$: $¦u·¦v$, cross product: $¦u \times ¦v$, and more: $¦u = u^i ¦e_i$ $¦u·¦v = \delta_{ij}(u^i v^j)$, $(¦u \times ¦v)_i = \epsilon_{ijk}u_jv_k$ (where $\epsilon_{ijk}$, Levi-Civita symbol, does expecting thing).
+\end{poznamka}
+
+\begin{definice}[Tensor product]
+	$$ ¦u \otimes ¦v \qquad (¦u \otimes ¦v)¦w := ¦u(¦v·¦w) $$
+\end{definice}
+
+\begin{tvrzeni}[Identities for Levi-Civita symbol]
+	$$ \epsilon_{ijk}\epsilon_{lmn} = \det \begin{pmatrix} \delta_{il} & \delta_{im} & \delta_{in} \\ \delta_{jl} & \delta_{jm} & \delta_{jn} \\ \delta_{kl} & \delta_{km} & \delta_{kn} \end{pmatrix} $$
+	$$ \epsilon_{ijk}·\delta_{lm} = \epsilon_{jkm}·\delta_{il} + \epsilon_{klm}·\delta_{jl} + \epsilon_{ijm}·\delta_{kl} $$
+	$$ \epsilon_{ijk}\epsilon_{imn} = \delta_{jm} \delta_{km} - \delta_{jn} \delta_{km} $$
+	$$ \epsilon_{ijm}\epsilon_{ijn} = 2\delta_{mn} $$
+\end{tvrzeni}
+
+\begin{definice}[Transpose matrix]
+	$®A \in ®R^{3 \times 3}$, $®A^T$ is defined as $\forall ¦u, ¦v \in ®R^3: ®A^T ¦u · ¦v := ¦u·®A ¦v$.
+\end{definice}
+
+\begin{definice}[Trace of matrix]
+	$  ®A \in ®R^{3 \times 3}$, $\tr ®A$ is defined as $\tr (¦u \times ¦v) = ¦u·¦v$.
+\end{definice}
+
+\begin{poznamka}
+	Matrix, tensor and linear operator is the same.
+
+	$$ ®A = A_{ij} ¦e_i \otimes ¦e_j, \qquad ®A ¦v = (A_{ij} ¦e_i \otimes ¦e_j)(v_m¦e_m) = A_{ij} v_m ¦e_i(¦e_j · ¦e_m) = (A_{ij}v_j) ¦e_i. $$
+\end{poznamka}
+
+\begin{definice}[Axial vector]
+	$®A \in ®R^{3 \times 3}$, ®A is stew-symetric ($-®A = ®A^T$). Then we can prove that $\forall ¦w \in ®R^3: ®A ¦w = ¦v_{®A} \times ¦w$. We call $¦v$ the axial vector.
+
+	\begin{poznamkain}
+		$¦v_{®A} = (A_{23}, A_{13}, A_{12})^T$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{tvrzeni}
+	$®A ¦v_{®A} = ¦o$ and $(¦u \otimes ¦v)^T = (¦v \otimes ¦u)$.
+\end{tvrzeni}
+
+\begin{definice}[Determinant in 3D]
+	$\det ®A := \frac{®A ¦u · (®A ¦v \times ®A ¦w)}{¦u·(¦v \times ¦w)} $ for three arbitrary vectors $¦u, ¦v, ¦w \in ®R^3$.
+\end{definice}
+
+\begin{poznamka}[Nanson formula]
+	$$ ¦w · (¦u \times ¦v) = (\det ®A)^{-1} ®A¦w · (®A¦u \times ®A ¦v) = ¦w · (\det ®A)^{-1} ®A^T (®A ¦u \times ®A ¦v) \implies $$
+	$$ \implies ¦u \times ¦v = (\det A)^{-1} ®A^T (®A¦u \times ®A ¦v) $$
+	$$ ®A ¦u \times ®A ¦v = (\det ®A) ®A^{-T} (¦u \times ¦v) $$
+\end{poznamka}
+
+\begin{definice}[Cofactor]
+	$$ \cof ®A := (\det ®A)®A^{-T}. $$
+
+	(Change of surface area under linear mapping ®A.)
+\end{definice}
+
+\begin{definice}[Eigenvalues, eigenvectors]
+	$®A ¦v = \lambda ¦v$.
+
+	Characteristic polynomial: $\det(®A - \mu ®I) = - \mu^3 + c_1\mu^2 - c_2 \mu + c_3$.
+\end{definice}
+
+\begin{veta}[Cayley-Hamilton]
+	$$ -®A^3 + c_1®A^2 - c_2 ®A + c_3®I = ®O $$
+\end{veta}
+
+\begin{tvrzeni}
+	$$ c_3 = \lambda_1·\lambda_2·\lambda_3 = \det ®A $$
+	$$ c_2 = \lambda_1 \lambda_2 + \lambda_1 \lambda_3 + \lambda_2 \lambda_3 = \tr \cof ®A = \frac{1}{2} ((\tr ®A)^2 - \tr(®A^2)) $$
+	$$ c_1 = \lambda_1 + \lambda_2 + \lambda_3 = \tr ®A $$
+
+	\begin{dukazin}
+		With definition of characteristic polynomial, Cayley-Hamilton and Schur decomposition. Schur decomposition: $®A \in ®R^{3 \times 3}$. There exists an invertible matrix ®U and upper triangular matrix ®T such that
+		$$ ®A = ®U^{-1}®T®U, \qquad ®T = \begin{pmatrix} \lambda_1 & T_{12} & T_{13} \\ 0 & \lambda_2 & T_{23} \\ 0 & 0 & \lambda_3 \end{pmatrix}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}[Useful identity from CH]
+	$$ ®A^{-1} = \frac{1}{c_3}®A^2 - \frac{c_1}{c_3} ®A + \frac{c_2}{c_3}®I = \frac{1}{\det ®A}®A^2 - \frac{\tr ®A}{\det ®A} ®A + \frac{\tr \cof ®A}{\det ®A} ®I $$
+\end{tvrzeni}
+
+\begin{poznamka}[Functions of matrices]
+	$\exp ®A$, $\ln ®A$, $\sin ®A$, …
+
+	There are several ways of define it: Analytics calculus = Taylor series, Borel calculus: $®A = \sum \lambda_i ¦v_i \otimes ¦v_i$ () $\implies$ $f(®A) := \sum f(\lambda_i) ¦v_i \otimes ¦v_i$, Holomorphic calculus ($f(z) = \frac{1}{2 \pi i} \int_{\gamma} \frac{f(\zeta)}{(\zeta - z)} d\zeta$) $f(®A) = \frac{1}{2 \pi i} \int_{\gamma} f(\zeta)(\zeta ®I - ®A)^{-1} d\zeta$ (where curve $\zeta$ envelops eigenvalues of $®A$)
+\end{poznamka}
+
+\begin{tvrzeni}[Useful identities for functions]
+	$$ \det(\exp ®A) = \exp(\tr ®A) $$
+	$$ \exp ®A = \lim_{n \rightarrow ∞}\(®I + \frac{®A}{n}\)^n $$
+\end{tvrzeni}
+
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2022
+\section*{Úvod}
+\begin{poznamka}[Historie]
+	MP zavedl Maurice Fréchet na podnět Felixe Hausdorffa.
+\end{poznamka}
+
+\begin{poznamka}
+	Dále se opakovali metrické prostory.
+\end{poznamka}
+
+\begin{definice}[Baireův prostor]
+	$®N^{®N}$, $d(\{x_n\}, \{y_n\}) = \frac{1}{k}$, kde $k$ je první index, že $x_k ≠ y_k$.
+\end{definice}
+
+\begin{poznamka}
+	V Bairově prostoru platí $d(x, y) ≤ \max(d(x, z), d(z, y))$. Metriky s touto vlastností se nazývají ultrametriky (dříve archimédovské metriky).
+\end{poznamka}
+
+\begin{definice}[Peadická metrika]
+	$(Q, d_p)$, kde $p$ je prvočíslo:
+	$$ d_p(a, b) = p^{-n}, \frac{a}{b} = p^n · c. $$
+\end{definice}
+
+\begin{definice}[Stejnoměrně ekvivalentní]
+	Metriky jsou stejnoměrně ekvivalentní, jestliže identická zobrazení ($(X, d) \mapsto (X, e)$ a opačně) jsou stejnoměrně spojitá.
+\end{definice}
+
+\begin{definice}[Hölderovské zobrazení]
+	Nechť $\alpha ≥ 0$. Říkáme, že zobrazení $f: (X, d) \rightarrow (Y, e)$ je hölderovské stupně $\alpha$ (nebo $\alpha$-hölderovské), jestliže existuje $k \in ®R$ tak, že pro všechna $x, y \in X$ platí
+	$$ e(f(x), f(y)) ≤ k·d^\alpha(x, y) $$
+	Hölderovské zobrazení stupně 1 se nazývá lipschitzovské. Lipschitzovské zobrazení s konstantou $k < 1$ se nazývá kontrakce.
+\end{definice}
+
+
+
+\begin{tvrzeni}
+	Je-li $f: (X, d) \rightarrow (Y, e)$ $\alpha$-hölderovské pro.
+\end{tvrzeni}
+
+\end{document}

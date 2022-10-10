@@ -1,0 +1,105 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 03. 10. 2022
+\section*{Úvod}
+\begin{poznamka}[Organizační úvod]
+	Dnes česky, ale pravděpodobně časem přepneme do angličtiny.
+
+	Na webu přednášejícího jsou zápisky, česko-anglická skripta.
+
+	Taková bible pro lidi studující PDR je Evans (… PDE …).
+
+	Zápočet bude za 2 velké domácí úkoly. Zkouška je písemná (požadavky jsou na stránkách): 3 části: A -- nutné, B -- teorie, C -- praxe?
+\end{poznamka}
+
+\begin{poznamka}[Konvence pro PDR]
+	$\Omega \subseteq ®R^d$ je otevřená. Měřitelná = lebesgueovsky měřitelná.
+
+	$$ \partial_t u := \frac{\partial u}{\partial t} $$
+\end{poznamka}
+
+\begin{poznamka}
+	Dále se ukazovali konkrétní parciální rovnice.
+\end{poznamka}
+
+\begin{poznamka}[Je potřeba znát]
+	\ 
+	\begin{itemize}
+		\item Prostory funkcí a Lebesgueův integrál: $L^p(\Omega)$, $L^p_{loc}(\Omega)$, $||u||_p$, $C^k(\Omega)$, $C^k(\overline{\Omega})$,
+			$$ C^{0, \alpha}(\overline{\Omega}) = \{u \in C(\Omega) | \sup_{x ≠ y} \frac{u(x) - u(y)}{|x - y|^{\alpha}} < ∞\}, ||u||_{C^{0, \alpha}} = \sup_{x ≠ y} \frac{u(x) - u(y)}{|x - y|^{\alpha}}. $$
+		\item $\int_\Omega \frac{\partial u}{\partial x_i} dx = \int_{\partial \Omega} u n_i dS$, $\vec{n} = (n_1, …, n_d)$.
+		\item Funkcionální analýza 1: Banachův prostor, $u^n \rightarrow u$ silná konvergence, $u^n \rightharpoonup u$ slabá konvergence, Hilbertův prostor, Věta o reprezentaci (duálů), spektrální analýza operátorů, reflexivita (+ existence slabě konvergentní podposloupnosti v omezené podmnožině reflexivního prostoru).
+		\item Separabilita ($L^p$ jsou separabilní až na $p = ∞$, $C^k(\overline{\Omega})$ je separabilní, $C^{0, \alpha}$ není separabilní pro $\alpha \in (0, 1]$).
+	\end{itemize}
+\end{poznamka}
+
+\begin{poznamka}[Motivace k pojmu slabé řešení (weak solution)]
+	$$ - \Delta = f, f \notin C(\overline{\Omega}) $$
+
+	A další ukázané na přednášce.
+\end{poznamka}
+
+TODO?
+
+% 04. 10. 2022
+
+\section{Sobolevovy prostory}
+\begin{definice}[Multiindex]
+	$\alpha$ je multiindex $≡$ $d = (\alpha_1, …, \alpha_d)$, $\alpha_i \in ®N_0$. Délka $\alpha$ je $|\alpha| := \alpha_1 + … + \alpha_d$. Pro $u \in C^k(\Omega)$ definujeme $D^\alpha u = \frac{\partial^{|d|} u}{\partial x_1^{\alpha_1} … \partial x_d^{\alpha_d}}$.
+\end{definice}
+
+\begin{definice}[Slabá derivace]
+	Buď $u, v_\alpha \in L^1_{loc}(\Omega)$. Řekneme, že $v_\alpha$ je $\alpha$-tá slabá derivace $u$ $≡$
+	$$ ≡ \int_\Omega u D^\alpha \phi = (-1)^{|\alpha|} \int_\Omega v_\alpha \phi \qquad \forall \phi \in C_0^∞(\Omega). $$
+\end{definice}
+
+\begin{priklad}
+	$u = \mathrm{sign} x$ nemá slabou derivaci.
+\end{priklad}
+
+\begin{lemma}[O smysluplnosti]
+	Slabá derivace je nejvýše 1. Pokud existuje klasická derivace, tak obě splývají.
+
+	\begin{dukazin}
+		$v_\alpha^1$, $v_\alpha^2$ dvě $\alpha$-té derivace $u$.
+		$$ (-1)^{|\alpha|} \int v_\alpha^1 \phi = \int_\Omega u D^\alpha \phi \forall \qquad \phi \in C_0^∞(\Omega) $$
+		$$ (-1)^{|\alpha|} \int v_\alpha^2 \phi = \int_\Omega u D^\alpha \phi \forall \qquad \phi \in C_0^∞(\Omega) $$
+		$$ \int_\Omega (v_\alpha^1 - v_\alpha^2) \phi = 0 \qquad \forall \phi \in C_0^∞(\Omega) $$
+		$\implies v_\alpha^1 = v_\alpha^2$ skoro všude v $\Omega$.
+
+		Klasická derivace je zřejmě zároveň slabá, tedy z první části splývají.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Sobolevův prostor]
+	$\omega \subseteq ®R^d$ otevřená, $k \in ®N_0$, $p \in [1, ∞]$.
+	$$ W^{k, p}(\Omega) := \{u \in L^p(\Omega) | \forall \alpha, |\alpha| ≤ k: D^\alpha u \in L^p(\Omega)\}. $$
+	$$ ||u||_{W^{k, p}(\Omega)} ||u||_{k, p} := \begin{cases}\(\sum_{|\alpha| ≤ k} ||D^\alpha u ||_p^p\)^{\frac{1}{p}}, & p < ∞,\\ \max_{|\alpha| ≤ k} ||D^\alpha u||_∞, & p=∞.\end{cases} $$
+
+	\begin{poznamkain}
+		Od teď $D^\alpha$ nebo $\frac{\partial}{\partial x_1}$ nebo $\partial_i$ značí slabou derivaci.
+	\end{poznamkain}
+\end{definice}
+
+\begin{lemma}[Základní vlastnosti slabých derivací a Sobolevových prostorů]
+	Nechť $u, v \in W^{k, p}(\Omega), k \in ®N$, a $\alpha$ multiindex s délkou $≤ k$.
+	 
+	\begin{itemize}
+		\item $D^\alpha u \in W^{k - |\alpha|, p}(\Omega)$ a $D^\alpha(D^\beta u) = D^\beta (D^\alpha u) = D^{\alpha + \beta} u$, pro $|\alpha| + |\beta| ≤ k$.
+		\item $\lambda, \mu \in ®R$, $\lambda u + \mu v \in W^{k, p}(\Omega)$ a $D^\alpha(\lambda u + \mu v) = \lambda D^\alpha u + \mu D^\alpha v$.
+		\item $\forall \tilde\Omega \subseteq \Omega$ otevřená
+			$$ u \in W^{k, p}(\Omega) \implies u \in W^{k, p}(\tilde\Omega) $$
+		\item $\forall \eta \in C^∞(\Omega)$: $\eta u \in W^{k, p}(\Omega)$ a $D^\alpha(\eta u) = \sum_{\beta_i ≤ \alpha_i} D^\beta \eta D^{\alpha - \beta} u \binom{\alpha}{\beta}$, kde $\binom{\alpha}{\beta} = \prod_{i=1}^d \binom{\alpha_i}{\beta_i}$.
+	\end{itemize}
+	
+	\begin{dukazin}
+		Cvičení na doma.
+	\end{dukazin}
+\end{lemma}
+
+\end{document}

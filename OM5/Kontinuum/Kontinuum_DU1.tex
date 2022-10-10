@@ -1,0 +1,58 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let $®A \in ®R^{3\times 3}$ be a non-singular matrix. Show that
+	$$ \frac{1}{2}\((\tr ®A)^2 - \tr \(®A^2\)\) = \tr (\cof ®A), $$
+	where $\cof ®A$ denotes the cofactor matrix to matrix ®A, $cof ®A := (\det ®A) ®A^{-T}$. There are several ways how to prove this
+identity, you may, for example, use the Schur decomposition theorem.
+
+	\begin{dukazin}
+		Víme, že pro ®A existuje Schurův rozklad ve tvaru $®A = ®Q·®U·®Q^{-1}$, kde $®Q$ je unitární a $®U$ je horní trojúhelníková matice, která má na diagonále vlastní čísla. Tedy
+		$$ \tr ®A = \tr \(®Q®U®Q^{-1}\) = \tr \(®Q^{-1}®Q®U\) = \tr ®U = \lambda_1 + \lambda_2 + \lambda_3. $$
+		Obdobně $\tr \(®A^2\) = \lambda_1^2 + \lambda_2^2 + \lambda_3^2$ a $\tr\(®A^{-1}\) = \lambda_1^{-1} + \lambda_2^{-1} + \lambda_3^{-1}$, neboť
+		$$ ®A^2¦v_i = ®A·®A¦v_i = ®A·\lambda_i¦v_i = \lambda_i^2¦v_i, $$
+		$$ ¦v_i / \lambda_i = ®I¦v_i / \lambda_i = ®A^{-1}®A¦v_i / \lambda_i = ®A^{-1}¦v_i. $$
+
+		Tedy na levé straně rovnosti máme:
+		$$ \frac{1}{2}\((\lambda_1 + \lambda_2 + \lambda_3)^2 - (\lambda_1^2 + \lambda_2^2 + \lambda_3^2)\) = \lambda_1·\lambda_2 + \lambda_1·\lambda_3 + \lambda_2·\lambda_3. $$
+
+		Na pravé pak (víme, že $\det ®A = \lambda_1·\lambda_2·\lambda_3$, například z toho, že v definici $\det$ zvolíme vlastní vektory) díky linearitě stopy a $\tr ®B = \tr ®B^T$:
+		$$ \tr \cof ®A = \tr \(®A^{-T} \det ®A\) = (\det ®A)·(\tr ®A^{-T}) = \lambda_1·\lambda_2·\lambda_3 ·(\lambda_1^{-1} + \lambda_2^{-1} + \lambda_3^{-1}), $$
+		čehož roznásobením dostaneme to samé, co máme na levé straně.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Let $®A, ®B \in ®R^{3 \times 3}$ be non-singular matrices such that $®A + ®B$ is non-singular matrix as well. Show that
+	$$ \text{a)} \qquad \det(®A + ®B) = \det ®A + \tr(®A^T \cof ®B) + \tr(®B^T \cof ®A) + \det ®B $$
+	$$ \text{b)} \qquad (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)}\,· $$
+	$$·\,\(®A^2 + ®B^2 + ®A®B + ®B®A - (®A + ®B)\tr(®A + ®B) + \frac{1}{2}\(\(\tr(®A + ®B)\)^2 - \tr(®A + ®B)^2\)\) $$
+	The Cayley-Hamilton theorem might be useful.
+
+	\begin{dukazin}[a]
+		Z definice determinantu a linearity smíšeného součinu (smíšený součin je invariantní vůči cyklické záměně vektorů a první vektor je vždy sám jako první složka skalárního součinu, který je v první složce lineární): $\det (A + B) = $
+		$$ = \frac{(A + B)¦v · (A + B)¦u \times (A + B)¦w}{¦v · ¦u \times ¦w} = \frac{A¦v · A¦u \times A¦w}{¦v · ¦u \times ¦w} + \frac{A¦v · A¦u \times B¦w}{¦v · ¦u \times ¦w} + \frac{A¦v · B¦u \times A¦w}{¦v · ¦u \times ¦w} + $$
+		$$ + \frac{A¦v · B¦u \times B¦w}{¦v · ¦u \times ¦w} + \frac{B¦v · A¦u \times A¦w}{¦v · ¦u \times ¦w} + \frac{B¦v · A¦u \times B¦w}{¦v · ¦u \times ¦w} + \frac{B¦v · B¦u \times A¦w}{¦v · ¦u \times ¦w} + \frac{B¦v · B¦u \times B¦w}{¦v · ¦u \times ¦w} $$
+		Na první a poslední člen použijeme zase definici determinantu. Další členy „otočíme“ invariantností smíšeného součinu vůči cyklické záměně, použijeme „Nanson formula“ a definici kofaktoru a nakonec transponováním dostaneme matici doprostřed skalárního součinu: $\det (A + B) = $
+		$$ = \det A + \frac{¦w^T · (B^T·\cof A) · ¦v \times ¦u}{¦v · ¦u \times ¦w} + \frac{¦u^T · (B^T·\cof A) · ¦w \times ¦v}{¦v · ¦u \times ¦w} + \frac{¦v · (A^T·\cof B) · ¦u \times ¦w}{¦v · ¦u \times ¦w} + $$
+		$$ + \frac{¦v · (B^T·\cof A) · ¦u \times ¦w}{¦v · ¦u \times ¦w} + \frac{¦u · (A^T · \cof B) · ¦w \times ¦v}{¦v · ¦u \times ¦w} + \frac{¦w · (A^T \cof B) · ¦v \times ¦u}{¦v · ¦u \times ¦w} + \det B $$
+		Nyní už stačí jen dokázat $\frac{¦u^T·C·¦v\times¦w}{¦u·¦v\times¦w} + \frac{¦v^T·C·¦w\times¦u}{¦u·¦v\times¦w} + \frac{¦w^T·C·¦u\times¦v}{¦u·¦v\times¦w} = \tr C$. V definici determinantu je, že platí pro libovolná nezávislá ¦u, ¦v a ¦w. My si tedy můžeme zvolit $¦u=e_1$, $¦v=e_2$ a $¦w = e_3$. Tím pádem se snažíme ukázat $e_1^T · C · e_1 + e_2^T · C · e^2 + e_3^T · C · e_3 = \tr C$, což je jistě pravda.
+	\end{dukazin}
+
+	\begin{dukazin}[b]
+		Z C-H, kam dosadíme koeficienty odvozené na přednášce, velmi triviální úpravou rovnic (matice není singulární, tedy jí i jejím determinantem můžeme dělit) dostaneme
+		$$ ®C^{-1} = \frac{1}{c_3}®C^2 - \frac{c_1}{c_3}®C + \frac{c_2}{c_3}®I = \frac{1}{\det ®C}®C^2 - \frac{\tr ®C}{\det ®C}®C + \frac{\tr \cof ®A}{\det ®A}®I. $$
+		Tam můžeme dosadit $®C = ®A + ®B$:
+		$$ \text{b)} \qquad (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)} · \((®A + ®B)^2 - (®A + ®B)\tr(®A + ®B) + \tr \cof (®A + ®B)\). $$
+		To můžeme roznásobit a dosadit z prvního příkladu:
+	$$ (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)}\,· $$
+	$$·\,\(®A^2 + ®B^2 + ®A®B + ®B®A - (®A + ®B)\tr(®A + ®B) + \frac{1}{2}\(\(\tr(®A + ®B)\)^2 - \tr(®A + ®B)^2\)\) $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

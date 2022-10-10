@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 30. 09. 2022
+
+TODO!!!
+
+% 07. 10. 2022
+
+\begin{definice}[Lineární PDR]
+	Parciální diferenciální rovnice (PDR) je lineární, jde-li ji zapsat ve tvaru
+	$$ \sum_{|\alpha| ≤ m, \alpha \in (®N_0)^n} a_\alpha D^{\alpha} u = f $$
+	pro neznámou funkci $u$, $f(x)$ a $a_\alpha(x)$ je dáno ($x \in \Omega \in ®R^n$).
+
+	Je-li $f ≡ 0$, pak říkáme, že PDR je homogenní (bez pravé strany). Pokud $a_\alpha$ jsou konstanty, pak říkáme, že PDR je s konstantními koeficienty.
+\end{definice}
+
+\begin{definice}[Semilineární PDR]
+	Semilineární rovnice má tvar
+	$$ \sum_{|\alpha| = m} a_{\alpha} D^\alpha u + b = 0, $$
+	kde $a(x)$ a $b(x, u, \nabla u, …, \nabla^{n-1} u)$ je dáno.
+\end{definice}
+
+\begin{definice}[Kvazilineární PDR]
+	Kvazilineární rovnice je
+	$$ \sum_{|\alpha| = m} a_{\alpha} D^\alpha u + f = 0, $$
+	kde $a_\alpha(x, u, \nabla u, …, \nabla^{m-1} u)$ a $f(x, u, \nabla u, …, \nabla^{m-1} u)$ je dáno.
+\end{definice}
+
+\begin{definice}[Řád rovnice]
+	$m$ v předchozích definicích nazýváme řád rovnice.
+\end{definice}
+
+\begin{definice}[Korektně zadaný problém]
+	Problém je korektně zadaný podle Hadamarda, pokud má řešení, řešení je jednoznačné a řešení závisí spojitě na datech.
+\end{definice}
+
+\begin{definice}[Klasické řešení]
+	Rovnice platí bodově, derivace jsou spojité.
+\end{definice}
+
+\begin{definice}[Okrajové podmínky]
+	Dirichlet: zadaná hodnota na hranici.
+
+	Neumann: zadány normálové tečny na hranici.
+\end{definice}
+
+\section{Cauchyova úloha pro kvazilineární rovnici 1. řádu}
+\begin{definice}
+	Buď $a_1, …, a_n$, $f \in ®C(®R \times ®R^n)$, $n \in ®N \setminus \{1\}$. Rovnici
+	$$ \sum_{j=1}^n a_j(u(x), x) \partial_j u(x) = f(u(x), x), \qquad x \in ®R^n $$
+	nazveme kvazilineární rovnici prvního řádu.
+
+	Počáteční podmínku předepisujeme ve tvaru $u(0, \overline{x}) = u_0(\overline{x})$, kde $\overline{x} \in ®R^{n-1}$. Funkci $u : \Omega \rightarrow ®R$, $\omega \subseteq ®R^n$ nazveme klasickým řešením Cauchyovy úlohy pro kvazilineární rovnici 1. řádu, pokud $u \in ®C^1(\Omega)$ a podmínky platí bodově v $\Omega$.
+\end{definice}
+
+\end{document}

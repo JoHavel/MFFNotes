@@ -1,0 +1,107 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2022
+
+\section{Dynamické systémy}
+\begin{definice}[Dynamický systém]
+	$(\phi, \Omega)$, $\Omega \subset ®R^n$ otevřená, $\phi: ®R \times \Omega \rightarrow \Omega$ $\phi(t, x)$.
+	
+	\begin{itemize}
+		\item $\phi(0, x) = x$;
+		\item $\phi(t, \phi(s, x)) = \phi(t + s, x)$
+		\item $\phi$ je spojité.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Orbit]
+	$\gamma^+(x_0) = \{\phi(t, x_0) | t ≥ 0\}$ je pozitivní orbit.
+
+	$\gamma^-(x_0) = \{\phi(t, x_0) | t ≤ 0\}$ je negativní orbit.
+
+	$\gamma(x_0) = \{\phi(t, x_0) | t \in ®R\}$ je plný orbit.
+\end{definice}
+
+\begin{definice}[Pozitivně, negativně a úplně invariantní]
+	$(\phi, \Omega)$ dynamický systém, $M \subset \Omega$.
+
+	$M$ je pozitivně invariantní $≡$ $\forall x \in M: \gamma^+(x) \subset M$.
+
+	$M$ je negativně invariantní $≡$ $\forall x \in M: \gamma^-(x) \subset M$.
+
+	$M$ je úplně invariantní $≡$ $\forall x \in M: \gamma(x) \subset M$.
+\end{definice}
+
+\begin{poznamka}
+	$\gamma^+(x_0)$ je pozitivně invariantní, $\gamma^-(x_0)$ je negativně invariantní a $\gamma(x_0)$ je úplně invariantní.
+\end{poznamka}
+
+\begin{definice}
+	$$ \omega(x_0) = \{y \in \Omega | \exists \{t_k\}_{k=1}^∞, t_k \rightarrow ∞: \phi(t_k, x_0) \rightarrow y\}, $$
+	$$ \alpha(x_0) = \{y \in \Omega | \exists \{t_k\}_{k=1}^∞, t_k \rightarrow -∞: \phi(t_k, x_0) \rightarrow y\}. $$
+\end{definice}
+
+\begin{poznamka}[To je ekvivalentní]
+	$\omega(x_0) = \{y \in \Omega | \forall \epsilon > 0\ \forall T > 0\ \exists t ≥ T: |\phi(t_r, x_0) - y| < \epsilon\}$.
+\end{poznamka}
+
+\begin{lemma}
+	$\omega(x_0) = \bigcap_{\tau ≥ 0} \overline{\gamma^+(\tau, x_0)}$.
+
+	\begin{dukazin}
+		„$\subseteq$“: $y \in \omega(x_0)$: $\forall \epsilon > 0\ \forall T\ \exists t ≥ T: |\phi(t, x_0) - y| < \epsilon$. Chceme:
+		$$ \forall \tau ≥ 0\ \forall \epsilon > 0\ \exists z \in \gamma^+(\tau, x_0): |y - z| < \epsilon \Leftrightarrow $$
+		$$ \Leftrightarrow \forall \tau ≥ 0\ \forall \epsilon > 0\ \exists s ≥ \tau, z = \phi(s, x_0): |y - \phi(s, x_0)| < \epsilon. $$
+
+		„$\supseteq$“: $\forall \tau ≥ 0\ y \in \overline{\gamma^+(\tau, x_0)}$ $\implies$
+		$$ \implies \forall \epsilon\ \exists s ≥ \tau: |\phi(s, x_0) - y| < \epsilon. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Vlastnosti $\omega$-limitní množiny]
+	Nechť $(\phi, \Omega)$ je dynamický systém, $x_0 \in \Omega$. Potom
+	
+	\begin{enumerate}
+		\item $\omega(x_0)$ je uzavřená, úplně invariantní.
+		\item Pokud $\gamma^+(x_0)$ je relativně kompaktní v $®R^n$, pak $\omega(x_0) ≠ \O$, $\omega(x_0)$ je kompaktní, souvislá.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. $\omega(x_0)$ je průnik uzavřených množin, tedy uzavřená. $y \in \omega(x_0)$ $\exists t_k \nearrow ∞$ $\phi(t_k, x_0) \rightarrow y$.
+
+		$$ s_k = t_k + t \qquad \phi(s_k, x_0) = \phi(t_k + t, x_0) = \phi(t, \phi(t_k, x_0)) $$
+		$$ t_k \rightarrow ∞, \phi \text{spojitá} \qquad \phi(s_k, x_0) = \phi(t, \phi(t_k, x_0)) \rightarrow \phi(t, y) $$
+
+		2. $\exists K \subset ®R^n$ kompaktní $\gamma^+(x_0) \subset K$. a) pokud $t_n ≥ 0, t_n \rightarrow ∞ \{\phi(t_n, x_0)\}_{n=1}^∞$ omezená posloupnost $\implies \exists \{t_{n_k}\}_{k=1}^∞ \subset \{t_n\}_{n=1}^∞$, podposloupnost, $\exists y \in \Omega \phi(t_{n_k}, x_0) \rightarrow y$. Pak $y \in \omega(x_0)$.
+
+		b) $\omega(x_0)$ je tedy úplná a omezená, takže kompaktní. c) ať $\omega(x_0)$ je nesouvislá, tedy $\omega(x_0) \subseteq U \cup V$, $U, V$ otevřené disjunktní neprázdné, $U, V \subseteq K$. Vezměme $y \in \omega(x_0) \cap U$, $z \in \omega(x_0) \cap V$. Nechť $t_n$ je posloupnost taková, že $\phi(t_{2n} x_0) \rightarrow y$, $\phi(t_{2n + 1}, x_0) \rightarrow z$, $t_{2n} < t_{2n+1}$, $\phi(t_{2n}, x_0) \in U$, $\phi(t_{2n + 1}, x_0) \in V$. $F = K \setminus (U \cup V)$ uzavřená, tedy $\exists s_n \in (t_{2n}, t_{2n + 1}): \phi(s_n, x_0) \in F$. Tedy $\{\phi(s_n, x_0)\}$ je omezená posloupnost $\implies$ $\exists$ podposloupnost konvergující k $w \in F$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Topologická konjugovanost]
+	$(\phi, \Omega)$, $\psi, \Theta$ dynamické systémy. $\exists: \Omega \rightarrow \Theta$ homeomorfismus (bijekce, spojité, spojitá inverze):
+	$$ \forall x \in \Omega\ \forall t \in ®R \qquad h(\phi(t, x)) = \psi(t, h(x)). $$
+\end{definice}
+
+\begin{poznamka}
+	Dá se zobecnit ještě zobrazováním časů.
+\end{poznamka}
+
+\begin{veta}[O rektifikaci]
+	$\dot{x} = f(x), f(x_0) ≠ 0$, $(\phi, \Omega)$ příslušný dynamický systém. $\dot{y} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$, $y(0) = 0$ a $(\psi, \Theta)$ je příslušný dynamický systém. Potom $(\phi, \Omega)$, $(\psi, \Theta)$ jsou lokálně topologicky konjugované ($\exists U$ okolí $x_0 \in \Omega$ a $V$ okolí $¦o \in ®R^n$ taková, že $\exists g: U \rightarrow V$ homeomorfismus $g(\phi(t, x)) = \psi(t, g(x))$ $\forall x \in U$, $\forall t: \phi(t, x) \in U$).
+
+	\begin{dukazin}
+		BÚNO $f_1(x_0) = \alpha ≠ 0$ (první souřadnice funkce $f$) a $x_0 = ¦o$. Buď $\tilde{V}$ okolí $¦o \in ®R^n$ $G: \tilde{V} \rightarrow ®R^n$, $G(y_1, …, y_n) = \phi(y, (0, y_2, …, y_n))$. Chceme ukázat, že $G$ je invertibilní na nějakém okolí.
+		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_1} |_{(0, …, 0)} = \frac{\partial \phi}{\partial t}(t = y_1, (0, y_2, …, y_n)) |_{y_1=0, …, y_n=0} = f(\phi(y_1 (0, y_2, …, y_n)))|_{y_1 = 0, …, y_n = 0} = f(\phi(0, (0, …, 0))) = f(x_0) = \alpha. $$
+		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_j} |_{(0, …, 0)} = \lim_{h \rightarrow 0} \frac{G(0, …, h, …, 0) - G(0, …, 0)}{h} = \lim_{h\rightarrow 0} \frac{(0, …, h, …, 0)^T - (0, …, 0)^T}{h} = (0, …, 1, …, 0)^T = e_j. $$
+		Tedy $\nabla G(0, …, 0)$ je „jednotková matice, až na to, že $a_{11}$ je $\alpha$“, tudíž podle věty o inverzi funkce $\exists V \subseteq \tilde{V}$ okolí 0, $\exists U$ okolí bodu $x_0$ tak, že $G: V \rightarrow U$ je homeomorfismus. Položme $g = G^{-1}$.
+
+		Nyní už stačí $g(\phi(t, x_0)) = \psi(t, g(x_0))$ $\forall x_0 \in U$ $\forall t: \phi(t, x_0) \in U$. $\phi(t, x_0) = G(\psi(t, g(x_0)))$.
+	\end{dukazin}
+\end{veta}
+
+\end{document}
