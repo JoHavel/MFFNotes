@@ -31,7 +31,7 @@
 \begin{tvrzeni}[Identities for Levi-Civita symbol]
 	$$ \epsilon_{ijk}\epsilon_{lmn} = \det \begin{pmatrix} \delta_{il} & \delta_{im} & \delta_{in} \\ \delta_{jl} & \delta_{jm} & \delta_{jn} \\ \delta_{kl} & \delta_{km} & \delta_{kn} \end{pmatrix} $$
 	$$ \epsilon_{ijk}·\delta_{lm} = \epsilon_{jkm}·\delta_{il} + \epsilon_{klm}·\delta_{jl} + \epsilon_{ijm}·\delta_{kl} $$
-	$$ \epsilon_{ijk}\epsilon_{imn} = \delta_{jm} \delta_{km} - \delta_{jn} \delta_{km} $$
+	$$ \epsilon_{ijk}\epsilon_{imn} = \delta_{jm} \delta_{kn} - \delta_{jn} \delta_{km} $$
 	$$ \epsilon_{ijm}\epsilon_{ijn} = 2\delta_{mn} $$
 \end{tvrzeni}
 
@@ -112,5 +112,119 @@
 	$$ \det(\exp ®A) = \exp(\tr ®A) $$
 	$$ \exp ®A = \lim_{n \rightarrow ∞}\(®I + \frac{®A}{n}\)^n $$
 \end{tvrzeni}
+
+% 12. 10. 2022
+
+\begin{definice}[Invariants of matrix]
+	$$ \lambda_1 + \lambda_2 + \lambda_3 = \tr ®A = I_1; $$
+	$$ \lambda_1 \lambda_2 + \lambda_1 \lambda_3 + \lambda_2 \lambda_3 = \tr \cof ®A = \frac{1}{2} ((\tr ®A)^2 - \tr(®A^2)) = I_2; $$
+	$$ \lambda_1·\lambda_2·\lambda_3 = \det ®A = I_3 $$
+\end{definice}
+
+\subsection{Representation theorems for isotropic functions}
+\begin{definice}[Isotropic function]
+	$\phi: ®R^{3 \times 3} \rightarrow ®R$ is isotropic $≡$ $\phi(®Q ®A ®Q^T) = \phi(®A)$ for all proper orthogonal matrices ($®Q®Q^T = ®I$, $\det ®Q > 0$).
+
+	$f: ®R^{3 \times 3} \rightarrow ®R^{3 \times 3}$ is isotropic $≡$ $f(®Q ®A ®Q^T) = ®Q f(®A) ®Q^T$ for all proper orthogonal matrices.
+\end{definice}
+
+\begin{veta}
+	A scalar function $\phi: ®A \in ®R^{3 \times 3} \rightarrow ®R$ of symmetric matrices is isotropic if and only if it can be rewritten as a function of invariants of ®A.
+\end{veta}
+
+\begin{veta}
+	A matrix valued function $f: ®A \in ®R^{3 \times 3} \rightarrow ®R^{3 \times 3}$ (from symmetric matrices to symmetric matrices) is isotropic if and only if it can be rewritten as
+	$$ f(®A) = \alpha_0 ®I + \alpha_1 ®A + \alpha_2 ®A^2, $$
+	where $\{\alpha_i\}_{i=1}^3$ are scalar function of the invariants.
+\end{veta}
+
+\begin{dusledek}
+	$®A \mapsto ®A^{-1}$ is isotropic function.
+\end{dusledek}
+
+\begin{poznamka}[Notation]
+	$$ ®A, ®B \in ®R^{3 \times 3}, \qquad ®A:®B := \tr(®A ®B^T), \qquad ||®A|| := (\tr (®A ®A^T))^{1 / 2} $$
+\end{poznamka}
+
+\subsection{Calculus}
+\begin{definice}[Gateaux derivative]
+	$$ Df(x)[y] = \(\frac{d}{d\tau} f(x + \tau y)\)|_{\tau=0}. $$
+\end{definice}
+
+\begin{definice}[Fréchet derivative]
+	$$ \lim_{||y|| \rightarrow 0} \frac{||f(x + y) - f(x) - D f(x)[y]||}{||y||} = 0. $$
+\end{definice}
+
+\begin{poznamka}
+	$Df(®A)[®B] \sim \frac{\partial f}{\partial ®A}(®A)[®B] \sim \frac{\partial f}{\partial ®A}(®A) : ®B$.
+\end{poznamka}
+
+\begin{priklad}
+	$$ D(I_2(®A))[B] = D(-\frac{1}{2} \tr ®A^2 + \frac{1}{2} (\tr ®A)^2)[B] = \frac{d}{d\tau} (-\frac{1}{2} \tr (®A + \tau ®B)^2 + \frac{1}{2} (\tr (®A + \tau®B))^2)|_{\tau = 0} = $$
+	$$ = - \tr(®A®B) + (\tr ®A)(\tr ®B) = (\tr ®A)®I : ®B - ®A^T:®B = ((\tr ®A)®I - ®A^T):®B. $$
+
+	$$ D(\det ®A)[®B] = \frac{d}{d\tau}(\det (®A + \tau ®B))|_{\tau = 0} = (\det ®A) \frac{d}{d\tau}(\det(®I + \tau ®A^{-1}®B))_{\tau=0} = \det ®A \frac{d}{d\tau}(1 + \tau \tr (®A^{-1} ®B) + …)|_{\tau=0} = (\det ®A) \tr(®A^{-1}®B) = (\det ®A)®A^{-T}:®B. $$
+\end{priklad}
+
+\begin{poznamka}
+	Chain rule works as usual.
+\end{poznamka}
+
+\begin{priklad}
+	$$ \frac{d}{dt}(\det ®A(t)) = (\det ®A) \tr\(®A^{-1} \frac{d®A}{dt}\). $$
+\end{priklad}
+
+\begin{priklad}
+	$$ \frac{\partial ®A^{-1}}{\partial ®A}[®B] = \frac{d}{d \tau}\((®A + \tau ®B)^{-1}\)|_{\tau = 0} = \frac{d}{d \tau}\((®I + \tau ®A^{-1} ®B)^{-1}®A^{-1}\)|_{\tau = 0} = \frac{d}{d\tau}\((®I - \tau ®A^{-1}®B + …)®A^{-1}\)|_{\tau = 0} = - ®A^{-1}®B®A^{-1}. $$
+\end{priklad}
+
+\begin{priklad}
+	$$ \frac{\partial e^{®A}}{\partial ®A}[®B] = \frac{d}{d \tau}\(e^{®A + \tau ®B}\)|_{\tau = 0} = \frac{d}{d\tau} \(®I + (®A + \tau ®B) + \frac{(®A + \tau ®B)^2}{2!} + …\)|_{\tau = 0} = $$
+	$$ = \frac{d}{d\tau}\(®I + (®A \tau ®B) + … + \tau(®A ®B + ®B ®A) + \tau(®A®A®B + ®A®B®A + ®B®A®A) + …\) $$
+\end{priklad}
+
+\begin{veta}[Daleckii-Krein theorem]
+	$®A \in ®R^{3 \times 3}$ real symmetric matrix. $®A = \sum_{i=1}^3 \lambda_i ®P_i$, $®P_i$-projector to $i$-th eigenvector, $®P_i = ¦v_i \otimes ¦v_i$. $f$ real valued function $f: ®R \rightarrow ®R$ differentiable.
+	$$ f(®A) := \sum_{i=1}^3 f(\lambda_i) ®P_i = \sum_{i=1}^3 f(\lambda_i) ¦v_i \otimes ¦v_i. $$
+	$$ Df(®A)[®B] = \sum_{i=1}^3 \frac{df}{d\lambda}|_{\lambda = \lambda_i} ®P_i ®B ®P_i + \sum_{i=1}^3 \sum_{j=1, j≠i}^3 \frac{f(\lambda_i) - f(\lambda_j)}{\lambda_i - \lambda_j} ®P_i ®B ®P_j $$
+	$$ (Df(®A)[®B])_{ij} = \frac{f(\lambda_i) - f(\lambda_j)}{\lambda_i - \lambda_j} B_{ij}, if i ≠ j, (Df(®A)[®B])_{ij} = \frac{df}{d\lambda}|_{\lambda = \lambda_j} B_{ij}, if i=j. $$
+
+	\begin{dukazin}
+		From chain rule:
+		$$ \frac{\partial f(®A)}{\partial ®A} = \sum_{i=1}^3 \frac{df(\lambda_i)}{d\lambda} |_{\lambda = \lambda_i} \frac{\partial \lambda_i}{\partial ®A} ¦v_i \otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) \frac{\partial ¦v_i}{\partial ®A}\otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) ¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A} $$
+
+		First derivative at right side:
+		$$ ®A ¦v_i = \lambda_i¦v $$
+		$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_i $$
+		$$ \frac{\partial A_{mn}}{\partial A_{kl}}(¦v_i)_n + (A_{mn}) \frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
+		$$ \delta_{mk}\delta_{nl}(¦v_i)_n + A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad ·(¦v_i)_m \sum_m $$
+
+		$$ \sum_m \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m (¦v_i)_m = \frac{\partial \lambda_i}{\partial A_{kl}} $$
+
+		From symmetry of ®A and definition of eigenvector:
+		$$ \sum_m A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} (¦v_i)_m = \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n $$
+
+		$$ \sum_m \delta_{mk}\delta_{nl}(¦v_i)_n (¦v_i)_m = \delta_{nl}(¦v_i)_n(¦v_i)_k $$
+		
+		So
+		$$ \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + \delta_{nl}(¦v_i)_n(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad \sum_n $$
+		$$ \sum_n \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
+		$$ (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} $$
+		$$ \frac{\partial \lambda_i}{\partial ®A} = ¦v_i \otimes ¦v_j $$
+
+		Second derivative at right side:
+		$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_j $$
+		$$ ®A \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \lambda_i \frac{\partial ¦v_i}{\partial ®A}·¦v_j $$
+		…
+		$$ \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \frac{¦v_j \otimes ¦v_i}{\lambda_i - \lambda_j}i = \frac{\delta_{kj}\delta_{il}}{\lambda_i - \lambda_j} $$
+		$$ \(\frac{\partial ¦v_i}{\partial ®A}[®X]\)_j = \frac{\delta_{im}\delta_{jn}}{\lambda_i - \lambda_j} = \frac{¦v_i · ®X ¦v_j}{\lambda_i - \lambda_j}. $$
+
+		$$ \frac{\partial ¦v_i}{\partial ®A}[®X] = \sum_{j=1}^3 \frac{¦v_i · ®X¦v_j}{\lambda_i - \lambda_j}¦v_j. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[V dokončení důkazu se ještě použije]
+	$$ (¦a \otimes ¦b):(¦c \otimes ¦d) = (¦b·¦c)(¦a·¦d). $$
+\end{poznamka}
 
 \end{document}

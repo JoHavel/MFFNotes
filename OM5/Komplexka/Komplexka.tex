@@ -157,4 +157,93 @@
 	Zápočet dostaneme za aktivní účast na cvičení
 \end{poznamka}
 
+% 13. 10. 2022
+
+\begin{poznamka}
+	Je-li $f: ®C \rightarrow ®C$, potom
+	$$ f(x) = \frac{f(x) + f(-x)}{2} + \frac{f(x) - f(-x)}{2}, $$
+	tedy $f$ lze rozložit na sudou a lichou část.
+
+	Sudá část exponenciely je $\cosh$ a lichá $\sinh$.
+\end{poznamka}
+
+\begin{definice}[Goniometrické funkce]
+	$$ e^{iz} = \cos z + i·\sin z, $$
+	kde
+	$$ \cos z := \frac{e^{iz} + e^{-iz}}{2}, \qquad \sin z := \frac{e^{iz} - e^{-iz}}{2i}, \qquad z \in ®C. $$
+\end{definice}
+
+\begin{tvrzeni}[Vlastnosti]
+	\ 
+	\begin{itemize}
+		\item $\cos$ i $\sin$ jsou rozšířením funkcí z ®R do ®C.
+		\item $\sin' z = \cos z$, $\cos' z = \sin z$.
+		\item $\sin$ i $\cos$ jsou $2\pi$ periodické funkce, ale nejsou omezené, platí, že $\sin ®C = ®C = \cos ®C$.
+		\item Platí $\sin^2 z + \cos^2 z = 1$.
+		\item $\sin z = \sum_{n=0}^{∞} \frac{(-1)^n z^{2n + 1}}{(2n + 1)!}$, $\cos z = \sum_{n=0}^∞ (-1)^n \frac{z^{2n}}{(2n)!}$.
+	\end{itemize}
+\end{tvrzeni}
+
+\section{Křivkový integrál}
+\begin{definice}[Značení]
+	Nechť $\phi:[\alpha, \beta] \rightarrow ®C$. Potom $\phi$ je křivka, pokud je $\phi$ spojité, $\phi$ je regulární křivka, pokud je $\phi$ po částech spojitě diferencovatelné tzn. $\phi$ je spojitá na $[\alpha, \beta]$ a existuje dělení $\alpha = t_0 < t_1 < … < t_n = \beta$ takové, že $\phi|_{[t_i, t_n]}$ je diferencovatelné.
+
+	Úsečka: Nechť $a, b \in ®C$, potom $\phi(t) = a + t·(b - a)$, $t \in [0, 1]$ je úsečka z $a$ do $b$. Značíme $[a, b]$.
+
+	Řekneme, že křivka $\phi$ je lomená čára v ®C, existují-li $z_1, …, z_k \in ®C$ taková, že
+	$$ \phi = [z_1, z_2] + [z_2, z_3] + … + [z_{k-1}, z_k]. $$
+\end{definice}
+
+\begin{poznamka}[Úmluva]
+	Pokud neřekneme něco jiného, křivkou budeme rozumět regulární křivku v ®C.
+\end{poznamka}
+
+\begin{definice}[Délka křivky]
+	$$ V(\phi) = \int_\alpha^\beta |\phi'(t)| dt, $$
+	je-li $\phi$ regulární.
+\end{definice}
+
+\begin{definice}
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C$ je regulární křivka a $f: <\phi> \rightarrow ®C$ je spojitá. Potom definujeme
+	$$ \int_\phi f := \int_\alpha^\beta f(\phi(t))·\phi'(t) dt. $$
+\end{definice}
+
+\begin{poznamka}
+	Křivkový integrál konverguje jako Riemannův.
+
+	$$ \int_\phi f(z) dz, $$
+	Nechť $z_0 \in ®C$, $r \in (0, +∞)$ a $\phi(t) = z_0 + r e^{it}$, $t \in [0, 2\pi]$. Potom
+	$$ \int_\phi (z - z_0)^n dz = \int_0^{2\pi} r^n e^{i n t}·2·r·e^{it} dt = i·r^{n+1} \int_0^{2\pi} e^{i(n + 1) t} dt = $$
+	$2\pi i$, pokud $n = -1$, 0, pokud $n \in ®Z$ a $n ≠ -1$.
+\end{poznamka}
+
+\begin{tvrzeni}[Vlastnosti křivkového integrálu]
+	Je-li $\phi$ křivka, $f$ a $g$ jsou spojité funkce na $<\phi>$ a $A \in ®C$, ptotom
+	$$ \int_\phi (Af + g) = A\int_\phi f + \int_\phi g. $$
+
+	Je-li $\phi$ křivka a $f$ je spojitá funkce na $<\phi>$, potom
+	$$ |\int_\phi f| ≤ \max_{<\phi>} |f|·V(\phi). $$
+
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C$, $\psi: [\gamma, \delta] \rightarrow ®C$ a $\phi(\beta) = \psi(\gamma)$. Potom
+	$$ \int_{\phi + \psi} f = \int_\phi f + \int_\psi f \land \int_{-\phi} f = - \int_\phi f, $$
+	kde $(-\phi)(t) := \phi(-t)$, $t \in [-\beta, -\alpha]$ je opačná křivka k $\phi$.
+
+	Křivkový integrál nezávisí na parametrizaci křivky: Nechť $\phi: [\alpha, \beta] \rightarrow ®C$ je křivka, $\omega: [\gamma, \delta] \rightarrow [\alpha, \beta]$ je spojitě diferencovatelné s $\omega' > 0$ a $\psi = \phi\circ\omega$. Potom $\int_\psi f = \int_\phi f$.
+
+	\begin{dukazin}
+		Jednoduchý, ukázán na přednášce pro některé body.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Primitivní funkce]
+	Řekneme, že funkce $f$ má na otevřené $G \subset ®C$ primitivní funkci $F$, pokud $F' = f$ na $G$.
+\end{definice}
+
+\begin{veta}[O výpočtu křivkového integrálu pomocí primitivní funkce]
+	Nechť $G \subset ®C$ je otevřená a $f$ má na $G$ primitivní funkci $F$. Nechť $\phi:[\alpha, \beta] \rightarrow G$ je regulární křivka a $f$ je spojitá\footnote{Tohle je zbytečný předpoklad, ale to ještě neumíme dokázat.} na $<\phi>$. Potom
+	$$ \int_\phi f = F(\phi(\beta)) - F(\phi(\alpha)), $$
+	je-li navíc $\phi$ uzavřená, tzn. $\phi(\alpha) = \phi(\beta)$, pak
+	$$ \int_\phi f = 0. $$
+\end{veta}
+
 \end{document}

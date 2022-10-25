@@ -34,7 +34,7 @@
 
 	\begin{dukazin}
 		First assume that A is bounded. Take an open bounded set $G \subset ®R^n$ with $A \subset G$. We set
-		$$ ©V^* = \{B \in ©V | V \subset G\}. $$
+		$$ ©V^* = \{B \in ©V | V \subset G\}. $$
 		Then $©V^*$ is a Vitali cover of $A$. If there exists a finite disjoint subsystem of $©V^*$ covering $A$, we are done. So Assume that there is no such subsystem. Mathematical induction:
 
 		First step: We set $s_1 = \sup\{\diam B | B \in ©V^*\}$. We choose a ball $B_1 \in ©V^*$ such that $B_1 > \frac{1}{2} s_1$.
@@ -58,6 +58,60 @@
 
 		
 		General case ($A$ not bounded): Let $(G_j)_{j=1}^∞$ be a sequence of disjoint open sets such that $\lambda_n(®R^n \setminus \bigcup_{j=1}^∞ G_j) = 0$. We define $©V_j = \{B \in ©V_i, B \subseteq G_j\}$. $©V_j$ is a Vitali cover of $A \cap G_j$ $\implies \exists ©A_j \subseteq ©V_j$ countable disjoint and $\lambda_n(A \cap G_j \setminus \bigcup A_j) = 0$. We set $©A = \bigcup_{j=1}^∞ ©A_j$. $©A$ is countable, disjoint and $\lambda_n(A \setminus \bigcup ©A) = 0$.
+	\end{dukazin}
+\end{veta}
+
+% 10. 10. 2022
+
+\begin{definice}
+	We say that a measure $\mu$ on $®R^n$ satisfies Vitali theorem, if for every Vitaly cover ©V of $M \subseteq ®R^n$ there exists a disjoint countable $©A \subset ©V$ with $\mu(M \setminus \bigcup ©A) = 0$.
+\end{definice}
+
+\begin{poznamka}
+	If $\mu$ satisfies Vitali theorem and $\nu \ll \mu$, then $\nu$ satisfies Vitali theroem.
+\end{poznamka}
+
+\begin{veta}
+	Set $E \subset ®R^n$ be Lebesgue measurable and ©S be a finite system of closed balls covering $E$. Then there exists a disjoint system $©L \subset ®S$ such that $\lambda_n(E) ≤ 3^n · \sum_{B \in ©L} \lambda_n(B)$.
+
+	\begin{dukazin}
+		WLOG $©S ≠ \O$. SUppose $B_1 \in ©S$ with maximal radius among balls from ©S.
+
+		Suppose that we have already constructed $B_1, …, B_{k-1} \in ©S$. If possible, choose $B_k \in ©S$ disjoint with $\bigcup_{j < k} B_j$ and with maximal radius among balls satisfying this property.
+
+		We set $©L = \{B_1, …, B_N\}$. We show $E \subseteq \bigcup_{B \in ©L} 3*B = \bigcup_{i=1}^N 3*B_i$. $x \in E$. Find $B \in ©S$ with $x \in B$. Find smallest $k$ with $B \cap B_k ≠ \O$. This means $\rad (B) ≤ \rad (B_k)$ $\implies$ $x \in B \subseteq 3*B_k$.
+
+		Now $\lambda_n(E) ≤ \lambda_n\(\bigcup_{i=1}^N 3*B_i\) ≤ \sum_{i=1}^N \lambda_n(3*B_i) = 3^n \sum_{i=1}^N \lambda_n(B_i)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Besicovitch theorem]
+	For each $n \in ®N$ there exists $N \in ®N$ with the following property:
+
+	If $A \subset ®R^n$ and $\Delta: A \rightarrow (0, ∞)$ is a bounded function, then there exist sets $A_1$, …, $A_N$ $\subseteq A$ such that
+
+	\begin{itemize}
+		\item $\{\overline{B}(x, \Delta x) | x \in A_j\}$ is disjoint for every $j \in [N]$;
+		\item $A \subset \bigcup\{\overline{B}(x, \Delta x) | \in \bigcup_{i=1}^N A_i\}$.
+	\end{itemize}
+
+	\begin{dukazin}[Case $A$ is bounded]
+		Let $R := \sup_A \Delta$. Choose $B_1 := \overline{B}(a_1, \Delta(a_1))$ such that $a_1 \in A$ and $r_1 := \Delta(a_1) > \frac{3}{4}R$.
+
+		Assume that we already constructed $B_1, …, B_{j-1}$, $j ≥ 2$. $B_{j-1} = \overline{B}(a_{j-1}, \Delta(a_{j-1})) = \overline{B}(a_{j-1}, r_{j-1})$. Let $F_j := A \setminus \bigcup_{i=1}^{j-1} B_i$. If $F_j = \O$ we set $J := j$. If not $B_j := \overline{B}(a_j, \Delta(a_j)) = \overline{B}(a_j, r_j)$, $a_j \in F_j$ and $r_j > \frac{3}{4} \sup_{F_j} \Delta$.
+
+		If $F_j ≠ \O$ for every $j \in ®N$, then we set $J := ∞$. So we have $(B_j)_{j < J}$. If $J < ∞$, then we covered $A$. „If $J = ∞$, then $A \subset \bigcup_{j < J} B_j$“:
+
+		„$\lim_{j \rightarrow ∞} r_j = 0$“: because $A$ is bounded
+		$$ ||a_i - a_j|| ≥ r_i = \frac{1}{3} r_i + \frac{2}{3} r_i > \frac{1}{3} r_i + \frac{1}{2} r_j > \frac{1}{3} r_i + \frac{1}{3} r_j = \frac{1}{3}(r_i + r_j) \implies \frac{1}{3} * B_i \cap \frac{1}{3} * B_j = \O. $$
+		$\{\frac{1}{3}B_j | j < J\}$ is a disjoint family $\implies \sum_{j=1}^∞ \lambda_n(\frac{1}{3} * B_j) < ∞$.
+
+		If $A \in A \setminus \bigcup_{j=1}^∞ B_j$, then $a \in \bigcap_{j=1}^∞ F_j$. We find $j_0 \in ®N$ with $r_{j_0} ≤ \frac{3}{4} \Delta(a)$. \lightning.
+
+		Fix $k < J$. We set $I = \{i < k | B_i \cap B_k ≠ \O\}$, $I_1 = \{i < k_i | B_i \cap B_k ≠ \O \land r_i < 10 r_k\}$, $I_2 = \{i < k_i | B_i \cap B_k \land r_i ≥ 10 r_k\}$. The estimate of $I_1$: „We have $\frac{1}{3} B_i \subseteq 15 * B_k$ for every $i \in I_1$“: Take $x \in \frac{1}{3} * B_i$. Then
+		$$ ||x - a_k|| ≤ ||x - a_j|| + ||a_i - a_k|| ≤ \frac{1}{3} r_i + r_i + r_k ≤ \frac{10}{3} r_k + 10 r_k + r_k ≤ 15 r_k $$
+
+		$$ \lambda_n(\frac{1}{3} * B_i) = \lambda(\overline{B}(0, 1))·(\frac{1}{3}r_i)^n ≥ \lambda_n(\overline{B}(0, 1)) · (\frac{1}{3}·\frac{3}{4} r_k)^n = \lambda_n(\overline{B}(0, 1))·\frac{1}{4^n} r_k^n = \frac{1}{6O^n} \lambda_n(15 * B_k) \implies |I_1| ≤ 60^n. $$
 	\end{dukazin}
 \end{veta}
 

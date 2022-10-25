@@ -1,0 +1,73 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}							% Import stylu
+
+\begin{document}
+\begin{priklad}
+	Each of two urns contains $m$ balls. Out of the total of the $2m$ balls, $m$ are white and $m$ are black. A ball is simultaneously selected from each urn and moved to the other urn, and the process is indefinitely repeated. What is the steady-state distribution of the number of white balls in each urn?
+
+	Solve in two ways:
+	\begin{itemize}
+		\item by solving a list of equations, as we did in the tutorial for other Markov chains.
+		\item by sampling: Put $m=5$, start with one urn completely white, the other completely black. Repeat many times the update step, observe the number of black balls in the first urn, repeat.
+	\end{itemize}
+
+	\begin{reseni}
+		Označme si stavy podle počtu bílých kuliček v první urně: 0, 1, …, m. Do stavu $i$ se dostaneme s pravděpodobností $\frac{(i+1)^2}{m^2}$ ze stavu $i+1$ (musíme vybrat bílou z první urny, tj. $\frac{i+1}{m}$, a černou z druhé urny, tj. $\frac{i+1}{m}$), s pravděpodobností $\frac{(m-i+1)^2}{m^2}$ ze stavu $i-1$ (zase musíme vybrat bílou z druhé urny, tj. $\frac{m-(i-1)}{m}$, a černou z první, tj. $\frac{m-(i-1)}{m}$). Poslední možností, jak se do stavu $i$ dostat, je ze samotného stavu $i$, a to vytáhnutím černé a bílé zároveň (z libovolné urny), tedy s pravděpodobností $\frac{2i(m - i)}{m^2}$. Tedy pro steady-state distribuci máme rovnost
+		$$ \frac{(m-i+1)^2}{m^2} p_{i-1} + \frac{2i(m - i)}{m^2} p_i + \frac{(i+1)^2}{m^2} p_{i+1} = p_i, $$
+		$$ (m-i+1)^2 p_{i-1} + 2i(m - i)p_i + (i+1)^2 p_{i+1} = m^2p_i. $$
+		$$ \begin{pmatrix}
+			-m^2 & 1^2 & 0 & 0 & 0 & … \\
+			m^2 & 2·1·(m - 1) - m^2 & 2^2 & 0 & 0 & … \\
+			0 & (m - 1)^2 & 2·2·(m - 2) - m^2 & 3^2 & 0 & … \\
+			\\
+			0 & … & … & i^2 & … & …\\
+			0 & … & (m - i + 1)^2 & 2i(m - i) - m^2 & (i+1)^2 & … \\
+			0 & … & … & (m - i)^2 & … & …
+		\end{pmatrix} $$
+
+		Můžeme si všimnout, že když sečteme prvních $i+1$ řádků, tak se nám prvních $i$ sloupců sečte na nulu a vyjde nám $(i^2 + 2i(m - i) - m^2)p_i + (i+1)^2 p_{i+1} = 0$, tedy $p_{i+1} = \frac{(m-i)^2}{(i+1)^2}p_i$. Dosazením a upravením dostaneme $p_{i+1} = \(\frac{m! / (m-i-1)!}{(i+1)!}\)^2p_0$, tj. $p_i = \binom{m}{i}^2p_0$.
+
+		Nyní už stačí sečíst pravděpodobnosti jednotlivých stavů, protože víme, že součet těchto pravděpodobností musí být 1, tedy $p_0·\sum_{i=0}^m \binom{m}{i}^2 = 1$. Číslo $\binom{m}{i}^2$ si můžeme rozdělit na $\binom{m}{i}·\binom{m}{m-i}$, tedy v předchozím součtu vybíráme $m$ prvků z $2m$ (jeden sčítanec je výběr přesně $i$ kuliček z první poloviny a zbylých $m-i$ kuliček z druhé), tedy $p_0 = \frac{1}{\binom{2m}{m}}$ a
+		$$ p_i = \frac{\binom{m}{i}^2}{\binom{2m}{m}} $$
+	\end{reseni}
+
+	\begin{reseni}
+		Naprogramoval jsem přesně danou situaci (se značením stavů jako v prvním řešení):
+\begin{verbatim}
+import random
+
+class Urny:
+    def __init__(self, m):
+        self.first = 0
+        self.second = m
+        self.m = m
+
+    def step(self):
+        first_white = random.randint(1, self.m) <= self.first
+        second_white = random.randint(1, self.m) <= self.second
+        self.first -= first_white
+        self.second += first_white
+        self.second -= second_white
+        self.first += second_white
+
+
+if __name__ == '__main__':
+    random.seed(42)
+    m = 5
+    stat = [0 for i in range(m + 1)]
+    n = 100000
+    for _ in range(n):
+        urny = Urny(m)
+        for _ in range(1000):
+            urny.step()
+        stat[urny.first] += 1
+    print([it/n for it in stat])	
+\end{verbatim}
+		A vyšlo mi \verb|[0.00387, 0.09854, 0.39656, 0.39836, 0.09905, 0.00362]|, což je blízko exaktnímu řešení
+		$$ \[\frac{1}{252}, \frac{25}{252}, \frac{100}{252}, \frac{100}{252}, \frac{25}{252}, \frac{1}{252}\]. $$
+	\end{reseni}
+\end{priklad}
+
+
+
+\end{document}

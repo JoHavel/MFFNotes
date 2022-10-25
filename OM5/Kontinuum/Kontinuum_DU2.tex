@@ -1,0 +1,130 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let $®A \in ®R^{3 \times 3}$ be an invertible matrix and let ¦u and ¦v be arbitrary fixed vectors in $®R^3$ such that $¦v · A^{-1} ¦u ≠ -1$. Show that
+	$$ (®A + ¦u \otimes ¦v)^{-1} = ®A^{-1} - \frac{1}{1 + ¦v·A^{-1}¦u}(®A^{-1}¦u) \otimes (®A^{-T}¦v). $$
+
+	\begin{dukazin}
+		Z předpokladů máme, že obě strany existují, tedy nám stačí ukázat, že $(®A + ¦u \otimes ¦v)$ krát pravá strana je $®I$.
+		$$ (®A + ¦u \otimes ¦v)·\(®A^{-1} - \frac{1}{1 + ¦v·®A^{-1}¦u}(®A^{-1}¦u) \otimes (®A^{-T}¦v)\) = $$
+		$$ = ®I + ¦u \otimes ¦v · A^{-1} - \frac{®A·(®A^{-1} ¦u) \otimes (®A^{-T}¦v)}{1 + ¦v·®A^{-1} ¦u} - \frac{(¦u \otimes ¦v)·(®A^{-1} ¦u) \otimes (®A^{-T}¦v)}{1 + ¦v·®A^{-1} ¦u} $$
+
+		Nyní
+		$$ \forall ¦a: ®A·\((®A^{-1} ¦u)\otimes (®A^{-T}¦v)\)¦a = ®A·®A^{-1}¦u (®A^{-T}¦v · ¦a) = ¦u (®A^{-T}¦v · ¦a) = ¦u (¦v · ®A^{-1}¦a) = $$
+		$$ = \(¦u \otimes (¦v)\)·®A^{-1}¦a, $$
+		tedy
+		$$ ®A·(®A^{-1} ¦u)\otimes (®A^{-T}¦v) = ¦u \otimes ¦v ·®A^{-1}. $$
+		A
+		$$ \forall ¦a: (¦u \otimes ¦v)\((®A^{-1} ¦u)\otimes (®A^{-T}¦v)\)¦a = (¦u \otimes ¦v) ®A^{-1}¦u (®A^{-T}¦v · ¦a) = ¦u (¦v · ®A^{-1}¦u)(¦v · ®A^{-1}¦a) = $$
+		$$ = (¦v · ®A^{-1}¦u) · ¦u (¦v · ®A^{-1}¦a) = (¦v · ®A^{-1}¦u) · (¦u \otimes ¦v) · A^{-1}¦a, $$
+		tedy
+		$$ (¦u \otimes ¦v)\((®A^{-1} ¦u)\otimes (®A^{-T}¦v)\) = (¦v · ®A^{-1}¦u) · (¦u \otimes ¦v) · A^{-1}. $$
+
+		Dosazením do původního součinu dostaneme chtěnou rovnost:
+		$$ (®A + ¦u \otimes ¦v)·\(®A^{-1} - \frac{1}{1 + ¦v·®A^{-1}¦u}(®A^{-1}¦u) \otimes (®A^{-T}¦v)\) = $$
+		$$ = ®I + ¦u \otimes ¦v · A^{-1} - \frac{(¦u \otimes ¦v)·®A^{-1}}{1 + ¦v·®A^{-1} ¦u} - \frac{(¦v·®A^{-1} ¦u) · (¦u \otimes ¦v)·®A^{-1}}{1 + ¦v·®A^{-1} ¦u} = $$
+		$$ = ®I + ¦u \otimes ¦v · A^{-1} - \frac{1 + ¦v·®A^{-1} ¦u}{1 + ¦v·®A^{-1} ¦u}(¦u \otimes ¦v · A^{-1}) = ®I $$
+	\end{dukazin}
+\end{priklad}
+
+\break
+
+\begin{priklad}[2.]
+	Let ¦a, ¦b, ¦c and ¦d be arbitrary fixed vectors in $®R^3$. Show that
+	$$ \tr((¦a \otimes ¦b)(¦c \otimes ¦d)) = (¦a·¦d)(¦b·¦c). $$
+
+	\begin{dukazin}
+		Z definice tenzoru víme, že
+		$$ \forall ¦v: (¦a \otimes ¦b)(¦c \otimes ¦d)¦v = (¦a \otimes ¦b)¦c (¦d · ¦v) = ¦a(¦b·¦c) (¦d·¦v) =  (¦b·¦c)·¦a(¦d·¦v) = (¦b·¦c)·(¦a \otimes ¦d)·¦v, $$
+		tedy
+		$$ (¦a \otimes ¦b)(¦c \otimes ¦d) = (¦b·¦c)·(¦a \otimes ¦d). $$
+
+		Z přednášky (nebo aplikováním na $e_i$ a skalárním vynásobením s $e_i$) víme, že $\tr(¦a \otimes ¦d) = ¦a·¦d$. Navíc $\tr(x · ®A) = x · \tr(®A)$, tedy
+		$$ \tr((¦a \otimes ¦b)(¦c \otimes ¦d)) = \tr ((¦b·¦c)·(¦a \otimes ¦d)) = (¦b·¦c)·\tr(¦a \otimes ¦d) = (¦b·¦c)·(¦a·¦d). $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[3.]
+	Let $\phi$, $\psi$, ¦u, ¦v and ®A be smooth scalar, vector and tensor fields in $®R^3$. Show that:
+	$$ \Div (\phi ¦v) = ¦v·(\nabla \phi) + \phi \Div ¦v $$
+
+	\begin{dukazin}
+		Ze vzorce pro (parciální) derivaci součinu ($\phi v_i$ je skalární funkce):
+		$$ \Div (\phi ¦v) = \nabla (\phi¦v) = \sum_i \frac{\partial \phi v_i}{\partial x_i} = \sum_i \(\frac{\partial \phi}{\partial x_i}v_i + \phi \frac{\partial v_i}{\partial x_i}\) = \sum_i \frac{\partial \phi}{\partial x_i}v_i + \sum_i \phi \frac{\partial v_i}{\partial x_i} = $$
+		$$ = ¦v·(\nabla \phi) + \phi (\nabla·¦v) = ¦v·(\nabla \phi) + \phi \Div ¦v $$	
+	\end{dukazin}
+
+	$$ \Div(¦u \times ¦v) = ¦v·\rot ¦u - ¦u·\rot ¦v $$
+	\begin{dukazin}
+		Z vzorce pro derivaci součinu a $\epsilon_{ijk} = \epsilon_{jki} = \epsilon_{kij}$:
+		$$ \Div (u \times v) = \nabla · (u \times ¦v) = \sum_k\(\sum_{i, j} \frac{\partial \epsilon_{ijk} u_i·v_j}{\partial x_k}\) = \sum_{i,j,k} \(\epsilon_{ijk} \frac{\partial u_i}{\partial x_k} v_j + \epsilon_{ijk} u_i \frac{\partial v_j}{\partial x_k}\) = $$
+		$$ = \sum_j\(\sum_{k,i} \epsilon_{kij} \frac{\partial u_i}{\partial x_k}v_j\) + \sum_i\(\sum_{j,k} \epsilon_{jki} u_i \frac{\partial v_j}{\partial x_k}\) = (\nabla \times ¦u) · ¦v + ¦u·(¦v \times \nabla) = $$
+		$$ = ¦v · (\nabla \times ¦u) - ¦u · (\nabla \times ¦v) = ¦v·\rot¦u - ¦u·\rot¦v $$
+	\end{dukazin}
+
+	$$ \Div(¦u \otimes ¦v) = [\nabla ¦u]¦v + ¦u \Div ¦v $$
+
+	\begin{dukazin}
+		$$ \Div(¦u \otimes ¦v) = \sum_i \frac{\partial u_j v_i}{\partial x_i} = \sum_i \frac{\partial u_j}{\partial x_i}v_i + \sum_i u_j \frac{\partial v_i}{\partial x_i} = [\nabla ¦u]¦v + ¦u (\nabla · ¦v) = [\nabla ¦u]¦v + ¦u \Div ¦v $$
+	\end{dukazin}
+
+	$$ \Div(\phi ®A) = ®A (\nabla \phi) + \phi \Div ®A $$
+
+	\begin{dukazin}
+		$$ \Div(\phi ®A) = \sum_k \frac{\partial \phi A_{ik}}{\partial x_k} = \sum_k \(\frac{\partial \phi}{\partial x_k}A_{ik} + \phi \frac{\partial A_{ik}}{\partial x_k}\) = \sum_k \frac{\partial \phi}{\partial x_k}A_{ik} + \sum_k \frac{\partial A_{ik}}{\partial x_k} \phi = $$
+		$$ = ®A(\nabla \phi) + \phi \Div ®A $$
+	\end{dukazin}
+
+	Further, show that the following identities hold for the gradient of various products:
+	$$ \nabla (\phi\psi) = \psi\nabla\phi + \phi\nabla\psi $$
+
+	\begin{dukazin}
+		$$ \nabla (\phi \psi) = \frac{\partial \phi \psi}{\partial x_i} = \frac{\partial \phi}{\partial x_i}\psi + \frac{\partial \psi}{\partial x_i}\phi = \psi\nabla\phi + \phi\nabla\psi. $$
+	\end{dukazin}
+
+	$$ \nabla(\phi¦v) = ¦v \otimes \nabla\phi + \phi \nabla ¦v $$
+
+	\begin{dukazin}
+		$$ \nabla (\phi¦v)) = (\frac{\partial \phi v_i}{\partial x_j}e_i)e_j = (\frac{\partial \phi}{\partial x_j}v_i·e_i)e_j + (\phi\frac{\partial v_i}{\partial x_j}e_i)e_j = ¦v \otimes \nabla \phi + \phi \nabla ¦v $$
+	\end{dukazin}
+
+	$$ \nabla (¦u·¦v) = (\nabla ¦u)^T¦v + (\nabla ¦v)^T¦u $$
+
+	\begin{dukazin}
+		$$ \nabla (¦u·¦v) = \frac{\partial \sum_j u_j·v_j}{\partial x_i} = \sum_j \frac{\partial u_j·v_j}{\partial x_i} = \sum_j \(\frac{\partial u_j}{\partial x_i}v_j + u_j·\frac{\partial v_j}{\partial x_i}\) = $$
+		$$ = \sum_j (\nabla u_j)v_j + \sum_j (\nabla v_j)u_j = (\nabla ¦u)^T¦v + (\nabla ¦v)^T¦u. $$
+	\end{dukazin}
+
+	and, finally, show that the following identities hold for rot operator applied on products of various fields,
+	$$ \rot (¦u \times ¦v) = \Div(¦u \otimes ¦v - ¦v \otimes ¦u) $$
+
+	\begin{dukazin}
+		Vyjdeme z $\epsilon_{ijk}·\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$, což si buď pamatujeme z přednášky, nebo si rozmyslíme, že pro nenulovost musí být $j=m$ a $n=k$, nebo $j=n$ a $k=m$ a pak si uvědomíme, že stejná pořadí se „vykrátí“ a opačná ne:
+		$$ \rot (¦u \times ¦v) = \nabla \times (\sum_{i,j} \epsilon_{ijk} u_i v_j) = \sum_{l,k} \epsilon_{lkm} \frac{\partial}{\partial x_l} \sum_{i,j} u_i v_j = \sum_{i,j,k,l} \epsilon_{kml} \epsilon_{kij} \frac{\partial u_iv_j}{\partial x_l} = $$
+		$$ = \sum_{i,j,k,l} \(\delta_{mi}\delta_{lj} \(\frac{\partial u_i}{\partial x_l}v_j + u_i \frac{\partial v_j}{\partial x_l}\) - \delta_{mj}\delta_{li} \(\frac{\partial u_i}{\partial x_l}v_j + u_i \frac{\partial v_j}{\partial x_l}\)\) = $$
+		$$ = \(\sum_l \frac{\partial u_m}{x_l} v_l + \sum_l u_m \frac{\partial v_l}{\partial x_l}\) - \(\sum_l \frac{\partial u_l}{x_l} v_m + \sum_l u_l \frac{\partial v_m}{\partial x_l}\) = $$
+		$$ = \([\nabla ¦u]¦v + ¦u \Div ¦v\) - \(¦v \Div u + [\nabla ¦v]¦u\) = \Div(¦u \otimes ¦v) - \Div(¦v \otimes ¦u) = \Div(¦u \otimes ¦v - ¦v \otimes ¦u) $$
+	\end{dukazin}
+
+	$$ \rot (\phi¦v) = \phi \rot ¦v - ¦v \times \nabla \phi $$
+
+	\begin{dukazin}
+		$$ \rot(\phi¦v) = \nabla \times (\phi¦v) = \sum_{ij}\epsilon_{ijk} \frac{\partial \phi v_j}{\partial x_i} = \sum_{ij}\epsilon_{ijk}\(\phi\frac{\partial v_j}{\partial x_i} + \frac{\partial \phi}{\partial x_i}v_j\) = $$
+		$$ = \sum_{ij} \epsilon_{ijk} \phi \frac{\partial v_j}{\partial x_i} - \sum_{ij}\epsilon_{jik} v_j \frac{\partial \phi}{\partial x_i} = \phi(\nabla \times ¦v) - ¦v \times \nabla \phi = \phi \rot ¦v - ¦v \times \nabla \phi $$
+	\end{dukazin}
+
+	Two successive applications of rot operator on vector field v can be expressed as follows
+	$$ \rot (\rot ¦v) = \nabla (\Div ¦v) - \Delta ¦v. $$
+
+	\begin{dukazin}
+		$$ \hspace{-0.2em}\rot(\rot ¦v) = \nabla \times (\nabla \times ¦v) = \nabla \times \(\sum_{i,j} \epsilon_{ijk} \frac{\partial v_j}{\partial x_i}\) = \sum_{l, k, i, j} \epsilon_{lkm} \frac{\partial}{\partial x_l} \epsilon_{ijk} \frac{\partial v_j}{\partial x_i} = \sum_{i,j,k,l} \epsilon_{kml} \epsilon_{kij} \frac{\partial^2 v_j}{\partial x_l \partial x_i} = \hspace{-0.2em} $$
+		$$ = \sum_{ijkl} \delta_{mi} \delta_{kj} \frac{\partial^2 v_j}{\partial x_l \partial x_i} - \delta_{mj}\delta_{li}\frac{\partial^2 v_j}{\partial x_l \partial x_i} = \frac{\partial}{\partial x_m}\(\sum_l \frac{\partial v_l}{\partial x_l}\) - \sum_l\frac{\partial^2 v_m}{\partial x_l^2} = \nabla (\nabla · ¦v) - (\nabla · \nabla)¦v $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

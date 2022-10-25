@@ -100,8 +100,59 @@
 		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_j} |_{(0, …, 0)} = \lim_{h \rightarrow 0} \frac{G(0, …, h, …, 0) - G(0, …, 0)}{h} = \lim_{h\rightarrow 0} \frac{(0, …, h, …, 0)^T - (0, …, 0)^T}{h} = (0, …, 1, …, 0)^T = e_j. $$
 		Tedy $\nabla G(0, …, 0)$ je „jednotková matice, až na to, že $a_{11}$ je $\alpha$“, tudíž podle věty o inverzi funkce $\exists V \subseteq \tilde{V}$ okolí 0, $\exists U$ okolí bodu $x_0$ tak, že $G: V \rightarrow U$ je homeomorfismus. Položme $g = G^{-1}$.
 
-		Nyní už stačí $g(\phi(t, x_0)) = \psi(t, g(x_0))$ $\forall x_0 \in U$ $\forall t: \phi(t, x_0) \in U$. $\phi(t, x_0) = G(\psi(t, g(x_0)))$.
+		Nyní už stačí $g(\phi(t, x_0)) = \psi(t, g(x_0))$ $\forall x_0 \in U$ $\forall t: \phi(t, x_0) \in U$. $\phi(t, x_0) = G(\psi(t, g(x_0)))$
+
+		3. $x \in U = G(V)$ $\exists y \in V$ $x = G(y)$
+		$$ x = \phi(y, (x_{01}, x_{02} + y_2, …, x_{0n} + y_n)) $$
+		$$ \phi(t, x) = \phi(t, \phi(y, (x_{01}, x_{02} + y_2, …, x_{0n} + y_n))) = \phi(t + y, (x_{01}, x_{02} + y_2, …, x_{0n} + y_n)) $$
 	\end{dukazin}
 \end{veta}
+
+\begin{veta}[La Salle invariance principle]
+	$$ x' = f(x), (\phi, \Omega) \quad \phi: ®R \rightarrow \Omega, f loc. Lip. $$
+	$$ \exists V: \Omega \rightarrow ®R, \text{ bounded from below}. $$
+	$$ \exists l \in ®R: \Omega_l = \{x \in \Omega | V(x) ≤ l\} -- bounded $$
+	$$ \dot{V}_f(x) := \nabla V(x) · f(x) = \sum_{j=1}^n  \frac{\partial V(x)}{\partial x_j}·f_j(x) ≤ 0 \qquad \forall x \in \Omega_l. $$
+	$$ R = \{x \in \Omega_l | \dot{V}_f(x) = 0\}, \quad M = \{y \in R | \gamma^+(y) \subset R\}. $$
+
+	Then $\forall x \in \Omega_l: \omega(x) \subset M$.
+
+	\begin{dukazin}
+		Let $x \in \Omega_l$. $\forall y \in \omega(x)\ \exists t_k \nearrow ∞: x(t_k) \rightarrow y$. $\phi(t, x_0) = x(t)$.
+		$$ \frac{d}{dt} V(x(t)) = \nabla V(x(t))·x'(t) = \dot{V}_f(x(t)) ≤ 0. $$
+		$V(x(t)) \searrow$ and $\exists C: \forall x \in \Omega: V(x) > -C$ so $\exists \lim_{t \rightarrow ∞} V(x(t)) = c$.
+
+		So $\exists c\ \forall y \in \omega(x_0) V(y) = c$. $V(x(t_k)) \rightarrow V(y) = c$.
+		$$ \gamma^+(y) \subset \omega(x_0)\ V(\phi(t, y)) = c\ \forall t ≥ 0 \implies $$
+		$$ \implies \frac{d}{dt}V(\phi(t, y)) = 0. $$
+		$\gamma^+(y) \subset R$ in particular, $y \in R$. Hence $y \in M$.
+	\end{dukazin}
+\end{veta}
+
+\section{Poincaré-Bendixson theory}
+\begin{veta}[Poincaré-Bendixson]
+	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stat points and $\gamma^+(p)$ is relatively compact ($\gamma^+(p)$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
+\end{veta}
+
+\begin{veta}[Bendixon-Dulas]
+	$\Omega$-simply connected ($\forall$ closed Jordan curve $\gamma$ in $\Omega$, $\Int(\gamma) \subset \Omega$). $\exists B: \Omega \rightarrow ®R: (\div B)(x) = \frac{\partial B}{\partial x_1}(x_1, x_2) + \frac{\partial B}{\partial x_2}(x_1, x_2) > 0$ for almost every $x \in \Omega$. Then $x' = f(x)$ doesn't have nontrivial periodic solutions.
+\end{veta}
+
+\begin{definice}[Transverzála]
+	$\Sigma$ segment on a line such that $\forall p \in \Sigma: \Sigma \not\parallel f(p)$.
+\end{definice}
+
+\begin{lemma}
+	$\Sigma$ transverzála, $p \in \Sigma \subset \Omega$. Then $\exists \tilde \subset U$ neighborhood of $p$. $\exists \Delta > 0$ such that
+	$$ \forall y \in \tilde U: \phi(t, y) \subset U\ \forall t: |t| < \Delta \land \exists \tau: |\tau| < \frac{\Delta}{2}: \phi(\tau, y) \in \Sigma \cap \tilde U. $$
+
+	\begin{dukazin}
+		Use Th. of rect.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $p \in \Omega$ and assume that $|\gamma^+(p) \cap \Sigma| ≥ 3$, i. e. $\exists t_1 < t_2 < t_3$ $\phi(t_j, p) \in \Sigma$, $j=1, 2, 3$. Then $\phi(t_2, p)$ lie between $\phi(t, p)$ and $\phi(t_3, p)$.
+\end{lemma}
 
 \end{document}

@@ -38,10 +38,101 @@
 	Hölderovské zobrazení stupně 1 se nazývá lipschitzovské. Lipschitzovské zobrazení s konstantou $k < 1$ se nazývá kontrakce.
 \end{definice}
 
-
+% 11. 10. 2022
 
 \begin{tvrzeni}
-	Je-li $f: (X, d) \rightarrow (Y, e)$ $\alpha$-hölderovské pro.
+	Je-li $f: (X, d) \rightarrow (Y, e)$ $\alpha$-hölderovské pro $\alpha > 0$, pak je $f$ stejnoměrně spojité.
+
+	\begin{dukazin}
+		Máme
+		$$ e(f(x), f(y)) ≤ K d^\alpha(x, y). $$
+		Chceme
+		$$ \forall \epsilon > 0\ \exists \delta > 0: (d(x, y) < \delta \implies e(f(x), f(y)) < \epsilon). $$
+		Zvolíme $\delta = \sqrt[\alpha]{\frac{\epsilon}{K}}$.
+	\end{dukazin}
 \end{tvrzeni}
+
+\begin{tvrzeni}
+	Složení $f$ $\alpha$-hölderovské a $g$ $\beta$-hölderovské je $\alpha·\beta$-hölderovská funcke.
+
+	\begin{dukazin}
+		$$ \rho(g(f(x)), g(f(y))) ≤ Ke^\beta(f(x), f(y)) ≤ K(L d^\alpha(x, y))^\beta = K·L^\beta d^{\alpha·\beta}(x, y). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	Složení lipschitzovských zobrazení je lipschitzovské. Z důkazu pak i složení kontrakcí je kontrakce.
+\end{dusledek}
+
+\begin{definice}[Pseudonorma funkce]
+	Nechť $f: (X, d) \rightarrow (Y, e)$. Označíme
+	$$ |f|_\alpha = \inf \{K, e(f(x), f(y)) ≤ K d^\alpha(x, y)\} = \sup \{\frac{e(f(x), f(y))}{d^\alpha(x, y)} | x ≠ y\} $$
+\end{definice}
+
+\begin{veta}
+	Nechť $(X, d)$ je omezený prostor a $0 ≤ \beta ≤ \alpha$. Pak každé $\alpha$-hölderovské zobrazení na $(X, d)$ je $\beta$-hölderovské.
+
+	\begin{dukazin}
+		$$ e(x, y) ≤ K d^\alpha(f(x), f(y)) = K d^\beta(x, y)·d^{\alpha - \beta}(x, y) ≤ K·(\diam f(x))^{\alpha - \beta} d^\beta(x, y). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	$f: J \rightarrow ®R$, $J$ interval v ®R, $J = (a, b)$, $a ≠ -∞$. Potom
+	$$ f\text{ je stejnoměrně spojitá } \implies \exists F: [a, b) \rightarrow ®R, \text{ stejnoměrně spojitá, } F|_{(a, b)} = f. $$
+
+	\begin{dukazin}
+		Dokázáno na přednášce (jednoduché).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	\ 
+	\begin{enumerate}
+		\item Je-li $f$ $\alpha$-hölderovská pro $\alpha > 1$ je konstantní.
+		\item Má-li $f$ derivaci, pak je $f$ lipschitzovská právě když je její derivace omezená.
+		\item Lipschitzovská funkce je absolutně spojitá.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$$ „1.)“ |f(x) - f(y)| ≤ K|x - y|^\alpha \implies |\frac{f(x) - f(y)}{x - y} ≤ K |x - y|^{\alpha - 1} \implies f'(x) = 0 \implies f = \konst. $$
+
+		$$ „2.) \implies“ \exists f' na J \land |f(x) - f(y)| ≤ K |x - y| \implies |\frac{f(x) - f(y)}{x - y}| ≤ K. $$
+		$$ „2.) \impliedby“ |f'(x)| ≤ K \forall x \in J \implies |f(x) - f(y)| = |f'(c)|·|x-y| ≤ K(x - y). $$
+
+		$$ „3.)“ f \text{ abs. spoj.}: \forall \epsilon > 0\ \exists \delta > 0: (\forall a ≤ a_1 < b_1 ≤ a_2 < b_2 ≤ … ≤ a_n < b_n ≤ b: \sum_{i=1}^n (b_i - a_i) < \delta \implies \sum_{i=1}^n |f(b_i) - f(a_i)|), $$
+		$$ f\text{ je lips.} \implies |f(x) - f(y)| ≤ K·|x - y| \implies \sum_{i=1}^n |f(a_i) - f(b_i)| ≤ \sum_{i=1}^n K(b_i - a_i) = K \sum_{i=1}^n (b_i - a_i) < K\delta < \epsilon. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Lipschitzovsky ekvivalentní metriky]
+	Metriky $d$, $e$ na $X$ se nazývají lipschitzovsky ekvivalentní, jestliže obě identická zobrazení jsou lipschitzovské.
+\end{definice}
+
+\begin{poznamka}
+	To je ekvivalentní
+	$$ \exists K, L > 0\ \forall x, y \in X: K d(x, y) < e(x, y) < L d(x, y). $$
+\end{poznamka}
+
+\begin{veta}
+	Buď $p > 0$. Funkce $x^p$ na $J \subseteq [0, +∞)$ je lipschitzovská, právě když buď $0 < a < b < +∞$ nebo $a = 0$ a $p ≥ 1$ nebo $b = +∞$ a $p ≤ 1$.
+\end{veta}
+
+\begin{veta}
+	Nechť $\alpha \in (0, 1]$. Pak $x^\alpha$ je $\alpha$-hölderovská na $[0, +∞)$.
+
+	\begin{dukazin}
+		$$ |x^\alpha - y^\alpha| ≤ K |x - y|^\alpha, \qquad y_0 ≥ 0, x ≥ y_0, g(x) = (x - y_0)^\alpha - (x^\alpha - y_0^\alpha) na [y_0, +∞), g(y_0) = 0, $$
+		$$ g'(x) = \alpha(x - y_0)^{\alpha - 1} - \alpha x^{\alpha-1} = \alpha\((x - y_0)^{\alpha - 1} - x^{\alpha - 1}\) ≥ 0 \implies \forall x ≥ y_0: x^\alpha - y^\alpha ≤ (x - y)^\alpha. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$$ |x^\alpha|_\alpha = \frac{b^\alpha - a^\alpha}{(b - a)^\alpha}, \qquad \alpha \in [0, 1]. $$
+
+	\begin{dukazin}
+		$\alpha = 0 \implies |x^\alpha|_\alpha = 0$. $a = 0 \stackrel?\implies |x^\alpha|_\alpha = 1$. $b = +∞ \stackrel?\implies |x^\alpha|_\alpha = 1$.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
