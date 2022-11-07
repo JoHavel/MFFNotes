@@ -1,0 +1,84 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}							% Import stylu
+
+\begin{document}
+\begin{priklad}[2.1]
+	Dokažte, že následující lineární programy z důkazu Minimaxové věty jsou navzájem duální.
+
+	Pro matici $M \in ®R^{m \times n}$:\\[-2em]
+	\begin{center}
+		\begin{tabular}{l|l|l}
+			                & Program $P$             & Program $D$      \\ \hline
+			Proměnné:       & $y_1, …, y_n$           & $x_0$            \\
+			Účelová funkce: & $\min \tilde{¦x}^T M ¦y$          & $\max x_0$       \\
+			Omezení:        & $\sum_{j=1}^n y_j = 1$, & $¦1 x_0 ≤ M^T \tilde{¦x}$ \\
+			                & $y_1, …, y_n ≥ 0$       &
+		\end{tabular}
+	\end{center}
+
+	\begin{dukazin}
+		Použijeme kuchařku z přednášky (s prohozenými stranami, vpravo $P$, vlevo $D$). $P$ má pravou stranu $(1) = ¦c \in ®R^1 = ®R^m$, $D$ má pravou stranu $M^T\tilde{¦x} = ¦b \in ®R^n$, matice $A$ je $¦1 \in ®R^{n \times m}$. Tedy $P$ má mít $¦y \in ®R^n$, $D$ má mít $¦x \in ®R^1$, což oba mají. V programu $P$ minimalizujeme $(\tilde{¦x}^T M ¦y) = ¦b^T¦y$ a v $D$ maximalizujeme $x_0 = 1·x_0 = ¦c^T ¦x$, což je přesně podle kuchařky.
+
+		Dále $P$ má rovnost, takže což u $D$ nic neznamená ($x_0 \in ®R$ máme z toho, že řešíme v ®R). Dále má $P$ nerovnost $y_i ≥ 0$ pro každé $i$, tedy $D$ má mít $x_0 ≤ b_i$ pro každé $i$, což má, jelikož se to pomocí $A$ dá zapsat jako $A·x_0 ≤ b_i$.
+	\end{dukazin}
+
+	Pro matici $M \in ®R^{m \times n}$:\\[-2em]
+	\begin{center}
+		\begin{tabular}{l|l|l}
+		                & Program $P'$           & Program $D'$           \\ \hline
+		Proměnné:       & $y_0, y_1, …, y_n$     & $x_0, x_1, …, x_m$     \\
+		Účelová funkce: & $\min y_0$             & $\max x_0$             \\
+		Omezení:        & $¦1 y_0 - M¦y ≥ ¦o$    & $¦1 x_0 - M^T ¦x ≤ ¦o$ \\
+		                & $\sum_{j=1}^n y_j = 1$ & $\sum_{i=1}^m x_i = 1$ \\
+		                & $y_1, …, y_n ≥ 0$      & $x_1, …, x_m ≥ 0$
+		\end{tabular}
+	\end{center}
+
+	\begin{dukazin}
+		Použijeme kuchařku s přednášky (zase vpravo $P'$ a vlevo $D'$). Aby nám fungoval náš zápis (matice $A$, pravé strany, $y_i ≥ 0 \implies … ≤ …$), tak musíme očíslovat podmínky: „součet = 1“ jako nultou a zbylé jako 1. až $n$-tou (resp. $m$-tou). Matice $A$ pak bude
+		$$ \begin{pmatrix} 1 & 1 & … & 1 \\ 1 \\ \vdots & & -M^T \\ 1 \end{pmatrix}. $$
+		Pravé strany $¦b = (1, 0, 0, …, 0)^T$ a $¦c = (1, 0, 0, …, 0)^T$, tedy maximalizujeme $x_0 = ¦c^T¦x$ a minimalizujeme $y_0 = ¦b^T¦y$ správně. Podmínky jsou opravdu tvaru $A¦x … ¦b$ a $A^T ¦y … ¦c$, navíc podle $y_i ≥ 0$ (resp. $x_i ≥ 0$) víme, že v $i$-té podmínce v druhém programu má být $≤$ (resp. $≥$), což je. $x_0 \in ®R$ a $y_0 \in ®R$ nám pak říká, že v druhém programu má nastat v nulté podmínce rovnost, což opravdu nastává (nultá podmínka je „součet = 1“).
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.2]
+	Použijte Lemkeho–Howsonův algoritmus a spočítejte Nashovo ekvilibrium následující hry dvou hráčů:
+	$$ M = \begin{pmatrix} 1 & 3 & 0 \\ 0 & 0 & 2 \\ 2 & 1 & 1 \end{pmatrix} \qquad \land \qquad N = \begin{pmatrix} 2 & 1 & 0 \\ 1 & 3 & 1 \\ 0 & 0 & 3 \end{pmatrix}. $$
+	Výpočet začněte výběrem značky $1$.
+
+	\begin{reseni}
+		$$ P = \{¦x \in ®R^3 | ¦x ≥ ¦o \land N^T ¦x ≤ ¦1\} = $$
+		$$ = \{¦x = (x_1, x_2, x_3)^T \in ®R^3 | x_1,x_2,x_3 ≥ 0 \land 2x_1 + x_2 ≤ 1 \land x_1 + 3x_2 ≤ 1 \land x_2 + 3x_3 ≤ 1\}. $$
+		$$ Q = \{¦y \in ®R^3 | ¦y ≥ ¦o \land M ¦y ≤ ¦1\} = $$
+		$$ = \{¦y = (y_1, y_2, y_3)^T \in ®R^3 | y_1,y_2,y_3 ≥ 0 \land y_1 + 3y_2 ≤ 1 \land 2y_3 ≤ 1 \land 2y_1 + y_2 + y_3 ≤ 1\}. $$
+
+		Nerovnice máme označené $1$ až $3$ jsou $¦x ≥ ¦o$ a $M¦y ≤ ¦1$, $4$ až $6$ pak $¦y ≥ ¦o$ a $N^T¦x ≥ ¦1$.
+
+		Začínáme ve vrcholech $(0, 0, 0)$. Začínáme odstraněním labelu $1$ v polytopu $P$, tedy pohybu po přímce $x_2 = x_3 = 0$ do vrcholu $(1 / 2, 0, 0)$ (největší $x_1$, které splňuje všechny nerovnice), čímž jsme splnili rovnici $2x_1 + x_2 = 1$ (v nerovnici nahradíme nerovnítko rovnítkem) s labelem $4$.
+
+		Následně pokračujeme v $Q$ odstraněním labelu $4$, tedy pohybem po přímce $y_2 = y_3 = 0$ do bodu $(1 / 2, 0, 0)$ s novým labelem $3$. Ten odstraníme v $P$, tedy po přímce $x_2=0$ a $2x_1 + x_2 = 1$, do vrcholu $(1 / 2, 0, 1 / 3)$ s novým labelem $6$. Ten odebereme z $Q$ a pokračujeme po přímce $y_2 = 0$ a $2y_1 + y_2 + y_3 = 1$ do bodu $(1 / 4, 0, 1 / 2)$ s novým labelem $2$.
+
+		Ten odebereme s $P$, dostaneme se do $(2 / 5, 1 / 5, 4 / 15)$ s novým labelem $5$. Nakonec ten odebereme z $Q$ a dostaneme se do $(1 / 10, 3 / 10, 1 / 2)$, čímž jsme znovu přidali label $1$ a tak končíme.
+
+		Výsledkem je tedy $\frac{(2 / 5, 1 / 5, 4 / 15)}{2 / 5 + 1 / 5 + 4 / 15}$ a $\frac{(1 / 10, 3 / 10, 1 / 2)}{1 / 10 + 3 / 10 + 1 / 2}$, tj.
+		$$ \frac{(6, 3, 4)}{13} \qquad \frac{(1, 3, 5)}{9}, $$
+		což jsou tedy nalezené smíšené strategie v Nashově ekvilibriu.
+	\end{reseni}
+\end{priklad}
+
+\break
+
+\begin{priklad}[2.3]
+	Nechť $S$ je podrozdělení trojúhelníku $T$ v rovině. Korektní obarvení vrcholů S přiřazuje jednu ze tří barev (modrá, červená a zelená) každému vrcholu z $S$ tak, že všechny tři barvy jsou použité na vrcholech z $T$. Navíc každý vrchol z $S$ ležící na hraně z $T$ musí mít jednu z barev, kterou má nějaký vrchol této hrany ležící v $T$. Dokažte, že v každém korektním obarvení $S$ existuje trojúhelníková stěna v $S$ jejíž vrcholy jsou obarveny všemi třemi barvami.
+
+	\begin{dukazin}
+		Vezmeme libovolný vrchol původního trojúhelníku a podíváme se na jeho (hranové) sousedy v podrozděleném trojúhelníku. Pokud je nějaký sousední vrchol stejné barvy jako vzatý vrchol, tak můžeme tyto vrcholy spojit (tj. všechny hrany ze souseda nově vedeme do vybraného vrcholu) a žádný nový trojúhelník jsme nevytvořili (jen to přestaly být trojúhelníky geometricky, ale topologicky / grafově to pořád trojúhelníky jsou). Jediné co, tak se nám mohlo stát, že jsme si vytvořili jinak barevný vrchol (respektive vnitřní skupinu bodů neobsahující body na okraji původního trojúhelníku), ze kterého vede hrana pouze do vybraného, což se stalo tak, že měl tento bod za sousedy vrcholy stejné barvy, takže by v žádném trojúhelníku už být neměl a můžeme ho odstranit.
+
+		Pokračujeme, až všichni sousedi vybraného vrcholu budou v ostatních dvou barvách. V takovém případě se v sousedech vyskytuje jedna i druhá barva, jelikož jeden ze sousedů musí ležet na hraně do druhého vrcholu původního trojúhelníku, a jeden na hraně do třetího. Navíc se dají vrcholy uspořádat podle toho, že následující sousedi tvoří s vybraným vrcholem jeden trojúhelník a že zřejmě krajní vrcholy budou různých barev. Vezmeme poslední vrchol stejné barvy jako první, tomu musí následovat vrchol druhé barvy. A spolu s vybraným vrcholem tvoří trojbarevný trojúhelník. Teď už stačí jen najít který původní vrchol odpovídal těmto hranám.
+	\end{dukazin}
+
+	\begin{dukazin}[Jiný pohled]
+		Podíváme se na komponentu souvislosti stejně barevných vrcholů obsahující jeden vrchol původního trojúhelníku. Pak na okraji „protější vybranému vrcholu“ této komponenty máme zase posloupnost bodů dvou zbývajících barev začínající jednou barvou a končící druhou. A jsme doma.
+	\end{dukazin}
+\end{priklad}
+\end{document}

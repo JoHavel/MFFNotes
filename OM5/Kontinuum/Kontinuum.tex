@@ -6,7 +6,7 @@
 \begin{document}
 
 % 05. 10. 2022
-\begin{poznamka}[Note of Me -- autor of notes]
+\begin{poznamka}[Note from me -- autor of notes]
 	Bad English in this text is my fault, not lecturer's one.
 \end{poznamka}
 
@@ -163,7 +163,8 @@
 	$$ D(I_2(®A))[B] = D(-\frac{1}{2} \tr ®A^2 + \frac{1}{2} (\tr ®A)^2)[B] = \frac{d}{d\tau} (-\frac{1}{2} \tr (®A + \tau ®B)^2 + \frac{1}{2} (\tr (®A + \tau®B))^2)|_{\tau = 0} = $$
 	$$ = - \tr(®A®B) + (\tr ®A)(\tr ®B) = (\tr ®A)®I : ®B - ®A^T:®B = ((\tr ®A)®I - ®A^T):®B. $$
 
-	$$ D(\det ®A)[®B] = \frac{d}{d\tau}(\det (®A + \tau ®B))|_{\tau = 0} = (\det ®A) \frac{d}{d\tau}(\det(®I + \tau ®A^{-1}®B))_{\tau=0} = \det ®A \frac{d}{d\tau}(1 + \tau \tr (®A^{-1} ®B) + …)|_{\tau=0} = (\det ®A) \tr(®A^{-1}®B) = (\det ®A)®A^{-T}:®B. $$
+	$$ D(\det ®A)[®B] = \frac{d}{d\tau}(\det (®A + \tau ®B))|_{\tau = 0} = (\det ®A) \frac{d}{d\tau}(\det(®I + \tau ®A^{-1}®B))_{\tau=0} = $$
+	$$ = \det ®A \frac{d}{d\tau}(1 + \tau \tr (®A^{-1} ®B) + …)|_{\tau=0} = (\det ®A) \tr(®A^{-1}®B) = (\det ®A)®A^{-T}:®B. $$
 \end{priklad}
 
 \begin{poznamka}
@@ -175,7 +176,8 @@
 \end{priklad}
 
 \begin{priklad}
-	$$ \frac{\partial ®A^{-1}}{\partial ®A}[®B] = \frac{d}{d \tau}\((®A + \tau ®B)^{-1}\)|_{\tau = 0} = \frac{d}{d \tau}\((®I + \tau ®A^{-1} ®B)^{-1}®A^{-1}\)|_{\tau = 0} = \frac{d}{d\tau}\((®I - \tau ®A^{-1}®B + …)®A^{-1}\)|_{\tau = 0} = - ®A^{-1}®B®A^{-1}. $$
+	$$ \frac{\partial ®A^{-1}}{\partial ®A}[®B] = \frac{d}{d \tau}\((®A + \tau ®B)^{-1}\)|_{\tau = 0} = \frac{d}{d \tau}\((®I + \tau ®A^{-1} ®B)^{-1}®A^{-1}\)|_{\tau = 0} = $$
+	$$ = \frac{d}{d\tau}\((®I - \tau ®A^{-1}®B + …)®A^{-1}\)|_{\tau = 0} = - ®A^{-1}®B®A^{-1}. $$
 \end{priklad}
 
 \begin{priklad}
@@ -189,42 +191,311 @@
 	$$ Df(®A)[®B] = \sum_{i=1}^3 \frac{df}{d\lambda}|_{\lambda = \lambda_i} ®P_i ®B ®P_i + \sum_{i=1}^3 \sum_{j=1, j≠i}^3 \frac{f(\lambda_i) - f(\lambda_j)}{\lambda_i - \lambda_j} ®P_i ®B ®P_j $$
 	$$ (Df(®A)[®B])_{ij} = \frac{f(\lambda_i) - f(\lambda_j)}{\lambda_i - \lambda_j} B_{ij}, if i ≠ j, (Df(®A)[®B])_{ij} = \frac{df}{d\lambda}|_{\lambda = \lambda_j} B_{ij}, if i=j. $$
 
-	\begin{dukazin}
-		From chain rule:
-		$$ \frac{\partial f(®A)}{\partial ®A} = \sum_{i=1}^3 \frac{df(\lambda_i)}{d\lambda} |_{\lambda = \lambda_i} \frac{\partial \lambda_i}{\partial ®A} ¦v_i \otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) \frac{\partial ¦v_i}{\partial ®A}\otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) ¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A} $$
-
-		First derivative at right side:
-		$$ ®A ¦v_i = \lambda_i¦v $$
-		$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_i $$
-		$$ \frac{\partial A_{mn}}{\partial A_{kl}}(¦v_i)_n + (A_{mn}) \frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
-		$$ \delta_{mk}\delta_{nl}(¦v_i)_n + A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad ·(¦v_i)_m \sum_m $$
-
-		$$ \sum_m \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m (¦v_i)_m = \frac{\partial \lambda_i}{\partial A_{kl}} $$
-
-		From symmetry of ®A and definition of eigenvector:
-		$$ \sum_m A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} (¦v_i)_m = \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n $$
-
-		$$ \sum_m \delta_{mk}\delta_{nl}(¦v_i)_n (¦v_i)_m = \delta_{nl}(¦v_i)_n(¦v_i)_k $$
-		
-		So
-		$$ \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + \delta_{nl}(¦v_i)_n(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad \sum_n $$
-		$$ \sum_n \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
-		$$ (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} $$
-		$$ \frac{\partial \lambda_i}{\partial ®A} = ¦v_i \otimes ¦v_j $$
-
-		Second derivative at right side:
-		$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_j $$
-		$$ ®A \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \lambda_i \frac{\partial ¦v_i}{\partial ®A}·¦v_j $$
-		…
-		$$ \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \frac{¦v_j \otimes ¦v_i}{\lambda_i - \lambda_j}i = \frac{\delta_{kj}\delta_{il}}{\lambda_i - \lambda_j} $$
-		$$ \(\frac{\partial ¦v_i}{\partial ®A}[®X]\)_j = \frac{\delta_{im}\delta_{jn}}{\lambda_i - \lambda_j} = \frac{¦v_i · ®X ¦v_j}{\lambda_i - \lambda_j}. $$
-
-		$$ \frac{\partial ¦v_i}{\partial ®A}[®X] = \sum_{j=1}^3 \frac{¦v_i · ®X¦v_j}{\lambda_i - \lambda_j}¦v_j. $$
-	\end{dukazin}
 \end{veta}
+
+\begin{dukaz}
+	From chain rule:
+	$$ \frac{\partial f(®A)}{\partial ®A} = \sum_{i=1}^3 \frac{df(\lambda_i)}{d\lambda} |_{\lambda = \lambda_i} \frac{\partial \lambda_i}{\partial ®A} ¦v_i \otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) \frac{\partial ¦v_i}{\partial ®A}\otimes ¦v_i + \sum_{i=1}^3 f(\lambda_i) ¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A} $$
+
+	First derivative at right side:
+	$$ ®A ¦v_i = \lambda_i¦v $$
+	$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_i $$
+	$$ \frac{\partial A_{mn}}{\partial A_{kl}}(¦v_i)_n + (A_{mn}) \frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
+	$$ \delta_{mk}\delta_{nl}(¦v_i)_n + A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} = \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad ·(¦v_i)_m \sum_m $$
+
+	$$ \sum_m \frac{\partial \lambda_i}{\partial A_{kl}}(¦v_i)_m (¦v_i)_m = \frac{\partial \lambda_i}{\partial A_{kl}} $$
+
+	From symmetry of ®A and definition of eigenvector:
+	$$ \sum_m A_{mn}\frac{\partial (¦v_i)_n}{\partial A_{kl}} (¦v_i)_m = \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n $$
+
+	$$ \sum_m \delta_{mk}\delta_{nl}(¦v_i)_n (¦v_i)_m = \delta_{nl}(¦v_i)_n(¦v_i)_k $$
+		
+	So
+	$$ \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + \delta_{nl}(¦v_i)_n(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} \qquad \sum_n $$
+	$$ \sum_n \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}}(¦v_i)_n + (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} + \lambda_i \frac{\partial (¦v_i)_n}{\partial A_{kl}} $$
+	$$ (¦v_i)_l(¦v_i)_k = \frac{\partial \lambda_i}{\partial A_{kl}} $$
+	$$ \frac{\partial \lambda_i}{\partial ®A} = ¦v_i \otimes ¦v_j $$
+
+	Second derivative at right side:
+	$$ \frac{\partial ®A}{\partial ®A} ¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial \lambda_i}{\partial ®A}¦v_i + \lambda_i \frac{\partial ¦v_i}{\partial ®A} \qquad ·¦v_j $$
+	$$ ®A \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \lambda_i \frac{\partial ¦v_i}{\partial ®A}·¦v_j $$
+	…
+	$$ \frac{\partial ¦v_i}{\partial ®A}·¦v_j = \frac{¦v_j \otimes ¦v_i}{\lambda_i - \lambda_j}i = \frac{\delta_{kj}\delta_{il}}{\lambda_i - \lambda_j} $$
+	$$ \(\frac{\partial ¦v_i}{\partial ®A}[®X]\)_j = \frac{\delta_{im}\delta_{jn}}{\lambda_i - \lambda_j} = \frac{¦v_i · ®X ¦v_j}{\lambda_i - \lambda_j}. $$
+
+	$$ \frac{\partial ¦v_i}{\partial ®A}[®X] = \sum_{j=1}^3 \frac{¦v_i · ®X¦v_j}{\lambda_i - \lambda_j}¦v_j. $$
+\end{dukaz}
 
 \begin{poznamka}[V dokončení důkazu se ještě použije]
 	$$ (¦a \otimes ¦b):(¦c \otimes ¦d) = (¦b·¦c)(¦a·¦d). $$
 \end{poznamka}
+
+% 19. 10. 2022 (from notes of my schoolmate)
+
+\subsection{Differential operators}
+\begin{definice}
+	$$ \Div ¦v := ¦h(\nabla ¦v)? $$
+	$$ (\rot ¦v)·¦w = \Div(¦v \times ¦w), \qquad \forall ¦w \in ®R^3 \text{ fixed} $$
+	$$ (\Div ®A)·¦w = \Div(®A^T ¦w), \qquad \forall ¦w \in ®R^3 \text{ fixed}, \qquad (\Div ®A)_i = \frac{\partial A_{im}}{\partial x_m} $$
+	$$ (\rot ®A)^T ¦w := \rot(®A^T ¦w), \qquad \forall ¦w \in ®R^3 \text{ fixed}, \qquad (\rot ®A)_{ij} = \epsilon_{jkl} \frac{\partial A_{il}}{\partial x_k} $$
+\end{definice}
+
+\begin{tvrzeni}
+	$$ \rot \nabla \phi = ¦o, \quad \rot(\nabla ¦v) = ®O, \quad \Div(\rot ¦v) = 0, \quad \Div(\rot ®A) = ¦o. $$
+
+	\begin{dukazin}
+		$$ \int_\Omega \rot(\nabla \phi)· d¦S \overset{\text{Stokes}} \int_{\partial \Omega} \nabla \phi · d¦l = \phi(\text{end point}) - \phi(\text{starting point}) \overset{\text{closed curve}}= 0. $$
+
+		$$ \int_\Omega \Div(\rot ¦v) dV = \int_{\partial \Omega} \rot ¦v · d¦S = \int_{\partial \Omega^+} \rot ¦v · d¦S + \int_{\partial \Omega^-} \rot ¦v · d¦S = 0 $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Stokes theorem]
+	$$ \int_\Omega \Div ¦v dV = \int_{\partial \Omega} ¦v·d¦S := \int_{\partial \Omega} ¦v·¦n dS $$
+
+	$$ \int_{S} \rot ¦v · dS = \int_{\partial S} ¦v·d¦l $$
+
+	Using previous identities we can get integral identities using Stokes theorem:
+	$$ \int_{\Omega} (\Div ®A) · ¦v dV = \int_{\partial \Omega} ®A^T ¦v·¦n dS - \int_\Omega ®A : \nabla ¦v dV, $$
+	$$ \int_\Omega(\rot ¦v) dV = -\int_{\partial \Omega} ¦v \times ¦n dS. $$
+\end{veta}
+
+\begin{poznamka}[Kinematics]
+	How to describe motion (no motion, no physics, just geometry): We have starting point $P$, set coordinates $\implies$ we have point ¦X. Then we do some deformation in time: $¦x = \chi(¦x, t)$ describes motion and deformation.
+
+	How to describe properties of continuously distributed matter? We have 3 possibilities (e. g. for $\theta$):
+	\begin{itemize}
+		\item $\theta(P, t)$,
+		\item $\theta(¦X, t)$ – Lagrangian description,
+		\item $\theta(¦x, t)$ – Eulerian description.
+	\end{itemize}
+
+	But we don't know what $\chi$ is and how to work with it $\rightarrow$ we linearize (use derivations), write down PDEs and hopefully form local solutions. So
+
+	Problem: What is the relation between $d¦x$ and $d¦X$?
+	$$ d¦x = ¦x_2 - ¦x_1 = \chi(¦X_2, t) - \chi(¦X_1, t) = \chi(¦X_1 + d¦X, t) - \chi(¦X_1, t) = \chi(¦X_1, t) + \frac{\partial \chi}{\partial ¦X}(¦X_1, t)d¦X + … $$
+	$$ \implies d¦x = \frac{\partial \chi}{\partial ¦X}(¦X, t) d¦X. $$
+\end{poznamka}
+
+\begin{definice}[Deformation gradient]
+	$$ ®F(¦X, t) := \frac{\partial \chi}{\partial ¦X}(¦X, t). $$
+\end{definice}
+
+\begin{dusledek}
+	$$ dv = (\det ®F) dV $$
+	$$ d¦s = (\det ®F)®F^{-T} d¦S $$
+	$$ ¦n = ®F^{-T} ¦N $$
+\end{dusledek}
+
+TODO?
+
+\begin{poznamka}[How to characterise deformation/strain?]
+	$$ d¦x·d¦x - d¦X·d¦X = ®F d¦X·®Fd¦X - d¦X·d¦X = (®F^T ®F - ®I)d¦X·d¦X $$
+\end{poznamka}
+
+\begin{definice}
+	Green-Stieland? strain tensor:
+	$$ ®E(¦X, t) := \frac{1}{2} (®F^T ®F - ®I) $$
+
+	Right Cauchy-Green tensor:
+	$$ ®C(¦X, t) := ®F^T(¦X, t)·®F(¦X, t) $$
+
+	Euler-Almans strain tensor:
+	$$ @e (¦x, t)|_{¦x = \chi(¦X, t)} = \frac{1}{2}\(®I - F^{-T}(¦X, t)®F^{-1}(¦X, t)\) $$
+
+	Left Cauchy-Green tensor
+	$$ ®B(¦x, t) = ®F(¦X, t)®F^T(¦X, t) $$
+\end{definice}
+
+TODO?
+
+\begin{poznamka}[Velocity]
+	$$ ¦V(¦X, t) := \frac{d \chi(¦X, t)}{dt} $$
+	$$ ¦v(¦x, t) = ¦V(\chi^{-1}(¦x, t), t) $$
+	or
+	$$ ¦v(\chi(¦X, t), t) = ¦V(¦X, t) $$
+	(Euler velocity field.)
+\end{poznamka}
+
+\begin{definice}
+	$$ \frac{d¦v}{dt}(¦x, t) := \frac{\partial ¦v}{\partial t}(¦x, t) + (¦v(¦x, t) · \nabla_{¦x})¦v(¦x, t), $$
+	$$ \frac{d \phi(¦x, t)}{dt} := \frac{\partial \phi}{\partial t} + (¦v·\nabla) \phi. $$
+\end{definice}
+
+\begin{definice}[Time derivative of the deformation gradient]
+	$$ \frac{d®F}{dt}(¦X, t) = \frac{d}{dt} \frac{\partial \chi(¦X, t)}{\partial ¦X} = \frac{\partial}{\partial ¦X} \frac{d\chi(¦X, t)}{dt} = \frac{\partial}{\partial ¦X} ¦V(¦X, t) = \frac{\partial}{\partial ¦X}(¦v(\chi(¦X, t), t)) = $$
+	$$ = \frac{\partial ¦V}{\partial ¦x}|_{¦x = \chi(¦X, t)} \frac{\partial \chi}{\partial ¦X}(¦X, t) \implies \frac{d ®F}{dt}(¦X, t) = ®L(¦x, t)|_{¦x = \chi(¦X, t)} ®F(¦X, t), $$
+	where $®L(¦x, t) := \frac{\partial ¦v}{\partial ¦x}(¦x, t) = \nabla_{¦x} ¦v(¦x, t)$.
+\end{definice}
+
+\begin{tvrzeni}[Time derivateives of $d¦x, d¦s, dv$]
+	$$ \frac{d}{dt} d¦x = \frac{d}{dt} ®Fd¦X = \(\frac{d}{dt} ®F(¦X, t)\) d¦X = ®L(¦x, t)®F(¦X, t) d¦X = ®L(¦x, t) d¦x $$
+\end{tvrzeni}
+
+% 26. 10. 2022 (from notes of my schoolmate)
+
+\begin{tvrzeni}[Rate(s) of strain]
+	$$ \frac{d ®E}{dt}(¦X, t) = \frac{d}{dt} \(\frac{1}{2}(®F^T ®F - ®I)\) = \frac{1}{2}\(\frac{d®F^T}{dt} ®F + ®F^T \frac{d®F}{dt}\) = \frac{1}{2}\(®F^T®L^T®F + ®F^T®L®F\) = $$
+	$$ = ®F^T \(\frac{1}{2} (®L^T + ®L)\)®F =: ®F®D®F, $$
+	$$ ®D(¦x, t) := \frac{1}{2}(®L + ®L^T). $$
+
+	$$ \frac{d@e}{dt}(¦x, t) = \frac{1}{2}\(\frac{d}{dt} \(®I - ®F^{-T}®F^{-1}\)\) = \frac{1}{2}\(-\(\frac{d®F^{-1}}{dt}\)^T®F^{-1} - ®F^{-T} \frac{d®F^{-1}}{dt}\) = $$
+	$$ = \frac{1}{2}(®L^T®F^{-T}®F^{-1} + ®F^{-T}®F^{-1}®L) = \frac{1}{2}(-®L^T(®I - ®F^{-T}®F^{-1}) + ®L^T - (®I - ®F^{-T}®F^{-1})®L + ®L) = $$
+	$$ = -®L^T @e - @e ®L + ®D \implies $$
+	$$ \frac{d®E}{dt}(¦x, t) + ®L^T(¦x, t)@e(¦x, t) + @e(¦x, t)®L(¦x, t) = ®D(¦x, t) $$
+
+	$$ \frac{d®B}{dt}(¦x, t) = ®L®F®F^T + ®F®F^T®L^T = ®L®B + ®B®L^T \implies $$
+	$$ \implies \overset{\nabla}{®B} := \frac{d®B}{dt} - ®L®B - ®B®L^T = ®O $$
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$$ \overset{\nabla}{®A}(¦x, t) := ®F(¦X, t)\[\frac{d}{dt}(®F^{-1}(¦X, t) ®A(\chi(¦X, t), t)®F^{-T}(¦X, t))\]®F^T(¦X, t)$$
+
+	$$ \overset{\nabla}{®A}(¦x, t) = -®L®A + \frac{d®A}{dt} - ®L®A^T $$
+\end{tvrzeni}
+
+\begin{poznamka}
+	A reasonable definition of time derivative for a tensor field of type "normal vector $\rightarrow$ tangent vector" is previous.
+\end{poznamka}
+
+\begin{poznamka}[Material surface]
+	$f(¦x, t) = 0$ \ldots implicit declaration of surface.
+
+	$$ \frac{\partial f}{\partial t}(¦x, t) + ¦v(¦x, t)·\nabla_{¦x} f(¦x, t) = 0 \qquad \forall ¦x, f(¦x, t) = 0 $$
+
+
+
+	$\frac{\partial f}{partial t} + ¦v·\nabla f = 0$ for $z = g(x, y, t)$ and the velocities ¦v are computed through this equation.
+
+	$\nabla_{¦x} f(¦x, t) ds$ a normal to the surface $\implies$ $\frac{1}{|\nabla_{¦x}f|} \frac{\partial f}{\partial t} + ¦v·\frac{\nabla_{¦x} f}{|\nabla_{¦x} f|} = 0$ $\implies$ $¦v·¦n = - \frac{\frac{\partial f}{\partial t}}{|\nabla_{¦x} f|}$.
+\end{poznamka}
+
+\begin{veta}[Reynolds transport theorem]
+	$$ \frac{d}{dt} \int_{V(t)} \phi(¦x, t) dv = \int_{V(t)}\(\frac{d\phi}{dt}(¦x, t) + \phi(¦x, t) \Div ¦v(¦x, t)\) dv $$
+
+	\begin{dukazin}
+		$$ \frac{d}{dt} \int_{V(t_0)} \phi(¦x, t) dv = \frac{d}{dt} \int_{V(t_0)} \phi(¦x, t)|_{¦x = \chi(¦X, t)} \det ®F(¦X, t) dV = $$
+		$$ = \int_{V(t_0)} \frac{d}{dt}\(\phi(\chi(¦X, t), t) \det ®F(¦X, t)\)dV = $$
+		$$ = \int_{V(t_0)}\[\frac{\partial \phi}{\partial t}(¦x, t) + ¦v(¦x, t)·\nabla_{¦x}\phi(¦x, t)|_{…} \det ®F(¦X, t) + \phi(¦x, t)|_{…}\frac{d}{dt}\det ®F(¦X, t)\]dV = $$
+		$$ = \int_{V(t_0)} \(\frac{d \phi}{dt}(¦x, t) + \phi(¦x, t) \Div ¦v(¦x, t)\)|_{¦x = \chi(¦X, t)} (\det ®F) dV = $$
+		$$ = \int_{V(t_0)}\(\frac{d\phi}{dt}(¦x, t) + \phi(¦x, t) \Div ¦v(¦x, t)\) dv $$
+	\end{dukazin}
+\end{veta}
+
+TODO?
+
+\begin{definice}[Displacement]
+	$$ ¦U(¦X, t) := \chi(¦X, t) - ¦X $$
+\end{definice}
+
+% 02. 11. 2022
+\section{Dynamics}
+\begin{poznamka}[Outline]
+	Newtons 2nd law for single particle: $m \frac{d^2 ¦x}{dt^2} = ¦F$. We want to find a counterpart for continuously distributed matter…
+	$$ \frac{d}{dt} (m \frac{d¦x}{dt}) = ¦F $$
+	We have $\frac{dm}{dt} = 0$ ($m = \const$). In continuum mechanics we have $\frac{d}{dt} m_{V(t)} = 0$, $m_{V(t)} := \int_{V(t)} \rho(¦x, t) dv$  ($\rho$ = density). Than (from Reynolds transport theorem)
+	$$ 0 = \frac{d}{dt} m_{V(t)} = \frac{d}{dt} \int_{V(t)} \rho(¦x, t) dv = \int_{V(t)} \(\frac{d\rho}{dt}(¦x, t) + \rho(¦x, t) \div_{¦x} ¦v(¦x, t)\)dv $$
+	From localization lemma ($V(t)$ is arbitrary material volume) we get Balance of mass:
+	$$ \frac{d \rho}{d t}(¦x, t) + \rho(¦x, t) \div_{¦x} ¦v(¦x, t) = 0. $$
+
+	Spring: $m \frac{d^2 ¦x}{dt^2} = - k¦x - b\frac{d¦x}{dt}$, $k$ is spring stiffness, $-b…$ is damping (proportional to the velocity).
+	$$ m \frac{d^2¦x}{dt^2}·\frac{d¦x}{dt} = - k¦x · \frac{d¦x}{dt} - b \frac{d¦x}{dt}·\frac{d¦x}{dt}, $$
+	$$ \frac{d}{dt} \(\frac{1}{2} m \(\frac{d¦x}{dt}\)^2 + \frac{k}{2}(¦x)^2\) = - b \(\frac{d¦x}{dt}\)^2, $$
+	where $(¦x)^2 = ¦x·¦x$. With $b=0$ we have conservation of energy, with $b > 0$ we have energy loss through $-b \(\frac{d¦x}{dt}\)^2$ = dissipation = conversion of mechanical energy into heat.
+
+	$$ dU = dQ + dW, \qquad dS = \frac{dQ}{T} \qquad \text{(classical equilibrium thermodynamic)} $$
+\end{poznamka}
+
+\begin{lemma}
+	$$ \frac{d}{dt} \int_{V(t)} \rho(¦x, t) \phi(¦x, t) dv = \int_{V(t)} \rho(¦x, t) \frac{d\phi}{dt}(¦x, t) dv. $$
+
+	\begin{dukazin}
+		$$ \frac{d}{dt} \int_{V(t)} \rho \phi dv \overset{\text{Reynolds}}= \int_{V(t)} \(\frac{d}{dt} (\rho \phi) + \rho \phi \Div ¦v\)dv = $$
+		$$ = \int_{V(t)} \(\frac{d\rho}{dt}\phi + \rho \frac{d\phi}{dt} + \rho\phi \Div¦v\)dv \overset{\text{Balance of mass}}= \int_{V(t)} \rho(¦x, t) \frac{d\phi}{dt}(¦x, t) dv. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[Newton second law]
+	$$ ¦p_{V(t)} := \int_{V(t)} \rho(¦x, t)¦v(¦x, t) dv $$
+	$$ LHS = \frac{d}{dt}¦p_{V(t)} = \frac{d}{dt} \int_{V(t)} \rho(¦x, t)¦v(¦x, t) dv $$
+	$$ RHS = ¦F_{V(t)} = \underbrace{¦F_{body}}_{:= \int_{V(t)} \rho(¦x, t) ¦b(¦x, t) dv} + \underbrace{¦F_{surface}}_{:= \int_{\partial V(t)}¦t(t, ¦x) ds} $$
+	$¦F_{surface}$ is called surface faces or contact forces. ¦t is traction vector.
+\end{poznamka}
+
+\begin{poznamka}
+	We will assume that $¦t = ¦t(¦x, t, ¦n(¦x, ¦t))$.
+
+	From Newton's 3rd law (action + reaction): $¦t(¦x, t, ¦n) = -¦t(¦x, t, -¦n)$. Simplest formula that guarantees this is linear, so we will assume (it can be proved with Cauchy tetrahedron argument, which isn't part of this lecture, but proof can be in exam) that ¦t is linear with respect to ¦n:
+	$$ ¦t(¦x, t, ¦n) = ®T(¦x, t)¦n, $$
+	®T is tensor matrix $®R^{3 \times 3}$ and is called Cauchy stress tensor.
+
+	\begin{prikladyin}
+		$$ ®T(¦x, t) = -p(¦x, t)®I, \qquad \text{where $p$ is pressure}. $$
+	\end{prikladyin}
+
+	With this, we can rewrite Newton's second law:
+	$$ \frac{d}{dt} \int_{V(t)} \rho ¦v dx = \int_{V(t)} \rho ¦b dv + \int_{\partial V(t)} ®T¦n ds \overset{\text{Stokes}}= \int_{V(t)} \rho ¦b dv + \int_{V(t)}(\Div_{¦x} ®T) dv. $$
+	With Reynolds and Localization lemma we get balance of (linear) momentum (and it's counterpart of N. 2nd law):
+	$$ \rho \frac{d¦v}{dt} = \rho ¦b dv + \Div_{¦x} ®T. $$
+\end{poznamka}
+
+\begin{poznamka}
+	$$ \frac{d}{dt} \(\frac{1}{2} m \(\frac{d¦x}{dt}\)^2 + \frac{k}{2}(¦x)^2\) = - b \(\frac{d¦x}{dt}\)^2, $$
+	$$ \frac{d}{dt} \underbrace{\int_{V(t)} \(\frac{1}{2} \rho·(¦v)^2 + \underbrace{\rho e}_{\text{internal energy density}}\)dv}_{\text{net total energy}} = $$
+	$$ = \int_{V(t)} \rho¦b·¦v dv + \int_{\partial V(t)} ®T ¦n·¦v ds - \int_{\partial V(t)} \underbrace{¦J_q}_{\text{heat flux vector}}·¦n ds $$
+	$(¦J_q := -k\nabla\theta)$
+
+	$dU$ is internal energy, $dW$ is work done by internal + surface forces (first two expressions on RHS), $dQ$ is exchange of heat on surface (the third expression)
+
+	Stokes theorem, Reynolds transport theorem, Localization lemma $\implies$ First law of thermodynamics:
+	$$ \rho \frac{d}{dt}\(\frac{1}{2}(¦v)^2 + e\) = \rho¦b·¦v - \Div ¦J_q + \Div (®T^T ¦v) $$
+	
+	With $\rho \frac{d}{dt}(\frac{1}{2}¦v·¦v) = (\Div ®T)·¦v + \rho ¦b·¦v$
+	$$ \rho \frac{de}{dt} = \Div(®T^T ¦v) - (\Div ®T)·¦v - \Div ¦J_q $$
+	$$ \rho \frac{de}{dt} = ®T:®L - \Div ¦J_q, \qquad ®L := \nabla_{¦x} ¦v. $$
+\end{poznamka}
+
+\begin{definice}[Entropy]
+	Basic feat: Continuous medium in an isolated vessel: $¦v \rightarrow 0$, $\theta \rightarrow \const$ ($\theta$ = temperature field).
+
+	Isolated = no mechanical energy exchange with outside environment ($¦b = ¦o$, $¦v|_{\partial \Omega} = ¦o$) and no heat flux through boundary $(¦J_q · ¦n|_{\partial \Omega} = 0)$
+
+	We want a quantity that increases in time! Let denote it $\eta$. Assume $\eta = \eta(e, \rho)$ and $e = e(\eta, \rho)$. Chain rule:
+	$$ \frac{de}{dt} = \frac{\partial e}{\partial \eta}(\eta, \rho) \frac{d\eta}{dt} + \frac{\partial e}{\partial \rho}\frac{d\rho}{dt} $$
+	We know balance of internal energy $\rho \frac{de}{dt} = ®T:®L - \Div ¦J_q$. So
+	$$ \rho\frac{\partial e}{\partial \eta}(\eta, \rho) \frac{d\eta}{dt} + \rho\frac{\partial e}{\partial \rho}\frac{d\rho}{dt} = ®T:®L - \Div ¦J_q $$
+	$$ \rho\frac{\partial e}{\partial \eta}(\eta, \rho) \frac{d\eta}{dt} = ®T:®L - \Div ¦J_q - \rho\frac{\partial e}{\partial \rho}\frac{d\rho}{dt} $$
+	$$ \rho\frac{\partial e}{\partial \eta}(\eta, \rho) \frac{d\eta}{dt} = ®T:®L - \Div ¦J_q - \rho^2\frac{\partial e}{\partial \rho} \Div¦v $$
+	$$ \rho\frac{d\eta}{dt} = \frac{®T:®L - \Div ¦J_q - \rho^2\frac{\partial e}{\partial \rho} \Div¦v}{\frac{\partial e}{\partial \eta}(\eta, \rho)} $$
+
+	This is point-wise equation and it is too demanding. So let us work with ret quantities:
+	$$ \frac{d}{dt} \int_{V(t)} \rho\eta = \int_{V(t)}\frac{1}{\frac{\partial e}{\partial \eta}(\eta, \rho)}\(-p + \rho^2 \frac{\partial e}{\partial \rho}\) \Div ¦v dv + \int_{V(t)} \frac{\Div(k\nabla \theta)}{\frac{\partial e}{\partial \eta}(\eta, \rho)} dv $$
+	Let us try to fix $\rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho) = p$:
+	$$ \frac{d}{dt} \int_{V(t)} \rho\eta = 0 + \int_{V(t)} \frac{\Div(k\nabla \theta)}{\frac{\partial e}{\partial \eta}(\eta, \rho)} dv $$
+	$$ \frac{d}{dt} \int_{V(t)} \rho\eta = \int_{V(t)} \Div\(\frac{k\nabla \theta}{\frac{\partial e}{\partial \eta}(\eta, \rho)}\) dv - \int_{V(t)}k\nabla \theta · \nabla \(\frac{1}{\frac{\partial e}{\partial \eta}}\) dv $$
+	From boundary condition $k \nabla \theta · ¦n|_{\partial \Omega} = 0$ and stokes theorem
+	$$ \frac{d}{dt} \int_{V(t)} \rho\eta = 0 - \int_{V(t)}k\nabla \theta · \nabla \(\frac{1}{\frac{\partial e}{\partial \eta}}\) dv $$
+	$$ \frac{d}{dt} \int_{V(t)} \rho\eta = - \int_{V(t)}\frac{k\nabla \theta · \nabla \(\frac{\partial e}{\partial \eta}(\eta, \rho)\)}{\(\frac{\partial e}{\partial \eta}(\eta, \rho)\)^2} dv. $$
+	Let us try to fix $\frac{\partial e}{\partial \eta}(\eta, \rho) = \theta$ $\implies$ $\frac{d}{dt} \int_{V(t)} \rho\eta ≥ 0$.
+
+	Summary: Solve $\frac{\partial e}{\partial \eta}(\eta, \rho) = \theta$ and $\rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho) = p$ and we will get $\eta = \eta(e, \rho)$ such that $\frac{d}{dt} \int_{V(t)} \rho \eta ≥ 0$. Function $\eta$ is called the entropy density.
+\end{definice}
+
+\begin{poznamka}[Experimental facts]
+	$$ p(\rho, \theta) = c_V(\gamma - 1)\rho\theta \qquad (\text{something like } \frac{PV}{T} = \const) $$
+	$$ e(\rho, \theta) = c)V \theta $$
+	$$ c_V = \const, \qquad \gamma = \const $$
+
+	$c_V$ = specific heat at constant volume.
+
+	\begin{poznamkain}[$c_V$]
+		$$ \frac{de}{dt} = \frac{\partial e}{\partial \rho} \frac{d\rho}{dt} + \frac{\partial e}{\partial \theta} \frac{d\theta}{dt} $$
+		$$ \rho \frac{de}{dt} = ®T:®L - \Div ¦J_q = -p \Div ¦v + \Div(\kappa \nabla \theta) $$
+
+		Constant volume $\implies$ $\frac{d\rho}{dt} = 0$ and $\Div ¦v = 0$
+		$$ \text{change of temperature } = \int_{V(t)} \rho \frac{\partial e}{\partial \theta}(\theta, \rho) \frac{d\theta}{dt} = \int_{V(t)} \Div(\kappa \nabla \theta) dv = \text{ heat exchange} $$
+	\end{poznamkain}
+\end{poznamka}
+
 
 \end{document}

@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let ®A be a sufficiently smooth tensor/matrix field, and let ®A be (at every point $¦x$) a \emph{symmetric matrix}. Show that
+
+	$$ \rot \((\rot ®A)^T\) = [\Delta \tr ®A - \Div (\Div ®A)] ®I + \nabla (\Div ®A) + [\nabla (\Div ®A)]^T - \nabla (\nabla \tr ®A) - \Delta ®A. $$
+
+	\begin{dukazin}
+		Z definice:
+		$$ \rot\((\rot ®A)^T\) = \rot\(\epsilon_{jkl} \frac{\partial A_{il}}{\partial x_k}·¦e_j\otimes ¦e_i\) = \epsilon_{nop}\epsilon_{mkl} \frac{\partial^2 A_{pl}}{\partial x_k \partial x_o} ¦e_m \otimes ¦e_n $$
+		Z rovnosti
+		$$ \epsilon_{nop}\epsilon_{mkl} = \det \begin{pmatrix} \delta_{nm} & \delta_{nk} & \delta_{nl} \\ \delta_{om} & \delta_{ok} & \delta_{ol} \\ \delta_{pm} & \delta_{pk} & \delta_{pl} \end{pmatrix} $$
+		dostáváme na pravé straně 6 členů:
+
+		\begin{itemize}
+			\item $\frac{\partial^2 A_{pp}}{\partial x_k \partial x_o} ¦e_m \otimes ¦e_n = (\Delta \tr ®A)®I$, neboť
+				$$ A_{pp} = \tr ®A, \qquad \frac{\partial^2}{\partial x_o^2} = \nabla · \nabla = \Delta, \qquad ¦e_n \otimes ¦e_n = ®I; $$
+			\item $- \frac{\partial^2 A_{po}}{\partial x_p \partial x_o} ¦e_n \otimes ¦e_n = - \Div(\Div ®A)$;
+			\item $\frac{\partial^2 A_{po}}{\partial x_n \partial x_o} ¦e_p \otimes ¦e_n = \frac{\partial (\nabla · ®A^T)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \frac{\partial (\nabla · ®A)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \frac{\partial (\Div ®A)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \nabla(\Div ®A);$
+			\item $\frac{\partial^2 A_{pn}}{\partial x_p \partial x_o} ¦e_o \otimes ¦e_n = \frac{\partial (\nabla · ®A)_n}{\partial x_o} ¦e_o \otimes ¦e_n = \frac{\partial (\Div ®A)_n}{\partial x_o} ¦e_o \otimes ¦e_n = [\nabla(\Div ®A)]^T;$
+			\item $-\frac{\partial^2 A_{pp}}{\partial x_n \partial x_o} e_n \otimes e_o = -\frac{\partial^2 \tr ®A}{\partial x_n \partial x_o} e_n \otimes e_o = -\nabla (\nabla \tr ®A)$;
+			\item $- \frac{\partial^2}{\partial x_o^2} A_{pm} ¦e_p \otimes ¦e_n = - \frac{\partial^2}{\partial x_o^2} ®A = -\Delta ®A$.
+		\end{itemize}
+
+		Tím jsme dokázali rovnost.
+	\end{dukazin}
+\end{priklad}
+
+\newpage
+\begin{priklad}[2.]
+	Prove the following. Let $u$, $v$ be smooth scalar valued functions, $v: ®R^3 \rightarrow ®R$, $u: ®R^3 \rightarrow ®R$, and let ®A be a smooth tensor valued function $®A: ®R^3 \rightarrow ®R^{3×3}$. Let $\Omega \subseteq ®R^3$ be a bounded domain with smooth boundary, then
+	$$ \int_\Omega u(\nabla v) dv = \int_{\partial\Omega} uv d¦s - \int_\Omega (\nabla u)v dv $$
+
+	\begin{dukazin}
+		Stokesova věta říká:
+		$$ \int_{\partial\Omega} (u v ¦w)·d¦s = \int_\omega \nabla · (u v ¦w) dv \quad \(= \int_\Omega \Div(u v ¦w) dv\) $$
+		Z předchozího domácího úkolu víme, že $\Div(a¦x) = ¦x · \nabla a + a \Div ¦x$. To použijeme dvakrát:
+		$$ = \int_\Omega \(v¦w · \nabla u + u \Div v¦w\) dv = \int_\Omega \(v¦w·\nabla u + u¦w·\nabla v + uv \Div ¦w\) dv = $$
+		Zvolili jsme si konstantní vektor, tedy jeho derivace jsou nulové:
+		$$ \int_\Omega \(v¦w·\nabla u + u¦w·\nabla v\) dv. $$
+		Jelikož toto platí pro libovolný vektor ¦w, tak platí
+		$$ \int_{\partial\Omega} u v d¦s = \int_\Omega \(v(\nabla u) + u(\nabla v)\) dv = \int_\Omega v(\nabla u)dv + \int_\Omega u(\nabla v)dv, $$
+		$$ \int_\Omega u(\nabla v)dv = \int_{\partial\Omega} u v d¦s - \int_\Omega v(\nabla u)dv. $$
+	\end{dukazin}
+
+	\pagebreak
+
+	$$ \int_\Omega (\Div ®A)·¦v \, dv = \int_{\partial \Omega}(®A^T ¦v) · d¦s - \int_{\Omega} ®A : \nabla ¦v \, dv. $$
+
+	\begin{dukazin}
+		Zase podle Stokese platí:
+		$$ \int_{\partial \Omega} (®A^T ¦v)·d¦s = \int_\Omega \Div(®A^T ¦v) dv. $$
+		Takže nám stačí dokázat $\Div (®A^T ¦v) = \Div(®A) · ¦v + ®A : \nabla ¦v$. Potom už dostaneme chtěnou rovnost pouze z linearity integrálu a „přehozením“ jednoho integrálu „na druhou stranu“.
+
+		$$ \Div(®A^t¦v) = \frac{\partial A_{ji} v_j}{\partial x_i} = \frac{\partial A_{ji}}{\partial x_i}v_j + A_{ji}\frac{\partial v_j}{\partial x_i} = (\Div ®A)_j v_j + A_{ji} (\nabla ¦v)_{ji} = (\Div ®A) · ¦v + ®A : \nabla ¦v. $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

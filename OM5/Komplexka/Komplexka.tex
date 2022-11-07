@@ -32,7 +32,7 @@
 	\begin{itemize}
 		\item $z = (x, y) \in ®C$, potom $z = x + i·y$ a $(±i)^2 = -1$.
 		\item Násobení $·: ®C^2 \rightarrow ®C$ je asociativní, komutativní a distributivní (vzhledem k $+$). Navíc $·$ zahrnuje i násobení v ®R a násobení skalárem.
-		\item $|z|^2 = z \overline{z}$, $\overline{z_1 · z_2} = \overline{z_1}·\overline{z_2}$, $|z_1·z_2| = |z_1|·|z_2|$, $z + \overline{z} = 2 \Re z$, $z - \overline{z} = 2i\Im z$, $z, z_1, z_2 \in ®C$.
+		\item $|z|^2 = z \overline{z}$, $\overline{z_1 · z_2} = \overline{z_1}·\overline{z_2}$, $|z_1·z_2| = |z_1|·|z_2|$, $z + \overline{z} = 2 \Re z$, $z - \overline{z} = 2i\Im z$, $z, z_1, z_2 \in ®C$.
 		\item $\forall z \in ®C, z ≠ 0: \exists z^{-1} \in ®C: z z^{-1} = 1$, konkrétně $z^-1 = \frac{\overline{z}}{|z|^2}$.
 		\item $(®C, +, ·)$ je komutativní těleso.
 	\end{itemize}
@@ -67,7 +67,9 @@
 	Značíme $L =: df(z_0)$.
 	$$ df(z_0) = \begin{bmatrix} \frac{\partial f_1}{\partial x}(z_0) & \frac{\partial f_1}{\partial y}(z_0) \\ \frac{\partial f_2}{\partial x}(z_0) & \frac{\partial f_2}{\partial y}(z_0) \end{bmatrix}  $$
 
-	$f: ®C \rightarrow ®C$ je v bodě $z_0 \in ®C$ ®C-diferencovatelná, jestliže existuje $f'(z_0) := \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} \in ®C$. $f'$ nazýváme komplexní derivace funkce.
+	$f: ®C \rightarrow ®C$ je v bodě $z_0 \in ®C$ ®C-diferencovatelná, jestliže existuje
+	$$ f'(z_0) := \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} \in ®C. $$
+	$f'$ nazýváme komplexní derivace funkce.
 \end{definice}
 
 \begin{poznamka}
@@ -115,7 +117,7 @@
 
 \begin{definice}[Logaritmus a hlavní hodnota logaritmu]
 	Nechť $z \in ®C \setminus \{0\}$. Položme
-	$$ Log z := \{w \in ®C | \exp w = z\}, $$
+	$$ Log z := \{w \in ®C | \exp w = z\}, $$
 	$$ \log z := \log|z| + i·\arg z. \qquad (\text{Hlavní hodnota logaritmu.}) $$
 \end{definice}
 
@@ -146,7 +148,7 @@
 	\begin{itemize}
 		\item $e^z = \exp(z·\log e) = \exp(z)$.
 		\item Je-li $z > 0$ a $\alpha \in ®R$, potom $z^\alpha$ je definována stejně jako v MA.
-		\item $M_{\alpha}(z) = \{z^\alpha · e^{2k\pi · i · \alpha} | k \in ®Z\}$, $z ≠ 0$.
+		\item $M_{\alpha}(z) = \{z^\alpha · e^{2k\pi · i · \alpha} | k \in ®Z\}$, $z ≠ 0$.
 		\item $\(z^\alpha\) = \alpha·z^{\alpha - 1}$, $z \in ®C \setminus (-∞, 0]$, $\alpha \in ®C$.
 		\item $(1 + z)^\alpha = \sum_{n=0}^∞ \binom{\alpha}{n} z^n$, $|z| < 1$, kde
 			$$ \binom{\alpha}{n} := \frac{\alpha·(\alpha - 1)·…·(\alpha - n + 1)}{n!}, \qquad \alpha \in ®C. $$
@@ -244,6 +246,259 @@
 	$$ \int_\phi f = F(\phi(\beta)) - F(\phi(\alpha)), $$
 	je-li navíc $\phi$ uzavřená, tzn. $\phi(\alpha) = \phi(\beta)$, pak
 	$$ \int_\phi f = 0. $$
+
+% 20. 10. 2022 Z poznámek
+% 27. 10. 2022 Z poznámek
+
+	\begin{dukazin}
+        Z Cauchy-Riemannovy věty plyne, že
+        $$ \frac{d}{dt}(F(\phi(t))) = \frac{\partial F}{\partial x} \phi_1' + \frac{\partial F}{\partial y} \phi_2' = F'\phi_1' + i F'\phi_2' = F'(\phi(t))\phi'(t). $$
+
+        Tato rovnost platí až na konečně mnoho $t \in [\alpha, \beta]$, neboli $F \circ \phi$ je zobecněná primitivní funkce k integrandu. Máme tedy
+        $$ \int_\phi f = \int_\alpha^\beta f(\phi(t))\phi'(t)dt = \int_\alpha^\beta \frac{d}{dt} (F(\phi(t))) dt = F(\phi(\beta)) - F(\phi(\alpha)). $$
+	\end{dukazin}
 \end{veta}
+
+\begin{veta}
+	Funkce $f$ je konstantní na oblasti $G \subset ®C$, právě když $f' = 0$ na $G$.
+
+	\begin{dukazin}
+		„$\implies$“: Jasné. „$\impliedby$“: Nechť $z, w \in G$ a $\phi$ je lomená čára v $G$ spojující $z$ a $w$. Potom $f(w) - f(z) = \int_\phi f' = 0$, protože $f$ je primitivní funkcí k $f'$ na $G$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Jsou-li $F_1$, $F_2$ primitivní funkce k $f$ na oblasti $G \subset ®C$, potom existuje $c \in ®C$ tak, že $F_2 = F_1 + c$
+
+	\begin{dukazin}
+		$$ (F_2 - F_1)' = F_2' - F_1' = f - f = 0 $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[O existenci primitivní funkce]
+	Nechť $G \subset ®C$ je oblast a $f$ je spojitá na $G$, tak následující je ekvivalentní
+	\begin{enumerate}
+		\item $f$ má na $G$ primitivní funkci;
+		\item $\int_\phi f = 0$ pro každou uzavřenou křivku $\phi$ v $G$;
+		\item $\int_\phi f$ nezávisí v $G$ na křivce $\phi$, tzn. pro každé dvě křivky $\phi: [\alpha, \beta] \rightarrow G$, $\psi: [\gamma, \delta] \rightarrow G$ takové, že $\phi(\alpha) = \psi(\gamma)$ a $\phi(\beta) = \psi(\delta)$ platí $\int_\phi f = \int_\psi f$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“: Víme z věty o výpočtu integrálu pomocí primitivní funkce.
+
+		„$2. \implies 3.$“: Položme $\tau := \phi + (- \psi)$. Potom je $\tau$ uzavřená a z 2. dostaneme
+		$$ 0 = \int_\tau f = \int_\phi f - \int_\psi f. $$
+
+		„$3. \implies 1.$“: Volme $z_0 \in G$ pevně. Pro každé $z \in G$ najděme lomenou čáru $\phi_z$ v $G$, která začíná v $z_0$ a končí v $z$. Definujeme $F(z) := \int_{\phi_z} f$, $z \in G$. Definice $F$ je korektní z 3. Ukážeme, že $F$ je hledaná primitivní funkce k $f$ na $G$. Nechť $z_1 \in G$. Dokážeme, že $F'(z_1) = f(z_1)$. Volme $r > 0$, aby $U(z_1, r) \subset G$. Je-li $|h| < r$, potom
+		$$ F(z_1 + h) - F(z_1) = \int_{\phi_{z_1} + u} f - \int_{\phi_{z_1}} f = \int_u f, $$
+		kde $u = [z_1; z_1 + h]$ je úsečka. Tedy
+		$$ F(z_1 + h) - F(z_1) = \int_u f = \int_0^1 f(z_1 + th)h dt, $$
+		$$ \frac{F(z_1 + h) - F(z_1)}{h} - f(z_1) = \int_0^1 (f(z_1 + th) - f(z_1))dt \rightarrow 0, $$
+		neboť $|\int_0^1 (f(z_1 + th) - f(z_1))dt| ≤ \max_{z \in [z_1; z_1+h]} |f(z) - f(z_1)| \rightarrow 0$ ze spojitosti $f$ v $z_1$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Značení]
+	Řekněme, že $M \subset ®C$ je hvězdovitá, pokud existuje $z_0 \in M$ (tzv. střed hvězdovitosti), pro který $[z_0; z] \subset M$ pro každé $z \in M$.
+
+	\begin{poznamkain}
+		Konvexní $\subsetneq$ hvězdovitá.
+	\end{poznamkain}
+
+	Řekneme, že $\triangle \subset ®C$ je trojúhelník s vrcholy $a, b, c \in ®C$, pokud
+	$$ \triangle := \{\alpha·a + \beta·b + \gamma·c | \alpha, \beta, \gamma ≥ 0, \alpha + \beta + \gamma = 1\}, $$
+	a značíme $\partial \triangle := [a; b] + [b; c] + [c; a]$.
+\end{poznamka}
+
+\begin{tvrzeni}[Dodatek]
+	Nechť $f$ je spojitá funkce na hvězdovité oblasti $G \subset ®C$. Je-li
+	$$ \int_{\partial \triangle} f = 0, $$
+	pro každý trojúhelník $\triangle \subset G$, potom $f$ má na $G$ primitivní funkci.
+
+	\begin{dukazin}
+		Nechť $z_0$ je střed hvězdovitosti $G$. Pro každé $z \in G$ položme $\phi_z := [z_0; z]$ a $F(z) := \int_{\phi_z} f$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[Cauchyho věty]
+	Nechť $G \subset ®C$ je otevřená, $f \in ©H(G)$ a $\phi$ je uzavřená křivka v $G$. Potom Cauchyho věty nám říkají, za jakých podmínek na $G$ a $\phi$ je $\int_\phi f = 0$.
+\end{poznamka}
+
+\begin{veta}[Goursatovo lemma (Cauchyho věta pro $\triangle$)]
+	Nechť $G \subset ®C$ je otevřená, $f \in ©H(G)$ a $\triangle$ je trojúhelník v $G$. Potom
+	$$ \int_{\partial \triangle} f = 0. $$
+
+	\begin{dukazin}
+		Označme $\phi_0 := \partial \triangle$. Sporem: Předpokládejme, že $|\int_{\phi_0} f| =: K > 0$. Zřejmě $\triangle$ je nedegenerovaný. V $\triangle$ veďme střední příčky a označme $\psi_1$, $\psi_2$, $\psi_3$, $\psi_4$ obvody čtyř vzniklých trojúhelníků. Obvody vnitřních trojúhelníků $\psi_1$ (vlevo dole), $\psi_2$ (vpravo dole), $\psi_3$ (nahoře) a $\psi_4$ (uprostřed) probíháme proti směru hodinových ručiček. Potom
+		$$ \int_{\phi_0} f = \int_{\psi_1} f + \int_{\psi_2} f + \int_{\psi_3} f + \int_{\psi_4} f. $$
+		Ex. $j_1 = 1, …, 4$ tak, že $|\int_{\psi_{j_1}} f| ≥ \frac{K}{4}$ a $V(\psi_{j_1}) = \frac{V(\phi)}{2}$. Označme $\phi_1 = \psi_{j_1}$. Indukcí sestrojíme posloupnost trojúhelníků tak, že
+		$$ |\int_{\phi_j} f| ≥ \frac{K}{4^j} \land V(\phi_j) = \frac{V(\phi)}{2^j}. $$
+
+		Máme, že $\bigcup_{j=0}^∞ \triangle_j = \{z_0\} \subset G$, protože $\diam(\triangle_j) \rightarrow 0$. Položme
+		$$ \epsilon(z) := \begin{cases}\frac{f(z) - f(z_0)}{z - z_0} - f'(z_0), & z \in G\setminus \{z_0\},\\ 0, & z = z_0.\end{cases} $$
+
+		Potom $\epsilon$ je spojitá na $G$ a máme pro $j \in ®N_0$:
+		$$ \int_{\phi_j} f(z) dz = \int_{\phi_j} (f(z_0) + f'(z_0)(z - z_0))dz + \int_{\phi_j}\epsilon(z)(z - z_0) dz, $$
+		kde první integrand vpravo má primitivní funkci na ®C a první integrál je roven 0. Pro každé $j \in ®N_0$ dostaneme
+		$$ 0 < \frac{K}{4^j} ≤ |\int_{\phi_j} f| = |\int_{\phi_j} \epsilon(z)(z - z_0)| ≤ V^2(\phi_j)·\max_{<\phi_j>} |\epsilon| = \frac{V^2(\phi)}{4^j}·\max_{<\phi_j>}|\epsilon|, $$
+		kde třetí nerovnost platí díky tomu, že $|z - z_0| ≤ V(\phi_j)$. Z předchozího tedy máme (po vynásobení $4^j$):
+		$$ 0 < K ≤ V^2(\phi)·\max_{<\phi_j>}|\epsilon| \rightarrow 0, $$
+		protože $\epsilon$ je spojitá v $z_0$ a $\epsilon(z_0) = 0$. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Cauchyho věta pro hvězdovité oblasti]
+	Nechť $G \subset ®C$ je hvězdovitá oblast a $f \in ©H(G)$. Potom $f$ má na $G$ primitivní funkci. (Ekvivalentně: $\int_{\phi} f = 0$ pro každou uzavřenou křivku $\phi$ v $G$.)
+
+	\begin{dukazin}
+		Z Goursatova lemmatu a dodatku.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Goursatovo lemma a tedy i předchozí věta platí i pro funkci $f$, která je spojitá na $G$ a holomorfní na $G \setminus \{z_0\}$ pro nějaké $z_0 \in G$.
+
+	\begin{dukazin}
+		Nechť $\triangle$ je nedegenerovaný trojúhelník v $G$. Pak rozebereme případy kde leží $z_0$.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{veta}[O derivování podle komplexního parametru]
+	Nechť $\phi$ je křivka v ®C a $\Omega \subset ®C$ je otevřená. Nechť $F(z, s)$ a komplexní derivace $\frac{\partial F}{\partial s}(z, s)$ jsou spojité komplexní funkce na $<\phi> \times \Omega$. Pro každé $s \in \Omega$ položme $\Phi(s) := \int_\phi F(z, s) dz$. Potom $\Phi \in ©H(\Omega)$ a $\Phi'(s) = \int_\phi \frac{\partial F}{\partial s}(z, s) dz$, $s \in \Omega$.
+
+	\begin{dukazin}
+		Pro $s = s_1 + i s_2 = (s_1, s_2) \in \Omega$ máme $\Phi(s) = \int_\alpha^\beta F(\phi(t), (s_1, s_2)) \phi'(t)dt$. Podle vět o spojitosti a derivování integrálu závislého na parametru máme
+		$$ \frac{\partial \Phi}{\partial s_j}(s) = \int_\phi \frac{\partial F}{\partial s_j}(z, s) dz, $$
+		pro $s \in \Omega$ a $j \in [2]$. Navíc jsou tyto parciální derivace spojité a splňují podmínky Cauchy-Riemannovy věty, tedy $\Phi$ je komplexně diferencovatelná a komplexní derivace se rovná derivaci vzhledem k té první proměnné.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Index bodu křivky]
+	Nechť $\phi$ je uzavřená křivka v ®C a $s \in ®C \setminus <\phi>$. Potom číslo
+	$$ \ind_\phi s := \frac{1}{2\pi i} \int_\phi \frac{dz}{z - s} $$
+	nazveme indexem bodu s vzhledem ke křivce $\phi$.
+\end{definice}
+
+\begin{poznamka}
+	Ukážeme si, že $\ind_\phi$ se rovná počtu oběhů $\phi$ kolem $s$ v kladném směru (tzn. proti směru hodinových ručiček).
+\end{poznamka}
+
+\begin{veta}[O základních vlastnostech indexu]
+	Nechť $\phi$ je uzavřená křivka v ®C a $G := ®C \setminus <\phi>$. Potom $G$ je otevřena, funkce $s \mapsto \ind_\phi s$ je konstantní na každé komponentě $G$ a na jediné její neomezené komponentě je nulová.
+
+	\begin{dukazin}
+		Podle předchozí věty je $\Phi(s) := \frac{1}{2 \pi i} \int_\phi \frac{dz}{z - s}$, $s \in G$ holomorfní a pro každé $s \in G$ je $\Phi'(s) = \frac{1}{2\pi i} \int_\phi \frac{dz}{(z - s)^2} = 0$, protože $f(z) := \frac{1}{(z - s)^2}$ má primitivní funkci na $®C \setminus \{s\}$. Tedy $\Phi$ je konstantní na každé komponentě $G$.
+
+		Volíme $R > 0$, aby $<\phi> \subset U(0, R)$. Potom $®C \setminus U(0, R)$ je obsaženo v jediné neomezené komponentě $G_0$ množiny $G$. Navíc pro $s \in ®C \setminus U(0, R)$ je funkce $g(z) := \frac{1}{z - s}$, $z \in U(0, R)$ holomorfní a dle Cauchyho věty pro hvězdovitou oblast je $\Phi(s) = 0$.
+	\end{dukazin}
+\end{veta}
+
+% 03. 11. 2022
+
+\begin{veta}[Cauchyův vzorec na kruhu]
+	Nechť $G \subset ®C$ je otevřené a $f \in ©H(G)$. Nechť $\overline{U(z_0), r} \subset G$ a $p(t) = z_0 + r·e^{it}$, $t \in [0, 2\pi]$. Potom platí
+	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = f(s), |s - z_0| < r; $$
+	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = 0, |s - z_0| > r; $$
+
+	\begin{dukazin}
+		1. Nechť $|s - z_0|<r$. Volme $R > r$, aby $U(z, R) \subset G$. Položme
+		$$ h(z) := \frac{f(z) - f(s)}{z - s}, z \in U(z_0, R) \setminus \{s\}; $$
+		$$ h(z) := f'(s), z = s. $$
+		
+		Zřejmě $h \in ©H(U(z_0, R) \setminus \{s\})$ he spojitá hvězdovitá oblast $U(z_0, R)$. Z Cauchyho věty je
+		$$ 0 = \frac{1}{2\pi} \int_\phi h = \frac{1}{2\pi} \int_\phi \frac{f(z) dz}{z - s} - \frac{1}{2\pi} \int_\phi \frac{dz}{z - d}·f_s. $$
+
+		2. Nechť $|s - z_0| > r$. Volme $R \in (r, |z_0 - s|)$, aby $U(z_0, R) \subset G$. Potom
+		$$ g(t) := \frac{f(z)}{z - s} \in ©H(U(z_0, R)) $$
+		a z Cauchyho věty je
+		$$ \frac{1}{2\pi} \int_\phi g = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $G \subset ®C$ je otevřená a $f \in ©H(G)$. Potom $f$ má komplexní derivace libovolného řádu všude na $G$.
+
+	Tedy nechť $U(z_0, r) \subset G$ a $\phi$ je jako v předchozím. Potom
+	$$ \frac{k!}{2\pi} \int_\phi \frac{f(z) dz}{(z - s)^{k+1}} = f^{(k)}(s), |s - z_0| < r, k \in ®N. $$
+	Zde $f^{(0)} := f$ a $k$-tá komplexní derivace $f^{(k)}$ je definovaná jako $f^{(k)} := \(f^{(k-1)}\)'$, má-li pravá strana smysl.
+
+	\begin{dukazin}
+		Z věty o derivaci integrálu podle komplexního parametru a předchozí věty, protože
+		$$ \frac{d^k}{ds^k} \(\frac{1}{z - s}\) = \frac{k!}{(z - s)^{k+1}}, \qquad z ≠ s. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Morera]
+	Nechť $f$ je spojitá funkce na otevřené $G \subset ®C$. Potom $f \in ©H(G)$, právě když
+	$$ \int_{\partial \triangle} f = 0, \qquad \forall \triangle \subset G \text{ trojúhelník}. $$
+
+	\begin{dukazin}
+		„$\implies$“: Goursat. „$\impliedby$“: Nechť $U := U(z_0, R) \subset G$. Protože $f$ je spojitá na hvězdovité oblasti $U$ a platí pro ni rovnost výše, má $f$ na $U$ primitivní funkci $F$, tzn. $f = F'$ na $U$. Protože $F \in ©H(U)$, máme $f' = F''$ na $U$, tudíž $f \in ©H(U)$. Tedy i $f \in ©H(G)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Cauchyho odhady]
+	Nechť $z_0 \in ®C$, $r \in (0, +∞)$ a $f$ je holomorfní funkce na otevřené množině obsahující $\overline{U(z_0, r)}$. Potom pro každé $k \in ®N_0$ je
+	\begin{itemize}
+		\item[CO1] $\forall s \in U := U(z_0, r)$:
+			$$ |f^{(k)}(s)| ≤ \frac{(k!) r}{(d(s))^{k+1}}, $$
+			kde $d(s) := \dist(s, \partial U)$;
+		\item[CO2] $\forall s \in U(z_0, \frac{r}{2})$:
+			$$ |f^{(k)}(s)| ≤ \frac{k! 2^{k+1}}{r^2}·\max_{\partial U} |f|; $$
+		\item[CO3] $|f^{(k)}(z_0)| ≤ \frac{k!}{r^k}·\max_{\partial U} |f|$.
+	\end{itemize}
+
+	\begin{dukazin}[CO1]
+		Z věty výše (pro $\phi$ stejné jako tam)
+		$$ |f^{(k)}(z)| = |\frac{k!}{2\pi} \int_\phi \frac{f(z) ds}{(z - s)^{k+1}}| ≤ \frac{k!}{2\pi}·2\pi r \max_{<\phi>} |f| \frac{1}{(d(s))^{k+1}}, $$
+		protože $|z - s| ≥ d(s)$ $\forall z \in <\phi>$.
+	\end{dukazin}
+
+	\begin{dukazin}[CO2 a CO3]
+		Plyne z CO1, neboť $d(s) ≥ \frac{r}{2} \forall s \in U(z_0, \frac{r}{2})$ a $d(z_0) = r$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Liouville]
+	Je-li $f$ holomorfní a omezená funkce na ®C, potom je $f$ konstantní.
+
+	\begin{dukazin}
+		Ukážeme, že $f' = 0$ na ®C: Označme $M := \sup_{®C} |f| < +∞$. Nechť $z_0 \in ®C$. Z CO3 pro každé $r > 0$ platí
+		$$ |f'(z_0)| ≤ \frac{M}{r} \rightarrow 0, $$
+		tudíž $f'(z_0) = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Zakladní věta algebry]
+	V ®C má každý polynom stupně alespoň 1 vždy alespoň jeden kořen.
+
+	\begin{dukazin}
+		Nechť $p(z) := a_n z^n + … + a_0 z^0$, kde $a_j \in ®C$, $n ≥ 1$ a $a_n ≠ 0$. Sporem: Předpokládejme, že $p ≠ 0$ na ®C. Potom $f:=\frac{1}{p}$ je holomorfní a omezená na ®C. Z Liouvilleovy věty je konstantní, tedy i $p = \frac{1}{f}$ je konstantní a $p' = 0 = p^{(n)} = a_n · n!$ $\implies$ $a_n = 0$. \lightning.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{lemma}
+	Nechť $\phi$ je křivka v ®C, $f_i$ jsou spojité funkce na $<\phi>$ pro $n \in ®N$ a $f_i \rightrightarrows f$ na $<\phi>$. Potom $f$ je spojitá na $<\phi>$ a
+	$$ \int_\phi f_n \rightarrow \int_\phi f. $$
+
+	\begin{dukazin}
+		Platí
+		$$ |\int_\phi f_i - \int_\phi f| = |\int_\phi (f_n - f)| ≤ V(\phi)·\max_{<\phi>} |f_n - f| \rightarrow 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Weierstrass]
+	Nechť $G \subset ®C$ je otevřená, $f_n \in ©H(F)$ pro $n \in ®N$ a $f_n \overset{\text{Loc.}}\rightrightarrows f$ na $G$. Potom $f \in ©H(G)$ a $f_n^{(k)} \overset{\text{Loc.}}\rightrightarrows f^{(k)}$ na $G$ pro každé $k \in ®N$.
+
+	\begin{dukazin}
+		1. Zřejmě $f$ je spojitá na $G$. Nechť $\triangle$ je trojúhelník v $G$. Potom
+		$$ 0 \overset{G ?}= \int_{\partial \triangle} f_n \rightarrow \int_{\partial \triangle} f = 0. $$
+		Z Morera je $f \in ©H(G)$.
+
+		2. Nechť $k \in ®N$ a $z_0 \in G$. Volme $r > 0$, aby $\overline{U(z_0, r)} \subset G$. Z CO2 máme, že $\forall s \in U(z_0, \frac{r}{2}):$
+		$$ |f_n^{(k)}(s) - f^{(k)}(s)| = |(f_n - f)^{(k)}(s)| ≤ \frac{k! 2^{k+1}}{r^k}·\max_{\partial U(z_0, r)} |f_n - f| \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
 
 \end{document}

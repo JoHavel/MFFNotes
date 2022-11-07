@@ -135,7 +135,7 @@
 \end{veta}
 
 \begin{veta}[Bendixon-Dulas]
-	$\Omega$-simply connected ($\forall$ closed Jordan curve $\gamma$ in $\Omega$, $\Int(\gamma) \subset \Omega$). $\exists B: \Omega \rightarrow ®R: (\div B)(x) = \frac{\partial B}{\partial x_1}(x_1, x_2) + \frac{\partial B}{\partial x_2}(x_1, x_2) > 0$ for almost every $x \in \Omega$. Then $x' = f(x)$ doesn't have nontrivial periodic solutions.
+	$\Omega$-simply connected ($\forall$ closed Jordan curve $\gamma$ in $\Omega$, $\Int(\gamma) \subset \Omega$). $\exists B: \Omega \rightarrow ®R: (\Div B)(x) = \frac{\partial B}{\partial x_1}(x_1, x_2) + \frac{\partial B}{\partial x_2}(x_1, x_2) > 0$ for almost every $x \in \Omega$. Then $x' = f(x)$ doesn't have nontrivial periodic solutions.
 \end{veta}
 
 \begin{definice}[Transverzála]
@@ -154,5 +154,105 @@
 \begin{lemma}
 	Let $p \in \Omega$ and assume that $|\gamma^+(p) \cap \Sigma| ≥ 3$, i. e. $\exists t_1 < t_2 < t_3$ $\phi(t_j, p) \in \Sigma$, $j=1, 2, 3$. Then $\phi(t_2, p)$ lie between $\phi(t, p)$ and $\phi(t_3, p)$.
 \end{lemma}
+
+% 18. 10. 2022
+
+TODO!!!
+
+% 25. 10. 2022
+
+TODO!!!
+
+% 01. 11. 2022
+
+\subsection{Controllability}
+\begin{definice}[Control theory]
+	$$ x' = f(x, u), f: \Omega \times U, \Omega \subset ®R^n, U \subset ®R^n, $$
+	$$ u \in ©U := \{u: [0, T] \rightarrow ®R^n | \text{measurable}, ||u||_∞ < ∞\} = L^∞(0, T, ®R^n). $$
+	(©U is admissible functions).
+\end{definice}
+
+\begin{definice}[Linear task]
+	$x' = Ax + Bu$, $A, B \in ®R^{n \times m}$, $m < n$.
+\end{definice}
+
+\begin{definice}
+	$x_0 \underset{u(0)}{\overset{t}\rightarrow} 0$ iff $x(0) = x_0$, $x(t) = 0$.
+\end{definice}
+
+\newcommand{\converg}{\underset{u(0)}{\overset{t}\rightarrow}}
+\begin{definice}[Area of controlability]
+	$$ ©R(t) = \{x_0 \in ®R^n | \exists u \in L^∞(0, t, ®R^n): x_0 \underset{u(0)}{\overset{t}\rightarrow} 0 \} $$
+\end{definice}
+
+\begin{definice}[Kalman matrix]
+	$$ ©K(A, B) := (B | AB | A^2B | … | A^{n-1}B) $$
+\end{definice}
+
+\begin{veta}
+	For linear problem $©R(t) = \LO (g_1, g_2, …, g_{n·m})$, where $©K(A, B) = (g_1 | g_2 | … | g_{n·m})$
+
+	\begin{tvrzeniin}[Observation]
+		$x(t) = e^{At} x_0 + \int_0^t e^{A(t - s) B u(s) ds}$.
+		$$ x_0 \converg 0 \Leftrightarrow x(t) = 0 \Leftrightarrow x_0 = - \int_0^t e^{-A s} B u(s) ds \qquad (KO) $$
+	\end{tvrzeniin}
+
+	\begin{lemmain}[1]
+		$$ A^k \in \LO(I, A, A^2, …, A^{n - 1}), k \in ®N_0 $$
+
+		\begin{dukazin}
+			Cayley-Hamilton.
+		\end{dukazin}
+	\end{lemmain}
+
+	\begin{dukazin}
+		1) $©R(t)$ is vector subspace of $®R^n$ from definition $x_0 + x_1 \underset{(u_1 + u_2)(0)}{\overset{t}\rightarrow} 0$, $\alpha x \underset{\alpha u(0)}{\overset{t}\rightarrow} 0$.
+
+		2) We want $©R(t)^\perp = (\LO(g_1, …, g_n))^\perp$. „$\supseteq$“: $p \in (\LO(g_1, …, g_n))^\perp$. $x_0 \in ©R(t)$ arbitrary. From KO:
+		$$ 0 \overset?= p^T x_0 = -\int_0^t p^Te^{-As} B u(s) ds = - \int_0^t \sum_{k=0}^∞ \frac{(-s)^k}{k!} p^T A^k B u(s) ds$$
+		We know $(p, g_j) = 0$, $p^Tg_j = 0$, $p^T ©K(A, B) = 0$, $p^T A^k B = 0$, $k \in [n-1]$. And from lemma 1 $k \in ®N$.
+		„$\subseteq$“: $p \in ®R^n$, $p \in ©R(t)^\perp$. We want to prove $p \perp B, AB, A^2B, …, A^{n-1}B$. $B = (b_1 | … | b_m)$. $\forall j \in [n]: p \perp b_j, Ab_j, …, A^{n-1}b_j$. $\phi \in L^∞(0, T, ®R)$, $u(t) = \phi(t)·¦e_j$, where $x_0 = - \int_0^t e^{-A s} B u(s) ds$. We have $x_0 \converg 0$, hence $x_0 \in ©R(t)$.
+		$$ 0 = p^T x_0 = - p^T\int_0^t e^{-As} B u(s) ds = - \int_0^t p^T e^{-As}b_j \phi(s) ds \implies y(s) := p^T e^{-As}b_j ≡ 0 $$
+		So we have $p^T e^{-As} b_j ≡ 0$, we derivate it, $p^T A^n e^{-As} b_j ≡ 0$, and set $s = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$©R(t)$ doesn't depend on time.
+\end{dusledek}
+
+\begin{definice}[Locally and globally controllable]
+	Linear problem is called locally controllable, iff $\exists \delta > 0: \{x_0 \in ®R^2 |\ |x_0| < \delta\} \subset ©R(t)$. And globally if $®R^n = ©R(t)$.
+\end{definice}
+
+\begin{dusledek}
+	Linear problem is controllable $\Leftrightarrow$ $\rank K(A, B) = n$.
+\end{dusledek}
+
+\subsection{Observability}
+\begin{definice}[System for observability]
+	$$ x' = f(x), x(0) = x_0, f: \Omega \subset ®R^n \rightarrow ®R^n y = g(x), g: \Omega \subset ®R^n \rightarrow ®R^m, m < n. $$
+\end{definice}
+
+\begin{definice}
+	We say that system $x' = f(x)$ is observable through $g(·)$ on $[0, t]$, iff $\forall x_1(·), x_2(·): [0, T] \rightarrow ®R^n: g(x_1(t)) = g(x_2(t))$ $\forall t \in [0, T]$ $\implies x_1(0) = x_2(0)$.
+\end{definice}
+
+\begin{definice}[Linear observability]
+	$x' = Ax$, $y = Bx$, $A \in ®R^{n \times n}$, $B \in ®R^{m \times n}$.
+\end{definice}
+
+\begin{veta}
+	$x' = Ax$ is observable on $[0, T]$ through $y = B x$ $\Leftrightarrow$ $x' = A^T x + B^T u$ is controllable.
+
+	\begin{dukazin}
+		(We will prove equivalence with $\rank ©K(A^T, B^T) = n$.) „$\impliedby$“: For contradiction
+		$$ \exists x_1(t), x_2(t), [0, T], B x_1(t) ≡ Bx_2(t): x(t) = x_1(t) - x_2(t), x(0) = x_0 ≠ 0, B x(t) ≡ 0. $$
+		$$ x(t) = e^{At} x_0, Bx(t) = B^{At} x_0 ≡ 0 \qquad \forall t \in [0, T]. $$
+		We differentiate it, set $t = 0$ and get $B x_0 = 0$, $B A x_0 = 0$, …, $BA^{n-1}x_0 = 0$. So $x_0^T B^T = 0$, …, $x_0^T \(A^T\)^{n-1} B^T = 0$. $x_0^T ©K(A^T, B^T) = 0$, $x_0 \perp ©K(A^T, B^T)$, \lightning.
+
+		„$\implies$“: For contradiction $\rank(A^T, B^T) < n$ $\implies$ $\exists x_0 ≠ 0: x_0^T ©K(A^T, B^T) = 0$. $x_0^T\(A^T\)^k B^T = 0$ $\forall k \in [n - 1]$ and from lemma 1 $\forall k \in ®N$. $B A^T x_0 = 0$. $B e^{At} x_0 = 0$ $\forall t \in [0, T]$. \lightning.
+	\end{dukazin}
+\end{veta}
 
 \end{document}

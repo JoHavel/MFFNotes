@@ -58,4 +58,69 @@ TODO!!!
 	Počáteční podmínku předepisujeme ve tvaru $u(0, \overline{x}) = u_0(\overline{x})$, kde $\overline{x} \in ®R^{n-1}$. Funkci $u : \Omega \rightarrow ®R$, $\omega \subseteq ®R^n$ nazveme klasickým řešením Cauchyovy úlohy pro kvazilineární rovnici 1. řádu, pokud $u \in ®C^1(\Omega)$ a podmínky platí bodově v $\Omega$.
 \end{definice}
 
+% 04. 11. 2022
+\section{Klasifikace lineárních rovnic 2. řádu}
+\begin{poznamka}[Lineární rovnice druhého řádu]
+	$$ \sum_{i,j = 1}^n a_{ij}(x) \partial_i\partial_j u(x) + \sum_{i=1}^n b_i(x) \partial_i u(x) + c(x)u(x) = f(x), $$
+	kde $a_{ij}, b_i, c, f$ jsou dané funkce, $i, j \in [n]$, $u$ neznámá funkce.
+
+	Zafixujeme $x_0 \in ®R^n$, aby rovnice byla definována na nějakém $U(x_0)$. Chceme také rovnici transformovat tak, aby $A = (a_{ij})$ byla diagonální. Budeme pp. $A$ je symetrická (neboť pro $u \in C^2(…)$: $\partial_i\partial_j u = \partial_j\partial_i u$)
+\end{poznamka}
+
+\begin{definice}[Transformace diferenciální rovnice]
+	Vezmeme nějaké $y_0$ a $U(y_0)$ a hladké? zobrazení $\phi(y_0) = x_0$ a $\phi(U(y_0)) \subset U(x_0)$.
+
+	Definujeme funkci $v$: $u(x) = v(P·x)$, kde $P \in M^{n \times n}$ je regulární matice. $u(\overbrace{P^{-1}y}^{\phi(y)}) = v(y)$.
+
+	Dosadíme do rovnice výše:
+	$$ \partial_i u(x) = \sum_{k=1}^n \partial_k v (P x) P_{ki}, \qquad \partial_j\partial_i u(x) = \sum_{k=1}^m P_{ki} \sum_{l=1}^n P_{lj} \partial_k\partial v(P x), $$
+	$$ \sum_{i,j,k,l=1}^n \partial_k\partial_l v(P x) P_{ki} a_{ij}(x) (P^T)_{jl} = \sum_{k, l = 1}^n \partial_k\partial_l v(P x) (PA(x)P^T)_{kl} $$
+
+	LA: $A(x_0)$ je symetrická, tedy ze Sylvestrova zákona setrvačnosti existuje $P$ regulární taková, že $P A(x_0) P^T = \diag(d_1, …, d_n)$ pro $d_i \in \{-1, 0, 1\}$. Pozor, $P$ není určena jednoznačně, ale $d_1, …, d_n$ ano až na permutaci.
+
+	Taktéž lze najít $P$ tak, aby $P^T = P^{-1}$ a $PA(x_0)P^{-1} = \diag(d_1, …, d_n)$ pro $d \in ®R$.
+\end{definice}
+
+\begin{priklady}
+	Vlnová rovnice v 1D: $\partial_t^2 u - \partial_x^2 u = 0$.
+
+	Laplaceova rovnice v 2D: $\partial_x^2 u + \partial_y^2 u = 0$.
+
+	Rovnice vedení tepla: $\partial_t u - \partial_x^2 u = 0$.
+\end{priklady}
+
+\begin{definice}[Typy diferenciální rovnice 2. řádu]
+	Řekneme, že lineární diferenciální rovnice je
+	\begin{itemize}
+		\item[eliptická] v $x_0$, pokud $\sgn A(x_0) = (n, 0, 0)$ nebo $(0, 0, n)$; (Laplace)
+		\item[hyperbolická] v $x_0$, pokud $\sgn A(x_0) = (n-1, 0, 1)$ nebo $(1, 0, n-1)$; (vlnová)
+		\item[parabolická] v $x_0$, pokud $\sgn A(x_0) = (n-1, 1, 0)$ nebo $(0, 1, n-1)$ a v případě $\sgn A(x_0) = (n-1, 1, 0)$ navíc požadujeme, aby koeficient $b_n$ (odpovídající $d_n=0$) po transformaci byl v bodě $x_0$ záporný, a v opačném případě kladný; (vedení tepla)
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	Buď $S$ hyperbolická na okolí $x_0 \in ®R^2$, $a_{11}, a_{12}, a_{22} \in C^1(U(x_0))$, $a_{11} ≠ 0$ na $U(x_0)$. Pak lze 
+	$$ a_{11} \partial_1^2 u + 2a_{12} \partial_1\partial_2 u + a_{22} \partial_2^2 u = 0 $$
+	transformovat do tvaru $\partial_1\partial_2 v = f(\partial_1v, \partial_2v, v)$ na $V(x_0)$ pro vhodnou funkci $f$ a okolí $V$.
+
+	\begin{dukazin}
+		Dokázáno na cvičení.
+	\end{dukazin}
+\end{veta}
+
+\section{Vlnová rovnice}
+\begin{tvrzeni}[Obecné řešení vlnové rovnice v 1D]
+	Řešení $\partial_t^2 u - c^2 \partial_x^2 u = 0$, kterou lze transformovat na $\partial_1\partial_2 v = 0$, dostaneme skrze $\partial_2 v(\rho \sigma) = \tilde{V_1(\sigma)}$, tedy $\int_0^∞ \tilde{V_1(\tau)} d\tau + V_2(\rho) = V_1(\sigma) + V_2(\rho) = v(\rho, \sigma)$.
+
+	Obecným řešením je tedy
+	$$ u(t, x) = V_1(x - ct) + V_2(x + ct), $$
+	pro dost hladké funkce $V_1, V_2$.
+\end{tvrzeni}
+
+\begin{poznamka}[Úloha pro vlnovou rovnici (Cauchyova úloha)]
+	Pro dané $f: (0, T) \times ®R \rightarrow ®R$. Hledáme řešení $u: [0, +∞) \times ®R \rightarrow ®R$ takové, že
+	$$ \partial_t^2 u - \partial_x^2 u = f \text{ v } (0, T) \times ®R. $$
+	A $u(0, x) = u_0(x)$, $\partial_t u(0, x) = u_1(x)$ ($\partial_t u$ musí jít spojitě rozšířit do $(0, x)$ a $\partial_t u(0, x)$ je hodnota tohoto rozšíření).
+\end{poznamka}
+
 \end{document}

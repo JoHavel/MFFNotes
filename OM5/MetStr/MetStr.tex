@@ -135,4 +135,37 @@
 	\end{dukazin}
 \end{veta}
 
+% 18. 10. 2022
+% 25. 10. 2022
+
+TODO!!!
+
+% 01. 11. 2022
+
+\begin{veta}
+	Nechť $0 ≤ \beta < \alpha ≤ 1$. Pak identické zobrazení $\id: (©H_\alpha, ||·||_\beta) \rightarrow (©H_\alpha, ||·||_\alpha)$ není spojité.
+
+	\begin{dukazin}
+		$$ f_r (x) = \begin{cases}0, & 0 ≤ x ≤ r,\\(x - r)^\alpha, & r ≤ x ≤ 1.\end{cases} $$
+		$$ ||f_r||_\beta = \sup_{x ≠ y} \frac{|f_r(x) - f_r(y)}{|x - y|^\beta} = \max(\sup \frac{f_r(y)}{(y - x)^\beta}, \sup\frac{f_r(y) - f_r(x)}{(x - y)^\beta}) = \max(\sup \frac{(y - r)^\alpha}{(y - x)^\beta}, \sup \frac{(y - r)^\alpha - (x - r)^\alpha}{(y - x)^\alpha}·(y - x)^\beta) ≤ \max((1 - r)^{\alpha - \beta}, 1·(1 - r)^{\alpha - \beta}) ≤ (1 - r)^{\alpha - \beta} $$
+		Tedy $f_{r_n} \rightarrow f_0$ v $©H_\beta$ a ne v $©H_\alpha$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $0 ≤ \beta < \alpha ≤ 1$. Množina $©H_\alpha$ je 1. kategorie v $©H_\beta$.
+
+	\begin{dukazin}
+		$F_n = \{f \in ©H_\alpha | \|f\|_\alpha ≤ n\}$. Sporem: Nechť $\overline{F_n}^\beta$ má vnitřní bod $f$.
+		$$ \exists \epsilon > 0, B_\epsilon^\beta (f) \subset \overline{F_n}^\beta, g(x) = f(x) + \frac{\epsilon}{2} x^\beta, \|g - f\|_\beta = \frac{\epsilon}{2}, \text{ ukážeme, že } B_{\frac{\epsilon}{4}}^\beta(g) \cap F_n = y. $$
+		Libovolné $h \in B_{\frac{3}{4}}^\beta(g)$:
+		$$ |(h(x) - g(x)) - (h(y) - g(y))| + |h(0) - g(0)| ≤ \frac{3}{4} |x - y|^\beta, \qquad y = 0 $$
+		$$ |(h(x) - h(0)) - (g(x) - g(0))| + |h(0) - g(0)| ≤ \frac{3}{4} |x|^\beta, \qquad y = 0 $$
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+TODO!!!
+
 \end{document}

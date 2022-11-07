@@ -92,7 +92,7 @@
 
 	\begin{itemize}
 		\item $\{\overline{B}(x, \Delta x) | x \in A_j\}$ is disjoint for every $j \in [N]$;
-		\item $A \subset \bigcup\{\overline{B}(x, \Delta x) | \in \bigcup_{i=1}^N A_i\}$.
+		\item $A \subset \bigcup\{\overline{B}(x, \Delta x) | x \in \bigcup_{i=1}^N A_i\}$.
 	\end{itemize}
 
 	\begin{dukazin}[Case $A$ is bounded]
@@ -103,15 +103,62 @@
 		If $F_j ≠ \O$ for every $j \in ®N$, then we set $J := ∞$. So we have $(B_j)_{j < J}$. If $J < ∞$, then we covered $A$. „If $J = ∞$, then $A \subset \bigcup_{j < J} B_j$“:
 
 		„$\lim_{j \rightarrow ∞} r_j = 0$“: because $A$ is bounded
-		$$ ||a_i - a_j|| ≥ r_i = \frac{1}{3} r_i + \frac{2}{3} r_i > \frac{1}{3} r_i + \frac{1}{2} r_j > \frac{1}{3} r_i + \frac{1}{3} r_j = \frac{1}{3}(r_i + r_j) \implies \frac{1}{3} * B_i \cap \frac{1}{3} * B_j = \O. $$
+		$$ \|a_i - a_j\| ≥ r_i = \frac{1}{3} r_i + \frac{2}{3} r_i > \frac{1}{3} r_i + \frac{1}{2} r_j > \frac{1}{3} r_i + \frac{1}{3} r_j = \frac{1}{3}(r_i + r_j) \implies \frac{1}{3} * B_i \cap \frac{1}{3} * B_j = \O. $$
 		$\{\frac{1}{3}B_j | j < J\}$ is a disjoint family $\implies \sum_{j=1}^∞ \lambda_n(\frac{1}{3} * B_j) < ∞$.
 
 		If $A \in A \setminus \bigcup_{j=1}^∞ B_j$, then $a \in \bigcap_{j=1}^∞ F_j$. We find $j_0 \in ®N$ with $r_{j_0} ≤ \frac{3}{4} \Delta(a)$. \lightning.
 
 		Fix $k < J$. We set $I = \{i < k | B_i \cap B_k ≠ \O\}$, $I_1 = \{i < k_i | B_i \cap B_k ≠ \O \land r_i < 10 r_k\}$, $I_2 = \{i < k_i | B_i \cap B_k \land r_i ≥ 10 r_k\}$. The estimate of $I_1$: „We have $\frac{1}{3} B_i \subseteq 15 * B_k$ for every $i \in I_1$“: Take $x \in \frac{1}{3} * B_i$. Then
-		$$ ||x - a_k|| ≤ ||x - a_j|| + ||a_i - a_k|| ≤ \frac{1}{3} r_i + r_i + r_k ≤ \frac{10}{3} r_k + 10 r_k + r_k ≤ 15 r_k $$
+		$$ \|x - a_k\| ≤ \|x - a_j\| + \|a_i - a_k\| ≤ \frac{1}{3} r_i + r_i + r_k ≤ \frac{10}{3} r_k + 10 r_k + r_k ≤ 15 r_k $$
 
-		$$ \lambda_n(\frac{1}{3} * B_i) = \lambda(\overline{B}(0, 1))·(\frac{1}{3}r_i)^n ≥ \lambda_n(\overline{B}(0, 1)) · (\frac{1}{3}·\frac{3}{4} r_k)^n = \lambda_n(\overline{B}(0, 1))·\frac{1}{4^n} r_k^n = \frac{1}{6O^n} \lambda_n(15 * B_k) \implies |I_1| ≤ 60^n. $$
+		$$ \lambda_n(\frac{1}{3} * B_i) = \lambda(\overline{B}(0, 1))·(\frac{1}{3}r_i)^n ≥ \lambda_n(\overline{B}(0, 1)) · (\frac{1}{3}·\frac{3}{4} r_k)^n = \lambda_n(\overline{B}(0, 1))·\frac{1}{4^n} r_k^n = $$
+		$$ = \frac{1}{60^n} \lambda_n(15 * B_k) \implies |I_1| ≤ 60^n. $$
+
+% 17. 10. 2022 Canceled
+% 24. 10. 2022 Other topic? (I wasn't there.)
+% 31. 10. 2022
+
+		Denote $b_i = a_i - a_k$, vector between centers of balls. Take a family $\{Q_m | 1 ≤ m ≤ (22n)^n\}$ of closed cubes with edge length $\frac{1}{11n}$ which cover $[-1, 1]^n$. We claim that „for each $1≤m≤(22n)^n$ there is at most one $i \in I_2$ with $\frac{b_i}{\|b_i\|} \in Q_m$“:
+		$$ i,j \in I_2, i < j, \left\| \frac{b_i}{\|b_i\|} - \frac{b_j}{\|b_j\|} \right\| ≤ \frac{1}{11}. $$
+		We have $r_i < \|b_i\| ≤ r_i + r_k$ and $r_j < \|b_j\| ≤ r_j + r_k$. So $\left| \|b_i\| - \|b_j\| \right| ≤ |r_i - r_j| + r_k$. $\|b_j\| ≤ r_j + r_k ≤ r_j + \frac{1}{10} r_j = \frac{11}{10}r_j$.
+		$$ \|a_i - a_j\| = \|b_i - b_j\| ≤ \left\|b_i - \frac{\|b_j\|}{\|b_i\|}b_i\right\| + \left\|\frac{\|b_j\|}{\|b_i\|} b_i - b_j\right\| ≤ \left| \|b_i\| - \|b_j\| \right| + \frac{1}{11} \|b_j\| ≤ $$
+		$$ ≤ |r_i - r_j| + r_k + \frac{1}{11}·\frac{11}{10}r_j ≤ |r_i - r_j| + \frac{1}{5} r_j. $$
+		We distinguish two cases:
+		$$ (1) r_i > r_j: \|a_i - a_j\| ≤ r_i - \frac{4}{5}r_j < r_i; $$
+		$$ (2) r_i ≤ r_j: \|a_i - a_j\| ≤ - r_i + r_j + \frac{1}{5} r_j = -r_i + \frac{6}{5} r_j ≤ - r_i + \frac{8}{5}r_i < r_i \implies a_j \in \overline{B}(a_i, r_i) = B_i, \text{\lightning}. $$
+
+		Choose $N > (60)^n + (22n)^n$. $B_i \in A_i$, $i \in [N]$. From previous every ball intersect at most $(60)^n + (22n)^n$ previous balls, so we always have $A_i$ where we can put ball.
+	\end{dukazin}
+
+	\begin{dukazin}[Case $A$ is not bounded]
+		Let $A^l := A \cap \{x \in ®R^n | 3(l - 1) R ≤ \|x\| < 3l R\}$, $l \in ®N$. We get $A_i^l$, $i \in [M]$ by the previous. $A_i = \bigcup_{l = 2k + 1} A_i^l$, $A_{M + i} = \bigcup_{l = 2k} A_i^l$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Radon measure]
+	Let $P$ be a locally compact Hausdorff space and ©S a $\sigma$-algebra of subsets of $P$. We say that $\mu$ is a Radon measure if
+	\begin{itemize}
+		\item ©S contains all Borel sets,
+		\item $\mu(K) < ∞$ for every compact $K \in P$,
+		\item $\mu(G) = \sup\{\mu(K) | K \subset G \text{ is compact}\}$ for every $G \subset P$ open,
+		\item $\mu(A) = \inf\{\mu(K) | A \subset G \text{ is open}\}$ for every $A \in ©S$,
+		\item $\mu$ is complete.
+	\end{itemize}
+\end{definice}
+
+\begin{lemma}
+	Let $\mu$ be a measure on $X$ and $\{A_j\}_{j=1}^∞$ be an increasing sequence of subsets of $X$. Then $\lim \mu^*(A_j) = \mu^*\(\bigcup_{j=1}^∞ A_j\)$.
+\end{lemma}
+
+\begin{veta}
+	Let $\mu$ be a Radon measure on $®R^n$ and ©F be a collection of closed balls in $®R^n$. Let A denote the set of centers of balls in ©F. Assume $\inf\{r | B(a, r) \in ©F\} = 0$ for each $a \in A$. Then there exists a countable disjoint system $©G \subset ©F$ such that $\mu(A \setminus \bigcup ©G) = 0$.
+
+	\begin{dukazin}[The case $\mu^*(A) < ∞$]
+		Let $N \in ®N$ be the constant from Besicovitch theorem. We find $\Theta$ such that $1 - \frac{1}{N} < \Theta < 1$. Claim: „Let $U \subset ®R^n$ be an open set. Then there exists a disjoint finite system $©H \subset ©F$ such that $\bigcup ©H \subset U$ and
+		$$ \mu^*((A \cap U) \setminus \bigcup ©H) ≤ \Theta · \mu^*(A \cap U). $$
+		“
+
+		$$ ©F_1 \subset ®F, ®F_1 = \{B \in ®F, \diam B < 1 \land B \subset U\} $$
 	\end{dukazin}
 \end{veta}
 
