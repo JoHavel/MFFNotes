@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	(We assume $e = e(\eta, \rho)$.) Let us assume that our substance of interest is the calorically perfect ideal gas. We know that the engineering equation of state for this substance reads
+	$$ p_{th} = c_{V,ref} (\gamma − 1) \rho \theta, $$
+	where $c_{V,ref}$ is a positive constant (specific heat at constant volume) and $\gamma$ is a positive constant greater that one (adiabatic exponent). Further, we also know that the internal energy of the substance is proportional to the temperature
+	$$ e = c_{V,ref} \theta. $$
+
+	Use this characterisations, solve the partial differential equations for $e$ and identify -- for our particular substance -- the formula for the internal energy $e$ as a function of the entropy and the density. Once you find the function $e(\eta, \rho)$, find also the explicit formula for the entropy $\eta$ as a function of the temperature and the density, $\eta(\theta, \rho)$.
+
+	\begin{reseni}
+		Z přednášky / celého znění zadání máme diferenciální rovnice pro $e$, kam dosadíme rovnosti výše:
+		$$ \frac{\partial e}{\partial \eta}(\eta, \rho) = \theta = \frac{e}{c_{V, ref}}, $$
+		$$ \rho^2\frac{\partial e}{\partial \rho}(\eta, \rho) = p_{th} = c_{V, ref}(\gamma - 1)\rho \theta = (\gamma - 1)\rho e. $$
+		Takže když se na funkci $e$ podíváme ve směru $\eta$, dostaneme $e(\eta, \not\rho) = C·\exp\(\frac{\eta}{c_{V, ref}}\)$. Když se podíváme ve směru $\rho$, dostaneme $e(\not\eta, \rho) = C·\rho^{\gamma - 1}$. Tudíž máme $e(\eta, \rho) = C·\exp\(\frac{\eta}{c_{V, ref}}\)·\rho^{\gamma - 1}$.
+
+		Abychom splnili počáteční podmínky, tak $\frac{\partial e}{\partial \eta}(0, \rho_{ref}) = \theta_{ref}$, tedy $C·\frac{1}{c_{V, ref}}·\rho_{ref}^{\gamma - 1} = \theta_{ref}$, tj.
+		$$ e(\eta, \rho) = \frac{c_{V, ref}·\theta_{ref}}{\rho_{ref}^{\gamma - 1}} · \exp\(\frac{\eta}{c_{V, ref}}\) · \rho^{\gamma - 1}. $$
+
+		Pokud z toho vyjádříme $\eta$, tak dostaneme:
+		$$ \frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma} = \exp\(\frac{\eta}{c_{V, ref}}\), $$
+		$$ \ln\(\frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \frac{\eta}{c_{V, ref}}, $$
+		$$ c_{V, ref}·\ln\(\frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \eta. $$
+
+		Nyní už stačí dosadit $\frac{e}{c_{V, ref}} = \theta$:
+		$$ \eta(\theta, \rho) = c_{V, ref}·\ln\(\frac{\theta}{\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \eta. $$
+
+	\end{reseni}
+\end{priklad}
+
+\end{document}

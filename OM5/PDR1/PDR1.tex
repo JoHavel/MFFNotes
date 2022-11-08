@@ -41,7 +41,7 @@
 \begin{poznamka}[Motivace k pojmu slabé řešení (weak solution)]
 	$$ - \Delta = f, f \notin C(\overline{\Omega}) $$
 
-	A další ukázané na přednášce.
+	A další ukázané na přednášce.
 \end{poznamka}
 
 TODO?
@@ -72,7 +72,7 @@ TODO?
 		$$ \int_\Omega (v_\alpha^1 - v_\alpha^2) \phi = 0 \qquad \forall \phi \in C_0^∞(\Omega) $$
 		$\implies v_\alpha^1 = v_\alpha^2$ skoro všude v $\Omega$.
 
-		Klasická derivace je zřejmě zároveň slabá, tedy z první části splývají.
+		Klasická derivace je zřejmě zároveň slabá, tedy z první části splývají.
 	\end{dukazin}
 \end{lemma}
 
@@ -86,7 +86,7 @@ TODO?
 	\end{poznamkain}
 \end{definice}
 
-\begin{lemma}[Základní vlastnosti slabých derivací a Sobolevových prostorů]
+\begin{lemma}[Základní vlastnosti slabých derivací a Sobolevových prostorů]
 	Nechť $u, v \in W^{k, p}(\Omega), k \in ®N$, a $\alpha$ multiindex s délkou $≤ k$.
 	 
 	\begin{itemize}
@@ -98,7 +98,7 @@ TODO?
 	\end{itemize}
 	
 	\begin{dukazin}
-		Cvičení na doma.
+		Cvičení na doma.
 	\end{dukazin}
 \end{lemma}
 
@@ -422,7 +422,7 @@ TODO!!!
 		$$ \frac{1}{2} B_{L, \sigma}(u, u) - <j, u> - \int g u ≤ \frac{1}{2} B_{L, \sigma}(u + \epsilon \phi, u + \epsilon \phi) - <j, u + \epsilon \phi> - \int g(u + \epsilon \phi) = $$
 		$$ = \frac{1}{2} B_{L, \sigma}(u, u) + \frac{1}{2} \epsilon \frac{1}{2} B_{L, \sigma}(\phi, \phi) + \epsilon B_{L, \sigma}(u, \phi) - <f, u> - \epsilon <f, \phi> - \int ga - \epsilon \int g \phi $$
 		divide by $\epsilon$ and $\epsilon \rightarrow 0_+$
-		$$ 0 ≤ B_{L, \sigma}(u, \phi) - <j, \phi> - \int_{\Gamma_2 \cup \Gamma_3} g \phi, \qquad \forall \phi \in V $$
+		$$ 0 ≤ B_{L, \sigma}(u, \phi) - <j, \phi> - \int_{\Gamma_2 \cup \Gamma_3} g \phi, \qquad \forall \phi \in V $$
 		(Euler-Lagrange inequality?), which is true also for $- \phi$ $\implies$ $0 = -||-$ $\implies u$ is weak solution.
 	\end{dukazin}
 \end{veta}
@@ -446,7 +446,7 @@ TODO!!!
 	\end{dukazin}
 
 	\begin{dukazin}[„$2 \implies 1$“]
-		$¦T \in \tilde V$ $\forall V \in \tilde V$: $\int_\Omega \frac{1}{2} A^{-1} ¦T·¦T - \nabla u_0 ¦T ≤ \int_{\Omega}\frac{A^{-1}¦V · ¦V}{2} - \nabla u_0 ¦V$. $¦V = ¦T + \epsilon ¦W$, $¦W \in L^2(\Omega, ®R^d)$ $\forall \phi \in V$: $\int_\Omega ¦W · \nabla \phi = 0$.
+		$¦T \in \tilde V$ $\forall V \in \tilde V$: $\int_\Omega \frac{1}{2} A^{-1} ¦T·¦T - \nabla u_0 ¦T ≤ \int_{\Omega}\frac{A^{-1}¦V · ¦V}{2} - \nabla u_0 ¦V$. $¦V = ¦T + \epsilon ¦W$, $¦W \in L^2(\Omega, ®R^d)$ $\forall \phi \in V$: $\int_\Omega ¦W · \nabla \phi = 0$.
 		$$ \int_{\Omega} \frac{A^{-1} ¦T·¦T}{2} - \nabla u_0 ¦T ≤ \int_\Omega \frac{A^{-1} ¦T · ¦T + \epsilon^2 A^{-1}¦W · ¦W + 2 \epsilon A^{-1} ¦T · ¦W}{2} - \nabla u_0 ¦T - \epsilon \nabla u_0 ¦W $$
 		divide by $\epsilon$ and $\epsilon \rightarrow 0_+$:
 		$$ 0 ≤ \int_{\Omega} A^{-1} ¦T · ¦W - \nabla u_0 · ¦W. $$
@@ -461,5 +461,137 @@ TODO!!!
 \begin{lemma}
 	Let $X$ be a reflexive space and $\{u^n\}_{n=1}^∞$ be a bounded sequence, $||u^n||_X ≤ c < ∞$. Then $\exists u^{n_k}$, $\exists u \in x$: $u^{n_k} \rightharpoonup u$ ($\forall F \in X^*: <F, u^{n_k}> \rightarrow <F, u>$).
 \end{lemma}
+
+% 07. 11. 2022
+
+\begin{veta}[Spectrum of symmetric operator]
+	$V$ Hilbert infinity-dimensional space. Let $B$ be linear, symmetric, $V$-elliptic and $V$-bonded operator. Then there exist $0 < \lambda_1 ≤ \lambda_2 ≤ … ≤ \lambda_m$ and corresponding $\{u_i\}_{i=1}^∞$ such that
+	\begin{itemize}
+		\item $B(u^k, \phi) = \lambda_k \int_\Omega u^k \phi$;
+		\item $\lambda_k \rightarrow ∞$;
+		\item $\{u^k\}_{k=1}^∞$ is basis in $V$ and fulfils
+			$$ \int_\Omega u^i u^j = \delta_{ij}, \quad B(u^i, u^j) = 0 \forall i ≠ j; $$
+		\item $P^n u := \sum_{i=1}^n u^i (\int_\Omega u u^i)$, then $\forall n: ||P^n u||_2 ≤ ||u||_2$ and $B(P^n u, P^n u) ≤ B(u, u)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Step 1: Construct $\lambda_k, u^k$: $\lambda_1 := \inf_{u \in V, ||u||_2 = 1} B(u, u)$ and denote $u^1$ function, where infimum is obtained. Then for $V^N = \{u \in V | \forall k \in [N]: B(u, u^k) = 0\}$ we do the same.
+
+		Step 2: The construction is OK:
+		$$ 0 < \lambda_1 = \lim_{n \rightarrow ∞} B(u^n, u^n), ||u^n||_2 = 1 \implies $$
+		$$ \implies ||u^n||_V ≤ C \implies u^{n_k} \rightharpoonup u \text{ in } V $$
+		$$ V \hookrightarrow L^2 \implies u^{n_k} \rightarrow u \text{ in } L^2(\Omega) \implies ||u||_2 = 1 $$
+		$$ \lambda_1 = \lim_{n_k \rightarrow ∞} B(u^{n_k}, u^{n_k}) ≥ B(u, u) ≥ \lambda_1. $$
+
+		Step 3: $\lambda_k$, $u^k$ eigenvalues, eigen functions: $\forall v \in V, ||v||_2 = 1$, $\lambda_1 = B(u^1, u^1) ≤ B(v, v), \quad ||u^1||_2 = 1$
+		$$ v = \frac{u^1 + \epsilon \psi}{||u^1 + \epsilon \psi||_2}, \quad \phi \in V, 0 < \epsilon \ll 1. $$
+		$$ \lambda_1 ≤ B(\frac{u^1 + \epsilon \psi}{||u^1 + \epsilon \psi||_2}, \frac{u^1 + \epsilon \psi}{||u^1 + \epsilon \psi||_2}) $$
+		$$ \lambda_1 ||u^1 + \epsilon \psi||_2 ≤ B(u^1 + \epsilon \psi, u^1 + \epsilon \psi) = B(u_1, u_1) + \epsilon^2 B(\psi, \psi) + 2 \epsilon B(u, \psi) ≤ \lambda_1 ||u^1||_2^2 + \lambda_1 \epsilon^2 ||\psi||_2^2 + 2 \epsilon \lambda_1 \int_\Omega u^1 \psi $$
+		$$ \epsilon \rightarrow 0_+ \implies 2 \lambda_1 \int_\Omega u^1 \psi ≤ 2B(u, \psi). $$
+		So $\lambda_1 \int_\Omega u^1 \psi = B(u, \psi)$.
+
+		The same way we obtain $\lambda_k \int_\Omega u^k \psi ≤ B(u, \psi)$ for $\psi \in V^N$.
+		$$ u^1 : \lambda_1 \int_\Omega u^1 \psi = B(u^1, \psi) \implies \psi = u^k \int_\Omega u^1 u^k = V(u_1, u^k). $$
+		But $u^k \in V^k \implies B(u^k, u^i) = 0 \forall i \in [k-1]$, so $\int u^1 u^k = B(u^1, u^k) = 0$.
+		$$ \implies \forall i \in [k-1]: \int_\Omega u^k u^1 = B(u^k, u^i) = 0. $$
+
+		Step 4: $\lambda_k \nearrow ∞$. We already know $\lambda_1 ≤ \lambda_2 ≤ …$. Assume a contradiction $\lambda_k ≤ C < ∞$. $c_1 ||u^k||_V^2 ≤ B(u^k, u^k) = \lambda_k ||u^k||_2^2 = \lambda_k < C$.
+		$$ \implies u^k \rightharpoonup u \text{ in } V, $$
+		$$ u^k \rightarrow u \text{ in } L^2 \implies u^k \text{ is Cauchy in } L^2 $$
+		$$ ||u^n - y^m||_2^2 = ||u^n||_2^2 + ||u^m||_2^2 - 2 \int u^n u^m = $$
+		$$ = 2 - \frac{2}{\lambda_? n} B(u^n, u^m) = 2 \implies \text{ not Cauchy}. $$
+
+		Step 5: $\lambda_k$ are all eigenvalues ($u^k$ is basis of $V$ and of $L^2$). Assume that $\lambda ≠ \lambda_j$ is also eigenvalue, so $\exists u: B(u, \phi) = \lambda \int_\Omega u \phi \forall \phi$. We can find $i \in ®N$, so $\lambda_i < \lambda < \lambda_{i+1}$.
+		$$ B(u, u^j) = \lambda \int_\Omega u u^j \land B(u^j, u) = \lambda_j \int_\Omega u^j u \implies B(u, u_j) = 0 $$
+		So $u \in V^i$. But if $\lambda < \lambda_{i + 1}$ we must choose $\lambda$, not $\lambda_{i + 1}$. \lightning
+
+		Step 6: $\{u^k\}_{k=1}^∞$ is a basis. By contradiction:
+		$$ \exists w \in V\ w ≠ 0: B(u^k, w) = 0 \forall k \implies w \in V^k \forall k \implies $$
+		$$ ∞ \leftarrow \lambda_k ≤ B(w, w) ≤ C||w||_V^2 < ∞. $$
+
+		Step 7: „Homework“ (Hint $B(u, u) = B(u - P^n u + P^n u, u - P^n u + P^n u)$)
+	\end{dukazin}
+\end{veta}
+
+% 08. 11. 2022
+
+\subsection{Regularity of weak solution}
+\begin{poznamka}
+	We assume that we have $u \in W^{1, 2}(\Omega)$ a weak solution
+	$$ - \Div A \nabla u + Vu + ¦c·\nabla u + \Div(¦du) = Lu = f. $$
+
+	When $u \in W_{loc}^{2, 2}(\Omega)$, when $u \in W^{2,2}(\Omega)$, when $u \in W^{k, 2}_{loc}(\Omega)$, $u \in W^{k, 2}(\Omega)$.
+
+	Simplify $- \Div A \nabla u = f - bu - ¦c \nabla u - u \Div ¦d - \nabla u · ¦d = \tilde f$. If $u \in W^{1, 2}$, $f \in L^2$, $b \in L^∞$, $¦d \in W^{1, ∞}$ $\implies \tilde f \in L^2(\Omega)$.
+
+	Problem is reduced to
+	$$ - \Div(A \nabla u) = f \text{ in } \Omega, $$
+	$$ u = 0 \text{ on } \Gamma_1, $$
+	$$ (A \nabla u)·¦v = g \text{ on } \Gamma_2, $$
+	$$ (A \nabla u)·¦v + \sigma u = g \text{ on } \Gamma_3. $$
+\end{poznamka}
+
+\begin{definice}[Interior regularity]
+	$u \in W^{2, 2}_{loc}(\Omega)$; assumptions: $A \in W^{k+1, ∞}$, $f \in W^{k, 2}(\Omega) \implies u \in W_{loc}^{k + 1, 2}(\Omega)$.
+\end{definice}
+
+\begin{definice}[Boundary regulariry]
+	$u \in W^{2, 2}(\Omega)$; assumptions: on $\Omega \in C^{k+1, ∞}$, $g \in W^{\frac{1}{2}?, 2}(\partial \Omega)$ and $\overline{\Gamma_2} \cap \overline{\Gamma_1} = \{\O\}$ $\implies u \in W^{2, 2}(\Omega)$.
+\end{definice}
+
+\begin{veta}[Interior regularity]
+	Let $A$ be an elliptic operator and $u \in W^{1, 2}$ solves
+	$$ \int_\Omega A \nabla u · \nabla \phi = \int_\Omega f \phi, \qquad \forall \phi \in W_0^{1, 2}(\Omega)\ \forall f \in L^2(\Omega). $$
+	Then if $A \in W^{k+1, ∞} (\Omega, ®R^{d, d})$, $f \in W^{k, 2}(\Omega)$ then $u \in W_{loc}^{k+2, 2}(\Omega)$.
+	
+	Moreover $\forall \tilde \Omega \subset \overline{\tilde \Omega} \subseteq \Omega\ \exists c(\tilde \Omega, A)$:
+	$$ ||u||_{W^{k+2, 2}}(\tilde \Omega) ≤ c(||f||_2 + ||u||_{W^{1, 2}(\Omega)}). $$
+
+	\begin{dukazin}
+		$k = 0$: Recall $v \in W^{1, 2}(\Omega) \Leftrightarrow \{v \in L^2(\Omega) \land \Delta_k^n v \in L^2(\Omega_h) \forall h\}$
+		$$ \int_{\Omega_h} \frac{|v(x + he_k) - v(x)|^2}{h^2} ≤ c. $$
+		$$ u \in W^{2,2} (\tilde \Omega) \Leftrightarrow \{u \in W^{1, 2}(\Omega) \land \Delta_k^n \frac{\partial u}{\partial x_i} \in L^2\}. $$
+
+		We want:
+		$$ \int_{\tilde\Omega_h} \frac{\left|\frac{\partial u(x + he_i)}{\partial x_j} - \frac{\partial u(x)}{\partial x_j}\right|^2}{h^2} ≤ c, $$
+		$$ \int_{\Omega_h} \left| \frac{\nabla u(x + he_i) - \nabla u(x)}{h} \right|^2 ≤ c. $$
+
+		$\int_\Omega A \nabla u \nabla \phi = \int_\Omega f \phi$
+		$$ h > 0, \phi \in W_0^{1, 2}(\Omega), \phi(x) = 0 \text{ if } \dist(x, \partial \Omega) \subset h. $$
+		Set $\phi(x) := \psi(x - h e_k)$.
+		$$ \implies \int_\Omega A(x) \nabla u(x) \nabla \psi(x - h e_k) = \int_\Omega f(x) \psi(x - he_k) = $$
+		$$ = \int_\Omega A(x + h e_k) \nabla u(x + h e_k)·\nabla \psi(x) dx. $$
+
+		Set $\phi(x) := \psi(x)$:
+		$$ \int_\Omega A(x)·\nabla u(x) · \nabla \psi(x) = \int_\Omega f(x) \psi(x) dx. $$
+
+		$$ \int_\Omega A(x + he_k)(\nabla u(x + he_k) - \nabla u(x))·\nabla \psi(x) = $$
+		$$ = - \int(A(x + h e_k) - A(x)) \nabla u(x) ·\nabla \psi(x) + \int_\Omega f(x)(\psi(x - he_k) - \psi(x)). $$
+
+		Set $\psi := (u(x + h e_k) - u(x)) \tau^2(x)$, $\tau(x) = 0$, if $\dist \in (x, \partial \Omega)$, $\tau \in C^1(\tilde \Omega)$.
+
+		Evaluate all terms ($w^{h, i} = u(x + he^i) - u(x)$):
+		$$ \int_\Omega A(x + he_i) \nabla w^{h, i}·(\nabla  w^{h, i} \tau^2 + 2w^{h, i} \tau \nabla \tau) ≥ $$
+		$$ \overset{ellip.}≥ c_1 \int_\Omega |\nabla w^{hi}|^2 \tau^2 - \int_\Omega \frac{2||A||_∞ |w^{h, i}| - |\nabla  \tau| (|\nabla w^{hi}|\sqrt{c_1} \tau)}{\sqrt{c_1}} ≥ $$
+		$$ ≥ \frac{c_1}{2} \int_\omega |\nabla w^{h, i}|^2 \tau^2 - \frac{2}{c_1} ||A||_∞^2 ||\nabla \tau||_∞^2 h^2 \int_{\Omega_h} \frac{|u(x + he_i) - u(x)|^2}{h^2} ≥ $$
+		$$ ≥ \frac{c_1}{2} \int_\Omega |\nabla w^{h, i}|^2 \tau^2 - \frac{2 ||A||_∞^2 ||\nabla \tau||_∞^2}{c_1}h^2 c ||\nabla u||_2^2 $$
+		$$ ≤ h \int_\Omega \frac{|A(x + h e_i) - A(x)|·|\nabla u(x)|\(|\nabla w^{h, i}| \tau^2 + 2|\tau| |\nabla \tau| w^{h, i}\)}{h} ≤ $$
+		$$ ≤ h ||A||_{1, ∞} ||\nabla u \tau||_2 \(||\nabla w^{h, i} \tau||_2 + h||\nabla \tau||_∞ \(\int_{\Omega_h} \frac{|u(x + he_i) - u(x)|^2}{h^2}\)^{1 / 2}\) ≤ $$
+		$$ \overset{Young}≤ \frac{||\nabla w^{h,i}\tau|_2^2 C_1}{8} + h^2(||A||_{1, 8}^2 + ||\nabla u||_2^2(1 + ||\nabla \tau||_∞^2))c(c_1). $$
+
+		$$ ≤ h||f||_2 \(\int_{\Omega_h} \frac{|\psi(x - he_i) - \psi(x)|^2}{h^2}\)^{1 / 2} ≤ h ||f||_2 ||\nabla \psi||_2 ≤ $$
+		$$ ≤ x h ||f||_2 \(\int_\Omega |\nabla w^{h, i}|^2 \tau^2 + |w^{h, i}|^2 \tau^2 |\nabla \tau|^2\)^{1 / 2} ≤ $$
+		$$ \overset{Young}≤ \frac{c_1}{8} \int_\Omega |\nabla w^{h, i}|^2 \tau^2 + C(h^2 ||f||_2^2 + h^2 ||\nabla \tau||_∞^2 \int_{\Omega_h} \frac{|w^{h, i}|^2}{h^2}) ≤ $$
+		$$ ≤ \frac{c_1}{8} \int_\Omega |\nabla w^{h, i}|^2 \tau^2 + c h^2 (||f||_2^2 + ||\nabla \tau||_∞^2 ||\nabla u||_2^2). $$
+
+		With comparing three inequalities:
+		$$ \frac{c_1}{8} \int_\Omega \frac{|\nabla w^{h, i}|^2 \tau^2}{h^2} ≤ c(||\tau||_∞, ||\nabla \tau||_∞, ||A||_{1, ∞})(||f||_2^2 + ||\nabla u||_2^2) $$
+		Take $\tilde \Omega \subseteq \overline{\tilde \Omega} \subseteq \Omega$, $2h_0 = \dist(\partial \tilde \Omega, \partial \Omega)$, $\tau = 1$ in $\tilde \Omega$, $\tau = 0$ in strip around $\partial \Omega$, $0≤\tau≤1$, $|\nabla \tau| ≤ c(\tilde \Omega)$.
+		$$ h ≤ h_0: \int_{\tilde \Omega} \frac{|\nabla u(x + he_i) - \nabla u(x)|^2}{h^2} ≤ c(\tilde \Omega, ||A||_{1, ∞})(||f||_2^2 + ||\nabla u||_2^2) \implies $$
+		$$ \implies ||\nabla^2 u||_{L^2(\tilde \Omega)}^2 ≤ -||- $$
+	\end{dukazin}
+\end{veta}
+
+
 
 \end{document}

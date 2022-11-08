@@ -255,4 +255,107 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+\begin{veta}
+	$V \subset ®R^n$ neighbourhood of $0$, $U \subset ®R^n$ neighbourhood of $0$, $f: V \times U \rightarrow ®R^n$ $C^1$ smooth, $f(0, 0) = 0$, $©U = \{u: [0, T] \rightarrow U \text{ measurable}\}$, $A = \nabla_x f(0, 0)$, $B = \nabla_u f(0, 0)$, $\rank ©K(A, B) = n$. Then
+	$$ x' = f(x, u), x(0) = x_0 \text{ is locally controllable }\forall t \in (0, T]. $$
+	
+	\begin{dukazin}
+		Fix $t > 0$, consider $x' = Ax + Bu$. Since $\rank(A, B) = n$, the linear problem is globally controllable. Take initial condition $y_1, …, y_n$ linearly independent.
+		$$ \exists u_i \in L^∞(0, t, ®R^n): y_j \rightarrow_{u_\lambda(0)}^t 0 $$
+		$\forall \lambda = (\lambda_1, …, \lambda_n) \in ®R^n$ denote by $u_{\lambda(t)} = \sum_{j=1}^n \lambda_j u_j(t)$. We know $\sum_{j=1}^n \lambda_j y_j \rightarrow_{u_\lambda(0)}^t 0$.
+
+		Step 2:
+		$$ x_\lambda' = f(x_\lambda, u_\lambda), \qquad x_\lambda(t) = 0 $$
+		If $\lambda = 0$, then $u_\lambda ± 0$, then $x_\lambda ≡ 0$.
+		$$ \psi(\lambda) := x_\lambda(0), \psi: U_\lambda(0) \subset ®R^n \rightarrow ®R^n. $$
+		We want to prove $\psi(U_\lambda(0)) \supseteq \tilde V$, for some $\tilde V \subset ®R^n$ open, $0 \in \tilde V$. We will prove that $\psi$ is $C^1$ smooth, and that $\nabla \phi(0)$ is regular (if this is proved, than $\psi$ is local diffeomorphism).
+
+		Step 3:
+		$$ x_\lambda(s) = x_\lambda(t) + \int_t^s f(x_\lambda(s), u_\lambda(s)) ds. $$
+		Formally differentiate:
+		$$ \frac{\partial x_\lambda(s)}{\partial \lambda_j} = \int_t^s(\nabla_x f(x_lambda(s), u_\lambda(s))·\frac{\partial x_\lambda(s)}{\partial \lambda_j} + \nabla_u f(x_\lambda(s), u_j(s))) ds. $$
+		Denote $y_{\lambda, j}(s) = \frac{\partial x_\lambda(s)}{\partial \lambda_j}$.
+		$$ y_{\lambda, j}'(s) = \nabla_x f(x_\lambda(s), u_\lambda(s))·y_{\lambda, j}(s) + \nabla_u f(x_\lambda(s), u_\lambda(s))·u_j(s). $$
+		$$ y_{\lambda, j}(t) = 0. $$
+
+		Consider $(LP y) \rightarrow y_{\lambda, j}(·)$.
+		$$ x_{\lambda + \Delta \lambda}(s) - x_{\lambda}(s) - \Delta \lambda · y_{\lambda, j}(s) = 0 $$
+		(as in Thn? of differentiability w. r. t. initial condition)
+		$$ \frac{\partial \psi}{\partial \lambda_j}(\lambda = 0) = \frac{\partial x_\lambda(s = 0)}{\partial \lambda_j}|_{\lambda = 0} = y_{\lambda, j}(s = 0) |_{\lambda = 0} = y_{\lambda, j}(s = 0)|_{\lambda =0} = y_j. $$
+		If $\lambda = 0$, then $(LPy)$: $y_{0, j}' (s) = A y_{0, t}(s) + B u_j(s)$, $y_{0, j}(t) = 0$. From uniq.: $y_{0, j}(0) = y_{j, 0}$.
+		$$ \nabla \psi(0) = \(\frac{\partial \psi}{\partial \lambda_1}(0) … \frac{\partial \psi}{\partial \lambda_n}(0)\) = (y_1, …, y_n) $$
+		regular matrix.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$$ x' = Ax + Bu, u \in ©U = \{u: [0, T] \rightarrow [-1, 1] \text{ measurable}\}, x(0) = x_0. $$
+\end{poznamka}
+
+\begin{definice}
+	$$ ©R(t) = \{x_0 \in ®R^n | \exists u \in ©U \land x_0 \rightarrow_{u(0)}^t 0\}. $$
+\end{definice}
+
+\begin{definice}
+	$u_n \in ©U_0$: $u_n \rightharpoonup^* u \in ©U$ $≡$ $\forall f \in L(0, T, ®R^n): \int_0^T f(s) u_n(s) ds \rightarrow \int_0^T f(s) u^*(s) ds$.
+\end{definice}
+
+\begin{veta}[Alanglu]
+	$©U$ is weak-* sequentially compact ($\forall \{u_n\}_{n=1}^∞ \in ©U\ \exists \{u_{n_k}\}$ weekly-* convergent)
+\end{veta}
+
+\begin{veta}
+	$©H(t)$ convex, symmetric, closed
+	$$ 0 < t_1 < t_2 \implies ©H(t_1) \subset ©R(t_2). $$
+
+	\begin{dukazin}
+		Convex: $x_{01}, x_{02} \in ©H(t)$, $\alpha \in [0, 1] \implies \alpha x_{01} + (1 - \alpha)x_{02} \in ©R(t)$.
+		$$ x(t) = e^{At} x_0 + \int_0^t e^{As} B u(s) ds. x_{01} \rightarrow_u^t 0 \land x_{02} \rightarrow_u^t 0 \Leftrightarrow x_1 = -\int_0^t e^{(s - t)A} Bu_1(s) ds. $$
+		
+		Symmetry: $x_0 \in ©R(t) \implies -x_0 \in ©R(t)$, $x_0 \rightarrow_u^t 0 \implies -x_0 \rightarrow_u^t 0$.
+
+		Closedness: $x_{0n} \in ®R(t), x_{0n} \rightarrow x_0$. $x_0 \in ©R(t)$? $\exists u_n(0) \in ©U$, $x_{0n} = - \int_0^t e^{(s - t)A} B u_n(s) ds \rightarrow - \int_0^t e^{(s - t)A} Bu(s) ds$.
+		WLOG $u_n \rightharpoonup^* u \in ©U$. Then $x_0 \rightarrow_u^t 0$.
+
+		$$ ©R(t_1) \subset ©R(t_2) 0 < t_1 < t_2 < Tx_0 $$
+		$$ \exists u_1 \in ©U\qquad x_0 = -\int_0^t e^{(s - t)A} Bu_1(s) ds. $$
+		Define $u_2(s) = u_1(s)$ if $0 ≤ s ≤ t$, else 0.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Area of controllability]
+	$$ ©R := \bigcup_{t > 0} ©R(t). $$
+\end{definice}
+
+\begin{veta}
+	$$ \rank©K(A, B) - n \Leftrightarrow \forall t > 0 ©R(t) \supseteq U(0), $$
+	where $U(0) \subset ®R^n$ is some neighbourhood of 0.
+
+	\begin{dukazin}
+		„$\impliedby$“: If $\exists t > 0\ ©R(t) \supset U(0)$ open, $0 \in U(0)$. $\tilde{©R}: u \in L^∞, ©R: ||u||_∞ ≤ 1$, then $\tilde{©R}(t) \supset ©R(t) \supset U(0) \implies \tilde{©R}(t) = ®R^n$. $\implies \rank ©K(A, B) = n$.
+
+		„$\implies$“: $\rank(A, B) = n \implies \tilde{©R}(t) = ®R^n$. TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$$ x' = Ax + Bu $$
+	$$ \forall x_0 \in ©R = \bigcup_{s > 0} ©R(s) $$
+	$$ \exists t > 0\ \exists u(0) \in ©U: x_0 \rightarrow_u^t 0 $$
+	$$ t = \inf\{s > 0|x_0 \in ©R(s)\}. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Bang-bang]
+	We say that a regulation $u \in U(0)$ is of type bang-bang, if for almost every $t \in [0, T]$: $u(t) = ±1$.
+\end{definice}
+
+\begin{veta}[Bang-bang]
+	If $x_0 \in ©R(t) \implies \exists \tilde u(0)$ of type bang-bang $x_0 \rightarrow_u^t 0$.
+\end{veta}
+
+
 \end{document}

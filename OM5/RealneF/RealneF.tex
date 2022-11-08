@@ -159,6 +159,65 @@
 		“
 
 		$$ ©F_1 \subset ®F, ®F_1 = \{B \in ®F, \diam B < 1 \land B \subset U\} $$
+		By theorem above there exists disjoint families $©G_1, …, ©G_n \subset ©F_1$ such $A \cap U \subseteq \bigcup_{i=1}^N \bigcup ©G_i$. Thus $\mu^*(A \cap U) ≤ \sum_{i=1}^N \mu^*(A \cap U \cap \bigcup ©G_i)$. Consequently, there exists an integer $1 ≤ j ≤ N$ such that
+		$$ \mu^*(A \cap U \cap \bigcup ©G_j) ≥ \frac{1}{N} \mu^*(A \cap U) > (1 - \Theta) \mu^*(A \cap U). $$
+		Using lemma above we find a finite system $©H \subset ©G_j$ such that
+		$$ \mu^*(A \cap U \cap ©H) > (1 - \Theta) \mu^*(A \cap U). $$
+		The set $\bigcup ©H$ is $\mu$-measurable
+		$$ \mu^*(A \cap U) = \mu^*(A \cap U \cap \bigcup ©H) + \mu(A \cap U \setminus \bigcup ©H) ≥ (1 - \Theta) \mu^*(A \cap U) + \mu(A \cap U \setminus \bigcup ©H). $$
+
+		Set $U_1 = ®R^n$. Using claim we find a disjoint finite system $©H_1 \subset ©F$ such that $\bigcup ©H_1 \subset U_1$ and $\mu^*(A \cap U_1 \setminus \bigcup ©H_1) ≤ \Theta \mu^*(A \cap U_1)$. Continuing by induction we construct a sequence of open sets $(U_j)$ and a sequence of disjoint finite families $(©H_j)$ such that $U_{j+1} = U_j \setminus \bigcup ©H_j$, $\bigcup ©H_j \subset U_j$, $©H_j \subset ©F$ and
+		$$ \mu^*(A \cap U_{j+1}) = \mu^*((A \cap U_j) \setminus \bigcup ©H_j) ≤ \Theta \mu^*(A \cap U_j). $$
+		Since $\mu^*(A) < ∞$ we get $\mu^*(A \setminus \bigcup_{j=1}^∞ \cup ©H_j) = 0$, since $\mu^*(A \cap U_{j+1}) ≤ \Theta^j \mu^*(A)$.
+		$$ ©G = \bigcup_{j=1}^∞ ©H_j $$
+	\end{dukazin}
+
+	\begin{dukazin}[General case]
+		We find a sequence $(G_j)$ of open sets, which are disjoint and $\mu(®R^n \setminus \bigcup_{j=1}^∞ G_j) = 0$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Differentiation of measures}
+\begin{poznamka}[Notation]
+	$©B$ is set of closed balls in $®R^n$.
+\end{poznamka}
+
+\begin{definice}[Derivative of measure]
+	Let $\mu$ and $\nu$ be measures on $®R^n$ and $x \in ®R^n$. Then we define
+	\begin{itemize}
+		\item upper derivative of $\nu$ with respect to $\mu$ and $x$ by
+			$$ \overline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \sup_{B \in ©B, \diam B < r} \frac{\nu(B)}{\mu(B)}, $$
+			if the term at the right side is well-defined;
+		\item lower derivative of $\nu$ with respect to $\mu$ and $x$ by
+			$$ \underline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \inf_{B \in ©B, \diam B < r} \frac{\nu(B)}{\mu(B)}, $$
+			if the term at the right side is well-defined;
+		\item derivative of $\nu$ with respect to $\mu$ and $x$ by
+			$$ D(\nu, \mu, x) = \overline{D}(\nu, \mu, x) = \underline{D}(\nu, \mu, x), $$
+			if they are equal.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	Let $\nu$ and $\mu$ be Radon measures and $®R^n$ and $\mu$ satisfy Vitali theorem. Then $\overline{D}(\nu, \mu, x)$ and $\underline{D}(\nu, \mu, x)$ exist $\mu$-almost everywhere.
+
+	\begin{dukazin}
+		$M := \{x \in ®R | \nexists\overline{D}(\nu, \mu, x)\}$ and $©V := \{B \in ©B | \mu(B) = 0\}$, $©V$ is a Vitali cover of $M$. Then there exists a disjoint countable family $©A \subset ©V$ such that $\mu(M \setminus \bigcup ©A) = 0$.
+		$$ \mu(\bigcup ©A) = \sum_{B \in ©A} \mu(B) = 0 \implies \mu(M) = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $\mu$ and $\nu$ be Radon measures, $\mu$ satisfy Vitali theorem, $C \in (0, ∞)$, and $M \subset ®R^n$.
+	\begin{itemize}
+		\item If for every $x \in M$ we have $\overline{D}(\nu, \mu, x) > c$, then $\nu^*(M) ≥ c \mu^*(M)$.
+		\item If for every $x \in M$ we have $\underline{D}(\nu, \mu, x) < c$, then there exists $H \subset M$ such that $\mu(M \setminus H) = 0$ and $\nu^*(H) ≤ c \mu^*(M)$.
+	\end{itemize}
+	
+	\begin{dukazin}
+		1. We choose $\epsilon > 0$. There exists an open set $G \subset ®R^n$ with $M \subset G$ and $\nu(G) ≤ \nu^*(M) + \epsilon$. We define
+		$$ ©V := \{B \in ©B | B \subset G, \nu(B) > c·\mu(B)\}. $$
+		The family ©V is a Vitali cover of $M$. There exists a disjoint countable family $©A \subset ©V$ with $\mu(M \setminus \bigcup ©A) = 0$. Then we have
+		$$ \nu^*(M) + \epsilon ≥ \nu(G) ≥ \nu(\bigcup ©A) = \sum_{B \in ©A} \nu(B) ≤ \sum_{B \in ©A} c \mu(B) = c \mu(\bigcup ©A) ≥ c \mu^*(M) $$
 	\end{dukazin}
 \end{veta}
 
