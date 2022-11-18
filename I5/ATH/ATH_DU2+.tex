@@ -1,0 +1,30 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}							% Import stylu
+
+\begin{document}
+
+\begin{priklad}[2.3]
+	Nechť $S$ je podrozdělení trojúhelníku $T$ v rovině. Korektní obarvení vrcholů S přiřazuje jednu ze tří barev (modrá, červená a zelená) každému vrcholu z $S$ tak, že všechny tři barvy jsou použité na vrcholech z $T$. Navíc každý vrchol z $S$ ležící na hraně z $T$ musí mít jednu z barev, kterou má nějaký vrchol této hrany ležící v $T$. Dokažte, že v každém korektním obarvení $S$ existuje trojúhelníková stěna v $S$ jejíž vrcholy jsou obarveny všemi třemi barvami.
+
+	\begin{lemmain}
+		Mějme konečnou posloupnost dvou barev (tj. funkci $f$ z množiny $\{1, 2, …, n\}$ do $\{R, G\}$). Víme, že začíná jednou barvou (tj. $f(1) = R$) a končí druhou (tj. $f(n) = G$). Potom existuje místo, kde se sousední prvky posloupnosti liší (tj. ex. $i$ z $\{1, …, n-1\}$, že $f(i) = R$ a $f(i+1) = G$ nebo $f(i) = G$ a $f(i+1) = R$).
+
+		\begin{dukazin}
+			Zvolím poslední prvek první barvy (tj. $i = max \{j | f(j) = R\}$). Potom nutně není poslední (tj. $i < n$), neboť poslední prvek je druhé barvy, tedy nutně další prvek je druhé barvy a toto je hledané místo (tj. $f(i) = R$ a $f(i+1) = G$).
+		\end{dukazin}
+	\end{lemmain}
+
+
+	\begin{dukazin}
+		Vybereme jeden z vrcholů $T$ (je jedno který), BÚNO je modrý, označme si ho $V_B$. Nyní vezměme z $S$ pouze modré vrcholy a označme $K_B$ komponentu souvislosti obsahující $V_B$. Potom vezměme z $S$ pouze vrcholy, které nepatří do $K_B$, a označme $K_{RG}$ komponentu souvislosti obsahující zbylé dva vrcholy z $T$ (musí obsahovat oba zároveň, neboť na hraně mezi nimi není modrý vrchol).
+
+		Nyní vytvoříme posloupnost vrcholů v $K_{RG}$ „po rozhraní s $K_B$“: Na hraně v $T$ z $V_B$ do jednoho z dalších vrcholů $T$, BÚNO červeného (tedy $V_R$), najdeme bod z $K_{RG}$ nejvzdálenější od $V_B$, označíme ho $V'_1$. Jeho soused (značme $V_1$) na stejné hraně vzdálenější od $V_B$ musí patřit do $K_{RB}$ (neboť všechny vrcholy počínaje tímto sousedem a konče ve $V_R$ (ten je v $K_{RG}$ z definice) nejsou v $K_B$ a sousedí spolu, tedy jsou v $K_{RG}$).
+
+		Máme hranu $V'_1 — V_1$, tedy musí být součástí nějakého trojúhelníku. Tedy existuje V takové, že $V — V'_1 — V_1$ je trojúhelník. Vzhledem k tomu, že z $V$ vede hrana do $K_B$ i $K_{RG}$, tak musí být v jedné z těchto množin (buď je modrý a pak je v $K_B$, nebo není modrý, a pak je v $K_{RG}$ z definic těchto množin). Pokud je v $K_B$, tak ho označme $V'_2$, pokud je v $K_{RG}$, tak ho označme $V_2$.
+
+		Nyní indukcí: máme hranu $V'_m — V_n$. Jeden trojúhelník s ní sousedící jsme již řešili. Pokud existuje druhý, tak postupujeme jako v prvním případě (přidáme třetí vrchol jako $V'_{m+1}$ nebo $V_{n+1}$). Pokud ne, tak jsme „dorazili“ na nějakou hranu $T$. Hrana mezi červeným a zeleným to být nemůže, protože $V'$ jsou modré. Hrana mezi modrým a červeným to být také nemůže, protože pak jsme rozřízly posloupností $\{V_i\}$ množinu $K_B$, takže by to nebyla komponenta. Tím pádem je to hrana mezi modrým a zeleným.
+
+		Posloupnost $\{V_i\}$ tedy začíná červeným vrcholem (je na hraně $T$ mezi modrým a červeným) a končí zeleným. Tedy existuje $i$ takové, že $V_i$ je červené a $V_{i+1}$ zelené. Navíc existuje $j$ tak, že $V'_j — V_i$ je hrana, při které jsme přidali $V_{i+1}$, tedy $V_{i+1} — V'_j — V_i$ je trojúhelník a má vrcholy 3 různých barev.
+	\end{dukazin}
+\end{priklad}
+\end{document}

@@ -338,7 +338,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}
+\begin{veta}[Minimal time]
 	$$ x' = Ax + Bu $$
 	$$ \forall x_0 \in ©R = \bigcup_{s > 0} ©R(s) $$
 	$$ \exists t > 0\ \exists u(0) \in ©U: x_0 \rightarrow_u^t 0 $$
@@ -355,6 +355,72 @@ TODO!!!
 
 \begin{veta}[Bang-bang]
 	If $x_0 \in ©R(t) \implies \exists \tilde u(0)$ of type bang-bang $x_0 \rightarrow_u^t 0$.
+\end{veta}
+
+% 15. 11. 2022
+
+\begin{definice}[Extremal point]
+	$X$ vector space, $K \subset X$. $x \in K$ is called an extremal point, if it cannot be written as $x = \frac{y + z}{2}$, $y, z \in K$, $y ≠ z$. We denote $\ex(K)$ the set of extremal points.
+\end{definice}
+
+\begin{tvrzeni}[Krein-Milman theorem]
+	$X$ locally convex vector space, $K \subset X$: $K ≠ \O$, $K$ convex and compact. Then $\ex(K) \cap K ≠ \O$.
+\end{tvrzeni}
+
+\begin{dukaz}[Bang-bang]
+	$$ K = \{u \in ©U | x_0 \rightarrow_{u(0)}^t 0\}, \qquad X = L^∞(0, T, ®R^n). $$
+	$K ≠ \O$ ($u \in ©R(t)$), $K$ convex, $K$ is compact (sequential compactness: Alangu theorem? $L'(0, T, ®R^n)$ separable $\implies$ $L^∞(0, T, ®R^n)$ with locale $*$ topology is metrizable $\implies$ sequential compactness $\implies$ compactness.
+
+	It remains to check that $\tilde{u}_j(s) = ± 1$, $\forall j \in [n]$ for almost every $s \in (0, t)$. For contradiction: for some $j \in [n]$ $\exists E \subset (0, t)$, $\lambda(E) > 0$ $\forall s \in E$ $|\tilde{u}_j(s)|<1$. WLOG
+	$$ \exists \epsilon > 0\ \forall s \in E |\tilde{u}_j(s)| < 1 - \epsilon · \[E = \bigcup_{n \in ®N}\{s \in (0, t) | |\tilde{u}_j(s)| ≤ 1-\frac{1}{n}\}\]. $$
+
+	$$ x_0 = - \int_0^t e^{-sA} B \tilde{u}(s) ds $$
+	We want to find $\phi \in L^∞(0, T, ®R)$ such that:
+	\begin{enumerate}
+		\item $\supp \phi \subset E$;
+		\item $\int_E e^{-sA} B (0, …, 0, \phi(s), 0, …, 0)^T ds = 0$;
+		\item $\forall s \in E |\phi(s)| < \epsilon$.
+	\end{enumerate}
+	Define $u_1(s) = \tilde{u}(s) + (0, …, 0, \phi(s), 0, …, 0)^T$ and $u_2(s) = \tilde{u}(s) - (0, …, 0, \phi(s), 0, …, 0)^T$. Then $x_0 \rightarrow_{u_{1, 2}(0)}^t 0$, and $u_1, u_2 \in ©K$.
+\end{dukaz}
+
+\begin{veta}[Global controlability]
+	We have (LTP) $x' = Ax + Bu$, $x(0) = x_0$, $u \in ©U$.
+
+	1. $\rank ©K(A, B) = n$ $\implies$ (LTP) is locally controllable.
+
+	2. $\rank ©K(A, B) = n$ and $\Re \lambda ≤ 0$ $\forall \lambda$-eigenvalues of $A$. Then (LTP) is globally controllable $©R = \bigcup_{t > 0} ©R(t) = ®R^n$.
+
+	\begin{dukazin}
+		1) folows from „In theorem of local controllability for the problem $x' = f(x, u)$ we could take $u \in ©U$.“
+
+		2a) If $\forall \lambda$ eigenvalue of $A$ we have $\Re \lambda < 0$ $\implies$ theorem follows from text above: first, set $u = 0$. Then we arrive at a neighbourhood of zero.
+
+		2b) For contradiction $x_0 \in ®R^n \setminus ©R$. ©R convex $\exists z_0 \in \partial ©R$, $n$ normal vector. $\forall x_1 \in ©R: n^T(x_1 - x_0) ≤ 0$, $n^T x_1 ≤ n^T x_0 =: M$.
+		$$ x_1 = - \int_0^t e^{-s A} B u(s) ds $$
+		$$ n^T x_1 = - \int_0^t \underbrace{n^T e^{-s A} B}_{v(s)} u(s) ds $$
+		$$ \tilde{u}(s) := \begin{cases}0,& v(s) = 0,\\\frac{-v(s)}{||v(s)||_2},& v(s) ≠ 0.\end{cases} $$
+		If $v(s) ≡ -$, then apply $\frac{d^p}{(ds)^p}$, $n^T A^p e^{-sA}B ≡ 0$, then $n^T ©K(A, B) = 0$. \lightning
+
+		$$ \int_0^∞ ||v(s)||_2ds = ∞. $$
+		If this is true, then $t_k \nearrow ∞$, $u_k = \tilde{u} |_{[0, t_k]}$, $x_{1,k} = -\int_0^{t_k} e^{-s A} B u_k(s) ds$.
+		$$ n^T x_{1, k} = - \int_0^{t_k} v^t(s) · \tilde{u}(s) ds = \int_0^{t_k} ||v(s)||_2 ds \rightarrow ∞. \text{\lightning} $$
+
+		$v(s)$ is linear combination of $s^j e^{-s \lambda_p}, \Re \lambda_p ≤ 0$. Then $\int_0^∞ |v(s)| ds = ∞$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Pontrjagin maximum]
+	$$ x' = Ax + Bu, ||u||_∞ ≤ 1, x(0) = x_0. $$
+	Let $x_0 \rightarrow^{t^*}_{u^*(0)} 0$, $t^*$ is the minimal. Then $\exists h \in ®R^n \setminus \{¦o\}: h^T·e^{-s A} B u^*(s) = \max_{\eta \in [-1, 1]^m h^t e^{-sA} B \eta}$ for almost every $s \in (0, t^*)$.
+
+	\begin{dukazin}
+		$x_0 \in \partial ©R(t^*)$.
+
+		For contradiction: $\exists E \subset (0, t^*), \lambda(E) > 0$, $\forall s \in E$ $\exists \eta_s \in [-1, 1]^m$ $h^T e^{-sA}B u^*(s) < h^T e^{-sA} B \eta_s$.
+
+		TODO!!!
+	\end{dukazin}
 \end{veta}
 
 

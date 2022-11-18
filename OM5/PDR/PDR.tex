@@ -62,7 +62,7 @@ TODO!!!
 \section{Klasifikace lineárních rovnic 2. řádu}
 \begin{poznamka}[Lineární rovnice druhého řádu]
 	$$ \sum_{i,j = 1}^n a_{ij}(x) \partial_i\partial_j u(x) + \sum_{i=1}^n b_i(x) \partial_i u(x) + c(x)u(x) = f(x), $$
-	kde $a_{ij}, b_i, c, f$ jsou dané funkce, $i, j \in [n]$, $u$ neznámá funkce.
+	kde $a_{ij}, b_i, c, f$ jsou dané funkce, $i, j \in [n]$, $u$ neznámá funkce.
 
 	Zafixujeme $x_0 \in ®R^n$, aby rovnice byla definována na nějakém $U(x_0)$. Chceme také rovnici transformovat tak, aby $A = (a_{ij})$ byla diagonální. Budeme pp. $A$ je symetrická (neboť pro $u \in C^2(…)$: $\partial_i\partial_j u = \partial_j\partial_i u$)
 \end{poznamka}
@@ -122,5 +122,224 @@ TODO!!!
 	$$ \partial_t^2 u - \partial_x^2 u = f \text{ v } (0, T) \times ®R. $$
 	A $u(0, x) = u_0(x)$, $\partial_t u(0, x) = u_1(x)$ ($\partial_t u$ musí jít spojitě rozšířit do $(0, x)$ a $\partial_t u(0, x)$ je hodnota tohoto rozšíření).
 \end{poznamka}
+
+% 11. 11. 2022
+
+\begin{definice}[d'Alambertova formule]
+	$$ u(t, x) = \frac{1}{2}(u_0(x + t) + u_0(x - t)) + \frac{1}{2} \int_{x-t}^{x+t} u_1(s) ds. $$
+\end{definice}
+
+\begin{lemma}
+	$$ \partial_t \int_0^t u_\tau(t, x) d\tau = u_t(t, x) + \int_0^t \partial_1 u_\tau(t, x) d\tau $$
+
+	\begin{dukazin}
+		$U(t, s, x) := \int_0^t u_\tau(s, x) d\tau$. Chceme $\partial_t [U(t, t, x)] = (\partial_1 U)(t, t, x) + (\partial_2 U)(t, t, x)$.
+		$$ \partial_t u(t, x) = u_t(t, x) + \int_0^t \partial_1 u_\tau(t, x) d\tau. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[Duhamelův princip]
+	Aneb jak určit řešení (libovolné lineární rovnice) pro $f \not≡ 0$, $u_0=0$, $u_1 = 0$ (pokud známe řešení pro $f = 0$).
+
+	Najdeme řešení $\partial_t^2 u - \partial_x^2 u = 0$ v $(\tau, T) \times ®R$ ($\tau \in (0, T)$) s počátečními podmínkami $u(\tau, x) = 0$ a $\partial_t u(\tau, x) = f(\tau, x)$, $x \in ®R$. Označme ho $u_\tau$.
+
+	Tvrdíme, že $u(t, x) := \int_0^t u_\tau(t, x) d\tau$ je řešení s $f \not≡ 0$.
+	$$ \partial_t u(t, x) = u_t(t, x) + \int_0^t \partial_1 u_\tau(t, x) d\tau = 0 + \int_0^t \partial_1 u_\tau(t, x) d\tau $$
+	$$ \partial_t^2 u(t, x) = \partial_1 u_t(t, x) + \int_0^t \partial_1^2 u_\tau(t, x) d\tau = f(t, x) + \int_0^t \partial_1^2 u_\tau(t, x) d\tau $$
+	$$ \partial_t^2 u(t, x) - \partial_x^2 u(t, x) = f(t, x) + \int_0^t (\partial_1^2 u_\tau(t, x) - \partial_2^2 u_\tau(t, x)) d\tau = f(t, x) + \int_0^t 0 d\tau = f(t, x). $$
+	Očividně navíc $u(0, x) = 0$ a $\partial_t u(0, x) = 0$.
+
+	Dosazením řešení z d'Alambertovy formule:
+	$$ u(t, x) = \int_0^t u_\tau(t, x) d\tau = \int_0^t \frac{1}{2} \int_{x - t + \tau}^{x + t - \tau} f(\tau, s) ds d\tau $$
+\end{poznamka}
+
+\begin{definice}
+	Buď $\Omega \subset ®R^n$ otevřená, $k \in ®N_0$. $C^k(\overline{\Omega}) = \{f \in \Omega \rightarrow ®R | \alpha \in (®N_0)^n, |\alpha| ≤ k \implies D^\alpha f \text{ je možné spojitě rozšířit na } \overline{\Omega}\}$.
+
+	Pro $T > 0$ definujeme $C^k([0, T) \times ®R) := \{f:(0, T) \times ®R | \alpha \in (®N_0)^2, |\alpha| ≤ k \implies D^\alpha f \text{ lze spojitě rozšířit na } [0, T)\times ®R\}$.
+
+	\begin{poznamkain}
+		Podobné prostory zavedeme podobně.
+
+		Pro omezené $\Omega$ lze zavést i tím, že $D^\alpha f$ jsou stejnoměrně spojité.
+
+		Nerozlišujeme mezi $D^\alpha f$ a jeho rozšířením na hranici.
+	\end{poznamkain}
+\end{definice}
+
+\begin{lemma}
+	Ať $f$, $\partial_2 f \in C([0, T) \times ®R)$ pro zvolené $T > 0$. Pak pro $F(t, x) := \int_0^t f(\tau, x) d\tau$ je
+	$$ F \in C^1([0, T) \times ®R) \land \partial_1 F(t, x) = f(t, x) \land \partial_2 F(t, x) = \int_0^t \partial_2 f(\tau, x) d\tau. $$
+
+	\begin{dukazin}[Náznak]
+		Platí $\partial_1 F(t, x) = f(t, x)$ pro $(t, x) \in (0, T) \times ®R$, protože pro pevné $x \in ®R$ je $\tau \mapsto f(\tau, x)$ spojité $\implies \partial_1 F_t \in C([0, T) \times ®R)$.
+
+		$$ \partial_2 F(t, x) = \int_0^t \partial_2 f(\tau, x) d\tau, $$
+		protože derivjeme integrál dle parametru $x$, $t$ je pevné. ($f(·, x)$ je měřitelná ze spojitosti, $\exists x_0 \in ®R: f(·, x_0) \in L^1(0, t)$ ze spojitosti pro $t < T$, $\exists \partial_2 f(t, x)$ všude (tj. i skoro všude) z $\partial_2 \in C(…)$, integrovatelná majoranta existuje z $|\partial_2 f(t, x)| ≤ \max_{[0, t] \times [-K, K]} \partial_2 f$ pro vhodné $K > 0$).
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Buď $u_0 \in C^2(®R)$, $u_1 \in C^1(®R)$, $T > 0$, $f \in C^1([0, T) \times ®R)$. Definujeme
+	$$ u(t, x) = u_1(t, x) + u_2(t, x), $$
+	kde $u_1, u_2$ jsou $u$ z d'Alambertovy formule a Duhamelova principu. Pak platí $u \in C^2([0, T) \times ®R)$, $\partial_1^2 u - \partial_2^2 u = f$ v $(0, T) \times ®R$, $u = u_0$, $\partial_t u = u_1$ v $\{0\} \times ®R$.
+
+	\begin{dukazin}
+		„$u_2 \in C^1([0, T) \times ®R)$“: Ano, pokud $F(\tau, t, x) := \int_{x - t + \tau}^{x + t - \tau} f(\tau, s) ds$ splňuje $F, \partial_2 F, \partial^3 F \in C([0, T) \times ®R)$. $G(\tau, \alpha, \beta) := \int_\alpha^\beta f(\tau, s) ds$ je spojitá na $[0, T) \times ®R^2$ z vlastností $f$, tedy $F$ podmínky splňuje.
+
+		Z lemmatu tedy máme
+		$$ u_2 \in C^1([0, T) \times ®R), \partial u_2(t, x) = \frac{1}{2} F(t, t, x) + \frac{1}{2} \int_0^t \partial_2 F(\tau, t, x) d\tau = \frac{1}{2} \int_0^t \partial_2 F(\tau, t, x) d\tau $$
+		Podobně $\partial_t u_2 \in C^1([0, T) \times ®R)$.
+		$$ \partial_t^2 u_2(t, x) = \frac{1}{2} \partial_2 F(t, t, x) + \frac{1}{2} \int_0^t \partial_2^2 F(\tau, t, x) d\tau. $$
+		$$ \partial_2 F(\tau, t, x) = f(\tau, x+(t - \tau)) + f(\tau, x - (t - \tau)) $$
+		$$ \partial_2 = F(t, t, x) = 2 f(t, x), $$
+		$$ \partial_t^2 u_2(t, x) = f(t, x) + \frac{1}{2} \int_0^t \partial_2 f(\tau, x + (t - \tau)) - \partial_2 f(\tau, x - (t - \tau)) d\tau. $$
+		Existence $\partial_x^2$ stejně jako v předchozím. Její výpočet:
+		$$ \partial_3^2 F(\tau, t, x) = (\partial_2 f)(\tau, x + t - \tau) - (\partial_3 f)(\tau, x - t + \tau) $$
+		$$ \partial_x^2 u_2(t, x) = \frac{1}{2} \int_0^t \partial_3^2 F(\tau, t, x) d\tau = \frac{1}{2} \int_0^t \partial_2 f(\tau, x + t - \tau) - \partial_2 f (\tau, x - t + \tau) d\tau. $$
+		Tedy $\partial^2_t u_2 - \partial_x^2 u_2 = f$ na $(0, T) \times ®R$. $u_2=0$ a $\partial_t u_2 = 0$ v $\{0\} \times ®R$.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[O rozšířování]
+	Buď $g: [0, +∞) \rightarrow ®R$, $\tilde g$ liché rozšíření na ®R.
+	
+	\begin{itemize}
+		\item Je-li $g(0) = 0$ a $g \in C([0, +∞))$, je $\tilde g \in C(®R)$.
+		\item Je-li $g(0) = 0$ a $g \in C^1([0, +∞))$, je $\tilde g \in C^1(®R)$.
+		\item Je-li $g''(0) = g(0) = 0$ a $g \in C^2([0, +∞))$, je $\tilde g \in C^2(®R)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Pro $x < 0$: $\tilde g(x) = -g(-x)$, $\lim_{x \rightarrow 0_-} \tilde g(x) = \lim_{x \rightarrow 0_-} -g(-x) = \lim_{y \rightarrow 0_+} -g(y) = 0$.
+
+		Pro $x < 0$: $\tilde g(x) = -g(-x)$, $\lim_{x \rightarrow 0_-} \tilde g'(x) = \lim_{x \rightarrow 0_-} g'(-x) = \lim_{y \rightarrow 0_+} g'(y)$. Tedy $\tilde g_+'(0) = \tilde g_-'(0) = \tilde g' (0)$.
+
+		Třetí případ je analogicky.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[Počátečně okrajová úloha v $(0, T)\times(0, +∞)$]
+	Pro dané funkce $u_0, u_1: (0, +∞) \rightarrow ®R$, $T > 0$, $f: [0, T) \times [0, +∞) \rightarrow ®R$ najděte $u: [0, T) \times [0, +∞) \rightarrow ®R$, které řeší $\partial_1^2 u - \partial_2^2 u = f$ v $(0, T) \times (0, +∞)$, $u = 0$ v $[0, T) \times \{0\}$, $u = u_0$ a $\partial_t u = u_1$ v $\{0\}\times [0, ∞)$.
+
+	Definujeme $\tilde u_0, \tilde u_1, \tilde f$ jako lichá rozšíření.
+	$$ u(t, x) := \frac{1}{2}\(\tilde u_0 (x + t) + \tilde u_0 (x - t)\) + \frac{1}{2} \int_{x-t}^{x + t} \tilde u_1(s) ds + \frac{1}{2}\int_0^t \int_{x - t + \tau}^{x + t - \tau} \tilde f(\tau, s) ds d\tau. $$
+
+	Upočítali jsme to a vyšlo to.
+\end{poznamka}
+
+\begin{veta}
+	Buď $T > 0$, $f \in C^1([0, T) \times [0, ∞))$, $u_0 \in C^2([0, +∞))$, $u_1 \in C^1([0, +∞))$, $f(t, 0) = 0$ $\forall t \in [0, T)$, $u_0(0) = u_0''(0) = 0$, $u_1(0) = 0$. Pak $u$ definované
+	$$ u(t, x) = \begin{cases}\text{formule z předchozí věty}, & x > 0, t > 0, x ≥ t,\\u(t, x) = \frac{1}{2}\(u_0(t + x) - u_0(t - x)\) + \frac{1}{2} \int_{t - x}^{x + t} u_1(\sigma) d\sigma + \frac{1}{2} \int_{t - x}^t \int_{x - t + \tau}^{x + t - \tau} f(\tau, s) ds d\tau + \frac{1}{2} \int_0^{t - x} \int_{t - \tau - x}^{x + t - \tau} f(\tau, s) ds d\tau, & x > 0, t > 0, x < t.\end{cases} $$
+
+	\begin{dukazin}
+		Přímočarý.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Počátečně okrajová úloha v $(0, T) \times (0, l)$]
+	Pro dané funkce $u_0, u_1: (0, l) \rightarrow ®R$, $l > 0$ a $f:(0, T) \times (0, l) \rightarrow ®R$ najděte $u: (0, T) \times (0, l)$, $u = u_0$ a $\partial_1 u = u_1$ v $\{0\} \times (0, l)$, $u = 0$ v $(0, T) \times \{0, l\}$.
+\end{poznamka}
+
+\begin{veta}
+	Obdobně předchozí větě, jen rozšiřujeme „liše periodicky“.
+
+	\begin{dukazin}
+		Obdobně předchozí větě, jen rozšiřujeme „liše periodicky“.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Pak jsme ještě vyměnili podmínku $u = 0$ v $(0, T) \times \{0\}$ za $\partial_t u = 0$ v $(0, T) \times \{0\}$. Takže jsme rozšířili sudě a za cvičení vymysleli znění věty…
+\end{poznamka}
+
+% 18. 11. 2022
+
+\begin{definice}[Fourierova metoda (separace proměnných)]
+	Řešení hledáme ve tvaru řady
+	$$ u(t, x) = \sum_{k=1}^∞ T_k(t)·X_k(x). $$
+	Pokud $X_0$ volíme vhodně, PDR TODO!!!
+\end{definice}
+
+\begin{veta}
+	Nechť $u_0 \in C^3([0, l])$, $u_1 \in C^3([0, l])$, $l > 0$ a $u_0(0) = u_0(l) = u_0''(0) = u_0''(l) = u_1(0) = u_1(l) = 0$. Pak řešení nalezené Fourierovou metodou splňuje
+	$$ u \in C^2([0, +∞)\times[0, l]), \partial_t^2 u - \partial_x^2 u = 0 \text{ v } (0, +∞)\times(0, l), u = 0 \text{ na } (0, +∞)\times \{0, l\}, u = u_0, \partial_t u = u_1 \text{ v } \{0\} \times [0, l]. $$
+
+	\begin{dukazin}
+		Dokážeme pouze, že $u \in C^2([0, ∞) \times [0, l])$ a že řadu je možné derivovat člen po členu. Jen pro část
+		$$ R(t, x) := \sum_{k=1}^∞ \sin(\frac{k\pi}{e}x)\hat{u}_{0k} \cos(\frac{k\pi}{e}t) $$
+
+		Typicka 2. der:
+		$$ \sum_{k=1}^∞ \(\frac{k\pi}{2}\) gon_1(\frac{k\pi}{2} x) gon_2(\frac{k\pi}{2}t) \hat{u}_{0k}. $$
+		Pro stejnoměrnou konvergenci 2. derivace počítejme $\sum_{k=1}^∞ k^2 |\hat{u}_{0k}| < ∞$.
+
+		$$ \hat{u}_{0k} = \frac{2}{l} \int_0^l u_0(y) \sin \frac{k\pi}{l} y dy = \underbrace{\frac{2}{l}\[u_0(y)\]_0^l}_{=0} + \frac{2}{l} \int_0^l u_0'(y) \cos \frac{k\pi y}{l} dy \frac{l}{k\pi} = … $$
+		$$ … = -\frac{2}{l} \int_0^l u_0'''(y) \cos \frac{k\pi y}{2} dy \(\frac{l}{k \pi}\)^3 $$
+
+		$$ |k^2 \hat{u}_{0k}| ≤ \frac{1}{k} p_k := \frac{1}{k}· \frac{2}{l} \(\frac{l}{\pi}\)^3 |\int_0^l u_0'''(y) \cos \frac{k\pi y}{l} dy|. $$
+		($||y||_2^2 = \sum_{k=1}^∞ \hat{g}_k^2$ pro orto-normální bázi.) Parsevalova nerovnost: $u_0''' \in L^2(0, l) \implies \sum_{k=1}^∞ p_k^2 < ∞$.
+		$$ |k^2 \hat{u}_{0k}| ≤ \frac{1}{2}\(\frac{1}{k^2} + p_k^2\) \implies \sum_{k=1}^∞ k^2 |\hat{u}_{0k}| < ∞. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	V předchozí větě lze předpokládat, že $u_0''$, $u_1'$ $\in AC([0, l])$, $u_1''$, $u_0'''$ $\in L^2(0, l)$.
+\end{poznamka}
+
+\begin{veta}[Gauss-Green-Ostrogradsky]
+	Ať $\Omega \subset ®R^n$ otevřená omezená s $C^1$ hranicí a vnější normálou $\nu$. Ať $u \in C^1(\overline{\Omega})$, $u: \overline{\Omega} \rightarrow ®R$. Pak $\forall i \in [n]: \int_{\Omega} \partial_i u = \int_{\partial \Omega} u · \nu_i ds$. Pokud $U \in C^1(\overline{\Omega})$, $U: \overline{\Omega} \rightarrow ®R^n: \int_\Omega \Div U d\lambda^n = \int_{\partial \Omega} U·\nu dS$.
+\end{veta}
+
+\begin{veta}[Greenovy ?]
+	Ať $\Omega$ jako v minulé větě, $u, v \in C^2(\overline{\Omega})$, $w \in C^1(\overline{\Omega})$, $u, v, w: \overline{\Omega} \rightarrow ®R$. Pak
+	$$ \int_\Omega \Delta u w = \int_{\partial \Omega} w(\nabla u · \nu) dS - \int_\Omega \nabla u \nabla w.  $$
+	$$ \int_\Omega (\Delta u) v - u(\Delta v) = \int_{\partial \Omega} v(\nabla u · \nu) - u(\nabla v · \nu) dS. $$
+
+	\begin{dukazin}
+		Druhá rovnost plyne z první. První:
+		$$ \Div (\nabla u · w) = … = \Delta u w + \nabla u · \nabla w. $$
+		Nyní už z GGO.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Buď $x \in ®R^n$, $r > 0$, $u$ spojitá na $\partial U(0, r)$. Pak $\not\int_{\partial U(x, 1)} u ds = \not\int_{\partial U(0, 1)} u(x + rz) dS(z)$. Kde
+	$$ \not\int_M f d\mu = \int_M f d\mu / \int_M 1 d\mu, \text{ pro } \mu(M) ≠ 0. $$
+
+	\begin{dukazin}
+		Plyne z definice plošného integrálu (ukázali jsme si pouze v $n = 3$). Převedeme na sférické souřadnice, vydělíme objemem daných koulí a vyjde to.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Buď $x \in ®R^n$, $R > 0$, $u \in C(©U(x, R))$. Pak $\partial_l \[\int_{©U(x, r)} dx\] = \partial_r\[\int_0^r \int_{\partial ©U(x, \rho)} u dS d\rho\] = \int_{\partial U(x, \Omega)} u dS$.
+
+	\begin{dukazin}
+		Prý byl někdy na cvičení.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$$ n \int_{©U(0, 1)} 1 = \int_{\partial ©U(0, 1)} 1 dS. $$
+\end{lemma}
+
+\begin{definice}
+	$$ \alpha_n := \lambda^n(©U(0, 1)), n \alpha_n := \int_{\partial ©U(0, 1)} dS. $$
+\end{definice}
+
+\begin{lemma}
+	Buď $x \in ®R^n$, $R > 0$, $u \in C^1(©U(x, R))$. Označme $u^x(r) = \not\int_{\partial ©U(x, r)} u dS$. Pak platí
+	$$ \partial_r u^x(r) = \not\int_{\partial ©U(x, r)} \nabla u(y) · \frac{y - x}{r} dS(y), \qquad r \in (0, R). $$
+
+	Je-li navíc $u \in C^2(©U(x, R))$, je
+	$$ \partial_r u^x(r) = \frac{r}{n} \not\int_{©U(x, r)} \Delta u(y) d\lambda(y). $$
+	$$ \partial_r^2 u^x(r) = \(\frac{1}{n} - 1\) \not\int_{©U(x, r)} \Delta u(y) d\lambda(y) + \not\int_{\partial ©U(x, r)} \Delta u(y) dS (y), \qquad r \in (0, R). $$
+
+	\begin{dukazin}
+		Podle lemmatu výše, derivace integrálů podle parametru a znovu tohoto lemmatu:
+		$$ \partial_r u^x(r) = \partial_r \(\not\int_{\partial ©U(0, 1)} u (x + rz) dS(z)\) = \int_{\partial ©U(0, 1)} (\nabla u)(x + r z)· z ds(z) = \not\int_{\partial ©U(x, 1)} \nabla u(y) · \frac{y - x}{r} dS(y) = $$
+		$$ \overset{u \in C^2}= \frac{1}{n \alpha_n r^{n-1}} \int_{©U(x, r)} \Delta u(y) d\lambda^n(y) = \frac{r}{n} \not\int_{©U(x, 1)} \Delta u(y) d\lambda^n(y). $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}

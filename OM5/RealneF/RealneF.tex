@@ -127,7 +127,7 @@
 		$$ (1) r_i > r_j: \|a_i - a_j\| ≤ r_i - \frac{4}{5}r_j < r_i; $$
 		$$ (2) r_i ≤ r_j: \|a_i - a_j\| ≤ - r_i + r_j + \frac{1}{5} r_j = -r_i + \frac{6}{5} r_j ≤ - r_i + \frac{8}{5}r_i < r_i \implies a_j \in \overline{B}(a_i, r_i) = B_i, \text{\lightning}. $$
 
-		Choose $N > (60)^n + (22n)^n$. $B_i \in A_i$, $i \in [N]$. From previous every ball intersect at most $(60)^n + (22n)^n$ previous balls, so we always have $A_i$ where we can put ball.
+		Choose $N > (60)^n + (22n)^n$. $B_i \in A_i$, $i \in [N]$. From previous every ball intersect at most $(60)^n + (22n)^n$ previous balls, so we always have $A_i$ where we can put ball.
 	\end{dukazin}
 
 	\begin{dukazin}[Case $A$ is not bounded]
@@ -213,11 +213,83 @@
 		\item If for every $x \in M$ we have $\underline{D}(\nu, \mu, x) < c$, then there exists $H \subset M$ such that $\mu(M \setminus H) = 0$ and $\nu^*(H) ≤ c \mu^*(M)$.
 	\end{itemize}
 	
-	\begin{dukazin}
-		1. We choose $\epsilon > 0$. There exists an open set $G \subset ®R^n$ with $M \subset G$ and $\nu(G) ≤ \nu^*(M) + \epsilon$. We define
+	\begin{dukazin}[1.]
+		We choose $\epsilon > 0$. There exists an open set $G \subset ®R^n$ with $M \subset G$ and $\nu(G) ≤ \nu^*(M) + \epsilon$. We define
 		$$ ©V := \{B \in ©B | B \subset G, \nu(B) > c·\mu(B)\}. $$
 		The family ©V is a Vitali cover of $M$. There exists a disjoint countable family $©A \subset ©V$ with $\mu(M \setminus \bigcup ©A) = 0$. Then we have
 		$$ \nu^*(M) + \epsilon ≥ \nu(G) ≥ \nu(\bigcup ©A) = \sum_{B \in ©A} \nu(B) ≤ \sum_{B \in ©A} c \mu(B) = c \mu(\bigcup ©A) ≥ c \mu^*(M) $$
+	\end{dukazin}
+
+% 14. 11. 2022
+
+	\begin{dukazin}[2.]
+		For every $k \in ®N$ we find an open set $G_k > M$ and $\mu(G_k) ≤ \mu^*(M) + \frac{1}{k}$.
+		$$ ©V_k := \{B \in ©B | B \subset G_k \land \nu(B) < c·\mu(B)\}. $$
+
+		TODO(1 řádek)!!! a countable disjoint system $©A_k \subset ©V_k$ such that $\mu(M \setminus \bigcup ©A_k) = 0$. Set $H_k = M \cap \bigcup ©A_k$. Then $\mu(M \setminus H_k) = 0$, $H_k \subset M$. We have
+		$$ \nu^*(H_k) ≤ \nu(\bigcup ©A_k) = \sum_{B \in ©A_k} \nu(B) ≤ c \sum_{B \in ©A_k} \mu(B) = c \mu(\bigcup ©A_k) ≤ c·\mu(G_k) ≤ c(\mu^*(M) + \frac{1}{k}). $$
+		$$ H := \bigcap H_k: \qquad \nu^*(H) ≤ c\mu^*(M). $$
+		$$ \mu(M \setminus H) ≤ \sum_{k=1}^∞ \underbrace{\mu(M \setminus H_k)}_{=0} = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $\nu$ and $\mu$ be Radon measures on $®R^n$ and $mu$ satisfies Vitali theorem. Then $D(\nu, \mu, x)$ exists finite $\mu$ almost everywhere.
+
+	\begin{dukazin}
+		$$ D := \{x \in ®R^n | D(\nu, \mu, x) \in [0, ∞)\} $$
+		$$ N_1 := \{x \in ®R^n | \overline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_3 = \{x \in ®R^n | \overline{D}(\nu, \mu, x) = ∞\}, $$
+		$$ N_2 := \{x \in ®R^n | \underline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_4 = \{x \in ®R^n | \underline{D}(\nu, \mu, x) = ∞\}. $$
+
+		We already showed that $\mu(N_1) = \mu(N_2) = 0$.
+		$$ A_k := \{x \in ®R | \overline{D}(\nu, \mu, x) > k\}, k \in ®N $$
+		$$ A(r, s) = \{x \in ®R^n | \underline{D}(\nu, \mu, x) < s < r < \overline{D}(\nu, \mu, x)\}, \qquad s, r \in ®Q^+, s < r $$
+		$$ N_3 = \bigcap_{k=1}^∞ A_k, \qquad N_4 = \bigcup \{A(r, s), r, s \in ®Q^+, s < r\} $$
+
+		„$\mu(N_3) = 0$“: Choose $Q \subset N_3$ bounded. By previous theorem (1.) $k \mu^*(Q) ≤ \nu^*(Q)$ for every $k \in ®N$.
+		$$ \implies \mu^*(Q) = 0 \implies \mu^*(N_3) = 0 \implies \mu(N_3) = 0. $$
+
+		„$\mu(N_4) = 0$“: It is sufficient to prove $\mu(A(r, s)) = 0$ for any $r, s \in ®Q^+$, $r > s$. Choose $Q \subset A(r, s)$ bounded. By previous theorem (2.) there exists $H \subset Q$ such that $\mu(Q \setminus H) = 0$ and $\nu^*(H) ≤ s \mu^*(Q)$.
+		Vy previous theorem (1.) we have $r \mu^*(H) ≤ \nu^*(H)$.
+		$$ r \mu^*(Q) = r \mu^*(H) ≤ \nu^*(H) ≤ s \mu^*(Q) < ∞. $$
+		$$ \implies \mu^*(Q) = 0 \implies \mu(A(r, s)) = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Let $\nu$ and $\mu$ be as before. Then the mappings $x \mapsto \overline{D}(\nu, \mu, \lambda)$, $x \mapsto \underline{D}(\nu, \mu, \lambda)$ are $\mu$-measurable.
+
+	\begin{dukazin}
+		$$ M(r, \alpha) = \{x \in ®R^n | \exists B \in ©B: \diam B < r, x \in B, \frac{\nu(B)}{\mu(B)} < \alpha\}, \qquad r > 0, \alpha > 0. $$
+		„$M(r, \alpha)$ is open“: Assume $x \in M(r, \alpha)$ we find $y \in ®R^n$, $s > 0$ such that $x \in \overline{B}(y, s)$, $2s < r$,
+		$$ \frac{\nu(\overline{B}(y, s))}{\mu(\overline{B}(y, s))}. $$
+		We find $s' > s$, $2s' < r$, $\frac{\nu(\overline{B}(y, s'))}{\mu(\overline{B}(y, s'))} < \alpha$. Then $B(y, s') \subset M(r, \alpha)$.
+
+		$$ D := \{x \in ®R^n | \underline{D}(\nu, \mu, x) \text{ exists finite}\}. $$
+		For every $x \in D$ we have
+		$$ \underline{D}(\nu, \mu, x) < \alpha \Leftrightarrow \exists \tau \in ©Q, \tau > 0\ \forall r \in ©Q, r > 0\ \exists B \in ©B: \diam B < r, x \in B, \frac{\nu(B)}{\mu(B)} < \alpha - \tau, $$
+		$$ \underline{D}(\nu, \mu, x) < \alpha \Leftrightarrow \exists \tau \in ©Q, \tau > 0\ \forall r \in ©Q, r > 0: x \in M(r, \alpha - \tau). $$
+		$\{x \in ®R^n | \underline{D}(\nu, \mu, x) < \alpha\}$ is $\mu$-measurable.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $\nu$ and $\mu$ be as before, $\nu \ll \mu$, and $B \subset ®R^n$ is $\mu$-measurable. Then we have $\nu(B) = \int_B D(\nu, \mu, x) d\mu(x)$.
+
+	\begin{dukazin}
+		Let $B \subset ®R^n$ be $\mu$-measurable. Choose $\beta > 1$.
+		$$ B_k := \{x \in B | \beta^k < D(\nu, \mu, x) ≤ \beta^{k + 1}\}, k \in ®Z. $$
+		$$ N := \{x \in B | D(\nu, \mu, x) = 0\}. $$
+		$$ \mu(B \setminus (\bigcup_{k=-∞}^∞ B_k \cup N)) = 0. $$
+		$$ \int_B D(\nu, \mu, x) d\mu(x) = \sum_{k=-∞}^∞ \int_{B_k} D(\nu, \mu, x) d\mu(x) ≤ $$
+		$$ ≤ \sum_{k=-∞}^∞ \beta^{k+1} \mu(B_k) = \sum_{k=-∞}^∞ \beta^{k + 1} · \beta^{-k} \nu(B_k) = \beta · \sum_{k=-∞}^∞ \nu(B_k) ≤ \beta · \nu(B). $$
+		% $$ \beta^k \mu(B_k) < \nu(B_k) $$
+		$$ \beta \rightarrow 1_+: \int_B D(\nu, \mu, x) d\mu(x) ≤ \nu(B). $$
+
+		Using absolute continuity: $\nu(B \setminus (\bigcup_{k=-∞}^∞ B_k \cup N)) = 0$. We use theorem above to get $\nu^*(Q) ≤ C \mu^*(Q)$ for any $c > 0$ and $Q \subset N$ bounded. $\implies \nu*(Q) = 0 \implies \nu(N) = 0$.
+		$$ \int_B D(\nu, \mu, x) d\mu(x) = \sum_{k=-∞}^∞ \int_{B_k} D(\nu, \mu, x) d\mu(x) ≥ $$
+		$$ ≥ \sum_{k=-∞}^∞ \beta^k · \mu(B_k) ≥ \sum_{k=-∞}^∞ \beta^k · \beta^{-(k+1)} \nu(B_k) = \frac{1}{\beta}·\nu(B). $$
+		$$ \beta \rightarrow 1_+: \int_B D(\nu, \mu, x) d\mu(x) ≥ \nu(B). $$	
 	\end{dukazin}
 \end{veta}
 

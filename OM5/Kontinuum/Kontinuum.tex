@@ -497,5 +497,70 @@ TODO?
 	\end{poznamkain}
 \end{poznamka}
 
+% 16. 11. 2022
+
+\begin{poznamka}[Balance of angular momentum]
+	$$ (m \frac{d¦x^2}{dt^2} = ¦F \qquad \times ¦x \qquad m \frac{d¦x^2}{d¦t} \times ¦x = ¦F \times ¦x.) $$
+	Primitive equation:
+	$$ \int_{V(t)} \rho \frac{d ¦v}{d t} \times ¦x dv = \int_{V(t)} \rho ¦b \times ¦x + \underline{\int_{\partial V(t)} ®T ¦n \times ¦x ds}. $$
+
+	We already know that
+	$$ \rho \frac{d¦v}{dt} = \rho ¦b + \Div ®T $$
+	$$ \int_{V(t)} \rho \frac{d¦v}{dt} \times ¦x dv = \int_{V(t)} \rho ¦b \times ¦x dv + \underline{\int_{V(t)} \Div ®T \times ¦x dv} $$
+
+	Is underlined parts equivalent?
+	$$ \int_{\partial V(t)} ®T ¦n \times ¦x ds = \int_{V(t)} \Div ®T \times ¦x dv. $$
+	$$ LHS = \int_{\partial V(t)} \epsilon_{ijk} T_{jl} n_l x_k ds = \int_{\partial V(t)}(\epsilon_{ijk} T_{jl} x_k)·n_l ds \overset{\text{Stokes}}= \int_{V(t)} \frac{\partial}{\partial x_l}(\epsilon_{ijk} T_{jl} x_k)dv =  $$
+	$$ = \int_{V(t)} \epsilon_{ijk} \frac{\partial T_{jl}}{\partial x_l} x_k + \int_{V(t)} \epsilon_{ijk} T_{jl} \underbrace{\frac{\partial x_k}{\partial x_l}}_{\delta_{kl}} dv = \int_{V(t)} (\Div ®T \times ¦x) dv + \int_{V(t)} \epsilon_{ijl} T_{jl} dv. $$
+
+	LHS is equal to RHS (balance of angular momentum holds) provided that
+	$$ \int_{V(t)} \epsilon_{ijl} ®T_{jl} dv = 0. $$
+	This holds provided that ®T is symmetric matrix.
+
+	Balance of linear momentum + symmetry of ®T $\implies$ balance of angular momentum holds. So from now we work with symmetric ®T. (There are parts of continuum mechanics, where this doesn't hold (especially some electric continuum), but we continue in our part.)
+\end{poznamka}
+
+\begin{poznamka}[Eulerian description]
+	So far we have ($\rho(¦x, t)$, $\frac{d}{dt} = \frac{\partial}{\partial t} + ¦v · \nabla$)
+	$$ \frac{d \rho}{d t} + \rho \Div ¦v = 0, \qquad \rho \frac{d¦v}{dt} = \Div ®T + \rho ¦b, \qquad \rho \frac{d e}{dt} = ®T:®L - \Div ¦j_q, \qquad ®T = ®T^T.  $$
+\end{poznamka}
+
+\begin{poznamka}[Lagragian description]
+	($\rho(¦X, t)$)
+	Balance of mass:
+	$$ \frac{d}{dt} \int_{V(t)} \rho(¦x, t) dv = 0 \implies \int_{V(t)} \rho(¦x, t) dv = \int_{V(t_0)} \rho_R(¦X) dV $$
+	$$ \int_{V(t)} \rho(\chi(¦X, t), t) \det ®F(¦X, t) dV = \int_{V(t_0)} \rho_R(¦X) dV $$
+	$$ \overset{\text{Localization lemma}} \rho(¦x, t)|_{¦x = \chi(¦X, t)} \det ®F(¦X, t) = \rho_R(¦X). $$
+
+	Balance of momentum:
+	$$ \int_{V(t)} \rho(¦x, t) \frac{d¦v}{dt} (¦x, t) dv = \int_{V(t)} \Div_{¦x} ®T(¦x, t) dv + \int_{V(t)} \rho(¦x, t)¦b(¦x, t)dv $$
+	$$ \int_{V(t_0)} \rho(\chi(¦X, t), t) \frac{d¦v}{dt}(¦x, t)|_{¦x = \chi(¦X, t)} \det ®F(¦X, t) dv = \int_{\partial V(t)} ®T(¦x, t)¦n(¦x, t) ds + \int_{V(t_0)} \rho(\chi(¦x, t), t)¦b(¦x, t)|_{¦x = \chi(¦X, t)} \det ®F(¦X, t) dv $$
+	$$ \int_{V(t_0)} \rho_R(¦X) \frac{\partial^2 \chi}{\partial t^2}(¦X, t) dV = \int_{\partial V(t_0)} (\det ®F(¦X, t))®T(¦x, t)|_{¦x = \chi(¦X, t)} ®F^{-T}(¦X, t)¦N(¦X) dS + \int_{V(t_0)} \rho_R(¦X)¦b(\chi(¦X, t), t) dV $$
+	First Piola-Kirchhoff stress tensor: $®T_R(¦X, t) := \det ®F(¦X, t) ®T(¦x, t)|_{¦x = \chi(¦X, t)} ®F^{-T}(¦X, t)$.
+	$$ \int_{V(t_0)} \rho_R(¦X) \frac{\partial^2 \chi}{\partial t^2}(¦X, t) dV = \int_{\partial V(t_0)} ®T_R(¦X, t) ¦N dS + \int_{V(t_0)} \rho_R(¦X)¦b(\chi(¦X, t), t) dV $$
+	$$ \int_{V(t_0)} \rho_R(¦X) \frac{\partial^2 \chi}{\partial t^2}(¦X, t) dV = \int_{V(t_0)} \Div_{¦X}®T_R(¦X, t) dV + \int_{V(t_0)} \rho_R(¦X)¦b(\chi(¦X, t), t) dV $$
+	$$ \rho_R(¦X) \frac{\partial^2 \chi}{\partial t^2} = \Div_{¦X} ®T_R dV + \rho_R ¦b. $$
+
+	Internal energy:
+	$$ \int_{V(t)} \rho \frac{de}{dt} dV = \int_{V(t)} ®T:®L dv - \int_{\partial V(t)} ¦j_q · ¦n ds $$
+	$®T:®L = \tr(®T ®L^T) = \tr((\frac{1}{\det ®F} ®T_R ®F^T)(®F^{-T} \frac{d®F^T}{dt})) = \frac{1}{\det ®F} ®T_R : \frac{d®F}{dt}$.
+	$$ \int_{V(t_0)} \rho_R \frac{de}{dt} dv = \int_{V(t)} \frac{1}{\det ®F} ®T_R : \frac{d®F}{dt} dv  - \int_{\partial V(t_0)} ¦j_q·(\det ®F) ®F^{-T} ¦N dS $$
+	$$ \int_{V(t_0)} \rho_R \frac{de}{dt} dv = \int_{V(t_0)} ®T_R : \dot{®F} dV - \int_{V(t_0)} \Div_{¦X} ((\det ®F) ®F^{-1} ¦j_q) dV $$
+	Refferential heat flux: $¦J_q(¦X, t) := (\det ®F(¦X, t)) ®F^{-1}(¦X, t) ¦j_q(¦x, t)|_{¦x = \chi(¦X, t)}$
+	$$ \int_{V(t_0)} \rho_R \frac{de}{dt} dv = \int_{V(t_0)} ®T_R : \dot{®F} dV - \int_{V(t_0)} \Div_{¦X} ¦J_q dV $$
+	$$ \rho_R \frac{de}{dt} = ®T_R : \dot{®F} - \Div_{¦X} ¦J_q. $$
+
+	Angular momentum:
+	$$ ®T_R ®F^T = ®F ®T_R^T $$
+\end{poznamka}
+
+\begin{poznamka}[How to find a formula for the Cauchy stress tensor?]
+	Solids: $®T = f(\text{deformation})$, but $\chi$ contains also rotations or translations. $®T = f(\nabla \chi)$, but it still contains rotations. $®T = f(®F ®F^T - ®I) = f(®B - ®I)$. $¦x = ®Q ¦X \implies ®F = ®Q \implies ®F^T ®F = ®I$. So
+	$$ ®T = f(®B). $$
+
+	Can we formulate an evolution equation for ®B? Yes, we did it long time ago:
+	$$ \overset{\nabla}{®B} = ®O, \qquad \overset{\nabla}{®B} := \frac{d®B}{dt} - ®L®B - ®B®L^T. $$
+	We add this to equations we have for Eulerian description and solve them for $\rho, ¦v, ®B, e$ at points $¦x \in V(t) = \chi(V(t_0))$, so we must find $\chi$, but we may find it a posteriori after solving equations.
+\end{poznamka}
 
 \end{document}

@@ -592,6 +592,93 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 14. 11. 2022
 
+TODO?
+
+\begin{veta}[Regularity up to the boundary]
+	Let $u$ be a weak solution $-\Div(A \nabla u) = f$ in $\Omega$, $A \nabla u · ¦v = g$ on $\Gamma_2$, $A \nabla u · ¦v + \sigma u = g$ on $\Gamma_3$, $u = u_0$ on $\Gamma_1$.
+
+	Assume that $\Omega \in C^{k+1, ∞}$, $A \in W^{k, ∞}$, $f \in W^{k-1, 2}$, $g\in W^{-\frac{1}{2} + k, 2}(\partial \Omega)$, $\sigma \in W^{k, ∞}(\partial \Omega)$ and $\Gamma_1$, $\Gamma_2$, $\Gamma_3$ are smooth open (in $partial \Omega$) and $\overline{\Gamma_i} \cap \overline{\Gamma_j} = \O$ $\forall i ≠ j$.
+
+	Then $u \in W^{k+1, 2}(\Omega)$.
+
+	\begin{dukazin}[Step 1: Flat boundary]
+		$\Omega = (-1, 1)^{d - 1} \times (0, 1)$. Assume that $u \in W^{1, 2}(\Omega)$ and $u = 0$ on $(x, 0)$. We want that $u \in W^{2, 3}((-1 + \delta, 1 - \delta)^{d-1} \times (0, 1 - \delta)$.
+
+		1a tangential derivatives $\frac{\partial u}{\partial x_1} \in W^{1, 2}(-||-)$. 1b normal derivative $\frac{\partial^2 u}{\partial x_d^2} \in L^2(-||-)$.
+
+		1a: WF -- $\int_\Omega \nabla u · \nabla \phi = \int_\Omega f \phi$ $\forall \phi \in W_0^{1, 2}(\Omega)$. Take continuous $\tau = 1$ in $-||-$ and $\tau = 0$ in $\Omega \setminus $ "inflated" $-||-$.
+		$$ \phi(x) = \psi(x - h e_i)\tau, \qquad i \in [d - 1], \psi \in W_0^{1, 2}(\Omega \setminus \text{ "inflated" } -||-) $$
+		Redefiny interior regularity
+		$$ \int_\Omega(A(x + h e_i) \nabla  u(x + h e_i) - A(x) \nabla u(x)) \nabla \phi(x) = \int_\Omega f(\psi(x - h e_i) - \psi(x)). $$
+		Set $\psi = (u(x + h e_i) - u(x))\tau^2 \in W_0^{1, 2}$ and apply local regularity.
+
+		1b: $\phi \in C_0^∞(-||-)$
+		$$ - \int_\Omega \sum_{i, j}^d \frac{\partial}{\partial x_i}(a_{ij} \frac{\partial u}{\partial x_j})\phi = -\int_\Omega \Div(A \nabla u)\phi = \int_\Omega A \nabla u · \nabla \phi = \int_\Omega f \phi $$
+		$$ - \int_\Omega a_{dd} \frac{\partial^2 u}{\partial x_d^2} \phi = \underbrace{\int_\Omega f \phi}_{\in L^2(\Omega)} + \int_\Omega \phi\(\sum_{i, j = 1}^d \frac{\partial a_{ij}}{\partial x_i} \frac{\partial u}{\partial x_j} + \sum_{i, j = 1, \neg (i=j=d}^d)\) a_{ij} \frac{\partial u}{\partial x_ix_j}. $$
+		$$ ||a_{dd} \frac{\partial^2 u}{\partial x_d^2}||_2^2 ≤ ||f+\sum \frac{\partial a_{ij}}{\partial x_1} \frac{\partial u}{\partial x_j} + \sum_{\neg(i = j = d)} a_{ij} \frac{\partial^2 u}{\partial x_i x_j}||_2^2 ≤ C. $$
+
+		$A$ is elliptic
+		$$ c_1|\zeta|^2 ≤ a_{ij} \zeta_i\zeta_j $$
+		Special choice $\zeta = (0, …, 0, 1)$, $0 < c_1 ≤ a_{dd}(x)$ $\implies$ $||\frac{\partial^2 u}{\partial x_d^2}||_{L^2}^2 ≤ C(DATA?) $
+	\end{dukazin}
+
+	\begin{dukazin}[Step 2: Transfer from flat to small parts of $\partial \Omega$]
+		TODO!!!	
+
+% 15.  11. 2022
+
+		TODO!!!
+	\end{dukazin}
+
+	\begin{dukazin}[Step 3: Introduce a proper covering of $\partial \Omega$ and use step 2]
+		$$ -\Div(A \nabla u) = f \text{ in } \Omega, \qquad u = 0 \text{ on } \partial \Omega $$
+		? $\Omega$ $u \in W_{loc}^{2, 2}(\Omega)$. ? of $\partial \Omega$, apply step 2.
+
+		Define $w := u - u_0 \in W_0^{1, 2}(\Omega)$.
+		$$ -\Div(A \nabla w) = f + \Div(A \nabla u_0) $$
+		if $f \in L^2$ and $\Div(A \nabla u_0) \in L^2$, e.g. $A \in W^{1, ∞} \land u_0 \in W^{2, 2}(\Omega)$.
+	\end{dukazin}
+\end{veta}
+
+\section{Bochner integral}
+\begin{definice}[Measurability]
+	We say that $f: I \rightarrow X$ is measurable (strongly, Bochner) if $\exists \{s_j\}_{j=1}^∞$ simple functions, $||f(t) - s_n(t)||_X \rightarrow 0$ as $n \rightarrow ∞$ for almost every $t \in I$.
+\end{definice}
+
+\begin{veta}[Measurability]
+	$f: I \rightarrow X$ is measurable iff
+
+	\begin{enumerate}
+		\item $f$ is almost separably valued;
+			$$ \exists E \subset I: |E| = 0, f(I \setminus E) \text{ is separable}. $$
+		\item $f$ is weakly measurable;
+			$$ \forall F \in X^*: <F^*, u(t)>_X \text{ is Lebesgue measure w.r.t } t \in I. $$
+	\end{enumerate}
+\end{veta}
+
+\begin{definice}[Bochner integral for simple function]
+	Let $s: I \rightarrow X$ be a simple function on ?. We define
+	$$ \int_I s(t) dt := \sum_{j=1}^n X_j |I_j| $$
+\end{definice}
+
+\begin{definice}[Bochner integral for measurable functions]
+	Let $s: I \rightarrow X$ be a Bochner measurable function. We say that $f$ is Bochner integrable if $\exists \{s^n\}_{n=1}^∞$ such that $s^n(t) \rightarrow f(t)$ a. a. t and $\int_I||s^n(t) - f(t)||_X dt \rightarrow 0$ as $n \rightarrow ∞$ and we set
+	$$ X \ni \int_I f(t) dt = \lim_{n\rightarrow ∞} \int_I s^n(t) dt. $$
+	$$ \int_I s(t) dt := \sum_{j=1}^n X_j |I_j| $$
+\end{definice}
+
+\begin{definice}[$L^p(O, T, X)$ space]
+	Let $X$ be a Banach space
+	$$ L^p(O, T, X) = \{f: (O, T) \rightarrow X \text{ bochner integrable} | \int_I ||f(t)||_X^p < ∞\} $$
+
+	$$ ||f||_{L^p(O, T, X)} = \(\int_I ||f(t)||_X^P dt\)^{\frac{1}{p}}. $$
+\end{definice}
+
+\begin{veta}[Dual space]
+	Let $X$ be a Banach space, separable and $p \in [1, ∞)$, then 
+	$$ (L^p(O, T, X))^* = L^{p'}(O, T, X^*) $$
+\end{veta}
 
 \end{document}

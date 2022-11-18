@@ -500,5 +500,77 @@
 	\end{dukazin}
 \end{veta}
 
+% 10. 11. 2022
+
+\section{Mocninné řady}
+\begin{definice}[Mocninná řada]
+	Nechť $\{a_n\}_{n=0}^∞ \subset ®C$ a $z_0 \in ®C$. Potom
+	$$ \sum_{n=0}^∞ a_n (z - z_0)^n $$
+	je mocninná řada s koeficienty $\{a_n\}$ a středem $z_0$.
+\end{definice}
+
+\begin{poznamka}[Vlastnosti]
+	\begin{itemize}
+		\item[Konvergence] Existuje $R \in [0, +∞]$ takové, že řada konverguje absolutně a lokálně stejnoměrně na $U(z_0, R) := \{z \in ®C |\ |z - z_0| < R\}$ a řada diverguje pro $|z - z_0| > R$. Číslo $R$ se nazývá poloměr konvergence a platí, že
+			$$ R = \frac{1}{\limsup_{n\rightarrow ∞} \sqrt[n]{|a_n|}}, $$
+			kde $\frac{1}{0} = +∞$ a $\frac{1}{+∞} = 0$.
+		\item Označíme-li součet řady na $U(z_0, R)$ jako $f$, potom $f \in ©H(U(z_0, R))$ a pro každé $k \in ®N$ je
+			$$ f^{(k)}(z) - \sum_{n=k}^∞a_n · n · (n-1) · … ·(n-k+1)·(z - z_0)^{n-k}, \qquad z \in U(z_0, R), $$
+			speciálně $a_k = f^{(k)}(z) / k!$.
+		
+			Plyne z Weierstrassovy věty pro
+			$$ S_N(z) = \sum_{n=0}^∞ a_n(z - z_0)^n. $$
+			Zřejmě $S_N \rightrightarrows^{loc} f$ na $U(z_0, R)$, tudíž $S_N^{(k)} \rightrightarrows^{loc} f^{(k)}$ na $U(z_0, R)$, tudíž rovnost výše platí. Dosadíme-li do ní $z = z_0$, dostaneme
+			$$ f^{(k)}(z_0) = a_k·k!. $$
+	\end{itemize}
+\end{poznamka}
+
+\begin{veta}[O rozvoji holomorfní funkce do mocninné řady na kruhu]
+	Nechť $R \in (0, +∞]$ a $f \in ©H(U(z_0, R))$. Potom existuje jediná mocninná řada $\sum_{n=0}^∞ a_n(z - z_0)^n$, která má na $U(z_0, R)$ součet $f$. Navíc platí, že $a_n = f^{(n)}(z_0) / n!$ pro každé $n \in ®N_0$.
+
+	\begin{dukazin}
+		Jednoznačnost plyne ze vzorce. Existence: Nechť $z \in U(z_0, R)$. Volme $r > 0$, aby $|z - z_0| < r < R$. Potom z Cauchyho věty je
+		$$ f(z) = \frac{1}{2\pi i} \int_\phi \frac{f(w) dw}{w - z}, $$
+		kde $\phi(t) := z_0 + r e^{i t}$, $t \in [0, 2\pi]$. Pro každé $w \in <\phi>$ máme
+		$$ \frac{1}{w - z} = \frac{1}{(w - z_0) - (z - z_0)} = \frac{1}{w - z}·\frac{1}{1 - \frac{z - z_0}{w - z_0}} = \sum_{n=0}^∞ \frac{(z - z_0)^n}{(w - z_0)^{n+1}}, $$
+		což konverguje stejnoměrně pro $w \in <\phi>$. Dosadíme:
+		$$ f(z) = \frac{1}{2\pi i} \int_\phi \sum_{n=0}^∞ \frac{(z - z_0)^n}{(w - z_0)^{n+1}} f(w) dw = $$
+		$$ \sum_{n=0}^∞ (z - z_0)^n · \frac{1}{2\pi i} \int_\phi \frac{f(w) dw}{(w - z_0)^{n+1}} = \sum_{n=0}^∞ (z - z_0)^n · \frac{f^{(n)}}{n!}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O nulovém bodě]
+	Nechť $f$ je holomorfní funkce na okolí $x_0 \in ®C$ a $f(z_0) = 0$. Potom buď $\exists r > 0: f = 0$ na $U(z_0, r)$; nebo $\exists r > 0: f ≠ 0$ na $P(z_0, r) := U(z_0, r) \setminus \{z_0\}$.
+
+	V druhém případě existuje jediné $p \in ®N$ tak, že
+	$$ f(x_0) = 0 = f'(z_0) = … = f^{(p-1)}(z_0), f^{(p)}(z_0) ≠ 0. $$
+	Číslo $p$ je tzv. násobnost nulového bodu $z_0$ funkce $f$.
+
+	Navíc $z_0$ je nulový bod $f$ násobnosti $p \in ®N$, právě když existuje $r > 0$ a $g \in ©H(U(z_0, r))$ tak, že $\forall z \in U(z_0, r)$:
+	$$ g(z) ≠ 0 \land f(z) = (z - z_0)^p g(z). $$
+
+	\begin{dukazin}
+		Máme $f(z) = \sum_{n=0}^∞ a_n(z - z_0)^n$, $z \in U(z_0, R)$. Pokud nenastane první případ, potom existuje $n \in ®N$ tak, že $a_n ≠ 0$. Zvolme nejmenší $p \in ®N$, aby $0 ≠ a_p = f^{(p)}(z_0) / p!$. Potom platí rovnost pro druhý případ a $\forall z \in U(z_0, R)$:
+		$$ f(z) = a_p(z - z_0)^p = … = (z - z_0)^p \underbrace{\sum_{n=p}^∞ a_n(z - z_0)^{n - p}}_{=:g(z)}. $$
+		Zřejmě $g \in ©H(U(z_0, R))$. Protože $g(z_0) = a_p ≠ 0$, $\exists r>0$ tak, že $g ≠ 0$ na $U(z_0, r)$. Tudíž $f(z) = (z - z_0)^p·g(z) ≠ 0$ na $P(z_0, r)$. Obrácené tvrzení plyne stejně snadno.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O jednoznačnosti pro holomorfní funkce]
+	Nechť $\O = G \subset ®C$ je oblast a $f, g \in ©H(G)$. Následující je ekvivalentní
+
+	\begin{enumerate}
+		\item $f = g$ na $G$;
+		\item $M := \{z \in G | f(z) = g(z)\}$ má v $G$ hromadný bod, tzn. existuje $z_0$ tak, že $P(z_0, r) \cap M ≠ \O\ \forall r > 0$;
+		\item Existuje $z_0 \in G$ tak, že
+			$$ f^{(k)}(z_0) = g^{(k)}(z_0) \qquad \forall k \in ®N_0. $$
+	\end{enumerate}
+
+	\begin{dukazin}
+		BÚNO předpokládejme, že $G = 0$, jinak uvažujme $f - g$. „$1 \implies 2$ a $2 \implies 3$“: Nechť $z_0 \in G$ je hromadný bod $M := \{z \in G | f(z) = 0\}$. Zřejmě $f(z_0) = 0$ a z předchozí věty je $f = 0$ na nějakém okolí $z_0$.
+
+		„$3 \implies 1$“: Uvažme $N := \{z \in G | \forall k \in ®N_0: f^{(k)}(z) = 0\}$. Potom $\O ≠ N$ a $N$ je uzavřená v $G$, protože všechny $f^{(k)}$ jsou spojité. Navíc $N$ je otevřená. Nechť $z_1 \in N$. Podle věty o nulovém bodě existuje $r > 0$ tak, že $f = 0$ na $U(z_1, r)$. Tedy $U(z_0, r) \subset N$. Protože $G$ je oblast (tj. je souvislá, tedy neexistuje vlastní obojetná podmnožina), je $N = G$.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
