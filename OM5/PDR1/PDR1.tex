@@ -681,4 +681,141 @@ TODO?
 	$$ (L^p(O, T, X))^* = L^{p'}(O, T, X^*) $$
 \end{veta}
 
+% 21. 11. 2022
+
+\subsection{Sobolev-Bochner spaces}
+\begin{definice}
+	Let $f: I \rightarrow X$ be Bochner integrable. We say that $g: I \rightarrow X$ is a weak derivative of $f$ w. r. t. iff $g$ is Bochner integrable and $\forall \tau \in C_0^∞(I): \int_I f(t) \tau'(t) dt = - \int_I g(t) \tau(t) dt$.
+\end{definice}
+
+\begin{poznamka}
+	If $f \in L^1(I, x)$ and $\frac{\partial f}{\partial t} \in L^1(I, x)$, then $f \in C(I, x)$.
+\end{poznamka}
+
+\begin{veta}
+	$$ W^{1, p}(I, X) := \{f \in L^p(I, x), \partial_t f \in L^p(I, X)\}, \qquad ||f||_{W^{1, p}(I, X)} = \begin{cases}\(\int_I ||f||_X^p + ||\partial_t f||_X^p\)^{\frac{1}{p}},& p \in [1, ∞) \\ \esssup_{t \in I}(||f(t)||_X + ||\partial_t f||_X), & p = ∞.\end{cases} $$
+
+	Then $W^{1, p}(I, X)$ is a Banach space, is separable for $p < ∞$ and $X$ separable and is reflexive if $p \in (1, ∞)$ and $X$ is reflexive and separable.
+\end{veta}
+
+\subsection{Time derivative in heat/wave equations – Gelfand triple}
+\begin{poznamka}[Motivation]
+	$$ \partial_t u - \Delta u = 0 \text{ in } (0, T) \times \Omega, u = 0 \text{ on } (0, T)\times \partial \Omega, x(0, x) = u_0(x) \text{ for } x \in \Omega, \qquad \Omega \subseteq ®R^d $$.
+\end{poznamka}
+
+\begin{definice}[Gelfand triple]
+	We say that $X, H, X^*$ is Gelfand triple iff $X \overset{\text{dense}}\hookrightarrow H \cong H^* \overset{\text{dense}}\hookrightarrow X^*$.
+
+	\begin{prikladyin}
+		$$ X = W_0^{1, 2}(\Omega), H = L^2(\Omega), X^* = (W_0^{1, 2}(\Omega))^*, $$
+		Neboť $W_0^{1, 2}$ is dense in $C_0 \overset{\text{dense}}\hookrightarrow L^2(\Omega)$ and $f \in (W_0^{1, 2}(\Omega))^* \implies \exists! u \in W_0^{1, 2}(\Omega): -\Delta u = f$ in $\Omega$, $u = 0$ on $\partial \Omega$.
+		$$ \forall \phi \in W_0^{1, 2}(\Omega) <f, \phi> = \int_\Omega \nabla u · \nabla \phi = \lim_{n \rightarrow ∞} \int_\Omega \nabla u^n \nabla \phi = \lim_{n \rightarrow ∞} - \int_\Omega \Delta u^n \phi = \lim_{n \rightarrow ∞} (f^n, \phi)_{L^2(\Omega)}, $$
+		where $\{u^n\}_{n=1}^∞ \subset C_0^∞(\Omega)$, $u^n \rightarrow u$ in $W_0^{1, 2}(\Omega)$,
+
+		$$ (X = W_0^{1, p}(\Omega \cap L^2(\Omega)), H = L^2(\Omega)) $$
+	\end{prikladyin}
+\end{definice}
+
+\begin{definice}
+	Let $X, H, X^*$ be Gelfand triple, $\phi: H \rightarrow H^*$ is Riesz representation and define $i: X \rightarrow X^*$, such that $\forall x_0, x \in X$:
+	$$ <i(x_0), x>_X := (\id(x_0), \id(x))_H = <\phi \id(x_0), \id(x)>_H, $$
+	$i$ maps $X$ densely onto $X^*$.
+\end{definice}
+
+\begin{lemma}
+	Let $u \in L^1(0, T, H)$, $\partial_t u \in L^1(0, T, X^*)$ and $X, H, X^*$ be a Gelfand triple. Then $\forall w \in X\ \forall \tau \in C_0^1(0, T)$ we have
+	$$ \int_0^T <\partial_t u, w> \tau dt = <\int_0^T \partial_t u \tau dt, w>_X = $$
+	$$ = - <\int_0^T u \tau' dt, w>_X = -\int_0^T <u\tau', w>_X dt = $$
+	$$ = -\int_0^T (u \tau', w)_H dt \overset{\text{if } \partial_t u \in L^1(0, T)}= \int_0^T(\partial_t u \tau, w)_H. $$
+\end{lemma}
+
+\begin{veta}[Integration by parts for Sobolev-Bochner function]
+	Let $p \in (1, ∞)$, $X, H, X^*$ a Gelfond triple, $u, v \in L^p(0, T, X)$, $\partial_t u, \partial_t v \in L^{p'}(0, T, X^*)$. Then $u, v \in C([0, T], H)$ and $\forall 0 ≤ t_1 < t_2 ≤ T$.
+	$$ \int_{t_1}^{t_2} <\partial_t u, v>_X + <\partial_t v, u>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
+
+	\begin{dukazin}
+		Step 1) Modify $u, v$ in terms of the Steklov ar? $u_h = \not\int_t^{t+h} u(\tau) d\tau$.
+
+		Step 2) Prove for $u_h$, $v_h$ from step 1).
+		
+		Step 3) $h \rightarrow 0_+$.
+	\end{dukazin}
+
+	\begin{dukazin}[„Step 1)“]
+		Define $u_h(t) := \frac{1}{h} \int_t^{t+h} u(\tau) d\tau$, $\forall t \in (0, T - h)$. $u_h \rightarrow h$ $L^p(0, T - h_0, X)$, $\forall h_0 \in (0, T)$. We want „$(\partial_t u)_h = \partial_t u_h = \frac{u(t + h) - u(t)}{h}$“.
+		$$ (\partial_t u)_h \rightarrow \partial_t u \text{ in } L^{p'}(0, T - h_0, X^*), \qquad \forall h_0 \in (0, T). $$
+
+		$$ \phi \in C_0^∞(0, T - h): \int_0^{T - h} u_h(t) \phi'(t) dt = \frac{1}{h} \int_0^{T - h} \phi'(t) \int_t^{t - h} u(t) d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \phi'(t) \(\int_0^{t + h} u(\tau) d\tau - \int_0^t u(\tau) d\tau\) = $$
+		$$ = -\frac{1}{h} \int_0^{T - h} \phi(t)(u(t + h) - u(t)) \Leftrightarrow \partial_t u_h = \frac{u(t + h) - u(t)}{h}. $$
+
+% 22. 11. 2022
+
+		$$ \phi \in C_0^∞(0, T - h): \int_0^T \phi(t)(\partial_t u)_h (t) dt = \frac{1}{h} \int_0^{T - h}\phi(t) \int_t^{t + h} \partial_t u(\tau) d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^{t + h} \partial_t u(\tau) d\tau - \int_0^t \partial_t u(\tau) d\tau\)dt = (*) $$
+		
+		$$ \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^t \partial_t u(\tau) d\tau\) dt = \int_0^{T - h}\int_0^{T - h} \phi(t) \partial_t u(\tau) \chi_{\tau ≤ t} d\tau dt = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \(\int_t^{T - h} \phi(t) dt\)d\tau. $$
+
+		$$ (*) = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \underbrace{\(\int_{\tau - h}^\tau \phi(t) dt\)}_{C_0^∞(0, T)} d\tau = -\frac{1}{h} \int_0^{T - h} u(\tau) \(\phi(\tau) - \phi(\tau - h)\) d\tau dt. $$
+	\end{dukazin}
+
+	\begin{dukazin}[„Step 2)“]
+		We want
+		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H \Leftrightarrow $$
+		$$ \leftrightarrow \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H + (\partial_t v_{h_2}, u_{h_1})_H dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+
+		$$ \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H = \frac{1}{h_1h_2}\int_{t_1}^{t_2} (u(t + h_1) - u(t), \int_t^{t + h_2}v(\tau)d\tau)_H dt = \frac{1}{h_1h_2} \int_{t_1}^t(u(t + h_1) - u(t), \int_{t_1}^{t + h_2} v(\tau) d\tau - \int_{t_1}^t v(\tau)d\tau)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(u(t + h_1) - u(t), \int_{t_1 - h_2}^t v(\tau + h_2) d\tau - \int_{t_1}^t v(\tau)d\tau)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(u(t + h_1) - u(t), \int_{t_1}^{t_2} v(\tau + h_2) - v(\tau)d\tau)_H dt + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(v(\tau + h_2) - v(\tau)d\tau,\int_{t_1}^{t_2} u(t + h_1) - u(t) dt)_H d\tau + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(v(\tau + h_2) - v(\tau)d\tau,\int_{t_2}^{t_2 + h_1} u(t) - \int_{t_2}^{t_2 + h_1}u(t) dt)_H d\tau + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ \int_{t_1}^{t_2} \(\frac{v(\tau + h) - v(\tau)}{h_2}, \not\int_\tau^{\tau + h_1}u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2} (v(\tau + h_2) - v(\tau), \int_{t_2}^{t_2 + h} u(t) dt)_H + \int_{t_1}^{t_2}(u(t+h_1) - u(t), \int_{t_1-h_2}^{t_1} v(\tau) d\tau)_H = $$
+		$$ -\int_{t_2}^{t_1} (\partial_t v_{h_2}(\tau), u_{h_1}(\tau)) d\tau + REST $$
+		$$ REST = \frac{1}{h_1h_2}\(\int_{t_2}^{t_2 + h_2} v(t)dt - \int_{t_1}^{t_1 + h_2}v(t) dt, \int_{t_2}^{t_2 + h}u(t) dt\) + SIMILAR = $$
+		$$ = (v_{h_2}(t_2) - v_{h_2}(t_1), u_{h_1}(t_2))_H - SIMILAR = (v_{h_2}(t_2), u_{h_2}(t_2))_H - … $$
+	\end{dukazin}
+
+	\begin{dukazin}[„Step 3)“]
+		We have
+		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		Let $h_1 \rightarrow 0_+$ and $h_2 \rightarrow 0_+$. We have $\partial_t u_{h_1} \rightarrow \partial_t u$ in $L^{p'}(0, T, X^*)$, $\partial_t v_{h_2} \rightarrow \partial_t v$ in $L^{p'}(0, T, X^*)$, $u_{h_1} \rightarrow u$ in $L^p(0, T, X)$, $V_{h_2} \rightarrow v$ in $L^p(0, T, X)$. So for almost all $t$ in $(0, T)$: $v_{h_2}(t) \rightarrow v(t)$ in $X \hookrightarrow H$ and $u_{h_1}(t) \rightarrow u(t)$ in $X \hookrightarrow H$.
+
+		$$ \int_{t_1}^{t_2} <\partial_t u, v>_X + <\partial_t v, u>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1)). $$
+		Now, it is enough to show $u, v \in C([0, T), H)$. We show that $u_h$ is Cauchy in $C([0, T], H)$. Use IBP $u_{h_1} = u_{h^n} - u_{h^m}$, $v_{h_2} = u_{h^n} - u_{h^m}$:
+		$$ ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H = ||u_{h^m}(t_1) - u_{h^m}(t_1) + 2 \int_{t_1}^{t_2}<\partial_t(u_h^m - u_h^n), u_{h^n} - u_{h^m}>_X|| $$
+		$$ ||u_{h^n} - u_{h^m}||^2_{C([\frac{T}{4}, T], L^2(\Omega)} = \sup_{t_2 \in (\frac{T}{2}, T)} ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H^2 ≤ $$
+		$$ ≤ ||u_{h^m}(t_1) - u_{h^n}(t_1)||_H^2 + \int_0^T || \partial_t(u_{h^n}) - \partial u_{h^m}||_{X^*} ||u_{h^m} - u_{h^n}||_X dt. $$
+		Choose $t_1$ such that $u_h(t_1) \rightarrow u(t_1)$ in $H$:
+		$$ ≤ ||u_h(t_1) - u_{h^m}(t_1)||_H^2 + ||\partial_t u_{h^m} - \partial_2 u_{h^n}||_{L^p(X^*)} · … $$
+		$$ u \in C([\frac{T}{4}, T], L^2(\Omega)) \land u \in C([0, \frac{3T}{4}], L^2(\Omega)) \rightarrow u \in C([0, T], L^2(\Omega))(u(t_1), v(t_1))_H $$
+	\end{dukazin}
+\end{veta}
+
+\section{Parabolic equations}
+\begin{poznamka}
+	$\Omega$ open set in $®R^d$, $T > 0$, $L$ elliptic operator,
+	$$ \partial_t u + L u = f \text{ in } Q = (0, T) \times \Omega, \qquad u = 0 \text{ on } (0, T) \times \partial \Omega, \qquad u(0, x) = u_0(x) x \in \Omega. $$
+
+	$$ Lu = - \Div_x(A(t, x) \nabla_x u(t, x)) + b(t, x) u(t, x) + ¦c(t, x) \nabla u(t, x) + \Div(¦d(t, x) u(t, x)), $$
+	$$ A, b, ¦c, ¦d \in L^∞(\Omega). $$
+	$$ A(t, x)·\xi·\xi ≥ c_1 |\xi|^2, \forall \xi \in ®R^d \text{ and almost all } (t, x) \in Q. $$
+\end{poznamka}
+
+\subsection{Formal a priory estimates}
+\begin{poznamka}
+	Multiply by $u$ and $\int_\Omega dx$ and use IBP.
+	$$ \int_\Omega \partial_t u u + \int_\Omega A \nabla u \nabla u = \int_\Omega f u - b u^2 - ¦c \nabla u u + ¦d u \nabla u. $$
+	Hölder's inequality:
+	$$ \frac{d}{dt} \frac{||u||_2^2}{2} + C_1||\nabla u||_2^2 ≤ ||f||_2||u||_2 + ||b||_∞||u||_2^2 + ||¦c||_∞||\nabla u||_2 ||\nabla u||_2 + ||¦d||_∞ ||\nabla u||_2||\nabla u||_2 ≤ C_1 \frac{||\nabla u||_2^2}{2} + C(¦c, ¦d, b)(||f||_2^2 + ||u||_2^2). $$
+	Poincaré's inequality:
+	$$ \frac{d}{dt} ||u||_2^2 + ¦c||u||_{1,2}^2 ≤ C(¦c, ¦d, b) ||f||_2^2 + K||u||_2^2. $$
+	Grönwall's inequality:
+	$$ \sup_{t \in (0, T)} ||u(t)||_2^2 ≤ + \int_0^T ||f||_2^2) $$
+
+	$$ \int_0^T ||u||_{1,2}^2 dt ≤ C $$
+	$$ ||\partial_t u||_{(W_0^{1, 2})^*} = \sup_{||\phi|| ≤ 1} <\partial_t u, \phi> = \sup <f - Lu, \phi> = $$
+	$$ = \sup_{||\phi|| ≤ 1} \int_\Omega (f - ? - bu - ¦c \nabla u)\phi - \int_\Omega(A \nabla u - ¦d u)\nabla \phi ≤ \int_0^T ||f||_2^2 + c(||u||_2^2 + ||\nabla u||_2^2). $$
+\end{poznamka}
+
 \end{document}

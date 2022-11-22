@@ -1,0 +1,29 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let $®T_R$ and ®T denote the first Piola–Kirchhoff tensor and the Cauchy stress tensor respectively. Show that
+	$$ \Div_{¦X} ®T_R = (\det ®F) \Div ®T, $$
+	or, in detail, that
+	$$ \Div_{¦X} ®T_R(¦X, t) = (\det ®F(¦X, t)) (\Div_{¦x} ®T(¦x, t))|_{¦x=\chi(¦X,t)}, $$
+	where ®F denotes the deformation gradient and $\chi(¦X, t)$ is the deformation.
+
+	\begin{dukazin}
+		Přidáme integrál a použijeme Stokesovu větu:
+		$$ \int LHS = \int_{V(t_0)} \Div_{¦X} ®T_R(¦X, t) dV = \int_{\partial V(t_0)} ®T_R(¦X, t) · d¦S. $$
+		Z přednášky víme, že $®T_R = \det ®F(¦X, t) ®T(¦x, t)|_{¦x = \chi(¦X, t)} F^{-T}(¦X, t)$:
+		$$ \int LHS = \int_{\partial V(t_0)} \(\det ®F(¦X, t) ®T(¦x, t)|_{¦x = \chi(¦X, t)} F^{-T}(¦X, t)\) · d¦S. $$
+		Také víme, že $(\det ®F(¦X, t)) F^{-T}(¦X, t) d¦S = d¦s$ a že $\det ®F(¦X, t)$ je skalár, tj. je komutativní, tedy můžeme psát:
+		$$ \int LHS = \int_{\partial V(t_0)} ®T(¦x, t)|_{¦x = \chi(¦X, t)} · (\det ®F(¦X, t) ®F^{-T}(¦X, t) d¦S) = \int_{\partial V(t)} ®T(¦x, t) · d¦s. $$
+		Nyní použijeme znovu Stokesovu větu a znalost z přednášky, že $dv = (\det ®F(¦X, t)) dV$:
+		$$ \int LHS = \int_{V(t)} \Div_{¦x} ®T(¦x, t) dv = \int_{V(t_0)} (\Div_{¦x} ®T(¦x, t))|_{¦x = \chi(¦X, t)} (\det ®F(¦X, t)) dV = \int RHS, $$
+		neboť $\det ®F(¦X, t)$ je zase skalár. Použitím lokalizačního lemmatu dostáváme chtěnou rovnost:
+		$$ \Div_{¦X} ®T_R(¦X, t) = (\det ®F(¦X, t)) (\Div_{¦x} ®T(¦x, t))|_{¦x=\chi(¦X,t)}. $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

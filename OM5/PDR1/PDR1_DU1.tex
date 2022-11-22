@@ -5,9 +5,152 @@
 
 \begin{document}
 
-\begin{priklad}[1.]
+\begin{priklad}[1. – Optimality of space $W^{1, 2}(\Omega)$]
 	Consider $\Omega = B_1(0) \subset ®R^2$ and $p \in (1, 2)$ be arbitrary. Find an elliptic matrix $®A(x)$ and nontrivial $\hat{u} \in W_0^{1, p}(\Omega)$ such that
 	$$ \int_\Omega ®A \nabla \hat{u} · \nabla \phi = 0, \qquad \forall \phi \in C_0^1(\Omega). $$
+
+	\begin{reseni}
+		Použijeme hint:
+		$$ (®A)_{ij} = \delta_{ij} + (a - 1) \frac{x_i x_j}{|x|^2}, \qquad a > 1. $$
+		Toto je jistě matice eliptického problému, neboť:
+		$$ ®A\xi · \xi = \sum_{ij} ®A_{ij} \xi_j \xi_i = \sum_{ij}(\delta_{ij} + (a - 1) \frac{x_i x_j}{|x|^2})·\xi_j·\xi_i = \sum_i \xi_i^2 + (a - 1)\sum_{ij} \frac{x_i\xi_i}{|x|}·\frac{x_j\xi_j}{|x|} = $$
+		$$ = |\xi|^2 + (a - 1)\(\sum_i\frac{x_i\xi_i}{|x|}\)\(\sum_j\frac{x_j\xi_j}{|x|}\) = |\xi|^2 + (a - 1)\(\sum_i\frac{x_i\xi_i}{|x|}\)^2 ≥ |\xi|^2. $$
+
+		Dále $\overline{u}(x) := x_1|x|^{-1-\epsilon}$ pro $x \in ®R^n$ a $\epsilon \in (0, 1)$. Tedy
+		$$ \partial_1\overline{u}(x) = |x|^{-1-\epsilon} + x_1·(-1-\epsilon)|x|^{-2-\epsilon}·\frac{1}{2}|x|^{-1}·2x_1 = |x|^{-1-\epsilon} + (-1-\epsilon)x_1^2 |x|^{-3-\epsilon}, $$
+		$$ \partial_2\overline{u}(x) = x_1·(-1-\epsilon)|x|^{-2-\epsilon}·\frac{1}{2}|x|^{-1}·2x_2 = (-1-\epsilon)x_1x_2 |x|^{-3-\epsilon}. $$
+		Integrovatelnost těchto derivací můžeme zjistit například převedením do polárních souřadnic:
+		$$ \int_\Omega \(\partial_1 \overline{u}(x)\)^p dx_1dx_2 = \int_\Omega \(|x|^{-1-\epsilon} + (-1-\epsilon)x_1^2 |x|^{-3-\epsilon}\)^p dx_1dx_2 = $$
+		$$ = \int_{\Omega} \(r^{-1-\epsilon} + (-1-\epsilon)\cos^2(\phi)r^2·r^{-3-\epsilon}\)^pr dr d\phi = \int_\Omega r^{-p·(1-\epsilon)+1}·h_1(\phi)drd\phi, $$
+		$$ \int_\Omega \(\partial_2 \overline{u}(x)\)^p dx_1dx_2 = \int_\Omega \((-1-\epsilon)x_1x_2 |x|^{-3-\epsilon}\)^p dx_1dx_2 = $$
+		$$ = \int_{\Omega} \((-1-\epsilon)\cos(\phi)r·\sin(\phi)r·r^{-3-\epsilon}\)^pr dr d\phi = \int_\Omega r^{p·(-1-\epsilon)+1}·h_2(\phi)drd\phi, $$
+		kde $h_i$ je nějaká omezená funkce, která „nevynuluje integrál“. Z toho už je jasně vidět (neboť $0 \in \Omega$), že pro integrovatelnsot $p(-1 - \epsilon) + 1 > -1$, tj. $p < \frac{2}{1 + \epsilon}$, tj. $\overline{u} \in W^{1, \frac{2}{1 + \epsilon}}(\Omega)$. Tedy vhodnou volbou $\epsilon \in (0, 1)$ dokážeme zařídit $\overline{u} \in W^{1, p}(\Omega)$ pro libovolné $p \in (1, 2)$.
+	\end{reseni}
+	\begin{reseni}
+		Nakonec zjistíme, že $\overline{u}$ řeší problém pro naše ®A:
+		$$ \int_\Omega ®A \nabla \overline{u}(x)·\nabla \phi dS = \int_{\Omega} \sum_{ij} \(\delta_{ij} + (a - 1) \frac{x_ix_j}{|x|^2}\)\partial_j \overline{u}(x) · \partial_i \phi dS = $$
+		$$ = \int_\Omega \sum_{ij} \(\delta_{ij} + (a - 1) x_ix_j|x|^{-2}\)\((-1-\epsilon)·x_1x_j·|x|^{-3-\epsilon}\) \partial_i\phi +$$
+		$$ + \sum_i (\delta_{i1} + (a - 1)x_ix_1|x|^{-2})(|x|^{-1-\epsilon})·\partial_i \phi dS = $$
+		$$ = \int_{\Omega} \sum_i(-1-\epsilon)·x_1x_i·|x|^{-3-\epsilon} \partial_i\phi + \sum_i(a - 1)(-1-\epsilon)x_1x_i \overbrace{\(\sum_j x_j^2\)}^{|x|^2}|x|^{-5-\epsilon} \partial_i\phi + $$
+		$$ + |x|^{-1-\epsilon} \partial_1\phi + \sum_i (a-1)x_ix_1|x|^{-3-\epsilon} \partial_i\phi dS = $$
+		$$ = \int_\Omega \sum_i x_1x_i|x|^{-3-\epsilon}((-1-\epsilon) + (a - 1)(-1-\epsilon)+(a - 1))\partial_i\phi + |x|^{-1-\epsilon}\partial_1\phi dS = $$
+		$$ = -\int_\Omega \sum_i \partial_i\(x_1x_i|x|^{-3-\epsilon}(-a\epsilon - 1)\)\phi + \partial_1\(|x|^{-1-\epsilon}\)\phi dS + \int_{\partial\Omega} … \phi … = $$
+		$$ = -\int_\Omega \sum_i \(x_1|x|^{-3-\epsilon} + (-3-\epsilon)x_1x_i^2|x|^{-5-\epsilon}\)(-a\epsilon - 1)\phi + x_1|x|^{-3-\epsilon}(-a\epsilon - 1)\phi + $$
+		$$ + (-1-\epsilon)x_1|x|^{-3-\epsilon}\phi dS + 0 = $$
+		$$ = -\int_\Omega 3(-a\epsilon-1)x_1|x|^{-3-\epsilon}\phi + (-3-\epsilon)(-a\epsilon-1)x_1|x|^{-3-\epsilon}\phi + (-1-\epsilon)x_1|x|^{-3-\epsilon}\phi dS = $$
+		$$ = -\int_\Omega \(3(-a\epsilon - 1) + (-3-\epsilon)(-a\epsilon - 1) + (-1-\epsilon)\) x_1|x|^{-3-\epsilon}\phi dS = $$
+		$$ = -\int_\Omega \(-1+a\epsilon^2\) x_1|x|^{-3-\epsilon}\phi dS. $$
+		Tedy pokud dosadíme $a = \frac{1}{\epsilon^2}$, tak pro naše ®A funkce $\overline{u}$ řeší $\int ®A \nabla u · \nabla \phi$. Tím, že navíc dosadíme $\epsilon < \frac{2}{p} - 1$ jsme splnili zadání.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[2.]
+	The goal is to show that maximal regularity cannot hold in Lipschitz domains or when changing the type of boundary conditions. Let $\phi_0 \in (0, 2\pi)$ be arbitrary and consider $\Omega \subset ®R^2$ given by
+	$$ \Omega := \{(r, \phi) | r \in (0, 1), \phi \in (0, \phi_0)\}. $$
+	
+	Denote $\Gamma_i \subset \partial \Omega$ in the following way $\Gamma_1 := \{(r, 0) | r \in (0, 1)\}$, $\Gamma_2 := \{(r, \phi_0) | r \in (0, 1)\}$ a $\Gamma_3 := \{(1, \phi) | \phi \in (0, \phi_0)\}$.
+
+	Consider two functions
+	$$ u_1(r, \phi) := r^{\alpha_1} \sin\(\frac{\phi \pi}{\phi_0}\), \qquad u_2(r, \phi) := r^{\alpha_2} \sin\(\frac{\phi \pi}{2\phi_0}\). $$
+
+	\begin{itemize}
+		\item Find the condition on $\alpha_i$ so that $u_i \in W^{1, 2}(\Omega)$ -- find an explicit formula for $\nabla u_i$ -- and prove that it is really the weak derivative.
+
+		\begin{reseni}
+			Běžné derivace těchto funkcí jsou:
+			$$ \nabla u_i = \binom{\frac{\partial u_i}{\partial r}}{\frac{1}{r}\frac{\partial u_i}{\partial \phi}} = \binom{\alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\)}{\frac{\pi}{i·\phi_0} r^{\alpha_i - 1} \cos\(\frac{\phi \pi}{i·\phi_0}\)} $$
+			Jelikož tyto derivace jsou spojité, tak pro ně platí per-partes (používám jen $\supp \psi$, abych se vyhnul $r = 0$, $\psi$ i $\psi'$ jsou na doplňku nulové, tedy i integrovaná funkce):
+			$$ \int_\Omega u_i \partial_j\psi = \int_{\supp \psi} u_i \partial_j \psi + 0 \overset{\text{p-p}}= -\int_{\supp \psi}  \psi \partial_j u_i + \int_{\partial\(\overline{\supp \psi}\)} \psi u_i dS_j = -\int … + \int 0 = $$
+			$$ = -\int_{\supp \psi}\psi \partial_j u_i = -\int_{\Omega} \psi \partial_j u_i + 0. $$
+			Tedy jsou to slabé derivace. Že $u_i \in W^{1, 2}(\Omega)$ platí, pokud jsou integrály druhých mocnin derivací konečné:
+			$$ \int_\Omega \(\alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\)\)^2 = \int_\Omega \alpha_i^2 r^{2\alpha_i - 2} \(\sin\(\frac{\phi \pi}{i·\phi_0}\)\)^2 < ∞, $$
+			$$ \int_\Omega \(\frac{\pi}{i·\phi_0} r^{\alpha_i - 1} \cos\(\frac{\phi \pi}{i·\phi_0}\)\)^2 = \int_\Omega \(\frac{\pi}{i·\phi_0}\)^2 r^{2\alpha_i - 2} \(\cos\(\frac{\phi \pi}{i·\phi_0}\)\)^2 < ∞. $$
+			To bude zřejmě tehdy, když $\alpha_i > \frac{1}{2}$.
+		\end{reseni}
+
+	\item Find the proper condition on $\alpha_i$ so that $u_i$ solves the problem
+		$$ a) \quad -\Delta  u_1 = 0 \text{ in } \Omega, \qquad b) \quad u_1 = 0 \text{ on } \Gamma_1 \cup \Gamma_2, \qquad c) \quad u_1 = \sin\(\frac{\phi \pi}{\phi_0}\) \text{ on } \Gamma_3, $$
+		$$ d) \quad -\Delta u_2 = 0 \text{ in } \Omega, \qquad e) \quad u_2 = 0 \text{ on } \Gamma_1, \qquad f) \quad u_2 = \sin\(\frac{\phi \pi}{2\phi_0}\) \text{ on } \Gamma_3, $$
+		$$ g) \quad \nabla u_2·n = 0 \text{ on } \Gamma_2. $$
+
+		\begin{reseni}
+			Rovnice $b), c), e), f)$ splňují funkce z definice (když dosadíme $r = 1$, tak nám zbude pouze $\sin$, když dosadíme $\phi = 0$ nebo $\phi = \phi_0$, tak bude $\sin$ nulový).
+
+			Norma $n$ je v $\Gamma_2$ kolmá na poloměr, tedy
+			$$ \nabla u_2·n = \frac{\pi}{2\phi_0} r^{\alpha_2 - 1} \cos\(\frac{\phi \pi}{2\phi_0}\) = \frac{\pi}{2\phi_0} r^{\alpha_2 - 1} \cos\(\frac{\phi_0 \pi}{2\phi_0}\) = … · \cos\(\frac{\pi}{2}\) = … · 0 = 0. $$
+			V polárních souřadnicích $\Delta f = \frac{\partial^2 f}{\partial r^2} + \frac{1}{r^2}\frac{\partial^2 f}{\partial \phi^2} + \frac{1}{r} \frac{\partial f}{\partial r}$. Tedy
+			$$ \Delta u_i = \alpha_i·(\alpha_i - 1) r^{\alpha_i - 2} \sin\(\frac{\phi \pi}{i·\phi_0}\) - r^{-2}\(\frac{\pi}{i·\phi_0}\)^2 r^{\alpha_i} \sin\(\frac{\phi \pi}{i·\phi_0}\) + $$
+			$$ + r^{-1} \alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\) = r^{\alpha_i - 2}·\sin\(\frac{\phi \pi}{i·\phi_0}\)·\(\alpha_i·(\alpha_i - 1) - \(\frac{\pi}{i·\phi_0}\)^2 + \alpha_i\). $$
+			Výraz před závorkou je na vnitřku $\Omega$ nenulový, tedy musí být nulová závorka:
+			$$ 0 = \alpha_i·(\alpha_i - 1) - \(\frac{\pi}{i·\phi_0}\)^2 + \alpha_i = \alpha_i^2 - \(\frac{\pi}{i·\phi_0}\)^2 \implies \alpha_i = ±\frac{\pi}{i·\phi_0}. $$
+		\end{reseni}
+
+		\item Find all p's for which $u_i \in W^{2, p}(\Omega)$. What is the criterium on $\alpha_i$ so that $u_i \in W^{2, 2}(\Omega)$.
+
+			\begin{reseni}
+				Je to podobné jako v prvním bodě, jen chceme druhé derivace, tedy $r$ bude v mocnině $p·(\alpha_i - 2)$, tedy chceme, aby $p·(\alpha_i - 2) > -1$. Tedy kritérium pro $\alpha_i$ je $\alpha_i > 1.5$.
+			\end{reseni}
+
+		\item With the help of the above computation, find $f_i \in L^2(\Omega)$ such that the problems with homogeneous boundary conditions, i.e.,
+			$$ -\Delta v_1 = f_1 \text{ in } \Omega, \qquad v_1 = 0 \text{ on } \partial \Omega, $$
+			$$ -\Delta v_2 = f_2 \text{ in } \Omega, \qquad v_2 = 0 \text{ on } \Gamma_1 \cup \Gamma_3, \qquad \nabla v_2·n = 0 \text{ on } \Gamma_2 $$
+			poses unique weak solutions $v_i \in W^{1, 2}(\Omega)$ but $v_1 \notin W^{2, 2}(\Omega)$ if $\phi_0 > \pi$ and $v_2 \notin W^{2, 2}(\Omega)$ for $\phi_0 > \frac{\pi}{2}$.
+
+			\begin{reseni}
+				Když zadefinujeme $v_i = u_i - \sin\(\frac{\phi \pi}{i·\phi_0}\)$, dostaneme splněné okrajové podmínky tohoto problému, neboť v $\Gamma_3$ jsme odečetli přesně hodnotu, v $\Gamma_1$ jsou právě tyto siny nulové a v $\Gamma_2$ je v prvním případě také nulový a v druhém chceme, aby byla druhá část gradientu, což je ale příslušný kosinus, který je přesně v $\nabla u_2 · n$ a je též nulový.
+
+				Zbývají $f_1$ a $f_2$:
+				$$ f_i = -\Delta v_i = -\Delta u_i + \Delta \sin\(\frac{\phi \pi}{i·\phi_0}\) = $$
+				$$ = 0 + \(0 + \frac{1}{r^2}·\(\frac{\pi}{i·\phi_0}\)^2·\sin\(\frac{\phi \pi}{i·\phi_0}\) + \frac{1}{r}·0\) = \(\frac{\pi}{r·i·\phi_0}\)^2 $$
+			\end{reseni}
+	\end{itemize}
+\end{priklad}
+
+\begin{priklad}[3. – Fredholm alternative vs Lax-Milgram lemma vs minimum principe]
+	Consider $\Omega \subset ®R^d$ a Lipschitz domain. Let $®A: \Omega \rightarrow ®R^d$ be an elliptic matrix. Assume that $¦c \in L^∞(\Omega, ®R^d)$ and $b ≥ 0$. Consider the problem
+	$$ -\Div(®A \nabla u) + bu + ¦c·\nabla u = f \text{ in } \Omega, \qquad u = u_0 \text{ on } \partial \Omega. $$
+
+	\begin{itemize}
+		\item[a)] Consider the case $b = 0$, $¦c = ¦o$ and $f \in L^2(\Omega)$ fulfilling $f ≥ 0$. Let $u_0 \in W^{1, 2}(\Omega)$ and denote $m := \essinf_{\partial \Omega} u_0$. Show that the unique weak solution $u$ satisfies $u ≥ m$ almost everywhere in $\Omega$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Jak nám napovídá hint, definujeme $\phi(x) := (u(x) - m)_-$. Jelikož $\Omega$ je omezené a $u \in W^{1, 2}$, tak
+		$$ ||\phi||_2^2 = \int_\Omega (u(x) - m)_-^2 dx ≤ \int_\Omega (u(x) - m)^2 dx = ||u(x) - m||_2^2 ≤ \(||u(x)||_2 + ||m||_2\)^2 < ∞ $$
+		
+		Zároveň $u_0 = u ≥ m$ na $\partial \Omega$, tedy $\phi$ je na $\partial \Omega$ nulové.
+
+		$$ \forall \psi \in C_0^∞(\Omega): \int_\Omega (\nabla \phi(x)) \psi(x) dx = \int_\Omega \nabla ((u(x) - m)_-)\psi(x) dx = \int_{u(x) > m} \nabla (u(x) - m) \psi(x) dx + \int_{u(x) ≤ m} 0 \psi(x) dx = \int_{u(x) > m} (\nabla u(x)) \psi(x) dx = \int_\Omega (\nabla \chi_{u(x) > m} u(x))·\psi(x) dx. $$
+		Tedy $\nabla \phi = \nabla u \chi_{u(x) > m}$, tedy $||\nabla \phi||_2 < ||\nabla u||_2 < ∞$, tj. $\phi \in W_0^{1, 2}$.
+
+		Nyní použijeme $\phi$ jako testovací funkci:
+		$$ \int_\Omega -\Div(®A \nabla u) \phi = \int_\Omega f \phi $$
+		$$ \underbrace{\int_\Omega ®A \nabla u \nabla \phi}_{≥ C_1 |\nabla u|^2 ≥ 0} = \int_\Omega \underbrace{f}_{>0} \underbrace{\phi}_{≤ 0} $$
+		Tedy levá strana $≥0$, pravá $≤0$, tudíž se rovnají nule. Aby se pravá strana rovnala nule ($f$ je nenulové), tak musí být $\phi = 0$ skoro všude, tedy $u ≥ m$ skoro všude na $\Omega$.
+	\end{dukazin}
+
+	\begin{itemize}
+		\item[b)] Consider $b > 0$ and ¦c arbitrary. Prove that for any $u_0 \in W^{1, 2}(\Omega)$ and any $f \in L^2(\Omega)$ there exists a weak solution.
+	\end{itemize}
+
+	\begin{dukazin}
+		
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[4. – Lax-Milgram lemma vs Fredholm alternative II]
+	Consider $\Omega \subset ®R^d$ a Lipschitz domain. Let $a, b, c, d \in ®R$. Consider the problem: For given $¦f = (f_1, f_2, f_3) \in \(L^2(\Omega)\)^3$ find $¦u = (u_1, u_2, u_3) \in \(W_0^{1, 2} (\Omega)\)^3$ solving
+	\begin{align*}
+	-\Delta u_1 + au_3 &= f_1\quad \text{ in }\Omega, \\
+	-\Delta u_2 + bu_3 &= f_2\quad \text{ in }\Omega, \\
+	-\Delta u_3 + cu_1 + du_2 &= f_3\quad \text{ in }\Omega, \\
+	u_1 = u_2 = u_3 &= 0 \quad &\text{ on } \partial \Omega. \\
+	\end{align*}
+	Under which conditions on $a, b, c, d$ the system has for any ¦f a weak solution?
+
+
+
+	Under which condition on ¦f, the system has a solution?
 \end{priklad}
 
 \end{document}

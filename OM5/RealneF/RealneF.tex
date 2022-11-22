@@ -293,4 +293,72 @@
 	\end{dukazin}
 \end{veta}
 
+% 21. 11. 2022
+
+\subsection{Lebesgue points}
+\begin{definice}[$©L_{loc}^1$]
+	Let $\mu$ be a Radon measure on $®R^n$. The symbol $©L_{loc}^1(\mu)$ denotes the set of all functions $f: ®R^n \rightarrow ®C$, which are $\mu$-measurable and for every $x \in ®R^n$ there exists $r > 0$ such that $\int_{B(x, r)} |f| d\mu < ∞$.
+\end{definice}
+
+\begin{definice}[Lebesgue point]
+	Let $f \in ©L_{loc}^1(\mu)$. We say that $x \in ®R^n$ is Lebesgue point of $f$ at $x$ (with respect to $\mu$) if we have
+	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall B \in ®B, x \in B, \diam B < \delta: \frac{\int_B |f(t) - f(x)| d\mu(t)}{\mu(B)} < \epsilon. $$
+\end{definice}
+
+\begin{veta}
+	Let $\mu$ be a Radon measure on $®R^n$ satisfying Vitali theorem and $f \in ©L_{loc}^1(\mu)$. Then $\mu$-almost every point are Lebesgue point of $f$ (with respect to $\mu$).
+
+	\begin{dukazin}
+		WLOG $\mu(®R^n) < ∞$ and $f \in ©L^1(\mu)$. Set $(C_k)_{k=1}^∞$ be a sequence of closed balls in ®C forming a basis of topology in ®C. We define
+		$$ g_k(x) := \dist(f(x), C_k), \qquad x \in ®R^n, k \in ®N. $$
+		The function $g_k$ is non-negative, $\mu$-measurable, $g_k \in ©L^1(\mu)$. Set $\nu_k = \int g_k d\mu$. We set $P_k := \{x \in f^{-1}(C_k) | \neg(D(\nu_k, \mu, x) = 0)\}$. We have $g_k = 0$ on $f^{-1}(C_k)$ $\implies$ $\mu(P_k) = 0$.
+		$$ \nu_k = \int D(\nu_k, \mu, x) d\mu(x). $$
+		For $x \in ®R^n \setminus \bigcup_{k=1}^∞ P_k$ we choose $\epsilon > 0$ and we find $C_k$ such that $f(x) \in C_k$ and $C_k \subset B(f(x), \frac{1}{2} \epsilon)$. For any $t \in ®R^n$ it holds $|f(t) - f(x)| ≤ g_k(t) + \epsilon$.
+
+		$x \in f^{-1}(C_k) \implies D(\nu_k, \mu, x) = 0$. We find $\delta > 0$ such that
+		$$ \forall B \in ®B, x \in V, \diam B < \delta: \frac{\nu_k(B)}{\mu(B)} = \frac{\int_B g_k d\mu}{\mu(B)} < \epsilon. $$
+
+		Let $B \in ®B$, $x \in B$ and $\diam B < \delta$. We get
+		$$ \frac{\int_B |f(t) - f(x)| d\mu(t)}{\mu(B)} ≤ \frac{\int_B (g_k(t) + \epsilon) d\mu(t)}{\mu(B)} < \epsilon + \epsilon = 2\epsilon. $$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Density theorem}
+
+\begin{definice}
+	Let $\mu$ be a measure on $®R^n$, $A \subset ®R^n$ be $\mu$-measurable and $x \in ®R^n$. We say that $c \in [0, 1]$ is $\mu$-density of $A$ at $x$ if
+	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall B \in ©B, x \in B, \diam B < \delta: \left|\frac{\mu(A \cap B)}{\mu(B)} - c\right|<\epsilon. $$
+\end{definice}
+
+\begin{veta}[Density theorem]
+	Let $\mu$ be a Radon measure on $®R^n$ satisfying Vitali theorem and $M \subset ®R^n$ be $\mu$-measurable. Then
+	$$ d_\mu(x, M) = 1 \text{ for almost every } x \in M, $$
+	$$ d_\mu(x, M) = 0 \text{ for almost every } x \in ®R^n\setminus M. $$
+	
+	\begin{dukazin}
+		Define $\nu$ on $®R^n$ by $\nu(A) = \mu(A \cap M)$ for every $\mu$-measurable $A \subset ®R^n$. Thus we have $d_\mu(M, X) = D(\nu, \mu, X)$, if at least one term is well-defined, $\nu \ll \mu$, $\nu = \int \chi_M d\mu$. From theorem above $\nu = \int D(\nu, \mu, x) d\mu(x)$ $\implies$ $\chi_M = D(\nu, \mu, x)$ $\mu$-almost everywhere.
+	\end{dukazin}
+\end{veta}
+
+\subsection{AC and BV functions}
+\begin{veta}
+	Let $f: [a, b] \rightarrow ®R$, $a < b$. Then $f$ is absolutely continuous on $[a, b]$ if and only if $f$ is difference of two non-decreasing absolutely continuous functions on $[a, b]$.
+
+	\begin{dukazin}
+		„$\implies$“ choose $c \in (a, b)$. We define $v(x) = V_c^x f$, $x \in [c, b]$, and $v(x) = -V_x^c f$, $x \in [a, c)$. For every $y, d \in [a, b]$, $y < d$, we have $v(d) - v(y) = V_y^d f$. The function $v$ is non-decreasing.
+
+		$x, y \in [a, b]$, $x < y$:
+		$$ (v(y) - f(y)) - (v(x) - f(x)) = (v(y) - v(x)) - (f(y) - f(x)) = V_x^y f - (f(y) - f(x)) ≥ 0. $$
+
+		$v \in AC([a, b])$: Choose $\epsilon > 0$. We find $\delta > 0$ such that $\sum_{j=1}^m |f(b_j) - f(a_j)| < \epsilon$, whenever $a ≤ a_1 < b_1 ≤ a_2 < b_2 ≤ … ≤ a_m < b_m ≤ b$ and $\sum_{j=1}^m (b_j - a_j) < \delta$. Assume that $a ≤ A_1 < B_1 ≤ A_2 < B_2 ≤ … ≤ A_p < B_p ≤ b$ with $\sum_{j=1}^p(B_j - A_j) < \delta$. For each $j \in [p]$ we find points
+		$$ A_j = a_1^j < b_1^j = a_2^j < b_2^j < … < a_{m_j}^j < b_{m_j}^j = B_j. $$
+
+
+		TODO!!!
+		$$ \sum_{j=1}^n |v(B_j) - v(A_j)| < \sum_{j=1}^p \(\(\sum_{i=1}^{m_j} |f(b_1^j) - f(a_i^j)|\) + \frac{\epsilon}{p}\) < \epsilon + p·\frac{\epsilon}{p} = 2 \epsilon. $$
+
+		$$ f = v - (v - f). $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}
