@@ -73,7 +73,7 @@
 \end{definice}
 
 \begin{poznamka}
-	Pro $(f±g)'$, $(f·g)'$, $(f / g)'$, $(f \circ g)'$ platí stejné vzorce jako pro funkce $®R \rightarrow ®R$.
+	Pro $(f±g)'$, $(f·g)'$, $(f / g)'$, $(f \circ g)'$ platí stejné vzorce jako pro funkce $®R \rightarrow ®R$.
 \end{poznamka}
 
 \begin{veta}[Cauchy-Riemann]
@@ -233,7 +233,7 @@
 	Křivkový integrál nezávisí na parametrizaci křivky: Nechť $\phi: [\alpha, \beta] \rightarrow ®C$ je křivka, $\omega: [\gamma, \delta] \rightarrow [\alpha, \beta]$ je spojitě diferencovatelné s $\omega' > 0$ a $\psi = \phi\circ\omega$. Potom $\int_\psi f = \int_\phi f$.
 
 	\begin{dukazin}
-		Jednoduchý, ukázán na přednášce pro některé body.
+		Jednoduchý, ukázán na přednášce pro některé body.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -241,7 +241,7 @@
 	Řekneme, že funkce $f$ má na otevřené $G \subset ®C$ primitivní funkci $F$, pokud $F' = f$ na $G$.
 \end{definice}
 
-\begin{veta}[O výpočtu křivkového integrálu pomocí primitivní funkce]
+\begin{veta}[O výpočtu křivkového integrálu pomocí primitivní funkce]
 	Nechť $G \subset ®C$ je otevřená a $f$ má na $G$ primitivní funkci $F$. Nechť $\phi:[\alpha, \beta] \rightarrow G$ je regulární křivka a $f$ je spojitá\footnote{Tohle je zbytečný předpoklad, ale to ještě neumíme dokázat.} na $<\phi>$. Potom
 	$$ \int_\phi f = F(\phi(\beta)) - F(\phi(\alpha)), $$
 	je-li navíc $\phi$ uzavřená, tzn. $\phi(\alpha) = \phi(\beta)$, pak
@@ -374,7 +374,7 @@
 \end{veta}
 
 \begin{definice}[Index bodu křivky]
-	Nechť $\phi$ je uzavřená křivka v ®C a $s \in ®C \setminus <\phi>$. Potom číslo
+	Nechť $\phi$ je uzavřená křivka v ®C a $s \in ®C \setminus <\phi>$. Potom číslo
 	$$ \ind_\phi s := \frac{1}{2\pi i} \int_\phi \frac{dz}{z - s} $$
 	nazveme indexem bodu s vzhledem ke křivce $\phi$.
 \end{definice}
@@ -470,7 +470,7 @@
 \end{veta}
 
 \begin{dusledek}[Zakladní věta algebry]
-	V ®C má každý polynom stupně alespoň 1 vždy alespoň jeden kořen.
+	V ®C má každý polynom stupně alespoň 1 vždy alespoň jeden kořen.
 
 	\begin{dukazin}
 		Nechť $p(z) := a_n z^n + … + a_0 z^0$, kde $a_j \in ®C$, $n ≥ 1$ a $a_n ≠ 0$. Sporem: Předpokládejme, že $p ≠ 0$ na ®C. Potom $f:=\frac{1}{p}$ je holomorfní a omezená na ®C. Z Liouvilleovy věty je konstantní, tedy i $p = \frac{1}{f}$ je konstantní a $p' = 0 = p^{(n)} = a_n · n!$ $\implies$ $a_n = 0$. \lightning.
@@ -542,7 +542,7 @@
 \begin{veta}[O nulovém bodě]
 	Nechť $f$ je holomorfní funkce na okolí $x_0 \in ®C$ a $f(z_0) = 0$. Potom buď $\exists r > 0: f = 0$ na $U(z_0, r)$; nebo $\exists r > 0: f ≠ 0$ na $P(z_0, r) := U(z_0, r) \setminus \{z_0\}$.
 
-	V druhém případě existuje jediné $p \in ®N$ tak, že
+	V druhém případě existuje jediné $p \in ®N$ tak, že
 	$$ f(x_0) = 0 = f'(z_0) = … = f^{(p-1)}(z_0), f^{(p)}(z_0) ≠ 0. $$
 	Číslo $p$ je tzv. násobnost nulového bodu $z_0$ funkce $f$.
 
@@ -571,6 +571,127 @@
 
 		„$3 \implies 1$“: Uvažme $N := \{z \in G | \forall k \in ®N_0: f^{(k)}(z) = 0\}$. Potom $\O ≠ N$ a $N$ je uzavřená v $G$, protože všechny $f^{(k)}$ jsou spojité. Navíc $N$ je otevřená. Nechť $z_1 \in N$. Podle věty o nulovém bodě existuje $r > 0$ tak, že $f = 0$ na $U(z_1, r)$. Tedy $U(z_0, r) \subset N$. Protože $G$ je oblast (tj. je souvislá, tedy neexistuje vlastní obojetná podmnožina), je $N = G$.
 	\end{dukazin}
+\end{veta}
+
+% 24. 11. 2022
+
+\begin{veta}[Princip maxima modulu]
+	Nechť $G \subset ®C$ je oblast a $f \in ©H(G)$. Potom $f$ je na $G$ konstantní, pokud $|f|$ nabývá v $G$ lokální maximum, tzn. existuje $z_0 \in G$ a $r > 0$, že $\forall z \in U(z_0, r) \subset G: |f(z)| ≤ |f(z_0)|$.
+
+	\begin{dukazin}
+		Nechť to platí. Potom
+		$$ f(z) = \sum_{n=0}^∞ a_n(z - z_0)^n, z \in U(z_0, r). $$
+		Nechť $0 < \rho < r$. Potom
+		$$ |a^2| = |f(z_0)|^2 ≥ \frac{1}{2\pi} \int_0^{2\pi} |f(z_0 + \rho e^{it})|^2 dt = $$
+		$$ = \frac{1}{2\pi} \int_0^{2\pi} \(\sum_{n=1}^∞ a_n\rho^n e^{i n t}\)·\(\sum_{m=1}^∞ \overline{a_m}\rho^m e^{-i n t}\) dt = |f(z)|^2 = f(z)\overline{f(z)}. $$
+	\end{dukazin}
+\end{veta}
+
+\section{Riemannova sféra}
+\begin{definice}[Riemannova sféra (®S)]
+	Označme $®S = ®C \cup \{∞\}$ a definujeme okolí v $∞$ následovně: Pro každou $\epsilon > 0$ položme
+	$$ P(∞, \epsilon) := \{z \in ®C |\ |z| > \frac{1}{\epsilon}\}, \qquad U(∞, \epsilon) := P(∞, \epsilon) \cup \{∞\}. $$
+\end{definice}
+
+\begin{definice}[Limita na ®S]
+	Je-li $z_0, L \in ®S$, potom $L = \lim_{z \rightarrow z_0} f(z)$, pokud $\forall \epsilon > 0\ \exists \delta > 0$:
+	$$ z \in P(z_0, \delta) \implies f(z) \in U(L, \epsilon). $$
+\end{definice}
+
+\begin{tvrzeni}[Vlastnosti limity na ®S]
+	\ 
+	\begin{itemize}
+		\item $\lim_{z \rightarrow ∞}f(z) = \lim_{z \rightarrow 0} f\(\frac{1}{z}\)$, má-li alespoň jedna strana smysl.
+		\item Následující je ekvivalentní: $\lim_{z \rightarrow z_0} f(z) = ∞$, $\lim_{z \rightarrow z_0} |f(z)| = +∞$, $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0$.
+		\item Počítání s $∞$: $\frac{a}{∞} = 0\ \forall a \in ®C$, $\frac{a}{0} = ∞\ \forall a \in ®S \setminus \{0\}$, $a±∞ = ∞ \forall a \in ®C$, $a·∞ = ∞\ \forall a \in ®S \setminus \{0\}$. Nedefinujeme $\frac{0}{0}$, $\frac{∞}{∞}$, $∞±∞$, $0·∞$. Potom platí i v $®S$ aritmetika limit.
+		\item ®S je jednobodovou kompaktifikací ®C.
+		\item ®S je homeomorfní s jednotkovou sférou $S^2 := \{[\alpha, \beta, \gamma] \in ®R^3 | \alpha^2 + \beta^2 + \gamma^2 = 1\}$, speciálně ®S je kompaktní.
+	\end{itemize}
+\end{tvrzeni}
+
+\section{Izolované singularity}
+\begin{definice}
+	Nechť $f$ je holomorfní funkce na $P(z_0) = P(z_0, r)$. Potom $f$ má v $z_0$:
+	
+	\begin{itemize}
+		\item odstranitelnou singularitu, existuje-li $\lim_{z \rightarrow z_0} f(z) \in ®C$;
+		\item pól, je-li $\lim_{z \rightarrow z_0} f(z) = ∞$;
+		\item podstatnou singularitu, pokud $\lim_{z \rightarrow z_0} f(z)$ neexistuje v ®S.
+	\end{itemize}
+
+	\begin{veta}[O odstranitelné singularitě]
+		Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
+
+		\begin{enumerate}
+			\item $z_0$ je odstranitelná singularita $f$.
+			\item Existuje $r > 0$ tak, že $f$ je omezená na $P(z_0, r)$.
+			\item Existuje $F \in ©H(U(z_0))$ tak, že $F = f$ na $P(z_0)$.
+		\end{enumerate}
+
+		\begin{poznamkain}[Úmluva]
+			Každá odstranitelná singularita se považuje za odstraněnou (tj. bereme $F$ místo $f$).
+		\end{poznamkain}
+
+		\begin{dukazin}
+			„$1. \implies 2.$, $2. \implies 3.$“: Položme
+			$$ g(z) := \begin{cases} (z - z_0)^2 f(z),& \quad z \in P(z_0),\\ 0,& \quad z = z_0. \end{cases} $$
+			Potom $g \in ©H(U(z_0))$, protože
+			$$ g'(z_0) = \lim_{z \rightarrow z_0} \frac{g(z) - g(z_0)}{z - z_0} = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)}_{\rightarrow 0}·\underbrace{f(z)}_{\text{omezená}} = 0. $$
+
+			Dále (pro „$3. \implies 1.$“) $\forall z \in U(z_0)$:
+			$$ g(z) = \sum_{n=2}^∞ a_n(z - z_0)^n = (z-z_0)^2·F(z), $$
+			kde $F(z) := \sum_{n=2}^∞ a_n(z - z_0)^{n-2}$. Potom $F \in ©H(U(z_0))$ a $\forall z \in P(z_0)$:
+			$$ (z - z_0)^2·f(z) = (z - z_0)^2·F(z). $$
+		\end{dukazin}
+	\end{veta}
+
+	\begin{poznamka}
+		Píšeme $f(z)\sim g(z)$ pro $z \rightarrow z_0$, pokud $\lim_{z \rightarrow z_0} \frac{f(z)}{g(z)} \in ®C \setminus \{0\}$.
+	\end{poznamka}
+
+	\begin{veta}[O póle]
+		Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
+		
+		\begin{enumerate}
+			\item $z_0$ je pól $f$.
+			\item $h := \frac{1}{f}$ (po dodefinování $h(z_0) = 0$) má v $z_0$ nulový bod násobnosti $p \in ®N$.
+			\item Existuje $p \in ®N$ tak, že $\lim_{z \rightarrow z_0}(z - z_0)^p f(z) \in ®C \setminus \{0\}$. (Tedy $f(z) \sim \frac{1}{(z - z_0)^p}$ pro $z \rightarrow z_0$.)
+			\item Existuje $p \in ®N$ tak, že $\forall k \in ®Z$:
+				$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) \begin{cases} = ∞, & \text{ je-li } k < p,\\ \in ®C \setminus \{0\}, & k=p, \\ 0, & k > p.\end{cases} $$
+		\end{enumerate}
+
+		\begin{dukazin}
+			„$1. \implies 2.$“: Protože $\lim_{z \rightarrow z_0} f(z) = ∞$, je $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0$. Po odstranění singularity, tzn. po dodefinování $h(z_0) = 0$, má $h = \frac{1}{f}$ nulový bod v $z_0$ konečné násobnosti $p \in ®N$.
+
+			„$2. \implies 3.$“: Existuje $r > 0$ a $g \in ©H(U(z_0, r))$ tak, že $g ≠ 0$ na $U(z_0, r)$ a
+			$$ h(z) = (z - z_0)^p·g(z), \qquad z \in U(z_0, r). $$
+			Potom $\lim_{z \rightarrow z_0} (z - z_0)^p f(z) = \lim_{z \rightarrow z_0} \frac{1}{g(z)} = \frac{1}{g(z_0)} \in ®C \setminus \{0\}$.
+
+			„$3. \implies 4.$“: Máme
+			$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)^{k - p}}_{\rightarrow 0, k > p / 1, k=p / ∞, k < p}·\underbrace{(z - z_0)^p f(z)}_{\rightarrow … \in ®C \setminus \{0\}}. $$
+
+			„$4. \implies 1.$“: $\lim_{z \rightarrow z_0} f(z) = \lim_{z \rightarrow z_0} (z - z_0)^k f(z) |_{k=0} = ∞$.
+		\end{dukazin}
+	\end{veta}
+
+	\begin{definice}[Násobnost pólu]
+		Číslo $p$ je určeno jednoznačně a nazývá se násobnost pólu $z_0$ funkce $f$.	
+	\end{definice}
+\end{definice}
+
+\begin{veta}[Casorati-Weierstrass]
+	Nechť $f$ je holomorfní na $P(z_0)$. Následující je ekvivalentní:
+
+	\begin{enumerate}
+		\item $z_0$ je podstatná singularita $f$.
+		\item $\forall r > 0: \overline{f(P(z_0, r))} = ®C$.
+	\end{enumerate}
+
+	\begin{poznamka}[Velká Picardova věta]
+		Platí dokonce (i když je to těžké dokázat)
+		$$ \forall r > 0: ®C \setminus f(P(z_0, r)) $$
+		je nejvýše jednobodová.
+	\end{poznamka}
 \end{veta}
 
 \end{document}

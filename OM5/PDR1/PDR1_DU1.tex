@@ -4,6 +4,12 @@
 
 
 \begin{document}
+\ 
+\vspace{-4em}
+
+Než začnete číst: Rovnou říkám, že nemám druhou polovinu čtvrté úlohy, protože jsem k ní do deadlinu nestihl nic vymyslet. A jsem si svými řešeními celkově docela nejistý -- chyběl jsem totiž zrovna třetí a čtvrtý týden, takže mi toho dosti uniklo.
+
+Tedy pokud se Vám to nezdá dost, klidně mě rovnou vyhoďte, nemám problém si předmět odchodit příští rok. V opačném případě budu samozřejmě „makat“ na tom, abych v tom měl plně jasno i v těch částech, které jsem stále nestihl plně pochopit.
 
 \begin{priklad}[1. – Optimality of space $W^{1, 2}(\Omega)$]
 	Consider $\Omega = B_1(0) \subset ®R^2$ and $p \in (1, 2)$ be arbitrary. Find an elliptic matrix $®A(x)$ and nontrivial $\hat{u} \in W_0^{1, p}(\Omega)$ such that
@@ -24,7 +30,7 @@
 		$$ = \int_{\Omega} \(r^{-1-\epsilon} + (-1-\epsilon)\cos^2(\phi)r^2·r^{-3-\epsilon}\)^pr dr d\phi = \int_\Omega r^{-p·(1-\epsilon)+1}·h_1(\phi)drd\phi, $$
 		$$ \int_\Omega \(\partial_2 \overline{u}(x)\)^p dx_1dx_2 = \int_\Omega \((-1-\epsilon)x_1x_2 |x|^{-3-\epsilon}\)^p dx_1dx_2 = $$
 		$$ = \int_{\Omega} \((-1-\epsilon)\cos(\phi)r·\sin(\phi)r·r^{-3-\epsilon}\)^pr dr d\phi = \int_\Omega r^{p·(-1-\epsilon)+1}·h_2(\phi)drd\phi, $$
-		kde $h_i$ je nějaká omezená funkce, která „nevynuluje integrál“. Z toho už je jasně vidět (neboť $0 \in \Omega$), že pro integrovatelnsot $p(-1 - \epsilon) + 1 > -1$, tj. $p < \frac{2}{1 + \epsilon}$, tj. $\overline{u} \in W^{1, \frac{2}{1 + \epsilon}}(\Omega)$. Tedy vhodnou volbou $\epsilon \in (0, 1)$ dokážeme zařídit $\overline{u} \in W^{1, p}(\Omega)$ pro libovolné $p \in (1, 2)$.
+		kde $h_i$ je nějaká omezená funkce, která „nevynuluje integrál“. Z toho už je jasně vidět (neboť $0 \in \Omega$), že pro integrovatelnsot $p(-1 - \epsilon) + 1 > -1$, tj. $p < \frac{2}{1 + \epsilon}$, tj. $\overline{u} \in W^{1, \frac{2}{1 + \epsilon}}(\Omega)$. Tedy vhodnou volbou $\epsilon \in (0, 1)$ dokážeme zařídit $\overline{u} \in W^{1, p}(\Omega)$ pro libovolné $p \in (1, 2)$.
 	\end{reseni}
 	\begin{reseni}
 		Nakonec zjistíme, že $\overline{u}$ řeší problém pro naše ®A:
@@ -43,6 +49,8 @@
 		Tedy pokud dosadíme $a = \frac{1}{\epsilon^2}$, tak pro naše ®A funkce $\overline{u}$ řeší $\int ®A \nabla u · \nabla \phi$. Tím, že navíc dosadíme $\epsilon < \frac{2}{p} - 1$ jsme splnili zadání.
 	\end{reseni}
 \end{priklad}
+
+\pagebreak
 
 \begin{priklad}[2.]
 	The goal is to show that maximal regularity cannot hold in Lipschitz domains or when changing the type of boundary conditions. Let $\phi_0 \in (0, 2\pi)$ be arbitrary and consider $\Omega \subset ®R^2$ given by
@@ -91,6 +99,8 @@
 				Je to podobné jako v prvním bodě, jen chceme druhé derivace, tedy $r$ bude v mocnině $p·(\alpha_i - 2)$, tedy chceme, aby $p·(\alpha_i - 2) > -1$. Tedy kritérium pro $\alpha_i$ je $\alpha_i > 1.5$.
 			\end{reseni}
 
+		\pagebreak
+
 		\item With the help of the above computation, find $f_i \in L^2(\Omega)$ such that the problems with homogeneous boundary conditions, i.e.,
 			$$ -\Delta v_1 = f_1 \text{ in } \Omega, \qquad v_1 = 0 \text{ on } \partial \Omega, $$
 			$$ -\Delta v_2 = f_2 \text{ in } \Omega, \qquad v_2 = 0 \text{ on } \Gamma_1 \cup \Gamma_3, \qquad \nabla v_2·n = 0 \text{ on } \Gamma_2 $$
@@ -106,6 +116,8 @@
 	\end{itemize}
 \end{priklad}
 
+\newpage
+
 \begin{priklad}[3. – Fredholm alternative vs Lax-Milgram lemma vs minimum principe]
 	Consider $\Omega \subset ®R^d$ a Lipschitz domain. Let $®A: \Omega \rightarrow ®R^d$ be an elliptic matrix. Assume that $¦c \in L^∞(\Omega, ®R^d)$ and $b ≥ 0$. Consider the problem
 	$$ -\Div(®A \nabla u) + bu + ¦c·\nabla u = f \text{ in } \Omega, \qquad u = u_0 \text{ on } \partial \Omega. $$
@@ -115,12 +127,14 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		Jak nám napovídá hint, definujeme $\phi(x) := (u(x) - m)_-$. Jelikož $\Omega$ je omezené a $u \in W^{1, 2}$, tak
+		Jak nám napovídá hint, definujeme $\phi(x) := (u(x) - m)_-$. Jelikož $\Omega$ je omezené a $u \in W^{1, 2}$, tak
 		$$ ||\phi||_2^2 = \int_\Omega (u(x) - m)_-^2 dx ≤ \int_\Omega (u(x) - m)^2 dx = ||u(x) - m||_2^2 ≤ \(||u(x)||_2 + ||m||_2\)^2 < ∞ $$
 		
 		Zároveň $u_0 = u ≥ m$ na $\partial \Omega$, tedy $\phi$ je na $\partial \Omega$ nulové.
 
-		$$ \forall \psi \in C_0^∞(\Omega): \int_\Omega (\nabla \phi(x)) \psi(x) dx = \int_\Omega \nabla ((u(x) - m)_-)\psi(x) dx = \int_{u(x) > m} \nabla (u(x) - m) \psi(x) dx + \int_{u(x) ≤ m} 0 \psi(x) dx = \int_{u(x) > m} (\nabla u(x)) \psi(x) dx = \int_\Omega (\nabla \chi_{u(x) > m} u(x))·\psi(x) dx. $$
+		$$ \forall \psi \in C_0^∞(\Omega): \int_\Omega (\nabla \phi(x)) \psi(x) dx = \int_\Omega \nabla ((u(x) - m)_-)\psi(x) dx = $$
+		$$ = \int_{u(x) > m} \nabla (u(x) - m) \psi(x) dx + \int_{u(x) ≤ m} 0 \psi(x) dx = \int_{u(x) > m} (\nabla u(x)) \psi(x) dx = $$
+		$$ = \int_\Omega (\nabla \chi_{u(x) > m} u(x))·\psi(x) dx. $$
 		Tedy $\nabla \phi = \nabla u \chi_{u(x) > m}$, tedy $||\nabla \phi||_2 < ||\nabla u||_2 < ∞$, tj. $\phi \in W_0^{1, 2}$.
 
 		Nyní použijeme $\phi$ jako testovací funkci:
@@ -129,12 +143,71 @@
 		Tedy levá strana $≥0$, pravá $≤0$, tudíž se rovnají nule. Aby se pravá strana rovnala nule ($f$ je nenulové), tak musí být $\phi = 0$ skoro všude, tedy $u ≥ m$ skoro všude na $\Omega$.
 	\end{dukazin}
 
+\newpage
+
 	\begin{itemize}
 		\item[b)] Consider $b > 0$ and ¦c arbitrary. Prove that for any $u_0 \in W^{1, 2}(\Omega)$ and any $f \in L^2(\Omega)$ there exists a weak solution.
 	\end{itemize}
 
 	\begin{dukazin}
+		Nejprve si podle hintu převedeme úlohu na důkaz tvrzení, že
+		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } \Omega $$
+		má pouze jedno řešení $u \in W_0^{1, 2}(\Omega)$, $u = 0$.
+
+		Převedení bych moc rád udělal tak, že místo $f$ na pravé straně použiji $f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u)$, protože to k tomu hrozně nabádá, navíc mě nenapadá nic jiného, co by šlo použít, než Fredholmova alternativa a nenapadá mě žádný jiný postup, jak se dostat z FA na boundary value problém. Jenže $\Div(®A \nabla u)$ prostě nemusí být v $L^2$. Asi mi něco jednoduchého uniká, ale bohužel už nemám moc času do deadlinu. Takže řekněme, že nová pravá strana je v $L^2$.
+
+		Potom z Fredholmovy alternativy a z tvrzení (pokud tedy platí, což si dokážeme dále) plyne, že problém
+		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u) \text{ v } \Omega, \qquad u = 0 \text{ na } \partial \Omega, $$
+		má (právě jedno) řešení $u \in W_0^{1, 2}(\Omega)$. Pokud tedy zvolíme $\tilde u = u + u_0$, pak $\tilde u$ je slabé řešení problému
+		$$ -\Div(®A \nabla \tilde u) + b \tilde u + ¦c·\nabla \tilde u = f \text{ v } \Omega, \qquad \tilde{u} = u_0 \text{ na } \partial \Omega, $$
+		neboť „všechno“ je zde lineární, takže „přičtením“ $u_0$ k $u$ na levé straně se přičtou odpovídající členy na pravé.
+	\end{dukazin}
+
+	\begin{dukazin}
+		Mějme $u$ řešící $-\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } \Omega$.
+
+		Nyní dokážeme, že pro nějaké $M$ je $|u| < M$ skoro všude, tedy $u \in L^∞(\Omega)$ a $\|u\|_{L^∞} ≤ M$. Pokud $d = 1$, tak je z věty o vnoření $u$ spojité, takže se omezenost může „rozbíjet“ pouze na hranici $\Omega$, ale my víme, že $\tr u = 0$. Pro tuto část důkazu tedy předpokládejme $d > 1$.
+
+		Ať $M > 0$ a $\phi_M := (u - M)_+$. Protože je $u \in W_0^{1, 2}(\Omega)$, tak $\phi_M \in W^{1, 2}(\Omega)$ ze stejných důvodů jako v a), $\nabla \phi_M = \nabla u · \chi_{u ≥ M}$, a navíc $\phi_M \in W_0^{1, 2}$, neboť $u$ zůstává 0 tam, kde 0 bylo.
+
+		Tedy ho můžeme použít jako testovací funkci: $\int ®A \nabla u · \nabla \phi_M + b u \phi_M + ¦c·\nabla u \phi_M = \int 0 · \phi_M$.
+		První a třetí člen už je na $u < M$ stejně nulový, tedy můžeme psát
+		$$ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
+		Levou stranu můžeme zezdola odhadnout pomocí toho, že $b>0$, $\phi_M ≥ 0$ a tam, kde $\phi_M ≠ 0$, $u ≥ M > 0$. Navíc $®A$ je eliptické, takže
+		$$ c_1\|\nabla \phi_M\|_2^2 = \int c_1 \|\nabla \phi_M\|_{®R^d}^2 ≤ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
 		
+		Levou část můžeme shora odhadnout pomocí dvakrát použité Hölderovy nerovnosti:
+		$$ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_2. $$
+		Nyní znovu použijeme Hölderovu nerovnost, tentokrát na $\|\phi_M\|_2$. Protože $\psi$ je na $u < M$ nulové, můžeme psát (jak bylo na přednášce)
+		$$ \|\phi_M\|_2 = \sqrt{\int \phi_M^2} = \sqrt{\int \phi_M^2 \chi_{u ≥ M}} ≤ \sqrt{\(\int \phi_M^{2p}\)^{\frac{1}{p}} · \(\int \chi^q_{{u ≥ M}}\)^{\frac{1}{q}}} = \|\phi_M\|_{2p} · \(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}, $$
+		kde $\frac{1}{p} + \frac{1}{q} = 1$, avšak musíme použít správné $p ≠ 1$ ($p = 1$ nám nedává nic nového), aby $\phi_M \in L^{2p}$. To můžeme z věty o vnoření Sobolevových prostorů: pokud $d = 2$, tak $W^{1, 2}(\Omega) \hookrightarrow L^r$ pro $r$ jakékoliv, takže není co řešit. Pokud $d > 2$, tak můžeme vybrat $2p = r = \frac{d·2}{d - 2} = \frac{2}{1 - (2 / d)} > 2$ ($p > 1$).
+
+		Nakonec $∞ > \int u ≥ \int_{u > M} u ≥ \int_{u > M} M$, tedy míra $\{u > M\}$ se musí pro rostoucí $M$ zmenšovat k nule. Takže můžeme zvolit libovolně malé $\(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}$ v nerovnosti:
+		$$ c_1·C·\|\nabla \phi_M\|_2·\|\phi_M\|_{2p} \overset{\text{Sob.}}{\underset{nerov}≤} c_1\|\nabla \phi_M\|_2^2 ≤ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_{2p}\(\int \chi_{u ≥ M}\)^{\frac{1}{q}}, $$
+		tedy $\|\nabla \phi_M\|_2 = 0$ (nebo $\|\phi_M\|_2 = 0$, ale to bychom byli hotovi). Tudíž se nám celá rovnost s testovací funkcí $\phi_M$ stala $\int b · u · \phi_M = 0$, ale $b > 0$, $u > 0$ (kde $\phi_M ≠ 0$), takže musí být $\phi_M = 0$ skoro všude, tedy $u ≤ M$ skoro všude.
+	\end{dukazin}
+
+	\begin{dukazin}
+		Úplně stejně dostaneme $u ≥ -M'$ pro nějaké $M' > 0$ z $\phi_{M'} = (u + M)_-$, jelikož pak 
+		$$ \int ®A \nabla \phi_{M'} · \nabla \phi_{M'} + b (-u) (-\phi_{M'}) = - \int ¦c·\nabla \phi_{M'} \phi_{M'}. $$
+		má úplně stejné vlastnosti jako rovnice výše, jelikož v prvním členu je druhá mocnina, v druhém je to zase kladné a vpravo omezujeme vlastně absolutní hodnotu (víme, že pravá strana je nezáporná, takže i levá musí být) normami, takže na znamínkách nezáleží.
+	\end{dukazin}
+
+	\begin{dukazin}
+		Nyní máme tedy dokázáno, že $u$ je „omezená skoro všude“, tedy $u \in L^∞$. Tedy i $u^k \in L^∞$ pro $k \in ®N$, navíc $\nabla u^k = k·u^{k-1}\nabla u$, protože $\nabla (u·…·u) = u \nabla (u·…·u) + (\nabla u) (u·…·u)$ a $u^{k-1} \in L^∞$, tedy $u^k \in W^{1, 2}(\Omega)$. Nakonec $\tr u^k|_{\partial \Omega} = 0$, neboť
+		$$ \tr u^k|_{\partial \Omega} = u^k|_{\partial \Omega} = (u|_{\partial \Omega})^k = (\tr u|_{\partial \Omega})^k = 0^k =0. $$
+		Tedy $u^k \in W_0^{1, 2}$.
+
+		Použijme $u^k$ pro $k$ liché jako testovací funkci:
+		$$ \int ®A \nabla u · \nabla u^k = \int k·u^{k-1}®A \nabla u · \nabla u = \int - b u·u^k - u^k¦c·\nabla u. $$
+		Na levou stranu můžeme použít elipticitu ®A ($u^{k-1}$ je sudé), napravo je $-b u^{k+1}$ určitě záporné, tedy ji můžeme zvětšit přidáním absolutní hodnoty do části s ¦c:
+		$$ \int c_1 (\nabla u)^2·k·u^{k-1} ≤ - \int b u^{k+1} + \int |¦c·\nabla u|·|u^{(k-1)/2}|·|u^{(k+1)/2}|. $$
+		Chtěli bychom se zbavit integrálu s ¦c, tedy rozdělíme výraz jako výše a použijeme Yangovu nerovnost pro koeficienty $p=q=2$, tj. $\(|¦c·\nabla u|·|u^{(k-1)/2}|\)·|u^{(k+1)/2}| ≤ \frac{|¦c·\nabla u|^2·u^{k-1}}{2} + \frac{u^{k+1}}{2}$:
+		$$ \int (c_1·k - |c|/2) (\nabla u)^2·u^{k-1} ≤ \int (-b+|c|/2) u^{k+1}. $$
+		Hölderovou nerovností (pro $1, ∞$) (a tím, že na levé straně vytýkáme kladnou a zmenšujeme zápornou část a na pravé vytýkáme zápornou a zvětšujeme kladnou)
+		$$ (c_1·k - \|c\|_∞/2) \int (\nabla u)^2·u^{k-1} ≤ (-b+\|c\|_∞/2) \int u^{k+1}, $$
+		$$ \int (\nabla u)^2·u^{k-1} ≤ \frac{-b+\|c\|_∞/2}{c_1·k - \|c\|_∞/2} \|u^{\frac{k+1}{2}}\|_2^2. $$
+		Teď už stačí jen $\int (\nabla u)^2·u^{k-1} ≥ \konst \|u\|_{k+1}$. Takže konstantu na pravé straně můžeme libovolně zmenšit, takže $\|u\|_{k+1} = 0$, tedy $u = 0$ skoro všude.
 	\end{dukazin}
 \end{priklad}
 
@@ -148,9 +221,28 @@
 	\end{align*}
 	Under which conditions on $a, b, c, d$ the system has for any ¦f a weak solution?
 
+	\begin{reseni}
+		Chtěli bychom použít Lax-Milgram. K tomu potřebujeme, aby na levé straně byl eliptický bilineární operátor. Operátor si definujeme přímočaře (tak aby odpovídal představě slabého řešení). Pro $V = (W_0^{1, 2}(\Omega))^3$ definujme $B: V \times V \rightarrow ®R$ jako
+		$$ B(¦u, ¦v) = \int_{\Omega} \nabla u_1 · \nabla v_1 + au_3 v_1 + \nabla u_2 · \nabla v_2 + b u_3 v_2 + \nabla u_3 · \nabla v_3 + c u_1v_3 + du_2v_3. $$
+		Zřejmě je lineární. Také je „$V$-bounded“, neboť ($\|·\|_2 = \|·\|_{L^2(\Omega)}$, $\|·\|_{1, 2} = \|·\|_{\(W^{1, 2}(\Omega)\)^3} = \|·\|_V$)
+		$$ B(¦u, ¦v) = \int_{\Omega} \nabla u_1 · \nabla v_1 + au_3 v_1 + \nabla u_2 · \nabla v_2 + b u_3 v_2 + \nabla u_3 · \nabla v_3 + c u_1v_3 + du_2v_3 ≤ $$
+		$$ ≤ \sum_{ij} \left|\int_\Omega \partial_j u_i \partial_j v_i\right| + |a|·\left|\int_\Omega u_3v_1\right|+ |b|·\left|\int_\Omega u_3v_2\right|+ |c|·\left|\int_\Omega u_1v_3\right| + |d|·\left|\int_\Omega u_2v_3\right| \overset{\text{Hölder}}≤ $$
+		$$ ≤ \sum_{ij} \|\partial_j u_i\|_2 \|\partial_j v_i\|_2 + |a|·\|u_3\|_2\|v_1\|_2 + |b|·\|u_3\|_2\|v_2\| + |c|·\|u_1\|_2\|v_3\|_2 + |d|·\|u_2\|_2\|v_3\|_2 ≤ $$
+		$$ = \max(1, |a|, |b|, |c|, |d|) \(\sum_i \(\sum_j\|\partial_j u_i\|_2 + \|u_i\|_2\)\)·\(\sum_i \(\sum_j\|\partial_j v_i\|_2 + \|v_i\|_2\)\) \overset{*}{≤} $$
+		$$ ≤ (3d + 1)^2·\max(1, |a|, |b|, |c|, |d|)\|¦v\|_{1, 2}·\|¦u\|_{1, 2}. $$
+		$$ *: \qquad \sum_i \alpha_i ≤ n·\max_i \alpha_i = n·\sqrt{\(\max_i \alpha_i\)^2} ≤ n·\sqrt{\sum_i \alpha_i^2}, \qquad i \in [n] = \{1, …, n\}, \alpha_i ≥ 0. $$
 
+		Aby byl „$V$-coercive“, potřebujeme, aby $B(¦u, ¦u) ≥ c_1\|u\|_V^2$:
+		$$ B(¦u, ¦u) = \int_{\Omega} \nabla u_1 · \nabla u_1 + au_3 u_1 + \nabla u_2 · \nabla u_2 + b u_3 u_2 + \nabla u_3 · \nabla u_3 + c u_1u_3 + d u_2u_3 = $$
+		$$ = \int_{\Omega} \sum_{ij} (\partial_j u_i)^2  + (a + c) u_3 u_1 + (b + d) u_3 u_2. $$
+		Kdyby $(a + c)$ nebylo 0, pak můžeme zvolit např. $±u_1 = u_3 = e^{\sqrt{\frac{a + c}{2}}t}$, $u_2=0$ (znamínko podle toho, zda je $(a + c)$ záporné nebo kladné), pak $B(¦u, ¦u) = 0 \not≥ c_1 \|u\|_V^2$. Obdobně pro $(b + d)$. Tedy dostáváme podmínky $a + c = 0$, $b + d = 0$. Jakmile ale máme tuto podmínku, tak
+		$$ B(¦u, ¦u) = \int_\Omega \sum_{ij} (\partial_j u_i)^2 = \sum_{ij} \int_\Omega (\partial_j u_i)^2 = \|\nabla u\|_{(L^2(\Omega))^{3d}}^2 $$
+		Z Poincarého nerovnosti máme $\|u\|_2 ≤ C·\|\nabla u\|_2$, tj. $\frac{1}{C^2 + 1}\(\|u\|^2 + \|\nabla u\|^2\) ≤ \|\nabla u\|_{1, 2}$, tedy $B(¦u, ¦u) ≥ c_1\|u\|_V$.
 
-	Under which condition on ¦f, the system has a solution?
+		Tedy pokud $a + c = 0 = b + d$, tak je operátor $B$ eliptický bilineární operátor a tedy podle Lax-Milgram existuje pro každé $¦f \in \(L^2{\Omega}\)^3$ právě jedno slabé řešení problému ze zadání.
+	\end{reseni}
+
+	%Under which condition on ¦f, the system has a solution?
 \end{priklad}
 
 \end{document}

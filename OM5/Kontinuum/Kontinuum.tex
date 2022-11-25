@@ -563,4 +563,121 @@ TODO?
 	We add this to equations we have for Eulerian description and solve them for $\rho, ¦v, ®B, e$ at points $¦x \in V(t) = \chi(V(t_0))$, so we must find $\chi$, but we may find it a posteriori after solving equations.
 \end{poznamka}
 
+% 23. 11. 2022
+
+\subsection{Cauchy elastic solid}
+\begin{poznamka}
+	We consider isotropic solid $\implies$ $®T$ is isotropic function of ®B. Representation theorem for isotropic functions:
+	$$ ®T = \alpha_0®I + \alpha_1 ®B + \alpha_2 ®B^t. $$
+\end{poznamka}
+
+\begin{definice}[Naive definition of elastic solid]
+	In elastic solid we can store energy and get all the energy back (like in spring).
+
+	Other view is that elastic solid recovers its shape.
+
+	Storing energy we add with $e = e(®B, \eta)$.
+\end{definice}
+
+\begin{definice}[(Isotropic) elastic solid]
+	$$ e = e(®B, \eta), \qquad \frac{d\eta}{dt} = 0 \text{ in mechanical processes (so it can still conduct heat).} $$
+\end{definice}
+
+\begin{definice}[Helmholk free energy]
+	$$ \psi(\theta, \rho) := e(\eta, \rho)|_{\eta = \eta(\theta, \rho)} - \theta \eta(\theta, \rho) $$
+	
+	\begin{poznamkain}
+		$$ \theta = \frac{\partial e}{\partial \eta}(\eta, \rho), $$
+		solve for $\eta$: $\eta = \eta(\theta, \rho)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{dusledek}
+	Chain rule:
+	$$ \frac{\partial \psi}{\partial \theta}(\theta, \rho) = \frac{\partial e}{\partial \eta}(\eta, \rho)|_{\eta=\eta(\theta, \rho)} · \frac{\partial \eta}{\partial \theta}(\theta, \rho) - \eta(\theta, \rho) - \theta \frac{\partial \eta}{\partial \theta}(\theta, \rho) =  $$
+	$$ = \theta · \frac{\partial \eta}{\partial \theta}(\theta, \rho) - \eta(\theta, \rho) - \theta \frac{\partial \eta}{\partial \theta}(\theta, \rho) = -\eta(\theta, \rho). $$
+
+	$$ \frac{\partial \psi}{\partial \rho}(\theta, \rho) = \frac{\partial e}{\partial \eta}(\eta, \rho)|_{\eta=\eta(\theta, \rho)} · \frac{\partial \eta}{\partial \rho}(\theta, \rho) + \frac{\partial\eta}{\partial \rho}(\eta, \rho)|_{\eta = \eta(\theta, \rho)} - \theta \frac{\partial \eta}{\partial \rho}(\theta, \rho) = \frac{\partial\eta}{\partial \rho}(\eta, \rho)|_{\eta = \eta(\theta, \rho)}. $$
+
+	\begin{poznamkain}
+		$$ \frac{\partial \psi}{\partial \rho}(\theta, \rho) := \frac{P_{th}(\theta, \rho)}{\rho^2}. $$
+	\end{poznamkain}
+
+	With $\psi(\theta, ®B) = (e(\eta, ®B) - \theta \eta)|_{\eta = \eta(\theta, ®B)}$:
+	$$ \frac{\partial \psi}{\partial \theta}(\theta, ®B) = -\eta(\theta, ®B); $$
+	$$ \frac{\partial \psi}{\partial ®B}(\theta, ®B) = \frac{\partial e}{\partial ®B}(\eta, ®B). $$
+\end{dusledek}
+
+\begin{poznamka}[Find evolution equation for the entropy]
+	$$ \psi=e - \theta\eta, \qquad \frac{d}{dt} · \rho $$
+	$$ \underbrace{\rho \frac{d\phi}{dt}}_{\rho \frac{\partial \psi}{\partial \theta}·\frac{d\theta}{dt} + \rho \frac{\partial \psi}{\partial ®B}:\frac{d®B}{dt}} = \underbrace{\rho \frac{de}{dt}}_{®T:®D - \Div ¦j_q} - \rho \frac{d\theta}{dt} \eta - \rho \theta \frac{d\eta}{d t} $$
+	$$ -\rho \eta \frac{d\theta}{dt} + \rho \frac{\partial \psi}{\partial ®B}:\frac{d®B}{dt} = ®T:®D - \Div ¦j_q - \rho \frac{d\theta}{dt} \eta - \rho \theta \frac{d\eta}{d t} $$
+	$$ \rho \theta \frac{d\eta}{dt} = ®T:®D - \rho \frac{\partial \psi}{\partial ®B}:\frac{d®B}{dt} - \Div¦j_q. $$
+	We already know $\overset{\nabla}{®B} = ®O$ $\implies$ $\frac{d®B}{dt} - ®L®B - ®B®L^T = ®O$ $\implies$ $\frac{d®B}{dt} = ®L®B + ®B®L^T$. So
+	$$ \rho \theta \frac{d\eta}{dt} = ®T:®D - \rho \tr\(\frac{\partial \psi}{\partial ®B}(®L®B - ®B®L^T)\) - \Div ¦j_q. $$
+	In isotropic material:
+	$$ TR = \tr\(\frac{\partial \psi}{\partial ®B}(®L®B - ®B®L^T)\) = \tr\(®B \frac{\partial \psi}{\partial ®B}®L + \frac{\partial \psi}{\partial ®B}®B®L^T\). $$
+	For isotropic functions of tensor variable: $\psi = \psi(\theta, I_1, I_2, I_3)$,
+	$$ \frac{\partial \psi}{\partial ®B} = \frac{\partial \psi}{\partial I_1}·\frac{\partial I_1}{\partial ®B} + \frac{\partial \psi}{\partial I_2}·\frac{\partial I_2}{\partial ®B} + \frac{\partial \psi}{\partial I_3}·\frac{\partial I_3}{\partial ®B} $$
+	We know $\frac{\partial I_3}{\partial ®B} = (\det ®B)®B^{-T}$, $\frac{\partial I_1}{\partial ®B} = ®I$, $\frac{\partial I_2}{\partial ®B} = (\tr ®B)®I - ®B^T$. So we get that $\frac{\partial \psi}{\partial ®B}$ commutes with $®B$.
+
+	$$ TR = \tr\(®B \frac{\partial \psi}{\partial ®B}(®L + ®L^T)\) = \tr\(2®B \frac{\partial \psi}{\partial ®B}®D\). $$
+	$$ \rho \theta \frac{d\eta}{dt} = ®T:®D - 2\rho®B\frac{\partial \psi}{\partial ®B}:®D - \Div ¦j_q = \(®T - 2\rho®B\frac{\partial \psi}{\partial ®B}\):®D - \Div ¦j_q. $$
+	$$ \rho \frac{d\eta}{dt} = \frac{1}{\theta}\(®T - 2\rho®B\frac{\partial \psi}{\partial ®B}\):®D - \Div \frac{¦j_q}{\theta} - \frac{¦j_q · \nabla \theta}{\theta^2}. $$
+	$$ \rho \frac{d\eta}{dt} + \Div \frac{¦j_q}{\theta} = \frac{1}{\theta}\(®T - 2\rho®B\frac{\partial \psi}{\partial ®B}\):®D - \frac{¦j_q · \nabla \theta}{\theta^2}. $$
+
+	$$ ®T = 2\rho®B\frac{\partial \psi}{\partial ®B} \implies \text{ no entropy change due to mechanical processes.} $$
+	This is called hyperelactic solid or Green elastic solid.
+\end{poznamka}
+
+\begin{poznamka}[Green elastic solid evolution equation]
+	Solve for $\theta, ¦v, ®B$:
+	$$ \rho \frac{d¦v}{dt} = \Div ®T + \rho¦b, \qquad ®T = 2\rho ®B \frac{\partial \psi}{\partial ®B}(\theta, ®B), \qquad \overset{\nabla}{®B} = ®O. $$
+
+	Where is evolution equation for temperature field?
+	$$ \rho \theta \frac{d\eta}{dt} = -\Div ¦j_q $$
+	$$ -\rho\theta \frac{\partial^2 \psi}{\partial \theta^2}(\theta, ®B) \frac{d\theta}{dt} - \rho\theta\frac{\partial^2 \psi}{\partial \theta\partial ®B}(\theta, ®B) \frac{d®B}{dt} = -\Div¦j_q. $$
+
+	$$ c_V(\theta, ®B) := - \theta \frac{\partial^2 \psi}{\partial \theta^2}(\theta, ®B), $$
+	specific heat at constant volume.
+
+	$$ \rho c_V(\theta, ®B) \frac{d\theta}{dt} = - \Div ¦j_q + \rho \theta \frac{\partial^2 \psi}{\partial \theta \partial ®B}:\frac{d®B}{dt}. $$
+	We know $\frac{d®B}{dt} = ®L®B + ®B®L^T$, $¦j_q = -k\nabla \theta$.
+\end{poznamka}
+
+\begin{poznamka}[Other view]
+	$$ \overline{®B} := \frac{®B}{J^{\frac{2}{3}}}, \qquad J = \det ®F, \qquad \implies \det \overline{®B} = 1. $$
+	$$ \psi(\theta, ®B) = \psi(\theta, \rho, \overline{®B}) = \psi(\theta, J^2, \overline{®B}). $$
+\end{poznamka}
+
+\begin{poznamka}[Some specific formulas]
+	(Lagrangian setting: $ ®T_R = (\det ®F) ®T ®F^{-T}$.)
+
+	$\psi(\theta, ®B)$, isotropic elastic solid: $\psi(\theta, ®B) = \frac{\mu}{2\rho}(\tr ®B - 3)$. Incompressible solid ($\det ®F = 1$) $\rho = \rho_R$.
+
+	$$ ®T = 2\rho ®B \frac{\partial \psi}{\partial ®B} $$
+	$$ ®T = 2\rho ®B \frac{\mu}{2\rho} ®I = \mu ®B $$
+	$$ ®T = -p®I + \mu(®B - ®I). $$
+\end{poznamka}
+
+\begin{poznamka}[Boundary value problems]
+	$$ (\rho \det ®F = \rho_R) $$
+	$$ \rho_R \frac{\partial^2 \chi}{\partial t^2} = \Div ®T_R + \rho_R ¦b $$
+	$$ (®T_R = (\det ®F)®T®F^{-T}, \qquad ®T = 2\rho ®B \frac{\partial \psi}{\partial ®B}) $$
+
+	We have this problem, but we must specify initial conditions:
+	$$ \chi|_{t = t_0} = \chi_0, \qquad \frac{\partial \chi}{\partial t}|_{t=t_0} = ¦V_0 \text{ on }\Omega_0 $$
+	and boundary conditions. There are two options for b. conditions:
+	\begin{itemize}
+		\item (displacement boundary condition) $\chi(t, ¦X)_{¦X \in \partial \Omega_0} = \chi_B(t, ¦X)$.
+		\item (traction boundary condition = we specify forces on the boundary) for example no-traction: $®T¦n |_{¦x \in \partial \Omega} = ¦o$ ($(\det ®F) ®T ®F^{-T}¦N|_{¦X = \chi^{-1}(\partial \Omega)} = ¦o$ $\implies$ $®T_R ¦N|_{¦X \in (\partial \Omega_0)}$).
+
+			$$ ®T(¦x, t)¦n(¦x, t)|_{¦x \in \partial \Omega} = ¦f(¦x, t) $$
+			$$ ®T(¦x, t)¦n(¦x, t)|_{¦x \in \partial \Omega} ds = ¦f(¦x, t) ds $$
+			$$ ®T_R(¦X, t)|_{¦X \in \partial\Omega_0} ¦NdS = ¦f(\chi(¦X, t), t)\det ®F(¦X, t) |®F^{-T}(¦X, t)¦N| dS $$
+			$$ ®T_R(¦X, t)|_{¦X \in \partial\Omega_0} ¦N = ¦g(\chi(¦X, t), t) = ¦g(¦X, t) $$
+			this is called dead load (= it doesn't depend on deformation).
+	\end{itemize}
+\end{poznamka}
+
 \end{document}

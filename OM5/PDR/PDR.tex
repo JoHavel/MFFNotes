@@ -342,4 +342,90 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 25. 11. 2022
+
+\begin{lemma}
+	Buď $x \in ®R^n$, $m \in ®N$, $m ≥ 2$, $u \in C^m([0, +∞) \times ®R^n)$ a $u$ splňuje bodově $\partial_t^2 u - \nabla u = 0$ v $(0, ∞) \times ®R^n$, $u = u_0$ a $\partial_t = u_1$ v $\{0\} \times ®R^n$.
+
+	Označme $u^x(r, t) = \not\int_{\partial U(x, r)} u(t, y) dS(y)$, $u_0^x(r, t) = \not\int_{\partial U(x, r)} u_0(y) dS(y)$, $u_1^x(r, t) = \not\int_{\partial U(x, r)} u_1(y) dS(y)$, pro $t ≥ 0$, $x \in ®R^n$.
+
+	Pak $u^x \in C^m([0, +∞)^2)$ a $\partial_t^2 u^x - \partial_r^2 u^x - \frac{n-1}{r} \partial_r u^x = 0$ v $(0, +∞)^2$, $u^x = u_0^x$, $\partial_t u^x = u_1^x$ v $[0, +∞)\times\{0\}$.
+
+	\begin{dukazin}
+		„$u^x \in C^m([0, +∞)^2)$“ spojitost derivací podle $t$ je zřejmá. Derivace dle $r$:
+		$$ \partial_r u^x(r, t) = \frac{r}{n} \not\int_{U(x, r)} \Delta u(y) d\lambda(y), $$
+		podle lemmatu výše. Navíc je spojitá. $\partial_t\partial_r u^x(r, t)$ je jasná.
+
+		$\partial_r^2 u^x(r, t)$ podobně:
+		$$ \not\int_{U(x, r)} (\Delta u)(t, y) d\lambda(y) = \not\int_{0, 1}(\Delta u)(t, x + rz) d\lambda(z) $$
+		spojitá dle teorie míry.
+
+		„Rovnosti“:
+		$$ \partial_r u^x(r, t) = \frac{r}{n} \not\int_{U(x, r)} \Delta u(t, y) d\lambda(y) = \frac{r}{n} \int_{U(x, r)} \partial_t^2 u(t, y) d\lambda(y) = \frac{r^{1 - n}}{n \alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y) $$
+		$$ r^{n-1} \partial_r u^x(r, t) = \frac{1}{n\alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y). $$
+		$$ RHS = r^{1 - n} \partial_r(r^{n-1} \partial_r u^x(r, t)) = \frac{1}{n\alpha_n r^{n-1}} \partial_t^2 \int_{\partial U(x, r)} u dS = \partial_t^2 u^x(r, t) $$
+		$$ RHS = r^{1 - n}(r^{n-1} \partial_r^2 u^x(r, t) + (n-1)r^{n-2} \partial_r u^x(r, t)) = \partial_r^2 u^x(r, t) + \frac{n-1}{r} \partial_r u^x(r, t) \text{ v } (0, +∞)^2. $$
+		$u^x = u_0^x$, $\partial_t u^x = u_1^x$ v $[0, +∞) \times \{0\}$ plyne z definice $u_i^x$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Doplnění pro $n=3$]
+	Označme $t, r ≥ 0$ $\tilde u^x(r, t) = r u^x(r, t)$ a $\tilde u_0^x(r) = r u_0^x(r)$, $\tilde u_1^x(r) = r u_1^x(r)$. Pak
+	$$ \partial_t^2 \tilde u^x = \partial_r^2 u \text{ v } (0, +∞)^2, $$
+	$$ \tilde u^x = 0 \text{ v } \{0\} \times [0, +∞), $$
+	$$ \tilde u^x = \tilde u_0^x, \partial \tilde u^x = \tilde u_1^x \text{ v } [0, +∞) \times \{0\}. $$
+
+	\begin{dukazin}
+		„První“: $\partial_t^2 \tilde u^x = r \partial_t^2 u^x = r\partial_2^2 u^x + 2\partial_r u^x = \partial_r^2 (r u^x) = \partial_r^2 \tilde u^x$.
+
+		„Druhá“: $\tilde u^x = 0$ z definice pro $r = 0$ a podobně „třetí“.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[K lemmatům výše]
+	Řešení $0 < x ≤ t < T$:
+	$$ u(t, x) = \frac{1}{2}\(u_0(x + t) - u_0(t - x)\) + \frac{1}{2} \int_{t-x}^{x + t} u_1(\xi) d\xi $$
+	$$ \tilde u^x(r, t) \overset{r < t}= \frac{1}{2}\(\tilde u_0^x(r + t) - \tilde u_0^x(t - r)\) + \frac{1}{2} \int_{t-r}^{t + r} \tilde u_1^x(\xi) d\xi $$
+	$$ u(t, x) = \lim_{r \rightarrow 0_+} U^x(r, t) = \lim_{r \rightarrow 0_+} \frac{1}{r} \tilde u^x(r, t) = $$
+	$$ \lim_{r \rightarrow 0_+} \frac{1}{2r}\((t + r) u_0^x(t + r) - (t - r)u_0^x(t - r)\) + \frac{1}{2r} \int_{t - r}^{t + r} \xi u_1^x(\xi) d\xi = $$
+	$$ = \partial_t (t·u_0^x(t)) + t u_1^x(t) = u_0^x(t) + t \not\int_{\partial U(x, t)} \nabla u_0(y) \frac{y - x}{t} dS(y) + t \not\int_{\partial U(x, t)} u_1(y) dS(y). $$
+\end{poznamka}
+
+\begin{dukazin}[Kirchhoffův vzorec]
+	Kandidát na řešení vlnové rovnice pro $n=3$:
+	$$ u(t, x) = \not\int_{\partial U(x, t)} u_0(y) + \nabla u_0(y) (y - x) + t u_1(y) dS(y), \qquad x \in ®R^3, t ≥ 0. $$
+\end{dukazin}
+
+\begin{definice}[Poissonnův vzorec v $n=2$]
+	Kandidát na řešení vlnové rovnice v $n=2$:
+	$$ u(t, x) = \frac{1}{2} \not\int_{U(x, t)} t u_0(y) + t \nabla u(y)(y - x) + t^2 u_1(y) \frac{1}{\sqrt{t^2 - |x-y|^2}} dy, \qquad x \in ®R^2, t ≥ 0. $$
+\end{definice}
+
+\begin{veta}
+	Buď $n \in \{2, 3\}$, $u_0 \in C^3(®R^n)$, $u_1 \in C^2(®R^n)$ a $u$ je definováno buď Kirchhoffovým nebo Poissonovým vzorcem. Pak
+	$$ u \in C^2([0, +∞) \times ®R^n); $$
+	$$ \partial_t^2 u - \Delta u = 0 \text{ v } (0, +∞) \times ®R^n; $$
+	$$ u = u_0 \land \partial_t u = u_1 \text{ v } \{0\} \times ®R^n. $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buď $T > 0$, $f \in C^2([0, T] \times ®R^n)$, $n \in \{2, 3\}$. Ať pro $\tau \in (0, T)$ splňuje funkce $u_\tau: [\tau, +∞) \times ®R^n$ následující:
+	$$ u_\tau \in C^2([0, +∞] \times ®R^n); $$
+	$$ \partial_t^2 u_\tau - \Delta u_\tau = 0 \text{ v } (\tau, +∞) \times ®R^n; $$
+	$$ u_\tau = 0 \land \partial_t u_\tau = f(\tau, ·) \text{ v } \{\tau\} \times ®R^n. $$
+
+	Pak pro funkci $u(t, x) := \int_0^t u_\tau(t, x) d\tau$, pro $t \in (0, T)$, $x \in ®R^n$, platí
+	$$ u \in C^2([0, T] \times ®R^n); $$
+	$$ \partial_t^2 u - \Delta u = f \text{ v } (0, T)\times ®R^n $$
+	$$ u = 0 \land \partial_t u = 0 \text{ v } \{0\} \times ®R^n. $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
 \end{document}
