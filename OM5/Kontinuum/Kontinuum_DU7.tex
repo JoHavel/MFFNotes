@@ -1,0 +1,111 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Consider the energetic equation of state for the calorically perfect ideal gas $e(\eta, \rho)$. Show that the specific Helmholtz free energy $\psi$ for the calorically perfect ideal gas is given by the formula
+	$$ \psi(\theta, \rho) = - c_{V, ref} \theta \(\ln\(\frac{\theta}{\theta_{ref}}\) - 1\) + c_{V, ref} \theta (\gamma - 1) \ln\(\frac{\rho}{\rho_{ref}}\), $$
+	where $\rho_{ref}$ and $\theta_{ref}$ are some constants. (Temperature and density at a reference state.)
+
+	\begin{dukazin}
+		Z pátého domácího úkolu víme
+		$$ e(\eta, \rho) = c_{V, ref} \theta_{ref} \(\frac{\rho}{\rho_{ref}}\)^{\gamma - 1} \exp\(\frac{\eta}{c_{V, ref}}\). $$
+		Také víme (z jeho zadání), že $e(\eta, \rho) = \theta c_{V, ref}$, což můžeme také dostat jako
+		$$ \theta = \frac{\partial e}{\partial \eta} = \theta_{ref} \(\frac{\rho}{\rho_{ref}}\)^{\gamma - 1} \frac{1}{c_{V, ref}} \exp\(\frac{\eta}{c_{V, ref}}\), \qquad e(\eta, \rho) = \theta \frac{e}{\theta} = \theta c_{V, ref}. $$
+
+		Nakonec výsledkem pátého úkolu byla i entropie (vyjádřená z $e(\theta, \rho)$), kterou můžeme upravit podle vzorců pro logaritmus:
+		$$ \eta(\theta, \rho) = c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\] = c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\] + c_{V, ref} \ln\[\frac{\rho}{\rho_{ref}}\]·(1 - \gamma). $$
+
+		Nyní už stačí dosadit:
+		$$ \psi(\theta, \rho) = e(\eta, \rho)|_{\eta=\eta(\theta, \rho)} - \theta \eta(\theta, \rho) = $$
+		$$ = \theta c_{V, ref} - \theta\(c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\] + c_{V, ref} \ln\[\frac{\rho}{\rho_{ref}}\]·(1 - \gamma)\) = $$
+	$$ = - c_{V, ref} \theta \(\ln\(\frac{\theta}{\theta_{ref}}\) - 1\) + c_{V, ref} \theta (\gamma - 1) \ln\(\frac{\rho}{\rho_{ref}}\). $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Consider a homogeneous isotropic elastic solid with the Helmholtz free energy in the form $\psi = \psi(\theta, ®B)$. We already know that the Cauchy stress ®T tensor is related to the derivative of the Helmholtz free energy via the formula $®T = 2\rho \frac{\partial \psi}{\partial ®B} ®B$.
+
+	Since the material is isotropic, the Helmholtz free energy must be in fact a function of the invariants of ®B: $\psi = \psi(\theta, I_1, I_2, I_3)$, where the invariants are given by the formulae
+	$$ I_1 := \tr ®B, \qquad I_2 := \frac{1}{2}\((\tr ®B)^2 - \tr ®B^2\), \qquad I_3 := \det ®B. $$
+
+	Show that $®T = \alpha_0 ®I + \alpha_1®B + \alpha_2®B^2$, where
+	$$ \alpha_0 := 2 \rho I_3 \frac{\partial\psi}{\partial I_3}, \qquad
+	\alpha_1 := 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\), \qquad
+	\alpha_2 := -2 \rho \frac{\partial \psi}{\partial I_2}. $$
+
+	\begin{dukazin}
+		Z řetízkového pravidla:
+		$$ ®T = 2\rho \frac{\partial \psi}{\partial ®B} ®B = 2\rho \frac{\partial \psi}{\partial I_1}\frac{\partial I_1}{\partial ®B} ®B + 2\rho \frac{\partial \psi}{\partial I_2}\frac{\partial I_2}{\partial ®B}®B + 2\rho \frac{\partial \psi}{\partial I_3}\frac{\partial I_3}{\partial ®B}®B. $$
+
+		Zřejmě $\frac{\partial I_1}{\partial ®B} = ®I$,
+		$$ \frac{\partial I_2}{\partial ®B} = \frac{1}{2} \frac{\partial (\tr ®B)^2}{\partial \tr ®B}\frac{\partial \tr ®B}{\partial ®B} - \frac{1}{2} \frac{\partial \tr ®B^2}{\partial (®B^2)}\frac{\partial ®B^2}{\partial ®B} = \frac{2}{2}(\tr ®B)®I - \frac{2}{2}®I\,®B = ®I \tr ®B - ®B. $$
+		Z přednášky navíc víme $\frac{\partial I_3}{\partial ®B} = (\det ®B) ®B^{-T}$. Navíc $®B$ je symetrické (např. z definice $®B^T = (®F®F^T)^T = (®F^T)^T ®F^T = ®F®F^T = ®B$), tedy $\frac{\partial I_3}{\partial ®B} = (\det ®B) ®B^{-1}$.
+
+		Dosazením:
+		$$ ®T = 2\rho \frac{\partial \psi}{\partial I_1}®I\,®B + 2\rho \frac{\partial \psi}{\partial I_2}\(®I\,I_1 - ®B\)®B + 2\rho \frac{\partial \psi}{\partial I_3}\(I_3®B^{-1}\)®B = $$
+		$$ = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}®B^2. $$
+	\end{dukazin}
+
+	Some people also use the formulae
+	$$ ®T = \beta_0 ®I + \beta_1 ®B + \beta_{-1}®B^{-1}, $$
+	where
+	$$ \beta_0 := 2 \rho \(I_2 \frac{\partial \psi}{\partial I_2} + I_3 \frac{\partial\psi}{\partial I_3}\), \qquad
+	\beta_1 := 2\rho\frac{\partial \psi}{\partial I_1}, \qquad
+	\beta_{-1} := -2 \rho I_3 \frac{\partial \psi}{\partial I_2}. $$
+	Show that they are equivalent to the previous ones.
+
+	\begin{dukazin}
+		Z přednášky víme
+		$$ ®B^{-1} = \frac{1}{I_3}®B^2 - \frac{I_1}{I_3}®B + \frac{I_2}{I_3}®I, $$
+		tedy
+		$$ ®B^2 = I_3 ®B^{-1} + I_1®B - I_2®I. $$
+
+		Dosadíme:
+		$$ ®T = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}®B^2 = $$
+		$$ = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}\(I_3 ®B^{-1} + I_1®B - I_2®I\) = $$
+		$$ = 2 \rho \(I_2 \frac{\partial \psi}{\partial I_2} + I_3 \frac{\partial\psi}{\partial I_3}\)®I + 2\rho\frac{\partial \psi}{\partial I_1}®B - 2\rho I_3\frac{\partial \psi}{\partial I_2}®B^{-1}. $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[3.]
+	Some people prefer to write $\psi = \psi(\theta, ®B)$ as $\psi = \psi(\theta, J, \overline{®B})$, where $J := \det ®F$ and $\overline{®B} := \frac{®B}{J^{\frac{2}{3}}}$.
+
+	This decomposition is motivated by the fact that $J$ is related to the volume-changing part of the deformation, while $\overline{®B}$ characterises the volume-preserving part of the deformation. (Check that $\det \overline{®B} = 1$.)
+
+	\begin{dukazin}
+		Ve třech dimenzích $\det c®A = c^3 \det ®A$, tedy (víme $®B = ®F®F^T$, $\det ®A®B = (\det ®A) (\det ®B)$, $\det ®A^T = \det ®A$):
+		$$ \det \overline{®B} = \det \frac{®B}{J^{\frac{2}{3}}} = \det \frac{®F®F^T}{J^{\frac{2}{3}}} = \frac{1}{J^2}(\det ®F)(\det ®F^T) = \frac{1}{J^2}·J·J = 1. $$
+	\end{dukazin}
+
+	Show that in this case the counterpart of $®T = 2\rho \frac{\partial \psi}{\partial ®B}®B$ is
+	$$ ®T = \rho J \frac{\partial \psi}{\partial J} ®I + 2 \rho \(\frac{\partial \psi}{\partial \overline{®B}}\overline{®B}\)_\delta, \qquad ®A_\delta := ®A - \frac{1}{3} \(\tr ®A\) ®I. $$
+
+	\begin{dukazin}
+		Podle řetízkového pravidla
+		$$ ®T = 2 \rho \frac{\partial \psi(\theta, J, \overline{®B})}{\partial ®B}®B = 0 + 2 \rho \frac{\partial \psi}{\partial J} \frac{\partial J}{\partial ®B}®B + 2 \rho \frac{\partial \psi}{\partial \overline{®B}} \frac{\partial \overline{®B}}{\partial ®B}®B. $$
+
+		První nás tedy zajímá $\frac{\partial J}{\partial ®B} = \frac{\partial \det ®F}{\partial ®F®F^T}$. Použijeme toho, že víme, kolik je $\frac{\partial \det (®F®F^T)}{\partial ®F®F^T}$ a že umíme derivovat součin funkcí ($\det ®A®B = (\det ®A) (\det ®B)$, $\det ®A^T = \det ®A^T$):
+		$$ J^2 ®B^{-1} = (\det ®F)^2 ®B^{-1} = (\det ®F)(\det ®F^T) ®B^{-1} = (\det ®F®F^T)®B^{-1} = (\det ®B)®B^{-1} = LHS $$
+		$$ LHS = \frac{\partial \det ®B}{\partial ®B} = \frac{\partial \det (®F®F^T)}{\partial ®F®F^T} = \frac{\partial \det ®F^T}{\partial ®F®F^T}\det ®F + \frac{\partial \det ®F}{\partial ®F®F^T}\det ®F^T = RHS $$
+		$$ RHS = \frac{\partial \det ®F}{\partial ®F®F^T}\det ®F + \frac{\partial \det ®F}{\partial ®F®F^T}\det ®F = \frac{\partial J}{\partial ®B}J + \frac{\partial J}{\partial ®B}J = 2\frac{\partial J}{\partial ®B}J. $$
+		Tedy za předpokladu, že $J ≠ 0$, což je rozumný předpoklad, protože jinak bychom nemohli definovat $\overline{®B}$, máme $\frac{\partial J}{\partial ®B} = \frac{1}{2}J®B^{-1}$.
+		První člen je tedy (a tak přesně vychází do vzorce ze zadání)
+		$$ 2 \rho \frac{\partial \psi}{\partial J} \frac{\partial J}{\partial ®B}®B = 2 \rho \frac{\partial \psi}{\partial J} \frac{1}{2}J®B^{-1} ®B = \rho J \frac{\partial \psi}{\partial J}®I. $$
+
+		Z druhého členu potřebujeme spočítat (použil jsem derivaci součinu):
+		$$ \frac{\partial \overline{®B}}{\partial ®B} = \frac{\partial \(\frac{®B}{J^{-\frac{2}{3}}}\)}{\partial ®B} = \frac{\partial ®B\frac{®I}{J^{-\frac{2}{3}}}}{\partial ®B} = \frac{\partial ®B}{\partial ®B}\frac{®I}{J^{-\frac{2}{3}}} + ®B \frac{\partial \(\frac{®I}{J^{-\frac{2}{3}}}\)}{\partial ®B}. $$
+		Jistě $\frac{\partial ®B_{ik}}{\partial ®B_{mn}}®I_{kj} = \delta_{im}\delta_{kn}\delta_{kj}$. Tedy při posčítání přes $i$, $k$ a $j$ dostaneme dostaneme $1$ pro všechny $m$ a $n$, tedy vychází
+		$$ 2\rho \frac{\partial \psi}{\partial \overline{®B}}\frac{\partial ®B}{\partial ®B}\frac{®I}{J^{-\frac{2}{3}}}®B = 2\rho \frac{\partial \psi}{\partial \overline{®B}} \frac{®B}{J^{-\frac{2}{3}}} = 2\rho \frac{\partial \psi}{\partial \overline{®B}}\overline{®B}. $$
+		Což je druhý „člen“ ve vzorci ze zadání. Zbývá už jen $®B \frac{\partial ®I · J^{-\frac{2}{3}}}{\partial ®B}$. To můžeme derivovat jako složenou funkci a dosadit výsledek prvního členu:
+		$$ ®B \frac{\partial ®I · J^{-\frac{2}{3}}}{\partial ®B} = ®B \(-\frac{2}{3} J^{-\frac{5}{3}} ®I\) \frac{\partial J}{\partial ®B} = ®B \(-\frac{2}{3} J^{-\frac{5}{3}} ®I\) \frac{1}{2}J®B^{-1} = -\frac{1}{3}\overline{®B}\,®I\,®B^{-1}. $$
+
+		Tedy dostáváme („třetí člen“ výrazu ze zadání, tedy máme hotovo):
+		$$ -\frac{1}{3}2\rho \frac{\partial \psi}{\partial \overline{®B}}:\overline{®B}·®I·®B^{-1}·®B = -\frac{1}{3}2\rho \tr\(\frac{\partial \psi}{\partial \overline{®B}}·\overline{®B}\) ®I. $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

@@ -818,4 +818,82 @@ TODO?
 	$$ = \sup_{||\phi|| ≤ 1} \int_\Omega (f - ? - bu - ¦c \nabla u)\phi - \int_\Omega(A \nabla u - ¦d u)\nabla \phi ≤ \int_0^T ||f||_2^2 + c(||u||_2^2 + ||\nabla u||_2^2). $$
 \end{poznamka}
 
+% 28. 11. 2022
+
+\begin{definice}
+	Let $\Omega \subseteq ®R^d$ open and bounded, $L$ be an elliptic operator, $u_0 \in L^2(\Omega)$, $f \in L^2(0, T, V^*)$ ($V = W_0^{1, 2}(\Omega)$). We say that $u$ is a weak solution to
+	$$ \partial_t u + Lu = f \text{ in } (0, T) \times \Omega, $$
+	$$ u = 0 \text{ on } (0, T) \times \partial \Omega, $$
+	$$ u(0) = u_0 \text{ in } \Omega $$
+	iff $u \in L^2(0, T, V) \cap W^{1, 2}(0, T, V^*)$, $u(0) = u_0$ and for almost all $t \in (0, T)$ and $\forall \phi \in V$:
+	$$ <\partial_t u, \phi>_V + \int_\Omega A \nabla u · \nabla \phi + b u \phi + ¦c · \nabla u \phi - ¦d \nabla \phi u = <f, \phi>_V. $$
+\end{definice}
+
+\subsection{Existence and uniqueness}
+\begin{veta}
+	Let $\Omega \subseteq ®R^d$ be open and bounded, $f \in L^2(0, T, V^*)$, $u_0 \in L^2(\Omega)$ and $L$ be elliptic operator. Then $\exists! u$ – weak solution.
+
+	\begin{dukazin}[Uniqueness]
+		$u_1$, $u_2$ are weak solutions. Define $w := u_1 - u_2 \in L^2(0, T, V) \cap W^{1, 2}(0, T, V^*)$. WF for $u_1$ $-$ WF for $u_2$:
+		$$ <\partial_t w, \phi> + \int_{\Omega} A \nabla w · \nabla \phi = \int_\Omega -b w \phi - ¦c \nabla w \phi + ¦d·\nabla \phi w. $$
+		Follow almost everywhere, replace $u$ by $w$. Set $\phi = w \implies$
+		$$ <\partial_t w, w> + ¦c \|w\|_{1, 2}^2 ≤ c\|w\|_2^2. $$
+		Integrate in respect of time, use IBP-formula for $<·, ·>$:
+		$$ \int_0^t <\partial_t w, w> = \frac{1}{2} \|w(t)\|_2^2 - \frac{1}{2}\|w(0)\|_2^2 = \frac{1}{2}\|w(t)\|_2^2. $$
+		$$ \implies \|w(t)\|_2^2 ≤ c \int_0^t \|w(\tau)\|_2^2 d\tau $$
+		$$ \frac{d}{dt} \underbrace{\int_0^t \|w(\tau)\|_2^2 d\tau}_{=:g(t) ≥ 0} ≤ c \int_0^t \|w(\tau)\|_2^2 d\tau $$
+		$$ g' ≤ c·g $$
+		From Grönwall's inequality
+		$$ g(t) ≤ e^{c·t}g(0) \implies \int_0^t \|w(\tau)\|_2^2 d\tau ≤ e^{c t} \int_0^0 \|w(\tau)\|_2^2 d\tau = 0 \implies w(t) = 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Existence (via Galerkim approximation)]
+		We know $\exists \{w_j\}_{j=1}^∞$ basis of ¦V, which is ortonormal in $L^2$ and $\|P^Nu\|_V ≤ c\|u\|_V$, where $P^N$ is orthogonal projection in $L^2(\Omega)$ onto $\{w_j\}_{j=1}^N$.
+
+		We solve for $u^n(t, x) = \sum_{i=1}^n a_i^n(t) w_i(x)$. We want
+		$$ <\partial u^n, w_j> = -\int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n + <f, w_j> $$
+		for $j \in [n]$ for almost all $t \in (0, T)$ (weak formulation of the problem for n, call it WFn).
+	\end{dukazin}
+
+	\begin{dukazin}[„Existence of $u^n$“]
+		LHS of WFn:
+		$$ \sum_{i=1}^n <\partial_t a_i^n w_i, w_j>_V = \sum_{i=1}^n \partial_t a_i^n(t)<w_i, w_j>_V = \sum_{i=1}^n \partial_t a_i^n \delta_{ij} = \partial_t a_j^n(t). $$
+		RHS of WFn:
+		$$ \sum_{i=1}^n a_i^n(t) \(\underbrace{- \int_\Omega A \nabla w_i \nabla w_j + b w_iw_j + ¦c \nabla w_iw_j - ¦d \nabla w_jw_i}_{G_{ij}(k) \text{ – bounded and measurable?}}\) + \underbrace{<f(t), w_j>}_{g_j^{(t)} \text{ – measurable? on } g \in L^2(0, T)}. $$
+		
+		So
+		$$ \frac{d}{dt} a_j^n(t) = \sum_{i=1}^n a_i^n(t) G_{ij}(t) + g_j(t), \qquad j \in [n]. $$
+		Initial data: $u^n(0) := P^n u_0$ ($a_j^n(0) := \int_\Omega u_0 w_j$).
+
+		ODE $\implies$ $\exists \tilde T ≤ T$ and $a_i^n(t) \in AC$ on $[0, \tilde T)$ and solve for almost all $t \in (0, \tilde T)$. Moreover either we can set $\tilde T = T$ or $|a^n(t)| \overset{t \rightarrow \tilde T}\rightarrow ∞$.
+
+		Now we prove $\tilde T = T$. We show $|a^n(t)| ≤ c$.
+
+		Multiply WFn for $j$ by $a_j^n(t)$ and sum it:
+		$$ LHS = \sum_{j=1}^n a_j^n <\partial_t u_j^n, w_j> = <\partial_t u^n, \sum_{j=1}^n a_j^n w_j> = <\partial u^n, u^n>. $$
+		$$ RHS = \underbrace{<\partial_t u^n, u^n>}_{=\frac{d}{dt} \|u^n\|_2^2} + c_1 \|u^n\|_V^2 ≤ c(\|f\|_{V^*}^2 + \|u^n\|_2^2). $$
+		Grönwall: $\|u^n(t)\|_2^2 + \int_0^{\tilde T} \|u^n\|_{1, 2}^2 ≤ c(\|u^n(0)\|_2^2) + \int_0^T \|f\|_{V^*}^2$.
+		$$ \forall t < \tilde T: \|u^n(t)\|_2^2 + \int_0^{\tilde T} \|u^n\|_{1, 2}^2 ≤ c\(\int_0^{\tilde T} \|f\|_{V^*}^2 + \|u_0\|_2^2\) ≤ \tilde c. $$
+		$$ \lim_{t \rightarrow \tilde T_-}|a^n(t)|^2 = \lim_{t \rightarrow \tilde T_-} \|u^n(t)\|_2^2 ≤ \tilde c. $$
+	\end{dukazin}
+
+	\begin{dukazin}
+		$$ \|u^n\|_{L^2(0, T, V)} + \|u^n\|_{L^∞(0, T, L^2(\Omega))} ≤ c(f, u_0). $$
+		Time derivative
+		$$ \|\partial u^n\|_{V^*} = \sup_{w \in V, \|w\|≤1} \<\partial_t u^n, w\> = \sup_{w \in V, \|w\| ≤ 1} \int_\Omega \partial u^n w = \sup_{…} \int_\Omega \partial u^n P^n w. $$
+		WFn:
+		$$  ≤ \sup_{…} c(\|f\|_{V^*} + \|u^n\|_V) \|P^n w\|_V ≤ \sup_{…} \tilde c (\|f\|_{V^*} + \|u^n\|_V) \|w\|_V ≤ $$
+		$$ ≤ \tilde (\|f\|_{V^*} + \|u^n\|_V). $$
+		$$ \int_0^T \|\partial_t u^n(t)\|_{V^*}^2 ≤ \tilde{\tilde c} \int_0^T (\|f(t)\|_{V^*}^2 + \|u^n(t)\|_V^2) ≤ c(f, u_0). $$
+
+		$u^n$ is a bounded sequence in $L^2(0, T, V) \cap W^{1, 2}(0, T, V^*)$ so $\exists$ a subsequence $u^{m_n}$:
+		$$ u^{m_n} \rightharpoonup u \text{ in } L^2(0, T, V), \qquad \partial_t u^n \rightharpoonup \partial_t u \text{ in } L^2(0, T, V^*). $$
+		To show $u$ is a weak solution.
+
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+% 29. 11. 2022 Přednáška nebyla
+
 \end{document}

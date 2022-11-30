@@ -336,7 +336,7 @@ TODO?
 
 \begin{tvrzeni}[Rate(s) of strain]
 	$$ \frac{d ®E}{dt}(¦X, t) = \frac{d}{dt} \(\frac{1}{2}(®F^T ®F - ®I)\) = \frac{1}{2}\(\frac{d®F^T}{dt} ®F + ®F^T \frac{d®F}{dt}\) = \frac{1}{2}\(®F^T®L^T®F + ®F^T®L®F\) = $$
-	$$ = ®F^T \(\frac{1}{2} (®L^T + ®L)\)®F =: ®F®D®F, $$
+	$$ = ®F^T \(\frac{1}{2} (®L^T + ®L)\)®F =: ®F®D®F, $$
 	$$ ®D(¦x, t) := \frac{1}{2}(®L + ®L^T). $$
 
 	$$ \frac{d@e}{dt}(¦x, t) = \frac{1}{2}\(\frac{d}{dt} \(®I - ®F^{-T}®F^{-1}\)\) = \frac{1}{2}\(-\(\frac{d®F^{-1}}{dt}\)^T®F^{-1} - ®F^{-T} \frac{d®F^{-1}}{dt}\) = $$
@@ -394,9 +394,9 @@ TODO?
 	Newtons 2nd law for single particle: $m \frac{d^2 ¦x}{dt^2} = ¦F$. We want to find a counterpart for continuously distributed matter…
 	$$ \frac{d}{dt} (m \frac{d¦x}{dt}) = ¦F $$
 	We have $\frac{dm}{dt} = 0$ ($m = \const$). In continuum mechanics we have $\frac{d}{dt} m_{V(t)} = 0$, $m_{V(t)} := \int_{V(t)} \rho(¦x, t) dv$  ($\rho$ = density). Than (from Reynolds transport theorem)
-	$$ 0 = \frac{d}{dt} m_{V(t)} = \frac{d}{dt} \int_{V(t)} \rho(¦x, t) dv = \int_{V(t)} \(\frac{d\rho}{dt}(¦x, t) + \rho(¦x, t) \div_{¦x} ¦v(¦x, t)\)dv $$
+	$$ 0 = \frac{d}{dt} m_{V(t)} = \frac{d}{dt} \int_{V(t)} \rho(¦x, t) dv = \int_{V(t)} \(\frac{d\rho}{dt}(¦x, t) + \rho(¦x, t) \Div_{¦x} ¦v(¦x, t)\)dv $$
 	From localization lemma ($V(t)$ is arbitrary material volume) we get Balance of mass:
-	$$ \frac{d \rho}{d t}(¦x, t) + \rho(¦x, t) \div_{¦x} ¦v(¦x, t) = 0. $$
+	$$ \frac{d \rho}{d t}(¦x, t) + \rho(¦x, t) \Div_{¦x} ¦v(¦x, t) = 0. $$
 
 	Spring: $m \frac{d^2 ¦x}{dt^2} = - k¦x - b\frac{d¦x}{dt}$, $k$ is spring stiffness, $-b…$ is damping (proportional to the velocity).
 	$$ m \frac{d^2¦x}{dt^2}·\frac{d¦x}{dt} = - k¦x · \frac{d¦x}{dt} - b \frac{d¦x}{dt}·\frac{d¦x}{dt}, $$
@@ -680,4 +680,115 @@ TODO?
 	\end{itemize}
 \end{poznamka}
 
+% 30. 11. 2022
+
+\begin{poznamka}[Linearized setting]
+	We want to simplify the governing equations. (We want to linearise them.)
+
+	We can't talk about small quantity if it has units (it's small only in some units). So we want dimensionless (without unit) quantity. Fortunately we have one – $\nabla_{¦X}\chi$. We introduce displacement: $¦U = ¦x - ¦X = \chi(¦X, t) - ¦X$ (but it has units), so small quantity will be $|\nabla_{¦X}¦U| \ll 1$.
+
+	$$ ®F = \frac{\partial \chi}{\partial ¦X} \implies \nabla_{¦X} ¦U = ®F - ®I \implies ®F = ®I + \nabla_{¦X} ¦U. $$
+	$$ \det ®F = \det (®I + \nabla_{¦X}) ≈ 1 + \tr(\nabla_{¦X}¦U) $$
+
+	How to say that the material is incompressible: $\rho_R = \rho \det ®F \implies \det ®F = 1$. Linear setting: $1 + \tr(\nabla_{¦X}¦U) = 1 \implies \tr(\nabla_{¦X}¦U) = 0$.
+
+	$$ \rho_R ≈ \rho(1 + \tr(\nabla_{¦X}¦U)). $$
+
+	$$ ®B = ®F ®F^T = (®I + \nabla_{¦X}¦U)(®I + \nabla_{¦X}¦U)^T ≈ ®I + \nabla_{¦X} ¦U + (\nabla_{¦X} ¦U)^T, $$
+	small/infinitesimal strain tensor: $@\epsilon := \frac{1}{2}\(\nabla_{¦X} ¦U + (\nabla_{¦X} ¦U)^T\)$,
+	$$ ®B ≈ ®I + 2@\epsilon. $$
+	
+	$$ ®T = f(®B - ®I) ≈ \lambda (\tr @\epsilon)®I + 2 \mu @\epsilon.z $$
+
+	Warning: $®B ≈ ®I + 2@\epsilon$ may be dangerous for example with $¦x = ®Q¦X$ (rotation: $®T = ®O$ but $®T \not≈ ®O$). But $@\epsilon = ®O$ for $¦x = ¦k \times ¦X$ for constant ¦k, this approximate small rotations.
+
+	For isotropic elastic solids:
+	$$ ®F^{-1} = (®I + \nabla_{¦X}¦U)^{-1} ≈ ®I - \nabla_{¦X}¦U. $$
+
+	$$ ®T_R = (\det ®F) ®T ®F^{-1} ≈ (1 + \tr \nabla_{¦X}¦U)®T(®I - \nabla_{¦X}¦U) ≈ ®T (≈ \lambda \tr @\epsilon ®I + 2\mu@\epsilon \text{ for isotropic elastic solid}) $$
+
+	We will write $@\tau ≈ ®T_R ≈ ®T$.
+
+	$$ \rho_R(¦X) \frac{\partial^2 ¦U}{\partial t^2} ≈ \Div @\tau(¦X, t) + \rho_R(¦X)¦b(¦X, t). $$
+
+	Boundary conditions: $¦U(¦X, t) = ¦U_0(¦X, t)$ for $¦X \in \partial \Omega$ (displacement boundary condition). $@\tau ¦N = ¦g(¦X, t)$.
+\end{poznamka}
+
+\begin{definice}
+	Parameters from linearised elasticity: $@\tau = \lambda (\tr @\epsilon)®I + 2\mu @\epsilon$ are called Lamé parameters.
+
+	But Young modulus – $E = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu}$ – and Poisson ratio – $\gamma = \frac{\lambda}{2(\lambda + \mu)}$ – are more used.
+\end{definice}
+
+\begin{poznamka}[Solve $@\tau = \lambda (\tr @\epsilon)®I + 2\mu @\epsilon$ for $@\epsilon$]
+	We take trace:
+	$$ \tr @\tau = 3\lambda \tr @\epsilon + 2\mu \tr @\epsilon \implies \tr @\epsilon = \frac{1}{3\lambda + 2\mu} \tr @\tau $$
+
+	And replace
+	$$ @\tau = \lambda\(\frac{1}{3\lambda + 2\mu} \tr @\tau\) + 2\mu @\epsilon \implies @\epsilon = \frac{1}{E}\((1 + \gamma)@\tau - \nu(\tr @\tau)®I\) = $$
+	$$ = \frac{1}{\mu}(@\tau - \frac{\lambda}{3\lambda + 2\mu}(\tr @\tau)®I) = \frac{1}{9\(\lambda + \frac{2}{3}\mu\)}(\tr @\tau)®I + \frac{1}{2\mu}@\tau_\delta, $$
+	where $@\tau_\delta := \(@\tau - \frac{1}{3}(\tr @\tau)®I\)$.
+
+	$$ K := \lambda + \frac{2}{3}\mu \land G := \mu \implies @\epsilon \frac{1}{9K}(\tr @\tau)®I + \frac{1}{2G}@\tau_\delta. $$
+	$K$ is bulk modulus, $G$ is shear modulus.
+\end{poznamka}
+
+\begin{poznamka}
+	Compressive stress: $@\tau = -p®I$. It's compression, so $K>0$.
+
+	Shear stress: $@\tau = \begin{bmatrix} 0 & \tau \\ 0 & 0 \end{bmatrix}$. We want sheer in the direction of force ($\tau$), so $G > 0$.
+
+	$G = \mu = \frac{E}{2(\gamma + 1)} > 0$, $E = \frac{9K\mu}{\mu + 3K} > 0$, $K = \frac{E}{3(1 - 2\gamma)}$, $\gamma = \frac{3K - 2\mu}{2(3K + \mu)}$. So $\gamma > -1$ and $\gamma ≤ \frac{1}{2}$ (equality implies $K = +∞$, $\tr @\epsilon = 0$, $\tr \nabla_{¦X}¦U = 0$, so material is incompressible).
+\end{poznamka}
+
+\begin{priklad}[Extension of right circular cylinder]
+	We take cylinder of radius $R$ and length $L$ and we apply force $F$ to both sides.
+
+	We will ignore difference between current and reference configuration.
+
+	For $(x, y, z) \in \{(x, y, z) \in ®R^3 |x^2 + y^2 < ®R^2, z \in (0, L)\}$. Static problem: $\frac{\partial^2 ¦U}{\partial t^2} = 0$, from $\rho \frac{\partial^2 ¦U}{\partial t^2} = \Div @\tau + \rho_R ¦b$: $\Div @\tau = ®O$. $@\tau¦n|_{x^2 + y^2 = R^2} = ¦o, ¦n = ¦e_{\hat{r}}$. $@\tau ¦n|_{z\in \{L, 0\}} = ±\frac{¦F}{S} = ±\frac{¦F}{\pi R^2}$, $¦n = ±¦e_{\hat{z}}$.
+
+	But this isn't well defined, we have only gradients of ¦U. So we must add for example $¦U|_{0, 0, 0} = 0$.
+
+	$$ \Div @\tau = \begin{pmatrix} \frac{\partial \tau^{\hat{r}\hat{r}}}{\partial r} + \frac{1}{r}\(\frac{\partial \tau^{\hat{r}\hat{\phi}}}{\partial \phi} - \tau^{\hat{\phi}\hat{\phi}} + \tau^{\hat{r}}\hat{r}\) + \frac{\partial \hat{\phi}\hat{z}}{} \\ \frac{\partial \tau^{\hat{\phi}\hat{r}}}{\partial \phi} + \frac{1}{r} \(\frac{\partial \tau^{\hat{\phi}\hat{\phi}}}{\partial \phi} + \tau^{\hat{r}\hat{\phi}} + \tau^{\hat{\phi}\hat{r}}\) + \frac{\partial \tau^{\hat{\phi}\hat{z}}}{\partial \phi} \\ \frac{\partial \tau^{\hat{r}\hat{z}}}{\partial r} + \frac{1}{z}\(\frac{\partial \tau^{\hat{z} \hat{\phi}}}{\partial \phi} + \tau^{\hat{z}}\hat{r}\) + \frac{\partial \tau^{\hat{z}\hat{z}}}{\partial z} \end{pmatrix} $$
+
+	First boundary condition: $\tau^{\hat{r}\hat{r}} = \tau^{\hat{\phi}\hat{r}} = \tau^{\hat{z}\hat{r}} = 0$. So let's assume, that this is zero everywhere. Moreover we have some symmetry:
+	$$ @\tau = \begin{pmatrix} 0 & 0 & 0\\ 0 & 0 & 0 \\ 0 & 0 & \tau^{\hat{z}\hat{z}} \end{pmatrix}. $$
+
+	From second boundary condition we have $\tau^{\hat{z}\hat{z}} = \frac{F}{S}$ on both ends. So we can assume that $\tau^{\hat{z}\hat{z}} = \const = \frac{F}{S}$.
+	$$ @\tau = \begin{pmatrix} 0 & 0 & 0\\ 0 & 0 & 0 \\ 0 & 0 & \frac{F}{S} \end{pmatrix}. $$
+
+	Now we must find the displacement!
+	$$ @\epsilon = \frac{1}{2\mu}\(\delta_{3i}\delta_{3j} \frac{F}{S} - \frac{\lambda}{3\lambda + 2\mu} \frac{F}{S} ®I\) $$
+	$$ @\epsilon = \begin{pmatrix} \frac{\partial U^{\hat{r}}}{\partial r} & \frac{1}{2}\(\frac{1}{r}\frac{\partial U^{\hat{r}}}{\partial \phi} + \frac{\partial U^{\hat{\phi}}}{\partial r} - \frac{U^{\hat{\phi}}}{r}\) & \frac{1}{2}\(\frac{\partial U^{\hat{r}}}{\partial z} + \frac{\partial U^{\hat{z}}}{\partial r}\) \\ … & \frac{1}{r}\frac{\partial U^{\hat{\phi}}}{\partial \phi} + \frac{U^{\hat{r}}}{r} & \frac{1}{2}\(\frac{\partial U^{\hat{\phi}}}{\partial z} + \frac{\partial U^{\hat{z}}}{\partial z} + \frac{\partial U^{\hat{z}}}{\partial \phi}\) \\ … & … & \frac{\partial U^{\hat{z}}}{\partial z} \end{pmatrix}. $$
+	Cylinder is not rotating, so $\frac{\partial}{\partial \phi}$ are zeros. So
+	$$ \frac{\partial U^{\hat{r}}}{\partial r} = \frac{1}{2\mu}\(-\frac{\lambda}{3\lambda + 2\mu}\) \frac{F}{S}r, \qquad \frac{U^{\hat{r}}}{r} = \frac{1}{2\mu}\(-\frac{\lambda}{3\lambda + 2\mu}\)\frac{F}{S}, \qquad \frac{\partial U^{\hat{z}}}{\partial z} = \frac{1}{2\mu}\(\frac{2(\lambda + \mu)}{3\lambda + 2\mu}\)\frac{F}{S}. $$
+
+
+	$U^{\hat{r}}$ we have, $U^{\hat{\phi}} = 0$ and $U^{\hat{z}} = \frac{\lambda + \mu}{\mu(3\lambda + 2\mu)}\frac{F}{S}z$.
+
+	We have all:
+	$$ \Delta L = U^{\hat{z}}|_{z = L} = \frac{\lambda + \mu}{\mu(3\lambda + 2\mu)} L \frac{F}{S}, $$
+	$$ \frac{\Delta L}{L} = \frac{\lambda + \mu}{\mu(3\lambda + 2\mu)}\frac{F}{S}. $$
+	We get $(\frac{F}{S} =) \sigma = E \epsilon (= \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu})$ – Hooke's law.
+
+	$$ \Delta R = U^{\hat{r}}|_{r = R} = -\frac{1}{2\mu}\frac{\lambda}{3\lambda + 2\mu}\frac{F}{S}R, $$
+	$$ -\frac{\frac{\Delta R}{R}}{\frac{\Delta L}{L}} = + \frac{\frac{1}{2\mu}\frac{\lambda}{3\lambda + 2\mu} \frac{F}{S}}{\frac{\lambda + \mu}{\mu(3\lambda + 2\mu)}} \frac{F}{S} = \frac{\lambda}{2(\lambda + \mu) = \nu.} $$
+
+	So $\nu < 0$ implies that if we elongate cylinder, it will expand (which is exotic, but possible).
+\end{priklad}
+
+\begin{priklad}[Elastic waves]
+	We are interested in a wave-like solution $¦U = \underbrace{¦A}_{amplitude} \sin\(\underbrace{¦K}_{\text{wave vector}}·¦X - \underbrace{\omega}_{\text{angular frequency}} t\)$.
+	$$ \rho_R \frac{\partial^2 ¦U}{\partial t^2} = (\lambda + \mu)\nabla (\Div ¦U) + \mu \Delta ¦U. $$
+	$$ \nabla ¦U = ¦A \cos\(¦K·¦X - \omega t\) \nabla (¦K·¦X) = ¦A \cos\(¦K·¦X - \omega t\)\otimes ¦K. $$
+
+	$$ \rho_R \omega^2 ¦A = (\lambda + \mu)(¦A·¦K)¦K + \mu(¦K·¦K)¦A. $$
+	$$ c^2 = \frac{\omega^2}{K^2}\qquad \rho_R c^2 ¦A = (\mu ®I + (\lambda + \mu) \frac{¦K}{K} \otimes \frac{¦K}{K})¦A $$
+	Eigenvalues problem:
+	$$ \rho_R c^2 ¦A = \[\mu(®I - \frac{¦K \otimes ¦K}{K^2}) + (\lambda + 2\mu) \frac{¦K \otimes ¦K}{K^2}\]¦A. $$
+	$$ ¦A = ¦K_\perp \implies c_\perp = \sqrt{\frac{\mu}{\rho_R}}, $$
+	$$ ¦A = ¦K_{||} \implies c_{||} = \sqrt{\frac{\lambda + 2\mu}{\rho_R}}. $$
+\end{priklad}
+	
 \end{document}

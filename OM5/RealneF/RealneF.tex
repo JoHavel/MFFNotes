@@ -313,7 +313,7 @@
 		$$ g_k(x) := \dist(f(x), C_k), \qquad x \in ®R^n, k \in ®N. $$
 		The function $g_k$ is non-negative, $\mu$-measurable, $g_k \in ©L^1(\mu)$. Set $\nu_k = \int g_k d\mu$. We set $P_k := \{x \in f^{-1}(C_k) | \neg(D(\nu_k, \mu, x) = 0)\}$. We have $g_k = 0$ on $f^{-1}(C_k)$ $\implies$ $\mu(P_k) = 0$.
 		$$ \nu_k = \int D(\nu_k, \mu, x) d\mu(x). $$
-		For $x \in ®R^n \setminus \bigcup_{k=1}^∞ P_k$ we choose $\epsilon > 0$ and we find $C_k$ such that $f(x) \in C_k$ and $C_k \subset B(f(x), \frac{1}{2} \epsilon)$. For any $t \in ®R^n$ it holds $|f(t) - f(x)| ≤ g_k(t) + \epsilon$.
+		For $x \in ®R^n \setminus \bigcup_{k=1}^∞ P_k$ we choose $\epsilon > 0$ and we find $C_k$ such that $f(x) \in C_k$ and $C_k \subset B(f(x), \frac{1}{2} \epsilon)$. For any $t \in ®R^n$ it holds $|f(t) - f(x)| ≤ g_k(t) + \epsilon$.
 
 		$x \in f^{-1}(C_k) \implies D(\nu_k, \mu, x) = 0$. We find $\delta > 0$ such that
 		$$ \forall B \in ®B, x \in V, \diam B < \delta: \frac{\nu_k(B)}{\mu(B)} = \frac{\int_B g_k d\mu}{\mu(B)} < \epsilon. $$
@@ -363,6 +363,174 @@
 
 % 23. 11. 2022 (náhradní přednáška)
 
+\begin{lemma}
+	Let $f: (a, b) \rightarrow ®R$, $x_0 \in (a, b)$, and $f'(x_0) \in ®R$. Then we have
+	$$ \lim_{[x_1, x_2] \rightarrow [x_0, x_0], x_1 ≤ x_0 ≤ x_2, x_1 ≠ x_2} \frac{f(x_2) - f(x_1)}{x_2-x_1} = f'(x_0). $$
 
+	\begin{dukazin}
+		WLOG $f'(x_0) = 0$ ($x \mapsto f(x) - f'(x_0)·x$). Choose $\epsilon > 0$. We find $\delta > 0$ such that
+		$$ \forall x \in (a, b), 0 < |x - x_0| < \delta: \left|\frac{f(x) - f(x_0)}{x - x_0}\right| < \epsilon. $$
+		For any $x_1 \in (x_0 - \delta, x_0]$, $x_2 \in [x_0, x_0 + \delta$ we have
+		$$ |f(x_1) - f(x_0)| ≤ \epsilon |x_1 - x_0|, \qquad |f(x_2) - f(x_0)| ≤ \epsilon |x_2 - x_0|. $$
+
+		We get
+		$$ |f(x_2) - f(x_1)| ≤ |f(x_2) - f(x_0)| + |f(x_1) - f(x_0)| ≤ \epsilon |x_1 - x_0| + \epsilon |x_2 - x_0| ≤ \epsilon |x_2 - x_1|. $$
+		$$ \left| \frac{f(x_2) - f(x_1)}{x_2 - x_1}\right| ≤ \epsilon, \qquad x_2 ≠ x_1. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $f: (a, b) \rightarrow ®R$, be non-decreasing on $(a, b)$, $C(f)$ be the set of all points of continuity of $f$, and $A \in ®R$. Then for every $x_0 \in C(f)$ it hold:
+	$$ f'(x_0) = A \Leftrightarrow \lim_{[x_1, x_2] \rightarrow [x_0, x_0], x_1 ≤ x_0 ≤ x_2, x_1 ≠ x_2, x_1, x_2 \in C(f)} \frac{f(x_2) - f(x_1)}{x_2-x_1} = A. $$
+
+	\begin{dukazin}
+		„$\implies$“: This follows from the previous lemma.
+
+		„$\impliedby$“: We check that $f_+'(x_0) = A$: We choose a sequence $\{x_n\}_{n=1}^∞$ such that
+		$$ x_n \in (a, b) \setminus \{x_0\}, x_n > x_0, \qquad \lim_{x_n} = x_0. $$
+
+		We want:
+		$$ \lim_{n \rightarrow ∞} \frac{f(x_n) - f(x_0)}{x_n - x_0} = A. $$
+		For each $n \in ®N$ we find $z_n$, $y_n$ such that
+		$$ y_n ≤ x_n ≤ z_n, n \in ®N, \quad \frac{x_n - x_0}{y_n - x_0} \in B\(1, \frac{1}{n}\), \quad \frac{x_n - x_0}{z_n - x_0} \in B\(1, \frac{1}{n}\), \quad y_n, z_n \in C(f). $$
+		$$ \underbrace{\frac{f(y_n) - f(x_0)}{y_n - x_0}}_{\rightarrow A} · \underbrace{\frac{y_n - x_0}{x_n - x_0}}_{\rightarrow 1} ≤ \frac{f(x_n) - f(x_0)}{x_n - x_0} ≤ \underbrace{\frac{f(z_n) - f(x_0)}{z_n - x_0}}_{\rightarrow A} · \underbrace{\frac{z_n - x_0}{x_n - x_0}}_{\rightarrow 1}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $f$ be a distribution function of a measure $\mu$ on ®R, $x_0 \in C(f)$, $A \in ®R$. Then
+	$$ f'(x_0) = A \Leftrightarrow D(\mu, \lambda_1, x_0) = A. $$
+
+	\begin{dukazin}
+		We choose sequences $\{x_n^1\}_n$, $\{x_n^2\}_n$ such that
+		$$ x_n^1 ≤ x_0 ≤ x_n^2, \qquad \lim(x_n^2 - x_n^1) = 0, \qquad x_n^1 ≠ x_n^2. $$
+		We want:
+		$$ \frac{\mu([x_n^1, x_n^2])}{\lambda([x_n^1, x_n^2])} \rightarrow A. $$
+		For every $n \in ®N$ we find $y_n^1, y_n^2 \in C(f)$ such that
+		$$ y_n^1 ≤ x_0 ≤ y_n^2, \quad \frac{y_n^2 - y_n^1}{x_n^2 - x_n^1} \in B\(1, \frac{1}{n}\), \quad y_n^1 < x_n^1 ≤ x_0 ≤ x_n^2 < y_n^2, \quad \lim(y_n^2 - y_n^1) = 0. $$
+
+		$$ \lim_{n \rightarrow ∞} \frac{\mu([y_n^1, y_n^2])}{y_n^2 - y_n^1} = \lim_{n \rightarrow ∞} \frac{f(y_n^2) - f(y_n^1)}{y_n^2 - y_n^1} =A. $$
+		$$ \lim_{n \rightarrow ∞} \frac{\mu([x_n^1, x_n^2])}{x_n^2 - x_n^1} = \lim_{n \rightarrow ∞} \(\underbrace{\frac{\mu([y_n^1, y_n^2])}{y_n^2 - y_n^1}}_{\rightarrow A}·\underbrace{\frac{y_n^2 - y_n^1}{x_n^2 - x_n^1}}_{\rightarrow 1} + \underbrace{\frac{\mu([x_n^1, x_n^2]) - \mu([y_n^1, y_n^2])}{x_n^2 - x_n^1}}_{|·| < \frac{1}{n}}\) = A. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Lebesgue]
+	Let $f$ be a monotone function on an interval $I$. Then we have
+
+	\begin{itemize}
+		\item $f'(x)$ exists almost everywhere in $I$;
+		\item $f'$ is measurable and $|\int_a^b f'| ≤ |f(b) - f(a)|$, whenever $a, b \in I, a < b$;
+		\item $f' \in L_{loc}^1(I)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		WLOG $f$ is non-decreasing. Let $a, b \in I$, $a < b$. We define $g: ®R \rightarrow ®R$:
+		$$ g(x) = \begin{cases}\lim_{t \rightarrow a+} f(t), & x \in (-∞, a],\\ \lim_{t \rightarrow x+} f(t), & x \in (a, b),\\ f(b), & x \in [b, ∞).\end{cases} $$
+		$g$ is non-decreasing and continuous from the right, $\{x \in (a, b) | f(x) ≠ g(x)\}$ is countable.
+
+		There exists a Radon measure $\nu$ on ®R such that
+		$$ \forall c, d \in ®R, c < d: \nu((c, d]) = g(d) - g(c). $$
+		$\nu = \mu + \sigma$, where $\mu$, $\sigma$ are Radon measures, $\mu \perp \lambda$, $\sigma \ll \lambda$.
+
+		Claim: „$D(\mu, \lambda, x) = 0$ $\lambda$-almost everywhere.“ $N \subset ®R$ measurable, $\lambda(N) = 0$ and $\mu(®R \setminus N) = 0$. $c > 0: D:= \{x \in ®R \setminus N | D(\mu, \lambda, x) > c\}$.
+		$$ 0 = \mu(D) ≥ c·\lambda(D) \implies \lambda(D) = 0. $$
+
+		Previous lemma gives $g'(x) = D(\nu, \lambda, x)$ $\lambda$-almost everywhere, since $g$ is continuous at each point of $[a, b]$ except on countable set $x_0 \in (a, b) \cap C(f)$, then $f'(x_0) = A \in ®R \Leftrightarrow g'(x_0) = A$ $\implies$ $f'1$ exists almost everywhere in $[a, b]$.
+		$$ f(b) - f(a) ≥ g(b) - g(a) = \nu((a, b])) ≥ \sigma((a, b]) = \int_a^b D(\sigma, \lambda, x) d\lambda(x) = $$
+		$$ = \int_a^b D(\nu, \lambda, x) d\lambda(x). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $I$ be a nonempty interval and $f \in BV(I)$. Then $f'(x)$ exists finite almost everywhere in $I$.
+
+	\begin{dukazin}
+		$f = f_1 - f_2$, where $f_1$, $f_2$ are non-decreasing. And we use previous.
+	\end{dukazin}
+\end{veta}
+
+% 28. 11. 2022
+
+\begin{veta}
+	Let $f: [a, b] \rightarrow ®R$, $a < B$ the following are equivalent:
+
+	\begin{itemize}
+		\item $f \in AC([a, b])$;
+		\item We have $\phi \in L^1([a, b])$ such that $f(x) = f(a) + \int_a^x \phi(t) dt$, $x \in [a, b]$;
+		\item $f'(x)$ exists almost everywhere $f' \in L^1([a, b])$, and $f(x) = f(a) + \int_a^x f'(t) dt$, $x \in [a, b]$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$1. \implies 3.$“ WLOG $f$ is absolutely continuous and non-decreasing. We define an extension $f$ (which we denote by $f$ again) by a constant on $(-∞, a)$ and on $(b, ∞)$ to keep continuity. Let $\nu$ be a measure satisfying $\nu([x, y]) = f(y) - f(x)$, $x, y \in ®R$, $x ≤ y$. Then we have $\nu|_{[a, b]} \ll \lambda_1|_{[a, b]}$.
+
+		Then
+		$$ \nu([a, x]) = f(x) - f(a) = \int_a^x D(\nu, \lambda_1, t) d\lambda_1(t) = \int_a^x f'(t) d\lambda_1(t). $$
+
+		„$3. \implies 2.$“ triviální. „$2. \implies 1.$“: $\phi = \phi^+ - \phi^-$, $\phi^+, \phi^- \in L^1([a, b])$. We set
+		$$ f_1(x) := \int_a^x \phi^+(t) dt, \qquad f_2(x) = \in_a^x \phi^-(t) dt, $$
+		$$ \nu(M) = \int_M \phi^+(t) dt, \qquad M \subset [a, b] \text{ measurable}. $$
+		
+		Then we have $\nu \ll \lambda_1|_{[a, b]}$, $\nu([x, y]) = \int_x^y \phi^+(t) dt = f_1(y) - f_1(x)$, $f_1, f_2 \in AC([a, b])$, $f(x) = f(a) + f_1(x) - f_2(x)$ $\implies$ $f \in AC([a, b])$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Per partes for Lebesgue integral]
+	Let $f, g \in AC([a, b])$, $a < b$. Then $\int_a^b f' g = [f g]_a^b - \int_a^b f g'$.
+
+	\begin{dukazin}
+		$f', g' \in L^1([a, b])$. $(fg)' = f'g + fg'$ almost everywhere in $[a, b]$. $\int_a^b (fg)' = \int_a^b (f'g + fg') = \int_a^b f'g + \int_a^b f g'$.
+		$$ a ≤ a_1 < b_1 ≤ a_2 < b_2 ≤ … ≤ a_n < b_n ≤ b: $$
+		$$ \sum_{i=1}^n |f(b_i)g(b_i) - f(a_i)g(a_i)| ≤ M·\sum_{i=1}^n |g(b_i) - g(a_i)| + M·\sum_{i=1}^n |f(b_i) - f(a_i)| ≤ M·\epsilon $$
+		$$ (|f(b_i)g(b_i) - f(b_i)g(a_i) + f(b_i)g(a_i) - f(a_i)g(a_i)| ≤ |f(b_i)|·|g(b_i) - g(a_i)| + |g(a_i)|·|f(b_i) - f(a_i)|). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $g$ be a non-negative function on $[a, b]$ with $g \in L^1([a, b])$ and $f$ be a continuous function on $[a, b]$. Then there exists $\xi \in [a, b]$ such that
+	$$ \int_a^b f g = f(\xi) \int_a^b g. $$
+
+	\begin{dukazin}
+		We set $m:=\min_{[a, b]} f$, $M:=\max_{[a, b]} f$.
+		$$ m g(x) ≤ f(x)g(x) ≤ Mg(x), x \in [a, b]. $$
+		$$ m \int_a^b g ≤ \int_a^b f g ≤ M \int_a^b g. $$
+		$$ m ≤ \frac{\int_a^b f g}{\int_a^b g} ≤ M. $$
+		If $\int_a^b g = 0$, then we are done, else $\exists \xi \in [a, b]: f(\xi) = \frac{\int_a^b fg}{\int_a^b g}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $f \in L^1([a, b])$ and $g$ be a monotone function on $[a, b]$. Then there exists $\xi \in [a, b]$ such that
+	$$ \int_a^b = g(a) \int_a^\xi f + g(b) \int_\xi^b f. $$
+
+	\begin{dukazin}
+		WLOG $g$ is non-decreasing.
+
+		First case „$g \in AC([a, b])$“: $F(z) = \int_a^b f$, $F \in AC([a, b])$, $\int_a^b fg = \int_a^b F' g =$
+		$$ [F g]_a^b - \int_a^b F g' = F(b)g(b) - F(a)g(a) - F(\xi) \int_a^b g' = \(\underbrace{\int_a^b}_{\int_a^\xi + \int_\xi^b} f\) ·g(b) - \(\int_a^\xi f\)·(g(b) - g(a)). $$
+
+		General case: $(D_n)_{n=1}^∞$ sequence of partition of $[a, b]$, $\nu(D_n) \rightarrow 0$. $g_n$ piece wise affine function: $g_n(x_j^n) - g(x_j^n)$, $j \in [k_n]$. $\lim_{n \rightarrow ∞} g_n(x) = g(x)$, whenever $x \in [a, b]$ is a point of continuity of $g$.
+
+		Using first case we find for every $n \in ®N$ a point $\xi_n \in [a, b]$, such that
+		$$ \int_a^b f g_n = g_n(a) \int_a^{\xi_n} f + g_n(b) \int_{\xi_n}^b f. $$
+		We may assume, by going to a subsequence, that $\lim \xi_n = \xi \in [a, b]$.
+		$$ \sup\{|g_n(x)|\ | x \in [a, b], n \in ®N\} ≤ \max \{|g(a)|, |g(b)|\} $$
+		$$ \int_a^b f g_n \rightarrow \int_a^b f g \overset?= g(a) \int_a^\xi f + g(b) \int_\xi^b g \leftarrow g_n(a)\int_a^\xi f + g_n(b)\int_{x_n}^b f = \int_a^b f g_n. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $G \subset ®R^n$ be open nonempty and $f: G \rightarrow ®R$ be Lipschitz on $G$. Then $f$ is differentiable almost everywhere on $G$.
+\end{veta}
+
+\begin{lemma}
+	Let $f: ®R^n \rightarrow ®R$ be continuous and $i \in \{1, …, n\}$. Then the set
+	$$ D_i := \{x \in ®R^n | \frac{\partial f}{\partial x_i}(x) \text{ exists}\} $$
+	is Borel.
+
+	\begin{dukazin}
+		$$ \exists \frac{\partial f}{\partial x_i}(x) \Leftrightarrow \forall \epsilon > 0\ \exists \delta > 0 \forall t_1, t_2 \in (-\delta, \delta) \setminus \{0\}: \left|\frac{f(x + t_1e^i) - f(x)}{t_1} - \frac{f(x + t_2 e^i) - f(x)}{t_2}\right| < \epsilon \Leftrightarrow $$
+		$$ \Leftrightarrow \forall \epsilon \in ®Q^+\ \exists \delta \in ®Q^+ \forall t_1, t_2 \in \((-\delta, \delta) \cap ®Q\) \setminus \{0\}: \left|\frac{f(x + t_1e^i) - f(x)}{t_1} - \frac{f(x + t_2 e^i) - f(x)}{t_2}\right| < \epsilon. $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}

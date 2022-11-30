@@ -134,8 +134,8 @@
 	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stat points and $\gamma^+(p)$ is relatively compact ($\gamma^+(p)$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
 \end{veta}
 
-\begin{veta}[Bendixon-Dulas]
-	$\Omega$-simply connected ($\forall$ closed Jordan curve $\gamma$ in $\Omega$, $\Int(\gamma) \subset \Omega$). $\exists B: \Omega \rightarrow ®R: (\Div B)(x) = \frac{\partial B}{\partial x_1}(x_1, x_2) + \frac{\partial B}{\partial x_2}(x_1, x_2) > 0$ for almost every $x \in \Omega$. Then $x' = f(x)$ doesn't have nontrivial periodic solutions.
+\begin{veta}[Bendixson-Dulas]
+	$\Omega$-simply connected ($\forall$ closed Jordan curve $\gamma$ in $\Omega$, $\Int(\gamma) \subset \Omega$). $\exists B: \Omega \rightarrow ®R: (\Div Bf)(x) = \frac{\partial Bf_1}{\partial x_1}(x_1, x_2) + \frac{\partial Bf_2}{\partial x_2}(x_1, x_2) > 0$ for almost every $x \in \Omega$. Then $x' = f(x)$ doesn't have nontrivial periodic solutions.
 \end{veta}
 
 \begin{definice}[Transverzála]
@@ -300,13 +300,13 @@ TODO!!!
 	$u_n \in ©U_0$: $u_n \rightharpoonup^* u \in ©U$ $≡$ $\forall f \in L(0, T, ®R^n): \int_0^T f(s) u_n(s) ds \rightarrow \int_0^T f(s) u^*(s) ds$.
 \end{definice}
 
-\begin{veta}[Alanglu]
-	$©U$ is weak-* sequentially compact ($\forall \{u_n\}_{n=1}^∞ \in ©U\ \exists \{u_{n_k}\}$ weekly-* convergent)
+\begin{veta}[Alaoglu]
+	$©U$ is weak-* sequentially compact (i. e. $\forall \{u_n\}_{n=1}^∞ \in ©U\ \exists \{u_{n_k}\}$ weekly-* convergent).
 \end{veta}
 
 \begin{veta}
-	$©H(t)$ convex, symmetric, closed
-	$$ 0 < t_1 < t_2 \implies ©H(t_1) \subset ©R(t_2). $$
+	$©R(t)$ convex, symmetric, closed
+	$$ 0 < t_1 < t_2 \implies ©R(t_1) \subset ©R(t_2). $$
 
 	\begin{dukazin}
 		Convex: $x_{01}, x_{02} \in ©H(t)$, $\alpha \in [0, 1] \implies \alpha x_{01} + (1 - \alpha)x_{02} \in ©R(t)$.
@@ -345,7 +345,10 @@ TODO!!!
 	$$ t = \inf\{s > 0|x_0 \in ©R(s)\}. $$
 
 	\begin{dukazin}
-		TODO!!!
+		$$ t > 0, \exists t_n \searrow t, t_n \in (0, T], \exists u_k \in U, x_0 = - \int_0^{t_n}e^{(t_n-s)A}V u_n (s). $$
+		Alaoglu: WLOG $u_n \overset*\rightharpoonup u \in U$.
+		$$ x_0 = - \int_0^{t_n} e^{(t - s)A}B u_n(s) ds - \int_0^{t_n}\[e^{(t - s)A} - e^{(t_n - s)A}\]Bu_n (s) ds $$
+		$$ x_0 = - \underbrace{\int_0^t e^{(t - s)A}B u_n(s) ds}_{\overset*\rightharpoonup \int_0^t e^{(t - s)A}B u(s)ds} - \underbrace{\int_t^{t_n} e^{(t - s)A}B u_n(s) ds}_{\rightarrow 0} - \underbrace{\int_0^T\[e^{(t - s)A} - e^{(t_n - s)A}\]Bu_n (s) ds}_{\rightarrow 0 (DLCT)}. $$
 	\end{dukazin}
 \end{veta}
 
@@ -354,22 +357,22 @@ TODO!!!
 \end{definice}
 
 \begin{veta}[Bang-bang]
-	If $x_0 \in ©R(t) \implies \exists \tilde u(0)$ of type bang-bang $x_0 \rightarrow_u^t 0$.
+	If $x_0 \in ©R(t) \implies \exists \tilde u(0)$ of type bang-bang $x_0 \rightarrow_{\tilde u}^t 0$.
 \end{veta}
 
 % 15. 11. 2022
 
 \begin{definice}[Extremal point]
-	$X$ vector space, $K \subset X$. $x \in K$ is called an extremal point, if it cannot be written as $x = \frac{y + z}{2}$, $y, z \in K$, $y ≠ z$. We denote $\ex(K)$ the set of extremal points.
+	$X$ vector space, $K \subset X$. $x \in K$ is called an extremal point, if it cannot be written as $x = \frac{y + z}{2}$, $y, z \in K$, $y ≠ z$. We denote $ex(K)$ the set of extremal points.
 \end{definice}
 
 \begin{tvrzeni}[Krein-Milman theorem]
-	$X$ locally convex vector space, $K \subset X$: $K ≠ \O$, $K$ convex and compact. Then $\ex(K) \cap K ≠ \O$.
+	$X$ locally convex vector space, $K \subset X$: $K ≠ \O$, $K$ convex and compact. Then $ex(K) \cap K ≠ \O$.
 \end{tvrzeni}
 
 \begin{dukaz}[Bang-bang]
 	$$ K = \{u \in ©U | x_0 \rightarrow_{u(0)}^t 0\}, \qquad X = L^∞(0, T, ®R^n). $$
-	$K ≠ \O$ ($u \in ©R(t)$), $K$ convex, $K$ is compact (sequential compactness: Alangu theorem? $L'(0, T, ®R^n)$ separable $\implies$ $L^∞(0, T, ®R^n)$ with locale $*$ topology is metrizable $\implies$ sequential compactness $\implies$ compactness.
+	$K ≠ \O$ ($u \in ©R(t)$), $K$ convex, $K$ is compact (sequential compactness: Alaoglu theorem? $L'(0, T, ®R^n)$ separable $\implies$ $L^∞(0, T, ®R^n)$ with locale $*$ topology is metrizable $\implies$ sequential compactness $\implies$ compactness.
 
 	It remains to check that $\tilde{u}_j(s) = ± 1$, $\forall j \in [n]$ for almost every $s \in (0, t)$. For contradiction: for some $j \in [n]$ $\exists E \subset (0, t)$, $\lambda(E) > 0$ $\forall s \in E$ $|\tilde{u}_j(s)|<1$. WLOG
 	$$ \exists \epsilon > 0\ \forall s \in E |\tilde{u}_j(s)| < 1 - \epsilon · \[E = \bigcup_{n \in ®N}\{s \in (0, t) | |\tilde{u}_j(s)| ≤ 1-\frac{1}{n}\}\]. $$
@@ -417,12 +420,129 @@ TODO!!!
 	\begin{dukazin}
 		$x_0 \in \partial ©R(t^*)$.
 
-		For contradiction: $\exists E \subset (0, t^*), \lambda(E) > 0$, $\forall s \in E$ $\exists \eta_s \in [-1, 1]^m$ $h^T e^{-sA}B u^*(s) < h^T e^{-sA} B \eta_s$.
+		Step 2 – contradiction: $\exists E \subset (0, t^*), \lambda(E) > 0$, $\forall s \in E$ $\exists \eta_s \in [-1, 1]^m$ $h^T e^{-sA}B u^*(s) < h^T e^{-sA} B \eta_s$. But $x_j(\delta) \in ©R(t^* - \delta)$, hence $x_0 \in ©R(t^* - \delta)$ and $t^*$ is not minimal.
+
+		Step 1: $x_0 \in \partial ©R(t^*)$. For contradiction $x_0 \in \Int ©R(t^*)$.
+		$$ \exists x_1, …, x_{n+1} \in ©R(t^*), x_0 \in CO(x_1, …, x_{n+1}). $$
+		$$ \exists u_1, …, u_{n+1} \in U, x_j \rightarrow_{u_j(·)}^{t^*} 0\ \forall j \in [n+1]. $$
+
+		Let $\tilde u_j(t)$ are the corresponding solutions
 
 		TODO!!!
 	\end{dukazin}
 \end{veta}
 
 % 22. 11. 2022 bylo pouze 2·cvičení
+
+% 29. 11. 2022
+
+\begin{veta}[Pontrjagin]
+	$x'(f, u)$, $x(0) = x_0$, $u \in ©U = \{u: (0, T) \rightarrow U \subset ®R^n\}$, $T$ fixed, 
+	$$ P[u(·)] = g(x(T)) + \int_0^T r(x(s), u(s))ds \rightarrow maximum. $$
+	$f, g, r, \nabla_x f, \nabla_x g, \nabla_x r$ are continuous.
+
+	Let $u$ is a local maximum of this problem (it maximizes $P$), then for $p$ solving ($H(x, p, u) := p^T f(x, u) + r(x, u)$):
+	$$ p' = -\nabla_x H(x, p, u), $$
+	$$ p(T) = \nabla_x g(x(T)), $$
+	we have
+	$$ H(x, p, u) = \max_{\eta \in U} H(x, p, \eta) \text{ for almost every } t \in (0, T). $$
+
+	\begin{dukazin}
+		Step one „WLOG $r = 0$“: We set
+		$$ x' = f(x, u), \qquad x_{n+1}' = r(x, u), x_{n+1}(0) = 0, P[u(·)] = \hat{g}(\hat{x}(T)) = g(x(T)) + x_{n+1}(T). $$
+
+		Step 2: Fix $\tau \in (0, T)$, $\eta \in U$, $u_\epsilon(T) = \begin{cases}\eta,& t \in (\tau - \epsilon, \tau),\\ u(t), & \text{ elsewhere},\end{cases}$ and corresponding $x_\epsilon(t)$.
+		$$ u \text{ "best" } \implies P[u_\epsilon(0)] ≤ P[u(0)] \implies g(x_\epsilon(T)) ≤ g(x(t)). $$
+		$$ D = \frac{d}{d\epsilon}|_{\epsilon = 0^+} D g(x_\epsilon(T))|_{\epsilon = 0^+} ≤ 0 $$
+		$$ \nabla_x g(x(T)) · D x_\epsilon(T)|_{\epsilon = 0^+} ≤ 0. $$
+
+		Step 2.2: $x_\epsilon(t) = x_0 + \int_0^t f(x_\epsilon(s), u_\epsilon(s)) ds$. If $t < \tau$, then $u_\epsilon ≡ u$, $x_\epsilon ≡ x$, $D x_\epsilon(t) ≡ 0$ on $[0, t]$. If $t > \tau$, then $x_\epsilon(t) =: y(t)$, $y'(t) = f(y(t), u(t))$, $u(\tau) = x_\epsilon(\tau)$,
+		$$ D x_\epsilon(t) ≡ z(t): z' = \nabla_x f(y(t), u(t)) z, z(\tau) = D x_\epsilon(\tau), \qquad \text{variational equation}. $$
+
+		Statement: $z' = A(t)z$, $p' = -A^T(t)p$ $\implies$ $p^T z = const$. Proof: $(p^T z)' = (p^T)'z + p^T z' = -p^T A z + p^T A z = 0$.
+
+		Step 2.3: $p' = -(\nabla_x f(y(t), u(t)))^T p$, $p(T) = (\nabla_x g(x(T)))^T$. Then $p^T(t)z(t)$ constant on $(\tau, T)$, $p^T(\tau) z(\tau) ≤ 0$.
+
+		Step 2.4: $D x_\epsilon(\tau)|_{\epsilon = 0^+} \stackrel?= f(x(\tau), \eta) - f(x(\tau), u(\tau))$. Then
+		$$ p^T(\tau)\(f(x(\tau), \eta) - f(x(\tau), u(\tau))\) ≤ 0 $$
+		$$ \frac{1}{\epsilon}(x_\epsilon(\tau) - x(\tau)) = \frac{1}{\epsilon} \int_{\tau - \epsilon}^\tau \[f(x_\epsilon(s), \eta) - f(x(s), u(s))\] ds = $$
+		$$ \frac{1}{\epsilon} \int_{\tau - \epsilon}^\tau \[f(x_\epsilon(s), \eta) - f(x(s), \eta)\] ds + \int_{\tau - \epsilon}^\tau \[f(x(s), \eta) - f(x(s), u(s))\] ds. $$
+		Fist converge to zero from Lebesgue theorem about average value. Second to $f(x(\tau), \eta) - f(x(\tau), u(\tau)) \rightarrow 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Potrjagin for fixed point („fixed finish“)]
+	Same as previous, but $T$ is not fixed, $x(T)$ is fixed $\implies$ $g ≡ 0$ (we don't "rate" final point, because it's the same for all $u$).
+\end{veta}
+
+\section{Bifurcation}
+\begin{definice}
+	$x' = \mu - x^2$ is saddle-node bifurcation, $x' = \mu x - x^2 = x(\mu - x)$ is transcritical bifurcation, $x' = \mu x - x^3 = x(\mu - x^2)$ is fork bifurcation, in $x' = x - \sin \mu$ there is no bifurcation.
+\end{definice}
+
+\begin{pozorovani}
+	$f(x_0, \mu_0) ≠ 0 \implies $ no bifurcation. (From lemma of rect.) (Bifurcation $\implies f = 0$.)
+\end{pozorovani}
+
+\begin{pozorovani}
+	$$ f(x_0, \mu_0) = 0, \sigma(\nabla_x f(x_0, \mu_0)) = \{\lambda_j | \Re \lambda_j ≠ 0\}. $$
+\end{pozorovani}
+
+\begin{definice}
+	Point from previous observation is called hyperbolic stationary point.
+\end{definice}
+
+\begin{veta}
+	$f: ®R^{n+1} \rightarrow ®R^n$ be $C^1$, $(x_0, \mu_0)$ is a hyperbolic stationary point. Then $\exists \Delta > 0$ $\exists \delta > 0$ $\forall \mu \in U_\delta(\mu_0)$ $\exists x = x(\mu) \in U_\Delta(x_0)$, stationary point $x(\mu)$ is a hyperbolic stationary point of $\mu \mapsto x(\mu)$, which is $C^1$.
+
+	\begin{dukazin}
+		IFT:
+		$$ f(x_0, \mu_0) = 0 \land \nabla_x f(x_0, \mu_0) \text{regular?} \land f \in C^1 \implies x = x(\mu), f(x(\mu), \mu) = 0. $$
+		Hyperbolic? Eigenvalues of $A = \nabla_x f(x(\mu), \mu)$, $\det(\lambda I - A(\mu))$ – polynomial in $\lambda$, $\deg = n$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$f: ®R^2 \rightarrow ®R$ be $C^2$ on neighborhood $(0, 0) \in ®R^2$.
+	$$ f(0, 0) = 0, \qquad f_\mu(0, 0) ≠ 0, \qquad f_x(0, 0) = 0, \qquad f_{xx}(0, 0) ≠ 0. $$
+	Then $f$ has bifurcation at $(0, 0)$ of the type saddle-node.
+
+	\begin{dukazin}
+		Without proof.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$f: ®R^2 \rightarrow ®R$ be $C^2$ on neighborhood $(0, 0) \in ®R^2$.
+	$$ f(0, 0) = 0, \qquad f_x(0, 0) = 0, \qquad f(0, \mu) = 0\ \forall \mu \in U_\delta(0), \qquad f_{xx}(0, 0) ≠ 0, \qquad f_{x\mu}(0, 0) ≠ 0. $$
+	Then $f$ has bifurcation at $(0, 0)$ of the type transcritical.
+
+	\begin{dukazin}
+		Without proof.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$f: ®R^2 \rightarrow ®R$ be $C^2$ on neighborhood $(0, 0) \in ®R^2$.
+	$$ f(0, 0) = 0, \qquad f_x(0, 0) ≠ 0, \qquad f_{xx}(0, 0) = 0, \qquad f_{xxx}(0, 0) ≠ 0, $$
+	$$ f(0, \mu) = 0\ \forall \mu \in U_\delta(0), f_{x\mu}(0, 0) ≠ 0. $$
+	Then $f$ has bifurcation at $(0, 0)$ of the type fork.
+
+	\begin{dukazin}
+		Without proof.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[About division]
+	$h: U(0, 0) \rightarrow ®R$ be $C^k$ for some $k \in ®N$. $h(0, \lambda) = 0$ $\forall \lambda \in U_\delta(0)$. Then
+	$$ h(x, \lambda) = x H(x, \lambda), H \in C^{k - 1}(U(0, 0), ®R). $$
+	$$ H(0, 0) = h_x(0, 0), \qquad H_x(0, 0) = \frac{1}{2} h_{xx}(0, 0), \qquad H_\lambda(0, 0) = h_{x\lambda}(0, 0), $$
+	$$ H_{xx}(0, 0) = \frac{1}{3} h_{xxx}(0, 0), $$
+	if $k$ is sufficiently large.
+
+	\begin{dukazin}
+		$$ H(x, \lambda) := \int_0^1 \partial_x h(\sigma x, \lambda) d\sigma. $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}
