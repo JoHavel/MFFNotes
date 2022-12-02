@@ -687,11 +687,88 @@
 		\item $\forall r > 0: \overline{f(P(z_0, r))} = ®C$.
 	\end{enumerate}
 
-	\begin{poznamka}[Velká Picardova věta]
+	\begin{poznamka}[Velká Picardova věta]
 		Platí dokonce (i když je to těžké dokázat)
 		$$ \forall r > 0: ®C \setminus f(P(z_0, r)) $$
 		je nejvýše jednobodová.
 	\end{poznamka}
+
+% 01. 12. 2022
+
+	\begin{dukazin}
+		„$2. \implies 1.$“ jasné, použije se definice limity.
+
+		„$1. \implies 2.$“ (konkrétně ukážeme $\neg 2. \implies \neg 1.$): Předpokládejme, že existuje $r > 0$, že $®C \setminus \overline{f(P(z_0, r))} ≠ \O$ a $f \in ©H(P(z_0, r))$. Potom existuje $U(u_0, \beta) \subset ®C \setminus \overline{f(P(z_0, r))}$, speciálně $0 < |z - z_0| < r$ $\implies$ $|f(z) - u_0| ≥ \beta$.
+
+		Definujeme
+		$$ g(z) := \frac{1}{f(z) - u_0}, \qquad z \in P(z_0, r). $$
+		Zřejmě je $g$ holomorfní a $|g| ≤ \frac{1}{\beta}$ na $P(z_0, r)$. Tedy $z_0$ je odstranitelná singularita $g$ a $\exists L:=\lim_{z \rightarrow z_0} g(z) \in ®C$. Potom
+		$$ \lim_{z \rightarrow z_0} f(z) = \lim_{z \rightarrow z_0} \(\frac{1}{g(z)} + u_0\) \begin{cases}\in ®C, & L≠0,\\∞, & L=∞.\end{cases} $$
+		Tedy $f$ má v $z_0$ buď pól nebo odstranitelnou singularitu. Nikdy podstatnou.
+	\end{dukazin}
+\end{veta}
+
+\section{Laurentovy řady}
+\begin{definice}[Laurentova řada (LŘ), regulární část, hlavní část, konvergence LŘ]
+	Nechť $\{a_n\}_{n=-∞}^∞ \subset ®C$ a $z_0 \in ®C$. Potom
+	$$ \sum_{n=-∞}^∞ a_n(z - z_0)^n = \sum_{n=0}^∞ a_n(z - z_0)^n + \sum_{n=1}^∞ a_{-n} (z - z_0)^{-n} $$
+	je Laurentova řada s koeficienty $\{a_n\}$ a středem $z_0$. První řada na pravé straně je tzv. regulární část, druhá je pak hlavní část. Řekneme, že řada konverguje, pokud obě řady na pravé straně konvergují.
+\end{definice}
+
+\begin{tvrzeni}[Vlastnosti]
+	\ 
+	
+	\begin{itemize}
+		\item Konvergence: Existuje jediné $r, R \in [0, +∞]$ tak, že regulární část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| < R$ a diverguje na $|z - z_0| > R$; hlavní část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| > r$ a diverguje pro $|z - z_0|<r$.
+
+			$R$ je zřejmé, pro získání $r$ dosadíme $w := (z - z_0)^{-1}$ a vezmeme 1 / poloměr konvergence vyšlé mocninné řady.
+		\item Součet: Nechť $0 ≤ r < R ≤ +∞$. Pak Laurentova řada konverguje absolutně a lokálně stejnoměrně na vnitřku mezikruží dané $r$ a $R$ (značíme $P(z_0, r, R)$) a bude divergovat mimo něj (na hranici nevíme).
+
+			Označíme-li součet jako $f$, potom $f \in ©H(P(z_0, r, R))$ a řadu derivujeme člen po členu.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{lemma}
+	Nechť $f$ je holomorfní funkce na $P(z_0, r, R) =: P$, kde $0 ≤ r < R ≤ +∞$. Pro každé $\rho \in (r, R)$ označíme $\phi_\rho(t) := z_0 + \rho e^{it}$, $t \in [0, 2\pi]$ a $J(\rho) := \int_{\phi_\rho} f$. Potom $J$ je konstantní na $(r, R)$.
+
+	\begin{dukazin}
+		BÚNO: Nechť $z_0 = 0$. Nechť $\rho \in (r, R)$. Potom
+		$$ J(\rho) = i \int_0^{2\pi} f(\rho e^{it}) \rho e^{it} = i \int_0^{2\pi} g(\rho e^{it}) dt, $$
+		kde $g(z) := f(z)·z, z \in P$.
+
+		Dále $J'(\rho) \overset?= \frac{i}{\rho} \int_0^{2\pi} g'(\rho e^{it}) \rho e^"{it} dt = \frac{1}{\rho} \int_{\phi_\rho} g' = 0$, protože $g'$ má primitivní funkci $g$ na $P$.
+
+		? platí, protože
+		$$ \frac{d}{d\rho}g(\rho e^{it}) = \frac{\partial g}{\partial x} \cos t + \frac{\partial g}{\partial y} \sin t = g' \cos t + i g' \sin t = \rho e^{it} = (\rho \cos t, \rho \sin t). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Cauchyho vzorec na mezikruží]
+	Nechť $f \in ©H(P)$, $P := P(z_0, r, R)$. Nechť $r < r_0 < R_0 < R$ a $s \in P(z_0, r_0, R_0)$. Potom platí
+	$$ f(s) = \frac{1}{2\pi} \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - \frac{1}{2\pi} \int_{\phi_{r_0}} \frac{f(z) dz}{z - s}, $$
+	kde $\phi_\rho$ je jako v předchozím lemmatu.
+
+	\begin{dukazin}
+		Pro $z_0 \in P$ položme $h(z) := \frac{f(z) - f(s)}{z - s}$, $z ≠ s$, a $h(z) := f'(s)$, $z = s$. Potom $h \in ©H(P)$, protože $h$ má v $s$ „odstraněnou“ singularitu.
+
+		Podle předchozího lemmatu máme
+		$$ \underbrace{\int_{\rho_{R_0}} h}_{=} = \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{R_0}} \frac{dz}{z - s} $$
+		$$ \overbrace{\int_{\rho_{r_0}} h} = \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{r_0}} \frac{dz}{z - s} = \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O Laurentově rozvoji holomorfní funkce na mezikruží]
+	Nechť $P := P(z_0, r, R)$, kde $0 ≤ r < R ≤ ∞$. Nechť $f \in ©H(P)$. Pak existuje jediná Laurentova řada
+	$$ \sum_{n=-∞}^∞ a_n(z - z_0)^n, $$
+	která má na $P$ součet $f$.
+
+	Navíc platí $a_m = \frac{1}{2\pi} \int \frac{f(z) dz}{(z - z_0)^{m+1}}$, kde $m \in ®Z$ a $\phi_\rho$ je jako výše.
+
+	\begin{dukazin}[Jednoznačnost]
+		Nechť $f(z) = \sum_{n=-∞}^{+∞} a_n(z - z_0)^n$, $z \in P$. Nechť $\rho \in (r, R)$ a $m \in ®Z$. Potom
+		$$ \int_{\phi_\rho} f(z)(z - z_0)^{-(m+1)} dz = \int_{\phi_\rho} \sum_{-∞}^∞ a_n(z - z_0)^{n - m - 1} dz = $$
+		$$ = \sum_{n=-∞}^∞ a_n \int_{\phi_\rho}(z - z_0)^{n - m - 1} dz = \begin{cases}0, & m≠n,\\ 2\pi \ind_{\phi_\rho} z_0, & m=n.\end{cases} $$
+	\end{dukazin}
 \end{veta}
 
 \end{document}

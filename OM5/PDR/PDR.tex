@@ -428,4 +428,79 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 02. 12. 2022
+
+\begin{veta}
+	Buď $x_0 \in ®R^n$, $t_0 > 0$, $K = \{(t, x) \in [0, +∞) \times ®R^n |\ |x - x_0| ≤ t_0 - t, t \in [0, t_0]\}$. A buď $u \in C^2(K)$ a platí $\partial_t^2 u - \Delta u = 0$ v $K$, $u = 0$ a $\partial_t u = 0$ v $\{0\} \times U(x_0)$. Pak $u = 0$ na $K$.
+
+	\begin{dukazin}
+		Energetická metoda:
+		$$ e(t) = \int_{U(x_0, t_0 - t)} |\delta_t u|^2 + |\nabla u|^2. $$
+		$$ e(0) = 0, \quad e ≥ 0, $$
+		$$ \frac{de}{dt} = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 + |\nabla u|^2 ds + \int_{U(x_0, t_0 - t)} 2 \partial_t u \partial_t^2 u + 2 \nabla u · \partial_t \nabla u ds = $$
+		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 + |\nabla u|^2 ds + \int_{U(x_0, t_0 - t)} 2 \partial_t u \partial_t^2 u + 2 \underbrace{\Div(\nabla}_{=\Delta} u) · \partial_t u ds + \int_{\partial U(x_0, t - t_0)} 2 \nabla u·\nu \partial_t u ds = $$
+		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 - 2\nabla u · \nu \partial_t u + |\nabla u|^2 ds = $$
+		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u \nu - \nabla u|^2 ds ≤ 0. $$
+		Tedy $e$ je nerostoucí a $e ≥ 0$, tedy $e = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Klasické řešení Cauchyovy úlohy pro vlnovou rovnici je určené jednoznačně.
+\end{dusledek}
+
+\section{Rovnice vedení tepla}
+\begin{definice}[Rovnice vedení tepla (RVT)]
+	Rovnici $\partial_t u - \Delta u = f$ v $(0, T) \times \Omega$, $T \in (0, ∞]$, nazýváme rovnice vedení tepla, $\Omega \subset ®R^n$. Zadáváme $f$ a další podmínky (počáteční, okrajová). Hledáme $u: (0, T) \times \Omega \rightarrow ®R$.
+\end{definice}
+
+\begin{definice}[Fundamentální řešení RVT]
+	Funkci $G(t, x) := \begin{cases}\frac{1}{(4\pi t)^{n / 2}}·e^{-\frac{|x|^2}{4t}}, & t > 0,\\0, & t < 0,\end{cases}$ nazveme fundamentální řešení RVT.
+\end{definice}
+
+\begin{definice}[Prostor testovacích funkcí]
+	Je-li $\Omega \subset ®R^n$ neprázdná, otevřená, definujeme prostor testovacích funkcí jako množinu $©D(\Omega) = \{\phi \in C^∞(\Omega) | \exists K \subset \Omega, K \text{ kompaktní}, \supp \phi \subset K\}$.
+\end{definice}
+
+\begin{veta}[Vlastnosti fundamentálního řešení RVT]
+	\ 
+	\begin{enumerate}
+		\item $G \in C^∞(®R \times ®R^n \setminus \{(0, 0)\})$;
+		\item $\partial_t G - \Delta G = 0$ v $(®R \times ®R^n) \setminus \{(0, 0)\}$;
+		\item $\forall t > 0: \int_{®R^n} G(t, x) dx = 1$, $G \in L_{loc}^1(®R \times ®R^n)$;
+		\item $\forall \phi \in ©D(®R^{n+1})$:
+			$$ \int_{®R^{n+1}} G·(- \partial_t \phi - \Delta \phi) = \phi(0, 0). $$
+	\end{enumerate}
+
+	\begin{dukazin}
+		Ad 1: $G \in C(®R \times ®R^n \setminus \{(0, 0)\})$, $®C^∞$ obdobně. Zafixujeme si $x_0 \in ®R^n$.
+		$$ 0 ≤ \frac{1}{(r\pi t)^{n / 2}} e^{\frac{-|x|^2}{4t}} \stackrel{x \in U(x_0, |x_0|/2)}≤ \frac{1}{(4\pi t)^{n / 2}} e^{- \frac{|x_0|^2 / 4}{4t}} \rightarrow 0. $$
+		$$ \lim_{t\rightarrow 0_+, x \rightarrow x_0} G(t, x) = 0. $$
+
+		Ad 2: cvičení.
+
+		Ad 3:
+		$$ \int_{®R^n} \frac{1}{(4\pi t)^{n / 2}} e^{-\frac{|x|^2}{4t}} dx = \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} dy = $$
+		$$ = \(\frac{1}{\pi}\)^{n / 2} \int_{®R^n} e^{-(y_1^2 + … + y_n^2)} dy = \(\frac{1}{\pi}\)^{n / 2} \underbrace{\(\int_{®R} e^{-z^2} dz\)}_{=\sqrt{\pi}}^n = 1. $$
+		Ať $K \subset ®R \times ®R^n$ kompaktní. Pak existuje $C > 0$, $K \subset (-C, C) \times ®R^n$. $G ≥ 0 \implies \int_k G ≤ \int_{-C}^C \int_{®R^n} G = C < +∞$. Tedy $G \in L_{loc}^1(®R \times ®R^n)$.
+
+		Ad 4: Zafixujeme $\phi \in ©D(®R^{n+1})$:
+		$$ \int_{®R^{n+1}} G·(-\partial_t \phi - \Delta \phi) = \lim_{h \rightarrow 0_+} \int_h^{+∞} \int_{®R^n} G·(-\partial_t \phi - \Delta \phi) = $$
+		$$ = \lim_{h \rightarrow 0_+} \int_h^{+∞} \int_{®R} \partial_t G \phi + \int_{®R^n} G(h, x) \phi(h, x) dx - \int_h^{+∞} \int_{®R^n} \Delta G \phi = $$
+		$$ = \lim_{h \rightarrow 0_+} \int_{®R^n} \frac{1}{\sqrt{4\pi h}}^n e^{-\frac{|x|^2}{4h}} \phi(h, t) dx = $$
+		$$ = \lim_{h \rightarrow 0_+} \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} \phi(h, 2\sqrt{h} y) dy \overset{\text{Lebesgue}}= $$
+		$$ = \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} \phi(0, 0) dy = \phi(0, 0). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Zafixujeme $f \in ©D(®R^{n+1})$, definujeme $\phi(\sigma, \xi) := f(t - \sigma, x - \xi)$ pro pevné $x \in ®R^n$, $t \in ®R$.
+
+	Dostáváme:
+	$$ \phi(0, 0) = f(t, x) = \int_{®R^{n+1}} G·(-\partial_t \phi - \Delta_t \phi) d(\sigma, \xi) = $$
+	$$ = \int_{®R^{n+1}} G·(\partial_t f - \Delta_x f) d(\sigma, \xi) = (\partial_t u - \Delta u), $$
+	kde
+	$$ u(t, x) = \int_{®R^{n+1}} G(\sigma, \xi)·f(t - \sigma, x - \xi) d(\sigma, \xi) = \int_{®R^{n+1}} G(t - \sigma, x - \xi)g(\sigma, \xi)d(\sigma, \xi). $$
+\end{dusledek}
+
 \end{document}
