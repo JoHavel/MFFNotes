@@ -892,8 +892,127 @@ TODO?
 
 		TODO?
 	\end{dukazin}
-\end{veta}
 
 % 29. 11. 2022 Přednáška nebyla
+
+% 05. 12. 2022
+
+	TODO!!!
+
+	\begin{dukazin}[Initial condition]
+		$\tau \in C_0^∞(-∞, T)$:
+		$$ -\int_0^T \int_\Omega u^n w_j \partial_t \tau - \int_\Omega u^n(0) w_j \tau(0) + \int_0^T (…) \tau … = 0. $$
+		$$ \rightarrow -\int_0^T \int_\Omega u w_j \partial_t \tau - \int_\Omega u_0 w_j \tau(0) + \int_0^T (…) \tau = 0. $$
+		Integration by parts in time:
+		$$ u \in L^2(W_0^{1, 2}(\Omega)) \ni \tau w_j, $$
+		$$ \partial_u \in L^2((W_0^{1, 2}(\Omega))^*) \ni \partial_t(\tau w_i) = \partial_t \tau w_i \in L^2, $$
+		$$ -\int_0^T \int_\Omega u w_j \partial_t \tau - \int_\Omega w_j \tau(0) = -\int_0^T <u, \partial_t(\tau w_j)> - \int_\Omega u_0 w_j \tau(0) = $$
+		$$ = \int_0^T <\partial_t u, \tau w_j> + \int_\Omega u(0) \tau(0) w_j - \int_\Omega u_0 w_j \tau(0).$$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Regularity of parabolic equations}
+TODO Example?
+
+\begin{veta}
+	Let ¦b, ¦c, ¦d $\in L^∞$, $\Div ¦d \in L^∞$, $A$, $\nabla A$, $\partial_t A$ $\in L^∞$, $f \in L^2(0, T, L^2(\Omega))$, then $\forall \delta > 0$:
+	$$ \int_\delta^T \|\partial_t u\|_2^2 + \sup_{t ≥ \delta} \|\nabla u(t)\|_2^2 ≤ \frac{c}{\delta} $$.
+
+	Moreover if $u_0 \in W_0^{1, 2}(\Omega)$, then $\partial_t u \in L^2(0, T, L^2(\Omega))$, $u \in L^∞(0, T, W_0^{1, 2}(\Omega))$.
+
+	Moreover $u \in L^2(0, T, W_{loc}^{1, 2}(\Omega))$ and if $\Omega \in C^{1, 1}$, then $u \in L^2(0, T, W^{2, 2}(\Omega))$.
+
+	\begin{dukazin}
+		Consider $u^n$–Galeikin approximation
+		$$ u^n(t, x) = \sum_{i=1}^n a_i^n w_i: \int_\Omega \partial_t u^n w_j + \int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n = <f, w_j>. $$
+		Multiply by $\partial_t a_j^n(t)$ and
+		$$ \sum_{i=1}^n \int_\Omega \partial_t u^n \partial_k a_i^n w_j = \int_\Omega \partial_t u^n\(\sum \partial_t a_i^n w_j\) = \int_\Omega \partial_t u^n(\partial_t u^n). $$
+		$$ \int_\Omega \partial_t u^n \partial_t u^n + \int_\Omega A \nabla u^n·\nabla \partial_t u^n + b u^n \partial_t u^n + ¦c·\nabla u^n \partial_t u^n - ¦d \nabla \partial_t u^n u^n = <f, \partial_t u^n>. $$
+
+		Good guy: $\int_\Omega \partial_t u^n \partial_t u^n = \|\partial_t u^n\|_2^2.$
+
+		First half of other guy: $\int_\Omega A \nabla u \nabla \partial_t u =$
+		$$ \int_\Omega \frac{(A + A^T)}{2} \nabla u \nabla \partial_t u + \int_\Omega \frac{A - A^T}{2} \nabla u \nabla \partial_t u = $$
+		$$ = \frac{1}{2} \frac{\partial}{\partial t} \int_\Omega \frac{A + A^T}{2} \nabla u \nabla u - \frac{1}{2} \int_\Omega \frac{\partial_t (A - A^T)}{2} \nabla u \nabla u - \int_\Omega \sum_{i,j} \frac{\partial}{\partial x_i} \frac{(A_{ij} - A_{ji})}{2} \frac{\partial u}{\partial x_j} \partial_t u - \underbrace{\sum_{i,j} \frac{A_{ij} - A_{ji}}{2} \frac{\partial^2 u}{\partial x_i\partial x_j} \partial_t u}_{\text{sum with symmetric dot antisymmetric} = 0}. $$
+
+		Worst guy: $\int_\Omega ¦d·\nabla \partial_t u^n u^n =$
+		$$ = - \int_\Omega \partial_t u^n \Div(¦d u^n) = - \int_\Omega \partial_t u^n(\Div ¦d u^n + ¦d·\nabla u^n). $$
+
+		$$ \|\partial_t\|_2^2 + \frac{1}{2}\frac{\partial}{\partial t} \int_\Omega \frac{A + A^T}{2} \nabla u \nabla u ≤ \int_\Omega |\partial_t u^n| (|f| + …) + |\nabla u|^2 |\partial_t A|. $$
+%
+% 06. 12. 2022
+%
+		From Young's inequality:
+		$$ ≤ \frac{1}{2} \int_\Omega |\partial_t u^n|^2 + C \int_\Omega |b|^2 |u^n|^2 + |¦c|^2 |\nabla u^n|^2 + |\Div ¦d|^2 |u^n|^2 + |¦d|^2 |\nabla u^n|^2 + |f|^2 + \left|\nabla \frac{A - A^T}{2}\right|^2 |\nabla u^n|^2 + \left| \partial_t \frac{A + A^T}{2}\right |^2 |\nabla u^n|^2 ≤ $$
+		$$ ≤ \frac{1}{2} \|\partial_t u^n\|_2^2 ≤ c(b, ¦c, ¦d)(\|f\|_2^2 + \|u^n\|_{1, 2}^2). $$
+		$$ \implies \|\partial u^n\|_2^2 + \frac{d}{dt} \int_\Omega A \nabla u^n · \nabla u^n ≤ c(…)·(\|f\|_2^2 + \|u^n\|_{1, 2}^2). $$
+
+		We want to know, if right hand side is integrable in time:
+		$$ \int_\tau^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) + c·\int_\tau^t \|f\|_2^2 + \|u^n\|_{1, 2}^2. $$
+		With $\tau ≤ \delta$ we add $\not\int_0^\delta · d\tau$:
+		$$ \int_\delta^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \not\int_0^\delta \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) d\tau + C(DATA) $$
+		$$ \int_\delta^T \|\partial_t u^n\|_2^2 + \sup_{t \in (\delta T)} \|\nabla u^n(t)\|_2^2 ≤ \frac{C(DATA)}{\delta}. $$
+		$$ \delta \rightarrow 0_+: \int_0^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \int_\Omega A \nabla P^n u_0 \nabla P^n u_0 + C(DATA) ≤ $$
+		$$ ≤ C(\|\nabla P^n u_0\|_2^2 + 1) ≤ C(\|\nabla u_0\|_2^2 + 1). $$
+		$$ \int_0^T \|\partial_t u^n\|_2^2 + \sup_{t \in (0, T)}\|\nabla u(t)\|_2^2 ≤ C(\|\nabla u_0\|_2^2 + \|u_0\|_2^2 + \int_0^T \|f\|_2^2). $$
+		We know $u^n \rightharpoonup u$ – unique weak solution.
+		$$ u^n \rightharpoonup u \text{ in } W^{1, 2}(\delta, T, L^2(\Omega)), \qquad u^n \rightharpoonup^* u \text{ in } L^∞(\delta, T, W_0^{1,2}(\Omega)), \qquad u^n \rightharpoonup^* u \text{ if } (\delta, T) \rightarrow (0, T). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $\partial_t f \in L^2(0, T, L^2(\Omega))$, $\partial_t A, \partial_t b, \partial_t ¦c, \partial_t d \in L^∞$. Then $\forall \delta > 0: \partial_{tt} u \in L^2(\delta, T, V^*), \partial_t u \in L^2(\delta, T, W_0^{1, 2}(\Omega))$. If $-L u_0 + f(0) \in L^2(\Omega)$, then
+	$$ \partial_{t t} u \in L^2(0, T, V^*), \qquad \partial_t u \in L^2(0, T, W_0^{1, 2}(\Omega)). $$
+
+	\begin{dukazin}[Sketch]
+		Take $u^n$ – Galerkin approximation. Apply $\partial_t$ to it:
+		$$ \int_\Omega \partial_t u^n w_j + \int_\Omega A \nabla u^n \nabla u^n w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n = \int_\Omega f w_j, \qquad \forall j \in [n] \text{ and almost every } t \in (0, T). $$
+		$$ \int_\Omega \partial_{tt} u^n w_j + \int_\Omega A \nabla \partial_t u^n \nabla w_j =  \int_\Omega - \partial_t A \nabla u^n \nabla w_j + (\partial_t b u^n + b \partial_t u^n)w_j + \partial_t ¦c \nabla u^n + ¦c \nabla \partial_t u^n w_j. $$
+		Similar as before we replace $w_j$, $b_j$, $\partial_t u^n$:
+		$$ \frac{1}{2} \frac{d}{dt} \|\partial_t u^n\|_2^2 + c_1 \|\nabla \partial_t u^n\|_2^2 ≤ \int_\Omega \|\nabla \partial_t u^n\|(SOMETHING). $$
+		$$ \implies \frac{d}{dt} \|\partial_t u^n\|_2^2 + \|\nabla \partial_t u^n\|_2^2 ≤ C(\|\partial_t u^n\|_2^2 + …). $$
+
+		$$ t ≥ 2\delta: \|\partial_t u(t)\|_2^2 + \int_\tau^t \|\partial u^n\|_2^2 ≤ C(1 + \int_\tau^t \|\partial_t u^n\|_2^2) + \|\partial u^n(\tau)\|_2^2. $$
+		Add $\not\int_\delta^2\delta d\tau$:
+		$$ \|\partial_t u(t)\|_2^2 + \int_{2\delta}^T \|\nabla u\|_2^2 ≤ X(\int_\delta^T \|\partial_t u^n\|_2^2 + 1 + \not\int_\delta^{2\delta} \|\partial_t u^n(\tau)\|_2^2) ≤ C(1 + \frac{c}{\delta} + \frac{c}{\delta^2}). $$
+		$$ \rightarrow C(\int_0^T \|\partial_t u^n\|_2^2 + \|\partial_t u^n(0)\|_2^2 + 1) ≤ $$
+		$$ ≤ C + C\|\partial_t u^n(0)\|_2^2 = C + C \|-L u_0^n + f(0)\|_2^2 ≤ \const. $$
+	\end{dukazin}
+\end{veta}
+
+\section{Linear hyperbolic equations}
+\begin{poznamka}[Prototype]
+	$$ \frac{\partial u^2}{\partial t^2} - \Delta u = 0 \text{ in } (0, T)\times \Omega, \qquad u = 0 \text{ on } (0, T)\times \partial\Omega. $$
+	$$ u(0, x) = u_0(x) \in W_0^{1, 2}(\Omega), \qquad \partial_t u(0, x) = u_1(x) \in L^2(\Omega). $$
+\end{poznamka}
+
+\begin{poznamka}[Formal a priory estimate]
+	Test by $\partial_t u$:
+	$$ \int_\Omega \partial_{t t} u \partial_t u - \Delta u \partial_t u = 0 $$
+	$$ \frac{1}{2} \frac{d}{dt} \|\partial_t u\|_2^2 + \int_\Omega \underbrace{\nabla u \nabla \partial_t u}_{\frac{1}{2} \partial_t \|\nabla u\|^2} = 0 $$
+
+	$$ \frac{d}{dt} \(\|\partial_t u\|_2^2 + \|\nabla u\|_2^2\) = 0 $$
+	$$ \|\partial_t u(t)\|_2^2 + \|\nabla u(t)\|_2^2 ≤ \|\partial_t u(0)\|_2^2 + \|\nabla u(0)\|_2^2 = \|u_1\|_2^2 + \|\nabla u_0\|_2^2. $$
+
+	$$ \|\partial^2_{t t} u\|_{(W_0^{1, 2}(\Omega))^*} = \sup_{\|\phi\| ≤ 1} <\partial_{t t}^2 u, \phi> \sim \sup \int_\Omega \partial_{t t}^2 u \phi = \sup \int_\Omega \nabla u \phi. $$
+\end{poznamka}
+
+\begin{veta}
+	$L$ be an elliptic operator such that $\int_0^T (\|\partial_t u\|_∞ + \|A\|_{1, ∞} + \|b\|_∞ + \|¦c\|_∞ + \|¦u\|_{1, ∞}) < ∞$ and $f \in L^2(0, T, L^2(\Omega))$. Assume that $u_0 \in W_0^{1, 2}(\Omega)$ and $u_1 \in L^2(\Omega)$. Then there $\exists! u \in L^2(0, T, W_0^{1, 2}(\Omega)) \cap W^{1, 2}(0, T, L^2(\Omega)) \cap W^{2, 2}(0, T< V^*)$.
+
+	And $u(t) \rightarrow u_0$ in $L^2(\Omega)$, $\partial_t u(t) \rightarrow u_1$ in $V^*$.
+
+	\begin{dukazin}[Existence]
+		Step one: Galleikin approximation. Step two: Uniform estimates. Step three: $n \rightarrow ∞$.
+	\end{dukazin}
+
+	\begin{dukazin}[Step one]
+		$\{w_j\}_{j=1}^∞$ base of $W_0^{1, 2}$ ($\|P^n u\|_{1, 2} ≤ c \|u\|_{1, 2}$). ? for $u^n(t, x) = \sum_{j=1}^n a_j^n(t) w_j(x)$.
+		$$ \int_\Omega \partial_{t t} u^n w_j + \int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j + ¦d \nabla w_j u^n = \int_\Omega f w_j. $$
+		Weak formulation for $n$-th coord. (WFn). $\partial_t u^n(0) = P^n u_1$ and $u^n(0) = P^n u_0$.
+
+		$$ (a_j^n)'(0) = \int u_1 w_j, \qquad a_j^n(0) = \int u_0 w_j, (a_j^n)''(t) = F_j(a^n, t) + b_j(t). $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

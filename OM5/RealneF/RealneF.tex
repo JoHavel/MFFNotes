@@ -518,7 +518,7 @@
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}
+\begin{veta}[?]
 	Let $G \subset ®R^n$ be open nonempty and $f: G \rightarrow ®R$ be Lipschitz on $G$. Then $f$ is differentiable almost everywhere on $G$.
 \end{veta}
 
@@ -532,5 +532,60 @@
 		$$ \Leftrightarrow \forall \epsilon \in ®Q^+\ \exists \delta \in ®Q^+ \forall t_1, t_2 \in \((-\delta, \delta) \cap ®Q\) \setminus \{0\}: \left|\frac{f(x + t_1e^i) - f(x)}{t_1} - \frac{f(x + t_2 e^i) - f(x)}{t_2}\right| < \epsilon. $$
 	\end{dukazin}
 \end{lemma}
+
+\begin{lemma}
+	Let $\beta > 0$. Let $A ≠ \O$ open, $f_\alpha$, $\alpha \in A$, be $\beta$-Lipschitz on $®R^n$ and there exists $x \in ®R^n$ such that $\sup_{\alpha \in A} f_\alpha(x) < ∞$. Then the function $z \mapsto \sup_{\alpha \in A} f_\alpha(z)$ is $\beta$-Lipschitz on $®R^n$.
+
+	\begin{dukazin}
+		Let $u, b \in ®R^n$. Then we have $|f_\gamma(u) - f_\gamma(v)| ≤ \beta·\|u - v\|$ for any $\gamma \in A$.
+		$$ f_\gamma(u) ≤ f_\gamma(v) + \beta \|u - v\|, $$
+		$$ f_\gamma(u) ≤ f_\gamma(x) + \beta \|u - v\| ≤ \sup_{\alpha \in A} f_\alpha(x) + \beta \|u - x\| \implies $$
+		$$ \implies \sup_{\gamma \in A} f_\gamma(u) ≤ \sup_{\alpha \in A}f_\alpha(x) + \beta\|u - x\| < ∞, $$
+		So $z \mapsto \sup_{\gamma \in A} f_\gamma(z)$ is well defined.
+
+		$$ f_\gamma(u) ≤ f_\gamma(v) + \beta \|u - v\| ≤ \sup_{\alpha \in A} f_\alpha(v) + \beta \|u - v\|, $$
+		$$ \sup_{\gamma \in A} f_\gamma(u) ≤ \sup_{\alpha \in A}f_\alpha(v) + \beta \|u - v\|, $$
+		$$ \sup_{\gamma \in A} f_\gamma(u) - \sup_{\alpha \in A}(v) ≤ \beta \|u - v\| \land \sup_{\gamma \in A} f_\gamma(v) - \sup_{\alpha \in A} f_\alpha(u) ≤ \beta \|v - u\| \implies \beta\text{-Lipschitzness}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $E \subset ®R^n$ be nonempty and $f_n: E \rightarrow ®R$ be $\beta$-Lipschitz. Then there exists $\beta$-Lipschitz function $\tilde f: ®R^n \rightarrow ®R$ such that $\tilde f|_E = f$.
+
+	\begin{dukazin}
+		$\forall x \in E$ we define $f_x: y \mapsto f(x) - \beta \|y - x\|$. „$f_x$ is $\beta$-Lipschitz“:
+		$$ |f_x(u) - f_x(v)| = \left|f(x) - \beta\|u - x\| - f(x) + \beta\|v - x\|\right| = $$
+		$$ = |\beta|·\left| \|v - x\| - \|u - x\| \right| ≤ |\beta|·\|v - u\|. $$
+
+		$$ \sup_{x \in E}(f(x) - \beta \|y - x\|) = \sup_{x \in E} f_x(y) ≤ f(y). $$
+
+		We set $\tilde f(y) = \sup_{x \in E} f_x(y)$. By previous lemma $\tilde f$ is $\beta$-Lipschitz on $®R^n$.
+
+		It remains to prove that „$\tilde f|_E = f$“: $z \in E: \tilde f(z) ≥ f_z(z) = f(z)$,
+		$$ f_x(z) = f(x) - \beta\|z - x\| ≤ f(z) \implies \tilde f(z) ≤ f(z). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Theorem ?]
+	From previous lemma WLOG $f$ is defined on $®R^n$. Let $E$ be the set of those points, where at least one partial derivative doesn't exist.
+	$$ E := \bigcup_{i = 1}^n (®R^n \setminus D_i). $$
+	Using 1-dimensional Radmachor theorem, Fubini theorem, and measurability of $D_i$, we get
+	$$ \lambda_n(®R^n \setminus D_i) = 0, \qquad \forall i \in [n]. $$
+	So $\lambda_n(E) = 0$.
+
+	$$ p, q \in ®Q^n, m \in ®N: $$
+	$$ S(p, q, m) := \{x \in ®R^n | \forall i \in [n]\ \forall t \in \(-\frac{1}{m}, \frac{1}{m}\) \setminus \{0\}: p_i ≤ \frac{f(x + t e_i) - f(x)}{t} ≤ q_i\}. $$
+	$S(p, q, m)$ is Borel. $\tilde S(p, q, m)$ be the set of $x \in S(p, q, m)$ such that $x$ is a point of density of $S(p, q, m)$. From theorem above $\lambda_n(S(p, q, m) \setminus \tilde S(p, q, m)) = 0$.
+	$$ N := \bigcup\{S(p, q, m) \setminus \tilde S(p, q, m) | p, q \in ®Q, m \in ®N\}. \lambda_n(N) = 0. $$
+
+	$x \in ®R^n \setminus (N \cup E)$, $\epsilon \in (0, 1)$. Choose $p, q \in ®Q^n$ such that $q_i - \epsilon ≤ p_i < \frac{\partial f}{\partial x_i}(x) < q_i$, $i \in [n]$. We can find $m \in ®N$ such that $x \in S(p, q, m) =: S$. We find $\delta \in \(0, \frac{1}{m}\)$ such that $\lambda_n(B(x, r) \setminus S) ≤ \(\frac{\epsilon}{2}\)^n \lambda_n(B(x, r))$ for every $r \in (0, 2\delta)$.
+
+	Notice that the set $B(x, (1 + \epsilon) \tau) \setminus S$ does not contain a ball with radius $\epsilon \tau$ whenever $\tau \in (0, \delta)$. So for contradiction assume, that we can find ball with radius $\epsilon \tau$.
+	$$ C_n·(\epsilon \tau)^n = \lambda_n(B(d, \epsilon \tau)) ≤ \lambda_n(B(x, (1 + \epsilon)\tau) \setminus S) ≤ \(\frac{\epsilon}{2}\)^n C_n (1 + \epsilon)^n \tau^n $$
+	$$ 1 ≤ \(\frac{1}{2}\)^n (1 + \epsilon)^n < 1. $$
+
+	$$ y^i := [y_1, y_2, …, y_i, x_{i+1}, …, x_n], i \in [n]. B_i := B(y^i, \epsilon \|y - x\|). $$
+	TODO?
+\end{dukaz}
 
 \end{document}

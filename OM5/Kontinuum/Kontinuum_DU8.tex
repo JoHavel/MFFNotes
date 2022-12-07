@@ -19,6 +19,8 @@ Consider a linearised homogeneous isotropic elastic solid, that is a continuous 
 	\end{dukazin}
 \end{priklad}
 
+\newpage
+
 \begin{priklad}[2.]
 	Assume that solution to previous equation has the form of a travelling plane wave, that is $¦U = ¦A \sin(¦K·¦X - \omega t)$. Substitute and show that the result can be rewritten in the form
 	$$ \rho_R c^2 ¦A = \[\mu \(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\) + (\lambda + 2\mu) \frac{¦K}{K} \otimes \frac{¦K}{K}\]¦A. $$
@@ -37,12 +39,36 @@ Consider a linearised homogeneous isotropic elastic solid, that is a continuous 
 		$$ \mu \Delta ¦U = \mu \Delta \(¦A \sin(¦K·¦X - \omega t)\) = \mu ¦A \Delta \(\sin(¦K·¦X - \omega t)\) = \mu ¦A \sum_i K_i^2 (-\sin(¦K·¦X - \omega t)) = $$
 		$$ = \mu ¦A (- K^2·\sin(…)). $$
 
-		Předpokládáme, že $K ≠ 0$, tedy můžeme dělit rovnici $K^2$ a navíc $\sin(…)$ bude nulový pouze na množině s prázdným vnitřkem, takže rovnici můžeme dodefinovat ze spojitosti a můžeme dělit i $-\sin(…)$:
+		Předpokládáme, že $K ≠ 0$, tedy můžeme dělit rovnici $K^2$ a navíc $\sin(…)$ bude nulový pouze na množině s prázdným vnitřkem, takže rovnici můžeme dodefinovat ze spojitosti a můžeme dělit i $-\sin(…)$:
 		$$ \rho_R c^2 ¦A = (\lambda + \mu) \(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A + \mu ¦A = \[\mu \(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\) + (\lambda + 2\mu) \frac{¦K}{K} \otimes \frac{¦K}{K}\]¦A $$
 	\end{dukazin}
 
 	This is an eigenvalue problem of the form $c^2 ¦A = ®A ¦A$, where
-	$$ ®A := \frac{\mu}{\rho}\(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\) + \frac{\lambda + 2\mu}{\rho} \frac{¦K}{K} \otimes \frac{¦K}{K}. $$
+	$$ ®A := \frac{\mu}{\rho_R}\(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\) + \frac{\lambda + 2\mu}{\rho_R} \frac{¦K}{K} \otimes \frac{¦K}{K}. $$
+\end{priklad}
+
+\newpage
+
+\begin{priklad}[3.]
+	Show that the displacement in the form $¦U := ¦A \sin (¦K · ¦X - \omega t)$ is a solution in $®R^3$ provided that either ¦A is parallel to ¦K and the speed of propagation is $c_{||} = \sqrt{\frac{\lambda + 2\mu}{\rho_R}}$ or ¦A is perpendicular to ¦K and the speed of propagation is $c_\perp = \sqrt{\frac{\mu}{\rho_R}}$.
+
+	\begin{dukazin}
+		$\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A = \frac{¦K}{K} \(\frac{¦K}{K}·¦A\)$ je kolmá projekce vektoru $¦A$ na $¦K$ podle toho, co víme o skalárním součinu (skalární součin s jednotkovým vektorem dává velikost projekce, vynásobením tím samým jednotkovým vektorem získáme pak celou projekci).
+
+		Tím pádem $\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A$ je tedy projekce $¦A$ na $¦K$ a $(®I - …)¦A$ je tedy projekce ¦A na ortogonální doplněk ¦K. ¦A tedy násobení maticí ®A rozloží na vektor ve směru ¦K, ten vynásobí $\frac{\lambda + 2\mu}{\rho_R}$, a na vektor v kolmém směru, a ten vynásobíme $\frac{\mu}{\rho_R}$, a pak je zase sečteme.
+
+		Na levé straně násobíme skalárem $c^2$, na což se můžeme podívat jako na rozložení ¦A na složku ve směru ¦K a na složku v ortogonálním směru a následně vynásobíme obě části $c^2$ a sečteme. Tedy
+
+		$$ c^2\(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A + c^2\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A = \frac{\mu}{\rho_R} \(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A + \frac{\lambda + 2\mu}{\rho_R}\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A. $$
+
+		Jelikož jsou podprostory ortogonální, musí rovnost platit v každém z nich, tedy:
+		$$ c^2\(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A = \frac{\mu}{\rho_R} \(®I - \frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A, $$
+		$$ c^2\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A = \frac{\lambda + 2\mu}{\rho_R}\(\frac{¦K}{K} \otimes \frac{¦K}{K}\)¦A. $$
+
+		Tudíž se vždy buď rovnají skaláry, nebo jsou nulové příslušné projekce. Obě projekce být nulové nemohou (součet dává původní vektor a předpokládáme, že $¦A ≠ ¦o$). Kdyby obě byly nenulové, tak $\mu = c^2 = \lambda + 2\mu$, tedy $\mu + \lambda = 0 \implies \gamma = +∞ \not≤ \frac{1}{2}$. Tedy zbývá možnost, že je právě jedna projekce nenulová.
+
+		Když ¦A je paralelní na ¦K (projekce na ¦K je nenulová a druhá je nulová), pak $c^2 = \frac{\lambda + 2\mu}{\rho_R}$, tj. $c = \sqrt{\frac{\lambda + 2\mu}{\rho_R}}$, když ¦A je na ¦K kolmé, pak $c^2 = \frac{\mu}{\rho_R}$, tj. $c = \sqrt{\frac{\mu}{\rho_R}}$.
+	\end{dukazin}
 \end{priklad}
 
 \end{document}

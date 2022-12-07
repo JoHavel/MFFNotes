@@ -545,4 +545,64 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 06. 12. 2022
+
+TODO?
+
+\begin{dukaz}[Theorem of transcritical bifurcation]
+	$f(x, \mu) = x F(x, \mu)$. $F_\mu(0, 0) ≠ 0$?
+
+	$F(x, \mu(x)) = 0$? $\rightarrow \frac{d}{dt}: \mu'(x) = \frac{-\partial_x F(x, \mu(x))}{\partial_\mu(F(x, \mu(x)))}$.
+
+	$$ f_{x\mu}(x, \mu) = F_\mu(x, \mu) + x F_{x\mu}(x, \mu) \implies F_\mu(0, 0) = f_{x\mu}(0, 0) ≠ 0. $$
+%
+%?	$$ f_x(x, \mu(x)) = F(x, \mu(x)) + x F_x(x, \mu(x)) + x F_\mu(x, \mu(x))·\mu'(x). $$
+\end{dukaz}
+
+\begin{veta}[Fork]
+	$$ f \in C^3(U), \qquad f(0, 0) = f_x(0, 0) = f_{xx}(0, 0) = 0, \qquad f_{xxx}(0, 0) ≠ 0, \qquad f(0, \mu) = 0\ \forall (0, \mu) \in U, $$
+	$$ (f_\mu(0, 0) = 0), \qquad f_{x\mu}(0, 0) ≠ 0. $$
+	Then ?
+
+	\begin{dukazin}
+		$\mu'(0) = 0$, $\mu''(0) = \frac{…}{-\partial_\mu F(x, \mu(x))}$, $\partial_{x, x} F(0, 0) = \frac{1}{3} f_{xxx}(0, 0) ≠ 0$.
+		$$ \mu''(0) ≠ 0 \implies \mu''(x) \text{ doesn't change sign } \implies \mu(x) \text{ has a local extreme at } (0, 0). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[?]
+	$$ \binom{x'}{y'} = f(x, y, \mu), f \in C^2, f(0, 0, \mu) = \binom{0}{0}, \sigma\(\nabla f(0, 0, \mu)\) = \{\alpha(\mu) ± i \omega(\mu)\} .$$
+	$$ \alpha(0) = 0, \alpha'(0) ≠ 0, \omega(0) ≠ 0, \quad \alpha, \omega \in C^1. $$
+
+	Then $\exists \delta > 0, \epsilon > 0: \mu = \mu(a), a \in (0, \epsilon) \mapsto \mu(a) \in(-\delta, \delta)$.
+
+	$\forall a \in (0, \epsilon)$ $\exists$ nontrivial periodic solution passing through $(a, 0)$.
+
+	\begin{dukazin}
+		Rotation: $x' = d(\mu) x - \omega(\mu) y + f_1(x, y, \mu)$, $y' = \omega(\mu) x + \alpha(\mu) x + \alpha(\mu) y + f_2(x, y, \mu)$, $f_2(x, y, \mu) = O(x^2 + y^2)$.
+
+		Polar coords:
+		$$ x = r \cos \theta, y = r \sin \theta, x' = g_1(x, y), y' = g_2(x, y), $$
+		$$ r'\cos \theta - r \sin\theta ·\theta' = g_1, \qquad r' \sin \theta + r \cos \theta · \theta' = g_2. $$
+		$$ r' = g_i · \cos \theta + g_2 \sin \theta, \qquad r·\theta' = -g_1 \sin \theta + g_2 \cos \theta. $$
+		$$ r; = \alpha·r + \underbrace{f_1·\cos \theta + f_2·\sin\theta}_{=R}, \qquad r \theta' = \omega(\mu)·r + \underbrace{(- f_1·\sin\theta+f_2·\cos \theta)}_{=r·Q}. $$
+
+		$$ r' = \alpha(\mu) r + R(r, \theta, \mu), R = O(r^2), \quad \theta' = \Omega(\mu) + Q(r, \theta, \mu), Q = O(r). $$
+
+		WLOG $\omega(0) > 0$. $\exists \epsilon, \delta > 0$ $\forall r ≤ \epsilon$ $\forall \mu \in [-\delta, \delta]$, $\theta'(t) > 0$. $r(t) \mapsto \hat{r}(\theta) := r(t(\theta))$. $t \mapsto \theta(t)$ is simple $\implies$ $\exists t = t(\theta)$.
+		$$ \frac{dr}{d\theta} = \frac{\frac{dr}{dt}}{\frac{d\theta}{dt}} = \frac{\alpha(\mu) r + R}{\omega(\mu) + Q} = \frac{\alpha(\mu)}{\omega(\mu)}r + T(r, \theta, \mu). $$
+
+		$$ \lambda(\mu) := \frac{\alpha(\mu)}{\omega(\mu)}: r'(\theta) = \lambda(\mu) r(\theta) + T(r, \theta, \mu), $$
+		$$ (r(\theta) e^{-\lambda(\mu)\theta})' = T(r, \theta, \mu) e^{-\lambda(\mu)\theta} $$
+		$$ r(\theta)·e^{-\lambda(\mu) \theta} = r'(\theta_0)·e^{-\lambda(\mu)\theta_0} + \int_{\theta_0}^\theta T(r(\psi), \psi, \mu)·e^{-\lambda(\mu) \psi} d\psi. $$
+		We get $r(\theta_0) = r(\theta_0 + 2\pi)$ – periodicity. If we denote $r(\theta_0) = a$, we get
+		%$$ a = a·e^{2\pi \lambda(\mu)} + \int_{\theta_0}^{\theta_0 + 2\pi} T(r(\psi), \psi, \mu)·e^{-\lambda(\mu)(\psi - \theta_0)} d\psi. $$
+		$$ \(e^{2\pi \lambda(\mu)} - 1\) a + \int_{\theta_0}^{\theta_0 + 2\pi} T(r(\psi), \psi, \mu)·e^{-\lambda(\mu)(\psi - \theta_0)} d\psi. $$
+
+		$h_\mu(0, 0) ≠ 0$? $h''(a, \mu)$, $a = 0 \implies r = 0$, $T = 0$, $h(0, \mu) = 0$.
+		$$ h(a, \mu) =: a·H(a, \mu). $$
+		$$ H(0, 0) = 0? \quad H_\mu(0, 0) ≠ 0? \quad H \in C^1 \quad H(0, 0) = \partial_? h(0, 0). $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}							% Import stylu
+
+\begin{document}
+\begin{priklad}[3.1]
+	Nechť je $G = \(P = \{1, 2\}, A, u\)$ hra v normálním tvaru pro dva hráče, kde $A_1 = \{a, b, c\}$ a $A_2 = \{d, e, f\}$ s výplatní funkcí $u$ určenou Tabulkou 1.
+	\begin{center}
+		\begin{tabular}{c|c|c|c}
+			    & $d$        & $e$        & $f$            \\ \hline
+			$a$ & $(1, 1)$   & $(-1, -1)$ & $(0, 0)$       \\
+			$b$ & $(-1, -1)$ & $(1, 1)$   & $(0, 0)$       \\
+			$c$ & $(0, 0)$   & $(0, 0)$   & $(-1.1, -1.1)$
+		\end{tabular}
+
+		Tabulka 1: Hra z Příkladu 3.1.
+	\end{center}
+
+	Ukažte, že zde pravděpodobnostní rozdělení $p$ na $A$ s $p(a, d) = p(b, e) = p(c, f) = 1/3$ je hrubým korelovaným ekvilibriem v $G$ (CCE), ale není korelovaným ekvilibriem v $G$ (CE).
+
+	\begin{dukazin}[CCE]
+		Předpokládám definici CCE: $p$ je CCE, když $\sum_{a \in A} u_i(a) p(a) ≥ \sum_{a \in A} u_i(a_i'; a_{-i})p(a)$, $\forall i$, $\forall a_i' \in A_i$. Protože mi přijde jednodušší používat $u$ místo $C$, když $u$ už máme.
+
+		CCE nám vychází (pro oba hráče, protože hra je symetrická):
+		$$ \sum_{a \in A} u_i(a) p(a) = \frac{1}{3}·1 + \frac{1}{3}·1 + \frac{1}{3}·1.1 = \frac{1}{3}·0.9 = 0.3 $$
+		To je levá strana nerovnosti. Pro pravou stranu si označme $\alpha_1, \alpha_2, \alpha_3$ pravděpodobnosti, že strategie $a_i' \in A_i$ hraje stav $a$, $b$ a $c$ (resp. $d$, $e$ a $f$). Pak pravou stranu spočítáme
+		$$ \sum_{a \in A} u_i(a_i', a_{-i})p(a) = \frac{1}{3} \(\alpha_1·1 + \alpha_2·(-1) + \alpha_3·0\) + $$
+		$$ + \frac{1}{3} \(\alpha_1·(-1) + \alpha_2·1 + \alpha_3 · 0\) + \frac{1}{3}\(\alpha_1·0 + \alpha_2·0 + \alpha_3·(-1.1)\) = -\frac{1.1}{3}p_3. $$
+		To znamená, že ať zvolíme jakákoliv $0 ≤ \alpha_1, \alpha_2, \alpha_3 ≤ 1$, na pravé straně dostaneme nejvýše $0$, tedy méně než $0.3$, což splňuje definici CCE.
+	\end{dukazin}
+
+	\begin{dukazin}[$\neg$ CE]
+		Zvolíme ($i = 1$, ale kromě značení je vše symetrické) $a_i = c$ a $a_i' = a$. Potom kdyby $p$ bylo CE, pak
+		$$ 0·0 + 0·0 + (-1.1)·\frac{1}{3} = \sum_{a_{-i} \in A_{-1}} u_i(a_i; a_{i-1})p(a_i; a_{i-1}) \overset{\text{CE}}≥ $$
+		$$ ≥ \sum_{a_{-i} \in A_{-1}} u_i(a_i'; a_{i-1})p(a_i; a_{i-1}) = 1·0 + (-1)·0 + 0·\frac{1}{3}, $$
+		ale $-\frac{1.1}{3} \not ≥ 0$.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[3.2]
+	Nechť je $G = \(P = \{1, 2\}, A, u\)$ hra v normálním tvaru pro dva hráče, kde $A_1 = \{U, D\}$ a $A_2 = \{L, R\}$ s výplatní funkcí $u$ určenou Tabulkou 2. Určete množinu všech korelovaných ekvilibrií v $G$.	
+\end{priklad}
+	
+\end{document}

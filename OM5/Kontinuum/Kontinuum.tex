@@ -790,5 +790,132 @@ TODO?
 	$$ ¦A = ¦K_\perp \implies c_\perp = \sqrt{\frac{\mu}{\rho_R}}, $$
 	$$ ¦A = ¦K_{||} \implies c_{||} = \sqrt{\frac{\lambda + 2\mu}{\rho_R}}. $$
 \end{priklad}
+
+% 07. 12. 2022
+
+\begin{poznamka}[When $\bepsilon = \frac{1}{2}\(\nabla ¦u + (\nabla ¦u)^T\)$?]
+	Naive approach: 2D settings: Suppose that $\bepsilon = \frac{1}{2}\(\nabla ¦u + (\nabla ¦u)^T\)$. If $\bepsilon$ is symmetric, then
+	$$ \frac{\partial^2 \epsilon_{11}}{\partial x_2^2} + \frac{\partial^2 \epsilon_{22}}{\partial x_1^2} - 2 \frac{\partial^2 \epsilon_{12}}{\partial x_1 \partial x_2} = \frac{\partial^2}{\partial x_2^2}\frac{\partial u^1}{\partial x_1} + \frac{\partial^2}{\partial x_1^2} \frac{\partial u^2}{\partial x_2} - \frac{\partial^2}{\partial x_1 \partial x_2} \(\frac{\partial u^1}{\partial x_2} + \frac{\partial u^2}{\partial x_1}\) = 0. $$
+	This is necessary condition for it.
+
+	\hrule
+
+	Systematic approach: We know how to check and construct $¦v = -\nabla \phi$.
+
+	Given ®F check whether it is possible to find $\chi$ such that $®F = \nabla \chi$. Choose $¦w \in ®R^3$, arbitrary fixed vector. Can we find $\phi_{¦w}$ such that $®F^T ¦w = \nabla \phi_{¦w}$.
+
+	So condition is $\rot(®F^T ¦w) = ¦o$. We know (it's definition) $(\rot ®A)^T ¦v = \rot(®A^T ¦v)$ $\forall ¦v$ constant vector. So we can rewrite condition as $(\rot ®F)^T = ®O$.
+
+	From linearity + invariance: $\phi_{¦w} = \chi · ¦w$.
+	$$ ®F^T ¦w = \nabla \phi_{¦w} = \nabla (\chi·¦w) = (\nabla \chi)^T¦w, \qquad ®F = \nabla \chi. $$
+
+	$$ ¦v := ®F^T ¦w = \nabla \phi_{¦w}, \qquad \phi_{¦w}(¦x) = \int_{¦x_0}^{¦x} ®F^T ¦w · d¦l = ¦w · \int_{¦x_0}^{¦x} ®H d ¦l $$
+	$$ \phi_{¦w}(¦x) = \chi(¦x)·¦w \implies \chi = \int_{¦x_0}^{¦x} ®F d¦l, \qquad ®F = \nabla \chi, \rot ®F = ®O. $$
+
+	$\bepsilon$ is generated as the symmetric gradient:
+	$$ \nabla ¦u = \underbrace{\bepsilon}_{\text{symmetric part}} + \underbrace{@\omega}_{\text{skew-symmetric part}} \implies @\omega = \frac{1}{2}\(\nabla ¦u - (\nabla ¦u)^T\). $$
+	$$ \rot(\nabla ¦u) = \rot \bepsilon + \rot @\omega, \qquad \O = \rot \bepsilon + \rot @\omega, $$
+	$$ \rot \bepsilon = -\rot @\omega, \qquad \rot \bepsilon = \frac{1}{2} \(\nabla (\rot ¦u)\)^T. $$
+	We see that $(\rot \bepsilon)^T$ is generated as the full gradient of something. Is this equation solvable? Solvability condition: $\rot((\rot \bepsilon)^T) = \O$.
+
+	How to find $@\omega$? $\omega$ is skew symmetric matrix, so it has axial vector: $@\omega = ®A_{¦a}$, $¦a$ denotes axial vector.
+	$$ \nabla ¦u = \bepsilon + @\omega = \bepsilon + ®A_{¦a}. $$
+	Can we solve this equation for ¦u? Solvability conditions: $\rot (\bepsilon + ®A_{¦a}) = ®O$.
+	$$ \rot \bepsilon + \rot ®A_{¦a} \stackrel?= ®O $$
+	$$ LHS = (\nabla ¦a)^T + \((\Div ¦a) ®I - (\nabla ¦a)^T\) = (\Div ¦a)®I \Leftrightarrow \Div¦a \stackrel?= 0. $$
+
+	$$ \Div ¦a = \nabla · ¦a = \tr(\nabla ¦u) = \tr (\rot \bepsilon) = \epsilon_{jkl} \frac{\partial \epsilon_{jl}}{\partial x_k} = 0. $$
+	So we can solve $\nabla ¦u = \bepsilon ®A_{¦a}$ for ¦u.
+
+	Conclusion: Is $\bepsilon$ generated as the symmetric gradient of ¦u? Compatibility condition: $\rot((\rot \bepsilon)^T) = ®O$.
+\end{poznamka}
+
+\begin{poznamka}
+	Same question about $®C = ®F^T®F$.
+\end{poznamka}
+
+\begin{poznamka}[What is this good for?]
+	Assume that we want to solve state problem in linearised elasticity
+	$$ ¦o = \Div \btau + \rho ¦f $$
+	and the boundary conditions are traction boundary conditions, $\btau ¦n |_{\partial \Omega} = ¦b$.
+
+	We want to find stress field $\btau$ in $\Omega$
+	$$ \bepsilon = \frac{1}{E} ((1 + \nu) \btau - \nu(\tr \btau)®I). $$
+	$\btau$ is the linearised strain $\implies$ $\btau = \frac{1}{2}(\nabla ¦u + (\nabla ¦u)^T)$, $\rot((\rot \bepsilon)^T) = ®O$.
+
+	$$ \bepsilon = \frac{1}{E}((1 + \nu)\btau - \nu(\tr \btau)®I) \land \rot((\rot \bepsilon)^T) = ®O. $$
+	This gives us a system of equations for $\btau$.
+\end{poznamka}
+
+\begin{priklad}
+	Inflation of a hollow cylinder. Inner radius $R_{in}$ (or $r_{in}$), outer radius $R_{out}$ (or $r_{out}$). And there is some pressure: inner $P_{in}$ and outer $P_{out}$. We want find $c = \frac{r_{in}^2 - R_{in}^2}{R_{in}^2}$.
+
+	Two theories: Linear and Finite elasticity.
+\end{priklad}
+
+\begin{priklad}[Linear theory]
+	Material:
+	$$ ®F = ®I + \nabla ¦u, \qquad ®B = ®F®F^T \sim ®I + (\nabla ¦u) + (\nabla ¦u)^T + … $$
+	$$ \btau = -p®I + 2\mu\bepsilon. $$
+	Assume incompressible material: $1 = \det ®F = \det (®I + \nabla ¦u) \sim 1 + \tr(\nabla ¦u)$ $\implies$ $\tr \bepsilon = 0$.
+	
+	Boundary conditions: $\btau ¦E_{\hat{R}} |_{R = R_{out}} = -P_{out}¦E_{\hat{R}}$, $\btau ¦E_{\hat{R}} |_{R = R_{in}} = -P_{in}¦E_{\hat{R}}$.
+
+	Geometry: Assume $¦u = (g(R), 0, 0)^T$.
+	$$ 0 = \tr \bepsilon = \tr (\nabla ¦u) \implies \frac{dg}{dR} + \frac{g}{R} = 0 \implies g(R) = \frac{D}{R}. $$
+	$$ g(R_{in}) = r_{in} - R_{in} \implies D =  $$
+	
+	Force blance (balance of linear momentum):
+	$$ \Div \btau = ¦o, \qquad R \in (R_{in}, R_{out}), \Phi \in (0, 2\pi], Z \in … $$
+
+	$$ \btau = -p®I + \begin{pmatrix} S^{\hat{R}\hat{R}} & 0 & 0 \\ 0 & S^{\hat{\Phi}\hat{\Phi}} & 0 \\ 0 & 0 & 0 \end{pmatrix}. $$
+	$$ \Div ®T = ¦o \implies \frac{d\tau^{\hat{R}\hat{R}}}{dR} + \frac{1}{R}(\tau^{\hat{R}\hat{R}} - \tau^{\hat{\Phi}\hat{\Phi}}) = 0. $$
+	$$ … $$
+	$$ \int_{R=R_{in}}^{R_{out}} \frac{S^{\hat{R}\hat{R}} - S^{\hat{\Phi}\hat{\Phi}}}{R} dR = -(P_{out} - P_{in}). $$
+	
+	Use constitutive relation:
+	$$ \btau = -p®I + 2\mu \bepsilon, \qquad \bepsilon = \frac{1}{2}(…). $$
+	$$ \btau = -p®I + 2\mu \begin{pmatrix} \frac{du^{\hat{R}}}{dR} & 0 & 0 \\ 0 & \frac{u^{\hat{R}}}{R} & 0 \\ 0 & 0 & 0 \end{pmatrix}.  $$
+	$$ 2\mu \int_{R = R_{in}}^{R_{out}} \frac{\(\frac{du^{\hat{R}}}{dR}\)^2 - \(\frac{u^{\hat{R}}}{R}\)^2}{R} dR = -(P_{out} - P_{in}). $$
+	$$ u^{\hat{R}} = \frac{D}{R} \implies P_{out} - P_{in} = -\mu \int_{R=R_{in}}^{R_{out}} \frac{4D}{R^3} dR $$
+	$$ c = \frac{r_{in}^2 - R_{in}^2}{R_{in}^2} = \frac{(R_{in} + u^{\hat{R}}(R_{in}))^2 - R_{in}^2}{R_{in}^2} = \frac{2D + \frac{D^2}{R_{in}^2}}{R_{in}^2}. $$
+	Solve for D and substitute.
+	$$ D = \frac{-2R_{in}^2 ± \sqrt{4 R_{in}^4 + 4c R_{in}^4}}{2} \sim \frac{R_{in}^2c}{2}. $$
+	$$ P_{out} - P_{in} = -\mu \int_{R = R_{in}}^{R_{out}} \frac{2 R_{in}^2}{R^3} c dR. $$
+\end{priklad}
+
+\begin{priklad}[Finity elasticity]
+	Material:
+	$$ ®T = -p ®I + \mu(®B - ®I). $$
+	Assume incompressible material: $\det ®F = 1$.
+
+	Boundary conditions: $®T ¦e_{\hat{r}} |_{r = r_{out}} = -P_{out}¦e_{\hat{r}}$, $®T ¦e_{\hat{r}} |_{r = r_{in}} = -P_{in}¦e_{\hat{r}}$.
+
+	Geometry: Assume that $r = f(R)$, $\phi = \Phi$, $z = Z$. So (was homework)
+	$$ ®F = \begin{pmatrix} \frac{df}{dR} & 0 & 0 \\ 0 & \frac{f}{R} & 0 \\ 0 & 0 & 1 \end{pmatrix}. $$
+	$$ 1 = \det ®F = \frac{df}{dR} \frac{1}{R} \implies f \frac{df}{dR} = R \implies f(R) = \sqrt{R^2 + C_1}. $$
+	$$ f(R_{in}) = r_{in} \implies f(R) = \sqrt{R^2 + cR_{in}^2}. $$
+
+	Force blance (balance of linear momentum):
+	$$ \Div ®T = ¦o, \qquad r \in (r_{in}, r_{out}), \phi \in (0, 2\pi], z \in … $$
+	$$ ®T = -p®I + \begin{pmatrix} S^{\hat{r}\hat{r}} & 0 & 0 \\ 0 & S^{\hat{\phi}\hat{\phi}} & 0\\ 0 & 0 & 0 \end{pmatrix} $$
+	Find formula for $\Div ®T$ in cylindrical coordinates.
+	$$ \Div ®T = ¦o \implies \frac{d T^{\hat{r}\hat{r}}}{dr} + \frac{1}{R}\(T^{\hat{r}\hat{r}} - T^{\hat{\phi}\hat{\phi}}\) = 0 \implies $$
+	$$ \implies -\frac{dp}{dr} + \frac{dS^{\hat{r}\hat{r}}}{dr} + \frac{S^{\hat{r}\hat{r}} - S^{\hat{\phi}\hat{\phi}}}{r} = 0 \implies $$
+	$$ \implies p(r) = \int_{r=r_{in}}^r \(\frac{dS^{\hat{r}\hat{r}}}{dr} + \frac{S^{\hat{r}\hat{r}} - S^{\hat{\phi}\hat{\phi}}}{r}\) dr + P|_{r = r_{in}}. $$
+	$$ \begin{pmatrix} -p + S^{\hat{r}\hat{r}} & 0 & 0 \\ 0 & -p + S^{\hat{\phi}\hat{\phi}} & 0 \\ 0 & 0 & -p \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} = \begin{pmatrix} -P_{out} \\ 0 \\ 0 \end{pmatrix} \implies -p|_{r = r_{out}} + S^{\hat{r}\hat{r}}|_{r=r_{out}} = -P_{out}, $$
+	$$ … \implies p|_{r = r_{in}} + S^{\hat{r}\hat{r}}|_{r = r_{in}} = -P_{in}. $$
+	$$ \int_{r = r_{in}}^{r_{out}} \(\frac{dS^{\hat{r}\hat{r}}}{dr} + \frac{S^{\hat{r}\hat{r}} - S^{\hat{\phi}\hat{\phi}}}{r}\) dr + p|_{r = r_{in}} + S^{\hat{r}\hat{r}}|_{r = r_{out}} = -P_{out}, \qquad p|_{r=r_{in}} + S^{\hat{r}\hat{r}}|_{r = r_{in}} = -P_{in}. $$
+	Subtract:
+	$$ \int_{r = r_{in}}^{r_{out}} \frac{S^{\hat{r}\hat{r}} - S^{\hat{\phi}\hat{\phi}}}{r} dr = -(P_{out} - P_{in}). $$
+
+	Use constitutive relation:
+	$$ ®B = ®F®F^T = \begin{pmatrix} \(\frac{df}{dR}\)^2 & 0 & 0 \\ 0 & \(\frac{f}{R}\)^2 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+	$$ \mu\int_{r_{in}}^{r_{out}} \frac{\(\frac{df}{dR}\)^2 - \(\frac{f}{R}\)^2}{r} dr = -(P_{out} - P_{in}) $$
+	$$ \frac{f}{R} = \frac{r}{\sqrt{r^2 - cR_{in}^2}}, \qquad \frac{df}{dR} \frac{f}{R} = 1 \implies \frac{df}{dR} = \frac{R}{f}, $$
+	$$ \mu\int_{r=\sqrt{R_{in}^2 + cR_{in}^2}}^{\sqrt{R_{out}^2 + cR_{in}^2}} \frac{(r^2 - c R_{in}^2)^2 - r^4}{r^3(r^2 - cR_{in}^2)} dr = P_{out} - P_{in}. $$
+
+	(After linearization of this formula we get result from linear theory.)
+\end{priklad}
 	
 \end{document}
