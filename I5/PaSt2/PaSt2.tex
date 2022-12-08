@@ -1,0 +1,353 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}							% Import stylu
+
+\begin{document}
+
+\begin{poznamka}
+	Toto nejsou úplné zápisky z přednášky, toto je jen moje příprava k zápočtovému testu a později ke zkoušce.
+\end{poznamka}
+
+\section{Markovovy řetězce}
+
+\begin{definice}[Markovův řetězec]
+	Nechť $S$ je nejvýše spočetná množina. Posloupnost $\(X_t\)_{t=0}^∞$ náhodných veličin s oborem hodnot v $S$ je Markovův řetězec (s diskrétním časem, s diskrétním prostorem a časově homogenní) pokud pro každé $t ≥ 0$ a každé $a_0, …, a_{t+1} \in S$ platí
+	$$ P(X_{t+1} = a_{t+1} | X_t = a_t \land … \land X_0 = a_0) = P(X_{t+1} = a_{t+1} | X_t = a_t) = p_{a_t, a_{t+1}}, $$
+	pokaždé, když $P(X_t = a_t \land … \land X_0 = a_0) > 0$.
+
+	Množině $S$ se říká stavy, budeme předpokládat, že jsou nějak (pevně) očíslované přirozenými čísly (resp. přirozenými čísly s 0). $p_{a_t, a_{t+1}}$ je pravděpodobnost přechodu ze stavu $a_t$ do stavu $a_{t+1}$
+\end{definice}
+
+\subsection{Přechody}
+
+\begin{definice}[Přechodová matice]
+	Matice $P$, jejíž prvek $p_{i, j}$ vyjadřuje pravděpodobnost přechodu ze stavu $i$ do stavu $j$.
+\end{definice}
+
+\begin{dusledek}
+	Každý řádek přechodové matice má součet jeho prvků roven 1. Tj. $P·(1, …, 1)^T = (1, …, 1)^T$.
+\end{dusledek}
+
+\begin{definice}[Přechodový graf/diagram]
+	Přechodový graf je ohodnocený orientovaný graf se smyčkami, jehož množina vrcholů je $S$. Hrana mezi vrcholy $i, j \in S$ vede právě tehdy, když $p_{i, j} > 0$ a má váhu $p_{i, j}$.
+\end{definice}
+
+\begin{definice}[Pravděpodobnostní rozdělení $X$]
+	Nechť $\(X_t\)_{t=0}$ je Markovův řetězec. Pravděpodobnostní rozdělení $X_t$ budeme značit $\pi_i^{(t)} = P(X_t = i)$ pro každý stav $i \in S$, $t \in ®N_0$. $\pi^{(t)}$ pak značí řádkový vektor hodnot $\pi_i^{(t)}$.
+\end{definice}
+
+\begin{veta}
+	Pro libovolný Markovův řetězec s pravděpodobnostním rozdělením $\pi$ a přechodovou maticí $P$ a libovolné $k≥0$
+	$$ \pi^{(k)} = \pi^{(0)} · P^k. $$
+	Dokonce obecněji $\pi^{(t + k)} = \pi^{(t)} P^k$.
+
+	\begin{dukazin}
+		$$ \forall m \in ®N: P(X_m = j) = \sum_{i \in S} P(X_{m-1} = i)·P(X_m = j | X_{m-1} = i), $$
+		$$ \pi_j^{(m)} = \sum_{i \in S} \pi_i^{(m-1)} · P_{i, j}, $$
+		$$ \pi^{(m)} = \pi^{(m-1)}·P. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[$k$-krokový přechod]
+	$$ r_{i, j}(k) = P(\text{přechod z $i$ do $j$ za $k$ kroků}) = P(X_k = j | X_0 = i). $$
+\end{definice}
+
+\begin{dusledek}
+	$$ r_{i, j}(k) = P(X_{t + k} = j | X_t = i). $$
+\end{dusledek}
+
+\begin{veta}[Chapman-Kolmogorov]
+	Pro libovolný Markovův řetězec a libovolné $k, l \in ®N_0$ platí
+
+	\begin{itemize}
+		\item $r_{i, j}(k) = \(P^{(k)}\)_{i, j}$;
+		\item $r_{i, j}(k + l) = \sum_{u \in S} r_{i, u}(k) r_{u, j}(l)$;
+		\item $r_{i, j}(k + 1) = \sum_{u \in S} r_{i, u}(k) p_{u, j}$.
+	\end{itemize}
+\end{veta}
+
+\subsection{Klasifikace stavů}
+
+\begin{definice}[Dosažitelný stav]
+	Pro stavy $i, j$ Markovova řetězce říkáme, že $j$ je dosažitelný z $i$ (píšeme $j \in A(i)$ nebo $i \rightarrow j$), pokud je nenulová pravděpodobnost, že začínaje v $i$ dosáhneme $j$ v konečném čase. Tedy
+	$$ j \in A(i) ≡ \exists t \in ®N_0: P(X_t = j | X_0 = i) > 0. $$
+\end{definice}
+
+\begin{dusledek}
+	$j \in A(i)$ odpovídá existenci orientované cesty z $i$ do $j$ v přechodovém grafu.
+\end{dusledek}
+
+\begin{definice}[Komutující stavy]
+	Říkáme, že stavy $i, j$ Markovova řetězce komutují, pokud $i \in A(j)$ a $j \in A(i)$. Píšeme $i \leftrightarrow j$.
+\end{definice}
+
+\begin{veta}
+	Pro libovolný Markovův řetězec je relace $\leftrightarrow$ (na $S$) ekvivalence.
+\end{veta}
+
+\begin{definice}[Ireducibilní Markovův řetězec]
+	Markovův řetězec se nazývá ireducibilní, pokud $\forall i, j \in S: i \leftrightarrow j$.
+\end{definice}
+
+\begin{definice}[Rekurentní stav]
+	Stav $i \in S$ Markovova řetězce se nazývá rekurentní, pokud $\forall j \in A(i): i \in A(j)$.
+\end{definice}
+
+\begin{definice}[Transientní stav]
+	Stav $i \in S$ Markovova řetězce se nazývá transientní (význam: dočasný, přechodný, pomíjivý), pokud není rekurentní.
+\end{definice}
+
+\begin{veta}
+	Pro stav $i \in S$ Markovova řetězce označme $f_{ii} = P(\exists t \in ®N: X_t = i | X_0 = i)$. Potom, když $f_{ii} = 1$, tak je stav rekurentní, pokud $f_{ii} < 1$, tak je transientní.
+
+	\begin{dukazin}
+		Označme $j$ to $j \in A(i)$, pro které $i \notin A(j)$. Potom $P(\exists t \in ®N: X_t = j|X_0 = i) ≠ 0$ a zřejmě $P(\exists t \in ®N\ \forall 0 < t_1 < t: X_t = j \land X_{t_1} ≠ i | X_0 = i) ≠ 0$ a $P(\exists t_2 > t: X_{t_2} = i | X_t = j) = 0$, tedy $f_{ii} ≠ 1$.
+
+		Naopak pokud $f_{ii} = 1$, tak $\forall j \in A(i)$ musí být $P(\exists t_2 > t: X_{t_2} = i | X_t = j) ≠ 0$, tedy $i \in A(j)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Počet návštěv]
+	Pro stav $i \in S$ Markovova řetězce označme náhodnou veličinu $V_i$ s oborem hodnot v $®N_0^*$ počet návštěv $i$, tedy $V_i = |\{t | X_t = i\}|$.
+\end{definice}
+
+\begin{veta}
+	Stav $i \in S$ Markovova řetězce je rekurentní $\implies P(V_i = ∞ | X_0 = i) = 1$. $i$ je transientní, pokud $V_i|_{X_0 = i} \sim Geo(1 - f_{ii})$.
+\end{veta}
+
+\begin{definice}[Stacionární rozložení]
+	Nechť $\pi$ je pravděpodobnostní rozložení na stavech $S$ Markovova řetězce. Řekneme, že $\pi$ je stacionární rozložení, pokud $\pi·P = \pi$, kde $\pi$ považujeme za řádkový vektor.
+\end{definice}
+
+\begin{dusledek}
+	Pokud $\pi^{(0)}$ je stacionární rozložení, pak $\forall k \in ®N_0: \pi^{(k)} = \pi^{(0)}$.
+\end{dusledek}
+
+\begin{definice}[Periodický stav, periodický Markovův řetězec, aperiodický …]
+	Stav $i \in S$ Markovova řetězce je periodický, pokud $\exists \Delta \in ®N \setminus \{1\}$:
+	$$ P(X_t = i | X_0 = i) > 0 \implies \Delta | t. $$
+
+	Markovův řetězec se nazývá periodický, pokud jsou všechny jeho stavy periodické.
+
+	Stav nebo Markovův řetězec se nazývá aperiodický, pokud není periodický.
+\end{definice}
+
+\begin{veta}
+	Buď $(X_t)_{t=0}^∞$ Markovův řetězec, který je ireducibilní, aperiodický a $|S| < ∞$. Potom $\exists \pi$ stacionární rozložení a
+	$$ \forall j\ \forall i \lim_{k \rightarrow ∞} r_{i, j}(k) = \pi_j; $$
+	navíc $\pi$ je jednoznačné řešení $\pi·P = \pi$ a $\pi·(1, …, 1)^T = 1$.
+\end{veta}
+
+\begin{definice}[Absorbující stav]
+	Stav $a \in S$ Markovova řetězce je absorbující, pokud $p_{a, a} = 1$.
+\end{definice}
+
+\begin{definice}[Čas absorbování]
+	Předpokládejme $A \subseteq S$ neprázdnou množinu absorbujících stavů Markovova řetězce a BÚNO $0 \in A$. Pro každý stav $i \in S$ definujeme $\mu_i$ jako střední hodnotu času absorbování z $i$, tedy
+	$$ \mu_i = ®E(T | X_0 = i), \qquad T = \min\{t: X_t \in A\}. $$
+
+	Dále $a_i$ buď pravděpodobnost, že začínaje ve stavu $i$ skončíme v stavu $0$.
+	$$ a_i = \sum_{t \in ®N_0} P(X_t = 0 | X_0 = i). $$
+\end{definice}
+
+\begin{veta}
+	Pravděpodobnosti $a_i$ jsou jednoznačné řešení
+	$$ a_0 = 1, \qquad a_i = 0, 0 ≠ i \in A, \qquad a_i = \sum_{j \in S} p_{i, j} a_j, i \in (S \setminus A) \cup \{0\}. $$
+
+	\begin{dukazin}
+		TODO? Jednoduchý, větou o úplné pravděpodobnosti. %3. přednáška, cca 0:25
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Střední hodnoty času ($\mu_i$) jsou jednoznačné řešení
+	$$ \mu_i = 0, i \in A, \qquad \mu_i = 1 + \sum_{j \in S} p_{i, j} \mu_j, i \in S \setminus A. $$
+
+	\begin{dukazin}
+		TODO? Jednoduchý, větou o úplné střední hodnotě. % Tenhle na přednášce asi ani nebyl.
+	\end{dukazin}
+\end{veta}
+
+TODO!!! (SAT) %3. přednáška cca 0:57 až 4. přednáška cca 0:29.
+
+\section{Bayesovská statistika}
+
+\subsection{Postup}
+
+\begin{definice}[Parametr hledaného rozdělení]
+	Hledáme rozdělení s parametrem $\Theta$, který budeme považovat za náhodnou veličinu.
+\end{definice}
+
+\begin{definice}[Apriorní rozdělení]
+	Nejprve vybereme apriorní rozdělení s pmf (probability mass function) $p_\Theta(\vartheta)$ nebo pdf (probability density function) $f_\Theta(\vartheta)$ náhodné veličiny $\Theta$ nezávisle na datech.
+\end{definice}
+
+\begin{definice}[Statistický model]
+	Potom zvolíme statistický model $p_{X|\Theta}(x|\vartheta)$ (nebo $f_{X|\Theta}(x|\vartheta)$), který popisuje jak jsou (věříme, že jsou) rozděleny data, pokud je $\Theta$ rovno nějakému konkrétnímu $\vartheta$.
+\end{definice}
+
+\begin{definice}[Posteriorní rozdělení]
+	Poté, co pozorujeme $X = x$ (více měření považujeme za pozorování jednoho $X = x$ z vícedimenzionálního rozdělení) spočítáme posteriorní rozdělení $f_{\Theta | X}(\vartheta | x)$.
+\end{definice}
+
+\begin{poznamka}
+	Nakonec najdeme, co potřebujeme vědět, například $a, b$ tak, aby $P(a ≤ \Theta ≤ b | X = x) = \int_a^b f_{(\Theta | X)}(\vartheta | x) d\vartheta ≥ 1 - \alpha$.
+\end{poznamka}
+
+\subsection{Bayesova věta}
+
+\begin{veta}[Bayesova pro obě diskrétní]
+	Nechť $X$, $\Theta$ jsou diskrétní náhodné veličiny, pak
+	$$ p_{\Theta | X}(\vartheta | x) = \frac{p_{X|\Theta}(x|\vartheta) p_\Theta(\vartheta)}{\sum_{\vartheta' \in \im \Theta \setminus \{p_\Theta(\vartheta') = 0\}} p_{X|\Theta}(x|\vartheta')p_\Theta(\vartheta')}. $$
+\end{veta}
+
+\begin{veta}[Bayesova pro obě spojitá]
+	Nechť $X$, $\Theta$ jsou spojité náhodné veličiny, pak
+	$$ f_{\Theta | X}(\vartheta | x) = \frac{f_{X|\Theta}(x|\vartheta) f_\Theta(\vartheta)}{\int_{\vartheta' \in \im \Theta \setminus \{f_\Theta(\vartheta') = 0\}} f_{X|\Theta}(x|\vartheta')f_\Theta(\vartheta')}. $$
+\end{veta}
+
+\begin{veta}[Bayesova pro diskrétní a spojité]
+	Nechť $X$ je diskrétní a $\Theta$ spojitá náhodná veličina, pak
+	$$ f_{\Theta | X}(\vartheta | x) = \frac{p_{X|\Theta}(x|\vartheta) f_\Theta(\vartheta)}{\int_{\vartheta' \in \im \Theta \setminus \{f_\Theta(\vartheta') = 0\}} p_{X|\Theta}(x|\vartheta')f_\Theta(\vartheta')}. $$
+\end{veta}
+
+\subsection{Bodové odhady}
+
+\begin{definice}[MAP – maximum a-posteriori]
+	Zvolíme modus $\Theta$.
+
+	\begin{poznamkain}
+		Tj. maximum $p_{\Theta|X}(\vartheta|x)$, resp $f_{\Theta|X}(\vartheta|x)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[LMS – least mean square]
+	Zvolíme střední hodnotu $\Theta$, tedy $®E(\Theta | X = x)$.
+
+	\begin{poznamka}
+		Dostaneme nestranný bodový odhad, který minimalizuje $®E((\Theta - ·)^2 | X = x)$.
+	\end{poznamka}
+\end{definice}
+
+\begin{poznamka}[Medián]
+	Obdobně, když vezmeme medián (tj. $m$ tak, že $P(\Theta ≤ m | X = x) = \frac{1}{2}$), tak minimalizujeme $®E((\Theta - ·) | X = x)$, tento přístup však nebudeme dále používat.
+\end{poznamka}
+
+TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
+
+\section{Stochastické procesy}
+
+\begin{poznamka}
+	I Markovovy řetězce jsou vlastně stochastický proces.
+\end{poznamka}
+
+\subsection{Bernoulliho proces}
+
+\begin{definice}[Bernoulliho proces]
+	Bernoulliho proces (s parametrem $p$), píšeme $Bp(p)$, je posloupnost nezávislých náhodných proměnných $(X_t)_{t=1}^∞$, kde $X_t \sim Ber(p)$, tedy $p(X_t = 1) = p$ a $p(X_t = 0) = 1 - p$, $\forall t \in ®N$.
+\end{definice}
+
+\begin{dusledek}
+	$$ \{X_t\}_{t = 1}^∞ \sim Bp(p) \implies \{X_t\}_{t = k}^∞ \sim Bp(p), \forall k \in ®N. $$
+
+	$$ \{X_t\}_{t = 1}^∞ \sim Bp(p) \implies \{X_t\}_{t = N}^∞ \sim Bp(p), $$
+	kde $N$ je náhodná veličina závisející pouze na minulosti.
+\end{dusledek}
+
+\begin{definice}[Čas prvního úspěchu, čas $k$-tého]
+	$$ T := \min\{t | X_t = 1\}, \qquad T_k := \min\{t | \sum_{s = 1}^t X_s = k\}. $$
+\end{definice}
+
+\begin{dusledek}
+	$$ T \sim Geom(p), \qquad ®E[T] = \frac{1}{p}, \var T = \frac{1 - p}{p^2}. $$
+\end{dusledek}
+
+\begin{definice}[Doba čekání]
+	$$ L_k := T_k - T_{k-1}, \qquad (T_0 = 0). $$
+\end{definice}
+
+\begin{dusledek}
+	$$ L_k \sim T \sim Geom(p). $$
+
+	\begin{dukazin}
+		Restartujeme Bernoulliho proces v $T_{k - 1}$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	$$ T_k = \sum_{i = 1}^k L_i. $$
+	$$ ®E [T_k] = \sum_{i=1}^k ®E L_i = \frac{k}{p}, \qquad \var T_k = \sum_{i=1}^k \var L_i = k·\frac{1 - p}{p^2}. $$
+	$$ p(T_k = t) = \binom{t - 1}{k - 1}·p^k·(1 - p)^{t - k}, \qquad \chi(T_k = t) \sim Pas(p, k), $$
+	kde $Pas(p, k)$ je tzv. Pascalovo rozdělení (definované právě $p(T_k = t) = …$ výše), také nazývané negativní binomické.
+\end{dusledek}
+
+\begin{veta}[Spojování Bernoulliho procesů]
+	Mějme $\{X_t\}_{t=1}^∞ \sim Bp(p)$ a $\{Y_t\}_{t=1}^∞ \sim Bp(q)$, pak $\{X_t \lor Y_t\}_{t=1}^∞ \sim Bp(p + q - pq)$.
+\end{veta}
+
+\begin{veta}[Rozdělování Bernoulliho procesů]
+	Mějme $\{Z_t\}_{t = 1}^∞ \sim Bp(p)$. Potom $\{Z_t · Y_t\}_{t=1}^∞ \sim Bp(p·q)$, kde $Y_t \sim Ber(q)$.
+\end{veta}
+
+\subsection{Poissonův proces}
+
+\begin{definice}[Poissonův proces]
+	Definujme časy příchodů jako reálná čísla: $0 < T_1 < T_2 < T_3 < …$. Po Poissonově procesu požadujeme:
+
+	\begin{enumerate}
+		\item Pro každou délku intervalu $\tau$ chceme, aby pravděpodobnost $k$ příchodů v tomto intervalu byla stejná, označme ji $p(k, \tau)$.
+		\item Počet příchodů v intervalu $[a, b]$ je nezávislý na počtu příchodů v $[0, a]$.
+		\item $p(0, \tau) = 1 - \lambda \tau + o(\tau)$, $p(1, \tau) = \lambda \tau + o(\tau)$ ($\implies p(k, \tau) = o(\tau)$, $\forall k ≥ 2$).
+	\end{enumerate}
+
+	Poissonův proces je tedy posloupnost náhodných reálných veličin $0 < T_1 < T_2 < T_3 < …$, která splňuje tyto 3 body.
+\end{definice}
+
+\begin{definice}[Počet příchodů do času $t$]
+	$$ N_t := \max {k | T_k ≤ t} $$
+\end{definice}
+
+\begin{veta}
+	$$ N_t \sim Pois(\lambda·t), \qquad p(N_t = k) = e^{-\lambda·t} \frac{(\lambda·t)^k}{k!}. $$
+	
+	\begin{dukazin}
+		Rozdělme si interval $[0, t]$ na $l$ intervalů pro nějaké $l$ velké. Pak délka jednoho intervalu je $\frac{t}{l}$, $p\(1, \frac{t}{l}\) = \frac{\lambda·t}{l} + o\(\frac{t}{l}\)$ a $p\(k, \frac{t}{l}\) = o\(\frac{t}{l}\)$. $o\(\frac{t}{l}\)$ zanedbáme, tedy máme Binomické rozdělení s parametry $l$ a $\frac{\lambda · t}{l}$, což pro rostoucí $l$ vede k Poissonovu rozdělení s parametrem $\lambda·t$. Tedy
+		$$ p(N_t = k) = e^{-\lambda·t} \frac{(\lambda·t)^k}{k!}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Čekání na další příchod]
+	$$ L_k := T_k - T_{k-1}. $$
+\end{definice}
+
+\begin{dusledek}
+	$$ p(L_k ≥ t) = p(0, t) = e^{-\lambda·t}, \qquad p(L_k ≤ t) = 1 - p(L_k ≥ t) = 1 - e^{-\lambda·t}. $$
+	$$ L_k \sim Exp(\lambda). $$
+\end{dusledek}
+
+\begin{dusledek}
+	$$ ®E T_k = \sum_{i = 1}^k ®E L_i = k·\frac{1}{\lambda}. $$
+	$$ \var T_k = \sum_{i=1}^k \var L_i = k·\frac{1}{\lambda^2}. $$
+	$$ f_{T_k}(t) = \frac{\lambda^k t^{k-1} e^{-\lambda·t}}{(k-1)!} $$
+\end{dusledek}
+
+\begin{veta}[Rozdělování Poissonových procesů]
+	Mějme $0 < T_1 < T_2 < …$ Poissonův proces s parametrem $\lambda$ a každý příchod nezávisle s pravděpodobností $p$ ponechejme. Pak nová $0 < T_1' < T_2' < …$ jsou Poissonův proces s parametrem $\lambda·p$. Odstraněné $0 < \tilde T_1 < \tilde T_2 < …$ jsou Poissonův proces s parametrem $\lambda·(1 - p)$. A tyto procesy jsou na sobě nezávislé.
+
+	\begin{dukazin}
+		$$ p_p(k, \tau) = \sum_{n=k}^∞ p(n, \tau)·P(Bin(n, p) = k). $$
+		Následně se ověří podmínky Poissonova procesu (na přednášce ukázán trochu zjednodušený výpočet).
+
+		Nezávislé $\Leftrightarrow$ $P(X = k \land Y = l) = P(X = k)·P(Y = l)$. Následně jsme ověřili dosazením.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Spojování Poissonových procesů]
+	Nechť $0 < T_1 < T_2 < …$ a $0 < S_1 < S_2 < …$ jsou Poissonovy procesy s parametry $\lambda$, $\kappa$. Potom jejich sjednocením získáme Poissonův proces $0 < R_1 < R_2 < …$ s parametrem $\lambda + \kappa$. (Případně můžeme spojovat i libovolně mnoho Poissonových procesů do Poissonova procesu s parametrem rovným součtu parametrů původních.)
+
+	\begin{dukazin}
+		$$ p(R_1 > t) = P(T_1 > t \land S_1 > t) = P(T_1 > t)·P(S_1 > t) = e^{-\lambda t}·e^{-\kappa t} = e^{-(\lambda + \kappa) t}. $$
+		Následně restartujeme procesy v $R_1$ a začínáme nanovo :)
+	\end{dukazin}
+\end{veta}
+
+\end{document}

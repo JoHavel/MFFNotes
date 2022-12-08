@@ -37,7 +37,37 @@
 \end{priklad}
 
 \begin{priklad}[3.2]
-	Nechť je $G = \(P = \{1, 2\}, A, u\)$ hra v normálním tvaru pro dva hráče, kde $A_1 = \{U, D\}$ a $A_2 = \{L, R\}$ s výplatní funkcí $u$ určenou Tabulkou 2. Určete množinu všech korelovaných ekvilibrií v $G$.	
+	Nechť je $G = \(P = \{1, 2\}, A, u\)$ hra v normálním tvaru pro dva hráče, kde $A_1 = \{U, D\}$ a $A_2 = \{L, R\}$ s výplatní funkcí $u$ určenou Tabulkou 2. Určete množinu všech korelovaných ekvilibrií v $G$.
+	
+	\begin{center}
+		\begin{tabular}{c|c|c}
+			    & $L$        & $R$        \\ \hline
+			$U$ & $(4, 4)$   & $(1, 5)$   \\
+			$D$ & $(5, 1)$   & $(0, 0)$
+		\end{tabular}
+
+		Tabulka 2: Hra z Příkladu 3.2.
+	\end{center}
+
+	\begin{reseni}
+		Hledáme CE, tedy pravděpodobnostní rozložení na $A = A_1 \times A_2$, tedy si pravděpodobnosti označíme (odpovídá Tabulce 2):
+		$$ \begin{pmatrix} p_{11} & p_{12} \\ p_{21} & p_{22} \end{pmatrix}. $$
+		Naše $p$ musí splňovat podmínku CE, která je pro
+
+		\begin{itemize}
+			\item $a_i = U$, $a_i' = D$:
+				$$ p_{11}·4 + p_{12}·1 ≥ p_{11}·5 + p_{12}·0 \implies p_{12} ≥ p_{11}; $$
+			\item $a_i = D$, $a_i' = U$:
+				$$ p_{21}·5 + p_{22}·0 ≥ p_{21}·4 + p_{22}·1 \implies p_{21} ≥ p_{22}; $$
+			\item $a_i = L$, $a_i' = R$:
+				$$ p_{11}·4 + p_{21}·1 ≥ p_{11}·5 + p_{21}·0 \implies p_{21} ≥ p_{11}; $$
+			\item $a_i = R$, $a_i' = L$:
+				$$ p_{12}·5 + p_{22}·0 ≥ p_{12}·4 + p_{22}·1 \implies p_{12} ≥ p_{22}. $$
+		\end{itemize}
+
+		Žádné další podmínky na CE nejsou, tedy každá\footnotemark{} $\max(p_{22}, p_{11}) ≤ \min(p_{12}, p_{21})$ jsou CE.
+	\end{reseni}
+	\footnotetext{1. Ještě jsou $p_{ij}$ pravděpodobnostní rozdělení, tedy $0 ≤ p_{ij}$ a $\sum_{ij} p_{ij} = 1$.}
 \end{priklad}
 	
 \end{document}
