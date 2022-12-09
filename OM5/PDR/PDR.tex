@@ -303,8 +303,8 @@ TODO!!!
 \end{veta}
 
 \begin{lemma}
-	Buď $x \in ®R^n$, $r > 0$, $u$ spojitá na $\partial U(0, r)$. Pak $\not\int_{\partial U(x, 1)} u ds = \not\int_{\partial U(0, 1)} u(x + rz) dS(z)$. Kde
-	$$ \not\int_M f d\mu = \int_M f d\mu / \int_M 1 d\mu, \text{ pro } \mu(M) ≠ 0. $$
+	Buď $x \in ®R^n$, $r > 0$, $u$ spojitá na $\partial U(0, r)$. Pak $/\!\!\!\!\int_{\partial U(x, 1)} u ds = /\!\!\!\!\int_{\partial U(0, 1)} u(x + rz) dS(z)$. Kde
+	$$ /\!\!\!\!\!\int_M f d\mu = \int_M f d\mu / \int_M 1 d\mu, \text{ pro } \mu(M) ≠ 0. $$
 
 	\begin{dukazin}
 		Plyne z definice plošného integrálu (ukázali jsme si pouze v $n = 3$). Převedeme na sférické souřadnice, vydělíme objemem daných koulí a vyjde to.
@@ -328,17 +328,17 @@ TODO!!!
 \end{definice}
 
 \begin{lemma}
-	Buď $x \in ®R^n$, $R > 0$, $u \in C^1(©U(x, R))$. Označme $u^x(r) = \not\int_{\partial ©U(x, r)} u dS$. Pak platí
-	$$ \partial_r u^x(r) = \not\int_{\partial ©U(x, r)} \nabla u(y) · \frac{y - x}{r} dS(y), \qquad r \in (0, R). $$
+	Buď $x \in ®R^n$, $R > 0$, $u \in C^1(©U(x, R))$. Označme $u^x(r) = /\!\!\!\!\!\int_{\partial ©U(x, r)} u dS$. Pak platí
+	$$ \partial_r u^x(r) = /\!\!\!\!\!\int_{\partial ©U(x, r)} \nabla u(y) · \frac{y - x}{r} dS(y), \qquad r \in (0, R). $$
 
 	Je-li navíc $u \in C^2(©U(x, R))$, je
-	$$ \partial_r u^x(r) = \frac{r}{n} \not\int_{©U(x, r)} \Delta u(y) d\lambda(y). $$
-	$$ \partial_r^2 u^x(r) = \(\frac{1}{n} - 1\) \not\int_{©U(x, r)} \Delta u(y) d\lambda(y) + \not\int_{\partial ©U(x, r)} \Delta u(y) dS (y), \qquad r \in (0, R). $$
+	$$ \partial_r u^x(r) = \frac{r}{n} /\!\!\!\!\!\int_{©U(x, r)} \Delta u(y) d\lambda(y). $$
+	$$ \partial_r^2 u^x(r) = \(\frac{1}{n} - 1\) /\!\!\!\!\!\int_{©U(x, r)} \Delta u(y) d\lambda(y) + /\!\!\!\!\!\int_{\partial ©U(x, r)} \Delta u(y) dS (y), \qquad r \in (0, R). $$
 
 	\begin{dukazin}
 		Podle lemmatu výše, derivace integrálů podle parametru a znovu tohoto lemmatu:
-		$$ \partial_r u^x(r) = \partial_r \(\not\int_{\partial ©U(0, 1)} u (x + rz) dS(z)\) = \int_{\partial ©U(0, 1)} (\nabla u)(x + r z)· z ds(z) = \not\int_{\partial ©U(x, 1)} \nabla u(y) · \frac{y - x}{r} dS(y) = $$
-		$$ \overset{u \in C^2}= \frac{1}{n \alpha_n r^{n-1}} \int_{©U(x, r)} \Delta u(y) d\lambda^n(y) = \frac{r}{n} \not\int_{©U(x, 1)} \Delta u(y) d\lambda^n(y). $$
+		$$ \partial_r u^x(r) = \partial_r \(/\!\!\!\!\!\int_{\partial ©U(0, 1)} u (x + rz) dS(z)\) = \int_{\partial ©U(0, 1)} (\nabla u)(x + r z)· z ds(z) = /\!\!\!\!\!\int_{\partial ©U(x, 1)} \nabla u(y) · \frac{y - x}{r} dS(y) = $$
+		$$ \overset{u \in C^2}= \frac{1}{n \alpha_n r^{n-1}} \int_{©U(x, r)} \Delta u(y) d\lambda^n(y) = \frac{r}{n} /\!\!\!\!\!\int_{©U(x, 1)} \Delta u(y) d\lambda^n(y). $$
 	\end{dukazin}
 \end{lemma}
 
@@ -347,21 +347,21 @@ TODO!!!
 \begin{lemma}
 	Buď $x \in ®R^n$, $m \in ®N$, $m ≥ 2$, $u \in C^m([0, +∞) \times ®R^n)$ a $u$ splňuje bodově $\partial_t^2 u - \nabla u = 0$ v $(0, ∞) \times ®R^n$, $u = u_0$ a $\partial_t = u_1$ v $\{0\} \times ®R^n$.
 
-	Označme $u^x(r, t) = \not\int_{\partial U(x, r)} u(t, y) dS(y)$, $u_0^x(r, t) = \not\int_{\partial U(x, r)} u_0(y) dS(y)$, $u_1^x(r, t) = \not\int_{\partial U(x, r)} u_1(y) dS(y)$, pro $t ≥ 0$, $x \in ®R^n$.
+	Označme $u^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)} u(t, y) dS(y)$, $u_0^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)} u_0(y) dS(y)$, $u_1^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)} u_1(y) dS(y)$, pro $t ≥ 0$, $x \in ®R^n$.
 
 	Pak $u^x \in C^m([0, +∞)^2)$ a $\partial_t^2 u^x - \partial_r^2 u^x - \frac{n-1}{r} \partial_r u^x = 0$ v $(0, +∞)^2$, $u^x = u_0^x$, $\partial_t u^x = u_1^x$ v $[0, +∞)\times\{0\}$.
 
 	\begin{dukazin}
 		„$u^x \in C^m([0, +∞)^2)$“ spojitost derivací podle $t$ je zřejmá. Derivace dle $r$:
-		$$ \partial_r u^x(r, t) = \frac{r}{n} \not\int_{U(x, r)} \Delta u(y) d\lambda(y), $$
+		$$ \partial_r u^x(r, t) = \frac{r}{n} /\!\!\!\!\!\int_{U(x, r)} \Delta u(y) d\lambda(y), $$
 		podle lemmatu výše. Navíc je spojitá. $\partial_t\partial_r u^x(r, t)$ je jasná.
 
 		$\partial_r^2 u^x(r, t)$ podobně:
-		$$ \not\int_{U(x, r)} (\Delta u)(t, y) d\lambda(y) = \not\int_{0, 1}(\Delta u)(t, x + rz) d\lambda(z) $$
+		$$ /\!\!\!\!\!\int_{U(x, r)} (\Delta u)(t, y) d\lambda(y) = /\!\!\!\!\!\int_{0, 1}(\Delta u)(t, x + rz) d\lambda(z) $$
 		spojitá dle teorie míry.
 
 		„Rovnosti“:
-		$$ \partial_r u^x(r, t) = \frac{r}{n} \not\int_{U(x, r)} \Delta u(t, y) d\lambda(y) = \frac{r}{n} \int_{U(x, r)} \partial_t^2 u(t, y) d\lambda(y) = \frac{r^{1 - n}}{n \alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y) $$
+		$$ \partial_r u^x(r, t) = \frac{r}{n} /\!\!\!\!\!\int_{U(x, r)} \Delta u(t, y) d\lambda(y) = \frac{r}{n} \int_{U(x, r)} \partial_t^2 u(t, y) d\lambda(y) = \frac{r^{1 - n}}{n \alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y) $$
 		$$ r^{n-1} \partial_r u^x(r, t) = \frac{1}{n\alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y). $$
 		$$ RHS = r^{1 - n} \partial_r(r^{n-1} \partial_r u^x(r, t)) = \frac{1}{n\alpha_n r^{n-1}} \partial_t^2 \int_{\partial U(x, r)} u dS = \partial_t^2 u^x(r, t) $$
 		$$ RHS = r^{1 - n}(r^{n-1} \partial_r^2 u^x(r, t) + (n-1)r^{n-2} \partial_r u^x(r, t)) = \partial_r^2 u^x(r, t) + \frac{n-1}{r} \partial_r u^x(r, t) \text{ v } (0, +∞)^2. $$
@@ -388,17 +388,17 @@ TODO!!!
 	$$ \tilde u^x(r, t) \overset{r < t}= \frac{1}{2}\(\tilde u_0^x(r + t) - \tilde u_0^x(t - r)\) + \frac{1}{2} \int_{t-r}^{t + r} \tilde u_1^x(\xi) d\xi $$
 	$$ u(t, x) = \lim_{r \rightarrow 0_+} U^x(r, t) = \lim_{r \rightarrow 0_+} \frac{1}{r} \tilde u^x(r, t) = $$
 	$$ \lim_{r \rightarrow 0_+} \frac{1}{2r}\((t + r) u_0^x(t + r) - (t - r)u_0^x(t - r)\) + \frac{1}{2r} \int_{t - r}^{t + r} \xi u_1^x(\xi) d\xi = $$
-	$$ = \partial_t (t·u_0^x(t)) + t u_1^x(t) = u_0^x(t) + t \not\int_{\partial U(x, t)} \nabla u_0(y) \frac{y - x}{t} dS(y) + t \not\int_{\partial U(x, t)} u_1(y) dS(y). $$
+	$$ = \partial_t (t·u_0^x(t)) + t u_1^x(t) = u_0^x(t) + t /\!\!\!\!\!\int_{\partial U(x, t)} \nabla u_0(y) \frac{y - x}{t} dS(y) + t /\!\!\!\!\!\int_{\partial U(x, t)} u_1(y) dS(y). $$
 \end{poznamka}
 
 \begin{dukazin}[Kirchhoffův vzorec]
 	Kandidát na řešení vlnové rovnice pro $n=3$:
-	$$ u(t, x) = \not\int_{\partial U(x, t)} u_0(y) + \nabla u_0(y) (y - x) + t u_1(y) dS(y), \qquad x \in ®R^3, t ≥ 0. $$
+	$$ u(t, x) = /\!\!\!\!\!\int_{\partial U(x, t)} u_0(y) + \nabla u_0(y) (y - x) + t u_1(y) dS(y), \qquad x \in ®R^3, t ≥ 0. $$
 \end{dukazin}
 
 \begin{definice}[Poissonnův vzorec v $n=2$]
 	Kandidát na řešení vlnové rovnice v $n=2$:
-	$$ u(t, x) = \frac{1}{2} \not\int_{U(x, t)} t u_0(y) + t \nabla u(y)(y - x) + t^2 u_1(y) \frac{1}{\sqrt{t^2 - |x-y|^2}} dy, \qquad x \in ®R^2, t ≥ 0. $$
+	$$ u(t, x) = \frac{1}{2} /\!\!\!\!\!\int_{U(x, t)} t u_0(y) + t \nabla u(y)(y - x) + t^2 u_1(y) \frac{1}{\sqrt{t^2 - |x-y|^2}} dy, \qquad x \in ®R^2, t ≥ 0. $$
 \end{definice}
 
 \begin{veta}
@@ -502,5 +502,112 @@ TODO!!!
 	kde
 	$$ u(t, x) = \int_{®R^{n+1}} G(\sigma, \xi)·f(t - \sigma, x - \xi) d(\sigma, \xi) = \int_{®R^{n+1}} G(t - \sigma, x - \xi)g(\sigma, \xi)d(\sigma, \xi). $$
 \end{dusledek}
+
+% 09. 12. 2022
+
+\begin{veta}[Klasické řešení Cauchyovy úlohy pro RVT v1]
+	Buď $T > 0$. $Q_T = (0, T) \times ®R^n$, $f, \nabla f, \nabla^2 f \in L^∞(Q_T) \cap C(Q_T)$. Definujme pro $t \in [0, T)$ a $x \in ®R^n$
+	$$ u_1(t, x) = \int_0^t \int_{®R^n} G(\tau, \xi) f(t - \tau, x - \xi) d(\tau, \xi). $$
+
+	Pak platí
+	\begin{enumerate}
+		\item $u_1 \in C([0, T) \times ®R^n)$, $\partial_t u_1, \nabla u_1, \nabla^2 u_1 \in C(Q_T) \cap L^∞(Q_T)$;
+		\item $\partial_t u_1 - \Delta u_1 = f$ v $Q_T$;
+		\item $u_1 = 0$ v $\{0\} \times ®R^n$;
+		\item $\|u_1\|_{L^∞(Q_T)} ≤ T·\|f\|_{L^∞(Q_T)}$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		$$ u_1(t, x) = \int_0^t \int_{®R^n} \frac{1}{(4\pi\tau)^{\frac{n}{2}}} e^{-\frac{|\xi\|^2}{4\tau}} f(t - \tau, x - \xi) d\xi d\tau = * $$
+		1.) Tedy $u_1 \in C([0, T)\times ®R^n)$, $\nabla u_1, \nabla^2 u_1 \in C(Q_T) \cap L^∞(Q_T)$ podle Lebesgueovy věty, majoranta pro $t \in [0, T)$, $x \in ®R^n$ je $C·\frac{1}{(4\pi T)^{n / 2}} e^{-\frac{\|x\|^2}{4T}}$, kde $C = \|f\|_{L^∞} + \|\nabla f\|_∞ + \|\nabla^2 f\|_∞$.
+
+		$$ 4.) \quad |*| ≤ \|f\|_∞ \int_0^t \int_{®R^n} \frac{1}{(4\pi\tau)^{n / 2}}e^{-\frac{|\xi|^2}{4\tau}} d\xi d\tau $$
+
+		3.) Jasné, neboť integrál od 0 do 0 je roven 0.
+	\end{dukazin}
+
+	\begin{dukazin}
+		Zbývá 2.) a z 1.) chybí $\partial_t u$:
+		$$ u_1(t, x) = \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{\|\eta\|^2} f(t - \tau, x - \eta\sqrt{4\tau}) d\eta d\tau = $$
+		$$ = \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2}f(\sigma, x + \eta \sqrt{4(t - \sigma)}) d\eta d\sigma $$
+
+		$$ \frac{1}{h} (u_1(t + h, x) - u_1(t, x)) = \int_0^{t + h} \int_{®R^n} … t+h … d(\eta, \sigma) - \int_0^t \int_{®R^n} … t … d(\eta, \sigma) = $$
+		$$ = /\!\!\!\!\!\int_t^{t + h} \(\int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} f(\sigma, x + \eta\sqrt{4(t + h - \sigma)}) d\eta\)d\sigma + $$
+		$$ + \frac{1}{h} \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} l^{- \|\eta\|^2} \(f(\sigma, x + \eta\sqrt{4(t + h - \sigma)}) - f(\sigma, x + \eta \sqrt{4t - \sigma})\) d\eta d\sigma = I_1 + I_2. $$
+
+		Použijeme Lagrangeovu větu o střední hodnotě, $\exists \overline{\sigma} \in [t, t + h]$, … Na limitu pro $h \rightarrow 0_+$ použijeme Lebesgueovu větu.
+		$$ I_1 = g(\overline{\sigma}) \rightarrow f(t, x), $$
+		$$ g(\overline{\sigma}) := \frac{1}{\pi^{n / 2}} \int_{®R^n} e^{-\|\eta\|^2} f(\sigma, x + \eta \sqrt{4(t + h - \sigma)} d\eta) $$
+		je spojitá na $[t, t+h]$ podle Lebesgueovy věty.
+
+		Stejně jako v předchozím, $\overline{h} \in (0, h)$:
+		$$ I_2 = \frac{1}{\overline{h}} \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} \overline{h} \sum_{i=1}^n \frac{\partial f}{\partial x_i}(\sigma, x + \eta\sqrt{4(t + \overline{h} - \sigma)}) \frac{\eta_i}{\sqrt{t + \overline{h}}} d\eta, d\sigma \rightarrow $$
+		$$ \rightarrow \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{- \|\eta\|^2} \sum_{i=1}^n \frac{\partial f}{\partial x_i}(\sigma, x + \eta·2·\sqrt{t - \sigma}) \frac{\eta_i}{\sqrt{t - \sigma}} d\eta d\sigma. $$
+	\end{dukazin}
+
+	\begin{dukazin}		
+		Časová derivace zleva se spočte podobně a vyjde stejně:
+		$$ \partial_t u(t, x) = f(t, x) + \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} … d\eta d \sigma. $$
+
+		Víme:
+		$$ \Delta u(t, x) = \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} (\Delta f)(\sigma, x + 2\eta \sqrt{t - \sigma}) d\eta d\sigma = $$
+		$$ = \lim_{R \rightarrow +∞} \int_0^t \int_{U(0, R)} \frac{1}{\pi^{n / 2}} \Div_\eta (\nabla_x f)(…) \frac{1}{2\sqrt{t - \sigma}} d\eta d\sigma = $$
+		$$ = \lim_{R \rightarrow +∞} \[ \int_0^t \int_{\partial U(0, R)} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} \frac{\nabla_x f(…)}{2\sqrt{t - \sigma}} \frac{\eta}{\|\eta\|}dS(\eta) d\sigma -\right. $$
+		$$ - \left. \int_0^t \int_{U(0, R)} \frac{1}{\pi^{n / 2}} \nabla_x (e^{-\|\eta\|^2}) \nabla_x f(…) \frac{1}{2\sqrt{t - \sigma}} d\eta d\sigma\] = $$
+		$$ = \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} 2 \eta · \frac{\nabla_x f(…)}{2\sqrt{t - \sigma}} d\eta d\sigma. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Klasické řešení Cauchyovy úlohy pro RVT v2]
+	Buď $u_0 \in C(®R^n) \cap L^∞(®R^n)$. Definujeme
+	$$ u_2(t, x) := \begin{cases}\int_{®R^n} \frac{1}{(4\pi t)^{n / 2}} e^{- \frac{\|\xi\|^2}{4t}} u_0(x - \xi) d\xi, & t > 0\\ u_0(x), & t = 0.\end{cases} $$
+	Pak
+	\begin{enumerate}
+		\item $u_2 \in C([0, +∞) \times ®R^n) \cap C^∞((0, +∞) \times ®R^n)$;
+		\item $\partial_t u_2 - \Delta u_2 = 0$ v $t > 0$, $x \in ®R^n$,;
+		\item $u_2 = u_0$ pro $t = 0$;
+		\item $\|u_2\|_{L^∞((0, +∞) \times ®R^n)} ≤ \|u_0\|_{L^∞(®R^n)}$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Ukážeme pouze spojitost $u_2$ v $t = 0$ a 4.), ostatní podobně jako v předchozí větě. 
+		$$ x, y \in ®R^n, t > 0: |u_2(t,y) - u_0(x)| ≤ \int_{®R^n} \frac{1}{(4\pi t)^{n / 2}} [u_0(y - \xi) - u_0(x)] d\xi. $$
+		$$ \int_{U(0, R)} \frac{1}{(4\pi t)^{n / 2}} e^{-\frac{\|\xi\|^2}{4t}} |…| d\xi + \int_{U(0, R)^C} … | … | d\xi = I_1 + I_2. $$
+		Fixujeme $\epsilon > 0$. Najdu $R > 0$ tak, aby $\forall \xi \in U(x, 2R): |u_0(\xi) - u_0(x)| < \epsilon$. Pro $y \in U(0, R)$ platí v $I_1: |y - \xi - x| ≤ |y - x| + |\xi| < 2R \implies |u_0(y - \xi) - u_0(x)| < \epsilon$ pro $\xi \in U(0, R)$.
+		$$ I_1 ≤ \epsilon \int_{U(0, R)} … d\xi ≤ \epsilon \int_{®R^n} … d\xi = \epsilon \rightarrow 0. $$
+		$$ I_2 ≤ 2 \|u_0\|_∞ \int_{U(0, R)^C} \frac{1}{(4 \pi t)^{n / 2}} e^{- \frac{\|\xi\|^2}{4t}} d\xi = 2 \|a_0\|_∞ \int_{U(0, R / \sqrt{4t})^C} \frac{1}{\pi^{n / 2}} e^{-\|\xi\|^2} d\xi $$
+		$$ \implies \exists t_0 > 0\ \forall t \in (0, t_0): I_2 ≤ \epsilon \implies |u_2(t, y) - u_0(x)| < 2\epsilon, $$
+		tedy $u_2 \in C([0, +∞) \times ®R^n)$.
+
+		K 4.)
+		$$ |u_2(t, x)| ≤ \int_{®R^n} \frac{1}{(4 \pi t)^{n / 2}} e^{- \frac{\|\xi\|^2}{4t}} |u_0(x - \xi)| d \xi ≤ \|u_0\|_∞ \int_{®R^n} \frac{1}{(4\pi t)^{n / 2}} e^{- \frac{\|\xi\|^2}{4t}} d\xi = \|u_0\|_∞. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{upozorneni}
+	Z vlastností z předchozích dvou vět neplyne jednoznačnost řešení. (Plynula by, kdyby všechna řešení tyto vlastnosti splňovala.)
+\end{upozorneni}
+
+\begin{veta}[Slabý princip maxima na omezené množině]
+	Buď $\Omega \subset ®R^n$ omezená otevřená, $T > 0$, $Q_T = (0, T) \times \Omega$, $u \in C(\overline{Q_T})$, $\Gamma = (\{0\} \times \overline{\Omega}) \cup ((0, T) \times \partial \Omega)$, $\partial_t u, \nabla u, \nabla^2 u \in C(\overline{Q_T} \setminus \Gamma)$ a platí $\partial_t u - \Delta ≤ 0$ na $\overline{Q_T} \setminus \Gamma$.
+
+	Pak $\max_{\overline{Q_T}} u = \max_{\Gamma} u$. (Tj. funkce nabývá maxima na hranici.)
+
+	\begin{poznamkain}
+		Pro $\partial_t u - \Delta ≥ 0$ platí totéž pro $\min$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Sporem. Ať $\max_{\overline{Q_t}} u = u(t_0, x_0) > \max_\Gamma u$. $u(t_0, x_0) - \max_\Gamma u =: \delta > 0$.
+
+		Definujme $v(t, x) := u(t, x) + \epsilon |x - x_0|^2$, kde $\epsilon·(\diam \Omega)^2 < \delta / 2$, $\epsilon > 0$.
+		$$ \partial_t v - \Delta v = \partial_t u - \Delta u - 2u\epsilon < 0 $$
+		$$ (t, x) \in \Gamma: v(t_0, x_0) - v(t, x) = u(t_0, x_0) - u(t, x) - \epsilon(|x - x_0|^2) ≥ \delta - \epsilon(\diam \Omega)^2 > \frac{\delta}{2} $$
+		$$ v(t_1, x_1) := \max_{Q_T} v ≥ v(t_0, x_0) > \max_\Gamma v. $$
+
+		Krok 2: $v$ má v $(t_1, x_1)$ maximum $\implies \nabla v(t_1, x_1) = 0$, $\partial_t v (t_1, x_1) ≥ 0$.
+		$$ 0 > (\partial_t v - \nabla v)(t_1, x_1) ≥ 0. \text{\lightning}. $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

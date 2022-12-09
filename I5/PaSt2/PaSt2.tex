@@ -151,7 +151,7 @@
 
 \begin{veta}
 	Pravděpodobnosti $a_i$ jsou jednoznačné řešení
-	$$ a_0 = 1, \qquad a_i = 0, 0 ≠ i \in A, \qquad a_i = \sum_{j \in S} p_{i, j} a_j, i \in (S \setminus A) \cup \{0\}. $$
+	$$ a_0 = 1, \qquad a_i = 0, \quad 0 ≠ i \in A, \qquad a_i = \sum_{j \in S} p_{i, j} a_j, \quad i \in (S \setminus A) \cup \{0\}. $$
 
 	\begin{dukazin}
 		TODO? Jednoduchý, větou o úplné pravděpodobnosti. %3. přednáška, cca 0:25
@@ -160,7 +160,7 @@
 
 \begin{veta}
 	Střední hodnoty času ($\mu_i$) jsou jednoznačné řešení
-	$$ \mu_i = 0, i \in A, \qquad \mu_i = 1 + \sum_{j \in S} p_{i, j} \mu_j, i \in S \setminus A. $$
+	$$ \mu_i = 0, \quad i \in A, \qquad \mu_i = 1 + \sum_{j \in S} p_{i, j} \mu_j, \quad i \in S \setminus A. $$
 
 	\begin{dukazin}
 		TODO? Jednoduchý, větou o úplné střední hodnotě. % Tenhle na přednášce asi ani nebyl.
@@ -254,11 +254,11 @@ TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
 \end{dusledek}
 
 \begin{definice}[Čas prvního úspěchu, čas $k$-tého]
-	$$ T := \min\{t | X_t = 1\}, \qquad T_k := \min\{t | \sum_{s = 1}^t X_s = k\}. $$
+	$$ T := \min\{t | X_t = 1\}, \qquad T_k := \min\{t \middle| \sum_{s = 1}^t X_s = k\}. $$
 \end{definice}
 
 \begin{dusledek}
-	$$ T \sim Geom(p), \qquad ®E[T] = \frac{1}{p}, \var T = \frac{1 - p}{p^2}. $$
+	$$ T \sim Geom(p), \qquad ®E[T] = \frac{1}{p}, \qquad \var T = \frac{1 - p}{p^2}. $$
 \end{dusledek}
 
 \begin{definice}[Doba čekání]
