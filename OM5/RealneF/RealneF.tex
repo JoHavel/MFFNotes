@@ -8,7 +8,7 @@
 % 03. 10. 2022
 \section*{Úvod}
 \begin{poznamka}[Organizační úvod]
-	K ukončení předmětu je třeba pouze udělat zkoušku: 2 příklady na definice, 2 věta-důkaz.
+	K ukončení předmětu je třeba pouze udělat zkoušku: 2 příklady na definice ($2·10$), 2 věta-důkaz ($15+20, 15+30$). (Hranice $85$, $70$, $55$.)
 
 	Literatura:
 	\begin{itemize}
@@ -586,6 +586,86 @@
 
 	$$ y^i := [y_1, y_2, …, y_i, x_{i+1}, …, x_n], i \in [n]. B_i := B(y^i, \epsilon \|y - x\|). $$
 	TODO?
+
+% 12. 12. 2022
+
+	We have $p_i ≤ \frac{f(w^i) - f(z^{i - 1})}{y_i - x_i} ≤ q_i$, if $x_i ≠ y_i$, $p_i < \frac{\partial f}{\partial x_i}(x) < q_i$. Therefore we have
+	$$ \left|f(w^i) - f(z^{i - 1}) - \frac{\partial f}{\partial x_i}(x)·(y_i - x_i)\right| ≤ (q_i - p_i)·|y_i - x_i| ≤ \epsilon \|y - x\|. $$
+	$$ \left|f(y) - f(x) - \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x)·(y_i - x_i)\right| ≤ * $$
+	$$ f(y) - f(x) = \sum_{i=1}^n (f(y^i) - f(y^{i - 1})) = \sum_{i=1}^n \(\(f(w^i) + f(y^i) - f(w^i)\) - \(f(z^{i - 1}) + f(y^{y - 1}) - f(z^{i - 1})\)\) = $$
+	$$ = \sum_{i=1}^n \(f(w^i) - f(z^{i - 1})\) + \sum_{i=1}^n \(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i-1}) - f(z^{i - 1})\) $$
+	$$ \implies * = \left|\sum_{i=1}^n \(f(w^i) - f(z^{i-1}) - \frac{\partial f}{\partial x_i}·(y_i - x_i)\) + \sum_{i=1}^n\(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i - 1}) - f(z^{i - 1})\)\right| ≤ $$
+	$$ ≤ n·\epsilon \|y - x\| + \sum_{i=1}^n |f(y^i) - f(w^i)| + \sum_{i=1}^n|f(y^{i - 1}) - f(z^{i-1})| ≤ $$
+	$$ ≤ n·\epsilon \|y - x\| + 2n·2\epsilon\|y - x\|·\beta = \epsilon(n + 4n\beta)\|y - x\|. $$
 \end{dukaz}
+
+\begin{poznamka}
+	$$ |f(y^i) - f(w^i)| ≤ \beta·\|y^i - w^i\| = ? < \epsilon \|y - x\|. $$
+	If $H$ is Hilbert space and $f: H \rightarrow ®R$ is Lipschitz, then there exists $x \in H$ such that $f'(x)$ in Fréchet sence. $\exists L: H \rightarrow ®R$ linear and continuous
+	$$ \lim_{y \rightarrow x} \frac{|f(y) - f(x) - L(y - x)|}{\|y - x\|} = 0. $$
+
+	\begin{dukazin}
+		Difficult.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{poznamka}
+	There exists a closed measure zero set $F \subset ®R^2$ such that any Lipschitz function in $®R^2$ is differentiable at same point of $F$.
+
+	\begin{dukazin}
+		Difficult.
+	\end{dukazin}
+\end{poznamka}
+
+\subsection{Maximal operator (completed)}
+
+\subsection{Lipschitz functions and $W^{1, 2}$}
+
+\begin{veta}
+	Let $U \subset ®R^n$ be open. Then $f: U \rightarrow ®R$ is local Lipschitz on $U$ if and only if $f \in W_{loc}^{1, ∞}(U)$.
+
+	\begin{dukazin}
+		Skipped.
+	\end{dukazin}
+\end{veta}
+
+\section{Hausdorff measures}
+\subsection{Basic notions}
+\begin{poznamka}
+	$(P, \rho)$ metric space.
+\end{poznamka}
+
+\begin{definice}[Hausdorff measure]
+	Let $p > 0$, $A \subset P$. Denote
+	$$ \kappa_p(A, \delta) = \inf\{\sum_{j=1}^∞ (\diam A_j)^p | A \subseteq \bigcup_{j=1}^∞ A_j, \diam A_j ≤ \delta\}, $$
+	$$ \kappa_p(A) = \lim_{\delta \rightarrow 0_+} \kappa_p(A, \delta). $$
+
+	The function is called $p$-dimensional Hausdorff measure.
+\end{definice}
+
+\begin{definice}
+	An outer measure $\gamma$ on $P$ is called metric outer measure, if for every $A, B \subset P$ with $\inf\{\rho(a, b) | a \in A, b \in B\} > 0$ we have $\mu(A \cup B) = \mu(A) + \mu(B)$.
+\end{definice}
+
+\begin{veta}
+	Let $\gamma$ be a metric outer measure on $P$. Then every Borel subset of $P$ is $\gamma$ measurable.
+
+	\begin{dukazin}
+		It is sufficient to prove that any closed set $F \subset P$ is $\gamma$-measurable:
+		$$ \gamma(T) = \gamma(T \setminus F) + \gamma(T \cap F). $$
+
+		$$ P_0 = \{x \in T | \dist(x, F) ≥ 1\}, \qquad P_j = \{x \in T | \frac{1}{j+1} \subset \dist(x, F) < \frac{1}{j}\}, j \in ®N. $$
+
+		$$ \sum_{j=0}^m \gamma(P_{2j}) = \gamma\(\bigcup_{j=0}^m P_{2j}\) ≤ \gamma(T) \land $$
+		$$ \land \sum_{j=0}^m \gamma(P_{2j - 1}) = \gamma\(\bigcup_{j=0}^m P_{2j - 1}\) ≤ \gamma(T) \implies $$
+		$$ \implies \sum_{j=0}^∞ \gamma(P_j) < ∞. $$
+
+		$$ \gamma(T \cap F) + \gamma(T \setminus F) = \gamma(T \cap F) + \gamma\(\bigcup_{j=0}^∞ P_j\) ≤ $$
+		$$ ≤ \gamma(T \cap F) + \gamma\(\bigcup_{j=0}^m P_j\) + \gamma \(\bigcup_{j=m+1}^∞ P_j\) = $$
+		$$ = \gamma\((T \cap F) \cup \bigcup_{j=0}^m P_j\) + \gamma\(\bigcup_{j=m+1}^∞ P_j\) ≤ $$
+		$$ ≤ \gamma(T) + \sum_{j=m+1}^∞ \gamma(P_j) \rightarrow \gamma(T) \implies $$
+		$$ \implies \gamma(T \cap F) + \gamma(T \setminus F) ≤ \gamma(T). $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

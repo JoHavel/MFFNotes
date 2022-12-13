@@ -131,7 +131,7 @@
 
 \section{Poincaré-Bendixson theory}
 \begin{veta}[Poincaré-Bendixson]
-	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stat points and $\gamma^+(p)$ is relatively compact ($\gamma^+(p)$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
+	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stationary points and $\gamma^+(p)$ is relatively compact ($\gamma^+(p)$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
 \end{veta}
 
 \begin{veta}[Bendixson-Dulas]
@@ -143,7 +143,7 @@
 \end{definice}
 
 \begin{lemma}
-	$\Sigma$ transverzála, $p \in \Sigma \subset \Omega$. Then $\exists \tilde \subset U$ neighborhood of $p$. $\exists \Delta > 0$ such that
+	$\Sigma$ transverzála, $p \in \Sigma \subset \Omega$. Then $\exists \tilde U \subset U$ neighborhood of $p$. $\exists \Delta > 0$ such that
 	$$ \forall y \in \tilde U: \phi(t, y) \subset U\ \forall t: |t| < \Delta \land \exists \tau: |\tau| < \frac{\Delta}{2}: \phi(\tau, y) \in \Sigma \cap \tilde U. $$
 
 	\begin{dukazin}
@@ -153,13 +153,126 @@
 
 \begin{lemma}
 	Let $p \in \Omega$ and assume that $|\gamma^+(p) \cap \Sigma| ≥ 3$, i. e. $\exists t_1 < t_2 < t_3$ $\phi(t_j, p) \in \Sigma$, $j=1, 2, 3$. Then $\phi(t_2, p)$ lie between $\phi(t, p)$ and $\phi(t_3, p)$.
+
+% 18. 10. 2022 Z poznámek spolužáka
+
+	\begin{dukazin}
+		Simple closed curve:
+		$$ \psi := \{\phi(t, x), t \in [t_1, t_2]\} \cup \underbrace{\conv\{z_1, z_2\}}_{\subset \Sigma}. $$
+
+		By uniqueness of $\phi$ and by the Jordan Lemma.
+	\end{dukazin}
 \end{lemma}
 
-% 18. 10. 2022
+\begin{lemma}
+	$\Sigma \subseteq \Omega \subseteq ®R^2$ transversal, $p \in \Omega \implies |\omega(p) \cap \Sigma| ≤ 1$.
 
-TODO!!!
+	\begin{dukazin}
+		$$ y ≠ z \in \omega(p) \cap \Sigma \implies \exists t_k \nearrow ∞: x(t_{2k}) \rightarrow y \land x(t_{2k + 1}) \rightarrow z. $$
+
+		From lemma above: $\exists \tilde U \subset U$ – neighbourhoods of $y$ and $\exists \Delta$:
+		$$ \exists k_0: \forall k > k_0, (x(t_{2k}) \in \tilde U) \implies (\exists \tilde t_{2k}: |\tilde t_{2k} - t_{2k}| < \frac{\Delta}{2} \land x(\tilde t_{2k}) \in \Sigma \cap \tilde U. $$
+
+		Similarly $\exists \tilde V$ – neighbourhood of $z$, $\exists \tilde t_{2k+1}$: $|\tilde t_{2k+1} - t_{2k+1}| < \frac{\Delta}{2}$ and $x(\tilde t_{2k+1}) \in \Sigma \cap \tilde V$.
+
+		WLOG $\tilde V \cap \tilde U = O$. Now continue with Lemma 2 (not monotonic).
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Poincaré-Bendixson theorem]
+	Step 1, „$q \in \omega(p)$“: We want to show that $q$ belongs to $q \in \Gamma$, where $\Gamma$ is non-trivial periodic orbit.
+
+	$\exists x_0 \in \omega(q)$, $\exists t_k \nearrow ∞$: $\phi(t_k, q) \rightarrow x_0$. $x_0$ is not a stationary point ($q \in \omega(p) \implies \omega(q) \subseteq \omega(p)$). So there exists a transversal $\Sigma \subseteq \Omega, x_0 \in \Sigma$.
+
+	By lemma above $\exists \tilde t_k$, $\exists \Delta > 0$: $|\tilde t_k - t_k| < \frac{\Delta}{2}$. $q \in \omega(o)$ $\implies$ $\phi(\tilde t_k, q) \in \omega(p)$ $\implies$ $\phi(\tilde t_k, q) \in \Sigma \cap \omega(p)$ at most 1-point set by theorem…
+	$$ \phi(\tilde t_k, q) \rightarrow x_0 \implies \phi(\tilde t_k, q) = x_0. $$
+
+	Periodic orbit $\implies$ $x_0 \in \Gamma = \{\phi(t, q) | \tilde t_k < t < \tilde t_{k+1}, k \in ®N\}$ $\implies$ $q \in \Gamma$ (uniqueness).
+
+	Now we want to show that $\omega(p) \subseteq \Gamma$. Let $M ≠ \O$, $M = \omega(p) \setminus \Gamma$: $\gamma^+(p)$ is bounded $\implies$ $\omega(p)$ is connected
+	$$ \exists x_0 \in \Gamma: \exists \{p_n\}_{n \in ®N} \subseteq M, p_n \rightarrow x_0. $$
+	$\exists \Sigma$ transversal: $x_0 \in \Sigma$ (because not stationary). By lemma above we have
+	$$ \exists \tilde p_n \in \gamma^+(p_n): \tilde p_n \in \Sigma \cap \gamma^+(p_n) \cap \tilde U(x_0). $$
+	Since $p_n \in \omega(p)$, $n \in ®N$, then $\gamma^+(p_n) \subseteq \omega(p) \implies \tilde p_n \in \omega(p)$.
+
+	By previous lemma $\tilde p_n = x_0$ and $p_n \in \gamma^-(\tilde p_n) = \gamma^-(x_0) \subseteq \Gamma$. \lightning.
+\end{dukaz}
+
+\begin{dukaz}[Bendixson-Dulas theorem]
+	Let $\Gamma$ be a non-trivial periodic orbit, $\Gamma \subset \Omega$, $\Gamma = \partial M$
+	$$ 0 < \int_M \Div[B(x)·f(x)] d\lambda^2 = \int_{\partial M} \<B(x)·f(x), \nu(x)\> dS = 0. $$
+\end{dukaz}
+
+\section{Caratheodory theory}
+\begin{definice}[Caratheodory theory]
+	$f$ measurable, $x(t)$ absolutely continuous, Lebesgue integral.
+\end{definice}
+
+\begin{definice}
+	$\Omega \subseteq ®R^{n+1}$, $f \in Car(\Omega) ≡$ $\forall I \times B \subset \Omega$, $I \subseteq ®R$ bounded interval, $B \subseteq ®R^n$ bounded closed ball:
+	\begin{itemize}
+		\item $\forall x \in B$: $t \mapsto f(t, x(t))$ is measurable;
+		\item for almost every $t \in I$: $x \mapsto f(t, x)$ is continuous;
+		\item $\exists h \in L^1(I)$: $|f(t, x)| ≤ |h(t)|$ for almost every $t \in I$ and $\forall x \in B$.
+	\end{itemize}
+\end{definice}
 
 % 25. 10. 2022
+
+\begin{definice}[*]
+	$x' = f(t, x)$, $x(t_0) = x_0$, $\Omega \subseteq ®R^{n+1}$ open, $f: \Omega rightarrow ®R^n$, $f \in Car(\Omega)$.
+\end{definice}
+
+\begin{definice}
+	$x: I \rightarrow ®R^n$ ($I$ interval) is a solution of * in the sense of Caratheodory, if $x \in AC_{loc}(I)$ and $graph(x) \subset \Omega$ and for almost every $t \in I: x'(t) = f(x(t), t)$ and $x(t_0) = x_0$.
+
+	\begin{poznamka}
+		$$ \Leftrightarrow x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad \text{for almost every } t. $$
+	\end{poznamka}
+\end{definice}
+
+\begin{lemma}
+	$f \in Car(\Omega)$, $x: I \rightarrow ®R$ is continuous, $graph(f) \subseteq \Omega$, then $f(t, x(t)) \in L_{loc}^1(I)$.
+
+	\begin{dukazin}
+		Step 1: „$f$ is measurable“: We approximate $x(t)$ by step function on $I = I_1 \cup … \cup I_n \cup …$, $\{x_n(x)\}_{n=1}^∞$, piecewise constant functions, $x_n(t) \rightrightarrows x(t)$ on $I_k$, $I = \bigcup_j I_{j, n}$ disjoint union, $x_n(x) = \xi_{j, n}$ for $t \in I_{j, n}$. $f(t, x_n(t)) = f(t, \xi_{j, n})$ for $t \in I_{j, n}$, $f(t, \xi_{j, n})$ is measurable.
+
+		$f(t, x_n(t)) \rightarrow f(t, x(t))$ for almost every $t \in I$ $\implies f(t, x(t))$ is measurable.
+
+		Step 2: $|f(t, x(t))| ≤ m(t)$ for almost every $t$ $\implies$ $f \in L_{loc}^1(I)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$x: I \rightarrow ®R^n$ continuous, $graph(x) \subseteq \Omega$, $f \in Car(\Omega)$ then $x$ is solution of * $\Leftrightarrow$ $\forall t_1, t_2: x(t_2) - x(t_1) = \int_{t_1}^{t_2} f(s, x(s)) ds$.
+
+	\begin{dukazin}
+		„$\implies$“ $x \in AC_{loc}(I)$, $x'(t) = f(t, x)$ for almost every $t \in I$, add $\int$:
+		$$ \int_{t_1}^{t_2} x'(t) dt = \int_{t_1}^{t_2} f(s, x(s)) ds. $$
+
+		„$\impliedby$“ $t_1 = t_0$, $t_2 = t$:
+		$$ x(t) - x_0 = \int_{t_0}^t f(s, x(s)) ds, \qquad x(0) = x_0. $$
+		($f \in L_{loc}^1$, so it make sense).
+
+		$\implies x$ is AC, $graph(x) \subseteq \Omega$, $x'(t) = f(t, x)$ for almost every $t \in I$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Uniform contraction theorem (generalized Banach theorem)]
+	$\Lambda$, $X$ metric spaces, $X ≠ \O$ complete, $\Phi: \Lambda \times X \rightarrow X$. $\forall x \in X: \Phi(·, x)$ is continuous, $\exists \kappa \in (0, 1)$: $\rho(\Phi(\lambda, x), \Phi(\lambda, y)) ≤ \kappa · \rho(x, y)$ $\forall \lambda \in \Lambda$, $\forall x, y \in X$.
+
+	Then $\forall \lambda \in \Lambda\ \exists! x(\lambda) \in X$ such that $\Phi(\lambda, x(\lambda)) = x(\lambda)$, $\lambda \mapsto x(\lambda)$ is continuous and
+	$$ \rho(y, x(\lambda)) ≤ \frac{\rho(y) \Phi(y)}{1 - \kappa}\ \forall y \in X\ \forall \lambda \in \Lambda. $$
+
+	\begin{dukazin}
+		Let $x_0 \in X$, $x_1 = x_1(\lambda, x_0) := \Phi(\lambda, x_0)$, $x_{n+1} = x_{n+1}(\lambda, x_0) := \Phi(\lambda x_n)$. $\lambda \in \Lambda$ fixed:
+		$$ \rho(x_n(\lambda, x_0), x(\lambda, x_0)) ≤ \sum_{k=n}^{m - 1} \rho(x_k(\lambda, x_0), x_{k+1}(\lambda, x_0)) = $$
+		$$ = \sum_{k=n}^{m - 1} \rho(\Phi(\lambda, x_{k-1}(x, x_0)), \Phi(\lambda, x_k(\lambda, x_0))) ≤ $$
+		$$ ≤ \sum_{k=n}^{m - 1} \kappa \rho(x_k, x_{k-1}) $$
+		$$ \rho(x_k, x_{k-1}) ≤ \kappa \rho(x_k, x_{k-1}) ≤ … ≤ \kappa^k \rho(x_0, x_1). $$
+	\end{dukazin}
+\end{veta}
+
 
 TODO!!!
 
@@ -181,7 +294,7 @@ TODO!!!
 \end{definice}
 
 \newcommand{\converg}{\underset{u(0)}{\overset{t}\rightarrow}}
-\begin{definice}[Area of controlability]
+\begin{definice}[Area of controllability]
 	$$ ©R(t) = \{x_0 \in ®R^n | \exists u \in L^∞(0, t, ®R^n): x_0 \underset{u(0)}{\overset{t}\rightarrow} 0 \} $$
 \end{definice}
 
@@ -255,7 +368,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}
+\begin{veta}[Local controllability]
 	$V \subset ®R^n$ neighbourhood of $0$, $U \subset ®R^n$ neighbourhood of $0$, $f: V \times U \rightarrow ®R^n$ $C^1$ smooth, $f(0, 0) = 0$, $©U = \{u: [0, T] \rightarrow U \text{ measurable}\}$, $A = \nabla_x f(0, 0)$, $B = \nabla_u f(0, 0)$, $\rank ©K(A, B) = n$. Then
 	$$ x' = f(x, u), x(0) = x_0 \text{ is locally controllable }\forall t \in (0, T]. $$
 	
@@ -328,13 +441,13 @@ TODO!!!
 \end{definice}
 
 \begin{veta}
-	$$ \rank©K(A, B) - n \Leftrightarrow \forall t > 0 ©R(t) \supseteq U(0), $$
+	$$ \rank©K(A, B) = n \Leftrightarrow \forall t > 0 ©R(t) \supseteq U(0), $$
 	where $U(0) \subset ®R^n$ is some neighbourhood of 0.
 
 	\begin{dukazin}
 		„$\impliedby$“: If $\exists t > 0\ ©R(t) \supset U(0)$ open, $0 \in U(0)$. $\tilde{©R}: u \in L^∞, ©R: ||u||_∞ ≤ 1$, then $\tilde{©R}(t) \supset ©R(t) \supset U(0) \implies \tilde{©R}(t) = ®R^n$. $\implies \rank ©K(A, B) = n$.
 
-		„$\implies$“: $\rank(A, B) = n \implies \tilde{©R}(t) = ®R^n$. TODO?
+		„$\implies$“: $\rank©K(A, B) = n \implies \tilde{©R}(t) = ®R^n$. From theorem of local controllability.
 	\end{dukazin}
 \end{veta}
 
@@ -387,7 +500,7 @@ TODO!!!
 	Define $u_1(s) = \tilde{u}(s) + (0, …, 0, \phi(s), 0, …, 0)^T$ and $u_2(s) = \tilde{u}(s) - (0, …, 0, \phi(s), 0, …, 0)^T$. Then $x_0 \rightarrow_{u_{1, 2}(0)}^t 0$, and $u_1, u_2 \in ©K$.
 \end{dukaz}
 
-\begin{veta}[Global controlability]
+\begin{veta}[Global controllability]
 	We have (LTP) $x' = Ax + Bu$, $x(0) = x_0$, $u \in ©U$.
 
 	1. $\rank ©K(A, B) = n$ $\implies$ (LTP) is locally controllable.
@@ -604,5 +717,105 @@ TODO?
 		$$ H(0, 0) = 0? \quad H_\mu(0, 0) ≠ 0? \quad H \in C^1 \quad H(0, 0) = \partial_? h(0, 0). $$
 	\end{dukazin}
 \end{veta}
+
+% 13. 12. 2022
+
+\section{Central manifolds}
+\begin{poznamka}
+	$$ x' = A x + f(x, y), \qquad y' = B y + g(x, y), $$
+	$$ \sigma(B) \subset \{z \in ®C | \Re z < -\beta\}, \quad \beta > 0, \quad \sigma(A) \subset \{z \in ®C | \Re z ≥ 0\}, $$
+	$$ x \in ®R^n, \quad y \in ®R^n, \quad f, g \in C^1(®R^{n + m}), $$
+	$$ f(0) = 0, \quad g(0) = 0, \quad \nabla f(0) = 0, \quad \nabla g(0) = 0, $$
+	$$ |f| ≤ \rho, \quad |g| ≤ \rho, \quad |\nabla f| ≤ \sigma, \quad |\nabla g| ≤ \sigma. $$
+
+	Goal: $\exists \phi: ®R^n \rightarrow ®R^m$ Lipschitz, $\phi(0) = 0$, $\nabla \phi(0) = 0$:
+
+	INV: if $(x(t), y(t))$ solution to previous and $y(0) = \phi(x(0))$, then $\forall t: y(t) = \phi(x(t))$.
+\end{poznamka}
+
+\begin{definice}[Reduced equation]
+	$$ p'(t) = A·p(t) + f(p(t), \phi(p(t))), p(t) \in ®R^n. $$
+\end{definice}
+
+\begin{lemma}
+	$\phi$ satisfies INV iff $\phi$ satisfies RED: (if $p(t)$ satisfies reduced equation then $(x(t), y(t)) := (p(t), \phi(p(t)))$ satisfies INV equation)
+
+	\begin{dukazin}
+		Straightforward.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[RED']
+	If $p(t)$ satisfies reduced equation, then $y(t):=\phi(p(t))$ satisfies
+	$$ y'(t) = B y(t) + g(p(t), \phi(p(t))). $$
+\end{definice}
+
+\begin{lemma}
+	$\gamma(t)$ is bounded on $(-∞, 0]$. Then $\exists! y(t): y'(t) = B y(t) + \gamma(t)$, such that $y(t)$ is bounded on $(-∞, 0]$. For this $y$, $y(0) = \int_{-∞}^0 e^{-B s} \gamma(s) ds$.
+
+	\begin{dukazin}
+		$$ e^{-Bt} y'(t) - B e^{-Bt} y(t) = e^{-Bt} \gamma(t). (e^{-B t} y(t))' = e^{-Bt} \gamma(t). $$
+		$$ e^{-Bt} y(t) = y(0) + \int_0^t e^{-Bs} \gamma(s) ds. $$
+		If $y$ is bounded on $(-∞, 0]$, then $y(0) + \int_0^{-∞} e^{-B s} \gamma(s) ds = 0$, $y(0) = \int_{-∞}^0 e^{-B s} \gamma(s) ds$.
+
+		Take $y$ with (i. c.). Then
+		$$ y(t) = e^{Bt} \(\int_{-∞}^t e^{-B s} \gamma(s) ds\) = \int_{-∞}^t e^{B(t - s)} \gamma(s) ds. $$
+		$$ |e^{s·B}| ≤ c_0 e^{-\beta s}, \quad c_0 > 0, \forall s $$
+		$$ |y(t)| ≤ \int_{-∞}^t |e^{B(t - s)}|·|\gamma(s)| ds ≤ \|\gamma\|_∞ \int_{-∞}^t c_0 e^{-\beta(t - s)} ds = \frac{\|\gamma\|_∞ c_0}{\beta}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$\phi$ satisfies INV $\Leftrightarrow$ $\phi$ satisfies (RED) $\Leftrightarrow$ $\phi$ satisfies (RED') $\Leftrightarrow$ $\phi$ satisfies FP:
+	$$ \forall p_0 \in ®R^n: \phi(p_0) = \int_{-∞}^0 e^{-B s} g(p(s), \phi(p(s))) ds, $$
+	where $p$ satisfies reduced equation with $p(0) = p_0$.
+
+	\begin{dukazin}
+		„$\implies$“: $\phi$ RED' $\implies$ $y$ satisfies $y'(t) = B y(t) + g(p(t), \phi(p(t)))$ and $y$ is bounded. Then previous lemma:
+		$$ \phi(p_0) = \phi(p(0)) = y(0) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p(s))) ds. $$
+
+		%„$\impliedby$“: $p(t)$ satisfies reduced equation. Why $(\phi(p(t)))' = B \phi(p(t)) + g(p(t), \phi(p(t)))$?
+		%$$ e^{-B·t} \phi(p(t)) = e^{-B·t_0}\phi(p(t_0)) + \int_{t_0}^t e^{-B·s} g(p(s), \phi(p(s))) ds. $$
+		„$\impliedby$“: Let $y$ satisfy $y'(t) = B y(t) + g(p(t), \phi(p(t)))$, $y(0) = \phi(p(0))$. $\forall t_1: y(t_1) = \phi(p(t_1))$?
+		$$ t_1 \text{ arbitrary } y_1 := y(t + t_1), p_1(t) := p(t + t_1). p_1'(t) = A p_1(t) + f(p_1(t), \phi(p, t)), p_1(0) = p(t_1), $$
+		$$ y_1'(t) = B·y_1(t) + g(p_1(t), \phi(p, t)), y_1(0) = y(t_1). $$
+
+		$y(0) = \phi(p(0)) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p(s))) ds$ $\implies$ $y$ is bounded on $(-∞, 0]$ $\implies$ $y_1$ is bounded. From lemma:
+		$$ y(t_1) = y_1(0) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p, s)) ds = \phi(p(0)) = \phi(p(t_1)). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Existence of central manifold]
+	$$ \forall \beta\ \exists \rho > 0, \sigma > 0, b > 0, l > 0: \exists! p \in ©X \text{ satisfying INV}. $$
+
+	\begin{dukazin}
+		$$ ©X \subset C(®R^n, ®R^n), \|\phi\|_{©X} = \sup_{x \in ®R^n} |\phi(x)|, $$
+		$$ T: ©X \rightarrow ©X, \phi \mapsto T\phi, \quad (T\phi)(p_0) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p(s))) ds. $$
+
+		Step 1: $T$ is well-defined $\forall \phi \in ©X$: $T \phi \in ©X$.
+
+		Step 2: $T$ is contraction.
+
+		Step 1 + 2 $\implies$ (Banach) $\exists!\phi \in ©X$: $T\phi = \phi$.
+
+		\begin{itemize}
+			\item $(T \phi)(0) = 0$? Take $p(0)$ satisfying reduced equation, $p(0) = 0 \implies p(t) ≡ 0$.
+			\item $|(T\phi)(p_0)| ≤ \int_{-∞}^0 |e^{-B·s}|·|g(p(s), \phi(p(s)))| ds ≤ \frac{\rho c_0}{\beta} \overset?≤ f$ (true for sufficiently small $\rho$).
+			\item $(T \phi)(p_0) - (T \phi)(q_0) = \int_{-∞}^0 e^{-B·s} \[g(p(s), \phi(p(s))) - g(q(s), \phi(q(s)))\] ds$.
+		\end{itemize}
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Central manifold]
+	$\phi: ®R^n \rightarrow ®R^m$ is called a central manifold if $\phi(0) = 0$, $\nabla \phi(0) = 0$, $\phi \in C^1$, it satisfies INV.
+\end{definice}
+
+\begin{definice}
+	$$ M[\phi](x) = \nabla \phi(x) (A x + f(x, \phi(x))) - B \phi(x) - g(x, \phi(x)). $$
+\end{definice}
+
+\begin{dusledek}
+	$\phi$ is a central manifold $\Leftrightarrow$ $M[\phi] = 0$.
+\end{dusledek}
 
 \end{document}

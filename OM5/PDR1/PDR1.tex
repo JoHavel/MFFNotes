@@ -396,7 +396,7 @@ TODO!!!
 \begin{poznamka}
 	$B_{L, \sigma}(u, v)$ must be symmetric! ($B_{L, \sigma}(u, v) = B_{L, \sigma}(v, u)$)
 
-	$$ L = - \div (A \nabla u) + b u + ¦c \nabla u + \div (¦d u) $$
+	$$ L = - \Div (A \nabla u) + b u + ¦c \nabla u + \Div (¦d u) $$
 	$$ B_{L, \sigma}(u, v) := \int_{\Omega} A \nabla u·\nabla v + B u v + ¦c·\nabla u v - ¦d \nabla v u + \int_{\Gamma} \sigma u v $$
 	$$ B_{L, \sigma}(v, u) := \int_{\Omega} A \nabla v·\nabla u + B v u + ¦c·\nabla v u - ¦d \nabla u v + \int_{\Gamma} \sigma v u $$
 	$$ \implies A = A^T, \qquad ¦c = -¦d $$
@@ -1012,6 +1012,47 @@ TODO Example?
 		Weak formulation for $n$-th coord. (WFn). $\partial_t u^n(0) = P^n u_1$ and $u^n(0) = P^n u_0$.
 
 		$$ (a_j^n)'(0) = \int u_1 w_j, \qquad a_j^n(0) = \int u_0 w_j, (a_j^n)''(t) = F_j(a^n, t) + b_j(t). $$
+
+% 12. 12. 2022
+
+		Assume there exists $u^n$ a solution to (WFn).
+	\end{dukazin}
+
+	\begin{dukazin}[Step two]
+		Uniform ($N$-independent) estimates: Multiply WFn by $(e_j^n)'(t)$ and $\sum_{j=1}^n$:
+		$$ \int_{\Omega} \partial_{t t} u^n \partial_t u^n + \int_\Omega A \nabla u^n \partial \nabla u^n = \int_\Omega f \partial_t u^n + ¦d\nabla \partial_t u^n u^n - ¦c \nabla u^n \partial_t u^n - b u^n \partial_t u^n. $$
+		$$ \frac{1}{2} \frac{d}{dt} \(\int_\Omega |\partial_t u^n|^2 + \frac{A + A^T}{2} \nabla u^n \nabla u^n\) = -||- \int_\Omega \partial_t\(\frac{A + A^T}{2} \nabla u^n \nabla u^n\) - \underbrace{\int_\Omega \frac{A - A^T}{2} \nabla u^n \partial \nabla u^n}_{\text{by part}} \overset{\text{Hölder}}≤ $$
+		$$ ≤ c(\|f\|_2^2 + \|\partial_t u^n\|_2^2 + \|\nabla u^n\|_2^2) ≤ \tilde c\(\|f\|_2^2 + \int_\Omega |\partial_t u^n|^2 + \int_\Omega \frac{A + A^T}{2} \nabla u^n \nabla u^n\). $$
+		Gronwall's lemma:
+		$$ \int_\Omega |\partial_t u(t)|^2 + \frac{A + A^T}{2} \nabla u^n(t) \nabla u^n(t) ≤ C(T)·\(\int_0^T \|f\|_2^2 + \int_\Omega |\partial_t u^n(0)|^2 + \frac{A + A^T}{2} \nabla u^n(0)\nabla u^n(0)\) ≤ C_t·(1 + \|P^n v_0\|_2^2 + \|P^n u_0\|_{1, 2}^2) ≤ $$
+		$$ ≤ \tilde C_T(1 + \|v_0\|_2^2 + \|u_0\|_{1, 2}^2). $$
+
+		$$ \sup_{t \in (0, T)} \|\partial_t u^n(t)\|_2^2 + \|u^n(t)\|_{1, 2}^2 ≤ C(DATA). $$
+		$$ \|\partial_{t t}u^n\|_{(W_0^{1, 2}(\Omega))^*} := \sup_{\phi\in W_0^{1, 2}(\Omega)} <\partial_{t t} u^n, \phi> \overset{\text{Gelfand}}= $$
+		$$ = \sup_\phi \int_\Omega \partial_{t t} u^n \phi \overset{\text{basis}}= \sup_\phi \int_\Omega \partial_{t t} u^n P^n(\phi) \overset{\text{WFn}}= $$
+		$$ = -\int_\Omega A \nabla u^n \nabla P^n(\phi) … \overset{\text{Hölder}}≤ C·\|P^n(\phi)\|_{1, 2}\(\|f\|_2 + \|u^n\|_{1, 2}\) ≤ $$
+		$$ ≤ \tilde c \|\phi\|_{1,2}(\|f\|_2 + \|u^n\|_{1, 2}). $$
+
+		$$ \int_0^T \|\partial_{t t} u^n\|_{(W_0^{1, 2}(\Omega))^*}^2 ≤ \tilde c·2·\int_0^T (\|f\|_2^2 + \|u^n\|_{1, 2}^2) ≤ C(DATA). $$
+	\end{dukazin}
+
+	\begin{dukazin}[Step three]
+		$u^n \rightharpoonup^* u$ in $W^{1, ∞}(0, T, L^2(\Omega)) \cap L^∞(0, T, W_0^{1, 2}(\Omega))$.
+		%$$ \int_0^T \int_\Omega \partial_t u^n \phi \rightarrow \int_0^T \int_\Omega \partial_t u \phi $$
+		$u^n \rightharpoonup u$ in $W^{2, 2}(0, T, (W_0^{1, 2}(\Omega))^*)$.
+
+		Limits:
+		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega \partial_{t t} u^n w_j \tau dx dt = \int_0^T <\partial_{t t} u^n, w_j \tau> dt = <\partial_{t t}u^n, w_j \tau>_{L^2(0, T, W_0^{1, 2}(\Omega))}. $$
+		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega A \nabla u^n \nabla w_j \tau = <\nabla u^n, A^T \nabla w_j \tau>_{L^2(0, T, L^2(\Omega))} \rightarrow <\nabla u, A^T \nabla w_j \tau> = \int_0^T \int_\Omega A \nabla u \nabla w_j \tau. $$
+
+		$$ WF: \int_0^T <\partial_{t t} u, w_j> \tau + \int_\Omega A \nabla u \nabla w_j \tau + b u w_j\tau + ¦c \nabla u w_j \tau - ¦d \nabla w_j \tau = \int_0^T \int_\Omega f w_j \tau. $$
+
+		TODO?
+
+% 13. 12. 2022
+
+		%$$ w = u_1 - u_2 ≥ \|\int_0^s \nabla w\|_2^2, \qquad \phi(t) = \int_t^s w(\tau) d\tau, \qquad t ≤ s $$
+		TODO!!!
 	\end{dukazin}
 \end{veta}
 
