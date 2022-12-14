@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+	In the discussion of compatibility conditions we have used several identities. It remains to prove them. I recall that we have decomposed the displacement gradient to the symmetric and the skew-symmetric part as
+	$$ \nabla ¦U = \bepsilon + \bomega, $$
+	and we have also solved the equation
+	$$ (\rot \bepsilon)^T = \nabla ¦a $$
+	for the vector field ¦a. Furthermore, using the vector field ¦a and the concept of the axial vector we have defined the skew-symmetric matrix $®A_{¦a}$ such that $®A_{¦a} ¦w = ¦a \times ¦w$ holds for any fixed vector ¦w. Show that
+
+	$$ \rot \bepsilon = \frac{1}{2} (\nabla  (\rot ¦U ))^T, $$
+
+	\begin{dukazin}
+		$\bepsilon$ je symetrická část $\nabla ¦U$, tedy $\bepsilon = \frac{1}{2} \nabla ¦U + \frac{1}{2} (\nabla ¦U)^T$. Tudíž
+		$$ (\rot \bepsilon)_{ij} \overset{\text{def}}= \epsilon_{jkl} \frac{\partial \bepsilon_{il}}{\partial x_k} = \epsilon_{jkl} \frac{\partial \(\frac{1}{2}\frac{\partial u_i}{\partial x_l} + \frac{1}{2}\frac{\partial u_l}{\partial x_i}\)}{\partial x_k} = $$
+		$$ \frac{1}{2} \epsilon_{jkl} \frac{\partial^2 u_i}{\partial x_k \partial x_l} + \frac{1}{2} \epsilon_{jkl} \frac{\partial^2 u_l}{\partial x_k \partial x_i} = 0 + \frac{1}{2} \frac{\partial}{\partial x_i} \(\epsilon_{jkl}\frac{\partial u_l}{\partial x_k}\) = \frac{1}{2} \(\nabla \(\rot ¦U\)\)_{li} = \frac{1}{2} \(\(\nabla \(\rot ¦U\)\)^T\)_{il}. $$
+	\end{dukazin}
+
+	$$ \rot ®A_{¦a} = (\Div ¦a) ®I − (\nabla ¦a)^T. $$
+
+	\begin{dukazin}
+		Pro nějaké fixní ¦w máme ($®A_{¦a}^T ¦w = ¦w \times ¦a$ díky antisymetrii $®A_{¦a}$ a $\times$)
+		$$ (\rot ®A_{¦a})^T ¦w \overset{\text{def}}= \rot (®A_{¦a}^T ¦w) = \rot (¦w \times ¦a) = $$
+		(podle vzorců, které jsme dokazovali v druhém domácím úkolu, a linearity $\Div$)
+		$$ = \Div(¦w \otimes ¦a - ¦a \otimes ¦w) = \Div(¦w \otimes ¦a) - \Div(¦a \otimes ¦w) = [\nabla ¦w]¦a + ¦w \Div ¦a - [\nabla ¦a]¦w + ¦a \Div ¦w = $$
+		(¦w je konstantní)
+		$$ = ¦o + ¦w \Div ¦a - [\nabla ¦a]¦w + ¦o = \((\Div ¦a)·®I - (\nabla ¦a)\)¦w. $$
+		Tedy $\rot ®A_{¦a} = \((\Div ¦a)·®I - (\nabla ¦a)\)^T = (\Div ¦a) ®I - (\nabla ¦a)^T$.
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

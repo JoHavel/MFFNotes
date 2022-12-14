@@ -917,5 +917,132 @@ TODO?
 
 	(After linearization of this formula we get result from linear theory.)
 \end{priklad}
-	
+
+% 14. 12. 2022
+
+\begin{poznamka}[Fluids]
+	$$ \frac{d \rho}{d t} + \rho \Div ¦v = 0, $$
+	$$ \rho \frac{d ¦v}{dt} = \Div ®T + \rho ¦b, $$
+	$$ \rho \frac{d e}{d t} = ®T : ®D - \Div ¦j_q, $$
+	$$ \rho \theta \frac{d\eta}{d t} = ®T : ®D - \rho \frac{\partial \psi}{\partial \rho} \frac{d\rho}{dt} - \Div ¦j_q. $$
+	(Evolution equation for entropy. We can work with $\rho \sqrt{\det ®B} = \rho_R$ instead of $\rho \det ®F = \rho_R$.)
+
+	$e(\eta, \rho)$ internal energy, $\theta = \frac{\partial e}{\partial \eta}(\eta, \rho)$, $p_{th} = \rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho)$, $\psi = e - \theta·\eta$, $\psi(\theta, \rho) = (e(\eta, \rho) - \theta \eta)|_{\eta = \eta(\theta, \rho)}$.
+
+	$$ \rho \theta \frac{d\eta}{dt} = ®T : ®D + \rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho) - \Div ¦j_q, $$
+	$$ \rho \theta \frac{d\eta}{dt} = ®T : ®D + p_{th}(\Div ¦v) - \Div ¦j_q, $$
+	$$ \rho \frac{d\eta}{dt} = \frac{1}{\theta}\(®T : ®D + p_{th}(\Div ¦v)\) - \Div \(\frac{¦j_q}{\theta}\) - \frac{¦j_q·\nabla \theta}{\theta^2}, $$
+	$$ \rho \frac{d \eta}{dt} + \Div \(\frac{¦j_q}{\theta}\) = \frac{1}{\theta}\(®T:®D + p_{th} \Div¦v\) - \frac{¦j_q·\nabla \theta}{\theta^2}. $$
+	(RHS = entropy production.)
+
+	Objective: Find a formula for ®T such that $(®T : ®D - p_{th} \Div ¦v) ≥ 0$. (Elastic solid: $®T \sim ®T(®B)$.)
+
+	Now fluids: $®T \sim ®T(¦v) \sim ®T(\nabla ¦v)$ (it cannot depend on velocity iself, because we can observe system with moving reference frame). ®T should depend on symmetric tensor ("because" ®T is symmetric).
+
+	Traceless part: $®D_\delta := ®D - \frac{1}{3}(\tr ®D)®I = ®D - \frac{1}{3}(\Div ¦v)®I$. $®D = ®D_\delta + \frac{1}{3}(\Div¦v)®I$. $®T = m ®I + ®T_\delta$, where $m := \frac{1}{3} \tr ®T$ is mean normal stress.
+
+	We are searching for an alternative formula for the entropy production:
+	$$ ®T : ®D = (m ®I + ®T_\delta):(®D_\delta + \frac{1}{3} (\Div¦v)®I) = ®T_\delta : ®D_\delta + m(\Div¦v). $$
+	$$ \rho \frac{d \eta}{dt} + \Div \(\frac{¦j_q}{\theta}\) = \frac{1}{\theta}\(®T_\delta : ®D_\delta + (m + p_{th})(\Div¦v)\) - \frac{¦j_q · \nabla \theta}{\theta^2}. $$
+	So $®T_\delta:®D_\delta + (m + p_{th})·\Div ¦v ≥ 0$.
+
+	\begin{itemize}
+		\item  $®T_\delta := ®O$, $m = -p_{th}$: $®T = -p_{th}®I$ (entropy production (mechanical part) vanishes) = Inviscid fluid.
+		\item Linear closure: $®T = ®T(®D) = \alpha_0®I + \alpha_1®D + \alpha_2®D^2$ (representation theorem for isotropic function). So $®T_\delta = 2 \nu ®D_\delta$, $m + p_{th} = \tilde \lambda \Div ¦v$ (from $m := -p_{th} + \tilde \lambda \Div ¦v$). Entropy production: $\frac{1}{\theta}\(2\nu®D_\delta:®D_\delta + \tilde \lambda(\Div ¦v)^2\)$, $\nu ≥ 0$, $\tilde \lambda ≥ 0$.
+	\end{itemize}
+
+	Objective: Find a formula for ®T such that $(®T:®D - p_{th} \Div ¦v) ≥ 0$:
+	$$ ®T = -p_{th}(\theta, \rho)®I + \tilde\lambda(\Div ¦v)®I + 2\nu ®D_\delta = -p_{th}®I + \underbrace{\(\tilde \lambda - \frac{2}{3} \nu\)}_{=:\lambda}(\Div ¦v)®I + 2\nu ®D. $$
+	Compressible Navier-Stokes-Fourier (Fourier, because we used Fourier law: $¦j_q = -k \nabla \theta$).
+\end{poznamka}
+
+\begin{poznamka}[Fluids equations]
+	Evolution equation for temperature
+	$$ \rho \theta \frac{d \eta}{dt} = 2 \nu ®D_\delta:®D_\delta + \tilde \lambda (\Div ¦v)^2 + \Div k \nabla \theta. $$
+
+	Thermodynamics:
+	$$ \eta(\theta, \rho) = - \frac{\partial \psi}{\partial \theta}(\theta, \rho). $$
+	Chain rule ($\eta = -\frac{\partial \psi}{\partial \theta}$):
+	$$ \frac{d \eta}{dt} = - \frac{\partial^2 \psi}{\partial\theta\partial\rho} \frac{d\rho}{dt} - \frac{\partial^2 \psi}{\partial\theta^2} \frac{d\theta}{dt}, $$
+	$$ - \rho \theta \frac{\partial^2 \psi}{\partial\theta^2} \frac{d\theta}{dt} = \rho \theta \frac{\partial^2 \psi}{\partial\theta\partial\rho} \frac{d\rho}{dt} + 2\nu ®D_\delta:®D_\delta + \tilde\lambda(\Div ¦v)^2 - \Div ¦j_q. $$
+	$$ c_V(\theta, \rho) := - \theta \frac{\partial^2 \psi}{\partial \theta^2}: $$
+	$$ \rho c_V(\theta, \rho) \frac{d\theta}{dt} = - \theta \frac{\partial}{\partial \theta} \(\rho^2 \frac{\partial \psi}{\partial \rho}(\rho, \theta)\)\Div ¦v + 2 \nu ®D_\delta:®D_\delta + \tilde\lambda(\Div ¦v)^2 - \Div ¦j_q $$
+	$$ \rho c_V(\theta, \rho) \frac{d\theta}{dt} = - \theta \frac{\partial p_{th}}{\partial \theta}(\rho, \theta) \Div ¦v + 2 \nu ®D_\delta:®D_\delta + \tilde\lambda(\Div ¦v)^2 - \Div ¦j_q. $$
+
+	$$ \frac{d\rho}{dt} + \rho \Div ¦v = 0, \qquad \rho \frac{d¦v}{dt} = \Div ®T + \rho ¦b, \qquad ¦j_q = -k\nabla \theta, \qquad ®T = -p_{th} ®I + \tilde \lambda(\Div ¦v)®I + 2\nu®D_\delta. $$
+\end{poznamka}
+
+\begin{poznamka}
+	$c_V(\theta, \rho) := - \theta \frac{\partial^2 \psi}{\partial \theta^2}(\theta, \rho)$ may be positive, same for
+	$$ \frac{\partial p_{th}}{\partial \rho}(\theta, \rho). $$
+	Because when we add heat, temperature raises, when we add density, pressure raises.
+\end{poznamka}
+
+\begin{poznamka}[Stability]
+	We have fluid in a container (thermodynamically isolated – no heat (nor mass nor mechanical energy) flux through the boundary). Whatever is the initial state of the fluid ($¦v_0, \rho_0, \theta_0$) the long-time dynamics is $¦v \rightarrow 0$, $\rho \rightarrow \hat{\rho}$ (spatially homogeneous density field), $\theta \rightarrow \hat{\theta}$.
+
+	We look only on "small" perturbations and we linearize. There is no body force too and with this fact we have governing equations
+	$$ \frac{d\rho}{dt} + \rho \Div ¦v = 0, $$
+	$$ \rho \frac{d¦v}{dt} = - \nabla p_{th}(\theta, \rho) + \Div(\tilde \lambda (\Div ¦v)®I + 2 \nu ®D_\delta), $$
+	$$ \rho c_V \frac{d\theta}{dt} = - \theta \frac{\partial p_{th}}{\partial \theta}(\theta, \rho) (\Div ¦v) + \tilde \lambda(\Div ¦v)^2 + 2 \nu ®D_\delta :®D_\delta + \Div(k \nabla \theta). $$
+
+	Now small perturbations: $¦v = \hat{¦v} + \tilde{¦v} = \tilde{¦v}$, $\theta = \hat{\theta} + \tilde \theta$, $\rho = \hat{\rho} + \tilde \rho$. ($\tilde{¦v}, \tilde \rho, \tilde \theta$ small quantities.)
+
+	$$ \frac{d\rho}{dt} + \rho\Div ¦v = 0 \rightarrow \frac{\partial \rho}{\partial t} + ¦v·\nabla \rho + \rho \Div ¦v = 0, $$
+	$$ \frac{\partial}{\partial t}(\hat{\rho} + \tilde \rho) + \tilde{¦v}·\nabla (\hat{\rho} + \tilde \rho) + (\hat{\rho} + \tilde \rho) \Div \tilde{¦v} = 0 $$
+	$$ \frac{\partial \tilde\rho}{\partial t} + \hat{\rho} \Div \tilde{¦v} = 0. $$
+	Evolution equation for density perturbations (we will see it again in future).
+
+	$$ \hat{\rho} \frac{d\tilde{¦v}}{dt} = - \frac{\partial p_{th}}{\partial \theta}(\hat{\theta}, \hat{\rho}) \nabla \tilde \theta - \frac{\partial p_{th}}{\partial \theta}(\hat{\theta}, \hat{\rho}) \nabla \tilde \rho + \Div(\tilde \lambda (\Div ¦v)®I + 2 \nu \tilde{®D}_\delta). $$
+
+	$$ \hat{\rho} c_V(\hat{\theta}, \hat{\rho}) \frac{\partial \tilde \theta}{\partial t} = - \hat{\theta} \frac{\partial p_{th}}{\partial \theta} (\hat{\theta}, \hat{\rho}) \Div \tilde{¦v} + \Div(k \nabla \tilde\theta). $$
+
+	We use trick from ordinal differential equations: $x' = Ax \implies \frac{1}{2}\(|x|^2\)' = (Ax)·x$:
+	$$ \int_\Omega \hat{\rho} · \frac{1}{2}\frac{\partial \tilde{¦v}^2}{\partial t} dv = - \frac{\partial p_{th}}{\partial \theta} (\hat{\theta}, \hat{\rho}) \int_\Omega (\nabla \tilde\theta) · \tilde{¦v} - \frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho}) \int_\Omega \nabla \tilde\rho · ¦v + \int_\Omega \Div(\tilde \lambda(\Div \tilde{¦v})®I + 2 \nu \tilde{®D}_\delta)·\tilde{¦v} dv. $$
+	$$ \int_\Omega \Div(\tilde\theta · \tilde{¦v}) - \int_\Omega \tilde \theta \Div \tilde{¦v} dv = \int_{\partial \Omega} \tilde\theta (\tilde{¦v}·¦n) ds - \int_{\Omega} \tilde \theta \Div \tilde{¦v} dv. $$
+	Boundary conditions $\tilde{¦v}|_{\partial \Omega} = ¦o$ says that first term on RHS is zero. Same use of Stokes for next terms in previous equation gives:
+	$$ \frac{d}{dt} \int \frac{1}{2} \hat{\rho} |\tilde{¦v}|^2 dv = + \frac{\partial p_{th}}{\partial \theta}(\hat{\theta}, \hat{\rho}) \int_\Omega \tilde \theta \Div \tilde{¦v} + \frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho}) \int_\Omega \tilde \rho \Div \tilde{¦v} - \int_\Omega \[\tilde \lambda(\Div \tilde{¦v})^2 + 2 \nu(®D_\delta:®D_\delta)^2\] dv. $$
+	Term with $-$ is negative, so it provides dumping. We must show, that the other 2 are negative too.
+
+	Balance of mass:
+	$$ \frac{\partial \rho^2}{\partial t} \(\frac{1}{\hat{\rho}} \frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho})\) + \hat{\rho}(\Div \tilde{¦v})·\(\frac{1}{\hat{\rho}} \frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho})\) = 0. $$
+	$$ \frac{d}{dt} \int_\Omega \frac{1}{\hat{\rho}} \frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho})·\tilde\rho^2 dv = -\frac{\partial p_{th}}{\partial \rho}(\hat{\theta}, \hat{\rho}) \int_\Omega \tilde \rho \Div \tilde{¦v} dv. $$
+
+	Evolution equation for temperature:
+	$$ \int \hat{\rho} c_V(\hat{\theta}, \hat{\rho}) \frac{\partial \tilde\theta}{\partial t} \frac{\tilde \tilde\theta}{\tilde \hat{\theta}} dv = - \int_\Omega \hat{\theta} \frac{\partial p_{th}}{\partial \theta}(\hat{\theta}, \hat{\rho}) \Div ¦v \frac{\tilde \theta}{\hat{\theta}} + \int_\Omega \Div(k\nabla \tilde \theta) \frac{\tilde \theta}{\hat{\theta}} dv $$
+	(Boundary conditions $\nabla  \tilde \theta · ¦n|_{\partial \Omega} = 0$).
+	$$ \frac{d}{dt} \frac{1}{2} \int_\Omega \hat{\rho} \frac{c_V(\hat{\theta}, \hat{\rho})}{\hat{\theta}} (\tilde\theta)^2 dv = - \frac{\partial p_{th}}{\partial \theta}(\hat{\theta}, \hat{\rho}) \int_\Omega (\Div \tilde{¦v}) \tilde \theta dv - \frac{1}{\hat{\theta}} k \nabla \tilde\theta·\nabla \tilde\theta dv. $$
+
+	We sum these three equations together:
+	$$ \frac{d}{dt} \(\frac{1}{2} \hat{\rho} \int_\Omega (\tilde{¦v})^2 dv + \frac{1}{2} \frac{1}{\hat{\rho}}\frac{\partial p_{th}}{\partial \rho} \int_\Omega (\tilde\rho)^2 dv + \frac{1}{2} \hat{\rho} \frac{c_V(\hat{\theta}, \hat{\rho})}{\hat{\theta}} \int_\Omega (\tilde \theta)^2 dv\) = $$
+	$$ = - \int_\Omega \(\tilde \lambda (\Div \tilde{¦v})^2 + 2\nu ®D_\delta:®D_\delta + k|\nabla \tilde \theta|^2\) dv < 0. $$
+
+	So if we want stability, we enforce:
+	$$ c_V(\theta, \rho) > 0, \qquad \frac{\partial p_{th}}{\partial \rho}(\theta, \rho) > 0. $$
+\end{poznamka}
+
+\begin{poznamka}[From stability to konvexity of Helmantz free energy]
+	$c_V(\theta, \rho) = - \theta \frac{\partial^2 \psi}{\partial \theta^2}$, $c_V > 0 \implies \frac{\partial^2 \psi}{\partial \theta^2} < 0$.
+
+	$p_{th} = \rho^2 \frac{\partial \psi}{\partial \rho}(\theta, \rho)$. Trick ($\psi = \psi\(\theta, \frac{1}{\rho}\)$): $p_{th} = -\frac{\partial \psi}{\partial (1 / \rho)}\(\theta, \frac{1}{\rho}\)$.
+	$$ 0 < \frac{\partial p_{th}}{\partial \rho} = \frac{\partial}{\partial \rho} \(-\frac{\partial \tilde \psi}{\partial (1 / \rho)}\(\theta, \frac{1}{\rho}\)\) = \frac{\partial}{\partial (1 / \rho)}\(-\frac{\partial \psi}{\partial (1 / \rho)}\(\theta, \frac{1}{\rho}\)\) \frac{\partial (1 / \rho)}{\partial \rho} = + \frac{\partial^2 \psi}{\partial (1 / \rho)^2} \frac{1}{\rho^2}. $$
+\end{poznamka}
+
+\begin{poznamka}[Waves in compressible fluid]
+	Wave equation is linear, so we will work with linearized equations:
+
+	$$ \frac{\partial \tilde\rho}{\partial t} + \hat{\rho} \Div \tilde{¦v} = 0. $$
+	$$ \hat{\rho} \frac{\partial \tilde{¦v}}{\partial t} = -\nabla p_{th} $$
+	Let us ignore viscosity, so $\tilde \lambda = 0$, $\nu = 0$, and ignore heat conduction. This leads (from 3rd equation) to isentropic process:
+	$$ \frac{d \eta}{dt} = 0. $$
+
+	So it is preferable to choose $p_{th} = p_{th}(\rho, \eta)$ (Laplacian waves, Newton is with $p_{th}(\rho, \theta)$):
+	$$ \hat{\rho} \frac{\partial \tilde{¦v}}{\partial t} = -\frac{\partial p_{th}}{\partial \rho}(\rho, \eta) \nabla \tilde\rho $$
+	Add $\Div$
+	$$ \hat{\rho} \frac{\partial (\Div \tilde{¦v})}{\partial t} = -\frac{\partial p_{th}}{\partial \rho}(\rho, \eta) \Delta \tilde\rho $$
+	$$ - \frac{\partial^2 \tilde \rho}{\partial t^2} = -\frac{\partial p_{th}}{\partial \rho}(\rho, \eta) \Delta \tilde\rho. $$
+
+	$$ c^2 = \frac{\partial p_{th}}{\partial \rho}(\hat{\rho}, \hat{\eta}). $$
+\end{poznamka}
+
 \end{document}

@@ -268,13 +268,54 @@
 		Let $x_0 \in X$, $x_1 = x_1(\lambda, x_0) := \Phi(\lambda, x_0)$, $x_{n+1} = x_{n+1}(\lambda, x_0) := \Phi(\lambda x_n)$. $\lambda \in \Lambda$ fixed:
 		$$ \rho(x_n(\lambda, x_0), x(\lambda, x_0)) ≤ \sum_{k=n}^{m - 1} \rho(x_k(\lambda, x_0), x_{k+1}(\lambda, x_0)) = $$
 		$$ = \sum_{k=n}^{m - 1} \rho(\Phi(\lambda, x_{k-1}(x, x_0)), \Phi(\lambda, x_k(\lambda, x_0))) ≤ $$
-		$$ ≤ \sum_{k=n}^{m - 1} \kappa \rho(x_k, x_{k-1}) $$
-		$$ \rho(x_k, x_{k-1}) ≤ \kappa \rho(x_k, x_{k-1}) ≤ … ≤ \kappa^k \rho(x_0, x_1). $$
+		$$ ≤ \sum_{k=n}^{m - 1} \kappa \rho(x_k, x_{k-1}) ≤ $$
+		$$ \(\rho(x_k, x_{k-1}) ≤ \kappa \rho(x_k, x_{k-1}) ≤ … ≤ \kappa^k \rho(x_0, x_1).\) $$
+		$$ ≤ \sum_{k=n}^{m-1} \kappa^k \rho(x_0, x_1(\lambda, x_0)) ≤ \rho(x_0, x_1(\lambda, x_0)) \underbrace{\sum_{k=n}^∞ \kappa^k}_{\frac{\kappa^m}{1 - \kappa}}. $$
+
+		$\implies$ sequence $\{x_n(\lambda, x_0)\}_{k=1}^∞$ is Cauchy $\implies$ it has a limit:
+		$$ \exists x(\lambda, x_0): \lim_{n \rightarrow ∞} x_n(\lambda, x_0) = x(\lambda, x_0). $$
+
+		We want to show that $x(\lambda, x_0)$ does not depend on $x_0$. $\tilde x_0: x_n(\lambda, \tilde x_0)=: \tilde x_n$.
+		$$ \rho(x_n, \tilde x_n) = \rho(\Phi(\lambda x_{n-1}), \Phi(x, \tilde x_{n-1})) ≤ \kappa^n \rho(x_0, \tilde x_0) \rightarrow 0 \implies x = \tilde x. $$
+
+		$\Phi(\lambda, x(\lambda)) = x(\lambda)$.
+		$$ \rho(\Phi(\lambda, x(\lambda)), x(\lambda)) = \lim_{n \rightarrow ∞} \rho(\Phi(\lambda, x(\lambda)), x_n(\lambda)) = $$
+		$$ = \lim_{n \rightarrow ∞} \rho(\Phi(\lambda, x(\lambda)), \Phi(\lambda, x_{n-1}(\lambda))) ≤ \kappa \rho(x(\lambda, x_{n-1}) = 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[„$\lambda \mapsto x(\lambda)$ is continuous“]
+		$$ \rho(x(\lambda), x(\mu)) = \rho(\Phi(\lambda, x(\lambda)), \Phi(\mu, x(\mu))) ≤ \rho(\Phi(\lambda, x(\lambda)), \Phi(\lambda, x(\mu))) + \rho(\Phi(\mu, x(\mu)), \Phi(\lambda, x(\mu))) ≤ $$
+		$$ ≤ \kappa \rho(x(\lambda), x(\mu)) + \rho(x(\lambda), x(\mu)) ≤ (1 - \kappa)^{-1} \rho (\Phi(\lambda, x(\mu)), \Phi(\mu, x(\mu))) \rightarrow 0. $$
+		So $\Phi$ is continuous in the first variable.
+
+		$\mu$ fixed, $\lambda = \mu_n \rightarrow \mu$. $y$, $\lambda$ fixed, $x_1 = \Phi(\lambda, y)$, $x_n = \Phi(\lambda, x_{n-1})$, $n ≥ 2$.
+
+		$n = 0$ ($y = x_0$): $m \rightarrow ∞$
+		$$ \rho(y, \lambda(x)) ≤ \frac{\kappa^0}{1 - \kappa} \rho(y, \Phi(\lambda, y)) = \frac{\kappa^0}{1 - \kappa}\rho(y, x_1). $$
 	\end{dukazin}
 \end{veta}
 
+\begin{veta}[Generalized Picard theorem]
+	$$ *: x' = f(t, x), \qquad x(t_0) = x_0, \qquad f: \Omega \rightarrow ®R^n, \qquad \Omega \subseteq ®R^{n+1}. $$
 
-TODO!!!
+	$I = [0, T]$, $\Pi$ metric space, $f: I \times ®R^n\times \Pi \rightarrow ®R^n$, $f(t, x, p)$
+	\begin{itemize}
+		\item $\forall p \in \Pi$ fixed $f(·, ·, p) \in Car(I \times ®R^n)$;
+		\item $\|f(t, x, p) - f(t, y, p)\| ≤ l(t)\|x - y\|$ for some $l(t) \in L^1(I)$, $\forall x, y \in ®R^n$, $\forall p \in \Pi$ and almost all $t \in I$;
+		\item for every $x(·) \in ©L(I)$ the map
+			$$ p \mapsto \int_0^t f(s, x(s), p) ds, \qquad t \in I $$
+			is continuous.
+	\end{itemize}
+
+	Then for all $x_0 \in ®R^n$ a $\forall p \in \Pi$ $\exists! x( ·) = x(x_0, p) \in AC(I)$ satisfying * in Caratheodory sense with initial condition $x(t_0) = x_0$ and $x(·)$ depends continuously on $x_0$, $p$, tj.
+	$$ (x_0)_n \rightarrow x_0 \land p_n \rightarrow p \implies x_n(·) ≡ x((x_0)_n, p_n) \rightrightarrows x(x_0, p). $$
+
+	\begin{dukazin}
+		$X := \phi(I)$ is complete, $\|f\|_x = \sup_{t \in I} \{f(x)·e^{-L t}\}$, $L$ will be chosen $L > \epsilon$. $\Lambda := ®R^n \times \Pi \ni (\lambda_0, p)$, $\int_0^t e^{L(t - s)} ds ≤ \int_0^t e^{-L y} y ≤ \int_0^∞ e^{-L y} dy = \frac{?}{L}$.
+
+		$$ \Phi(x_0, p, x(·)) (t) := x_0 + \int_0^t f(s, x(s)) ds, \qquad t \in [0, T]. $$
+	\end{dukazin}
+\end{veta}
 
 % 01. 11. 2022
 
