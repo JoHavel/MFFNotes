@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	The speedo of sound $c$ is given by the formula $c^2 = \frac{\partial p_{th}}{\partial \rho}(\rho, \eta)$. Find explicit formula for the speed of sound in a calorically perfect ideal gas. Try to express the formula for the speed of sound using the temperature and the density.
+
+	\begin{reseni}
+		Z přednášky máme $p_{th} = \rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho)$. Z pátého domácího úkolu máme
+		$$ e(\eta, \rho) = \frac{c_{V, ref}·\theta_{ref}}{\rho_{ref}^{\gamma - 1}} · \exp\(\frac{\eta}{c_{V, ref}}\) · \rho^{\gamma - 1} =: C(\eta)·\rho^{\gamma - 1}. $$
+		Tedy $c^2 = \frac{\partial p_{th}}{\partial \rho}(\rho, \eta) =$
+		$$ = \frac{\partial \(\rho^2·\frac{\partial C(\eta)·\rho^{\gamma - 1}}{\partial \rho}\)}{\partial \rho} = \frac{\partial \(\rho^2 · C(\eta)·(\gamma - 1) \rho^{\gamma - 2}\)}{\partial \rho} = (\gamma - 1)\gamma·C(\eta)·\rho^{\gamma - 1} = (\gamma - 1)\gamma·e(\eta, \rho). $$
+		Takže jsme vlastně vyjádřili $c^2$ jako funkci $e$ ($\gamma$ je konstanta), ale ze zadání pátého domácího úkolu také umíme $e$ vyjádřit jako $e = e(\rho, \theta) = c_{V,ref}\theta$. Tedy
+		$$ c = \sqrt{(\gamma - 1)\gamma·e(\eta, \rho)} = \sqrt{(\gamma - 1)\gamma c_{v, ref}\theta}. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Assume – wrongly – that the propagation of sound waves is an isothermal process. In this case the speed of sound would be given by the formula $c^2 = \frac{\partial p_{th}}{\partial \rho}(\rho, \theta)$. Use this – wrong – formula and find an explicit formula for the speed of sound in a calorically perfect ideal~gas.
+
+	\begin{reseni}
+		Z přednášky víme, že pro $p_{th}(\rho, \theta)$ platí $c^2 = \frac{\partial p_{th}}{\partial \rho}(\rho, \theta) = \frac{\partial^2 \psi}{\partial (1 / \rho)^2}·\frac{1}{\rho^2}$. Ze sedmého domácího úkolu také víme, že
+		$$ \psi(\theta, \rho) = - c_{V, ref} \theta \(\ln\(\frac{\theta}{\theta_{ref}}\) - 1\) + c_{V, ref} \theta (\gamma - 1) \ln\(\frac{\rho}{\rho_{ref}}\) = $$
+		$$ =: C(\theta) + c_{V, ref}\theta(\gamma - 1)\ln(\rho) = \psi_\theta(\theta) + c_{V, ref}\theta(\gamma - 1)\ln\(\frac{1}{\frac{1}{\rho}}\) = C(\theta) - c_{V, ref}\theta(\gamma - 1)\ln(1 / \rho). $$
+		Tudíž
+		$$ c^2 = \frac{\partial^2 \psi}{\partial (1 / \rho)^2}·\frac{1}{\rho^2} = \frac{\partial^2 \(C(\theta) - c_{V, ref}\theta(\gamma - 1)\ln(1 / \rho)\)}{\partial (1 / \rho)^2}·\frac{1}{\rho^2} = \frac{\partial \(- c_{V, ref}\theta(\gamma - 1)\frac{1}{1 / \rho}\)}{\partial (1 / \rho)} \frac{1}{\rho^2} = $$
+		$$ = - \(- c_{V, ref} \theta (\gamma - 1) \frac{1}{(1 / rho)^2}\)·\frac{1}{\rho^2} = c_{V, ref} \theta (\gamma - 1). $$
+		Tedy $c = \sqrt{c_{V, ref} \theta (\gamma - 1)}$, což je skoro totéž, až na $\sqrt{\gamma}$, které je relativně blízko 1.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

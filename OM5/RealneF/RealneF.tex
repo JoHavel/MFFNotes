@@ -47,14 +47,12 @@
 
 		$$ \sum_{i=1}^∞ \lambda_n (B_i) = \lambda_n(\bigcup_{i=1}^∞ B_i) ≤ \lambda_n(G) < ∞ \implies $$
 		$$ \implies \lim_{i \rightarrow ∞} = 0 \implies \lim_{i \rightarrow ∞} \diam(B_i) = 0 \implies \lim_{i \rightarrow ∞} s_i = 0. $$
-		We show that
-		$$ \forall x \in A \setminus \bigcup ©A\ \forall i \in ®N \exists j \in ®N, j > i: x \in 5 · B_j $$
-		$$ \Leftrightarrow A \setminus \bigcup ©A \subseteq \bigcup_{j = i + 1}^∞ 5·B_j $$
+		We show that $\forall x \in A \setminus \bigcup ©A\ \forall i \in ®N \exists j \in ®N, j > i: x \in 5 · B_j$ $\(\Leftrightarrow A \setminus \bigcup ©A \subseteq \bigcup_{j = i + 1}^∞ 5·B_j\)$.
 		Take $x \in A \setminus \bigcup ©A$ and $i \in ®N$. Denote $\delta = \dist(x, \bigcup_{k=1}^i B_k) > 0$. There exists $B \in ©V^*$ such that $x \in B$ and $\diam B < \delta$ $\implies$ $B \cap \bigcup_{k=1}^i B_k = \O$. Then we have $\diam B > s_p$ for some $p \in ®N$.
 
 		Therefore there exists $j > i$ with $B_j \cap B ≠ \O$. Let $j$ be the smallest number with this property. Then we have $s_j ≥ \diam B$ since $B \cap \bigcup_{l=1}^{j-1} B_l = \O$. Further we have $\diam B_j > \frac{1}{2} s_j ≥ \frac{1}{2} \diam B$ $\implies 2 \diam B_j ≥ \diam B$ This implies that $x \in B \subset 5·B_j$.
-
-		$$ \lambda_n^*(A \setminus \bigcup A) ≤ \lambda_n \(\bigcup_{j=i+1}^∞ 5·B_j\) ≤ \sum_{j=i+1}^∞ \lambda_n (5·B_j) = \sum_{j=i+1}^∞ 5^n \lambda_n(B_j) = 5^n · \sum_{j = i+1}^∞ \lambda_n(B_j) \rightarrow 0 \implies \lambda_n(A \setminus \bigcup ©A) = 0. $$
+		$$ \lambda_n^*(A \setminus \bigcup A) ≤ \lambda_n \(\bigcup_{j=i+1}^∞ 5·B_j\) ≤ \sum_{j=i+1}^∞ \lambda_n (5·B_j) = \sum_{j=i+1}^∞ 5^n \lambda_n(B_j) = 5^n · \sum_{j = i+1}^∞ \lambda_n(B_j) \rightarrow 0 $$
+		$$ \implies \lambda_n(A \setminus \bigcup ©A) = 0. $$
 
 		
 		General case ($A$ not bounded): Let $(G_j)_{j=1}^∞$ be a sequence of disjoint open sets such that $\lambda_n(®R^n \setminus \bigcup_{j=1}^∞ G_j) = 0$. We define $©V_j = \{B \in ©V_i, B \subseteq G_j\}$. $©V_j$ is a Vitali cover of $A \cap G_j$ $\implies \exists ©A_j \subseteq ©V_j$ countable disjoint and $\lambda_n(A \cap G_j \setminus \bigcup A_j) = 0$. We set $©A = \bigcup_{j=1}^∞ ©A_j$. $©A$ is countable, disjoint and $\lambda_n(A \setminus \bigcup ©A) = 0$.
@@ -99,9 +97,11 @@
 		Let $R := \sup_A \Delta$. Choose $B_1 := \overline{B}(a_1, \Delta(a_1))$ such that $a_1 \in A$ and $r_1 := \Delta(a_1) > \frac{3}{4}R$.
 
 		Assume that we already constructed $B_1, …, B_{j-1}$, $j ≥ 2$. $B_{j-1} = \overline{B}(a_{j-1}, \Delta(a_{j-1})) = \overline{B}(a_{j-1}, r_{j-1})$. Let $F_j := A \setminus \bigcup_{i=1}^{j-1} B_i$. If $F_j = \O$ we set $J := j$. If not $B_j := \overline{B}(a_j, \Delta(a_j)) = \overline{B}(a_j, r_j)$, $a_j \in F_j$ and $r_j > \frac{3}{4} \sup_{F_j} \Delta$.
-
+		
 		If $F_j ≠ \O$ for every $j \in ®N$, then we set $J := ∞$. So we have $(B_j)_{j < J}$. If $J < ∞$, then we covered $A$. „If $J = ∞$, then $A \subset \bigcup_{j < J} B_j$“:
+	\end{dukazin}
 
+	\begin{dukazin}
 		„$\lim_{j \rightarrow ∞} r_j = 0$“: because $A$ is bounded
 		$$ \|a_i - a_j\| ≥ r_i = \frac{1}{3} r_i + \frac{2}{3} r_i > \frac{1}{3} r_i + \frac{1}{2} r_j > \frac{1}{3} r_i + \frac{1}{3} r_j = \frac{1}{3}(r_i + r_j) \implies \frac{1}{3} * B_i \cap \frac{1}{3} * B_j = \O. $$
 		$\{\frac{1}{3}B_j | j < J\}$ is a disjoint family $\implies \sum_{j=1}^∞ \lambda_n(\frac{1}{3} * B_j) < ∞$.
@@ -124,8 +124,8 @@
 		$$ \|a_i - a_j\| = \|b_i - b_j\| ≤ \left\|b_i - \frac{\|b_j\|}{\|b_i\|}b_i\right\| + \left\|\frac{\|b_j\|}{\|b_i\|} b_i - b_j\right\| ≤ \left| \|b_i\| - \|b_j\| \right| + \frac{1}{11} \|b_j\| ≤ $$
 		$$ ≤ |r_i - r_j| + r_k + \frac{1}{11}·\frac{11}{10}r_j ≤ |r_i - r_j| + \frac{1}{5} r_j. $$
 		We distinguish two cases:
-		$$ (1) r_i > r_j: \|a_i - a_j\| ≤ r_i - \frac{4}{5}r_j < r_i; $$
-		$$ (2) r_i ≤ r_j: \|a_i - a_j\| ≤ - r_i + r_j + \frac{1}{5} r_j = -r_i + \frac{6}{5} r_j ≤ - r_i + \frac{8}{5}r_i < r_i \implies a_j \in \overline{B}(a_i, r_i) = B_i, \text{\lightning}. $$
+		$$ r_i > r_j: \|a_i - a_j\| ≤ r_i - \frac{4}{5}r_j < r_i; $$
+		$$ r_i ≤ r_j: \|a_i - a_j\| ≤ - r_i + r_j + \frac{1}{5} r_j = -r_i + \frac{6}{5} r_j ≤ - r_i + \frac{8}{5}r_i < r_i \implies a_j \in \overline{B}(a_i, r_i) = B_i, \text{\lightning}. $$
 
 		Choose $N > (60)^n + (22n)^n$. $B_i \in A_i$, $i \in [N]$. From previous every ball intersect at most $(60)^n + (22n)^n$ previous balls, so we always have $A_i$ where we can put ball.
 	\end{dukazin}
@@ -226,7 +226,7 @@
 		For every $k \in ®N$ we find an open set $G_k > M$ and $\mu(G_k) ≤ \mu^*(M) + \frac{1}{k}$.
 		$$ ©V_k := \{B \in ©B | B \subset G_k \land \nu(B) < c·\mu(B)\}. $$
 
-		TODO(1 řádek)!!! a countable disjoint system $©A_k \subset ©V_k$ such that $\mu(M \setminus \bigcup ©A_k) = 0$. Set $H_k = M \cap \bigcup ©A_k$. Then $\mu(M \setminus H_k) = 0$, $H_k \subset M$. We have
+		The system $©V_k$ is a Vitali cover of $M$. Thus there exist a countable disjoint system $©A_k \subset ©V_k$ such that $\mu(M \setminus \bigcup ©A_k) = 0$. Set $H_k = M \cap \bigcup ©A_k$. Then $\mu(M \setminus H_k) = 0$, $H_k \subset M$. We have
 		$$ \nu^*(H_k) ≤ \nu(\bigcup ©A_k) = \sum_{B \in ©A_k} \nu(B) ≤ c \sum_{B \in ©A_k} \mu(B) = c \mu(\bigcup ©A_k) ≤ c·\mu(G_k) ≤ c(\mu^*(M) + \frac{1}{k}). $$
 		$$ H := \bigcap H_k: \qquad \nu^*(H) ≤ c\mu^*(M). $$
 		$$ \mu(M \setminus H) ≤ \sum_{k=1}^∞ \underbrace{\mu(M \setminus H_k)}_{=0} = 0. $$
@@ -351,10 +351,10 @@
 		$$ (v(y) - f(y)) - (v(x) - f(x)) = (v(y) - v(x)) - (f(y) - f(x)) = V_x^y f - (f(y) - f(x)) ≥ 0. $$
 
 		$v \in AC([a, b])$: Choose $\epsilon > 0$. We find $\delta > 0$ such that $\sum_{j=1}^m |f(b_j) - f(a_j)| < \epsilon$, whenever $a ≤ a_1 < b_1 ≤ a_2 < b_2 ≤ … ≤ a_m < b_m ≤ b$ and $\sum_{j=1}^m (b_j - a_j) < \delta$. Assume that $a ≤ A_1 < B_1 ≤ A_2 < B_2 ≤ … ≤ A_p < B_p ≤ b$ with $\sum_{j=1}^p(B_j - A_j) < \delta$. For each $j \in [p]$ we find points
-		$$ A_j = a_1^j < b_1^j = a_2^j < b_2^j < … < a_{m_j}^j < b_{m_j}^j = B_j. $$
+		$$ A_j = a_1^j < b_1^j = a_2^j < b_2^j < … < a_{m_j}^j < b_{m_j}^j = B_j $$
+		such that
+		$$ v(B_j) - v(A_j) = V_{A_j}^{B_j} f < \sum_{i=1}^{m_j} |f(b_i^j) - f(a_i^j)| + \frac{\epsilon}{p}. $$
 
-
-		TODO!!!
 		$$ \sum_{j=1}^n |v(B_j) - v(A_j)| < \sum_{j=1}^p \(\(\sum_{i=1}^{m_j} |f(b_1^j) - f(a_i^j)|\) + \frac{\epsilon}{p}\) < \epsilon + p·\frac{\epsilon}{p} = 2 \epsilon. $$
 
 		$$ f = v - (v - f). $$
@@ -481,7 +481,8 @@
 		$f', g' \in L^1([a, b])$. $(fg)' = f'g + fg'$ almost everywhere in $[a, b]$. $\int_a^b (fg)' = \int_a^b (f'g + fg') = \int_a^b f'g + \int_a^b f g'$.
 		$$ a ≤ a_1 < b_1 ≤ a_2 < b_2 ≤ … ≤ a_n < b_n ≤ b: $$
 		$$ \sum_{i=1}^n |f(b_i)g(b_i) - f(a_i)g(a_i)| ≤ M·\sum_{i=1}^n |g(b_i) - g(a_i)| + M·\sum_{i=1}^n |f(b_i) - f(a_i)| ≤ M·\epsilon $$
-		$$ (|f(b_i)g(b_i) - f(b_i)g(a_i) + f(b_i)g(a_i) - f(a_i)g(a_i)| ≤ |f(b_i)|·|g(b_i) - g(a_i)| + |g(a_i)|·|f(b_i) - f(a_i)|). $$
+		$$ (|f(b_i)g(b_i) - f(b_i)g(a_i) + f(b_i)g(a_i) - f(a_i)g(a_i)| ≤ $$
+		$$ ≤ |f(b_i)|·|g(b_i) - g(a_i)| + |g(a_i)|·|f(b_i) - f(a_i)|). $$
 	\end{dukazin}
 \end{veta}
 
@@ -506,7 +507,7 @@
 		WLOG $g$ is non-decreasing.
 
 		First case „$g \in AC([a, b])$“: $F(z) = \int_a^b f$, $F \in AC([a, b])$, $\int_a^b fg = \int_a^b F' g =$
-		$$ [F g]_a^b - \int_a^b F g' = F(b)g(b) - F(a)g(a) - F(\xi) \int_a^b g' = \(\underbrace{\int_a^b}_{\int_a^\xi + \int_\xi^b} f\) ·g(b) - \(\int_a^\xi f\)·(g(b) - g(a)). $$
+	$$ [F g]_a^b - \int_a^b F g' = F(b)g(b) - F(a)g(a) - F(\xi) \int_a^b g' = \underbrace{\(\int_a^b f\)}_{\int_a^\xi + \int_\xi^b} ·g(b) - \(\int_a^\xi f\)·(g(b) - g(a)). $$
 
 		General case: $(D_n)_{n=1}^∞$ sequence of partition of $[a, b]$, $\nu(D_n) \rightarrow 0$. $g_n$ piece wise affine function: $g_n(x_j^n) - g(x_j^n)$, $j \in [k_n]$. $\lim_{n \rightarrow ∞} g_n(x) = g(x)$, whenever $x \in [a, b]$ is a point of continuity of $g$.
 
@@ -528,6 +529,7 @@
 	is Borel.
 
 	\begin{dukazin}
+		\small
 		$$ \exists \frac{\partial f}{\partial x_i}(x) \Leftrightarrow \forall \epsilon > 0\ \exists \delta > 0 \forall t_1, t_2 \in (-\delta, \delta) \setminus \{0\}: \left|\frac{f(x + t_1e^i) - f(x)}{t_1} - \frac{f(x + t_2 e^i) - f(x)}{t_2}\right| < \epsilon \Leftrightarrow $$
 		$$ \Leftrightarrow \forall \epsilon \in ®Q^+\ \exists \delta \in ®Q^+ \forall t_1, t_2 \in \((-\delta, \delta) \cap ®Q\) \setminus \{0\}: \left|\frac{f(x + t_1e^i) - f(x)}{t_1} - \frac{f(x + t_2 e^i) - f(x)}{t_2}\right| < \epsilon. $$
 	\end{dukazin}
@@ -576,7 +578,7 @@
 	$$ p, q \in ®Q^n, m \in ®N: $$
 	$$ S(p, q, m) := \{x \in ®R^n | \forall i \in [n]\ \forall t \in \(-\frac{1}{m}, \frac{1}{m}\) \setminus \{0\}: p_i ≤ \frac{f(x + t e_i) - f(x)}{t} ≤ q_i\}. $$
 	$S(p, q, m)$ is Borel. $\tilde S(p, q, m)$ be the set of $x \in S(p, q, m)$ such that $x$ is a point of density of $S(p, q, m)$. From theorem above $\lambda_n(S(p, q, m) \setminus \tilde S(p, q, m)) = 0$.
-	$$ N := \bigcup\{S(p, q, m) \setminus \tilde S(p, q, m) | p, q \in ®Q, m \in ®N\}. \lambda_n(N) = 0. $$
+	$$ N := \bigcup\{S(p, q, m) \setminus \tilde S(p, q, m) | p, q \in ®Q, m \in ®N\}. \qquad \lambda_n(N) = 0. $$
 
 	$x \in ®R^n \setminus (N \cup E)$, $\epsilon \in (0, 1)$. Choose $p, q \in ®Q^n$ such that $q_i - \epsilon ≤ p_i < \frac{\partial f}{\partial x_i}(x) < q_i$, $i \in [n]$. We can find $m \in ®N$ such that $x \in S(p, q, m) =: S$. We find $\delta \in \(0, \frac{1}{m}\)$ such that $\lambda_n(B(x, r) \setminus S) ≤ \(\frac{\epsilon}{2}\)^n \lambda_n(B(x, r))$ for every $r \in (0, 2\delta)$.
 
@@ -584,20 +586,23 @@
 	$$ C_n·(\epsilon \tau)^n = \lambda_n(B(d, \epsilon \tau)) ≤ \lambda_n(B(x, (1 + \epsilon)\tau) \setminus S) ≤ \(\frac{\epsilon}{2}\)^n C_n (1 + \epsilon)^n \tau^n $$
 	$$ 1 ≤ \(\frac{1}{2}\)^n (1 + \epsilon)^n < 1. $$
 
-	$$ y^i := [y_1, y_2, …, y_i, x_{i+1}, …, x_n], i \in [n]. B_i := B(y^i, \epsilon \|y - x\|). $$
-	TODO?
+	$$ y^i := [y_1, y_2, …, y_i, x_{i+1}, …, x_n], i \in [n]. \qquad B_i := B(y^i, \epsilon \|y - x\|). $$
+	Then $B_i \cap S ≠ \O$. Find points $z^i \in S \cap B_i$, $i \in [n-1]$ and denote $w^i = z^{i - 1} + (y_i - x_i)e_i$, $i \in [n]$.
 
 % 12. 12. 2022
 
 	We have $p_i ≤ \frac{f(w^i) - f(z^{i - 1})}{y_i - x_i} ≤ q_i$, if $x_i ≠ y_i$, $p_i < \frac{\partial f}{\partial x_i}(x) < q_i$. Therefore we have
 	$$ \left|f(w^i) - f(z^{i - 1}) - \frac{\partial f}{\partial x_i}(x)·(y_i - x_i)\right| ≤ (q_i - p_i)·|y_i - x_i| ≤ \epsilon \|y - x\|. $$
-	$$ \left|f(y) - f(x) - \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x)·(y_i - x_i)\right| ≤ * $$
-	$$ f(y) - f(x) = \sum_{i=1}^n (f(y^i) - f(y^{i - 1})) = \sum_{i=1}^n \(\(f(w^i) + f(y^i) - f(w^i)\) - \(f(z^{i - 1}) + f(y^{y - 1}) - f(z^{i - 1})\)\) = $$
-	$$ = \sum_{i=1}^n \(f(w^i) - f(z^{i - 1})\) + \sum_{i=1}^n \(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i-1}) - f(z^{i - 1})\) $$
-	$$ \implies * = \left|\sum_{i=1}^n \(f(w^i) - f(z^{i-1}) - \frac{\partial f}{\partial x_i}·(y_i - x_i)\) + \sum_{i=1}^n\(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i - 1}) - f(z^{i - 1})\)\right| ≤ $$
+	$$ \left|f(y) - f(x) - \sum_{i=1}^n \frac{\partial f}{\partial x_i}(x)·(y_i - x_i)\right| ≤ *. $$
+	$$ f(y) - f(x) = \sum_{i=1}^n (f(y^i) - f(y^{i - 1})) = $$
+	$$ = \sum_{i=1}^n \(\(f(w^i) + f(y^i) - f(w^i)\) - \(f(z^{i - 1}) + f(y^{y - 1}) - f(z^{i - 1})\)\) = $$
+	$$ = \sum_{i=1}^n \(f(w^i) - f(z^{i - 1})\) + \sum_{i=1}^n \(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i-1}) - f(z^{i - 1})\) \implies * = $$
+	$$ \left|\sum_{i=1}^n \(f(w^i) - f(z^{i-1}) - \frac{\partial f}{\partial x_i}·(y_i - x_i)\) + \sum_{i=1}^n\(f(y^i) - f(w^i)\) - \sum_{i=1}^n \(f(y^{i - 1}) - f(z^{i - 1})\)\right| ≤ $$
 	$$ ≤ n·\epsilon \|y - x\| + \sum_{i=1}^n |f(y^i) - f(w^i)| + \sum_{i=1}^n|f(y^{i - 1}) - f(z^{i-1})| ≤ $$
 	$$ ≤ n·\epsilon \|y - x\| + 2n·2\epsilon\|y - x\|·\beta = \epsilon(n + 4n\beta)\|y - x\|. $$
 \end{dukaz}
+
+\pagebreak
 
 \begin{poznamka}
 	$$ |f(y^i) - f(w^i)| ≤ \beta·\|y^i - w^i\| = ? < \epsilon \|y - x\|. $$
@@ -617,9 +622,28 @@
 	\end{dukazin}
 \end{poznamka}
 
-\subsection{Maximal operator (completed)}
+\subsection{Maximal operator (was in 3rd lecture)}
+\begin{definice}
+	Let $f: ®R^n \rightarrow ®R$ be measurable. For $x \in ®R^n$ we define
+	$$ M f(x) = \sup_{B \in ©B, x \in B} \frac{1}{\lambda_n(B)}\int_B |f|. $$
+\end{definice}
 
-\subsection{Lipschitz functions and $W^{1, 2}$}
+\begin{veta}[Hardy-Littlewood-Weiner]
+	\ \vspace{-2em}
+
+	\begin{itemize}
+		\item If $f \in L^p(®R^n)$, $1 ≤ p ≤ ∞$, then $M f$ is finite almost everywhere.
+		\item There exists $c > 0$ such that for every $f \in L^1(®R^n)$ and $\alpha > 0$ we have
+			$$ \lambda_n(\{x \in ®R^n | M f(x) > \alpha\}) ≤ \frac{c}{\alpha} \|f\|_1. $$
+		\item Let $p \in (1, ∞]$. Then there exists $A$ such that for every $f \in L^p(®R^n)$ we have $\|M f\|_p ≤ A \|f\|_p$.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+\subsection{Lipschitz functions and Sobolev spaces}
 
 \begin{veta}
 	Let $U \subset ®R^n$ be open. Then $f: U \rightarrow ®R$ is local Lipschitz on $U$ if and only if $f \in W_{loc}^{1, ∞}(U)$.
@@ -644,8 +668,10 @@
 \end{definice}
 
 \begin{definice}
-	An outer measure $\gamma$ on $P$ is called metric outer measure, if for every $A, B \subset P$ with $\inf\{\rho(a, b) | a \in A, b \in B\} > 0$ we have $\mu(A \cup B) = \mu(A) + \mu(B)$.
+	An outer measure $\gamma$ on $P$ is called metric outer measure, if for every $A, B \subset P$ with $\inf\{\rho(a, b) | a \in A, b \in B\} > 0$ we have $\mu(A \cup B) = \mu(A) + \mu(B)$.
 \end{definice}
+
+\pagebreak
 
 \begin{veta}
 	Let $\gamma$ be a metric outer measure on $P$. Then every Borel subset of $P$ is $\gamma$ measurable.
@@ -666,6 +692,95 @@
 		$$ ≤ \gamma(T) + \sum_{j=m+1}^∞ \gamma(P_j) \rightarrow \gamma(T) \implies $$
 		$$ \implies \gamma(T \cap F) + \gamma(T \setminus F) ≤ \gamma(T). $$
 	\end{dukazin}
+\end{veta}
+
+% 19. 12. 2022
+
+\pagebreak
+
+\begin{veta}
+	$\kappa_p$ is a metric outer measure.
+
+	\begin{dukazin}
+		„$\kappa_p(\O) = 0$“: $\kappa_p(\O, \delta) = 0 \implies \kappa_p(\O) = 0$.
+
+		„$\sigma$-subaditivity of $\kappa_p$“: $M_i \subset P$, $i \in ®N$. If $\kappa_p(M_{i_0}) = ∞$ for some $i_0 \in ®N$, then we have $\kappa_p(\bigcup_{i \in ®N} M_i) ≤ \sum_{i=1}^∞ \kappa_p(M_i)$.
+
+		So we will assume that $\kappa_p(M_i) < ∞$ for every $i \in ®N$. We choose $\epsilon > 0$, $\delta > 0$. For every $i \in ®N$ we find sets $A_{i,j}$, $j \in ®N$ such that
+		$$ M_i \subset \bigcup_{j \in ®N} A_{i, j}, \qquad \sum_{j=1}^∞ \(\diam A_{i, j}\)^p < \kappa_p(M_i, \delta) + \frac{\epsilon}{2^i}, \qquad \diam A_{i, j} < \delta. $$
+		Then
+		$$ \kappa_p\(\bigcup_{i=1}^∞ M_i, \delta\) ≤ \sum_{i=1}^∞ \sum_{j=1}^∞ (\diam A_{i, j})^p ≤ \sum_{i=1}^∞ \(\kappa_p(M_i, \delta) + \frac{\epsilon}{2^i}\) ≤ \(\sum_{i=1}^∞ \kappa_p(M_i)\) + \epsilon. $$
+		$$ \kappa_p\(\sum_{i=1}^∞ M_i\) ≤ \sum_{i=1}^∞ \kappa_p(M_i) + \epsilon. $$
+
+		„$\kappa_p$ is a metric outer measure“: Let $A, B \subset P$ with $\inf\{\rho(a, b) | a \in A, b \in B\} = \delta_0 > 0$. Take $\delta \in (0, \delta_0)$. For $M \subseteq A \cup B$ with $\diam M < \delta$, we have either $M \subseteq A$ or $M \subseteq B$. This implies
+		$$ \kappa_p(A \cup B, \delta) = \kappa_p(A, \delta) + \kappa_p(B, \delta). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Every Borel subset of $P$ is $\kappa_p$-measurable.
+
+	\begin{dukazin}
+		By previous two theorems.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}[???]
+	TODO?
+	$P = ®R^n$ is translation invariant.
+\end{dusledek}
+
+\begin{veta}
+	Let $k, n \in ®N$, $k ≤ n$, $K = [0, 1)^k \times \{0\}^{n - k} \subset ®R^n$. Then $0 < \kappa_k(K) < ∞$.
+
+	\begin{dukazin}
+		„$\kappa_k(K) < ∞$“: Let $\delta > 0$. We find $m \in ®N$ such that $\frac{\sqrt{k}}{m} < \delta$. Then set $K$ will be splitted into $,^k$ "cubes", $K_j$ for $j \in [m^k]$.
+		$$ \kappa_k(k, \delta) ≤ m^k \(\frac{\sqrt{k}}{m}\)^k = (\sqrt{k})^k. $$
+		$$ \kappa_k(K) ≤ (\sqrt{k})^k < ∞. $$
+
+		„$\kappa_k(K) > 0$“: $\Pi: ®R^n \rightarrow ®R^k$, $\Pi: (x_1, …, x_n) = (x_1, …, x_k)$, $\mu(A) = \lambda^{k*}(\Pi(A))$, $A \subset ®R^n$. We have $\mu(A) ≤ (\diam A)^k$. Let $\{A_j\}_{j=1}^∞$ be a sequence of sets in $®R^n$ such that $\bigcup_{j=1}^∞ A_j = K$.
+		$$ \sum_{j=1}^∞ (\diam A_j)^k ≥ \sum_{j=1}^∞ \mu(A_j) ≥ \mu(K) = 1 \implies \kappa_k(K) ≥ 1. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Notation]
+	$k, n \in ®N$, $k ≤ n$:
+	$$ \kappa_k := \kappa_k(K) \in (0, ∞), \qquad H^k := \frac{1}{\kappa_k} \kappa_k, \qquad \kappa_k := \frac{\Gamma \(\frac{1}{2}\)^k}{\Gamma\(\frac{k}{2} + 1\)2^k} $$
+	$$ \(\Gamma (s) = \int_0^∞ x^{s - 1} e^{-x} dx, \qquad s > 0\). $$
+\end{definice}
+
+\begin{veta}
+	Let $k, n \in ®N$, $k ≤ n$, and $A \subset ®R^n$. Then there exists a Borel set $B \subset ®R^n$ such that $A \subset B$ and $\kappa_k(A) = \kappa_k(B)$.
+
+	\begin{dukazin}
+		If $\kappa_k(A) = ∞$, then we set $B = ®R^n$. Assume $\kappa_k(A) < ∞$. For each $j \in ®N$ we find an $F_j$ set $f_j \subset ®R^n$ such that $\kappa_k\(F_j, \frac{1}{j}\) < \kappa_k\(A, \frac{1}{j}\) + \frac{1}{j}$ and $A \subset F_j$. $A \subseteq \bigcup \overline{A_i}$ $\sum (\diam A_i)^k$.
+
+		We set $B = \bigcap_{j=1}^∞ F_j$. Then $B$ is Borel and $A \subset B$. We estimate
+		$$ \kappa_k\(A, \frac{1}{j}\) ≤ \kappa_k\(B, \frac{1}{j}\) ≤ \kappa_k\(F_j, \frac{1}{j}\) < \kappa_k(A, \frac{1}{j}) + \frac{1}{j}: $$
+		$$ \kappa_k(A) ≤ \kappa_k(B) ≤ \kappa_k(A) \implies \kappa_k(A) = \kappa_k(B). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $n \in ®N$ and $A \subset ®R^n$. Then $H^n(A) = \lambda^{n*}(A)$.
+
+	\begin{dukazin}
+		We have $H^n([0, 1)^n) = \lambda^{n*}([0, 1)^n)$. Since $H^n$ and $\lambda^{n*}$ are translation invariant, we obtain $H^n(Q) = \lambda^{n*}(Q)$ for any $Q \subset ®R^n$ of the form
+		$$ Q = \prod_{i=1}^m \[\frac{l_i}{2^m}, \frac{l_i + 1}{2^m}\], $$
+		$l_i \in ®Z$, $i \in [m]$, $m \in ®N_0$. Denote this sets by ©Q.
+
+		Let $G \subseteq ®R^n$ be open. Then there exists $\tilde{©Q} \subset $ such that $\tilde{©Q}$ is a disjoint family and $\bigcup \tilde{©Q} = G$. (Proof: $Q_1, Q_2 \in ©Q \implies Q_1 \subseteq Q_2$ or $Q_2 \subseteq Q_1$ or $Q_1 \cap Q_2 = \O$. So $G = \bigcup\{Q \in ©Q | Q \subset G\} =: \bigcup ©S$. $Q \in ©S \implies M(Q) \in ©S$ maximal with inclusion. Then $\tilde{©Q} = \{M(Q) | Q \in ©S\}$.)
+
+		$$ \implies H^n(G) = \lambda^{n*}(G) \implies H^n = \lambda^{n*} \text{ on Borel sets}. $$
+		
+		For $A \subseteq ®R^n$ we find Borel sets $B_1, B_2 \subseteq ®R^n$, $A \subseteq B_1$, $H^n(A) = H^n(B_1)$, $A \subseteq B_2$, $\lambda^{n*}(A) = \lambda^{n*}(B_2)$. We set $B = B_1 \cap B_2$. Then we have $H^n(A) = H^n(B) = \lambda^{n*}(B) = \lambda^{n*}(A)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Area formula]
+	Let $k, n \in ®N$, $k ≤ n$, $G \subseteq ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping and $f: \phi(G) \rightarrow ®R$ be $H^k$-measurable. Then we have
+	$$ \int_{\phi(G)} f(x) dH^k(x) = \int_G f(\phi(t)) vol \phi'(t) d\lambda^k(t), $$
+	if the integral on the right side converges. ($vol L = \sqrt{\det(L^T L)}$ for linear mapping $L$.)
 \end{veta}
 
 \end{document}

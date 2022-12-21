@@ -1045,4 +1045,122 @@ TODO?
 	$$ c^2 = \frac{\partial p_{th}}{\partial \rho}(\hat{\rho}, \hat{\eta}). $$
 \end{poznamka}
 
+% 21. 12. 2022
+
+\begin{poznamka}[Compressible vs incompressible Navier-Stokes fluid]
+	Compressible:
+	$$ ®T = -p(\rho, \theta)®I + \lambda (\Div ¦v)®I + 2\mu®D, \qquad \(p = c_V·(\gamma - 1)\). $$
+	Incompressible:
+	$$ ®T = -p®I + 2\mu®D, \qquad \(p \text{ unknown, we must solve equation for it}\). $$
+\end{poznamka}
+
+\begin{poznamka}[Archimedes law]
+	(Any object, wholly or partially immersed in a fluid, is buoyed up by a force equal to the weight of the fluid displaced by the object.)
+
+	Our settings: Object = rigid body. Fluid (= water, not a gas) = incompressible fluid. Buoyed = object is static (including the fluid). Up + weight (= we must be in gravitation field) = homogeneous gravitation field = $¦b := - g ¦e_{\hat{z}}$, where $g$ is gravitation acceleration and $¦e_{\hat{z}}$ is direction up.
+
+	$$ ®T = -p ®I + 2 \mu ®D $$
+	Solve (for ¦v and $p$):
+	$$ \Div ¦v = 0, \qquad \rho \frac{d¦v}{dt} = \Div ®T + \rho ¦b, $$
+	with boundary conditions ($©B$ is object):
+	$$ ¦v|_{\partial ©B} = ¦o, \qquad  ¦v|_{\text{surface}} = ¦o, $$
+	and initial conditions:
+	$$ ¦v|_{t = 0} = ¦o $$
+
+	$$ ¦F = \int_{\partial ©B} ®T ¦n ds. $$
+
+	Solution: $¦v = ¦o$:
+	$$ \Div ¦v = 0, \qquad \underbrace{¦o}_{\rho \frac{d¦v}{dt}} = \underbrace{-\nabla p}_{\Div ®T} - \underbrace{\rho g ¦e_{\hat{z}}}_{\rho ¦b}. $$
+	$$ \implies p = -\rho g z + C, \qquad ¦F = \int_{\partial ©B} -(- \rho g z + C)®I · ¦n ds = \int_{\partial ©B} \rho g z ¦n ds - \int_{\partial ©B} C ¦n ds = $$
+	$$ (¦w·\int_{\partial \Omega} ¦n ds = \int_{\partial \Omega} ¦w·¦n ds = \int_\Omega (\Div ¦w) dv = \int_\Omega 0 dv = 0) $$
+	{\scriptsize $$ \(\int_{\partial ©B} \rho g z ¦w·¦n ds \overset{\text{extension + Stokes}}= \int_{©B} \Div (\rho g z ¦w) dv) = \int_{©B} \rho g ¦w · \nabla z dv + \rho g z (\Div ¦w) dv = \(¦e_{\hat{z}} g \int_{©B} \rho dv\)·¦w\) $$}
+	$$ = ¦e_{\hat{z}} g \int_{©B} \rho dv. $$
+
+	$g \int_{©B} \rho dv$ is weight of fluid…
+\end{poznamka}
+
+\begin{poznamka}[Drag]
+	(Body moving with constant velocity ¦U through fluid.)
+
+	Drag force: $¦F_{drag} = \frac{¦U \otimes ¦U}{|¦U|^2} \int_{\partial ©B} ®T ¦n ds$, $¦F_{lift} = \(®I - \frac{¦U \otimes ¦U}{|¦U|^2}\) \int_{\partial ©B} ®T ¦n ds$.
+
+	Because of complexity, we choose incompressible (Navier-Stokes) fluid.
+	$$ ®T = -p ®I + 2 \mu ®D $$
+	Solve (for ¦v and $p$, no body force, so $¦b = 0$):
+	$$ \Div ¦v = 0, \qquad \rho \frac{d¦v}{dt} = \Div ®T, $$
+	with boundary conditions ($©B$ is object) in reference frame moving with the boundary:
+	$$ ¦v·¦n|_{\partial ©B} = ¦o, \qquad ¦v·¦t|_{\partial ©B} = ¦o, $$
+	so
+	$$ ¦v|_{\partial ©B} = ¦U, \qquad ¦v|_{|¦X| \rightarrow +∞} = ¦o, $$
+	and initial conditions $¦v|_{t_0} =$ something (we will choose it later).
+
+	Steady velocity field: $¦v(¦x, t) = ¦v(¦x)$, so $\frac{d¦v}{dt} = \frac{\partial ¦v}{\partial t} + (¦v·\nabla)¦v = (¦v·\nabla)¦v$, so
+	$$ \Div ¦v = 0, \qquad \rho(¦v · \nabla) ¦v = \Div ®T. $$
+	Multiply by ¦v and integrate (over exterior of ©B):
+	$$ \int_{©B^c} \rho\[(¦v·\nabla)¦v\]·¦v dv = \int_{©B^c} (\Div ®T)·¦v dv $$
+	$$ RHS \overset{®T \text{ is sym}}= \int_{©B} \Div (®T ¦v) dv - \int_{©B} ®T:\nabla ¦v dv, $$
+	$$ LHS = \int_{\partial ©B^c} ®T ¦v·¦n - \int_{©B^c} ®T : ®D = \int_{|¦X| = +∞} ®T ¦v·¦n ds - \int_{\partial ©B} ®T ¦v·¦n ds - \int_{©B^c} ®T:®D dv = $$
+	$$ = 0 - ¦U·\int_{\partial ©B} ®T ¦n ds - \int_{©B^c} ®T:®D dv $$
+	$$ \int_{©B^c} \rho v_i \frac{\partial v_j}{\partial x_i} v_j dv = \int_{©B^c} \frac{1}{2} \rho v_i \frac{\partial (v_j)^2}{\partial x_i} = $$
+	$$ = \int_{©B^c} \frac{1}{2} \rho ¦v · \nabla (|¦v|) dv = \int_{©B^c} \frac{1}{2} \rho \Div \(¦v \frac{|¦v|^2}{2}\) dv + \int_{©B^c} \frac{1}{2} \rho |¦v|^2(\Div ¦v) dv = $$
+	$$ = \int_{|¦X| = +∞} \frac{1}{2} \rho \frac{|¦v|^2}{2} ¦v · ¦n ds - \int_{\partial ©B} \frac{1}{2} \rho |¦v|^2 ¦v·¦n ds + 0 = $$
+	$$ = 0 - \frac{1}{2}|¦U|^2 ¦U · \int_{\partial ©B} ¦n ds . $$
+
+	$$ 0 = - ¦U \int_{\partial ©B} ®T ¦n ds - \int_{©B^c} ®T : ®D dv $$
+	Rearrange and use $-p®I:®D = -p \Div ¦v = 0$:
+	$$ ¦F_{drag}·\frac{¦U}{|¦U|^2} = -\int_{©B^c} ®T : ®D dv = 2\mu \int_{©B^c} ®D : ®D dv ≥ 0. $$
+
+	$\implies$ Positivity of $\mu$ correspond to drag force has the right direction. (If $\mu = 0$, then there is no force. d'Alembert paradox.) Drag is linear in $\mu$.
+\end{poznamka}
+
+\begin{poznamka}[Motion of a fluid in a container]
+	Objective: Start with any initial condition $¦v|_{t_0} = ¦v_0$ and show that $¦v \rightarrow ¦o$. We use incompressible Navier-Stokes with zero body force, so:
+	$$ ®T = -p ®I + 2 \mu ®D, \qquad \Div ¦v = 0, \qquad \rho \frac{d¦v}{dt} = \Div ®T, \qquad ¦v|_{\partial \Omega} = ¦o. $$
+
+	Multiply by ¦v and integrate:
+	$$ \int_\Omega \rho \frac{d¦v}{dt} · ¦v = \int_\Omega \Div ®T · ¦v $$
+	$$ LHS = \frac{d}{dt} \int_\Omega \frac{1}{2} \rho |¦v|^2 dv = \int_\Omega \Div(®T ¦v) dv - \int_\Omega ®T : ®D dv = \int_{\partial \Omega} ®T ¦v·¦n ds - \int_\Omega ®T : ®D dv = -\int_\Omega ®T : ®D dv. $$
+	$$ \frac{d}{dt} E_{kin} = \frac{d}{dt} \int_\Omega \frac{1}{2} \rho |¦v|^2 = - 2\mu \int_\Omega ®D : ®D dv. $$
+
+	Use Korn equality (will be DU?) and Poincaré inequality ($\|¦v\|_{L^2(\Omega)}^2 ≤ C_p^2 \|\nabla ¦v\|_{L^2(\Omega)}^2$):
+	$$ \frac{1}{2} \rho \frac{d}{dt} \|¦v\|_{L^2(\Omega)}^2 = -2\mu \int_\Omega D : D \overset{\Div ¦v = 0 \land ¦v|_{\partial \Omega} = 0} = - \mu \int_\Omega \nabla ¦v:\nabla ¦v dv ≤ $$
+	$$ ≤ - \frac{\mu}{C_p^2} \int_\Omega |¦v|^2 dv. $$
+	$$ \frac{d}{dt} \|¦v\|^2 ≤ - \frac{2\mu}{\rho C_p^2}\|¦v\|^2 \implies \|¦v\|^2 ≤ \|¦v_0\|^2 e^{-\frac{2\mu}{\rho C_p^2}t}. $$
+\end{poznamka}
+
+\begin{poznamka}[Euler-Bernoulli beam theory]
+	Beam is cuboid with dimensions $h$, $h$ and $L$. There is force (line) density $q$ (the force on $dl$) on top face of the beam.
+
+	Euler-Bernoulli claim:
+	$$ \frac{d^2}{dx^2} \(E I_{\hat{z}\hat{z}} \frac{d^2 w}{dx^2}\) = q, \qquad I_{\hat{z}\hat{z}} := \int_{\text{cross-section}} y^2 dz dy. $$
+
+	Linearised elasticity:
+	$$ \Div \btau = ¦o, \qquad \btau = \lambda (\tr \bepsilon) + 2 \mu \bepsilon, \qquad \bepsilon = \frac{1}{2}(\nabla ¦u + (\nabla ¦u)^T). $$
+	Assume that everything is in 2D plane ($x$ is along length, $y$ is "DOWN"):
+	$$ \frac{\partial \tau^{\hat{x}\hat{x}}}{\partial x} + \frac{\partial \tau^{\hat{x}\hat{y}}}{\partial y} = 0, \qquad \frac{\partial \tau^{\hat{x}\hat{y}}}{\partial x} + \frac{\partial \tau^{\hat{y}\hat{y}}}{\partial y} = 0. $$
+	Boundary conditions:
+	$$ \btau ¦e_{\hat{y}}|_{y = - \frac{h}{2}} = - \frac{q}{h} ¦e_{\hat{y}}, \qquad \btau ¦n = ¦o \text{ elsewhere}. $$
+
+	% $$ V := \int_{y = -\frac{h}{2}}^{\frac{h}{2}} \tau^{\hat{x}\hat{y}} dy. $$
+	$$ 0 = \int_{z = -\frac{h}{2}}^{h_2} \int_{y = -\frac{h}{2}}^{\frac{h}{2}} \frac{\partial \tau^{\hat{x}\hat{y}}}{\partial y} dy dz + \int_{z = -\frac{h}{2}}^{h_2} \int_{y = -\frac{h}{2}}^{\frac{h}{2}} \frac{\partial \tau^{\hat{y}\hat{y}}}{\partial y} dy dz $$
+	$$ 0 = h \frac{d}{dx} \underbrace{\(\int_{y = -\frac{h}{2}}^{\frac{h}{2}} \tau^{\hat{x}\hat{y}}\)}_{=: V} + h·\(\tau^{\hat{y}\hat{y}}|_{y = \frac{h}{2}} - \tau^{\hat{y}\hat{y}}|_{y = -\frac{h}{2}}\) = h \frac{dV}{dx} + h \frac{q}{h} =: h \frac{dV}{dx} + hQ $$
+	$$ h \frac{dV}{dx} + Q = 0. $$
+
+	Momentum:
+	$$ M := \int_{y = -\frac{h}{2}}^{\frac{h}{2}} y \tau^{\hat{x}\hat{x}} dy. $$
+	Integrate $y$ multiply of first equation:
+	$$ \int \int_{y=-\frac{h}{2}}^{\frac{h}{2}} y \frac{\partial \tau^{\hat{x}\hat{x}}}{\partial x} dy dz + \int \int y \frac{\partial \tau^{\hat{x}\hat{y}}}{\partial y} dy dz = 0 $$
+	$$ h \frac{d}{dx} \(\int_{y = -\frac{h}{2}}^{\frac{h}{2}} y \tau^{\hat{x}\hat{x}} dy\) + \int_{z = -\frac{h}{2}}^{\frac{h}{2}} y \tau^{\hat{x}\hat{y}}|_{y = \frac{h}{}} - y\tau^{\hat{x}\hat{y}} |_{y = -\frac{h}{2}} - \int_{z = -\frac{h}{2}}^{\frac{h}{2}} \int_{y=-\frac{h}{2}}^{\frac{h}{2}} \tau^{\hat{x}\hat{y}} dy dz $$
+	$$ 0 = h \frac{dM}{dx} + \int_{z = -\frac{h}{2}}^{\frac{h}{2}} (0 - 0) - \int_{z = -\frac{h}{2}}^{\frac{h}{2}} V dz = h \frac{dM}{dx} - hV. $$
+	$$ \frac{d^2 M}{dx^2} + Q = 0. $$
+
+	This was just forces, now geometry. Assume that plane that was perpendicular to the axis remain plains perpendicular to the axis (after deformation). So $x = X - Y \sin \phi$, $y = w(X) + T \cos \phi$. ($z = Z$).
+
+	$$ ¦U = ¦x - ¦X = (Y -\sin \phi, w(X) + Y·(\cos \phi - 1)), $$
+	$$ \bepsilon = \frac{1}{2}\nabla ¦u + \frac{1}{2}((\nabla ¦u)^T) = \begin{pmatrix} - Y \cos \phi \frac{d\phi}{d x} & \frac{1}{2}\(- Y\sin \phi \frac{d\phi}{dx} + \frac{dw}{dx} - \sin \phi\) \\ … & \cos \phi - 1 \end{pmatrix}. $$
+
+	Assume $\frac{dw}{dx}$ is small, $\frac{dw}{dx} ≈ \tan \phi ≈ \sin \phi ≈ \phi$. Linearize:
+	$$ \bepsilon ≈ \begin{pmatrix} -Y \frac{d^2 w}{d x^2} & 0 \\ 0 & 0 \end{pmatrix} ≈ \begin{pmatrix} -y \frac{d^2 w}{d x^2} & 0 \\ 0 & 0 \end{pmatrix}. $$
+\end{poznamka}
+
 \end{document}

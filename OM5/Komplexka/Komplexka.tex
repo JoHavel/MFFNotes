@@ -771,4 +771,177 @@
 	\end{dukazin}
 \end{veta}
 
+% 08. 12. 2022 Z poznámek
+
+\begin{veta}[O Laurentově rozvoji kolem izolované singularity]
+	Nechť $f \in ©H(P(z_0, r))$ a $f(z) = \sum_{-∞}^{+∞} a_n(z - z_0)^n$, $z \in P(z_0, r)$. Potom
+
+	\begin{itemize}
+		\item $f$ má v $z_0$ odstranitelnou singularitu $\Leftrightarrow$ $\forall n < 0: a_n = 0$;
+		\item $f$ má v $z_0$ pól násobnosti $p \in ®N$ $\Leftrightarrow$ $a_{-p} ≠ 0$ a $\forall n < -p: a_n = 0$;
+		\item $f$ má v $z_0$ podstatnou singularitu $\Leftrightarrow$ $a_n ≠ 0$ pro nekonečně mnoho $n < 0$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Odstranitelná je jasná. $f$ má v $z_0$ pól násobnosti $p$ právě když $g(z) := (z - z_0)^p f(z)$ má v $z_0$ odstranitelnou singularitu a po jejím odstranění je $g(z_0) ≠ 0$. Neboli $(z - z_0)^p f(z) = \sum_{n=0}^{+∞} b_n(z - z_0)^n$, $z \in P(z_0, r)$ a $b_0 = g(z_0) ≠ 0$, tzn.
+		$$ f(z) = \frac{b_0}{(z - z_0)^p} + \frac{b_1}{(z - z_0)^{p-1}} + … = \sum_{n=0}^∞ b_n(z - z_0)^{n - p}, z \in P(z_0, r). $$
+
+		Z prvních dvou vidíme, že $f$ nemá v $z_0$ podstatnou singularitu, právě když $a_n ≠ 0$ pro konečně mnoho $n < 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Rozklad holomorfní funkce s konečně mnoha izolovanými singularitami]
+	Nechť $G \subset ®C$ je otevřena, $M \subset F$ je konečná a $f \in ©H(G \setminus M)$. Pro každé $s \in M$ označme $H_s$ součet hlavní části Laurentova rozvoje funkce $f$ kolem $s$. Potom existuje jediná $h \in ©H(G)$ tak, že $f = \sum_{s \in M} H_s + h$ na $G \setminus M$.
+
+	\begin{dukazin}
+		Zřejmě $\forall s \in M: H_s \in ©H(®C \setminus \{s\})$. Funkce $h := f - \sum_{s \in M} H_s$ je holomorfní na $G \setminus M$ a v bodech $s \in M$ má odstranitelné singularity. Skutečně, nechť $s_0 \in M$, potom existuje $r_0 > 0$ tak, že $P(s_0, r_0) \subseteq G \setminus M$ a $f = R_{s_0} + H_{s_0}$ na $P(s_0, r_0)$, kde $R_{s_0}$ je součet regulární části Laurentova rozvoje $f$ kolem $s_0$ a $R_{s_0} \in ©H(U(s_0, r_0))$. Tedy na $P(s_0, r_0)$ máme
+		$$ h = R_{s_0} + H_{s_0} - \sum_{s \in M} H_s = R_{s_0} - \sum_{s ≠ s_0, s \in M} H_s \in ©H(U(s_0, r_0)). $$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Reziduum}
+
+\begin{definice}[Reziduum]
+	Nechť $f \in ©H(P(z_0))$ a nechť $f(z) = \sum_{n=-∞}^{+∞} a_n(z - z_0)^n$, $z \in P(z_0)$. Potom reziduem $f$ v $z_0$ nazveme číslo $\res_{z_0} f := a_{-1}$.
+\end{definice}
+
+\begin{veta}[Reziduová na hvězdovitých oblastech]
+	Nechť $G \subset ®C$ je hvězdovitá oblast, $M \subset G$ je konečná a $f \in ©H(G \setminus M)$. Nechť $\phi$ je uzavřená křivka v $G \setminus M$. Potom máme
+	$$ \int_\phi f = 2\phi i \sum_{s \in M} \res_s f·\ind_\phi s. $$
+
+	\begin{poznamkain}
+		Pro $M = \O$ dostaneme Cauchyho větu.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Podle předchozí věty existuje $h \in ©H(G)$ tak, že $f = \sum_{s \in M} H_s + h$ na $G \setminus M$. Potom máme $\int_\phi f = \sum_{s \in M} \int_\phi H_s$, protože $\int_\phi h = 0$ z Cauchyho věty pro hvězdovité oblasti. Pro každé $s \in M$:
+		$$ \int_\phi H_s(z) dz = \int_\phi \sum_{n=1}^{+∞} a_{-n}^s \frac{1}{(z - s)^n} dz = \sum_{n=1}^{+∞} a_{-n}^s \int_\phi \frac{dz}{(z - s)^n} = 2\pi i·\res_s f · \ind_\phi s, $$
+		jelikož suma konverguje stejnoměrně na $<\phi>$ a poslední integrál je roven $0$ pro $n ≠ 1$ (jinak má integrand primitivní funkci, a tudíž je $\oint$ nulový) a $2\pi i· \ind_\phi s$, je-li $n = 1$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Speciální typy integrálů}
+\begin{veta}
+	Nechť $R = P / Q$, kde $P$, $Q$ jsou polynomy, které nemají společné kořeny a platí $Q ≠ 0$ na ®R a $\st(Q) ≥ \st(P) + 2$, kde $\st(Q)$ je stupeň polynomu $Q$. Potom
+	$$ \int_{-∞}^{+∞} R(x) dx = 2 i \pi · \sum_{Q(s) = 0, \Im(s) > 0} \res_s R. $$
+
+	\begin{dukazin}
+		Integrál konverguje, právě když platí podmínky (cvičení). Nechť $r > 0$ a $\phi_r := \phi_r^1 + \phi_r^2$, kde $\phi_r^1(t) := t$, $t \in [-r, r]$ a $\phi_r^2(t) := r e^{i t}$, $t \in [0, \pi]$. Je-li $r > 0$ tak velké, aby uvnitř $\phi_r$ ležely všechny póly $R$ z horní poloroviny, potom 
+		$$ 2 i \pi \sum_{Q(s) = 0, \Im(s) > 0} \res_s R = \int_{\phi_r} R = \int_{\phi_r^1} R + \int_{\phi_r^2} R. $$
+		Máme
+		$$ \int_{\phi_r^1} R = \int_{-r}^r R \rightarrow \int_{-∞}^{+∞} R. $$
+		Protože $\int_{\phi_r^2} \rightarrow 0$, dostaneme, že věta platí, neboť existuje $C > 0$, $r_0 > 0$ tak, že $|R(z)| ≤ \frac{C}{r^2}$, je-li $|z| = r ≥ r_0$. Máme totiž
+		$$ |R(z)| = \left|\frac{a_0 z^n + … + a_n z^0}{b_0 z^m + … + b_m z^0}\right| = \frac{1}{|z|^2} |z|^{n - m + 2}·\left|\frac{a_0 + \frac{a_1}{z} + … + \frac{a_n}{z^n}}{b_0 + \frac{b_1}{z} + … + \frac{b_m}{z}}\right|. $$
+		Tedy
+		$$ \left|\int_{\phi_r^2} R\right| ≤ V(\phi_r^2)·\max_{<\phi_r^2>}|R| ≤ r \pi \frac{C}{r^2} \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $R = P / Q$, kde $P$, $Q$ jsou polynomy, které nemají společné kořeny a platí $Q ≠ 0$ na ®R a $\st(Q) ≥ \st(P) + 1$. Nechť $a > 0$. Potom
+	$$ \int_{-∞}^{+∞} R(x) e^{i a x} dx = 2 i \pi · \sum_{Q(s) = 0, \Im(s) > 0} \res_s\(R(z) e^{i a z}\). $$
+
+	\begin{dukazin}[Cvičení]
+		Newtonův integrál konverguje právě za těchto podmínek, jak spočteme tento integrál pro $a < 0$?
+
+		Jako v předešlé větě integrujeme podél $\phi_r$ funkci $R(z) e^{i a z}$ a pošleme $r \rightarrow +∞$. Platí, že
+		$$ \int_{\phi_r^2} R(z) e^{i a z} dz \rightarrow 0 $$
+		z Jordanova Lemmatu (bylo na cvičení?), z podmínky na stupně totiž máme, že $\lim_{z\rightarrow ∞} R(z) = 0$.
+	\end{dukazin}
+\end{veta}
+
+
+TODO!!!
+
+% 15. 12. 2022
+
+\section{Výpočet indexu}
+\begin{poznamka}[Úmluva]
+	Bod, pro který počítáme index, je 0.
+\end{poznamka}
+
+\begin{definice}[Jednoznačná větev argumentu (j. v. a.), jednoznačná větev logaritmu (j. v. l.)]
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C \setminus \{0\}$ je spojitá.
+
+	\begin{poznamkain}
+		Víme: $0 ≠ z = |z|e^{i\theta} = e^\Phi$, kde $\theta \in Arg(z)$ a $\Phi := \log |z| + i\theta \in Log z$.
+
+		Tedy $\forall t \in [\alpha, \beta]: 0 ≠ \phi(t) = |\phi(t)|·e^{i\theta(t)} = e^{\Phi(t)}$, kde $\theta(t) \in Arg(\phi(t))$ a $\Phi(t) := \log|\phi(t)| + i \theta(t) \in Log(\phi(t))$
+	\end{poznamkain}
+
+	Řekněme, že $\theta: [\alpha, \beta] \rightarrow ®R$ (resp. $\Phi: [\alpha, \beta] \rightarrow ®C$) je jednoznačná větev argumentu (respektive jednoznačná větev logaritmu) křivky $\phi$, pokud je $\theta$ (resp. $\Phi$) spojitá na $[\alpha, \beta]$ a $\forall t \in [\alpha, \beta]: \theta(t) \in Arg(\phi(t))$ (resp. $\Phi(t) \in Log(\phi(t))$).
+\end{definice}
+
+\begin{veta}[O jednoznačnosti j. v. a. a j. v. l.]
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C \setminus \{0\}$ je spojitá. Potom $\Phi$ je j. v. l. $\phi$, právě když $\Re \Phi = \log|\phi|$ a $\Im \Phi$ je j. v. a. $\phi$.
+
+	Jsou-li $\theta_1$, $\theta_2$ j. v. a. $\phi$, potom existuje $k in ®Z$ tak, že
+	$$ \theta_2 = \theta_1 + 2k\pi \qquad \text{ na } [\alpha, \beta]. $$
+
+	\begin{dukazin}
+		j. v. l. z definice. „j. v. a.“: Pro každé $t \in [\alpha, \beta]$ existuje $k(t) \in ®Z$ tak, že
+		$$ \theta_2(t) = \theta_1(t) + 2k(t) \pi. $$
+		Protože $k: [\alpha, \beta] \rightarrow ®Z$ je spojitá, je $k$ na $[\alpha, \beta]$ konstantní.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O existenci j. v. logaritmu pro regularní křivky]
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C \setminus \{0\}$ je regulární křivka. Potom existuje j. v. l. $\Phi$ křivky $\phi$ a platí, že
+	$$ \int_\phi \frac{dz}{z} = \Phi(\beta) - \Phi(\alpha). $$
+	Navíc $\Im \Phi$ je j. v. a. $\phi$.
+
+	\begin{dukazin}
+		Hledáme spojitou $\Phi$ takovou, že $\phi = e^\Phi$. Zřejmě
+		$$ \int_\phi \frac{dz}{z} = \int_\alpha^\beta \frac{\phi'(t)}{\phi} dt, \qquad \Phi_0(s) := \int_\alpha^s \frac{\phi'(t)}{\phi(t)} dt, \quad s \in [\alpha, \beta]. $$
+
+		Potom $\Phi_0$ je spojitá na $[\alpha, \beta]$ a $\Phi_0' = \frac{\phi'}{\phi}$ na $[\alpha, \beta] \setminus K$, kde $K$ je konečná.
+
+		Potom na $[\alpha, \beta] \setminus K$ platí
+		$$ \(\phi·e^{-\Phi_0}\)' = (\phi' - \phi·\Phi_0')·e^{-\Phi_0} = 0, $$
+		tudíž existuje $c \in ®C$, že $\phi·e^{-\Phi_0} = e^c$ na $[\alpha, \beta]$. Stačí položit $\Phi := \Phi_0 + c$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O výpočtu indexu]
+	Nechť $\phi: [\alpha, \beta] \rightarrow ®C$ je regulární uzavřená křivka a $s \in ®C \setminus <\phi>$. Nechť $\tilde \phi := \phi - s$ a $\theta$ je j. v. a. $\tilde \phi$. Potom
+	$$ \ind_\phi s = \ind_{\tilde\phi} 0 = \frac{\theta(\beta) - \theta(\alpha)}{2\pi}. $$
+
+	Speciálně $\ind_\phi s \in ®Z$.
+
+	\begin{dukazin}
+		Platí $\ind_\phi s = \frac{1}{2\pi i} \int_\alpha^\beta \frac{\phi'(t)}{\phi(t) - s} dt = \ind_{\tilde \phi} 0 = \frac{1}{2\pi i} \int_{\tilde \phi} \frac{dz}{z} =$
+		$$ = \frac{1}{2\pi i} (\Phi(\beta) - \Phi(\alpha)) = \frac{1}{2\pi i}(i \Im \Phi(\beta) - \Im \Phi(\alpha)) = \frac{\theta(\beta) - \theta(\alpha)}{2\pi} \in ®Z, $$
+		kde $\Theta$ je j. v. l. $\tilde \phi$, $\Re \Phi(\beta) = \log |\tilde\phi(\beta)| = \log |\tilde \phi(\alpha)| = \Re \Phi(\alpha)$ a $\theta := \Im \Phi$ je j. v. a. $\tilde \phi$.
+	\end{dukazin}
+\end{veta}
+
+
+\subsection{Obecná Cauchyho a reziduální věta pro cykly}
+\begin{definice}[Cyklus]
+	Konečnou posloupnost $\Gamma := \{\phi_1, …, \phi_n\}$, kde $n \in ®N$ a $\phi_1, …, \phi_n$ jsou uzavřené (regulární) křivky v ®C budeme nazývat cyklus.
+\end{definice}
+
+\begin{definice}
+	Označíme:
+
+	\begin{itemize}
+		\item $<\Gamma> := \bigcup_{k=1}^n <\phi_k>$ graf $\Gamma$;
+		\item $V(\Gamma) := \sum_{k=1}^n V(\phi_k)$ délka $\Gamma$;
+		\item $\int_\Gamma f := \sum_{k=1}^n \int_{\phi_k} f$, je-li $f$ spojitá na $<\Gamma>$;
+		\item $\ind_\Gamma z_0 := \sum_{k=1}^n \ind_{\phi_k} z_0 = \frac{1}{2 \pi i} \int_\Gamma \frac{dz}{z - z_0}$, $z_0 \in ®C \setminus <\Gamma>$;
+		\item $\Int \Gamma := \{z_0 \in ®C \setminus <\Gamma> | \ind_\Gamma z_0 ≠ 0\}$ vnitřek $\Gamma$;
+		\item $\Ext \Gamma := \{z_0 \in ®C \setminus <\Gamma> | \ind_\Gamma z_0 = 0\}$ vnějšek $\Gamma$.
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}[Úmluva]
+	Uzavřenou křivku $\phi$ chápeme jako cyklus.
+\end{poznamka}
+
+\begin{veta}[Obecná Cauchyho pro cykly]
+	Nechť $G \subset ®C$ je otevřená a $\Gamma$ je cyklus v $G$, tzn. $<\Gamma> \subset G$. Potom platí, že
+	$$ \int_\Gamma f = 0 \qquad \forall f \in ©H(G), $$
+	právě když $\Int \Gamma \subset G$.
+\end{veta}
+
 \end{document}

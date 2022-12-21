@@ -74,16 +74,16 @@
 		1. $\omega(x_0)$ je průnik uzavřených množin, tedy uzavřená. $y \in \omega(x_0)$ $\exists t_k \nearrow ∞$ $\phi(t_k, x_0) \rightarrow y$.
 
 		$$ s_k = t_k + t \qquad \phi(s_k, x_0) = \phi(t_k + t, x_0) = \phi(t, \phi(t_k, x_0)) $$
-		$$ t_k \rightarrow ∞, \phi \text{spojitá} \qquad \phi(s_k, x_0) = \phi(t, \phi(t_k, x_0)) \rightarrow \phi(t, y) $$
+		$$ t_k \rightarrow ∞, \phi\ \text{spojitá} \qquad \phi(s_k, x_0) = \phi(t, \phi(t_k, x_0)) \rightarrow \phi(t, y) $$
 
-		2. $\exists K \subset ®R^n$ kompaktní $\gamma^+(x_0) \subset K$. a) pokud $t_n ≥ 0, t_n \rightarrow ∞ \{\phi(t_n, x_0)\}_{n=1}^∞$ omezená posloupnost $\implies \exists \{t_{n_k}\}_{k=1}^∞ \subset \{t_n\}_{n=1}^∞$, podposloupnost, $\exists y \in \Omega \phi(t_{n_k}, x_0) \rightarrow y$. Pak $y \in \omega(x_0)$.
+		2. Víme $\exists K \subset ®R^n$ kompaktní $\gamma^+(x_0) \subset K$. a) pokud $t_n ≥ 0, t_n \rightarrow ∞ \{\phi(t_n, x_0)\}_{n=1}^∞$ omezená posloupnost $\implies \exists \{t_{n_k}\}_{k=1}^∞ \subset \{t_n\}_{n=1}^∞$, podposloupnost, $\exists y \in \Omega \phi(t_{n_k}, x_0) \rightarrow y$. Pak $y \in \omega(x_0)$.
 
 		b) $\omega(x_0)$ je tedy úplná a omezená, takže kompaktní. c) ať $\omega(x_0)$ je nesouvislá, tedy $\omega(x_0) \subseteq U \cup V$, $U, V$ otevřené disjunktní neprázdné, $U, V \subseteq K$. Vezměme $y \in \omega(x_0) \cap U$, $z \in \omega(x_0) \cap V$. Nechť $t_n$ je posloupnost taková, že $\phi(t_{2n} x_0) \rightarrow y$, $\phi(t_{2n + 1}, x_0) \rightarrow z$, $t_{2n} < t_{2n+1}$, $\phi(t_{2n}, x_0) \in U$, $\phi(t_{2n + 1}, x_0) \in V$. $F = K \setminus (U \cup V)$ uzavřená, tedy $\exists s_n \in (t_{2n}, t_{2n + 1}): \phi(s_n, x_0) \in F$. Tedy $\{\phi(s_n, x_0)\}$ je omezená posloupnost $\implies$ $\exists$ podposloupnost konvergující k $w \in F$.
 	\end{dukazin}
 \end{veta}
 
 \begin{definice}[Topologická konjugovanost]
-	$(\phi, \Omega)$, $\psi, \Theta$ dynamické systémy. $\exists: \Omega \rightarrow \Theta$ homeomorfismus (bijekce, spojité, spojitá inverze):
+	$(\phi, \Omega)$, $\psi, \Theta$ dynamické systémy. $\exists: \Omega \rightarrow \Theta$ homeomorfismus (bijekce, spojité, spojitá inverze) $h$:
 	$$ \forall x \in \Omega\ \forall t \in ®R \qquad h(\phi(t, x)) = \psi(t, h(x)). $$
 \end{definice}
 
@@ -95,12 +95,14 @@
 	$\dot{x} = f(x), f(x_0) ≠ 0$, $(\phi, \Omega)$ příslušný dynamický systém. $\dot{y} = \begin{pmatrix} 1 \\ 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$, $y(0) = 0$ a $(\psi, \Theta)$ je příslušný dynamický systém. Potom $(\phi, \Omega)$, $(\psi, \Theta)$ jsou lokálně topologicky konjugované ($\exists U$ okolí $x_0 \in \Omega$ a $V$ okolí $¦o \in ®R^n$ taková, že $\exists g: U \rightarrow V$ homeomorfismus $g(\phi(t, x)) = \psi(t, g(x))$ $\forall x \in U$, $\forall t: \phi(t, x) \in U$).
 
 	\begin{dukazin}
-		BÚNO $f_1(x_0) = \alpha ≠ 0$ (první souřadnice funkce $f$) a $x_0 = ¦o$. Buď $\tilde{V}$ okolí $¦o \in ®R^n$ $G: \tilde{V} \rightarrow ®R^n$, $G(y_1, …, y_n) = \phi(y, (0, y_2, …, y_n))$. Chceme ukázat, že $G$ je invertibilní na nějakém okolí.
-		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_1} |_{(0, …, 0)} = \frac{\partial \phi}{\partial t}(t = y_1, (0, y_2, …, y_n)) |_{y_1=0, …, y_n=0} = f(\phi(y_1 (0, y_2, …, y_n)))|_{y_1 = 0, …, y_n = 0} = f(\phi(0, (0, …, 0))) = f(x_0) = \alpha. $$
-		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_j} |_{(0, …, 0)} = \lim_{h \rightarrow 0} \frac{G(0, …, h, …, 0) - G(0, …, 0)}{h} = \lim_{h\rightarrow 0} \frac{(0, …, h, …, 0)^T - (0, …, 0)^T}{h} = (0, …, 1, …, 0)^T = e_j. $$
+		BÚNO $f_1(x_0) = \alpha ≠ 0$ (první souřadnice funkce $f$) a $x_0 = ¦o$. Buď $\tilde{V}$ okolí $¦o \in ®R^n$ $G: \tilde{V} \rightarrow ®R^n$, $G(y_1, …, y_n) = \phi(y_1, (0, y_2, …, y_n))$. Chceme ukázat, že $G$ je invertibilní na nějakém okolí.
+		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_1} |_{(0, …, 0)} = \frac{\partial \phi}{\partial t}(t = y_1, (0, y_2, …, y_n)) |_{y_1=0, …, y_n=0} = $$
+		$$ = f(\phi(y_1 (0, y_2, …, y_n)))|_{y_1 = 0, …, y_n = 0} = f(\phi(0, (0, …, 0))) = f(x_0) = \alpha. $$
+		$$ \frac{\partial G(y_1, …, y_n)}{\partial y_j} |_{(0, …, 0)} = \lim_{h \rightarrow 0} \frac{G(0, …, h, …, 0) - G(0, …, 0)}{h} = $$
+		$$ = \lim_{h\rightarrow 0} \frac{(0, …, h, …, 0)^T - (0, …, 0)^T}{h} = (0, …, 1, …, 0)^T = e_j. $$
 		Tedy $\nabla G(0, …, 0)$ je „jednotková matice, až na to, že $a_{11}$ je $\alpha$“, tudíž podle věty o inverzi funkce $\exists V \subseteq \tilde{V}$ okolí 0, $\exists U$ okolí bodu $x_0$ tak, že $G: V \rightarrow U$ je homeomorfismus. Položme $g = G^{-1}$.
 
-		Nyní už stačí $g(\phi(t, x_0)) = \psi(t, g(x_0))$ $\forall x_0 \in U$ $\forall t: \phi(t, x_0) \in U$. $\phi(t, x_0) = G(\psi(t, g(x_0)))$
+		Nyní stačí $g(\phi(t, x_0)) = \psi(t, g(x_0))$ $\forall x_0 \in U$ $\forall t: \phi(t, x_0) \in U$. $\phi(t, x_0) = G(\psi(t, g(x_0)))$
 
 		3. $x \in U = G(V)$ $\exists y \in V$ $x = G(y)$
 		$$ x = \phi(y, (x_{01}, x_{02} + y_2, …, x_{0n} + y_n)) $$
@@ -109,9 +111,9 @@
 \end{veta}
 
 \begin{veta}[La Salle invariance principle]
-	$$ x' = f(x), (\phi, \Omega) \quad \phi: ®R \rightarrow \Omega, f loc. Lip. $$
+	$$ x' = f(x), (\phi, \Omega) \quad \phi: ®R \rightarrow \Omega, f \text{ loc. Lip.} $$
 	$$ \exists V: \Omega \rightarrow ®R, \text{ bounded from below}. $$
-	$$ \exists l \in ®R: \Omega_l = \{x \in \Omega | V(x) ≤ l\} -- bounded $$
+	$$ \exists l \in ®R: \Omega_l = \{x \in \Omega | V(x) ≤ l\}\ – \text{ bounded} $$
 	$$ \dot{V}_f(x) := \nabla V(x) · f(x) = \sum_{j=1}^n  \frac{\partial V(x)}{\partial x_j}·f_j(x) ≤ 0 \qquad \forall x \in \Omega_l. $$
 	$$ R = \{x \in \Omega_l | \dot{V}_f(x) = 0\}, \quad M = \{y \in R | \gamma^+(y) \subset R\}. $$
 
@@ -131,7 +133,7 @@
 
 \section{Poincaré-Bendixson theory}
 \begin{veta}[Poincaré-Bendixson]
-	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stationary points and $\gamma^+(p)$ is relatively compact ($\gamma^+(p)$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
+	Let $p \in \Omega$, $\Omega$ open connected. $\omega(p)$ doesn't contain stationary points and $\gamma^+(p)$ is relatively compact ($\overline{\gamma^+(p)}$ is compact). Then $\omega(p) = \Gamma$-periodic orbit.
 \end{veta}
 
 \begin{veta}[Bendixson-Dulas]
@@ -143,7 +145,7 @@
 \end{definice}
 
 \begin{lemma}
-	$\Sigma$ transverzála, $p \in \Sigma \subset \Omega$. Then $\exists \tilde U \subset U$ neighborhood of $p$. $\exists \Delta > 0$ such that
+	$\Sigma$ transverzála, $p \in \Sigma \subset \Omega$. Then $\exists \tilde U \subset U$ neighborhood of $p$, $\exists \Delta > 0$ such that
 	$$ \forall y \in \tilde U: \phi(t, y) \subset U\ \forall t: |t| < \Delta \land \exists \tau: |\tau| < \frac{\Delta}{2}: \phi(\tau, y) \in \Sigma \cap \tilde U. $$
 
 	\begin{dukazin}
@@ -152,7 +154,7 @@
 \end{lemma}
 
 \begin{lemma}
-	Let $p \in \Omega$ and assume that $|\gamma^+(p) \cap \Sigma| ≥ 3$, i. e. $\exists t_1 < t_2 < t_3$ $\phi(t_j, p) \in \Sigma$, $j=1, 2, 3$. Then $\phi(t_2, p)$ lie between $\phi(t, p)$ and $\phi(t_3, p)$.
+	Let $p \in \Omega$ and assume that $|\gamma^+(p) \cap \Sigma| ≥ 3$, i. e. $\exists t_1 < t_2 < t_3$ $\phi(t_j, p) \in \Sigma$, $j=1, 2, 3$. Then $\phi(t_2, p)$ lies between $\phi(t_1, p)$ and $\phi(t_3, p)$.
 
 % 18. 10. 2022 Z poznámek spolužáka
 
@@ -180,11 +182,11 @@
 \end{lemma}
 
 \begin{dukaz}[Poincaré-Bendixson theorem]
-	Step 1, „$q \in \omega(p)$“: We want to show that $q$ belongs to $q \in \Gamma$, where $\Gamma$ is non-trivial periodic orbit.
+	Step 1: For $q \in \omega(p)$ we want to show that $q$ belongs to $q \in \Gamma$, where $\Gamma$ is non-trivial periodic orbit.
 
 	$\exists x_0 \in \omega(q)$, $\exists t_k \nearrow ∞$: $\phi(t_k, q) \rightarrow x_0$. $x_0$ is not a stationary point ($q \in \omega(p) \implies \omega(q) \subseteq \omega(p)$). So there exists a transversal $\Sigma \subseteq \Omega, x_0 \in \Sigma$.
 
-	By lemma above $\exists \tilde t_k$, $\exists \Delta > 0$: $|\tilde t_k - t_k| < \frac{\Delta}{2}$. $q \in \omega(o)$ $\implies$ $\phi(\tilde t_k, q) \in \omega(p)$ $\implies$ $\phi(\tilde t_k, q) \in \Sigma \cap \omega(p)$ at most 1-point set by theorem…
+	By lemma above $\exists \tilde t_k$, $\exists \Delta > 0$: $|\tilde t_k - t_k| < \frac{\Delta}{2}$. $q \in \omega(p)$ $\implies$ $\phi(\tilde t_k, q) \in \omega(p)$ $\implies$ $\phi(\tilde t_k, q) \in \Sigma \cap \omega(p)$ at most 1-point set by theorem…
 	$$ \phi(\tilde t_k, q) \rightarrow x_0 \implies \phi(\tilde t_k, q) = x_0. $$
 
 	Periodic orbit $\implies$ $x_0 \in \Gamma = \{\phi(t, q) | \tilde t_k < t < \tilde t_{k+1}, k \in ®N\}$ $\implies$ $q \in \Gamma$ (uniqueness).
@@ -217,17 +219,17 @@
 	\end{itemize}
 \end{definice}
 
-% 25. 10. 2022
+% 25. 10. 2022 Z poznámek spolužáka
 
 \begin{definice}[*]
-	$x' = f(t, x)$, $x(t_0) = x_0$, $\Omega \subseteq ®R^{n+1}$ open, $f: \Omega rightarrow ®R^n$, $f \in Car(\Omega)$.
+	$x' = f(t, x)$, $x(t_0) = x_0$, $\Omega \subseteq ®R^{n+1}$ open, $f: \Omega \rightarrow ®R^n$, $f \in Car(\Omega)$.
 \end{definice}
 
 \begin{definice}
-	$x: I \rightarrow ®R^n$ ($I$ interval) is a solution of * in the sense of Caratheodory, if $x \in AC_{loc}(I)$ and $graph(x) \subset \Omega$ and for almost every $t \in I: x'(t) = f(x(t), t)$ and $x(t_0) = x_0$.
+	$x: I \rightarrow ®R^n$ ($I$ interval) is a solution of * in the sense of Caratheodory, if $x \in AC_{loc}(I)$ and $graph(x) \subset \Omega$ and for almost every $t \in I: x'(t) = f(t, x(t))$ and $x(t_0) = x_0$.
 
 	\begin{poznamka}
-		$$ \Leftrightarrow x(t) = x_0 + \int_{t_0}^t f(x(s), s) ds, \qquad \text{for almost every } t. $$
+		$$ \Leftrightarrow x(t) = x_0 + \int_{t_0}^t f(s, x(s)) ds, \qquad \text{for almost every } t. $$
 	\end{poznamka}
 \end{definice}
 
@@ -239,7 +241,7 @@
 
 		$f(t, x_n(t)) \rightarrow f(t, x(t))$ for almost every $t \in I$ $\implies f(t, x(t))$ is measurable.
 
-		Step 2: $|f(t, x(t))| ≤ m(t)$ for almost every $t$ $\implies$ $f \in L_{loc}^1(I)$.
+		Step 2: $|f(t, x(t))| ≤ l(t)$ for almost every $t$ $\implies$ $f \in L_{loc}^1(I)$.
 	\end{dukazin}
 \end{lemma}
 
@@ -259,14 +261,14 @@
 \end{lemma}
 
 \begin{veta}[Uniform contraction theorem (generalized Banach theorem)]
-	$\Lambda$, $X$ metric spaces, $X ≠ \O$ complete, $\Phi: \Lambda \times X \rightarrow X$. $\forall x \in X: \Phi(·, x)$ is continuous, $\exists \kappa \in (0, 1)$: $\rho(\Phi(\lambda, x), \Phi(\lambda, y)) ≤ \kappa · \rho(x, y)$ $\forall \lambda \in \Lambda$, $\forall x, y \in X$.
+	$\Lambda$, $X$ metric spaces, $X ≠ \O$ complete, $\Phi: \Lambda \times X \rightarrow X$. $\forall x \in X: \Phi(·, x)$ is continuous, $\exists \kappa \in (0, 1)$: $\rho(\Phi(\lambda, x), \Phi(\lambda, y)) ≤ \kappa · \rho(x, y)$ $\forall \lambda \in \Lambda$, $\forall x, y \in X$.
 
 	Then $\forall \lambda \in \Lambda\ \exists! x(\lambda) \in X$ such that $\Phi(\lambda, x(\lambda)) = x(\lambda)$, $\lambda \mapsto x(\lambda)$ is continuous and
-	$$ \rho(y, x(\lambda)) ≤ \frac{\rho(y) \Phi(y)}{1 - \kappa}\ \forall y \in X\ \forall \lambda \in \Lambda. $$
+	$$ \rho(y, x(\lambda)) ≤ \frac{\rho(y, \Phi(\lambda, y))}{1 - \kappa}\ \forall y \in X\ \forall \lambda \in \Lambda. $$
 
 	\begin{dukazin}
 		Let $x_0 \in X$, $x_1 = x_1(\lambda, x_0) := \Phi(\lambda, x_0)$, $x_{n+1} = x_{n+1}(\lambda, x_0) := \Phi(\lambda x_n)$. $\lambda \in \Lambda$ fixed:
-		$$ \rho(x_n(\lambda, x_0), x(\lambda, x_0)) ≤ \sum_{k=n}^{m - 1} \rho(x_k(\lambda, x_0), x_{k+1}(\lambda, x_0)) = $$
+		$$ \rho(x_n(\lambda, x_0), x_m(\lambda, x_0)) ≤ \sum_{k=n}^{m - 1} \rho(x_k(\lambda, x_0), x_{k+1}(\lambda, x_0)) = $$
 		$$ = \sum_{k=n}^{m - 1} \rho(\Phi(\lambda, x_{k-1}(x, x_0)), \Phi(\lambda, x_k(\lambda, x_0))) ≤ $$
 		$$ ≤ \sum_{k=n}^{m - 1} \kappa \rho(x_k, x_{k-1}) ≤ $$
 		$$ \(\rho(x_k, x_{k-1}) ≤ \kappa \rho(x_k, x_{k-1}) ≤ … ≤ \kappa^k \rho(x_0, x_1).\) $$
@@ -278,14 +280,16 @@
 		We want to show that $x(\lambda, x_0)$ does not depend on $x_0$. $\tilde x_0: x_n(\lambda, \tilde x_0)=: \tilde x_n$.
 		$$ \rho(x_n, \tilde x_n) = \rho(\Phi(\lambda x_{n-1}), \Phi(x, \tilde x_{n-1})) ≤ \kappa^n \rho(x_0, \tilde x_0) \rightarrow 0 \implies x = \tilde x. $$
 
-		$\Phi(\lambda, x(\lambda)) = x(\lambda)$.
+		„$\Phi(\lambda, x(\lambda)) = x(\lambda)$“:
 		$$ \rho(\Phi(\lambda, x(\lambda)), x(\lambda)) = \lim_{n \rightarrow ∞} \rho(\Phi(\lambda, x(\lambda)), x_n(\lambda)) = $$
 		$$ = \lim_{n \rightarrow ∞} \rho(\Phi(\lambda, x(\lambda)), \Phi(\lambda, x_{n-1}(\lambda))) ≤ \kappa \rho(x(\lambda, x_{n-1}) = 0. $$
 	\end{dukazin}
 
 	\begin{dukazin}[„$\lambda \mapsto x(\lambda)$ is continuous“]
-		$$ \rho(x(\lambda), x(\mu)) = \rho(\Phi(\lambda, x(\lambda)), \Phi(\mu, x(\mu))) ≤ \rho(\Phi(\lambda, x(\lambda)), \Phi(\lambda, x(\mu))) + \rho(\Phi(\mu, x(\mu)), \Phi(\lambda, x(\mu))) ≤ $$
-		$$ ≤ \kappa \rho(x(\lambda), x(\mu)) + \rho(x(\lambda), x(\mu)) ≤ (1 - \kappa)^{-1} \rho (\Phi(\lambda, x(\mu)), \Phi(\mu, x(\mu))) \rightarrow 0. $$
+		$$ \rho(x(\lambda), x(\mu)) = \rho(\Phi(\lambda, x(\lambda)), \Phi(\mu, x(\mu))) ≤ $$
+		$$ ≤ \rho(\Phi(\lambda, x(\lambda)), \Phi(\lambda, x(\mu))) + \rho(\Phi(\mu, x(\mu)), \Phi(\lambda, x(\mu))) ≤ $$
+		$$ ≤ \kappa \rho(x(\lambda), x(\mu)) + \rho(\Phi(\mu, x(\mu)), \Phi(\lambda, x(\mu))) \implies $$
+		$$ \implies \rho(x(\lambda), x(\mu)) ≤ (1 - \kappa)^{-1} \rho (\Phi(\lambda, x(\mu)), \Phi(\mu, x(\mu))) \rightarrow 0. $$
 		So $\Phi$ is continuous in the first variable.
 
 		$\mu$ fixed, $\lambda = \mu_n \rightarrow \mu$. $y$, $\lambda$ fixed, $x_1 = \Phi(\lambda, y)$, $x_n = \Phi(\lambda, x_{n-1})$, $n ≥ 2$.
@@ -311,15 +315,34 @@
 	$$ (x_0)_n \rightarrow x_0 \land p_n \rightarrow p \implies x_n(·) ≡ x((x_0)_n, p_n) \rightrightarrows x(x_0, p). $$
 
 	\begin{dukazin}
-		$X := \phi(I)$ is complete, $\|f\|_x = \sup_{t \in I} \{f(x)·e^{-L t}\}$, $L$ will be chosen $L > \epsilon$. $\Lambda := ®R^n \times \Pi \ni (\lambda_0, p)$, $\int_0^t e^{L(t - s)} ds ≤ \int_0^t e^{-L y} y ≤ \int_0^∞ e^{-L y} dy = \frac{?}{L}$.
+		$X := \phi(I)$ is complete, $\|f\|_x = \sup_{t \in I} \{f(x)·e^{-L t}\}$, $L$ will be chosen $L > \epsilon$. $\Lambda := ®R^n \times \Pi \ni (\lambda_0, p)$, $\int_0^t e^{L(t - s)} ds ≤ \int_0^t e^{-L y} dy ≤ \int_0^∞ e^{-L y} dy = \frac{1}{L}$.
 
 		$$ \Phi(x_0, p, x(·)) (t) := x_0 + \int_0^t f(s, x(s)) ds, \qquad t \in [0, T]. $$
+
+		$\Phi$ is continuous in $x_0$ and $p$. $\Phi$ is contraction:
+		$$ \|(\Phi(x_0, \rho, x(·)) - \Phi(x_0, p, y(·)))\| = \int_0^t f(s, x(x)) - f(s, y(s)) ≤ $$
+		$$ ≤ \int_0^T \|f(s, x(s), p) - f(s, y(s), p)\| ds ≤ \int_0^T l(s) \|x - y\| ds, $$
+		for almost every $t$.
+
+		$$ \|x(s) - y(s)\| e^{-L·s} ≤ \|x - y\|_X ≤ \int_0^t l(s) e^{+L(s)} ds·\|x - y\|_X ? $$
+		$$ \|\Phi(x_0, p, x(·)) - \Phi(x_0, p, y(·))\|_X ≤ \|x(·) - y(·)\|_X \sup_t \int_0^t l(s) e^{-L(t - s)} ds ≤ $$
+		$$ ≤ \int_0^T l(s) e^{-L s} ds, \qquad l \in L^1([0, T]). $$
+
+		$$ \exists l_1, l_2 ≥ 0: \int_0^T l_1(x) dt ≤ \frac{1}{3} $$
+		$$ \exists c > 0: \|l_2\| ≤ c \text{ for almost every } t \in I $$
+		$$ ? ≤ \frac{1}{3} + c·\frac{1}{L} ≤ \frac{2}{3}. $$
+
+		Then $x \in ©L(I)$ fixed point of $\Phi$.
+		$$ \implies x(t) = x_0 + \int_0^t f(s, x(s), p) ds \implies x \in AC(I). $$
+
+		Continuously depends on $p, x_0$:
+		$$ \sup_{t \in I} \{(x(t, x_0, p) -y(t))e^{-L t}\} ≤ (1 - \kappa)^{-1} ((y(x) - x_0 + \int_0^t f(s, y, TODO))) TODO $$
 	\end{dukazin}
 \end{veta}
 
 % 01. 11. 2022
 
-\subsection{Controllability}
+\section{Controllability}
 \begin{definice}[Control theory]
 	$$ x' = f(x, u), f: \Omega \times U, \Omega \subset ®R^n, U \subset ®R^n, $$
 	$$ u \in ©U := \{u: [0, T] \rightarrow ®R^n | \text{measurable}, ||u||_∞ < ∞\} = L^∞(0, T, ®R^n). $$
@@ -336,7 +359,7 @@
 
 \newcommand{\converg}{\underset{u(0)}{\overset{t}\rightarrow}}
 \begin{definice}[Area of controllability]
-	$$ ©R(t) = \{x_0 \in ®R^n | \exists u \in L^∞(0, t, ®R^n): x_0 \underset{u(0)}{\overset{t}\rightarrow} 0 \} $$
+	$$ ©R(t) = \{x_0 \in ®R^n \middle| \exists u \in L^∞(0, t, ®R^n): x_0 \underset{u(0)}{\overset{t}\rightarrow} 0 \} $$
 \end{definice}
 
 \begin{definice}[Kalman matrix]
@@ -348,7 +371,7 @@
 
 	\begin{tvrzeniin}[Observation]
 		$x(t) = e^{At} x_0 + \int_0^t e^{A(t - s) B u(s) ds}$.
-		$$ x_0 \converg 0 \Leftrightarrow x(t) = 0 \Leftrightarrow x_0 = - \int_0^t e^{-A s} B u(s) ds \qquad (KO) $$
+		$$ x_0 \converg 0 \Leftrightarrow x(t) = 0 \Leftrightarrow x_0 = - \int_0^t e^{-A s} B u(s) ds. $$
 	\end{tvrzeniin}
 
 	\begin{lemmain}[1]
@@ -362,7 +385,7 @@
 	\begin{dukazin}
 		1) $©R(t)$ is vector subspace of $®R^n$ from definition $x_0 + x_1 \underset{(u_1 + u_2)(0)}{\overset{t}\rightarrow} 0$, $\alpha x \underset{\alpha u(0)}{\overset{t}\rightarrow} 0$.
 
-		2) We want $©R(t)^\perp = (\LO(g_1, …, g_n))^\perp$. „$\supseteq$“: $p \in (\LO(g_1, …, g_n))^\perp$. $x_0 \in ©R(t)$ arbitrary. From KO:
+		2) We want $©R(t)^\perp = (\LO(g_1, …, g_n))^\perp$. „$\supseteq$“: $p \in (\LO(g_1, …, g_n))^\perp$. $x_0 \in ©R(t)$ arbitrary. From observation.:
 		$$ 0 \overset?= p^T x_0 = -\int_0^t p^Te^{-As} B u(s) ds = - \int_0^t \sum_{k=0}^∞ \frac{(-s)^k}{k!} p^T A^k B u(s) ds$$
 		We know $(p, g_j) = 0$, $p^Tg_j = 0$, $p^T ©K(A, B) = 0$, $p^T A^k B = 0$, $k \in [n-1]$. And from lemma 1 $k \in ®N$.
 		„$\subseteq$“: $p \in ®R^n$, $p \in ©R(t)^\perp$. We want to prove $p \perp B, AB, A^2B, …, A^{n-1}B$. $B = (b_1 | … | b_m)$. $\forall j \in [n]: p \perp b_j, Ab_j, …, A^{n-1}b_j$. $\phi \in L^∞(0, T, ®R)$, $u(t) = \phi(t)·¦e_j$, where $x_0 = - \int_0^t e^{-A s} B u(s) ds$. We have $x_0 \converg 0$, hence $x_0 \in ©R(t)$.
@@ -401,8 +424,8 @@
 
 	\begin{dukazin}
 		(We will prove equivalence with $\rank ©K(A^T, B^T) = n$.) „$\impliedby$“: For contradiction
-		$$ \exists x_1(t), x_2(t), [0, T], B x_1(t) ≡ Bx_2(t): x(t) = x_1(t) - x_2(t), x(0) = x_0 ≠ 0, B x(t) ≡ 0. $$
-		$$ x(t) = e^{At} x_0, Bx(t) = B^{At} x_0 ≡ 0 \qquad \forall t \in [0, T]. $$
+		$$ \exists x_1(t), x_2(t), t \in [0, T], B x_1(t) ≡ Bx_2(t): x(t) = x_1(t) - x_2(t), x(0) = x_0 ≠ 0, B x(t) ≡ 0. $$
+		$$ x(t) = e^{At} x_0, Bx(t) = Be^{At} x_0 ≡ 0 \qquad \forall t \in [0, T]. $$
 		We differentiate it, set $t = 0$ and get $B x_0 = 0$, $B A x_0 = 0$, …, $BA^{n-1}x_0 = 0$. So $x_0^T B^T = 0$, …, $x_0^T \(A^T\)^{n-1} B^T = 0$. $x_0^T ©K(A^T, B^T) = 0$, $x_0 \perp ©K(A^T, B^T)$, \lightning.
 
 		„$\implies$“: For contradiction $\rank(A^T, B^T) < n$ $\implies$ $\exists x_0 ≠ 0: x_0^T ©K(A^T, B^T) = 0$. $x_0^T\(A^T\)^k B^T = 0$ $\forall k \in [n - 1]$ and from lemma 1 $\forall k \in ®N$. $B A^T x_0 = 0$. $B e^{At} x_0 = 0$ $\forall t \in [0, T]$. \lightning.
@@ -410,24 +433,24 @@
 \end{veta}
 
 \begin{veta}[Local controllability]
-	$V \subset ®R^n$ neighbourhood of $0$, $U \subset ®R^n$ neighbourhood of $0$, $f: V \times U \rightarrow ®R^n$ $C^1$ smooth, $f(0, 0) = 0$, $©U = \{u: [0, T] \rightarrow U \text{ measurable}\}$, $A = \nabla_x f(0, 0)$, $B = \nabla_u f(0, 0)$, $\rank ©K(A, B) = n$. Then
+	Let $V \subset ®R^n$ neighbourhood of $0$, $U \subset ®R^n$ neighbourhood of $0$, $f: V \times U \rightarrow ®R^n$ $C^1$ smooth, $f(0, 0) = 0$, $©U = \{u: [0, T] \rightarrow U \text{ measurable}\}$, $A = \nabla_x f(0, 0)$, $B = \nabla_u f(0, 0)$, $\rank ©K(A, B) = n$. Then
 	$$ x' = f(x, u), x(0) = x_0 \text{ is locally controllable }\forall t \in (0, T]. $$
 	
 	\begin{dukazin}
 		Fix $t > 0$, consider $x' = Ax + Bu$. Since $\rank(A, B) = n$, the linear problem is globally controllable. Take initial condition $y_1, …, y_n$ linearly independent.
-		$$ \exists u_i \in L^∞(0, t, ®R^n): y_j \rightarrow_{u_\lambda(0)}^t 0 $$
+		$$ \exists u_i \in L^∞(0, t, ®R^n): y_j \rightarrow_{u_i(0)}^t 0 $$
 		$\forall \lambda = (\lambda_1, …, \lambda_n) \in ®R^n$ denote by $u_{\lambda(t)} = \sum_{j=1}^n \lambda_j u_j(t)$. We know $\sum_{j=1}^n \lambda_j y_j \rightarrow_{u_\lambda(0)}^t 0$.
 
 		Step 2:
 		$$ x_\lambda' = f(x_\lambda, u_\lambda), \qquad x_\lambda(t) = 0 $$
-		If $\lambda = 0$, then $u_\lambda ± 0$, then $x_\lambda ≡ 0$.
+		If $\lambda = 0$, then $u_\lambda ≠ 0$, then $x_\lambda ≡ 0$.
 		$$ \psi(\lambda) := x_\lambda(0), \psi: U_\lambda(0) \subset ®R^n \rightarrow ®R^n. $$
 		We want to prove $\psi(U_\lambda(0)) \supseteq \tilde V$, for some $\tilde V \subset ®R^n$ open, $0 \in \tilde V$. We will prove that $\psi$ is $C^1$ smooth, and that $\nabla \phi(0)$ is regular (if this is proved, than $\psi$ is local diffeomorphism).
 
 		Step 3:
 		$$ x_\lambda(s) = x_\lambda(t) + \int_t^s f(x_\lambda(s), u_\lambda(s)) ds. $$
 		Formally differentiate:
-		$$ \frac{\partial x_\lambda(s)}{\partial \lambda_j} = \int_t^s(\nabla_x f(x_lambda(s), u_\lambda(s))·\frac{\partial x_\lambda(s)}{\partial \lambda_j} + \nabla_u f(x_\lambda(s), u_j(s))) ds. $$
+		$$ \frac{\partial x_\lambda(s)}{\partial \lambda_j} = \int_t^s(\nabla_x f(x_\lambda(s), u_\lambda(s))·\frac{\partial x_\lambda(s)}{\partial \lambda_j} + \nabla_u f(x_\lambda(s), u_j(s))) ds. $$
 		Denote $y_{\lambda, j}(s) = \frac{\partial x_\lambda(s)}{\partial \lambda_j}$.
 		$$ y_{\lambda, j}'(s) = \nabla_x f(x_\lambda(s), u_\lambda(s))·y_{\lambda, j}(s) + \nabla_u f(x_\lambda(s), u_\lambda(s))·u_j(s). $$
 		$$ y_{\lambda, j}(t) = 0. $$
@@ -459,19 +482,18 @@
 \end{veta}
 
 \begin{veta}
-	$©R(t)$ convex, symmetric, closed
-	$$ 0 < t_1 < t_2 \implies ©R(t_1) \subset ©R(t_2). $$
+	$©R(t)$ convex, symmetric, closed $0 < t_1 < t_2 \implies ©R(t_1) \subset ©R(t_2)$.
 
 	\begin{dukazin}
-		Convex: $x_{01}, x_{02} \in ©H(t)$, $\alpha \in [0, 1] \implies \alpha x_{01} + (1 - \alpha)x_{02} \in ©R(t)$.
-		$$ x(t) = e^{At} x_0 + \int_0^t e^{As} B u(s) ds. x_{01} \rightarrow_u^t 0 \land x_{02} \rightarrow_u^t 0 \Leftrightarrow x_1 = -\int_0^t e^{(s - t)A} Bu_1(s) ds. $$
+		Convex: $x_{01}, x_{02} \in ©R(t)$, $\alpha \in [0, 1] \implies \alpha x_{01} + (1 - \alpha)x_{02} \in ©R(t)$.
+		$$ x(t) = e^{At} x_0 + \int_0^t e^{As} B u(s) ds. x_{01} \rightarrow_{u_{01}}^t 0 \land x_{02} \rightarrow_{u_{02}}^t 0 \Leftrightarrow x_{0i} = -\int_0^t e^{(s - t)A} Bu_{0i}(s) ds. $$
 		
-		Symmetry: $x_0 \in ©R(t) \implies -x_0 \in ©R(t)$, $x_0 \rightarrow_u^t 0 \implies -x_0 \rightarrow_u^t 0$.
+		Symmetry: $x_0 \in ©R(t) \implies -x_0 \in ©R(t)$, $x_0 \rightarrow_u^t 0 \implies -x_0 \rightarrow_{-u}^t 0$.
 
 		Closedness: $x_{0n} \in ®R(t), x_{0n} \rightarrow x_0$. $x_0 \in ©R(t)$? $\exists u_n(0) \in ©U$, $x_{0n} = - \int_0^t e^{(s - t)A} B u_n(s) ds \rightarrow - \int_0^t e^{(s - t)A} Bu(s) ds$.
 		WLOG $u_n \rightharpoonup^* u \in ©U$. Then $x_0 \rightarrow_u^t 0$.
 
-		$$ ©R(t_1) \subset ©R(t_2) 0 < t_1 < t_2 < Tx_0 $$
+		$$ ©R(t_1) \subset ©R(t_2), \qquad 0 < t_1 < t_2 < T $$
 		$$ \exists u_1 \in ©U\qquad x_0 = -\int_0^t e^{(s - t)A} Bu_1(s) ds. $$
 		Define $u_2(s) = u_1(s)$ if $0 ≤ s ≤ t$, else 0.
 	\end{dukazin}
@@ -482,7 +504,7 @@
 \end{definice}
 
 \begin{veta}
-	$$ \rank©K(A, B) = n \Leftrightarrow \forall t > 0 ©R(t) \supseteq U(0), $$
+	$$ \rank©K(A, B) = n \Leftrightarrow \forall t > 0: ©R(t) \supseteq U(0), $$
 	where $U(0) \subset ®R^n$ is some neighbourhood of 0.
 
 	\begin{dukazin}
@@ -499,10 +521,10 @@
 	$$ t = \inf\{s > 0|x_0 \in ©R(s)\}. $$
 
 	\begin{dukazin}
-		$$ t > 0, \exists t_n \searrow t, t_n \in (0, T], \exists u_k \in U, x_0 = - \int_0^{t_n}e^{(t_n-s)A}V u_n (s). $$
+		$$ t > 0, \exists t_n \searrow t, t_n \in (0, T], \exists u_n \in U, x_0 = - \int_0^{t_n}e^{(t_n-s)A}V u_n (s). $$
 		Alaoglu: WLOG $u_n \overset*\rightharpoonup u \in U$.
 		$$ x_0 = - \int_0^{t_n} e^{(t - s)A}B u_n(s) ds - \int_0^{t_n}\[e^{(t - s)A} - e^{(t_n - s)A}\]Bu_n (s) ds $$
-		$$ x_0 = - \underbrace{\int_0^t e^{(t - s)A}B u_n(s) ds}_{\overset*\rightharpoonup \int_0^t e^{(t - s)A}B u(s)ds} - \underbrace{\int_t^{t_n} e^{(t - s)A}B u_n(s) ds}_{\rightarrow 0} - \underbrace{\int_0^T\[e^{(t - s)A} - e^{(t_n - s)A}\]Bu_n (s) ds}_{\rightarrow 0 (DLCT)}. $$
+		$$ x_0 = - \underbrace{\int_0^t e^{(t - s)A}B u_n(s) ds}_{\overset*\rightharpoonup \int_0^t e^{(t - s)A}B u(s)ds} - \underbrace{\int_t^{t_n} e^{(t - s)A}B u_n(s) ds}_{\rightarrow 0} - \underbrace{\int_0^t\[e^{(t - s)A} - e^{(t_n - s)A}\]Bu_n (s) ds}_{\rightarrow 0 (DLCT)}. $$
 	\end{dukazin}
 \end{veta}
 
@@ -528,17 +550,17 @@
 	$$ K = \{u \in ©U | x_0 \rightarrow_{u(0)}^t 0\}, \qquad X = L^∞(0, T, ®R^n). $$
 	$K ≠ \O$ ($u \in ©R(t)$), $K$ convex, $K$ is compact (sequential compactness: Alaoglu theorem? $L'(0, T, ®R^n)$ separable $\implies$ $L^∞(0, T, ®R^n)$ with locale $*$ topology is metrizable $\implies$ sequential compactness $\implies$ compactness.
 
-	It remains to check that $\tilde{u}_j(s) = ± 1$, $\forall j \in [n]$ for almost every $s \in (0, t)$. For contradiction: for some $j \in [n]$ $\exists E \subset (0, t)$, $\lambda(E) > 0$ $\forall s \in E$ $|\tilde{u}_j(s)|<1$. WLOG
-	$$ \exists \epsilon > 0\ \forall s \in E |\tilde{u}_j(s)| < 1 - \epsilon · \[E = \bigcup_{n \in ®N}\{s \in (0, t) | |\tilde{u}_j(s)| ≤ 1-\frac{1}{n}\}\]. $$
+	Choose $\tilde u_j \in ex(K)$ (from Krein-Milman). It remains to check that $\tilde{u}_j(s) = ± 1$, $\forall j \in [n]$ for almost every $s \in (0, t)$. For contradiction: for some $j \in [n]$ $\exists E \subset (0, t)$, $\lambda(E) > 0$ $\forall s \in E$ $|\tilde{u}_j(s)|<1$. WLOG
+	$$ \exists \epsilon > 0\ \forall s \in E |\tilde{u}_j(s)| < 1 - \epsilon \qquad \[E = \bigcup_{n \in ®N}\{s \in (0, t) \middle| |\tilde{u}_j(s)| ≤ 1-\frac{1}{n}\}\]. $$
 
 	$$ x_0 = - \int_0^t e^{-sA} B \tilde{u}(s) ds $$
-	We want to find $\phi \in L^∞(0, T, ®R)$ such that:
+	We find (from ortogonality to $B_i e^{-s A}$) $\phi \in L^∞(0, T, ®R)$ such that:
 	\begin{enumerate}
 		\item $\supp \phi \subset E$;
 		\item $\int_E e^{-sA} B (0, …, 0, \phi(s), 0, …, 0)^T ds = 0$;
 		\item $\forall s \in E |\phi(s)| < \epsilon$.
 	\end{enumerate}
-	Define $u_1(s) = \tilde{u}(s) + (0, …, 0, \phi(s), 0, …, 0)^T$ and $u_2(s) = \tilde{u}(s) - (0, …, 0, \phi(s), 0, …, 0)^T$. Then $x_0 \rightarrow_{u_{1, 2}(0)}^t 0$, and $u_1, u_2 \in ©K$.
+	Define $u_1(s) = \tilde{u}(s) + (0, …, 0, \phi(s), 0, …, 0)^T$ and $u_2(s) = \tilde{u}(s) - (0, …, 0, \phi(s), 0, …, 0)^T$. Then $x_0 \rightarrow_{u_{1, 2}(0)}^t 0$, and $u_1, u_2 \in K$.
 \end{dukaz}
 
 \begin{veta}[Global controllability]
@@ -557,7 +579,7 @@
 		$$ x_1 = - \int_0^t e^{-s A} B u(s) ds $$
 		$$ n^T x_1 = - \int_0^t \underbrace{n^T e^{-s A} B}_{v(s)} u(s) ds $$
 		$$ \tilde{u}(s) := \begin{cases}0,& v(s) = 0,\\\frac{-v(s)}{||v(s)||_2},& v(s) ≠ 0.\end{cases} $$
-		If $v(s) ≡ -$, then apply $\frac{d^p}{(ds)^p}$, $n^T A^p e^{-sA}B ≡ 0$, then $n^T ©K(A, B) = 0$. \lightning
+		If $v(s) ≡ 0$, then apply $\frac{d^p}{(ds)^p}$, $n^T A^p e^{-sA}B ≡ 0$, then $n^T ©K(A, B) = 0$. \lightning
 
 		$$ \int_0^∞ ||v(s)||_2ds = ∞. $$
 		If this is true, then $t_k \nearrow ∞$, $u_k = \tilde{u} |_{[0, t_k]}$, $x_{1,k} = -\int_0^{t_k} e^{-s A} B u_k(s) ds$.
@@ -569,7 +591,9 @@
 
 \begin{veta}[Pontrjagin maximum]
 	$$ x' = Ax + Bu, ||u||_∞ ≤ 1, x(0) = x_0. $$
-	Let $x_0 \rightarrow^{t^*}_{u^*(0)} 0$, $t^*$ is the minimal. Then $\exists h \in ®R^n \setminus \{¦o\}: h^T·e^{-s A} B u^*(s) = \max_{\eta \in [-1, 1]^m h^t e^{-sA} B \eta}$ for almost every $s \in (0, t^*)$.
+	Let $x_0 \rightarrow^{t^*}_{u^*(0)} 0$, $t^*$ is the minimal. Then $\exists h \in ®R^n \setminus \{¦o\}$:
+	$$ h^T·e^{-s A} B u^*(s) = \max_{\eta \in [-1, 1]^m} h^t e^{-sA} B \eta $$
+	for almost every $s \in (0, t^*)$.
 
 	\begin{dukazin}
 		$x_0 \in \partial ©R(t^*)$.
@@ -595,7 +619,8 @@
 	$$ P[u(·)] = g(x(T)) + \int_0^T r(x(s), u(s))ds \rightarrow maximum. $$
 	$f, g, r, \nabla_x f, \nabla_x g, \nabla_x r$ are continuous.
 
-	Let $u$ is a local maximum of this problem (it maximizes $P$), then for $p$ solving ($H(x, p, u) := p^T f(x, u) + r(x, u)$):
+	Let $u$ is a local maximum of this problem (it maximizes $P$), then for $p$ solving:
+	$$ H(x, p, u) := p^T f(x, u) + r(x, u), $$
 	$$ p' = -\nabla_x H(x, p, u), $$
 	$$ p(T) = \nabla_x g(x(T)), $$
 	we have
@@ -607,7 +632,7 @@
 
 		Step 2: Fix $\tau \in (0, T)$, $\eta \in U$, $u_\epsilon(T) = \begin{cases}\eta,& t \in (\tau - \epsilon, \tau),\\ u(t), & \text{ elsewhere},\end{cases}$ and corresponding $x_\epsilon(t)$.
 		$$ u \text{ "best" } \implies P[u_\epsilon(0)] ≤ P[u(0)] \implies g(x_\epsilon(T)) ≤ g(x(t)). $$
-		$$ D = \frac{d}{d\epsilon}|_{\epsilon = 0^+} D g(x_\epsilon(T))|_{\epsilon = 0^+} ≤ 0 $$
+		$$ D := \frac{d}{d\epsilon}|_{\epsilon = 0^+} \qquad D g(x_\epsilon(T))|_{\epsilon = 0^+} ≤ 0 $$
 		$$ \nabla_x g(x(T)) · D x_\epsilon(T)|_{\epsilon = 0^+} ≤ 0. $$
 
 		Step 2.2: $x_\epsilon(t) = x_0 + \int_0^t f(x_\epsilon(s), u_\epsilon(s)) ds$. If $t < \tau$, then $u_\epsilon ≡ u$, $x_\epsilon ≡ x$, $D x_\epsilon(t) ≡ 0$ on $[0, t]$. If $t > \tau$, then $x_\epsilon(t) =: y(t)$, $y'(t) = f(y(t), u(t))$, $u(\tau) = x_\epsilon(\tau)$,
@@ -650,7 +675,7 @@
 	$f: ®R^{n+1} \rightarrow ®R^n$ be $C^1$, $(x_0, \mu_0)$ is a hyperbolic stationary point. Then $\exists \Delta > 0$ $\exists \delta > 0$ $\forall \mu \in U_\delta(\mu_0)$ $\exists x = x(\mu) \in U_\Delta(x_0)$, stationary point $x(\mu)$ is a hyperbolic stationary point of $\mu \mapsto x(\mu)$, which is $C^1$.
 
 	\begin{dukazin}
-		IFT:
+		IFT (Implicit function theorem):
 		$$ f(x_0, \mu_0) = 0 \land \nabla_x f(x_0, \mu_0) \text{regular?} \land f \in C^1 \implies x = x(\mu), f(x(\mu), \mu) = 0. $$
 		Hyperbolic? Eigenvalues of $A = \nabla_x f(x(\mu), \mu)$, $\det(\lambda I - A(\mu))$ – polynomial in $\lambda$, $\deg = n$.
 	\end{dukazin}
@@ -668,19 +693,8 @@
 
 \begin{veta}
 	$f: ®R^2 \rightarrow ®R$ be $C^2$ on neighborhood $(0, 0) \in ®R^2$.
-	$$ f(0, 0) = 0, \qquad f_x(0, 0) = 0, \qquad f(0, \mu) = 0\ \forall \mu \in U_\delta(0), \qquad f_{xx}(0, 0) ≠ 0, \qquad f_{x\mu}(0, 0) ≠ 0. $$
-	Then $f$ has bifurcation at $(0, 0)$ of the type transcritical.
-
-	\begin{dukazin}
-		Without proof.
-	\end{dukazin}
-\end{veta}
-
-\begin{veta}
-	$f: ®R^2 \rightarrow ®R$ be $C^2$ on neighborhood $(0, 0) \in ®R^2$.
-	$$ f(0, 0) = 0, \qquad f_x(0, 0) ≠ 0, \qquad f_{xx}(0, 0) = 0, \qquad f_{xxx}(0, 0) ≠ 0, $$
-	$$ f(0, \mu) = 0\ \forall \mu \in U_\delta(0), f_{x\mu}(0, 0) ≠ 0. $$
-	Then $f$ has bifurcation at $(0, 0)$ of the type fork.
+	$$ f(0, 0) = 0, \quad f_x(0, 0) = 0, \quad f(0, \mu) = 0\ \forall \mu \in U_\delta(0), \quad f_{xx}(0, 0) ≠ 0, \quad f_{x\mu}(0, 0) ≠ 0. $$
+	Then $f$ has bifurcation at $(0, 0)$ of the type transcritical. ($f(0, \mu) = 0 \implies f_\mu(0, 0) = 0$.)
 
 	\begin{dukazin}
 		Without proof.
@@ -701,8 +715,6 @@
 
 % 06. 12. 2022
 
-TODO?
-
 \begin{dukaz}[Theorem of transcritical bifurcation]
 	$f(x, \mu) = x F(x, \mu)$. $F_\mu(0, 0) ≠ 0$?
 
@@ -714,9 +726,9 @@ TODO?
 \end{dukaz}
 
 \begin{veta}[Fork]
-	$$ f \in C^3(U), \qquad f(0, 0) = f_x(0, 0) = f_{xx}(0, 0) = 0, \qquad f_{xxx}(0, 0) ≠ 0, \qquad f(0, \mu) = 0\ \forall (0, \mu) \in U, $$
-	$$ (f_\mu(0, 0) = 0), \qquad f_{x\mu}(0, 0) ≠ 0. $$
-	Then ?
+	$$ f \in C^3(U), \qquad f(0, 0) = f_x(0, 0) = f_{xx}(0, 0) = 0, \qquad f_{xxx}(0, 0) ≠ 0, $$
+	$$ f(0, \mu) = 0\ \forall (0, \mu) \in U, \qquad (f_\mu(0, 0) = 0), \qquad f_{x\mu}(0, 0) ≠ 0. $$
+	Then $f$ has bifurcation at $(0, 0)$ of type fork.
 
 	\begin{dukazin}
 		$\mu'(0) = 0$, $\mu''(0) = \frac{…}{-\partial_\mu F(x, \mu(x))}$, $\partial_{x, x} F(0, 0) = \frac{1}{3} f_{xxx}(0, 0) ≠ 0$.
@@ -733,7 +745,7 @@ TODO?
 	$\forall a \in (0, \epsilon)$ $\exists$ nontrivial periodic solution passing through $(a, 0)$.
 
 	\begin{dukazin}
-		Rotation: $x' = d(\mu) x - \omega(\mu) y + f_1(x, y, \mu)$, $y' = \omega(\mu) x + \alpha(\mu) x + \alpha(\mu) y + f_2(x, y, \mu)$, $f_2(x, y, \mu) = O(x^2 + y^2)$.
+		Rotation: $x' = \alpha(\mu) x - \omega(\mu) y + f_1(x, y, \mu)$, $y' = \omega(\mu) x + \alpha(\mu) y + f_2(x, y, \mu)$, $f_2(x, y, \mu) = O(x^2 + y^2)$.
 
 		Polar coords:
 		$$ x = r \cos \theta, y = r \sin \theta, x' = g_1(x, y), y' = g_2(x, y), $$
@@ -760,6 +772,8 @@ TODO?
 \end{veta}
 
 % 13. 12. 2022
+
+\newpage
 
 \section{Central manifolds}
 \begin{poznamka}
@@ -823,11 +837,12 @@ TODO?
 
 		$y(0) = \phi(p(0)) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p(s))) ds$ $\implies$ $y$ is bounded on $(-∞, 0]$ $\implies$ $y_1$ is bounded. From lemma:
 		$$ y(t_1) = y_1(0) = \int_{-∞}^0 e^{-B·s} g(p(s), \phi(p, s)) ds = \phi(p(0)) = \phi(p(t_1)). $$
+		\vspace{-1em}
 	\end{dukazin}
 \end{lemma}
 
 \begin{veta}[Existence of central manifold]
-	$$ \forall \beta\ \exists \rho > 0, \sigma > 0, b > 0, l > 0: \exists! p \in ©X \text{ satisfying INV}. $$
+	$$ \forall \beta\ \exists \rho > 0, \sigma > 0, b > 0, l > 0: \exists! \phi \in ©X \text{ satisfying INV}. $$
 
 	\begin{dukazin}
 		$$ ©X \subset C(®R^n, ®R^n), \|\phi\|_{©X} = \sup_{x \in ®R^n} |\phi(x)|, $$
@@ -858,5 +873,12 @@ TODO?
 \begin{dusledek}
 	$\phi$ is a central manifold $\Leftrightarrow$ $M[\phi] = 0$.
 \end{dusledek}
+
+% 20. 12. 2022
+
+\begin{poznamka}
+	Dělal se podrobně důkaz Existence centrální variety.
+\end{poznamka}
+
 
 \end{document}

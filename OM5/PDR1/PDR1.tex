@@ -945,7 +945,7 @@ TODO Example?
 		From Young's inequality:
 		$$ ≤ \frac{1}{2} \int_\Omega |\partial_t u^n|^2 + C \int_\Omega |b|^2 |u^n|^2 + |¦c|^2 |\nabla u^n|^2 + |\Div ¦d|^2 |u^n|^2 + |¦d|^2 |\nabla u^n|^2 + |f|^2 + \left|\nabla \frac{A - A^T}{2}\right|^2 |\nabla u^n|^2 + \left| \partial_t \frac{A + A^T}{2}\right |^2 |\nabla u^n|^2 ≤ $$
 		$$ ≤ \frac{1}{2} \|\partial_t u^n\|_2^2 ≤ c(b, ¦c, ¦d)(\|f\|_2^2 + \|u^n\|_{1, 2}^2). $$
-		$$ \implies \|\partial u^n\|_2^2 + \frac{d}{dt} \int_\Omega A \nabla u^n · \nabla u^n ≤ c(…)·(\|f\|_2^2 + \|u^n\|_{1, 2}^2). $$
+		$$ \implies \|\partial u^n\|_2^2 + \frac{d}{dt} \int_\Omega A \nabla u^n · \nabla u^n ≤ c(…)·(\|f\|_2^2 + \|u^n\|_{1, 2}^2). $$
 
 		We want to know, if right hand side is integrable in time:
 		$$ \int_\tau^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) + c·\int_\tau^t \|f\|_2^2 + \|u^n\|_{1, 2}^2. $$
@@ -1055,5 +1055,143 @@ TODO Example?
 		TODO!!!
 	\end{dukazin}
 \end{veta}
+
+% 19. 12. 2022 Na začátku nápovědy k DU2.
+
+\section{Semigrupy}
+\begin{definice}[Značení]
+	$$ ©L(x) := \{L: X \rightarrow X | L \text{ lineární omezený operátor}\}, \qquad \|L\|_{©L} = \sup_{\|x\| < 1} \|Lx\|_X. $$
+
+	Dvojice $(A, D(A))$ je neomezený operátor, kde $D(A) \subset X$ je definiční obor $A$ – podprostor $X$. $A: D(A) \rightarrow X$ je lineární.
+\end{definice}
+
+\begin{definice}[Semigrupa (jednoparametrická lineární semigrupa)]
+	$S(t): [0, ∞] \rightarrow ®L(x)$ se nazývá semigrupa $≡$
+
+	\begin{itemize}
+		\item $S(0) = \id$, neboli $S(0)x = x$ $\forall x \in X$;
+		\item $\forall t, s ≥ 0: S(t)S(s) = S(t + s)$.
+		\item Pokud navíc $S(t)x \rightarrow x$ pro $t \rightarrow 0_+$, pak $S(t)$ nazýváme $C_0$-semigrupa.
+	\end{itemize}
+\end{definice}
+
+\begin{lemma}
+	Nechť $S(t)$ je $C_0$-semigrupa. Potom
+
+	\begin{enumerate}
+		\item $\exists M ≥ 1\ \exists \omega ≥ 0\ \forall t \in [0, ∞): \|S(t)\|_{©L(X)} ≤ Me^{\omega t}$;
+		\item $\forall x$ pevné $t \mapsto S(t) x$ je spojité zobrazení z $[0, ∞)$ do $X$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Krok 1): „$\exists M\ \exists \delta > 0\ \forall t \in [0, \delta]: \|S(t)\|_{©L(X)} ≤ M$“: Pro spor nechť toto neplatí. Tedy $\exists t_n \rightarrow 0_+: \|S(t_n)\|_{©L(x)} \rightarrow ∞$. Víme, že $\forall x: S(t_n) x \rightarrow x$. To implikuje $\forall x \sup_{t_n} \|S(t_n) x\|_X < ∞$. Z Principu stejnoměrné omezenosti (Věta Banach-Steinhaus, z úvodu do funkcionály) $\exists M > 0 \|S(t_n)\|_{©L(X)} ≤ M$. \lightning.
+
+		„1.“: Definujeme $\omega = \frac{1}{\delta} \ln M$. $t ≥ 0\ \exists \epsilon \in (0, \delta): t = n\delta + \epsilon$.
+		$$ \|S(t)\|_{©L(X)} = \|S(\delta)·…·S(\delta)·S(\epsilon)\|_{©L(X)} ≤ \|S(\delta)\|_{©L(X)}^n · \|S(\epsilon)\|_{©L(x)} ≤ M e^{\omega t}. $$
+
+		„2.“: Spojitost v $0_+$ plyne z třetího bodu definice semigrupy. Pro $t_0 > 0$, $t \rightarrow (t_0)_+$:
+		$$ \lim_{h \rightarrow 0_+} S(t_0 + h) x = \lim_{h \rightarrow 0_+} S(t_0)S(h) x = S(t_0) \lim_{h \rightarrow 0} S(h)x = S(t_0)x. $$
+		Pro $t \rightarrow (t_0)_-$ (bereme $h$ dostatečně malé, aby $t_0 - h > 0$):
+		$$ \|S(t_0 - h) x - S(t_0) x\|_X = \|S(t_0 - h)(x - S(h) x)\|_X ≤ \|S(t - h)\|_{©L}·\|x - S(h)x\|_X \rightarrow 0. $$
+	\end{dukazin}
+\end{lemma}
+
+% 20. 12. 2022
+
+\begin{definice}[Generator of semigroup]
+	An unbounded operator $(A, D(A))$ is called a generator of $S(t)$ iff
+	$$ A x := \lim_{h \rightarrow 0_+} \frac{S(h) x - x}{h}, \qquad D(A) := \{x \in X | \lim_{h \rightarrow 0_+} \frac{S(h) x - x}{h} \text{ exists in } X\}. $$
+\end{definice}
+
+\begin{veta}[Properties of generator]
+	Let $(A, D(A))$ be a generator of a $C_0$-semigroup $S(t)$. Then
+
+	\begin{enumerate}
+		\item $x \in D(A) \implies S(t) x \in D(a)\ \forall t ≥ 0$;
+		\item $x \in D(A) \implies A S(t) x = S(t) A x = \frac{d}{dt}\(S(t) x\)\ \forall t ≥ 0$;
+		\item $x \in X$, $t > 0$ $\implies$ $x_t := \int_0^t S(s) x ds \in D(A)$, $A(x_t) = S(t) x - x$.
+	\end{enumerate}
+
+	\begin{poznamkain}[Použití]
+		$u_0 \in D(A) \subseteq X$, $u(t) := S(t) u_0$, $2. \implies \frac{d}{dt} u(t) = \frac{d}{dt}\(S(t)u_0\) = A S(t) u_0 = A u(t)$. E. g. if $S(t)$ corresponds to the solution operator of $\partial_t u = \Delta u$, then generator $S(t)$ is Laplace.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		$$ A(S(t) x) \overset{\text{if exists}}= \lim_{h \rightarrow 0_+} \frac{S(h)(S(t) x) - S(t)x}{h} = \lim_{h \rightarrow 0_+} $$
+		TODO!!! %Uteklo mi to.
+
+		$$ \frac{d}{dt}(S(t) x)_{t \rightarrow t_{0+}} = \lim_{h \rightarrow 0_+} \frac{S(t_0 + h)x - S(t_0)x}{h} = S(t_0) \lim \frac{S(h)x - x}{h} = S(t_0) Ax. $$
+		$$ \frac{d}{dt}(S(t) x)_{t \rightarrow t_{0-}} = \lim_{h \rightarrow 0_+} \frac{S(t_0 - h)x - S(t_0)x}{h} = \lim \(S(t_0 - h) \[\frac{x - S(h) x}{h} - S(h) Ax\]\) + \lim_{h \rightarrow 0_+} S(t_0 - h) S(h) A x = S(t_0) Ax, $$
+		because
+		$$ \|S(t_0 - h)\(\frac{x - S(h) x}{h} - S(h) A x\)\|_X ≤ \|S(t_0 - h)\|_{©L(X)} · \|\frac{x - S(h) x}{-h} - Ax + Ax - S(h) Ax\|_X ≤ $$
+		$$ ≤ M e^{\omega t_0} \(\|\frac{S(h) x - x}{h} - Ax\|_X + \|A x - S(h) A x\|_X\) \rightarrow 0. $$
+
+		3.)
+		$$ \frac{S(h) x_t - x_t}{h} = \frac{S(h) \int_0^t S(s) x ds - \int_0^t S(s) x ds}{h} = \frac{\int_0^t S(h + s) x ds - \int_0^t S(s) x ds}{h} = $$
+		$$ = \frac{\int_h^{t + h} S(s) x ds - \int_0^t S(s) x ds}{h} = \frac{1}{h} \int_t^{t + h} S(s) x ds - \frac{1}{h} \int_0^h S(s) x ds. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Closed operator]
+	We say that $(A, D(A))$ is closed iff
+	$$ \(u_n \in D(A), \qquad u_n \rightarrow u \text{ in }X, \qquad A(u_n) \rightarrow v \text{ in } X\) $$
+	$$ \implies u\in D(A), \qquad A u = v. $$
+\end{definice}
+
+\begin{veta}[Density and closedness of generator]
+	Let $(A, D(A))$ be a generator to a $C_0$-semigroup $S(t)$ in $X$. Then $D(A)$ is dense in $X$ and $(A, D(A))$ is closed.
+
+	\begin{dukazin}
+		$x \in X$ arbitrary $\implies$ $x_t \in D(A)$.
+		$$ \[\frac{x_t}{t}\] = \frac{1}{t} \int_0^t S(s) x ds \rightarrow x \implies D(A) \text{ is dense in } X. $$
+
+		$x_n \in D(A)$, $x_n \rightarrow x$ in $X$, $A x_n \rightarrow y$ in $X$. We want $x \in D(A)$ and $A x = y$.
+		$$ S(h) x_n - S(0) x_n \int_0^t \frac{d}{dt}(S(t) x_n) dt = \int_0^h S(t) (A x_n) dt $$
+		$$ n \rightarrow ∞: \frac{S(h) x - x}{h} = /\!\!\!\! \int_0^h S(t) y dt. $$
+		$$ A(x) = \lim_{h \rightarrow 0_+} \frac{S(h)x - x}{h} = \lim_{n \rightarrow ∞} /\!\!\!\! \int_0^h S(t) y dt = S(0)y = y. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	We have $A(\int_0^t S(s) x ds) = S(t) x - x = \int_0^t A S(t) x dt$.
+\end{poznamka}
+
+\begin{lemma}[Uniqueness of $S(t)$]
+	Let $S(t)$ and $\tilde S(t)$ be $C_0$ semigroup with the same generator. Then $S(t) = tilde S(t)$ $\forall t ≥ 0$.
+
+	\begin{dukazin}
+		$$ y(t) = S(T - t) \tilde S(t) x, \qquad x \in D(A), \quad T > 0 \text{ fixed}. $$
+		$$ \frac{d}{dt} y(t) = -S(T - t)A \tilde S(t) x + S(T - t)A\tilde S(t) x = 0. $$
+		$$ y(t) = y(0) = y(T) \implies S(T)x = \tilde S(T) x. $$
+		An $D(A)$ is dense, so $S = \tilde S$ on $X$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Resolvent]
+	Let $(A, D(A))$ be unbounded operator. We define resolvent set $\rho(A) := \{\lambda \in ®R | (\lambda I - A): D(A) \rightarrow X \text{ is one-to-one and onto}\}$. $\forall \lambda \in \rho(A)$ we define the resolvent operator
+	$$ R(\lambda, A) := (\lambda I - A)^{-1} : X \rightarrow D(A). $$
+
+	\begin{poznamkain}
+		$(A, D(A))$ closed $\implies$ $R(\lambda, A)$ is continuous $\implies$ $R(\lambda, A) \in ©L(X)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{lemma}[Properties of $R(\lambda, A)$]
+	Let $(A, D(A))$ be a generator of $C_0$-semigroup $S(t)$ and let $\|S(t)\| ≤ Me^{\omega t}$.
+
+	\begin{enumerate}
+		\item $A R(\lambda, A) x = \lambda R(\lambda, A)x - x$ $\forall x \in X$.
+		\item $R(\lambda, A) A x = \lambda R(\lambda, A) x - x$ $\forall x \in D(A)$.
+		\item $R(\lambda, A)x - R(\mu, A)x = (\mu - \lambda)R(\lambda, A)R(\mu, A) x$.
+		\item $\forall \lambda > \omega$ $\lambda \in \rho(A)$: $R(\lambda, A)x = \int_0^∞ e^{-\lambda t} S(t) x dt$ adn $\|R(\lambda, A)\| ≤ \frac{M}{\lambda \omega}$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $A R(\lambda, A) x = \[(A - \lambda I) + \lambda I\]R(\lambda, A) x = -x + \lambda R(\lambda, A) x$. „2. + 3.“: obdobně.
+
+		„4.“: Rescale and define $\tilde S(t) = e^{-\omega t} S(t)$. We will prove the result for $\tilde S(t)$ and transform it to $S(t)$:
+		$$ \|\tilde S(t)\| ≤ e^{-\omega t} \|S(t)\| ≤ Me^{0·t} = M. $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}
