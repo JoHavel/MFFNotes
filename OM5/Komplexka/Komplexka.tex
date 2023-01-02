@@ -760,7 +760,7 @@
 \begin{veta}[O Laurentově rozvoji holomorfní funkce na mezikruží]
 	Nechť $P := P(z_0, r, R)$, kde $0 ≤ r < R ≤ ∞$. Nechť $f \in ©H(P)$. Pak existuje jediná Laurentova řada
 	$$ \sum_{n=-∞}^∞ a_n(z - z_0)^n, $$
-	která má na $P$ součet $f$.
+	která má na $P$ součet $f$.
 
 	Navíc platí $a_m = \frac{1}{2\pi} \int \frac{f(z) dz}{(z - z_0)^{m+1}}$, kde $m \in ®Z$ a $\phi_\rho$ je jako výše.
 
@@ -846,7 +846,7 @@
 
 		Jako v předešlé větě integrujeme podél $\phi_r$ funkci $R(z) e^{i a z}$ a pošleme $r \rightarrow +∞$. Platí, že
 		$$ \int_{\phi_r^2} R(z) e^{i a z} dz \rightarrow 0 $$
-		z Jordanova Lemmatu (bylo na cvičení?), z podmínky na stupně totiž máme, že $\lim_{z\rightarrow ∞} R(z) = 0$.
+		z Jordanova Lemmatu (bylo na cvičení?), z podmínky na stupně totiž máme, že $\lim_{z\rightarrow ∞} R(z) = 0$.
 	\end{dukazin}
 \end{veta}
 
@@ -925,12 +925,12 @@ TODO!!!
 	Označíme:
 
 	\begin{itemize}
-		\item $<\Gamma> := \bigcup_{k=1}^n <\phi_k>$ graf $\Gamma$;
+		\item $\<\Gamma\> := \bigcup_{k=1}^n <\phi_k>$ graf $\Gamma$;
 		\item $V(\Gamma) := \sum_{k=1}^n V(\phi_k)$ délka $\Gamma$;
-		\item $\int_\Gamma f := \sum_{k=1}^n \int_{\phi_k} f$, je-li $f$ spojitá na $<\Gamma>$;
-		\item $\ind_\Gamma z_0 := \sum_{k=1}^n \ind_{\phi_k} z_0 = \frac{1}{2 \pi i} \int_\Gamma \frac{dz}{z - z_0}$, $z_0 \in ®C \setminus <\Gamma>$;
-		\item $\Int \Gamma := \{z_0 \in ®C \setminus <\Gamma> | \ind_\Gamma z_0 ≠ 0\}$ vnitřek $\Gamma$;
-		\item $\Ext \Gamma := \{z_0 \in ®C \setminus <\Gamma> | \ind_\Gamma z_0 = 0\}$ vnějšek $\Gamma$.
+		\item $\int_\Gamma f := \sum_{k=1}^n \int_{\phi_k} f$, je-li $f$ spojitá na $\<\Gamma\>$;
+		\item $\ind_\Gamma z_0 := \sum_{k=1}^n \ind_{\phi_k} z_0 = \frac{1}{2 \pi i} \int_\Gamma \frac{dz}{z - z_0}$, $z_0 \in ®C \setminus \<\Gamma\>$;
+		\item $\Int \Gamma := \{z_0 \in ®C \setminus \<\Gamma\> | \ind_\Gamma z_0 ≠ 0\}$ vnitřek $\Gamma$;
+		\item $\Ext \Gamma := \{z_0 \in ®C \setminus \<\Gamma\> | \ind_\Gamma z_0 = 0\}$ vnějšek $\Gamma$.
 	\end{itemize}
 \end{definice}
 
@@ -938,10 +938,104 @@ TODO!!!
 	Uzavřenou křivku $\phi$ chápeme jako cyklus.
 \end{poznamka}
 
+% 22. 12. nebyla přednáška a minulý rok se RV probírala před OCV
+
+\begin{veta}[Reziduová pro cykly]
+	Nechť $G \subset ®C$ je otevřená, $\Gamma$ je cyklus v $G$ a $\Int \Gamma \subset G$. Nechť $K \subset G \setminus \<\Gamma\>$ je konečná a $f \in ©H(G\setminus K)$. Potom platí
+	$$ \int_\Gamma f = 2 \pi i ·\sum_{s \in K} \res_s f·\ind_\Gamma s. $$
+
+	\begin{dukazin}
+		Zcela analogický jako pro RV na hvězdovitých oblastech.
+	\end{dukazin}
+\end{veta}
+
 \begin{veta}[Obecná Cauchyho pro cykly]
-	Nechť $G \subset ®C$ je otevřená a $\Gamma$ je cyklus v $G$, tzn. $<\Gamma> \subset G$. Potom platí, že
+	Nechť $G \subset ®C$ je otevřená a $\Gamma$ je cyklus v $G$, tzn. $\<\Gamma\> \subset G$. Potom platí, že
 	$$ \int_\Gamma f = 0 \qquad \forall f \in ©H(G), $$
 	právě když $\Int \Gamma \subset G$.
+
+% 22. 12. 2022 přednáška nebyla, ze zápisků z minulého roku
+
+	\begin{dukazin}
+		„$\implies$“ Ať platí $\forall f \in ©H(G): \int_\Gamma f = 0$. Je-li $z_0 \in ®C \setminus G$, pak $f(z) := \frac{1}{z - z_0} \in ©H(G)$, a tedy $\ind_\Gamma z_0 = 0$, neboli $z \in \Ext \Gamma$.
+
+		„$\impliedby$“: Nechť $\Int \Gamma \subset G$ a $f \in ©H(G)$. Nejdříve dokážeme, že
+		$$ \forall \xi \in G \setminus \<\Gamma\> : \frac{1}{2\pi i} \int_\Gamma \frac{f(z) dz}{z - \xi} = f(\xi)·\ind_\Gamma \xi, $$
+		což je ekvivalentní s
+		$$ 0 = \frac{1}{2 \pi i} \int_\Gamma \frac{f(z) - f(\xi)}{z - \xi} dz = \frac{1}{2\pi i} \int_\Gamma \frac{f(z) dz}{z - \xi} - f(\xi)·\ind_\Gamma \xi. $$
+		$$ g(z, \xi) := \begin{cases}\frac{f(z) - f(\xi)}{z - \xi}, & \text{ pro } z ≠ \xi, (z, \xi) \in G \times G, \\ f'(z), & \text{ pro } z = \xi, (z, \xi) \in G \times G.\end{cases}. $$
+
+		Potom a) je spojitá na $G \times G$ a b) $\forall z \in G: g(z, ·) \in ©H(G)$. Dále zvolme $\xi \in G \setminus \<\Gamma\>$ a položme $f_1(z) := (z - \xi)f(z)$, $z \in G$. Pomocí rovnosti ze začátku důkazu %a následující věty
+dostáváme:
+		$$ \int_\Gamma f(z) dz = \int_\Gamma \frac{f_1(z) dz}{z - \xi} = 2\pi i · f_1(\xi)·\ind_\Gamma \xi = 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[a]
+		Jasné v bodech $(z, \xi)$, $z ≠ \xi$. Nechť $z_0 \in G$. Dokážeme, že $g$ je spojitá v $(z_0, z_0)$. Nechť $\epsilon > 0$. Protože $f'$ je spojitá v $z_0 \in G$, existuje $r > 0$ takové, že $U(z_0, r) \subset G$ a
+		$$ \forall z \in U(z_0, r): |f'(z) - f'(z_0)| ≤ \epsilon. $$
+		Je-li $z, \xi \in U(z_0, r)$ a $z ≠ \xi$, potom pro úsečku $\phi(t) := \xi + t(z - \xi)$, $t \in [0, 1]$ platí
+		$$ f(z) - f(\xi) = \int_\phi f' = \int_0^1 f'(\phi(t))·(z - \xi)dt = (z - \xi)·\int_0^1 f'(\phi(t)) dt \implies $$
+		$$ \implies |g(z, \xi) - g(z_0, z_0)| = \left| \int_0^1 \(f'(\phi(t)) - f'(z_0)\) dt \right| ≤ \epsilon. $$
+		Pro $z \in U(z_0, r)$ je $|g(z, z) - g(z_0, z_0)| = |f'(z) - f'(z_0)| ≤ \epsilon$.
+	\end{dukazin}
+
+	\begin{dukazin}[b]
+		Jasné pro $\xi ≠ z$. V $\xi = z$ je ale odstranitelná singularita. Položme
+		$$ h(\xi) := \frac{1}{2 \pi i} \int_\Gamma g(z, \xi) dz, \qquad \xi \in G. $$
+		Podle následující věty $h \in ©H(G)$. Je-li $\xi \in G \cap \Ext \Gamma$, potom máme $h(\xi) = \frac{1}{2 \pi i} \int_\Gamma \frac{f(z)}{z - \xi} dz$. Položme
+		$$ h(\xi) := \frac{1}{2 \pi i} \int_\Gamma \frac{f(z)}{z - \xi} dz, \qquad \xi \in \Ext \Gamma \setminus G. $$
+		Potom $h$ je holomorfní na $G$ i na $\Ext \Gamma$, tedy i na celém $®C = G \cup \Ext \Gamma$. Ukážeme, že $h$ je omezená. Potom z Liouvillovy věty plyne, že $h$ je konstantní. Skutečně, máme $\lim_{\xi \rightarrow ∞} h(\xi) = 0$. To plyne takto: Nechť $\<\Gamma\> \subset U(0, R)$. Je-li $|\xi| > R$, potom
+		$$ |h(\xi)| ≤ \frac{1}{2\pi} · V(\Gamma)·\max_{\<\Gamma\>} |f| · \frac{1}{|\xi| - R} \rightarrow 0, $$
+		protože $|z - \xi| ≥ |\xi| - |z| ≥ |\xi| - R$. Tedy $h = 0$ na ®C, speciálně platí rovnost ze začátku důkazů.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O derivování integrálu podle komplexního parametru]
+	Nechť $G \subset ®C$ je otevřená a $\Gamma$ je cyklus. Nechť $g$ je spojitá funkce na $\<\Gamma\> \times G$ a $\forall z \in \<\Gamma\> : g(z, ·) \in ©H(G)$. Potom je funkce
+	$$ h(\xi) := \int_\Gamma g(z, \xi) dz, \xi \in G $$
+	holomorfní na $G$.
+
+	\begin{dukazin}
+		Zřejmě je $h$ spojitá na $G$. Nechť $\Delta$ je trojúhelník v $G$. Potom
+		$$ \int_{\partial \Delta} h(\xi) d \xi = \int_{\partial \Delta}\(\int_\Gamma g(z, \xi) dz\) d\xi = \int_\Gamma \underbrace{\(\int_{\partial \Delta} g(z, \xi) d\xi\)}_{\overset{\text{Goursat}}=0} dz = 0. $$
+		Z Morerovy věty plyne, že $h \in ©H(G)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $G \subset ®C$ je otevřená. Potom platí $\Int \Gamma \subset G$ pro každý cyklus $\Gamma$ v $G$, právě když $®S \setminus G$ je souvislá.
+
+	\begin{dukazin}
+		„$\implies$“ Těžký. Bude v komplexce 1.
+
+		„$\impliedby$“: Nechť $\Gamma$ je cyklus v $G$. Položme $\ind_\Gamma ∞ = 0$. Potom zřejmě $\ind_\Gamma: ®S \setminus \<\Gamma\> \rightarrow ®Z$ je spojitá, tudíž konstantní na každé komponentě $®S \setminus \<\Gamma\>$. Speciálně máme $\forall s \in ®S \setminus G: \ind_\Gamma s = 0$, tedy $\Int \Gamma \subset G$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Jednoduše souvislá (j. s.)]
+	Oblast $G \subset ®C$ se nazývá jednoduše souvislá, pokud $®S \setminus G$ je souvislá.
+\end{definice}
+
+\begin{poznamka}
+	Hvězdovité oblasti jsou jednoduše souvislé oblasti, ale ne naopak.
+
+	Je-li $G \subset ®C$ jednoduše souvislá oblast, potom v Cauchyově a reziduové větě je podmínka $\Int \Gamma \subset G$ splněna automaticky, je-li $\Gamma$ cyklus v $G$.
+\end{poznamka}
+
+\begin{definice}[Jordanova křivka]
+	Řekneme, že uzavřená spojitá křivka $\phi: [\alpha, \beta] \rightarrow ®C$ je Jordanova, pokud $\phi|_{[\alpha, \beta)}$ je prosté zobrazení.
+\end{definice}
+
+\begin{poznamka}
+	Pojem indexu, vnitřku a vnějšku lze zobecnit i pro spojité uzavřené křivky.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $\phi$ je Jordanova křivka v ®C. Potom $\Int \phi$ a $\Ext \phi$ jsou oblasti a $®C \setminus \<\phi\> = \Int \phi \cup \Ext \phi$. Navíc buď $\forall s \in \Int \phi : \ind_\phi s = 1$, nebo $\forall s \in \Int \phi: \ind_\phi s = -1$.
+
+	\begin{dukazin}
+		Těžký. Nebude.
+	\end{dukazin}
 \end{veta}
 
 \end{document}

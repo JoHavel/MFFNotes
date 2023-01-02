@@ -22,11 +22,11 @@
 
 \begin{definice}[Vitali cover]
 	Let $A \subset ®R^n$ we say that a system ©V consisting of closed balls from $®R^n$ forms Vitali cover of $A$, if
-	$$ \forall x \in A\ \forall \epsilon > 0 \exists B \in ©V: x \in B \land \diam B < \epsilon. $$
+	$$ \forall x \in A\ \forall \epsilon > 0\ \exists B \in ©V: x \in B \land \diam B < \epsilon. $$
 \end{definice}
 
 \begin{definice}[Notation]
-	$\lambda_n$ is Lebesgue measure on $®R^n$. $\lambda_n^*$ is outer Lebesgue measure on $®R^n$. If $B \subset ®R^n$ is a ball and $\alpha > 0$, then $\alpha · B$ stands for the ball, which is concentric with B and with $\alpha$-times greater radius than $B$.
+	$\lambda_n$ is Lebesgue measure on $®R^n$. $\lambda_n^*$ is outer Lebesgue measure on $®R^n$. If $B \subset ®R^n$ is a ball and $\alpha > 0$, then $\alpha * B$ stands for the ball, which is concentric with B and with $\alpha$-times greater radius than $B$.
 \end{definice}
 
 \begin{veta}[Vitali]
@@ -43,16 +43,16 @@
 		$$ s_k = \sup\{\diam B | B \in ©V^* \land B \cap \bigcup_{i=1}^{k-1} B_i = \O\}. $$
 		We find $B_k \in ©V^*$ such that $\diam B_k > \frac{1}{2} s_k > 0$, $B_k \cap \bigcup_{i=1}^{k-1} B_i = \O$.
 
-		Let $©A = \{B_k | k \in ®N\}$. It is disjoint, it is countable, it holds $\lambda_n(A \setminus \bigcup ©A) = 0$:
+		Let $©A = \{B_k | k \in ®N\}$. It is disjoint, it is countable, it holds „$\lambda_n(A \setminus \bigcup ©A) = 0$“:
 
-		$$ \sum_{i=1}^∞ \lambda_n (B_i) = \lambda_n(\bigcup_{i=1}^∞ B_i) ≤ \lambda_n(G) < ∞ \implies $$
+		$$ \sum_{i=1}^∞ \lambda_n (B_i) = \lambda_n\(\bigcup_{i=1}^∞ B_i\) ≤ \lambda_n(G) < ∞ \implies $$
 		$$ \implies \lim_{i \rightarrow ∞} = 0 \implies \lim_{i \rightarrow ∞} \diam(B_i) = 0 \implies \lim_{i \rightarrow ∞} s_i = 0. $$
-		We show that $\forall x \in A \setminus \bigcup ©A\ \forall i \in ®N \exists j \in ®N, j > i: x \in 5 · B_j$ $\(\Leftrightarrow A \setminus \bigcup ©A \subseteq \bigcup_{j = i + 1}^∞ 5·B_j\)$.
+		We show that $\forall x \in A \setminus \bigcup ©A\ \forall i \in ®N\ \exists j \in ®N, j > i: x \in 5 * B_j$ $\(\Leftrightarrow A \setminus \bigcup ©A \subseteq \bigcup_{j = i + 1}^∞ 5*B_j\)$.
 		Take $x \in A \setminus \bigcup ©A$ and $i \in ®N$. Denote $\delta = \dist(x, \bigcup_{k=1}^i B_k) > 0$. There exists $B \in ©V^*$ such that $x \in B$ and $\diam B < \delta$ $\implies$ $B \cap \bigcup_{k=1}^i B_k = \O$. Then we have $\diam B > s_p$ for some $p \in ®N$.
 
-		Therefore there exists $j > i$ with $B_j \cap B ≠ \O$. Let $j$ be the smallest number with this property. Then we have $s_j ≥ \diam B$ since $B \cap \bigcup_{l=1}^{j-1} B_l = \O$. Further we have $\diam B_j > \frac{1}{2} s_j ≥ \frac{1}{2} \diam B$ $\implies 2 \diam B_j ≥ \diam B$ This implies that $x \in B \subset 5·B_j$.
-		$$ \lambda_n^*(A \setminus \bigcup A) ≤ \lambda_n \(\bigcup_{j=i+1}^∞ 5·B_j\) ≤ \sum_{j=i+1}^∞ \lambda_n (5·B_j) = \sum_{j=i+1}^∞ 5^n \lambda_n(B_j) = 5^n · \sum_{j = i+1}^∞ \lambda_n(B_j) \rightarrow 0 $$
-		$$ \implies \lambda_n(A \setminus \bigcup ©A) = 0. $$
+		Therefore there exists $j > i$ with $B_j \cap B ≠ \O$. Let $j$ be the smallest number with this property. Then we have $s_j ≥ \diam B$ since $B \cap \bigcup_{l=1}^{j-1} B_l = \O$. Further we have $\diam B_j > \frac{1}{2} s_j ≥ \frac{1}{2} \diam B$ $\implies 2 \diam B_j ≥ \diam B$. This implies that $x \in B \subset 5*B_j$.
+		$$ \lambda_n^*(A \setminus \bigcup A) ≤ \lambda_n \(\bigcup_{j=i+1}^∞ 5*B_j\) ≤ \sum_{j=i+1}^∞ \lambda_n (5*B_j) = \sum_{j=i+1}^∞ 5^n \lambda_n(B_j) = $$
+		$$ = 5^n · \sum_{j = i+1}^∞ \lambda_n(B_j) \rightarrow 0 \implies \lambda_n(A \setminus \bigcup ©A) = 0. $$
 
 		
 		General case ($A$ not bounded): Let $(G_j)_{j=1}^∞$ be a sequence of disjoint open sets such that $\lambda_n(®R^n \setminus \bigcup_{j=1}^∞ G_j) = 0$. We define $©V_j = \{B \in ©V_i, B \subseteq G_j\}$. $©V_j$ is a Vitali cover of $A \cap G_j$ $\implies \exists ©A_j \subseteq ©V_j$ countable disjoint and $\lambda_n(A \cap G_j \setminus \bigcup A_j) = 0$. We set $©A = \bigcup_{j=1}^∞ ©A_j$. $©A$ is countable, disjoint and $\lambda_n(A \setminus \bigcup ©A) = 0$.
@@ -70,10 +70,10 @@
 \end{poznamka}
 
 \begin{veta}
-	Set $E \subset ®R^n$ be Lebesgue measurable and ©S be a finite system of closed balls covering $E$. Then there exists a disjoint system $©L \subset ®S$ such that $\lambda_n(E) ≤ 3^n · \sum_{B \in ©L} \lambda_n(B)$.
+	Set $E \subset ®R^n$ be Lebesgue measurable and ©S be a finite system of closed balls covering $E$. Then there exists a disjoint system $©L \subset ©S$ such that $\lambda_n(E) ≤ 3^n · \sum_{B \in ©L} \lambda_n(B)$.
 
 	\begin{dukazin}
-		WLOG $©S ≠ \O$. SUppose $B_1 \in ©S$ with maximal radius among balls from ©S.
+		WLOG $©S ≠ \O$. Suppose $B_1 \in ©S$ with maximal radius among balls from ©S.
 
 		Suppose that we have already constructed $B_1, …, B_{k-1} \in ©S$. If possible, choose $B_k \in ©S$ disjoint with $\bigcup_{j < k} B_j$ and with maximal radius among balls satisfying this property.
 
@@ -84,13 +84,12 @@
 \end{veta}
 
 \begin{veta}[Besicovitch theorem]
-	For each $n \in ®N$ there exists $N \in ®N$ with the following property:
+	For each $n \in ®N$ there exists $N \in ®N$ with the following property – If $A \subset ®R^n$ and $\Delta: A \rightarrow (0, ∞)$ is a bounded function.
 
-	If $A \subset ®R^n$ and $\Delta: A \rightarrow (0, ∞)$ is a bounded function, then there exist sets $A_1$, …, $A_N$ $\subseteq A$ such that
-
+	Then there exist sets $A_1$, …, $A_N$ $\subseteq A$ such that:
 	\begin{itemize}
-		\item $\{\overline{B}(x, \Delta x) | x \in A_j\}$ is disjoint for every $j \in [N]$;
-		\item $A \subset \bigcup\{\overline{B}(x, \Delta x) | x \in \bigcup_{i=1}^N A_i\}$.
+		\item $\{\overline{B}(x, \Delta x) \middle| x \in A_j\}$ is disjoint for every $j \in [N]$;
+		\item $A \subset \bigcup\{\overline{B}(x, \Delta x) \middle| x \in \bigcup_{i=1}^N A_i\}$.
 	\end{itemize}
 
 	\begin{dukazin}[Case $A$ is bounded]
@@ -141,7 +140,7 @@
 		\item ©S contains all Borel sets,
 		\item $\mu(K) < ∞$ for every compact $K \in P$,
 		\item $\mu(G) = \sup\{\mu(K) | K \subset G \text{ is compact}\}$ for every $G \subset P$ open,
-		\item $\mu(A) = \inf\{\mu(K) | A \subset G \text{ is open}\}$ for every $A \in ©S$,
+		\item $\mu(A) = \inf\{\mu(G) | A \subset G \text{ is open}\}$ for every $A \in ©S$,
 		\item $\mu$ is complete.
 	\end{itemize}
 \end{definice}
@@ -149,6 +148,8 @@
 \begin{lemma}
 	Let $\mu$ be a measure on $X$ and $\{A_j\}_{j=1}^∞$ be an increasing sequence of subsets of $X$. Then $\lim \mu^*(A_j) = \mu^*\(\bigcup_{j=1}^∞ A_j\)$.
 \end{lemma}
+
+\pagebreak
 
 \begin{veta}
 	Let $\mu$ be a Radon measure on $®R^n$ and ©F be a collection of closed balls in $®R^n$. Let A denote the set of centers of balls in ©F. Assume $\inf\{r | B(a, r) \in ©F\} = 0$ for each $a \in A$. Then there exists a countable disjoint system $©G \subset ©F$ such that $\mu(A \setminus \bigcup ©G) = 0$.
@@ -158,11 +159,11 @@
 		$$ \mu^*((A \cap U) \setminus \bigcup ©H) ≤ \Theta · \mu^*(A \cap U). $$
 		“
 
-		$$ ©F_1 \subset ®F, ®F_1 = \{B \in ®F, \diam B < 1 \land B \subset U\} $$
-		By theorem above there exists disjoint families $©G_1, …, ©G_n \subset ©F_1$ such $A \cap U \subseteq \bigcup_{i=1}^N \bigcup ©G_i$. Thus $\mu^*(A \cap U) ≤ \sum_{i=1}^N \mu^*(A \cap U \cap \bigcup ©G_i)$. Consequently, there exists an integer $1 ≤ j ≤ N$ such that
+		$$ ©F_1 \subset ©F, ©F_1 = \{B \in ©F, \diam B < 1 \land B \subset U\} $$
+		By theorem above there exists disjoint families $©G_1, …, ©G_N \subset ©F_1$ such $A \cap U \subseteq \bigcup_{i=1}^N \bigcup ©G_i$. Thus $\mu^*(A \cap U) ≤ \sum_{i=1}^N \mu^*(A \cap U \cap \bigcup ©G_i)$. Consequently, there exists an integer $1 ≤ j ≤ N$ such that
 		$$ \mu^*(A \cap U \cap \bigcup ©G_j) ≥ \frac{1}{N} \mu^*(A \cap U) > (1 - \Theta) \mu^*(A \cap U). $$
 		Using lemma above we find a finite system $©H \subset ©G_j$ such that
-		$$ \mu^*(A \cap U \cap ©H) > (1 - \Theta) \mu^*(A \cap U). $$
+		$$ \mu^*(A \cap U \cap \bigcup ©H) > (1 - \Theta) \mu^*(A \cap U). $$
 		The set $\bigcup ©H$ is $\mu$-measurable
 		$$ \mu^*(A \cap U) = \mu^*(A \cap U \cap \bigcup ©H) + \mu(A \cap U \setminus \bigcup ©H) ≥ (1 - \Theta) \mu^*(A \cap U) + \mu(A \cap U \setminus \bigcup ©H). $$
 
@@ -186,10 +187,10 @@
 	Let $\mu$ and $\nu$ be measures on $®R^n$ and $x \in ®R^n$. Then we define
 	\begin{itemize}
 		\item upper derivative of $\nu$ with respect to $\mu$ and $x$ by
-			$$ \overline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \sup_{B \in ©B, \diam B < r} \frac{\nu(B)}{\mu(B)}, $$
+			$$ \overline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \sup_{B \in ©B, \diam B < r, x \in B} \frac{\nu(B)}{\mu(B)}, $$
 			if the term at the right side is well-defined;
 		\item lower derivative of $\nu$ with respect to $\mu$ and $x$ by
-			$$ \underline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \inf_{B \in ©B, \diam B < r} \frac{\nu(B)}{\mu(B)}, $$
+			$$ \underline{D}(\nu, \mu, x) = \lim_{r \rightarrow 0_+} \inf_{B \in ©B, \diam B < r, x \in B} \frac{\nu(B)}{\mu(B)}, $$
 			if the term at the right side is well-defined;
 		\item derivative of $\nu$ with respect to $\mu$ and $x$ by
 			$$ D(\nu, \mu, x) = \overline{D}(\nu, \mu, x) = \underline{D}(\nu, \mu, x), $$
@@ -202,12 +203,14 @@
 
 	\begin{dukazin}
 		$M := \{x \in ®R | \nexists\overline{D}(\nu, \mu, x)\}$ and $©V := \{B \in ©B | \mu(B) = 0\}$, $©V$ is a Vitali cover of $M$. Then there exists a disjoint countable family $©A \subset ©V$ such that $\mu(M \setminus \bigcup ©A) = 0$.
-		$$ \mu(\bigcup ©A) = \sum_{B \in ©A} \mu(B) = 0 \implies \mu(M) = 0. $$
+		$$ \mu\(\bigcup ©A\) = \sum_{B \in ©A} \mu(B) = 0 \implies \mu(M) = 0. $$
 	\end{dukazin}
 \end{veta}
 
+\pagebreak
+
 \begin{veta}
-	Let $\mu$ and $\nu$ be Radon measures, $\mu$ satisfy Vitali theorem, $C \in (0, ∞)$, and $M \subset ®R^n$.
+	Let $\mu$ and $\nu$ be Radon measures, $\mu$ satisfy Vitali theorem, $c \in (0, ∞)$, and $M \subset ®R^n$.
 	\begin{itemize}
 		\item If for every $x \in M$ we have $\overline{D}(\nu, \mu, x) > c$, then $\nu^*(M) ≥ c \mu^*(M)$.
 		\item If for every $x \in M$ we have $\underline{D}(\nu, \mu, x) < c$, then there exists $H \subset M$ such that $\mu(M \setminus H) = 0$ and $\nu^*(H) ≤ c \mu^*(M)$.
@@ -226,20 +229,23 @@
 		For every $k \in ®N$ we find an open set $G_k > M$ and $\mu(G_k) ≤ \mu^*(M) + \frac{1}{k}$.
 		$$ ©V_k := \{B \in ©B | B \subset G_k \land \nu(B) < c·\mu(B)\}. $$
 
-		The system $©V_k$ is a Vitali cover of $M$. Thus there exist a countable disjoint system $©A_k \subset ©V_k$ such that $\mu(M \setminus \bigcup ©A_k) = 0$. Set $H_k = M \cap \bigcup ©A_k$. Then $\mu(M \setminus H_k) = 0$, $H_k \subset M$. We have
-		$$ \nu^*(H_k) ≤ \nu(\bigcup ©A_k) = \sum_{B \in ©A_k} \nu(B) ≤ c \sum_{B \in ©A_k} \mu(B) = c \mu(\bigcup ©A_k) ≤ c·\mu(G_k) ≤ c(\mu^*(M) + \frac{1}{k}). $$
+		The system $©V_k$ is a Vitali cover of $M$. Thus there exist a countable disjoint system $©A_k \subset ©V_k$ such that $\mu(M \setminus \bigcup ©A_k) = 0$. Set $H_k = M \cap \bigcup ©A_k$. Then $\mu\(M \setminus H_k\) = 0$, $H_k \subset M$. We have
+		$$ \nu^*\(H_k\) ≤ \nu\(\bigcup ©A_k\) = \sum_{B \in ©A_k} \nu(B) ≤ c \sum_{B \in ©A_k} \mu(B) = c \mu\(\bigcup ©A_k\) ≤ c·\mu\(G_k\) ≤ $$
+		$$ ≤ c\(\mu^*(M) + \frac{1}{k}\). $$
 		$$ H := \bigcap H_k: \qquad \nu^*(H) ≤ c\mu^*(M). $$
 		$$ \mu(M \setminus H) ≤ \sum_{k=1}^∞ \underbrace{\mu(M \setminus H_k)}_{=0} = 0. $$
 	\end{dukazin}
 \end{veta}
 
+\pagebreak
+
 \begin{veta}
-	Let $\nu$ and $\mu$ be Radon measures on $®R^n$ and $mu$ satisfies Vitali theorem. Then $D(\nu, \mu, x)$ exists finite $\mu$ almost everywhere.
+	Let $\nu$ and $\mu$ be Radon measures on $®R^n$ and $\mu$ satisfies Vitali theorem. Then $D(\nu, \mu, x)$ exists finite, $\mu$-almost everywhere.
 
 	\begin{dukazin}
 		$$ D := \{x \in ®R^n | D(\nu, \mu, x) \in [0, ∞)\} $$
-		$$ N_1 := \{x \in ®R^n | \overline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_3 = \{x \in ®R^n | \overline{D}(\nu, \mu, x) = ∞\}, $$
-		$$ N_2 := \{x \in ®R^n | \underline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_4 = \{x \in ®R^n | \underline{D}(\nu, \mu, x) = ∞\}. $$
+		$$ N_1 := \{x \in ®R^n | \overline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_3 := \{x \in ®R^n | \overline{D}(\nu, \mu, x) = ∞\}, $$
+		$$ N_2 := \{x \in ®R^n | \underline{D}(\nu, \mu, x) \text{ is not defined}\}, \qquad N_4 := \{x \in ®R^n | \underline{D}(\nu, \mu, x) < \overline{D}(\nu, \mu, x)\}. $$
 
 		We already showed that $\mu(N_1) = \mu(N_2) = 0$.
 		$$ A_k := \{x \in ®R | \overline{D}(\nu, \mu, x) > k\}, k \in ®N $$
@@ -256,11 +262,13 @@
 	\end{dukazin}
 \end{veta}
 
+\pagebreak
+
 \begin{lemma}
-	Let $\nu$ and $\mu$ be as before. Then the mappings $x \mapsto \overline{D}(\nu, \mu, \lambda)$, $x \mapsto \underline{D}(\nu, \mu, \lambda)$ are $\mu$-measurable.
+	Let $\nu$ and $\mu$ be as before. Then the mappings $x \mapsto \overline{D}(\nu, \mu, x)$, $x \mapsto \underline{D}(\nu, \mu, x)$ are $\mu$-measurable.
 
 	\begin{dukazin}
-		$$ M(r, \alpha) = \{x \in ®R^n | \exists B \in ©B: \diam B < r, x \in B, \frac{\nu(B)}{\mu(B)} < \alpha\}, \qquad r > 0, \alpha > 0. $$
+		$$ M(r, \alpha) = \{x \in ®R^n \middle| \exists B \in ©B: \diam B < r, x \in B, \frac{\nu(B)}{\mu(B)} < \alpha\}, \qquad r > 0, \alpha > 0. $$
 		„$M(r, \alpha)$ is open“: Assume $x \in M(r, \alpha)$ we find $y \in ®R^n$, $s > 0$ such that $x \in \overline{B}(y, s)$, $2s < r$,
 		$$ \frac{\nu(\overline{B}(y, s))}{\mu(\overline{B}(y, s))}. $$
 		We find $s' > s$, $2s' < r$, $\frac{\nu(\overline{B}(y, s'))}{\mu(\overline{B}(y, s'))} < \alpha$. Then $B(y, s') \subset M(r, \alpha)$.
@@ -286,7 +294,7 @@
 		% $$ \beta^k \mu(B_k) < \nu(B_k) $$
 		$$ \beta \rightarrow 1_+: \int_B D(\nu, \mu, x) d\mu(x) ≤ \nu(B). $$
 
-		Using absolute continuity: $\nu(B \setminus (\bigcup_{k=-∞}^∞ B_k \cup N)) = 0$. We use theorem above to get $\nu^*(Q) ≤ C \mu^*(Q)$ for any $c > 0$ and $Q \subset N$ bounded. $\implies \nu*(Q) = 0 \implies \nu(N) = 0$.
+		Using absolute continuity: $\nu(B \setminus (\bigcup_{k=-∞}^∞ B_k \cup N)) = 0$. We use theorem above to get $\nu^*(Q) ≤ C \mu^*(Q)$ for any $c > 0$ and $Q \subset N$ bounded. $\implies \nu^*(Q) = 0 \implies \nu(N) = 0$.
 		$$ \int_B D(\nu, \mu, x) d\mu(x) = \sum_{k=-∞}^∞ \int_{B_k} D(\nu, \mu, x) d\mu(x) ≥ $$
 		$$ ≥ \sum_{k=-∞}^∞ \beta^k · \mu(B_k) ≥ \sum_{k=-∞}^∞ \beta^k · \beta^{-(k+1)} \nu(B_k) = \frac{1}{\beta}·\nu(B). $$
 		$$ \beta \rightarrow 1_+: \int_B D(\nu, \mu, x) d\mu(x) ≥ \nu(B). $$	
@@ -302,7 +310,7 @@
 
 \begin{definice}[Lebesgue point]
 	Let $f \in ©L_{loc}^1(\mu)$. We say that $x \in ®R^n$ is Lebesgue point of $f$ at $x$ (with respect to $\mu$) if we have
-	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall B \in ®B, x \in B, \diam B < \delta: \frac{\int_B |f(t) - f(x)| d\mu(t)}{\mu(B)} < \epsilon. $$
+	$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall B \in ©B, x \in B, \diam B < \delta: \frac{\int_B |f(t) - f(x)| d\mu(t)}{\mu(B)} < \epsilon. $$
 \end{definice}
 
 \begin{veta}
@@ -370,7 +378,7 @@
 	\begin{dukazin}
 		WLOG $f'(x_0) = 0$ ($x \mapsto f(x) - f'(x_0)·x$). Choose $\epsilon > 0$. We find $\delta > 0$ such that
 		$$ \forall x \in (a, b), 0 < |x - x_0| < \delta: \left|\frac{f(x) - f(x_0)}{x - x_0}\right| < \epsilon. $$
-		For any $x_1 \in (x_0 - \delta, x_0]$, $x_2 \in [x_0, x_0 + \delta$ we have
+		For any $x_1 \in (x_0 - \delta, x_0]$, $x_2 \in [x_0, x_0 + \delta)$ we have
 		$$ |f(x_1) - f(x_0)| ≤ \epsilon |x_1 - x_0|, \qquad |f(x_2) - f(x_0)| ≤ \epsilon |x_2 - x_0|. $$
 
 		We get
@@ -435,14 +443,14 @@
 		Claim: „$D(\mu, \lambda, x) = 0$ $\lambda$-almost everywhere.“ $N \subset ®R$ measurable, $\lambda(N) = 0$ and $\mu(®R \setminus N) = 0$. $c > 0: D:= \{x \in ®R \setminus N | D(\mu, \lambda, x) > c\}$.
 		$$ 0 = \mu(D) ≥ c·\lambda(D) \implies \lambda(D) = 0. $$
 
-		Previous lemma gives $g'(x) = D(\nu, \lambda, x)$ $\lambda$-almost everywhere, since $g$ is continuous at each point of $[a, b]$ except on countable set $x_0 \in (a, b) \cap C(f)$, then $f'(x_0) = A \in ®R \Leftrightarrow g'(x_0) = A$ $\implies$ $f'1$ exists almost everywhere in $[a, b]$.
+		Previous lemma gives $g'(x) = D(\nu, \lambda, x)$ $\lambda$-almost everywhere, since $g$ is continuous at each point of $[a, b]$ except on countable set $x_0 \in (a, b) \cap C(f)$, then $f'(x_0) = A \in ®R \Leftrightarrow g'(x_0) = A$ $\implies$ $f'$ exists almost everywhere in $[a, b]$.
 		$$ f(b) - f(a) ≥ g(b) - g(a) = \nu((a, b])) ≥ \sigma((a, b]) = \int_a^b D(\sigma, \lambda, x) d\lambda(x) = $$
 		$$ = \int_a^b D(\nu, \lambda, x) d\lambda(x). $$
 	\end{dukazin}
 \end{veta}
 
 \begin{veta}
-	Let $I$ be a nonempty interval and $f \in BV(I)$. Then $f'(x)$ exists finite almost everywhere in $I$.
+	Let $I$ be a nonempty interval and $f \in BV(I)$. Then $f'(x)$ exists finite, almost everywhere in $I$.
 
 	\begin{dukazin}
 		$f = f_1 - f_2$, where $f_1$, $f_2$ are non-decreasing. And we use previous.
@@ -452,7 +460,7 @@
 % 28. 11. 2022
 
 \begin{veta}
-	Let $f: [a, b] \rightarrow ®R$, $a < B$ the following are equivalent:
+	Let $f: [a, b] \rightarrow ®R$, $a < b$ the following are equivalent:
 
 	\begin{itemize}
 		\item $f \in AC([a, b])$;
@@ -467,7 +475,7 @@
 		$$ \nu([a, x]) = f(x) - f(a) = \int_a^x D(\nu, \lambda_1, t) d\lambda_1(t) = \int_a^x f'(t) d\lambda_1(t). $$
 
 		„$3. \implies 2.$“ triviální. „$2. \implies 1.$“: $\phi = \phi^+ - \phi^-$, $\phi^+, \phi^- \in L^1([a, b])$. We set
-		$$ f_1(x) := \int_a^x \phi^+(t) dt, \qquad f_2(x) = \in_a^x \phi^-(t) dt, $$
+		$$ f_1(x) := \int_a^x \phi^+(t) dt, \qquad f_2(x) = \int_a^x \phi^-(t) dt, $$
 		$$ \nu(M) = \int_M \phi^+(t) dt, \qquad M \subset [a, b] \text{ measurable}. $$
 		
 		Then we have $\nu \ll \lambda_1|_{[a, b]}$, $\nu([x, y]) = \int_x^y \phi^+(t) dt = f_1(y) - f_1(x)$, $f_1, f_2 \in AC([a, b])$, $f(x) = f(a) + f_1(x) - f_2(x)$ $\implies$ $f \in AC([a, b])$.
@@ -501,12 +509,12 @@
 
 \begin{veta}
 	Let $f \in L^1([a, b])$ and $g$ be a monotone function on $[a, b]$. Then there exists $\xi \in [a, b]$ such that
-	$$ \int_a^b = g(a) \int_a^\xi f + g(b) \int_\xi^b f. $$
+	$$ \int_a^b f g = g(a) \int_a^\xi f + g(b) \int_\xi^b f. $$
 
 	\begin{dukazin}
 		WLOG $g$ is non-decreasing.
 
-		First case „$g \in AC([a, b])$“: $F(z) = \int_a^b f$, $F \in AC([a, b])$, $\int_a^b fg = \int_a^b F' g =$
+		First case „$g \in AC([a, b])$“: $F(z) = \int_a^z f$, $F \in AC([a, b])$, $\int_a^b fg = \int_a^b F' g =$
 	$$ [F g]_a^b - \int_a^b F g' = F(b)g(b) - F(a)g(a) - F(\xi) \int_a^b g' = \underbrace{\(\int_a^b f\)}_{\int_a^\xi + \int_\xi^b} ·g(b) - \(\int_a^\xi f\)·(g(b) - g(a)). $$
 
 		General case: $(D_n)_{n=1}^∞$ sequence of partition of $[a, b]$, $\nu(D_n) \rightarrow 0$. $g_n$ piece wise affine function: $g_n(x_j^n) - g(x_j^n)$, $j \in [k_n]$. $\lim_{n \rightarrow ∞} g_n(x) = g(x)$, whenever $x \in [a, b]$ is a point of continuity of $g$.
@@ -519,7 +527,7 @@
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}[?]
+\begin{veta}[Rademacher]
 	Let $G \subset ®R^n$ be open nonempty and $f: G \rightarrow ®R$ be Lipschitz on $G$. Then $f$ is differentiable almost everywhere on $G$.
 \end{veta}
 
@@ -568,10 +576,10 @@
 	\end{dukazin}
 \end{lemma}
 
-\begin{dukaz}[Theorem ?]
+\begin{dukaz}[Rademacher]
 	From previous lemma WLOG $f$ is defined on $®R^n$. Let $E$ be the set of those points, where at least one partial derivative doesn't exist.
 	$$ E := \bigcup_{i = 1}^n (®R^n \setminus D_i). $$
-	Using 1-dimensional Radmachor theorem, Fubini theorem, and measurability of $D_i$, we get
+	Using 1-dimensional Rademacher theorem, Fubini theorem, and measurability of $D_i$, we get
 	$$ \lambda_n(®R^n \setminus D_i) = 0, \qquad \forall i \in [n]. $$
 	So $\lambda_n(E) = 0$.
 
@@ -632,14 +640,14 @@
 	\ \vspace{-2em}
 
 	\begin{itemize}
-		\item If $f \in L^p(®R^n)$, $1 ≤ p ≤ ∞$, then $M f$ is finite almost everywhere.
+		\item If $f \in L^p(®R^n)$, $1 ≤ p ≤ ∞$, then $M f$ is finite, almost everywhere.
 		\item There exists $c > 0$ such that for every $f \in L^1(®R^n)$ and $\alpha > 0$ we have
 			$$ \lambda_n(\{x \in ®R^n | M f(x) > \alpha\}) ≤ \frac{c}{\alpha} \|f\|_1. $$
 		\item Let $p \in (1, ∞]$. Then there exists $A$ such that for every $f \in L^p(®R^n)$ we have $\|M f\|_p ≤ A \|f\|_p$.
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO?
+		TODO!!!
 	\end{dukazin}
 \end{veta}
 
@@ -734,7 +742,7 @@
 	Let $k, n \in ®N$, $k ≤ n$, $K = [0, 1)^k \times \{0\}^{n - k} \subset ®R^n$. Then $0 < \kappa_k(K) < ∞$.
 
 	\begin{dukazin}
-		„$\kappa_k(K) < ∞$“: Let $\delta > 0$. We find $m \in ®N$ such that $\frac{\sqrt{k}}{m} < \delta$. Then set $K$ will be splitted into $,^k$ "cubes", $K_j$ for $j \in [m^k]$.
+		„$\kappa_k(K) < ∞$“: Let $\delta > 0$. We find $m \in ®N$ such that $\frac{\sqrt{k}}{m} < \delta$. Then set $K$ will be splitted into $m^k$ "cubes", $K_j$ for $j \in [m^k]$.
 		$$ \kappa_k(k, \delta) ≤ m^k \(\frac{\sqrt{k}}{m}\)^k = (\sqrt{k})^k. $$
 		$$ \kappa_k(K) ≤ (\sqrt{k})^k < ∞. $$
 
@@ -745,7 +753,7 @@
 
 \begin{definice}[Notation]
 	$k, n \in ®N$, $k ≤ n$:
-	$$ \kappa_k := \kappa_k(K) \in (0, ∞), \qquad H^k := \frac{1}{\kappa_k} \kappa_k, \qquad \kappa_k := \frac{\Gamma \(\frac{1}{2}\)^k}{\Gamma\(\frac{k}{2} + 1\)2^k} $$
+	$$ h_k := \kappa_k(K) \in (0, ∞), \qquad H^k := \frac{1}{h_k} \kappa_k, \qquad h_k := \frac{\Gamma \(\frac{1}{2}\)^k}{\Gamma\(\frac{k}{2} + 1\)2^k} $$
 	$$ \(\Gamma (s) = \int_0^∞ x^{s - 1} e^{-x} dx, \qquad s > 0\). $$
 \end{definice}
 
@@ -753,7 +761,7 @@
 	Let $k, n \in ®N$, $k ≤ n$, and $A \subset ®R^n$. Then there exists a Borel set $B \subset ®R^n$ such that $A \subset B$ and $\kappa_k(A) = \kappa_k(B)$.
 
 	\begin{dukazin}
-		If $\kappa_k(A) = ∞$, then we set $B = ®R^n$. Assume $\kappa_k(A) < ∞$. For each $j \in ®N$ we find an $F_j$ set $f_j \subset ®R^n$ such that $\kappa_k\(F_j, \frac{1}{j}\) < \kappa_k\(A, \frac{1}{j}\) + \frac{1}{j}$ and $A \subset F_j$. $A \subseteq \bigcup \overline{A_i}$ $\sum (\diam A_i)^k$.
+		If $\kappa_k(A) = ∞$, then we set $B = ®R^n$. Assume $\kappa_k(A) < ∞$. For each $j \in ®N$ we find an $F_j$ set $F_j \subset ®R^n$ such that $\kappa_k\(F_j, \frac{1}{j}\) < \kappa_k\(A, \frac{1}{j}\) + \frac{1}{j}$ and $A \subset F_j$. $A \subseteq \bigcup \overline{A_i}$ $\sum (\diam A_i)^k$.
 
 		We set $B = \bigcap_{j=1}^∞ F_j$. Then $B$ is Borel and $A \subset B$. We estimate
 		$$ \kappa_k\(A, \frac{1}{j}\) ≤ \kappa_k\(B, \frac{1}{j}\) ≤ \kappa_k\(F_j, \frac{1}{j}\) < \kappa_k(A, \frac{1}{j}) + \frac{1}{j}: $$
@@ -781,6 +789,62 @@
 	Let $k, n \in ®N$, $k ≤ n$, $G \subseteq ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping and $f: \phi(G) \rightarrow ®R$ be $H^k$-measurable. Then we have
 	$$ \int_{\phi(G)} f(x) dH^k(x) = \int_G f(\phi(t)) vol \phi'(t) d\lambda^k(t), $$
 	if the integral on the right side converges. ($vol L = \sqrt{\det(L^T L)}$ for linear mapping $L$.)
+\end{veta}
+
+% 02. 01. 2023
+
+\begin{lemma}
+	Let $0 < p < q$, $A \subset P$ and $H_p(A) < ∞$. Then $H_q(A) = 0$.
+
+	\begin{dukazin}
+		Let $\delta > 0$. We can find a sequence $\{A_j\}_{j=1}^∞$ of subsets of $P$ such that $A \subset \bigcup_{j=1}^∞ A_j$, $\diam A_j ≤ \delta$ for every $j \in ®N$, and $\sum_{j=1}^∞(\diam A_j)^p < H_p(A) + 1$.
+
+		Then we have
+		$$ H_q(A, \delta) ≤ \sum_{j=1}^∞ (\diam A_j)^q = \sum_{j=1}^∞ (\diam A_j)^p (\diam A_j)^{q - p} ≤ $$
+		$$ ≤ \sum_{j=1}^∞ (\diam A_j)^p · \delta^{p - q} ≤ \delta^{p - q} (H_p(A) + 1) \overset{\delta \rightarrow 0}\longrightarrow 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Hausdorff dimension]
+	Let $A \subseteq P$. Hausdorff dimension of $A$ is defined by
+	$$ \dim A = \inf\{t ≥ 0 | H_t(A) < ∞\}. $$
+\end{definice}
+
+\begin{dusledek}[Properties of H. dimension]
+	\ 
+
+	\begin{itemize}
+		\item For every $A \subset B \subset P$ we have $\dim A ≤ \dim B$.
+		\item For every $A_i \subset P$, $i \in ®N$ we have $\dim(\bigcup_{i=1}^∞ A_i) = \sup \{\dim A_j | j \in ®N\}$.
+		\item We have $\dim([0, 1]^k \times \{0\}^{n-k}) = k$.
+	\end{itemize}
+\end{dusledek}
+
+\begin{priklad}
+	$$ \dim C := \dim \bigcap_{k=0}^∞ \bigcup_{s \in \{0, 1\}^k} I_s, $$
+	where
+	$$ I_{\O} = [0, 1] \subseteq ®R, \qquad I_{s\land i} = \begin{cases}\[a, a + \frac{1}{3}(b - a)\], & i = 0,\\\[b - \frac{1}{3}(b - a), b\], & i = 1.\end{cases} $$
+\end{priklad}
+
+\begin{veta}
+	We have $\dim C = \frac{\log 2}{\log 3}$.
+
+	\begin{dukazin}
+		We set $d = \frac{\log 2}{\log 3}$. We have $C \subset \bigcup_{s \in \{0, 1\}^k} I_k$, $\diam I_s = 3^{-k}$. We infer $\sum_{s \in \{0, 1\}^k} (\diam I_s)^d = 2^k · 3^{-k·d} = 2^k 2^{-k} = 1$. So $H_d (C, 3^{-k}) ≤ 1$, $H_d(C) ≤ 1$. Now we prove that „$H_d(S) ≥ \frac{1}{4}$“:
+
+		It is sufficient to prove $\sum_{j=1}^∞ (\diam I_j)^d ≥ \frac{1}{4}$, where $I_j$, $j \in ®N$, are open intervals and $C \subseteq \bigcup_{j=1}^∞ I_j$. Because $C$ is compact and there exists $n \in ®N$ such that $C \subseteq \bigcup_{j=1}^n I_j$. Since $C$ is nowhere dense, we may assume that endpoints of $I_1, …, I_n \cap C = \O$ then there exists $\delta > 0$ such that $\dist(C, \text{ endpoints of } I_1, …, I_n) > \delta$.
+
+		If $k \in ®N$ satisfies $… < \delta$, then every interval $I_s, s \in \{0, 1\}^k$, is contained in an interval $I_j$, $j \in [n]$. Now we show that for any interval $I$ and fixed $l \in ®N$ we have
+		$$ \sum_{I_s \subset I, s \in \{0, 1\}^l} (\diam I_s)^d ≤ 4 (\diam I)^d. $$
+		Suppose that there is $\{0, 1\}^l$ with $I_s \subseteq I$. Let $m$ be the smallest natural number such that $I$ contains some $I_t, t \in \{0, 1\}^m$. We have $m ≤ l$. Let $J_1, …, J_k$ be intervals among $I_n$, $n \in \{0, 1\}^m$, which intersect $I$. We have $p ≤ 4$.
+
+		$$ 4(\diam I)^d ≥ \sum_{i=1}^p(\diam L_i)^d = \sum_{i=1}^p \sum_{I_s \subset J, s \in \{0, 1\}^l} (\diam I_s)^d, $$
+		because
+		$$ (\diam L_i)^d = (3^{-m})^d = 2^{-m}. $$
+		$$ \sum_{I_s \subset J_i, s \in \{0, 1\}^l} (\diam I_s)^d = 2^{l - m}(3^{-l})^d = 2^{l - m}·2^{-l} = 2^{-m}. $$
+
+		$$ 4 \sum_{j=1}^∞ (\diam I_j)^d ≥ 4·\sum_{j=1}^n (\diam I_j)^d ≥ \sum_{j=1}^n \sum_{I_s \subset I_j, s \in \{0, 1\}^k} (\diam I_s)^d ≥ \sum_{s \in \{0, 1\}^k} (\diam I_s)^d = 1. $$
+	\end{dukazin}
 \end{veta}
 
 \end{document}

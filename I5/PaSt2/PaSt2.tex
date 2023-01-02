@@ -346,8 +346,57 @@ TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
 
 	\begin{dukazin}
 		$$ p(R_1 > t) = P(T_1 > t \land S_1 > t) = P(T_1 > t)·P(S_1 > t) = e^{-\lambda t}·e^{-\kappa t} = e^{-(\lambda + \kappa) t}. $$
-		Následně restartujeme procesy v $R_1$ a začínáme nanovo :)
+		Následně restartujeme procesy v $R_1$ a začínáme nanovo :)
 	\end{dukazin}
 \end{veta}
+
+TODO!!! (Balls and bins) % 9. a 10. přednáška
+
+\section{Neparametrická statistika}
+\begin{definice}[Neparametrická statistika]
+	Nemáme model (rozdělení závisející na parametru).
+\end{definice}
+
+\begin{definice}[Permutační test]
+	Mějme data $x_1, …, x_n$ a $y_1, …, y_m$ (např. testovací a kontrolní vzorek). Dále mějme $f$, které rozhoduje, zda dané $z_1, …, z_{m+n}$ splňuje nulovou hypotézu.
+	$$ ©F := \{f(\pi(z))\}_{\pi \in S_{n + m}} $$
+	$p$-hodnota je podíl prvků souboru $©F$, které splňují nulovou hypotézu. Nulovou hypotézu zamítneme, pokud je tento podíl menší než $\alpha$.
+
+	(Požadujeme, aby za nulové hypotézy byla pravděpodobnost každého prvku $®F$ stejná.)
+\end{definice}
+
+\begin{definice}[Permutační test ++]
+	Pokud nemůžeme počítat $f$ pro všechny $\pi \in S_{n+m}$, nasamplujeme $®F^* \subset ®F$.
+\end{definice}
+
+\begin{definice}[Znamínkový test]
+	$X_1, …, X_n$ nezávislé náhodné veličiny z neznámého spojitého rozdělení symetrické podle střední hodnoty. Nulová hypotéza je, že střední hodnota je 0.
+
+	Nechť $Y_i = \sgn(X_i) = +1$ nebo $0$ (pozor, ne $-1$). Potom při předpokladu nulové hypotézy $Y = \sum_{i=1}^n Y_i \sim Binom(n, \frac{1}{2})$. Tedy nulovou hypotézu zamítneme, pokud $Y ≤ Y_{\alpha / 2}$ nebo $Y > Y_{1 - \alpha / 2}$, kde $P(Binom(n, \frac{1}{2}) < Y_x) = x$.
+\end{definice}
+
+\begin{definice}[Pair test]
+	Mějme data, která jsou přirozeně v párech (např. hodnota před a po vylepšení algoritmu) a mějme nějakou hypotézu, kterou můžeme testovat po prvcích (např. jestli se průměr nových a starých hodnot shoduje, což můžeme testovat jako „jestli je průměr rozdílů hodnot 0“). Potom se můžeme na pár dívat jako na jeden prvek.
+\end{definice}
+
+\begin{definice}[Wilcoxonův test znamínka hodnosti]
+	$X_1, …, X_n$ nezávislé náhodné veličiny z neznámého spojitého rozdělení symetrické podle střední hodnoty. Nulová hypotéza je, že střední hodnota je 0.
+	
+	Hodnost ($\rank, r_i$) je pořadí v seřazení $|X_i|$ (místo sdíleného pořadí vezmeme průměr sdílených míst, to se ve skutečnosti v spojitém rozdělení nemůže stát). Definujeme
+	$$ T := (W := ) \sum_{i=1}^n r_i·\sgn(X_i) = T^+ - T^-. $$
+
+	Zamítneme nulovou hypotézu, pokud $T$ je moc velké nebo moc malé, tj. $T < Y_{\alpha / 2}$ nebo $T > Y_{1 - \alpha / 2}$ ve správném (TODO?) rozdělení.
+\end{definice}
+
+\begin{definice}[Mannův–Whitneyho U-test]
+	Máme dvě množiny $X_1, …, X_n$ a $Y_1, …, Y_m$.
+	$$ U := \sum_{i=1}^n \sum_{j=1}^m S(X_i, Y_i), \qquad S(X, Y) := \begin{cases}0, & X > Y,\\ \frac{1}{2}, & X = Y,\\ 1, & X < Y.\end{cases} $$
+
+	Nulová hypotéza je $P(X < Y) = P(Y < X)$.
+\end{definice}
+
+TODO!!! (Simpson paradox) % 11. přednáška od cca 1:00.
+
+TODO!!! (CLV) % 12. přednáška
 
 \end{document}

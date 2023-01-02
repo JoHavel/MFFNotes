@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}
+	Let $\Omega$ be a bounded domain with a smooth boundary. Let ¦v be a smooth vector field that vanishes on the boundary ($¦v|_{\partial \Omega} = ¦o$). Show that
+	$$ 2 \int_\Omega ®D:®D\,dv = \int_\Omega \nabla ¦v : \nabla ¦v\,dv + \int_\Omega (\Div ¦v)^2\,dv, $$
+	where ®D denotes the symmetric part of the gradient of ¦v $\(®D := \frac{1}{2}\(\nabla ¦v + (\nabla ¦v)^T\)\)$.
+
+	\begin{reseni}
+		Víme, že $:$ je lineární, tedy
+		$$ ®D:®D = \[\frac{1}{2}\(\nabla ¦v + (\nabla ¦v)^T\)\]:\[\frac{1}{2}\(\nabla ¦v + (\nabla ¦v)^T\)\] = $$
+		$$ = \frac{1}{4} \(\nabla ¦v:\nabla ¦v + (\nabla ¦v)^T:(\nabla ¦v)^T + \nabla ¦v : (\nabla ¦v)^T + (\nabla ¦v)^T : \nabla ¦v \) = $$
+		(Pro matice: $®A^T:®B^T = \tr\(®A^T ®B\) = A_{ji}B_{ij} = \tr\(®A ®B^T\) = ®A:®B$)
+		$$ = \frac{1}{2}\(\nabla ¦v:\nabla ¦v + (\nabla ¦v)^T : \nabla ¦v\). $$
+		
+		Z linearity integrálu (a dosazení toho, co jsme teď spočítali):
+		$$ 2 \int_\Omega ®D:®D\,dv = \int_\Omega \nabla ¦v : \nabla ¦v\,dv + \int_\Omega (\nabla ¦v)^T:\nabla ¦v\,dv. $$
+		Tedy stačí dokázat, že $\int_\Omega (\Div ¦v)^2\,dv = \int_\Omega (\nabla ¦v)^T:\nabla ¦v\,dv$.
+
+		Na jedné z prvních přednášek jsme měli rovnost
+		$$ \int_\Omega (\Div ®A) · ¦v\,dv = \int_{\partial \Omega} ®A^T ¦v·¦n\,ds - \int_\Omega ®A : \nabla ¦v\,dv. $$
+		Tedy dosadíme $®A = (\nabla ¦v)^T$ a $¦v = ¦v$. Navíc víme, že ¦v je na hranici ¦o, tedy první člen na pravé straně je 0:
+		$$ \int_\Omega (\nabla ¦v)^T:\nabla ¦v\,dv = 0 - \int_\Omega \(\Div (\nabla ¦v)^T\)·¦v\,dv. $$
+		Derivace jsou (předpok. hladkost) záměnné: $\(\Div (\nabla ¦v)^T\)_j = \partial_i \partial_j v_i = \partial_j \partial_i v_i = \(\nabla (\Div ¦v)\)_j$. Nakonec použijeme Greenovu větu (a znovu $¦v|_{\partial \Omega} = ¦o$):
+		$$ \int_\Omega (\nabla ¦v)^T:\nabla ¦v\,dv = - \int_\Omega \(\Div (\nabla ¦v)^T\)·¦v\,dv = - \int_\Omega \nabla (\Div ¦v)·¦v\,dv = $$
+		$$ = - \int_{\partial \Omega} (\Div ¦v)¦v·¦n\,ds + \int_\Omega (\Div ¦v)(\Div ¦v)\,dv = - 0 + \int_\Omega (\Div ¦v)^2\,dv = \int_\Omega (\Div ¦v)^2\,dv. $$
+	\end{reseni}
+\end{priklad}
+
+\end{document}

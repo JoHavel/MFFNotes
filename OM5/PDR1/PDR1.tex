@@ -171,8 +171,8 @@ TODO?
 		$$ \implies u^\epsilon = \const(\epsilon) \quad in \tilde\Omega. $$
 
 		$$ c(\epsilon) = \int_{®R} c(\epsilon) \eta_\delta(x - y) dy = \int_{®R} u^\epsilon(y) \eta_\delta(x - y) dy = \int_{®R^d}\int_{®R^d} u(z) \eta_\epsilon(y - z) \eta_\delta(x - y) dz dy = $$
-		$$ \int\!\int u(z + y) \eta_\epsilon(z) \eta_\delta(y - x) dz dy = \int\!\int u(z + x + y) \eta_\epsilon(z) \eta_\delta(u) dz dw = $$
-		$$ \int\!\int u(z + x + y) \eta_\epsilon(z) \eta_\delta(u) dw dz = \int_{®R^d} u^\delta(z + x) \eta_\epsilon(z) dz = \int c(\delta) \eta_\epsilon(z) dz = c(\delta). $$
+		$$ \iint u(z + y) \eta_\epsilon(z) \eta_\delta(y - x) dz dy = \iint u(z + x + y) \eta_\epsilon(z) \eta_\delta(u) dz dw = $$
+		$$ \iint u(z + x + y) \eta_\epsilon(z) \eta_\delta(u) dw dz = \int_{®R^d} u^\delta(z + x) \eta_\epsilon(z) dz = \int c(\delta) \eta_\epsilon(z) dz = c(\delta). $$
 
 		„2.“: WLOG $I = (0, 1)$. Define $v(x) = \int_0^x \frac{\partial u}{\partial y}(y) dy$. We show: $v \in W^{1, 1}(I)$, $\frac{\partial v}{\partial x} = \frac{\partial u}{\partial x}$.
 
@@ -1147,8 +1147,8 @@ TODO Example?
 
 		$x_n \in D(A)$, $x_n \rightarrow x$ in $X$, $A x_n \rightarrow y$ in $X$. We want $x \in D(A)$ and $A x = y$.
 		$$ S(h) x_n - S(0) x_n \int_0^t \frac{d}{dt}(S(t) x_n) dt = \int_0^h S(t) (A x_n) dt $$
-		$$ n \rightarrow ∞: \frac{S(h) x - x}{h} = /\!\!\!\! \int_0^h S(t) y dt. $$
-		$$ A(x) = \lim_{h \rightarrow 0_+} \frac{S(h)x - x}{h} = \lim_{n \rightarrow ∞} /\!\!\!\! \int_0^h S(t) y dt = S(0)y = y. $$
+		$$ n \rightarrow ∞: \frac{S(h) x - x}{h} = \fint_0^h S(t) y dt. $$
+		$$ A(x) = \lim_{h \rightarrow 0_+} \frac{S(h)x - x}{h} = \lim_{n \rightarrow ∞} \fint_0^h S(t) y dt = S(0)y = y. $$
 	\end{dukazin}
 \end{veta}
 
@@ -1193,5 +1193,87 @@ TODO Example?
 		$$ \|\tilde S(t)\| ≤ e^{-\omega t} \|S(t)\| ≤ Me^{0·t} = M. $$
 	\end{dukazin}
 \end{lemma}
+
+% 02. 01. 2023
+
+\begin{veta}[Hille-Yosida]
+	Nechť $(A, D(A))$ je neomezený operátor. Pak následující je ekvivalentní:
+
+	\begin{itemize}
+		\item $\exists C_0$-semigupa, jejíž generátor je $(A, D(A))$ a je neexpanzivní;
+		\item $(A, D(A))$ je uzavřený, $D(A)$ je husté v $X$, $(0, ∞) \subseteq \rho(A)$, $\|R(\lambda, A)\|_{©L(X)} ≤ \frac{1}{\lambda}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\implies$“ máme. „$\impliedby$“: (Myšlenka: $A \rightarrow A_n$ aproximace pomocí omezených operátorů, $S_n(x) \sim e^{t A_n}$, $n \rightarrow ∞$).
+	\end{dukazin}
+		
+	\begin{dukazin}[Krok 1]
+		$A_n$ aproximace (Hille-Yosida):
+		$$ A_n := n A R(n, A) \qquad \forall n \in ®N. $$
+		„$A_n$ je omezený operátor“:
+		$$ A_n = n A R(n, A) = n^2 R(n, A) - n I \in ©L(X) $$
+		$$ \|n R(n, A) x - x\|_X = \|R(n, A) A x\|_X ≤ \|R(n, A)\|_{©L(X)} \|A x\|_X ≤ \frac{\|A x\|_X}{n} \rightarrow 0. $$
+		$D(A)$ je husté v $X$. $\|n R(n, A) - I\|_{©L(X)} ≤ n \|R(n, A)\|_{©L(x)} + 1 ≤ 1 + 1 = 2$. Z tohoto a principu stejnoměrné omezenosti (někdy také Banach-Steinhaus) $nR(n, A) x \rightarrow x$ $\forall x \in X$. Spolu s lemmatem bod 3:
+		$$ A_n x = n A R(n, A)x = n R(n, A) A x \rightarrow A x, \qquad \forall x \in D(A). $$
+	\end{dukazin}
+
+	\begin{dukazin}[Krok 2]
+		Definujeme $S_n(t)$ jako:
+		$$ S_n(t) := e^{t A_n} = \sum_{k=0}^∞ \frac{t^k}{k!} A_n^k \quad \in ©L(x). $$
+		Za domácí úkol si ověříme, že $S_n(t)$ je semigrupa.
+		$$ S_n(t) = e^{t A_n} = e^{-n t I + n^2 t R(n, A)} = e^{-n t} e^{n^2 t R(n, A)} $$
+		$$ \|S_n(t)\|_{©L(X)} ≤ e^{-n} \|e^{n^2 t R(n, A)}\|_{©L(x)} ≤ e^{-n t} \|\sum_{k=0}^∞ \frac{(n t)^k}{k!} (n R(n, A))^k\|_{©L(X)} ≤ $$
+		$$ ≤ e^{-n t} \sum_{k=0}^∞ \frac{(n t)^k}{k!} \|n R(n, A)\|_{©L(X)} ≤ e^{-n t} \sum \frac{(n t)^k}{k!} = e^{-n t} e^{n t} = 1. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Krok 3]
+		Ukážeme „$\exists \lim S_n(t) x$“:
+		$$ (S_n (t) - S_m (t))x = \int_0^t \frac{d}{ds} (S_m(t - s) S_n(s) x) ds = \int_0^t \frac{d}{ds} (e^{(t - s) A_m} A^{s A_n} x) ds = $$
+		$$ = \int_0^t (- A_n e^{(t - s) A_m} e^{s A_n} x + A_n e^{(t - s) A_m}e^{s A_n} x) ds = \int_0^t e^{(t - s) A_m} e^{s A_n}(A_n x - A_m x), $$
+		$$ \|S_n(t) x - S_m(t) x \|_X ≤ \left\|\int_0^t e^{(t - s) A_m} e^{s A_n}(A_n x - A_m x)\right\|_X ≤ $$
+		$$ ≤ \left\|\int_0^t S_m(t - s)S_n(s)(A_n x - A_m x)\right\|_X ≤ t \|A_n x - A_m x\|_X $$
+
+		$\forall x \in D(A)$ $S_n(t) x$ je cauchyovská posloupnost $\implies$ $\exists S(t) x$, $S_n(t) x \rightarrow S(t) x$. $D(A)$ je hustý v $x$ a $\|S_n(t)\|_{©L(x)} ≤ 1$ $\implies$ $\forall x \in X$ $\exists \lim_{n \rightarrow ∞} S_n(t) x =: S(t) x$. Z linearity plyne, že $S(t)$ je semigrupa.
+	\end{dukazin}
+
+	\begin{dukazin}[Krok 4]
+		„$(A, D(A))$ je generátor $S(t)$“: Označíme $(\tilde A, D(\tilde A))$ generátor $S(t)$.
+		$$ \(\frac{S(t) x - x}{t}\) \qquad S_n(t) x - x = \int_0^t \frac{d}{ds} S_n(s) x ds = \int_0^t S_n(s) A_n x ds $$
+		$$ n \rightarrow ∞, x \in D(A): S(t) x - x = \lim_{n \rightarrow ∞} \int_0^t S_n(s) A_n x ds = \lim_{n \rightarrow ∞} \int_0^t S_n(s) (A_n x - A x) + (S_n(s) - S(s)) + S(s)A x ds = \int_0^t S(s) A x ds. $$
+
+		$$ \frac{S(t) x - x}{t} = \fint S(s) A x ds \rightarrow A x \qquad \forall x \in D(A). $$
+		$$ \implies D(A) \subseteq D(\tilde A) \implies A = \tilde A \text{ na } D(A). $$
+		Tedy zbývá ukázat $D(\tilde A) \subseteq D(A)$.
+
+		Víme $\forall \lambda > 0: \lambda I - A$ je prostý a na $(\|R(\lambda, A)\| ≤ \frac{1}{\lambda})$. Také víme, že $S(t)$ je neexpanzivní a $\|S(t)\|_{©L(X)} ≤ 1 \implies R(\lambda, \tilde A) ≤ \frac{1}{\lambda}\ \forall \lambda > 0$. Nakonec víme $\forall \lambda > 0: \lambda I - \tilde A$ je prostý a na. To nám dává $D(A) = D(\tilde A)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Obecná Hille-Yosida]
+	$(A, D(A))$ generuje $C_0$-semigrupu splňující $\|S(t)\|_{©L(x)} ≤ M e^{\omega t}$ $\Leftrightarrow$ ($(A, D(A))$ je uzavřený a $\forall \lambda > \omega$, $\lambda ≤ \rho(A)$ a $\|R^n(\lambda, A)\|_{©L(x)} ≤ \frac{M}{(\lambda - \omega)^n} \ \forall n$).
+
+	\begin{dukazin}
+		Podobný předchozímu, jen se musí udělat lepší odhady. Nebyl na přednášce.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Aplikace na lineární evoluční PDR}
+\begin{priklad}
+	$\partial_t u - \Delta u = 0$ v $(0, T) \times \Omega$, $u(0) = u_0$ v $\Omega$ a $u = 0$ na $\partial \Omega \times (0, T)$.
+
+	Přepis do semigrup: $\partial_t u = \Delta u = A u$. A ptáme se $\exists S(t)$ tak, že $A$ je uzavřený, $D(A)$ je husté v $L^2(\Omega)$ a $(0, ∞) \subseteq \rho(A)$ a $R(\lambda, A) ≤ \frac{1}{\lambda}$.
+
+	$D(A) = L^2(\Omega) \cap W_0^{1, 2}(\Omega) \cap \{u | \Delta u \in L^2(\Omega)\}$ a $X = L^2(\Omega)$. $\overline{D(A)} = X$, neboť $C_0^∞(\Omega) \subseteq D(A)$ a $\overline{C_0^∞(\Omega)} = L^2(\Omega)$.
+
+	$(A, D(A))$ je uzavřený:
+	$$ (u^n \rightarrow u \land Au^n \rightarrow f) \implies u \in D(A) \land Au = f: $$
+	$$ u^n \in D(A) \land \Delta u^n =: f^n \in L^2(\Omega) \land f^n \rightarrow f \implies $$
+	$$ \implies \forall \phi \in W_0^{1, 2} \int_\Omega \nabla u^n \nabla \phi = \int_\Omega f^n \phi $$
+	Vezmeme $\phi = u^n$ $\implies$ $\|\nabla u^n\|_2 ≤ c \|f^n\|_2 \overset{\text{Poisson}}\implies \|u^n\|_{1,2} ≤ C$:
+	$$ u^n \rightharpoonup u \implies \int_\Omega \nabla u \nabla \phi = \int_\Omega f \phi \qquad \forall \phi \in W_0^{1, 2}(\Omega). $$
+
+	TODO!!!
+\end{priklad}
 
 \end{document}
