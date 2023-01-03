@@ -1276,4 +1276,47 @@ TODO Example?
 	TODO!!!
 \end{priklad}
 
+TODO!!!
+
+% 03. 01. 2023
+
+\begin{priklad}[RVT s pravou strano]
+	$\partial_t u - \Delta u = f$ v $(0, T) \times \Omega$, $u = 0$ na $(0, T) \times \partial \Omega$, $u(0) = u_0$ v $\Omega$.
+
+	$A u = \Delta u$, $D(A) = \{u \in W_0^{1, 2}, \Delta u \in L^2(\Omega)\}$. To má semigrupu $S(t)$ pro $f \in L^1(0, T, L^2(\Omega))$. Volíme
+	$$ u(t) := S(t) u_0 + \int_0^t S(t - \tau) f(\tau) d\tau. $$
+	Co řeší $u(t)$?
+	$$ \partial_t u = \partial_t(S(t) u_0) + \partial_t \int_0^t S(t - \tau) f(\tau) d\tau = A S(t) u_0 + S(0) f(t) + \int_0^t \partial_t S(t - \tau) f(\tau) d\tau = $$
+	$$ = f(t) + A S(t) u_0 + \int_0^t A S(t - \tau) f(\tau) d\tau = f(t) + A(S(t) u_0 + \int_0^t S(t - \tau) f(\tau) d\tau) = f(t) + A u(t). $$
+\end{priklad}
+
+\begin{priklad}
+	$\partial_t u - \Delta u = 0$ v $(0, T) \times \Omega$, $u = 0$ na $(0, T) \times \partial \Omega$, $u(0) = u_0 \in L^p(\Omega)$, $∞ > p ≥ 2$ (lze i pro $p \in (1, 2)$).
+
+	\begin{reseni}
+		Chceme $X = L^p(\Omega)$, $A u = \Delta u$, $D(A) = \{u \in W_0^{1, 2}(\Omega), \Delta u \in L^p(\Omega)\}$. Pak $A: D(A) \rightarrow X$. Hustota je zadarmo. „$(A, D(A))$ uzavřený“: rozmyslet doma (důkaz stejný jako výše).
+
+		„$\lambda u - \Delta u = f \implies \|u\|_p ≤ \frac{\|f\|_p}{\lambda}$“:
+		$$ \forall f \in L^p(\Omega)\ \exists!u \in W_0^{1, 2}(\Omega): \int_\Omega \lambda u \phi + \nabla u \nabla \phi = \int_\Omega f \phi \qquad \forall \phi \in W_0^{1, 2}(\Omega). $$
+		Kdyby $\phi = |u|^{p - 2} u$ (pozor, nemáme, že toto $\phi \in W_0^{1, 2}$, pouze zkoušíme), pak
+		$$ \lambda \|u\|_p^p + \int_\Omega \nabla u \nabla (|u|^{p - 2} u) = \int_\Omega f |u|^{p - 2} u \overset{\text{Hölder}}≤ \|f\|_p · \|u^{p - 1}\|_{p'} = \|f\|_p·\|u\|_p^{p - 1}, $$
+		což je kýžený odhad, jelikož $(p - 1)|u|^{p - 2} \nabla u ≥ 0$. Volme tedy $\phi := \(\frac{|u|}{1 + \epsilon |u|}\)^{p - 2} u \in W_0^{1, 2}(\Omega)$. Zopakujme postup (TODO?) a máme to.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	$\partial_t u + L u = 0$ v $(0, T) \times \Omega$, $Lu = \Div A \nabla u + b·u + ¦c · \nabla u$, kde $A, b, c$ nezávisí na čase $t$.
+
+	\begin{reseni}
+		$A u = -L u$. $D(A) := \{u \in W_0^{1, 2}(\Omega) | \sup_{\phi \in C_0^∞(\Omega), \|\phi\|_{L^2(\Omega)} = 1} \int_\Omega A \nabla u \nabla \phi + b u \phi + ¦c · \nabla u \phi < ∞\}$.
+
+		$(A, D(A))$ je uzavřený (doma). $\exists \omega > 0\ \forall \lambda ≥ \omega: \lambda u + Lu = f\ \exists!u$. Odhad $\|u\|_2 ≤ \frac{\|f\|_2}{\lambda - \omega}$ už jsme dělali:
+		$$ (\lambda - u)u + \omega u + L u = f, TODO? $$
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}
+	Zkouška: První příklad musíme vysypat z rukávu (5–10 minut max) jinak jdeme domu. Na zbytek spoustu času. Příklad nemusí být ukázaný na přednášce, ale stačí ji následovat. Druhý příklad bude čistá teorie (může to být např. list ANO-NE).
+\end{poznamka}
+
 \end{document}
