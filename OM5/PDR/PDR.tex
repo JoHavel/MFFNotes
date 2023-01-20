@@ -70,7 +70,7 @@ TODO!!!
 \begin{definice}[Transformace diferenciální rovnice]
 	Vezmeme nějaké $y_0$ a $U(y_0)$ a hladké? zobrazení $\phi(y_0) = x_0$ a $\phi(U(y_0)) \subset U(x_0)$.
 
-	Definujeme funkci $v$: $u(x) = v(P·x)$, kde $P \in M^{n \times n}$ je regulární matice. $u(\overbrace{P^{-1}y}^{\phi(y)}) = v(y)$.
+	Definujeme funkci $v$: $u(x) = v(P x)$, kde $P \in M^{n \times n}$ je regulární matice. $u(\overbrace{P^{-1}y}^{\phi(y)}) = v(y)$.
 
 	Dosadíme do rovnice výše:
 	$$ \partial_i u(x) = \sum_{k=1}^n \partial_k v (P x) P_{ki}, \qquad \partial_j\partial_i u(x) = \sum_{k=1}^m P_{ki} \sum_{l=1}^n P_{lj} \partial_k\partial v(P x), $$
@@ -110,7 +110,7 @@ TODO!!!
 
 \section{Vlnová rovnice}
 \begin{tvrzeni}[Obecné řešení vlnové rovnice v 1D]
-	Řešení $\partial_t^2 u - c^2 \partial_x^2 u = 0$, kterou lze transformovat na $\partial_1\partial_2 v = 0$, dostaneme skrze $\partial_2 v(\rho \sigma) = \tilde{V_1(\sigma)}$, tedy $\int_0^∞ \tilde{V_1(\tau)} d\tau + V_2(\rho) = V_1(\sigma) + V_2(\rho) = v(\rho, \sigma)$.
+	Řešení $\partial_t^2 u - c^2 \partial_x^2 u = 0$, kterou lze transformovat na $\partial_1\partial_2 v = 0$, dostaneme skrze $\partial_2 v(\rho \sigma) = \tilde{V}_1(\sigma)$, tedy $\int_0^∞ \tilde{V}_1(\tau) d\tau + V_2(\rho) = V_1(\sigma) + V_2(\rho) = v(\rho, \sigma)$.
 
 	Obecným řešením je tedy
 	$$ u(t, x) = V_1(x - ct) + V_2(x + ct), $$
@@ -158,7 +158,7 @@ TODO!!!
 	$$ C^k(\overline{\Omega}) = \{f \in \Omega \rightarrow ®R | \alpha \in (®N_0)^n, |\alpha| ≤ k \implies D^\alpha f \text{ je možné spojitě rozšířit na } \overline{\Omega}\}. $$
 
 	Pro $T > 0$ definujeme $C^k([0, T) \times ®R) :=$
-	$$ \{f:(0, T) \times ®R | \alpha \in (®N_0)^2, |\alpha| ≤ k \implies D^\alpha f \text{ lze spojitě rozšířit na } [0, T)\times ®R\}. $$
+	$$ \{f:(0, T) \times ®R\ |\ \alpha \in (®N_0)^2, |\alpha| ≤ k \implies D^\alpha f \text{ lze spojitě rozšířit na } [0, T)\times ®R\}. $$
 
 	\begin{poznamkain}
 		Podobné prostory zavedeme podobně.
@@ -187,11 +187,11 @@ TODO!!!
 	kde $u_1, u_2$ jsou $u$ z d'Alambertovy formule a Duhamelova principu. Pak platí $u \in C^2([0, T) \times ®R)$, $\partial_1^2 u - \partial_2^2 u = f$ v $(0, T) \times ®R$, $u = u_0$, $\partial_t u = u_1$ v $\{0\} \times ®R$.
 
 	\begin{dukazin}
-		„$u_2 \in C^1([0, T) \times ®R)$“: Ano, pokud $F(\tau, t, x) := \int_{x - t + \tau}^{x + t - \tau} f(\tau, s) ds$ splňuje $F, \partial_2 F, \partial^3 F \in C([0, T) \times ®R)$. $G(\tau, \alpha, \beta) := \int_\alpha^\beta f(\tau, s) ds$ je spojitá na $[0, T) \times ®R^2$ z vlastností $f$, tedy $F$ podmínky splňuje.
+		„$u_2 \in C^1([0, T) \times ®R)$“: Ano, pokud $F(\tau, t, x) := \int_{x - t + \tau}^{x + t - \tau} f(\tau, s) ds$ splňuje $F, \partial_2 F, \partial^3 F \in C([0, T) \times ®R)$. $G(\tau, \alpha, \beta) := \int_\alpha^\beta f(\tau, s) ds$ je spojitá na $[0, T) \times ®R^2$ z vlastností $f$, tedy $F$ podmínky splňuje.
 
 		Z lemmatu tedy máme
 		$$ u_2 \in C^1([0, T) \times ®R), \partial u_2(t, x) = \frac{1}{2} F(t, t, x) + \frac{1}{2} \int_0^t \partial_2 F(\tau, t, x) d\tau = \frac{1}{2} \int_0^t \partial_2 F(\tau, t, x) d\tau $$
-		Podobně $\partial_t u_2 \in C^1([0, T) \times ®R)$.
+		Podobně $\partial_t u_2 \in C^1([0, T) \times ®R)$.
 		$$ \partial_t^2 u_2(t, x) = \frac{1}{2} \partial_2 F(t, t, x) + \frac{1}{2} \int_0^t \partial_2^2 F(\tau, t, x) d\tau. $$
 		$$ \partial_2 F(\tau, t, x) = f(\tau, x+(t - \tau)) + f(\tau, x - (t - \tau)) $$
 		$$ \partial_2 = F(t, t, x) = 2 f(t, x), $$
@@ -254,7 +254,7 @@ TODO!!!
 \end{veta}
 
 \begin{poznamka}
-	Pak jsme ještě vyměnili podmínku $u = 0$ v $(0, T) \times \{0\}$ za $\partial_t u = 0$ v $(0, T) \times \{0\}$. Takže jsme rozšířili sudě a za cvičení vymysleli znění věty…
+	Pak jsme ještě vyměnili podmínku $u = 0$ v $(0, T) \times \{0\}$ za $\partial_t u = 0$ v $(0, T) \times \{0\}$. Takže jsme rozšířili sudě a za cvičení vymysleli znění věty…
 \end{poznamka}
 
 % 18. 11. 2022
@@ -266,7 +266,7 @@ TODO!!!
 \end{definice}
 
 \begin{veta}
-	Nechť $u_0 \in C^3([0, l])$, $u_1 \in C^3([0, l])$, $l > 0$ a $u_0(0) = u_0(l) = u_0''(0) = u_0''(l) = u_1(0) = u_1(l) = 0$. Pak řešení nalezené Fourierovou metodou splňuje
+	Nechť $u_0 \in C^3([0, l])$, $u_1 \in C^2([0, l])$, $l > 0$ a $u_0(0) = u_0(l) = u_0''(0) = u_0''(l) = u_1(0) = u_1(l) = 0$. Pak řešení nalezené Fourierovou metodou splňuje
 	$$ u \in C^2([0, +∞)\times[0, l]), \partial_t^2 u - \partial_x^2 u = 0 \text{ v } (0, +∞)\times(0, l), $$
 	$$ u = 0 \text{ na } (0, +∞)\times \{0, l\}, u = u_0, \partial_t u = u_1 \text{ v } \{0\} \times [0, l]. $$
 
@@ -281,7 +281,7 @@ TODO!!!
 		$$ \hat{u}_{0k} = \frac{2}{l} \int_0^l u_0(y) \sin \frac{k\pi}{l} y dy = \underbrace{\frac{2}{l}\[u_0(y)\]_0^l}_{=0} + \frac{2}{l} \int_0^l u_0'(y) \cos \frac{k\pi y}{l} dy \frac{l}{k\pi} = … $$
 		$$ … = -\frac{2}{l} \int_0^l u_0'''(y) \cos \frac{k\pi y}{2} dy \(\frac{l}{k \pi}\)^3 $$
 
-		$$ |k^2 \hat{u}_{0k}| ≤ \frac{1}{k} p_k := \frac{1}{k}· \frac{2}{l} \(\frac{l}{\pi}\)^3 |\int_0^l u_0'''(y) \cos \frac{k\pi y}{l} dy|. $$
+		$$ |k^2 \hat{u}_{0k}| ≤ \frac{1}{k} p_k := \frac{1}{k}· \frac{2}{l} \(\frac{l}{\pi}\)^3 \left|\int_0^l u_0'''(y) \cos \frac{k\pi y}{l} dy\right|. $$
 		($||y||_2^2 = \sum_{k=1}^∞ \hat{g}_k^2$ pro orto-normální bázi.) Parsevalova nerovnost: $u_0''' \in L^2(0, l) \implies \sum_{k=1}^∞ p_k^2 < ∞$.
 		$$ |k^2 \hat{u}_{0k}| ≤ \frac{1}{2}\(\frac{1}{k^2} + p_k^2\) \implies \sum_{k=1}^∞ k^2 |\hat{u}_{0k}| < ∞. $$
 	\end{dukazin}
@@ -295,7 +295,7 @@ TODO!!!
 	Ať $\Omega \subset ®R^n$ otevřená omezená s $C^1$ hranicí a vnější normálou $\nu$. Ať $u \in C^1(\overline{\Omega})$, $u: \overline{\Omega} \rightarrow ®R$. Pak $\forall i \in [n]: \int_{\Omega} \partial_i u = \int_{\partial \Omega} u · \nu_i ds$. Pokud $U \in C^1(\overline{\Omega})$, $U: \overline{\Omega} \rightarrow ®R^n: \int_\Omega \Div U d\lambda^n = \int_{\partial \Omega} U·\nu dS$.
 \end{veta}
 
-\begin{veta}[Greenovy ?]
+\begin{veta}[Greenovy]
 	Ať $\Omega$ jako v minulé větě, $u, v \in C^2(\overline{\Omega})$, $w \in C^1(\overline{\Omega})$, $u, v, w: \overline{\Omega} \rightarrow ®R$. Pak
 	$$ \int_\Omega \Delta u w = \int_{\partial \Omega} w(\nabla u · \nu) dS - \int_\Omega \nabla u \nabla w.  $$
 	$$ \int_\Omega (\Delta u) v - u(\Delta v) = \int_{\partial \Omega} v(\nabla u · \nu) - u(\nabla v · \nu) dS. $$
@@ -308,11 +308,11 @@ TODO!!!
 \end{veta}
 
 \begin{lemma}
-	Buď $x \in ®R^n$, $r > 0$, $u$ spojitá na $\partial U(0, r)$. Pak $/\!\!\!\!\int_{\partial U(x, 1)} u ds = /\!\!\!\!\int_{\partial U(0, 1)} u(x + rz) dS(z)$. Kde
-	$$ /\!\!\!\!\!\int_M f d\mu = \int_M f d\mu / \int_M 1 d\mu, \text{ pro } \mu(M) ≠ 0. $$
+	Buď $x \in ®R^n$, $r > 0$, $u$ spojitá na $\partial U(0, r)$. Pak $\fint_{\partial U(x, r)} u ds = \fint_{\partial U(0, 1)} u(x + rz) dS(z)$. Kde
+	$$ \fint_M f d\mu = \int_M f d\mu / \int_M 1 d\mu, \text{ pro } \mu(M) ≠ 0. $$
 
 	\begin{dukazin}
-		Plyne z definice plošného integrálu (ukázali jsme si pouze v $n = 3$). Převedeme na sférické souřadnice, vydělíme objemem daných koulí a vyjde to.
+		Plyne z definice plošného integrálu (ukázali jsme si pouze v $n = 3$). Převedeme na sférické souřadnice, vydělíme objemem daných koulí a vyjde to.
 	\end{dukazin}
 \end{lemma}
 
@@ -334,42 +334,42 @@ TODO!!!
 \end{definice}
 
 \begin{lemma}
-	Buď $x \in ®R^n$, $R > 0$, $u \in C^1(©U(x, R))$. Označme $u^x(r) = /\!\!\!\!\!\int_{\partial ©U(x, r)} u dS$. Pak platí
-	$$ \partial_r u^x(r) = /\!\!\!\!\!\int_{\partial ©U(x, r)} \nabla u(y) · \frac{y - x}{r} dS(y), \qquad r \in (0, R). $$
+	Buď $x \in ®R^n$, $R > 0$, $u \in C^1(©U(x, R))$. Označme $u^x(r) = \fint_{\partial ©U(x, r)} u dS$. Pak platí
+	$$ \partial_r u^x(r) = \fint_{\partial ©U(x, r)} \nabla u(y) · \frac{y - x}{r} dS(y), \qquad r \in (0, R). $$
 
 	Je-li navíc $u \in C^2(©U(x, R))$, je
-	$$ \partial_r u^x(r) = \frac{r}{n} /\!\!\!\!\!\int_{©U(x, r)} \Delta u(y) d\lambda(y). $$
-	$$ \partial_r^2 u^x(r) = \(\frac{1}{n} - 1\) /\!\!\!\!\!\int_{©U(x, r)} \Delta u(y) d\lambda(y) + /\!\!\!\!\!\int_{\partial ©U(x, r)} \Delta u(y) dS (y), \qquad r \in (0, R). $$
+	$$ \partial_r u^x(r) = \frac{r}{n} \fint_{©U(x, r)} \Delta u(y) d\lambda(y). $$
+	$$ \partial_r^2 u^x(r) = \(\frac{1}{n} - 1\) \fint_{©U(x, r)} \Delta u(y) d\lambda(y) + \fint_{\partial ©U(x, r)} \Delta u(y) dS (y), \qquad r \in (0, R). $$
 
 	\begin{dukazin}
 		Podle lemmatu výše, derivace integrálů podle parametru a znovu tohoto lemmatu:
-		$$ \partial_r u^x(r) = \partial_r \(/\!\!\!\!\!\int_{\partial ©U(0, 1)} u (x + rz) dS(z)\) = \int_{\partial ©U(0, 1)} (\nabla u)(x + r z)· z ds(z) = $$
-		$$ = /\!\!\!\!\!\int_{\partial ©U(x, 1)} \nabla u(y) · \frac{y - x}{r} dS(y) = \overset{u \in C^2}= \frac{1}{n \alpha_n r^{n-1}} \int_{©U(x, r)} \Delta u(y) d\lambda^n(y) = \frac{r}{n} /\!\!\!\!\!\int_{©U(x, 1)} \Delta u(y) d\lambda^n(y). $$
+		$$ \partial_r u^x(r) = \partial_r \(\fint_{\partial ©U(0, 1)} u (x + rz) dS(z)\) = \int_{\partial ©U(0, 1)} (\nabla u)(x + r z)· z ds(z) = $$
+		$$ = \fint_{\partial ©U(x, 1)} \nabla u(y) · \frac{y - x}{r} dS(y) = \overset{u \in C^2}= \frac{1}{n \alpha_n r^{n-1}} \int_{©U(x, r)} \Delta u(y) d\lambda^n(y) = \frac{r}{n} \fint_{©U(x, 1)} \Delta u(y) d\lambda^n(y). $$
 	\end{dukazin}
 \end{lemma}
 
 % 25. 11. 2022
 
 \begin{lemma}
-	Buď $x \in ®R^n$, $m \in ®N$, $m ≥ 2$, $u \in C^m([0, +∞) \times ®R^n)$ a $u$ splňuje bodově $\partial_t^2 u - \nabla u = 0$ v $(0, ∞) \times ®R^n$, $u = u_0$ a $\partial_t = u_1$ v $\{0\} \times ®R^n$.
+	Buď $x \in ®R^n$, $m \in ®N$, $m ≥ 2$, $u \in C^m([0, +∞) \times ®R^n)$ a $u$ splňuje bodově $\partial_t^2 u - \Delta  u = 0$ v $(0, ∞) \times ®R^n$, $u = u_0$ a $\partial_t = u_1$ v $\{0\} \times ®R^n$.
 
 	Označme
-	$$ u^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)}\!\!\! u(t, y) dS(y), \quad u_0^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)}\!\!\! u_0(y) dS(y), \quad u_1^x(r, t) = /\!\!\!\!\!\int_{\partial U(x, r)}\!\!\! u_1(y) dS(y), $$
+	$$ u^x(r, t) = \fint_{\partial U(x, r)}\!\!\! u(t, y) dS(y), \quad u_0^x(r, t) = \fint_{\partial U(x, r)}\!\!\! u_0(y) dS(y), \quad u_1^x(r, t) = \fint_{\partial U(x, r)}\!\!\! u_1(y) dS(y), $$
 	pro $t ≥ 0$, $x \in ®R^n$.
 
 	Pak $u^x \in C^m([0, +∞)^2)$ a $\partial_t^2 u^x - \partial_r^2 u^x - \frac{n-1}{r} \partial_r u^x = 0$ v $(0, +∞)^2$, $u^x = u_0^x$, $\partial_t u^x = u_1^x$ v $[0, +∞)\times\{0\}$.
 
 	\begin{dukazin}
 		„$u^x \in C^m([0, +∞)^2)$“ spojitost derivací podle $t$ je zřejmá. Derivace dle $r$:
-		$$ \partial_r u^x(r, t) = \frac{r}{n} /\!\!\!\!\!\int_{U(x, r)} \Delta u(y) d\lambda(y), $$
+		$$ \partial_r u^x(r, t) = \frac{r}{n} \fint_{U(x, r)} \Delta u(y) d\lambda(y), $$
 		podle lemmatu výše. Navíc je spojitá. $\partial_t\partial_r u^x(r, t)$ je jasná.
 
 		$\partial_r^2 u^x(r, t)$ podobně:
-		$$ /\!\!\!\!\!\int_{U(x, r)} (\Delta u)(t, y) d\lambda(y) = /\!\!\!\!\!\int_{0, 1}(\Delta u)(t, x + rz) d\lambda(z) $$
+		$$ \fint_{U(x, r)} (\Delta u)(t, y) d\lambda(y) = \fint_{0, 1}(\Delta u)(t, x + rz) d\lambda(z) $$
 		spojitá dle teorie míry.
 
 		„Rovnosti“:
-		$$ \partial_r u^x(r, t) = \frac{r}{n} /\!\!\!\!\!\int_{U(x, r)} \Delta u(t, y) d\lambda(y) = \frac{r}{n} \int_{U(x, r)} \partial_t^2 u(t, y) d\lambda(y) = \frac{r^{1 - n}}{n \alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y) $$
+		$$ \partial_r u^x(r, t) = \frac{r}{n} \fint_{U(x, r)} \Delta u(t, y) d\lambda(y) = \frac{r}{n} \int_{U(x, r)} \partial_t^2 u(t, y) d\lambda(y) = \frac{r^{1 - n}}{n \alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y) $$
 		$$ r^{n-1} \partial_r u^x(r, t) = \frac{1}{n\alpha_n} \partial_t^2 \int_{U(x, r)} u(t, y) d\lambda(y). $$
 		$$ RHS = r^{1 - n} \partial_r(r^{n-1} \partial_r u^x(r, t)) = \frac{1}{n\alpha_n r^{n-1}} \partial_t^2 \int_{\partial U(x, r)} u dS = \partial_t^2 u^x(r, t) = $$
 		$$ = r^{1 - n}(r^{n-1} \partial_r^2 u^x(r, t) + (n-1)r^{n-2} \partial_r u^x(r, t)) = \partial_r^2 u^x(r, t) + \frac{n-1}{r} \partial_r u^x(r, t) \text{ v } (0, +∞)^2. $$
@@ -379,14 +379,14 @@ TODO!!!
 
 \begin{lemma}[Doplnění pro $n=3$]
 	Označme $t, r ≥ 0$ $\tilde u^x(r, t) = r u^x(r, t)$ a $\tilde u_0^x(r) = r u_0^x(r)$, $\tilde u_1^x(r) = r u_1^x(r)$. Pak
-	$$ \partial_t^2 \tilde u^x = \partial_r^2 u \text{ v } (0, +∞)^2, $$
+	$$ \partial_t^2 \tilde u^x = \partial_r^2 \tilde u^x \text{ v } (0, +∞)^2, $$
 	$$ \tilde u^x = 0 \text{ v } \{0\} \times [0, +∞), $$
-	$$ \tilde u^x = \tilde u_0^x, \partial \tilde u^x = \tilde u_1^x \text{ v } [0, +∞) \times \{0\}. $$
+	$$ \tilde u^x = \tilde u_0^x, \partial_t \tilde u^x = \tilde u_1^x \text{ v } [0, +∞) \times \{0\}. $$
 
 	\begin{dukazin}
 		„První“: $\partial_t^2 \tilde u^x = r \partial_t^2 u^x = r\partial_2^2 u^x + 2\partial_r u^x = \partial_r^2 (r u^x) = \partial_r^2 \tilde u^x$.
 
-		„Druhá“: $\tilde u^x = 0$ z definice pro $r = 0$ a podobně „třetí“.
+		„Druhá“: $\tilde u^x = 0$ z definice pro $r = 0$ a podobně „třetí“.
 	\end{dukazin}
 \end{lemma}
 
@@ -396,17 +396,17 @@ TODO!!!
 	$$ \tilde u^x(r, t) \overset{r < t}= \frac{1}{2}\(\tilde u_0^x(r + t) - \tilde u_0^x(t - r)\) + \frac{1}{2} \int_{t-r}^{t + r} \tilde u_1^x(\xi) d\xi $$
 	$$ u(t, x) = \lim_{r \rightarrow 0_+} U^x(r, t) = \lim_{r \rightarrow 0_+} \frac{1}{r} \tilde u^x(r, t) = $$
 	$$ \lim_{r \rightarrow 0_+} \frac{1}{2r}\((t + r) u_0^x(t + r) - (t - r)u_0^x(t - r)\) + \frac{1}{2r} \int_{t - r}^{t + r} \xi u_1^x(\xi) d\xi = $$
-	$$ = \partial_t (t·u_0^x(t)) + t u_1^x(t) = u_0^x(t) + t /\!\!\!\!\!\int_{\partial U(x, t)} \nabla u_0(y) \frac{y - x}{t} dS(y) + t /\!\!\!\!\!\int_{\partial U(x, t)} u_1(y) dS(y). $$
+	$$ = \partial_t (t·u_0^x(t)) + t u_1^x(t) = u_0^x(t) + t \fint_{\partial U(x, t)} \nabla u_0(y) \frac{y - x}{t} dS(y) + t \fint_{\partial U(x, t)} u_1(y) dS(y). $$
 \end{poznamka}
 
-\begin{dukazin}[Kirchhoffův vzorec]
+\begin{definice}[Kirchhoffův vzorec]
 	Kandidát na řešení vlnové rovnice pro $n=3$:
-	$$ u(t, x) = /\!\!\!\!\!\int_{\partial U(x, t)} u_0(y) + \nabla u_0(y) (y - x) + t u_1(y) dS(y), \qquad x \in ®R^3, t ≥ 0. $$
-\end{dukazin}
+	$$ u(t, x) = \fint_{\partial U(x, t)} u_0(y) + \nabla u_0(y) (y - x) + t u_1(y) dS(y), \qquad x \in ®R^3, t ≥ 0. $$
+\end{definice}
 
 \begin{definice}[Poissonnův vzorec v $n=2$]
 	Kandidát na řešení vlnové rovnice v $n=2$:
-	$$ u(t, x) = \frac{1}{2} /\!\!\!\!\!\int_{U(x, t)} t u_0(y) + t \nabla u(y)(y - x) + t^2 u_1(y) \frac{1}{\sqrt{t^2 - |x-y|^2}} dy, \qquad x \in ®R^2, t ≥ 0. $$
+	$$ u(t, x) = \frac{1}{2} \fint_{U(x, t)} \(t u_0(y) + t \nabla u(y)(y - x) + t^2 u_1(y)\) \frac{1}{\sqrt{t^2 - |x-y|^2}} dy, \qquad x \in ®R^2, t ≥ 0. $$
 \end{definice}
 
 \begin{veta}
@@ -446,7 +446,7 @@ TODO!!!
 		$$ e(t) = \int_{U(x_0, t_0 - t)} |\delta_t u|^2 + |\nabla u|^2. $$
 		$$ e(0) = 0, \quad e ≥ 0, $$
 		$$ \frac{de}{dt} = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 + |\nabla u|^2 ds + \int_{U(x_0, t_0 - t)} 2 \partial_t u \partial_t^2 u + 2 \nabla u · \partial_t \nabla u ds = $$
-		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 + |\nabla u|^2 ds + \int_{U(x_0, t_0 - t)} 2 \partial_t u \partial_t^2 u + 2 \underbrace{\Div(\nabla}_{=\Delta} u) · \partial_t u ds + $$
+		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 + |\nabla u|^2 ds + \int_{U(x_0, t_0 - t)} 2 \partial_t u \partial_t^2 u - 2 \underbrace{\Div(\nabla}_{=\Delta} u) · \partial_t u ds + $$
 		$$ + \int_{\partial U(x_0, t - t_0)} 2 \nabla u·\nu \partial_t u ds = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u|^2 - 2\nabla u · \nu \partial_t u + |\nabla u|^2 ds = $$
 		$$ = - \int_{\partial U(x_0, t_0 - t)}|\partial_t u \nu - \nabla u|^2 ds ≤ 0. $$
 		Tedy $e$ je nerostoucí a $e ≥ 0$, tedy $e = 0$.
@@ -454,7 +454,7 @@ TODO!!!
 \end{veta}
 
 \begin{dusledek}
-	Klasické řešení Cauchyovy úlohy pro vlnovou rovnici je určené jednoznačně.
+	Klasické řešení Cauchyovy úlohy pro vlnovou rovnici je určené jednoznačně.
 \end{dusledek}
 
 \section{Rovnice vedení tepla}
@@ -489,13 +489,13 @@ TODO!!!
 
 		Ad 3:
 		$$ \int_{®R^n} \frac{1}{(4\pi t)^{n / 2}} e^{-\frac{|x|^2}{4t}} dx = \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} dy = $$
-		$$ = \(\frac{1}{\pi}\)^{n / 2} \int_{®R^n} e^{-(y_1^2 + … + y_n^2)} dy = \(\frac{1}{\pi}\)^{n / 2} \underbrace{\(\int_{®R} e^{-z^2} dz\)}_{=\sqrt{\pi}}^n = 1. $$
+		$$ = \(\frac{1}{\pi}\)^{n / 2} \int_{®R^n} e^{-(y_1^2 + … + y_n^2)} dy = \(\frac{1}{\pi}\)^{n / 2} \underbrace{\(\int_{®R} e^{-z^2} dz\)^n}_{=\sqrt{\pi}} = 1. $$
 		Ať $K \subset ®R \times ®R^n$ kompaktní. Pak existuje $C > 0$, $K \subset (-C, C) \times ®R^n$. $G ≥ 0 \implies \int_k G ≤ \int_{-C}^C \int_{®R^n} G = C < +∞$. Tedy $G \in L_{loc}^1(®R \times ®R^n)$.
 
 		Ad 4: Zafixujeme $\phi \in ©D(®R^{n+1})$:
 		$$ \int_{®R^{n+1}} G·(-\partial_t \phi - \Delta \phi) = \lim_{h \rightarrow 0_+} \int_h^{+∞} \int_{®R^n} G·(-\partial_t \phi - \Delta \phi) = $$
 		$$ = \lim_{h \rightarrow 0_+} \int_h^{+∞} \int_{®R} \partial_t G \phi + \int_{®R^n} G(h, x) \phi(h, x) dx - \int_h^{+∞} \int_{®R^n} \Delta G \phi = $$
-		$$ = \lim_{h \rightarrow 0_+} \int_{®R^n} \frac{1}{\sqrt{4\pi h}}^n e^{-\frac{|x|^2}{4h}} \phi(h, t) dx = $$
+		$$ = \lim_{h \rightarrow 0_+} \int_{®R^n} \frac{1}{\sqrt{4\pi h}^n} e^{-\frac{|x|^2}{4h}} \phi(h, x) dx = $$
 		$$ = \lim_{h \rightarrow 0_+} \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} \phi(h, 2\sqrt{h} y) dy \overset{\text{Lebesgue}}= $$
 		$$ = \int_{®R^n} \(\frac{1}{\pi}\)^{n / 2} e^{-|y|^2} \phi(0, 0) dy = \phi(0, 0). $$
 	\end{dukazin}
@@ -540,7 +540,7 @@ TODO!!!
 		$$ = \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2}f(\sigma, x + \eta \sqrt{4(t - \sigma)}) d\eta d\sigma $$
 
 		$$ \frac{1}{h} (u_1(t + h, x) - u_1(t, x)) = \int_0^{t + h} \int_{®R^n} … t+h … d(\eta, \sigma) - \int_0^t \int_{®R^n} … t … d(\eta, \sigma) = $$
-		$$ = /\!\!\!\!\!\int_t^{t + h} \(\int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} f(\sigma, x + \eta\sqrt{4(t + h - \sigma)}) d\eta\)d\sigma + $$
+		$$ = \fint_t^{t + h} \(\int_{®R^n} \frac{1}{\pi^{n / 2}} e^{-\|\eta\|^2} f(\sigma, x + \eta\sqrt{4(t + h - \sigma)}) d\eta\)d\sigma + $$
 		$$ + \frac{1}{h} \int_0^t \int_{®R^n} \frac{1}{\pi^{n / 2}} l^{- \|\eta\|^2} \(f(\sigma, x + \eta\sqrt{4(t + h - \sigma)}) - f(\sigma, x + \eta \sqrt{4t - \sigma})\) d\eta d\sigma = I_1 + I_2. $$
 
 		Použijeme Lagrangeovu větu o střední hodnotě, $\exists \overline{\sigma} \in [t, t + h]$, … Na limitu pro $h \rightarrow 0_+$ použijeme Lebesgueovu větu.
@@ -596,7 +596,7 @@ TODO!!!
 	Z vlastností z předchozích dvou vět neplyne jednoznačnost řešení. (Plynula by, kdyby všechna řešení tyto vlastnosti splňovala.)
 \end{upozorneni}
 
-\begin{veta}[Slabý princip maxima na omezené množině]
+\begin{veta}[Slabý princip maxima na omezené množině]
 	Buď $\Omega \subset ®R^n$ omezená otevřená, $T > 0$, $Q_T = (0, T) \times \Omega$, $u \in C(\overline{Q_T})$, $\Gamma = (\{0\} \times \overline{\Omega}) \cup ((0, T) \times \partial \Omega)$, $\partial_t u, \nabla u, \nabla^2 u \in C(\overline{Q_T} \setminus \Gamma)$ a platí $\partial_t u - \Delta ≤ 0$ na $\overline{Q_T} \setminus \Gamma$.
 
 	Pak $\max_{\overline{Q_T}} u = \max_{\Gamma} u$. (Tj. funkce nabývá maxima na hranici.)
@@ -662,21 +662,21 @@ TODO!!!
 		$$ \int_{\Omega_\rho} \Delta u · v - u · \Delta v d\hat{\lambda} = \int_{\partial \Omega_\rho} \frac{\partial u}{\partial \nu} v - u \frac{\partial v}{\partial \nu} dS, $$
 		kde $\Omega_\rho = \Omega \setminus \overline{U(x, \rho)}$, $v:= \phi_x$.
 
-		Zafixujeme $x \in \Omega$, $\rho > 0$, $\rho < \dist(x, \partial \Omega)$: $\Omega_\rho = \Omega \setminus \overline{U(x, \rho)}$. Na $\Omega_rho$ lze použít větu 2.6I? na funkce $u = \phi_x$.
+		Zafixujeme $x \in \Omega$, $\rho > 0$, $\rho < \dist(x, \partial \Omega)$: $\Omega_\rho = \Omega \setminus \overline{U(x, \rho)}$. Na $\Omega_\rho$ lze použít větu 2.6I? na funkce $u = \phi_x$.
 
 		$$ (*) I_\rho - II_\rho := \int_{\Omega_\rho} \Delta u \phi_x - \int_{\Omega_\rho} u \Delta \phi_x = \int_{\partial \Omega_\rho} \frac{\partial u}{\partial \nu} \phi_x dS - \int_{\partial \Omega_\rho} u \frac{\partial \phi_x}{\partial \nu} dS =: III_\rho - IV_\rho. $$
 
-		$II_\rho = 0$ neboť $\Delta \phi_x = 0$ v $\Omega_\rho$.
+		$II_\rho = 0$ neboť $\Delta \phi_x = 0$ v $\Omega_\rho$.
 
 		$I_\rho \overset{\rho \rightarrow 0_+}\longrightarrow \int_\Omega \Delta u \phi_x d\lambda^2$ podle Lebesgueovy věty pro $|\Delta u \phi_x \chi_{\Omega_\rho}| ≤ |\Delta u|·|\phi_x| \in L^1(\Omega)$.
 
 		$$ III_\rho = \int_{\partial \Omega} \frac{\partial u}{\partial \nu} \phi_x dS + \int_{\partial[U(x, \rho)^C]} \frac{\partial u}{\partial \nu} \phi_x dS = ? $$
-		$$ -\underbrace{(…)}_{\rightarrow 0} ≤ III_\rho ≤ \underbrace{/\!\!\!\!\!\int_{\partial U(x, \rho)^C} dS}_{=1} · \|\frac{\partial u}{\partial \nu}\|_{L^∞(\partial U(x, \rho))}·\frac{\rho}{n-2} \rightarrow 0. $$
+		$$ -\underbrace{(…)}_{\rightarrow 0} ≤ III_\rho ≤ \underbrace{\fint_{\partial U(x, \rho)^C} dS}_{=1} · \|\frac{\partial u}{\partial \nu}\|_{L^∞(\partial U(x, \rho))}·\frac{\rho}{n-2} \rightarrow 0. $$
 
 		$$ IV_\rho = \int_{\partial \Omega} u \frac{\partial \phi_x}{\partial \nu} dS + \underbrace{\int_{\partial U(x, \rho)^C} u \frac{\partial \phi_x}{\partial \nu} dS}_{IV_\rho}. $$
 		$$ IV_{\rho n}: \nabla \phi_x(y) \overset{n > 2} = \frac{1}{n(n-2)\alpha_n} (2 - n) |x - y|^{1 - n} \frac{-(x - y)}{|x - y|} = + \frac{1}{n·\alpha_n} \frac{x - y}{|x - y|^n}, $$
 		$$ \nu(y) = \frac{x - y}{|x - y|}, \qquad \frac{\partial \phi_x(y)}{\partial \nu} = \frac{1}{n \alpha_n} \frac{1}{|x - y|^{n-1}} = \frac{1}{n \alpha_n \rho^{n-1}}. $$
-		$$ IV_{\rho n} = /\!\!\!\!\!\int_{\partial U(x, 0)} u dS \rightarrow u(x). $$
+		$$ IV_{\rho n} = \fint_{\partial U(x, 0)} u dS \rightarrow u(x). $$
 		Limitním přechodem $\rho \rightarrow 0_+$ z $*$ dostáváme znění věty.
 	\end{dukazin}
 
@@ -719,5 +719,100 @@ TODO!!!
 
 	$$ \Re(z) > 0: \Gamma(z + 1) = z\Gamma(z), \qquad \alpha_n := \lambda^n(U(0, 1)) = \frac{\pi^{n / 2}}{\Gamma\(\frac{n}{2} + 1\)}. $$
 \end{definice}
+
+% 06. 01. 2023
+
+\begin{dukaz}[Věty před 3 potenciály]
+	Fixujme $\phi \in D(®R^n)$, $R > 0$, $\supp \phi \subset U(0, R) =: \Omega$, $u := \phi$ a $x := 0$ a použijeme větu o 3 potenciálech, $u(0) = \phi(0) = -\int_\Omega \Delta \phi \Phi$.
+\end{dukaz}
+
+\begin{dusledek}
+	Fixujme $f \in D(®R^n)$, $\phi(y) := f(x - y)$ a dosadíme do věty (před 3 potenciály) bod c): $f(x) = \phi(0) =$
+	$$ = - \int_{®R^n} \Phi(y) \Delta_y f(x - y) dy = -\int_{®R^n} \Phi(y) \Delta_x f(x - y) dy = - \Delta_x \(\int_{®R^n} \Phi(y) f(x - y) dy\). $$
+\end{dusledek}
+
+\begin{definice}[Klasické řešení Poissonovy rovnice]
+	Buď $f: ®R^n \rightarrow ®R$. Řekněme, že $u: ®R^n \rightarrow ®R$ je klasické řešení Poissonovy rovnice s pravou stranou $f$ na $®R^n$, pokud $u \in C^2(®R^n)$ a platí $- \Delta u = f$ na $®R^n$.
+\end{definice}
+
+\begin{veta}
+	Buď $f \in D(®R^n)$. Pak pro $u: ®R^n \rightarrow ®R$ definovaná pro $x \in ®R^n$ jako
+	$$ u(x) = \int_{®R^n} \Phi(y) f(x - y) dy $$
+	je klasické řešení Poissonovy rovnice s pravou stranou $f$ na $®R^n$.
+
+	\begin{dukazin}
+		Podobně jako v předcházejícím důsledku. Jediné, co je potřeba je $u \in C^2$. To se dělá přes derivaci integrálu podle parametru, což vyžaduje majorantu: $|\Phi(y) (\nabla^2 f) (x - y)| ≤ \max_{®R^n} |\nabla^2 f| \Phi(y)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Harmonické funkce]
+	Buď $\Omega \subset ®R^n$ neprázdná otevřená. Řekneme, že $u: \Omega \rightarrow ®R$ je harmonická v $\Omega$ funkce ($u \in ©H(\Omega)$), pokud $u \in C^2(\Omega)$ a $\Delta u = 0$ v $\Omega$.
+
+	\begin{prikladyin}
+		\ 
+
+		\begin{itemize}
+			\item $a \in ®R^n$, $b \in ®R$, $u(x) := a·x + b$ je harmonická na $®R^n$;
+			\item $u(x) = x_1, x_2$ pro $x \in (x_1, …, x_n) \in ®R^n$, $u \in ©H(®R^n)$;
+			\item $\Phi_x \in ©H(®R^n \setminus \{x\})$ pro $x \in ®R^n$;
+			\item $w$ holomorfní na $\Omega \subset ®C$, pak $\Re w$ a $\Im w$ jsou $©H(\Omega)$ (z Cauchy-Riemannovy podmínky).
+		\end{itemize}
+	\end{prikladyin}
+\end{definice}
+
+\begin{veta}[O průměru]
+	Buď $\Omega \subset ®R^n$ neprázdná otevřená, $u \in ©H(\Omega)$. Pro každou kouli $U(x, r)$, takovou, že $\overline{U(x, r)} \subset \Omega$ platí
+	$$ u(x) = \fint_{U(x, r)} u d \lambda^n = \fint_{\partial U(x, r)} u dS. $$
+
+	\begin{dukazin}
+		Důsledek věty o 3 potenciálech. Dosadíme $u$, $\Omega = U(x, r)$, $x$:
+		$$ u(x) = \int_{\partial U(x, r)} \frac{\partial u}{\partial \nu} \Phi_x ds - \int_{\partial U(x, 1)} u \frac{\partial \Phi_x}{\partial \nu} dS = I + II. $$
+		$$ I: \Phi_x(y) = g(r) \ \forall y \in \partial U(x, r). I = g(r) \int \frac{\partial u}{\partial \nu} dS = g(r) \int_{U(x, r)} \Div \nabla u = 0. $$
+		$II:$ Ve větě o 3 potenciálech bylo ukázáno, že $\frac{\partial \Phi_x}{\partial \nu} = - \(\int_{\partial u(x, r)} 1 dS\)^{-1}$. Tedy $u(x) = \fint_{\partial U(x, r)} y dS$.
+
+		$$ g(r) = \int_{U(x, r)} u d\lambda - \kappa_n r^n u(x), \qquad g(0) = 0, \qquad g'(r) = \int_{\partial U(x, r)} u dS - \kappa_n n r^{n - 1} n u(x) = 0 $$
+		$$ \implies g ≡ 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Liouvilleova]
+	Buď $u \in ©H(®R^n)$ a buď $u$ omezená na $®R^n$. Pak je $u$ konstantní na $®R^n$.
+
+	\begin{dukazin}
+		Zafixujme si $x, y \in ®R^n$ a $R > 0$, $u(x) - u(y) = \fint_{U(x, R)} u - \fint_{U(y, R)} u =$
+		$$ = \frac{1}{\kappa_n R^n} \(\int_{U(x, R) \setminus U(y, R)} u - \int_{U(y, R) \setminus U(x, R)} u\) ≤ $$
+		$$ ≤ \frac{2}{\kappa_n R^n} \sup_{®R^n} |u| \lambda^n \(U(x, R) \setminus U(y, R)\). $$
+
+		Pozorování $U(x, R) \setminus U(y R) \subset U(y, R + (x - y)) \setminus U(y, R)$, tedy $u(x) - u(y) ≤$
+		$$ ≤ \frac{2}{\kappa_n R^n} \sup_{®R^n} |u| \kappa_n((R + |x - y|)^n - R^n) ≤ \frac{2}{R^n} \sup_{®R^n} |u| |x - y|\(n·(R + |x - y|)\)^n ≤ $$
+		$$ ≤ \frac{2}{R^n} \sup_{®R^n} |u| |x - y|·n·(2R)^{n - 1} ≤ \frac{C}{R}. $$
+		(Pro dostatečně velká $R$.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buď $f \in C(®R^n)$, $u$ a $v$ klasická řešení rovnice $-\Delta u = f$ na $®R^n$ a $\lim_{|x| \rightarrow +∞} (u - v)(x) = 0$. Potom $u = v$ na $®R^n$.
+
+	\begin{dukazin}
+		$u - v \in ©H(®R^n)$, $u - v$ je omezená na $®R^n$ (na kompaktní množině – kouli – je spojitá funkce omezená a mimo ni je menší než $\epsilon$). Tedy z předchozí věty je konstantní. Ale protože $\lim = 0$, tak je „konstanta“ nula.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Silný princip maxima]
+	Buď $\Omega \subset ®R^n$ neprázdná, otevřená, souvislá, $u \in ©H(\Omega)$ a $\exists x_0 \in \Omega$ takové, že $u$ nabývá v $x_0$ svého extrému (i neostrého). Pak je $u$ konstantní.
+
+	\begin{dukazin}
+		Předpokládejme, že $x_0$ je maximum. Pak definujeme $M = \{x \in \Omega | u(x) = u(x_0)\}$. $M$ je uzavřená v $\Omega$ (vzor uzavřené – jednobodové – množiny při spojitém zobrazení). $M$ je otevřená, protože z $\fint_{U(x, R)} u(x) = \fint_{U(x, R)} u(y) ≤ \fint_{U(x, R)} u(x_0)$ vyplývá, že kolem každého bodu $x \in M$ existuje koule v $M$, kde skoro všude (tj. ze spojitosti všude) je $u(y) = u(x_0)$. A jediná neprázdná ($\ni x_0$) obojetná množina v $®R^n$ je $®R^n$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Slabý princip maxima]
+	Buď $\Omega \subset ®R^n$ neprázdná, otevřená, souvislá, omezená. $u \in ©H(\Omega) \cap C(\overline{\Omega})$. Pak
+	$$ \min_{\partial \Omega} u ≤ \min_{\overline{\Omega}} u ≤ \max_{\overline{\Omega}} u ≤ \max_{\partial \Omega} u. $$
+\end{dusledek}
+
+\begin{dusledek}
+	Jednoznačnost na omezených množinách.
+\end{dusledek}
 
 \end{document}

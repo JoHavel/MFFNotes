@@ -33,7 +33,7 @@
 		\item $z = (x, y) \in ®C$, potom $z = x + i·y$ a $(±i)^2 = -1$.
 		\item Násobení $·: ®C^2 \rightarrow ®C$ je asociativní, komutativní a distributivní (vzhledem k $+$). Navíc $·$ zahrnuje i násobení v ®R a násobení skalárem.
 		\item $|z|^2 = z \overline{z}$, $\overline{z_1 · z_2} = \overline{z_1}·\overline{z_2}$, $|z_1·z_2| = |z_1|·|z_2|$, $z + \overline{z} = 2 \Re z$, $z - \overline{z} = 2i\Im z$, $z, z_1, z_2 \in ®C$.
-		\item $\forall z \in ®C, z ≠ 0: \exists z^{-1} \in ®C: z z^{-1} = 1$, konkrétně $z^-1 = \frac{\overline{z}}{|z|^2}$.
+		\item $\forall z \in ®C, z ≠ 0: \exists z^{-1} \in ®C: z z^{-1} = 1$, konkrétně $z^{-1} = \frac{\overline{z}}{|z|^2}$.
 		\item $(®C, +, ·)$ je komutativní těleso.
 	\end{itemize}
 \end{tvrzeni}
@@ -81,7 +81,7 @@
 	
 	\begin{itemize}
 		\item Existuje $f'(z_0)$.
-		\item Existuje $d f(z_0)$ a $d f(x_0)$ je ®C-lineární.
+		\item Existuje $d f(z_0)$ a $d f(z_0)$ je ®C-lineární.
 		\item Existuje $d f(z_0)$ a platí
 			$$ \frac{\partial f_1}{\partial x}(z_0) = \frac{\partial f_2}{\partial y}(z_0), \frac{\partial f_1}{\partial y}(z_0) = - \frac{\partial f_2}{\partial x}(z_0). $$
 			(Tzv. Cauchy-Riemannova podmínka.)
@@ -121,7 +121,7 @@
 	$$ \log z := \log|z| + i·\arg z. \qquad (\text{Hlavní hodnota logaritmu.}) $$
 \end{definice}
 
-\begin{tvrzeni}[Vladstnosti logaritmu]
+\begin{tvrzeni}[Vlastnosti logaritmu]
 	Nechť $z \in ®C \setminus \{0\}$. Potom
 
 	\begin{itemize}
@@ -179,7 +179,7 @@
 	\ 
 	\begin{itemize}
 		\item $\cos$ i $\sin$ jsou rozšířením funkcí z ®R do ®C.
-		\item $\sin' z = \cos z$, $\cos' z = \sin z$.
+		\item $\sin' z = \cos z$, $\cos' z = -\sin z$.
 		\item $\sin$ i $\cos$ jsou $2\pi$ periodické funkce, ale nejsou omezené, platí, že $\sin ®C = ®C = \cos ®C$.
 		\item Platí $\sin^2 z + \cos^2 z = 1$.
 		\item $\sin z = \sum_{n=0}^{∞} \frac{(-1)^n z^{2n + 1}}{(2n + 1)!}$, $\cos z = \sum_{n=0}^∞ (-1)^n \frac{z^{2n}}{(2n)!}$.
@@ -215,20 +215,20 @@
 
 	$$ \int_\phi f(z) dz, $$
 	Nechť $z_0 \in ®C$, $r \in (0, +∞)$ a $\phi(t) = z_0 + r e^{it}$, $t \in [0, 2\pi]$. Potom
-	$$ \int_\phi (z - z_0)^n dz = \int_0^{2\pi} r^n e^{i n t}·2·r·e^{it} dt = i·r^{n+1} \int_0^{2\pi} e^{i(n + 1) t} dt = $$
+	$$ \int_\phi (z - z_0)^n dz = \int_0^{2\pi} r^n e^{i n t}·i·r·e^{it} dt = i·r^{n+1} \int_0^{2\pi} e^{i(n + 1) t} dt = $$
 	$2\pi i$, pokud $n = -1$, 0, pokud $n \in ®Z$ a $n ≠ -1$.
 \end{poznamka}
 
 \begin{tvrzeni}[Vlastnosti křivkového integrálu]
-	Je-li $\phi$ křivka, $f$ a $g$ jsou spojité funkce na $<\phi>$ a $A \in ®C$, ptotom
+	Je-li $\phi$ křivka, $f$ a $g$ jsou spojité funkce na $<\phi>$ a $A \in ®C$, potom
 	$$ \int_\phi (Af + g) = A\int_\phi f + \int_\phi g. $$
 
 	Je-li $\phi$ křivka a $f$ je spojitá funkce na $<\phi>$, potom
-	$$ |\int_\phi f| ≤ \max_{<\phi>} |f|·V(\phi). $$
+	$$ \left|\int_\phi f\right| ≤ \max_{<\phi>} |f|·V(\phi). $$
 
 	Nechť $\phi: [\alpha, \beta] \rightarrow ®C$, $\psi: [\gamma, \delta] \rightarrow ®C$ a $\phi(\beta) = \psi(\gamma)$. Potom
-	$$ \int_{\phi + \psi} f = \int_\phi f + \int_\psi f \land \int_{-\phi} f = - \int_\phi f, $$
-	kde $(-\phi)(t) := \phi(-t)$, $t \in [-\beta, -\alpha]$ je opačná křivka k $\phi$.
+	$$ \int_{\phi \oplus \psi} f = \int_\phi f + \int_\psi f \land \int_{\ominus\phi} f = - \int_\phi f, $$
+	kde $(\ominus\phi)(t) := \phi(-t)$, $t \in [-\beta, -\alpha]$ je opačná křivka k $\phi$.
 
 	Křivkový integrál nezávisí na parametrizaci křivky: Nechť $\phi: [\alpha, \beta] \rightarrow ®C$ je křivka, $\omega: [\gamma, \delta] \rightarrow [\alpha, \beta]$ je spojitě diferencovatelné s $\omega' > 0$ a $\psi = \phi\circ\omega$. Potom $\int_\psi f = \int_\phi f$.
 
@@ -294,7 +294,7 @@
 		kde $u = [z_1; z_1 + h]$ je úsečka. Tedy
 		$$ F(z_1 + h) - F(z_1) = \int_u f = \int_0^1 f(z_1 + th)h dt, $$
 		$$ \frac{F(z_1 + h) - F(z_1)}{h} - f(z_1) = \int_0^1 (f(z_1 + th) - f(z_1))dt \rightarrow 0, $$
-		neboť $|\int_0^1 (f(z_1 + th) - f(z_1))dt| ≤ \max_{z \in [z_1; z_1+h]} |f(z) - f(z_1)| \rightarrow 0$ ze spojitosti $f$ v $z_1$.
+		neboť $\left|\int_0^1 (f(z_1 + th) - f(z_1))dt\right| ≤ \max_{z \in [z_1; z_1+h]} |f(z) - f(z_1)| \rightarrow 0$ ze spojitosti $f$ v $z_1$.
 	\end{dukazin}
 \end{veta}
 
@@ -332,7 +332,7 @@
 		Označme $\phi_0 := \partial \triangle$. Sporem: Předpokládejme, že $|\int_{\phi_0} f| =: K > 0$. Zřejmě $\triangle$ je nedegenerovaný. V $\triangle$ veďme střední příčky a označme $\psi_1$, $\psi_2$, $\psi_3$, $\psi_4$ obvody čtyř vzniklých trojúhelníků. Obvody vnitřních trojúhelníků $\psi_1$ (vlevo dole), $\psi_2$ (vpravo dole), $\psi_3$ (nahoře) a $\psi_4$ (uprostřed) probíháme proti směru hodinových ručiček. Potom
 		$$ \int_{\phi_0} f = \int_{\psi_1} f + \int_{\psi_2} f + \int_{\psi_3} f + \int_{\psi_4} f. $$
 		Ex. $j_1 = 1, …, 4$ tak, že $|\int_{\psi_{j_1}} f| ≥ \frac{K}{4}$ a $V(\psi_{j_1}) = \frac{V(\phi)}{2}$. Označme $\phi_1 = \psi_{j_1}$. Indukcí sestrojíme posloupnost trojúhelníků tak, že
-		$$ |\int_{\phi_j} f| ≥ \frac{K}{4^j} \land V(\phi_j) = \frac{V(\phi)}{2^j}. $$
+		$$ \left|\int_{\phi_j} f\right| ≥ \frac{K}{4^j} \land V(\phi_j) = \frac{V(\phi)}{2^j}. $$
 
 		Máme, že $\bigcup_{j=0}^∞ \triangle_j = \{z_0\} \subset G$, protože $\diam(\triangle_j) \rightarrow 0$. Položme
 		$$ \epsilon(z) := \begin{cases}\frac{f(z) - f(z_0)}{z - z_0} - f'(z_0), & z \in G\setminus \{z_0\},\\ 0, & z = z_0.\end{cases} $$
@@ -340,7 +340,7 @@
 		Potom $\epsilon$ je spojitá na $G$ a máme pro $j \in ®N_0$:
 		$$ \int_{\phi_j} f(z) dz = \int_{\phi_j} (f(z_0) + f'(z_0)(z - z_0))dz + \int_{\phi_j}\epsilon(z)(z - z_0) dz, $$
 		kde první integrand vpravo má primitivní funkci na ®C a první integrál je roven 0. Pro každé $j \in ®N_0$ dostaneme
-		$$ 0 < \frac{K}{4^j} ≤ |\int_{\phi_j} f| = |\int_{\phi_j} \epsilon(z)(z - z_0)| ≤ V^2(\phi_j)·\max_{<\phi_j>} |\epsilon| = \frac{V^2(\phi)}{4^j}·\max_{<\phi_j>}|\epsilon|, $$
+		$$ 0 < \frac{K}{4^j} ≤ \left|\int_{\phi_j} f\right| = \left|\int_{\phi_j} \epsilon(z)(z - z_0)\right| ≤ V^2(\phi_j)·\max_{<\phi_j>} |\epsilon| = \frac{V^2(\phi)}{4^j}·\max_{<\phi_j>}|\epsilon|, $$
 		kde třetí nerovnost platí díky tomu, že $|z - z_0| ≤ V(\phi_j)$. Z předchozího tedy máme (po vynásobení $4^j$):
 		$$ 0 < K ≤ V^2(\phi)·\max_{<\phi_j>}|\epsilon| \rightarrow 0, $$
 		protože $\epsilon$ je spojitá v $z_0$ a $\epsilon(z_0) = 0$. \lightning.
@@ -387,7 +387,7 @@
 	Nechť $\phi$ je uzavřená křivka v ®C a $G := ®C \setminus <\phi>$. Potom $G$ je otevřena, funkce $s \mapsto \ind_\phi s$ je konstantní na každé komponentě $G$ a na jediné její neomezené komponentě je nulová.
 
 	\begin{dukazin}
-		Podle předchozí věty je $\Phi(s) := \frac{1}{2 \pi i} \int_\phi \frac{dz}{z - s}$, $s \in G$ holomorfní a pro každé $s \in G$ je $\Phi'(s) = \frac{1}{2\pi i} \int_\phi \frac{dz}{(z - s)^2} = 0$, protože $f(z) := \frac{1}{(z - s)^2}$ má primitivní funkci na $®C \setminus \{s\}$. Tedy $\Phi$ je konstantní na každé komponentě $G$.
+		Podle předchozí věty je $\Phi(s) := \frac{1}{2 \pi i} \int_\phi \frac{dz}{z - s}$, $s \in G$ holomorfní a pro každé $s \in G$ je $\Phi'(s) = -\frac{1}{2\pi i} \int_\phi \frac{dz}{(z - s)^2} = 0$, protože $f(z) := \frac{1}{(z - s)^2}$ má primitivní funkci na $®C \setminus \{s\}$. Tedy $\Phi$ je konstantní na každé komponentě $G$.
 
 		Volíme $R > 0$, aby $<\phi> \subset U(0, R)$. Potom $®C \setminus U(0, R)$ je obsaženo v jediné neomezené komponentě $G_0$ množiny $G$. Navíc pro $s \in ®C \setminus U(0, R)$ je funkce $g(z) := \frac{1}{z - s}$, $z \in U(0, R)$ holomorfní a dle Cauchyho věty pro hvězdovitou oblast je $\Phi(s) = 0$.
 	\end{dukazin}
@@ -396,16 +396,15 @@
 % 03. 11. 2022
 
 \begin{veta}[Cauchyův vzorec na kruhu]
-	Nechť $G \subset ®C$ je otevřené a $f \in ©H(G)$. Nechť $\overline{U(z_0), r} \subset G$ a $p(t) = z_0 + r·e^{it}$, $t \in [0, 2\pi]$. Potom platí
-	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = f(s), |s - z_0| < r; $$
-	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = 0, |s - z_0| > r; $$
+	Nechť $G \subset ®C$ je otevřené a $f \in ©H(G)$. Nechť $\overline{U(z_0, r)} \subset G$ a $\phi(t) = z_0 + r·e^{it}$, $t \in [0, 2\pi]$. Potom platí
+	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = f(s), \qquad |s - z_0| < r; $$
+	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = 0, \qquad |s - z_0| > r; $$
 
 	\begin{dukazin}
 		1. Nechť $|s - z_0|<r$. Volme $R > r$, aby $U(z, R) \subset G$. Položme
-		$$ h(z) := \frac{f(z) - f(s)}{z - s}, z \in U(z_0, R) \setminus \{s\}; $$
-		$$ h(z) := f'(s), z = s. $$
+		$$ h(z) := \begin{cases}\frac{f(z) - f(s)}{z - s},& z \in U(z_0, R) \setminus \{s\};\\f'(s),& z = s. \end{cases} $$
 		
-		Zřejmě $h \in ©H(U(z_0, R) \setminus \{s\})$ he spojitá hvězdovitá oblast $U(z_0, R)$. Z Cauchyho věty je
+		Zřejmě $h \in ©H(U(z_0, R) \setminus \{s\})$ je spojitá hvězdovitá oblast $U(z_0, R)$. Z Cauchyho věty je
 		$$ 0 = \frac{1}{2\pi} \int_\phi h = \frac{1}{2\pi} \int_\phi \frac{f(z) dz}{z - s} - \frac{1}{2\pi} \int_\phi \frac{dz}{z - d}·f_s. $$
 
 		2. Nechť $|s - z_0| > r$. Volme $R \in (r, |z_0 - s|)$, aby $U(z_0, R) \subset G$. Potom
@@ -441,21 +440,22 @@
 	Nechť $z_0 \in ®C$, $r \in (0, +∞)$ a $f$ je holomorfní funkce na otevřené množině obsahující $\overline{U(z_0, r)}$. Potom pro každé $k \in ®N_0$ je
 	\begin{itemize}
 		\item[CO1] $\forall s \in U := U(z_0, r)$:
-			$$ |f^{(k)}(s)| ≤ \frac{(k!) r}{(d(s))^{k+1}}, $$
+			$$ |f^{(k)}(s)| ≤ \frac{(k!) r}{(d(s))^{k+1}}·\max_{\partial U} |f|, $$
 			kde $d(s) := \dist(s, \partial U)$;
 		\item[CO2] $\forall s \in U(z_0, \frac{r}{2})$:
-			$$ |f^{(k)}(s)| ≤ \frac{k! 2^{k+1}}{r^2}·\max_{\partial U} |f|; $$
+			$$ |f^{(k)}(s)| ≤ \frac{k! 2^{k+1}}{r^k}·\max_{\partial U} |f|; $$
 		\item[CO3] $|f^{(k)}(z_0)| ≤ \frac{k!}{r^k}·\max_{\partial U} |f|$.
 	\end{itemize}
 
 	\begin{dukazin}[CO1]
 		Z věty výše (pro $\phi$ stejné jako tam)
-		$$ |f^{(k)}(z)| = |\frac{k!}{2\pi} \int_\phi \frac{f(z) ds}{(z - s)^{k+1}}| ≤ \frac{k!}{2\pi}·2\pi r \max_{<\phi>} |f| \frac{1}{(d(s))^{k+1}}, $$
+		$$ \int_\Omega \partial_t (u - u_d) $$
+		$$ \left|f^{(k)}(z)\right| = \left|\frac{k!}{2\pi} \int_\phi \frac{f(z) ds}{(z - s)^{k+1}}\right| ≤ \frac{k!}{2\pi}·2\pi r \max_{<\phi>} |f| \frac{1}{(d(s))^{k+1}}, $$
 		protože $|z - s| ≥ d(s)$ $\forall z \in <\phi>$.
 	\end{dukazin}
 
 	\begin{dukazin}[CO2 a CO3]
-		Plyne z CO1, neboť $d(s) ≥ \frac{r}{2} \forall s \in U(z_0, \frac{r}{2})$ a $d(z_0) = r$.
+		Plyne z CO1, neboť $d(s) ≥ \frac{r}{2}\ \forall s \in U(z_0, \frac{r}{2})$ a $d(z_0) = r$.
 	\end{dukazin}
 \end{veta}
 
@@ -483,16 +483,16 @@
 
 	\begin{dukazin}
 		Platí
-		$$ |\int_\phi f_i - \int_\phi f| = |\int_\phi (f_n - f)| ≤ V(\phi)·\max_{<\phi>} |f_n - f| \rightarrow 0. $$
+		$$ \left|\int_\phi f_i - \int_\phi f\right| = \left|\int_\phi (f_n - f)\right| ≤ V(\phi)·\max_{<\phi>} |f_n - f| \rightarrow 0. $$
 	\end{dukazin}
 \end{lemma}
 
 \begin{veta}[Weierstrass]
-	Nechť $G \subset ®C$ je otevřená, $f_n \in ©H(F)$ pro $n \in ®N$ a $f_n \overset{\text{Loc.}}\rightrightarrows f$ na $G$. Potom $f \in ©H(G)$ a $f_n^{(k)} \overset{\text{Loc.}}\rightrightarrows f^{(k)}$ na $G$ pro každé $k \in ®N$.
+	Nechť $G \subset ®C$ je otevřená, $f_n \in ©H(F)$ pro $n \in ®N$ a $f_n \overset{\text{loc.}}\rightrightarrows f$ na $G$. Potom $f \in ©H(G)$ a $f_n^{(k)} \overset{\text{Loc.}}\rightrightarrows f^{(k)}$ na $G$ pro každé $k \in ®N$.
 
 	\begin{dukazin}
 		1. Zřejmě $f$ je spojitá na $G$. Nechť $\triangle$ je trojúhelník v $G$. Potom
-		$$ 0 \overset{G ?}= \int_{\partial \triangle} f_n \rightarrow \int_{\partial \triangle} f = 0. $$
+		$$ 0 \overset{\text{Goursat}}= \int_{\partial \triangle} f_n \rightarrow \int_{\partial \triangle} f = 0. $$
 		Z Morera je $f \in ©H(G)$.
 
 		2. Nechť $k \in ®N$ a $z_0 \in G$. Volme $r > 0$, aby $\overline{U(z_0, r)} \subset G$. Z CO2 máme, že $\forall s \in U(z_0, \frac{r}{2}):$
@@ -510,17 +510,21 @@
 \end{definice}
 
 \begin{poznamka}[Vlastnosti]
+	\ 
+
+	\vspace{-2em}
+
 	\begin{itemize}
-		\item[Konvergence] Existuje $R \in [0, +∞]$ takové, že řada konverguje absolutně a lokálně stejnoměrně na $U(z_0, R) := \{z \in ®C |\ |z - z_0| < R\}$ a řada diverguje pro $|z - z_0| > R$. Číslo $R$ se nazývá poloměr konvergence a platí, že
+		\item Konvergence: Existuje $R \in [0, +∞]$ takové, že řada konverguje absolutně a lokálně stejnoměrně na $U(z_0, R) := \{z \in ®C |\ |z - z_0| < R\}$ a řada diverguje pro $|z - z_0| > R$. Číslo $R$ se nazývá poloměr konvergence a platí, že
 			$$ R = \frac{1}{\limsup_{n\rightarrow ∞} \sqrt[n]{|a_n|}}, $$
 			kde $\frac{1}{0} = +∞$ a $\frac{1}{+∞} = 0$.
 		\item Označíme-li součet řady na $U(z_0, R)$ jako $f$, potom $f \in ©H(U(z_0, R))$ a pro každé $k \in ®N$ je
-			$$ f^{(k)}(z) - \sum_{n=k}^∞a_n · n · (n-1) · … ·(n-k+1)·(z - z_0)^{n-k}, \qquad z \in U(z_0, R), $$
+			$$ f^{(k)}(z) = \sum_{n=k}^∞a_n · n · (n-1) · … ·(n-k+1)·(z - z_0)^{n-k}, \qquad z \in U(z_0, R), $$
 			speciálně $a_k = f^{(k)}(z) / k!$.
 		
 			Plyne z Weierstrassovy věty pro
 			$$ S_N(z) = \sum_{n=0}^∞ a_n(z - z_0)^n. $$
-			Zřejmě $S_N \rightrightarrows^{loc} f$ na $U(z_0, R)$, tudíž $S_N^{(k)} \rightrightarrows^{loc} f^{(k)}$ na $U(z_0, R)$, tudíž rovnost výše platí. Dosadíme-li do ní $z = z_0$, dostaneme
+			Zřejmě $S_N \overset{\text{loc.}}\rightrightarrows f$ na $U(z_0, R)$, tudíž $S_N^{(k)} \overset{\text{loc.}}\rightrightarrows f^{(k)}$ na $U(z_0, R)$, tudíž rovnost výše platí. Dosadíme-li do ní $z = z_0$, dostaneme
 			$$ f^{(k)}(z_0) = a_k·k!. $$
 	\end{itemize}
 \end{poznamka}
@@ -535,15 +539,15 @@
 		$$ \frac{1}{w - z} = \frac{1}{(w - z_0) - (z - z_0)} = \frac{1}{w - z}·\frac{1}{1 - \frac{z - z_0}{w - z_0}} = \sum_{n=0}^∞ \frac{(z - z_0)^n}{(w - z_0)^{n+1}}, $$
 		což konverguje stejnoměrně pro $w \in <\phi>$. Dosadíme:
 		$$ f(z) = \frac{1}{2\pi i} \int_\phi \sum_{n=0}^∞ \frac{(z - z_0)^n}{(w - z_0)^{n+1}} f(w) dw = $$
-		$$ \sum_{n=0}^∞ (z - z_0)^n · \frac{1}{2\pi i} \int_\phi \frac{f(w) dw}{(w - z_0)^{n+1}} = \sum_{n=0}^∞ (z - z_0)^n · \frac{f^{(n)}}{n!}. $$
+		$$ = \sum_{n=0}^∞ (z - z_0)^n · \frac{1}{2\pi i} \int_\phi \frac{f(w) dw}{(w - z_0)^{n+1}} = \sum_{n=0}^∞ (z - z_0)^n · \frac{f^{(n)}}{n!}. $$
 	\end{dukazin}
 \end{veta}
 
 \begin{veta}[O nulovém bodě]
-	Nechť $f$ je holomorfní funkce na okolí $x_0 \in ®C$ a $f(z_0) = 0$. Potom buď $\exists r > 0: f = 0$ na $U(z_0, r)$; nebo $\exists r > 0: f ≠ 0$ na $P(z_0, r) := U(z_0, r) \setminus \{z_0\}$.
+	Nechť $f$ je holomorfní funkce na okolí $z_0 \in ®C$ a $f(z_0) = 0$. Potom buď $\exists r > 0: f = 0$ na $U(z_0, r)$; nebo $\exists r > 0: f ≠ 0$ na $P(z_0, r) := U(z_0, r) \setminus \{z_0\}$.
 
 	V druhém případě existuje jediné $p \in ®N$ tak, že
-	$$ f(x_0) = 0 = f'(z_0) = … = f^{(p-1)}(z_0), f^{(p)}(z_0) ≠ 0. $$
+	$$ f(z_0) = 0 = f'(z_0) = … = f^{(p-1)}(z_0), f^{(p)}(z_0) ≠ 0. $$
 	Číslo $p$ je tzv. násobnost nulového bodu $z_0$ funkce $f$.
 
 	Navíc $z_0$ je nulový bod $f$ násobnosti $p \in ®N$, právě když existuje $r > 0$ a $g \in ©H(U(z_0, r))$ tak, že $\forall z \in U(z_0, r)$:
@@ -567,7 +571,7 @@
 	\end{enumerate}
 
 	\begin{dukazin}
-		BÚNO předpokládejme, že $G = 0$, jinak uvažujme $f - g$. „$1 \implies 2$ a $2 \implies 3$“: Nechť $z_0 \in G$ je hromadný bod $M := \{z \in G | f(z) = 0\}$. Zřejmě $f(z_0) = 0$ a z předchozí věty je $f = 0$ na nějakém okolí $z_0$.
+		BÚNO předpokládejme, že $g = 0$, jinak uvažujme $f - g$. „$1 \implies 2$ a $2 \implies 3$“: Nechť $z_0 \in G$ je hromadný bod $M := \{z \in G | f(z) = 0\}$. Zřejmě $f(z_0) = 0$ a z předchozí věty je $f = 0$ na nějakém okolí $z_0$.
 
 		„$3 \implies 1$“: Uvažme $N := \{z \in G | \forall k \in ®N_0: f^{(k)}(z) = 0\}$. Potom $\O ≠ N$ a $N$ je uzavřená v $G$, protože všechny $f^{(k)}$ jsou spojité. Navíc $N$ je otevřená. Nechť $z_1 \in N$. Podle věty o nulovém bodě existuje $r > 0$ tak, že $f = 0$ na $U(z_1, r)$. Tedy $U(z_0, r) \subset N$. Protože $G$ je oblast (tj. je souvislá, tedy neexistuje vlastní obojetná podmnožina), je $N = G$.
 	\end{dukazin}
@@ -582,15 +586,15 @@
 		Nechť to platí. Potom
 		$$ f(z) = \sum_{n=0}^∞ a_n(z - z_0)^n, z \in U(z_0, r). $$
 		Nechť $0 < \rho < r$. Potom
-		$$ |a^2| = |f(z_0)|^2 ≥ \frac{1}{2\pi} \int_0^{2\pi} |f(z_0 + \rho e^{it})|^2 dt = $$
-		$$ = \frac{1}{2\pi} \int_0^{2\pi} \(\sum_{n=1}^∞ a_n\rho^n e^{i n t}\)·\(\sum_{m=1}^∞ \overline{a_m}\rho^m e^{-i n t}\) dt = |f(z)|^2 = f(z)\overline{f(z)}. $$
+		$$ |a_0^2| = |f(z_0)|^2 ≥ \frac{1}{2\pi} \int_0^{2\pi} |f(z_0 + \rho e^{it})|^2 dt = $$
+		$$ = \frac{1}{2\pi} \int_0^{2\pi} \(\sum_{n=1}^∞ a_n\rho^n e^{i n t}\)·\(\sum_{m=1}^∞ \overline{a_m}\rho^m e^{-i n t}\) dt = \sum_{n=0}^∞ a_n \overline{a_n} \rho^{2n} \implies a_m = 0\ \forall m \in ®N. $$
 	\end{dukazin}
 \end{veta}
 
 \section{Riemannova sféra}
 \begin{definice}[Riemannova sféra (®S)]
 	Označme $®S = ®C \cup \{∞\}$ a definujeme okolí v $∞$ následovně: Pro každou $\epsilon > 0$ položme
-	$$ P(∞, \epsilon) := \{z \in ®C |\ |z| > \frac{1}{\epsilon}\}, \qquad U(∞, \epsilon) := P(∞, \epsilon) \cup \{∞\}. $$
+	$$ P(∞, \epsilon) := \{z \in ®C\ |\ |z| > \frac{1}{\epsilon}\}, \qquad U(∞, \epsilon) := P(∞, \epsilon) \cup \{∞\}. $$
 \end{definice}
 
 \begin{definice}[Limita na ®S]
@@ -603,7 +607,7 @@
 	\begin{itemize}
 		\item $\lim_{z \rightarrow ∞}f(z) = \lim_{z \rightarrow 0} f\(\frac{1}{z}\)$, má-li alespoň jedna strana smysl.
 		\item Následující je ekvivalentní: $\lim_{z \rightarrow z_0} f(z) = ∞$, $\lim_{z \rightarrow z_0} |f(z)| = +∞$, $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0$.
-		\item Počítání s $∞$: $\frac{a}{∞} = 0\ \forall a \in ®C$, $\frac{a}{0} = ∞\ \forall a \in ®S \setminus \{0\}$, $a±∞ = ∞ \forall a \in ®C$, $a·∞ = ∞\ \forall a \in ®S \setminus \{0\}$. Nedefinujeme $\frac{0}{0}$, $\frac{∞}{∞}$, $∞±∞$, $0·∞$. Potom platí i v $®S$ aritmetika limit.
+		\item Počítání s $∞$: $\frac{a}{∞} = 0\ \forall a \in ®C$, $\frac{a}{0} = ∞\ \forall a \in ®S \setminus \{0\}$, $a±∞ = ∞ \forall\ a \in ®C$, $a·∞ = ∞\ \forall a \in ®S \setminus \{0\}$. Nedefinujeme $\frac{0}{0}$, $\frac{∞}{∞}$, $∞±∞$, $0·∞$. Potom platí i v $®S$ aritmetika limit.
 		\item ®S je jednobodovou kompaktifikací ®C.
 		\item ®S je homeomorfní s jednotkovou sférou $S^2 := \{[\alpha, \beta, \gamma] \in ®R^3 | \alpha^2 + \beta^2 + \gamma^2 = 1\}$, speciálně ®S je kompaktní.
 	\end{itemize}
@@ -618,65 +622,65 @@
 		\item pól, je-li $\lim_{z \rightarrow z_0} f(z) = ∞$;
 		\item podstatnou singularitu, pokud $\lim_{z \rightarrow z_0} f(z)$ neexistuje v ®S.
 	\end{itemize}
+\end{definice}
 
-	\begin{veta}[O odstranitelné singularitě]
-		Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
+\begin{veta}[O odstranitelné singularitě]
+	Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
 
-		\begin{enumerate}
-			\item $z_0$ je odstranitelná singularita $f$.
-			\item Existuje $r > 0$ tak, že $f$ je omezená na $P(z_0, r)$.
-			\item Existuje $F \in ©H(U(z_0))$ tak, že $F = f$ na $P(z_0)$.
-		\end{enumerate}
+	\begin{enumerate}
+		\item $z_0$ je odstranitelná singularita $f$.
+		\item Existuje $r > 0$ tak, že $f$ je omezená na $P(z_0, r)$.
+		\item Existuje $F \in ©H(U(z_0))$ tak, že $F = f$ na $P(z_0)$.
+	\end{enumerate}
 
-		\begin{poznamkain}[Úmluva]
-			Každá odstranitelná singularita se považuje za odstraněnou (tj. bereme $F$ místo $f$).
-		\end{poznamkain}
+	\begin{poznamkain}[Úmluva]
+		Každá odstranitelná singularita se považuje za odstraněnou (tj. bereme $F$ místo $f$).
+	\end{poznamkain}
 
-		\begin{dukazin}
-			„$1. \implies 2.$, $2. \implies 3.$“: Položme
-			$$ g(z) := \begin{cases} (z - z_0)^2 f(z),& \quad z \in P(z_0),\\ 0,& \quad z = z_0. \end{cases} $$
-			Potom $g \in ©H(U(z_0))$, protože
-			$$ g'(z_0) = \lim_{z \rightarrow z_0} \frac{g(z) - g(z_0)}{z - z_0} = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)}_{\rightarrow 0}·\underbrace{f(z)}_{\text{omezená}} = 0. $$
+	\begin{dukazin}
+		„$1. \implies 2.$, $2. \implies 3.$“: Položme
+		$$ g(z) := \begin{cases} (z - z_0)^2 f(z),& \quad z \in P(z_0),\\ 0,& \quad z = z_0. \end{cases} $$
+		Potom $g \in ©H(U(z_0))$, protože
+		$$ g'(z_0) = \lim_{z \rightarrow z_0} \frac{g(z) - g(z_0)}{z - z_0} = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)}_{\rightarrow 0}·\underbrace{f(z)}_{\text{omezená}} = 0. $$
 
-			Dále (pro „$3. \implies 1.$“) $\forall z \in U(z_0)$:
-			$$ g(z) = \sum_{n=2}^∞ a_n(z - z_0)^n = (z-z_0)^2·F(z), $$
-			kde $F(z) := \sum_{n=2}^∞ a_n(z - z_0)^{n-2}$. Potom $F \in ©H(U(z_0))$ a $\forall z \in P(z_0)$:
-			$$ (z - z_0)^2·f(z) = (z - z_0)^2·F(z). $$
-		\end{dukazin}
-	\end{veta}
+		Dále (pro „$3. \implies 1.$“) $\forall z \in U(z_0)$:
+		$$ g(z) = \sum_{n=2}^∞ a_n(z - z_0)^n = (z-z_0)^2·F(z), $$
+		kde $F(z) := \sum_{n=2}^∞ a_n(z - z_0)^{n-2}$. Potom $F \in ©H(U(z_0))$ a $\forall z \in P(z_0)$:
+		$$ (z - z_0)^2·f(z) = (z - z_0)^2·F(z). $$
+	\end{dukazin}
+\end{veta}
 
-	\begin{poznamka}
-		Píšeme $f(z)\sim g(z)$ pro $z \rightarrow z_0$, pokud $\lim_{z \rightarrow z_0} \frac{f(z)}{g(z)} \in ®C \setminus \{0\}$.
-	\end{poznamka}
+\begin{poznamka}
+	Píšeme $f(z)\sim g(z)$ pro $z \rightarrow z_0$, pokud $\lim_{z \rightarrow z_0} \frac{f(z)}{g(z)} \in ®C \setminus \{0\}$.
+\end{poznamka}
 
-	\begin{veta}[O póle]
-		Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
-		
-		\begin{enumerate}
-			\item $z_0$ je pól $f$.
-			\item $h := \frac{1}{f}$ (po dodefinování $h(z_0) = 0$) má v $z_0$ nulový bod násobnosti $p \in ®N$.
-			\item Existuje $p \in ®N$ tak, že $\lim_{z \rightarrow z_0}(z - z_0)^p f(z) \in ®C \setminus \{0\}$. (Tedy $f(z) \sim \frac{1}{(z - z_0)^p}$ pro $z \rightarrow z_0$.)
-			\item Existuje $p \in ®N$ tak, že $\forall k \in ®Z$:
-				$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) \begin{cases} = ∞, & \text{ je-li } k < p,\\ \in ®C \setminus \{0\}, & k=p, \\ 0, & k > p.\end{cases} $$
-		\end{enumerate}
+\begin{veta}[O póle]
+	Nechť $f$ je holomorfní funkce na $P(z_0)$. Následující je ekvivalentní:
+	
+	\begin{enumerate}
+		\item $z_0$ je pól $f$.
+		\item $h := \frac{1}{f}$ (po dodefinování $h(z_0) = 0$) má v $z_0$ nulový bod násobnosti $p \in ®N$.
+		\item Existuje $p \in ®N$ tak, že $\lim_{z \rightarrow z_0}(z - z_0)^p f(z) \in ®C \setminus \{0\}$. (Tedy $f(z) \sim \frac{1}{(z - z_0)^p}$ pro $z \rightarrow z_0$.)
+		\item Existuje $p \in ®N$ tak, že $\forall k \in ®Z$:
+			$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) \begin{cases} = ∞, & \text{ je-li } k < p,\\ \in ®C \setminus \{0\}, & k=p, \\ 0, & k > p.\end{cases} $$
+	\end{enumerate}
 
-		\begin{dukazin}
-			„$1. \implies 2.$“: Protože $\lim_{z \rightarrow z_0} f(z) = ∞$, je $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0$. Po odstranění singularity, tzn. po dodefinování $h(z_0) = 0$, má $h = \frac{1}{f}$ nulový bod v $z_0$ konečné násobnosti $p \in ®N$.
+	\begin{dukazin}
+		„$1. \implies 2.$“: Protože $\lim_{z \rightarrow z_0} f(z) = ∞$, je $\lim_{z \rightarrow z_0} \frac{1}{f(z)} = 0$. Po odstranění singularity, tzn. po dodefinování $h(z_0) = 0$, má $h = \frac{1}{f}$ nulový bod v $z_0$ konečné násobnosti $p \in ®N$.
 
-			„$2. \implies 3.$“: Existuje $r > 0$ a $g \in ©H(U(z_0, r))$ tak, že $g ≠ 0$ na $U(z_0, r)$ a
-			$$ h(z) = (z - z_0)^p·g(z), \qquad z \in U(z_0, r). $$
-			Potom $\lim_{z \rightarrow z_0} (z - z_0)^p f(z) = \lim_{z \rightarrow z_0} \frac{1}{g(z)} = \frac{1}{g(z_0)} \in ®C \setminus \{0\}$.
+		„$2. \implies 3.$“: Existuje $r > 0$ a $g \in ©H(U(z_0, r))$ tak, že $g ≠ 0$ na $U(z_0, r)$ a
+		$$ h(z) = (z - z_0)^p·g(z), \qquad z \in U(z_0, r). $$
+		Potom $\lim_{z \rightarrow z_0} (z - z_0)^p f(z) = \lim_{z \rightarrow z_0} \frac{1}{g(z)} = \frac{1}{g(z_0)} \in ®C \setminus \{0\}$.
 
-			„$3. \implies 4.$“: Máme
-			$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)^{k - p}}_{\rightarrow 0, k > p / 1, k=p / ∞, k < p}·\underbrace{(z - z_0)^p f(z)}_{\rightarrow … \in ®C \setminus \{0\}}. $$
+		„$3. \implies 4.$“: Máme
+		$$ \lim_{z \rightarrow z_0} (z - z_0)^k f(z) = \lim_{z \rightarrow z_0} \underbrace{(z - z_0)^{k - p}}_{\rightarrow 0, k > p / 1, k=p / ∞, k < p}·\underbrace{(z - z_0)^p f(z)}_{\rightarrow … \in ®C \setminus \{0\}}. $$
 
-			„$4. \implies 1.$“: $\lim_{z \rightarrow z_0} f(z) = \lim_{z \rightarrow z_0} (z - z_0)^k f(z) |_{k=0} = ∞$.
-		\end{dukazin}
-	\end{veta}
+		„$4. \implies 1.$“: $\lim_{z \rightarrow z_0} f(z) = \lim_{z \rightarrow z_0} (z - z_0)^k f(z) |_{k=0} = ∞$.
+	\end{dukazin}
+\end{veta}
 
-	\begin{definice}[Násobnost pólu]
-		Číslo $p$ je určeno jednoznačně a nazývá se násobnost pólu $z_0$ funkce $f$.	
-	\end{definice}
+\begin{definice}[Násobnost pólu]
+	Číslo $p$ je určeno jednoznačně a nazývá se násobnost pólu $z_0$ funkce $f$.	
 \end{definice}
 
 \begin{veta}[Casorati-Weierstrass]
@@ -719,7 +723,7 @@
 	\ 
 	
 	\begin{itemize}
-		\item Konvergence: Existuje jediné $r, R \in [0, +∞]$ tak, že regulární část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| < R$ a diverguje na $|z - z_0| > R$; hlavní část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| > r$ a diverguje pro $|z - z_0|<r$.
+		\item Konvergence: Existují jediná $r, R \in [0, +∞]$ tak, že regulární část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| < R$ a diverguje na $|z - z_0| > R$; hlavní část konverguje absolutně a lokálně stejnoměrně na $|z - z_0| > r$ a diverguje pro $|z - z_0|<r$.
 
 			$R$ je zřejmé, pro získání $r$ dosadíme $w := (z - z_0)^{-1}$ a vezmeme 1 / poloměr konvergence vyšlé mocninné řady.
 		\item Součet: Nechť $0 ≤ r < R ≤ +∞$. Pak Laurentova řada konverguje absolutně a lokálně stejnoměrně na vnitřku mezikruží dané $r$ a $R$ (značíme $P(z_0, r, R)$) a bude divergovat mimo něj (na hranici nevíme).
@@ -752,8 +756,10 @@
 		Pro $z_0 \in P$ položme $h(z) := \frac{f(z) - f(s)}{z - s}$, $z ≠ s$, a $h(z) := f'(s)$, $z = s$. Potom $h \in ©H(P)$, protože $h$ má v $s$ „odstraněnou“ singularitu.
 
 		Podle předchozího lemmatu máme
-		$$ \underbrace{\int_{\rho_{R_0}} h}_{=} = \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{R_0}} \frac{dz}{z - s} $$
-		$$ \overbrace{\int_{\rho_{r_0}} h} = \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{r_0}} \frac{dz}{z - s} = \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - 0. $$
+		\begin{align*}
+			\underbrace{\int_{\rho_{R_0}} h}_{=} &= \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{R_0}} \frac{dz}{z - s}\\
+			\overbrace{\int_{\rho_{r_0}} h} &= \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - f(s) · \int_{\phi_{r_0}} \frac{dz}{z - s} = \int_{\phi_{r_0}} \frac{f(z) dz}{z - s} - 0.
+		\end{align*}
 	\end{dukazin}
 \end{veta}
 
@@ -807,7 +813,7 @@
 
 \begin{veta}[Reziduová na hvězdovitých oblastech]
 	Nechť $G \subset ®C$ je hvězdovitá oblast, $M \subset G$ je konečná a $f \in ©H(G \setminus M)$. Nechť $\phi$ je uzavřená křivka v $G \setminus M$. Potom máme
-	$$ \int_\phi f = 2\phi i \sum_{s \in M} \res_s f·\ind_\phi s. $$
+	$$ \int_\phi f = 2\pi i \sum_{s \in M} \res_s f·\ind_\phi s. $$
 
 	\begin{poznamkain}
 		Pro $M = \O$ dostaneme Cauchyho větu.
@@ -846,7 +852,7 @@
 
 		Jako v předešlé větě integrujeme podél $\phi_r$ funkci $R(z) e^{i a z}$ a pošleme $r \rightarrow +∞$. Platí, že
 		$$ \int_{\phi_r^2} R(z) e^{i a z} dz \rightarrow 0 $$
-		z Jordanova Lemmatu (bylo na cvičení?), z podmínky na stupně totiž máme, že $\lim_{z\rightarrow ∞} R(z) = 0$.
+		z Jordanova Lemmatu, z podmínky na stupně totiž máme, že $\lim_{z\rightarrow ∞} R(z) = 0$.
 	\end{dukazin}
 \end{veta}
 
@@ -1037,5 +1043,15 @@ dostáváme:
 		Těžký. Nebude.
 	\end{dukazin}
 \end{veta}
+
+% 05. 01. 2023
+
+\begin{poznamka}
+	Bavili jsme se o tom, co bylo v předchozí přednášce a o zkouškách (+ cvičení z indexu).
+\end{poznamka}
+
+\begin{poznamka}[Písemka]
+	Teorie (60 minut) + příklady (75 minut) s krátkou přestávkou. Výsledky hned ten den.
+\end{poznamka}
 
 \end{document}

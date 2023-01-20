@@ -72,6 +72,10 @@
 	$$ j \in A(i) ≡ \exists t \in ®N_0: P(X_t = j | X_0 = i) > 0. $$
 \end{definice}
 
+\begin{poznamka}
+	Nevím, jestli na přednášce bylo $\exists t: P…$ nebo $P(\exists t: …) > 0$. Pokud se nepletu, je to ekvivalentní.
+\end{poznamka}
+
 \begin{dusledek}
 	$j \in A(i)$ odpovídá existenci orientované cesty z $i$ do $j$ v přechodovém grafu.
 \end{dusledek}
@@ -97,12 +101,16 @@
 \end{definice}
 
 \begin{veta}
-	Pro stav $i \in S$ Markovova řetězce označme $f_{ii} = P(\exists t \in ®N: X_t = i | X_0 = i)$. Potom, když $f_{ii} = 1$, tak je stav rekurentní, pokud $f_{ii} < 1$, tak je transientní.
+	Pro stav $i \in S$ Markovova řetězce označme $f_{ii} = P(\exists t \in ®N: X_t = i | X_0 = i)$. Ať $|S| < ∞$. Potom, když $f_{ii} = 1$, tak je stav rekurentní, pokud $f_{ii} < 1$, tak je transientní.
 
-	\begin{dukazin}
+	\begin{dukazin}[Transientní]
 		Označme $j$ to $j \in A(i)$, pro které $i \notin A(j)$. Potom $P(\exists t \in ®N: X_t = j|X_0 = i) ≠ 0$ a zřejmě $P(\exists t \in ®N\ \forall 0 < t_1 < t: X_t = j \land X_{t_1} ≠ i | X_0 = i) ≠ 0$ a $P(\exists t_2 > t: X_{t_2} = i | X_t = j) = 0$, tedy $f_{ii} ≠ 1$.
+	\end{dukazin}
 
-		Naopak pokud $f_{ii} = 1$, tak $\forall j \in A(i)$ musí být $P(\exists t_2 > t: X_{t_2} = i | X_t = j) ≠ 0$, tedy $i \in A(j)$.
+	\begin{dukazin}[Rekurentní, na přednášce nebyl celý, moje vize:]
+		Nechť $m = \min_{j \in A(i)} P(\exists \tilde t < t: X_{\tilde t} = i | X_0 = j)$. Pro dostatečně velké $t$ (maximum přes všechny časy z definice rekurentního stavu) je $m > 0$. To znamená, že $\sum_{j \in A(i), j ≠ i} \pi^{(t)}_j ≤ (1 - m)·\sum_{j \in A(i), j ≠ i} \pi^{(0)}_j$ (předpokládaje, že $p_{i,i} = 1$, protože při libovolném navštívení $i$ jsme vyhráli). Tedy (stále předpokládaje $p_{i, i} = 1$)
+		$$ \lim_{n \rightarrow ∞} \sum_{j \in A(i), j ≠ i} \pi^{(n·t)} ≤ \lim_{n \rightarrow ∞} (1 - m)^n·\sum_{j \in A(i), j ≠ i} \pi^{(0)} = 0·… = 0. $$
+		Ale pokud jsme začínali uvnitř $A(i)$ (což po rozutečení se z $i$ rozhodně), tak $\sum_{j \in S \setminus A(i)} \pi^{(·)}_j = 0$, tedy $\pi^{(·)}_1 \rightarrow 1$.
 	\end{dukazin}
 \end{veta}
 
@@ -146,7 +154,7 @@
 	$$ \mu_i = ®E(T | X_0 = i), \qquad T = \min\{t: X_t \in A\}. $$
 
 	Dále $a_i$ buď pravděpodobnost, že začínaje ve stavu $i$ skončíme v stavu $0$.
-	$$ a_i = \sum_{t \in ®N_0} P(X_t = 0 | X_0 = i). $$
+	$$ a_i = P(\exists t: X_t = 0 | X_0 = i). $$
 \end{definice}
 
 \begin{veta}
@@ -167,7 +175,55 @@
 	\end{dukazin}
 \end{veta}
 
-TODO!!! (SAT) %3. přednáška cca 0:57 až 4. přednáška cca 0:29.
+\section{SAT}
+\begin{definice}[$k$-SAT]
+	Je konjukce ($\phi$) $l$ klauzulí (= disjunkce nejvýše $k$ literálů = proměnná nebo její negace) splnitelná (vhodným dosazením ano/ne za proměnné)? (Proměnné označme $x_1, …, x_n$.)
+\end{definice}
+
+\begin{definice}[Algoritmus řešení 2-SAT]
+	Začneme z libovolně přiřazenými proměnnými (např. všechny ne). Následně $2·m·n^2$-krát (pro zvolené $m \in ®N$) zopakujeme: pokud je vše splněno, vyhráli jsme; jinak zvolíme libovolně nesplněnou klauzuli a z ní změníme náhodně proměnnou a znegujeme jí (tím jsme danou klauzuli splnili). Pokud po $2·m·n^2$ krocích není hotovo, pak vrátíme ne.
+\end{definice}
+
+\begin{tvrzeni}
+	Pravděpodobnost špatného výsledku je menší než $\frac{1}{nm}$.
+
+	\begin{dukazin}
+		Předpokládejme, že $\phi(s_1, …, s_n)$ je pravdivá a položme $X_t = |\{x_i^t = s_i\}$. Tedy pokud $X_t = n$, tak jsme našli splnění $\phi$.
+
+		Pokud $X_t = 0$, pak $X_{t + 1} = 1$. Pokud $0 < X_t < n$, pak ve vybrané klauzuli máme minimálně jednu ze dvou proměnných špatně ($x_i ≠ s_i$). Když změníme správnou, tak $X_{t + 1} = X_t + 1$. Pokud zvolíme druhou, tak ona mohla být také správně, takže $X_{t + 1} = X_t ± 1$.
+
+		Tím dostáváme Markovův řetězec tvaru $n+1$ dlouhé cesty, kde pravděpodobnost cesty doprava je alespoň $1 / 2$. Tento řetězec jsme (prý) už analyzovali, vyjde nám, že střední hodnota příchodu do posledního vrcholu je menší než $n^2$.
+
+		Tím nám z Markovovy nerovnosti vychází, že $P(T > 2mn^2) ≤ \frac{1}{2m}$, kde $T$ je nejmenší tak, že $X_T = n$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Pravděpodobnost špatného výsledku je menší než $\frac{1}{2^m}$.
+
+	\begin{dukazin}
+		$m$-krát zopakujeme postup pro „$m=1$“ (začátek volíme libovolně, takže je nám jedno, že předchozí iterace nám dala nějaký stav, ze kterého pokračujeme).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	Když toto aplikujeme na 3-SAT, tak budeme mít problém s tím, že pravděpodobněji půjdeme doleva místo doprava. Tudíž musíme něco zlepšit.
+\end{poznamka}
+
+\begin{definice}[Algoritmus pro řešení 3-SAT]
+	Zopakujeme $2·2·3^{n / 2}$ krát: náhodně zvolíme začátek a $n / 2$-krát zopakujeme krok z 2-SATu.
+\end{definice}
+
+\begin{tvrzeni}
+	Špatnou odpověď dá tento algoritmus s pravděpodobností $\frac{1}{2}$.
+
+	\begin{dukazin}
+		V každém z $2·2·3^{n / 2}$ kroků (začínáme náhodně, tedy $X_0$ má binomické rozdělení)
+		$$ P(win) = P(X_0 ≥ n / 2) · P(win | X_0 ≥ n / 2) ≥ \frac{1}{2} 3^{-n / 2}. $$
+
+		Tedy střední hodnota opakování vnějšího cyklu je $\frac{1}{p} = 2·3^{n / 2}$. A my víme, že $P(T > 2·2·3^n) ≤ \frac{®E T}{2·2·3^n} ≤ \frac{1}{2}$. 
+	\end{dukazin}
+\end{tvrzeni}
 
 \section{Bayesovská statistika}
 
@@ -232,7 +288,7 @@ TODO!!! (SAT) %3. přednáška cca 0:57 až 4. přednáška cca 0:29.
 	Obdobně, když vezmeme medián (tj. $m$ tak, že $P(\Theta ≤ m | X = x) = \frac{1}{2}$), tak minimalizujeme $®E((\Theta - ·) | X = x)$, tento přístup však nebudeme dále používat.
 \end{poznamka}
 
-TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
+TODO? (Zbytek B. statistiky, speciálně Bayesův klasifikátor.) % Zbytek 4. přednášky až konec 6. přednášky.
 
 \section{Stochastické procesy}
 
@@ -243,7 +299,7 @@ TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
 \subsection{Bernoulliho proces}
 
 \begin{definice}[Bernoulliho proces]
-	Bernoulliho proces (s parametrem $p$), píšeme $Bp(p)$, je posloupnost nezávislých náhodných proměnných $(X_t)_{t=1}^∞$, kde $X_t \sim Ber(p)$, tedy $p(X_t = 1) = p$ a $p(X_t = 0) = 1 - p$, $\forall t \in ®N$.
+	Bernoulliho proces (s parametrem $p$), píšeme $Bp(p)$, je posloupnost nezávislých náhodných veličin $(X_t)_{t=1}^∞$, kde $X_t \sim Ber(p)$, tedy $p(X_t = 1) = p$ a $p(X_t = 0) = 1 - p$, $\forall t \in ®N$.
 \end{definice}
 
 \begin{dusledek}
@@ -285,7 +341,7 @@ TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
 \end{veta}
 
 \begin{veta}[Rozdělování Bernoulliho procesů]
-	Mějme $\{Z_t\}_{t = 1}^∞ \sim Bp(p)$. Potom $\{Z_t · Y_t\}_{t=1}^∞ \sim Bp(p·q)$, kde $Y_t \sim Ber(q)$.
+	Mějme $\{Z_t\}_{t = 1}^∞ \sim Bp(p)$. Potom $\{Z_t · Y_t\}_{t=1}^∞ \sim Bp(p·q)$, kde $Y_t \sim Ber(q)$ jsou navzájem nezávislé (a nezávislé na $Z_t$).
 \end{veta}
 
 \subsection{Poissonův proces}
@@ -350,12 +406,135 @@ TODO? (Zbytek B. statistiky) % Zbytek 4. přednášky až konec 6. přednášky.
 	\end{dukazin}
 \end{veta}
 
-TODO!!! (Balls and bins) % 9. a 10. přednáška
+\section{Balls and bins}
+
+\begin{definice}[Narozeninový paradox]
+	$k$ lidí, jaká je pravděpodobnost, že dva lidé mají narozeniny ve stejný den?
+
+	\begin{poznamkain}
+		Řešení:
+		$$ P(\text{každý v jiný den}) = \(1 - \frac{1}{365}\)·\(1 - \frac{2}{365}\)·…·\(1 - \frac{k - 1}{365}\) ≈ $$
+		$$ (e^{-x} ≈ 1 - x) \qquad ≈ \prod_{i=1}^{k-1} e^{-\frac{i}{365}} = e^{-\sum_{i=1}^{k-1} \frac{i}{365}} = e^{-\frac{k·(k-1)}{2·365}}. $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Balls and bins]
+	Máme $m$ kuliček, které rozdělíme do $n$ příhrádek.
+	
+	\begin{prikladyin}
+		Můžeme se ptát na:
+		\begin{itemize}
+			\item narozeninový paradox;
+			\item \# kuliček v první příhrádce ($\sim Bin(m, 1 / n)$);
+			\item první příhrádka prázdná ($(1 - 1 / n)^m ≈ e^{- m / n}$);
+			\item \# prázdných příhrádek ($®E = n·(1 - 1 / n)^m ≈ n·e^{-m / n}$);
+			\item průměrný počet kuliček v příhrádce ($m / n$);
+			\item maximální počet kuliček v příhrádce (následující věta);
+			\item …
+		\end{itemize}
+	\end{prikladyin}
+\end{definice}
+
+\begin{veta}
+	Pokud $m = n$ je velké, $M := \frac{3 \log n}{\log \log n}$, pak
+	$$ P(\text{maximální počet kuliček} ≥ M) < \frac{1}{n}. $$
+
+	\begin{dukazin}
+		$$ P(\text{počet kuliček v příhrádce 1} ≥ M) ≤ P(Bin(n, 1 / n) = M) = $$
+		$$ = \binom{n}{M}\frac{1}{n^M}\(1 - \frac{1}{n}\)^{n - M} < \binom{n}{M} \frac{1}{n^M} = \frac{n·(n - 1)·…·(n - (M - 1))}{M! · n^M} < \frac{1}{M!} < \(\frac{e}{M}\)^M. $$
+
+		$$ P(\text{\# kuliček v nějaké příhrádce} ≥ M) ≤ \sum_{i=1}^m P(\text{\# kuliček v příhrádce $i$} ≥ M) = n·\(\frac{e}{M}\)^M. $$
+		Chtěli bychom $n·\(\frac{e}{M}\)^M < \frac{1}{n}$. Tedy přidáme logaritmus:
+		$$ \log n + M·(1 - \log M) < - \log n $$
+		$$ 2\log n + \frac{3 \log n}{\log \log n} (1 - \log 3 - \log \log n + \log \log \log n) < 0 $$
+		$$ -(\log n) · \(1 - 3\frac{1 - \log 3}{\log \log n} - 3·\frac{\log \log \log n}{\log \log n}\) < 0. $$
+		A jelikož $\frac{\log x}{x} \rightarrow 0$ pro $x \rightarrow ∞$, tak pro dostatečně velká $n$ nerovnost platí.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Bucketsort]
+	Chceme setřídit $n = 2^k$ $l$-bitových („náhodných“) čísel. Rozdělíme čísla na prvních $k$ bitů ($b(x)$) a zbylých $l - k$ bitů. Potom za prvé roztřídíme čísla podle $b(x)$ do příhrádek ($1, …, 2^k$). Následně setřídíme každou příhrádku (např. bubblesortem) v kvadratickém čase. Nakonec slijeme příhrádky dohromady.
+
+	Střední hodnota složitosti tohoto algoritmu je lineární.
+
+	\begin{dukazin}
+		První krok je lineární v $n$, stejně tak třetí. Po prvním kroku bude \# kuliček v $i$-té příhrádce $\sim Bin(n, 1 / n)$. Tedy složitost (ve střední hodnotě) kroku dva bude ($c$ je konstanta z bubblesortu)
+		$$ ®E \sum_{i=1}^n c·X_i^2 = \sum_{i=1}^n c·®E (X_i^2) = n·c·\(\var X_i + (®E X)^2\) < 2n·c. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}[Hešování]
+	Chceme $n$ objektů (např. řetězců) ukládat tak, aby šlo rychle hledat. Předpokládáme, že máme hashovací funkci (zobrazení z objektů do $[0, m-1] \cap ®N$), která je „náhodná“.
+
+	Pokud je přibližně $n < \sqrt{m}$, potom pravděpodobnost kolize (2 objekty mají stejný hash) je přibližně $\frac{1}{2}$ z narozeninového paradoxu.
+
+	Pokud je $m = n$ dostatečně velké, pak pravděpodobnost, že maximální počet objektů v příhrádce překoná $M := \frac{3 \log n}{\log \log n}$ je menší než $\frac{1}{n}$ z předchozí věty.
+
+	Očekávaný čas na nalezení prvku je ve všech případech $\frac{n}{m}$, neboť očekávaný počet objektů v příhrádce je $\frac{n}{m}$.
+
+	Maximální čas nalezení bude pro $n = m$ dostatečně velká, nejvýše $M$ s pravděpodobností větší než $1 - \frac{1}{n}$. (Moc lépe to nejde kvůli následující větě.)
+\end{dusledek}
+
+\begin{veta}
+	Za předpokladu dostatečně velkého $m = n$ a $M_2 = \frac{\log n}{\log \log n}$ je
+	$$ P(\text{maximální počet kuliček} ≥ M_2) < \frac{1}{n}. $$
+\end{veta}
+
+\begin{definice}[Značení]
+	$$ X_i^{(m)} = \# \text{ kuliček v $i$-té příhrádce}. $$
+	To znamená $(X_1^{(m)}, …, X_n^{(m)})$ má multinomické rozdělení, tj. (pro $\sum k_i = m$, $0 ≤ k_i ≤ m$)
+	$$ P\(X_1^{(m)} = k_1, …, X_n^{(m)} = k_n\) = \binom{m}{k_1, …, k_n} · \frac{1}{n^m} = \frac{m!}{k_1!·…·k_n!} · \frac{1}{n^m}. $$
+
+	Také to znamená, že $X_i^{(m)}$ má rozdělení $Bin(m, 1 / n)$, což je přibližně $Pois(m / n)$.
+\end{definice}
+
+\begin{veta}
+	Nechť $m, n \in ®N$, $Y_1^{(k)}, …, Y_n^{(k)}$ jsou nezávislé stejně rozdělené veličiny s rozdělením $Pois(k / n)$ a $X_i^{(m)}$ jako v předchozím. Pak rozdělení $X_i^{(m)}$ je shodné s rozdělením $Y_i^{(k)}$, pokud $\sum_{i=1}^n Y_i^{(k)} = m$.
+
+	\begin{dukazin}
+		Mějme $k_1 + … + k_n = m$ a $0 ≤ k_i ≤ m$, potom chceme
+		$$ P\(X_1^{(m)} = k_1, …, X_n^{(m)} = k_n\) = P_X = P_Y = P\(Y_1^{(k)} = k_1, …, Y_n^{(k)} = k_n | \sum Y_i^{(k)} = m\). $$
+
+		$$ P_X = \binom{m}{k_1, …, k_n} · \frac{1}{n^m}. \qquad P_Y = \frac{P(… |)}{P(| …)} = \frac{A}{B}. $$
+		$$ A = P(Y_1^{(k)} = k_1) · … · P(Y_n^{(k)} = k_n) = e^{-\frac{k}{n}}·\frac{\(\frac{k}{n}\)^{k_1}}{k_1!} · … · e^{-\frac{k}{n}}·\frac{\(\frac{k}{n}\)^{k_n}}{k_n!} = e^{-k} · \(\frac{k}{n}\)^m · \frac{1}{k_1! · … · k_n!}. $$
+		$$ \sum_{i=1}^n Y_i^{(k)} \sim Pois\(\frac{k}{n} + … + \frac{k}{n}\) = Pois(k) \implies B = e^{-k} \frac{k^m}{m!}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Buďte $X$, $Y$ jako v předchozí větě a $f(x_1, …, x_n) ≥ 0$. Potom $®E f(X_1^{(m)}, …, X_n^{(m)}) ≤ ®E f(Y_1^{(k)}, …, Y_n^{(k)})·e·\sqrt{k}$.
+
+	Navíc pokud je pravá strana monotónní v $m$, pak můžeme $e·\sqrt{k}$ nahradit $2$.
+
+	\begin{dukazin}
+		$$ ®E f(Y_1^{(k)}, …, Y_n^{(k)}) = \sum_{i=0}^∞ ®E \(f(Y_1^{(k)}, …, Y_n^{(k)}) | \sum_{j=1}^n Y_j^{(k)} = i\)·P\(\sum_{j=1}^n Y_j^{(k)} = i\) ≥ $$
+		$$ ≥ \(f(Y_1^{(k)}, …, Y_n^{(k)}) | \sum_{j=1}^n Y_j^{(k)} = m\)·P\(\sum_{j=1}^n Y_j^{(k)} = m\) = $$
+		$$ = ®E f(X_1^{(m)}, …, X_n^{(m)}) · P\(\sum_{j=1}^n Y_j^{(k)} = m\) = ®E f(X_1^{(m)}, …, X_n^{(m)}) · e^{-k} \frac{k^m}{m!} ≥ $$
+		$$ ≥ ®E f(X_1^{(m)}, …, X_n^{(m)}) · \frac{1}{e\sqrt{k}}. $$
+
+		TODO!!! % 10. přednáška cca 0:30
+
+		Totéž provedeme pro monotónní pravou stranu, jen budeme odhadovat lepší pravděpodobností? (TODO?)
+	\end{dukazin}
+\end{veta}
+
+\begin{dukaz}[Předpředchozí věty]
+	Z předchozí věty (aplikované na $f(x_1, …, x_n) = (\max\{x_1, …, x_n\} < M)$) nám stačí dokázat, že
+	$$ P(\max \{Y_1^{(k)}, …, Y_n^{(k)})\} < M) ≤ \frac{1}{e·\sqrt{k}·n}. $$
+
+	$$ P(…) = P(Y_1^{(k)} < M) · … · P(Y_n^{(k)} < M) ≤ (1 - P(Y_1^{(k)} = M)) · … · (1 - P(Y_n^{(k)} = M)) = $$
+	$$ = \(1 - e^{-1} \frac{1^M}{M!}\)^n ≈ \(e^{-\frac{1}{e·M!}}\)^n ≤ e^{-\frac{n}{e·M!}} < \frac{1}{n^2}, $$
+	neboť to je totéž jako
+	$$ \frac{1}{e·M!} > 2 \log n, $$
+	což spočítáme pomocí odhadu $M! ≤ M · (M / e)^M$.
+\end{dukaz}
 
 \section{Neparametrická statistika}
 \begin{definice}[Neparametrická statistika]
 	Nemáme model (rozdělení závisející na parametru).
 \end{definice}
+
+TODO (Permutační test) % Konec 10. přednášky
 
 \begin{definice}[Permutační test]
 	Mějme data $x_1, …, x_n$ a $y_1, …, y_m$ (např. testovací a kontrolní vzorek). Dále mějme $f$, které rozhoduje, zda dané $z_1, …, z_{m+n}$ splňuje nulovou hypotézu.
@@ -366,7 +545,7 @@ TODO!!! (Balls and bins) % 9. a 10. přednáška
 \end{definice}
 
 \begin{definice}[Permutační test ++]
-	Pokud nemůžeme počítat $f$ pro všechny $\pi \in S_{n+m}$, nasamplujeme $®F^* \subset ®F$.
+	Pokud nemůžeme počítat $f$ pro všechny $\pi \in S_{n+m}$, nasamplujeme $©F^* \subset ©F$.
 \end{definice}
 
 \begin{definice}[Znamínkový test]
@@ -397,6 +576,77 @@ TODO!!! (Balls and bins) % 9. a 10. přednáška
 
 TODO!!! (Simpson paradox) % 11. přednáška od cca 1:00.
 
-TODO!!! (CLV) % 12. přednáška
+\section{Moment generating function}
+
+\begin{definice}[Moment generating function (MGF)]
+	Pokud $X$ je náhodná veličina a $s \in ®R$, potom $M_X(s) := ®E(e^{sX})$.
+\end{definice}
+
+\begin{veta}
+	$$ M_X(s) = \sum_{k=0}^∞ ®E(X^k) \frac{s^k}{k!}. \qquad (\text{Pro $s$ z intervalu, kde je $M_X(s)$ definováno}.) $$
+
+	\begin{dukazin}
+		$$ ®E(e^{s·X}) = ®E\(\sum_{k=0}^∞ \frac{(s·X)^k}{k!}\) = \sum_{k=0}^∞ ®E(X^k) \frac{s^k}{k!}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$$ M_{a·X + b} = e^{b·s} M_X(a·s). $$
+
+	\begin{dukazin}
+		$$ ®E\(e^{s·(a·X + b)}\) = ®E\(e^{a·s·X}·e^{b·s}\) = e^{b·s} M_X(a·s). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$X$ a $Y$ nezávislé $\implies$ $M_{X + Y} = M_X·M_Y$.
+
+	\begin{dukazin}
+		$$ M_{X + Y}(s) = ®E\(e^{s·(X + Y)}\) = ®E\(e^{s·X}·e^{s·Y}\) = ®E\(e^{s·X}\)·®E\(e^{s·Y}\) = M_X(s)·M_Y(s). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Pokud $\exists \epsilon > 0\ \forall s \in (-\epsilon, \epsilon): M_X(s) = M_Y(s) \in ®R$, pak $F_X(t) = F_Y(t)$ $\forall t \in ®R$.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Pokud $\exists \epsilon > 0\ \forall s \in (-\epsilon, \epsilon): M_{Y_n}(s) \rightarrow M_Z(s) \in ®R$ a $F_Z$ je spojité, pak $F_{Y_n}(t) \rightarrow F_Z(t)$ $\forall t \in ®R$ ($Y_n \overset D\rightarrow Z$).
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Centrální limitní věta]
+	$X_1, X_2, …$ nezávislé stejně rozdělené veličiny, $®E X_i = \mu$, $\var X_i = \sigma^2$, potom
+	$$ Y_n = \frac{X_1 + … + X_n - n·\mu}{\sigma \sqrt{n}}. $$
+	Potom $Y_n \overset D\rightarrow N(0, 1)$.
+
+	\begin{dukazin}
+		Použijeme předchozí větu, kde $Z \sim N(0, 1)$, $M_Z = e^{\frac{s^2}{2}}$, zřejmě $F_Z$ je spojitá. Můžeme předpokládat, že $\mu = 0$. Také předpokládejme, že $M_{X_i}(s)$ existuje. Potom $Y_n = \frac{X_1 + … + X_n}{\sigma \sqrt{n}}$. Tedy
+		$$ M_{Y_n}(s) = M_{X_1 + … + X_n}\(\frac{s}{\sigma \sqrt{n}}\) = \(M_{X_1}\(\frac{s}{\sigma\sqrt{n}}\)\)^n = \(1 + \sigma^2 \frac{s^2}{2\sigma^2·n} + o\(\frac{s^2}{\sigma^2·n}\)\)^n ≈ $$
+		$$ ≈ \(1 + \frac{s^2}{2n}\)^n \rightarrow e^{s^2 / 2} = M_Z(s). $$
+		$≈$ je trochu podvod, ale dokáže se jednoduše zlogaritmováním.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Chernoffova]
+	$X_1, …, X_n \sim 1 - 2·Ber\(\frac{1}{2}\)$ jsou nezávislé stejně rozdělené veličiny, $X = X_1 + … + X_n$, $\sigma^2 = \var X = n$, $t > 0$, potom
+	$$ P(X ≤ t) = P(X ≥ t) ≤ e^{-\frac{t^2}{2n}}. $$
+
+	\begin{dukazin}
+		Pro libovolné $s$ máme
+		$$ P(X ≥ t) = P(e^{s·X} ≥ e^{s·t}) ≤ \frac{®E e^{s·X}}{e^{s·t}} = \frac{M_X(s)}{e^{s·t}} = \frac{\(M_{X_1}(s)\)^n}{e^{s·t}} = \frac{\(e^s + e^{-s}\)^n}{2·e^{s·t}} = $$
+		$$ = \frac{\(\sum_{k=0}^∞ \frac{s^{2k}}{(2k)!}\)^n}{e^{s·t}} ≤ \frac{\(\sum_{k=0}^∞ \frac{(s^2 / 2)^k}{k!}\)^n}{e^{s·t}} = \frac{e^{n·s^2 / 2}}{e^{s·t}} = e^{\frac{n·s^2}{2} - s·t}. $$
+		Následně dosadíme $s = \frac{t}{n}$.
+	\end{dukazin}
+\end{veta}
+
+TODO(Shannon's coding theorem) % 12. přednáška, cca 1:10 – konec
 
 \end{document}

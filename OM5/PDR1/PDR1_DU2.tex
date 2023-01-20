@@ -1,0 +1,207 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+\ 
+
+\vspace{-6em}
+
+\begin{priklad}[1. General boundary condition for the parabolic equation]
+	Let $\Omega \subset ®R^d$ be a Lipschitz domain, $T > 0$ be given and denote $Q := (0, T) \times \Omega$. Assume that $®A \in L^∞(\Omega; ®R^{d \times d}_{sym})$ be elliptic matrix and $f \in L^2(0, T; L^2(\Omega))$, $b \in L^2(0, T; L^∞(\Omega))$ and $g \in L^2(0, T; L^2(\partial \Omega))$ be given. Consider the problem
+	\begin{align*}
+		\partial_t u - \Div (®A \nabla u) + bu &= f &\text{in }& Q, \\
+		u &= u_d &\text{on }& \Gamma_1 := (0, T) \times \partial \Omega_1,\\
+		(®A \nabla u) \vec{\nu} &= g &\text{on }& \Gamma_2 := (0, T) \times \partial \Omega_2,\\
+		u(0, x) &= u_0(x) &\text{in }& \Omega,
+	\end{align*}
+	where $\partial\Omega_1$ and $\partial\Omega_2$ are mutually disjoint fulfilling $\overline{\partial\Omega_1 \cup \partial\Omega_2} = \partial\Omega$, $u_0: \Omega \rightarrow ®R$, $u_d: Q \rightarrow ®R$ and $g: (0, T) \times \partial \Omega \rightarrow ®R$ are given.
+
+	Find proper (minimal) assumptions on $u_d$ and $u_0$ for which you can define the notion of a weak solution and prove its existence and uniqueness.
+
+	\begin{reseni}[Definice slabého řešení]
+		Okrajová podmínka $u_d$ nám dělá potíže. Tak se můžeme zkusit dívat ne na $u$, ale na $u - u_d$.
+
+		Zvolíme naše oblíbené $V := W_0^{1, 2}(\Omega)$, tedy $V^* := \(W_0^{1, 2}(\Omega)\)^*$, a $H = L^2(\Omega)$, o čemž jsme už na přednášce dokázali, že $V, H, V^*$ je Gelfandova trojice. V existenci budeme potřebovat $u - u_d \in L^2(0, T; V) \cap W^{1, 2}(0, T; V^*)$, takže budeme chtít, aby z těchto prostorů bylo i $u$ i $u_d$. To navíc znamená, že i $u_0$ je z $L^2$, aby $u(0)$ se mohlo rovnat $u_0$. Nakonec chceme po řešení, aby
+		$$ \<\partial_t u, \phi\> + \int_\Omega ®A \nabla u · \nabla \phi - \int_{\partial\Omega_2} g·u - \int_{\partial\Omega_1} (®A \nabla u) \vec{\nu} u_d + \int_\Omega b u \phi = \<f, \phi\>_{V^*}. $$
+	\end{reseni}
+
+	\begin{reseni}[Existence]
+		Tím, že jsme zvolili $V = W_0^{1, 2}$, máme Galerkinovu aproximaci: $\|P^N u\|_V ≤ c\|u\|_V$, $P^N u \rightarrow u$ a $u^N := P^N u = u_d + \sum_{j=1}^N a_j w_j$, kde $w_j$ je ortonormální báze $V$ a $a_j = \int u w_j$. Počáteční podmínka nám říká, že $(u^N - u_d)(0) = P^N(u_0 - u_d(0))$. Poté dostáváme soustavu rovnic dosazením do definice slabého řešení:
+		$$ \int_\Omega (\partial_t u^N) · w_j + \int_\Omega ®A (\nabla u^N) · \nabla w_j - \int_{\partial \Omega_2} g·w_j  + \int_\Omega b u^N w_j = \<f, w_j\>. $$
+		Z definice $u^N$ a z kolmosti ($\int w_i w_j = 0$) máme
+		$$ (\partial_t a_j) \int_\Omega w_j^2 + \int_\Omega (\partial_t u_d) w_j + \sum_{i=1}^N a_i \int_\Omega ®A \nabla w_i \nabla w_j + \sum_{i=1}^N a_i \int_\Omega b w_i w_j = \int_{\partial \Omega_2} g·w_j + \<f, w_j\>. $$
+		Navíc $\int_\Omega w_j^2 = 1$ z ortonormálnosti. To znamená, že máme ODE:
+		$$ \partial_t a_j + \sum_{i = 1}^N a_i \(BLA_1\) = \int_\Omega (BLA_2)w_j, $$
+		kde $BLA_1 \in L^∞(0, T)$, neboť $®A$ i $b$ jsou $L^∞$ a $BLA_2 \in L^2(0, T)$, neboť $f$, $g$ i $u_d$ jsou $L^2$. (Proto také chceme, aby $u_d \in W^{1, 2}\(0, T; (W_0^{1, 2}(\Omega))^*\)$.)
+	\end{reseni}
+
+	\begin{dukazin}[Pokračování existence]
+		To proženeme Caratheodorovou teorií jako na přednášce a dostaneme, že buď existují řešení $a \in AC(0, T)$ nebo $\exists \tilde T$, že existují řešení $a \in AC(0, \tilde T)$ až do času $\tilde T$ a $a(t) \overset{t \rightarrow \tilde T_-}\longrightarrow ∞$. Druhá možnost bude vyloučena, až uděláme odhady, které stejně potřebujeme pro konvergenci $u^N$.
+
+		Pro potřebné odhady vynásobíme rovnice $a_j$ a sečteme podle $j$:
+		{\small $$ \int_\Omega (\partial_t u^N) · (u^N - u_d) + \int_\Omega ®A (\nabla u^N) · \nabla (u^N - u_d) - \int_{\partial \Omega_2} g·(u^N - u_d) + \int_\Omega b u^N (u^N - u_d) = \<f, (u^N - u_d)\>. $$}
+		Nyní potřebujeme v prvním členu místo $u^N$ mít také $u^N - u_d$, tedy odečteme příslušné integrály:
+		$$ \int_\Omega \(\partial_t (u^N - u_d)\) · (u^N - u_d) +  \int_\Omega ®A \(\nabla (u^N - u_d)\) · \nabla (u^N - u_d) - \int_{\partial \Omega_2} g·(u^N - u_d) + \int_\Omega b (u^N - u_d) (u^N - u_d) = $$
+		$$ = \<f, (u^N - u_d)\> - \int_\Omega \(\partial_t u_d\) · (u^N - u_d) - \int_\Omega ®A \(\nabla u_d\) · \nabla (u^N - u_d) - \int_\Omega b u_d (u^N - u_d). $$
+
+		Nyní stejně jako na přednášce:
+		$$ \partial_t \|u^N - u_d\|_{L^2(0, T; V)} + \int_\Omega ®A (\nabla u^N) · \nabla (u^N - u_d) ≤ c(b, \Omega)(\|f\|_{L^2(\Omega)}^2 + \|g\|_{L^2(\partial \omega)}^2 + \|u_0\|_{L^2(\Omega)}^2 + \|u^N(t)\|_V^2). $$
+		®A je eliptická, tedy můžeme odhadnout $\int_\Omega ®A (\nabla u^N) · \nabla (u^N - u_d) ≥ C_1\|\nabla u^N\|_2^2 - C_2\int_\Omega |\nabla u^N|·|\nabla u_d|$. Tedy
+		$$ \partial_t \|u^N - u_d\|_{L^2(0, T; V)} + C_1\|\nabla u^N\|_2^2 ≤ c(b, \Omega)(…) + C_2\int_\Omega |\nabla u^N|·|\nabla u_d| ≤ … + C_2 \int_\Omega \((\nabla u^N)^2 + (\nabla u_d)^2\). $$
+
+		Nakonec z Gronwalla získáme
+		$$ \sup_t \|u^N - u_d\|_2^2 + \|\nabla u^N\|_{L^2(0, T; L^2(\Omega))}^2 ≤ K·(1 + \|u_0\|_2^2), $$
+		což je nezávislé na $N$, tedy nám jako na přednášce vyjde, že slabé limity existují.
+	\end{dukazin}
+
+	\begin{dukazin}[Jednoznačnosti]
+		Jestliže $u_1$ a $u_2$ jsou (slabá) řešení problému výše, pak $v := u_1 - u_2$ je zřejmě (slabým) řešením problému
+		\begin{align*}
+			\partial_t v - \Div (®A \nabla v) + bv &= 0 &\text{in }& Q, \\
+			v &= 0 &\text{on }& \Gamma_1 := (0, T) \times \partial \Omega_1,\\
+			(®A \nabla v) \vec{\nu} &= 0 &\text{on }& \Gamma_2 := (0, T) \times \partial \Omega_2,\\
+			u(0, x) &= 0 &\text{in }& \Omega,
+		\end{align*}
+		neboť je „vše lineární v $u$“. Zároveň $v \in W_0^{1, 2}(\Omega)$, tedy můžeme touto funkcí testovat:
+		$$ 0 = \int_\Omega 0 · v = \int_\Omega (\partial_t v) ·v - \int_\Omega \Div (®A \nabla v) v + \int_\Omega b v^2 = $$
+		$$ = \frac{1}{2} \int_\Omega \partial_t v^2 + \(\int_\Omega ®A \nabla v · \nabla v  - \underbrace{\int_{\partial \Omega} ®A \nabla v \vec{\nu} v}_{=:I=0}\) + \int b v^2 $$
+		$$ \(I = \int_{\partial \Omega_1} ®A \nabla v \vec{\nu} v + \int_{\partial \Omega_2} ®A \nabla v \vec{\nu} v = \int_{\partial \Omega_1} ®A \nabla v \vec{\nu} · 0 + \int_{\partial \Omega_2} 0 · v = 0\) $$
+		$$ \left|\frac{1}{2}\partial_t\|v\|_2^2\right| = \left|- \int_\Omega ®A \nabla v · \nabla v - \int_\Omega b v^2\right| ≤ \left|\int_\Omega ®A \nabla v · \nabla v\right| + \left|\int b v^2\right| ≤ $$
+		$$ \overset{\text{Hölder}}≤ \|®A\|_∞·\|\nabla v\|_2 + \|b\|_∞ \|v\|_2 \overset{\text{Poincaré}}≤ C(\|®A\|_∞, \|b\|_∞, C_{poinc}) \|v\|_2. $$
+		Tedy podle Gronwallova lemmatu $\|v(t)\|_2^2 ≤ e^{C t} \|v(0)\|_2^2 = e^{C t}·0 = 0$.
+	\end{dukazin}
+
+	Assume that $b ≥ 0$, $f \in L_{loc}^2(0, ∞, L^2(\Omega))$, $b \in L_{loc}^2(0, ∞, L^∞(\Omega))$, $g \in L_{loc}^2(0, ∞, L^2(\partial \Omega))$ and satisfies for some $\tau > 0$ that $f$, $u_d$ and $g$ are time $\tau$-periodic. Show that there exists unique $u_0 \in L^2(\Omega)$, for which the weak solution $u$ is $\tau$-periodic.
+
+	\begin{dukazin}
+		Mějme dvě počáteční podmínky $u_{0,1}$ a $u_{0,2}$ a k nim odpovídající řešení $u_1$ a $u_2$. Potom pro $v := u_1 - u_2$ platí totéž, co v jednoznačnosti, až na $v(0, x) = u_{0, 1} - u_{0, 2}$. Tedy
+		$$ 0 = \int_\Omega 0 · v = \int_\Omega (\partial_t v) ·v - \int_\Omega \Div (®A \nabla v) v + \int_\Omega \underbrace{b v^2}_{≥ 0} = \frac{1}{2} \int_\Omega \partial_t v^2 + \int_\Omega ®A \nabla v · \nabla v + \int b v^2. $$
+		Nyní vypustíme člen s $b$ a nerovnici integrujeme v čase od 0 do $\tau$:
+		$$ 0 = \int_0^\tau 0 ≥ \frac{1}{2} \int_0^\tau \int_\Omega \partial_t v + \int_0^t \int_\Omega ®A \nabla v · \nabla v = \frac{1}{2} \|v(\tau)\|_2 - \frac{1}{2} \|v(0)\|_2 + \int_0^t \int_\Omega ®A \nabla v · \nabla v. $$
+		®A je eliptická, tedy $®A \nabla v · \nabla v ≥ C_1 \|\nabla v\|^2$, tedy
+		$$ \|v(0)\|_2^2 ≥ \|v(\tau)\|_2^2 + 2·C_1 \int_0^\tau \|\nabla v\|_2^2 ≥ \|v(\tau)\|_2^2. $$
+		Z Poincarého nerovnosti víme, že $\|\nabla v\|_2^2·C_2 ≥ \|v\|_2^2$, navíc pokud stejný postup aplikujeme na libovolná $t_1$ a $t_2$ místo $0$ a $\tau$, dostaneme, že $\|v(t)\|_2^2$ je nerostoucí, tedy
+		$$ 2·C_1 \int_0^\tau \|\nabla v\|_2^2 ≥ 2·C_1·\frac{1}{C_2}·\int_0^\tau \|v\|_2^2 ≥ 2·C_1·\frac{1}{C_2}·\tau·\|v(\tau)\|_2^2 \implies $$
+		$$ \implies \|v(0)\|_2^2 ≥ (1 + C_3)\|v(\tau)\|_2^2. $$
+		Jelikož $C_3$ je kladná, tak zobrazení $F: L^2(\Omega) \rightarrow L^2(\Omega)$, $F(u_0) = u(\tau)$ je kontrakce a podle Banachovy věty o pevném bodě ($L^2$ je úplný) existuje právě jedno $F(u_0) = u_0$. Takže existuje jediné $u_0$, že $u(0) = u(\tau)$. A naopak pokud $u(0) = u(\tau)$ a $f$, $g$ a $u_d$ jsou $\tau$-periodické, tak můžeme řešit úlohu s časem posunutým o $\tau$ ($2\tau$, $3\tau$) a vždy nám z jednoznačnosti musí vyjít totéž řešení, tedy $u$ je také $\tau$-periodické.
+	\end{dukazin}
+
+	Assume that $g = 0$ and consider that there are numbers $c_1, c_2, c_3, c_4 \in ®R$ such that
+	$$ b ≥ c_1 ≥ 0, \qquad f ≥ c_2, \qquad u_d ≥ c_3, \qquad u_0 ≥ c_4 \qquad \text{a. e. in } Q. $$
+	Try to find an optimal (as large as possible) function $D$ such that the unique weak solution satisfies
+	$$ u(t, x) ≥ D(t, c_1, c_2, c_3, c_4) \qquad \text{a. e. in }Q. $$
+
+	\begin{reseni}
+		Určitě potřebujeme aby $D(0, …) ≤ c_4$, jinak by mohlo být $u(0, x) ≤ D(0, …)$ na množině $x \in \tilde\Omega \subseteq \Omega$. Stejně tak $D ≤ c_3$, protože jinak by se pro správné $u_d$ mohlo rozbít $u ≥ D$ na $\Gamma_1$. Také si všimněme, že $b ≥ 0$.
+
+		Podle nápovědy zvolíme testovací funkci $(u - D)_- ≤ 0$ (předpokládáme, že alespoň $D \in W^{1, 2}$ a z předpokladů na $D$ nám pak vychází, že $(u - D)_- \in W_0^{1, 2}$):
+		$$ \int_\Omega \(\partial_t u\) · (u - D)_- + \int_\Omega ®A \nabla u \nabla \((u - D)_-\) + \int_{\Omega} b u (u - D)_- = \int_\Omega f(u - D)_- $$
+		$$ \int_\Omega \(\partial (u - D)\)·(u - D)_- + \int_{\{u < D\}}\overbrace{®A \nabla u \nabla u}^{> 0} = - \int_\Omega (\partial_t D + b u - f)(u - D)_-. $$
+		Podle nápovědy uvažujme, že integrand v pravé straně je nezáporný, tedy celá pravá strana je nekladná. Také pro spor předpokládejme, že $\{u < D\}$ je nenulové míry, tedy druhý integrál na levé straně je kladný a tedy
+		$$ 0 > \int_\Omega \(\partial_t(u - D)\)·(u - D)_- = \int_\Omega \(\partial_t\((u - D)_-\)\)·(u - D)_- = \frac{1}{2} \int_\Omega \partial_t \((u - D)_-^2\) = $$
+		$$ = \|(u(\tau) - D(\tau))_-^2\|_2^2 - \|(u(0) - D(0))_-\|_2^2 \overset{D ≤ u_4}= \|(u(\tau) - D(\tau))_-\|_2^2 ≥ 0. $$
+		
+		Tedy nám stačí (pak už bude $\{u < D\}$ nulové míry) zvolit $D$ tak, aby $D(0) ≤ c_4$, $D ≤ c_3$ a buď $u ≥ D$, nebo
+		$$ \partial_t D + b u - f ≤ 0. $$
+		Jelikož v druhém případě máme $u < D$, tak nám stačí
+		$$ \partial_t D + b D - c_2 ≤ 0. $$
+		Pokud $D > 0$ a $u$ by tak mohlo být větší než nula, tak bychom mohli správnou volbou $b$ dostat na to, že $\partial_t D = -∞$. To však být nemůže, tedy musíme hledat $D ≤ 0$. Pro to nám navíc stačí
+		$$ \partial_t D + c_1 D - c_2 ≤ 0 $$
+
+		Jelikož vždy může být (hledáme $D ≤ 0$) $\partial_t D$ libovolně záporná, tj. určitě se nemůže stát, že by $D$ bylo takové, že splňuje v nějakém čase $D ≤ \min(c_4, 0)$ a v nějakém dalším by nutně muselo tuto mez překročit. Takže pokud budeme mít $\partial_t D + c_1 D - c_2 = 0$ s počáteční podmínkou $D = \min(c_4, c_3, 0)$ ($D ≤ c_3$ musíme splnit jen v čase 0) a v případě dosažení $D = \min(c_4, 0)$ mít dále $D$ konstantní.
+
+		$\partial_t D + c_1 D - c_2 = 0$ má řešení $K·e^{-c_1 t} + c_2$, a v $0$ tedy $K + c_2 = \min(c_3, c_4, 0)$, tj. $K = \min(c_3, c_4, 0) - c_2$. Takže
+		$$ D(t, c_1, c_2, c_3, c_4) = \min\(0, c_4, \(\min(c_3, c_4, 0) - c_2\)·e^{-c_1·t}\). $$
+	\end{reseni}
+
+	Reconsider first part with the weaker assumptions:
+	$$ f \in L^1(0, T; L^2(\Omega)), \qquad b \in L^1(0, T; L^∞(\Omega)), \qquad g \in L^{\frac{4}{3}}(0, T; L^2(\partial \Omega)). $$
+
+	\begin{reseni}
+		TODO?
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[2. Finite speed of propagation of WS to linear hyperbolic equation of 2nd order]
+	Let $\Omega \subset ®R^d$ be an open set fulfilling $B_1(0) \subset \Omega$. Assume that $®A \in L^∞(\Omega) \in L^∞(\Omega; ®R^{d \times d}_{sym})$ be elliptic and that $u$ is weak solution to
+	$$ \partial_{t t} u - \Div(®A \nabla u) = 0 \qquad \text{in } Q := (0, T) \times \Omega, $$
+	i. e.,
+	$$ u \in L^2\(0, T; W^{1, 2}(\Omega)\) \cap W^{1, 2}\(0, T; L^2(\Omega)\) \cap W^{2, 2}\(0, T; \(W_0^{1, 2}(\Omega)\)^*\) $$
+	satisfies for almost all $t \in (0, T)$ and all $w \in W_0^{1, 2}(\Omega)$
+	$$ \<\partial_{t t} u, w\> + \int_\Omega ®A \nabla u · \nabla w = 0. $$
+
+	Find proper/optimal relation between $\Omega_0 \subset B_1(0)$ and $Q_0 \subset Q$ such that
+	$$ u(0) = \partial_t u(0) = 0 \text{ in } \Omega_0 \qquad \implies \qquad u = 0 \text{ in } Q_0. $$
+	Subgoal1: Show the result for constant matrix ®A.
+
+	\begin{reseni}[$\Omega_0 = B_1(0)$ pro $®A = ®I$]
+		%Jelikož ®A je symetrická reálná (regulární) pozitivně definitní (jinak $®A x · x = 0 \not≥ c_1 \|x\|^2$) matice, tak existuje $P$ takové, že $P A P^T = I$ (z pozitivní definitnosti matice případy $0$ a $-1$ na diagonále výsledné matice nejsou přípustné, tedy vpravo je opravdu $I$). Předpokládejme že $u$ je řešení problému. Pak zadefinujeme $v$ tak, že $u(t, x) =: v(t, Px)$ a $y := Px$.
+
+		%Jelikož $P$ jsou konstantní reálná čísla, tak $v$ je ze stejných prostorů jako $u$. Zároveň platí
+		%$$ \partial_{t t} u = \partial_{t t} v, \qquad \nabla_x u = P \nabla_y v. $$
+		%Podobně platí 
+
+		Nechť je $u$ nějaké řešení. $\partial_{t t}$ neznáme nikde, tedy rovnost z definice zintegrujeme podle času (pro v čase konstantní $w \in W_0^{1, 2}(\Omega)$):
+		$$ 0 = \!\!\int_0^\tau \!\! 0 = \int_0^\tau \<\partial_{t t} u, w\> + \int_0^\tau\int_\Omega ®A \nabla u · \nabla w = \<\partial_t u(\tau), w\> - \<\partial_t u(0), w\> + \int_\Omega \(\int_0^\tau ®A \nabla u\) · \nabla w. $$
+
+		Teď bychom rádi funkcí $u(\tau)$ otestovali tuto rovnost. Ale $u(\tau)$ je sice z $W_0^{1, 2}(\Omega)$, ale už nesplňuje, že by bylo v $W_0^{1, 2}(\Omega)$. My ho ale můžeme vynásobit nezápornou Lipschitzovskou funkcí $h(\tau, x)$, která bude na $\partial \Omega$ nulová a později zvolíme další podmínky. Tak $u(\tau)·h(\tau) \in W_0^{1, 2}(\Omega)$ a máme
+		$$ \<\partial_{t} u(0), h(\tau)·u(\tau)\> = \<\partial_{t} u(\tau), h(\tau)·u(\tau)\> + \int_\Omega \(\int_0^\tau \nabla u(t) dt\) · \nabla (h(\tau)·u(\tau)). $$
+		Máme počáteční podmínku na $\partial_t u$:
+		$$ \int_{x \in \Omega, \|x\| > 1} \partial_{t} u(0)·h(\tau)·u(\tau) = \frac{1}{2}\int_\Omega \(\partial_{t} (u)^2\)·h + \int_\Omega \(\int_0^\tau \nabla u(t) dt\) · \((\nabla h)·u + h·(\nabla u)\). $$
+	\end{reseni}
+	\begin{reseni}[Pokračování]
+		Když zvolíme $h$ tak, že pro $\|x\| ≥ 1$ je $h = 0$, potom levá strana je nulová. V prvním integrálu na pravé straně bychom rádi dostali pryč derivaci $u$, takže použili per partes. Máme tam ale „špatný“ integrál. Takže si přidáme ten „správný“:
+		$$ \frac{1}{2}\int_0^T \int_\Omega \(\partial_t (u^2)\) · h \overset{per p.}= -\frac{1}{2}\int_0^T \int_\Omega u^2 · \partial_t h + \frac{1}{2}\int_\Omega (u(T))^2·h(T) - \frac{1}{2}\int_\Omega (u(0))·h(0). $$
+		Když položíme i $h(T) ≡ 0$ a použijeme $h = 0$ pro $|x| ≥ 1$ a $u(0, x) = 0$ pro $\|x\| < 1$ máme
+		$$ \frac{1}{2}\int_0^T \int_\Omega \(\partial_t (u^2)\) · h \overset{per p.}= -\frac{1}{2}\int_0^T \int_\Omega u^2 · \partial_t h. $$
+
+		Spolu s předchozím máme
+		$$ \frac{1}{2}\int_0^T \int_\Omega u^2 · \partial_t h = \int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\) · \((\nabla h)·u + h·(\nabla u)\). $$
+		Pravou stranu rozepíšeme z linearity a použijeme standardní trik z derivací (derivaci vezmeme použitím $\partial_t \int … dt = …$):
+		$$ … = \int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)·(\nabla h)·u + \frac{1}{2}\int_0^T \int_\Omega \partial_t \(\int_0^\tau \nabla u(t) dt\)^2 · h. $$
+		Derivace podle $t$ před $u$ (v druhém integrálu) bychom se zase rádi zbavili a tentokrát zde máme i „správný“ integrál:
+		$$ \frac{1}{2}\int_0^T \int_\Omega \partial_t \(\int_0^\tau \nabla u(t) dt\)^2 · h = - \frac{1}{2}\int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)^2 · \partial_t h + $$
+		$$ + \frac{1}{2} \int_\Omega \(\int_0^T \nabla u(t) dt\)^2 · h(T) + \frac{1}{2} \int_\Omega \(\int_0^0 \nabla u(t) dt\)^2 · h(0). $$
+		Zvolili jsme $h(T) ≡ 0$ a integrál přes prázdnou množinu $(0, 0)$ je nulový. Tedy druhá řádka je nulová.
+
+		Celkově všechno:
+		$$ \frac{1}{2}\int_0^T \int_\Omega u^2 · \partial_t h = \int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)·(\nabla h)·u - \frac{1}{2}\int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)^2 · \partial_t h $$
+		$$ \frac{1}{2}\int_0^T \int_\Omega \(u^2 + \(\int_0^\tau \nabla u(t) dt\)^2\) · \partial_t h = \int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)·(\nabla h)·u $$	
+	\end{reseni}
+
+	\begin{reseni}[Pokračování]
+		Nyní jsme se dostali k tomu, že už máme $u^2$, které můžeme omezovat. Ještě bychom se rádi zbavili $h$. Nejlépe aby $\partial_t h ≠ 0$ a $\nabla h ≠ 0$ na „co největší množině“, aby nám to „nenarušovalo“ odhady. Pořád ale chceme $h$ lipschitzovské, $h(T) ≡ 0$ a pro $\|x\| ≥ 1$ chceme $h = 0$.
+
+		Nabízí se, že $h = \|x\| + t - C$ tam, kde chceme nezáporné derivace a $0$ jinde. Pro $t = 0$ chceme, aby derivace byly nezáporné na co největší ploše, ale pro $\|x\| = 1$ musí kvůli spojitosti (lipschitzovskosti) být $h = 0$, tedy zvolíme $C = 1$. Také chceme, aby pro $t = T$ bylo „$\|x\| + t - C$ rovno nule“, aby plynule navazovalo na $h(T) ≡ 0$, ale do té doby byly nezáporné derivace. Tedy $h$ definujeme jako
+		$$ h = \min\(0, \|x\| + \frac{t}{T} - 1\). $$
+
+		Dosadíme:
+		$$ \frac{1}{2}\int_0^T \int_\Omega \(u^2 + \(\int_0^\tau \nabla u(t) dt\)^2\) · \chi_{h ≠ 0} · \frac{1}{T} = \int_0^T \int_\Omega \(\int_0^\tau \nabla u(t) dt\)·\chi_{h≠0}·u $$
+		Ještě potřebujeme upravit pravou stranu, protože chceme „normu“, ne nějaký součin, tedy dle $0 ≤ (A+B)^2 = A^2 + B^2 + AB$ ($A = u$, $B = \int_0^\tau \nabla u(t) dt$)
+		$$ \frac{1}{2}\int_0^T \int_\Omega \(u^2 + \(\int_0^\tau \nabla u(t) dt\)^2\) · \chi_{h ≠ 0} · \frac{1}{T} ≤ \frac{1}{2}\int_0^T \int_\Omega \(u^2 + \(\int_0^\tau \nabla u(t) dt\)^2\)·\chi_{h≠0} $$
+		$$ \(\frac{1}{2T} - \frac{1}{2}\) · \int_0^T \int_\Omega \(u^2 + …_+\) · \chi_{h ≠ 0} ≤ 0. $$
+		Nyní když zvolíme $T < 1$ libovolně tak $\int\int u^2 · \chi_{h ≠ 0} ≤ 0$, tedy $u^2 = 0$ skoro všude tam, kde $h ≠ 0$, což je pro všechna $(t, x)$ taková, že $\|x\| + \frac{t}{T} - 1 < 0$, tedy tam, kde $\|x\| + t < 1$.
+	\end{reseni}
+
+	\begin{reseni}[$\Omega_0 = B_r(x_0)$ pro $®A = ®I$]
+		Nyní pokud funkce $v(t, x) = u(t / r, x - x_0)$ řeší problém pro $\Omega_0 = B_1(0)$, pak $u(t, x)$ řeší problém pro $\Omega_0 = B_r(x_0)$, tedy $Q_0(B_r(x_0)) = \{(t, x) | (t / r, x - x_0) \in Q_0(B_1(0))\} = \{(t·r, x + x_0) | (t, x) \in Q_0(B_1(0))\}$.
+	\end{reseni}
+
+	\begin{reseni}[$\Omega_0$ obecné pro $®A = ®I$]
+		Nyní se můžeme na $\Omega_0$ podívat jako mnoho kruhů $B_r(x_0)$, kde vždy $\lambda^n(B_r(x_0) \setminus \Omega_0) = 0$ (na množině míry nula můžeme totiž $u_0$ předefinovat). Tedy $Q_0(\Omega_0) = \{(t, x) | \lambda^n(B_t(x) \setminus \Omega_0) = 0\}$.
+	\end{reseni}
+
+	\begin{reseni}[$\Omega_0$ obecné pro obecné ®A]
+		Provedeme transformaci souřadnic (vynásobením maticí) tak, aby se nám rovnice transformovala do případu $®A = ®I$ a máme to. Konkrétně vyjde $Q_0(\Omega_0) = \{(t, x) | \lambda^n(®A · B_t(x) \setminus \Omega_0) = 0\}$.
+	\end{reseni}
+
+	Subgoal2: Show it for general ®A.
+	
+	\begin{reseni}
+		TODO?
+	\end{reseni}
+\end{priklad}
+
+\end{document}
