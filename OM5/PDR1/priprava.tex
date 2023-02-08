@@ -1,0 +1,313 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{definice}[Weak derivative]
+	Let $u, v_\alpha \in L^1_{loc}(\Omega)$. We say, that $v_\alpha$ is $\alpha$-th weak derivative of $u$ $≡$
+	$$ ≡ \int_\Omega u D^\alpha \phi = (-1)^{|\alpha|} \int_\Omega v_\alpha \phi \qquad \forall \phi \in C_0^∞(\Omega). $$	
+\end{definice}
+
+\begin{definice}[Sobolev space ($W^{k, p}$)]
+	$\Omega \subseteq ®R^d$ open, $k \in ®N_0$, $p \in [1, ∞]$.
+	$$ W^{k, p}(\Omega) := \{u \in L^p(\Omega) | \forall \alpha, |\alpha| ≤ k: D^\alpha u \in L^p(\Omega)\}. $$
+	$$ ||u||_{W^{k, p}(\Omega)} := ||u||_{k, p} := \begin{cases}\(\sum_{|\alpha| ≤ k} ||D^\alpha u ||_p^p\)^{\frac{1}{p}}, & p < ∞,\\ \max_{|\alpha| ≤ k} ||D^\alpha u||_∞, & p=∞.\end{cases} $$	
+\end{definice}
+
+\begin{tvrzeni}[Completeness of Sobolev space]
+	Let $\Omega \subseteq ®R^d$ be open set, $k \in ®N$ and $p \in [1, ∞]$. Then $W^{k, p}(\Omega)$ is complete.
+\end{tvrzeni}
+
+\begin{tvrzeni}[Separability of Sobolev spaces]
+	Let $\Omega \subseteq ®R^d$ be open set, $k \in ®N$ and $p \in [1, ∞)$. Then $W^{k, p}(\Omega)$ is separable.
+\end{tvrzeni}
+
+\begin{tvrzeni}[Reflexivity of Sobolev spaces]
+	Let $\Omega \subseteq ®R^d$ be open set, $k \in ®N$ and $p \in (1, ∞)$. Then $W^{k, p}(\Omega)$ is separable.
+\end{tvrzeni}
+
+\begin{definice}[Scalar product of $W^{k, 2}$]
+	Let $u, v \in W^{k, 2}$, we define scalar product of $u$ and $v$ by: 
+	$$ (u, v)_{W^{k, 2}(\Omega)} := (u, v)_{k, 2} := \sum_{|\alpha| ≤ k} \int_\Omega D^\alpha u(x) · D^\alpha v(x) dx. $$
+\end{definice}
+
+\begin{veta}[Local approximation of Sobolev functions]
+	$$ \forall u \in W^{k, p}(\Omega)\ \exists \{u_n\}_{n=1}^∞ \subseteq C_0^∞(®R^d)\ \forall\tilde\Omega\ open, \overline{\tilde \Omega} \subseteq \Omega: u^n \rightarrow u \ \text{in}\ W^{k, p}(\tilde\Omega). $$
+\end{veta}
+
+\begin{definice}[Domain of the class $C^{k, \alpha}$]
+	Let $\Omega \subseteq ®R^d$ be open bounded set and $\alpha > 0$. We say that $\Omega \in C^{k, \mu}$ iff:
+
+	\begin{itemize}
+		\item there exist $M$ ($r \in [M]$) coordinate systems $¦x^r = (x_1^r, …, x_d^r) = (\tilde x^r, x_d^r)$ and functions $a^r: \Delta^r \rightarrow ®R$, where $\Delta^r = \{\tilde x^r \in ®R^{d - 1}\ |\ |x_d^r| ≤ \alpha\}$ such that $a^r \in C^{k, \mu}(\Delta^r)$;
+		\item if we denote $t^r$ the original transformation from $¦x^r$ to $¦x = (\tilde x, x_d)$, then $\forall x \in \partial\Omega$ $\exists r \in [M]$ such that $x = t^r(\tilde x', a(\tilde x_d))$;
+		\item $\exists \beta > 0$ such that if we define
+			$$ V_+^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) < x_d^r < a^r(\tilde x^r) + \beta\}, $$
+			$$ V_-^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) - \beta < x_d^r < a^r(\tilde x^r)\}, $$
+			$$ \Lambda^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) = x_d^r\}, $$
+			then $t^r(V_+^r) \subseteq \Omega$, $t^r(V_-^r) \subseteq ®R^d \setminus \Omega$, $t^r(\Lambda^r) \subseteq \partial \Omega$ and $\bigcup_{r\in[M]} t^r(\Lambda_r) = \partial \Omega$.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}[Extension theorem for $W^{1, p}(\Omega)$]
+	Let $\Omega \in C^{0, 1}$ and $k \in ®N$, $p \in [1, ∞]$. Then there exists a continuous linear operator $E: W^{k, p}(\Omega) \rightarrow W^{k, p}(®R^d)$ such that (for $C$ independent of $u$):
+	$$ \|E u\|_{W^{k, p}(®R^d)} ≤ C·\|E u\|_{W^{k, p}(\Omega)} \land E u |_\Omega = u. $$
+\end{veta}
+
+\begin{tvrzeni}[Continuous and compact embedding of Sobolev spaces]
+	Let $\Omega \in C^{0, 1}$ and let $p \in [1, ∞]$. Then
+	\vspace{-1em}
+	\begin{itemize}
+		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ for all $1 ≤ \frac{dp}{d - p}$,
+		\item if $p = d$, then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ for all $q < ∞$,
+		\item if $p > d$, then $W^{1, p}(\Omega) \hookrightarrow C^{0, 1 - \frac{d}{p}}(\overline{\Omega})$.
+	\end{itemize}
+	\vspace{-1em}
+	Moreover
+	\vspace{-1em}
+	\begin{itemize}
+		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ for all $1 ≤ \frac{dp}{d - p}$,
+		\item if $p = d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ for all $q < ∞$,
+		\item if $p > d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow C^{0, \alpha}(\overline{\Omega})$ for all $\alpha < 1 - \frac{d}{p}$.
+	\end{itemize}
+
+	\vspace{-2em}
+	$$ X \hookrightarrow\hookrightarrow Y ≡ X ≤ Y \land \(A \subseteq X \text{ is bounded in } X \implies A \text{ is precompact in } Y\). $$
+
+	\vspace{-2em}
+	$$ \left( X\hookrightarrow\hookrightarrow Y \implies X \subseteq Y \land \(\{u^n\}_{n=1}^∞, \exists c: ||u^n||_{1, p} ≤ c \implies \exists u^{n_j}: u^{n_j} \rightarrow u \text{ in } Y\). \right) $$
+\end{tvrzeni}
+
+\begin{tvrzeni}[Characterization of Sobolev spaces]
+	$$ u \in W^{1, p}(\Omega) \implies \forall h, i, \delta: \|\Delta_i^h u\|_{L^p(\Omega_\delta)} ≤ \|\frac{\partial u}{\partial x_i}\|_{L^p(\Omega)}. $$
+
+	Also, if $\forall h, i, \delta: \|\Delta_i^h u\|_{L^p(\Omega_\delta)} ≤ c_i$ and $p > 1$ then $\frac{\partial u}{\partial x_i}$ exist $\forall i$ and $\|\frac{\partial u}{\partial x_i}\|_{L^p(\Omega)} ≤ c_i$.
+\end{tvrzeni}
+
+\begin{tvrzeni}[Trace theorem]
+	Let $\Omega \in C^{0, 1}$ and $p \in [1, ∞]$. Then there exists a continuous linear operator $\tr: W^{1, p}(\Omega) \rightarrow L^p(\partial \Omega)$ such that (for $c$ independent of $u$):
+	$$ \|\tr u\|_{L^p(\partial \Omega)} ≤ c·\|\tr u\|_{W^{1, p}(\Omega)} \land \forall u \in W^{1, p}(\Omega) \cap C(\overline{\Omega}): \tr u |_{\partial\Omega} = u|_{\partial \Omega}. $$
+	
+\end{tvrzeni}
+
+\begin{veta}[Linear Lax–Milgram lemma]
+	Let $B$ be a bilinear elliptic form. Then
+	$$ \forall F \in V^*\ \exists!u \in V\ \forall \phi \in V: B(u, \phi) = \<F, \phi\>. $$
+\end{veta}
+
+\begin{veta}[Non-linear Lax–Milgram lemma]
+	Let $B$ be Lipschitz continuous and uniformly monotone. Then
+	$$ \forall F \in V^*\ \exists!u \in V\ \forall \phi \in V: \<B(u), \phi\> = \<F, \phi\>. $$
+\end{veta}
+
+\begin{definice}[Bochner integral]
+	Let $s: I \rightarrow X$ be a simple function ($|\im s| = |\{x_1, …, x_n\}| < ∞$) on interval. We define
+	$$ \int_I s(t) dt := \sum_{j=1}^n x_j·|I_j|. $$
+
+	Let $f: I \rightarrow X$ be a Bochner measurable function. We say that $f$ is Bochner integrable if $\exists \{s^n\}_{n=1}^∞$ such that $s^n(t) \rightarrow f(t)$ for almost every $t \in I$ and $\int_I \|s^n(t) - f(t)\|_X dt \rightarrow 0$ as $n \rightarrow ∞$ and we set
+	$$ X \ni \int_I f(t) dt = \lim_{n \rightarrow ∞} \int_I s^n(t) dt. $$
+\end{definice}
+
+\begin{definice}[Bochner measurability, simple functions]
+	We say that $f: I \rightarrow X$ is measurable (strongly, Bochner) if $\exists \{s_j\}_{j=1}^∞$ simple functions ($|\im s_j| < ∞$), such that $||f(t) - s_n(t)||_X \rightarrow 0$ as $n \rightarrow ∞$ for almost every $t \in I$.
+\end{definice}
+
+\begin{definice}[The spaces $L^p(0, T; X)$]
+	Let $X$ be a Banach space, then
+	$$ L^p(0, T; X) = \{f: (0, T) \rightarrow X \text{ bochner integrable} \middle| \int_I \|f(t)\|_X^p < ∞\}. $$
+	$$ \|f\|_{L^p(0, T; X)} = \(\int_I \|f(t)\|_X^p dt\)^{1/p}. $$
+\end{definice}
+
+\begin{definice}[Weak time derivative for Bochner spaces]
+	Let $f: I \rightarrow X$ be Bochner integrable. We say that $g: I \rightarrow X$ is weak derivative of $f$ with respect to time iff $g$ is Bochner integrable and $\forall \tau \in C_0^∞(I): \int_I f(t) \tau'(t) dt = -\int_I g(t) \tau(t) dt$.
+\end{definice}
+
+\begin{definice}[Sobolev space $W^{1, p}(I; X)$]
+	$$ W^{1, p}(I; X) := \{f \in L^p(I; X) | \partial_t f \in L^p(I; X)\}; $$
+	$$ ||f||_{W^{1, p}(I; X)} = \begin{cases}\(\int_I ||f||_X^p + ||\partial_t f||_X^p\)^{\frac{1}{p}},& p \in [1, ∞) \\ \esssup_{t \in I}(||f(t)||_X + ||\partial_t f||_X), & p = ∞.\end{cases} $$
+\end{definice}
+
+\begin{tvrzeni}[Completeness of $W^{1, p}(I; X)$]	
+	$W^{1, p}(I; X)$ is complete.
+\end{tvrzeni}
+
+\begin{tvrzeni}[Reflexivity, separability of $L^p(0, T; X)$]
+	$W^{1, p}(I; X)$ is separable for $p < ∞$ and $X$ separable. $W^{1, p}(I; X)$ is reflexive if $p \in (1, ∞)$ and $X$ is reflexive and also separable.
+\end{tvrzeni}
+
+\begin{definice}[Scalar product of $W^{1, 2}(I; H)$]
+	If $H$ is Hilbert space and $u, v \in $, then
+	$$ (u, v)_{H^1(I; X)} := (u, v)_{L^2(I; X)} + (u', v')_{L^2(I; X)}, $$
+	where
+	$$ (u, v)_{L^2(I; X)} := \int_I (u(t), v(t))dt. $$
+\end{definice}
+
+\begin{definice}[Gelfand triple]
+	We say that $X, H, X^*$ is Gelfand triple iff $X \overset{\text{dense}}\hookrightarrow H \cong H^* \overset{\text{dense}}\hookrightarrow X^*$.	
+\end{definice}
+
+\begin{veta}[Integration by parts for Sobolev-Bochner functions]
+	Let $p \in (1, ∞)$, $X, H, X^*$ a Gelfond triple, $u, v \in L^p(0, T; X)$, $\partial_t u, \partial_t v \in L^{p'}(0, T; X^*)$. Then $u, v \in C([0, T]; H)$ and $\forall 0 ≤ t_1 < t_2 ≤ T$:
+	$$ \int_{t_1}^{t_2} \<\partial_t u, v\>_X + \<\partial_t v, u\>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
+\end{veta}
+
+\break
+
+\begin{dukaz}[Completeness of Sobolev space]
+	$u^n$ is Cauchy in $L^p(\Omega)$ so $\exists u \in L^p: u^n \rightarrow u$ in $L^p$. $D^\alpha u^n$ is Cauchy in $L^p(\Omega)$ $\forall |\alpha| < k$ so $\exists v_\alpha \in L^p: D^\alpha u^n \rightarrow v_\alpha \in L^p$. It remains prove that $D^\alpha u = v_\alpha$.
+	$$ \forall \eta \in C_0^∞(\Omega): \int_\Omega v_\alpha \eta = \int_\Omega (v_\alpha - D^\alpha u^n)\eta + \int_\Omega D^{\alpha}u^n\eta = $$
+	$$ = \int_\Omega(v_\alpha - D^\alpha u^n) \eta + (-1)^{|\alpha|} \int_\Omega D^\alpha \eta u^n = $$
+	$$ = \int_\Omega(v_\alpha - D^\alpha u) \eta + (-1)^{|\alpha|} \int_\Omega(u^n - u)D^\alpha\eta + (-1)^{|\alpha|}\int_\Omega u D^\alpha \eta. $$
+	$$ \left|\int_\Omega (v_\alpha - D^\alpha u^n) \phi\right| ≤ \|v_\alpha - D^\alpha u^n\|_p \|\eta\|_{p'} ≤ C \|v_\alpha - D^\alpha u^n\| \rightarrow 0. $$
+	$$ \left|\int_\Omega (u^n - u) D^\alpha \eta\right| ≤ \|u^n - u\|_p \|D^\alpha \eta\|_{p'} ≤ C \|u^n - u\|_p \rightarrow 0. $$
+\end{dukaz}
+
+\begin{dukaz}[Separability and reflexivity of Sobolev spaces]
+	$W^{1, p}(\Omega) \simeq X \subseteq L^p(\Omega) \times … \times L^P(\Omega)$ ($d+1$ times), $X$ closed subspace from previous.
+
+	Lemma: if $X \subseteq Y$ is closed subspace then $Y$ separable $\implies$ $X$ separable and $Y$ reflexive $\implies$ $X$ reflexive. (From functional analysis and topology.)
+\end{dukaz}
+
+\begin{dukaz}[Local approximation of Sobolev functions]
+	$u$ is extended by 0 to $®R^d \setminus \Omega$.
+	$$ u^\epsilon = u * \eta^\epsilon \qquad \eta^\epsilon(x) = \frac{\eta(\frac{x}{\epsilon})}{\epsilon^d} \qquad \eta \in C_0^∞(B_1), \eta ≥ 0, \eta(x) = \eta(|x|), \int_{®R^d}\eta(x) dx = 1. $$
+	$$ u \in L^P(SET) \qquad u^\epsilon \rightarrow u\ \text{in}\ L^p(SET). $$
+
+	We need: $D^\alpha u^\epsilon \rightarrow D^\alpha u$ in $L^p(\tilde\Omega)$ $\forall \alpha, |\alpha| ≤ k$. Essential step: $D^\alpha u^\epsilon = (D^\alpha u)^\epsilon$ in $\tilde\Omega$ for $\epsilon ≤ \epsilon_0$ (so that ball of radius $\epsilon_0$ and center in $\tilde\Omega$ is in $\Omega$):
+	$$ (D^\alpha u)^\epsilon(x) = \int_{®R^d} D^\alpha u(y) \eta_\epsilon(x-y) dy = \int_{B_\epsilon(x)} D^\alpha u(y) \eta_\epsilon(x - u) dy = $$
+	$$ = (-1)^{|\alpha|} \int_{B_\epsilon(x)} u(y) D^\alpha_y \eta_\epsilon(x - y) dy = \int_{®R^d} u(y) D_x^\alpha \eta(x - y) dy. $$
+	$$ D^\alpha u^\epsilon = D_x^\alpha \int_{®R^d} u(y) \eta_\epsilon(x - y) dy = \int_{®R^d} u(y) D_x^\alpha \eta_\epsilon(x - y) dy. $$
+\end{dukaz}
+
+\begin{dukaz}[Extension theorem for $W^{1, p}(\Omega)$]
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Continuous and compact embedding of Sobolev spaces]
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Characterization of Sobolev spaces]
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Trace theorem]
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Linear Lax–Milgram lemma by non-linear version]
+	We define $B(u): V \rightarrow V^*$ by $\<B(u), \phi\> := B(u, \phi)$. Then $B(u)$ is Lipschitz and uniformly monotone.
+
+	\begin{dukazin}[Lipschitz]
+		$$ \|B(u) - B(v)\|_{V^*} = \sup_{\phi \in V, \|\phi\|_V ≤ 1} \<B(u) - B(v), \phi\> = \sup_\phi \(B(u, \phi) - B(v, \phi)\) = $$
+		$$ = \sup_\phi B(u - v, \phi) ≤ \sup_\phi c_2·\|u - v\|_V·\|\phi\|_V = c_2·\|u - v\|_V. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Uniformly monotone]
+		$$ \<B(u) - B(v), u - v\> = B(u - v, u - v) ≥ c_1·\|u - v\|_V^2. $$
+	\end{dukazin}
+
+	So it satisfies assumptions of Non-linear Lax–Milgram lemma.
+\end{dukaz}
+
+\begin{dukaz}[Non-linear Lax–Milgram lemma]
+	„Uniqueness“: $u, v \in V$, $\forall \phi \in V: \<B(u), \phi\> = \<F, \phi\> = \<B(v), \phi\>$. Then
+	$$ \forall \phi \in V: \<B(u) - B(v), \phi\> = 0 \overset{(\phi := u - v)}\implies \<B(u) - B(v), u - v\> = 0 ≥ c_1 \|u - v\|_V^2 \implies u = v. $$
+
+	„Existence“: $\forall \phi: \<B(u), \phi\> = \<F, \phi\>$ $\Leftrightarrow$
+	$$ \Leftrightarrow \forall \epsilon > 0\ \forall \phi: (u, \phi)_V = (u, \phi)_V - \epsilon·(\<B(u), \phi\> - \<F, \phi\>). $$
+	Define a problem for $v \in V$: Find $u \in V$ such that
+	$$ \forall \phi: (u, \phi)_V = (v, \phi)_V - \epsilon·(\<B(v), \phi\> - \<F, \phi\>). $$
+	Define $M: V \rightarrow V$, $v \mapsto u$. If $M$ has a fixed point, then we find a solution to the original problem.
+
+	1. „$M$ is well-defined“: For given $v \in V$, define $\tilde F \in V^*$: $\forall \phi: \<\tilde F, \phi\> :=(v, \phi)_V - \epsilon(\<B(v), \phi\> - \<F, \phi\>)$. $\<\tilde F, \phi\>$ linear in $\phi$. Riesz tells us that $\forall \tilde F \in V^*\ \exists! u \in V\ \forall \phi \in V: (u, \phi)_V = \<\tilde F, \phi\>$.
+
+	2. „$M$ has a fixed point“: We show that
+	$$ \exists \delta > 0\ \forall u, v \in V: \|M(u) - M(v)\|_V ≤ (1 - \delta)\|u - v\|_V. $$
+	Then from Banach theorem $M$ has a fixed point. From linearity (and definition of $M$):
+	$$ (\overline{u} - \overline{v}, \phi)_V = (u - v, \phi)_V - \epsilon·(\<B(u) - B(v), \phi\> + 0). $$
+	From Rietsz theorem there exists $w_1, w_2$ such that $\forall \phi: (w_1, \phi)_V = \<B(u), \phi\> \land (w_2, \phi)_V = \<B(v), \phi\>$ $\implies$
+	$$ \implies \|M(u) - M(v)\|_V^2 = \|u - v - \epsilon(w_1 - w_2)\|_V^2 = \|u - v\|_V^2 - 2\epsilon(u - v, w_1 - w_2) + \epsilon^2·\|w_1 - w_2\|_V^2. $$
+
+	But from Lipschitz and uniformly monotone:
+	$$ (u - v, w_1 - w_2) = \<B(u) - B(v), u - v\> ≥ c_1·\|u - v\|_V^2, $$
+	$$ \|w_1 - w_2\|_V^2 = (w_1 - w_2, w_1 - w_2)_V = \<B(u) - B(v), w_1 - w_2\> ≤ \|B(u) - B(v)\|_V + \|w_1 - w_2\| $$
+	$$ \implies \|w_1 - w_2\|_V^2 ≤ \|B(u) - B(v)\|_{V^*}^2 ≤ c_2·\|u - v\|_V^2. $$
+
+	So (for sufficiently small $\epsilon$ $\exists d > 0$)
+	$$ \|M(u) - M(v)\|_V^2 ≤ \|u-v\|_V^2 - 2\epsilon·c_1·\|u - v\|_V^2 + \epsilon^2 c_2·\|u - v\|_V^2 = (1 - 2\epsilon·c_1 + \epsilon^2·c_2)\|u - v\|_V^2 ≤ $$
+	$$ ≤ (1 - \delta) \|u - v\|_V^2. $$
+\end{dukaz}
+
+\begin{dukaz}[Completeness of $W^{1, p}(I; X)$]	
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Reflexivity, separability of $L^p(0, T; X)$]
+	Without proof.
+\end{dukaz}
+
+\begin{dukaz}[Integration by parts for Sobolev-Bochner functions]
+	\
+	\vspace{-2.5em}
+	\begin{itemize}
+		\item Step 1: Modify $u, v$ in terms of the Steklov averages $u_h = \fint_t^{t+h} u(\tau) d\tau$.
+		\item Step 2: Prove for $u_h$, $v_h$ from step 1).
+		\item Step 3: $h \rightarrow 0_+$.
+	\end{itemize}
+
+	\begin{dukazin}[Step 1]
+		Define $u_h(t) := \frac{1}{h} \int_t^{t+h} u(\tau) d\tau$, $\forall t \in (0, T - h)$. $u_h \rightarrow h$ $L^p(0, T - h_0, X)$, $\forall h_0 \in (0, T)$. We want „$(\partial_t u)_h = \partial_t u_h = \frac{u(t + h) - u(t)}{h}$“.
+		$$ (\partial_t u)_h \rightarrow \partial_t u \text{ in } L^{p'}(0, T - h_0, X^*), \qquad \forall h_0 \in (0, T). $$
+
+		$$ \phi \in C_0^∞(0, T - h): \int_0^{T - h} u_h(t) \phi'(t) dt = \frac{1}{h} \int_0^{T - h} \phi'(t) \int_t^{t + h} u(t) d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \phi'(t) \(\int_0^{t + h} u(\tau) d\tau - \int_0^t u(\tau) d\tau\) = $$
+		$$ = -\frac{1}{h} \int_0^{T - h} \phi(t)(u(t + h) - u(t)) \Leftrightarrow \partial_t u_h = \frac{u(t + h) - u(t)}{h}. $$
+		
+		$$ \phi \in C_0^∞(0, T - h): \int_0^T \phi(t)(\partial_t u)_h (t) dt = \frac{1}{h} \int_0^{T - h}\phi(t) \int_t^{t + h} \partial_t u(\tau) d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^{t + h} \partial_t u(\tau) d\tau - \int_0^t \partial_t u(\tau) d\tau\)dt = (*) $$		
+		$$ \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^t \partial_t u(\tau) d\tau\) dt = \int_0^{T - h}\int_0^{T - h} \phi(t) \partial_t u(\tau) \chi_{\tau ≤ t} d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \(\int_t^{T - h} \phi(t) dt\)d\tau. $$
+		$$ (*) = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \underbrace{\(\int_{\tau - h}^\tau \phi(t) dt\)}_{C_0^∞(0, T)} d\tau = -\frac{1}{h} \int_0^{T - h} u(\tau) \(\phi(\tau) - \phi(\tau - h)\) d\tau dt. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Step 2]
+		We want
+		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		$$ \Leftrightarrow \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H + (\partial_t v_{h_2}, u_{h_1})_H dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+
+		$$ \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H = \frac{1}{h_1h_2}\int_{t_1}^{t_2} \(u(t + h_1) - u(t), \int_t^{t + h_2}v(\tau)d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1}^{t + h_2} v(\tau) d\tau - \int_{t_1}^t v(\tau)d\tau\)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^t v(\tau + h_2) d\tau - \int_{t_1}^t v(\tau)d\tau\)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1}^t v(\tau + h_2) - v(\tau)d\tau\)_H dt + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(v(\tau + h_2) - v(\tau)d\tau,\int_{t_1}^\tau u(t + h_1) - u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(v(\tau + h_2) - v(\tau)d\tau,\int_{t_2}^{t_2 + h_1} u(t) - \int_{t_2}^{t_2 + h_1}u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \int_{t_1}^{t_2} \(\frac{v(\tau + h) - v(\tau)}{h_2}, \fint_\tau^{\tau + h_1}u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2} \(v(\tau + h_2) - v(\tau), \int_{t_2}^{t_2 + h} u(t) dt\)_H + \int_{t_1}^{t_2}(u(t+h_1) - u(t), \int_{t_1-h_2}^{t_1} v(\tau) d\tau)_H = $$
+		$$ -\int_{t_2}^{t_1} (\partial_t v_{h_2}(\tau), u_{h_1}(\tau)) d\tau + REST $$
+		$$ REST = \frac{1}{h_1h_2}\(\int_{t_2}^{t_2 + h_2} v(t)dt - \int_{t_1}^{t_1 + h_2}v(t) dt, \int_{t_2}^{t_2 + h}u(t) dt\) + SIMILAR = $$
+		$$ = (v_{h_2}(t_2) - v_{h_2}(t_1), u_{h_1}(t_2))_H - SIMILAR = (v_{h_2}(t_2), u_{h_2}(t_2))_H - … $$
+	\end{dukazin}
+
+	\begin{dukazin}[Step 3]
+		We have
+		$$ \int_{t_1}^{t_2} \<\partial_t u_{h_1}, v_{h_2}\>_X + \<\partial_t v_{h_2}, u_{h_1}\>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		Let $h_1 \rightarrow 0_+$ and $h_2 \rightarrow 0_+$. We have $\partial_t u_{h_1} \rightarrow \partial_t u$ in $L^{p'}(0, T, X^*)$, $\partial_t v_{h_2} \rightarrow \partial_t v$ in $L^{p'}(0, T, X^*)$, $u_{h_1} \rightarrow u$ in $L^p(0, T, X)$, $V_{h_2} \rightarrow v$ in $L^p(0, T, X)$. So for almost all $t$ in $(0, T)$: $v_{h_2}(t) \rightarrow v(t)$ in $X \hookrightarrow H$ and $u_{h_1}(t) \rightarrow u(t)$ in $X \hookrightarrow H$.
+
+		$$ \int_{t_1}^{t_2} \<\partial_t u, v\>_X + \<\partial_t v, u\>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
+		Now, it is enough to show $u, v \in C([0, T); H)$. We show that $u_h$ is Cauchy in $C([0, T]; H)$. Use IBP $u_{h_1} = u_{h^n} - u_{h^m}$, $v_{h_2} = u_{h^n} - u_{h^m}$:
+		$$ ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H = ||u_{h^m}(t_1) - u_{h^m}(t_1) + 2 \int_{t_1}^{t_2}\<\partial_t(u_h^m - u_h^n), u_{h^n} - u_{h^m}\>_X|| $$
+		$$ ||u_{h^n} - u_{h^m}||^2_{C\(\[\frac{T}{4}, T\]; L^2(\Omega)\)} = \sup_{t_2 \in (\frac{T}{2}, T)} ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H^2 ≤ $$
+		$$ ≤ ||u_{h^m}(t_1) - u_{h^n}(t_1)||_H^2 + \int_0^T || \partial_t(u_{h^n}) - \partial u_{h^m}||_{X^*} ||u_{h^m} - u_{h^n}||_X dt. $$
+		Choose $t_1$ such that $u_h(t_1) \rightarrow u(t_1)$ in $H$:
+		$$ ≤ ||u_h(t_1) - u_{h^m}(t_1)||_H^2 + ||\partial_t u_{h^m} - \partial_2 u_{h^n}||_{L^p(X^*)} · … $$
+		$$ u \in C\(\[\frac{T}{4}, T\]; L^2(\Omega)\) \land u \in C\(\[0, \frac{3T}{4}\]; L^2(\Omega)\) \rightarrow u \in C\([0, T]; L^2(\Omega)\)(u(t_1), v(t_1))_H. $$
+	\end{dukazin}
+\end{dukaz}
+
+\end{document}

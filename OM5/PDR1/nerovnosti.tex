@@ -1,0 +1,47 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{veta}[Hölderova nerovnost]
+	Nechť $\Omega \subseteq ®R^d$ otevřená $u \in L^p(\Omega)$ a $v \in L^{p'}(\Omega)$, kde $p' = \frac{p}{p - 1}$. Potom
+	$$ \|u·v\|_1 = \int_\Omega |u|·|v| ≤ \(\int_\Omega |u|^p\)^{1/p} \(|v|^{p'}\)^{1/p'} = \|u\|_p · \|v\|_{p'}. $$
+\end{veta}
+
+\begin{veta}[Poincarého nerovnost]
+	Pokud $u = 0$ na $\partial \Omega$, potom $\|u\|_{L^2(\Omega)} ≤ c·\|\nabla u\|_{L^2(\Omega)}$, kde $c$ je konstanta nezávislá na $u$.
+\end{veta}
+
+\begin{veta}[Minkowského nerovnost]
+	Je-li $1 ≤ p ≤ ∞$ a $f, g \in L^{f, g}$, potom
+	$$ \|f + g\|_p ≤ \|f\|_p + \|g\|_p. $$
+\end{veta}
+
+\begin{veta}[O vnořeních]
+	Ať $\Omega \subseteq ®R^d$, $\Omega \in C^{0, 1}$ a $p \in [1, ∞]$. Potom
+
+	\begin{itemize}
+		\item[$p < d$:] $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ pro všechna $q ≤ \frac{d·p}{d - p}$;
+		\item[$p = d$:] $W^{1, p} \Omega \hookrightarrow L^q(\Omega)$ pro všechna $q < ∞$;
+		\item[$p > d$:] $W^{1, p} \Omega \hookrightarrow C^{0, 1 - \frac{d}{p}}(\overline{\Omega})$.
+	\end{itemize}
+\end{veta}
+
+\begin{veta}[Poincarého nervnost 2]
+	Ať $\Omega \in C^{0, 1}$ a $p \in [1, ∞]$. Ať $\Omega_1, \Omega_2 \subseteq \Omega$, $|\Omega_i| > 0$ a $\Gamma_1, \Gamma_2 \subseteq \partial \Omega$, $|\Gamma_i|_{d-1} > 0$. Buďte $\alpha_1, \alpha_2 ≥ 0$, $\beta_1, \beta_2 ≥ 0$ a alespoň jedna z $\alpha_i, \beta_i$ je nenulová.
+
+	Potom $c_1, c_2 > 0$ tak, že $\forall u \in W^{1, p}(\Omega)$
+	$$ c_1 \|u\|_{1,p}^p ≤ \|\nabla u\|_p^p + \alpha_1 \int_{\Omega_1}|u|^p + \alpha_2 \left|\int_{\Omega_2} u\right|^p + \beta_1 \int_{\Gamma_1} |u|^p + \beta \left|\int_{\Gamma_2} u\right|^p ≤ c_2 \|u\|_{1, p}^p. $$
+\end{veta}
+
+\begin{veta}[Grönwallovo lemma]
+	Buď $I$ interval tvaru $[a, ∞)$, $[a, b]$ nebo $[a, b)$, kde $a < b$. Buď $\beta$ a $u$ reálné spojité funkce definované na $I$. Pokud $u$ je diferencovatelné na $\int I$ a splňuje $u'(t) ≤ \beta(t) u(t)$ pro $t \in \int I$, potom $u$ je omezená řešením $v'(t) = \beta(t)·v(t)$, tedy $u(t) ≤ u(a)·\exp\(\int_a^t \beta(s) ds\)$ pro všechna $t \in I$.
+\end{veta}
+
+\begin{veta}[Youngova nerovnost]
+	Je-li $a, b ≥ 0$, $p, q > 1$ $\frac{1}{p} + \frac{1}{q} = 1$, potom $a·b ≤ \frac{a^p}{p} + \frac{b^q}{q}$.
+\end{veta}
+
+\end{document}

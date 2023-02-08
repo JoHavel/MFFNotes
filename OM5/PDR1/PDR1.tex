@@ -59,7 +59,7 @@ TODO?
 \end{definice}
 
 \begin{priklad}
-	$u = \mathrm{sign} x$ nemá slabou derivaci.
+	$u = \mathrm{sign}\ x$ nemá slabou derivaci.
 \end{priklad}
 
 \begin{lemma}[O smysluplnosti]
@@ -67,8 +67,8 @@ TODO?
 
 	\begin{dukazin}
 		$v_\alpha^1$, $v_\alpha^2$ dvě $\alpha$-té derivace $u$.
-		$$ (-1)^{|\alpha|} \int v_\alpha^1 \phi = \int_\Omega u D^\alpha \phi \forall \qquad \phi \in C_0^∞(\Omega) $$
-		$$ (-1)^{|\alpha|} \int v_\alpha^2 \phi = \int_\Omega u D^\alpha \phi \forall \qquad \phi \in C_0^∞(\Omega) $$
+		$$ (-1)^{|\alpha|} \int v_\alpha^1 \phi = \int_\Omega u D^\alpha \phi \qquad \forall \phi \in C_0^∞(\Omega) $$
+		$$ (-1)^{|\alpha|} \int v_\alpha^2 \phi = \int_\Omega u D^\alpha \phi \qquad \forall \phi \in C_0^∞(\Omega) $$
 		$$ \int_\Omega (v_\alpha^1 - v_\alpha^2) \phi = 0 \qquad \forall \phi \in C_0^∞(\Omega) $$
 		$\implies v_\alpha^1 = v_\alpha^2$ skoro všude v $\Omega$.
 
@@ -77,7 +77,7 @@ TODO?
 \end{lemma}
 
 \begin{definice}[Sobolevův prostor]
-	$\omega \subseteq ®R^d$ otevřená, $k \in ®N_0$, $p \in [1, ∞]$.
+	$\Omega \subseteq ®R^d$ otevřená, $k \in ®N_0$, $p \in [1, ∞]$.
 	$$ W^{k, p}(\Omega) := \{u \in L^p(\Omega) | \forall \alpha, |\alpha| ≤ k: D^\alpha u \in L^p(\Omega)\}. $$
 	$$ ||u||_{W^{k, p}(\Omega)} ||u||_{k, p} := \begin{cases}\(\sum_{|\alpha| ≤ k} ||D^\alpha u ||_p^p\)^{\frac{1}{p}}, & p < ∞,\\ \max_{|\alpha| ≤ k} ||D^\alpha u||_∞, & p=∞.\end{cases} $$
 
@@ -114,12 +114,12 @@ TODO?
 	\end{itemize}
 
 	\begin{dukazin}
-		BS means linear normed space, which is complete. Linearity and norm? are easy. Completeness: $u^n$ is Cauchy in $L^p(\Omega)$ so $\exists u \in L^p: u^n \rightarrow u$ in $L^p$. $D^\alpha u^n$ is Cauchy in $L^p(\Omega)$ $\forall |\alpha| < k$ so $\exists v_\alpha \in L^p: D^\alpha u^n \rightarrow v_a \in L^p$. It remains prove that $D^\alpha u = v_\alpha$.
-		%$$ \forall \phi \in C_0^∞: \int_\Omega v_\alpha \phi = \int_\Omega (v_\alpha - D^\alpha u_n) $$
-		%$$ = \int_\Omega(v_\alpha - D^\alpha u) \phi + (-1)^{|\alpha|} \int_\omega(u^n - u) $$
-		$$ TODO $$
-		$$ |\int_\Omega (v_\alpha - D^\alpha u^n) \phi| ≤ ||v_\alpha - D^\alpha u^n||_p ||\phi||_{p'} ≤ C ||v_\alpha - D^\alpha u^n|| \rightarrow 0. $$
-		$$ |\int_\Omega (u^n - u) D^\alpha \phi| ≤ ||u^n - u||_p ||D^\alpha \phi||_{p'} ≤ C ||u^n - u||_p \rightarrow 0. $$
+		BS means linear normed space, which is complete. Linearity and norm? are easy. Completeness: $u^n$ is Cauchy in $L^p(\Omega)$ so $\exists u \in L^p: u^n \rightarrow u$ in $L^p$. $D^\alpha u^n$ is Cauchy in $L^p(\Omega)$ $\forall |\alpha| < k$ so $\exists v_\alpha \in L^p: D^\alpha u^n \rightarrow v_\alpha \in L^p$. It remains prove that $D^\alpha u = v_\alpha$.
+		$$ \forall \eta \in C_0^∞(\Omega): \int_\Omega v_\alpha \eta = \int_\Omega (v_\alpha - D^\alpha u^n)\eta + \int_\Omega D^{\alpha}u^n\eta = $$
+		$$ = \int_\Omega(v_\alpha - D^\alpha u^n) \eta + (-1)^{|\alpha|} \int_\Omega D^\alpha \eta u^n = $$
+		$$ = \int_\Omega(v_\alpha - D^\alpha u) \eta + (-1)^{|\alpha|} \int_\Omega(u^n - u)D^\alpha\eta + (-1)^{|\alpha|}\int_\Omega u D^\alpha \eta. $$
+		$$ \left|\int_\Omega (v_\alpha - D^\alpha u^n) \phi\right| ≤ \|v_\alpha - D^\alpha u^n\|_p \|\eta\|_{p'} ≤ C \|v_\alpha - D^\alpha u^n\| \rightarrow 0. $$
+		$$ \left|\int_\Omega (u^n - u) D^\alpha \eta\right| ≤ \|u^n - u\|_p \|D^\alpha \eta\|_{p'} ≤ C \|u^n - u\|_p \rightarrow 0. $$
 
 		„2+3“: $W^{1, p}(\Omega) \simeq X \subseteq L^p(\Omega) \times … \times L^P(\Omega)$ ($d+1$ times), $X$ closed subspace from first property. Lemma: if $X \subseteq Y$ is closed subspace then $Y$ separable $\implies$ $X$ separable and $Y$ reflexive $\implies$ $X$ reflexive. (From functional analysis and topology.)
 	\end{dukazin}
@@ -143,13 +143,13 @@ TODO?
 
 \begin{veta}[Local density]
 	$$ \forall u \in W^{k, p}(\Omega) \exists \{u^n\}_{n=1}^∞ $$
-	$$ u^n \in C_0^∞(®R^d) \forall \tilde \Omega open, \overline{\tilde\Omega} \subseteq \Omega $$
-	$$ u^n \rightarrow u in W^{k, p}(\tilde\Omega) $$
+	$$ u^n \in C_0^∞(®R^d) \forall \tilde \Omega\ open, \overline{\tilde\Omega} \subseteq \Omega $$
+	$$ u^n \rightarrow u\ in\ W^{k, p}(\tilde\Omega) $$
 
 	\begin{dukazin}
 		$u$ is extended by 0 to $®R^d \setminus \Omega$.
 		$$ u^\epsilon = u * \eta^\epsilon \qquad \eta^\epsilon(x) = \frac{\eta(\frac{x}{\epsilon})}{\epsilon^d} \qquad \eta \in C_0^∞(B_1), \eta ≥ 0, \eta(x) = \eta(|x|), \int_{®R^d}\eta(x) dx = 1. $$
-		$$ u \in L^P(SET) \qquad u^\epsilon \rightarrow u in L^p(SET). $$
+		$$ u \in L^P(SET) \qquad u^\epsilon \rightarrow u\ \text{in}\ L^p(SET). $$
 		
 		We need: $D^\alpha u^\epsilon \rightarrow D^\alpha u$ in $L^p(\tilde\Omega)$ $\forall \alpha, |\alpha| ≤ k$. Essential step: $D^\alpha u^\epsilon = (D^\alpha u)^\epsilon$ in $\tilde\Omega$ for $\epsilon ≤ \epsilon_0$ (so that ball of radius $\epsilon_0$ and center in $\tilde\Omega$ is in $\Omega$):
 		$$ (D^\alpha u)^\epsilon(x) = \int_{®R^d} D^\alpha u(y) \eta_\epsilon(x-y) dy = \int_{B_\epsilon(x)} D^\alpha u(y) \eta_\epsilon(x - u) dy = $$
@@ -193,11 +193,11 @@ TODO?
 \section{Characterization of Sobolev function}
 \begin{veta}
 	$\Omega \subseteq ®R^d$, $p \in [1, ∞]$, $\delta > 0$, $\Omega_\delta := \{x \in \Omega | \dist(x, \delta \Omega) > \delta\}$. Then
-	$$ \forall u \in W^{1, p}(\Omega): ||\Delta_i^h u||_{L^p(\Omega_delta)} ≤ ||\frac{\partial u}{\partial x_i}||_{L^p(\Omega)}, \qquad \forall h, i, \delta $$
+	$$ \forall u \in W^{1, p}(\Omega): ||\Delta_i^h u||_{L^p(\Omega_\delta)} ≤ ||\frac{\partial u}{\partial x_i}||_{L^p(\Omega)}, \qquad \forall h, i, \delta $$
 	$$ \Delta_i^h u(x) = \frac{u(x + he_i) - u(x)}{h}. $$
 
 	$$ u \in L^P \implies \forall \delta, h: ||\Delta_i^h u||_{L^p(\Omega_\delta)} ≤ c. $$
-	$p > 1 \implies \frac{\partial u}{\ partial x_i}$ exists and $||\frac{\partial u}{\partial x_i}||_{L^p(\Omega)} ≤ c$.
+	$p > 1 \implies \frac{\partial u}{\partial x_i}$ exists and $||\frac{\partial u}{\partial x_i}||_{L^p(\Omega)} ≤ c$.
 \end{veta}
 
 % 17. 10. 2022 Z poznámek vyučujícího
@@ -427,8 +427,8 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}[Duel formulation]
-	Let $L u = -\Div(A \nabla u)$ with $A$ elliptic, bounded and symmetric, $\Gamma_1 ≠ \O$, $\Gamma = \O$, $f \in V^*$, $g \in L^2(\Gamma_2)$, $u_0 \in W^{1, 2}(\Omega)$. Then the $f$ following are equivalent:
+\begin{veta}[Dual formulation]
+	Let $L u = -\Div(A \nabla u)$ with $A$ elliptic, bounded and symmetric, $\Gamma_1 ≠ \O$, $\Gamma = \O$, $f \in V^*$, $g \in L^2(\Gamma_2)$, $u_0 \in W^{1, 2}(\Omega)$. Then the following are equivalent:
 	\begin{itemize}
 		\item $u$ is a weak solution;
 		\item $\nabla u = A^{-1} ¦T$, where $¦T$ minimizes $\int \frac{A^{-1}¦T·¦T}{2} = \nabla u_0 ¦T$ over the set $\tilde V := \{¦T \in L^2(\Omega, ®R^d)\}$, $\forall \phi \in V$.
@@ -689,11 +689,11 @@ TODO?
 \end{definice}
 
 \begin{poznamka}
-	If $f \in L^1(I, x)$ and $\frac{\partial f}{\partial t} \in L^1(I, x)$, then $f \in C(I, x)$.
+	If $f \in L^1(I, X)$ and $\frac{\partial f}{\partial t} \in L^1(I, X)$, then $f \in C(I, X)$.
 \end{poznamka}
 
 \begin{veta}
-	$$ W^{1, p}(I, X) := \{f \in L^p(I, x), \partial_t f \in L^p(I, X)\}, \qquad ||f||_{W^{1, p}(I, X)} = \begin{cases}\(\int_I ||f||_X^p + ||\partial_t f||_X^p\)^{\frac{1}{p}},& p \in [1, ∞) \\ \esssup_{t \in I}(||f(t)||_X + ||\partial_t f||_X), & p = ∞.\end{cases} $$
+	$$ W^{1, p}(I, X) := \{f \in L^p(I, X), \partial_t f \in L^p(I, X)\}, \qquad ||f||_{W^{1, p}(I, X)} = \begin{cases}\(\int_I ||f||_X^p + ||\partial_t f||_X^p\)^{\frac{1}{p}},& p \in [1, ∞) \\ \esssup_{t \in I}(||f(t)||_X + ||\partial_t f||_X), & p = ∞.\end{cases} $$
 
 	Then $W^{1, p}(I, X)$ is a Banach space, is separable for $p < ∞$ and $X$ separable and is reflexive if $p \in (1, ∞)$ and $X$ is reflexive and separable.
 \end{veta}
@@ -734,7 +734,7 @@ TODO?
 	$$ \int_{t_1}^{t_2} <\partial_t u, v>_X + <\partial_t v, u>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
 
 	\begin{dukazin}
-		Step 1) Modify $u, v$ in terms of the Steklov ar? $u_h = \not\int_t^{t+h} u(\tau) d\tau$.
+		Step 1) Modify $u, v$ in terms of the Steklov averages $u_h = \fint_t^{t+h} u(\tau) d\tau$.
 
 		Step 2) Prove for $u_h$, $v_h$ from step 1).
 		
@@ -745,7 +745,7 @@ TODO?
 		Define $u_h(t) := \frac{1}{h} \int_t^{t+h} u(\tau) d\tau$, $\forall t \in (0, T - h)$. $u_h \rightarrow h$ $L^p(0, T - h_0, X)$, $\forall h_0 \in (0, T)$. We want „$(\partial_t u)_h = \partial_t u_h = \frac{u(t + h) - u(t)}{h}$“.
 		$$ (\partial_t u)_h \rightarrow \partial_t u \text{ in } L^{p'}(0, T - h_0, X^*), \qquad \forall h_0 \in (0, T). $$
 
-		$$ \phi \in C_0^∞(0, T - h): \int_0^{T - h} u_h(t) \phi'(t) dt = \frac{1}{h} \int_0^{T - h} \phi'(t) \int_t^{t - h} u(t) d\tau dt = $$
+		$$ \phi \in C_0^∞(0, T - h): \int_0^{T - h} u_h(t) \phi'(t) dt = \frac{1}{h} \int_0^{T - h} \phi'(t) \int_t^{t + h} u(t) d\tau dt = $$
 		$$ = \frac{1}{h} \int_0^{T - h} \phi'(t) \(\int_0^{t + h} u(\tau) d\tau - \int_0^t u(\tau) d\tau\) = $$
 		$$ = -\frac{1}{h} \int_0^{T - h} \phi(t)(u(t + h) - u(t)) \Leftrightarrow \partial_t u_h = \frac{u(t + h) - u(t)}{h}. $$
 
@@ -754,23 +754,27 @@ TODO?
 		$$ \phi \in C_0^∞(0, T - h): \int_0^T \phi(t)(\partial_t u)_h (t) dt = \frac{1}{h} \int_0^{T - h}\phi(t) \int_t^{t + h} \partial_t u(\tau) d\tau dt = $$
 		$$ = \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^{t + h} \partial_t u(\tau) d\tau - \int_0^t \partial_t u(\tau) d\tau\)dt = (*) $$
 		
-		$$ \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^t \partial_t u(\tau) d\tau\) dt = \int_0^{T - h}\int_0^{T - h} \phi(t) \partial_t u(\tau) \chi_{\tau ≤ t} d\tau dt = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \(\int_t^{T - h} \phi(t) dt\)d\tau. $$
-
+		$$ \frac{1}{h} \int_0^{T - h} \phi(t) \(\int_0^t \partial_t u(\tau) d\tau\) dt = \int_0^{T - h}\int_0^{T - h} \phi(t) \partial_t u(\tau) \chi_{\tau ≤ t} d\tau dt = $$
+		$$ = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \(\int_t^{T - h} \phi(t) dt\)d\tau. $$
 		$$ (*) = \frac{1}{h} \int_0^{T - h} \partial_t u(\tau) \underbrace{\(\int_{\tau - h}^\tau \phi(t) dt\)}_{C_0^∞(0, T)} d\tau = -\frac{1}{h} \int_0^{T - h} u(\tau) \(\phi(\tau) - \phi(\tau - h)\) d\tau dt. $$
 	\end{dukazin}
 
 	\begin{dukazin}[„Step 2)“]
 		We want
-		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H \Leftrightarrow $$
-		$$ \leftrightarrow \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H + (\partial_t v_{h_2}, u_{h_1})_H dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		$$ \Leftrightarrow \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H + (\partial_t v_{h_2}, u_{h_1})_H dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
 
-		$$ \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H = \frac{1}{h_1h_2}\int_{t_1}^{t_2} (u(t + h_1) - u(t), \int_t^{t + h_2}v(\tau)d\tau)_H dt = \frac{1}{h_1h_2} \int_{t_1}^t(u(t + h_1) - u(t), \int_{t_1}^{t + h_2} v(\tau) d\tau - \int_{t_1}^t v(\tau)d\tau)_H = $$
-		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(u(t + h_1) - u(t), \int_{t_1 - h_2}^t v(\tau + h_2) d\tau - \int_{t_1}^t v(\tau)d\tau)_H = $$
-		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(u(t + h_1) - u(t), \int_{t_1}^{t_2} v(\tau + h_2) - v(\tau)d\tau)_H dt + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
-		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(v(\tau + h_2) - v(\tau)d\tau,\int_{t_1}^{t_2} u(t + h_1) - u(t) dt)_H d\tau + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
-		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}(v(\tau + h_2) - v(\tau)d\tau,\int_{t_2}^{t_2 + h_1} u(t) - \int_{t_2}^{t_2 + h_1}u(t) dt)_H d\tau + \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
-		$$ \int_{t_1}^{t_2} \(\frac{v(\tau + h) - v(\tau)}{h_2}, \not\int_\tau^{\tau + h_1}u(t) dt\)_H d\tau + $$
-		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2} (v(\tau + h_2) - v(\tau), \int_{t_2}^{t_2 + h} u(t) dt)_H + \int_{t_1}^{t_2}(u(t+h_1) - u(t), \int_{t_1-h_2}^{t_1} v(\tau) d\tau)_H = $$
+		$$ \int_{t_1}^{t_2} (\partial_t u_{h_1}, v_{h_2})_H = \frac{1}{h_1h_2}\int_{t_1}^{t_2} \(u(t + h_1) - u(t), \int_t^{t + h_2}v(\tau)d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1}^{t + h_2} v(\tau) d\tau - \int_{t_1}^t v(\tau)d\tau\)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^t v(\tau + h_2) d\tau - \int_{t_1}^t v(\tau)d\tau\)_H = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1}^t v(\tau + h_2) - v(\tau)d\tau\)_H dt + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(v(\tau + h_2) - v(\tau)d\tau,\int_{t_1}^\tau u(t + h_1) - u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(v(\tau + h_2) - v(\tau)d\tau,\int_{t_2}^{t_2 + h_1} u(t) - \int_{t_2}^{t_2 + h_1}u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2}\(u(t + h_1) - u(t), \int_{t_1 - h_2}^{t_1} v(\tau + h_2) d\tau\)_H dt = $$
+		$$ = \int_{t_1}^{t_2} \(\frac{v(\tau + h) - v(\tau)}{h_2}, \fint_\tau^{\tau + h_1}u(t) dt\)_H d\tau + $$
+		$$ + \frac{1}{h_1h_2} \int_{t_1}^{t_2} \(v(\tau + h_2) - v(\tau), \int_{t_2}^{t_2 + h} u(t) dt\)_H + \int_{t_1}^{t_2}(u(t+h_1) - u(t), \int_{t_1-h_2}^{t_1} v(\tau) d\tau)_H = $$
 		$$ -\int_{t_2}^{t_1} (\partial_t v_{h_2}(\tau), u_{h_1}(\tau)) d\tau + REST $$
 		$$ REST = \frac{1}{h_1h_2}\(\int_{t_2}^{t_2 + h_2} v(t)dt - \int_{t_1}^{t_1 + h_2}v(t) dt, \int_{t_2}^{t_2 + h}u(t) dt\) + SIMILAR = $$
 		$$ = (v_{h_2}(t_2) - v_{h_2}(t_1), u_{h_1}(t_2))_H - SIMILAR = (v_{h_2}(t_2), u_{h_2}(t_2))_H - … $$
@@ -778,17 +782,17 @@ TODO?
 
 	\begin{dukazin}[„Step 3)“]
 		We have
-		$$ \int_{t_1}^{t_2} <\partial_t u_{h_1}, v_{h_2}>_X + <\partial_t v_{h_2}, u_{h_1}>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
+		$$ \int_{t_1}^{t_2} \<\partial_t u_{h_1}, v_{h_2}\>_X + \<\partial_t v_{h_2}, u_{h_1}\>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
 		Let $h_1 \rightarrow 0_+$ and $h_2 \rightarrow 0_+$. We have $\partial_t u_{h_1} \rightarrow \partial_t u$ in $L^{p'}(0, T, X^*)$, $\partial_t v_{h_2} \rightarrow \partial_t v$ in $L^{p'}(0, T, X^*)$, $u_{h_1} \rightarrow u$ in $L^p(0, T, X)$, $V_{h_2} \rightarrow v$ in $L^p(0, T, X)$. So for almost all $t$ in $(0, T)$: $v_{h_2}(t) \rightarrow v(t)$ in $X \hookrightarrow H$ and $u_{h_1}(t) \rightarrow u(t)$ in $X \hookrightarrow H$.
 
-		$$ \int_{t_1}^{t_2} <\partial_t u, v>_X + <\partial_t v, u>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1)). $$
-		Now, it is enough to show $u, v \in C([0, T), H)$. We show that $u_h$ is Cauchy in $C([0, T], H)$. Use IBP $u_{h_1} = u_{h^n} - u_{h^m}$, $v_{h_2} = u_{h^n} - u_{h^m}$:
-		$$ ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H = ||u_{h^m}(t_1) - u_{h^m}(t_1) + 2 \int_{t_1}^{t_2}<\partial_t(u_h^m - u_h^n), u_{h^n} - u_{h^m}>_X|| $$
-		$$ ||u_{h^n} - u_{h^m}||^2_{C([\frac{T}{4}, T], L^2(\Omega)} = \sup_{t_2 \in (\frac{T}{2}, T)} ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H^2 ≤ $$
+		$$ \int_{t_1}^{t_2} \<\partial_t u, v\>_X + \<\partial_t v, u\>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
+		Now, it is enough to show $u, v \in C([0, T); H)$. We show that $u_h$ is Cauchy in $C([0, T]; H)$. Use IBP $u_{h_1} = u_{h^n} - u_{h^m}$, $v_{h_2} = u_{h^n} - u_{h^m}$:
+		$$ ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H = ||u_{h^m}(t_1) - u_{h^m}(t_1) + 2 \int_{t_1}^{t_2}\<\partial_t(u_h^m - u_h^n), u_{h^n} - u_{h^m}\>_X|| $$
+		$$ ||u_{h^n} - u_{h^m}||^2_{C\(\[\frac{T}{4}, T\]; L^2(\Omega)\)} = \sup_{t_2 \in (\frac{T}{2}, T)} ||u_{h^n}(t_2) - u_{h^m}(t_2)||_H^2 ≤ $$
 		$$ ≤ ||u_{h^m}(t_1) - u_{h^n}(t_1)||_H^2 + \int_0^T || \partial_t(u_{h^n}) - \partial u_{h^m}||_{X^*} ||u_{h^m} - u_{h^n}||_X dt. $$
 		Choose $t_1$ such that $u_h(t_1) \rightarrow u(t_1)$ in $H$:
 		$$ ≤ ||u_h(t_1) - u_{h^m}(t_1)||_H^2 + ||\partial_t u_{h^m} - \partial_2 u_{h^n}||_{L^p(X^*)} · … $$
-		$$ u \in C([\frac{T}{4}, T], L^2(\Omega)) \land u \in C([0, \frac{3T}{4}], L^2(\Omega)) \rightarrow u \in C([0, T], L^2(\Omega))(u(t_1), v(t_1))_H $$
+		$$ u \in C\(\[\frac{T}{4}, T\]; L^2(\Omega)\) \land u \in C\(\[0, \frac{3T}{4}\]; L^2(\Omega)\) \rightarrow u \in C\([0, T]; L^2(\Omega)\)(u(t_1), v(t_1))_H. $$
 	\end{dukazin}
 \end{veta}
 
@@ -814,7 +818,7 @@ TODO?
 	$$ \sup_{t \in (0, T)} ||u(t)||_2^2 ≤ + \int_0^T ||f||_2^2) $$
 
 	$$ \int_0^T ||u||_{1,2}^2 dt ≤ C $$
-	$$ ||\partial_t u||_{(W_0^{1, 2})^*} = \sup_{||\phi|| ≤ 1} <\partial_t u, \phi> = \sup <f - Lu, \phi> = $$
+	$$ ||\partial_t u||_{(W_0^{1, 2})^*} = \sup_{||\phi|| ≤ 1} \<\partial_t u, \phi\> = \sup \<f - Lu, \phi\> = $$
 	$$ = \sup_{||\phi|| ≤ 1} \int_\Omega (f - ? - bu - ¦c \nabla u)\phi - \int_\Omega(A \nabla u - ¦d u)\nabla \phi ≤ \int_0^T ||f||_2^2 + c(||u||_2^2 + ||\nabla u||_2^2). $$
 \end{poznamka}
 
@@ -826,7 +830,7 @@ TODO?
 	$$ u = 0 \text{ on } (0, T) \times \partial \Omega, $$
 	$$ u(0) = u_0 \text{ in } \Omega $$
 	iff $u \in L^2(0, T, V) \cap W^{1, 2}(0, T, V^*)$, $u(0) = u_0$ and for almost all $t \in (0, T)$ and $\forall \phi \in V$:
-	$$ <\partial_t u, \phi>_V + \int_\Omega A \nabla u · \nabla \phi + b u \phi + ¦c · \nabla u \phi - ¦d \nabla \phi u = <f, \phi>_V. $$
+	$$ \<\partial_t u, \phi\>_V + \int_\Omega A \nabla u · \nabla \phi + b u \phi + ¦c · \nabla u \phi - ¦d \nabla \phi u = \<f, \phi\>_V. $$
 \end{definice}
 
 \subsection{Existence and uniqueness}
@@ -835,11 +839,11 @@ TODO?
 
 	\begin{dukazin}[Uniqueness]
 		$u_1$, $u_2$ are weak solutions. Define $w := u_1 - u_2 \in L^2(0, T, V) \cap W^{1, 2}(0, T, V^*)$. WF for $u_1$ $-$ WF for $u_2$:
-		$$ <\partial_t w, \phi> + \int_{\Omega} A \nabla w · \nabla \phi = \int_\Omega -b w \phi - ¦c \nabla w \phi + ¦d·\nabla \phi w. $$
+		$$ \<\partial_t w, \phi\> + \int_{\Omega} A \nabla w · \nabla \phi = \int_\Omega -b w \phi - ¦c \nabla w \phi + ¦d·\nabla \phi w. $$
 		Follow almost everywhere, replace $u$ by $w$. Set $\phi = w \implies$
-		$$ <\partial_t w, w> + ¦c \|w\|_{1, 2}^2 ≤ c\|w\|_2^2. $$
-		Integrate in respect of time, use IBP-formula for $<·, ·>$:
-		$$ \int_0^t <\partial_t w, w> = \frac{1}{2} \|w(t)\|_2^2 - \frac{1}{2}\|w(0)\|_2^2 = \frac{1}{2}\|w(t)\|_2^2. $$
+		$$ \<\partial_t w, w\> + ¦c \|w\|_{1, 2}^2 ≤ c\|w\|_2^2. $$
+		Integrate in respect of time, use IBP-formula for $\<·, ·\>$:
+		$$ \int_0^t \<\partial_t w, w\> = \frac{1}{2} \|w(t)\|_2^2 - \frac{1}{2}\|w(0)\|_2^2 = \frac{1}{2}\|w(t)\|_2^2. $$
 		$$ \implies \|w(t)\|_2^2 ≤ c \int_0^t \|w(\tau)\|_2^2 d\tau $$
 		$$ \frac{d}{dt} \underbrace{\int_0^t \|w(\tau)\|_2^2 d\tau}_{=:g(t) ≥ 0} ≤ c \int_0^t \|w(\tau)\|_2^2 d\tau $$
 		$$ g' ≤ c·g $$
@@ -851,15 +855,15 @@ TODO?
 		We know $\exists \{w_j\}_{j=1}^∞$ basis of ¦V, which is ortonormal in $L^2$ and $\|P^Nu\|_V ≤ c\|u\|_V$, where $P^N$ is orthogonal projection in $L^2(\Omega)$ onto $\{w_j\}_{j=1}^N$.
 
 		We solve for $u^n(t, x) = \sum_{i=1}^n a_i^n(t) w_i(x)$. We want
-		$$ <\partial u^n, w_j> = -\int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n + <f, w_j> $$
+		$$ \<\partial u^n, w_j\> = -\int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n + \<f, w_j\> $$
 		for $j \in [n]$ for almost all $t \in (0, T)$ (weak formulation of the problem for n, call it WFn).
 	\end{dukazin}
 
 	\begin{dukazin}[„Existence of $u^n$“]
 		LHS of WFn:
-		$$ \sum_{i=1}^n <\partial_t a_i^n w_i, w_j>_V = \sum_{i=1}^n \partial_t a_i^n(t)<w_i, w_j>_V = \sum_{i=1}^n \partial_t a_i^n \delta_{ij} = \partial_t a_j^n(t). $$
+		$$ \sum_{i=1}^n \<\partial_t a_i^n w_i, w_j\>_V = \sum_{i=1}^n \partial_t a_i^n(t)\<w_i, w_j\>_V = \sum_{i=1}^n \partial_t a_i^n \delta_{ij} = \partial_t a_j^n(t). $$
 		RHS of WFn:
-		$$ \sum_{i=1}^n a_i^n(t) \(\underbrace{- \int_\Omega A \nabla w_i \nabla w_j + b w_iw_j + ¦c \nabla w_iw_j - ¦d \nabla w_jw_i}_{G_{ij}(k) \text{ – bounded and measurable?}}\) + \underbrace{<f(t), w_j>}_{g_j^{(t)} \text{ – measurable? on } g \in L^2(0, T)}. $$
+		$$ \sum_{i=1}^n a_i^n(t) \(\underbrace{- \int_\Omega A \nabla w_i \nabla w_j + b w_iw_j + ¦c \nabla w_iw_j - ¦d \nabla w_jw_i}_{G_{ij}(k) \text{ – bounded and measurable?}}\) + \underbrace{\<f(t), w_j\>}_{g_j^{(t)} \text{ – measurable? on } g \in L^2(0, T)}. $$
 		
 		So
 		$$ \frac{d}{dt} a_j^n(t) = \sum_{i=1}^n a_i^n(t) G_{ij}(t) + g_j(t), \qquad j \in [n]. $$
@@ -870,8 +874,8 @@ TODO?
 		Now we prove $\tilde T = T$. We show $|a^n(t)| ≤ c$.
 
 		Multiply WFn for $j$ by $a_j^n(t)$ and sum it:
-		$$ LHS = \sum_{j=1}^n a_j^n <\partial_t u_j^n, w_j> = <\partial_t u^n, \sum_{j=1}^n a_j^n w_j> = <\partial u^n, u^n>. $$
-		$$ RHS = \underbrace{<\partial_t u^n, u^n>}_{=\frac{d}{dt} \|u^n\|_2^2} + c_1 \|u^n\|_V^2 ≤ c(\|f\|_{V^*}^2 + \|u^n\|_2^2). $$
+		$$ LHS = \sum_{j=1}^n a_j^n \<\partial_t u_j^n, w_j\> = \<\partial_t u^n, \sum_{j=1}^n a_j^n w_j\> = \<\partial u^n, u^n\>. $$
+		$$ RHS = \underbrace{\<\partial_t u^n, u^n\>}_{=\frac{d}{dt} \|u^n\|_2^2} + c_1 \|u^n\|_V^2 ≤ c(\|f\|_{V^*}^2 + \|u^n\|_2^2). $$
 		Grönwall: $\|u^n(t)\|_2^2 + \int_0^{\tilde T} \|u^n\|_{1, 2}^2 ≤ c(\|u^n(0)\|_2^2) + \int_0^T \|f\|_{V^*}^2$.
 		$$ \forall t < \tilde T: \|u^n(t)\|_2^2 + \int_0^{\tilde T} \|u^n\|_{1, 2}^2 ≤ c\(\int_0^{\tilde T} \|f\|_{V^*}^2 + \|u_0\|_2^2\) ≤ \tilde c. $$
 		$$ \lim_{t \rightarrow \tilde T_-}|a^n(t)|^2 = \lim_{t \rightarrow \tilde T_-} \|u^n(t)\|_2^2 ≤ \tilde c. $$
@@ -906,8 +910,8 @@ TODO?
 		Integration by parts in time:
 		$$ u \in L^2(W_0^{1, 2}(\Omega)) \ni \tau w_j, $$
 		$$ \partial_u \in L^2((W_0^{1, 2}(\Omega))^*) \ni \partial_t(\tau w_i) = \partial_t \tau w_i \in L^2, $$
-		$$ -\int_0^T \int_\Omega u w_j \partial_t \tau - \int_\Omega w_j \tau(0) = -\int_0^T <u, \partial_t(\tau w_j)> - \int_\Omega u_0 w_j \tau(0) = $$
-		$$ = \int_0^T <\partial_t u, \tau w_j> + \int_\Omega u(0) \tau(0) w_j - \int_\Omega u_0 w_j \tau(0).$$
+		$$ -\int_0^T \int_\Omega u w_j \partial_t \tau - \int_\Omega w_j \tau(0) = -\int_0^T \<u, \partial_t(\tau w_j)\> - \int_\Omega u_0 w_j \tau(0) = $$
+		$$ = \int_0^T \<\partial_t u, \tau w_j\> + \int_\Omega u(0) \tau(0) w_j - \int_\Omega u_0 w_j \tau(0).$$
 	\end{dukazin}
 \end{veta}
 
@@ -924,10 +928,10 @@ TODO Example?
 
 	\begin{dukazin}
 		Consider $u^n$–Galeikin approximation
-		$$ u^n(t, x) = \sum_{i=1}^n a_i^n w_i: \int_\Omega \partial_t u^n w_j + \int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n = <f, w_j>. $$
+		$$ u^n(t, x) = \sum_{i=1}^n a_i^n w_i: \int_\Omega \partial_t u^n w_j + \int_\Omega A \nabla u^n \nabla w_j + b u^n w_j + ¦c \nabla u^n w_j - ¦d \nabla w_j u^n = \<f, w_j\>. $$
 		Multiply by $\partial_t a_j^n(t)$ and
 		$$ \sum_{i=1}^n \int_\Omega \partial_t u^n \partial_k a_i^n w_j = \int_\Omega \partial_t u^n\(\sum \partial_t a_i^n w_j\) = \int_\Omega \partial_t u^n(\partial_t u^n). $$
-		$$ \int_\Omega \partial_t u^n \partial_t u^n + \int_\Omega A \nabla u^n·\nabla \partial_t u^n + b u^n \partial_t u^n + ¦c·\nabla u^n \partial_t u^n - ¦d \nabla \partial_t u^n u^n = <f, \partial_t u^n>. $$
+		$$ \int_\Omega \partial_t u^n \partial_t u^n + \int_\Omega A \nabla u^n·\nabla \partial_t u^n + b u^n \partial_t u^n + ¦c·\nabla u^n \partial_t u^n - ¦d \nabla \partial_t u^n u^n = \<f, \partial_t u^n\>. $$
 
 		Good guy: $\int_\Omega \partial_t u^n \partial_t u^n = \|\partial_t u^n\|_2^2.$
 
@@ -949,8 +953,8 @@ TODO Example?
 
 		We want to know, if right hand side is integrable in time:
 		$$ \int_\tau^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) + c·\int_\tau^t \|f\|_2^2 + \|u^n\|_{1, 2}^2. $$
-		With $\tau ≤ \delta$ we add $\not\int_0^\delta · d\tau$:
-		$$ \int_\delta^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \not\int_0^\delta \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) d\tau + C(DATA) $$
+		With $\tau ≤ \delta$ we add $\fint_0^\delta · d\tau$:
+		$$ \int_\delta^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \fint_0^\delta \int_\Omega A \nabla u^n(\tau) \nabla u^n(\tau) d\tau + C(DATA) $$
 		$$ \int_\delta^T \|\partial_t u^n\|_2^2 + \sup_{t \in (\delta T)} \|\nabla u^n(t)\|_2^2 ≤ \frac{C(DATA)}{\delta}. $$
 		$$ \delta \rightarrow 0_+: \int_0^t \|\partial_t u^n\|_2^2 + \int_\Omega A \nabla u^n(t) \nabla u^n(t) ≤ \int_\Omega A \nabla P^n u_0 \nabla P^n u_0 + C(DATA) ≤ $$
 		$$ ≤ C(\|\nabla P^n u_0\|_2^2 + 1) ≤ C(\|\nabla u_0\|_2^2 + 1). $$
@@ -973,8 +977,8 @@ TODO Example?
 		$$ \implies \frac{d}{dt} \|\partial_t u^n\|_2^2 + \|\nabla \partial_t u^n\|_2^2 ≤ C(\|\partial_t u^n\|_2^2 + …). $$
 
 		$$ t ≥ 2\delta: \|\partial_t u(t)\|_2^2 + \int_\tau^t \|\partial u^n\|_2^2 ≤ C(1 + \int_\tau^t \|\partial_t u^n\|_2^2) + \|\partial u^n(\tau)\|_2^2. $$
-		Add $\not\int_\delta^2\delta d\tau$:
-		$$ \|\partial_t u(t)\|_2^2 + \int_{2\delta}^T \|\nabla u\|_2^2 ≤ X(\int_\delta^T \|\partial_t u^n\|_2^2 + 1 + \not\int_\delta^{2\delta} \|\partial_t u^n(\tau)\|_2^2) ≤ C(1 + \frac{c}{\delta} + \frac{c}{\delta^2}). $$
+		Add $\fint_\delta^2\delta d\tau$:
+		$$ \|\partial_t u(t)\|_2^2 + \int_{2\delta}^T \|\nabla u\|_2^2 ≤ X(\int_\delta^T \|\partial_t u^n\|_2^2 + 1 + \fint_\delta^{2\delta} \|\partial_t u^n(\tau)\|_2^2) ≤ C(1 + \frac{c}{\delta} + \frac{c}{\delta^2}). $$
 		$$ \rightarrow C(\int_0^T \|\partial_t u^n\|_2^2 + \|\partial_t u^n(0)\|_2^2 + 1) ≤ $$
 		$$ ≤ C + C\|\partial_t u^n(0)\|_2^2 = C + C \|-L u_0^n + f(0)\|_2^2 ≤ \const. $$
 	\end{dukazin}
@@ -994,7 +998,7 @@ TODO Example?
 	$$ \frac{d}{dt} \(\|\partial_t u\|_2^2 + \|\nabla u\|_2^2\) = 0 $$
 	$$ \|\partial_t u(t)\|_2^2 + \|\nabla u(t)\|_2^2 ≤ \|\partial_t u(0)\|_2^2 + \|\nabla u(0)\|_2^2 = \|u_1\|_2^2 + \|\nabla u_0\|_2^2. $$
 
-	$$ \|\partial^2_{t t} u\|_{(W_0^{1, 2}(\Omega))^*} = \sup_{\|\phi\| ≤ 1} <\partial_{t t}^2 u, \phi> \sim \sup \int_\Omega \partial_{t t}^2 u \phi = \sup \int_\Omega \nabla u \phi. $$
+	$$ \|\partial^2_{t t} u\|_{(W_0^{1, 2}(\Omega))^*} = \sup_{\|\phi\| ≤ 1} \<\partial_{t t}^2 u, \phi\> \sim \sup \int_\Omega \partial_{t t}^2 u \phi = \sup \int_\Omega \nabla u \phi. $$
 \end{poznamka}
 
 \begin{veta}
@@ -1028,7 +1032,7 @@ TODO Example?
 		$$ ≤ \tilde C_T(1 + \|v_0\|_2^2 + \|u_0\|_{1, 2}^2). $$
 
 		$$ \sup_{t \in (0, T)} \|\partial_t u^n(t)\|_2^2 + \|u^n(t)\|_{1, 2}^2 ≤ C(DATA). $$
-		$$ \|\partial_{t t}u^n\|_{(W_0^{1, 2}(\Omega))^*} := \sup_{\phi\in W_0^{1, 2}(\Omega)} <\partial_{t t} u^n, \phi> \overset{\text{Gelfand}}= $$
+		$$ \|\partial_{t t}u^n\|_{(W_0^{1, 2}(\Omega))^*} := \sup_{\phi\in W_0^{1, 2}(\Omega)} \<\partial_{t t} u^n, \phi\> \overset{\text{Gelfand}}= $$
 		$$ = \sup_\phi \int_\Omega \partial_{t t} u^n \phi \overset{\text{basis}}= \sup_\phi \int_\Omega \partial_{t t} u^n P^n(\phi) \overset{\text{WFn}}= $$
 		$$ = -\int_\Omega A \nabla u^n \nabla P^n(\phi) … \overset{\text{Hölder}}≤ C·\|P^n(\phi)\|_{1, 2}\(\|f\|_2 + \|u^n\|_{1, 2}\) ≤ $$
 		$$ ≤ \tilde c \|\phi\|_{1,2}(\|f\|_2 + \|u^n\|_{1, 2}). $$
@@ -1042,10 +1046,10 @@ TODO Example?
 		$u^n \rightharpoonup u$ in $W^{2, 2}(0, T, (W_0^{1, 2}(\Omega))^*)$.
 
 		Limits:
-		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega \partial_{t t} u^n w_j \tau dx dt = \int_0^T <\partial_{t t} u^n, w_j \tau> dt = <\partial_{t t}u^n, w_j \tau>_{L^2(0, T, W_0^{1, 2}(\Omega))}. $$
-		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega A \nabla u^n \nabla w_j \tau = <\nabla u^n, A^T \nabla w_j \tau>_{L^2(0, T, L^2(\Omega))} \rightarrow <\nabla u, A^T \nabla w_j \tau> = \int_0^T \int_\Omega A \nabla u \nabla w_j \tau. $$
+		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega \partial_{t t} u^n w_j \tau dx dt = \int_0^T \<\partial_{t t} u^n, w_j \tau\> dt = \<\partial_{t t}u^n, w_j \tau\>_{L^2(0, T, W_0^{1, 2}(\Omega))}. $$
+		$$ \lim_{n \rightarrow ∞} \int_0^T \int_\Omega A \nabla u^n \nabla w_j \tau = \<\nabla u^n, A^T \nabla w_j \tau\>_{L^2(0, T, L^2(\Omega))} \rightarrow \<\nabla u, A^T \nabla w_j \tau\> = \int_0^T \int_\Omega A \nabla u \nabla w_j \tau. $$
 
-		$$ WF: \int_0^T <\partial_{t t} u, w_j> \tau + \int_\Omega A \nabla u \nabla w_j \tau + b u w_j\tau + ¦c \nabla u w_j \tau - ¦d \nabla w_j \tau = \int_0^T \int_\Omega f w_j \tau. $$
+		$$ WF: \int_0^T \<\partial_{t t} u, w_j\> \tau + \int_\Omega A \nabla u \nabla w_j \tau + b u w_j\tau + ¦c \nabla u w_j \tau - ¦d \nabla w_j \tau = \int_0^T \int_\Omega f w_j \tau. $$
 
 		TODO?
 
