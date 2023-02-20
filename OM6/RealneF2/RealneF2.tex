@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 13. 02. 2023
+
+\section{Area formula and coarea formula}
+\begin{veta}
+	Let $(P_1, \rho_1)$, $(P_2, \rho_2)$ be metric spaces, $s > 0$, and $f: P_1 \rightarrow P_2$ be $\beta$-Lipschitz. Then $\kappa^s(f(P_1)) ≤ \beta^s \kappa^s(P_1)$.
+
+	\begin{dukazin}
+		Choose $\delta > 0$. Let $P_1 = \bigcup_{i=1}^∞ A_j$, $\diam A_j < \delta$. Then we have $f(P_1) = \bigcup_{j=1}^∞ f(A_j)$, $\diam f(A_j) < \beta·\delta$.
+		$$ \kappa^s(f(P_1), \beta·\delta) ≤ \sum_{j=1}^∞ (\diam f(A_j))^s ≤ \sum_{j=1}^∞ \beta^s·(\diam A_j)^s = \beta^s·\sum_{j=1}^∞ (\diam A_j)^s. $$
+		It holds for all possible choices of $\(A_j\)$, so we can take infimum:
+		$$ \kappa^s(f(P_1)) \leftarrow \kappa^s(f(P_1), \beta·\delta) ≤ \beta^s \inf_{\(A_j\)} \sum_{j=1}^∞ (\diam A_j)^s = \beta^s \kappa^s(P_1, \delta) \rightarrow \beta^s \kappa^s(P_1). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Let $k, n \in ®N$, $k ≤ n$, and $L: ®R^k \rightarrow ®R^n$ be an injective linear mapping. Then for every $\lambda_k$-measurable set $A \subset ®R^k$ it holds $H^k(L(A)) = \sqrt{\det(L^TL) \lambda_k(A)}$.
+
+	\begin{dukazin}[$\dim L(®R^k) = k$]
+		We find linear isometry $Q$ of $®R^k$ onto $L(®R^k)$, from last semester
+		$$ H^k(L(A)) = H^k(Q^{-1} \circ L(A)) = \lambda^k(Q^{-1} \circ L(A)) = |\det(Q^{-1}L)|·\lambda_k(A). $$
+		$$ (\det(Q^{-1}L))^2 = \det((Q^{-1} L)^T)·\det(Q^{-1} L) = \det((Q^{-1} L)^T·(Q^{-1} L)) = \det((\<Q^{-1} L e^i, Q^{-1} L^T e^j\>)_{i,j}). $$
+		And because $Q$ is isometry ($\implies Q^{-1}$ is isometry), we can remove $Q^{-1}$ from scalar product and we get $\det(L^T L)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $k, n \in ®N$, $k ≤ n$, $G \subset ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping, $x \in G$, and $\beta > 1$. Then there exists a neighbourhood $V$ of the point $x$ such that
+
+	\begin{itemize}
+		\item the mapping $y \mapsto \phi(\phi'(x)^{-1}(y))$ is $\beta$-Lipschitz on $\phi'(x)(V)$;
+		\item the mapping $z \mapsto \phi'(x)(\phi^{-1}(z))$ is $\beta$-Lipschitz on $\phi(V)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		$x$, $\beta$ fixed. We know, that there exists $\eta > 0$ such that
+		$$ \forall v \in ®R^k: \|\phi'(x)(v)\| ≥ \eta·\|v\|. $$
+		We find $\epsilon \in \(0, \frac{1}{2}\eta\)$ such that $\frac{2\epsilon}{\eta} + 1 < \beta$. We find a neighbourhood $V$ of $x$ such that $\forall y \in V: \|\phi'(x) - \phi'(y)\| ≤ \epsilon$.
+
+		We show that for every $u, v \in V$ we have
+		$$ \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| ≤ \epsilon \|u - v\|. $$
+		Fix $v \in V$ and consider the mapping
+		$$ g: w \mapsto \phi(w) - \phi(v) - \phi'(x)(w - v). $$
+		For $w \in V$ we have $g'(w) = \phi'(w) - \phi'(x)$:
+		$$ \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| = \|g(w) - g(v)\| ≤ \sup \{\|g'(w)\|\ |\ w \in V\}·\|u - v\| ≤ \epsilon·\|u - v\|. $$
+		
+		Further we show that for every $u, v \in V$ we have
+		$$ \|\phi(u) - \phi(v)\| ≥ \frac{1}{2} \eta \|u - v\|. $$
+		For $u - v \in V$ we compute
+		$$ \|\phi(u) - \phi(v)\| ≥ - \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| + \|\phi'(x)(u - v)\| ≥ - \epsilon \|u - v\| + \eta \|u - v\| ≥ \frac{1}{2}\eta \|u - v\|. $$
+
+		„First point“: TODO (řádek nebyl k přečtení)
+		$$ \|\phi(\phi^{-1}(x)(a)) - \phi(\phi^{-1}(x)(b))\| = \|\phi(u) - \phi(v)\| ≤ $$
+		$$ ≤ \|phi(u) - \phi(v) - \phi'(x)(u - v)\| + \|\phi'(x)(u - v)\| ≤ $$
+		$$ ≤ \epsilon·\|u - v\| + \|\phi'(x)(y - v)\| ≤ \epsilon \frac{1}{\eta} \|a - b\| + \|a - b\| = \(\frac{\epsilon}{\eta} + 1\)\|a - b\| ≤ \beta·\|a - b\|. $$
+
+		„Second point“: $k, q \in \phi(V)$. We find $u, v \in V$ such that $\phi(u) = p$ and $\phi(v) = q$:
+		$$ \|\phi'(x)(\phi^{-1}(p)) - \phi'(x)(\phi^{-1}(q))\| = \|\phi'(x)(u) - \phi'(x)(v)\| = $$
+		$$ = \|\phi'(x)(u - v)\| ≤ \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| + \|\phi(u) - \phi(v)\| ≤ $$
+		$$ ≤ \epsilon·\|u - v\| + \|p - q\| ≤ \frac{2\epsilon}{\eta}\|\phi(u) - \phi(v)\| + \|p - q\| = \(\frac{2\epsilon}{\eta} + 1\)\|p - q\| ≤ \beta \|p - q\|. $$
+	\end{dukazin}
+\end{lemma}
+
+\end{document}

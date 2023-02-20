@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+% 13. 02. 2023
+
+\begin{poznamka}
+	The previous semester we work with linear equation (L-M, Fredholm, Minimizing quadratic function). This semester we will have non-linear equations like $((\partial_t u)) - \Delta u + \arctg u = f$ or $f = -\Delta_p u := -\Div (|\nabla u|^{p - 2} \nabla u)$.
+
+	We don't work with $\partial_{t t} u - \Delta_p u = f$, because nobody know how to proof it has solution (for $d ≥ 2, p > 2$).
+\end{poznamka}
+
+\begin{poznamka}[Credit]
+	Two homework. -10 to 10 points to exam from each. (If we hand anything we get credit.)
+\end{poznamka}
+
+\section*{What we must know}
+\begin{poznamka}
+	Lebesgue spaces.
+
+	Fixed point theorem: 1) Let $F$ be continuous mapping from $®R^d$ to $®R^d$. Assume that $\exists$ convex compact set in $®R^d$ such that $F(\Omega) \subseteq \Omega$. Then $\exists x \in \Omega$ such that $F(x) = x$. 2) Let $F: X \rightarrow X$, where $X$ is Banach space and $F$ is continuous and compact and let $\exists$ $\Omega \subseteq X$ convex and closed such that $F(\Omega) \subseteq \Omega$. Then $F(\Omega) \subseteq \Omega$. Then $\exists x \in X: F(x) = x$.
+
+	Luzin: Let $\Omega$ be a measurable set and $f \in L_{loc}^1(\Omega)$. Then $\forall \epsilon > 0$ $\exists U \in \Omega$, $\mu(U) ≤ \epsilon$, $f \in C(\Omega \setminus U)$.
+
+	Egorov: Let $\Omega$ be a measurable set and $f^n \rightarrow f$ in $L_{loc}^1(\Omega)$. Then $\forall \epsilon > 0$ $\exists U, \mu(U) ≤ \epsilon$ $f^n \rightarrow f$ in $C(\Omega \setminus U)$.
+
+	Lebesgue dominated convergence theorem.
+
+	Vitali convergence theorem: Let $\Omega \subseteq ®R^d$ be bounded measurable, $f^n$ a sequence of measurable functions, $f^n \rightarrow f$ almost everywhere in $\Omega$. Then $\lim_{n \rightarrow ∞} \int_\Omega f^n = \int_\Omega f$, provided $f^n$ is uniformly equi-integrable ($\forall \epsilon > 0$ $\exists \delta$ $\forall U, \mu(U) ≤ \epsilon$).
+
+	Fatou lemma: $f^n \rightarrow f$ almost everywhere in $\Omega$ and $f^n ≥ 0$, then $\liminf_{n \rightarrow ∞} \int_\Omega f^n ≥ \int_\Omega f$.
+
+	Regularization: $\eta \in C_0^∞(B_1(¦o))$ non-negative, radially symmetric and $\int_{®R^d} \eta(x) dx = 1$. Then $\forall f \in L_{loc}^1(\Omega)$ we extend $f$ by „0“ to $®R^d$ and $f_\epsilon := \eta_\epsilon * f$, where $\eta_\epsilon(x) = \frac{1}{\epsilon^d} \eta(x / \epsilon)$. Then $f_\epsilon \in C^∞(®R^d)$ and $\forall p \in [1, ∞)$ $f \in L^p(\Omega) \implies f_\epsilon \rightarrow f$ in $L^p(\Omega)$. (And for $p = ∞$: $f \in L^∞(\Omega) \implies f_\epsilon \rightarrow f$ in $L^q(\Omega)$ $\forall q \in \in [1, ∞)$).
+
+	Reflexive and separable spaces. ($L^p(\Omega)$ is a Banach space, separable for $p \in [1, ∞)$, reflexive for $p \in (1, ∞)$.)
+
+	Nemytsky operator: (Assume that for almost all $x \in \Omega$ and $ $, $|f(x, y)| ≤ g(x) + C \sum_{i=1}^N |y_1|^{p_i / p}$ for some $p_i \in [1, ∞), p \in (1, ∞), g \in L^p(\Omega)$. Then $\forall u_i \in L^{p_i}$, the function $f(·, u_1, …, u_n)$ is measurable, $(u_1, …, u_n) \mapsto f(·, u_1, …, u_n)$ is continuous $L^{p_1}(\Omega) \times … \times L^{p_N}(\Omega) \rightarrow L^p(\Omega)$. This mapping is called N.O.)
+\end{poznamka}
+
+\section{Sobolev spaces (and Bochner spaces)}
+\begin{poznamka}
+	$\Omega$ is open bounded subset of $®R^d$.
+\end{poznamka}
+
+\begin{veta}[Local approximation by smooth functions]
+	Let $f \in W^{k, p}(\Omega)$ and extend it by „0“ outside. Define $f_\epsilon := \eta_\epsilon * f$ and set $\Omega_\epsilon := \{x \in \Omega | B(x, \epsilon) \subseteq \Omega\}$. Then $D^\alpha(f_\epsilon) = (D^\alpha f)_\epsilon$ almost everywhere in $\Omega_\epsilon$ $\forall \alpha, |\alpha| ≤ k$ and $\forall \Omega' \subseteq \overline{\Omega'} \subseteq \Omega$ and $p \in [1, ∞)$ $f_\epsilon \rightarrow f$ in $W^{k, p}(\Omega')$. (If $p = ∞$, then $f_\epsilon \rightarrow ^* f$ in $W^{1, ∞}(\Omega')$.)
+
+	\begin{dukazin}
+		$$ \frac{\partial}{\partial x_i} \(f_\epsilon(x)\) = \frac{\partial}{\partial x_i} \int_{®R^d} \eta_\epsilon(x - y)f(y) dy = $$
+		$$ = \int_{®R^d} \frac{\partial}{\partial x_i}(\eta_\epsilon(x - y)) f(y) dy = - \int_{®R^d} \frac{\partial}{\partial y_i} (\eta_\epsilon(x - y)) f(y) dy = $$
+		$$ = -\int_{B(x, \epsilon)} \frac{\partial}{\partial y_i} (\eta_\epsilon(x - y)) f(y) dy = -\int_{\Omega} \frac{\partial}{\partial y_i} (\eta_\epsilon(x - y)) f(y) dy = $$
+		$$ = \int_\Omega \eta_\epsilon(x - y) \frac{\partial f(y)}{\partial y_i} dy = \int_{®R^d} \eta_\epsilon(x - y) \frac{\partial f(y)}{\partial y_i} = \(\frac{\partial f(y)}{\partial y_i}\)_\epsilon (x). $$
+
+		Now we take sufficiently small $\epsilon$, such that $\Omega_\epsilon \subseteq \Omega'$. Then $D^\alpha f_\epsilon = \(D^\alpha f\)_\epsilon \rightarrow D^\alpha f$ in $L^p(\Omega')$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Composition of Lipschitz and Sobolev functions]
+	Let $\Omega \subseteq ®R^d$ be open and $f: ®R \rightarrow ®R$ be Lipschitz. Assume that $u \in W^{1, p}(\Omega)$. Then $(f(u) - f(0)) \in W^{1, p}(\Omega)$ and $\nabla f(u) = f'(u) \nabla u \chi_{x, u(x) \notin S_f}$, where $S_f$ are points where $f'(s)$ doesn't exists.
+
+	Moreover define $\Omega_a := \{x \in \Omega | u(x) = a\}$, then $\nabla u = 0$ almost everywhere in $\Omega_a$.
+
+	\begin{dukazin}
+		We know, that $f \in C^1(®R)$, $f_{lip} := \sup_{x ≠ y} \frac{|f(x) - f(y)|}{|x - y|} < ∞$.
+
+		So $|f(u(x)) - f(0)|^p ≤ f_{lip}^p·|u(x)|^p$, if $u \in L^p(\Omega) \implies f(u) - f(0) \in L^p(\Omega)$.
+
+		Next, $\frac{\partial f(u)}{\partial x_i} = f'(u) \frac{\partial u}{\partial x_i} \implies f(u) - f(0) \in W^{1, p}(\Omega)$.
+
+		We take $\eta \in C_0^∞(\Omega)$ and $u \in W^{1, 1}(u)$.
+		$$ \int_\Omega \frac{\partial \eta}{\partial x_i} f(u) = \lim_{\epsilon \rightarrow 0_+} \int_\Omega \frac{\partial \eta}{\partial x_i} f(u_\epsilon) \overset{\text{IBP, both are smooth}} -\lim_{\epsilon \rightarrow 0_+} \int_\Omega \eta \frac{\partial f(u_\epsilon)}{\partial x_i} = $$
+		$$ = -\lim_{\epsilon \rightarrow 0_+} \int_\Omega \underbrace{\eta f'(u_\epsilon)}_{\rightarrow \eta f(u_\epsilon) \text{ in } L^1, \text{ so weakly in } L^∞} · \underbrace{\frac{\partial u_\epsilon}{\partial x_i}}_{\rightarrow \frac{\partial u}{\partial x_i} \text{ in } L^1}. $$
+
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Characterization of sobolev functions]
+	Let $\Omega \subseteq ®R^d$ open, bounded. Define $\Omega_\delta := \{x \in \Omega | B(x, \delta) \subseteq \Omega\}$ and $u_i^h(x) := \frac{u(x + h·e_i) - u(x)}{h}$, $h > 0, i \in [d]$.
+
+	\begin{itemize}
+		\item If $u \in W^{1, p}(\Omega)$ then $\forall \delta\ \forall h < \frac{\delta}{2}: \|u_i^h\|_{L^p(\Omega_\delta)} ≤ \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p}(\Omega)$.
+		\item If $p \in (1, ∞]$ and $\sup_{\delta > 0} \sup_{h < \frac{\delta}{2}} \|u_i^h\|_{L^p(\Omega_\delta)} ≤ k$, then $\frac{\partial u}{\partial x_i}$ exists and $\left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(\Omega)} ≤ k$.
+		\item If $p \in [1, ∞)$ and if $u \in W^{1, p}(\Omega)$ then $u_i^h \rightarrow \frac{\partial u}{\partial x_i}$ in $L_{loc}^p(\Omega)$.
+		\item[(*] If $p = 1$ and $\sup_{\delta > 0} \sup_{h < \frac{\delta}{2}} \|u_i^h\|_{L^p(\Omega_\delta)} ≤ k$, then $u \in BV(\Omega)$. Moreover if $≤k$ and $u_i^h$ is equiintegrable, then $u \in W^{1, 1}(\Omega)$.)
+	\end{itemize}
+
+	\begin{dukazin}
+		„Second point“ Fix $\Omega_1 \subset\subset \Omega$. Fix $\delta_0$, $\Omega_1 \subseteq \Omega_{\delta_0} \implies \|u_i^h\|_{L^p(\Omega_1)} ≤ k$. $u_i^h \rightharpoonup \overline u$ in $L^p(\Omega_1)$ and $u_i^h \rightharpoonup^* \overline u$ in $L^∞(\Omega_1)$.
+		We want $\|\overline{u}\|_{L^p(\Omega_1)} ≤ \liminf_{h \rightarrow 0_+} \|u_i^h\|_{L^p(\Omega_1)} ≤ k$.
+
+		$$ \int_{\Omega_1} \overline{u} \phi dx = \lim_{h \rightarrow 0_+} \int_\Omega u_i^h \phi = \lim_{h \rightarrow 0_+} \int_{\Omega_1} \frac{u(x + h·e_i) - u(x)}{h} \phi(x) dx = $$
+		$$ = \lim_{h \rightarrow 0_+} \int_{\Omega} \frac{u(x + h·e_i)}{h} \phi(x) - \frac{u(x)}{h}\phi(x) dx = $$
+		$$ = -\lim_{h \rightarrow 0_+} \int_{\Omega} u(x) \frac{\phi(x) - \phi(x - h·e_i)}{h} dx = -\int_{\Omega_1} \frac{\partial \phi}{\partial x_i} u. $$
+	\end{dukazin}
+\end{veta}
+
+
+\end{document}

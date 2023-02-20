@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 13. 02. 2023
+
+\begin{poznamka}[Exam]
+	Oral, similar as in FA1.
+\end{poznamka}
+
+\begin{poznamka}[Credit]
+	Similar as in FA1.
+\end{poznamka}
+
+\section{Banach algebras}
+\subsection{Basic properties}
+\begin{definice}[Algebra]
+	$(A, +, -, 0, ·_S, ·)$ is algebra over ®K, if
+
+	\begin{itemize}
+		\item $(A, +, -, 0, ·_S)$ is vector space over ®K;
+		\item $(A, +, -, 0, ·)$ is ring (that is we have $a·(b + c) = a·b + a·c$, $(a + b)·c = a·c + b·c$ and $(a·b)·c = a·(b·c)$);
+		\item $\forall \lambda \in ®K\ \forall x, y \in A: \lambda(x·y) = (\lambda x)y = x(\lambda y)$.
+	\end{itemize}
+\end{definice}
+
+\begin{dusledek}
+	1) $e \in A$ is left unit $≡$ $e·a = a$, right unit $≡$ $a·e = a$, unit $≡$ $a·e = e·a = a$ ($\forall a \in A$).
+
+	If $e_1$ is left unit and $e_2$ is right unit, then $e_1 = e_2$ is unit. ($e_1 = e_1·e_2 = e_2$)
+
+	2) (Algebra) homomorphism $\phi: A \rightarrow B$ $≡$ $\phi$ preserves $+, ·, ·_S$, that is $\phi(x + y) = \phi(x) + \phi(y)$, $\phi(x·y) = \phi(x)·\phi(y)$ and $\phi(\alpha·x) = \alpha·\phi(x)$.
+\end{dusledek}
+
+\begin{tvrzeni}
+	Let $A$ be algebra over ®K. Put $A_e = A \times ®K$ with operations $A_e$ defined coordinate-wise and multiplication defined by
+	$$ (a, \alpha)·(b, \beta) := (a·b + \alpha·b + \beta·a, \alpha·\beta), \qquad a, b \in A \land \alpha, \beta \in ®K. $$
+
+	Then $A_e$ is algebra with a unit $(¦o, 1)$ and $A ≡ A \times \{0\} \subset A_e$. Moreover, if $A$ is commutative, then $A_e$ is commutative.
+
+	\begin{dukazin}
+		We have $A_e$ is vector space (from linear algebra). We easy proof from definition, that $A_e$ is algebra, $(¦o, 1)$ is a unit in $A_e$ and on $A \times \{0\}$ we have $(a, 0)·(b, 0) = (a·b, 0)$, so $a \mapsto (a, 0)$ is homomorphism. Commutativity is easy too.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Normed algebra]
+	$(A, \|·\|)$ is normed algebra $≡$ $A$ is algebra and $(A, \|·\|)$ is NLS and $\|a·b\| ≤ \|a\|·\|b\|$ ($\forall a, b \in A$).
+\end{definice}
+
+\begin{definice}[Banach algebra]
+	$(A, \|·\|)$ is Banach algebra $≡$ $(A, \|·\|)$ is normed algebra nad Banach space.
+\end{definice}
+
+\begin{priklady}
+	$l_∞(I)$ is commutative Banach algebra with a unit (all ones).
+
+	If $T$ is Hausdorff topological space, then $©C_b(T) = \{f: T \rightarrow ®K | f \text{ is continuous and bounded}\} \subseteq l_∞(T)$ is closed subalgebra.
+
+	If $T$ is locally compact, Hausdorff, not compact. Then $©C_0(T) = \{f: T \rightarrow ®K \text{ continuous } | \forall \epsilon > 0: \{t \in T | |f(t)| ≥ \epsilon\} is \text{ compact}\} \subseteq ©C_b(T)$ is closed subalgebra, which doesn't have unit.
+
+	If $X$ is Banach, $\dim X > 1$, then $©L(X)$, with $S·T := S \circ T$, $S, T \in ©L(X)$, is Banach algebra with unit (identity), which isn't commutative.
+
+	If $X$ is Banach, $\dim X = +∞$, then $©K(X) \subset ©L(X)$ is closed subalgebra which is not commutative and doesn't have unit.
+
+	$(L_1(®R^d), *)$, where $*$ is convolution, is (commutative) Banach algebra (without unit).
+
+	$(l_1(®Z), *)$, where $x*y(n) = \sum_{k=-∞}^{+∞} x_k y_{n - k}$ is (commutative) Banach algebra (with unit).
+\end{priklady}
+
+\begin{tvrzeni}
+	If $(A, \|·\|)$ is normed algebra, then $·: A \oplus_∞ A \rightarrow A$ is Lipschitz on bounded sets.
+
+	\begin{dukazin}
+		$$ \forall r > 0: \forall (a, b) \in B_{A \oplus_∞ A}(¦o, r)\ \forall (c, d) \in B_{A \oplus_∞ A}(¦o, r): $$
+		$$ \|ab - cd\| ≤ \|a(b - d)\| + \|(a - c)·d\| ≤ \|a\|·\|b - d\| + \|a - c\|·\|d\| ≤ R·(\|b - d\| + \|a - c\|) ≤ 2R \|(a, b) - (c, d)\|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Let $(A, \|·\|)$ be a Banach algebra. On $A_e$ we consider the norm
+	$$ \|(a, \alpha)\| := \|a\| + |\alpha|, \qquad (a, \alpha) \in A \times ®K = A_e. $$
+	Then $(A_e, \|·\|)$ is Banach algebra.
+
+	\begin{dukazin}
+		It is a Banach space, because $A_e = A \oplus_1 ®K$. Now we need only check, that
+		$$ \|(a, \alpha)·(b, \beta)\| ≤ \|(a, \alpha)\|·\|(b, \beta)\|, $$
+		which is easy.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	There is more (natural) ways to define norm on $A_e$ (unlike $·$ on $A_e$, which is natural).
+
+	$A$ has a unit … we may still consider $A_e$.
+
+	If $e \in A \setminus \{¦o\}$ is a unit, then $\|e\| ≥ 1$, because $\|e\| = \|e^2\| ≤ \|e\|^2$.
+\end{poznamka}
+
+\begin{veta}
+	Let $A$ be a Banach algebra, for $a \in A$ consider $L_a \in ©L(A)$ defined as $L_a(x) := a·x$, $x \in A$. Then $I: A \rightarrow ®L(A)$, $a \mapsto L_a$ is continuous algebra homomorphism, $\|I\| ≤ 1$.
+
+	Moreover, if $A$ has a unit $e$, then $I$ is isomorphism into and $I(e) = \id$.
+
+	If $\|x^2\| = \|x\|^2$, $x \in A$, then $I$ is isometry into.
+
+	\begin{dukazin}
+		„$L_a \in ©L(A)$ and $I \in ©L(A, ©L(A))$, $\|I\| ≤ 1$“: Linearity is obvious, $\|L_a(x)\| = \|a·x\| ≤ \|a\|·\|x\|$, so $\|L_a\| ≤ \|a\|$ and so $\|I\| ≤ 1$. Since it is easily $I$ preserves multiplication, so we are left to prove the „Moreover“ part.
+
+		„$A$ has a unit $e$“: WLOG $A ≠ \{¦o\}$.
+		$$ \forall a \in A: \|I a\| = \|L_a\| ≥ \|L_a\(\frac{e}{\|e\|}\) = \frac{a}{\|e\|} = \frac{1}{\|e\|}·a. $$
+		So $I$ is bounded from below, so $I$ is isomorphism.
+
+		$$ I(e)(x) = L_e(x) = x, \text{ so } I(e) = \id. $$
+
+		Finally, if $\|x^2\| = \|x\|^2$, $x \in A$, then $\forall a \in A:$
+		$$ \|a\| ≥ \|I(a)\| = \|L_a\| ≥ \|L_a \(\frac{a}{\|a\|}\)\| = \frac{\|a^2\|}{\|a\|} = \|a\|. $$
+		So $I$ is isometry.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$A ≠ \{¦o\}$ Banach algebra with a unit $\implies$ $\exists$ equivalent norm $\|·\|$ on $A$ such that $(A, \|·\|)$ is Banach algebra and $\|e\| = 1$.
+
+	\begin{dukazin}
+		Let $I: A \rightarrow ©L(A)$ be as before. Put $|\|x\| | := \|I(x)\|$, $x \in A$. Since $I$ is isomorphism, $|\|·\| |$ is equivalent norm. Moreover, $|\|x·y\| | = \|I(x·y)\| ≤ \|I(x)\|·\|I(y)\| = |\|x\| | · |\|y\| |$, $x, y \in A$. So $(A, |\|·\| |)$ is a Banach algebra. Finally
+		$$ |\|e\| | = \|I(e)\| = \|\id\| = 1. $$
+	\end{dukazin}
+\end{poznamka}
+
+\subsection{Inverse elements}
+\begin{definice}
+	$(M, ·, e)$ is monoid ($·$ is associative, $e$ is unit). Then invertible elements form a group ($e^{-1} = e, \exists x^{-1}, y^{-1} \implies (x·y)^{-1} = y^{-1}·x^{-1}$); if $x \in M$, and $y \in M$ is its left inverse and $z \in M$ is its right inverse, then $y = z$ is inverse:
+	$$ y = y·e = y·x·z = e·z = z. $$
+
+	We denote $M^\times := \{x \in M\ |\ \exists x^{-1}\}$
+\end{definice}
+
+% 14. 02. 2023
+
+\begin{tvrzeni}
+	If $(A, ·, e)$ is monoid and $x_1, …, x_n \in A$ commute, then $x_1·…·x_n \in A^x \Leftrightarrow \{x_1, …, x_n\} \subset A^x$.
+
+	\begin{dukazin}
+		It suffices to prove it for $n=2$ (and use induction). „If $x^{-1}$ and $y^{-1}$ exists, then $(xy)^{-1}$“ is easy from asociativity.
+
+		If we have $(xy)^{-1}$. Put $z:= (xy)^{-1}x$. Then $zy = (xy)^{-1}(xy) = e$, so $z$ is left inverse to $y$. Next we show that there is also right inverse: Put $\tilde z := x(xy)^{-1}$: $y\tilde z = (xy)(xy)^{-1} = e$, so $\tilde z$ is right inverse. And we already know that if there is left and right inverse, then they are same and they are inverse.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}
+	Let $A$ be a Banach algebra with a unit.
+
+	\begin{itemize}
+		\item $\|x\| < 1 \implies \exists(e - x)^{-1} \land (e - x)^{-1} = \sum_{n=0}^∞ x^n$;
+		\item $\exists x^{-1} \land \|h\| < \frac{1}{\|x^{-1}\|} \implies \exists(x + e)^{-1} \land \|(x + h)^{-1} - x^{-1}\| ≤ \frac{\|x^{-1}\|^2·\|h\|}{1 - \|x^{-1}\|·\|h\|}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„First point“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}|^∞ x^n \in A$. Moreover,
+		$$ (e - x)·\(\sum_{n=0}^∞ x^n\) = \lim_{N \rightarrow ∞} (e - x)·(e + x + … + x^N) = \lim_{N \rightarrow ∞} e - x^{N+1} = e, $$
+		because $\lim_{N \rightarrow ∞} \|x^{n+1}\| ≤ \lim_{N \rightarrow ∞} \|x\|^N = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
+
+		„Second point“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first point), so from previous fact $(x + h)^{-1}$ exists. Moreover
+		$$ (x + h)^{-1} = (e + x^{-1} h)^{-1}·x^{-1} \overset{1)}= \sum_{n=0}^∞ \(-x^{-1} h\)^n x^{-1}, $$
+		so
+		$$ \|(x + h)^{-1} - x^{-1}\| = \|\sum_{n=1}^∞\(-x^{-1} h\)^n x^{-1}\| ≤ \|x^{-1}\|·\sum_{n=1}^∞ \|x^{-1} h\|^n ≤ $$
+		$$ ≤ \|x^{-1}\| \sum_{n=1}^∞ \sum_{n=1}^∞\(\|x^{-1}\|·\|h\|\)^n = \|x^{-1}\| · \frac{\|x^{-1}\| \|h\|}{1 - \|x^{-1}\|·\|h\|}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}
+	$A$ Banach algebra with a unit $\implies$ $A^x \subset A$ is open and $A^x$ is topological group.
+
+	\begin{dukazin}
+		$A^x \subset A$ is open by previous lemma (second point). So it remains to prove $x \mapsto x^{-1}$ is continuous:
+		$$ A^x \ni x_n \rightarrow x \in A^x \overset{?}\implies x_n^{-1} \rightarrow x^{-1}. $$
+		$$ \|x_n^{-1} - x^{-1}\| \overset{h:= x_n - x}≤ \frac{\|x^{-1}\|^2·\|x_n - x\|}{1 - \|x^{-1}\|·\|x_n - x\|} \rightarrow 0. $$
+	\end{dukazin}
+\end{dusledek}
+
+\subsection{Spectral theory}
+\begin{definice}[Resolvent set, spectrum and resolvent]
+	$A$ Banach algebra with a unit, $x \in A$. We define resolvent set of $x$ as $S_A(x) := \{\lambda \in ®K | \exists(\lambda·e - x)^{-1}\}$. Next we define spectrum of $x$ as $\sigma_A(x) := ®K \setminus S_A(x)$. Finally we define resolvent of $x$ as $R_x: S(x) \rightarrow A$, $R_x(\lambda) := (\lambda·e - x)^{-1}$.
+
+	If $A$ doesn't have a unit, then notions above are defined with respect to $A_e$.
+\end{definice}
+
+\begin{tvrzeni}
+	$A$ Banach algebra
+
+	\begin{itemize}
+		\item[a)] $\forall x \in A: 0 \in \sigma_{A_e}(x)$ (in particular, if $A$ has no unit, then $0 \in \sigma_A(x)$);
+		\item[b)] $A$ has unit $\implies$ $\sigma_{A_e}(x) = \sigma_A(x) \cup \{0\}$.
+	\end{itemize}
+
+	\begin{dukazin}[a)]
+		$$ \forall(b, \beta) \in A_e: (x, 0)·(b, \beta) = (…, 0) ≠ (¦o, 1) \implies \nexists (x, 0)^{-1} \implies 0 \in \sigma_{A_e}(x). $$
+	\end{dukazin}
+
+	\begin{dukazin}[b)]
+		By a) we have $0 \in \sigma_{A_e}(x)$. So it suffices: $\forall \lambda ≠ 0: \lambda \in S_A(x) \Leftrightarrow \lambda \in S_{A_e}(x)$. First means $(\lambda·e - x)^{-1}$ exists in $A$ and second means that $((0, \lambda) - (x, 0))^{-1} = (-x, \lambda)^{-1}$ exists in $A$. We take „$x \rightarrow -x$“.
+
+		„$\implies$“: find $(b, \beta) \in A_e$ such that $(x, \lambda)·(b, \beta) = (¦o, 1)$. So $(x·b + \lambda·b + \beta·x, \lambda·\beta) = (¦o, 1)$. So $\beta = \frac{1}{\lambda}$ and $b = -\frac{1}{\lambda}(\lambda e + x)^{-1}·x$. Similarly we find left inverse $\(-\frac{1}{\lambda}x(x + \lambda e)^{-1}, \frac{1}{\lambda}\)(x, \lambda)$. And next we prove that they are really inverses.
+
+		„$\impliedby$“: Put $(b, \beta) := (x, \lambda)^{-1}$. Then $(\lambda e + x)^{-1} = b + \beta·e$. We have $(x, \lambda)·(b, \beta) = (¦o, 1)$, so $\lambda·\beta = 1$ and $x·b + \lambda·b + \beta·x = ¦o$. Then
+		$$ (\lambda e + x)·(b + \beta·e) = \lambda·b + \lambda·\beta·e + x·b + \beta·x = e. $$
+		Similarly second inverse.
+	\end{dukazin}
+\end{tvrzeni}
+
+\end{document}

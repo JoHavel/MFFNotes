@@ -1,0 +1,119 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 16. 02. 2023
+
+\begin{poznamka}
+	Credit for giving 'small lecture'. Oral exam.
+\end{poznamka}
+
+\section{Meromorphic functions}
+\begin{definice}
+	We say that a function $f$ is holomorphic in a set $F \subset ®C$ if there is an open $G \supseteq F$ such that $f$ is holomorphic on $G$.
+
+	In particular, $f$ is holomorphic at $z_0 \in ®C$ if $f$ is holomorphic in some neighbour (= $U(z_0) = U(z_0, \epsilon)$) of $z_0$.
+\end{definice}
+
+\begin{definice}
+	Function $f$ has at $∞$ a removable singularity, if $f\(\frac{1}{z}\)$ has a removable singularity at 0. Similarly pole and essential singularity.
+
+	Function $f$ is holomorphic at $∞$ if $f\(\frac{1}{z}\)$ is holomorphic at $0$.
+
+	Let $G \subset ®S$ be open. Then $f$ is holomorphic on $G$ if $f$ is holomorphic at any $z_0$. Denote $©H(G) := \{f: G \rightarrow ®C | f \text{ holomorphic}\}$.
+
+	\begin{prikladyin}
+		From Liouville theorem $®H(®S) =$ constant functions. So $®H(G)$ is interesting only for $G \subsetneq ®S$, so WLOG $G \subset ®C$.
+	\end{prikladyin}
+\end{definice}
+
+\begin{definice}[Meromorphic function]
+	Let $G \subset ®S$ be open. Then a function $f$ on $G$ is called meromorphic if at any $z_0 \in G$ the function $f$ is either holomorphic at $z_0$ or has a pole at $z_0$.
+
+	Denote $©M(G)$ the set of meromorphic functions on $G$.
+\end{definice}
+
+\begin{dusledek}
+	\ 
+
+	\begin{itemize}
+		\item $©H(G) \subset ©M(G)$.
+		\item Denote $P_f := \{z_0 \in G | f \text{ has a pole at } z_0\}$. Then $P_f$ has no limit points in $G$.
+		\item If $f = ∞$ on $P_f$, then $f: G \rightarrow ®S$ is continuous. (We always assume, that $f \in ©H(G)$ has this property.)
+	\end{itemize}
+\end{dusledek}
+
+\begin{priklady}
+	$$ \frac{\pi}{\sin(\pi z)} \in ©M(®C), \qquad e^{\frac{1}{z}} \notin ©M(®C), \qquad \Gamma \in ©M(®C), \qquad \zeta \in ©M(®C). $$
+
+	$©M(®S) =$ rational functions. (One inclusion is clear, second: Let $f \in ©M(®S)$, then because $®S$ is compact it holds that $P_f$ is finite (has no limit point), $P_f \cap ®C = \{z_1, …, z_n\}$, so from theorem from last semester there exists $h \in ©H(®C)$ such that $f(z) = h(z) + \sum_{j=1}^n p_j \(\frac{1}{z - z_j}\)$ for some polynomials $p_j$. $f$ has removable singularity or pole at infinity and $p_j$ and $\frac{1}{z - z_j}$ have removable singularity there, so $h(z)$ is polynomial, otherwise $h(z)$ has infinity Taylor polynom and $h\(\frac{1}{z}\)$ has essential singularity at $0$.)
+
+	So $©M(G)$ is interesting for $G \subsetneq ®S$, WLOG $G \subset ®C$.
+
+	If $G \subset ®C$ is domain, $f, g \in ®H(G)$ and $g ≡ 0$, then $f / g \in ©M(G)$. The inverse is also true (we will prove it) (but not for $G = ®S$).
+\end{priklady}
+
+\begin{lemma}
+	Let $®G \subset ®C$ be open. Then there are compacts $K_n$, $n \in ®N$, in $G$ such that $G = \bigcup_{n=1}^∞ K_n$, $K_n \subset \Int (K_{n+1})$ and for any compact $K$ in $G$, $\exists n \in ®N: K \in K_n$.
+
+	\begin{dukazin}
+		Set $K_n := \{z \in G | \dist(z, ®C \setminus G) ≥ \frac{1}{n}\} \cap U(0, n)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	Let $G \subset ®S$ be open and $M \subset G$ has no limit point in $G$. Then
+
+	\begin{itemize}
+		\item $G \setminus M$ is open;
+		\item if $K$ is a compact in $G$, then $K \cap M$ is finite. In particular for $G = ®S$ we have $M$ is finite;
+		\item $M$ is at most countable. If $M$ is infinite, then $\O ≠ M' \subset \partial G$;
+		\item if $G \subset ®C$ is domain (connected), then $G \setminus M$ is domain.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{veta}[Uniqueness of meromorphic functions]
+	Let $G \subset ®C$ be a domain, $f \in ©M(G)$ and $f \not≡ 0$. Then $N_f := \{z \in G | f(z) = 0\}$ has no limit points in $G$.
+
+	\begin{dukazin}
+		We know this holds for holomorphic functions. Set $G_0 := G \setminus P_f$. Then $G_0 \subset ®C$ is also domain and $f \in ©H(G)$ and $f \not≡ 0$ on $G_0$. Then $N_f \subset G_0$ has no limit points in $G_0$, nor in $P_f$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Residue theorem]
+	Let $G \subset ®C$ be open, $\phi$ be a closed curve (or cycle) in $G$ and $\Int \phi := \{z_0 \in ®C \setminus \<\phi\> | \ind_\phi z_0 ≠ 0\} \subset G$. Let $M \subset G \setminus \<\phi\>$ be finite and $f \in ©H(G \setminus M)$. Then $\int_\phi f = 2\pi i·\sum_{s \in M} \ind_\phi s · \res_s f$.
+
+	\begin{poznamkain}
+		This holds true even if instead of finiteness of $M$, we assume only that $M \subset G \setminus \<\phi\>$ has no limit points in $G$. Indeed, we have $M_0 = M \cap \Int \phi$ is finite, because $\<\phi\> \cup \Int \phi$ is compact and $G_0 := G \setminus (M \setminus M_0)$ is open and $f$ is holomorphic on $G_0 \setminus M_0$ and by R. theorem for $G_0$ and $M_0$ we get $\int_\phi f = 2 \pi i \sum_{s \in M_0} \res_s f · \ind_\phi s$.
+	\end{poznamkain}
+\end{veta}
+
+\subsection{Logarithmic integrals}
+
+\begin{definice}[Logarithmic integral]
+	Let $\phi: [a, b] \rightarrow ®C$ be a (regular) curve and let $f$ be a non-zero holomorphic function on $\<\phi\>$. Then we define logarithmic integrals integral as
+	$$ I := \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \frac{1}{2\pi i} \int_a^b \frac{f'(\phi(t)) \phi'(t)}{f(\phi(t))} dt = \frac{1}{2 \pi i} \int_a^b \frac{(f(\phi(t)))'}{f(\phi(t))} dt = \frac{1}{2\pi i} \int_{f \circ \phi} \frac{dz}{z} = \frac{1}{2\pi i}(\Phi(b) - \Phi(a)), $$
+	where $\Phi$ is a branch (jednoznačná větev) of logarithm of $f \circ \phi$. If $\phi$ is, in addition, closed, then $I = \ind_{f \circ \phi} 0 = \frac{1}{2\pi}(\Theta(b) - \Theta(a)) \in ®Z$, where $\Theta$ is a branch of argument of $f \circ \phi$.
+
+	($\frac{f'}{f}$ is called logarithmic derivative of $f$, because '$(\log f)' = \frac{f'}{f}$'.)
+\end{definice}
+
+\begin{veta}[Argument principle]
+	Let $G \subseteq ®C$ be a domain, $\phi$ be a closed curve in $G$ and $f \in ©M(G)$. Let $\Int \phi \subset G$ and $\<\phi\> \cap N_f = \O$, $\<\phi\> \cap P_f = \O$. Then
+	$$ \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \sum_{s \in \Int \phi, f(s) = 0} n_f(s) · \ind_\phi s - \sum_{s \in \Int \phi, f(s) = ∞} p_f(s) · \ind_\phi s, $$
+	where $n_f(s)$ is multiplicity of the zero point $s$ of $f$ and $p_f(s)$ is multiplicity of the pole $s$ of $f$.
+
+	\begin{dukazin}
+		By Residua theorem, we have
+		$$ \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \sum_{s \in \Int \phi, s \in N_f \cup P_f} \res_s \(\frac{f'}{f}\)·\ind_\phi s. $$
+		If $s \in N_f$ then on $P(s)$:
+		$$ \frac{f'(z)}{f(z)} = \frac{p·c_p(z - s)^{p - 1} + …}{c_p(z - s)^p + …} = \frac{p}{z - s}·\frac{1 + …}{1 + …} \implies \res_s \(\frac{f'}{f}\) = p = n_f(s). $$
+		If $s \in P_f$ then on $P(s)$
+		$$ \frac{f'(z)}{f(z)} = \frac{p·c_p(z - s)^{p - 1} + …}{c_p(z - s)^p + …} = \frac{p}{z - s}·\frac{1 + …}{1 + …} \implies \res_s \(\frac{f'}{f}\) = p = -p_f(s). $$
+	\end{dukazin}
+\end{veta}
+
+\end{document}

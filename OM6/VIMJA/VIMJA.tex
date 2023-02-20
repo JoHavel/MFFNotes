@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{poznamka}
+	Stručný obsah: Diferencovatelnost v Banachových prostorech; Asplundovy prostory; slabé Asplundovy prostory; fragmentovanost a oddělovací spojitost; atd.
+\end{poznamka}
+
+\section{Diferencovatelnost}
+\subsection{Základní pojmy}
+
+\begin{poznamka}
+	Většina by fungovala i pro NLP, ale my se pro jednoduchost zaměříme na Banachovy prostory.
+\end{poznamka}
+
+\begin{definice}
+	$X, Y$ reálné Banachovy prostory, $U \subset X$ otevřená, $f: U \rightarrow Y$, $x \in U$, $h \in X$:
+	$$ \partial_h^+ f(x) = \lim_{t \rightarrow 0_+} \frac{f(x + t·h) - f(x)}{t} \in Y, \text{ pokud existuje,} $$
+	$$ \partial_h f(x) = \lim_{t \rightarrow 0} \frac{f(x + t·h) - f(x)}{t} \in Y, \text{ pokud existuje}. $$
+
+	\begin{poznamkain}
+		$\partial_{¦o}^+ f(x) = \partial_{¦o} f(x) = 0$. Pokud $\|h\| = 1$, pak je to směrová derivace.
+
+		Pokud $\alpha > 0$, pak $\partial_{\alpha h}^+ f(x) = \alpha \partial_h^+ f(x)$, má-li alespoň jedna strana smysl. Podobně pro $\alpha \in ®R \setminus \{0\}$ je $\partial_{\alpha h} f(x) = \alpha \partial_h f(x)$, má-li alespoň jedna strana smysl (speciálně $\alpha = -1$).
+
+		$$ \exists \partial_h f(x) \Leftrightarrow \exists \partial_{-h}^+ f(x) = - \partial_h^+ f(x). $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Gateauxova derivace]
+	$X, Y$ reálné Banachovy prostory, $U \subset X$ otevřená, $f: U \rightarrow Y$, $x \in U$, $h \in X$: Pokud $\exists L \in ©L(X, Y)$, že $\forall h \in X: L(h) = \partial_h f(x)$, značíme $f'_g(x) = L$.
+
+	\begin{poznamkain}
+		Stačí, aby $\forall h \in X: L(h) = \partial_u^+ f(a)$. Znamená to, že $h \mapsto \partial_h^{(+)} f(x)$ je omezený lineární operátor.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Fréchetova derivace]
+	$f$ má v bodě $x \in U$ Fréchetovu derivaci, pokud $\exists L \in ©L(X, Y)$:
+	$$ \lim_{h \rightarrow 0} \frac{f(x + h) - f(x) - L(h)}{\|h\|} = 0. $$
+
+	\begin{poznamkain}
+		Pokud takové $L$ existuje, nutně platí $L = f'_g(x)$. Fréchetovu derivaci značíme $f'_F(x)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{poznamka}
+	$$ \exists f'_F(x) \Leftrightarrow \exists f'_g(x) \land \lim_{t \rightarrow 0} \frac{f(x + th) - f(x)}{t} = \partial_h f(x) \text{ stejnoměrně pro $h \in B_X$ (resp. $h \in S_X$)}. $$
+
+	\begin{dukazin}
+		$f'_F(x)$ existuje $\Leftrightarrow$
+		$$ \forall \epsilon > 0\ \exists \delta > 0\ \forall h \in X, \|h\|< \delta: \|f(x + h) - f(x) - \partial_h f(x)\| ≤ \epsilon·\|h\| $$
+
+		Existenci $f'_g(x)$ máme, tedy: $\epsilon > 0$ … najdeme to $\delta > 0$: $h \in B_x$, $t \in ®R$, $0 < |t| < \delta$ $\implies \|t·h\| < \delta$:
+		$$ \|f(x + th) - f(x) - \partial_{t·h} f(x) \|≤ \epsilon \|t·h\| = \epsilon · |t| $$
+		$$ \|\frac{f(x + th) - f(x)}{t} - \partial_h t(x)\| ≤ \epsilon $$
+		to dává stejnoměrnou konvergenci „$\implies$“.
+
+		„$\impliedby$“: Nechť $\forall \epsilon > 0\ \exists \delta > 0\ \forall h \in \{x | \forall t \in P(¦o, \delta)\}$:
+		$$ \| \frac{f(x + t·h) - f(x)}{t} - \partial_h f(x)\| ≤ \epsilon. $$
+		$\epsilon > 0$ … najdeme to $\delta > 0$: Zvolíme $h \in X$, $0 < \|h\| < \delta \implies \frac{h}{\|h\|} \in S_X \implies$
+		$$ \implies \| \frac{f(x + h) - f(h)}{\|h\|} - \frac{\partial_h f(x)}{\|h\|} \| ≤ \epsilon \implies $$
+		$$ \implies \frac{\|f(x + h) - f(x) - \partial_h f(x)\|}{\|h\|} < \epsilon. $$
+	\end{dukazin}
+\end{poznamka}
+
+\begin{poznamka}
+	\ 
+	\begin{enumerate}
+		\item $X = ®R$, pak je F. derivace, G. derivace a běžná derivace to samé.
+		\item TODO?
+		\item TODO?
+	\end{enumerate}
+\end{poznamka}
+
+\begin{tvrzeni}
+	$\dim X < ∞$, $U \subset X$ otevřená; $f: U \rightarrow Y$ lipschitzovská, $x \in U$, $f'_g(x)$ existuje $\implies$ $f'_F(x)$ existuje.
+
+	\begin{dukazin}
+		$f$ lipschitzovská $\implies$ existuje $L > 0: \|f(x) - f(y)\| ≤ L·\|x - y\|$ ($x, y \in U$). Nechť existuje $f'_g(x)$. Potom $\forall \epsilon > 0$ existuje $h_1, …, h_N \in S_X$ $\epsilon$-síť. Nechť $\delta > 0$ je takové, že $B(x, \delta) \subset U$ a $0 < |t| < \delta \implies \|\frac{f(x + th_i) - f(x)}{t} - f'_g(x)(h_i)\| < \epsilon$.
+
+		Vezmeme $h \in S_X$ libovolné, $0 < |t| < \delta$. Existuje $i$, že $\|h - h_i\| < \epsilon$:
+		$$ \|\frac{f(x + t·h) - f(x)}{t} - f'_g(x)(h)\| ≤ \|\frac{f(x + t·h) - f(x + t·h_i)}{t}\| + \|\frac{f(x + t·h_i) - f(x)}{t} - f'_g(x)(h_i)\| + \|f'_g(x)(h_i) - f'_g(x)(h)\| ≤ \frac{L·\|(x + t·h) - (x + t·h_i)}{|t|} + \epsilon + \|f'_g(x)\|·\|h_i - h\| ≤ L·\|h - h_i\| + \epsilon + L·\|h_i - h\| ≤ (2L + 1)·\epsilon. $$
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Stačí lokálně lipschitzovská.
+	\end{poznamkain}
+\end{tvrzeni}
+
+\end{document}
