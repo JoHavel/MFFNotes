@@ -116,4 +116,119 @@
 	\end{dukazin}
 \end{veta}
 
+% 23. 02. 2023
+
+\begin{definice}
+	$$ \Sigma(f, \phi) := \sum_{s \in \Int \phi, f(s) = 0} n_f(s)·\ind_\phi s - \sum_{s \in \Int \phi, f(s) = ∞} p_f(s) · \ind_\phi s. $$
+\end{definice}
+
+\begin{lemma}
+	Let $\phi_1, \phi_2: [a, b] \rightarrow ®C$ be closed curve and $s \in ®C \setminus (\<\phi_1\> \cup \<\phi_2\>)$. Assume, for $t \in [a, b]$, $|\phi_1(t) - \phi_2(t)| < |\phi_1(t) - s|$. Then $\ind_{\phi_1} s = \ind_{\phi_2} s$.
+
+	\begin{dukazin}
+		For $t \in [a, b]$, we have $|(\phi_1(t) - s) - (\phi_2(t) - s)| < |\phi_1(t) - s|$. Divide by $|\phi_1(t) - s|$:
+		$$ |1 - \psi(t)| < 1, \qquad \psi(t) := \frac{\phi_2(t) - s}{\phi_1(t) - s}. $$
+		Then $\psi$ is a closed curve, $<\psi> \subset U(1, 1)$, and so
+		$$ 0 = \ind_\psi 0 = \frac{1}{2\pi i} \int_a^b \frac{\psi'}{\psi} = \frac{1}{2\pi i} \int_a^b \frac{\frac{\phi_2'(\phi_1 - s) - \phi_1'(\phi_2 - s)}{(\phi_1 - s)^2}}{\frac{\phi_2 - s}{\phi_1 - s}} = \frac{1}{2\pi i}\int_a^b \frac{\phi_2'}{\phi_2 - s} - \frac{1}{2\pi i}\int_a^b \frac{\phi_1'}{\phi_1 - s} = \ind_{\phi_2} s - \ind_{\phi_1} s. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Rouché]
+	Let $G \subset ®C$ be a domain, $f_1, f_2 \in ©M(G)$ and $\phi$ be closed curve in $G$ such that $\Int \phi \subset G$. Assume $\forall z \in \<\phi\>$:
+	$$ |f_1(z) - f_2(z)| < |f_1(z)| < +∞ $$
+	Then $\Sigma(f_1, \phi) = \Sigma(f_2, \phi)$.
+
+	\begin{dukazin}
+		Set $\phi_j = f_j \circ \phi$. Then
+		$$ \ind_{\phi_j} 0 = \frac{1}{2\pi i} \int_\phi \frac{f_j'}{f_j} = \Sigma(f_j, \phi). $$
+		By previous lemma we have for $s = 0$: $\ind_{\phi_1} 0 = \ind_{\phi_2} 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $f_1, f_2$ be holomorphic functions on $\overline{U(z_0, r)}$ and $\forall z \in \partial U(z_0, r): |f_1(z) - f_2(z)| < |f_1(z)|$. Then $\Sigma_1 = \Sigma_2$, where $\Sigma_j := \sum_{s \in U(z_0, r), f(s) = 0} n_{f_j}(s)$.
+
+	\begin{dukazin}
+		Apply Rouché's theorem to $\phi(t) := z_0 + r·e^{it}$, $t \in [0, 2\pi]$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{priklad}
+	$f_2 = p$, $f_1(z) = a_0 z^n$ and big enough $U(0, r)$.
+\end{priklad}
+
+\begin{definice}[Notation]
+	Let $f$ be a function holomorphic at $z_0 \in ®C$. We say that $f(z_0) = w_0 \in ®C$ $p$~times for $p \in ®N$ if $z_0$ is a zero point of $f - w_0$ of order $p$.
+
+	\begin{poznamkain}
+		Following statements are equivalent to each other:
+
+		\begin{itemize}
+			\item $f(z_0) = w_0$ $p$~times;
+			\item $f(z_0) = w_0$, $f'(z_0) = 0 = … = f^{(p - 1)}(z_0)$, $f^{(p)}(z_0) ≠ 0$;
+			\item $f(z) = w_0 + \sum_{k=p}^{+∞} c_k(z - z_0)^k$ on some neighbourhood of $z_0$ and $c_p ≠ 0$.
+		\end{itemize}
+	\end{poznamkain}
+
+	We say that $f(z_0) = ∞$ $p$~times if $z_0$ is a zero point of $\frac{1}{f}$ of order $p$. (It's the same as $z_0$ is pole of $f$ of order $p$.) And we say that $f(∞) = w_0 \in ®S$ $p$~times if $f(1/z)$ attains $w_0$ $p$~times at 0.
+\end{definice}
+
+\begin{veta}[On a multiple value]
+	Let $z_0, w_0 \in ®S$, $f$ be a holomorphic function on a $P(z_0)$ and $f(z_0) = w_0$ $p$ times for some $p \in ®N$. Let $\delta_0 > 0$. Then there are $\epsilon > 0$ and $\delta \in (0, \delta_0)$ such that, for any $w \in P(w_0, \epsilon)$ there are just $p$ different points $z_1, …, z_p$ in $P(z_0, \delta)$ with $f(z_j) = w$. In addition, $f(z_j) = 0$ once.
+
+	\begin{dukazin}
+		WLOG, assume $z_0 = 0 = w_0$.Then $z_0 = 0$ is a zero point of $f$ of order $p$. Choose $\delta \in (0, \delta_0)$ such that $f ≠ 0$ and $f' ≠ 0$ on $P(0, 2\delta)$. Set $\epsilon := \min_{|z| = \delta} |f(z)| > 0$.
+
+		Let $w \in P(0, \epsilon)$. Use Rouché's theorem for $f_1 := f$, $f_2 := f - w$ and $\phi := \delta e^{it}$, $t \in [0, 2\pi]$. Of course, $|f_1 - f_2| = |w| < \epsilon < |f_1|$ on $\<\phi\>$.
+
+		Since in $U(0, \delta)$ the function $f = f_1$ has the only zero point of order $p$ at origin, $f - w = f_2$ has just $p$ simple zero points in $P(0, \delta)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $G \subset ®S$ be a domain, $f \in ©M(G)$ and $f$ be not constant on $G$. Then $f: G \rightarrow ®S$ is an open map (for any open $\Omega \subset G, f(\Omega)$ is open).
+
+	\begin{dukazin}
+		Let $\Omega \subset G$ be open and $w_0 \in f(\Omega)$. Then there is a $z_0 \in \Omega$ and $p \in ®N$ such that $f(z_0) = w_0$ $p$ times. Choose $\delta_0 > 0$ such that $U(z_0, \delta_0) \subset \Omega$. By the previous theorem, there is $\epsilon > 0$, $\delta \in (0, \delta_0)$ such that $P(w_0, \epsilon) \subset f(P(z_0, \delta))$, so $U(w_0, \epsilon) \subset f(U(z_0, \delta)) \subset f(\Omega)$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		This is true for $©H(G)$ too.
+	\end{poznamkain}
+\end{dusledek}
+
+\begin{dusledek}
+	Let $f$ be a function holomorphic at $z_0 \in ®C$. Then $f'(z_0) ≠ 0$ if and only if there is $U(z_0)$ such that $f|_{U(z_0)}$ is one-to-one.
+
+	\begin{dukazin}
+		„$\implies$“: Let $f'(z_0) ≠ 0$. Then $f(z_0) = w_0$ once, so we choose $\delta_0 > 0$ such that $f ≠ w_0$ on a $P(z_0, \delta_0)$. By the previous theorem choose $\epsilon > 0$, $\delta \in (0, \delta_0)$. Moreover, due to the continuity of $f$ at $z_0$ choose $\delta_1 \in (0, \delta)$ such that $f(U(z_0, \delta_1)) \subset U(w_0, \epsilon)$. Then $f|_{U(z_0, \delta_1)}$ is one-to-one.
+
+		„$\impliedby$“: Let $f'(z_0) = 0$ and let $f$ be not constant on any neighbourhood of $z_0$. Then $f(z_0) = w_0$ $p$ times ($p \in ®N \setminus \{1\}$). By the previous theorem $f$ is not one-to-one on any neighbourhood of $z_0$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[On holomorphic inverse]
+	Let $G \subset ®C$ be open and $f: G \rightarrow ®C$ be a one-to-one holomorphic\footnote{One-to-one holomorphic function is sometimes called conformal.} function, then $f' ≠ 0$ on $G$, $\Omega := f(G)$ is open and $f_{-1}: \Omega \overset{\text{onto}}\rightarrow G$ is holomorphic.
+
+	In addition, $(f_{-1})' = \frac{1}{f' \circ f_{-1}}$ on $\Omega$.
+
+	\begin{dukazin}
+		WLOG, $G \subset ®C$ is a domain. By first „dusledek“ of previous theorem $f$ is an open map, so $\Omega := f(G)$ is open and $f_{-1}: \Omega \rightarrow G$ is continuous. Let $z_0 \in G$ and $w_0 = f(z_0)$. By second „dusledek“ we have $f'(z_0) ≠ 0$, and
+		$$ \frac{1}{f'(z_0)} = \lim_{z \rightarrow z_0} \frac{z - z_0}{f(z) - f(z_0)} \overset*= \lim_{w \rightarrow w_0} \frac{f_{-1}(w) - f_{-1}(w_0)}{w - w_0} = f_{-1}'(w_0). $$
+		The equality * follows from theorem on limits of composite functions because $f_{-1}$ is continuous and $f_{-1}(w) ≠ f_{-1}(w_0)$ for $w ≠ w_0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Hurwitz]
+	Let $G \subset ®C$ be a domain, $f_n \in ©H(G)$, $f_n \overset{\text{loc.}}\rightrightarrows f$ on $G$ and $f \not≡ 0$. Let $z_0 \in G$ be a zero point of $f$. Then $\exists$ $\{z_n\}_{n = 1}^∞ \subset G$ and a subsequence $\{f_{k_n}\}$ of $\{f_n\}$ such that $z_n \rightarrow 0$ and $f_{k_n}(z_n) = 0$.
+
+	\begin{poznamkain}
+		Not true in ®R! The assumption $f \not≡ 0$ is important! ($f_n(z) := z/n$)
+	\end{poznamkain}
+\end{veta}
+
+\begin{dusledek}
+	Let $G \subset ®C$ be a domain, $f_n$ be one-to-one holomorphic functions on $G$ and $f_n \overset{\text{loc}}\rightrightarrows f$ on $G$. Then $f$ is either one-to-one and holomorphic, or constant.
+\end{dusledek}
+
 \end{document}

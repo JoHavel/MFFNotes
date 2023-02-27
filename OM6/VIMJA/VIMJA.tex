@@ -91,4 +91,52 @@
 	\end{poznamkain}
 \end{tvrzeni}
 
+% 23. 02. 2023
+
+\begin{tvrzeni}
+	$f: (a, b) \rightarrow ®R$ konvexní $\implies$ $f'(x)$ existuje v každém bodě $(a, b)$ až na spočetně mnoho.
+
+	\begin{dukazin}
+		1) $\forall x \in (a, b)$ existuje vlastní $f_+'(x)$, neboť $f_+'(x) = \lim_{y \rightarrow x_+} \frac{f(y) - f(x)}{y - x}$, což je neklesající funkce v $y \in (x, b)$ a zdola omezená hodnotou $\frac{f(z) - f(x)}{z - x}$ pro $z \in (a, x)$.
+
+		2) $x \mapsto f_+'(x)$ je neklesající na $(a, b)$. 3) Podobně pro $f_-'$. Tedy $f$ je spojitá na $(a, b)$. 4) $f'(x)$ neexistuje $\Leftrightarrow$ $f_+'$ má v bodě $x$ skok. ($f_+'$ je spojitá v $x$ $\implies$ $f_x'(x) = \lim_{y \rightarrow x_-} f_+'(y) = \lim_{y \rightarrow x_-} f_-'(y)$, $f_-'(y) ≤ f'_+(y) ≤ f_-'(z)$ pro $z > y$).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$f$ convex and bounded from above on $B(x, r)$, $x \in X, r > 0$ $\implies$ $f$ is Lipschitz on $B\(x, \frac{1}{2}\)$.
+
+	\begin{dukazin}
+		1) „$f \≤ M$ on $B(x, r)$ $\implies$ $f ≥ 2f(x) - M$ on $B(x, r)$“: $y \in B(x, r)$, $z := x + (x - y)$ $\implies z \in B(x, r)$, $x = \frac{1}{2}(y + z)$. $f(x) ≤ \frac{1}{2}(f(y) + f(z))$, $f(y) ≥ 2f(x) - f(z) ≥ 2f(x) - M$.
+
+		2) Assume $|f| ≤ M$ on $B(x, r)$. Take $v, w \in B(x, \frac{r}{2})$, $v ≠ w$, $z := w + \frac{z}{2} \frac{w - v}{\|w - v\|}$ $\implies$ $z \in B(x, r)$. $w(1 + \frac{z}{2\|w - v\|}) = z + \frac{z}{2\|w - v\|} v$,
+		$$ f(w) ≤ \frac{f(z) + \frac{z}{2\|w - v\|}f(v)}{1 + \frac{z}{2\|w - v\|}} $$
+		$$ f(w) - f(v) ≤ \frac{f(z) + f(v)}{1 + \frac{z}{2\|w - v\|}} $$
+		$$ \frac{f(w) - f(v)}{\|w - v\|} ≤ \frac{f(z) - f(v)}{\|w - v\| + 1 / 2} ≤ \frac{2M}{\frac{r}{2}} = \frac{4M}{r} $$
+		$\implies$ $f$ is $\frac{4M}{r}$-lipschitz on $B(x, \frac{y}{2})$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	\ 
+	\begin{itemize}
+		\item $\dim X < ∞$, $U \subset X$ open convex, $f: U \rightarrow ®R$ convex $\implies$ $f$ is locally lipschitz on $U$. (WLOG: $X = (®R^n, \|·\|_1)$. $x \in U \implies \exists r > 0 \overline{B_{\|·\|_1}(x, r)} \subset U$. $\overline{B_{\|·\|_1}(x, r)} = \conv\{x ± r e_i | i \in [n]\}$. $f ≤ \max_{i \in [n]} f(x ± r·e_i)$ on $\overline{B_{\|·\|_1}(x, r)}$ $\implies$ $f$ is Lipschitz on $\overline{B_{\|·\|_1}(x, \frac{r}{2})}$)
+		\item $\dim X < ∞$, $U \subset X$ open convex, $f: U \rightarrow ®R$ convex, $x \in U$ $\implies$ $f'_F(x)$ exists if and only if $f_g'$ („$\implies$“ always, „$\impliedby$“ from first item and tvrzeni above).
+		\item $X$ Banach space, $U \subset X$ open convex, $f: U \rightarrow ®R$ continuous convex, then $f$ is locally Lipschitz on $U$ ($f$ continuous $\implies$ $f$ is locally bounded $\implies$ $f$ is locally Lipschitz).
+	\end{itemize}
+\end{dusledek}
+
+\begin{veta}
+	$X = l_1$, $f: X \rightarrow ®R$, $f(x) = \|x\| = \sum_{n=1}^∞ |x_n|$.
+	$$ \exists f_g'(x) \Leftrightarrow \forall n \in ®N: x_n ≠ 0. \qquad \implies f_g'(x) = \(\sgn x_n\)_{n=1}^∞ \in l_∞, $$
+	$$ \forall x \in l_1\ \nexists f_F'(x). $$
+
+	\begin{dukazin}
+		1) $x \in l_1$, $n \in ®N$, $x_n = 0$. Take $h = e_n$ $\sum_{k≠n} |x_k| + |t|$. $\partial_h f(x) = \lim_{t \rightarrow 0} \frac{\|x + t·e_n\| - \|x\|}{t} = \lim_{t \rightarrow} \frac{|t|}{t}$ doesn't exist. This prove „$\implies$“.
+
+		„$\impliedby$“: Assume $\forall n \in ®N$: $x_n ≠ 0$, $h \in l_1$, $h ≠ 0$, $\epsilon > 0$:
+		$$ \left|\frac{f(x + t·h) - f(x)}{t} - \sum_{n=1}^∞ h_n · \sgn x_n\right| = \left|\frac{1}{t}\sum_{n=1}^∞ \(|x_n + t·h_n| - |x_n| - t h_n \sgn x_n\)\right| ≤ \left| \frac{1}{t} \sum_{n=1}^N (…)\right| + \left \frac{1}{t} \sum_{n > N} (…) \right| \rightarrow 0 + … < \epsilon. $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}

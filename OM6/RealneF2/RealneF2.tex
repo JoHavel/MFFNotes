@@ -67,4 +67,65 @@
 	\end{dukazin}
 \end{lemma}
 
+% 20. 02. 2023
+
+\begin{lemma}
+	Let $k, n \in ®N$, $k ≤ n$, $G \subset ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping, $x \in G$, and $\alpha > 1$. Then there exists a neighbourhood of $x$ such that for every $\lambda^k$-measurable $E \subset V$ we have
+	$$ \alpha^{-1} \int_E \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(E)) ≤ \alpha \int_E \vol \phi'(t) d\lambda^k(t). $$
+
+	\begin{dukazin}
+		Find $\beta > 1$, $\tau > 1$ such that $\beta^k \tau < \alpha$. By previous lemma we find a neighbourhood $V_1$ of $x$ such that the conclusion of the lemma holds for $\beta$. We find a neighbourhood $V_2$ of $x$ such that
+		$$ \forall t \in V_2: \tau^{-1} \vol \phi'(t) ≤ \vol \phi'(t) ≤ \tau \vol \phi'(x). $$
+		Set $V = V_1 \cap V_2$.
+
+		Assume that $E \subset V$ is a $\lambda^k$-measurable set. We have
+		$$ \tau^{-1} \vol \phi'(x)·\lambda^k(E) ≤ \int_E \vol \phi'(t) d \lambda^k(t) ≤ \tau \vol \phi'(t) \lambda^k(E). $$
+		By lemma above we have $\vol \phi'(t) \lambda^k(E) = H^k(\phi'(x)(E))$:
+		$$ \tau^{-1} H^k(\phi'(x)(E)) ≤ \int_E \vol \phi'(t) d\lambda^k(t) ≤ \tau H^k(\phi'(x)(E)). $$
+
+		By previous lemma we get 
+		$$ H^k(\phi(E)) = H^k\(\(\phi \circ (\phi'(x))^{-1}\circ \phi'(x)\) (E)\) ≤ \beta^k H^k(\phi'(x)(E)) ≤ \beta^k H^k(\phi'(x)(E)) ≤ $$
+		$$ ≤ \beta^k \tau \int_E \vol \phi'(t) d\lambda^k(t) ≤ \alpha \int_E \vol \phi'(t) d\lambda^k(t). $$
+
+		By lemma above we get
+		$$ H^k(\phi(E)) ≥ \beta^{-k} H^k\(\(\phi'(x) \circ \phi^{-1} \circ \phi\)(E)\) = \beta^{-k} H^k(\phi'(x)(E)) ≥ $$
+		$$ ≥ \beta^{-k} \tau^{-1} \int_E \vol \phi'(t) d\lambda^k(t) ≥ \alpha^{-1} \int_E \vol \phi'(t) d\lambda^k(t). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $k, n \in ®N$, $k ≤ n$, $G \subset ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping and $f: \phi(G) \rightarrow ®R$ be $H^k$-measurable. Then we have
+	$$ \int_{\phi(G)} f(x) dH^k(x) = \int_G f(\phi(t)) \vol \phi'(t) d\lambda^k(t), $$
+	if the integral at the right side converges.
+
+	\begin{dukazin}
+		„$\phi^{-1}$ is well defined“: If $H \subset G$ is open, then we can write $H = \bigcup_{n=1}^∞ K_n$, where $K_n$ is compact for every $n \in ®N$. Then we have $\phi(H) = \bigcup_{n=1}^∞ \underbrace{\phi(K_n)}_{\text{compact}}$ is $F_\sigma$. This implies that $\phi^{-1}$ is Borel. The mappings $\phi$, $\phi^{-1}$ are locally Lipschitz by lemma above. ($\phi(G)$ is Borel.) $\phi(G)$ is $H^k$-$\sigma$-finite.
+
+		1. „$f = \chi_L$, $L \subset \phi(G)$ is $H^k$-measurable“: We show $H^k(L) = \int_{\phi^{-1}(L)} \phi'(t) d\lambda^k(t)$. Choose $\alpha > 1$. By previous lemma we find for every $y \in G$ neighbourhood $V_y \subset G$ of the point $y$ such that for every $\lambda^k$-measurable set $E \subset V_y$ we have
+		$$ \alpha^{-1} \int_E \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(E)) ≤ \alpha \int_E \vol \phi'(t) d\lambda^k(t). $$
+		We have $\subset\{V_y | y \in G\} = G$. There exists a sequence $\{y_j\}_{j=1}^∞$ such that $\bigcup_{i=1}^∞ V_{y_j} = G$. Using lemma from previous semester we find Borel sets $B, N \subset \phi(G)$ such that $B \subset L \subset B \cup N$, $H^k(N) = 0$.
+
+		$\lambda^k(\phi^{-1}(N)) = 0$. $\phi^{-1}(B) \subset \phi^{-1}(L) \subset \phi^{-1}(B) \cup \phi^{-1}(N)$ $\implies$ $\phi^{-1}(L)$ is $\lambda^k$-measurable. We set
+		$$ A_j = \phi^{-1}(L) \cap \(V_{y_j} \setminus \bigcup_{i=1}^{j-1} V_{y_j}\). $$
+		Then we have
+
+		\begin{itemize}
+			\item $A_j$ is $\lambda^k$-measurable;
+			\item $A_j \subset V_{y_j}$ for every $j \in ®N$;
+			\item $\forall j, j' \in ®N, j ≠ j': A_j \cap A_{j'} = \O$;
+			\item $\bigcup_{j=1}^∞ A_j = \phi^{-1}(L)$;
+			\item for every $j \in ®N$ we have
+				$$ \alpha^{-1} \int_{A_j} \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(A_j)) ≤ \alpha \int_{A_j} \vol \phi'(t) d\lambda^k(t). $$
+		\end{itemize}
+
+		From all except for second point we have
+		$$ \alpha^{-1} \int_{\phi^{-1}(L)} \vol \phi'(t) d\lambda^k(L) ≤ \underbrace{\sum_{j=1}^∞ H^k(\phi(A_j))}_{= H^k\(\bigcup_{j=1}^∞ \phi(A_j)\) = H^k(L)} ≤ \alpha \int_{\phi^{-1}(L)} \vol \phi'(t) d\lambda^k(t). $$
+
+		2. „$f ≥ 0$ simple $H^k$-measurable“: From linearity of integrals. 3. „$f ≥ 0$ $H^k$-measurable“: we approximate $f$ by $0 ≤ f_j ≤ f_{j+1}$ simple functions and from Levi
+		$$ \lim_{j \rightarrow ∞} \int_{\phi(G)} f_j(x) dH^k(x) = \int_{\phi(G)} f(x) dH^k(x), \qquad \lim_{j \rightarrow ∞} \int_G f_j(\phi(t))\vol\phi'(t) d\lambda^k(t) = \int_G f(\phi(t)) \vol \phi'(t) d\lambda^k(t). $$
+
+		3. „$f$ $H^k$-measurable“: We add positive and negative part.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -159,11 +159,11 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		„First point“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}|^∞ x^n \in A$. Moreover,
+		„First item“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}|^∞ x^n \in A$. Moreover,
 		$$ (e - x)·\(\sum_{n=0}^∞ x^n\) = \lim_{N \rightarrow ∞} (e - x)·(e + x + … + x^N) = \lim_{N \rightarrow ∞} e - x^{N+1} = e, $$
 		because $\lim_{N \rightarrow ∞} \|x^{n+1}\| ≤ \lim_{N \rightarrow ∞} \|x\|^N = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
 
-		„Second point“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first point), so from previous fact $(x + h)^{-1}$ exists. Moreover
+		„Second item“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first item), so from previous fact $(x + h)^{-1}$ exists. Moreover
 		$$ (x + h)^{-1} = (e + x^{-1} h)^{-1}·x^{-1} \overset{1)}= \sum_{n=0}^∞ \(-x^{-1} h\)^n x^{-1}, $$
 		so
 		$$ \|(x + h)^{-1} - x^{-1}\| = \|\sum_{n=1}^∞\(-x^{-1} h\)^n x^{-1}\| ≤ \|x^{-1}\|·\sum_{n=1}^∞ \|x^{-1} h\|^n ≤ $$
@@ -175,7 +175,7 @@
 	$A$ Banach algebra with a unit $\implies$ $A^x \subset A$ is open and $A^x$ is topological group.
 
 	\begin{dukazin}
-		$A^x \subset A$ is open by previous lemma (second point). So it remains to prove $x \mapsto x^{-1}$ is continuous:
+		$A^x \subset A$ is open by previous lemma (second item). So it remains to prove $x \mapsto x^{-1}$ is continuous:
 		$$ A^x \ni x_n \rightarrow x \in A^x \overset{?}\implies x_n^{-1} \rightarrow x^{-1}. $$
 		$$ \|x_n^{-1} - x^{-1}\| \overset{h:= x_n - x}≤ \frac{\|x^{-1}\|^2·\|x_n - x\|}{1 - \|x^{-1}\|·\|x_n - x\|} \rightarrow 0. $$
 	\end{dukazin}
@@ -183,7 +183,7 @@
 
 \subsection{Spectral theory}
 \begin{definice}[Resolvent set, spectrum and resolvent]
-	$A$ Banach algebra with a unit, $x \in A$. We define resolvent set of $x$ as $S_A(x) := \{\lambda \in ®K | \exists(\lambda·e - x)^{-1}\}$. Next we define spectrum of $x$ as $\sigma_A(x) := ®K \setminus S_A(x)$. Finally we define resolvent of $x$ as $R_x: S(x) \rightarrow A$, $R_x(\lambda) := (\lambda·e - x)^{-1}$.
+	$A$ Banach algebra with a unit, $x \in A$. We define resolvent set of $x$ as $\rho_A(x) := \{\lambda \in ®K | \exists(\lambda·e - x)^{-1}\}$. Next we define spectrum of $x$ as $\sigma_A(x) := ®K \setminus \rho_A(x)$. Finally we define resolvent of $x$ as $R_x: \rho(x) \rightarrow A$, $R_x(\lambda) := (\lambda·e - x)^{-1}$.
 
 	If $A$ doesn't have a unit, then notions above are defined with respect to $A_e$.
 \end{definice}
@@ -201,7 +201,7 @@
 	\end{dukazin}
 
 	\begin{dukazin}[b)]
-		By a) we have $0 \in \sigma_{A_e}(x)$. So it suffices: $\forall \lambda ≠ 0: \lambda \in S_A(x) \Leftrightarrow \lambda \in S_{A_e}(x)$. First means $(\lambda·e - x)^{-1}$ exists in $A$ and second means that $((0, \lambda) - (x, 0))^{-1} = (-x, \lambda)^{-1}$ exists in $A$. We take „$x \rightarrow -x$“.
+		By a) we have $0 \in \sigma_{A_e}(x)$. So it suffices: $\forall \lambda ≠ 0: \lambda \in \rho_A(x) \Leftrightarrow \lambda \in \rho_{A_e}(x)$. First means $(\lambda·e - x)^{-1}$ exists in $A$ and second means that $((0, \lambda) - (x, 0))^{-1} = (-x, \lambda)^{-1}$ exists in $A$. We take „$x \rightarrow -x$“.
 
 		„$\implies$“: find $(b, \beta) \in A_e$ such that $(x, \lambda)·(b, \beta) = (¦o, 1)$. So $(x·b + \lambda·b + \beta·x, \lambda·\beta) = (¦o, 1)$. So $\beta = \frac{1}{\lambda}$ and $b = -\frac{1}{\lambda}(\lambda e + x)^{-1}·x$. Similarly we find left inverse $\(-\frac{1}{\lambda}x(x + \lambda e)^{-1}, \frac{1}{\lambda}\)(x, \lambda)$. And next we prove that they are really inverses.
 
@@ -210,5 +210,162 @@
 		Similarly second inverse.
 	\end{dukazin}
 \end{tvrzeni}
+
+% 20. 02. 2023
+
+\begin{veta}
+	$\{¦o\} ≠ A$ complex Banach algebra, $x \in A$. Then $\sigma(x) \subseteq B_{®C}(0, \|x\|)$ is compact, nonempty.
+
+	\begin{dukazin}
+		After theory.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Derivative]
+	$Y$ Banach space, $\Omega \subset ®K$, $f: \Omega \rightarrow Y$, $a \in \Omega$. Then
+	$$ f'(a) := \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a} $$
+	is the derivative of $f$ at $a$.
+\end{definice}
+
+\begin{tvrzeni}[Fact]
+	$Y$ Banach, $\Omega \subset ®K$, $f: \Omega \rightarrow Y$, $a \in \Omega$. Then $f'(a)$ exists $\implies$ $f$ is continuous at $a$ $\land$ $\forall x^* \in Y^*$: $(x^* \circ f)'(a) = x^*(f'(a))$.
+
+	\begin{dukazin}
+		Continuity: $\lim_{x \rightarrow a} f(x) - f(a) = \lim_{x \rightarrow a} \frac{f(x) - f(a)}{x - a}·(x - a) = f'(a)·0 = 0$.
+
+		$x^* \in Y^*$ given, then
+		$$ \lim_{x \rightarrow a} \frac{x^*(f(x)) - x^*(f(a))}{x - a} = \lim_{x \rightarrow a} x^*\(\frac{f(x) - f(a)}{x - a}\) = x^*(f'(a)). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$A$ Banach algebra with a unit, $x \in A$. Then
+
+	\begin{itemize}
+		\item $\rho(x)$ is open set;
+		\item $\forall |\lambda| > \|x\|: \lambda \in \rho(x) \land R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$;
+		\item! $\rho(x) \ni \lambda \mapsto R_x(\lambda)$ has derivative at each $\lambda \in \rho(x)$;
+		\item $\forall \mu, \nu \in \rho(x): R_x(\mu)·R_x(\nu) = R_x(\nu)·R_x(\mu)$;
+		\item $\forall \mu, \nu \in \rho(x): R_x(\mu) - R_x(\nu) = (\nu - \mu)·R_x(\mu)·R_x(\nu)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		First is proved by lemma. Second by lemma we have
+		$$ (\lambda e - x)^{-1} = \lambda^{-1}\(e - \frac{x}{\lambda}\)^{-1} = \lambda^{-1} \sum_{n=0}^∞ \(\frac{x}{\lambda}\)^n. $$
+
+		For third we fix $\lambda \in \rho(x)$ and $t \in (0, \delta)$ for $\delta$ small enough ($\lambda + t \in \rho(x)$ and *). We shall prove that „$R_x'(\lambda) = -R_x(\lambda)^2$“:
+		$$ 0 \overset?= \left\|\frac{R_x(\lambda + t) - R_x(\lambda)}{t} + R_x(\lambda)^2\right\| = \frac{1}{|t|}\left\|(\lambda e - x + t e)^{-1} - (\lambda e - x)^{-1} + (\lambda e - x)^{-1}·t·(\lambda e - x)^{-1}\right\| ≤ $$
+		$$ \overset{* \text{ for existence of the inverse}}≤ \frac{1}{|t|}\|(\lambda e - x)^{-1}\|·\left\|(e + t(\lambda e - x)^{-1})^{-1} - e + (\lambda e - x)^{-1}·t\right\| = $$
+		$$ = \frac{1}{|t|} \|(\lambda e - x)^{-1}\|·\left\|\sum_{n=0}^∞(-t)^n (\lambda e - x)^{-n} - e + (\lambda e - x)^{-1}·t\right\| ≤ $$
+		$$ \overset{\|x^n\| ≤ \|x\|^n}≤ \frac{1}{|t|} \|(\lambda e - x)^{-1}\| · \sum_{n=2}^∞ \|t(\lambda e - x)^{-1}\|^n = $$
+		$$ = \frac{1}{|t|} \|t(\lambda e - x)^{-1}\| · \frac{\|t(\lambda e - x)^{-1}\|^2}{1 - \|t(\lambda e - x)^{-1}\|} \overset{* \text{ for denominator }≤1/2}≤ \frac{2|t|^2}{|t|} \|t(\lambda e - x)^{-1}\| \rightarrow 0. $$
+
+		Fourth: In general $u v = v u \implies u^{-1}v^{-1} = v^{-1}u^{-1}$ (proof: $u^{-1}v^{-1} = (v u)^{-1}$). And we apply it for $u = (\mu e - x)$ and $v = (\nu e - x)$.
+
+		Fifth: In general $u·v = v·u \implies u^{-1}·v = v·u^{-1}$ (proof: $u^{-1} v = v·v^{-1}u^{-1}v = v·u^{-1} v^{-1} v = v u^{-1}$) so:
+		$$ R_x(\mu) - R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))^{-1}R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))R_x(\nu)^{-1} = $$
+		$$ = R_x(\mu) R_x(\nu) \(R_x(\nu)^{-1} - R_x(\mu)^{-1}\) = R_x(\mu) R_x(\nu) (\nu - \mu). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Liouville for Banach space valued functions]
+	$Y$ Banach space over ®C, $f: ®C \rightarrow Y$ has derivative at each point, $f$ is bounded ($≡$ $\|f\|$ is bounded). Then $f ≡ \const$.
+
+	\begin{dukazin}
+		Assume $f \not≡ \const$, so there are $a ≠ b \in ®C: f(a) ≠ f(b) \implies$ (by Hahn–Banach theorem) $\exists x^* \in Y^*: x^*(f(x)) ≠ x^*(f(x))$. From fact $x^* \in f: ®C \rightarrow ®C$ has derivative at each point is bounded, not constant which is in contradiction with Liouville theorem for complex valued functions.
+	\end{dukazin}
+\end{veta}
+
+\begin{dukaz}[Theorem before theory]
+	First case: „$A$ has a unit“: Then $\sigma(x) \subseteq B_{®C}(0, \|x\|)$ is closed, so $\sigma(x)$ is compact. Assume that $\rho(x) = ®C$. By previous tvrzeni we have $R_x: ®C \rightarrow A$ has derivative everywhere, and it is bounded because $\lim_|\lambda| \rightarrow ∞ R_x(\lambda) = \lim_{|\lambda|\rightarrow∞} \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}} = 0$. From previous theorem $R_x ≡ \const$ so $\lim_{|\lambda| \rightarrow ∞} R_x(\lambda) = 0 \implies R_x ≡ 0$. In particular $0 = R_x(0) = (-x)^{-1}$. \lightning (If $A ≠ \{0\}$ then $x^{-1} ≠ 0$ for $x \in A$.)
+
+	Second case: „$A$ hasn't a unit“, then $\sigma(x) := \sigma_{A_e}((x, 0))$ so we apply the already proven case.
+\end{dukaz}
+
+\begin{poznamka}[Convention]
+	If not said otherwise, in chapter about Banach algebras, all Banach spaces are complex.
+\end{poznamka}
+
+\begin{veta}[Gelfand–Mazur]
+	$\{¦o\} ≠ A$ Banach algebra with a unit. Assume $\forall x \in A \setminus \{¦o\}: \exists x^{-1}$. Then $A$ is isomorphic to ®C. If moreover $e$ is a unit in $A$ and $\|e\| = 1$, then $A$ is isometrically isomorphic to ®C.
+
+	\begin{dukazin}
+		Consider $\psi: ®C \rightarrow A$ defined as $\psi(\lambda) := \lambda·e$. This is algebraic homomorphism and $\|\psi(\lambda)\| = |\lambda|·\|e\|$, so it is isomorphism (and isometry, if $\|e\| = 1$).
+
+		It remains „$\phi$ is surjective“: Pick $a \in A$. From previously proved theorem $\exists \lambda \in \sigma(a)$, then $(\lambda e - a) \notin A^x$. So, $\lambda·e - a = 0$, then $\psi(\lambda) = a$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Spectral radius]
+	A Banach algebra, $x \in A$. Then $r(x) := \sup\{|\lambda|, \lambda \in \sigma(x)\}$ is called spectral radius of $x$.
+\end{definice}
+
+\begin{veta}[Beurling–Gelfand]
+	$A$ Banach algebra, $x \in A$ $\implies$ $r(x) = \inf_{n \in ®N} \sqrt[n]{\|x^n\|} = \lim_n \sqrt[n]{\|x^n\|}$.
+\end{veta}
+
+\begin{lemma}
+	$A$ Banach algebra with a unit, $x \in A$. For $p(z) = \sum_{j=1}^n \alpha_j z^j \in ®C$ a polynom (with complex coefficients) we put $p(x) = \sum_{j=1}^n \alpha_j x^j \in A$. Then $\sigma(p(x)) = p(a(x))$.
+
+	\begin{dukazin}
+		Fix $\lambda \in ®C$ and write $(\lambda - p)(z) = c·\prod_{i=1}^m(z - z_i)$, where $z_1, …, z_m$ are roots of $\lambda - p$. Then $\lambda \in \sigma(p(x)) \Leftrightarrow (\lambda e - p(x))^{-1}$ does not exists. $(\lambda e - p(x))^{-1} = c·\prod_{i=1}^m (x - z_i·e)$, so it does'nt exists if and only if $\exists i \in [m]$, such that $(x - z_i·e)^{-1}$ doesn't exists $\Leftrightarrow$ $z_i \in \sigma(x)$ $\Leftrightarrow$ $\exists$ root $\nu$ of $\lambda - p$ such that $\nu \in \sigma(x)$ $\Leftrightarrow$ $\exists \nu \in \sigma(x): p(\nu) = \lambda$ $\Leftrightarrow$ $\lambda \in p(\sigma(x))$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Beurling–Gelfand]
+	WLOG $A$ has a unit. Step 1, „$r(x) ≤ \inf_n \sqrt[n]{\|x^n\|}$“: fix $\lambda \in \sigma(x)$. By previous lemma $\forall n: \lambda^n \in \sigma(x^n)$. By theorem 'Before theory' we have $\forall n: |\lambda|^n ≤ \|x^n\|$.
+
+	Step 2, „$r(x) ≥ \limsup_n \sqrt[n]{\|x^n\|}$“:
+%
+% 21. 02. 2023
+%
+	Pick $r > r(x)$. Claim: „$\frac{x^n}{r^n} \rightarrow^w 0$“: Fix $x^* \in A^*$ and put $f(\lambda) := \lambda · x^*(R_x(\lambda))$. By fact and tvrzeni after it, $f$ has derivative at each $\lambda \in \rho(x)$. Moreover for $|\lambda| ≥ \|x\|$ we have $f(\lambda) = \lambda · x^*\(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}\) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$. Thus $f(\lambda) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$, $\lambda \in P(0, r(x), ∞)$. From Complex analysis $f \in H(P(0, r, ∞))$ is uniquely given by Laurent series. In particular $f(r) = \sum_{n=0}^∞ \frac{x^*(x^n)}{r^n}$, so $x^*\(\frac{x^n}{r^n}\) \rightarrow 0$.
+
+	From princip of unique boundedness (last semester): $\frac{x^n}{r^n}$ if $\|·\|$-bounded, so $\exists c > 0:$ $\|x^n\| ≤ c r^n$, $\sqrt[n]{\|x^n\|} ≤ \sqrt[n]{c}·r \rightarrow r$. So $\limsup \sqrt[n]{\|x^n\|} ≤ r$.
+\end{dukaz}
+
+\begin{dusledek}
+	$A$ Banach algebra, $x \in A$ and $|\lambda| > r(x)$. Then $\sum_{n=1}^∞ \frac{x^n}{\lambda^n}$ is absolutely convergent and $R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$.
+
+	\begin{dukazin}
+		Fix $q$, such that $\frac{r(x)}{|\lambda|} < q < 1$. By previous theorem, $\exists n_0\ \forall n ≥ n_0: \frac{\sqrt[n]{\|x^n\|}}{\lambda} < q$, so $\frac{\|x^n\|}{|\lambda|^n} < q^n$, $n ≥ n_0$. Thus $\sum \left\| \frac{x^n}{\lambda^n}\right\| ≤ ∞$, so the sum is absolutely convergent.
+
+		Now we easily check that $(\lambda e - x)^{-1} = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$.
+	\end{dukazin}
+\end{dusledek}
+
+\subsection{Subalgebra}
+\begin{veta}
+	$A$ Banach algebra with a unit $e$, $B \subset A$ is closed subalgebra such that $e \in B$. Fix $x \in B$. Then
+
+	\begin{itemize}
+		\item $C \subset \rho_A(x)$ is component (maximum connected subset) $\implies$ $C \subseteq \sigma_B(x)$ or $C \cap \sigma_B(x) = \O$;
+		\item $\partial \sigma_B(x) \subseteq \sigma_A(x) \subseteq \sigma_B(x)$;
+		\item $\rho_A(x)$ is connected $\implies$ $\sigma_A(x) = \sigma_B(x)$;
+		\item $\Int \sigma_B(x) = \O \implies \sigma_A(x) = \sigma_B(x)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\sigma_A(x) \subseteq \sigma_B(x)$“: $(\lambda e - x)^{-1}$ exists in $B$ implies it exists (it's same) in $A$.
+
+		„First item“: Let $C \subset \rho_A(x)$ be component. Pick $\lambda_0 \in C \cap \sigma_B(x)$. Wanted: „$C \setminus \sigma_B(x) = \O$“. Pick $x^* \in A^*: x^*|_B = 0 \land x^*(R_x(\lambda)) = 1$ (separate $B$ and $R_x(\lambda) \notin B$). Then $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is holomorphic function on open (because maximum) connected set $C$. Which is zero\footnote{For $\lambda \in C \setminus \sigma_B(x)$, $(\lambda e - x)^{-1}$ exists in $B$ so $R_x(\lambda) \in B$ and therefore, $x^*(R_x(\lambda)) = 0$} on $C \setminus \sigma_B(x)$.
+
+		Since $C \setminus \sigma_B(x)$ is open, if it is nonempty it contains a ball, so it has cluster point. Thus $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is such that $\{\lambda \in C | x^*(R_x(\lambda))\} = 0$ has a cluster point, so from complex analysis (uniqueness theorem) it is constant zero. \lightning with $x^*(R_x(\lambda_0)) = 1$.
+
+		„Second item“: Pick $\lambda \in \sigma_B(x) \setminus \sigma_A(x)$ and let $C \subset \rho_A(x)$ be a component containing $\lambda$. By first item, $C \subseteq \sigma_B(x)$, $C$ is open, so $\lambda \in C \subseteq \Int(\sigma_B(x))$.
+
+		„Third item“: If $\rho_A(x)$ is connected, we can apply first item to $C = \rho_A(x)$, we have either $\rho_A(x) \subseteq \sigma_B(x)$ or $\rho_A(x) \cap \sigma_B(x) = \O$. But first is not possible, because $\rho_A(x)$ is unbounded and $\sigma_B(x)$ is bounded. Therefore $\sigma_B(x) \subseteq \sigma_A(x)$.
+
+		„Fourth item“: If $\Int(\sigma_B(x)) = \O$, then (by second item) $\sigma_B(x) \subseteq \partial \sigma_B(x) \subseteq \sigma_A(x) \subseteq \sigma_B(x)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$A$ Banach algebra, $B \subseteq A$ closed subalgebra, $x \in B$. Then all items from previous theorem hold as well if we replace $\sigma_A(x)$ and $\sigma_B(x)$ by $\sigma_A(x) \cup \{0\}$ and $\sigma_B(x) \cup \{0\}$.
+	
+	\begin{dukazin}
+		Without proof. (Basically same that previous; we add unit to $A$ and $B$, so this unit is same ($(¦o, 1)$), etc.)
+	\end{dukazin}
+\end{dusledek}
 
 \end{document}

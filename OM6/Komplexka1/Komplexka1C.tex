@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 23. 02. 2023
+
+TODO!!! % RUDIN 16.1
+
+\begin{definice}[WLOG]
+	$$ D := U(0, 1), \qquad T = \partial D. $$
+\end{definice}
+
+TODO!!! % RUDIN 16.2
+
+\begin{definice}
+	$f \in ©H(D)$. We say that the boundary $T$ is a natural boundary of $f$ if $R_f = \O$.
+\end{definice}
+
+\begin{priklady}
+	$f(z) = \sum_{n=0}^∞ z^{2^n}$. Radius of convergence is equal to 1 and $f$ has natural boundary.
+
+	\begin{dukazin}
+		$K = \{\exp\(\frac{2 \pi i k}{n}\) | k, n \in ®N\}$ is dense in $T$. $f$ is "diverges on" this set, because $f(z^{2^N}) = f(z) - \sum_{n=1}^N$. For $\alpha \in (0, 1)$ we have parametrization of one "line" $\alpha·\exp\(\frac{2k\pi i}{2^n}\)$ (for $k$, $n$ fixed).
+		$$ f\(\alpha^{2^N}\) = f\(\alpha \exp\(\frac{2k\pi i}{2^N}\)\) + p\(\alpha \exp\(\frac{2k\pi i}{2^N}\)\). $$
+	\end{dukazin}
+
+	For every domain $\Omega \subseteq ®C$, there exists $f \in ©H(\Omega)$ such that $\partial \Omega$ is natural boundary of $f$.
+
+	\begin{dukazin}
+		We use theorem (15.11 from Rudin or TODO from lecture).
+	\end{dukazin}
+\end{priklady}
+
+\end{document}
