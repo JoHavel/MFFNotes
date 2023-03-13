@@ -244,7 +244,7 @@
 	\begin{itemize}
 		\item $\rho(x)$ is open set;
 		\item $\forall |\lambda| > \|x\|: \lambda \in \rho(x) \land R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$;
-		\item! $\rho(x) \ni \lambda \mapsto R_x(\lambda)$ has derivative at each $\lambda \in \rho(x)$;
+		\item (important!) $\rho(x) \ni \lambda \mapsto R_x(\lambda)$ has derivative at each $\lambda \in \rho(x)$;
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu)·R_x(\nu) = R_x(\nu)·R_x(\mu)$;
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu) - R_x(\nu) = (\nu - \mu)·R_x(\mu)·R_x(\nu)$.
 	\end{itemize}
@@ -367,5 +367,262 @@
 		Without proof. (Basically same that previous; we add unit to $A$ and $B$, so this unit is same ($(¦o, 1)$), etc.)
 	\end{dukazin}
 \end{dusledek}
+
+% 27. 02. 2023
+
+\subsection{Holomorphic calculus}
+\begin{definice}
+	$X$ Banach, $\gamma: [a, b] \rightarrow ®C$ path (continuous, piecewise smooth ($C^1$)), $f: \<\gamma\> \rightarrow X$ continuous. Then
+	$$ \int_\gamma f := \int_{[a, b]} \gamma'(t) f(\gamma(t)) dt. \qquad (\text{As Bochner integral.}) $$
+	If $\Gamma = \gamma_1 + … + \gamma_n$ is chain in ®C, $f: \<\Gamma\> \rightarrow X$ continuous, then
+	$$ \int_\Gamma f := \sum_{i=1}^n \int_{\gamma_i} f. $$
+\end{definice}
+
+\begin{lemma}
+	$\Gamma$ chain in ®C, $X$ Banach, $f: \<\Gamma\> \rightarrow X$, $x \in X$. Then
+	$$ \int_\Gamma f = x \Leftrightarrow \forall x^* \in X^*: x^*(x) = \int_\Gamma x^* \circ f. $$
+
+	\begin{dukazin}
+		„$\impliedby$“ by Hahn–Banach theorem. „$\implies$“: (by previous semester $x^*$ and $\int$ "commutes")
+		$$ x^*\(\int_\Gamma f\) = \sum_{i=1}^n x^*\(\int_{\gamma_i} f\) = \sum_{i=1}^n \int_{[a_i, b_i]} \gamma_i'(t) x^*(f(\gamma_i(t)))dt = \int_\Gamma x^* \circ f. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[Recall]
+	If $\Omega \subset ®C$ open, $K \subset \Omega$ compact. Then there is a cycle $\Gamma$ such that $\<\Gamma\> \subset \Omega \setminus K$ and $\ind_\Gamma z = 1$ if $z \in K$ and $0$ if $z \notin \Omega$.
+
+	Then we say that $\Gamma$ circulates $K$ in $\Omega$.
+\end{poznamka}
+
+\begin{definice}
+	Let $A$ be a Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open and $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $f(x) := \frac{1}{2\pi i} \int_\Gamma f·R_x$, where is any cycle which circulates $\sigma(x)$ in $\Omega$.
+\end{definice}
+
+\begin{poznamka}
+	$f(x)$ exists ($f·R_x$ is continuous on $\<\Gamma\>$), $f(x)$ does not depend on the choice of $\Gamma$ (Pick $x^* \in X^*$, then $(x^* \circ f·R_x)(\lambda) = f(\lambda)·x^*(R_x(\lambda))$ is holomorphic. Pick $\Gamma_1, \Gamma_2$ cycles circulating $\sigma(x)$ in $\Omega$, then $\int_{\Gamma_1 - \Gamma_2} x^* \circ f·R_x = 0$ from Cauchy).
+\end{poznamka}
+
+\begin{veta}[Holomorphic calculus]
+	$A$ Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open such that $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $\Phi: ©H(\Omega) \rightarrow A$ defined as $\Phi(f) = f(x)$ (from definition above) has the following properties:
+
+	\begin{itemize}
+		\item $\Phi$ is algebra homomorphism, $\Phi(1) = e$, $\phi(\id) = x$;
+		\item $f_n \overset{\text{loc.}}\rightrightarrows f$ in $H(\Omega)$, then $f_n(x) \rightarrow f(x)$;
+		\item $f(x)^{-1}$ exists $\Leftrightarrow$ $f ≠ 0$ on $\sigma(x)$, in this case $f(x)^{-1} = \frac{1}{f}(x)$;
+		\item $\sigma(f(x)) = f(\sigma(x))$;
+		\item if $\Omega_1$ is open and $f(\sigma(x)) \in \Omega_1$, $g \in ©H(\Omega_1)$, then $(g \circ f)(x) = g(f(x))$;
+		\item if $y \in A$ commutes with $x$, then $y$ commutes with $f(x)$.
+	\end{itemize}
+
+	Moreover, if $\psi: ©H(\Omega) \rightarrow A$ satisfy first two item, then $\psi = \Phi$.
+\end{veta}
+
+\begin{lemma}
+	$(\Omega, \mu)$ complete measurable space, $A$ Banach algebra, $f \in L_1(\mu, A)$. Let $x \in A$ and $E \subset \Omega$ is measurable. Then
+	$$ x·\(\int_E f(t) d\mu(t)\) = \int_E x·f(t) d\mu(t), \qquad \(\int_E f(t) d\mu(t)\)·x = \int_E f(t)·x d\mu(t). $$
+
+	\begin{dukazin}
+		Easy (by commutation of integral and linear operator from last semester), skipped.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Holomorphic calculus]
+	„1st item“: „$\Phi$ is linear“ is easy, „$\Phi$ is multipicative“: Pick $f, g \in ©H(\Omega)$, open set $U$ such that $\sigma(x) \subset U \subset \overline{U} \subset \Omega$. Let $\Gamma$ cycle circulating $\sigma(x)$ in $U$, $\Lambda$ cycle circulating $\overline{U}$ in $\Omega$. Then
+	$$ f(x)·g(x) = \(\frac{1}{2\pi i} \int_\Gamma f·R_x\)·g(x) \overset{\text{lemma}}= \frac{1}{2\pi i} \int_\Gamma f(t) R_x(t) g(x) dt = \frac{1}{2\pi i} \int_\Gamma f(t)·R_x(t)·\frac{1}{2\pi i} \int_\Lambda g(s)·R_x(s) ds dt \overset{\text{lemma}}= $$
+	$$ = \frac{1}{2 \pi i} \int_\Gamma f(t)·\frac{1}{2\pi i} \int_\Lambda g(s)·R_x(t)·R_x(s) ds dt = $$
+	because $\<\Lambda\> \cap \<\Gamma\> = \O$, we can use theorem after definition of $R_x$:
+	$$ = \frac{1}{(2 \pi i)^2} \int_\Gamma \int_\Lambda f(t)·g(s)·\frac{R_x(t) - R_x(s)}{s - t} ds dt \overset{\text{Fubini to $x^*(…)$ and lemma}}=  $$
+	$$ = \frac{1}{(2\pi i)^2} \int_\Gamma f(t) \(\int_\Lambda \frac{g(s)}{s - t} ds\) R_x(t) dt - \frac{1}{(2\pi i)^2} \int_\Lambda g(s) \(\int_\Gamma \frac{f(t)}{s - t}\) R_x(s) ds = $$
+	(Now we use Cauchy theorem ($f(z) \ind_\Gamma z = \frac{1}{2\pi i} \int_\Gamma \frac{f(w)}{w - z} dw$). $\forall s \in \<\Lambda\>: (t \mapsto \frac{f(t)}{s - t}) \in ©H(U) \land \ind_\Gamma z = 0, z \notin U$, so $\int_\Gamma \frac{f(t)}{s - t} dt = 0$. $\forall t \in \<\Gamma\>: \ind_\Lambda t = 1 \land (s \mapsto g(s)) \in ©H(\Omega) \implies g(t) = \frac{1}{2\pi i} \int_\Lambda \frac{g(s)}{s - t} ds$.)
+	$$ = \frac{1}{2\pi i} \int_\Gamma f(t)g(t) R_x(t) dt - 0. $$
+
+	It remains that „if $f(z) = z^k$, $k \in ®N \cup \{0\}$ then $f(x) = x^k$“ (we want it for $k = 0$ and $k = 1$). Put $\Gamma(t) = r·e^{it}$, $t \in [0, 2\pi]$, where $r > \|x\|$ arbitrary. By some theorem:
+	$$ R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}, \qquad |\lambda| > \|x\|. $$
+	Thus (we switch integral and sum, because later we realize that sum of integral of absolute value is finite)
+	$$ \forall x^* \in A^*: x^*(f(x)) = \frac{1}{2 \pi i} \int_\Gamma \lambda^k x^*(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n+1}}) d\lambda = \frac{1}{2\pi i} \int_\Gamma \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ \int_\Gamma \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_\Gamma \frac{1}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_0^{2\pi} i \frac{1}{\Gamma(t)^{n - k}} dt = x^*(x^k) + \sum 0, $$
+	because $\Gamma$ (is $2\pi$ periodic).
+
+	„2nd item“: For $\Gamma = \gamma_1 + … + \gamma_N$:
+	$$ \|f_n(x) - f(x)\| = \frac{1}{2\pi i} \|\int_\Gamma (f_n(\lambda) - f(\lambda)) R_x(\lambda) d\lambda\| ≤ \frac{1}{2\pi} \int_\Gamma |f_n(\lambda) - f(\lambda)|·\|R_x(\lambda)\| d\lambda ≤ \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} |\gamma_i'(t)| \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)|·\|R_x(\gamma_i(t))\| dt = \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)| · \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} \|R_x(\gamma_i(t))\|·|\gamma_i'(t)| dt \rightarrow 0. $$
+
+	„Moreover part“: By Runge theorem (and second item) it is enough prove it for rational functions. If $R$ was polynom, then $\Phi(R) = \Psi(R)$ by second item. So it suffices „$\forall p$ polynom: $\frac{1}{p} \in ©H(\Omega) \implies \Phi(\frac{1}{p}) = \psi(\frac{1}{p})$“. Pick $p$ polynom. Then $e = \psi(1) = \psi(p·\frac{1}{p}) = \psi(p)·\psi(\frac{1}{p}) = \Phi(p)·\psi(\frac{1}{p})$ (similarly for $\frac{1}{p}·p$). So $\psi(\frac{1}{p}) = \Phi(p)^{-1} = \Phi(\frac{1}{p})$.
+
+% 28. 02. 2023
+
+	„3rd item“: „$\implies$“ Let $f(z) = 0$ for some $z \in \sigma(x)$. Then exists $g \in H(\Omega): f(u) = (z - u)g(z)$. By item one, we have $(z e - x)g(x) = f(x) = g(x) (z e - x)$. But $(z e - x)^{-1}$ does not exist, so $f(x)^{-1}$ does not exists.
+
+	„$\impliedby$“ Suppose $f ≠ 0$ on $\sigma(x)$ by compactness. $\exists \Omega_1 \subset \Omega$ open: $\sigma(x) \subset \Omega_1$ and $f ≠ 0$ on $\Omega_1$. Then $\frac{1}{f} \in H(\Omega_1)$ and by first item we have $e = (f · \frac{1}{f})(x) = f(x) \frac{1}{f}(x) = … = \frac{1}{f}(x)·f(x) \implies f(x)^{-1} = \frac{1}{f}(x)$.
+\end{dukaz}
+
+\begin{poznamka}
+	$f = g$ on a neighbourhood of $\sigma(x)$ $\implies$ $f(x) = g(x)$ (from definition), other implication doesn't hold!
+\end{poznamka}
+
+% 06. 03. 2023
+
+\subsection{Multiplicative functionals}
+\begin{definice}[Multiplicative functional]
+	Let $A$ be a Banach algebra. We say $\phi: A \rightarrow ®C$ is multiplicative linear functional $≡$ $\phi$ preserves $+, ·, ·_S$.
+
+	$$ \Delta(A) := \{\phi: A \rightarrow ®C | \phi \text{ multiplicative linear functional }, \phi \not≡ 0\}. $$
+\end{definice}
+
+\begin{tvrzeni}
+	$A$ Banach algebra, $\phi \in \Delta(A) \cup \{0\}$. Then
+
+	\begin{itemize}
+		\item $\exists! \tilde\phi \in \Delta(A_e): \tilde \phi((x, 0)) = \phi(x), \forall x \in A$. It is given by
+			$$ \tilde \phi((x, \lambda)) = \phi(x) + \lambda. $$
+			Moreover, $\Delta(A_e) = \{\tilde\phi | \phi \in \Delta(A) \cup \{0\}\}$.
+		\item $\forall x \in A: \phi(x) \in \sigma(x)$ whenever $\phi \not≡ 0$.
+		\item $\Delta(A) \subseteq B_{A^*}$.
+		\item $A$ has a unit, $\phi \not≡ 0$ $\implies$ $\|\phi\| ≥ \frac{1}{\|e\|}$. In particular if $\|e\| = 1$, then $\|\phi\| = 1$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„1. uniqueness“: For $\tilde \phi \in \Delta(A_e)$ such that $\tilde \phi((x, 0)) = \phi(x)$, $x \in A$:
+		$$ \tilde \phi((x, \lambda)) = \phi(x) + \lambda \tilde\phi((¦o, 1)) = \phi(x) + \lambda, $$
+		second equality by $\phi \in \Delta(A) \implies \phi(e) = \phi(e^2) = \phi^2(e)$. „1. existence“ is proven by check that defined $\tilde \phi$ is multiplicative linear functional (and it is nonzero, but $\tilde\phi((0, 1)) = 1 ≠ 0$). This is easy (omitted).
+
+		„$\Delta(A_e) = \{\tilde\phi | \phi \in \Delta(A) \cup \{0\}\}$“: „$\subseteq$“: $\phi \in LHS$, put $\phi(x) := \psi((x, 0))$. Then $\phi \in \Delta(A) \cup \{0\}$ and $\tilde \phi = \psi$ became:
+		$$ \tilde \phi((x, \lambda)) = \phi(x) + \lambda = \psi((x, 0)) + \lambda = \psi((x, \lambda)). $$
+		„$\supseteq$“: We know already that $\tilde \phi \in \Delta(A_e)$.
+
+		„2. with $A$ has unit $e$“: $\phi ≠ 0$, $\phi \in \Delta(A)$: If $\lambda \in \rho(x)$, then $\phi(\lambda e - x) ≠ 0$ ($\phi(x) ≠ 0$ if $x^{-1}$ exists). $0 ≠ \phi(\lambda e - x) = \lambda - \phi(x)$ $\implies$ $\lambda ≠ \phi(x)$. Thus $\phi(x) \notin \rho(x)$, so $\phi(x) \in \sigma(x)$. „2. with $A$ hasn't unit“, then $\phi(x) = \tilde\phi((x, 0)) \in \sigma_{A_e}((x, 0)) = \sigma_A(x)$.
+
+		„3.“: $\phi \in \Delta(A)$. Then $\forall x \in A: \phi(x) \in \sigma(x) \subseteq B(¦o, \|x\|)$, so $|\phi(x)| ≤ \|x\|$.
+
+		„4.“: $A$ has a unit $e$, then $\|\phi\| ≥ \left|\phi\(\frac{e}{\|e\|}\)\right| = \frac{1}{\|e\|}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$A$ Banach algebra, $M := \Delta(A) \cup \{0\}$. Then $M \subset (B_{A^*}, w^*)$ is compact, $\Delta(A)$ is locally compact and if $A$ has u unit, then $\Delta(A)$ is compact. The mapping $\Phi: M \rightarrow \Delta(A_e)$, $\Phi(\phi) = \tilde \phi$ is $w^*$–$w^*$ homeomorphism.
+
+	\begin{dukazin}
+		By previous proposition, $M \subset (B_{A^*}, w^*)$ ($(B_{A^*}, w^*)$ is compact by previous semester). So, it suffices to check that $M$ is $w^*$-closed.
+		$$ M = \bigcap_{x, y \in A} \{\phi \in A^* | \phi(x·y) = \phi(x)·\phi(y)\}. $$
+		Sets from RHS is closed by previous semester, so, $M$ is closed. Thus $M$ is compact.
+
+		$\Delta \subset M$ is open, so $\Delta(A)$ is locally compact (and $M$ is 1-point compactification of $\Delta(A)$). If $\Delta$ has a unit, then $\Delta(A) = \{\phi \in M | \phi(e) = 1\}$ is $w^*$-closed, so $\Delta(A)$ is compact (and $0$ is isolated in $M$).
+
+		Finally, by previous proposition, $\Phi$ is bijection. $\Phi$ is $w^*$-continuous:
+		$$ \phi_i \overset{w^*}\rightarrow \phi \implies \forall (x, \lambda): \tilde\phi_i((x, \lambda)) = \phi_i(x) + \lambda \rightarrow \phi(x) + \lambda = \tilde \phi((x, \lambda)) \implies \tilde\phi_i \overset{w^*}\rightarrow \tilde\phi $$
+		So, $\Phi$ is homeomorphism (continuous bijection on compact, last semester?).
+	\end{dukazin}
+\end{veta}
+
+\begin{priklady}
+	$\Delta(©C(K)) = \{\delta_x | x \in K\}$. ($f \mapsto f(x)$ is multiplicative. Suppose $\phi \in \Delta(©C(K))$, $\phi \notin \{\delta_x | x \in K\}$. So for $x \in K$ there is $g_x \in C(x): \phi(g_x) ≠ g_x(x)$. Consider $f_x = g_x - \phi(g_x)$. Then $\phi(f_x) = 0$, $f_x(x) ≠ 0$. So there is $U_x$ open neighbourhood of $x$ such that $f_x ≠ 0$ on $U_x$. Compactness implies $\exists x_1, …, x_n \in K: K \subset \bigcup_{i=1}^n U_{x_i}$. Consider $h := \sum_{i=1}^n |f_{x_i}|^2$. Then $h > 0$ on $K$, so $h^{-1}$ exists and therefore $\phi(h) ≠ 0$. But $\phi(h) = \sum_{i=1}^n \phi(f_{x_i}) \overline{\phi_{x_i}} = 0$.)
+
+	$\Delta \{M_n\} = \O$, $n ≥ 2$, where $M_n$ is (non-commutative) algebra of $n\times n$ matrices. ($M_n = \LO \{E^{i, j}\}$. $E^{ij}·E^{kl} = E^{il}$ if $j = k$, else $0$. So $\phi(E^{ij})·\phi(E^{ij}) = \phi(E^{ij}·E^{ij}) = 0$ if $i ≠ j$. $\phi(E^{ii}) = \phi(E^{in}E^{ni}) = \phi(E^{in})\phi(E^{in}) = 0$. $\phi(E^{nn}) = \phi(E^{n1}E^{1n}) = 0$.)
+\end{priklady}
+
+\begin{definice}[Ideal, maximal ideal]
+	$A$ Banach algebra. Ideal in $A$ is a subspace $I \subset A$ if $\forall x \in I\ \forall y \in A: x·y \in I \land y·x \in I$.
+
+	Maximal ideal $≡$ proper ($I ≠ A$) ideal and it is maximal proper ideal with respect to inclusion.
+
+	\begin{priklady}[2021, Johnson-Schetman, Acta mathematica]
+		$©L(L_p)$ has $2^{2^\omega}$ non-isomorphic closed ideals.
+	\end{priklady}
+\end{definice}
+
+\begin{tvrzeni}
+	$A$ Banach algebra with a unit. Then:
+
+	\begin{itemize}
+		\item Any proper ideal is contained in a maximum ideal. (From Zorn's lemma. And $I \subset A$ ideal is proper $\Leftrightarrow$ $e \notin I$.)
+		\item $I \subset A$ proper ideal $\implies$ $\overline{I} \in A$ is proper ideal. In particular, maximal ideals are closed. (Easy: $\overline{I}$ is ideal. Moreover, $I \cap A^* = \O$ (if $x \in I$ was invertible thus $e = x·x^{-1} \in I$, but $e \notin I$). So ($A^*$ is open) $\overline{I} \cap A^* = \O$ and therefore $e \notin \overline{I}$.)
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$A$ Banach algebra, $I \subseteq A$ closed ideal $\implies A / I$ is Banach algebra ($[x]·[y] := [x·y]$).
+
+	\begin{dukazin}
+		Straightforward from definition. (Omitted.)
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	From now on, $A$ will be commutative.
+
+	Step 1: „Hahn-Banach“: $I \subset A$ closed ideal $\implies$ $\exists \phi \in \Delta(A): \phi / I ≡ …$.
+\end{poznamka}
+
+\begin{veta}
+	$A$ commutative Banach algebra with a unit. Then $\Phi: \Delta(A) \rightarrow \{\text{maximal ideals in $A$}\}$, $\Phi(\phi) := \Ker \phi$, is bijection.
+
+	\begin{dukazin}
+		Pick $\phi \in \Delta(A)$. Then „$\Ker \phi$ is maximal ideal“: ideal: $y \in \Ker \phi, x \in A: \phi(x·y) = \phi(x)·\phi(y) = …·0 = 0$, proper: $\phi \not≡ 0$, maximal: $\codim \Ker \phi = 1$: pick $x_0: \phi(x_0) ≠ 0$, $a = a - \phi(a)·\frac{x_0}{\phi(x_0)} + \phi(a)·\frac{x_0}{\phi(x_0)} \in \Ker \phi \oplus ®R$.
+
+		„$\Phi$ is one-to-one“: Pick $\phi, \psi \in \Delta(A)$: $\Ker \phi = \Ker \psi$. Then (by lemma from previous semester) $\phi = c·\psi$ for some $c \in ®K$. But $\phi(e) = 1 = \psi(1)$ so $\phi = \psi$.
+
+		„$\Phi$ is surjective“: Let $I \subset A$ be maximal ideal ($\implies$ closed). Step 1 „Any nonzero element in $A / I$ is invertible“: For contradiction assume $\exists q(x) \in A / I$ ($q(x) = [x]$), $q(x) ≠ 0 \land q(x)^{-1}$ does not exist. By next lemma $q(x) (A / I)$ is proper ideal. Then $q^{-1}\(q(x) (A / I)\)$ is an ideal in $A$ which is proper and $I \subsetneq q^{-1}\(q(x) (A / I)\)$, which contradicts maximality of $I$. It follows from: ideal: follows from the fact that $q$ is algebra homomorphism; proper: $q(e) = [e] \notin q(x) A / I$; $I \subseteq q^{-1}(…)$: $0 \in q(x) A / I$; $I ≠ q^{-1}(…)$: $q(x) ≠ 0 \implies x \notin I$, but $q(x) = q(x)q(e) \in q(x) (A / I)$, so $x \in q^{-1}(…)$.
+
+% 07. 03. 2023
+
+		From Gelfand–Mazur theorem $\exists$ surjective isomorphism $j: A / I \rightarrow ®C$. Then $\phi := j \circ q \in \Delta(A)$. It remains „$I = \Ker \phi$“: $x \in \Ker \phi \Leftrightarrow j(q(x)) = 0 \Leftrightarrow q(x) = 0 \Leftrightarrow x \in I$.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	$A$ \emph{commutative} Banach algebra with a unit, $x \in A$ does not have inverse $\implies$ $xA$ is proper ideal.
+
+	\begin{dukazin}
+		$x A$ is ideal, because $A$ is commutative. Then $x A$ is proper ($e \notin x A$).
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}[Hahn–Banach like theorem]
+	$A$ is commutative Banach algebra with a unit, $I \subset A$ proper ideal. Then $\exists \phi \in \Delta(A): \phi / I ≡ 0$.
+
+	\begin{dukazin}
+		Let $\tilde I \supseteq I$ be maximal ideal. By previous theorem there is $\phi \in \Delta(A): \tilde I = \Ker \phi$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	$A$, $B$ Banach algebras, $Φ: A \rightarrow B$ algebraic isomorphism. Then $Φ^{\#}: \Delta(B) \rightarrow \Delta(A)$ defined as $Φ^{\#}(φ) := φ \circ Φ$ is homeomorphism.
+
+	\begin{dukazin}
+		„$Φ^{\#}(\phi) \in \Delta(A)$“: $Φ^{\#}(φ) = φ \circ Φ \in \Delta(A) \cup \{0\}$ and $φ \not≡ 0 \land Φ$ is onto $\implies φ \circ Φ ≠ 0$.
+
+		„$Φ^{\#}$ is $w^*$-$W^*$ continuous“: $φ_i \overset{w^*}\rightarrow φ \implies φ_i \circ Φ \overset{w^*}\rightarrow φ \circ Φ$.
+
+		Apply the proven part to $Φ^{-1}$, obtain that $(Φ^{-1})^{\#}: \Delta(A) \rightarrow \Delta(B)$ is $w^*$-$W^*$ continuous. Moreover we have $Φ^{\#} \circ (Φ^{-1})^{\#} = \id \land (Φ^{-1})^{\#} \circ Φ^{\#}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$L$ locally compact $T_2$. Then $\delta: L \rightarrow \Delta(C_0(L)), x \mapsto δ_x$ is homeomorphism onto.
+
+	\begin{dukazin}
+		„Case 1: $L$ is compact“: By example $δ$ is onto. Of course, $δ$ is one-to-one, continuous. So $δ$ is homeomorphism.
+
+		„Case 2: $L$ is not compact“: Then there is $K = L \cup \{∞\}$, one-point compactification, and $\{f \in ©C(K) | f(∞) = 0\} \ni f \mapsto f|_L \in C_0(L)$ is isometric isomorphism. Moreover $Φ: ©C_0(L)_e \rightarrow ©C(K)$, $Φ(f, \lambda) := f + \lambda$, is algebraic isomorphism.
+
+		So, we have $K \overset\eta\rightarrow Δ(C(K)) \overset{Φ^{\#}}\rightarrow Δ(C_0(L)_e) \overset\psi\rightarrow Δ(C_0(L)) \cup \{0\}$, where $\eta$ is homeomorphism from case 1 and $\psi(φ) := φ |_{C_0(L)}$.
+
+		Thus $δ := \psi \circ Φ^{\#} \circ \eta$ is homeomorphism between $L \cup \{∞\}$ and $Δ(C_0(L)) \cup \{0\}$. Finally, for $x \in K$ and $f \in ©C_0(L)$:
+		$$ Φ^{\#} \circ η(x)(f) = (η(x) \circ Φ)(f) = f(x), $$
+		so $ψ \circ Φ^{\#} \circ η(x) = Φ^{\#} \circ η(x) |_{C_0(L)} = \delta_x |_{C_0(L)}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$K$, $L$ locally compact $T_2$. Then following is ekvivalent
+
+	\begin{itemize}
+		\item $©C_0(K) ≡ ©C_0(L)$ as Banach algebra;
+		\item $©C_0(K) ≡ ©C_0(L)$ as algebras;
+		\item $K ≈ L$ as topological spaces.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$1 \implies 2$“ trivial. „$2 \implies 3$“: $K ≈ Δ(©C_0(K)) ≈ Δ(©C_0(L)) ≈ L$ from previous two tvrzeni. „$3 \implies 1$“: Given $h: K \rightarrow L$ homeomorphism, $f \mapsto f \circ h$ is isometry between Banach algebras.
+	\end{dukazin}
+\end{veta}
 
 \end{document}

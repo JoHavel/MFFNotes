@@ -231,4 +231,161 @@
 	Let $G \subset ®C$ be a domain, $f_n$ be one-to-one holomorphic functions on $G$ and $f_n \overset{\text{loc}}\rightrightarrows f$ on $G$. Then $f$ is either one-to-one and holomorphic, or constant.
 \end{dusledek}
 
+% 02. 03. 2023
+
+\begin{dukaz}[Hurwitz theorem]
+	Choose $\delta > 0$ such that $U(z_0, \delta) \subset G$ and $f ≠ 0$ on $P(z_0, \delta)$. For $n \in ®N$ put $\rho_n := \frac{\delta}{n + 1}$ and $\phi_n(t) := z_0 + \rho_n e^{it}$, $t \in [0, 2\pi]$. Of course, $\tau_n := \min_{\<\phi_n\>} |f| > 0$. For a given $n$, there is (from uniformly convergence) $k_n \in ®N$ such that $\forall z \in \<\phi_n\>: |f_{k_n}(z) - f(z)| < \tau_n ≤ |f|$.
+
+	By Rouché's theorem there is $z_n \in U(z_0, \rho_n)$ such that $f_{k_n}(z_n) = 0$. Of course, we can choose $\{k_n\}$ to be increasing.
+\end{dukaz}
+
+\begin{dukaz}[Corollary]
+	Assume that there is $w_0 \in ®C$ such that $f ≠ w_0$ but, for different $z', z'' \in G$ we have $f(z') = w_0 = f(z'')$. WLOG $w_0 = 0$. Choose $\delta > 0$ such that $U(z', \delta) \cap U(z'', \delta) = \O$. By Hurwitz, there are $\{z_n'\} \subset U(z', \delta)$ and $\{f_{k_n'}\}$ of $\{f_n\}$ such that $z_n' \rightarrow z'$ and $f_{k_n'}(z_n') = 0$. By Hurwitz, there are also $\{z_n''\} \subset U(z'', \delta)$ and $\{f_{k_n''}\} \subset \{f_{k_n'}\}$ such that $z_n'' \rightarrow z''$ and $f_{k_n''}(z_n'') = 0$.
+
+	Every $f_{k_n''}$ has at least two different zero points which is contradiction.
+\end{dukaz}
+
+\begin{veta}[Mittag-Leffler]
+	Let $\{s_j\} \subset ®C$ be one-to-one, $s_j \rightarrow ∞$ and
+	$$ s_0 := 0 < |s_1| ≤ |s_2| ≤ |s_3| ≤ … ≤ |s_j| ≤ … $$
+	Let $P_0, P_1, …, P_j, …$ be polynomials such that $P_j(0) = 0$. Then the function
+	$$ f(z) := P_0\(\frac{1}{z}\) + \sum_{j=1}^∞ \(P_j\(\frac{1}{z - s_j}\) - Q_j(z)\) $$
+	for some polynomials $Q_j$ satisfies:
+	\begin{enumerate}
+		\item series in definition converges locally uniformly on ®C, i. e., on any compact $K \subset ®C$, the series converges uniformly if we omit finitely many terms which have poles.
+		\item $f \in ©M(®C)$ and $f$ has poles just at $s_0, s_1, …, s_j, …$, while at $s_j$ the function $f$ has its principal part equal to $P_j\(\frac{1}{z - s_j}\)$.
+		\item If $g \in ©M(®C)$ satisfies previous property, then there is $h \in ©H(®C)$ such that $g = f + h$ on $G$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Let $k \in ®N$. Then $H_k(z) := P_k\(\frac{1}{z - s_k}\) \in ©H(U(0, |s_k|))$, $H_k(z) = \sum_{n=0}^∞ c_n^k z^n$ for $|z| < |s_k|$. There is $n_k \in ®N$ such that $Q_k(z) = \sum_{n=1}^{n_k} c_n^k z^n$ satisfies $|H_k(z) - Q_k(z)| < \frac{1}{2^k}$, $|z| ≤ \frac{|s_k|}{2}$ (*).
+
+		Let $K \subset ®C$ be a compact. Choose $k_0 \in ®N$ such that $K \subset \overline{U(0, |s_{k_0}| / 2)}$. If $k > k_0$, (*) holds on $K$ which implies 1. obviously, 2. is valid.
+
+		3. follow from the fact that $g - f \in ©M(®C)$ has all isolated singularities removable.
+	\end{dukazin}
+\end{veta}
+
+\section{Zero points of holomorphic functions}
+\begin{tvrzeni}
+	Let $f$ be non-zero holomorphic function on a simply connected domain ($G$ is domain, and $®S \setminus G$ is connected) $G \subset ®C$. Then there is $L \in ©H(G)$ such that $f = e^L$ on $G$.
+
+	\begin{dukazin}
+		1) Let $L \in ©H(G)$ and $f = e^L$ on $G$. Then $f' = L'·e^L$ and $f'/f = L'$.
+
+		2) Since $G$ is a simply connected domain and $f'/f \in ©H(G)$, by Cauchy theorem, there is $L_0 \in ©H(G)$ such that $L_0' = f'/f$.
+
+		3) On $G$ we have $\(f·e^{-L_0}\)' = e^{-L_0}·(f' - L_0'·f) = 0$ on $G$, hence $f·e^{-L_0} = e^c$ is constant, i. e. $c \in ®C$. Put $L := L_0 + c$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	Polynomial $f(z) = \prod_{j=1}^n (z - z_j)$ has zero points just at $z_1, …, z_n$ and their multiplicity corresponds to their occurrence.
+
+	Let $g \in ©H(®C)$ have the same zero points including multiplicity as $f$. Then there is $L \in ©H(®C)$ such that $g = f·e^L$ on ®C. (Proof: use previous tvrzeni for $g / f$.)
+\end{poznamka}
+
+\begin{poznamka}[Notation]
+	Let $\{a_j\} \subset ®C$. Then we define
+	$$ \prod_{j=1}^∞ a_j := \lim_{n \rightarrow ∞} \prod_{j=1}^n a_j, $$
+	if the limit on the right-hand side exists.
+\end{poznamka}
+
+\begin{tvrzeni}
+	Let $0 ≠ z_j \rightarrow ∞$ and $k \in ®N_0$ (multiplicity of 0 as zero point). Then consider
+	$$ f(z) := z^k \prod_{j=1}^∞ \(1 - \frac{z}{z_j}\). $$
+	It sometimes converges and then $f$ has zero points in $z_j$ with right multiplicities.
+\end{tvrzeni}
+
+\begin{veta}[On infinite product]
+	Let $M$ be a set (in ®C), $u_j : M \rightarrow ®C$ be bounded and $\sum_{j=1}^∞ |u_j|$ converges uniformly on $M$. Then $p_n := \prod_{j=1}^n(1 + u_j)$ converge uniformly to a function $f: M \rightarrow ®C$, and it holds that $f = \prod_{j=1}^∞ (1 + u_{n(j)})$ on $M$, where $n$ is bijection onto ®N.
+
+	If $z_0 \in M$, then $f(z_0) = 0$ if and only if $u_{j_0}(z_0) = -1$ for some $j_0 \in ®N$.
+
+% 09. 03. 2023
+
+	\begin{dukazin}
+		Denote $p_n^* := \prod_{j=1}^n (1 + |u_j|)$. Then $p_n^* ≤ \exp\(\sum_{j=1}^n |u_j|\)$ and $|p_n - 1| ≤ p_n^* - 1$ (from $1 + x ≤ e^x$ and the second inequality by induction on $n$: $n = 1$ yes, $p_{n+1} - 1 = p_n(1+u_{n+1}) - 1 = (p_n - 1)·(1 + u_{n+1}) + u_{n+1}$ so $|p_{n+1} - 1| ≤ (p_n^* - 1)·(1 + |u_{n+1}|) + |u_{n+1}| = p_{n+1}^* - 1$).
+
+		$\sum_{j=1}^∞ |u_j|$ is bounded on $M$, because there is $n_0 \in ®N$ such that $\sum_{j=n_0 + 1}^∞ |u_j| < 1$. By inequalities there is $C \in (0, +∞)$ such that $|p_n| ≤ C$ $\forall n \in ®N$.
+
+		Let $0 < \epsilon < \frac{1}{2}$. Choose $n_0 \in ®N$ such that $\sum_{n=n_0}^∞ |u_n| < \epsilon$ on $M$. Let $\{n_1, n_2, …\}$ be a permutation of $®N$ and $q_m := \prod_{j=1}^m (1 + u_{n_j})$, $m \in ®N$. Let $n ≥ n_0$ and $m \in ®N$ be such that $\{n_1, …, n_m\} \supseteq [n]$. Then
+		$$ |q_m - p_n| = |p_n·\(\prod_{n_j > n, j \in [m]} (1 + u_{n_j}) - 1\) ≤ |p_n|\(\prod_{…} (1 + |u_{n_j}|) - 1\) ≤ |p_n|·\(e^{\sum_{…} |u_{n_j}|} - 1\) ≤ |p_n|·\(e^\epsilon - 1\) ≤ |p_n|·2\epsilon ≤ 2C\epsilon. $$
+
+		If $n_j = j$ $\forall j \in ®N$, then $q_m = p_m$ and we get $\forall m > n: |q_m - p_n| < 2C\epsilon$, so $p_n \rightrightarrows f$ on $M$. Moreover we have, for $n ≥ n_0$, $|p_n - p_{n_0}| ≤ 2 \epsilon |p_{n_0}|$, so $|p_n| ≥ |p_{n_0}| - |p_n - p_{n_0}| ≥ (1 - 2\epsilon)|p_{n_0}|$. For $n \rightarrow ∞$: $|f| ≥ (1 - 2\epsilon) |p_{n_0}|$, hence $f(z_0) = 0 \Leftrightarrow p_{n_0}(z_0) = 0$.
+
+		If $n_j$ is any, then $q_m \rightrightarrows f$ on $M$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $G \subset ®C$ be open, $f_n \in ©H(G)$ and $f_n \not≡ 0$ on any component of $G$. We assume $\sum_{n=1}^∞ |1 - f_n|$ converges locally uniformly on $G$. Then $f = \prod_{n=1}^∞ f_n$ converges locally uniformly on $G$, $f \in ©H(G)$ and the resulting infinite product $f$ does not depend on the order of functions $f_n$. Moreover, we have
+	$$ n_f(s) = \sum_{k=1}^∞ n_{f_k}(s), \qquad s \in G $$
+	where $n_f(s)$ is multiplicity of a zero point $s$ of $f$. Here we put $n_f(s) = 0$ if $f(s) ≠ 0$.
+
+	\begin{poznamkain}
+		Moreover the ? in previous sum contains only finitely many non-zero terms for any $s \in G$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Sufficient to prove previous equality. Let $s \in G$. There is a neighbourhood $V$ of $s$ such that $f_n \rightrightarrows 1$ on $V$. Choose $n_0 \in ®N$ such that $f_n ≠ 0$ on $V$ for $n > n_0$. By previous theorem, we get $\prod_{n=n_0 + 1}^∞ f_n ≠ 0$ on $V$. Since $f = \(\prod_{n=1}^{n_0} f_n\)·\(\prod_{n=n_0+1}^∞ f_n\)$ we get $n_f(s) = \sum_{k=1}^{n_0} n_{f_k}(s) = \sum_{k=1}^∞ n_{f_k}(s)$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{priklad}[Homework]
+	Under the assumption of previous corollary prove that
+	$$ \frac{f'}{f} = \sum_{n=1}^∞ \frac{f_n'}{f_n} \text{ on } G \setminus N_f. $$
+\end{priklad}
+
+\begin{priklady}[Euler formula]
+	$$ \sin(\pi z) = \pi z · \prod_{k=1}^∞ \(1 - \frac{z^2}{k^2}\). $$
+\end{priklady}
+
+\begin{lemma}[Weierstrass's factor]
+	Let $E_0(z) := (1 - z)$ and $E_m(z) := (1 - z)·e^{z + … + \frac{z^m}{m}}$, $z \in ®C$, $m \in ®N$. Then $|1 - E_m(z)| ≤ |z|^{m + 1}$, $|z| ≤ 1$.
+
+	\begin{dukazin}
+		$$ E_m'(z) = e^{z + … + \frac{z^m}{m}}·(-1 + (1 - z)·(1 + … + z^m)) = -z^m·e^{z + … + \frac{z^m}{m}} = -z^m·\sum_{k=0}^∞ b_kz^k, $$
+		where $b_0 = 1$, $b_k ≥ 0$, $k \in ®N$. Hence
+		$$ E_m(0) - E_m(z) = 1 - E_m(z) = - \int_{[0, z]} E_m'(w) dw = + \sum_{k=0}^∞ c_k z^{k + m + 1} $$
+		with $c_k = \frac{b_k}{m + k + 1} ≥ 0$.
+
+		By this, if $|z| ≤ 1$, $z ≠ 0$, then $\left|\frac{1 - E_m(z)}{z^m}\right| ≤ \sum_{k=0}^∞ c_k = 1 - E_m(1) = 1$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Weierstrass factorization in ®C]
+	Let $k \in ®N_0$ and $0 ≠ z_i \rightarrow ∞$. Then there is $\{m_j\} \subset ®N_0$ such that
+	$$ f(z) = z^k·\prod_{j=1}^∞ E_{m_j}\(\frac{z}{z_j}\) $$
+	converges locally uniformly on ®C, $f \in ©H(®C)$ and $f$ has at $0$ zero point of multiplicity $K$ and 'non-zero' zero points just at $z_1, z_2, …, z_j, …$, and their multiplicity corresponds to their occurrence in $\{z_j\}$. We can always take $m_j := j-1$, $j \in ®N$.
+
+	If $g \in ©H(®C)$ has the same zero points as $f$ including multiplicities, then there is $L \in ©H(®C)$ such that $g = f·e^L$ on ®C.
+
+	\begin{dukazin}
+		By the previous corollary, we know the product converges locally uniformly in ®C if $\sum_{j=1}^∞ |1 - E_{m_j} \(\frac{z}{z_j}\)|$ converges locally uniformly on ®C. By lemma, this is true if $\sum_{j=1}^∞ \left|\frac{z}{z_j}\right|^{m_j + 1}$ converges locally uniformly on ®C.
+
+		Let $r > 0$ and $|z| ≤ r$. Choose $j_0 \in ®N$ such that $\frac{r}{|z_j|} < \frac{1}{2}$ for $j ≥ j_0$. If $m_j := j - 1$, then $\left|\frac{z}{z_j}\right|^j ≤ \frac{1}{2^j}$, $j ≥ j_0$ and $|z| ≤ r$. So, for $m_j := j - 1$, sum converges uniformly on $|z| ≤ r$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	If $\sum_{j=1}^∞ \frac{1}{|z_j|} < +∞$, take $m_j = 0$. If $\sum_{j=1}^∞ \frac{1}{|z_j|^2} < +∞$, take $m_j = 1$. Etc.
+\end{poznamka}
+
+\begin{veta}[Weierstrass factorization in a general open set]
+	Let $G \subsetneq ®S$ be open, $N \subset G$ have no limit points in $G$ and $n: N \rightarrow ®N$. Then there is $f \in ©H(G)$ such that $N_f = N$ and $n_f(s) = n(s)$, $s \in N_f$.
+
+	\begin{dukazin}
+		WLOG $∞ \in G \setminus N$. Then $K := ®S \setminus G = ®C \setminus G$ is compact in ®C. For a finite $N$ it is obvious. Assume that $N$ is (infinite) countable. We put points of $N$ into the sequence $s_1, s_2, …, s_n$ such that any $s \in N$ occurs in $\{s_n\}$ just $n(s)$ times. For any $n$, take $t_n \in K$ such that $|s_n - t_n| = \dist(s_n, K)$, $n \in ®N$.
+
+		Then „$|s_n - t_n| \rightarrow 0$“: Let $\epsilon > 0$ and $\{n_k\} \subset ®N$ such that $|s_{n_k} - t_{n_k}| ≥ \epsilon$, i. e., $\dist(s_{n_k}, K) ≥ \epsilon$. If $s_∞$ is a limit point of $s_{n_k}$, then $\dist (s_∞, K) ≥ \epsilon$. Hence $s_∞ \in G$, a contradiction.
+
+		Put $f(z) := \prod_{n=1}^∞ E_n\(\frac{s_n - t_n}{z - t_n}\)$, $z \in G$. The infinite product converges locally uniformly on $G$. In fact, let $L$ be a compact in $G$. Put $r_n := 2·|s_n - t_n|$. Since $\dist(L, K) > 0$, there is $n_0 \in ®N$ such that $|z - t_n| > r_n$, $\forall z \in L$, $\forall n ≥ n_0$. So
+		$$ \left|\frac{s_n - t_n}{z - t_n}\right| < \frac{1}{2} \qquad \forall z \in L\ \forall n ≥ n_0. $$
+		By lemma on Weierstrass factors, we get
+		$$ \left|1 - E_n\(\frac{s_n - t_n}{z - t_n}\)\right| < \frac{1}{2^n} \qquad \forall z \in L\ \forall n ≥ n_0. $$
+		Now use theorem on infinite product.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -87,14 +87,253 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		„Second point“ Fix $\Omega_1 \subset\subset \Omega$. Fix $\delta_0$, $\Omega_1 \subseteq \Omega_{\delta_0} \implies \|u_i^h\|_{L^p(\Omega_1)} ≤ k$. $u_i^h \rightharpoonup \overline u$ in $L^p(\Omega_1)$ and $u_i^h \rightharpoonup^* \overline u$ in $L^∞(\Omega_1)$.
+		„Second item“ Fix $\Omega_1 \subset\subset \Omega$. Fix $\delta_0$, $\Omega_1 \subseteq \Omega_{\delta_0} \implies \|u_i^h\|_{L^p(\Omega_1)} ≤ k$. $u_i^h \rightharpoonup \overline u$ in $L^p(\Omega_1)$ and $u_i^h \rightharpoonup^* \overline u$ in $L^∞(\Omega_1)$.
 		We want $\|\overline{u}\|_{L^p(\Omega_1)} ≤ \liminf_{h \rightarrow 0_+} \|u_i^h\|_{L^p(\Omega_1)} ≤ k$.
 
 		$$ \int_{\Omega_1} \overline{u} \phi dx = \lim_{h \rightarrow 0_+} \int_\Omega u_i^h \phi = \lim_{h \rightarrow 0_+} \int_{\Omega_1} \frac{u(x + h·e_i) - u(x)}{h} \phi(x) dx = $$
 		$$ = \lim_{h \rightarrow 0_+} \int_{\Omega} \frac{u(x + h·e_i)}{h} \phi(x) - \frac{u(x)}{h}\phi(x) dx = $$
 		$$ = -\lim_{h \rightarrow 0_+} \int_{\Omega} u(x) \frac{\phi(x) - \phi(x - h·e_i)}{h} dx = -\int_{\Omega_1} \frac{\partial \phi}{\partial x_i} u. $$
+
+% 20. 02. 2023 lecture was canceled
+
+% 27. 02. 2023
+
+		„First item“: $u_\epsilon := u * \eta_\epsilon$ (where we extend $u$ by zero).
+		$$ \frac{u_\epsilon(x + h·e_i) - u_\epsilon(x)}{h} = \frac{1}{h} \int_0^1 \frac{d}{dt} u_\epsilon(x + h e_i t) dt = \int_0^1 \frac{\partial u_\epsilon(x + h·e_i·t)}{\partial x_i} dt. $$
+		$$ \left|\frac{u_\epsilon(x + h·e_i) - u_\epsilon(x)}{n}\right|^p ≤ \left| \int_0^1 \frac{\partial u^\epsilon}{\partial x_i}() dt \right|^p ≤ \int_0^1 \left|\frac{\partial u_\epsilon}{\partial x_i}()\right|^p dt. $$
+		$$ \int_{\Omega_\delta} \left|\frac{u_\epsilon(x + h·e_i) - u_\epsilon(x)}{h}\right|^p ≤ \int_{\Omega_\delta} \int_0^1 \left| \frac{\partial u_\epsilon}{\partial x_i}(x + h·e_i·t) \right|^p dt dx =  $$
+		$$ \int_0^1 \int_{\Omega_\delta} \left| \frac{\partial u_\epsilon}{\partial x_i}(x + h·e_i·t) \right|^p dx dt ≤ \int_0^1 \int_{\Omega_{\delta / 2}} \left|\frac{\partial u_\epsilon}{\partial x_i}(x)\right|^p dx dt = \int_{\Omega_{\delta / 2}} \left| \frac{\partial u^\epsilon}{\partial x_i} \right|^p dx $$
+		$$ \epsilon \rightarrow 0_+: \int_{\Omega_\delta} \left|\frac{u(x + h·e_i) - u(x)}{h}\right|^p ≤ \int_{\Omega_{\delta / 2}} \left|\frac{\partial u}{\partial x_i} (x_i)\right|^p dx. $$
+
+		„Third item“: It is enough to show „$u_i^h$ is Cauchy“: $\epsilon > 0$, $u_\epsilon := u * \eta_\epsilon$:
+		$$ u_{\epsilon, i}^{h_1} - u_{\epsilon, i}^{h_2} = \frac{u_\epsilon(x + h_1 e_i) - u_\epsilon(x)}{h} - \frac{u_\epsilon(x + h_2·e_i) - u_\epsilon(x)}{h} = \int_0^1 \frac{\partial u_\epsilon}{\partial x_i}(x + h_1·e_1 t) - \frac{\partial u_\epsilon}{\partial x_i}(x + h_2 e_i t) dt. $$
+		$$ \int_{\Omega_\delta} |…|^p ≤ \int_0^1 \int_{\Omega_\delta} \left|\frac{\partial u_\epsilon}{\partial x_i}(x + h_1·e_i·t) - \frac{\partial u_\epsilon}{\partial x_i}(x + h_2·e_i·t)\right|^p dx dt, $$
+		$$ \int_{\Omega_\delta} |u_i^{h_1} - u_i^{h_2}|^p ≤ \int_0^1 \int_{\Omega_\delta} | no epsilon |^p dx dt $$
 	\end{dukazin}
 \end{veta}
 
+\begin{veta}[Approximation by smmooth function]
+	Let $\Omega \subseteq ®R^d$ be bounded and open and $p \in [1, ∞)$. Then $\forall u \in W^{k, p}(\Omega)$
+
+	\begin{itemize}
+		\item $\exists \{u^n\}_{n=1}^∞ \subset ©C^∞(\Omega)$ such that $\|u^n - u\|_{W^{k, p}(\Omega)} \rightarrow 0$;
+		\item if $\Omega \in C^0$, then $\exists \{u^n\}_{n=1}^∞ \subset C^∞(\overline{\Omega})$ such that $\|u^n - u\|_{w^{k, p}(\Omega)} \rightarrow 0$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„First item“ at home. „Second item“: Lemma(Partition of unite): „Let $\{\Omega_r\}_{r=1}^{M+1}$ be open covering of $\overline{\Omega}$. Then $\exists \phi_r \in C_0^∞(\Omega_r)$, such thtat $\forall x \in \overline{\Omega}: \sum_{r=1}^{M+1} \phi_r(x) = 1$.“ Proof at home.
+
+		Define $u_r(x) := u(x) \phi_r(x)$. TODO!!!
+
+		1) $u_{M+1}$ is supported in $\Omega_{M+1} \subseteq \Omega$, so it can be extened by $0$. So $u_{M+1}^n = u_{M+1} * \eta_{\frac{1}{n}}$. 2) $u_r$ for $r \in [M]$. Set $u_i^h(x) := u_i(x_1, …, x_{d-1}, x_d - h)$, $u_i^n := u_i * \eta_{\frac{1}{n}}$. We need $h, \epsilon$ edepending on $n$: $\|u_i^n - u_i\|_{W^{k, p}(V_1^+)} \rightarrow 0$ (because $a_i$ is continuous).
+		$\phi_i \in C_0^∞\ \exists \delta' > 0$. $\phi_1$ is positive on the set $x_d < a_1(x') + \beta - \delta' \land x_d > a_1(x') - \beta + \delta'$, $h < h_0 < \delta'$. Take $(x, …, x_{d-1}, x_d - h)$, where $(x_1, …, x_d) \in \partial \Omega$, $\dist((x_1, …, x_{d-1}, x_d - h), \partial \Omega) < \delta$. Denote this $h$ as $h_{max}$, so for $h < h_{max}$ $\dist(…) < \delta$.
+
+		Give me $\delta > 0$, I find $h_0, h_{max}$ and define $u_i^h = u_i^h * \eta^\delta$, where $h < \min(h_0, h_{max})$. Then
+		$\|u_i - u_i^h\|_{W^{k, p}(V_i^+)} \rightarrow 0$, $\|u_i^h - (u_i^h)_\delta\|_{W^{k, p}(V_i^+)} \rightarrow 0$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $\Omega \in C^{0, 1}$ and $p \in [1, ∞]$. Then there exists a linear operator $E: W^{1, p}(\Omega) \rightarrow W^{1, p}(®R^d)$ such that
+	\begin{itemize}
+		\item $E u = u$ in $\Omega$;
+		\item $\exists B_R \subset ®R^d$ such that $E u ≡ 0$ in $®R^d \setminus B_R$;
+		\item $\|E u\|_{W^{1, p}(®R^d)} ≤ c(p, \Omega)·\|u\|_{W^{1, p}(\Omega)}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Focus only on $V_1$ (previous proof), $u = \sum u_r$ ($u_{M+1}$ is done) and only for $u_1$.
+
+		TODO images!!!
+
+
+	\end{dukazin}
+\end{veta}
+
+\section{Proof of $W^{1, p} \hookrightarrow C^{0, d}$}
+\begin{lemma}[Morrey]
+	Let $u \in W^{1, 1}(B_R(0))$ and $0$ be the Lebesgue point of $u$.
+	$$ \left| \fint_{B_R} u(x) dx - u(0)\right| ≤ R^A c(A, d) \sup_{\rho ≤ R} \int_{B_\rho} \frac{|\nabla u(x)|}{\rho^{d - 1 + A}} dx \qquad A > 0. $$
+
+	\begin{dukazin}
+		$$ |\fint_{B_R} u - u(0)| = \lim_{r \rightarrow 0_+}|\fint_{B_R} u - \fint_{B_r} u| = \lim_{r \rightarrow 0_+} |\int_r^R \frac{d}{d\rho} \fint_{B_\rho} u(x) dx d\rho| = \lim_{r \rightarrow 0_+} | \int_r^R \frac{d}{d\rho} \fint_{B_1(0)} u(\rho x) dx d\rho| = \lim_{r \rightarrow 0_+}|\int_r^R \fint_{B_1(0)} x·\nabla u(\rho x) dx d\rho| ≤ $$
+		$$ ≤ \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_1(0)}|\nabla u(\rho x)| dx d\rho = \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_\rho} |\nabla u(x)| dx d\rho = \lim \int_r^R \kappa_d \int_{B_\rho} \frac{|\nabla u(x)| dx}{\rho^{d - 1 + A}}\rho^{A - 1} d\rho ≤ $$
+		$$ ≤ c(d) \sup_{\rho < R} \int_{B_\rho} \frac{|\nabla u|}{\rho^{d - 1 + A}} · \lim_{r \rightarrow 0_+} \int_r^R \rho^{A - 1} d\rho = c(d, A) R^A \sup … $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	Replace $u$ by $E u$.
+\end{poznamka}
+
+\begin{dusledek}
+	$x$, $y$ Lebesgue points of $u$.
+	$$ |u(x) - u(y)| ≤ |x - y|^\alpha c(\alpha, \Omega, p)\max\{I_x, I_y\}, $$
+	where
+	$$ I_x := \sup_{r ≤ 2|x - y|} \int_{B_r(x)} \frac{|\nabla u|}{} $$
+
+	\begin{dukazin}
+		$R := |x - y|$
+		$$ |u(x) - u(y)| ≤ |\fint_{B_R(x)} u - u(x)| + |\fint_{B_R(y)} u - u(y)| + |\int_{B_R(x)} u - \fint_{B_R(y)}u| ≤ c(\rho, \alpha) r^\alpha(I_x + I_y). $$
+
+		$$ ?| | = |\int_0^1 \frac{d}{dt} \fint_{B_R(tx + (1 - t)y)} u(z) dz| = |\int_0^1 \frac{d}{dt} \fint_{B_R(0)} u(tx + (1 - t) y + z) dz| ≤ $$
+		$$ ≤ \int_0^1 \fint_{B_R(0)} |\nabla u(…)·(x - y)| dz dt ≤ c(d) \int_0^1 \int_{B_R(0)} \frac{|\nabla u(…)|}{R^{d - 1}} dz dt ≤ $$
+		$$ ≤ c(d) \int_0^1 \int_{B_{2R}(x)} \frac{|\nabla u(z)| dz}{R^{d - 1}} dt = c(d) \int_{B_{2R}(x)} \frac{|\nabla u(z)| dz}{(2R)^{d - 1 + \alpha}} (2R)^\alpha ≤ c(d, \alpha) I_x (2R)^\alpha. $$
+
+		$$ \sup_{R > 0, x \in ®R^d} I_R(x) = \sup_{R, x} \int_{B_\rho(x)} \frac{|\nabla E u(z)|}{R^{d - 1 + \alpha}} dz ≤ \sup \(\int_{B_R} |\nabla E u|^p\)^{1 / p} \(\int_{B_R} R^{(1 - d - \alpha)p'}\)^{1 / p'} ≤ c \|u\|_{W^{1, p}(\Omega)} \(R^{(1 - d - \alpha) p' + d}\)^{1 / p'} = c·\|u\|_{W^{1, p}(\Omega)}·1. $$
+
+		It remains $\|u\|_{L^∞(\Omega)}$:
+		$$ |u(x)| ≤ |u(x) - u(y)| + |u(y)| $$
+		$$ |u(x)| = \fint_\Omega |u(x)| dy ≤ \fint_\Omega |u(y)| dy + K \|u\|_{W^{1, p}(\Omega)} ≤ C(\Omega) \|u\|_{1, p}, $$
+		$$ \|\frac{u(x) - u(y)}{|x - y|^\alpha}\| ≤ c \|u\|_{1, p}. $$
+
+		$x, y$ Lebesgue points, so estimates TODO?
+	\end{dukazin}
+\end{dusledek}
+
+\begin{poznamka}
+	$W^{1, d}(\Omega) \not \hookrightarrow C^0(\overline{\Omega})$, but $W^{1, d}(\Omega) \hookrightarrow BMO(\Omega) (VMO)$.
+
+	$W^{d, 1}(\Omega) \hookrightarrow W^{1, d} \not\hookrightarrow C^0(\overline{\Omega})$, but $W^{d, 1}(\Omega) \hookrightarrow C^0(\overline{\Omega})$.
+\end{poznamka}
+
+% 06. 03. 2023
+
+\begin{veta}
+	Let $\Omega \in C^{0, 1}$, $p \in [1, ∞)$. Then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ if
+
+	\begin{itemize}
+		\item for $p \in [1, d)$ and $q ≤ \frac{dp}{d - p}$;
+		\item for $p = d$ and $q \in [1, ∞)$;
+		\item for $p > d$ and $q \in [1, ∞]$.
+	\end{itemize}
+
+	And $W^{1, p}(\Omega) \hookrightarrow \hookrightarrow L^q(\Omega)$ if previous holds, except for $p \in [1, d)$ and $q = \frac{dp}{d - p}$.
+
+	\begin{dukazin}[Scheme of the proof]
+		We use extension $W^{1, p}(\Omega) \rightarrow W^{1, p}(®R^d)$ compactly supported. Mollification $W^{1, p}(®R^d) \rightarrow ©C_0^∞(®R^d)$. Show all estimates only for smooth functions.
+	\end{dukazin}
+
+	\begin{lemmain}[Gagliardo–Nirenberg inequality]
+		$\exists C(d), C(d, p)$ such that $\forall u \in C_0^∞(®R^d)$:
+		$$ \|u\|_{L^{\frac{d}{d - 1}}(®R^d)} ≤ C(d) \|\nabla u\|_{L^1(®R^d)}, $$
+		$$ \|u\|_{L^{\frac{dp}{d - p}}(®R^d)} ≤ C(d, p) \|\nabla u\|_{L^p(®R^d)}. $$
+	\end{lemmain}
+
+	\begin{dukazin}[Proof of lemma]
+		Firstly we show that first inequality implies second. Define $v := |u|^q$ for some $q > 1$. Then from first inequality $\|v\|_{\frac{d}{d - 1}} ≤ c·\|\nabla v\|_1$:
+		$$ \(\int_{®R^d} |u|^{\frac{qd}{d - 1}}\)^{\frac{d - 1}{d}} ≤ C(d) \int_{®R^d} |\nabla |u|^q| ≤ c(d, q) \int_{®R^d} |u|^{q - 1} |\nabla u| \overset{\text{Hölder}}≤ $$
+		$$ ≤ c(d, q) \|\nabla u\|_p·\| |u|^{q - 1} \|_{p'} = c(d, q) \|\nabla u\|_p \(\int_{®R^d} |u|^{\frac{p(q - 1)}{p - 1}}\)^{\frac{p - 1}{p}}. $$
+		Choose $q$ such that $\frac{qd}{d - 1} = \frac{p(q - 1)}{p - 1}$, i. e. $q = \frac{p(d - 1)}{d - p}$.
+		$$ \(\int_{®R^d} |u|^{\frac{dp}{d - p}}\)^{\frac{d - 1}{d}} ≤ C(d, p) \|\nabla u\|_p \(\int_{®R^d} |u|^{\frac{dp}{d - p}}\)^{\frac{p - 1}{p}} \implies \|u\|_{\frac{dp}{d - p}} ≤ C(d, p) \|\nabla u\|_p. $$
+
+		Then we proof first inequality by next lemma: ($u$ is smooth, compactly supported)
+		$$ u(x) = \int_{-∞}^{x_i} \frac{\partial u}{\partial x_i}(x_1, …, x_{i-1}, s, x_{i + 1}, …, x_d) ds, $$
+		$$ |u(x)| ≤ \int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)| ds. $$
+		$$ |u(x)|^d dx ≤ \prod_{i=1}^d \int_{-∞}^∞ |\nabla u(x_1, …, x_{i - 1}, s, x_{i+1}, …, x_d)| ds, $$
+		$$ \int_{®R^d} |u(x)|^{\frac{d}{d - 1}} dx ≤ \int_{®R^d} \prod_{i=1}^d \(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i - 1}, s, x_{i+1}, …, x_d)| ds\) dx =: \int_{®R^d} \prod_{i=1}^d v_i \overset{\text{Gagliardo}}≤ $$
+		$$ ≤ \prod_{i=1}^d \( \int_{®R^{d - 1}} \[ \( \int_{-∞}^∞ |\nabla u(x_1, …, s, …, x_d)| ds\)^{\frac{1}{d - 1}} \]^{d - 1} dx_1…dx_{i-1}dx_{i+1}…dx_d \)^{\frac{1}{d - 1}} ≤ $$
+		$$ ≤ \prod_{i=1}^d \|\nabla u\|_{L^1(®R^d)}^{\frac{1}{d - 1}} = \|\nabla u\|_1^{\frac{d}{d - 1}}. $$
+	\end{dukazin}
+
+	\begin{lemmain}[Gagliardo]
+		Let $u_i \in ©C_0^∞(®R^{d - 1})$, $i \in [d]$. Define $v_i(x_1, …, x_d) := u_i(x_1, …, x_{i - 1}, x_{i + 1}, …, x_d)$. Then
+		$$ \int_{®R^d} \prod_{i=1}^d |v_i(x)| dx ≤ \prod_{i=1}^d \|u_i\|_{L^{d - 1}(®R^{d - 1})}. $$
+	\end{lemmain}
+
+	\begin{dukazin}[Proof of lemma]
+		By induction: 1) „$d = 2$“:
+		$$ \int_{®R^d} \prod_{i=1}^2 |v_i(x)| dx = \int_{®R^2} |u_1(x_2)|·|u_2(x_1)| dx_1 dx_2 = \|u_1\|_{L^1(®R)}·\|u_2\|_{L^1(®R)}. $$
+
+		2) „$d \implies d+1$“:
+		$$ \int_{®R^{d + 1}} \prod_{i=1}^{d + 1} |v_i(x)| dx = \int_{®R^d} |v_{d + 1}(x)| · \(\int_®R \prod_{i=1}^d |v_i(x)| dx_{d+1}\) dx_1…dx_d ≤ $$
+		$$ ≤ \|v_{d+1}\|_{L^d(®R^d)} \(\int_{®R^d} \(\int_{®R} \prod_{i=1}^d |v_i(x)| dx_{d+1}\)^{d'} dx_1…dx_d\)^{\frac{1}{d}} = RHS $$
+		$$ (…)^{d'} = \(\int_{®R} |v_1|·…·|v_d| dx_{d+1}\)^{d'} \overset{\text{Hölder}}≤ \(\prod_{i=1}^d \(\int_{®R} |v_i|^d dx_{d+1}\)^{\frac{1}{d}}\)^{d'}. $$
+		$$ RHS ≤ \|v_{d+1}\|_{L^d} \(\int_{®R^d} \( \prod_{i=1}^d \( \int_{®R} |v_i|^d dx_{d+1}\)^{\frac{1}{d}} \)^{\frac{d}{d - 1}} dx_1…dx_d\)^{\frac{d - 1}{d}} ≤ $$
+		$$ ≤ \|u_{d+1}\|_d \(\int_{®R^d} \prod_{i=1}^d \(\int_{®R} |v_i|^d dx_{d+1}\)^{\frac{1}{d - 1}} dx_1…dx_d \)^{\frac{d - 1}{d}} \overset{\text{Induction step}}≤ $$
+		$$ ≤ \|u_{d + 1}\|_d·\prod_{i=1}^d \|\(\int_{®R} |v_i|^d dx_{d+1}\)^{\frac{1}{d-1}}\|_{L^{d - 1}(®R^{d - 1})}^{\frac{d - 1}{d}} = \prod_{i=1}^d\|u_i\|_{L^d} $$
+	\end{dukazin}
+
+	\begin{dukazin}
+		If $p < d$ Galiardo–Nirenberg finishes $W^{1, p} \hookrightarrow L^{\frac{dp}{d - p}}$. If $p = d$, $W^{1, d} \hookrightarrow W^{1, d - \epsilon} \hookrightarrow L^{\frac{d(d - \epsilon)}{d - (d - \epsilon)}} = L^{\frac{d(d - \epsilon)}{\epsilon}}$. If $p > d$ forget G–N and use $W^{1, p} \hookrightarrow C(\overline{\Omega}) \hookrightarrow L^∞(\Omega) \hookrightarrow L^q(\Omega)$.
+
+		„Compact embeddings:“ 1. step: $W^{1, 1}(\Omega) \hookrightarrow \hookrightarrow L^1(\Omega)$. 2. step $W^{1, p}(\Omega) \hookrightarrow \hookrightarrow L^q(\Omega)$.
+
+		„$1 \implies 2$“: $\|u\|_q ≤ \|u\|_{\frac{dp}{d - p}}^\alpha \|u\|_1^{1 - \alpha} ≤ c \|u\|_{1, p}^\alpha \|u\|_1^{1 - \alpha}$. Let $B$ be a bounded set in $W^{1, p}(\Omega)$. Use 1. step: (for $\frac{1}{q} = 1 - \alpha + \frac{\alpha(d - p)}{dp}$, i.e. $1 ≤ q < \frac{dp}{d - p}$)
+		$$ \exists \{u_i\}_{i=1}^N \subseteq W^{1, p}(\Omega)\ \forall u \in B: \min_{i\in [N]} \|u - u_i\|_{L^1} ≤ \tilde\epsilon. $$
+		$$ \|u - u_i\|_q ≤ c·\|u - u_i\|_{1,p}^\alpha·\|u - u_i\|_1^{1 - \alpha} ≤ c(\alpha, B)(\tilde \epsilon)^{1 - \alpha}. $$
+
+		„1. step“: Let $B$ be a bounded set in $W^{1, 1}(\Omega)$, $EB$ be bounded set in $W^{1, 1}(®R^d)$ and compactly supported in $B_\Omega?$.
+		$$ \forall u \in EB: u_\delta := u * \eta_\delta: $$
+		$$ \int_{®R^d} |u(x) - u_\delta(x)| dx = \int_{®R^d} \left| \int_{®R^d} u(x) \eta_\delta(y) - u(x + y) \eta_\delta(y) dy\right| dx ≤ $$
+		$$ ≤ \int_{®R^d} \int_{®R^d} \frac{|u(x) - u(x + y)|}{|y|} \eta_\delta(y) |y| dx dy \overset{\text{we already had it}}≤ $$
+		$$ ≤ \int_{®R^d} \|\nabla u\|_1 \eta_\delta(y) |y| dy ≤ \|\nabla u\|_1 \delta \int_{®R^d} \eta_\delta(y) dy  = \|\nabla u\|_1 \delta ≤ C(B) \delta. $$
+
+		Given $\epsilon > 0$ choose $\delta > 0$, $C(B) \delta < \frac{\epsilon}{2}$ and use Arsela–Ascoli.
+	\end{dukazin}
+
+	\begin{poznamkain}[Lipschitz domain is necessary]
+		$$ u = \frac{1}{(1 + |x|)^{3 / 2}}. $$
+	\end{poznamkain}
+\end{veta}
+
+\subsection{Compact embedding in Bochner spaces}
+\begin{lemma}[Aubin–Lions]
+	$V_1 \hookrightarrow \hookrightarrow V_2 \hookrightarrow V_3$ Banach spaces. $p \in [1, ∞)$. Then $U:=\{u \in L^p(0, T, V_1) | \partial_t u \in L^1(0, T, V_3)\} \hookrightarrow \hookrightarrow L^p(0, T, V_2)$.
+\end{lemma}
+
+\begin{lemma}[Ehrling (start of proof of Aubin–Lions)]
+	Let $V_1 \hookrightarrow \hookrightarrow V_2 \hookrightarrow V_3$ be Banach spaces. Then
+	$$ \forall \epsilon > 0\ \exists c > 0\ \forall u \in V_1: \|u\|_{V_2} ≤ \epsilon \|u\|_{V_1} + c·\|u\|_{V_3}. $$
+
+	\begin{dukazin}[By contradiction]
+		$$ \exists u^n \in V_1: \|u^n\|_{V_2} > \epsilon\|u^n\|_{V_1} + n\|u^n\|_{V_3}. $$
+		$$ u^n ≠ 0 \implies v^n := \frac{u^n}{\|u^n\|_{V_2}} \implies 1 = \|v^n\|_{V_2} > \epsilon·\|v^n\|_{V_1} + n·\|v^n\|_{V_3}. $$
+		$$ v^n \rightarrow \text{ in } V_3 \implies v^n \text{ bounded in } V_1 \hookrightarrow \hookrightarrow V_2 \implies V^n \rightarrow v \text{ in } V_2 \implies $$
+		$$ \implies \|v\|_{V_2} = 1 \implies v ≠ 0. \text{\lightning} $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Aubin–Lions]
+	$M \subseteq U$ bounded set: $\exists c^*\ \forall u \in M: \int_0^T \|u\|_{V_1}^p + \|\partial_t u\|_{V_3} ≤ c^*$.
+	
+	We want $M$ is precompact in $L^p(0, T< V_2)$ $\Leftrightarrow$
+	$$ \forall \epsilon > 0\ \exists \{w_i\}_{i=k}^N\ \forall u \in M\ \exists i \in [N]: \int_0^T \|u - w_i\|_{V_2}^p ≤ \epsilon. $$
+
+	1. Mollify with respect to time and use Arsela–Ascoli for $C^1(0, T; V_1) \hookrightarrow\hookrightarrow C^0(0, T< V_2)$.
+
+	2. Mollification is „not far“ from $u$ in $L^1(0, T; V_3)$.
+
+	3, Ehrling interpolation to $L^p(0, T; V_2)$.
+
+	\begin{dukazin}[1.]
+		$u \in M$ extend to $(0, 2T)$ as $\tilde u(t) = u(t)$ if $t < T$ and $\tilde u(t) = u(2T - t)$ if $t > T$.
+		$$ \int_0^{2T} \|\tilde u(t)\|_{V_1}^p + \|\partial_t \tilde u(t)\|_{V_3} = 2 \int_0^T \|u\|_{V_1} + \|\partial_t u\|_{V_3} ≤ 2C^*. $$
+		$\forall 0 < \delta < T$ and $t \in (0, T)$, $u_\delta(t) = \int_0^\delta \tilde u(t + s) \phi_\delta(s) ds = \int_®R \tilde u(s) \phi_\delta(s - t)$, where $\phi \in C_0^∞(0, 1)$, $\phi ≥ 0$.
+
+		$$ \|u_\delta(t)\|_{V_1} ≤ \frac{c}{\delta} \int_0^{2T} \|\tilde u\|_{V_1} ≤ \frac{c·c^*}{\delta}. $$
+		$$ \|\partial_t u_\delta(t)\|_{V_1} ≤ \int_{®R} \|\tilde u\|_{V_1} |\phi_\delta'| ≤ c(\delta)·c^*. $$
+		$M_\delta := \{u_\delta, u \in M\}$ $\implies$ $M_\delta$ is bounded in $C^1(0, T; V_1)$. $\forall \tilde \epsilon > 0\ \exists \{w_k\}_{k=1}^N \subseteq L^p(0, T; V_1)$ such that $\forall u_\delta \in M_\delta$ $\exists k: \int_0^T \|w_\delta - w_k\|_{V_2}^p < \tilde \epsilon$.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		$$ u(t) - u_\delta(t) = u(t) - \int_0^\delta \tilde u(t + s) \phi_\delta(s) ds = $$
+		$$ = \int_0^\delta (u(t) - \tilde u(t + s)) \phi_\delta(s) ds = - \int_0^\delta (u(t) - \tilde u(t + s)) \frac{d}{ds} \(\int_s^\delta \phi_\delta(\tau) d\tau\) ds = $$
+		$$ = - \int_0^\delta \partial_t \tilde u(t + s) \int_s^\delta \phi_\delta(\tau) d\tau ds = - \int_0^\delta \int_0^\tau \partial_t \tilde u(t + s)\phi_\delta(\tau) ds d\tau. $$
+
+		$$ \int_0^T \|u(t) - u_0(t)\|_{V_3} dt ≤ \int_0^T \int_0^\delta \int_0^\tau \|\partial_t \tilde u(t + s)\|_{V_3} \phi_\delta(\tau) ds d\tau dt ≤ \int_0^T \int_0^\delta \int_0^\delta \|\partial_t \tilde u(t + s)\|_{V_3} \phi_\delta(\tau) ds d\tau dt ≤ c^* \int_0^\delta \int_0^\delta \phi_\delta(\tau) ds d\tau = \delta c^*. $$
+		$$ \|u(t) - u_\delta(t)\|_{V_3} ≤ \int_0^\delta \int_0^\tau \|\partial_t u(t + s)\|_{V_3} \phi_\delta(\tau) ds d\tau ≤ c^*. $$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		$$ \int_0^T \|u - w_k\|_{V_2}^p \overset{\text{Ehrling}}≤ \tilde{\tilde \epsilon} \int_0^T \|u - w_k\|_{V_1}^p + c(\tilde{\tilde \epsilon}) \int_0^T \|u - w_k\|_{V_3}^p ≤ k(c^*) \tilde{\tilde\epsilon} + c(\tilde{\tilde\epsilon}) \int_0^T \|u - w_k\|_{V^3}^p ≤ $$
+		$$ ≤ k(c^*) \tilde{\tilde\epsilon} + c(\tilde{\tilde\epsilon}, p) \int_0^T \|u - u_\delta\|_{V_3}^p ≤ $$
+		$$ ≤ k(c^*) \tilde{\tilde\epsilon} + c(\tilde{\tilde\epsilon}, p) \sup_{t \in (0, T)}\{\|u(t) - u_\delta(t)\|_{V_3}^{p - 1}\} \int_0^T \|u - u_\delta\|_{V_3} + -||- ≤ $$
+		$$ ≤ k(c^*) \tilde{\tilde\epsilon} + c(c^*, p, \tilde{\tilde\epsilon}) \delta + c(\tilde{\tilde\epsilon}, p, c^*) \int_0^T \|u_\delta - w_k\|_{V_3}^p. $$
+		Find $\tilde{\tilde\epsilon}$ such that $k(c^*) \tilde{\tilde\epsilon} ≤ \frac{\epsilon}{3}$. Find $\delta > 0$ such that $c(c^*, p, \epsilon) < \frac{\epsilon}{3}$. Find $N$-covering $\{U_i\}_{i=1}^N$ such that $\min_k c(\tilde{\tilde\epsilon}, p, c^*) \int_0^T \|u_\delta - w_k\| ≤ \frac{\epsilon}{3}$.
+	\end{dukazin}
+\end{dukaz}
+
+\subsection{Trace theorem}
 
 \end{document}

@@ -87,7 +87,7 @@
 	\end{dukazin}
 
 	\begin{poznamkain}
-		Stačí lokálně lipschitzovská.
+		Stačí lokálně lipschitzovská.
 	\end{poznamkain}
 \end{tvrzeni}
 
@@ -107,7 +107,7 @@
 	$f$ convex and bounded from above on $B(x, r)$, $x \in X, r > 0$ $\implies$ $f$ is Lipschitz on $B\(x, \frac{1}{2}\)$.
 
 	\begin{dukazin}
-		1) „$f \≤ M$ on $B(x, r)$ $\implies$ $f ≥ 2f(x) - M$ on $B(x, r)$“: $y \in B(x, r)$, $z := x + (x - y)$ $\implies z \in B(x, r)$, $x = \frac{1}{2}(y + z)$. $f(x) ≤ \frac{1}{2}(f(y) + f(z))$, $f(y) ≥ 2f(x) - f(z) ≥ 2f(x) - M$.
+		1) „$f ≤ M$ on $B(x, r)$ $\implies$ $f ≥ 2f(x) - M$ on $B(x, r)$“: $y \in B(x, r)$, $z := x + (x - y)$ $\implies z \in B(x, r)$, $x = \frac{1}{2}(y + z)$. $f(x) ≤ \frac{1}{2}(f(y) + f(z))$, $f(y) ≥ 2f(x) - f(z) ≥ 2f(x) - M$.
 
 		2) Assume $|f| ≤ M$ on $B(x, r)$. Take $v, w \in B(x, \frac{r}{2})$, $v ≠ w$, $z := w + \frac{z}{2} \frac{w - v}{\|w - v\|}$ $\implies$ $z \in B(x, r)$. $w(1 + \frac{z}{2\|w - v\|}) = z + \frac{z}{2\|w - v\|} v$,
 		$$ f(w) ≤ \frac{f(z) + \frac{z}{2\|w - v\|}f(v)}{1 + \frac{z}{2\|w - v\|}} $$
@@ -135,8 +135,78 @@
 		1) $x \in l_1$, $n \in ®N$, $x_n = 0$. Take $h = e_n$ $\sum_{k≠n} |x_k| + |t|$. $\partial_h f(x) = \lim_{t \rightarrow 0} \frac{\|x + t·e_n\| - \|x\|}{t} = \lim_{t \rightarrow} \frac{|t|}{t}$ doesn't exist. This prove „$\implies$“.
 
 		„$\impliedby$“: Assume $\forall n \in ®N$: $x_n ≠ 0$, $h \in l_1$, $h ≠ 0$, $\epsilon > 0$:
-		$$ \left|\frac{f(x + t·h) - f(x)}{t} - \sum_{n=1}^∞ h_n · \sgn x_n\right| = \left|\frac{1}{t}\sum_{n=1}^∞ \(|x_n + t·h_n| - |x_n| - t h_n \sgn x_n\)\right| ≤ \left| \frac{1}{t} \sum_{n=1}^N (…)\right| + \left \frac{1}{t} \sum_{n > N} (…) \right| \rightarrow 0 + … < \epsilon. $$
+		$$ \left|\frac{f(x + t·h) - f(x)}{t} - \sum_{n=1}^∞ h_n · \sgn x_n\right| = \left|\frac{1}{t}\sum_{n=1}^∞ \(|x_n + t·h_n| - |x_n| - t h_n \sgn x_n\)\right| ≤ \left| \frac{1}{t} \sum_{n=1}^N (…)\right| + \left|\frac{1}{t} \sum_{n > N} (…) \right| \rightarrow 0 + … < \epsilon. $$
 	\end{dukazin}
 \end{veta}
+
+% 02. 03. 2023
+
+TODO? % WTF?
+
+% 09. 03. 2023
+
+\section{Subdiferential}
+\begin{definice}
+	$X$ Banach, $U \subset X$ open + convex, $f: U \rightarrow ®R$ convex + continuous ($\implies$ locally Lipschitz). $x \in U$,
+	$$ \partial f(x) := \{x^* \in X^* | \forall y \in U: x^*(y - x) ≤ f(y) - f(x)\}. $$
+\end{definice}
+
+\begin{poznamka}
+	$$ \forall h \in X\ \exists \partial^+_h f(x) $$
+
+	$$ x^* \in \partial f(x) \Leftrightarrow \forall h \in X: x^*(h) ≤ \partial_h^+ f(x) $$
+	(„$\implies$“: Fix $h \in X$, find $\delta > 0$: $\forall |t| < \delta: x + t·h \in U$. Then $\forall t \in (0, \delta): x^*(x + t·h - x) ≤ f(x + t·h) - f(x)$, $x^*(h) ≤ \frac{f(x + t·h) - f(x)}{t} \rightarrow \partial_h^+ f(x)$. „$\impliedby$“: Fix $y \in X$, put $h := y - x$. Then $x^*(y - x) = x^*(h) ≤ \partial_h^+ f(x) ≤ \frac{f(x + h) - f(x)}{1} = f(y) - f(x)$.)
+
+	$$ U = X, f(x) = \|x\| \implies \partial f(x) = \{x^* \in B_{X^*} | x^*(x) = \|x\|\}. $$
+	(„$\subseteq$“ Let $x^* \in \partial f(x)$. Then $x^*(x) ≤ \|x + x\| - \|x\| = \|x\|$, $x^*(-x) ≤ \|0\| - \|x\| = -\|x\|$. Thus $x^*(x) = \|x\|$. And for $h \in X: x^*(h) ≤ \|x + h\| - \|x\| ≤ \|h\|$, therefore $\|x^*\| ≤ 1$. „$\supseteq$“: Let $x^* \in B_{X^*}, \|x\| = x^*(x)$. Then $\forall y \in X: x^*(y - x) = x^*(y) - x^*(x) ≤ \|y\| - \|x\|$.)
+\end{poznamka}
+
+\begin{tvrzeni}
+	$\forall x \in U: \partial f(x) ≠ \O$, convex, $w^*$-compact.
+
+	\begin{dukazin}
+		$h \mapsto \partial_h^+ f(x)$ is sublinear functional ($t·\partial_h^+ f(x) = \partial_{t·h}^+ f(x)$, $t > 0$, and
+		$$ \partial_{h_1 + h_2}^+ f(x) = \lim_{t \rightarrow 0_+} \frac{f(x + t·(h_1 + h_2)) - f(x)}{t} ≤ \lim_{t \rightarrow 0_+}\(\frac{f(x + 2·t·h_1) - f(x)}{2t} + \frac{f(x + 2·t·h_2) - f(x)}{2t}\) = \partial_{h_1}^+ f(x) + \partial_{h_2}^+ f(x). $$
+		so it is sublinear functional).
+
+		By Hahn–Banach theorem, $\exists x^* \in X^{\#}: x^*(h) ≤ \partial_h^+ f(x)$, $h \in X$. Moreover $x^*$ is continuous ($x^* \in X^*$), because $f$ is locally Lipschitz, so $\exists r > 0\ \exists L > 0: f|_{B(x, r)}$ is $L$–Lipschitz, so $\left|\frac{f(x + t·h) - f(x)}{t}\right| ≤ L·\|h\|$ and so $x^*(h) ≤ \partial_h^+ f(x) ≤ L·\|h\|$, $h \in X$.
+
+		So by remark $x^* \in \partial f(x)$. Thus $\partial f(x) ≠ \O$. And also $\forall y^* \in \partial f(x)$. $\|? x\| ≤ L$. Thus $\partial f(x)$ is bounded, so $\subseteq R(B_{X^*}, w^*)$ for some $R > 0$, which is $w^*$-compact. So since $\partial f(x)$ is $w^*$-closed, it is $w^*$-compact. (It is closed, because $\partial f(x) = \bigcap_{y \in U} \{x^* \in X^* | x^*(y - x) ≤ f(y) - f(x)\}$).
+
+		Finally „$\partial f(x)$ is convex“: For $x^*, y^* \in \partial f(x)$, $\lambda \in (0, 1)$:
+		$$ \forall y \in U: (\lambda x^* + (1 - \lambda)y^*) (y - x) ≤ \lambda(f(y) - f(x)) + (1 - \lambda) (f(y) - f(x)) = f(y) - f(x). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$x \in U$. Then following is equivalent:
+
+	\begin{itemize}
+		\item $\exists f_G'(x)$;
+		\item $|\partial f(x)| = 1$;
+		\item $\forall h \in X: \partial_h^+ f(x) = -\partial_{-h}^+ f(x)$.
+	\end{itemize}
+
+	Moreover $\partial f(x) = \{f_G'(x)\}$, if one of item is true.
+
+	\begin{dukazin}
+		„$1. \implies 2.$“: We have $\forall h \in X: f'_G(x)(h) = \partial_h^+ f(x) \implies f_G'(x) \in \partial f(x)$. Moreover
+		$$ \forall x^* \in \partial f(x)\ \forall h \in X: x^*(h) ≤ \partial_h^+ f(x) = f_G'(x)(h) \land -x^*(h) = x^*(-h) ≤ f_G'(x)(-h) = -f_G'(x)(h) \implies x^*(h) = f_G'(x). $$
+
+		„$2. \implies 3.$“: Let $\exists h \in X: \partial_h^+ f(x) ≠ -\partial_{-h}^+ f(x)$. Always holds $\partial_h^+ f(x) ≥ -\partial_{-h}^+ f(x)$ ($\phi(t) = f(x + t·h)$ is convex, then $-\partial_{-h}^+ f(x) = \partial_-'(0) ≤ \partial_+'(0) = \partial_h^+ f(x)$). So $\partial_h^+ f(x) > -\partial_{-h}^+ f(x)$.
+
+		Define $x_1^*(t·h) := t·\partial_h^+ f(x)$ and $x_2^*(t·h) := - t \partial_{-h}^+ f(x)$, $t \in ®R$. Then $x_1^*, x_2^* \in (\LO(h))^*$. And for $j = 1, 2$:
+		$$ x_j^*(t·h) ≤ \partial_{t·h}^+ f(x), \qquad t \in ®R. $$
+		For $t ≥ 0: x_1^*(t·h) = t \partial_h^+ f(x) = \partial_{t·h}^+ f(x)$. For $t < 0: x_1^*(t·h) = t·x_1^*(h) = t·\partial_h^+f(x) < -t·\partial_{-h}^+ f(x) = \partial_{t·h} f(x)$. Same for $x_2^*$. By Hahn–Banach theorem, we extend $x_j^*$, $j \in \{1, 2\}$ to $x_j^* \in X^{\#}$ satisfying $x_j^*(z) ≤ \partial_z^+ f(x)$, $z \in X$. And because $f$ is locally Lipschitz, similarly as before we have $x_1^*, x_2^* \in X^*$. Thus $x_1^*, x_2^* \in \partial f(x)$ and $x_1^* ≠ x_2^*$.
+
+		„$3. \implies 2.$“: We know $\phi: h \mapsto \partial_h^+ f(x)$ is sublinear and we know $\phi(h) = -\phi(-h)$. This implies, that $\phi$ is linear ($\phi(t·h) = t·\phi(h), t \in ®R$ arbitrary, $\phi(h_1 + h_2) ≤ \phi(h_1) + \phi(h_2)$, $\phi(h_1 + h_2) = -\phi(-h_1 - h_2) ≥ -(\phi(-h_1) + \phi(-h_2)) = \phi(h_1) + \phi(h_2)$). Moreover, $\phi$ is continuous, because $\phi(h) ≤ \phi_h^+ f(x)$ and $f$ is Lipschitz.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$f(x) = \|x\|$, $x \in X$. Then $f_G'(x)$ exists $\Leftrightarrow$ $\exists! x^* \in B x^*: x^*(x) = \|x\|$.
+\end{dusledek}
+
+TODO? % Examples
 
 \end{document}

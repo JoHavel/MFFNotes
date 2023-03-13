@@ -34,4 +34,56 @@ TODO!!! % RUDIN 16.2
 	\end{dukazin}
 \end{priklady}
 
+% 02. 03. 2023
+
+TODO!!! % Část ještě z minula, zbytek já.
+
+% 09. 03. 2023
+
+TODO!!! % Oprava mého.
+
+\section{Eulerův vzorec}
+$$ \sin \pi z = \pi z \prod_{k=1}^∞ \(1 - \frac{z^2}{k^2}\). $$
+
+\begin{lemma}
+	$$ z ≠ \frac{k}{2}, k \in ®Z: 2\pi \cotg(2\pi z) = \pi \cotg(\pi x) + \pi \cotg(\pi(z + \frac{1}{2})). $$
+
+	\begin{dukazin}
+		$$ 2\pi \cotg(2 \pi z) = 2\pi \frac{\cos(2\pi z)}{\sin(2\pi z)} = \pi \frac{\cos^2(\pi z) - \sin^2(\pi z)}{\sin(\pi z) \cos(\pi z)} = \pi\(\cotg(\pi z) - \frac{\sin(\pi z)}{\cos(\pi z)}\) = \pi\(\cotg(\pi z) + \frac{\cos \pi(z + \frac{1}{2})}{\sin \pi(z + \frac{1}{2})}\). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Herglotz]
+	$r > 1$, $G$ oblast, $G \supset [0, r)$, $h$ funkce holomorfní na $G$, $z, z + \frac{1}{2}, 2z \in [0, r): 2h(2z) = h(z) + h(z + \frac{1}{2})$. Pak $h$ je konstantní na $G$.
+
+	\begin{dukazin}
+		Zvol $t \in (1, r)$.
+		$$ M := \max \{|h'(z)|, z \in [0, t]\}, \qquad 4|h'(2z)| ≤ |h'(z)| + |h'(z + \frac{1}{2})| \implies $$
+		$$ \implies 4|h'(z)| ≤ |h'(\frac{z}{2})| + |h'(\frac{z}{2} + \frac{1}{2})| < 2M \implies 4M ≤ 2M \implies M = 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$g$ holomorfní funkce na $®C \setminus ®Z$, hlavní část Laurenotvy řady $g$ na $P(k)$, $k \in ®Z$, je rovna $\frac{1}{z - k}$, $g$ lichá, $2g(2z) = g(z) + g(z + \frac{1}{2})$, $z ≠ \frac{k}{2}$, $k \in ®Z$. Pak $g(z) = \pi \cotg(\pi z)$.
+
+	\begin{dukazin}
+		$h(z) := g(z) - \pi \cotg(\pi z)$. $h$ rozšíříme spojitě a holomorfně na ®C. Z Herglotzova lemmatu je $h$ konstantní na ®C (obě funkce splňují podmínky). Navíc $h(0) = 0$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}[Eisenstein]
+	$\pi \cotg(\pi z) = \frac{1}{2} + \sum_{k=1}^∞ \frac{2z}{z^2 - k^2}$, $z \notin ®Z$.
+
+	\begin{dukazin}
+		$z \mapsto \frac{2z}{z^2 - k^2}$ jsou holomorfní na $U(0, n)$, $k > n$.
+		$$ \left|\frac{2z}{z^2 - k^2}\right| ≤ \frac{2 n}{k^2 - n^2} \qquad \land \qquad \sum_{k=n+1}^∞ \frac{2n}{k^2 - n^2} K \implies \sum \in ©M. $$
+
+		$f$ je holomorfní na $®C \setminus ®Z$. Také je lichá. Nakonec
+		$$ s_n(z) = \frac{1}{2} + \sum_{k=1}^n \frac{2z}{z^2 - k^2} = \frac{1}{2} + \sum_{k=1}^n \frac{1}{z + k} + \sum_{k=1}^n \frac{1}{z - k} = \sum_{-n}^n \frac{1}{z + k}, $$
+		$$ s_n\(\frac{z}{2}\) + s_n\(\frac{z + 1}{2}\) = \sum_{k=-n}^n \frac{2}{z + 2k} + \frac{2}{z + 2k + 1} = 2\sum_{k=-2n}^{2n} \frac{1}{z + k} + 2·\frac{1}{z + 2n + 1} = 2 s_{2n}(k) + \frac{2}{z + 2n + 1}, $$
+		$$ n \rightarrow ∞: f\(\frac{z}{2}\) + f\(\frac{z + 1}{2}\) = 2f(z) + 0. $$
+
+		Z předchozího lemmatu vyplývá důkaz.
+	\end{dukazin}
+\end{dusledek}
 \end{document}
