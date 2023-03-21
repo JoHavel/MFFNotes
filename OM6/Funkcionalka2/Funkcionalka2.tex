@@ -451,7 +451,7 @@
 
 	„3rd item“: „$\implies$“ Let $f(z) = 0$ for some $z \in \sigma(x)$. Then exists $g \in H(\Omega): f(u) = (z - u)g(z)$. By item one, we have $(z e - x)g(x) = f(x) = g(x) (z e - x)$. But $(z e - x)^{-1}$ does not exist, so $f(x)^{-1}$ does not exists.
 
-	„$\impliedby$“ Suppose $f ≠ 0$ on $\sigma(x)$ by compactness. $\exists \Omega_1 \subset \Omega$ open: $\sigma(x) \subset \Omega_1$ and $f ≠ 0$ on $\Omega_1$. Then $\frac{1}{f} \in H(\Omega_1)$ and by first item we have $e = (f · \frac{1}{f})(x) = f(x) \frac{1}{f}(x) = … = \frac{1}{f}(x)·f(x) \implies f(x)^{-1} = \frac{1}{f}(x)$.
+	„$\impliedby$“ Suppose $f ≠ 0$ on $\sigma(x)$ by compactness. $\exists \Omega_1 \subset \Omega$ open: $\sigma(x) \subset \Omega_1$ and $f ≠ 0$ on $\Omega_1$. Then $\frac{1}{f} \in H(\Omega_1)$ and by first item we have $e = (f · \frac{1}{f})(x) = f(x) \frac{1}{f}(x) = … = \frac{1}{f}(x)·f(x) \implies f(x)^{-1} = \frac{1}{f}(x)$.
 \end{dukaz}
 
 \begin{poznamka}
@@ -624,5 +624,313 @@
 		„$1 \implies 2$“ trivial. „$2 \implies 3$“: $K ≈ Δ(©C_0(K)) ≈ Δ(©C_0(L)) ≈ L$ from previous two tvrzeni. „$3 \implies 1$“: Given $h: K \rightarrow L$ homeomorphism, $f \mapsto f \circ h$ is isometry between Banach algebras.
 	\end{dukazin}
 \end{veta}
+
+% 13. 03. 2023
+
+\begin{definice}[Semi-simple Banach algebra]
+	$A$ commutative Banach algebra. It is semi-simple $≡$ $Δ(A)$ separates points of $A$. ($\Leftrightarrow \bigcap \{\Ker \phi | \phi \in Δ(A)\} = \{¦o\}$.)
+
+	\begin{poznamkain}
+		Semi-simple $\implies$ commutative. (Semi-simple and $x·y ≠ y·x \implies \exists \phi \in Δ(A): φ(x)·φ(y) = φ(x·y) ≠ φ(y·x) = φ(y)·φ(x)$ \lightning.)
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	$A, B$ Banach algebras, $B$ is semi-simple, then every (algebra) homomorphism $Φ: A \rightarrow B$ is continuous.
+
+	\begin{dukazin}
+		Use Closed graph theorem. Pick $x_n \rightarrow x$, $φ(x_n) \rightarrow y$. Wanted „$Φ(x) = y$“ ($\Leftrightarrow \forall φ \in Δ(B): φ(Φ(x)) = φ(y)$). For $φ \in Δ(B)$ we have $φ(y) = \lim_n φ(Φ(x_n)) \overset{φ∘Φ \in \Delta(A) \subseteq A^*}= φ∘Φ(\lim_n x_n) = φ(Φ(x))$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$(A, \|·\|)$ semi-simple Banach algebra and $(A, \| |·| \|)$ is Banach algebra (with other norm), then $\|·\|$ and $\| |·| \|$ are equivalent.
+
+	\begin{dukazin}
+		We have that $\id:(A, \| |·| \|) \rightarrow (A, \|·\|)$ is algebra homomorphism, so continuous by previous theorem. Similarly inverse is continuous (semi-simplicity doesn't depend on norm). So, $\id$ is isomorphism.
+	\end{dukazin}
+\end{dusledek}
+
+\section{Gelfand transformation}
+\begin{definice}[Gelfand transformation]
+	$A$ Banach algebra. For $x \in A$ we define $\hat{x}: Δ(A) \rightarrow ®C$, $\hat{x}(φ) := φ(x)$. We say that $\hat{x}$ is Gelfand transformation of $x$.
+
+	\begin{poznamka}
+		$\hat{x} \in ©C_0(Δ(A))$.
+
+		$A = ©C_0(L) \implies Δ(A) = \{δ_x | x \in L\} \implies \forall f \in A: \hat{f}(δ_x) = f(x), x \in L$. So, $\hat{f} = f$.
+
+		$A = L_1(®R^d) \implies Δ(A) = \{e^{it·x}  | x \in ®R\} \subseteq L_∞(®R^d) = A^*$ and $\hat{f}$ is Fourier transformation.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}
+	$A$ commutative Banach algebra, $x \in A$. Then
+
+	\begin{itemize}
+		\item $A$ has a unit $\implies$ $ς(x) = \Rang \hat{x}$;
+		\item $A$ doesn't have a unit $\implies$ $ς(x) = \Rang \hat{x} \cup \{0\}$;
+		\item $\|\hat{x}\|_∞ = r(x) = \sup\{|λ| | λ \in \sigma(x)\}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„a) $\subseteq$“: $λ \in ς(x) \Leftrightarrow (λ·e - x)^{-1}$ does not exists $\implies$ (Lemma above) $(λ e - x)A$ is proper ideal $\implies$ $\exists φ \in Δ(A): φ|_{(λ e - x)A} ≡ 0$ $\implies \exists φ \in Δ(A): 0 = φ(λ e - x) = λ - φ(x) = λ - \hat{x}(φ)$ $\implies λ \in \Rang \hat{x}$.
+
+		„$\supseteq$“ follows from Tvrzeni above, $φ(x) \in ς(x)$ for $φ \in Δ(A)$.
+
+		„b)“ For $x \in A:$
+		$$ ς(x) = ς_{A_e}((x, 0)) \overset{\text{a)}}= \Rng \hat{(x, 0)} = \(\{\tilde φ | φ \in Δ(A) \cup \{0\}\}\) = $$
+		$$ = \{φ(x) | φ \in Δ(A) \cup \{0\}\} = \Rang \hat{x} \cup \{0\}. $$
+
+		„c)“ $\|\hat{x}\|_∞ = \sup\{|λ| | λ \in \Rang \hat{x}\} = \sup\{|λ| | λ \in \Rang \hat{x} \cup \{0\}\} = \sup\{|λ| | λ \in ς(x)\} = r(x)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Gelfand transformation of algebra]
+	$A$ Banach algebra, then $Γ: A \rightarrow ©C_0(Δ(A))$, $Γ(x) := \hat{x}$ is the Gelfand transformation of $A$.
+\end{definice}
+
+\begin{veta}
+	$A$ commutative Banach algebra, $Γ$ Gelfand transformation. Then
+
+	\begin{itemize}
+		\item $Γ$ is algebra transformation, continuous, $\|Γ\| ≤ 1$;
+		\item $Γ(A)$ separates the points of $Δ(A)$;
+		\item $Γ$ is one-to-one $\Leftrightarrow$ $A$ is semi-simple;
+		\item $Γ$ is an isomorphism into $\Leftrightarrow$ $\exists K > 0: \|x^2\| ≥ K·\|x\|^2$, $x \in A$; ($\Leftrightarrow$ $Γ$ is one-to-one and $Γ(A)$ is closed;)
+		\item $Γ$ is an isometry into $\Leftrightarrow$ $\|x^2\| = \|x\|^2$, $x \in A$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„a)“: $Γ$ is linear (obvious), $Γ$ preserves multiplication (obvious). Finally, $\|Γ(x)\|_∞ = \|\hat{x}\|_∞ = r(x) ≤ \|x\|$. So $\|Γ\| ≤ 1$.
+
+		„b)“: Let $φ ≠ ψ \in Δ(A)$ and $x \in A: \hat{x}(φ) = φ(x) ≠ ψ(x) = \hat{x}(ψ)$.
+
+		„c)“: $Γ(x) = 0 \Leftrightarrow \hat{x}(φ) = 0, φ \in Δ(A) \Leftrightarrow φ(x) = 0, φ \in Δ(A)$. So, $Γ$ is one-to-one $\Leftrightarrow \forall x ≠ 0\ \exists φ \in Δ(A): φ(x) ≠ 0 \Leftrightarrow A$ is semi-simple.
+
+		„d) second“: $Γ$ is isomorphism into $\Leftrightarrow$ $Γ$ is bijection between $A$ and $Γ(A)$ $\land$ $Γ(A)$ is closed. ($Γ(A)$ is closed, then we use Open mapping theorem; if $Γ$ is isomorphism, $Γ(A)$ is a Banach space.).
+
+		„d) + e), $\implies$“: Suppose $\exists c > 0$: $\|Γ(x)\| ≥ c·\|x\|$, $x \in A$. Then $\forall x \in A: \|x^2\| \overset{\text{a)}}≥ \|Γ(x^2)\| = \|Γ(x)\|^2 ≥ c^2·\|x\|^2$.
+
+		„d) + e), $\impliedby$“: Let d) hold with $K$ (this holds in every algebra). Then (proven by induction)
+		$$ \forall x \in A: \|x^{2^n}\| ≥ K^{2^{n - 1}} \|x\|^{2^n}, \qquad n \in ®N. $$
+		$$ \implies \sqrt[2^n]{\|x^{2^n}\|} ≥ K^{1 - 2^{-n}} \|x\|, $$
+		where left side converges (by Beurling) to $r(x)$ and right side converges to $\|x\|$. So $r(x) ≥ K·\|x\|$ and from previous theorem $r(x) ≥ \|\hat{x}\|_∞ = \|Γ(x)\|$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{$C^*$-algebras}
+\begin{definice}[Involution]
+	$A$ is a Banach algebra. Involution is a mapping $*: A \rightarrow A$ such that
+	$$ \forall x, y \in A\ \forall λ \in ®C: $$
+	$$ (x + y)^* = x^* + y^*, \qquad (λx)^* = \overline{λ} x^*, \qquad (xy)^* = y^*·x^*, \qquad (x^*)^* = x. $$
+\end{definice}
+
+\begin{definice}[$C^*$-algebra]
+	Banach algebra with involution $*$ is a $C^*$-algebra, if
+	$$ \forall x \in A: \|x·x^*\| = \|x\|^2, x \in A. $$
+\end{definice}
+
+\begin{definice}[Self-adjoint element, normal element]
+	For $A$ with involution $*$ and $x \in A$ we say that $x$ is self-adjoint $≡$ $x = x^*$, and $x$ is normal $≡$ $x·x^* = x^*·x$.
+\end{definice}
+
+\begin{tvrzeni}[Properties]
+	$A$ Banach algebra with involution, $x \in A$. Then
+
+	\begin{itemize}
+		\item $e$ is left/right unit $\implies$ $e$ is unit and $e = e^*$. ($e$ is left unit $\Leftrightarrow$ $e^*$ is right unit. So there is unit.)
+		\item $A$ is $C^*$-algebra $\Leftrightarrow$ $\|x·x^*\| ≥ \|x\|^2$, $x \in A$. Then $\|x^*\| = \|x\|$, $x \in A$. („$\implies$“: clear, „$\impliedby$“: Then $\forall x \in A: \|x\|^2 ≤ \|x·x^*\| ≤ \|x\|·\|x^*\|$, so $\|x\| ≤ \|x^*\|$, and applying to $x^*$ we get $\|x^*\| ≤ \|x\|$. But then we have $\|x·x^*\| ≤ \|x\|·\|x^*\| = \|x\|^2$.)
+		\item Let $A$ has a unit. then $x^{-1}$ exists $\Leftrightarrow$ $(x^*)^{-1}$ exists. Then $(x^*)^{-1} = (x^{-1})^*$. („$\implies$“: $x^*·(x^{-1})^* = (x^{-1}x)^* = e^* = e$, analogically $(x^{-1})^* x^* = e$. „$\impliedby$“: Apply the proven part to $x^*$.)
+		\item $λ \in ς(x) \Leftrightarrow \overline{λ} \in ς(x^*)$. ($A$ has a unit: $λ \notin ς(x) \Leftrightarrow \exists(λe - x)^{-1} \Leftrightarrow \exists\((λ e - x)^*\)^{-1} \Leftrightarrow \overline{λ} \notin ς(x^*)$. If $A$ has not a unit, then we use previous sentence and next theorem?)
+		\item $x + x^*$, $x^*·x$, $x·x^*$, $i·(x - x^*)$ are self-adjoint. (Easy, omitted.)
+		\item $\exists! u, v \in A$ self-adjoint: $x = u + i·v$. Then $x^* = u - i·v$, and $x$ is normal $\Leftrightarrow$ $uv = vu$.
+			(„Existence“: $u := \frac{1}{2} (x + x^*), v:= \frac{1}{2i}(x - x^*)$. Then $x = u + iv$. „Formulas“: $(u + i·v)^* = u^* + \overline{i} v^*$. „Uniqueness“: Pick $a, b \in A_{sa}: x = a + i·b$. Then $a + i·b = x = u + i·v$, $a - i·b = x^* = u - i·v$. By subtracting or summing equation we get $a = u$ and $b = v$. „Normality“: $x$ normal $\Leftrightarrow$ $(u + i·v)(u - i·v) = (u - i·v)(u + i·v)$ $\Leftrightarrow$ $-i·u·v + i·v·u = i·u·v - i·v·u$ $\Leftrightarrow$ $u·v = v·u$.)
+	\end{itemize}
+\end{tvrzeni}
+
+% 14. 03. 2023
+
+\begin{veta}
+	$A$ is $C^*$-algebra, $x \in A$ is normal. Then $r(x) = \|x\|$.
+
+	\begin{dukazin}
+		„Step 1: $\|x^2\| = \|x\|^2$“:
+		$$ \|x\|^4 = \|x^* x\|^2 = \|(x^*x)^* (x^*x)\| = \|x^*x x^* x\| = \|x^*x^*x x\| = \|(x x)^* x x\| = \|x x\|^2 = \|x^2\|^2. $$
+		Thus inductively, we obtain $\|x^{2^k}\| = \|x\|^{2^k}$, $k \in ®N$. Thus, Beurling gives $r(x) = \lim_k \sqrt[2^k]{\|x^{2^k}\|} = \|x\|$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$A$ (Banach) algebra with involution. Then there is at most one norm $\|·\|$ on $A$, such that $(A, \|·\|)$ is $C^*$-algebra.
+
+	\begin{dukazin}
+		If $\|·\|_1$ and $\|·\|_2$ are norms on $A$ such that $(A, \|·\|)$ is $C^*$-algebra, then by previous theorem
+		$$ \forall x \in A: \|x\|_1^2 = \|x^* x\|_1 = r(x^* x) = \|x^* x\|_2 = \|x\|_2^2. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	$(A, \|·\|)$ Banach algebra.
+
+	\begin{itemize}
+		\item $(a, \lambda)^* = (a^*, \overline{\lambda})$, $(a, \lambda) \in A_e$ defines an involution on $A_e$. (Trivial.)
+		\item If $A$ is $C^*$-algebra, then on $A_e$ there exists a norm $\| |·| \|$ (equivalent to the norm from $A \oplus_1 ®K$) such that $(A_e, \| |·| \|)$ is $C^*$-algebra and $\| |(a, 0)| \| = \|a\|$, $a \in A$.
+	\end{itemize}
+\end{veta}
+
+\begin{veta}
+	$A$ is $C^*$-algebra, $x \in A$. Then
+	
+	\begin{itemize}
+		\item $x = x^* \implies ς(x) \subseteq ®R$;
+		\item $A$ has a unit and $x^* = x^{-1}$ (that is, $x$ is unitary) $\implies$ $ς(x) \subseteq \{λ | |λ| = 1\}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		By previous theorem, WLOG $A$ has a unit.
+
+		„a)“: Let $\alpha + i\beta \in ς(x)$, $\alpha, \beta \in ®R$. We want $\beta = 0$. Trick: $x_t := x + i·t·e$, $t \in ®R$. Then
+		$$ \alpha + i·(\beta + t) \in ς(x_t) (\impliedby (\alpha + i(\beta + t))e - x_t = (\alpha + i·\beta)e - x), $$
+		$$ \alpha^2 + (\beta + t)^2 = |\alpha + i(\beta + t)|^2 ≤ \|x_t\|^2 = \|x_t^* x_t\| = \|(x - i·t·e)·(x + i·t·e)\| = \|x^2 + (t·e)^2\| ≤ \|x^2\| + t^2. $$
+		So, $\alpha^2 + (\beta + t)^2 - t^2 ≤ \|x^2\|$, $t \in ®R$ $\implies$ $\beta = 0$ (Otherwise $LHS \rightarrow +∞$ for $t \rightarrow ±∞$.)
+
+		„b)“: ($\|e\| = \|e^2\| = \|e\|^2$.) $1 = \|e\| = \|x^*x\| = \|x\|^2$, so $\|x\| = 1$. Then, for $λ \in ς(x)$, we have $|λ| ≤ \|x\| = 1$. On the other hand $\frac{1}{λ} \in ς(x^{-1})$ (because if not, then $\frac{1}{λ}e - x^{-1}$ ha inverse $\implies$ $λ e - x = (λ e - x)x^{-1}x = (λ x^{-1} - e)x = -λ (\frac{1}{λ}e - x^{-1})x$ $\implies$ $λ e - x$ has inverse.) So
+		$$ \left|\frac{1}{λ}\right| ≤ \|x^{-1}\| = \|x^*\| = \|x\| = 1. $$
+
+
+	\end{dukazin}
+\end{veta}
+
+% 20. 03. 2023
+
+\begin{definice}
+	$A, B$ are $C^*$-algebras, then $Φ: A \rightarrow B$ is $*$-homomorphism if $Φ$ is homomorphism preserving $*$ (that is, $Φ(x^*) = (Φ(x))^*$).
+\end{definice}
+
+\begin{dusledek}
+	Let $A$ be a $C^*$-algebra and $Φ \in Δ_A$. Then $Φ$ is $*$-homomorphism.
+
+	\begin{dukazin}
+		„If $x = x^*$“, then $Φ(x) \in ς(x) \subseteq ®R$, so $Φ(x^*) = Φ(x) = \overline{Φ(x)}$.
+
+		„In general“, if $x = u + i·v$ ($u = u^*$, $v = v^*$), then $Φ(x^*) = Φ(u - i·v) = Φ(u) - i·Φ(v) = \overline{Φ(u) + i·Φ(v)} = \overline{Φ(x)}$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}[Automatical continuous]
+	Let $A, B$ be $C^*$-algebras, $Φ: A \rightarrow B$ is $*$-homomorphism. Then $Φ$ is continuous and $\|Φ\| ≤ 1$.
+
+	\begin{dukazin}
+		$$ \forall x \in A: \|Φ(x)\|^2 = \|Φ(x)^*·Φ(x)\| = r(Φ(x^*)·Φ(x)) = r(Φ(x^*x)) \overset{*}= r(x^* x) = \|x^*x\| = \|x\|^2.  $$
+		Thus it suffices to show that (by following lemma)
+		$$ ς(Φ(x^* x)) \subseteq ς(x^* x) \cup \{0\}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}
+	Let $A, B$ be Banach algebras, $Φ: A \rightarrow B$ algebra homomorphism. Then $\forall x \in A: ς_B(φ(x)) \subseteq ς_A(x) \cup \{0\}$.
+
+	\begin{dukazin}
+		Consider $\tilde Φ: A_e \rightarrow B_e$ defined as $\tilde Φ(a, λ) := (Φ(a), λ)$. Then $\tilde Φ$ is algebra homomorphism preserving unit. Moreover $ς_B(Φ(x)) \subseteq ς_{B_e}((Φ(x), 0)) \cup \{0\}$ and $ς_{A_e}((x, 0)) \subseteq ς_A(x) \cup \{0\}$. Thus, WLOG $A, B$ have units and $Φ(e_A) = e_B$.
+
+		But then for $λ ≠ 0$ and $x \in A: λ e - x$ has inverse in $A$, then $Φ(λ e - x) = λ Φ(e) - Φ(x)$ has inverse in $B$. So, $λ \notin ς_A(x) \cup \{0\} \implies \lambda \notin ς_B(Φ(x))$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Gelfand–Naimark]
+	$A$ commutative $C^*$-algebra. Then the Gelfand transformation $Γ: A \rightarrow ©C_0(Δ(A))$ is isometric $*$-isomorphism onto.
+
+	\begin{dukazin}
+		By proposition above, $Γ$ is algebra homomorphism, $\|Γ\| ≤ 1$ and from theorem above $\|Γ(x)\|_∞ = r(x)$, $x \in A$. „$Γ$ is $*$-homomorphism“:
+		$$ \forall a \in A\ \forall φ \in Δ(A): Γ(a^*)(φ) = φ(a^*) = \overline{(φ(a))} = \overline{Γ(a)}(φ). $$
+		„$Γ$ is isometry“:
+		$$ \forall x \in A: \|Γ(x)\|^2 = \|\overline{Γ(x)}·Γ(x)\| = \|Γ(x^*x)\| = r(x^*x) = \|x^x\| = \|x\|^2. $$
+		„$Γ$ is onto“: $Γ(A)$ is Banach space so $Γ(A) \subseteq ©C_0(Δ(A))$ is closed and $*$-subalgebra. And $Γ(A)$ separates points of $Δ(A)$. So from Stone–Weierstrass theorem ($A \subset ©C_0(K)$ is $*$-subalgebra separating the points, then $\overline{A}^{\|·\|} = ©C_0(K)$) $Γ(A) = ©C_0(Δ(A))$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$A, B$ commutative $C^*$-algebras. Then the following items are equivalent:
+
+	\begin{itemize}
+		\item $A$ and $B$ are isometrically $*$-isomorphic;
+		\item $A$ and $B$ are algebraically isomorphic;
+		\item $Δ(A)$ and $Δ(B)$ are homeomorphic.
+	\end{itemize}
+
+	\begin{dukazin}
+		„2. $\Leftrightarrow$ 3.“ follows from theorem above (where it is proved for $©C_0(K)$-spaces). „1. $\implies$ 2.“: trivial.
+
+		„3. $\implies$ 1.“: easy for $©C_0(K)$-spaces, because if $h: K \rightarrow L$ is homeomorphism, then $f \mapsto f \circ h$ is isometrical $*$-isomorphism.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}
+	$A$ Banach algebra, $M \subset A$. Then $alg(M) = \bigcap \{B \supseteq M | B \text{ is subalgebra of } A\}$.
+
+	\begin{poznamka}[Easy]
+		$$ = \{\sum_{i=1}^n \alpha_i \prod_{j=1}^m x_{ij} | n, m \in ®N, \alpha_i \in ®C, x_{ij} \in M\}. $$
+	\end{poznamka}
+
+	Moreover $\overline{alg} M = \bigcap \{B \supseteq M | B \text{ is closed subalgebra of } A\}$.
+
+	\begin{poznamka}[Easy]
+		$$ = \overline{alg M}^{\|·\|}. $$
+	\end{poznamka}
+\end{definice}
+
+\begin{tvrzeni}[Fact]
+	$A$ is $C^*$-algebra, $M \subset A$ is commutative and closed under $*$, then $\overline{alg} M$ is commutative $C^*$-subalgebra of $A$.
+\end{tvrzeni}
+
+\begin{veta}
+	$A, B$ are $C^*$-algebras, $h: A \rightarrow B$ is $*$-homomorphism, one-to-one. Then $h$ is isometry.
+
+	\begin{dukazin}
+		WLOG $A$ and $B$ have units and $h(e)$ is a unit ($(a, λ) \mapsto (h(a), λ)$ is one-to-one $*$-homomorphism). Suffices: $\forall x \in A$ self-adjoint: $\|x\| = \|h(x)\|$ ($\forall y \in A: \|h(y)\|^2 = \|h(y^*y)\| = \|y^* y\| = \|y\|^2$). Let $x \in A$ be self-adjoint. Put $A_0 := \overline{alg}\{e, x\} = \overline{\LO}\{e, x, x^2, x^3, …\}$ is commutative and $C^*$-subalgebra.
+
+		$$ B_y := \overline{alg}\{e, h(x)\} = \overline{\LO}\{e, h(x), h(x^2), …\} $$
+		is commutative and $C^*$-subalgebra. So, we have $A_0 \overset{h} \rightarrow B_0 \overset{Γ}\rightarrow ©C(Δ(B_0))$, $A_0 \overset{Γ}\rightarrow ©C(Δ(A_0))$. So there is $\tilde h: ©C(Δ(A_0)) \rightarrow ©C(Δ(B_0))$ one-to-one $*$-homeomorphism, $\tilde h(1) = 1$. So, it suffices to prove the following lemma.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Let $K, L$ be $T_2$ compact spaces, $φ: ©C(K) \rightarrow ©C(L)$ $*$-homomorphism, $φ(1) = 1$. Then $\exists α: L \rightarrow K$ continuous mapping such that $φ(f) := f ∘ α$, $f \in ©C(K)$.
+
+	Moreover, if $φ$ is one-to-one, then $α$ is onto and so $φ$ is isometry.
+
+	\begin{dukazin}
+		By proposition above $\|φ\| ≤ 1$ and $φ$ is continuous. Consider $φ^*: ©M(L) \rightarrow ©M(K)$. Then „$φ^*(Δ(©C(L)) \subseteq Δ(©C(K))$“:
+		$$ \forall h \in Δ(©C(L))\ \forall f, g: φ^*h(f g) = h(φ(f g)) = h(φ(f))h (φ(g)) = φ^*h(f) φ^*h(g). $$
+
+		So, we have: $L \overset{δ}\rightarrow Δ(©C(L)) \overset{φ^*}\rightarrow Δ(©C(K)) \overset{δ^{-1}} \rightarrow K$. So, $α(x) := δ^{-1}(φ^*(δ(x)))$, $x \in L$ is continuous from $L$ to $K$.
+
+		For this $α$ we have:
+		$$ \forall x \in L\ \forall f \in ©C(K): φ(f)(x) = δ_x(φ(f)) = (φ^* ∘ δ_x)(f) = f(δ^{-1} φ^* δ_x) = f(α(x)). $$
+
+		Moreover, „if $φ$ is one-to-one, then $α$ is onto“: Suppose $α(L) \subsetneq K \implies \exists f \in C(K) \setminus \{0\}: f|_{\alpha(L)} ≡ 0$. But then $φ(f) ≡ 0$, but $f ≠ 0$. \lightning ($φ$ should be one-to-one.) Thus $φ$ is isometry.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[GNS construction]
+	$A$ is $C^*$-algebra $\implies$ $\exists H$ Hilbert $\exists φ: A \rightarrow B(H)$ $*$-isomorphism into.
+
+	\begin{dukazin}[Sketch]
+		$f ≥ 0$ ($\sigma(f) ≥ 0$) on $A|_{\{a | f(a*a) = 0\}}$ constructs inner product $\<[x], [y]\> := f(y^* x)$. Put $H := \overline{A|_{\{a | f(a*a) = 0\}}}$. Then $φ(a)([x]) = [a x]$.
+	\end{dukazin}
+\end{poznamka}
+
+\section{Continuous calculus for formal elements of $C^*$-algebras}
+\begin{poznamka}
+	Idea: $φ(ς(x)) \ni f \mapsto f(x) \in A$.
+
+	For $A = C(K)$:
+	$$ g \in ©C(K), φ(ς(x)) \ni f \implies g \circ f \in C(K). $$
+
+	Let $A$ be $C^*$-algebra with a unit, $x \in A$ normal. Consider
+	$$ B = \overline{alg}\{e, x, x^*\} \in A \implies Γ_B: B \rightarrow ©C(Δ(B)) \land f(x) := Γ_B^{-1}(f∘Γ_B (x)), f \in ©C(ς_A(x)). $$
+	Problem is when $Γ_B(x) \subseteq ς_A(x)$.
+\end{poznamka}
 
 \end{document}

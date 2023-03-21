@@ -307,7 +307,7 @@
 	3, Ehrling interpolation to $L^p(0, T; V_2)$.
 
 	\begin{dukazin}[1.]
-		$u \in M$ extend to $(0, 2T)$ as $\tilde u(t) = u(t)$ if $t < T$ and $\tilde u(t) = u(2T - t)$ if $t > T$.
+		$u \in M$ extend to $(0, 2T)$ as $\tilde u(t) = u(t)$ if $t < T$ and $\tilde u(t) = u(2T - t)$ if $t > T$.
 		$$ \int_0^{2T} \|\tilde u(t)\|_{V_1}^p + \|\partial_t \tilde u(t)\|_{V_3} = 2 \int_0^T \|u\|_{V_1} + \|\partial_t u\|_{V_3} ≤ 2C^*. $$
 		$\forall 0 < \delta < T$ and $t \in (0, T)$, $u_\delta(t) = \int_0^\delta \tilde u(t + s) \phi_\delta(s) ds = \int_®R \tilde u(s) \phi_\delta(s - t)$, where $\phi \in C_0^∞(0, 1)$, $\phi ≥ 0$.
 
@@ -335,5 +335,123 @@
 \end{dukaz}
 
 \subsection{Trace theorem}
+
+% 13. 03. 2023
+
+\begin{veta}[Trace theorem]
+	Let $\Omega \in C^{0, 1}$. Then there exists a linear operator $\tr: W^{1, p}(\Omega) \hookrightarrow L^p(\partial \Omega)$ ($\hookrightarrow L^q(\partial \Omega), q = \frac{(d - 1)·p}{d - p}$) for all $p \in [1, ∞]$, such that for all $u \in C(\overline{\Omega})$ $\tr u = u|_{\partial \Omega}$.
+\end{veta}
+
+\begin{dukaz}[Trace theorem, part one: on cube for smooth functions]
+	$$ \int_{-1}^1\cdots\int_{-1}^1 |u(x_1, …, x_{d-1}, 0)|^q dx_1…dx_{d-1} = \int_{-1}^1 \cdots \int_{-1}^1 \int_0^1 \frac{d}{ds}|u(x_1, …, x_{d-1}, s)|^q ds dx_1…dx_{d-1} ≤ q·\int_{-1}^1…\int_{-1}^1 \int_0^1 |u|^{q - 1} |\nabla u| dx_1…dx_d ≤ q \|\nabla u\|_{L^p(\Omega)} · \| |u|^{q - 1}\|_{L^{p'}(\Omega)} \overset{\text{Sobolev}}≤ $$
+	$$ ≤ C(\Omega)·\|\nabla u\|_{L^p(\Omega)}·\|u\|_{W^{1, p}(\Omega)}^{q - 1} = C(q, p, \Omega) \|u\|_{W^{1, p}(\Omega)}^q. $$
+	We use $q = \frac{(d - 1)p}{d - p}$. Lemma: „Let $p < d$“, then for all $u \in C^1(some interior of cube?)$ there holds $\|u\|_{L^q("line")} ≤ C(p) \|u\|_{W^{1, p}(cube)}$.
+\end{dukaz}
+
+\begin{dukaz}[Trace theorem, general boundary]
+	\ 
+
+	\begin{definicein}
+		Let $\Omega \in C^{0, 1}$ and $f: \partial \Omega \rightarrow ®R$. We say that $f \in L^p(\partial \Omega)$ ($p \in [1, ∞]$) if $\forall i \in [N]$, $f \circ T \in L^p(-\alpha, \alpha)^{d - 1}$.
+	\end{definicein}
+
+	\begin{definicein}
+		Let $f \in L^1(\partial \Omega)$, $\{\phi_i\}$ be a partition of unity (smooth, compactly supported, $\sum_i \phi_i(x) = 1$) corresponding to $V_i$. Then
+		$$ \int_{\partial \Omega} f ds := \int_{\partial \Omega} \sum_{i=1}^N (f \phi_i) = \sum_{i=1}^N \int_{V_i} f \phi_i := \int_{(-\alpha, \alpha)^{d - 1}} f(T_i(y)) \sqrt{1 + |\nabla a_i|^2} \phi_i(T(y)). $$
+		$¦n := \frac{(\nabla a, 1)}{\sqrt{1 + |\nabla a_i|^2}}$ is outer unit normal vector (to $\partial \Omega$). (It exists for almost all $x \in \partial\Omega$.)
+	\end{definicein}
+
+	\begin{lemmain}[IBP]
+		Let $\Omega \in C^{0, 1}$ and $f \in C^1(\overline{\Omega})$. Then $\int_\Omega \frac{\partial f}{\partial x_i} dx = \int_{\partial \Omega} f u_i dS$.
+	\end{lemmain}
+\end{dukaz}
+
+\begin{dukaz}[Trace theorem, general boundary + Sobolev functions]
+	Case „$p > d$“: nothing to prove, $W^{1, p} \hookrightarrow C(\overline{\Omega})$.
+
+	Case „$p ≤ d$“: $C^1(\overline{\Omega})$ is dense in $W^{1, p}(\Omega)$, $\forall u \in W^{1, p}(\Omega)\ \exists \{u^n\}_{n=1}^∞ \subseteq C^1(\overline{\Omega}): u^n \rightarrow u$ in $W^{1, p}(\Omega)$. We have $u^n$ is well defined in $\partial \Omega$. So we define $\tr$ as the limit. It remains that the limit exists, so we show that „$u^n$ is Cauchy in $L^q(\partial \Omega)$“:
+	$$ \int_{\partial \Omega} |u^n - u^m|^q ds = \sum_i \int_{V_i} |u^n - u^m|^q \phi_i dS = \sum_i \underbrace{\int…\int}_{d-1} |u^n∘T_i\ - u^m∘T_i|^q \phi_i ∘ T_i \sqrt{1 + |\nabla a_i|^2} ≤ $$
+	$$ ≤ C(q, \Omega) \sum_{i=1}^N \|u^n ∘ T_i - u^m ∘ T_i\|_{W^{1, p}(cube)}^q ≤ C(\Omega, q, p) \|u^n - u^m\|^q_{W^{1, p}(\Omega)}. $$
+\end{dukaz}
+
+\begin{veta}[IBP for $W^{1, p}(\Omega)$]
+	Let $\Omega \in C^{0, 1}$, $u \in W^{1, p}(\Omega)$, $v \in W^{1, q}(\Omega)$, $W^{1, p}(\Omega) \hookrightarrow L^{q'}(\Omega)$ and $W^{1, q}(\Omega) \hookrightarrow L^{p'}$. Then
+	$$ \int_\Omega \frac{\partial u}{\partial x_i} v = - \int_\Omega \frac{\partial v}{\partial x_i} u dx + \int_{\partial \Omega} \tr(u) \tr(v) n_i dS. $$
+\end{veta}
+
+\begin{poznamka}
+	Question: If $u \in L^q(\partial \Omega)$, is there extension into $\Omega$ so that $u \in W^{1, p}(\Omega)$. So for $\tr: W^{1, p} \rightarrow Rande$ is $Range = L^q(\partial \Omega)$. And answer is NO.
+\end{poznamka}
+
+\begin{veta}
+	Let $\Omega \in C^{0, 1}$. $p \in (1, ∞]$, $s \in (\frac{1}{p}, 1]$. Then the trace $\tr$ is bounded map from $W^{s, p}(\Omega)$ to $W^{s - \frac{1}{p}, p}(\partial \Omega)$.
+
+	Moreover, $\exists \tr^{-1}: W^{s - \frac{1}{p}, p}(\partial  \Omega) \rightarrow W^{s, p}(\Omega)$, linear, bounded, and $\tr^{-1}(\tr u) = u$.
+
+	For $p = 1$, $\exists \tr^{-1}·L^1(\partial \Omega) \rightarrow W^{1, 1}$, $\tr(\tr^{-1}(u)) = u$. But this $\tr^{-1}$ is nonlinear!
+\end{veta}
+
+\begin{definice}[Sobolev-Stobodeckij spaces]
+	We say $u \in W^{s, p}(\Omega)$ for $s \in (0, 1)$ if
+	$$ \int_\Omega \int_\Omega \frac{|u(x) - u(y)|^p}{|x - y|^{d + sp}} dx dy < ∞. $$
+	Moreover $\|u\|_{s, p}^p = \|u\|_p^p + \int\int…$.
+\end{definice}
+
+\begin{definice}[Nikolski spaces]
+	…, $p \in [1, ∞)$, $s \in (0, 1)$, $u \in N^{s, p}(\Omega)$ if
+	$$ \forall i\ \forall h: \int_{2h} \frac{|u(x + h·e_i) - u(x)|^p}{h^{s·r}} dx < ∞. $$
+
+	\begin{poznamkain}[You can prove]
+		$W^{s, p}(\Omega) \hookrightarrow N^{s, p}(\Omega) \hookrightarrow W^{s - \epsilon, p}(\Omega)$ $\forall \epsilon > 0$.
+	\end{poznamkain}
+\end{definice}
+
+\section{Nonlinear elliptic equation as compact perturbation}
+\begin{poznamka}
+	$$ - Δu + g(u, \nabla u) = f \text{ in } Ω \land u = 0 \text{ on } \partialΩ. $$
+\end{poznamka}
+
+\begin{poznamka}
+	Case $g: ®R \rightarrow ®R$ continuous, $|g(s)| ≤ c(1 + |s|)^\alpha$, $\alpha \in [0, 1)$. Nem? if $u \in L^2(Ω) \implies g(u) \in L^2(Ω)$.
+
+	Apriori estimates:
+	$$ \int_Ω - Δu·u + g(u)·u = \int_Ω. $$
+	$$ \int_Ω |\nabla u|^2 ≤ \int_Ω |f|·|u| + c·|u|·(1 + |u|)^α ≤ \int_Ω |f|·|u| + \tilde c |u|^{1 + α}·1 + \tilde c ≤ $$
+	$$ ≤ ε \int_Ω |u|^2 + c(ε, α)\(\int_Ω |f|^2 + 1\) \implies \|u\|_{1, k}^2 ≤ \tilde c(α)(1 + \|f\|_2^2). $$
+\end{poznamka}
+
+\begin{lemma}
+	Let $Ω \in C^{0, 1}$, $α \in [0, 1)$. Then $\exists C(Ω, α)$, $\forall g \in L^2(Ω)$ $\exists u \in W_0^{1, 2}(Ω)$ $\|u\|_{1, 2} ≤ c(1 + \|f\|_2)$:
+	$$ \int_Ω \nabla u · \nabla φ = \int_Ω f·φ. $$
+
+	\begin{dukazin}
+		Define a new problem:
+		$$ - Δu = f - g(w) \text{ in } Ω, \qquad u = 0 \text{ on } \partial Ω. $$
+		For $w$ find $u$. Now we check that $M: L^2(Ω) \rightarrow L^2(Ω)$, $w \mapsto u$, satisfies assumptions from Schauder fixed-point theorem (and so there exists solution):
+
+		\begin{itemize}
+			\item $M$ is continuous (homework);
+			\item $M$ is compact: $w \in B_R(L^2(Ω)) \implies u \in \tilde B_{\tilde R}(W_0^{1, 2}(Ω))$ but $W_0^{1, 2}(Ω) \hookrightarrow \hookrightarrow L^2(Ω)$;
+			\item find a convex set $K$: $M(K) \subseteq K$. Here it will be proper ball:
+				$$ \exists R > 0: \|w\|_2 ≤ R \implies \|u\|_{1, 2} ≤ R: $$
+				$$ \int_Ω |\nabla u|^2 ≤ \int_Ω |f|·|u| + |g(w)|·|u| ≤ ε\|u\|_2^2 + c(2)(\|f\|_2^2 + \|g(w)\|_2^2), $$
+				$$ \|u\|_{1, 2}^2 ≤ C(\|f\|_2^2 + \|g(w)\|_2^2) ≤ $$
+				$$ ≤ c·\|f\|_2^2 + c·\int_Ω (1 + |w|)^{2α} ≤ c\|f\|_2^2 + \delta \|w\|_2^2 + c(δ). $$
+				$$ \|w_2^2 ≤ R^2 \implies \|u\|_{1, 2}^2 ≤ \delta R^2 + c·\|f\|_2^2 + c(δ) ≤ R^2. $$
+				Set $δ = \frac{1}{2} ≤ \frac{R^2}{2} + c(\|f\|_2^2 + c(δ)) ≤ R^2$.
+		\end{itemize}
+
+		Uniqueness?? $u_1, u_2$ solutions: ($\phi = u_1 - u_2 \in W_0^{1, 2}(\Omega)$)
+		$$ \int_Ω \nabla (u_1 - u_2)·\nabla φ = \int_Ω (g(u_2) - g(u_1)) φ, $$
+		$$ \lambda_1 \|? u_2\|_2^2 ≤ \int_Ω |\nabla u_1 - \nabla u_2|^2 = \int_Ω(g(u_2) - g(u_1))(u_1 - u_2) ≤ ελ_1 \|u_1 - u_2\|_2^2. $$
+		So if $g$ is non-decreasing, then uniqueness holds. Moreover it holds, when $-g' < \lambda_1$.
+	\end{dukazin}
+\end{lemma}
+
+TODO? % example of nontrivial solution of $Δu = ||u||^{q-2} · u$ or something like this. And $-Δu + e^u = f \text{ in } Ω, u=0 \text{ on } \partial Ω$.
+
+% 20. 03. 2023
+
+TODO!!!
 
 \end{document}

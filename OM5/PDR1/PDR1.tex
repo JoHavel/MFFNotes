@@ -131,7 +131,7 @@ TODO?
 	$$ \overline{\{u \in C^∞(\Omega)\}}^{||·||_{k, p}} = W^{k, p}(\Omega). $$
 
 	\begin{upozorneni}
-		$$ \overline{\{u \in C^∞(\Omega)\}}^{||·||_{k, p}} \subsetneq W^{k, p}(\Omega). $$
+		$$ \overline{\{u \in C^∞(\overline{\Omega})\}}^{||·||_{k, p}} \subsetneq W^{k, p}(\Omega). $$
 	\end{upozorneni}
 
 	\begin{dukazin}
@@ -431,8 +431,8 @@ TODO!!!
 	Let $L u = -\Div(A \nabla u)$ with $A$ elliptic, bounded and symmetric, $\Gamma_1 ≠ \O$, $\Gamma = \O$, $f \in V^*$, $g \in L^2(\Gamma_2)$, $u_0 \in W^{1, 2}(\Omega)$. Then the following are equivalent:
 	\begin{itemize}
 		\item $u$ is a weak solution;
-		\item $\nabla u = A^{-1} ¦T$, where $¦T$ minimizes $\int \frac{A^{-1}¦T·¦T}{2} = \nabla u_0 ¦T$ over the set $\tilde V := \{¦T \in L^2(\Omega, ®R^d)\}$, $\forall \phi \in V$.
-			$$ \int_\Omega ¦T · \nabla \phi = <f, \phi> + \int_{\Gamma_2} g \phi \Leftrightarrow - \Div ¦T = f \text{ in } \Omega, T ¦u = g \text{ on } \Gamma_2 $$
+		\item $\nabla u = A^{-1} ¦T$, where $¦T$ minimizes $\int \frac{A^{-1}¦T·¦T}{2} - \nabla u_0 ¦T$ over the set $\tilde V := \{¦T \in L^2(\Omega, ®R^d)\ |\ \forall \phi \in V: \int_\Omega ¦T·\nabla \phi = \<f, \phi\> + \int_{\Gamma_2} g \phi\}$.
+			$$ \(\int_\Omega ¦T · \nabla \phi = <f, \phi> + \int_{\Gamma_2} g \phi \Leftrightarrow - \Div ¦T = f \text{ in } \Omega, T ¦u = g \text{ on } \Gamma_2\) $$
 	\end{itemize}
 
 	\begin{dukazin}[„$1 \implies 2$“]

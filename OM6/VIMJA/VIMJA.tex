@@ -209,4 +209,68 @@ TODO? % WTF?
 
 TODO? % Examples
 
+% 16. 03. 2023
+
+TODO? % Examples
+
+\begin{dusledek}
+	$X = ®R^n$, $U \subset X$ open, $f: U \rightarrow ®R$ convex, $x \in U$. Then $f'_F(x)$ exists $\Leftrightarrow$ $\forall i \in [n]: \frac{\partial f}{\partial x_i}(x)$ exists.
+
+	\begin{dukazin}
+		„$\implies$“ ?. „$\impliedby$“:
+		$$ x^* \in \partial f(x) \implies x^*(e_i) ≤ \partial_{e_i}^+ f(x) = \frac{\partial f}{\partial x_i}(x) \land x^*(-e_i) ≤ \partial_{-e_i}^+ f(x) = - \frac{\partial f}{\partial x_i}(x) \implies x^*(e_i) = \frac{\partial f}{\partial x_i}(x) \implies $$
+		$\implies$ $\partial f(x)$ contains at most one point $\implies$ $f$ contains exactly one point
+		$\implies f'_G(x)$ exists $\implies$ (locally Lipschitz, $\dim ®R^n < ∞$) $f'_F(x)$ exists.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}[Monotone, upper semi-continuous (usc)]
+	$X$ Banach space, $D \subset X$, $T: D \rightarrow 2^{x^*}$ is monotone if $\forall x \in D: Tx \subset X^*$, $Tx ≠ \O$ and $\forall x, y \in D\ \forall x^* \in Tx\ \forall y^* \in Ty: \<x^* - y^*, x - y\> ≥ 0$.
+
+	\begin{poznamka}
+		$f: (a, b) \rightarrow ®R$ is non-decreasing $\Leftrightarrow$ $\forall x, y \in (a, b): (f(x) - f(y))(x - y) ≥ 0$
+	\end{poznamka}
+
+	
+	Let $S$ and $T$ be topological spaces. Then $φ: S \rightarrow 2^T$ is usc (upper semi-continuous) $≡$ $\forall U \subset T$ open: $\{x \in S | φ(x) \subset U\}$ is open in $S$.
+	
+	\begin{poznamka}[This we will not use]
+		lsc $≡$ $\forall U \subset T$ open $\{x \in S | φ(x) \cap U ≠ \O\}$ is open.
+	\end{poznamka}
+\end{definice}
+
+\begin{tvrzeni}
+	$X$ Banach space, $U \subset X$ open convex, $f: U \rightarrow ®R$ convex continuous. Then $\partial f: U \rightarrow 2^{X^*}$ is
+
+	\begin{itemize}
+		\item[a)] monotone;
+		\item[b)] locally bounded;
+		\item[c)] usc from $\|·\|$ to $w^*$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„a)“: $x, y \in U$, $x^* \in \partial f(x)$, $y^* \in \partial f(y)$. Then $x^*(y - x) ≤ f(y) - f(x)$, $y^*(x - y) ≤ f(x) - f(y)$.
+		$$ x^*(y - x) + y^*(x - y) ≤ 0, \qquad (x^* - y^*)(x - y) ≥ 0. $$
+
+		„b)“: $f$ is locally Lipschitz:
+		$$ x \in U \implies \exists z > 0, L > 0, B(x, z) \subset U, $$
+		$f$ is $L$-Lipschitz on $B(x, z)$ $\implies$
+		$$ \forall y \in B(x, z): \partial f(y) \subset L·B_{X^*}. $$
+
+		„c)“ $G \subset X^*$ $w^*$-open, $x \in U$, $\partial f(x) \subset G$. We want: „$\exists z > 0: B(x, r) \subset I$ and $\forall y \in B(x, z): \partial f(y) \subset G$“. It's enough to show „$\forall (x_n) \subset U, x_n \rightarrow x, \exists n_0\ \forall n ≥ n_0: \partial f(x_n) \subset G$“.
+
+		We show it by contradiction: Assume not, i.e., $\exists (y_n) \subset U$, $y_n \rightarrow x$, $\forall n: \partial f(y_n) ≠ 0$. Fix $y^*_n \in \partial f(y_n) \setminus G$. By b) we know ? $\implies$ $\exists R > 0: \forall n: y^*_n \in \overline{B(0, R)}$ (in $X^*$).
+
+		Let $y^*$ be a $w^*$ cluster point of $(y^*_n)$. Thus „$y^* \in \partial f(x)$“: If not, $\exists y \in U: y^*(y - x) > f(y) - f(x)$ $\implies ε > 0: y^*(y - x) ≥ f(y) - f(x) + ε$, now $y^*_n(y - x + y_n - y_n) ≤ f(y - x + y_n) - f(y_n)$ ($y - x + y_n \in U$ for large $n$).
+
+		So, for $n$ large enough:
+		$$ y^*_n(y - x) ≤ f(y - x + y_n) - f(y_n) $$
+		with $n \rightarrow ∞$ $LHS$ has cluster point $y^*(y - x)$ and $RHS \rightarrow f(y) - f(x)$
+		$$ \implies y^*(y - x) ≤ f(y) - f(x). \text{ \lightning} $$
+		(But $y^* \in X^* \setminus S \land y^* \in \partial f(y) \subset S$.)
+	\end{dukazin}
+\end{tvrzeni}
+
+
+
 \end{document}
