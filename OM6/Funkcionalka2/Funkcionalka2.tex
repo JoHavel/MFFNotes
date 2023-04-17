@@ -933,4 +933,275 @@
 	Problem is when $Γ_B(x) \subseteq ς_A(x)$.
 \end{poznamka}
 
+% 21. 03. 2023
+
+\begin{lemma}
+	$A$ is $C^*$-algebra, $B \subset A$ is $C^*$-algebra. Then
+
+	\begin{itemize}
+		\item If $A$ and $B$ have the same unit $\implies$ $\forall x \in B: \exists x^{-1} \in B \Leftrightarrow \exists x^{-1} \in A$;
+		\item $\forall x \in B:$ $B$ has a unit, which is not a unit in $A$ $\implies$ $ς_A(x) = ς_B(x) \cup \{0\}$, otherwise $ς_A(x) = ς_B(x)$;
+		\item (In any case $ς_B(x) = ς_A(x)$).
+	\end{itemize}
+
+	\begin{dukazin}
+		„1.“: Pick $x \in B$. „$\implies$“: easy. „$\impliedby$“: If $x^{-1}$ exists in $A$, then $(x^* x)^{-1}$ exists in $A$. So $0 \notin ς_A(x^* x) = ς_B(x^* x) \implies (x^*x)^{-1}$ exists in $B$. $x^{-1} = x^{-1}(x^*)^{-1} x^* = x^{-1} (x^* x)^{-1} x^*$.
+
+		„2.“: If $A$ and $B$ have the same unit, we have $ς_A(x) = ς_B(x)$. WLOG $A$ has a unit $e \notin B$ (Because $B \in A_e$ and $ς_{A_e}(x) = ς_A(x)$ if $A$ has not unit). Then $ς_A(x) = ς_{B + \LO(e)}(x) \overset*= ς_{B_e}((x, 0)) =$ $ς_B(x)$ if $B$ has no unit and $ς_B(x) \cup \{0\}$ if $B$ has a unit.
+
+		$*$: $φ: B + \LO(e) \rightarrow B_e, b + λ e \mapsto (b, λ)$ is algebra homomorphism.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $A$ be a $C^*$-algebra with a unit, $x \in A$ normal, $f \in ©C(ς(x))$. Then the mapping
+	$$ Φ: ©C(ς(x)) \rightarrow A, \qquad Φ(g) := g(x) := Γ_B^{-1}(g∘Γ_B(x)) $$
+	has the following properties:
+
+	\begin{enumerate}
+		\item $Φ$ is isometric $*$-isomorphism onto $B = \overline{alg}\{e, x, x^*\}$, $Φ(1) = e$ and $Φ(\id) = x$.
+		\item If $ψ: ©C(ς(x)) \rightarrow A$ is $*$-homomorphism, $ψ(1) = e$, $ψ(\id) = x$, then $ψ = Φ$.
+		\item If $g \in ©H(Ω)$, where $Ω \subset ®C$ open, $ς(x) \subset Ω$, then $Φ(g|_{ς(x)}) = ψ(g)$, where $ψ$ is from holomorphic calculus.
+		\item $f(x)^{-1}$ exists in $A$ $\Leftrightarrow$ $f ≠ 0$ on $ς(x)$. In this case $f(x)^{-1} = \(\frac{1}{f}\)(x)$.
+		\item $ς(f(x)) = f(ς(x))$.
+		\item $\forall g \in ©C(f(ς(x))): (g∘f)(x) = g(f(x))$.
+		\item $\forall y \in A: yx = xy: y f(x) = f(x) y$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: Recall theorem above $Γ_B(x): Δ(B) \rightarrow ©C$ continuous and onto $ς_B(x)$. And it is „one-to-one“:
+		$$ \forall φ_1, φ_2 \in Δ(B): φ_1(x) = φ_2(x) \implies φ_1 = φ_2 \text{ on } B. $$
+
+		So $Γ_B(x): Δ(B) \rightarrow ς(x)$ is homeomorphism, then $©C(ς(x)) \ni g \mapsto g∘Γ_B(x) \in ©C(Δ(A))$ is isometric $*$-isomorphism onto. Thus $©C(ς(x)) \ni g \mapsto Γ_B^{-1}(g∘Γ_B(x)) \in B$ is isometric $*$-isomorphism onto.
+
+		Moreover, $Φ(1) = Γ_B^{-1}(1) = e$ ($\forall φ \in Δ(B): φ(e) = 1$). $Φ(\id) = Γ_B^{-1}(Γ_B(x)) = x$.
+
+		„2.“: By theorem above, $ψ$ is continuous (because it is $*$-isomorphism), moreover $ψ = Φ$ on complex polynomials. Since complex polynomials are dense in $©C(ς(x))$ by (S-W), by continuity $Φ = ψ$ everywhere.
+
+		„3.“: Omitted (on polynomials, on inverse, on rationals, rationals are dense in $©H$).
+
+		„4.“: Since $f(x) \in B$, we have $f(x)^-1{}$ exists in $B$ $\Leftrightarrow$ $f(x)^{-1}$ exists in $A$ $\overset{Φ \text{ is ?}}\Leftrightarrow$ $f^{-1}$ exists in $©C(ς(x))$ $\Leftrightarrow$ $f ≠ 0$ on $ς(x)$. And if $f ≠ 0$ on $ς(x)$, then $f(x)^{-1} = Φ(f^{-1}) = Φ\(\frac{1}{f}\) = \(\frac{1}{f}\)(x)$.
+
+		„5.“: $f(x) \in B$, so $ς_A(f(x)) \overset{\text{Lemma}}= ς_B(f(x)) = ς_B(Φ(f)) \overset{Φ \text{is isomorphism}}= ς_{©C(ς(x))} = \Rang f = f(ς(x))$.
+		
+		„6.“: Omitted.
+
+		„7.“: Next time.
+	\end{dukazin}
+\end{veta}
+
+% 27. 02. 2023 (I wasn't there)
+
+TODO!!!
+
+% 03. 04. 2023
+
+\section{Borel measurable calculus}
+\begin{lemma}[Lax–Milgram]
+	$H$ Hilbert, $S: H \times H \rightarrow C$ sesquilinear, $\|S\| := \sup_{x, y \in S_H} |S(x, y)| < ∞$. Then $\exists! T \in ©L(H): \|T\| = \|S\| \land \<T x, y\> = S(x, y)$.
+
+	\begin{dukazin}
+		Fix $y \in H$. Then $H \ni x \mapsto S(x, y)$ is a point in $H^*$ $\implies$ $\exists! U(y) \in H: S(x, y) = \<x, U(y)\>$, $x \in H$. Then $U \in ©L(H)$, $\|U\| = \|S\|$.
+
+		„Linearity“: Easy:
+		$$ \forall y, z \in H, α \in ®K \implies \forall x \in H: \<x, U(α y + z)\> = S(x, α y + z) = \overline{α} S(x, y) + S(x, z) = \overline{α}\<x, U y\> + \<x, U z\>. $$
+
+		„$\|U\| ≤ \|S\|$“:
+		$$ \forall y \in H: \|Uy\|^2 = \<Uy, Uy\> = S(Uy, y) ≤ \|S\|·\|Uy\|·\|y\| \implies \|U y\| ≤ \|S\|·\|y\|. $$
+
+		„$\|U\| ≥ \|S\|$“:
+		$$ \forall x, y \in S_H: \|S(x, y)| = |\<x, Uy\>| ≤ \|x\|·\|U\|·\|y\| = \|U\|. $$
+
+		„Uniqueness“: Bounded operator is given by values of $\<T x, y\>$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	$H$ Hilbert, $T \in ©L(H)$ normal, $Φ: ©C(ς(T)) \rightarrow ©L(H)$ continuous ?.
+
+	\begin{itemize}
+		\item $\forall x, y \in H$: $μ_{x, y} \in M(ς(T))$ is the unique measure satisfying
+			$$ \int_{ς(T)} f dμ_{x, y} = \<Φ(f) x, y\>, \qquad f \in ©C(ς(T)). $$
+		\item $\forall f \in Bor_0(ς(T))$ (bounded, Borel) we get $Φ(f) \in ©L(H)$ be the unique operator such that
+			$$ \<Φ(f) x, y\> = \int_{ς(T)} f dμ_{x, y}, \qquad x, y \in H $$
+	\end{itemize}
+
+	\begin{dukazin}
+		„1.“: $f \mapsto \<Φ(f) x, y\>$ is linear and $|\<Φ(f) x, y\>| ≤ \|Φ(f)\|·\|x\|·\|y\|$. So $f \mapsto \<Φ(f) x, y\> \in ©C(ς(T))^* = M(ς(T))$ $\implies$ $μ$ exists by Riesz representation theorem.
+
+		„2.“:
+		$$ \forall x, x_2, y \in H\ \forall α \in ®K\ \forall f \in ©C(ς(T)): \<Φ(f)(α x_1 + x_2), y\> = α\<Φ(f)x_1, y\> + \<Φ(f) x_2, y\> = α μ_{x, y}(f) + μ_{x_2, y}(f). $$
+		Thus $· \mapsto μ_{·, y}$ is linear (for each $y$). Analogously $· \mapsto μ_{x, ·}$ is conjugate-linear.
+
+		Thus, $(x, y) \mapsto μ_{x, y}(f) \in ®C$ is sesquilinear form.
+		$$ \forall x, y \in S_H: |μ_{x, y}(f)| ≤ \int |f| d|μ_{x, y}| ≤ \|f\|_∞·\|x\|·\|y\| = \|f\|_∞. $$
+		And from Lax–Milgram:
+		$$ \exists! Φ(f) \in ©L(H): \<Φ(f)x, y\> = μ_{x, y}. $$
+		Moreover $\|Φ(f)\| ≤ \|f\|_∞$.
+	\end{dukazin}
+\end{definice}
+
+\begin{poznamka}
+	$H$ Hilbert, $T \in ©L(H)$ normal:
+
+	\begin{itemize}
+		\item Mapping $H \times H \ni (x, y) \mapsto μ_{x, y}$ is sesquilinear, so
+			$$ μ_{x, y} = \frac{1}{4}\(μ_{x + y, x + y} - μ_{x - y, x - y} + i μ_{x + i y, x + iy} - i μ_{x - i y, x - i y}\). $$
+		\item $\forall x \in H: μ_{x, x} ≥ 0$. (Proof: „$f ≥ 0 \implies μ_{x, x}(f) ≥ 0, f \in ©C(ς(T))$“: $f ≥ 0 \implies Φ(f) ≥ 0$ ($ς(Φ(f)) = f(ς(T)) \subseteq [0, ∞) \implies Φ(f) ≥ 0$.) So $\int_{ς(T)} f dμ_{x, x} = Φ(f)x, x ≥ 0$.)
+		\item $Bor_b(ς(T)) \subseteq l_∞(ς(x)) \mapsto ©L(H)$ is $C^*$-subalgebra.
+		\item The mapping $Φ: Bor_b(ς(x)) \rightarrow ©L(H)$ from previous definition, is extension of continuous calculus from theorem above.
+	\end{itemize}
+\end{poznamka}
+
+\begin{veta}
+	Let $P$ be a metric space, $Φ$ be the smallest system of functions such that $©C_b(P) \subset Φ$ and $Φ$ is closed under point-wise bounded convergent sequences. Then $Φ = Bor_b(P)$.
+
+	\begin{dukazin}[Sketch]
+		Suffices: „$\forall A \subset P$ Borel: $χ_A \in Φ$.“
+		$$ ©F := \{A \subset P \text{ Borel } | χ_A \in Φ\} $$
+		is $ς$-algebra containing closed sets $\implies$ $©F = Bor(P)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Let $X, Y$ be normed linear spaces. On $©L(X, Y)$ we define the following two Hausdorff locally convex topologies:
+
+	\begin{itemize}
+		\item $τ_{SOT}$ generated by pseudonorms $\{P_x(T) = \|T_x\| | x \in X\}$ (so, $T_i \overset{\text{SOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{\|·\|}\rightarrow T x$);
+		\item $τ_{WOT}$ generated by pseudonorms $\{P_{x, y^*}(T) = y^*(T x) | x \in X \land y^* \in Y^*\}$ (so, $T_i \overset{\text{WOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{w} T x$) (in $X = Y = H$ Hilbert: $\Leftrightarrow \forall x, y \in H: \<T_i x, y\> \rightarrow \<T x, y\>$).
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	$$ T_i \overset{\|·\|}\rightarrow T \implies T_i \overset{\text{SOT}}\rightarrow T \implies T_i \overset{\text{WOT}}\rightarrow T. $$
+
+	\begin{prikladyin}
+		$R_n x := (0, 0, …, 0, x_{n+1}, x_{n+2}, …)$, $x \in l_2$. Then $R_n \in ©L(l_2)$, $n \in ®N$, and $R_n \overset{\|·\|}{\not\rightarrow} 0$, because $\|R_n(e_{n+1})\| = 1$, $n \in ®N$. But $R_n \overset{\text{SOT}}\rightarrow 0$, because $\forall x \in l_2: \|R_n x\|_2^2 = \sum_{i=n+1}^∞ |x_i|^2 \rightarrow 0$.
+
+		$S_n x := (0, 0, …, 0, x_1, x_2, …)$, $x \in l_2$. Then $S_n \in ©L(l_2)$ is isometry $\forall n \in ®N$. But $S_n \overset{\text{SOT}}{\not\rightarrow} 0$, because $\|S_n(e_1)\| = 1 \not\rightarrow 0$. But $S_n \overset{\text{WOT}}\rightarrow 0$, because $\forall x, y \in l_2$:
+		$$ |\<S_n x, y\>| = |\sum_{i=1}^∞ x_i y_{n+i}| ≤ \|x\|_2 \sqrt{\sum_{i=n+1}^∞ |y_i|^2} \rightarrow 0. $$
+	\end{prikladyin}
+\end{poznamka}
+
+\begin{veta}
+	$H$ Hilbert, $T \in ©L(H)$ normal, $f \in Bor_b(ς(T))$, $Φ: Bor_b(ς(T)) \rightarrow ©L(H)$ as in definition above. Then
+
+	$Φ$ is continuous $*$-homomorphism and $\|Φ\| = 1$;
+
+	\begin{dukazin}
+		$Φ$ is linear (easy from definition). $\|Φ\| ≤ 1$ follows from the second point of the previous theorem, and $\|Φ(1)\| = \|\id\| = 1$, so $\|Φ\| = 1$.
+
+		„$Φ$ is multiplicative“: Step 1: „$©F := \{g \in Bor_b(ς(T)) | \forall f \in ©C(ς(t)): Φ(gf) = Φ(g)·Φ(f)\}$, then $©F = Bor_b(ς(T))$“: $©F \subseteq ©C(ς(T))$ follows from continuous calculus, „$©F$ closed under point-wise limits of bounded sequences“: Let $©F \ni g_n \rightarrow g$ and $f \in ©C(ς(T))$. Then $g_n f \rightarrow gf$ point-wise. So, for $x, y \in H$:
+		$$ \<Φ(g, f)x, y\> = \int_{ς(T)} g f dμ_{x, y} = \lim \int g_n f dμ_{x, y} = \lim \<Φ(g_n) x, y\> = \lim \<Φ(g_n)(Φ(f)x), y\> = \lim \int g_n dμ_{Φ(f)x, y} = \<Φ(g)(Φ(f)x), y\>. $$
+		$\implies ©F = Bor_b(ς(T))$.
+
+% 04. 04. 2023
+
+		Step 2: „$©H := \{g \in Bor_b(ς(T)) | \forall f \in Bor_b(ς(t)): Φ(gf) = Φ(g)·Φ(f)\}$, then $©H = Bor_b(ς(T))$“: „©H is closed under point-wise limits of bounded sequences“: $©H \ni f_n \overset{τ_p} f$, $f_n$ bounded, then $\forall x, y \in H$ $\forall g \in Bor_b(ς(T))$:
+		$$ \<Φ(g f)x, y\> \overset{\text{Lebesgue}}= \lim_n \<φ(g f_n)x, y\> = \lim_n \<Φ(g)Φ(f_n)x, y\> = \lim_n \<Φ(f_n) x, Φ(g)^* y\> = \lim_n \int f_n dμ_{x, Φ(g)^* y} \overset{\text{Lebesgue}}= \int f dμ_{x, Φ(g)^*y} = \<Φ(f)x, Φ(g)^* y\> = \<Φ(g) Φ(f) x, y\>. $$
+		Thus $Φ(g f) = Φ(g) Φ(f)$.
+
+		„$Φ$ preserves $*$“: $©F := \{g \in Bor_b(ς(T)) | Φ(g)^* = Φ(\overline{g})\}$. Then $©F \subseteq ©C(ς)$ by continuous calculus and $©F$ is "closed under taking limits" analogously as above. $\implies$ $©F = Bor_b(ς(T))$.
+	\end{dukazin}
+
+	$(f_n) \in Bor_b(ς(T))^{®N}$ bounded and $f_n \overset{τ_p} f$, then $Φ(f_n) \overset{\text{SOT}}\rightarrow Φ(f)$.
+
+	\begin{dukazin}
+		Step 1: „$Φ(f_n) \overset{\text{WOT}} Φ(f)$“:
+		$$ \forall x, y \in H: \<Φ(f_n) x, y\> \overset{\text{Lebesgue}}\rightarrow \<Φ(f)x, uy\>. $$
+
+		Step 2: „$\|Φ(f_n) x\| \rightarrow \|Φ(f) x\|, x \in H$“:
+		$$ \|Φ(f_n) x\|^2 = \<Φ(\overline{f_n}) Φ(f_n) x, x\> = \<Φ(\overline{f_n} f_n) x, x\> \overset{\text{Lebesgue}}\rightarrow \<Φ(\overline{f} f) x, x\> = \|Φ(f) x\|^2. $$
+
+		Step 3: From steps 1 and 2:
+		$$ \|Φ(f_n) x - Φ(f)x\|^2 \overset{\text{Cos. věta}}= \|Φ(f_n) x\|^2 + \|Φ(f) x\|^2 - 2\Re\<Φ(f_n) x, Φ(f) x\> \rightarrow 0. $$
+	\end{dukazin}
+
+	If $K \subset ®C$ is compact, $K \supseteq ς(T)$, $ψ: Bor_b(K) \rightarrow ©L(H)$ is continuous $*$-homomorphism, $ψ(1) = \id$, $ψ(\id) = T$ and $f_n \overset{τ_p}\rightarrow f \implies ψ(f_n) \overset{\text{WOT}}\rightarrow ψ(f)$. Then $ψ(g) = Φ(g |_{ς(T)})$, $g \in Bor_b(K)$.
+
+	\begin{dukazin}
+		Skipped. Using characterization of $Bor_b$.
+	\end{dukazin}
+
+	$Φ(f)$ is normal, $Φ(f)$ is self-adjoint $\Leftrightarrow$ $f$ is real.
+
+	\begin{dukazin}
+		Skipped. Easy from first part of theorem.
+	\end{dukazin}
+
+	$ς(Φ(f)) \subseteq \overline{f(ς(T))}$.
+
+	$g \in Bor_b(\overline{\Rang f}) \implies (g∘f)(T) = g(f(T))$.
+
+	$\forall S \in ©L(H), ST = TS: Sf(T) = f(T)S$.
+\end{veta}
+
+% 11. 04. 2023
+
+\section{Spectral decomposition of normal operator}
+\begin{definice}[Spectral measure]
+	$H$ Hilbert space, $(X, ©A)$ measurable space. Then $E: ©A \mapsto ©L(H)$ is spectral measure for $(X, ©A, H)$ if
+
+	\begin{itemize}
+		\item $\forall A \in ©A: E(A)$ is orthogonal projection;
+		\item $E(X) = \id$, $E(\O) = 0$;
+		\item if $\{A_n, n \in ®N\} \subset ©A$ is point-wise disjoint, then
+			$$ E(\bigcup A_n) x = \sum_{n=1}^∞ E(A_n) x, x \in H. $$
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}[Properties of spectral measure]
+	$H$ Hilbert, $(X, ©A)$ measurable space, $E$ is spectral measure for $(X, ©A, H)$. Then
+	
+	\begin{enumerate}
+		\item $\forall A, B \in ©A, A \subset B: E(A) ≤ E(B)$ (that's $E(B) - E(A) ≥ 0$);
+		\item $\forall A, B \in ©A: E(A \cap B) = E(A)·E(B)$, in particular, if $A \cap B = \O$, then $E(A)·E(B) = \O$.
+		\item $\forall x, y \in H: ©A \ni A \mapsto \<E(A) x, y\>$ is a complex measure (denoted by $E_{x, y}$), with total variation $\|E_{x, y}\| ≤ \|x\|·\|y\|$.
+		\item $(x, y) \mapsto E_{x, y}$ is sesquilinear mapping.
+		\item $\forall x, y \in H\ \forall A \in ©A$:
+			$$ |E_{x, y}(A)| ≤ \frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\). $$
+		\item $\forall x, y \in H$:
+			$$ E_{x + y, x + y} ≤ 2\(E_{x, x} + E_{y, y}\). $$
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $E(A) + E(B \setminus A) = E(B)$, so $E(B) - E(A) = E(B \setminus A) ≥ 0$.
+
+		„2.“: „Step 1: $A \cap B = \O$“:
+		$$ \id = E(X) = E(A) + E(A^c) ≥ E(A) + E(B), $$
+		so $E(B) ≤ \id - E(A)$, which is orthogonal projection onto $(\Rang E(A))^\perp$. Thus („$P, Q \in ©L(A)$ orthogonal projections, $Q - P ≥ 0$, then $\Rang P \subset (\Rang Q)^\perp$“:
+		$$ \|Px\|^2 = \|QPx\|^2 + \|(\id - Q) Px\|^2 = \<QPx, Px\>) + \|(\id - Q) Px\|^2 ≥ \underbrace{\<PPx, Px\>}_{\|Px\|^2} + \|(\id - Q) Px\|^2, $$
+		thus, $(\id - Q) Px = 0$, so $\Rang P \subseteq \Ker(\id - Q) = \Rang Q$.) $\Rang E(B) \subseteq (\Rang E(A))^{\perp}$. Thus $\Rang E(A) \perp \Rang E(B)$, so $E(A)·E(B) = 0$.
+
+		„Step 2: In general“:
+		$$ E(A) = E(A \cap B) + E(A \setminus B), \qquad E(B) = E(A \cap B) + E(B \setminus) \implies $$
+		$$ \implies E(A)·E(B) = (E(A \setminus B) + E(A \setminus B))·(E(A \cap B) + E(B \setminus A)) = E^2(A \cap B) + 0 + 0 + 0 = E(A \cap B). $$
+
+		„3.“: „$E_{x, y}$ is countably additive“ is easy. By this it is a complex measure. „Calculation of $\|E_{x, y}\|$“: Fix $A_1, …, A_n \in ©A$ disjoint such that $\bigcup_{i=1}^n A_i = X$. For $i \in [n]$ pick $\alpha_i \in S_{®C}: \alpha_i \<E(A_i) x, y\> = |\<E(A_i) x, y\>|$. Then
+		$$ \sum_{i=1}^n |E_{x, y} (A_i)| = \sum_{i=1}^n \alpha_i \<E(A_i) x, y\> \overset{\text{Cauchy–Schwartz}}≤ \|\sum_{i=1}^n \alpha_i E(A_i) x\|·\|y\|. $$
+		$$ \|\sum_{i=1}^n E(A_i)(\alpha_i x) \|^2 \overset{\text{Pythagoras}} = \sum_{i=1}^n \|E(A_i)(\alpha_i x)\| = \sum_{i=1}^n \|E(A_i)(x)\| = \sum_{i=1}^n \<E(A_i)x, x\> = \<E(\bigcup A_i)x, x\> = \<x, x\> = \|x\|^2. $$
+
+		„4.“: Easy, using definition. „5.“:
+		$$ |E_{x, y}(A)| = |\<E(A) x, y\>| = |\<E(A) x, E(A) y\>| \overset{\text{Cauchy-Schwartz}}≤ \|E(A) x\|·\|E(A)y\| = \sqrt{E_{x, x}(A)}·\sqrt{E_{y, y}(A)} \overset{\text{A–G}}≤ \frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\). $$
+
+		„6.“:
+		$$ E_{x + y, x + y}(A) = E_{x, x}(A) + E_{y, x}(A) + E_{x, y}(A) + E_{y, y}(A) ≤ E_{x, x}(A) + 2\Re E_{y, x}(A) + E_{y, y}(A) ≤ E_{x, x}(A) + 2·\frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\) + E_{y, y}(A) = 2\(E_{x, x}(A) + E_{y, y}(A)\). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	From 4. we get $E_{x, y}(A) = \frac{1}{4} \sum_{k=0}^3 i^k \<E(A)(x + i^k y), x + i k y\>$. Thus 3. is equivalent to $\forall x \in H: E_{x, x} ≥ 0$ is measure.
+\end{poznamka}
+
+\begin{definice}[Integral]
+	$H$ Hilbert space, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$. $f: X \rightarrow ®C$ bounded ©A-measurable function. Then integral of $f$ with respect to $E$ is the operator $T \in ©L(H)$ such that
+	$$ \<Tx, y\> = \int_X f dE_{x, y}, \qquad x, y \in H. $$
+
+	Notation: Then $\int f dE := T$.
+
+	\begin{poznamkain}
+		It always exists due to Lax–Milgram: $(x, y) \mapsto \int f dE_{x, y}$ is sesquilinear and $\left|\int f d E_{x, y}\right| ≤ \|f\|_∞·\|E_{x, y}\| ≤ \|f\|_∞·\|x\|·\|y\|$. So $T$ exists and $\|T\| ≤ \|f\|_∞$.
+	\end{poznamkain}
+\end{definice}
+
 \end{document}

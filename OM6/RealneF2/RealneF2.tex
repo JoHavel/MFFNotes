@@ -236,4 +236,58 @@
 	\end{dukazin}
 \end{veta}
 
+% 14. 03. 2023
+
+TODO!!!
+
+% 20. 03. 2023
+
+TODO!!!
+
+% 27. 03. 2023
+
+TODO!!!
+
+% 03. 04. 2023
+
+\begin{dusledek}
+	Let $f: ®R \rightarrow ®R$ be a bounded approximately continuous function. Then $f$ has Darboux property and is in $B_1$.
+
+	\begin{dukazin}
+		The previous theorem gives that there exists a function $F: ®R \rightarrow ®R$ such that $F'(x) = f(x)$ for every $x \in ®R$. So $f$ has Darboux property.
+
+		„$f \in B_1$“: $f(x) = F'(x) = \lim_{n \rightarrow ∞} \frac{F(x + \frac{1}{n}) - F(x)}{\frac{1}{n}}$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	There exists a differentiable function $f: ®R \rightarrow ®R$ such that the sets $\{x \in ®R | f'(x) > 0\}$ and $\{x \in ®R | f'(x) < 0\}$ are dense.
+
+	\begin{dukazin}
+		Let $A, B \subset ®R$ be countable, dense, and disjoint. $A = \{a_n, n \in ®N\}$, $B = \{b_n, n \in ®N\}$. Observe that $A$ and $B$ are d-closed. Using theorem above we find for every $n \in ®N$ approximately continuous $g_n$ and $h_n$ such that $g_n(a_n) = 1$, $0 ≤ g_n ≤ 1$, $g_n|_B = 0$, similarly $h_n(b_n) = 1$, $0 ≤ h_n ≤ 1$, $h_n|_A = 0$.
+
+		We define $ψ = \sum_{n=1}^∞ 2^{-n} g_n - \sum_{n=1}^∞ 2^{-n} h_n$. $ψ$ is bounded. $ψ$ is approximately continuous. $ψ$ is positive on $A$ and negative on $B$. By the previous theorem $\exists f: ®R \rightarrow ®R$ such that $f' = ψ$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	We say that differentiable function $g$ is of Köpcke type if $g'$ is bounded and the sets $\{g' > 0\}$, $\{g' < 0\}$ are dense.
+\end{poznamka}
+
+\begin{poznamka}
+	$A$ and $B$ are countable disjoint $\implies$ $A$ and $B$ are $τ_d$-closed. Towards contradiction assume that there exists $f: ®R \rightarrow [0, 1]$ approximately continuous such that $f|_A = 0$ and $f|_B = 1$ $\implies$ $f \in B_1$ $\implies$ $f$ has comeagerly many points of continuity.
+\end{poznamka}
+
+\section{More on derivatives}
+\begin{definice}[Notation]
+	Let $I \subset ®R$ be a nonempty open interval. We denote
+	$$ Δ'(I) = \{f: I \rightarrow ®R | f \text{ has an antiderivative on I}\} $$
+\end{definice}
+
+\begin{veta}[Den?-Clarkson]
+	Let $I$ be a nonempty open interval and $f \in Δ'(I)$. Then $f$ has Denj TODO!!!
+\end{veta}
+
+TODO!!!
+
 \end{document}

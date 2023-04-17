@@ -479,4 +479,382 @@
 \begin{poznamka}
 	Let $X = ©H(G)$. Then in the sense of (LCS) $©F \subset ©H(G)$ is bounded iff in the functions of $©F$ are locally equibounded on $G$. By the Montal theorem, we get $\overline{©F}$ is a compact in $©H(G)$. Easily we get that $©F \subset X$ is compact iff ©F is closed and bounded in $X$.
 \end{poznamka}
+
+% 23. 03. 2023
+
+\section{The dual space $©H^*(G)$}
+\begin{poznamka}
+	1. Let $G = ®D := \{z \in ®C | |z| < 1\}$. Let $L \in ©H^*(®D)$. Let $f \in ©H(®D)$, $f(z) = \sum_{n=0}^∞ a_n z^n$, $z \in ®D$, and $R := \frac{1}{\limsup_{n \rightarrow +∞} \sqrt[n]{|a_n|}} ≥ 1$. Then
+	$$ L(f) = L(\sum_{n=0}^∞ a_n z^n) = L\(\lim_{n \rightarrow ∞} \sum_{k=0}^n a_kz^k\) = \lim_{n \rightarrow ∞} \sum_{k=0}^n a_k L(z^k) = \sum_{n=0}^∞ a_n·b_n, $$
+	where $b_n := L(z^n) \in ®C$. We show $r := \limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$:
+
+	If $r > 1$, then for $a_n := 1$, $n \in ®N_0$, we get $\sum_{n=0}^∞ a_n·b_n$ is divergent. If $r = 1$, then there is $\{n_k\}$ such that such that $0 ≠ \sqrt[n_k]{|b_{n_k}|} \rightarrow 1$. Putting $a_n = \frac{1}{b_{n_k}}$, $n = n_k$, we get $\sum_{n=0}^∞ a_n b_n$ is divergent.
+
+	Conclusion: $L \in ©H^*(®D)$ iff there is a unique $\{b_n\} \subset ®C$ such that $\limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$ and $L(f) = \sum_{n=0}^∞ a_n b_n$ for $f(z) = \sum_{n=0}^∞ a_n z^n \in ©H(®D)$. In addition, $b_n = L(z^n)$, $n \in ®N_0$. ($\impliedby$ obvious, HW.)
+\end{poznamka}
+
+\begin{poznamka}[Integral form of $L$]
+	Let $\{b_n\} \subset ®C$ and $r:= \limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$. Define
+	$$ λ(z) := \sum_{n=0}^∞ \frac{b_n}{z^{n + 1}}, \qquad |z| > r. $$
+	Of course, $λ \in ©H(®S \setminus \overline{U(0, r)})$, $λ(∞) = 0$ and $b_n = \frac{λ^{(n+1)}(∞)}{(n + 1)!}$, $n \in ®N_0$. Here $λ^{(k)}(∞) := \(λ\(\frac{1}{z}\)\)^{(k)} (0)$.
+
+	Let $R \in (r, 1)$ and $φ(t) := R e^{it}$, $t \in [0, 2π]$. Let $f \in ©H(®D)$ and $f(z) = \sum_{n=0}^∞ a_n z^n$, $z \in ®D$. Then
+	$$ \frac{1}{2πi} \int_φ f(z)·λ(z) dz = \frac{1}{2πi} \int_φ \(\sum_{n=0}^∞ a_n·z^n\)·\(\sum_{m=0}^∞ \frac{b_m}{z^{m+1}}\) dz = $$
+	$$ = \frac{1}{2πi} \int_φ \sum_{n,m = 0}^∞ a_n b_m z^{n - m - 1} dz = \sum_{n, m = 0}^∞ a_n·b_m· \frac{1}{2πi} \int_φ z^{n - m - 1} dz = \sum_{n=0^∞} a_n·b_n = L(f). $$
+\end{poznamka}
+
+\begin{definice}[Notation]
+	Let $A \subset ®S$. Then a function $f$ is holomorphic on $A$ if $f$ is holomorphic on some open superset $U \supset A$. Let $f_1, f_2$ be holomorphic function on $A$. We say that $f_1$ \textasciitilde $f_2$ if there are open $U_1, U_2 \subset ®S$ such that $A \subset U_1 \cap U_2$, $f_1 \in ©H(U_1)$, $f_2 \in ©H(U_2)$ and $f_1 = f_2$ on $U_1 \cap U_2$. Denote $©H(A) := \{[f] | f \text{ is holomorphic on } A\}$, where $[f]$ is an equivalence class for \textasciitilde. As usual, we do not often distinguish between $[f]$ and $f$.
+
+	We have that $λ \in ©H_0(®S \setminus ®D) := \{μ \in ©H(®S \setminus ®D) | μ(∞) = 0\}$. Moreover, we have
+	$$ (*) L(f) = \frac{1}{2πi} \int_φ f(z)·λ(z) dz, \qquad f \in ©H(®D); $$
+	$$ L(z^n) = \frac{λ^{(n + 1)}(∞)}{(n + 1)!}, \qquad n \in ®N_0; $$
+	$$ λ(w) = L\(\frac{1}{w - z}\), \qquad |w| ≥ 1. $$
+
+	\begin{dukazin}
+		In fact, we have
+		$$ L\(\frac{1}{w - z}\) = L\(\sum_{n=0}^∞ \frac{z^n}{w^{n + 1}}\) = \sum_{n=0}^∞ \frac{b_n}{w^{n+1}} = λ(w), $$
+		because $\frac{1}{w - z} = \frac{1}{w}·\frac{1}{1 - \frac{1}{w}} = \sum_{n=0}^∞ \frac{z^n}{w^{n+1}}$, $z \in ®D$.
+	\end{dukazin}
+\end{definice}
+
+\begin{poznamka}[Conclusion]
+	$$ ©H^*(®D) = ©H_0(®S \setminus ®D). $$
+	In particular, $L \in ©H^*(®D)$ iff there is a unique $λ \in ©H_0(®S \setminus ®D)$ such that $(*)$ hold true.
+\end{poznamka}
+
+\begin{priklad}[Birkhoff]
+	There is a universal entire function, i.e., $f \in ©H(®C)$ such that $\overline{\{τ_γ(f) | γ \in ®C\}} = ©H(®C)$, where $τ_γ(f) := f(z - γ)$, $z, γ \in ®C$.
+
+	\begin{reseni}
+		HW.
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}
+	2. Let $G = \bigcup_{j=1}^n D_j$ with $D_j = U(z_j, r_j)$ and $D_j \cap D_k = \O$ for $j = k$.
+
+	Let $L \in ©H^*(G)$. For $j \in [n]$, put $L_j(d) := L(\tilde f)$ for $f \in ©H(D_j)$ and $\tilde f := f$ on $D_j$ and $\tilde f := 0$ on $D_k$, $k ≠ j$. Then
+	$$ L(f) = \sum_{j=1}^n L_j(f|_{D_j}), \qquad f \in ©H(G). $$
+
+	By 1., for each $j \in [n]$, there are $\tilde r_j \in (0, r_j)$ and $λ_j \in ©H_0(®S \setminus \overline{U(z_j, \tilde r_j)})$ such that
+	$$ L_j(f) = \frac{1}{2πi} \int_{φ_j} f(z)·λ_j(z) dz, \qquad f \in ©H(D_j), $$
+	where $φ_j(t) := z_j + R_j e^{it}$, $t \in [0, 2π]$ for some $R_j \in (\tilde r_j, r_j)$.
+
+	In addition, we have
+	$$ L_j(z^n) = \frac{λ^{(n+1)}(∞)}{(n+1)!}, \qquad n \in ®N_0. $$
+
+	If $f \in ©H(G)$, then $L(f) = \sum_{j=1}^n \frac{1}{2πi} \int_{φ_j} f(z)·λ_j(z) dz$.
+
+	$\overset?\implies$ $L(f) = \frac{1}{2πi} \int_Γ f(z)·λ(z) dz$, where $Γ := \{φ_1, …, φ_n\}$ and $λ := \sum_{j=1}^n λ_j$.
+
+	$?$ holds true because $\int_{φ_j} f(z) · λ_k(z) dz = 0$ for $k ≠ j$ by Cauchy ($f(z)·λ_k(z) \in ©H(D_j)$).
+
+	We have $L(z^n) = \frac{λ^{(n+1)}(∞)}{(n+1)!}$, $n \in ®N_0$.
+\end{poznamka}
+
+\begin{poznamka}[Conclusion]
+	($G = \bigcup_{j=0}^n D_j$.) $©H^*(G) = ©H_0(®S \setminus G)$. Indeed, $L \in ©H^*(G)$ iff there is a unique $λ \in ©H_0(®S \setminus G)$ such that last 2 equation hold true.
+\end{poznamka}
+
+
+\section{Hahn–Banach theorem}
+\begin{lemma}
+	Let $L: E \rightarrow ®C$ be linear. Then $L \in E^*$ iff there is a compact $K$ in $G$ and $M \in [0, +∞)$ such that $|L(f)| ≤ M·\|f\|_K$, $f \in E$.
+
+	\begin{dukazin}
+		„$\impliedby$“ from continuity of $\|·\|_K$. „$\implies$“: Since $U := L^{-1}(®D)$ is a neighbourhood of $¦o$ in $E$, there are a compact $K$ in $G$ and $ε > 0$ such that $U \supseteq U_{K, ε}(0) := \{f \in E | \|f\|_K < ε\}$. Let $f \in E$.
+
+		1. Let $\|f\|_K ≠ 0$. Then
+		$$ \left| L\(\frac{f}{\|f\|_K}·\frac{ε}{2}\)\right| < 1, $$
+		hence $|L(f)| < \frac{2}{ε}\|f\|_K$. Put $M := \frac{2}{ε}$.
+
+		2. Let $\|f\|_K = 0$. Then for any $n \in ®N$, we have $\|n f\|_K = 0$, so $|L(n·f)| < 1$, $|L(f)| < \frac{1}{n} \rightarrow 0$, $L(f) = 0$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Hahn–Banach]
+	Let $A$ be a linear subspace of $E$. Then
+
+	\begin{itemize}
+		\item if $L \in A^*$, then there is $\tilde L \in E^*$ such that $\tilde L |_A = L$;
+		\item if $A$ is closed and $0 ≠ b \in E \setminus A$, then there is $L \in E^*$ such that $L(b) = 1$ and $L = 0$ on $A$;
+		\item $\overline{A} = E$ iff ($L \in E^*$, $L = 0$ on $A$ $\implies$ $L = 0$ on E).
+	\end{itemize}
+
+	\begin{dukazin}
+		„1.“ Use lemma and algebraic version of HB theorem.
+
+		„2. + 3.“ can be proved as for Banach space.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Runge (special)]
+	Let $G \subset ®C$ be a finite union of pairwise open discs as in above "poznamka"s. Then for each $f \in ©H(G)$ there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{loc.}}\rightrightarrows f$ on $G$.
+
+	\begin{dukazin}
+		Let $©P := \LO \{1, z, …\}$ be the space of polynomials. Then $©P \subset ©H(G)$. Let $L \in ©H^*(G)$ and $L = 0$ on $©P$. We know that there is $λ \in ©H_0(®S \setminus G)$ such that ? is valid. So, $λ^{(n)}(∞) = 0$, $n \in ®N_0$. By the uniqueness theorem, we get $λ ≡ 0$, so $L = 0$ on $©H(G)$ (because $L = 0$ fits and is uniquely determined by $λ$). By HB theorem, $\overline{©P} = ©H(G)$.
+	\end{dukazin}
+\end{veta}
+
+% 30. 03. 2023 From notes of my colleague
+
+\begin{veta}[Cauchy formula for compact]
+	Let $G \subset ®C$ be open, $K \subset G$ compact. Then there is a cycle $Γ \subset G$, $K \subseteq \Int Γ \subseteq G$ and $\forall a \in \Int Γ: \ind_Γ a = 1$.
+
+	In addition
+	$$ \forall f \in ©H(G): \int_Γ f = 0 \land \forall a \in \Int Γ: f(a) = \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a} dz. $$
+
+	\begin{poznamkain}
+		„In addition“ follows from the properties of $Γ$ and residue's theorem for cycles, but we prove it directly.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Choose $0 < δ < \frac{1}{2} \dist(K, ®C \setminus G)$, if $G \subsetneq ®C$, otherwise, if $G = ®C$, take $δ := 1$. For $m, n \in ®Z$ let $Q_{m, n}$ be the closed square with edges (parallel to the axes) with length $δ$, and such that $m δ + i n δ$ is the lower left vertex of $Q_{m, n}$.
+
+		Denote $Q^* := \{Q_{n, m} | Q_{n, m} \cap K ≠ \O\}$, $U := \int(\bigcup Q^*)$. $Q^*$ is finite because of compactness of $K$. Of course, $K \subseteq U \subseteq \bigcup Q^* \subseteq G$ (by choice of $δ$).
+
+		We understand $\partial Q_{m, n}$ as a positively oriented curve (piece-wise linear curve). Let $Γ$ be the system of all edges $Γ_1, …, Γ_k$ of squares of $Q^*$ when we omit those edges which occur twice ($±$). Of course, $U = \bigcup Q^* \setminus \im Γ$.
+
+		a) Let $f \in ©H(G)$. Then $\int_Γ f := \sum_{j=1}^k \int_{Γ_j} f = \sum_{Q_{m, n} \subset Q^*} \int_{\partial Q_{m, n} f} = 0$.
+
+		b) $Γ$ can be viewed as a cycle. In fact the edges $Γ_1, …, Γ_k$ form finitely many closed simple piece-wise linear curves.
+
+		For $j \in [k]$ put $Γ_j =: [a_j, b_j]$.
+
+		(*) „Every point $c \in ®C$ is the starting point of some edge of $Γ$ as many times as it is the ending point of some edge in $Γ$“:
+
+		Take a polynomial $P$ such that $p(c) = 1$ and $p(a) = 0$, if $a ≠ c$ and $[a, b] \in Γ$ for some $b$. $p(b) = 0$, if $b ≠ c$ and $[a, b] \in Γ$ for some $a$. By a):
+		$$ 0 = \int_Γ p' = \sum_{j=1}^k \int_{Γ_j} p' = \sum_{j=1}^k (p(b_j) - p(a_j)) = \sum_{j=1}^k p(b_1) - \sum_{j=1}^k p(a_j) = \# \text{ $c$ is the ending point} - \# \text{ $c$ is the starting point}. $$
+
+		„$Γ$ can be viewed as a cycle“: Let $L$ be longest (one of the longest) simple piecewise linear curve consisting of edges of $Γ$ which begins with $Γ1$, i. e.,
+
+		\begin{itemize}
+			\item $L = [c_1, c_2, …, c_l] := [c_1, c_2] + [c_2, c_3] + … + [c_{l-1}, c_l]$;
+			\item $Γ1 = [c_1, c_2]$;
+			\item $c_i ≠ c_j$ for $i ≠ j$ (simple curve);
+			\item $l$ is the biggest.
+		\end{itemize}
+
+		Since we have (*) there is an index $j \in [l - 2]$ such that $[c_l, c_j] \in Γ$ (otherwise we would have a longer curve).
+		$$ L' := [c_j, c_{j+1}] + … + [c_{l-2}, c_l] + [c_l, c_j] \subseteq L $$
+		$\implies$ $L'$ is simple closed piece-wise linear curve. The proper subset $Γ'$, which we get from $Γ_k$ by omitting the edges of $L'$ has again (*). We can process in this fashion for $Γ'$, by finitely many steps we get what we want.
+
+		c) Let $f \in ©H(G)$ and $a \in U = \Int(\bigcup Q^*)$. c1) $a \in \Int\(\tilde Q\)$ for some $\tilde Q \in Q^*$. Then
+		$$ \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a} dz = \sum_{Q_{m, n} \in Q^*} \frac{1}{2πi} \int_{\partial Q_{m, n}} \frac{f(z)}{z - a} dz = f(a) $$
+		(residue's theorem for $Q_{m, n} = \tilde Q$, Cauchy for $Q_{m, n} ≠ \tilde Q$).
+
+		c2) $a \in \partial \tilde Q$, $\tilde Q \in Q^*$ ($a \notin \partial Q^* \implies a \notin \im(Γ)$). Take $a_j \in \Int \tilde Q$, $a_j \rightarrow a$. Then
+		$$ \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a_j} dt \rightarrow f(a) = \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a} dz. $$
+
+		d) „$U = \Int(Γ)$“: Let $a \in ®C \setminus(U \cup \im Γ)$ $\implies$ $a \in ®C \setminus \bigcup Q^*$. As in a), we show easily that $\ind_Γ a = 0$. If $a \in U$, then by c) we have that $\ind_p(1) = 1$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Description of $©H^*(G)$]
+	Let $G \subset ®C$ be open subset. Then $©H^*(G) \simeq ©H_0(®S \setminus G)$.
+
+	In more detail, let $L \in ©H^*(G)$. Then there are a compact $K \subset G$ and $λ \in ©H_0(®S \setminus K)$ such that
+	$$ L(f) = \frac{1}{2πi} \int_Γ f(z) λ(z) dz, \qquad f \in ©H(G), $$
+	where $Γ$ is a cycle in $G \setminus K$ with $K \subset \Int Γ \subset G$ and $\forall z_0 \in \Int Γ: \ind_Γ z_0 = 1$.
+
+	In addition, as an element of $©H_0(®S \setminus G)$, $λ$ is uniquely determined by
+	$$ \frac{λ^{k + 1}(∞)}{(k+1)!} = L(z^k), k \in ®N_0, \frac{λ^{(k)}(z_0)}{k!} = - L\(\frac{1}{(z - z_0)^{k+1}}\), z_0 \in ®C \setminus G, k \in ®N_0. $$
+
+	\begin{dukazin}[Step 1]
+		Let $L \in ©H^*(G)$.
+
+		Step 1: There are a compact $K \subset G$ and $L_1 \in (©C(K))^* =: ©C^*(K)$ such that $L(f) = L_1(f|_K), f \in ©H(G)$.
+
+		We know that there are a compact $K \subseteq G$ and $C \in (0, +∞)$ such that $\forall f \in ©H(G): |L(f)| ≤ \|f\|_K · C$.
+
+		By the Hahn–Banach theorem we can extend $L$ (from $©H^*(G)$ to $©C^*(G)$) to $\tilde L$ $\Leftrightarrow$ $\tilde L \in ©C^*(G)$ such that $\tilde L_2 |_©H(G) = L$ and $|L(f)| ≤ \|f\|_K · C$, $f \in ®C(G)$.
+
+		For each $f \in ©C(K)$ put $L_1(f) := \tilde L_1(\tilde f)$, where $\tilde f \in ©C(G)$ and $\tilde f|_K = f$.
+
+		Is definition of $L_1$ correct?
+
+		i) by Tietze theorem: $f \in ©C(K)$ can be extended to $f \in ©C(G)$,
+		$$ \forall f \in ©C(K)\ \exists \tilde f \in ©C(®C)\ (©C(G)): \tilde f|_K = f; $$
+
+		ii) for any extension we want to get the same result. $\tilde f_1, \tilde f_2 \in ©C(G)$, $\tilde f_i|_U = f$, $i = 1, 2$.
+		$$ \implies |\tilde L_1(\tilde f_1) - \tilde L_1(\tilde f_2)| = |\tilde L_1(\tilde f_1 - \tilde f_2)| ≤ C·\|\tilde f_1 - \tilde f_2\|_K = C\|f - f\|_K = 0. $$
+	\end{dukazin}
+
+% 06. 04. 2023
+
+	\begin{poznamkain}[$©C^*(K)$]
+		By the Riesz representation theorem, for each $L_1 \in ©C^*(K)$ there is a unique complex Borel measure $μ$ on $K$ such that
+		$$ L_1(f) = \int_K f dμ, \qquad \forall f \in ©C(K). $$
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Step 2: By the Cauchy formula for compact, there is a cycle $Γ \subset G$ such that $K \subset \Int Γ \subset G$, $\forall a \in \Int Γ: \ind_Γ a = 1$ and we have, $\forall f \in ©H(G)$:
+		$$ f(z_1) = \frac{1}{2πi} \int_Γ \frac{f(z_2) dz_2}{z_2 - z_1}, \qquad z_1 \in K. $$
+
+		Denote
+		$$ L_2(f) := \frac{1}{2πi} \int_Γ f(z_2) dz_2, f \in ©C(\<Γ\>), \qquad F(z_1, z_2) := \frac{f(z_2)}{z_2 - z_1}. $$
+		Of course $L_2 \in ©C^*(\<Γ\>)$ and $f(z_1) = L_2(F(z_1, z_3))$, $z_1 \in K$.
+
+		Step 3: For a given $f \in ©H(G)$,
+		$$ L(f) = L_1(f(z_1)) = L_1(L_2(F(z_1, z_2))) \overset{\text{Fubini}} L_2(L_1(F(z_1, z_2))), $$
+		hence
+		$$ L(f) = \frac{1}{2πi} \int_Γ f(z_2)·λ(z_2) dz_2, $$
+		where
+		$$ λ(z_2) := L_1\(\frac{1}{z_2 - z_1}\), \qquad z_2 \in ®C \setminus K. $$
+
+		Step 4: $λ \in ©H_0(®S \setminus K)$ satisfies „in addition“: Let $U(∞, ε) \subset ®S \setminus K$. For $u \in P(0, ε)$, we have
+		$$ λ\(\frac{1}{u}\) = L_1(\frac{u}{1 - u·z_1}) = L_1\(\sum_{k=0}^∞ z_1^k u^{k+1}\) = \sum_{k=0}^∞ L_1(z_1^k) u^{k+1}, $$
+		hence $λ(∞) = 0$ and
+		$$ \forall k \in ®N_0: \frac{λ^{(k+1)}(∞)}{(k+1)!} = L_1\(z_1^k\). $$
+
+		Let $U(z_0, ε) \subset ®C \setminus K$. Then $\forall z_2 \in U(z_0, ε)$:
+		$$ λ(z_2) = L_1\(\frac{1}{z_2 - z_1}\) = -L_1\(\sum_{k=0}^∞ \frac{(z_2 - z_0)^k}{(z_1 - z_0)^{k+1}}\) = - \sum_{k=0}^∞ L_1 \(\frac{1}{(z_1 - z_0)^{k+1}}\)(z_2 - z_0)^k; $$
+		$$ \forall z_1 \in K: \frac{1}{z_2 - z_1} = \frac{1}{(z_2 - z_0) - (z_1 - z_0)} = -\frac{1}{z_1 - z_0}·\frac{1}{1 - \frac{z_2 - z_0}{z_1 - z_0}} = -\sum_{k=0}^∞ \frac{(z_2 - z_0)^k}{(z_1 - z_0)^{k+1}}. $$
+		Hence $\frac{λ^{(k)}(z_0)}{k!} = -L_1\(\frac{1}{(z_1 - z_0)^{k+1}}\)$, $k \in ®N_0$.
+
+		Step 5: As an element of $©H_0(®S \setminus G)$, $λ$ is uniquely determined by „in addition“. (Proof below.)
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Let $G \subset ®C$ be open and $K$ be a compact in $G$. There is a compact $K_1$ such that $K \subset K_1 \subset G$ and each component of $®S \setminus K_1$ contains some component of $®S \setminus G$.
+
+	\begin{dukazin}
+		Take $n \in ®N$ such that $K_1 := \{z \in G | \dist(z, ®C \setminus G) ≥ \frac{1}{n}\} \cap \overline{U(0, n)} \supset K$. In addition, we have
+		$$ ®S \setminus K_1 = \bigcup_{z_0 \in ®S \setminus G} U(z_0, \frac{1}{n}). $$
+
+		Let $V$ be a component of $®S \setminus K_1$. There is $z_0 \in ®S \setminus G$ such that $U\(z_0, \frac{1}{n}\) \subset V$. If $W$ is a component of $®S \setminus G$ containing $z_0$, then $W \subset V$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Step 5]
+	Let $λ_1, λ_2 \in ©H_0(®S \setminus G)$ satisfying „in addition“. Then there is a compact $K \subset G$ such that $λ_1, λ_2 \in ©H_0(®S \setminus K)$.
+
+	By the previous lemma, WLOG we assume that each component $V$ of $®S \setminus K$ intersect $®S \setminus G$. We show $λ_1 = λ_2$ on $®S \setminus K$.
+
+	Let $V$ be any component of $®S \setminus K$ and $z_0 \in V \cap (®S \setminus G) ≠ 0$. By „in addition“ we have $λ_1^{(k)}(z_0) = λ_2^{(k)}(z_0)$ $\forall k \in ®N_0$. By the uniqueness theorem $λ_1 = λ_2$ on the domain $B$, so $λ_1 = λ_2$ on $®S \setminus K$.
+\end{dukaz}
+
+\begin{lemma}[Fubini]
+	Let $K_1, K_2 \subset ®C$ be compact, $L_j \in ©C^*(K_j)$ for $j = 1, 2$ and $F \in ©C(K_1 \times K_2)$. Then we have
+	$$ L_1(L_2(F(z_1, z_2))) = L_2(L_1(F(z_1, z_2))). $$
+
+	\begin{dukazin}[Sketch]
+		Obviously it holds true for the functions of the following form: $F(z_1, z_2) = f(z_1)·g(z_2)$ for $f \in ©C(K_1)$, $G \in ®C(K_2)$.
+
+		Now we can use the Stone–Weierstrass theorem which show that the linear span of the functions of this form is dense in $©C(K_1 \times K_2)$.
+	\end{dukazin}
+\end{lemma}
+
+\section{Runge's theorem}
+\begin{definice}[Notation]
+	Let $E \subset ®C$ and $m: E \rightarrow ®N \cup \{∞\}$. We call $m(e)$ the multiplicity of $e \in E$. We say that $(E, m)$ has a limit point $e \in ®S$ if $e$ is a limit point of $E$, or $e \in E$ with $m(e) = ∞$.
+
+	Denote by $©F(E, m)$ system of functions which consists of
+	\begin{itemize}
+		\item $\frac{1}{z - e}$ if $e \in E \cap ®C$, $m(e) < ∞$;
+		\item $\frac{1}{(z - e)^k}$, $k \in ®N$ if $e \in E \cap ®C$, $m(e) = ∞$;
+		\item $z^k$, $k \in ®N_0$ if $∞ \in E$, $m(∞) = ∞$.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}[Runge]
+	Let $G \subset ®C$ be open, $E \subset ®S \setminus G$ and $m: E \rightarrow N \cup \{∞\}$. If $(E, m)$ has a limit point in every component of $®S \setminus G$, then the linear span of $®F(E, m)$ is dense in $©H(G)$.
+
+	\begin{dukazin}
+		We shall use Hahn–Banach theorem. Let $L \in ©H^*(G)$ and $L = 0$ on $®F(E, m)$. We need to show $L = 0$ on $©H(G)$. Let $λ \in ©H_0(®S \setminus G)$ which represents $L$ in the sense of theorem describing $©H^*(G)$.
+
+		If $e \in E \cap ®C$, $m(e) < ∞$, then $λ(e) = -L\(\frac{1}{z - e}\) = 0$. If $e \in E \cap ®C$, $m(e) = ∞$, then $\frac{λ^{(k)}(e)}{k!} = -L\(\frac{1}{(z - e)^k}\) = 0$ $\forall k \in ®N_0$. If $∞ \in E$, $m(∞) = ∞$, then $\frac{λ^{k + 1}(∞)}{(k+1)!} = L(z^k) = 0$ $\forall k \in ®N_0$.
+
+		We show that $λ = 0$ in $©H_0(®S \setminus G)$. There is a compact $K \subset G$ such that $λ \in ©H_0(®S \setminus K)$ and every component of $®S \setminus K$ contains some component of $®S \setminus G$.
+
+		Let $V$ be any component of $®S \setminus K$. Then $V$ is domain and $V$ contains a limit point $e$ of $(E, m)$. By the uniqueness theorem, we get $λ = 0$ on $V$, so on $®S \setminus K$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Runge, classical version]
+	Let $G \subset ®C$ be open and $f \in ©H(G)$. Then there are rational functions $R_n$, $n \in ®N$ with poles outside $G$ such that $R_n \overset{\text{Loc.}} f$ on $G$.
+
+	If, in addition, $®S \setminus G$ is connected, then there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{Loc.}} f$ on $G$.
+
+	\begin{dukazin}
+		„Second part“: Let $E = \{∞\}$ and put $m(∞) = ∞$. Then
+		$$ ®F(E, m) = \{1, z, …, z^k, …\} $$
+		and by the previous theorem, the polynomials are dense in $©H(G)$.
+
+		„First part“: Let $E \subset ®S \setminus G$ containing at least one point of every component of $®S \setminus G$. Put $m = ∞$ on $E$. Then $\LO(©F(E, m))$ is dense in $©H(G)$ and it is a subspace of rational functions with poles outside $G$.
+	\end{dukazin}
+\end{veta}
+
+% 13. 04. 2023
+
+\begin{dusledek}[Cauchy's theorem for simply connected domains]
+	Let $G \subset ®C$ be open a nd $®S \setminus G$ be connected. If $f \in ©H(G)$ and $φ$ is a closed curve in $G$, then $\int_φ f = 0$.
+
+	\begin{dukazin}
+		By Runge, there are polynomials $P_n$ such that $P_n \overset{\text{Loc.}}\rightrightarrows f$ on $G$. Then ($P_n$ has a primitive function in ®C) $0 = \int_φ P_n \rightarrow \int_φ f$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}[Cauchy's theorem for cycles]
+	Let $G \subset ®C$ be open and $Γ$ be a cycle in $G$ (i.e., $\<Γ\> \subset G$). Then
+	$$ \(\forall f \in ©H(G): \int_Γ f = 0\) \Leftrightarrow \Int Γ \subset G. $$
+
+	\begin{dukazin}
+		„$\implies$“: If $z_0 \in ®C \setminus G$, then $f(z) := \frac{1}{z - z_0} \in ©H(G)$ and $\ind_Γ z_0 = \frac{1}{2π i} \int_Γ f = 0$.
+
+		„$\impliedby$“: Let $f \in ©H(G)$. By Runge, there are rational $R_n$ with poles outside $G$ such that $R_n \overset{\text{Loc.}}\rightrightarrows f$. Then $0 = \int_Γ R_n \rightarrow \int_Γ f$. (First equality is from: Let $Γ = \{φ_1, …, φ_m\}$, where $φ_j$ are closed curves in $G$. Then $\int_Γ R_n = \sum_{j=1}^m \int_{φ_j} R_n = \sum_{j=1}^m 2πi \sum_{R_n(s) = ∞} \res_s R_n \ind_{φ_j} s = 2πi·\sum_{R_n(s) = ∞} \res_s R_n · \ind_Γ s$, but $s$ lies outside of $G$, so it is equal to 0.)
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Runge, for compacts]
+	Let $K$ be a compact in ®C and let $S \subset ®S \setminus K$ contain at least one point of any component of $®S \setminus K$. Let $f$ be a holomorphic function on $K$. Then there are rational functions $R_n$ with poles in $S$ such that $R_n \rightrightarrows f$ on $K$.
+
+	\begin{poznamkain}[Technique: pushing poles]
+		Each rational function $R$ can be uniquely expressed in the form (rational function has $n \in ®N$ poles, and we will write the principal part of Laurent expansion around the pole $z_k$):
+		$$ R(z) = \sum_{k=1}^n \sum_{j=1}^{n_k} \frac{A_j^k}{(z - z_k)^j} + C_0 + C_1z + … + C_mz^m, $$
+		where $n, m, n_k \in ®N$, $z_k \in ®C$ and $A^k_{n_k} ≠ 0$, $C_m ≠ 0$. Then $z_k$ is a pole of $R$ of multiplicity $n_k$ and $∞$ is a pole of $R$ of multiplicity $m$. A rational function $R$ is a polynomial iff $R$ has a pole at most at $∞$.
+
+		Notation: Let $K$ be a compact in $®C$, $U \subset ®S$ and $U \cap K = \O$. Put $B(K, U) = \overline{\{R|_K | R \text{ is rational with poles in } U\}}^{©C(K)}$. (Remark: $B(K, U)$ is a closed subalgebra of $©C(K)$.)
+
+		Theorem (pushing poles): Let $K$ be a compact in ®C, $U \subset ®S$ be a domain, $K \cap U = \O$ and $z_0 \in U$. If $R$ is rational function with poles in $U$, then $R \in R(K, \{z_0\})$.
+
+		Corollary: By theorem, we have $B(K, U) = B(K, z_0)$.
+
+		Proof: Put $V := \{ξ \in U | \frac{1}{z - ξ} \in B(K, x_0), \text{ for $ξ \in ®C$ and } z \in B(K, z_0) \text{for $ξ = ∞$}\}$. Of course $B(K, z_0) = B(K, V)$. Indeed, if $ξ \in V$, then $\frac{1}{(z - ξ)^k} \in B(K, z_0)$, for $ξ \in ®C$ and $k \in ®N$, and $z^k \in B(K, z_0)$ for $ξ = ∞$, $k \in ®N$.
+
+		Then each rational $R$ with poles in $V$ is contained in $B(K, z_0)$. Hence $B(K, V) \subset B(K, z_0)$. Since $z_0 \in V$, we have $B(K, z_0) \subset B(K, V)$.
+
+		„$V$ is closed in $U$“: Let $ξ_n \in V$, $ξ_n \rightarrow ξ_0$ and $ξ_0 \in U$. We need to show that $ξ_0 \in V$. WLOG $\forall n \in ®N: ξ_n \in ®C$.
+
+		„$ξ_0 \in ®C$“. Then put $δ := \dist(ξ_0, K) > 0$. Choose $n_0 \in ®N$ such that $\dist(ξ_n, K) ≥ \frac{δ}{2}$ for $n > n_0$. Then
+		$$ \frac{1}{z - ξ_n} \rightrightarrows \frac{1}{z - ξ_0}, \qquad z \in K, $$
+		$$ \impliedby \left|\frac{1}{z - ξ_n} - \frac{1}{z - ξ_0}\right| = \frac{|ξ_n - ξ_0|}{|z - ξ_n|·|z - ξ_0|} ≤ \frac{2}{δ^2}·|ξ_n - ξ_0| \rightarrow 0, $$
+		if $n > n_0$ and $z \in K$. Hence $\frac{1}{z - ξ_n} \in B(K, z_0)$, so $ξ_0 \in V$.
+
+		„$ξ_0 = ∞$“. Then
+		$$ \frac{ξ_n z}{ξ_n - z} = -ξ_n \(\frac{ξ_n}{z - ξ_n} + 1\) \in B(K, z_0). $$
+		Take $C > 0$ with $\forall z \in K: |z| ≤ C$. Take $n_0 \in ®N$ such that $\forall n > n_0: |ξ_n| > C$. Then $\forall z \in K: \frac{ξ_n z}{ξ_n - z} \rightrightarrows z$, because
+		$$ \left|\frac{ξ_n z}{ξ_n - z} - z\right| = \frac{|z|^2}{|ξ_n - z|} ≤ \frac{C^2}{|ξ_n| - C} \rightarrow 0. $$
+		if $n > n_0$ and $z \in K$. Hence $z \in B(K, z_0)$, so $∞ \in V$.
+
+		„$V$ is open (so $V = U$)“: Let $ξ_0 \in V$.
+
+		„$ξ \in ®C$“: Put $δ := \dist(ξ_0, K) > 0$. Let $ξ \in U(ξ \in U(ξ_0, δ/2))$. Then
+		$$ \frac{1}{z - ξ} = \frac{1}{(z - ξ_0) - (ξ - ξ_0)} = \frac{1}{z - ξ_0}·\frac{1}{1 - \frac{ξ - ξ_0}{z - ξ_0}} = \sum_{k=0}^∞ \frac{(ξ - ξ_0)^k}{(z - ξ_0)^{k + 1}} $$
+		converges uniformly for $z \in K$ because
+		$$ \left|\frac{(ξ - ξ_0)^k}{(z - ξ_0)^{k + 1}}\right| ≤ \frac{\(\frac{δ}{2}\)^k}{δ^{k+1}} = \frac{1}{δ·2^k}, $$
+		for $z \in K$ and $k \in ®N_0$. Hence $\frac{1}{z - ξ} \in B(K, ξ_0) \subset B(K, V) = B(K, z_0)$. So $U(ξ_0, δ/2) \subset V$.
+
+		„$ξ_0 = ∞$“: Take $C > 0$ with $\forall z \in K: |z| ≤ C$. Let $ξ \in ®C$ with $|ξ| > 2C$. Then $\frac{1}{z - ξ} = -\frac{1}{ξ}·\frac{1}{1 - \frac{z}{ξ}} = -\sum_{k=0}^∞ \frac{z^k}{ξ^{k+1}}$ converges uniformly for $z \in K$, because $|z^k / ξ^{k+1}| ≤ C^k / (2C)^{k+1} = \frac{1}{C·2^{k+1}}$ for $z \in K$ and $k \in ®N_0$. Hence $\frac{1}{z - ξ} \in B(K, ∞) \subset B(K, z_0)$. So $U\(∞, \frac{1}{2C}\) \subset V$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Let $f$ be a holomorphic function on an open set $G \supset K$. Using Runge's theorem for "open sets", there are rational functions $\tilde R_n$ with poles outside $G$ such that $\tilde R_n \rightrightarrows f$ on $K$.
+
+		„$\tilde R_n \in B(K, S)$“: All poles of $\tilde R_n$ are contained in a finitely many components $C_1, …, C_k$ of $®S \setminus K$. Express $\tilde R_n = \tilde Q_1 + … + \tilde Q_k$, where $\tilde Q_j$ is a rational function with poles in the domain $C_j$. For $j \in [k]$ take $s_j \in S \cap C_j$. By pushing poles we have $\tilde Q_j \in B(K, s_j)$. For given $ε > 0$ and $j \in [k]$, there is a rational function $Q_j$ with a pole at $s_j$ such that $|\tilde Q_j - Q_j| ≤ \frac{ε}{k}$ on $K$. Put $R_n := Q_1 + … + Q_k \in B(K, S)$. Then $|R_n - \tilde R_n| ≤ ε$ on $K$. Hence $\tilde R_n \in B(K, S)$.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

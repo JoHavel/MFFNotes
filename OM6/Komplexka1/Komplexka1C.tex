@@ -126,11 +126,163 @@ $$ \sin \pi z = \pi z \prod_{k=1}^∞ \(1 - \frac{z^2}{k^2}\). $$
 \end{lemma}
 
 \begin{lemma}
-	$$ Γ(x) = \lim_{n \rightarrow ∞} \frac{n!·n^x}{x·(x + 1)· … ·(x + n)}. $$
+	$$ Γ(x) = \lim_{n \rightarrow ∞} \frac{n!·n^x}{x·(x + 1)· … ·(x + n)}. $$
 	
 	\begin{dukazin}
 		„$Γ_n(x) = \frac{n! n^x}{x·(x + 1)· … · (x + n)}$“: $Γ_n(x) = \int_0^n t^{x - 1} \(1 - \frac{t}{n}\)^n dt = \frac{1}{n^n}·\int_0^n t^{x - 1}(n - A^t) dt \overset{\text{IBP}}=$
 		$$ = \(\frac{1}{n}\)^n \(\[\frac{1}{x}·t·(n - t)^n\]_0^n + \int_0^n \frac{n}{x} t^x (n - t)^{n - 1} dt\) = \frac{1}{n^n} \frac{n·(n-1)·(n-2)·…·2·1}{x·(x+1)·(x+2)·…·(x + n - 1)}· \int_0^n t^{x + n - 1} dt = \frac{n^x·n!}{x·(x+1)·…·(x+n)}. $$
 	\end{dukazin}
 \end{lemma}
+
+% 23. 03. 2023
+
+\section{Weierstrass function}
+\begin{definice}
+	$$ H(z) := z·\prod_{k=1}^∞ \(1 + \frac{z}{k}\) e^{-\frac{z}{k}}. $$
+\end{definice}
+
+\begin{lemma}
+	$H \in ©H(®C)$ has simple zero points just in $®N_0$.
+
+	$H(z)·H(-z) = -\frac{z}{π}\sin(π z)$.
+
+	$H(1) = e^{-γ}$, where $γ := \lim_{n \rightarrow ∞} \(\sum_{k=1}^n \frac{1}{k} - \log n\)$ is the Euler–Mascheroni constant. It is known $γ \overset{.}= 0, 577$, but it isn't known if it is even irrational (much less transcendent).
+
+	\begin{dukazin}
+		$\(1 + \frac{z}{k}\)e^{-\frac{z}{k}}$ is $E_1(\frac{z}{k})$ (first Weierstrass factor). So from WF, we know that 1. hold because $\sum_{k=1}^∞ \frac{|z|^2}{k^2}$ converges locally uniformly on $®C$.
+
+		$$ H(z)·H(-z) = -z^2 \prod_{k=1}^∞ \(1 - \frac{z^2}{k^2}\) = - \frac{z}{π} \sin(πz). $$
+
+		$$ H(1) = \lim_{n \rightarrow ∞} \prod_{k=1}^n \(1 + \frac{1}{k}\) e^{-\frac{1}{k}} = e^{-γ}, $$
+		because
+		$$ \frac{2}{1}·\frac{3}{2}·…·\frac{n+1}{n}\exp\(-\sum_{k=1}^n \frac{1}{k}\) = \exp\(\log(n+1) - \sum_{k=1}^n \frac{1}{k}\) \rightarrow e^{-γ}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Weierstrass]
+	$Δ(z) := e^{γ z} H(z)$.
+\end{definice}
+
+\begin{lemma}
+	$Δ \in ©H(®C)$ has simple zero points just in $®N_0$.
+
+	$$ Δ(z) = \lim_{n \rightarrow ∞} \frac{z·(z + 1)·…·(z + n)}{n! n^z}, \qquad z \in ®C. $$
+
+	$Δ(1) = 1$, $z·Δ(z + 1) = Δ(z)$ for $z \in ®C$.
+
+	\begin{dukazin}
+		First is similar to previous lemma.
+
+		$$ Δ(z) = e^{γ z}·\lim_{n \rightarrow ∞} z · \prod_{k=1}^n \(1 + \frac{z}{k}\) e^{-\frac{z}{k}} = e^{γ z}·\lim_{n \rightarrow ∞} z·\frac{(z + 1)·(z + 2)·…·(z + n)}{1·2·…·n} e^{-z·\sum_{k=1}^n \frac{1}{k}} = $$
+		$$ = e^{γ z}·\lim_{n \rightarrow ∞} \frac{z·(z + 1)·…·(z + n)}{n!·n^z}·e^{-z·\sum_{k=1}^n \frac{1}{k} - \log n} = \lim_{n \rightarrow ∞} \frac{z·(z + 1)·…·(z + n)}{n!·n^z}. $$
+
+		$Δ(1) = 1$ is obvious. $z·Δ(z + 1) = Δ(z)·\lim_{n \rightarrow ∞} \frac{z + n + 1}{n}$ previous.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	$Γ := \frac{1}{Δ}$.
+\end{definice}
+
+% 30. 03. 2023 From notes of my colleague
+
+\begin{lemma}
+	$Γ \in ©M(®C)$ has simple poles just in $(-®N_0) =: ®N_0^-$, $Γ ≠ 0$ on ®C.
+
+	Gauss formula: $Γ(z) = \lim_{n \rightarrow ∞} \frac{n! n^z}{z·(z + 1)·…·(z + n)}$, $z \in ®C \setminus ®N_0^-$.
+
+	$$ Γ(1) = 1, \qquad Γ(z + 1) = z·Γ(z). $$
+
+	$$ \res_{-n} Γ = \frac{(-1)^n}{n!}, n \in ®N_0. $$
+
+	\begin{dukazin}[Only last proposition]
+		We know that (with $z \notin ®N_0^-$ in limits)
+		$$ \res_{-n} Γ = \lim_{z \rightarrow -n} (z + n) Γ(z) = \lim_{z \rightarrow -n} \frac{Γ(z + n + 1)}{z·(z - 1)·…·(z + n - 1)} \frac{Γ(1)}{(-1)^n·n!} = \frac{(-1)^n}{n!}. $$
+	\end{dukazin}
+\end{lemma}
+
+\section{?}
+\begin{poznamka}
+	$Ω$ open, bounded, $f \in ©C(\overline{Ω})$, $f \in ©H(Ω)$ $\implies$ $\sup_Ω |f| = \max_{\partial Ω} |f|$.
+\end{poznamka}
+
+\begin{veta}
+	$Ω = \{x + i y | x \in (a, b) \land y \in ®R\}$, $f \in ©C(\overline{Ω}) \cap ©H(Ω)$, $|f| < B < ∞$ on $Ω$. $M(x) := \sup_{y \in ®R} |f(x + i y)|$. Then $M(x)^{b - a} ≤ M(a)^{b - x} · M(b)^{x - a}$.
+
+	\begin{dukazin}
+		$M(a) = M(b) = 1$, $|f| ≤ 1$ on $Ω$. Let $ε > 0$, $h_ε(z) = \frac{1}{1 + ε(z - a)}$. $|h_ε(z)| ≤ 1$ on $\overline{Ω}$.
+
+		$\Re\{1 + ε(z - a)\} = 1 + ε(x - a) ≥ 1$. $|1 + ε(z - a)| ≥ ε|y|$. $|f(z) h_ε(z)| ≤ \frac{B}{ε}·\frac{1}{y}$, $y ≠ 0$. $|f h_ε| ≤ 1$ on $\partial R$.
+	\end{dukazin}
+\end{veta}
+
+% 06. 04. 2023
+
+\section{Riemann zeta function}
+\begin{poznamka}
+	$$ ζ(z) = \sum_{n=1}^∞ n^{-z}, \qquad \Re z > 1. $$
+\end{poznamka}
+
+\begin{definice}[Riemann zeta function]
+	Riemann zeta function is defined on $\{\Re z > 1\}$ by $ζ(z) = \sum_{n=1}^∞ n^{-z}$ and $ $
+
+	\begin{poznamkain}
+		$$ Γ(z) = \int_0^∞ e^{-t} t^{z - 1} dt = n^z \int_0^∞ e^{-n t} t^{z - 1} dt \implies $$
+		$$ \implies n^{-t} Γ(z) = \int_0^∞ e^{-n t} t^{z - 1} dt. $$
+
+		$$ ζ(z)·Γ(z) = \sum_{n=1}^∞ \int_0^∞ e^{-n t} t^{z - 1} dt. $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{lemma}
+	Let $S = \{\Re z ≥ a\}$, $a > 1$. If $ε > 0$, there is $δ \in (0, 1)$ such that $\forall z \in S$:
+	$$ \left|\int_α^β (e^t - 1)^{-1} t^{z - 1} dt\right| < ε, \qquad δ > β > α > 0. $$
+
+	Let $S = \{\Re z ≤ A\}$, $A \in ®R$. If $ε > 0$, there is $κ > 1$ such that $\forall z \in S$:
+	$$ \left|\int_α^β (e^t - 1)^{-1} t^{z - 1} dt\right| < ε, \qquad β > α > κ. $$
+
+	\begin{dukazin}
+		„First part“: $e^t - 1 ≥ t$, $t ≥ 0$, so for $0 < t ≤ 1$:
+		$$ z \in S: \left|(e^t - 1)^{-1} t^{z - 1}\right| ≤ |t^{z - 2}| \implies $$
+		$$ \implies \int_0^1 \left|(e^t - 1)^{-1} t^{z - 1}\right| dt ≤ \int_0^1 |t^{z - 2}| dt < ∞. $$
+
+		„Second part“: $t ≥ 1$, $z \in S$:
+		$$ \left|(e^t - 1)^{-1} t^{z - 1}\right| ≤ (e^t - 1)^{-1}·t^{A - 1} < C·e^{\frac{1}{2} t} (e^t - 1)^{-1} \implies $$
+		$$ \implies \int_1^∞ \left|(e^t - 1)^{-1} t^{z - 1}\right| dt ≤ C·\int_1^∞ e^{\frac{1}{2} t}(e^t - 1)^{-1} dt < ∞. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}
+	If $S = \{a ≤ \Re z ≤ A\}$, $1 < a < A < ∞$, then $\int_0^∞ (e^t - 1)^{-1} t^{z - 1} dt$ converges uniformly on $S$.
+
+	If $S = \{\Re z ≤ A\}$, $A \in ®R$, then $\int_1^∞ (e^t - 1)^{-1} t^{z - 1} dt$ converges uniformly on $S$.
+\end{dusledek}
+
+\begin{tvrzeni}
+	For $\Re z > 1$
+	$$ ζ(z)·Γ(z) = \int_0^∞ (e^t - 1)^{-1} t^{z-1} dt. $$
+
+	\begin{dukazin}
+		By the previous lemma for $ε > 0$ there exist $0 < α < β < ∞$ such that
+		$$ \int_0^α (e^t - 1)^{-1} t^{x - 1} dt < \frac{3}{4}, $$
+		$$ \int_\beta^∞ (e^t - 1)^{-1} t^{x - 1} dt < \frac{3}{4}. $$
+
+		$$ \sum_{k=1}^∞ e^{-k t} ≤ (e^t - 1)^{-1} \qquad \forall n ≥ 1: $$
+		$$ \sum_{n=1}^∞ \int_0^α e^{-n t} t^{x - 1} dt < \frac{3}{4}, $$
+		$$ \sum_{n=1}^∞ \int_β^∞ e^{-n t} t^{x - 1} dt < \frac{3}{4}. $$
+
+		$$ \left|ζ(x)·Γ(x) - \int_0^∞ (e^t - 1)^{-1} t^{x - 1} dt\right| = \left|\sum\(\int_0^α + \int_α^β + \int_β^∞\) - \(\int_0^α + \int_α^β + \int_β^∞\)\right| ≤ ? + \left|\sum_{n=1}^∞ \int_α^β e^{-n t} t^{x - 1} dt - \int_α^β (e^t - 1)^{-1} t^{x - 1}\right| = ?, $$
+		since on $[α, β]$ $\sum e^{-n t}$ converges uniformly to $(e^t - 1)^{-1}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	Extend to $\{\Re z > -1\}$: Laurent expansion (in 0):
+	$$ (e^z - 1)^{-1} = \frac{1}{z} - \frac{1}{2} + \sum_{n=1}^∞ a_n z^n. $$
+\end{poznamka}
+
+% 13. 04. 2023
+
+TODO?
+
 \end{document}

@@ -454,4 +454,87 @@ TODO? % example of nontrivial solution of $Δu = ||u||^{q-2} · u$ or something 
 
 TODO!!!
 
+% 27. 03. 2023 (I wasn't there)
+
+TODO!!!
+
+\section{PDE vs. Minimizers}
+
+TODO?
+
+\begin{lemma}
+	Let $A(u, ξ)$ and $B(u, ξ)$ be $C^1$-mappings. Then the following is equivalent:
+
+	\begin{itemize}
+		\item $\exists F$ such that $A = \frac{\partial F}{\partial ξ}$, $B \frac{\partial F}{\partial u}$;
+		\item $\forall i, j: \frac{\partial A_i}{\partial ξ_j} = \frac{\partial A_j}{\partial ξ_i}$, $\frac{\partial B}{\partial ξ_i} = \frac{\partial A_i}{\partial u}$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„2. is necessary to have $F$“:
+		$$ \frac{\partial A_i}{\partial ξ_j} = \frac{\partial}{\partial ξ_j} \(\frac{\partial F}{\partial ξ_i}\) = \frac{\partial^2 F}{\partial ξ_i \partial ξ_j} = \frac{\partial}{\partial ξ_i} \(\frac{\partial f}{\partial ξ_j}\) = \frac{\partial}{\partial ξ_i}A_j. $$
+		$$ \frac{\partial B}{\partial ξ_i} = \frac{\partial}{\partial ξ_i} \(\frac{\partial F}{\partial u}\) = \frac{\partial}{\partial u} \(\frac{\partial F}{\partial ξ_i}\) = \frac{\partial A_i}{\partial u} $$
+
+		„2. $\implies$ 1.“: define
+		$$ F(u, ξ) := \int_0^1 A(t u, tξ)·ξ dt + \int_0^1 B(t u, tξ) u dt. $$
+		We need $\frac{\partial F}{\partial ξ} = A$, $\frac{\partial F}{\partial u} = B$:
+		$$ \frac{\partial F}{\partial u}(u, ξ) = \int_0^1 \frac{\partial A(t u, t ξ)}{\partial (t u)} ξ t dt + \int_0^1 \frac{\partial B(t u, t ξ)}{\partial (t u)} t u dt + \int_0^1 B(t u, tξ) dt = $$
+		$$ \(\frac{d}{dt}\(B(t u, tξ)\) = \frac{\partial}{\partial (tu)} B(t u, t ξ) u + \frac{\partial}{\partial tξ} B(t u, t ξ)·ξ.\) $$
+		$$ = \int_0^1 \frac{\partial A}{\partial (tu)}·ξ t dt + \int_0^1 B(t u, tξ) dt + \int_0^1 t \frac{d}{dt}\(B(t u, tξ) - \frac{\partial B}{\partial (tξ)} t ξ\) = \[B(t u, tξ) t\]_{t=0}^{t=1} = B(u, ξ). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $A$, $B$ be Caratheodory and $\frac{\partial A}{\partial ξ_j} = \frac{\partial A}{\partial ξ_i}$, $\frac{\partial A}{\partial u} = \frac{\partial B}{\partial ξ}$. Let $B(u, 0) = 0$, and $A$ be monotone with respect to $ξ$ and
+	$$ 1. \qquad |A(u, ξ)| ≤ c(1 + |ξ|)^{p - 1}, \qquad A(u, ξ) ξ ≥ c·|ξ|^p $$
+	$$ 2. \qquad |B(u, ξ)| ≤ c\[(1 + |ξ|)^p + |u|^p\]. $$
+
+	Then $\forall f \in \(W_0^{1, p}(Ω)\)^*$ $\exists u \in W_0^{1, p}(Ω)$:
+	$$ \int_Ω A(u, \nabla u)·\nabla v + B(u, \nabla u)v = \<f, v\>, \qquad \forall v \in W_0^{1, p}(Ω) \cap L^∞(Ω). $$
+
+	\begin{dukazin}
+		\begin{itemize}
+			\item $\exists F$, such that $\frac{\partial F}{\partial ξ} = A$, $\frac{\partial F}{\partial u} = B$;
+			\item $A$-monotone with respect to $ξ$ $\implies$ $F$ is convex with respect to $ξ$;
+			\item $F$ is coercive?
+		\end{itemize}
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $A$, $B$, $F$ be as above + assumptions and
+	$$ \(A(u_1, ξ_1) - A(u_2, ξ_2)\)(ξ_1 - ξ_2) + \(B(u_1, ξ_1) - B(u_2, ξ_2)\)(u_1 - u_2) ≥ 0. $$
+	(The whole operator is monotone.) Then any weak solution is minimizer.
+
+	\begin{dukazin}
+		The whole operator is monotone $\implies$ $F(u, ξ)$ is convex with respect to all variables.
+		$$ F(u_2, ξ_2) - F(u_1, ξ_1) ≥ \frac{\partial F}{\partial ξ}(u_1, ξ_1)·(ξ_2 - ξ_1) + \frac{\partial F}{\partial u}(u_1, ξ_1)(u_2 - u_1) = A(u_1, ξ_1)·(ξ_2 - ξ_1) + B(u_1, ξ_1)(u_2 - u_1). $$
+		$$ \int_Ω F(v, \nabla v) = F(\tr(u), \nabla \tr(u)) ≥ \int_Ω A(\tr(u), \nabla \tr(u))·(\nabla v - \nabla \tr(u)) + B(u, \nabla \tr(u))·(v , \tr(u)) = $$
+		$$ = \int_Ω A(\tr(u), \nabla \tr(u))·\nabla v + B(\tr(u), \nabla \tr(u))v - \int_Ω A(\tr(u), \nabla \tr(u)) · \nabla \tr(u) + B(\tr(u), \nabla \tr(u))\tr(u) = $$
+		$$ \(\int_Ω A(\tr(u), \nabla \tr(u))\nabla v + B(\tr(u), \nabla \tr(u))v \rightarrow \int_Ω A(…)·\nabla v + B(…)·v = 0.\) $$
+		$$ = - \int_Ω A(\tr(u), \nabla \tr(u)) · \nabla \tr(u) + B(\tr(u), \nabla \tr(u))\tr(u) = $$
+		$$ = - \int_Ω \(A(\tr(u), \nabla \tr(u)) - A(u, \nabla u)\)·\nabla \tr u - \(B(\tr(u), \nabla \tr(u)) - B(u, \nabla u)\)\tr(u) - \int_Ω A(u, \nabla u) \nabla \tr (u) + B(u, \nabla u)\tr(u) \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Monotone operator – dual approach}
+\begin{poznamka}
+	\ 
+	\begin{enumerate}
+		\item $u$-weak solution to $- \Div(A \nabla u) = f$ in $Ω$ and $u = u_0$ on $\partial Ω$, $A = A^T$.
+		\item $u$-minimizer to $\min_{\overline{S}} \int_Ω \frac{A \nabla u \nabla u}{2} - f u$, where $\overline{S} = W^{1, 2}(Ω)$ such that $u = u_0$ on $\partial Ω$.
+		\item Dual formulation $S := \{ξ \in L^2(Ω, ®R^d), \forall v \in W_0^{1, 2}(Ω): \int_Ω ξ \nabla v = \int_Ω f v\}$. Minimize $\int_Ω \frac{A^{-1} ξ ξ}{2} - \nabla u_0 ξ$, where $ξ = A \nabla u$.
+	\end{enumerate}
+\end{poznamka}
+
+\begin{veta}
+	Let $F: ®R^d \rightarrow ®R$, $A: ®R^d \rightarrow ®R^d$, $\frac{\partial F}{\partial ξ} = A(ξ)$, $F$ strictly convex and $F(0) = 0$, $A(0) = 0$. Let
+	$$ 1. \qquad |F(ξ)| ≤ C(1 + |ξ|)^p, \qquad |A(ξ)| ≤ c(1 + |ξ|)^{p - 1}, \qquad p \in (1, ∞); $$
+	$$ 2. \qquad F(ξ) ≥ c_1|ξ|^p - c_2, \qquad A(ξ)ξ > c_1|ξ|^p - c_2. $$
+
+	Let $u_0 \in W^{1, p}(ω)$, $g \in L^{p'}(Γ_i)$, $Γ_i \subseteq \partial B$ TODO!!!
+\end{veta}
+
 \end{document}

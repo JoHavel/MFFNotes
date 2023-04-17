@@ -271,6 +271,170 @@ TODO? % Examples
 	\end{dukazin}
 \end{tvrzeni}
 
+% 23. 03. 2023
 
+\begin{definice}[Maximal monotone operator]
+	$X$ Banach space, $U \subset X$. $T: U \rightarrow 2^{X^*}$ is maximal monotone operator, if $T$ is monotone and graph $T$ is maximal within graphs of monotone operators on $U$.
+
+	\begin{definicein}
+		$graph T := \{(x, x^*) \in U \times X^* | x^* \in T x\}$.
+
+		$T$ monotone: $x, y \in U$, $x^* \in Tx$, $y^* \in Ty$, then $\<x^* - y^*, x - y\> ≥ 0$.
+
+		Maximality: $x \in U$, $x^* \in X^*$, $\forall y \in U\ \forall y^* \in Ty: \<x^* - y^*, x - y\> ≥ 0$, then $x^* \in Tx$.
+	\end{definicein}
+\end{definice}
+
+\begin{lemma}
+	$U \subset X$ open, $T: U \rightarrow 2^{X^*}$ monotone usc $\|·\| \rightarrow w^*$, $\forall x \in U: Tx ≠ \O$, convex, $w^*$-closed. Then $T$ is maximal monotone.
+
+	\begin{dukazin}
+		$y \in U$, $y^* \in X^*$, $\forall x \in U\ \forall x \in Tx: \<x^* - y^*, x - y\> ≥ 0$. Assume $y^* \notin Ty$ $\implies$ (by HB) $\exists z \in X: y^*(z) > \sup\<T y, z\>$.
+
+		So $\forall x^* \in Ty$, $x^*(z) < y^*(z)$ $\implies$ $Ty \subset \{z^* \in x^* | z^*(z) < y^*(z)\} =: W$ $w^*$ open.
+
+		$T$ usc $\implies$ $\exists r > 0: B(y, r) \subset U$ and $\forall x \in B(y, r): Tx \subset W$. In particular: if $t > 0$ is small enough, then $y + t·z \in B(y, z)$ and thus $T(y + t·z) \subset W$.
+
+		$w^* \in T(y + t·z) \implies w^*(z) < y^*(z)$ and $t·\<w^* - y^*, z\> = \<w^* - y^*, y + t·z - y\> ≥ 0$. \lightning.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	$S$ topological space, $X$ Banach space. $φ: S \rightarrow 2^{X^*}$ is a minimal convex-valued usc if
+
+	\begin{itemize}
+		\item $\forall x \in S: φ(x) ≠ \O$, convex, $w^*$-compact;
+		\item $φ$ is usco $S \rightarrow w^*$;
+		\item $φ$ is minimal among maps satisfying two first conditions (i.e., $φ$ satisfies two first conditions and $ψ(x) \subset φ(x)$ for all $x \in S$ $\implies$ $ψ = φ$).
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	$U \subset X$ open convex, $f: U \rightarrow ®R$ convex continuous. Then $\partial f: U \rightarrow 2^{X^*}$ is a maximal monotone operator and a minimal convex valued usco.
+
+	\begin{dukazin}
+		From tvrzeni above: $\partial f$ is monotone operator. Assume $T \subset \partial f$ ($\forall x \in U: T(x) \subset \partial f(x)$) is a convex valued onto. Clearly $T$ is monotone. Then from previous lemma $T$ is maximal operator.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	$U \subset X$ open convex, $f: U \rightarrow ®R$ convex continuous. Then $f'_F(x)$ exists $\Leftrightarrow$ $\partial f(x)$ is a singleton and $\partial f(x)$ is usc $\|·\| \rightarrow \|·\|$ at $X$ ($\forall G \subset X^*$ $\|·\|$-open, $\partial f(x) \subset G$, $\exists r > 0: B(x, r) \subset U \land \forall y \in B(x, r): \partial f(y) \subset G$).
+
+	\begin{dukazin}
+		„$\implies$“: Assume $f'_F(x) =: x^*$. Then we know the $\partial f(x) = \{x^*\}$. Fix $ε>0$. We want $r > 0$ such that $B(x, r) \subset U$ and $\forall y \in B(x, r): \partial f(x) \subset B(x^*, ε)$. By contradiction: Assume there is $(x_n) \subset B$, $x_n \rightarrow x$, $x^*_n \in \partial f(x_n)$, $\|x^*_n - x^*\| > 2ε$. Thus $\exists h_n \in X, \|h_n\| = 1: \<x^*_n - x^*, h_n\> > 2ε$.
+		$$ x^* = f'_F(x) \implies \exists \delta > 0: \overline{B(x, \delta)} \subset U\ \forall h \in X, \|h\| ≤ \delta: f(x + h) - f(x) - x^*(h) ≤ ε \|h\|. $$
+		$$ x^*_n \in \partial f(x_n) \implies x^*_n(x + δ h_n - x_n) ≤ f(x + δ h_n) - f(x_n) $$
+		$$ x_n^*(δ h_n) ≤ f(x + δ h_n) - f(x_n) + x^*_n(x_n - x). $$
+
+		$$ 2εδ < \<x^*_n - x^*, δ h_n\> ≤ f(x + δ h_n) - f(x) + f(x) - f(x_n) - x^*(δ h_n) + x^*_n(x_n - x) ≤ $$
+		$$ ≤ εδ + f(x) - f(x_n) + x^*_n(x_n - x) \rightarrow εδ \implies 2εδ ≤ εδ. $$
+
+		„$\impliedby$“: $\partial f(x) = \{x^*\}$ $\implies$ we know that $x^* = f'_G(x)$. We will show: $x^* = f'_F(x)$. $ε > 0 \implies \exists δ > 0: B(x, δ) \subset U \land \forall y \in B(x, δ): \partial f(y) \subset B(x^*, ε)$. $y \in B(x, δ)$, $y^* \in \partial f(y)$. Then $x^*(y - x) ≤ f(y) - f(x)$, $y^*(x - y) ≤ f(x) - f(y)$. So
+		$$ 0 ≤ f(y) - f(x) - x^*(y - x) ≤ y^*(y - x) - x^*(y - x) = (y^* - x^*)(y - x) ≤ \|y^* - x^*\|·\|y - x\| ≤ ε·\|y - x\|. $$
+		So, $x^* = f'_F(x)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$U \subset X$ open convex, $f: U \rightarrow ®R$ convex continuous. $U_F = \{x \in U | \exists f'_F(x)\}$ is $G_δ$ set and $f'_F: U_F \rightarrow X^*$ is continuous $\|·\| \rightarrow \|·\|$.
+
+	\begin{dukazin}
+		$$ U_F = \bigcap_{n \in ®N} \{x \in U | \exists V \text{ a neighbourhood of } x: \diam \bigcup\{\partial f(y) | y \in V\} ≤ \frac{1}{n}\}. $$
+
+		„$\subset$“: $x \in U_F$, $x^* = f'_F(x)$. From previous tvrzeni $\forall n \in ®N\ \exists V$ a neighbourhood of $x$ such that $\forall y \in V: \partial f(y) \subset B(x^*, \frac{1}{2n}) \implies x^* \in RHS$.
+
+		„$\supset$“: $x \in RHS$, $n \in ®N$, $V_n$ ? $\partial f(x) = 0$ $\implies \partial f(x) = \{x^*\}$ and $\forall y \in V_n: \partial f(y) \subset \overline{B(x^*, \frac{1}{n})} \implies x \in U_F$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	Continuity of $f'_F$ on $U_F$: „$f'_F = \partial f|_{U_F}$“.
+\end{poznamka}
+
+\begin{tvrzeni}
+	$U \subset X$ open convex, $f: U \rightarrow ®R$ convex continuous, $U_G = \{x \in U | \exists f'_G(x)\}$. Then
+
+	\begin{itemize}
+		\item $X$ separable $\implies$ $U$ is $G_δ$;
+		\item $f'_G: U_G \rightarrow X^*$ is continuous $\|·\| \rightarrow w^*$.
+	\end{itemize}
+
+	\begin{dukazin}
+		$$ U_G = \{x \in U | |\partial f(x)| = 1\}. $$
+		$x \in U_G \implies \partial f(x) = \{f'_G(x)\}$. We know the $\partial f$ is usc $\|·\| \rightarrow w^*$. Thus the restriction to $U_G$ is continuous $\|·\| \rightarrow w^*$.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 30. 03. 2023
+
+TODO!!!
+
+% 06. 04. 2023
+
+\begin{tvrzeni}
+	$M$ a topological space (usually Baire), $X$ Banach space.
+
+	\begin{itemize}
+		\item If $Φ: M \rightarrow 2^{X^*}$ is usco (to $w^*$ topology), then $ψ(m) = \overline{\conv}^{w^*} Φ(m)$, $m \in M$, is also usco.
+
+		\item If $Ψ: M \rightarrow 2^{X^*}$ minimal convex-valued usco, $Φ: M \rightarrow 2^{X^*}$ minimal usco, $Φ \subset Ψ$. Then $\forall m \in M: (|Φ(m)| = 1 \Leftrightarrow |Ψ(m)| = 1)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Clearly for $m \in M$: $Φ(m) ≠ \O$, $ψ(m)$ convex and $w^*$-compact.
+
+		„$ψ$ is usco“: $U \subset X^*$ $w^*$-open, $m \in M$, $ψ(m) \subset U$ $\implies$ $\exists V$ $w^*$-open: $ψ(m) \subset V \subset \overline{V}^{w^*} \subset U$ (by regularity of $w^*$ topology).
+		$x^* \in ψ(m) \implies \exists H$ TODO!!! % Fotka
+
+		„Second item“: „$\impliedby$“ obvious. „$\implies$“: TODO!!! % Fotka
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$X$ is a Banach space, $X^*$ separable, $M$ a Baire topological space, $Φ: M \rightarrow 2^{X^*}$ minimal convex-valued usco. Then $G := \{m \in M\ |\ |Φ(m)| = 1 \land Φ \text{ is usco to $\|·\|$ at } x\}$ is a dense $G_δ$ subset of $M$.
+
+	\begin{dukazin}
+		$$ A_n = \{m \in M | \forall U \text{ neighbourhood of } m: \diam Φ(U) > \frac{1}{n}\} $$
+		$\implies$ $A_n$ is closed in $M$ and $M \setminus \bigcup_n A_n = G$.
+
+		We will check that each $A_n$ is meager (first category). $\{x^*_k, k \in ®N\}$ dense in $X^*$, $A_{n, k} := \{m \in A_n | \dist(Φ(m), x^*_k) < \frac{1}{8n}\}$ $\implies$ $A_n = \bigcup_{k \in ®N} A_{n, k}$. We will show that each $A_{n, k}$ is nowhere dense.
+
+		Fix $n, k$, $m \in A_{n, k}$, $U$ neighbourhood of $m$. Choose $n^* \in Φ(m)$ with $\|m^* - x_k^*\| < \frac{1}{8n}$. $m \in A_n \implies \exists z_1, z_2 \in U, z^*_1 \in Φ(z_1), z^*_2 \in Φ(z_2), \|z^*_1 - z^*_2\| > \frac{1}{2n} - \frac{1}{8n} > \frac{1}{4n}$ $\implies \exists x \in X$, $\|x\| = 1$, $\<z^* - x^*_k, x\> > \frac{1}{4n}$.
+
+		Hence $\<z^*, x\> > \<x^*_k, x\> + \frac{1}{4n}$.
+
+		$U$ is neighbourhood of $z$. $\implies \exists v \in U: \forall v^* \in φ(V): \<v^*, x\> > \<x^*_k, x\> + \frac{1}{4n}$.
+
+		Assume not, i.e., $\forall v \in U$:
+		$$ φ(v) \cap \{y^* | y^*(x) ≤ x^*_k(x) + \frac{1}{4n}\} ≠ \O. $$
+		Define $\tilde φ(m)' := φ(m)·?$, $m \in U$ and $φ(m)$, $m \in M \setminus U$. Assume the proof of P1, $\tilde φ$ is a convex-valued usco, $\tilde φ \subset φ$ $\implies$ $\tilde φ = φ$ $\implies$
+		$$ \forall v \in U: φ(v) \subset \{y^* | y^*(x) ≤ x^*_k(x) + \frac{1}{4n}\} $$
+		but this fault. \lightning.
+
+		We get $v \in U$:
+		$$ φ(v) \subset \{y^* | y^*(x) > x^*_k(x) + \frac{1}{4n}\} \text{ $w^*$-open} $$
+		$\overset{\text{$φ$ is usco}}\implies$ $\exists V$, a neighbourhood of $v$, $V \subset U$,
+		$$ φ(V) \subset \{y^* | y^*(x) > x^*_k(x) + \frac{1}{4n}\}. $$
+
+		Then $V \cap A_{n, k} = \O$. ($w \in V \implies \forall w^* \in φ(w): \|w^* - x^*_k\| ≥ \<w^* - x^*_k, x\> > \frac{1}{4n} \implies \dist(φ(w), x^*_k) ≥ \frac{1}{4n} > \frac{1}{8n}$.)
+
+		So $A_{n, m}$ is nowhere dense, hence $A_n$ are meager. Thus $\bigcup_n A_n$ is meager, hence $M \setminus \bigcup_n A_n$ is dense ($G_δ$ as? are closed).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$X$ a separable Banach space, $X$ is Asplud? $\Leftrightarrow$ $X^*$ is separable.
+
+	\begin{dukazin}
+		„$\impliedby$“ Proposition above aplied to $\partial f$.
+
+		„$\implies$“ $X$ separable, $X^*$ not separable. The $B_{X^*}$ is nonseparable $\implies$ $\exists M_0 \subset B_{X^*}$ uncountable such that $\exists ε > 0$ $\forall m_1, m_2 \in M_0$ $m_1 ≠ m_2$, $\|m_1 - m_2\| > ε$.
+
+		$(B_{X^*}, w^*)$ is compact metrizable $\implies$ $\exists M \subset M_0$ uncountable with $w^*$ isolated points.
+
+		$$ U = \{TODO!!!\} $$
+		TODO!!! % Fotka
+	\end{dukazin}
+\end{veta}
 
 \end{document}
