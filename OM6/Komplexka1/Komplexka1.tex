@@ -857,4 +857,210 @@
 	\end{dukazin}
 \end{veta}
 
+% 20. 04. 2023
+
+\section{Characterization of simple connectedness}
+\begin{tvrzeni}
+	Let $G \subset ®C$ be open. FSAE:
+
+	\begin{itemize}
+		\item[SC1] If $φ$ is closed (regular) curve in $G$, then $\Int φ \subset G$;
+		\item[SC2] $®S \setminus G$ is connected;
+		\item[SC3] $\forall f \in ©H(G)$ $\exists$ polynomials $P_n$: $P_n \overset{\text{loc.}}\rightrightarrows f$ on $G$;
+		\item[SC4] $\forall f \in ©H(G): \int_φ f = 0$ for any closed regular curve $φ$ in $G$;
+		\item[SC5] $\forall f \in ©H(G)\ \exists F \in ©H(G): F' = f$ on $G$;
+		\item[SC6] $\forall f \in ©H(G)$, $f ≠ 0$ on $G$, $\exists g \in ©H(G)$: $f = e^g$ on $G$;
+		\item[SC7] $\forall f \in ©H(G)$, $f≠0$ on $G$, $\exists h \in ©H(G)$: $h^2 = f$ on $G$.
+	\end{itemize}
+
+	\begin{dukazin}[SC1 $\implies$ SC2]
+		Assume that $®S \setminus G$ is not connected. Then there are disjoint closed sets $\O ≠ K, L \subset ®S$ such that $®S \setminus G = K \cup L$. WLOG $∞ \notin K$. Then $K$ is compact in ®C, $G_0 := G \cup K$ is an open set in $®C$ and, by theorem Cauchy formula for compact we know, there is cycle $Γ$ in $G_0$ such that $K \subset \Int Γ \subset G_0$.
+
+		Let $z_0 \in K$. Since $\ind_Γ z_0 ≠ 0$, there is $φ \in Γ$ with $\ind_φ z_0 ≠ 0$. Of course, $z_0 \in (®C \setminus G) \cap \Int φ$.
+	\end{dukazin}
+
+	\begin{dukazin}[SC2 $\implies$ SC3, SC3 $\implies$ SC4]
+		See Runge's theorem (classical version).
+
+		See the proof of the Cauchy theorem for simply connected domains.
+	\end{dukazin}
+
+	\begin{dukazin}[SC4 $\Leftrightarrow$ SC5, SC5 $\implies$ SC6, SC6 $\implies$ SC7]
+		We know from introduction to complex analysis.
+
+		See the proof of proposition about non-zero holomorphic function.
+
+		Put $h := e^{\frac{1}{2} g}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{The right topological definition}
+\begin{definice}[Loop]
+	Let $G \subset ®C$ be open. WLOG: We assume that all curves are defined on $[0, 1]$ (otherwise we can make linear reparametrization). A continuous closed curve $φ: [0, 1] \rightarrow G$ is called a loop in $G$.
+\end{definice}
+
+\begin{definice}[Homotopic loops]
+	We say that two loops $φ$ and $ψ$ are homotopic (in $G$) provided that there is a continuous map $H: [0, 1]\times[0, 1] \rightarrow G$ such that $φ_0(t) = φ(t)$ and $φ_1(t) = ψ(t)$ and $φ_s(0) = φ_s(1)$, where $φ_s(t) := H(s, t)$.
+\end{definice}
+
+\begin{tvrzeni}[Continuation of the previous tvrzeni]
+	SC8: Every loop $φ$ in $G$ is homotopic in $G$ to a constant loop.
+
+	\begin{dukazin}[SC7 $\implies$ SC8]
+		Let $φ$ be a loop in $G$. Let $G_0$ be a component of $G$ containing $\<φ\>$. If $G_0 = ®C$, then (all star-like domain has the property SC8) $φ$ is homotopic to a constant loop. So assume $G_0 \subsetneq ®C$. Then $\O ≠ G_0 \subsetneq ®C$ is a domain with the property SC7. By Riemann (next) theorem, $G_0$ is homeomorphic to ®D and hence $G_0$ has SC8 property (all star-like domains have SC8 and homomorphism preserve homotopic loops).
+	\end{dukazin}
+
+	\begin{dukazin}[SC8 $\implies$ SC1]
+		Of course, every constant loop $ψ$ has $\Int ψ = \O$. Hence this implication follows from the theorem after Riemann theorem.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Riemann]
+	Let $\O ≠ G_0 \subsetneq ®C$ be a domain with SC7. Then there is a one-to-one holomorphic function $h: G_0 \overset{\text{onto}}\rightarrow ®D := U(0, 1)$.
+\end{veta}
+
+\begin{poznamka}[Recall]
+	Proposition: Let $φ_1, φ_2: [0, 1] \rightarrow ®C$ be closed (regular) curves and $z_0 \in ®C \setminus (\<φ_1\> \cup \<φ_2\>)$. If $\forall t \in [0, 1]$:
+	$$ |φ_1(t) - φ_2(t)| < |φ_1(t) - z_0|, $$
+	then $\ind_{φ_1} z_0 = \ind_{φ_2} z_0$.
+\end{poznamka}
+
+\begin{veta}
+	Let $φ, ψ$ be two loops homotopic in an open set $G \subset ®C$. Then $\ind_φ z_0 = \ind_ψ z_0$ $\forall z_0 \in ®C \setminus G$.
+
+	\begin{definicein}[Index of (non-regular) loop]
+		Let $φ: [0, 1] \rightarrow ®C$ be a loop and $z_0 \in ®C \setminus \<φ\>$. There are regular closed curves $φ_n: [0, 1] \rightarrow ®C$ such that $φ_n \rightrightarrows φ$. Indeed using the uniform continuity of $φ$, $φ$ can be uniformly approximated by piecewise linear closed curves with vertices on $φ$ given by sufficiently fine partitions of $[0, 1]$.
+
+		Define $\ind_φ z_0 := \lim_{n \rightarrow ∞} \ind_{φ_n} z_0$.
+
+		By recalled proposition, the definition is correct because there is $n_0 \in ®N$ such that $\ind_{φ_n} z_0$, $n ≥ n_0$, are constant and $\ind_φ z_0$ does not depend of the choice of $\{φ_n\}$.
+	\end{definicein}
+
+	\begin{poznamkain}
+		„Proposition from recall holds true for (non-regular) loops $φ_1, φ_2$.“: Indeed, let loops $φ_1$ and $φ_2$ satisfy
+		$$ \forall t \in [0, 1]: |φ_1(t) - φ_2(t)| < |φ_1(t) - z_0|. $$
+		Then, by definition, there are approximations $\tildeφ_1, \tildeφ_2$ which are regular, satisfy the assumptions of proposition from recall and $\ind_{φ_j} z_0 = \ind_{\tildeφ_j}$, $j = 1, 2$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Let $H: [0, 1] \times [0, 1] \rightarrow G$ be continuous, $φ_0 = φ$, $φ_1 = ψ$ and $φ_s(0) = φ_s(1)$, $\forall s \in [0, 1]$, where $φ_s(t) = H(s, t)$. Put $ε := \dist(z_0, H([0, 1]^2)) > 0$ ($H([0, 1]^2)$ is compact).
+
+		Since $H$ is uniformly continuous, there is $n \in ®N$ such that for each $k \in [n - 1]$ and $t \in [0, 1]$ we have
+		$$ \left| φ_{\frac{k}{n}}(t) - φ_{\frac{k+1}{n}}(t)\right| = \left|H(\frac{k}{n}, t) - H(\frac{k+1}{n}, t)\right| < ε. $$
+		In particular, $φ_{\frac{k}{n}}$ and $φ_{\frac{k+1}{n}}$ satisfy the assumptions of proposition. Hence
+		$$ \ind_{φ_0} z_0 = \ind_{φ_{\frac{1}{n}}} z_0 = \ind_{φ_{\frac{2}{n}}} z_0 = … = \ind_{φ_1} z_0. $$
+	\end{dukazin}
+\end{veta}
+
+% 27. 04. 2023
+
+\begin{veta}[The Schwarz lemma]
+	Let $f \in ©H(®D)$, $f(®D) \subset ®D$ and $f(0) = 0$. Then $|f(z)| ≤ |z|$, $z \in ®D$ and $|f'(0)| ≤ 1$. If the equality occurs in first inequality got some $z \in ®D \setminus \{0\}$ or in second inequality, then $f$ is a rotation, i.e., $f(z) = λ z$, $z \in ®D$ for some $λ \in ®C, |λ| = 1$.
+
+	\begin{dukazin}
+		Put $g(z) := \frac{f(z)}{z}$, for $z \in ®D \setminus \{0\}$, and $f'(0)$, $z = 0$. Then $g \in ©H(®D)$. Let $0 < r < 1$. Then $|g(r)| ≤ \frac{1}{r}$, $|z| = r$. By the maximum modulus theorem, we get $|g(z)| ≤ \frac{1}{z}$, $|z| ≤ r$.
+
+		Let $z \in ®D$. Then, for $r$ close enough to $1-$, we have this inequality and letting $r \rightarrow 1-$ we get $|g(z)| ≤ 1$. If $|g(z)| = 1$ for some $z \in ®D$, then by maximum modulus theorem $g$ is constant on ®D.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	For $α \in ®D$ put $φ_α(z) := \frac{z - α}{1 - \overline{α}z}$. Then
+
+	\begin{itemize}
+		\item $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ is one-to-one, $φ_α(®D) = ®D$, $φ_α(®T) = ®T$, where $®T := \{z \in ®C | |z| = 1\}$;
+		\item $(φ_α)_{-1} = φ_{-α}$;
+		\item $φ_α(α) = 0$, $φ_α'(α) = \frac{1}{1 - |α|^2}$, $φ_α'(0) = 1 - |α|^2$.
+	\end{itemize}
+
+	\begin{dukazin}[ii)]
+		$$ w = \frac{z - α}{1 - \overline{α}z}: w - \overline{α}wz = z - α, \qquad w + α = z·(1 + \overline{α}w), \qquad z = \frac{w + α}{1 + \overline{α}w} = φ_{-α}(w). $$
+	\end{dukazin}
+
+	\begin{dukazin}[i)]
+		If $z \in ®T$, then
+		$$ \left|\frac{z - α}{1 - \overline{α}z}\right| = \frac{|z - α|}{|\overline{z - α}|·|z|} = 1. $$
+		Hence $φ_α(®T) \subseteq ®T$. The same is true for $(φ_α)_{-1} = φ_{-α}$, so $φ_α(®T) = ®T$. By the fact $φ_α(®T) = ®T$ and maximum modulus theorem, we get $φ_α(®D), φ_{-α}(®D) \subset ®D$, so $φ_α(®D) = ®D$.
+	\end{dukazin}
+
+	\begin{dukazin}[iii)]
+		$$ φ_α'(α) = \lim_{z \rightarrow α} \frac{φ_α(z)}{z - α} = \frac{1}{1 - |α|^2}. $$
+		$$ φ_α'(0) = \left.\frac{1 - \overline{α}z + (z - α)\overline{α}}{(1 - \overline{α}z)^2}\right|_{z = 0} = 1 - |α|^2. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Conformal transformations of ®D]
+	A function $f$ is one-to-one holomorphic map of ®D onto ®D, iff there are $θ \in ®R$ and $α \in ®D$ such that
+	$$ f(z) = e^{iθ}\frac{z - α}{1 - \overline{α}z} (= rot_θ · φ_α), \qquad z \in ®D. $$
+
+	\begin{dukazin}
+		„$\impliedby$“: by the previous lemma. „$\implies$“: Let $α \in ®D$ and $f(α) = 0$. Then $g := f \circ φ_{-α}$ is a one-to-one holomorphic map of ®D onto ®D and $g(0) = 0$. By the Schwarz lemma, for $z \in ®D$, $|g(z)| ≤ |z|$, $|g_{-1}(z)| ≤ |z|$, so $|g(z)| = |z|$. By Schwarz lemma, $g$ is a rotation.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[Schwarz–Pick]
+	Let $F \in ©H(®D)$, $F(®D) \subset ®D$ and $F(α) = β$. Then $|F'(α)| ≤ \frac{1 - |β|^2}{1 - |α|^2}$. If the equality occurs, then $F(z) = φ_{-b}(λ φ_α(z))$, $z \in ®D$, for $λ \in ®C$, $|λ| = 1$.
+
+	In particular $F'(0) < 1$ unless $F$ is a rotation.
+
+	\begin{dukazin}
+		Use the Schwarz lemma for $f := φ_β ∘ F ∘ φ_{-α}$. Then $|f'(0)| ≤ 1$ and
+		$$ f'(0) = φ_β'(β)∘F'(α)∘φ_{-α}'(0) = \frac{1}{1 - |β|^2} ∘ F'(α) ∘ (1 - |α|^2) $$
+		If $α = 0 = β$ and $F$ is not rotation, then $|F'(0)| < 1$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Riemann]
+	Let $\O ≠ G \subsetneq ®C$ be a simply connected domain. Then there is a one-to-one holomorphic map $f: G \overset{\text{onto}}\rightarrow ®D$.
+
+	\begin{poznamkain}
+		By this, we finish our proof that conditions (SC1)-(SC8) are equivalent with each other. (In proof we use SC7.)
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Let $\O ≠ G \subsetneq ®C$ be a domain with (SC7). Take a point $z_0 \in G$. Denote by $Σ$ the set of all one-to-one holomorphic maps $ψ: G \rightarrow ®D$. Then we have (we will prove it later)
+		\begin{itemize}
+			\item $Σ ≠ \O$;
+			\item If $ψ \in Σ$ and $ψ(G) ≠ ®D$, then there is $\tilde ψ \in Σ$ such that $|\tilde ψ'(z_0)| > |ψ'(z_0)|$.
+		\end{itemize}
+
+		Put $η := \sup_{ψ \in Σ} |ψ'(z_0)|$. Take $ψ \in Σ ≠ \O$. Since $ψ$ is one-to-one we have $ψ'(z_0) ≠ 0$ and hence $η > 0$.
+
+		By the definition of $η$, there are $ψ_n \in Σ$, $n \in ®N$, such that $|ψ_n'(z_0)| \rightarrow η$. Since $φ_n$, $n \in ®N$, are uniformly bounded, by the Montol theorem, there is a subsequence $\{ψ_{n_k}\}$ such that $ψ_{n_k} \overset{\text{loc.}}\rightrightarrows f$ on $G$. By the Weierstrass theorem, $f \in ©H(G)$ and $|f'(z_0)| = η > 0$ thus $f$ is not constant (but it is limit of one-to-one functions), so by Hurwitz theorem $f$ is one-to-one.
+
+		Of course, $f(G) \subset \overline{®D}$ but by openness of $f$ we have $f(G) \subset ®D$. Hence $f \in Σ$ and $f(G) = ®D$.
+	\end{dukazin}
+
+	\begin{dukazin}[First property of $Σ$]
+		Let $w_0 \in ®C \setminus G$. Then by (SC7), there is $φ \in ©H(G)$ such that $z - w_0 = φ^2(z)$, $z \in G$. „If $φ(z_1) = ± φ(z_2)$, then $z_1 = z_2$.“: Indeed, $z_1 - w_0 = φ^2(z_1) = φ^2(z_2) = z_2 - w_0$.
+
+		By this, $φ$ is one-to-one and $0 ≠ w \in φ(G) \implies -w \notin φ(G)$. Since $\O ≠ φ(G)$ is open, there is $0 \notin U(a, r) \subset φ(G)$. By previous implication, we have $U(-a, r) \cap φ(G) = \O$, i.e., $|φ(z) + a| ≥ r$, $\forall z \in G$.
+
+		Put $ψ := \frac{r}{2(φ(z) + a)}, z \in G$. Then $|ψ| ≤ \frac{1}{2}$ on $G$, so $ψ \in Σ$.
+	\end{dukazin}
+
+	\begin{dukazin}[Second property of $Σ$]
+		Let $ψ \in Σ$ and $α \in ®D \setminus ψ(G)$. Consider the map $φ_α(z) := \frac{z - α}{1 - \overline{α}z}$, $z \in ®D$. Then $φ_α ∘ ψ \in Σ$ and $φ_α ∘ ψ ≠ 0$ on $G$.
+
+		By (SC7), there is $g \in ©H(G)$ such that $φ_α ∘ ψ = g^2$ on $G$. Then $g$ is one-to-one, because
+		$$ g(z_1) = g(z_2) \implies g^2(z_1) = g^2(z_2) \implies φ_α ∘ ψ(z_1) = φ_α ∘ ψ(z_2) \implies z_1 = z_2. $$
+		Hence $g \in Σ$. If $β := g(z_0)$, then put $\tilde ψ := φ$. Of course, $\tilde ψ \in Σ$ and $\tilde ψ(z_0) = 0$.
+
+		Denoting $s(w) := w^2$, $w \in ®C$, we have that $Ψ = (φ_{-α} ∘ s ∘ φ_{-β}) ∘ z\tilde ψ = F ∘ \tilde ψ$, where $F := φ_{-α} ∘ s ∘ φ_{-β}$. We have $F \in ©H(®D)$, $F(®D) \subset ®D$ and $F$ is not a rotation (because $F$ is not one-to-one). By the Schwarz–Pick lemma, we have $|F'(0)| < 1$. Since $ψ'(z_0) = F'(0)·\tilde Ψ'(z_0)$, we have $0 < |ψ'(z_0)| < |\tilde ψ'(z_0)|$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Let $G \subset ®S$ be open. We say that $f: G \rightarrow ®S$ is a conformal map if $f$ is one-to-one meromorphic on $G$.
+\end{definice}
+
+\begin{definice}
+	Let $Ω, G \subset ®S$ be open. We say that $G$ and $Ω$ are conformally equivalent (we write $G \sim Ω$) if there is a conformal map $f: G \overset{\text{onto}} Ω$.
+\end{definice}
+
+\begin{priklad}
+	Show that there are just 4 classes of conform equivalent simply connected domains in ®S, namely:
+	$$ \O, \qquad ®S, \qquad [®C] := \{®S \setminus \{z_0\} | z_0 \in ®S\}, \qquad [®D]. $$
+\end{priklad}
+
 \end{document}

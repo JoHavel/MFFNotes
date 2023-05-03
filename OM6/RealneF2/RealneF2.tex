@@ -25,7 +25,8 @@
 	\begin{dukazin}[$\dim L(®R^k) = k$]
 		We find linear isometry $Q$ of $®R^k$ onto $L(®R^k)$, from last semester
 		$$ H^k(L(A)) = H^k(Q^{-1} \circ L(A)) = \lambda^k(Q^{-1} \circ L(A)) = |\det(Q^{-1}L)|·\lambda_k(A). $$
-		$$ (\det(Q^{-1}L))^2 = \det((Q^{-1} L)^T)·\det(Q^{-1} L) = \det((Q^{-1} L)^T·(Q^{-1} L)) = \det((\<Q^{-1} L e^i, Q^{-1} L^T e^j\>)_{i,j}). $$
+		$$ (\det(Q^{-1}L))^2 = \det((Q^{-1} L)^T)·\det(Q^{-1} L) = \det((Q^{-1} L)^T·(Q^{-1} L)) = $$
+		$$ = \det((\<Q^{-1} L e^i, Q^{-1} L^T e^j\>)_{i,j}). $$
 		And because $Q$ is isometry ($\implies Q^{-1}$ is isometry), we can remove $Q^{-1}$ from scalar product and we get $\det(L^T L)$.
 	\end{dukazin}
 \end{lemma}
@@ -52,8 +53,8 @@
 		
 		Further we show that for every $u, v \in V$ we have
 		$$ \|\phi(u) - \phi(v)\| ≥ \frac{1}{2} \eta \|u - v\|. $$
-		For $u - v \in V$ we compute
-		$$ \|\phi(u) - \phi(v)\| ≥ - \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| + \|\phi'(x)(u - v)\| ≥ - \epsilon \|u - v\| + \eta \|u - v\| ≥ \frac{1}{2}\eta \|u - v\|. $$
+		For $u - v \in V$ we compute $\|\phi(u) - \phi(v)\| ≥$
+		$$ ≥ - \|\phi(u) - \phi(v) - \phi'(x)(u - v)\| + \|\phi'(x)(u - v)\| ≥ - \epsilon \|u - v\| + \eta \|u - v\| ≥ \frac{1}{2}\eta \|u - v\|. $$
 
 		„First point“: TODO (řádek nebyl k přečtení)
 		$$ \|\phi(\phi^{-1}(x)(a)) - \phi(\phi^{-1}(x)(b))\| = \|\phi(u) - \phi(v)\| ≤ $$
@@ -72,6 +73,8 @@
 \begin{lemma}
 	Let $k, n \in ®N$, $k ≤ n$, $G \subset ®R^k$ be an open set, $\phi: G \rightarrow ®R^n$ be an injective regular mapping, $x \in G$, and $\alpha > 1$. Then there exists a neighbourhood of $x$ such that for every $\lambda^k$-measurable $E \subset V$ we have
 	$$ \alpha^{-1} \int_E \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(E)) ≤ \alpha \int_E \vol \phi'(t) d\lambda^k(t). $$
+
+	\vspace{-1em}
 
 	\begin{dukazin}
 		Find $\beta > 1$, $\tau > 1$ such that $\beta^k \tau < \alpha$. By previous lemma we find a neighbourhood $V_1$ of $x$ such that the conclusion of the lemma holds for $\beta$. We find a neighbourhood $V_2$ of $x$ such that
@@ -105,24 +108,28 @@
 		$$ \alpha^{-1} \int_E \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(E)) ≤ \alpha \int_E \vol \phi'(t) d\lambda^k(t). $$
 		We have $\subset\{V_y | y \in G\} = G$. There exists a sequence $\{y_j\}_{j=1}^∞$ such that $\bigcup_{i=1}^∞ V_{y_j} = G$. Using lemma from previous semester we find Borel sets $B, N \subset \phi(G)$ such that $B \subset L \subset B \cup N$, $H^k(N) = 0$.
 
-		$\lambda^k(\phi^{-1}(N)) = 0$. $\phi^{-1}(B) \subset \phi^{-1}(L) \subset \phi^{-1}(B) \cup \phi^{-1}(N)$ $\implies$ $\phi^{-1}(L)$ is $\lambda^k$-measurable. We set
-		$$ A_j = \phi^{-1}(L) \cap \(V_{y_j} \setminus \bigcup_{i=1}^{j-1} V_{y_j}\). $$
-		Then we have
+		$\lambda^k(\phi^{-1}(N)) = 0$. $\phi^{-1}(B) \subset \phi^{-1}(L) \subset \phi^{-1}(B) \cup \phi^{-1}(N)$ $\implies$ $\phi^{-1}(L)$ is $\lambda^k$-measurable. We set $A_j = \phi^{-1}(L) \cap \(V_{y_j} \setminus \bigcup_{i=1}^{j-1} V_{y_j}\)$. Then we have
+
+		\vspace{-2em}
 
 		\begin{itemize}
 			\item $A_j$ is $\lambda^k$-measurable;
 			\item $A_j \subset V_{y_j}$ for every $j \in ®N$;
 			\item $\forall j, j' \in ®N, j ≠ j': A_j \cap A_{j'} = \O$;
 			\item $\bigcup_{j=1}^∞ A_j = \phi^{-1}(L)$;
-			\item for every $j \in ®N$ we have
-				$$ \alpha^{-1} \int_{A_j} \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(A_j)) ≤ \alpha \int_{A_j} \vol \phi'(t) d\lambda^k(t). $$
+			\item for every $j \in ®N$ we have $\alpha^{-1} \int_{A_j} \vol \phi'(t) d\lambda^k(t) ≤ H^k(\phi(A_j)) ≤ \alpha \int_{A_j} \vol \phi'(t) d\lambda^k(t)$.
 		\end{itemize}
+
+		\vspace{-1em}
 
 		From all except for second point we have
 		$$ \alpha^{-1} \int_{\phi^{-1}(L)} \vol \phi'(t) d\lambda^k(L) ≤ \underbrace{\sum_{j=1}^∞ H^k(\phi(A_j))}_{= H^k\(\bigcup_{j=1}^∞ \phi(A_j)\) = H^k(L)} ≤ \alpha \int_{\phi^{-1}(L)} \vol \phi'(t) d\lambda^k(t). $$
 
-		2. „$f ≥ 0$ simple $H^k$-measurable“: From linearity of integrals. 3. „$f ≥ 0$ $H^k$-measurable“: we approximate $f$ by $0 ≤ f_j ≤ f_{j+1}$ simple functions and from Levi
-		$$ \lim_{j \rightarrow ∞} \int_{\phi(G)} f_j(x) dH^k(x) = \int_{\phi(G)} f(x) dH^k(x), \qquad \lim_{j \rightarrow ∞} \int_G f_j(\phi(t))\vol\phi'(t) d\lambda^k(t) = \int_G f(\phi(t)) \vol \phi'(t) d\lambda^k(t). $$
+		2. „$f ≥ 0$ simple $H^k$-measurable“: From linearity of integrals.
+
+		3. „$f ≥ 0$ $H^k$-measurable“: we approximate $f$ by $0 ≤ f_j ≤ f_{j+1}$ simple functions and from Levi:
+		$$ \lim_{j \rightarrow ∞} \int_{\phi(G)} f_j(x) dH^k(x) = \int_{\phi(G)} f(x) dH^k(x), $$
+		$$ \lim_{j \rightarrow ∞} \int_G f_j(\phi(t))\vol\phi'(t) d\lambda^k(t) = \int_G f(\phi(t)) \vol \phi'(t) d\lambda^k(t). $$
 
 		3. „$f$ $H^k$-measurable“: We add positive and negative part.
 	\end{dukazin}
@@ -161,8 +168,8 @@
 		„$\impliedby$“: Choose $a \in ®R$. Assume that $f(x_0) > a$. There exists $k \in ®N$ such that $f_k(x_0 > a)$. Then there is an open set $G \subset X$ such that $x_0 \in G$ and $f_k|_G > a$. Thus we have $f|_G ≥ f_k|_G > a$. So $\{x \in X | f(x) > a\}$ is open.
 
 		„$\implies$“ The case „$f ≡ ∞$“: Then we consider $f_n ≡ n$. The case „$f \not≡ ∞$“. Fix a compatible metric $\rho$ on $X$. We set $f_n(x) = \inf \{f(y) + n·\rho(x, y) | y \in X\}$. Then we have $f_n: X \rightarrow ®R$ and $f_0 ≤ f_1 ≤ …$. We have
-		$$ |f_n(x) - f_n(z)| ≤ n·\rho(x, z) \impliedby $$
-		$$ \impliedby f_n(x) - f_n(z) ≤ f(y) + n·\rho(x, y) - (f(y) + n·\rho(y, z)) + \epsilon = n(\rho(x, y) - \rho(y, z)) + \epsilon ≤ n·\rho(x, z) + \epsilon. $$
+		$$ |f_n(x) - f_n(z)| ≤ n·\rho(x, z) \impliedby f_n(x) - f_n(z) ≤ $$
+		$$ ≤ f(y) + n·\rho(x, y) - (f(y) + n·\rho(y, z)) + \epsilon = n(\rho(x, y) - \rho(y, z)) + \epsilon ≤ n·\rho(x, z) + \epsilon. $$
 		So $f_n$ is continuous.
 
 		„$f_n \rightarrow f$“: There exists $K \in ®R$ such that $f(x) ≥ K$ for every $x \in X$. Fix $x \in X$. Choose $\epsilon > 0$. For every $n \in ®N$ we find $y_n \in X$ such that $f(y_n) ≤ f(y_n) + n·\rho(x, y_n) ≤ f_n(x) + \epsilon$. Then we have
@@ -204,7 +211,8 @@
 		Set $x \in X$ and $\epsilon > 0$. We find $N \in \omega$ such that
 		$$ \left|\sum_{n=N+1}^∞ q_i^n(x)\right| < \frac{1}{2}\epsilon, \left|\sum_{n=N+1}^∞ q_n(x)\right| < \frac{1}{2}\epsilon. $$
 		Then we have
-		$$ \left|r_i(x) - \sum_{n=0}^∞ q_n(x)\right| = \left|\sum_{n=0}^∞ q_i^n(x) - \sum_{n=0}^∞ q_n(x)\right| ≤ \left|\sum_{i=0}^N q_i^n(x) - q_n(x)\right| + \left|\sum_{n=N+1}^∞ q_i^n(x) - \sum_{n=N+1}^∞ q_n(x)\right| ≤ \left|\sum_{n=0}^N (q_i^n(x)) - q_n(x) \right| + \epsilon. $$
+		$$ \left|r_i(x) - \sum_{n=0}^∞ q_n(x)\right| = \left|\sum_{n=0}^∞ q_i^n(x) - \sum_{n=0}^∞ q_n(x)\right| ≤ $$
+		$$ ≤ \left|\sum_{i=0}^N q_i^n(x) - q_n(x)\right| + \left|\sum_{n=N+1}^∞ q_i^n(x) - \sum_{n=N+1}^∞ q_n(x)\right| ≤ \left|\sum_{n=0}^N (q_i^n(x)) - q_n(x) \right| + \epsilon. $$
 		$$ \limsup_{i \rightarrow ∞} |r_i(x) \sum_{n=0}^∞ q_n(x)| ≤ \epsilon \implies r_i(x) \rightarrow \sum_{n=0}^∞ q_n(x). $$
 	\end{dukazin}
 \end{lemma}
@@ -213,7 +221,9 @@
 	Let $X$ be a metrizable topological space, $A_n \subset X$ be an $F_\sigma$ set for every $n \in ω$. Then there are $F_ς$ sets $A_n^* \subset A_n$, such that $A_n^* \cap A_m^* = \O$, whenever $n, m \in ω$, $n ≠ m$, and $\bigcup_{n=0}^∞ A_n = \bigcup_{n=0}^∞ A_n^*$.
 
 	\begin{dukazin}
-		$A_n = \bigcup_{j=0}^∞ A_{n, j}$, $A_{n, j}$ is closed. $k \mapsto (k', k'')$ bijection of $ω$ onto $ω\times ω$. $Q_k = A_{(k)_0, (k)_j} \setminus \bigcup_{l < k} A_{(l)_0, (k)_1}$. $(Q_k)_{k \in ω}$ is sequence of $F_ς$ sets, which is disjoint. $A_n^* := \bigcup \{Q_k | (k)_0 = n\} \subseteq A_n$ is $F_ς$ set, $A_n^* \cap A_m^* = \O$ if $n ≠ m$ and $\bigcup_{n=0}^∞ A_n^* = \bigcup_{k=0}^∞ Q_k = \bigcup_{n=0}^∞ A_n$.
+		$A_n = \bigcup_{j=0}^∞ A_{n, j}$, $A_{n, j}$ is closed. $k \mapsto (k', k'')$ bijection of $ω$ onto $ω\times ω$.\vspace{-0.5em}
+		$$ Q_k = A_{(k)_0, (k)_j} \setminus \bigcup_{l < k} A_{(l)_0, (k)_1}. \vspace{-0.5em} $$
+		$(Q_k)_{k \in ω}$ is sequence of $F_ς$ sets, which is disjoint. $A_n^* := \bigcup \{Q_k | (k)_0 = n\} \subseteq A_n$ is $F_ς$ set, $A_n^* \cap A_m^* = \O$ if $n ≠ m$ and $\bigcup_{n=0}^∞ A_n^* = \bigcup_{k=0}^∞ Q_k = \bigcup_{n=0}^∞ A_n$.
 	\end{dukazin}
 \end{lemma}
 
@@ -230,23 +240,269 @@
 	Let $X$ be a metrizable topological space, $Y$ be separable metrizable topological space, and $f: X \rightarrow Y$ be $B_1$-function. Then the set of points of continuity of $f$ is $G_δ$ and residual.
 
 	\begin{dukazin}
-		$\{V_n\}$ open countable basis of $Y$. $f$ is not continuous at $x$ $\Leftrightarrow$ $\exists n \in ω: x \in f^{-1}(V_n) \setminus \Int f^{-1}(V_n)$. $D(f) = \{x \in X | f \text{ is not continuous at $x$}\} = \bigcup_{n \in ω} \underbrace{(f^{-1}(V_n) \Int f^{-1}(V_n))}_{\in F_ω}$.
+		$\{V_n\}$ open countable basis of $Y\!$. $f$ isn't continuous at $x$ $\Leftrightarrow$ $\exists n \in ω: x \in f^{-1}(V_n) \setminus \Int f^{-1}(V_n)$. $D(f) = \{x \in X | f \text{ is not continuous at $x$}\} = \bigcup_{n \in ω} \underbrace{(f^{-1}(V_n) \Int f^{-1}(V_n))}_{\in F_ω}$.
 
 		$B = (f^{-1}(V_n) \Int f^{-1}(V_n)) = \bigcup_{k \in ω} F_{n, k}$ is closed and $\Int F_{n, k} = \O$, so $F_{n, k}$ is nowhere dense. So $B$ is meager. And complement of meager is residual.
 	\end{dukazin}
 \end{veta}
 
-% 14. 03. 2023
+% 14. 03. 2023 (From my colleague notes)
 
-TODO!!!
+\begin{lemma}
+	Let $X$ be a Polish space, $A, B \subseteq Z$ disjoint. If $A$ cannot be separated from $B$ by a set of type $Δ_2^0$, then there is non-empty closed set $F \subseteq X$ such that $A \cap F$ and $B \cap F$ are dense in $F$. (Opposite implication is also true.)
 
-% 20. 03. 2023
+	\begin{dukazin}
+		Let $\{B_n\}_{n \in I}$ be an open basis of $X$. We set $F_0 := X$,
+		$$ F_{α + 1} := \overline{F_α \cap A} \cap \overline{F_α \cap B}, \qquad α < ω_1, $$
+		$$ F_η := \bigcap_{α < η} F_α, \qquad η\text{ limit ordinal}, η < ω_1. $$
 
-TODO!!!
+		The sequence $\{F_α\}_{α < ω_1}$ is a non-increasing ($F_{α + 1} \subseteq \overline{F_α} = F_α$) sequence of closed sets.
 
-% 27. 03. 2023
+		„Observation 1: There exists $η < ω_1$ such that $F_η = F_{η + 1}$“: We will proceed by contradiction. Then for every $α < ω_1$ there exists $u(α) \in ω$ such that
+		$$ B_{u(α)} \cap F_α ≠ \O \qquad \land \qquad B_{u(α)} \cap F_{α + 1} = \O. $$
+		Assume that $α < α' < ω$, then we have $\O = B_{u(α)} \cap F_{α + 1} \supseteq B_{u(α)} \cap F_{α'}$ (monotonicity). Thus we have $B_{u(α)} \cap F_{α'} = \O$ and $B_{u(α')} \cap F_{α'} ≠ \O$, so $u(α) ≠ u(α')$. Thus $ω_1 \rightarrow ω$ is injective. \lightning ($ω < ω_1$).
 
-TODO!!!
+		„Observation 2: We have this $η$ from observation 1 and we want to show $F_η ≠ \O$“: Assume that (towards contradiction) $F_η = \O$. Then we can write that $X = \bigcup_{α < η}(F_α \setminus F_{α + 1})$, $X \setminus F_η = X$. Then we have $A \subseteq \bigcup_{α < η} (\overline{F_α \cap A} \setminus F_{α + 1}) =: C$, $B \cap C = \O$, $\implies$ $C$ separates $A$ from $B$ and $C \in Δ_2^0$.
+		
+		Suppose that $x \in A$. $\implies \exists α < η$: $x \in F_α \setminus F_{α + 1}$. $\implies x \in \overline{F_α \cap A}$ and $x \notin F_{α + 1} = \overline{F_α \cap A} \cap \overline{F_α \cap B} \implies x \notin \overline{F_α \cap B}$. $\implies$ $x \in \overline{F_α \cap A} \setminus F_{α + 1} \subseteq C$. $\implies A \subseteq C$.
+
+		„$C \cap B = \O$“: $x \in B \implies \exists α < η: x \in F_α \setminus F_{α+1}, x \in \overline{F_α \cap B}$. $x \notin \overline{F_α \cap A}$. $\implies x \notin \overline{F_α \cap A} \setminus F_{α + 1}$ and $x \in F_α \setminus F_{α + 1}$ $\implies x \notin C$. $\implies B \cap C = \O$.
+
+		„$C \in Σ_2^0$“: $\overline{F_α \cap A} \setminus F_{α + 1} \in Σ_2^0$ (the diference of two closed sets). $\implies C \in Σ_2^0$ (countable union).
+
+		„$C \in ∏_2^0$“: $G_α := \(\overline{F_α \cap A} \setminus F_{α + 1}\) \cup \(F_α^C \cup F_{α + 1}\)$, $α < η$, is $G_δ$ set. $C = \bigcap_{α < η} G_α$ (countable intersection of $G_δ$ sets = $∏_2^0$).
+
+		$F_η ≠ \O$ $\implies$ contradiction ($C$ separates $A$ from $B$). So $F_η$ is non-empty closed set. We set $F := F_η = F_{η + 1} = \overline{F_η \cap A} \cap \overline{F_η \cap B}$ $\implies$ $A \cap F_η$ and $B \cap F_η$ are dense in $F$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Baire]
+	Let $X$ be a Polish space, $Y$ be a separable metrizable topological space, and $f: X \rightarrow Y$. Then $f \in B_1(X, Y) \Leftrightarrow f|_F$ has a point of continuity for every closed non-empty set $F \subseteq X$.
+
+	\begin{dukazin}
+		$F$ is also a Polish space (a closed subset of Polish space).
+
+		„$1) \implies 2)$“: $f|_F : F \rightarrow Y$, $©C(f|_F)$ is $G_δ$ and residual, especially non-empty.
+
+		„$2) \implies 1)$“: Assume that $U \subseteq Y$ is open. We want to show that $f^{-1}(U) \in F|_G$. $U = \bigcup_{n=1}^∞ F_n$, $F_n$ closed (metrizable) in $Y$. $f^{-1}(U) = \bigcup_{n=1}^∞ f^{-1}(F_n)$. Consider $n$ fixed: $f^{-1}(Y \setminus U)$ and $f^{-1}(F_n)$.
+
+		It is sufficient to show that $\exists C \in Δ_2^0$ which separates $f^{-1}(F_n)$ from $f^{-1}(Y \setminus U)$ such that:
+		$$ f^{-1}(F_n) \subseteq D_n, \qquad D_n \cap f^{-1}(Y \setminus U) = \O, \qquad D_n \in Δ_2^0 $$
+		$$ \implies \bigcup_{n=1}^∞ D_n \in F_G $$
+		$$ f^{-1}(U) = \bigcup_{n=1}^∞ D_n, \qquad (D_n \cap f^{-1}(Y \setminus U) = \O) $$
+		$$ \implies ©F_G \rightarrow f \in B_1(X, Y). $$
+
+		Suppose towards contradiction that there is $n \in ®N$: $f^{-1}(F_{n_0})$ cannot be separated from $f^{-1}(Y \setminus U)$ by a $Δ_2^0$ set. By the previous lemma, we get that $\exists F \subseteq X$ closed (non-empty) such that $F \cap f^{-1}(F_n)$ and $F \cap f^{-1}(Y \setminus U)$ are dense in $F$.
+
+		$$ 2 \implies \exists x_0 \in ©C(f|_F), $$
+		$$ \exists a_n: a_n \rightarrow x_0, a_n \in f^{-1}(F_{n_0}) \cap F, \qquad \exists b_n: b_n \rightarrow x_0, b_n \in f^{-1}(Y \setminus U) \cap F. $$
+
+		Point of continuity $\implies$ $f(a_n) \rightarrow f(x_0)$ and $f(b_n) \rightarrow f(x_0)$. So $f(a_n) \in F_{n_0}$ are closed $\implies$ $f(x_0) \in F_{n_0} \subseteq U$ and $f(b_n) \in Y \setminus U$ is open $\implies$ $f(x_0) \in Y \setminus U$. So $f(x_0) \in F_{n_0} \cap Y \setminus U = \O$. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\section{Density topology, approximative continuity, differentiability}
+\begin{definice}
+	Let $f: ®R \rightarrow ®R$, $a \in ®R$, $L \in ®R$. We say that $f$ has at the point $a$ an approximate limit $L$, if we have:
+	$$ \forall ε > 0\ \exists δ > 0: \forall B \in ©B, a \subset B, \diam B < δ: λ_n^*\{x \in B | |f(x) - L| ≥ ε\} < ε λ_n(B). $$
+	$©B$ are closed balls.
+
+	\begin{poznamkain}
+		If $\lim_{y \rightarrow x} f(y) = L$, then $\{x \in B | |f(x) - L| ≥ ε\}$ has at most one point (for sufficiently small $δ$).
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Let $f: ®R \rightarrow ®R$, $a \in ®R$. Then $f$ has at most one approximate limit at $a$.
+
+	\begin{dukazin}
+		Assume that $L, L' \in ®R$ are approximate limits of $f$ at $a$, $L ≠ L'$. Choose $ε > 0$ such that $3ε = |L - L'|$. Then $\exists δ > 0$ $\forall B \in ©B$, $a \in B$, $\diam B < δ$:
+		$$ λ_1^*\{x \in B | |f(x) - L| ≥ ε\} < ε λ_1(B) \land λ_1^*\{x \in B | |f(x) - L'| ≥ ε\} < ε λ_1(B). $$
+		WLOG $ε < \frac{1}{2}$, $\frac{λ_1^*\{x \in B | |f(x) - L| ≥ ε\}}{λ_1(B)} < \frac{1}{2}$ and $\frac{λ_1^*\{x \in B | |f(x) - L'| ≥ ε\}}{λ_1(B)} < \frac{1}{2}$.
+
+		Choose $B \in ©B$, $a \in B$, $\diam B < δ$:
+		$$ B \subseteq \underbrace{\{x \in B | |f(x) - L| ≥ ε\}}_{=: C_1} \cup \underbrace{\{x \in B | |f(x) - L'| ≥ ε\}}_{=: C_2}. $$
+		Because $y \in B \implies |f(x) - L| ≥ ε \lor |f(x) - L'| ≥ 2ε$, it is $B = C_1 \cup C_2$. $λ_1(B) ≤ λ_1^*(C_1 \cup C_2) ≤ λ_1^*(C_1) + λ_1^*(C_2) ≤$
+		$$ ≤ \frac{1}{2}λ_1(B) + \frac{1}{2} λ_1(B) = λ_1(B) \implies λ_1(B) < λ_1(B). \text{ \lightning.} $$
+	\end{dukazin}
+\end{veta}
+
+% 20. 03. 2023 (From my colleague notes)
+
+\newcommand{\aplim}{\text{ap-}\lim}
+
+\begin{definice}[Notation]
+	Let $f$ be a function from ®R to ®R. Then approximate limit of $f$ at $a \in ®R$ is denoted by $\aplim_{x \rightarrow a} f(x)$.
+\end{definice}
+
+\begin{definice}
+	A function from $®R$ to $®R$ is approximately continuous at $a \in ®R$ if $\aplim_{x \rightarrow a} f(x) = f(a)$.
+\end{definice}
+
+\begin{definice}
+	We say that a $λ^*$-measurable set $A \subset ®R$ is $d$-open, if every point $x \in A$ is a point of density $A$.
+
+	\begin{prikladyin}
+		Every open set is $d$-open.
+	\end{prikladyin}
+\end{definice}
+
+\begin{veta}
+	The system of $d$-open sets in ®R forms a topology on ®R.
+
+	\begin{dukazin}
+		We denote $τ_d := \{E \subseteq ®R | E \text{ is $d$-open}\}$. Clearly $\O, ®R \in τ_d$ (interior point is a point of density).
+
+		„$G_1, G_2 \in τ_d \implies G_1 \cap G_2 \in τ_d$“: The set $G_1 \cap G_2$ is $λ$ measurable. Assume that $x \in G_1 \cap G_2$ $\implies$ „$x$ is point of density of $G_1 \cap G_2$“: choose $ε > 0$, we find $δ > 0$ such that ($x$ is a point of density of $G_1$ and $G_2$)
+		$$ \forall B \in ©B, x \in B, \diam B < δ: \frac{λ(B \cap G_1)}{λ(B)} > 1 - ε \land \frac{λ(B \cap G_2)}{λ(B)} > 1 - ε. $$
+
+		Take $B \in ©B$ with $x \in B$ and $\diam B < δ$. Since $B \subseteq (B \cap G_1 \cap G_2) \cup (B \setminus G_1) \cup (B \setminus G_2)$, we get $λ(B) ≤ λ(B \cap G_1 \cap G_2) + λ(B \setminus G_1) + λ(B \setminus G_2)$. We have
+		$$ \frac{λ(B \cap G_1 \cap G_2)}{λ(B)} ≥ \frac{λ(B) - λ(B \setminus G_1) - λ(B \setminus G_2)}{λ(B)} = 1 - \frac{λ(B \setminus G_1)}{λ(B)} - \frac{λ(B \setminus G_2)}{λ(B)} > 1 - 2ε. $$
+		$$ d_λ(x, G_1 \cap G_2) = 1 \implies G_1 \cap G_2 \in τ_d. $$
+
+		„$©A \subseteq τ_d \implies \bigcup ©A \in τ_d$“: Denote $T := \bigcup ©A$. 
+
+		„$T$ is measurable“: WLOG $T$ is bounded, since otherwise we consider $T \cap U$, where $U$ is any open ball (density is local notion $\implies$ $T$ is measurable).
+
+		Denote $©S := \{\bigcup©A_0 | ©A_0 \subset ©A \text{ is countable}\}$. Then there exists $S \in ©S$ such that $λ(S) = \sup\{λ(M) | M \in ©S\}$. $T$ is bounded $\implies$ $\sup\{λ(M) | M \in ©S\} < ∞$. Using definition of supremum we get $\{M_i\}_{i=1}^∞ \in ©S^{®N}$: $λ(M_i) \rightarrow \sup$. Then $\bigcup_{i=1}^∞ M_0 =: S$, then $λ(S) = \lim_{i \rightarrow ∞} λ(M_i) = \sup$.
+
+		Assume $x \in T$ $\implies$ there exists $A \in ©A$: $x \in A$ is $d$-open. We have $d_λ(x, A) = 1$. By the choice of $S$ we have $λ(S) = λ(S \cup A)$. Since $S \subseteq T$, $T$ bounded: $λ(S) < ∞$. Then we have $0 = λ(A \setminus S) = λ(A \cup S) - λ(S) = λ(S) - λ(S)$. This implies $d_λ(x, S) = 1$, since $λ(S \cap B) ≥ λ(A \cap B)$ and $d_λ(x, A) = 1$.
+		$$ λ(S \cap B) = λ(S \cap B \cap A) + λ(S \cap B \setminus A) = λ(S \cap B \cap A) + 0. $$
+		$$ λ(A \cap B) = λ(A \cap B \cap S) + λ((A \cap B) \setminus S) = λ(A \cap B \cap S) + 0. $$
+		This implies $λ(T \setminus S) = 0$ by Lebesgue density theorem. $\forall x \in T$: $x$ is a point of density of $S$. We can write $T = (T \setminus S) \cup S$, which is countable union of measurable sets. $\implies$ $T$ is measurable.
+
+		„$T \in τ_d$“: Take $y \in T$ $\implies$ $\exists A \in ©A: y \in A$, $d_λ(y, A) = 1$, $A \subseteq T \implies d_λ*(y, T) = 1$. $T$ is an $d$-open set.
+
+		So $τ_d$ forms a topology.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Properties of $τ_d$]
+	$τ_e \subseteq τ_d$. $τ_d$ is not metrizable. $K \subset ®R$ is $τ_d$-compact $\Leftrightarrow$ $K$ is finite. Baire theorem holds in $(®R, τ_d)$.
+\end{poznamka}
+
+\begin{veta}
+	The topology $τ_d$ is completely regular, i.e., if $F \subseteq ®R$ is closed with respect to $τ_d$ and $x_0 \notin F$, then $\exists τ_d$-continuous function $f: ®R \rightarrow [0, 1]$ such that $f(x_0) = 0$ and $f(F) \subseteq \{1\}$.
+\end{veta}
+
+\begin{lemma}
+	Let $E \subseteq ®R$ be measurable, $X \subseteq E$ be $τ_d$-closed and $d(x, E) = 1$, $x \in X$. Then there exists closed $P \subseteq ®R: X \subseteq P \subseteq E$, $\forall x \in X: d(x, P) = 1$, $\forall p \in P: d(p, E) = 1$.
+
+	\begin{dukazin}
+		Denote $\tilde E := \{x \in E | d(x, E) = 1\}$. By Lebesgue density theorem $λ(E \setminus \tilde E) = 0$, $X \subseteq \tilde E$ and $d(x, \tilde E) = 1$ for every $x \in X$. We denote $R_j := \{x \in \tilde E | 2^{-j} < \dist(x, X) ≤ 2^{-j + 1}\}$, $j \in ®N$.
+		Then we have $X \cup \bigcup_{j=1}^∞ R_j = \{x \in \tilde E | \dist(x, X) ≤ 1\}$.
+
+		Then we find $(\forall j \in ®N)$ a closed set $P_j \subseteq R_j$ with $λ(R_j \setminus P_j) < 4^{-j}$ (regularity of $λ$ measure). We set $P := X \cup \bigcup_{j=1}^∞ P_j$ (using limits). $P$ is closed, $X \subseteq P \subseteq \tilde E \subseteq E \implies$
+		$$ \implies \forall x \in X: d(x, P) = 1. $$
+
+		Assume that, choose $ε > 0$. We find $δ > 0$ such that $\forall B \in ©B$, $x \in B$, $\diam B < δ: \frac{λ(B \cap E)}{λ(B)} > 1 - ε$ and there is $j_0 \in ®N: δ < 2^{- j_0 + 1} < ε$.
+
+		Choose $B \in ©B$, $x \in B$ and $η := \diam B < δ$. We find $j_1 \in ®N$: $2^{-j_1} < η ≤ 2^{-j_1 + 1} \implies j_1 ≥ j_0$. Then we have: $B \cap P \subseteq X \cup \bigcup_{j=j_1}^∞ P_j$. Further we have:
+		$$ λ(B \cap (E \setminus P)) ≤ λ(\bigcup_{j=j_1}^∞ (R_j \setminus P_j)) ≤ \sum_{j=j_1}^∞ λ(R_j \setminus P_j) ≤ \sum_{j=j_1}^∞ 4^{-j} = 4^{-j_1}·\frac{4}{3} = \frac{1}{3}·4^{-j_0 + 1}. $$
+		
+		We compute $\frac{λ(B \cap P)}{λ(B)} = \frac{λ(B \cap E) - λ(B \cap (E \setminus P))}{λ(B)} ≥ 1 - ε - \frac{λ(B \cap (E \setminus P))}{λ(B)} ≥$
+		$$ ≥ 1 - ε - \frac{\frac{1}{3}4^{-j_1 + 1}}{λ(B)} ≥ 1 - ε - \frac{1}{3} 4^{-j_1 + 1}·2^{j_1 - 1} = 1 - ε - \frac{1}{3} 2^{-j_1 + 1} > 1 - 2ε \implies d_λ(x, P) = 1. $$
+
+		It remains to verify the last property:
+		$$ P \subseteq \tilde E \implies d_λ(x, E) = 1 \text{ for each } x\in P. $$
+	\end{dukazin}
+\end{lemma}
+
+% 27. 03. 2023 (From my colleague notes)
+
+\begin{dukaz}[The previous theorem]
+	Let $F \subseteq ®R$ be $d$-closed, „$x_0 \notin F$ $\implies$ $\exists τ_d$-continuous $f: ®R \rightarrow [0, 1]$ such that $f(F) \subseteq \{0\} \land f(x_0) = 1$“: We find a set $E \in ©F_G(®R)$ such that $x_0 \in E$, $E \cap F = \O$: $λ((R \setminus F) \setminus E) = 0$. $F$ is $τ_d$-closed, hence measurable, $F^c$ is $τ_d$-open, hence measurable.
+	$$ \exists E \in ©F_G: λ((R \setminus F) \setminus E) = 0 $$
+	if necessary $E := E \cup \{x_0\}$.
+
+	$E = \bigcup_{n=1}^∞ F_n$, $F_n$ closed, $n \in ®N$. We may assume that $x_0 \in F_1$. Then we have $F_1 \subseteq E$, $\forall x \in F_1: d_λ(x, E) = 1$. $x \in X: d_λ(x, F_1) = 1$. We set $Φ(1) := F_1$. Now assume that we have already constructed $Φ(1) \subseteq Φ(2) \subseteq … \subseteq Φ(k) \subseteq F$ closed sets and $F_j \subseteq Φ(j)$, $j ≤ k$.
+	$$ \forall j < k\ \forall x \in Φ(j): d(x, Φ(j_1)) = 1, \qquad \forall x \in Φ(k): d(x, E) = 1. $$
+
+	$(k+1)$-th term: We use the previous lemma and find a set $P$ such that $Φ(k) \subseteq P \subseteq E$, $\forall x \in Φ(k): d_λ(x, P) = 1$, $\forall x \in P: d_λ(x, E) = 1$.
+
+	$Φ(k+1) := P \cup F_{k+1}$ closed, then $F_{k+1} \subseteq Φ(k + 1) \subseteq E$. $j = k: \forall x \in Φ(k): d(x, Φ(k)) = 1$. $F^c$ is $d$-open.
+
+	We have
+	$$ \bigcup_{k=1}^∞ Φ(k) = E \qquad (F_j \subseteq Φ(j) \subseteq E). $$
+	Now we define $Φ\(\frac{n}{2^m}\)$, $n \in ®N$, $n ≥ 2^m$, $m \in ®N_0$, $n / 2^m ≥ 1$: If $m = 0$ we have already constructed $Φ(k)$.
+
+	„$m \mapsto m+1$“: $Φ\(\frac{2n}{2^{m+1}}\) := Φ\(\frac{n}{2^m}\)$ (numerator even) and $Φ\(\frac{2n + 1}{2^{m+1}}\)$ (numerator odd) is constructed so that
+
+	\begin{itemize}
+		\item $Φ\(\frac{n}{2^m}\) \subseteq Φ\(\frac{2n + 1}{2^{m+1}}\) \subseteq Φ\(\frac{n+1}{2^m}\)$;
+		\item $\forall x \in Φ\(\frac{n}{2^m}\): d_λ\(x, Φ\(\frac{2n + 1}{2^{m+1}}\)\) = 1$;
+		\item $\forall Φ\(\frac{2n + 1}{2^{m+1}}\): d_λ\(x, Φ\(\frac{n+1}{2^m}\)\) = 1$.
+	\end{itemize}
+
+	For $λ \in [1, +∞)$ we set $Φ(λ) = \bigcup_{\frac{n}{2^m} ≥ λ} Φ\(\frac{n}{2^m}\)$ closed, compatible with previous definition.
+
+	For $1 ≤ λ_1 < λ_2$, we have $Φ(λ_1) \subseteq Φ(λ_2)$, if $λ_1, λ_2$ is dyadic numbers, by definition, if $λ_1 < \frac{n}{2^m} < λ_2$, then $Φ(λ_1) \subseteq Φ\(\frac{n}{2^m}\) \subseteq Φ(λ_2)$.
+
+	For $1 ≤ λ_1 < λ_2$, we have $\forall x \in Φ(λ_1): d_λ(x, Φ(λ2)) = 1$. We find $n, m$ such that
+	$$ λ_1 < \frac{2n}{2^{m + 1}} < \frac{2n + 1}{2^{m + 1}} < λ_2. $$
+	Pick $x \in Φ(λ_1) \subseteq Φ\(\frac{2n}{2^{m+1}}\) \subseteq Φ(λ_2)$ $\implies$ $d_λ\(x, Φ\(\frac{2n + 1}{2^m}\)\) = 1$ $\implies$ $d_λ(x, Φ(x_2)) = 1$.
+
+	We define $f(x) = \frac{χ_E(x)}{\inf\{λ | x \in Φ(λ)\}}$.
+
+	$\forall x \in F: f(x) = 0$ ($E \cap F = \O \implies F \subseteq (®R \setminus E)$). So $f(F) \subseteq \{0\}$.
+
+	$f(x_0) = \frac{χ_E(x_0)}{\inf\{λ | x_0 \in Φ(λ)\}} = \frac{1}{1} = 1$. ($x_0 \in F_1 \subseteq Φ(1)$.) Also $\im f \subseteq [0, 1]$.
+
+	„Continuity of $f$ with respect to $τ_d$“: Assume that $b \in (0, 1)$ (otherwise obvious), $a \in (0, 1]$.
+
+	„$B := \{x \in ®R | f(x) > b\}$ is $d$-open“: $f(x) > b > 0$ $\implies$ $\frac{1}{b} > \inf\{λ | x \in Φ(λ)\}$. We find $λ ≥ 1$ such that $\frac{1}{b} > λ$ and $x \in Φ(λ)$. We find $λ' ≥ 1$ with $\frac{1}{b} > λ' > λ$. Then we have $d(x, Φ(λ')) = 1$ and $x \in Φ(λ) \subseteq Φ(λ') \subseteq B$ $\implies$ $d_λ(x, B) = 1$ $\implies$ $B$ is $d$-open.
+
+	„$A := \{x \in ®R | f(x) < a\}$ is $d$-open“: Choose $x \in A: f(x) < a$, then $\frac{1}{a} < \inf \{λ | λ \in Φ(λ)\}$. Take $λ_0 ≥ 1: \frac{1}{a} < λ_0$, $x \notin Φ(λ_0)$.
+
+	Then we have $Φ(x_0)^c \subseteq A$, $y \notin ®R \setminus Φ(x_0) \implies λ_0 \notin \{λ | y \in Φ(x)\} \implies \inf\{λ | y \in Φ(λ)\} ≥ λ_0 \implies f(y) ≤ \frac{1}{λ_0} < a \implies y \in A$.
+
+	$Φ(x_0)^c$ is $ρ_E$-open $\implies$ $Φ(x_0)^c \in τ_d$ $\implies$ $A$ is $d$-open.
+\end{dukaz}
+
+\begin{poznamka}
+	Approximate continuity is equivalent to continuity with respect to $τ_d$ ($f: ®R \rightarrow ®R$ is approximately continuous at $x_0$ $\Leftrightarrow$ $f$ is $τ_d$ continuous at $x_0$).
+
+	$f: ®R \rightarrow ®R$ is approximately continuous $\Leftrightarrow M \subseteq ®R$ $λ_1$-measurable: $d_λ(x_0, M) = 1$ and $\lim_{x \rightarrow x_0, x \in M} f(x) = f(x_0)$.
+\end{poznamka}
+
+\pagebreak
+
+\begin{veta}[Denjoy]
+	Let $f: ®R \rightarrow ®R$. Then the function $f$ is approximately continuous $λ$-almost everywhere iff $f$ is $λ$-measurable.
+
+	\begin{dukazin}
+		„$\implies$“ $N := \{x \in ®R | f \text{ is not approximately continuous function}\}$. $\implies$ $λ(N) = 0$. It is sufficient to show that sub/super level sets are measure.
+
+		$$ c \in ®R, M := \{x \in ®R | f(x) > c\}. $$
+
+		$$ y \in M \setminus N \Leftrightarrow f(y) > c \land f \text{ is approximately continuous at $y$}. $$
+		$\exists τ_d$-open set $G$ such that $f|_G > c$ $\implies$ $M, N$  $τ_d$-open $\implies$ $M \setminus N$ is $τ_d$-open $M = (M \setminus N) \cup (N \cap M)$.
+
+		„$\impliedby$“: Luzin: $\forall ε > 0\ \exists G: λ(G) < ε$ and $f|_G$ is continuous.
+
+		Let $ε > 0$, Luzin theorem gives us $F \subseteq ®R$ closed ($ρ_E$) such that $λ(®R \setminus F)$ and $f|_F$ is continuous ($ρ_E$).
+
+		By Lebesgue density theorem $λ$-almost every point of $F$ is a point of density. Let $\tilde F$ is set of those points. $λ(F \setminus \tilde F) = 0$ $\implies$ $\tilde F$ is $d$-open.
+
+		$f$ is approximately continuous $λ$-almost everywhere in ®R.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $f: ®R \rightarrow ®R$ be a bounded approximately continuous functions then $f$ has an antiderivative on ®R.
+
+	\begin{dukazin}
+		$\exists K \in ®R\ \forall x \in ®R: |f(x)| ≤ K$. $F(X) = \int_0^x f dλ$ ($λ$-measurable $\implies$ well-defined).
+
+		We have $\frac{1}{h}λ\(\{y \in [x, x+h] | f(y) - f(x) ≥ ε\}\) < ε$ $\impliedby$ approximately continuity at $x$.
+
+		Fix $h \in (0, δ)$. Denote $M = \{y \in [x, x + h] | |f(y) - f(x)| ≥ ε\}$.
+		$$ \left|\frac{1}{h} \left|F(x + h) - F(x)\right| - f(x)\right| = \left|\frac{1}{h}\right|·\left|\int_x^{x + h} (f(t) - f(x)) dt\right| ≤ $$
+		$$ ≤ \frac{1}{h} \int_M |f(t) - f(x)| dt + \frac{1}{h} \int_{[x, x + h] \setminus M} (f(t) - f(x)) dt ≤ $$
+		$$ ≤ \frac{2K}{h}λ(M) + \frac{h}{h}ε ≤ (2k + 1)ε \implies $$
+		$\implies$ $F'_+(x) = f(x)$. Analogously $F'_-(x) = f(x)$ $\implies$ $f$ has an antiderivative.
+	\end{dukazin}
+\end{veta}
 
 % 03. 04. 2023
 
@@ -284,10 +540,202 @@ TODO!!!
 	$$ Δ'(I) = \{f: I \rightarrow ®R | f \text{ has an antiderivative on I}\} $$
 \end{definice}
 
-\begin{veta}[Den?-Clarkson]
-	Let $I$ be a nonempty open interval and $f \in Δ'(I)$. Then $f$ has Denj TODO!!!
+\begin{veta}[Denjoy-Clarkson]
+	Let $I$ be a nonempty open interval and $f \in Δ'(I)$. Then $f$ has Denjoy–Clarkson property, i.e., for every open $G\subset ®R$ we have that either $f^{-1}(G) = \O$ or $λ(f^{-1}(G)) > 0$.
 \end{veta}
 
-TODO!!!
+% 17. 04. 2023
+
+\begin{dukaz}[Denjoy–Clarkson]
+	Let $F: I \rightarrow ®R$ satisfy $F' = f$ on $I$. Let $G \subseteq ®R$ be open. WLOG $G = (α, β)$ (otherwise we consider countable union).
+
+	Let
+	$$ E := \{x \in I | f(x) \in (α, β)\} = f^{-1}(G). $$
+	Assume that $E ≠ \O$ and $λ(E) = 0$. Choose $x_0 \in E$ and find $α_1, β_1 \in ®R$ such that $α < α_1 < f(x_0) < β_1 < β$. Define
+	$$ E_1 := \{x \in I | f(x) \in (α_1, β_1)\} \ni x_0. $$
+	So $E_1 \subseteq E \implies λ(E_1) = 0$.
+
+	We set $P = \overline{E_1}$, $f \in B_1$ $\implies$ $\exists y \in ©C(f|_P)$. $x_1 \in P \cap I$. We find an open interval $I_1 \subseteq I$ such that $x_1 \in I_1$ and (by continuity)
+	$$ \forall x \in I_1 \cap P: |f(x) - f(x_1)| < \max\{α_1 - α, β - β_1\} ≤ ε, $$
+	and $E_1$ is dense in $P$ and $I_1 \cap P$ is open $\implies$ $\exists x_2 \in I_1 \cap E_1 \subseteq I_1 \cap P$. Then we have: $|f(x_2) - f(x_1)| < ε$ $\implies$ $f(x_2) \in (α_1, β_1)$ $\implies$ $f(x_1) \in (α, β)$ (triangle inequality).
+
+	We can find an open interval $I_2 \subseteq I$ such that $x_1 \in I_2$ and $\forall x \in I_2 \cap P$ (continuity) $f(x) \in (α, β)$. Then we have $I_2 \cap P \subseteq E$ and therefore $λ(I_2 \cap P) = 0$ closed in $I_2$.
+
+	$\implies I_2 \cap P$ is nowhere dense in $I_2$. We find a countable disjoint family $©I ∘f$ nonempty open intervals such that $I_2 \setminus P = \bigcup ©I$ open in ®R.
+
+	For every $I \in ©I$ we have:
+	$$ \forall x \in I: f(x) ≤ α_1 \lor f(x) ≥ β_1 $$
+	outside of $P$ and outside of $E_1$.
+
+	Since $f$ has Darboux property we have for every $J \in ©I$ either $\forall x \in \overline{J} \cap I_2: f(x) ≤ α_1$ or $\forall x \in \overline{J} \cap I_2: f(x) ≥ β_1$.
+
+	$\implies$ We can split ©I into two subfamilies
+	$$ ©I_1 := \{J \in ©I | \forall x \in J: f(x) ≤ α_1\}, \qquad ©I_2 := \{J \in ©I | \forall x \in J: f(x) ≥ β_1\}. $$
+
+	Now the set $\bigcup\{\partial J | J \in ©I\}$ is dense in $P$ since $P$ is nowhere dense.
+
+	Using this and continuity of $f$, at $x_1$ we can find a closed interval $I_3$ such that $\Int(I_3) \ni x_1$. And $I_3 \subseteq I_2$ and $\bigcup ©I_1 \cap I_3 = \O$ or $\bigcup ©I_2 \cap I_3 = \O$ otherwise \lightning with continuity.
+	
+	Assume that $*$? holds true. Then for every $x \in I_3$ we have $P \cap I_3 \subseteq I_2 \cap P$ $\implies f(x) \in (α, β)$. If $x \in P^c \implies \exists I \in ©I: x \in I: f(x) ≥ β_1$ $\implies f(x) ≥ α$. $F' = f$ bounded from below.
+
+	By the previous lemma, we have $F \in AC(I_3)$. Further we have that $λ$-almost everywhere $x \in I_3$:
+	$$ F'(x) = f(x) ≥ β_1 , \qquad λ(P) = 0 $$
+	but
+	$$ \Int I_3 \cap ≠ \O \implies \Int I_3 \cap E_1 ≠ \O. $$
+
+
+	Pick $x_3 \in I_3 \cap E_1$. Then
+	$$ f(x_3) = \lim_{x \rightarrow x_3^+} \frac{F(x) - F(x_3)}{x - x_3} = \lim_{x \rightarrow x_3} \frac{(L) \int_{x_3}^x f(t) dt}{x - x_3} ≥ β_1 > f(x_3). $$
+	\lightning $x_3 \in E_1 \Leftrightarrow f(x_3) \in (α_1, β_1)$.
+\end{dukaz}
+
+\begin{lemma}
+	Let $F$ be differentiable at each point of $[a, b] \subset ®R$ and $F'$ is bounded from below. Then $F$ is absolutely continuous on $[a, b]$.
+
+	\begin{dukazin}
+		Let $K \in ®R$ be such that $F'(x) ≥ K$ for every $x \in [a, b]$. Then $x \mapsto F(x) - K·x$ is non-decreasing on $[a, b]$. By theorem above we have that $F' \in L^1([a, b])$. For every $x \in [a, b]$ we have
+		$$ F(x) - F(a) = (N) \int_a^x F'(t) dt = (L) \int_a^x F'(t) dt \implies F \in AC([a, b]). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $f$ be differentiable at each point of $[a, b]$ and $f' \in L^1([a, b])$. Then we have
+	$$ f(x) - f(a) = (L) \int_a^x f'(t) dt, \qquad x \in [a, b]. $$
+\end{veta}
+
+\begin{veta}[Vitali–Caratheodory]
+	Let $f: ®R \rightarrow ®R$, $f \in L^1(®R)$, and $ε > 0$. Then there exist $u, v: ®R \rightarrow ®R^*$ such that
+
+	\begin{enumerate}
+		\item $u ≤ f ≤ v$;
+		\item $u$ is usc and bounded from above;
+		\item $v$ is lsc and bounded from below;
+		\item $\int(v - u) < ε$.
+	\end{enumerate}
+\end{veta}
+
+\begin{dukaz}[The previous previous theorem]
+	We may assume that $x = l$. Choose $ε > 0$. Using the previous theorem we find a lsc function $g$ on $[a, b]$ such that $g > f'$ and $\int_a^b g < \int_a^b f' + ε$. We set
+	$$ G_η(x) = \int_a^x g - f(x) + f(a) + η(x - a), \qquad x \in [a, b], η > 0. $$
+	Fix $η > 0$. For every $x \in [a, b)$ there is $δ_x > 0$ such that
+	$$ g(t) > f'(x) \qquad \land \qquad \frac{f(t) - f(x)}{t - x} < f'(x) + η $$
+	for every $t \in (x, x + δ_x)$.
+
+	For $x \in [a, b)$ and $t \in (x, x + δ_x)$ we have
+	$$ G_η(t) - G_η(x) = \int_x^t g - (f(t) - f(x)) + η(t - x) > (t - x)f'(x) - (f'(x) + η)(t - x) + η(t - x) = 0. $$
+	$\implies G_η ≥ 0$ on $[a, b]$:
+	$$ G_η(b) = \int_a^b g - f(b) + f(a) + η(b - a) ≥ 0. $$
+	$$ \int_a^b f' + ε > \int_a^b g > f(b) - f(a) - η(b - a). $$
+	$$ \int_a^b f' + ε ≥ f(b) - f(a). $$
+
+	$$ (L) \int_a^b f' ≥ f(b) - f(a) \land (L) \int_a^b - f' ≥ -f(b) + f(a) \land f(b) - f(a) ≥ (L) \int_a^b f. $$
+\end{dukaz}
+
+\begin{dukaz}[Vitali–Caratheodory]
+	We assume that $f ≥ 0$ and $f \not≡ 0$. $0 ≤ s_n \nearrow f$.
+	$$ f = \sum_{n=1}^∞ (s_n - s_{n-1}), \qquad s_0 = 0. $$
+	$$ f = \sum_{i=1}^∞ c_i χ_{E_i}, \qquad c_i > 0, \qquad E_i \text{ measurable}. $$
+	$$ \int f = \sum_{i=1}^∞ c_i \lambda(E_i) < ∞. $$
+
+	For each $i \in ®N$ we find $K_i$ compact and $V_i$ open such that $K_i \subset E_i \subset V_i$ and $c_i \lambda(V_i \setminus K_i) < 2^{-(i - 1)} ε$.
+	We define
+	$$ v = \sum_{i=1}^∞ c_i χ_{V_i}, u = \sum_{i=1}^N c_i χ_{K_i}, $$
+	where $N$ is chosen such that $\sum_{i=N+1}^∞ c_i μ(E_i) < \frac{ε}{2}$.
+
+	$u ≤ f ≤ v$, $u$ is usc, $v$ is lsc, $u$ is bounded from above, $v$ is bounded from below
+	$$ v - u = \sum_{i=1}^N c_i(χ_{V_i} - χ_{K_i}) + \sum_{i = N+1}^∞ c_i χ_{V_i} ≤ \sum_{i=1}^∞ c_i(χ_{V_i} - χ_{K_i}) + \sum_{i=N+1}^∞ c_i χ_{E_i}. $$
+	$\int (v - u) < \frac{1}{2}ε + \frac{1}{2}ε = ε$.
+
+	„General case:“ $f = f^+ - f^-$: $u_1 ≤ f^+ ≤ v_1$, $u_2 ≤ f^- ≤ v_2$, $v := v_1 - u_2$, $u := u_1 - v_2$.
+\end{dukaz}
+
+\begin{poznamka}[Buczolich]
+	$\forall n ≥ 2$ exists a differentiable function $f: ®R^n \rightarrow ®R$ such that $\{x \in ®R^n | \nabla f(x) \in B(0, 1)\}$ is nonempty and has $λ$-measurable zero.
+\end{poznamka}
+
+% 24. 04. 2023
+
+\subsection{Zahorski classes}
+\begin{definice}[Zahorski conditions?]
+	Let $E \subset ®R$ be an $F_ς$ set. We say that $E$ belongs to class:
+
+	\begin{itemize}
+		\item[$M_0$] if every point of $E$ is a point of bilateral accumulation of $E$;
+		\item[$M_1$] if every point of $E$ is a point of bilateral condensation of $E$;
+		\item[$M_2$] if each one-sided neighbourhood of each $x \in E$ intersects $E$ in a set of positive measure;
+		\item[$M_3$] if for each $x \in E$ and each sequence $\{I_n\}$ of closed intervals converging to $x$ such that $λ(I_n \cap E) = 0$ for each $n$ we have $\lim_{n \rightarrow ∞} \frac{λ(I_n)}{\dist(x, I_n)} = 0$;
+		\item[$M_4$] if there exists a sequence of closed sets $\{K_n\}$ and a sequence of positive numbers $η_n$ such that $E = \bigcup_{n=1}^∞ K_n$ and $\forall x \in K_n$ $\forall c > 0$ there exists a number $ε > 0$ such that if $k$ and $H_1$ satisfy $k·h_1 > 0$, $\frac{k}{h_1} < c$, $|k + h_1| < ε$ then $\frac{λ(E \cap (x + k, x + k+h_1))}{|h_1|} > η_n$;
+		\item[$M_5$] if every point of $E$ is a point of density of $E$.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Zahorski classes]
+	Let $k \in [5]$, $I \subset ®R$ be an interval, $f: I \rightarrow ®R$. We say that $f$ is in a class $©M_k$ if every associated set, i.e., $\{f > α\}$, $\{f < α\}$, is in $M_k$.
+\end{definice}
+
+\begin{veta}
+	$©D B_1 = ©M_0 = ©M_1 \supsetneq ©M_2 \supsetneq ©M_3 \supsetneq ©M_4 \supsetneq ©M_5 =$ approximately continuous functions.
+\end{veta}
+
+\begin{dusledek}
+	$Δ' \subset ©M_2$.
+\end{dusledek}
+
+\begin{poznamka}
+	$Δ' \subset ©M_3$, bounded $Δ' \subset ©M_4$.
+\end{poznamka}
+
+\section{Sets with finite perimeter and divergence theorem}
+\begin{lemma}
+	Let $F$ be a distribution function on a signed Radon measure $μ$ and $φ \in ©C_c^1(®R)$. Then $\int φ dμ = -\int F φ' dλ$.
+
+	\begin{dukazin}
+		WLOG $μ ≥ 0$. Suppose that $φ \in ©C^1(®R)$ and spt $φ \subseteq [a, b]$, $a, b \in ®R$, $a < b$. Choose $ε > 0$. Find $δ > 0$ such that
+		\begin{itemize}
+			\item $\forall x, y \in [a, b], |x - y| < δ: |φ(x) - φ(y)| < ε$;
+			\item $\forall x, y \in [a, b], |x - y| < δ: |φ'(x) - φ'(y)| < ε$;
+			\item for all partition $D = \{x_i\}_{i=0}^n$ of interval $[a, b]$, $ν(D) < δ$ and for each $ξ_1, …, ξ_n$ such that $ξ_i \in [x_{i-1}, x_i]$, $i \in [n]$, it holds
+				$$ \left|\sum_{i=1}^n F(ξ_i) φ'(ξ_i)(x_i - x_{i-1}) - \int_a^b F φ'\right| < ε. $$
+		\end{itemize}\vspace{-1em}
+
+		$$ 0 = F(b)φ(b) - F(a)φ(a). $$
+		Let $D$ be a partition of $[a, b]$ with $ν(D) < δ$, $D = \{x_i\}_{i=1}^n$.
+		$$ 0 = F(b)φ(b) - F(a)φ(a) = \sum_{i=1}^n(F(x_i)φ(x_i) - F(x_{i-1})φ(x_{i-1})) = $$
+		$$ = \sum_{i=1}^n F(x_i)(φ(x_i) - φ(x_{i-1})) + φ(x_{i-1})(F(x_i) - F(x_{i-1})). $$
+
+		$$ \left|\sum_{i=1}^n F(x_i) (φ(x_i) - φ(x_{i-1})) - \int_a^b F φ'\right| = $$
+		$$ \left|\sum_{i=1}^n F(x_i) φ'(η_i)(x_i - x_{i-1}) - \int_a^b F φ'\right| ≤ $$
+		$$ ≤ \left|\sum_{i=1}^n F(x_i) φ'(x_i)(x_i - x_{i-1}) - \int_a^b F φ'\right| + \sum_{i=1}^n|F(x_i)|·|φ'(x_i) - φ'(η_i)|·(x_i - x_{i-1}) < $$
+		$$ < ε + \sum_{i=1}^n K·ε·(x_i - x_{i-1}) = ε·(1 + K·(b - a)), $$
+		where $K := \sup_{[a, b]} |F|$.
+		$$ \left|\sum_{i=1}^n φ(x_{i-1})(F(x_i) - F(x_{i-1})) - \int φ dμ\right| = \left|\sum_{i=1}^n φ(x_{i-1})·μ((x_{i-1}, x_i]) - \int φ dμ\right| = $$
+		$$ = |\int_{[a, b]} \int_{i=1}^n φ(x_{i-1}) χ_{(x_{i-1}, x_i]} dμ - \int_{[a, b]} φ dμ| ≤ \int|\sum_{i=1}^n φ(x_{i-1})·χ_{(x_{i-1}, x_i]} - φ(x)| dμ ≤ $$
+		$$ ≤ ε·μ([a, b]). \qquad \implies |\int F φ + \int φ dμ| ≤ C·ε \implies \int φ dμ = \in Fφ'. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $u \in L^1(®R)$. Then following assumptions are equivalent
+
+	\begin{itemize}
+		\item there exists a signed Radon measure $μ$ such that $D u = μ$;
+		\item there exists $v: ®R \rightarrow ®R$ such that $v \in BV([a, b])$ for every $a, b \in ®R$, $a < b$, and $u = v$ almost everywhere.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$\implies$“: $F: ®R \rightarrow ®R$ a distribution function of $μ$, i.e., $F(y) - F(x) = μ((x, y])$, $x < y$. For $a < b$, take $D$, a partition of $[a, b]$, $D = \{x_i\}_{i=0}^n$:
+		$$ \sum_{i=1}^n |F(x_i) - F(x_{i-1})| = \int_{i=1}^n |μ((x_{i-1}, x_i])| ≤ \sum_{i=1}^n |μ|((x_{i-1}, x_i]) ≤ |μ|([a, b]). $$
+		So $F \in BV([a, b])$, $DF = μ$, $φ \in ©D(®R)$, $DF(φ) = -F(φ') = -\int Fφ' dλ = \int φ dμ = μ(φ)$.
+
+		„$\impliedby$“: TODO!!!
+		$$ \overline{v} = \lim_{t\rightarrow x_+} v(t) = \inf\{v(t) | t > x\} $$
+		$v$ is non-decreasing. $x$ is a point of continuity of $v$ $\implies$ $v(x) = \overline{v}(x)$. $v = \overline{v}$ almost everywhere. $\overline{v}$ is continuous form the right of each $x \in ®R$. $Du = Dv = D\overline{v} = μ$. $\implies \exists!$ Radon measure $μ$: $\overline{v}(y) - \overline{v}(x) - μ((x, y])$, $x < y$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Gauss divergence theorem]
+	Let $n > 1$, $Ω \subset ®R^n$ be a bounded open nonempty set with $©H^{n-1}(\partial Ω) < ε$, $©H^{n - 1}(\partial Ω \setminus \partial_r Ω) = 0$, $f \in ©C^1(\overline{Ω}, ®R^n)$. Then we have
+	$$ \int_{\partial Ω} \<f(y), ν_Ω(y)\> d©H^{n-1}(y) = \int_Ω \Div f(x) dλ^n(x). $$
+\end{veta}
 
 \end{document}

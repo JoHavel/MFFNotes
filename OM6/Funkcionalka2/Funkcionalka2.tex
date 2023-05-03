@@ -1204,4 +1204,398 @@ TODO!!!
 	\end{poznamkain}
 \end{definice}
 
+% 17. 04. 2023
+
+\begin{tvrzeni}
+	$H$ Hilbert, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ bounded ©A-measurable. Then for $ε > 0$ pick $A_1, …, A_m \in ©A$ disjoint partition of $X$ such that $\diam f(A_i) < \epsilon$ and for $x_i \in A_i$, $i \in [n]$
+	$$ \|\int f dE - \sum_{i=1}^n f(x_i) E(A_i)\| < ε. $$
+
+	\begin{dukazin}
+		Denote $T = \int f dE$. For $x, y \in H: |\<Tx, y\> - \<\sum f(x_i) E(A_i) x, y\>| =$
+		$$ = |\sum_{i=1}^n \int_{A_i} \(f(t) - f(x_i)\) d E_{x, y}| ≤ \sum_{i=1}^n \int_{A_i} |f(t) - f(x_i)| d|E_{x, y}| ≤ ε\int_X d|E_{x, y}| ≤ ε·\|x\|·\|y\|. $$
+		This finishes the proof. ($|\< S x, y\>| ≤ ε·\|x\|·\|y\| \implies \|S\| < ε$.)
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Notation]
+	$(X, ©A)$ measurable space, $B(X, ©A) \subset l_∞(X)$ $c^*$ algebra consisting of bounded $f: X \rightarrow ©C$ ©A-measurable functions.
+\end{definice}
+
+\begin{tvrzeni}
+	$H$ Hilbert, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$. Consider $ρ: B(X, ©A) \rightarrow ©L(H)$, $ρ(f) = \int f dE$. Then
+
+	\begin{enumerate}
+		\item $ρ$ is continuous $*$-homomorphism, $\|ρ\| = 1$, $ρ(1) = \id$.
+		\item $\forall f \in B(X, ©A): ρ(f)$ is normal. $f$ is real $\implies$ $ρ(f)$ is self-adjoint, $f ≥ 0$ $\implies$ $ρ(f) ≥ 0$.
+		\item $f_n \in B(X, ©A)^n$ bounded, $f_n \rightarrow f$ point-wise $\implies$ $ρ(f_n) \overset{\text{WOT}}\rightarrow ρ(f)$.
+		\item $\forall f \in B(X, ©A)$ $\forall x \in H$: $\|ρ(f) x\| = \sqrt{\int |f|^2 d E_{x, x}}$.i
+		\item $\int f dE$ is the unique $T \in ©L(H)$: $\<T x, y\> = \int f dE_{x, y}$, $x, y \in H$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		1.) „$ρ$ is linear“: easy. „$\|ρ\| ≤ 1$“: easy as well. „$ρ$ preserves $*$“:
+		$$ \forall x \in H: \<ρ(f)^* x, x\> = \<x, ρ(f) x\> = \overline{\<ρ(f) x, x\>} = \overline{\int f dE_{x, x}} = \int \overline{f} dE_{x, x} = \<ρ(\overline{f}) x, x\>. $$
+		„$ρ$ is multiplicative“: For $f, g \in B(X, ©A)$, $ε > 0$. Find disjoint partition $A_1, …, A_n \in ©A$ of $X$ such that for $ω \in \{f, g, f·g\}$ we have $\diam ω(A_i) < ε$ for $i \in [n]$. Pick $x_1 \in A_1, x_2 \in A_2, …, x_n \in A_n$. Thus using previous proposition we have
+		$$ \|\int f g dE - \(\int f dE\)\(\int g dE\)\| ≤ ε + \|\sum_{i=1}^n (f·g)(x_i) E(A_i) - (\sum f(x_i) E(A_i))(\sum g(x_i) E(A_i))\| + \|(\sum f(x_i) E(A_i))(\sum g(x_i) E(A_i)) - \(\int f dE\)\(\int g dE\)\| ≤ ε + 0 + \|(\sum f(x_i) E(A_i))\(\sum g(x_i) E(A_i) - \int g dE\)\| + \|(\sum f(x_i) E(A_i)) TODO < \|f\|_∞·ε + ε·\|g\|_∞. $$
+
+		„$\|ρ\| = 1$“: TODO!!!
+
+		„$ρ(1) = \id$“: $\forall x \in H: \<ρ(1) x, x\> = \int_X 1 dE_{x, x} = \<E(X)x, x\> = \<x, x\> = \<\id x, x\>$.
+
+		2.)
+		$$ ρ(f)^* ρ(f) = ρ(\overline{f}f) = ρ(f \overline{f}) = ρ(f)ρ(f)^* \implies ρ(f) \text{ is normal}. $$
+		$$ f \text{ is real } \implies f = \overline{f} \implies ρ(f) = ρ(f)^*. $$
+		$$ f ≥ 0 \implies \forall x \in H: \<ρ(f) x, x\> = \int f dE_{x, x} ≥ 0 \implies ρ(f) ≥ 0. $$
+
+		3.)
+		$$ \forall x, y \in H: \<ρ(f_n) x, y\> = \int f_n d E_{x, y} \overset{\text{Lebesgue}}\rightarrow \int f dE_{x, y} = \<ρ(f) x, y\>. $$
+
+		4.)
+		$$ \|ρ(f) x\|^2 = \<ρ(f)x, ρ(f)x\> = \<ρ(\overline{f}f) x, x\> = \int \overline{f}f dE_{x, x} = \int |f|^2 dE_{x, x}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}[Spectral decomposition of normal operator]
+	$H$ Hilbert, $T \in ©L(H)$ normal $\implies$ $\exists!$ spectral measure $E$ for $(ς(T), Bor(ς(T)), H)$: $T = \int \id dE$. Moreover $E(A) = Φ(χ_A)$ for any $A \in Bor(ς(T))$, where $Φ: Bor_b(ς(T)) \rightarrow ©L(H)$ is borel calculus from definition above.
+
+	\begin{dukazin}
+		Whenever $E$ is spectral measure for $(ς(T), Bor(ς(T)), H)$ satisfying $T = \int \id dE$, then $\int f dE = Φ(f)$, $f \in ©B(ς(T), Bor(ς(T)))$. This proves uniqueness.
+
+		„Existence“: Put $E(A) := Φ(A)$, $A \subset ς(T)$ borel. Then $E$ is spectral measure: $E(A)$ is orthogonal projection ($χ_A^2 = χ_A$, $χ_A$ is real), $E(ς(T)) = \id$, $E(\O) = 0$ ($χ_{ς(T)} = 1$ and $Φ(1) = \id$, $χ_{\O} = 0$), $A_i \in Borel(ς(T))$ disjoint, $x \in H$, then
+		$$ \|E(\bigcup A_n)x - \sum E(A_i) x\| = \<E(\bigcup A_i) x, E(\bigcup A_i) x\> = \<E(\bigcup A_i) x, x\> = \int χ_{\bigcup A_i} dμ_{x, x} = \sum_{N+1}^∞ μ_{x, x}(A_i) \rightarrow 0. $$
+
+		„$T = \int \id dE$“: $E_{x, y} = μ_{x, y}$ ($E_{x, y}(A) = \<E(A) x, y\> = \int χ_A dμ_{x, y} = μ_{x, y}(A)$). Thus
+		$$ \<\int \id dE x, y\> = \int \id dE_{x, y} = \int \id dμ_{x, y} = \<Φ(\id) x, y\> = \<T x, y\>. $$
+	\end{dukazin}
+\end{dusledek}
+
+\section{Unbounded operators}
+\begin{definice}
+	$X, Y$ Banach spaces. Operator from $X$ to $Y$ is a linear mapping defined on a linear space $D(T) \subset X$ with values in $R(T) \subset Y$. If $X = Y$, we say $T$ is operator on $X$. Then graph of $T$ is $G(T) = \{(x, Tx) | x \in D(T)\} \subseteq X \times Y$.
+
+	We say that $T$ is densely defined $≡$ $\overline{D(T)} = X$. We say that $T$ is closed $≡$ $G(T) \subset X \times Y$ is closed.
+\end{definice}
+
+% 18. 04. 2023
+
+\begin{definice}[Notations]
+	$X, Y$ Banach spaces. If $T, S$ is operator from $X$ to $Y$, then $S + T$ is operator from $X$ to $Y$ defined as $(S + T)(x) = Sx + T(x)$ for $x \in D(S + T) = D(S) \cap D(T)$.
+
+	If $T$ is operator from $X$ to $Y$ and $S$ is operator from $Y$ to a Banach space $Z$, then $ST$ is operator with $D(ST) = \{x \in D(T) | Tx \in D(S)\}$ defined as $(ST)x = S(Tx)$ for $x \in D(ST)$.
+
+	Operator $S$ from $X$ to $Y$ is extension of $T$, if $G(S) \supset G(T)$ (and we write $T \subset S$).
+\end{definice}
+
+\begin{priklady}
+	$D(T) = c_{00} \subset l_2 = X$, $Tx = \(\sum_{n=1}^∞ x_n, 0, 0, 0, 0, …\)$. Then $T$ is densely defined, butt it doesn't have closed extension.
+
+	\begin{dukazin}
+		Consider $x^n = \(\frac{1}{2^n}, …, \frac{1}{2^n}, 0, …\)$ then $(x_n, T x_n) \rightarrow (¦o, e_1)$, so if there is extension, then $(¦o, e_1) \in G(S)$, but $S ¦o = ¦o$, because of linearity.
+	\end{dukazin}
+\end{priklady}
+
+\begin{poznamka}
+	It is easy to check:
+	$$ (S + T) + V = S + (T + V), $$
+	$$ (ST)V = S(TV), $$
+	$$ (S + T)V = SV + TV. $$
+\end{poznamka}
+
+\begin{upozorneni}
+	$$ V (S + T) \supseteq VS + VT. $$
+\end{upozorneni}
+
+\begin{lemma}
+	$X$, $Y$ Banach and $L \subseteq X \times Y$. Then $\exists$ operator $T$ from $X$ to $Y$ such that $L = G(T)$ $\Leftrightarrow$ $L$ is a subspace and $\{(x, y) \in L | x = 0\} = \{(0, 0)\}$.
+
+	\begin{dukazin}
+		„$\implies$“: Easy.
+
+		„$\impliedby$“: Put $D(T) = \{x \in X | \exists y \in Y: (x, y) \in L\}$. Then $\forall x \in D(T)$ $\exists! y \in Y$: $(x, y) \in L$. ($(x, y_1), (x, y_2) \in L \implies (0, y_1 - y_2) \in L$.) So, we put $Tx := y$, where $y \in L$ is such that $(x, y) \in L$. Then $T$ is linear and $G(T) = L$
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	$X$, $Y$ Banach spaces, $T$ operator from $X$ to $Y$.
+
+	\begin{itemize}
+		\item $D(T) = X$ $\land$ $T$ is closed $\implies$ $T \in ©L(X, Y)$.
+		\item Equivalence:
+			\begin{enumerate}
+				\item $T$ has closed extension;
+				\item $(x_n, T x_n) \rightarrow (0, y)$ in $D(T) \times Y$ $\implies$ $y = 0$;
+				\item $\overline{G(T)} \subset X \times Y$ is graph of an operator from $X$ to $Y$.
+			\end{enumerate}
+		\item $T$ is one-to-one and closed $\implies$ $T^{-1}$ is closed.
+	\end{itemize}
+
+	\begin{dukazin}
+		First point follows immediately from closed graph theorem.
+
+		„$1.) \implies 2.)$“: Let $S \supset T$ be closed. If $(x_n, T x_n) \rightarrow (¦o, y)$, then $(¦o, y) \in G(S)$, so $¦o = S ¦o = y$.
+
+		„$2.) \implies 3.)$“ We will show, using the previous lemma, that $G(T)$ is graph of an operator: $\overline{G(T)}$ is linear, because $G(T)$ is linear. If $(¦o, y) \in \overline{G(T)}$, then $\exists (x_n) \in D(T)^{®N}: (x_n, T x_n) \rightarrow (¦o, y)$, so $y = ¦o$ from $2).$.
+
+		„$3.) \implies 1.)$“: Clear.
+
+		Third point $Φ: X \times Y \rightarrow Y \times X$ defined as $(x, y) \mapsto (y, x)$ is homeomorphism, so, $G(T)$ is closed $\Leftrightarrow$ $Φ(G(T)) = G(T^{-1})$ is closed.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Closure of operator]
+	$X, Y$ Banach spaces, $T$ operator from $X$ to $Y$, $T$ has closed extension. Then $\overline{T}$ is operator satisfying $\overline{T} \supset T$ and $G(\overline{T}) = \overline{G(T)}$.
+\end{definice}
+
+\begin{tvrzeni}
+	$X, Y, Z$ Banach spaces, $T$ operator from $X$ to $Y$, which is closed.
+
+	\begin{itemize}
+		\item If $S \in ©L(X, Y)$, then $S + T$ is closed and $D(S + T) = D(T)$.
+		\item If $S \in ©L(Y, Z)$, then $D(ST) = D(T)$ and if $S$ is isomorphism into, then $ST$ is closed.
+		\item If $S = ©L(Z, X)$, then $TS$ is closed.
+	\end{itemize}
+
+	\begin{dukazin}
+		Of course $D(S + T) = D(S) \cap D(T) = D(T)$. If $(x_n, (S + T) x_n) \rightarrow (x, y)$, then $T x_n = (S + T) x_n - S x_n \rightarrow y - Sx$. So $(x_n, T x_n) \rightarrow (x, y - S x) \in G(T)$, so $Tx = y - Sx \implies y = (T + S)x$.
+
+		$$ D(ST) = \{x \in D(T) | Tx \in D(S) = Y\} = D(T). $$
+		Suppose $S$ is isomorphism into, $(x_n, S Tx_n) \rightarrow (x, z)$, then $Tx_n = S^{-1}STx_n \rightarrow S^{-1}z$. So $(x_n, T x_n) \rightarrow (x, S^{-1} z) \in G(T)$, so $T x = S^{-1} z$, then $S T x = z$.
+
+		$(z_n, T S z_n) \rightarrow (x, y)$, then $S z_n \rightarrow S x$, so $(S z_n, T S z_n) \rightarrow (S x, y) \in G(T)$, thus $T S x = y$.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 24. 04. 2023
+
+TODO example?
+
+\begin{tvrzeni}
+	$X, Y$ Banach, $T$ one-to-one closed operator from $X$ to $Y$. Then following statements are equivalent:
+
+	\begin{itemize}
+		\item $\Rang T = Y \land T^{-1} \in ©L(Y, X)$;
+		\item $\Rang T = Y$;
+		\item $\Rang T$ is dense and $T^{-1} \in ©L(\Rang T, X)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„1) $\implies$ 2)“: trivial. „2) $\implies$ 3)“: $\Rang T$ is dense and $T^{-1}(\Rang T, X)$ due to previous proposition (by which $T^{-1}$ is closed).
+
+		„3) $\implies$ 1)“: Let $S \in ©L(Y, X)$ be continuous extension of $T^{-1}$. Pick $y \in Y$. Since $\overline{\Rang T} = Y$, there is $(x_n) \in X^{®N}$ such that $T x_n \rightarrow y$. Then $S T x_n = T^{-1} T x_n = x_n \rightarrow S y$. So $(x_n, T x_n) \rightarrow (S y, y) \in G(T)$, thus $T S y = y \in \Rang T$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Resolvent set, resolvent function, spectrum of operator]
+	$X$ Banach, $T$ linear operator on $X$. Then resolvent set is
+	$$ ρ(T) := \{λ \in ®K | λI - T \text{ has inverse which belongs to } ©L(X)\}; $$
+	resolvent function is
+	$$ R_T(λ) := (λI - T)^{-1}, \qquad λ \in ρ(T); $$
+	spectrum of $T$ is
+	$$ ς(T) := ®K \setminus ρ(T). $$
+\end{definice}
+
+\begin{veta}
+	$X$ Banach, $T$ linear operator on $X$. Then $ρ(T)$ is open, $ρ(T)$ is closed and $R_T$ has derivative at each point of $ρ(T)$. (So, if $X$ is complex, then $R_t$ is holomorphic on $ρ(T)$).
+
+	\begin{dukazin}
+		„$ρ(T)$ is open“: Pick $λ \in ρ(T)$ and $h \in ®K$ small ($|·|$) enough: $|h| < \frac{1}{\|(λI - T)^{-1}\|}$. Then $h(λ I - T)^{-1} =: S \in ©L(X)$, $\|S\| < 1$. Thus, $(I + S)^{-1}$ exists, so $(λ + h)I - T = (I + S)·(λI - T)$ has inverse $(λI - T)^{-1} \circ (I + S)^{-1} \in ©L(X)$. $(λI - T)^{-1} ∘ (I + S)^{-1} \in ©L(X)$. So $U(λ, \frac{1}{\|(λI - T^{-1})\|}) \subset ρ(T)$.
+
+		„$R_T$ has derivative at each $λ \in ρ(T)$“: $R_T'(λ) = -R_T(λ)^2$:
+		$$ \forall h \text{ small enough}: \|\frac{R_t(λ + h) - R_t(λ)}{h} + R_T(λ)^2\| = $$
+		$$ \frac{1}{h} \|R_T(λ + h) - R_T(λ) + R_T(λ) h R_T(λ)\| = \frac{\|R_T(λ)\|}{\|h\|}·\|(I + S)^{-1} - I + h R_T(λ)\| = $$
+		$$ \((I + S)^{-1} = \sum_{n=0}^∞ (-S)^n = I - S + \sum_{n=2}^∞(-S)^n = I - h R_T(λ) + \sum_{n=2}^∞ (-h R_T(λ))^n\) $$
+		$$ = \frac{\|R_T(λ)\|}{|h|}·\|\sum_{n=2}^∞ (-h R_T(λ))^n\| ≤ \frac{\|R_t(λ)\|}{|h|} \sum_{n=2}^∞ \|h R_t(λ)\|^n = \frac{\|R_T(λ)\|}{|h|}·\frac{\|h R_T(λ)\|^2}{1 - \|h R_T(λ)\|} ≤ $$
+		$$ ≤ \frac{\|R_T(λ)\|}{|h|}·\frac{|h|^2 \|R_T(λ)\|^2}{1 / 2} = 2|h|·\|R_T(λ)\|^3 \rightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	$X$ Banach space, $T$ operator in $X$, $0 \notin ς(T)$. Then $\forall λ ≠ 0: λ \in ς(T) \Leftrightarrow \frac{1}{λ} \in ς(T^{-1})$.
+
+	\begin{dukazin}
+		Since $0 \in ρ(T)$, so $T^{-1} \in ©L(X)$. Moreover, $T = (T^{-1})^{-1}$ is closed (by proposition above). In the same time, since $T$ is closed, we have $λ \in ρ(T) \Leftrightarrow λI - T$ is bijection („$\implies$“: trivial, „$\impliedby$“: $λI - T$ is bijection and closed operator, so by previous proposition $(λI - T)^{-1} \in ©L(X)$).
+
+		So, it suffices: „$\forall λ ≠ 0$: $λI - T$ bijection $\Leftrightarrow$ $\frac{1}{λ}I - T^{-1}$ bijection“:
+		$$ \frac{1}{λ}I - T^{-1} = -\frac{1}{λ}(λ I - T)T^{-1} \qquad \(\text{so $(λI - T)^{-1}$ exists $\implies$ $(\frac{1}{λ}I - T^{-1})^{-1}$ exists}\) $$
+		$$ λI - T = -λ(\frac{1}{λ} I - T^{-1})T \qquad \(\text{so $(\frac{1}{λ}I - T^{-1})^{-1}$ exists $\implies$ $(λI - T)^{-1}$ exists}\). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}
+	$X$ complex Banach, $T$ operator on $X$, $ς(T) = \O$. Then $T^{-1} \in ©L(X)$ and $ς(T^{-1}) = \{0\}$.
+
+	\begin{dukazin}
+		$0 \in ρ(T) \implies T^{-1} \in ©L(x)$. By previous lemma, $\forall λ ≠ 0: \frac{1}{λ} \notin ς(T^{-1})$. So $ς(T^{-1}) \subset \{0\}$. Since $ς(T^{-1}) ≠ \O$, we have $ς(T^{-1}) = \{0\}$.
+	\end{dukazin}
+\end{dusledek}
+
+\subsection{Unbounded operators in Hilbert spaces}
+\begin{definice}[Convention]
+	From now, all Banach spaces are over $®K = ®C$ (if not said otherwise).
+\end{definice}
+
+\begin{definice}[Hilbert adjoint of operator]
+	$H$ Hilbert, $T$ densely defined operator on $H$. Hilbert adjoint of $T$, denoted as $T^*$, is defined on $D(T^*) := \{y \in H | x \mapsto \<T x, y\> \text{ is continuous linear on $D(T)$}\}$. For $y \in D(T^*)$, $T^* y$ is the unique point from $H$ satisfying $\<Tx, y\> = \<x, T^* y\>$, $x \in D(T)$.
+
+	\begin{dukazin}
+		„$T^*y$ exists“: any $φ \in D(T)^*$ can be extended to $H^* = H$.
+	\end{dukazin}
+\end{definice}
+
+% 25. 04. 2023
+
+\begin{tvrzeni}
+	$H$ Hilbert, $S$ and $T$ densely defined in $H$.
+
+	\begin{itemize}
+		\item $S \subset T \implies T^* \subset S^*$.
+
+			\begin{dukazin}
+				$D(T^*) = \{y | x \mapsto\<Tx, y\> = \<Sx, y\> \text{ is continuous on } D(T) \supset D(S)\} \subset D(S^*)$. And for $y \in D(T^*)$:
+				$$ \forall x \in D(S): \<x, T^* y\> = \<Tx, y\> = \<Sx, y\> = \<x, S^* y\> \implies T^* y = S^* y. $$
+			\end{dukazin}
+		\item $S+T$ is densely defined $\implies$ $S^* + T^* \subset (S + T)^*$ and if $S \in ©L(H)$, then there is equality.
+
+			\begin{dukazin}
+				For $y \in D(S^* + T^*) = D(S^*) \cap D(T^*)$ and $x \in D(S + T)$:
+				$$ \<(S + T) x, y\> = \<x, S^* y\> + \<x, T^* y\> = \<x, (S^* + T^*) y\>. $$
+				So, $y \in D((S + T)^*)$ and $(S+T)^* y = (S^* + T^*)(y)$. This proves the inclusion.
+
+				„If $S \in ©L(H)$“ For $y \in D((S + T)^*)$ and for $x \in D(S + T) = D(T)$:
+				$$ D(T) \ni x \mapsto \<Tx, y\> = \<(S + T)x, y\> - \<S x, y\> $$
+				is constant on $D(T)$. So, $y \in D(T^*) = D(T^*) \cap D(S^*) = D(S^* + T^*)$. Thus, $D(S^* + T^*) = D((S + T)^*) \land S^* + T^* \subset (S + T)^*$, so $S^* + T^* = (S+T)^*$.
+			\end{dukazin}
+
+		\item $ST$ is densely defined $\implies$ $T^* S^* \subset (ST)^*$ and if $S \in ©L(H)$ then there is equality.
+
+			\begin{dukazin}
+				Pick $y \in D(T^* S^*)$. Then for $x \in D(ST)$:
+				$$ \<STx, y\> = \<T x, S^* y\> = \<x, T^*S^* y\>. $$
+				So, $y \in D((ST)^*)$ and $(ST)^* y = T^*S^* y$.
+
+				„If $S \in ©L(H)$“: Then $D(ST) = D(T)$ and for $y \in D((ST)^*)$ we want „$S^*y \in D(T^*)$“ (then $y \in D(T^*S^*)$  and we are done):
+				$$ D(T) \ni \mapsto \<Tx, S^* y\> = \<S T x, y\> = \<x, (ST)^* y\>. $$
+				So, $x \mapsto \<Tx, S^* y\>$ is continuous on $D(T)$.
+			\end{dukazin}
+	\end{itemize}
+\end{tvrzeni}
+
+% 02. 05. 2023
+
+\begin{tvrzeni}
+	$H$ Hilbert, $T$ densely defined on $H$.
+
+	\begin{itemize}
+		\item $T^*$ is closed operator on $H$;
+		\item $T$ has closed extension $\Leftrightarrow$ $T^*$ is densely defined. Then $(T^*)^* = \overline{T}$.
+		\item $T$ is closed $\Leftrightarrow$ $T^*$ is densely defined and $T = (T^*)^*$.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{lemma}
+	$H$ Hilbert, $T$ densely defined on $H$. Consider $V \in ©L(H \oplus H)$ such that $V(x, y) := (-y, x)$. Then $V$ is unitary and $G(T^*) = V(G(T))^\perp$.
+
+	\begin{dukazin}
+		„$V$ is unitary:“ obvious ($V$ is isometry onto).
+
+		„$G(T^*) \subseteq V(G(T))^\perp$“: Pick $y \in D(T^*)$ and $x \in D(T)$. Then
+		$$ \<(y, T^* y), V(x, Tx)\> = \<(y, T^*y), (-Tx, x)\> = \<y, -Tx\> + \<T^* y, x\> = 0. $$
+
+		„$V(G(T))^\perp \subseteq G(T^*)$“: Pick $(x, y) \in V(G(T))^\perp$. Then for $z \in D(T)$:
+		$$ 0 = \<(x, y), (-Tz, z)\> = - \<x, Tz\> + \<y, z\>, $$
+		so $\<x, Tz\> = \<y, z\>$, so $D(T) \ni z \mapsto \<Tz, x\>$ ($=\<z, y\>$) is continuous. So $x \in D(T^*)$ and $T^* x = y$, co $(x, y) \in G(T^*)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	$U \in ©L(H)$ unitary, $A \subset H$. Then $U(A^\perp) = U(A)^\perp$.
+
+	\begin{dukazin}
+		$x \in U(A)^\perp \Leftrightarrow \forall a \in A: 0 = \<x, Ua\> = \<U^*x, a\> \Leftrightarrow U^* x \in A^\perp \Leftrightarrow x \in U(A^\perp)$.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{dukaz}[Of the previous proposition]
+	First point follows from the previous lemma.
+
+	„Second point, $\implies$“: Pick $y_0 \in D(T^*)^\perp$. Wanted: $y_0 = 0$. We have $(y_0, 0) \in G(T^*)^\perp$ ($\forall z \in D(T^*): \<(z, T^*z), (y_0, 0)\> = 0$). $G(T^*)^\perp = V(G(T))^{\perp\perp} = \overline{V(G(T))} = V(\overline{G(T)})$. So $(0, -y_0) = V^*(y_0, 0) \in V^* V(\overline{G(T)}) = \overline{G(T)}$. Thus $y_0 = 0$ (because $T$ is closed).
+
+	„Second point, $\impliedby$“: $T^*$ is densely defined. Then $(T^*)^*$ is defined and, by first point, it is closed. Moreover, „$T \subset (T^*)^*$“: Pick $x \in D(T)$. Then $D(T^*) \ni y \mapsto \<T^* y, x\> = \<y, Tx\>$, so $x \in D((T^*)^*)$ and $(T^*)^* x = Tx$.
+
+	„Second point, then part“: $T \subseteq (T^*)^*$ is done, „$(T^*)^* \subseteq \overline{T}$“: it suffices to prove „$G((T^*)^*) = \overline{G(T)}$“: By previous lemma, $G((T^*)^*) = V(G(T^*))^\perp = V^*(G(T^*))^\perp = V^*(V(G(T))^\perp)^\perp = V^*V(G(T)^{\perp\perp}) = \overline{G(T)}$.
+
+	„Third point“: „$\implies$“ follows directly from second point, „$\impliedby$“ by second point, $T$ has closed extension and $\overline{T} = (T^*)^* = T$, so ti is closed.
+\end{dukaz}
+
+\begin{tvrzeni}
+	$H$ Hilbert, $T$ densely defined on $H$. Then
+
+	\begin{itemize}
+		\item $\Rang(T)^\perp = \Ker T^*$;
+			\begin{dukazin}
+				$y \in \Ker T^* \Leftrightarrow T^*y = 0 \Leftrightarrow \forall x \in D(T): \<Tx, y\> = 0 \Leftrightarrow y \in \Rang T^\perp$.
+			\end{dukazin}
+		\item If $T$ is moreover closed, then $\Ker T = (\Rang T^*)^\perp$.
+			\begin{dukazin}
+				By the previous proposition $T^*$ is densely defined and $T^{**} = T$. By the previous point, $\Ker T = \Ker T^{**} = (\Rang T^*)^\perp$.
+			\end{dukazin}
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$H$ Hilbert, $T$ is one-to-one densely defined on $H$, $\overline{\Rang T} = H$. Then $T^*$ is one-to-one and $(T^*)^{-1} = (T^{-1})$.
+
+	\begin{dukazin}
+		Proof omitted (using the previous proposition and lemma).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Self-adjoint operator, symmetric operator, maximally symetric operator]
+	$H$ Hilbert, $T$ operator on $H$. $T$ is self-adjoint $≡$ $T = T^*$. $T$ is symmetric $≡$ $\forall x, y \in D(T): \<Tx, y\> = \<x, Ty\>$. $T$ is maximally symmetric $≡$ $T$ is symmetric, and there is no $S \supsetneq T$ symmetric.
+
+	\begin{poznamkain}
+		$T$ is self-adjoint $\implies$ $T$ is densely defined. $T$ is densely defined, then it is symmetric $\Leftrightarrow$ $T \subseteq T^*$. If $T$ is densely defined, then $T$ is self-adjoint $\implies$ symmetric. (And the other implication doesn't hold.)
+	\end{poznamkain}
+\end{definice}
+
+\begin{tvrzeni}
+	$H$ Hilbert, $T$ densely defined and symmetric.
+
+	\begin{itemize}
+		\item $T$ has closed extension and $\overline{T}$ is symmetric;
+		\item $R(T)$ is dense $\implies$ $T$ is one-to-one;
+		\item $D(T) = H$ $\implies$ $T = T^*$ and $T \in ©L(H)$;
+		\item $R(T) = H$ $\implies$ $T$ is one-to-one, self-adjoint and $T^{-1} \in ©L(H)$;
+		\item $T$ is self-adjoint $\implies$ $T$ is maximally symmetric.
+	\end{itemize}
+
+	\begin{dukazin}
+		Omitted.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$H$ Hilbert space, $H ≠ \{0\}$, $T$ is self-adjoint operator on $H$. Then $\O ≠ ς(T) \subseteq ®R$.
+
+	\begin{dukazin}
+		Let $T ≠ 0$ be self-adjoint. „$ς(T) ≠ 0$“: If $ς(T) = 0$, then by corollary above, $T^{-1} \in ©L(H)$ and $ς(T^{-1}) = \{0\}$. Moreover $T^{-1}$ is self-adjoint by the previous proposition (third point). So $0 = r(T^{-1}) = \|T^{-1}\|$, so $T^{-1} = 0$. \lightning.
+
+		„$ς(T) \subseteq ®R$“:
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	$T$ is symmetric on Hilbert $H$, $λ \in ®C \setminus ®R$. Then $(λ I - T)$ is one-to-one, $(λI - T)^{-1}$ is continuous on $R(λI - T)$, and moreover $T$ is closed $\Leftrightarrow$ $R(λI - T)$ is closed.
+
+	\begin{dukazin}
+		$λ = α + i·β$, $β ≠ 0$, $α, β \in ®R$. Then $αI - T$ is symmetric, so
+		$$ \forall x \in D(T): \|(λI - T)x\|^2 = \|(αI - T)x + i·βx\|^2 = \|i·β·x\|^2 + \|(αI - T)x\|^2 + 2\Re \<i·β·x, (αI - T)x\> = $$
+		$$ = |β|^2·\|x\|^2 + \|(α I - T)x\|^2 + 0 ≥ |β|^2·\|x\|^2, $$
+		cause $S$ is symmetric, then $\<Sx, x\> \in ®R$, $x \in D(S)$. So, $\|(λI - T)x\| ≥ |β|·\|x\|$, $x \in D(T)$, thus $(λI - T)$ is one-to-one. And $(λI - T)^{-1}$ is bounded on its domain, so continuous on its domain.
+
+		It suffices: For $S := λI - T$: $S$ is closed $\Leftrightarrow$ $R(S)$ is closed. And proof of this is omitted.
+	\end{dukazin}
+\end{lemma}
+
+
 \end{document}
