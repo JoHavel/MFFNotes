@@ -1063,4 +1063,41 @@
 	$$ \O, \qquad ®S, \qquad [®C] := \{®S \setminus \{z_0\} | z_0 \in ®S\}, \qquad [®D]. $$
 \end{priklad}
 
+% 04. 05. 2023
+
+\section{Preservation of angles}
+
+\begin{definice}
+	For $z \in ®C \setminus \{0\}$, put $A(z) := \frac{z}{|z|}$.
+\end{definice}
+
+\begin{definice}[Map preserving angles]
+	Let $G \subseteq ®C$ be open, $f: G \rightarrow ®C$, $z_0 \in G$ have $P(z_0) \subset G$ such that $f(z) ≠ f(z_0)$ $\forall z \in P(z_0)$. Then we say that $f$ preserves angles (with orientation) at $z_0$ if $\forall θ \in ®R$:
+	$$ \lim_{r \rightarrow 0_+} e^{-k*θ}·A[f(z_0 + r e^{iθ}) - f(z_0)] $$
+	exists and is independent of $θ$.
+\end{definice}
+
+\begin{definice}[Notation]
+	Let $f: ®R^2 \rightarrow ®R^2$, where $®R^2 = ®C$, have the total differential $df(z_0)$ at $z_0 \in ®R^2 = ®C$, i.e.,
+	$$ \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0) - df(z_0)h}{|h|} = 0. $$
+	Then
+	$$ df(z_0) h = \frac{\partial f}{\partial x}(z_0)h_1 + \frac{\partial f}{\partial y}(z_0) h_2, $$
+	$$ h = (h_1, h_2) = h_1 + ih_2 \in ®R^2 = ®C. $$
+	We have $h_1 = \frac{h + \overline{h}}{2}$, $h_2 = \frac{h - \overline{h}}{2 i}$ and
+	$$ df(z_0)h = \partial f(z_0) h + \overline{\partial} f(z_0) \overline{h}, $$
+	where
+	$$ \partial f(z_0) := \frac{1}{2}\(\frac{\partial f}{\partial x}(z_0) - i·\frac{\partial f}{\partial y}(z_0)\), $$
+	$$ \overline{\partial} f(z_0) := \frac{1}{2}\(\frac{\partial f}{\partial x}(z_0) + i·\frac{\partial f}{\partial y}(z_0)\). $$
+
+	\begin{poznamkain}
+		We know $f'(z_0)$ exists iff $df(z_0)$ exists and $\overline{\partial} f(z_0) = 0$, in this case $f'(z_0) = \partial f(z_0)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Let $G, \Omega \subset ®C$ be open. Then $f: G \rightarrow \Omega$ is conformal iff $f$ is a diffeomorphism of $G$ onto $\Omega$ preserving angles at any point of $G$.
+\end{veta}
+
+TODO!!!
+
 \end{document}

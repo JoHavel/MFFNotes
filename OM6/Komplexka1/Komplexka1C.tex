@@ -285,4 +285,33 @@ $$ \sin \pi z = \pi z \prod_{k=1}^∞ \(1 - \frac{z^2}{k^2}\). $$
 
 TODO?
 
+% 04. 05. 2023
+
+\section{Interpolační problém}
+\begin{poznamka}[Zadání]
+	Nechť $A \subseteq Ω$, $A$ nemá hromadný bod v $Ω$. Můžeme najít funkci $f \in ©H(\Omega)$ tak, že $f$ má předepsané hodnoty v $A$?
+\end{poznamka}
+
+\begin{poznamka}[Odpověď]
+	Ano, dokonce můžeme předepsat konečně mnoho derivací.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $Ω \subseteq ®C$ otevřená, $A \subset Ω$ nemá v $Ω$ hromadný bod, $m: A \rightarrow ®N$, $w_{n, a} \in ®C$, $0 ≤ n ≤ m(a)$, $a \in A$. Pak existuje $f \in ©H(Ω)$ tak, že $f^{(n)}(a) = n!w_{n, a}$.
+
+	\begin{dukazin}
+		Z Věty Weierstrass factorization existuje $g \in ©H(Ω)$ tak že její nulové body jsou právě body $A$ a řád nulového bodu $a \in A$ je $(m(a) + 1)$. Ke každému bodu $a \in A$ najdeme funkci $P_a(z)$ tvaru
+		$$ P_a(z) = \sum_{j=1}^{1 + m(a)} c_{j, a}(z - a)^{-j} $$
+		tak, aby $gP_z$ měla hodnoty $y(z)P_n(z) = w_{0, a} + w_{1, a}(z - a) + … + w_{m(a), a}(za)^{m(a)}$ na nějakém okolí $a$. Pro jednoduchost $a = 0$, $m = m(a)$. Pro $z$ v nějakém okolí 0 máme
+		$$ g(z) = b_1 z^{m+1} + b_2z^{m + 2} + …, \qquad b_1 ≠ 0. $$
+		Pokud $P(z) = c_1 z^{-1} + … + c_{m+1}z^{-m-1}$, pak $g(z)P(z) = (c_{m+1} + c_m z + … + c_1z^m)(b_1 + b_2z + b_2z^2 + …)$.
+
+		Z Mittagovy–Lessenovy věty existuje $h$ meromorfní v $Ω$ tak že její hlavní části jsou právě $P_a$. Zbývá položit $f = gh$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Ideál $[g_1, …, g_n]$ generovaný funkcemi $g_1, …, g_n \in ©H(Ω)$ je množina všech funkcí tvaru $\sum f_i g_i$, kde $f_i \in ©H(Ω)$, $1 ≤ i ≤ n$. Hlavní ideál je ideál generovaný jedinou funkcí.
+\end{definice}
+
 \end{document}
