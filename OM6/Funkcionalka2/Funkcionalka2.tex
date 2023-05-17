@@ -1580,7 +1580,14 @@ TODO example?
 	\begin{dukazin}
 		Let $T ≠ 0$ be self-adjoint. „$ς(T) ≠ 0$“: If $ς(T) = 0$, then by corollary above, $T^{-1} \in ©L(H)$ and $ς(T^{-1}) = \{0\}$. Moreover $T^{-1}$ is self-adjoint by the previous proposition (third point). So $0 = r(T^{-1}) = \|T^{-1}\|$, so $T^{-1} = 0$. \lightning.
 
-		„$ς(T) \subseteq ®R$“:
+		TODO? (Tady se něco zjednoduší: BÚNO $0 \not≡ T = T^*$. Kdyby $ς(T) = \O$, pak $T^{-1} \in ©L(H)$. Pak $T^{-1}$ je samoadjungovaný ($(T^{-1})^* = (T^*)^{-1} = T^{-1}$.).)
+
+% 09. 05. 2023
+
+		„$ς(T) \subseteq ®R$“: Let $λ \in ®C \setminus ®R$. Then
+		$$ \overline{\Rang(λI - T)} = \Ker((λI - T)^*)^\perp = \Ker(\overline{λ}I - T^*)^\perp = \{¦o\}^\perp = H. $$
+		By next lemma, $λI - T$ is onto. (Because $T$ is closed because $T$ is self-adjoint) and $(λI - T)^{-1}$ is continuous. Thus $λ \notin ς(T)$.
+
 	\end{dukazin}
 \end{veta}
 
@@ -1594,8 +1601,234 @@ TODO example?
 		cause $S$ is symmetric, then $\<Sx, x\> \in ®R$, $x \in D(S)$. So, $\|(λI - T)x\| ≥ |β|·\|x\|$, $x \in D(T)$, thus $(λI - T)$ is one-to-one. And $(λI - T)^{-1}$ is bounded on its domain, so continuous on its domain.
 
 		It suffices: For $S := λI - T$: $S$ is closed $\Leftrightarrow$ $R(S)$ is closed. And proof of this is omitted.
+
+% Důkaz po sem byl ještě na předchozí přednášce
+		
+		„Moreover“: Denote $S := λI - T$ ($S$ closed $\Leftrightarrow$ $T$ closed). „$\implies$“: Let $S$ be closed, then „$\Rang S$“ is closed: $\Rang S \ni y_n \rightarrow y \implies (S^{-1}(y_n))$ is Cauchy, so there is $x \in D(S): S^{-1}y_n \rightarrow x$. Then $(S^{-1}y_n, y_n) \rightarrow (x, y)$, so $Sx = y$.
+
+		„$\impliedby$“: Let $\Rang S$ be closed. Then „$G(S)$ is closed“: $(x_n, S x_n) \rightarrow (x, y) \implies x_n = S^{-1}S x_n \rightarrow S^{-1}y$. So $S^{-1} y = x$.
 	\end{dukazin}
 \end{lemma}
 
+\begin{dusledek}[Of the previous theorem]
+	$H$ Hilbert, $T$ operator on $H$. Then next propositions are equivalent
+	\begin{itemize}
+		\item $T$ is self-adjoint;
+		\item $T$ is densely defined, symmetric and $ς(T) \subseteq ®R$;
+		\item $T$ is densely defined, symmetric and there is $λ \in ®C \setminus ®R: λ, \overline{λ} \in ς(T)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“ use the previous theorem. „$2. \implies 3.$“ easy. „$3. \implies 1.$“: $T \subset T^*$ by third point. Wanted: „$D(T^*) \subset D(T)$“: Pick $x \in D(T^*)$. Put
+		$$ y := (λI - T)^{-1} \((λI - T^*)x\) \in \Rang((λI - T)^{-1}) = D(λ I - T). $$
+		Then
+		$$ (λI - T^*)x = (λI - T)y = λ y - T y = λy - T^*y = (λI - T^*)y. $$
+		$λI - T^*$ is one-to-one ($\Ker(λI - T^*) = \Ker((\overline{λ}I - T)^*) = \Rang(\overline{λ}I - T)^\perp = H^\perp = \{¦o\}$). So, $x = y \in D(T)$.
+	\end{dukazin}
+\end{dusledek}
+
+\section{Cayley transform}
+\begin{poznamka}[Motivation]
+	$T$ self-adjoint, then $ς(T) \subseteq ®R$ and $M(z) = \frac{z - i}{z + i}$, $z \in ®R$ is bijection between $®R$ and $®D \setminus \{1\}$.
+\end{poznamka}
+
+\begin{definice}[Cayley transform of operator]
+	$H$ Hilbert, $T$ symmetric operator on $H$. Then Cayley transform of $T$ is the operator $©C(T) := (T - iI)·(T + i·I)^{-1}$.
+
+	\begin{poznamkain}
+		$©C(T)$ is well defined: $T + iI$ is one-to-one, $\Rang(T + iI)^{-1} = D(T + iI) = D(T - iI)$.
+
+		$Tx + ix \overset{©C(T)} Tx - ix$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	$H$ Hilbert, $T$ symmetric operator on $H$, $©C(T)$ Cauchy transform. Then
+	\begin{itemize}
+		\item $©C(T)$ is linear isometry $D(©C(T)) = R(T + iI)$ onto $R(©C(T)) = R(T - iI)$;
+			\begin{dukazin}
+				$D(©C(T)) = R(T + iI)$ by definition. $R(©C(T)) = R(T - iI)$ by definition too.
+
+				For $y = Tx + ix \in D(©C(T))$ we have
+				$$ \|©C(T)y\|^2 = \|Tx + ix\|^2 \overset{\text{COS}}= \|Tx\|^2 + \|x\|^2 + 2\Re\<Tx, -ix\> = \|Tx\|^2 + \|x\|^2 $$
+				$$ \|y\|^2 = \|Tx + ix\|^2 = … = \|Tx\|^2 + \|x\|^2. $$
+				So, $©C(T)$ is isometry.
+			\end{dukazin}
+
+		\item $I - ©C(T) = 2i(T + iI)^{-1}$, and so $I - ©C(T)$ is one-to-one and $R(I - ©C(T)) = D(T)$;
+			\begin{dukazin}
+				Let $y = Tx + ix \in D(©C(T))$, then
+				$$ (I - ©C(T))y = y - ©C(T)y = Tx + ix - (Tx - ix) = 2ix = (T + iI)^{-1}y $$
+				$\implies$ formula holds.
+
+				Since $(T+iI)^{-1}$ is one-to-one, $I - ©C(T)$ is one-to-one. Moreover, $R(I - ©C(T)) = R((T + iI)^{-1}) = D(T + iI) = D(T)$.
+			\end{dukazin}
+
+% 15. 05. 2023
+
+		\item $T = i\(I + ©C(T)\)·\(I - ©C(T)\)^{-1}$.
+			\begin{dukazin}
+				We know $D(T) = R(I - ©C(T))$ and $R\((I - ©C(T))^{-1}\) = D(I - ©C(T)) = D(I + ©C(T))$. So operator on RHS is well-defined and LHS have same domain as RHS.
+
+				Pick $y \in D(T)$ and $x \in D(©C(T))$ such that $(I - ©C(T)) x = y$. Then
+				$$ y - (I - ©C(T))x = 2i(T + iI)^{-1} x, $$
+				so
+				$$ i(I + ©C(T))·\(I - ©C(T)\) y = i(I + ©C(T))x = i\(x + (T - iI)(T + iI)^{-1}x\) = i\(x + \(T - iI\)·(y / 2i)\) = $$
+				$$ = \frac{i}{2i}\(2ix + (T - iI)y\) = \frac{1}{2} ((T + iI)y + (T - iI)y) = Ty. $$
+			\end{dukazin}
+
+		\item $T$ closed $\Leftrightarrow$ $©C(T)$ closed $\Leftrightarrow$ $D(©C(T))$ closed $\Leftrightarrow$ $R(©C(T))$ closed.
+			\begin{dukazin}
+				Omitted.
+			\end{dukazin}
+	\end{itemize}
+\end{veta}
+
+\begin{veta}
+	Let $H$ be a Hilbert space and $U$ isometry form $D(U)$ onto $R(U)$. Let $I - U$ be one-to-one. Then $T := i(I + U)(I - U)^{-1}$ is symmetric and $©C(T) = U$. Moreover $T$ is densely defined if and only if $R(I - U)$ is dense.
+
+	\begin{dukazin}
+		$T$ is well-defined: $R((I - U)^{-1}) = D(I - U) = D(I + U)$. $D(T) = R(I - U)$, so $T$ is densely defined iff $R(I - U)$ is dense.
+
+		„$T$ is symmetric“: Let $x = (I - U)x' \in D(T)$, $y = (I - U)y' \in D(T)$.
+		$$ \<Tx, y\> = \<i(I + U)x', y\> = i\<x' + Ux', y' - Uy'\> \overset{U \text{ isometry}}= i\(-\<x' Uy'\> + \<Ux', y'\>\), $$
+		$$ \<x, Ty\> = … = \<x, i(I + u)y'\> = -i\<x' - Ux'\> = -i\(\<x', Uy'\> - \<Ux', y'\>\). $$
+
+		„$©C(T) = U$“: Let $x = (I - U)x' \in D(T)$:
+		$$ (T - iI)x = i(I + U)x' - ix = i(x' + Ux') - i(x' - Ux') = 2i Ux', $$
+		$$ (T + iI)x = … + ix = … + … = 2i x'. $$
+
+		So, $x' \in R(T + iI) = D(©C(T))$ and $D(U) \subseteq D(©C(T))$ and $D(©C(T)) = R(T + iI) \subseteq D(U)$. Thus, $D(U) = D(©C(T))$. Finally, for $x \in D(T)$:
+		$$ U(Tx + ix) = U(2i x') = 2i U x' = (T - iI)x = Tx - ix. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$H$ Hilbert:
+
+	\begin{itemize}
+		\item[a)] Let $T$ be a symmetric operator on $H$. Then $T$ is self-adjoint $\Leftrightarrow$ $©C(T)$ is unitary (i.e. $D(®C(T)) = H = R(©C(T))$).
+		\item[b)] $U \in ©U(H)$ such that $I - U$ is one-to-one, then
+			$$ T := i(I + U)(I - U)^{-1} $$ is self-adjoint and $©C(T) = U$.i
+	\end{itemize}
+
+	\begin{dukazin}
+		„a) $\implies$“: Since $ς(T) \subseteq ®R$, we have $± i \in ρ(T)$, so $T ± iI$ are onto, so $D(©C(T)) = H = R(©C(T))$ by the theorem above.
+
+		„a) $\impliedby$“: We have $D(T)^{\perp} = R(I - ©C(T))^{\perp} = \Ker (I - ©C(T))^* = \Ker(I - ©C(T)) = \{¦o\}$, co $T$ is densely defined. Moreover, $T ± iI$ is onto, so $I i \in ρ(T)$. Thus, from the corollary above, $T$ is self-adjoint.
+
+		„b)“: $©C(T) = U$ by the previous theorem. Moreover $D(T)^\perp = R(I - U)^\perp = … = \{¦o\}$, so $T$ is densely-defined. It remains „$T ± iI$ is onto“: Fix $y \in H$, put $zi = (I - U)y$, then:
+		$$ (T + iI)z = Tz + iz = i(I + U)y + i(I - U)y = 2iy, $$
+		$$ (T - iI)z = Tz - iz = i(I + U)y - i(I - U)y = 2i Uy. $$
+		So, (Since $D(U) = H = R(U)$), we have $T ± iI$ is onto.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[$n_+$ and $n_i$ (deficiency indices)]
+	Let $T$ be a symmetric closed operator in a Hilbert space H. Then
+	$$ n_+(T) = \dim(\Rang(T + iI))^\perp = \dim D(©C(T))^\perp \qquad \text{and} \qquad n_-(T) = \dim(\Rang(T - iI))^\perp = \dim \Rang(©C(T))^\perp $$
+	are called deficiency indices of the operator $T$.
+\end{definice}
+
+\begin{veta}
+	$T$ symmetric, densely defined, closed operator on separable (we prove it only for separable) $H$. Then
+	\begin{itemize}
+		\item[a)] $T$ is self-adjoint $\Leftrightarrow$ $n_+(T) = n_-(T) = 0$;
+		\item[b)] ($T$ is maximal symmetric $\Leftrightarrow$ $\min(n_+(T), n_-(T)) = 0$;)
+		\item[c)] $T$ has self-adjoint extension $\Leftrightarrow$ $n_+(T) = n_-(T)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		„a)“: $T$ self-adjoint $\Leftrightarrow$ $©C(T)$ is unitary $\Leftrightarrow$ $D(©C(T)) = R(©C(T)) = H$ $\overset{*}\Leftrightarrow$ $n_+(T) = 0 = n_-(T)$. *) $T$ is closed, so $D(©C(T)) ≠ H \Leftrightarrow n_+(T) > 0$ and $R(©C(T)) ≠ 0$ $\Leftrightarrow n_-(T) > 0$ (from item d) from the theorem above).
+
+		„b)“ omitted.
+
+		„c) $\implies$“: Let $S \supseteq T$ be self-adjoint. Then $©C(S) \supseteq ©C(T)$ and $©C(S)$ is unitary and $©C(S)(D(©C(T))) = R(©C(T))$, $©C(S)(…^\perp) = R(©C(T))^\perp$ ($U$ unitary, $U(A) = B$ $\overset{\text{easy}}\implies$ $U(A^\perp) = B^\perp$). So,
+		$$ n_+(T) = \dim D(©C(T))^\perp = \dim R(©C(T))^\perp = n_-(T) $$
+
+		Since $H$ is separable, we have $n_+(T) = n_-(T)$ $\Leftrightarrow$ $\exists$ isometry between $D(©C(T))^\perp$ and $R(©C(T))^\perp$ (because Hilbert spaces are isometric to right $l_2$). Let $V \supseteq ©C(T)$ is unitary operator such that $V(R(©C(T))^\perp) = R(©C(T))^\perp$.
+
+		Then „$R(I - V)$ is dense and $I - V$ is one-to one.“:
+		$$ R(I - V) \supseteq R(I - ©C(T)) = D(T), $$
+		so $R(I - V)$ is dense. Fix $x \in \Ker(I - V)$ and $y \in D(V)$. Then
+		$$ \<x, (I - V)y\> = \<x, y\> - \<x, Vy\> = \<Vx, Vy\> - \<x, Vy\> = \<Vx - x, Vy\> = \<¦o, Vy\> = 0. $$
+		Thus, $x \in R(I - V)^\perp = \{¦o\}$.
+
+		$\implies$ $\exists S$ symmetric and densely defined such that $©C(S) = V \supseteq ©C(T)$, so $S \supseteq T$ ($S = i(I + V)(I - V)^{-1} \supseteq i(I + ©C(T))(I - ©C(T))^{-1} = T$).
+	\end{dukazin}
+\end{veta}
+
+\section{Integral of unbounded function with respect to a spectral measure}
+\begin{definice}
+	$H$ Hilbert, $(X, ©A)$ is measurable space, $E$ spectral measure for $(X, ©A, H)$, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ is ©A-measurable. Then $\int f dE$ is the operator on $H$ such that
+	$$ D(\int f dE) := \{x \in H \middle| \int |f|^2 dE_{x, x} < ∞\}, \qquad \<Tx, y\> := \int_X f dE_{x, y}, \quad x, y \in D(T). $$
+\end{definice}
+
+\begin{veta}
+	$H$ Hilbert, $(X, ©A)$ is measurable space, $E$ spectral measure for $(X, ©A, H)$, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ is ©A-measurable. Then $D := \{x \in H | \int_X |f|^2 dE_{x, x} < ∞\}$ is dense subspace of $H$, $\int f dE$ exists (and it is unique).
+
+	Moreover, $\|Tx\|^2 = \int_X |f(λ)| dE_{x, x}$, $x \in D(\int f dE)$.
+
+	\begin{dukazin}
+		„$D$ is subspace“: From proposition (basic properties of spectral measure) sixth item (addition) and fourth point (multiplication).
+
+		„For $A_n := f^{-1}(B(¦o, n))$ we have $\Rang E(A_n) \subseteq D(\int f dE)$, $n \in ®N$“: $\forall x \in \Rang E(A_n)$:
+		$$ E_{x, x}(A_n) = \<E(A_n)x, x\> = \<x, x\> = \<E(X)x, x\> = E_{x, x}(X). $$
+		So, $E_{x, x}(X \setminus A_n) = 0$, so $|f| ≤ n$ $E_{x, x}$-almost everywhere, so
+		$$ \int_X |f|^2 dE_{x, x} ≤ n^2 \int_X 1·E_{x, x} < ∞. $$
+
+% 16. 05. 2023
+
+		„$D$ is dense“: Pick $y \in H$, then $D \ni E(A_n)y \rightarrow y$ ($\|E(a_n) y - y\|^2 = \|E(X \setminus A_n)y\|^2 = E_{y, y}(X \setminus A_n) \rightarrow 0$.)
+
+		„$\forall x, y \in D: \int f dE_{x, y} \in ®C$“: $(x, y) \mapsto E_{x, y}$ is sesquilinear, so it suffices to check it for $x = y$. But $f \in L^2(E_{x, x}) \subseteq L^1(E_{x, x})$, so $\int f dE_{x, x} \in ®C$.
+
+		„Definition of $T$“: For $x \in D$ put $Tx := \lim_{n \rightarrow ∞}\(\int_X f χ_{A_n} dE\)x$. „$T$ well defined“: limit exists, because the sequence is cauchy:
+		$$ \forall m < n: \|\int f χ_{A_n} dE x - \int f χ_{A_m} dE x\|^2 = \|\int f χ_{A_n \setminus A_m} dE x\|^2 = \int_{A_n \setminus A_m} |f|^2 dE_{x, x} \rightarrow 0. $$
+		„$T$ linear“: easy (VAL + Linearity of the integral). „For $T$ equation holds“: By sesquilinearity, suffices to check for $x = y \in D$:
+		$$ \<Tx, x\> = \lim \<\int_X f χ_{A_n} dE x, x\> = \lim \int f χ_{a_n} dE_{x, x} \overset{\text{Lebesgue}}= \int \lim f χ_{a_n} d E_{x, x} = \int f dE_{x, x}. $$
+		„$\|Tx\| = \sqrt{…}$“:
+		$$ \|Tx\|^2 = \lim \<\int f χ_{A_n} dE x, \int fχ_{A_n} dEx\> = \lim \int |f χ_{A_n}|^2 dE_{x, x} \overset{\text{Lebesgue}}= \int |f|^2 d E_{x, x}. $$
+		„Uniqueness“: $\<Tx, y\> = \<z, y\>$, $y \in D$ $\implies$ $Tx = z$ on $H$, because $D$ is dense.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $H$ Hilbert space, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$ and $f, g: X \rightarrow ®C$ be ©A-measurable functions. Then the following assertions hold:
+
+	\begin{itemize}
+		\item $\int f dE + \int g dE \subset \int f + g dE$;
+			\begin{dukazin}
+				Omitted. (From definition.)
+			\end{dukazin}
+		\item $(\int f dE)(\int g dE) \subset \int f g dE$ and $D((\int f dE)(\int g dE)) = D(\int g dE) \cap D(\int f g dE)$;
+			\begin{dukazin}
+				Omitted. (Technical, difficult, from definition of bounded version.)
+			\end{dukazin}
+		\item $(\int f dE)^* = \int \overline{f} dE$ and $\int f dE \(\int f dE\)^* = \int |f|^2 dE = (\int f dE)^* \int f dE$, that is, $\int f dE$ is normal;
+			\begin{dukazin}
+				Omitted.
+			\end{dukazin}
+		\item $\int f dE$ is closed;
+			\begin{dukazin}
+				From the previous item: $\int f dE = \int \overline{\overline{f}} dE = \(\int \overline{f} dE\)^*$ $\implies$ (by the proposition above) $\int f dE$ is closed.
+			\end{dukazin}
+		\item $\int f dE \in ©L(H)$ $\Leftrightarrow$ $\exists A \in ©A$: $E(X \setminus A) = ¦o$ $\land$ $f$ is bounded on $A$.
+			\begin{dukazin}
+				„$\impliedby$“: „$D(\int f dE) = H$“: $\forall x \in H: \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} < ∞$. „$\forall x \in H: \|\int f dE x\|^2 ≤ C·\|x\|^2$“: from the previous theorem:
+				$$ \|\int f dE x\|^2 = \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} ≤ \|f|_A\|_∞·E_{x, x}(X) ≤ \|f|_A\|_∞·\|x\|^2. $$
+
+				„$\implies$“: Put $K := \|\int |f| dE\| < ∞$, $A := \{t | |f(t)| ≤ K+1\}$. Then „$E(X \setminus A) = 0$“: If not, $\exists x \in S_H \cap \Rang E(X \setminus A)$ and then
+				$$ K + 1 = \int (K + 1) dE_{x, x} ≤ \int_{A^c} |f| dE_{x, x} = \int |f| χ_{A^c} d E_{x, x} = \<\int χ_{A^c} dE \int |f| dE x, x\> = $$
+				$$ = \<E(A^c)·\int |f| dE x, x\> = \<\int |f| dE_{x, x}, E(A^c) x\> = \< \int |f| dE x, x\> ≤ \|\int |f| dE x\|·1 ≤ \|\int |f| dE\|·1·1 = K. $$
+			\end{dukazin}
+	\end{itemize}
+\end{veta}
+
+\begin{veta}
+	Let $H$ be a Hilbert space, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$ and $f: X \rightarrow ®C$ be ©A-measurable function. Then
+	$$ ς\(\int f dE\) = ess \Rang f:= \{λ \in ©C | \forall r > 0: E(f^{-1}(U(λ, r))) ≠ 0\}. $$
+	Moreover, for $λ \in ®C$ we have $\Ker(λI - \int f dE) = \Rang(E(f^{-1}(\{λ\})))$. Thus $λ \in ς_P(\int TODO)$ TODO.
+\end{veta}
 
 \end{document}

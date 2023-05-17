@@ -1,0 +1,380 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+\section{Holomorfní a meromorfní funkce}
+\begin{definice}[Holomorfní a meromorfní funkce]
+	Nechť $f: A \subseteq ®S \rightarrow ®C$ a $z_0 \in A$. Potom je $f$ holomorfní v bodě $z_0$, pokud je diferencovatelná na nějakém ®S-okolí $z_0$. $f$ je holomorfní na $B \subseteq A$, pokud je holomorfní v každém bodě.
+
+	$f$ je meromorfní na $B \subseteq A$, pokud je v každém bodě $B$ holomorfní, nebo zde má pól.
+
+	\begin{dusledekin}
+		$©H(G) \subset ©M(G) \subset ©C(G)$. $P_f := \{z_0 \in G | f \text{ má pól v } z_0\}$ nemá hromadný bod v $G$.
+	\end{dusledekin}
+\end{definice}
+
+\begin{tvrzeni}[Cauchy-Riemann]
+	Nechť $f$ je komplexní funkce definovaná na nějakém okolí bodu $z_0 \in ®S$. Pak následující podmínky jsou ekvivalentní:
+	\begin{itemize}
+		\item $\exists f'(z_0)$;
+		\item $\exists df(z_0)$ a $df(z_0)$ je ®C-lineární;
+		\item $\exists df(z_0)$, $\frac{\partial f_1}{\partial x}(z_0) = \frac{\partial f_2}{\partial y}(z_0)$ a $\frac{\partial f_1}{\partial y}(z_0) = - \frac{\partial f_2}{\partial x}(z_0)$.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Funkce $f$ je konstantní na oblasti $G \subseteq ®S$, právě když $f' = 0$ na $G$.
+\end{tvrzeni}
+
+TODO Cauchyho odhady?
+
+\begin{veta}[Liouville]
+	Je-li $f$ holomorfní a omezená funkce na $®C$, potom je $f$ konstantní.
+\end{veta}
+
+\begin{veta}[Weierstrass]
+	Nechť $G \subset ®C$ je otevřená, $f_n \in ©H(G)$ pro $n \in ®N$ a $f_n \overset{\text{loc.}}\rightrightarrows f$ na $G$. Potom $f \in ©H(G)$ a $f_n^{(k)} \overset{\text{loc.}}\rightrightarrows f^{(k)}$ na $G$ pro každé $k \in ®N$.
+\end{veta}
+
+\begin{tvrzeni}[O rozvoji holomorfní funkce do mocninné řady na kruhu]
+	Nechť $R \in (0, +∞]$ a $f \in ©H(U(z_0, R))$. Potom existuje jediná mocninná řada $\sum_{n=0}^∞ a_n(z - z_0)^n$, která má na $U(z_0, R)$ součet $f$. Navíc $a_n = \frac{f^{(n)}(z_0)}{n!}$ pro každé $n \in ®N$.
+\end{tvrzeni}
+
+\begin{tvrzeni}[O nulovém bodě]
+	Nechť $f$ je holomorfní funkce na okolí $z_0 \in ®C$ a $f(z_0) = 0$. Potom buď $\exists r > 0$: $f = 0$ na $U(z_0, r)$, nebo $\exists r > 0$: $f ≠ 0$ na $P(z_0, r)$.
+\end{tvrzeni}
+
+\begin{tvrzeni}[O jednoznačnosti pro holomorfní a meromorfní funkce]
+	Nechť $\O ≠ G \subseteq ®S$ je oblast a $f, g \in ©M(G)$. Následující je ekvivalentní:
+	\begin{itemize}
+		\item $f = g$ na $G$;
+		\item $\{z \in G | f(z) = g(z)\}$ má v $G$ hromadný bod;
+		\item $\exists z_0 \in G$, že $f^{(k)}(z_0) = f^{(k)}(z_0)$ $\forall k \in ®N_0$.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{tvrzeni}[Princip maxima modulu]
+	Nechť $G \subseteq ®S$ je oblast a $f \in ©H(G)$. Potom $f$ je na $G$ konstantní, pokud $|f|$ nabývá v $G$ lokálního maxima.
+\end{tvrzeni}
+
+TODO Casorati-Weierstrass?
+
+\begin{tvrzeni}[O Laurentově rozvoji holomorfní funkce na mezikruží]
+	Nechť $P := P(z_0, r, R)$, kde $0 ≤ r < R ≤ ∞$. Nechť $f \in ©H(P)$. Pak existuje jediná Laurentova řada $\sum_{n=-∞}^∞ a_n (z - z_0)^n$, která má na $P$ součet $f$. Navíc $a_m = \frac{1}{2πi} \int_{φ_ρ} \frac{f(z)dz}{(z - z_0)^{m+1}}$, kde $m \in ®Z$ a $r < ρ < R$.
+\end{tvrzeni}
+
+TODO O Laurentově rozvoji kolem izolované singularity?
+
+\begin{veta}[O násobné hodnotě]
+	Buďte $z_0, w_0 \in ®S$, $f$ holomorfní funkce a $P(z_0) = w_0$ $p \in ®N$ krát. Buď navíc $δ_0 > 0$. Potom existuje $ε > 0$ a $0 < δ < δ_0$ taková, že pro libovolné $w \in P(w_0, ε)$ existuje právě $p$ různých bodů $z_1, …, z_p$ v $P(z_0, δ)$, že $f(z_j) = w$. Navíc $f(z_j) = w$ jedenkrát.
+\end{veta}
+
+\begin{dusledek}
+	Buď $G \subseteq ®S$ oblast, $f \in ©H(G)$ a $f$ není konstantní v $G$. Potom $f$ je otevřené zobrazení.
+\end{dusledek}
+
+\begin{dusledek}
+	Buď $f$ holomorfní funkce v $z_0 \in ®C$. Potom $f'(z_0) ≠ 0$ právě tehdy, když existuje $U(z_0)$ takové, že $f|_{U(z_0)}$ je prosté.
+\end{dusledek}
+
+\begin{veta}[O holomorfní inverzi]
+	Buď $G \subseteq ®C$ otevřená a $f: G \rightarrow ®C$ prostá holomorfní (tedy konformní) funkce, potom $f' ≠ 0$ na $G$, $Ω := f(G)$ je otevřená a $f_{-1}: Ω \overset{\text{na}}\rightarrow G$ je holomorfní. Navíc $(f_{-1})' = \frac{1}{f'∘f_{-1}}$ na $Ω$.
+\end{veta}
+
+\begin{veta}[Hurwitz]
+	Buď $G \subseteq ®C$ oblast, $f_n \in ©H(G)$, $f_n \overset{\text{loc.}}\rightrightarrows f$ na $G$ a $f \not≡ 0$. Dále buď $z_0 \in G$ nulový bod. Potom $\exists \{z_n\}_{n=1}^∞ \subset G$ a podposloupnost $\{f_{k_n}\}$ posloupnost $\{f_n\}$ taková, že $z_n \rightarrow 0$ a $f_{k_n}(z_n) = 0$.
+
+	\begin{dusledekin}
+		Buď $G \subseteq ®C$ oblast, $f_n$ konformní funkce na $G$ a $f_n \overset{\text{loc.}}\rightrightarrows f$ na $G$. Potom $f$ je buď konformní nebo konstantní.
+	\end{dusledekin}
+\end{veta}
+
+\begin{tvrzeni}
+	Ať $f$ je nenulová holomorfní funkce na jednoduše souvislé oblasti $G \subseteq ®C$. Potom existuje $L \in ©H(G)$ taková, že $f = e^L$ na $G$.
+\end{tvrzeni}
+
+
+
+
+\section{Prostor ©H, ©C a ©M}
+\begin{veta}
+	$©H(®S)$ = konstantní funkce.
+\end{veta}
+
+\begin{tvrzeni}
+	Pro $f_n, f \in ©C(G)$ a $K_m$ kompaktní v $G$ takové, že $\bigcup_{m=1}^∞ K_m = G$ a $\forall m \in ®N: K_m \subseteq \Int K_{m+1}$ je následující ekvivalentní:
+
+	\begin{itemize}
+		\item $f_n f_n \overset{\text{loc.}}\rightrightarrows f$ na $G$;
+		\item pro každý kompakt $K$ v $G$, $\|f_n - f\|_K \rightarrow 0$;
+		\item $\forall m \in ®N: \|f_n - f\|_{K_m} \rightarrow 0$;
+		\item $ρ(f_n, f) := \sum_{m=1}^∞ \frac{1}{2^m}·\frac{\|f_n - f\|_{K_m}}{1 + \|f_n - f\|_{K_m}} \rightarrow 0$
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{veta}[Moore–Osgood, Montöl]
+	Buď $G \subseteq ®C$ otevřená a $\{f_n\} \subset ©H(G)$ lokálně stejnoměrně omezená. Potom existuje podposloupnost $\{f_{n_k}\}$, která konverguje lokálně stejnoměrně na $G$.
+\end{veta}
+
+\begin{tvrzeni}[$©H^*(®D)$]
+	Buď $L \in ©H^*(®D)$, $f \in ©H(®D)$, $f(z) = \sum_{n=0}^∞ a_n z^n$. Potom $L(f) = \sum_{n=0}^∞ a_n·b_n$, kde $b_n := L(z^n) \in ®C$ a $r := \limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$. (A opačně.)
+\end{tvrzeni}
+
+\begin{tvrzeni}[Integrální podoba $L$]
+	Buď $\{b_n\} \subseteq ®C$ tak, že $r := \limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$. Definujme $λ(z) := \sum_{n=0}^∞ \frac{b_n}{z^{n+1}}$, $|z| > r$.
+
+	Potom $λ \in ©H(®S \setminus \overline{U(0, r)})$, $λ(∞) = 0$ a $b_n = \frac{λ^{(n+1)}(∞)}{(n+1)!}$. Navíc pokud $R \in (r, 1)$, $φ(t) := Re^{it}$, $t \in [0, 2π]$, a $f \in ©H(®D)$, pak
+	$$ \frac{1}{2πi} \int_φ f(z) · λ(z) dz = L(f). $$
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$λ \in ©H_0(®S \setminus ®D)$. $L(z^n) = \frac{λ^{(n+1)}(∞)}{(n+1)!}$, $n \in ®N_0$. $λ(w) = L\(\frac{1}{w - z}\)$, $|w| ≥ 1$.
+\end{tvrzeni}
+
+\begin{dusledek}
+	$$ ©H^*(®D) = ©H_0(®S \setminus ®D). $$
+\end{dusledek}
+
+\begin{dusledek}
+	$$ ©H^*(G) = ©H_0(®S \setminus G), \qquad G = \bigcup_{j=0}^n D_j, D_j \cap D_k = \O, j ≠ k. $$
+\end{dusledek}
+
+\begin{lemma}
+	Buď $L: E \rightarrow ®C$ lineární. Potom $L \in E^*$ právě tehdy, pokud existuje kompakt $K$ v $E$ a existuje $M \in [0, +∞)$ tak, že $|L(f)| ≤ M·\|f\|_K$, $f \in E$.
+\end{lemma}
+
+\begin{veta}[Hahn–Banach]
+	Buď $A$ podprostor $E$. Potom
+
+	\begin{itemize}
+		\item pokud $L \in A^*$, potom existuje $\tilde L \in E^*$ takové, že $\tilde L|_A = L$;
+		\item pokud $A$ je uzavřené a $0 ≠ b \in E \setminus A$, potom existuje $L \in E^*$ takové, že $L(b) = 1$ a $L(A) = \{0\}$;
+		\item $\overline{A} = E$ právě tehdy, když z $L \in E^*$, $L(A) = \{0\}$ vyplývá $L(E) = \{0\}$.
+	\end{itemize}
+\end{veta}
+
+
+\begin{veta}
+	$$ ©H^*(G) = ©H_0(®S \setminus G). $$
+\end{veta}
+
+
+
+
+\section{Cauchyovy věty, reziduální věty a další}
+\begin{tvrzeni}[O existenci primitivní funkce]
+	Nechť $G \subseteq ®C$ je oblast a $f$ je spojitá na $G$, pak následující je ekvivalentní:
+
+	\begin{itemize}
+		\item $f$ má na $G$ primitivní funkci;
+		\item $\int_φ f = 0$ pro každou uzavřenou křivku $φ$ v $G$;
+		\item $\int_φ f$ nezávisí v $G$ na křivce $φ$;
+		\item TODO Dodatek?
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{veta}[Cauchy pro hvězdovité oblasti]
+	Nechť $G \subseteq ®S$ je hvězdovitá oblast a $f \in ©H(G)$. Potom $f$ má na $G$ primitivní funkci, tedy $\int_φ f = 0$ pro každou uzavřenou křivku $φ$ v $G$.
+\end{veta}
+
+\begin{definice}[Index bodu křivky]
+	Nechť $φ$ je uzavřená křivka v $®C$ a $s \in ®C \setminus \<φ\>$. Potom číslo $\ind_φ s := \frac{1}{2πi} \int_φ \frac{dz}{z - s}$ nazveme indexem bodu vzhledem ke křivce $φ$.
+\end{definice}
+
+\begin{veta}[Cauchyův vzorec na kruhu]
+	Nechť $G \subset ®C$ a $f \in ©H(G)$. Nechť $\overline{U(z_0, r)} \subseteq G$ a $φ(t) = z_0 + r·e^{it}$, $t \in [0, 2π]$. Potom platí
+	$$ \frac{1}{2πi}\int_φ \frac{f(z)}{z - s} dz = \begin{cases}f(s), & |s - z_0| < r\\0, & |s - z_0| > r.\end{cases} $$
+	$$ \frac{k!}{2πi} \int_φ \frac{f(z)dz}{(z - s)^{k+1}} = f^{(k)}(s), \qquad |s - z_0| < r, k \in ®N_0. $$
+\end{veta}
+
+\begin{veta}[Morera ($\implies$ je Goursatovo lemma)]
+	Nechť $f$ je spojitá funkce na otevřené $G \subset ®C$. Potom $f \in ©H(G)$, právě když $\int_{\partial \triangle} f = 0$, $\forall \triangle \subset G$.
+\end{veta}
+
+\begin{veta}[Cacuhyho vzorec na mezikruží]
+	Nechť $f \in ©H(P(z_0, r, R))$. Nechť $r < r_0 < R_0 < R$ a $s \in P(z_0, r_0, R_0)$. Potom platí
+	$$ f(s) = \frac{1}{2πi} \int_{φ_{R_0}} \frac{f(z) dz}{z - s} - \frac{1}{2πi} \int_{φ_{r_0}} \frac{f(z) dz}{z - s}. $$
+\end{veta}
+
+\begin{definice}[Reziduum]
+	Nechť $f \in ©H(P(z_0))$ a nechť $f(z) = \sum_{n=-∞}^∞ a_n(z - z_0)^n$, $z \in P(z_0)$. Potom reziduem $f$ v $z_0$ nazveme číslo $\res_{z_0} f := a_{-1}$.
+\end{definice}
+
+\begin{veta}[Reziduová na hvězdovitých oblastech]
+	Nechť $G \subset ®C$ je hvězdovitá oblast $M \subseteq G$ je konečná a $f \in ©H(G \setminus M)$. Nechť $φ$ je uzavřená křivka v $G \setminus M$. Potom máme $\int_φ f = 2πi \sum_{s \in M} \res_s f·\ind_φ s$.
+\end{veta}
+
+TODO Reziduová a Cauchyho pro cykly?
+
+\begin{definice}[Logaritmický integrál]
+	Ať $φ: [a, b] \rightarrow ®C$ je (regulární) křivka a $f$ je nenulová holomorfní funkce na $\<φ\>$. Potom definujeme logaritmický integrál jako
+	$$ I := \frac{1}{2πi}\int_φ \frac{f'}{f} = \frac{1}{2πi} \int_a^b \frac{f'(φ(t))φ'(t)}{f(φ(t))} dt = \frac{1}{2πi}\int_a^b \frac{(f(φ(t)))'}{f(φ(t))} dt = \frac{1}{2πi} \int_{f∘φ} \frac{dz}{z} = $$
+	$$ = \frac{1}{2πi}(Φ(b) - Φ(a)). $$
+	Kde $Φ$ je jednoznačná větev logaritmu $f∘φ$. Navíc, pokud je $φ$ uzavřená, pak $I = \ind_{f∘φ} 0 \in ®Z$.
+\end{definice}
+
+\begin{veta}[Princip argumentu]
+	Buď $G \subseteq ®C$ oblast, $φ$ uzavřená křivka v $G$ a $f \in ©M(G)$. Navíc buď $\Int φ \subseteq G$ a $\<φ\> \cap (N_f \cup P_f) = \O$. Potom
+	$$ \frac{1}{2πi} \int_φ \frac{f'}{f} = \sum_{s \in \Int φ, f(s) = 0} n_f(s)·\ind_φ s - \sum_{s \in \Int φ, f(s) = ∞} p_f(s)·\ind_φ s =: Σ(f, φ). $$
+\end{veta}
+
+\begin{veta}[Rouché]
+	Buď $G \subseteq ®C$ oblast, $f_1, f_2 \in ©M(G)$ a $φ$ buď uzavřená křivka v $G$ taková, že $\Int φ \subseteq G$. Předpokládejme
+	$$ \forall z \in \<φ\>: |f_1(z) - f_2(z)| < |f_1(z)| < ∞. $$
+	Potom $Σ(f_1, φ) = Σ(f_2, φ)$.
+\end{veta}
+
+\begin{veta}[Cauchyho vzorec pro kompakty]
+	Buďte $G \subset ®C$ otevřená a $K \subset G$ kompaktní. Potom existuje cyklus $Γ \subset G$, $K \subseteq \Int Γ \subseteq G$ a $\forall a \in \Int Γ: \ind_Γ a = 1$. Navíc
+	$$ \forall f \in ©H(G): \int_Γ f = 0 \land \forall a \in \Int Γ: f(a) = \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a} dz. $$
+\end{veta}
+
+
+
+
+
+\section{Aproximační věty a hledání funkcí}
+\begin{tvrzeni}[Rozklad holomorfní funkce s konečně mnoha izolovnými singularitami]
+	Nechť $G \subseteq ®S$ je otevřená, $M \subseteq F$ je konečná a $f \in ©H(G \setminus M)$. Pro každé $s \in M$ označme $H_s$ součet hlavní části Laurentova rozvoje funkce $f$ kolem $s$. Potom existuje jediná $h \in ©H(G)$ tak, že $f = \sum_{s \in M} H_s + h$ na $G \setminus M$.
+\end{tvrzeni}
+
+\begin{veta}[Mittag–Leffler]
+	Buď $\{s_j\} \subset ®C$ prostá posloupnost, že $s_j \rightarrow ∞$ a $s_0 := 0 < |s_1| ≤ |s_2| ≤ … ≤ |s_j| ≤ …$
+
+	Buďte $P_0, P_1, …, P_j, …$ polynomy tak, že $P_j(0) = 0$. Potom funkce
+	$$ f(z) := P_0\(\frac{1}{z}\) + \sum_{j=1}^∞ \(P_j \(\frac{1}{z - s_j}\) - Q_j(z)\) $$
+	pro nějaké polynomy $Q_j$ splňuje:
+
+	\begin{itemize}
+		\item Suma v definici konverguje lokálně stejnoměrně na $®C$, tj. na libovolném kompaktu $K \subset ®C$ řada konverguje, pokud vynecháme konečně mnoho členů, které zde mají póly.
+		\item $f \in ©M(®C)$ a $f$ má póly právě v $s_0, s_1, …, s_j, …$, v každém je hlavní část rozvoje $f$ rovna $P_j\(\frac{1}{z - s_j}\)$.
+		\item Pokud $g \in ©M(G)$ splňuje předchozí dva body, potom existuje $h \in ©H(G)$ tak, že $g = f + h$ na $G$.
+	\end{itemize}
+\end{veta}
+
+\begin{veta}
+	Buď $M \subseteq ®C$, $u_j: M \rightarrow ®C$ buďte omezené a $\sum_{j=1}^∞ |u_j|$ konverguj stejnoměrně na $M$. Potom $p_n := \prod_{j=1}^n (1 + u_j)$ konverguje stejnoměrně k $f: M \rightarrow ®C$ a platí, že $f = \prod_{j=1}^∞ (1 + u_{n(j)})$ na $M$, kde $n$ je bijekce na ®N.
+
+	Navíc, pokud $z_0 \in M$, potom $f(z_0) = 0$ tehdy a jen tehdy, když $u_{j_0}(z_0) = -1$ pro nějaké $j_0 \in ®N$.
+\end{veta}
+
+\begin{dusledek}
+	Buď $G \subseteq ®C$ otevřená, $f_n \in ©H(G)$ a $f_n \not≡ 0$ na žádné komponentě $G$. Předpokládejme, že $\sum_{n=1}^∞ |1 - f_n|$ konverguje lokálně stejnoměrně na $G$. Potom $f = \prod_{n=1}^∞ f_n$ konverguje lokálně stejnoměrně na $G$, $f \in ©H(G)$ a výsledný nekonečný součin nezávisí na pořadí $f_n$. Navíc $n_f(s) = \sum_{k=1}^∞ n_{f_k}(s)$, $s \in G$, kde položíme $n_f(s) = 0$, když $f(s) ≠ 0$.
+\end{dusledek}
+
+\begin{lemma}[Weierstrassův faktor]
+	Buď $E_0(z) := (1 - z)$ a $E_m(z) := (1 - z)·e^{z + … + \frac{z^m}{m}}$, $z \in ®C$, $m \in ®N$. Potom $|1 - E_m(z)| ≤ |z|^{m+1}$, $|z| ≤ 1$.
+\end{lemma}
+
+\begin{veta}[Weierstrassova faktorizace v ®C]
+	Ať $k \in ®N_0$ a $0 ≠ z_i \rightarrow ∞$. Potom existuje $\{m_j\} \subseteq ®N_0$ taková, že
+	$$ f(z) := z^k·\prod_{j=1}^∞ E_{m_j}\(\frac{z}{z_j}\) $$
+	konverguje lokálně stejnoměrně na ®C, $f \in ©H(®C)$ a $f$ má v nule nulový bod násobnosti $k$ a $0≠$ nulové body právě v $z_1, z_2, …, z_j, …$ s násobností danou počtem jejich výskytů v $\{z_j\}$.
+
+	Navíc můžeme vždy položit $m_j := j - 1$, $j \in ®N$.
+
+	Nakonec pokud $g \in ©H(®C)$ má stejné nulové body jako $f$ včetně násobnosti, pak existuje $L \in ©H(®C)$ taková, že $g = f·e^L$ na ®C.
+\end{veta}
+
+\begin{veta}[Weierstrassova faktorizace v obecné otevřené množině]
+	Buď $G \subsetneq ®S$ otevřená, $N \subset G$ bez hromadných bodů v $G$ a $n: N \rightarrow ®N$. Potom existuje $f \in ©H(G)$ taková, že $N_f = N$ a $n_f(s) = n(s)$, $s \in N_f$.
+\end{veta}
+
+\begin{lemma}
+	Pokud $G \subseteq ®C$ je otevřená a $f \in ©M(G)$, pak existují $g, h \in ©H(G)$, že $f = \frac{g}{h}$ na $G$.
+\end{lemma}
+
+\begin{veta}[Runge (speciální)]
+	Buď $G \subset ®C$ konečné sjednocení navzájem disjunktních otevřených koulí. Potom pro každou $f \in ©H(G)$ existují polynomy $P_n$, $n \in ®N$, že $P_n \overset{\text{loc.}}\rightrightarrows f$ na $G$.
+\end{veta}
+
+\begin{definice}
+	Označme $©F(E, m)$ systém funkcí, který sestává z $\frac{1}{z - e}$ pro $e \in E \cap ®C$ a $m(e) M < ∞$, $\frac{1}{(z - e)^k}$ pro $e \in E \cap ®C$ a $m(e) = ∞$, $k \in ®N$, a nakonec $z^k$ pokud $∞ \in E$, $m(∞) = ∞$.
+\end{definice}
+
+\begin{veta}[Runge]
+	Buď $G \subseteq ®C$ otevřená, $E \subseteq ®S \setminus G$ a $m: E \rightarrow ®N \cup \{∞\}$. Pokud $(E, m)$ má hromadný bod v každé komponentě $®S \setminus G$, potom lineární obal $©F(E, m)$ je hustý v $©H(G)$.
+\end{veta}
+
+\begin{veta}[Runge, klasická verze]
+	Buď $G \subset ®C$ otevřená a $f \in ©H(G)$. Potom existují racionální funkce $R_n$, $n \in ®N$, s póly mimo $G$ takové, že $R_n \overset{\text{loc.}}\rightrightarrows f$ na $G$. Navíc, pokud $®S \setminus G$ je souvislá, potom nahradíme racionální funkce polynomy.
+\end{veta}
+
+\begin{veta}[Runge, pro kompakty]
+	Buď $K$ kompaktní v $®C$ a mějme $S \subset ®S \setminus K$ obsahující alespoň jeden bod z každé komponenty $®S \setminus K$. Potom pro každé $f \in ©H(K)$ existují racionální funkce $R_n$ s póly v $S$ takové, že $R_n \rightrightarrows f$ na $K$.
+\end{veta}
+
+
+
+
+\section{Jednoduše souvislé množiny}
+\begin{veta}[Charakterizace jednoduše souvislé množiny]
+	Buď $G \subset ®C$ otevřená. Pak následující je ekvivalentní:
+
+	\begin{enumerate}
+		\item pokud $φ$ je uzavřená (regulární) křivka v $G$, potom $\Int φ \subset ®G$;
+		\item $®S \setminus G$ je souvislá;
+		\item $\forall f \in ©H(G)\ \exists$polynomy $P_n: P_n \overset{\text{loc.}}\rightrightarrows f$ na $G$;
+		\item $\forall f \in ©H(G): \int_φ f = 0$ pro libovolnou uzavřenou křivku $φ$ v $G$;
+		\item $\forall f \in ©H(G)\ \exists F \in ©H(G): F' = f$ na $G$;
+		\item $\forall f \in ©H(G)$, $f ≠ 0$ na $G$, $\exists g \in ©H(G): f = e^g$ na $G$;
+		\item $\forall f \in ©H(G)$, $f ≠ 0$ na $G$, $\exists h \in ©H(G): h^2 = f$ na $G$;
+		\item každá smyčka $φ$ v $G$ je homotopická (v $G$) konstantní smyčce.
+	\end{enumerate}
+\end{veta}
+
+\begin{veta}[Riemann]
+	Ať $\O ≠ G_0 \subsetneq$ ®C je oblast splňující sedmý bod. Pak existuje konformní zobrazení $h: G_0 \overset{\text{na}}\rightarrow ®D$.
+\end{veta}
+
+\begin{veta}
+	Nechť $φ, ψ$ jsou homotopické smyčky na otevřené množině $G \subseteq ®C$. Potom $\ind_φ z_0 = \ind_ψ z_0$ pro každé $z_0 \in ®C \setminus G$.
+\end{veta}
+
+\begin{tvrzeni}
+	Existují 4 třídy konformně ekvivalentních (lze je na sebe zobrazit konformním zobrazením) jednoduše souvislých oblastí v ®S:
+	$$ \O, \qquad ®S, \qquad \[®C\], \qquad \[®D\]. $$
+\end{tvrzeni}
+
+\section{Další}
+\begin{lemma}
+	Buď $G \subseteq ®C$ otevřená. Potom existují kompakty $K_n$, $n \in ®N$, v $G$ takové, že $G = \bigcup_{n=1}^∞ K_n$, $K_n \subset \Int(K_{n+1})$ a pro každý kompakt $K$ v $G$, existuje $n \in ®N$, že $K \subseteq K_n$.
+\end{lemma}
+
+\begin{tvrzeni}
+	Buď $G \subseteq ®S$ otevřená a $M \subset G$ nemá žádný limitní bod v $G$. Potom $G \setminus M$ je otevřená; $K \cap M$ je konečný (tedy pro $G = ®S$ je $M$ konečná); $M$ je nanejvýš spočetná, a pokud $M$ je nekonečná, tak $\O ≠ M' \subseteq \partial G$; pokud je $G \subseteq ®C$ oblast, pak $G \setminus M$ je oblast.
+\end{tvrzeni}
+
+\begin{lemma}
+	Buďte $φ_1, φ_2: [a, b] \rightarrow ®C$ uzavřené křivky a $s \in ®C \setminus (\<φ_1\> \cup \<φ_2\>)$. Předpokládejme, že pro $t \in [a, b]$ je $|φ_1(t) - φ_2(t)| < |φ_1(t) - s|$. Potom $\ind_{φ_1} s = \ind_{φ_2} s$.
+\end{lemma}
+
+\begin{veta}[Schwarzovo lemma]
+	Ať $f \in ©H(®D)$, $f(®D) \subset ®D$ a $f(0) = 0$. Potom $|f(z)| ≤ |z|$, $z \in ®D$ a $|f'(0)| ≤ 1$. Pokud nastane rovnost v první nerovnosti pro $z \in ®D \setminus \{0\}$ nebo v druhé nerovnosti, pak $f$ je rotace.
+\end{veta}
+
+\begin{lemma}
+	Pro $α \in ®D$ položme $φ_α(z) := \frac{z - α}{1 - \overline{α}z}$. Potom
+
+	\begin{itemize}
+		\item $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ je prosté, $φ_α(®D) = ®D$, $φ_α(®T) = ®T$;
+		\item $(φ_α)_{-1} = φ_{-α}$;
+		\item $φ_α(α) = 0$, $φ_α'(α) = \frac{1}{1 - |α|^2}$, $φ_α'(0) = 1 - |α|^2$.
+	\end{itemize}
+\end{lemma}
+
+\begin{veta}[Konformní transformace ®D]
+	Funkce $f$ je konformní zobrazení ®D na ®D právě tehdy, když existují $θ \in ®R$ a $α \in ®D$ tak, že
+	$$ f(z) = e^{iθ} \frac{z - α}{1 - \overline{α}z} = \rot_θ ∘ φ_α, \qquad z \in ®D. $$
+\end{veta}
+
+\begin{veta}[Schwarz–Pick]
+	Ať $F \in ©H(®D)$, $F(®D) \subseteq ®D$ a $F(α) = β$. Potom $|F'(α)| ≤ \frac{1 - |β|^2}{1 - |α|^2}$. Pokud nastane rovnost, pak $F(z) = φ_{-β}(λφ_α(z))$, $z \in ®D$, pro nějaké $λ \in ®T$. Neboli $F'(0) < 1$ pokud $F$ není rotace.
+\end{veta}
+
+\begin{veta}
+	Buďte $G, Ω \subset ®C$ otevřené. Potom $f: G \rightarrow Ω$ je konformní právě tehdy, když $f$ je difeomorfismus $G$ na $Ω$ zachovávající úhly v libovolném bodu $G$.
+\end{veta}
+
+\end{document}

@@ -84,7 +84,9 @@
 \end{veta}
 
 \begin{veta}[Residue theorem]
-	Let $G \subset ®C$ be open, $\phi$ be a closed curve (or cycle) in $G$ and $\Int \phi := \{z_0 \in ®C \setminus \<\phi\> | \ind_\phi z_0 ≠ 0\} \subset G$. Let $M \subset G \setminus \<\phi\>$ be finite and $f \in ©H(G \setminus M)$. Then $\int_\phi f = 2\pi i·\sum_{s \in M} \ind_\phi s · \res_s f$.
+	Let $G \subset ®C$ be open, $\phi$ be a closed curve (or cycle) in $G$ and
+	$$ \Int \phi := \{z_0 \in ®C \setminus \<\phi\> | \ind_\phi z_0 ≠ 0\} \subset G. $$
+	Let $M \subset G \setminus \<\phi\>$ be finite and $f \in ©H(G \setminus M)$. Then $\int_\phi f = 2\pi i·\sum_{s \in M} \ind_\phi s · \res_s f$.
 
 	\begin{poznamkain}
 		This holds true even if instead of finiteness of $M$, we assume only that $M \subset G \setminus \<\phi\>$ has no limit points in $G$. Indeed, we have $M_0 = M \cap \Int \phi$ is finite, because $\<\phi\> \cup \Int \phi$ is compact and $G_0 := G \setminus (M \setminus M_0)$ is open and $f$ is holomorphic on $G_0 \setminus M_0$ and by R. theorem for $G_0$ and $M_0$ we get $\int_\phi f = 2 \pi i \sum_{s \in M_0} \res_s f · \ind_\phi s$.
@@ -95,7 +97,8 @@
 
 \begin{definice}[Logarithmic integral]
 	Let $\phi: [a, b] \rightarrow ®C$ be a (regular) curve and let $f$ be a non-zero holomorphic function on $\<\phi\>$. Then we define logarithmic integrals integral as
-	$$ I := \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \frac{1}{2\pi i} \int_a^b \frac{f'(\phi(t)) \phi'(t)}{f(\phi(t))} dt = \frac{1}{2 \pi i} \int_a^b \frac{(f(\phi(t)))'}{f(\phi(t))} dt = \frac{1}{2\pi i} \int_{f \circ \phi} \frac{dz}{z} = \frac{1}{2\pi i}(\Phi(b) - \Phi(a)), $$
+	$$ I := \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \frac{1}{2\pi i} \int_a^b \frac{f'(\phi(t)) \phi'(t)}{f(\phi(t))} dt = \frac{1}{2 \pi i} \int_a^b \frac{(f(\phi(t)))'}{f(\phi(t))} dt = \frac{1}{2\pi i} \int_{f \circ \phi} \frac{dz}{z} = $$
+	$$ = \frac{1}{2\pi i}(\Phi(b) - \Phi(a)), $$
 	where $\Phi$ is a branch (jednoznačná větev) of logarithm of $f \circ \phi$. If $\phi$ is, in addition, closed, then $I = \ind_{f \circ \phi} 0 = \frac{1}{2\pi}(\Theta(b) - \Theta(a)) \in ®Z$, where $\Theta$ is a branch of argument of $f \circ \phi$.
 
 	($\frac{f'}{f}$ is called logarithmic derivative of $f$, because '$(\log f)' = \frac{f'}{f}$'.)
@@ -129,7 +132,8 @@
 		For $t \in [a, b]$, we have $|(\phi_1(t) - s) - (\phi_2(t) - s)| < |\phi_1(t) - s|$. Divide by $|\phi_1(t) - s|$:
 		$$ |1 - \psi(t)| < 1, \qquad \psi(t) := \frac{\phi_2(t) - s}{\phi_1(t) - s}. $$
 		Then $\psi$ is a closed curve, $<\psi> \subset U(1, 1)$, and so
-		$$ 0 = \ind_\psi 0 = \frac{1}{2\pi i} \int_a^b \frac{\psi'}{\psi} = \frac{1}{2\pi i} \int_a^b \frac{\frac{\phi_2'(\phi_1 - s) - \phi_1'(\phi_2 - s)}{(\phi_1 - s)^2}}{\frac{\phi_2 - s}{\phi_1 - s}} = \frac{1}{2\pi i}\int_a^b \frac{\phi_2'}{\phi_2 - s} - \frac{1}{2\pi i}\int_a^b \frac{\phi_1'}{\phi_1 - s} = \ind_{\phi_2} s - \ind_{\phi_1} s. $$
+		$$ 0 = \ind_\psi 0 = \frac{1}{2\pi i} \int_a^b \frac{\psi'}{\psi} = \frac{1}{2\pi i} \int_a^b \frac{\frac{\phi_2'(\phi_1 - s) - \phi_1'(\phi_2 - s)}{(\phi_1 - s)^2}}{\frac{\phi_2 - s}{\phi_1 - s}} = \frac{1}{2\pi i}\int_a^b \frac{\phi_2'}{\phi_2 - s} - \frac{1}{2\pi i}\int_a^b \frac{\phi_1'}{\phi_1 - s} = $$
+		$$ = \ind_{\phi_2} s - \ind_{\phi_1} s. $$
 	\end{dukazin}
 \end{lemma}
 
@@ -246,8 +250,8 @@
 \end{dukaz}
 
 \begin{veta}[Mittag-Leffler]
-	Let $\{s_j\} \subset ®C$ be one-to-one, $s_j \rightarrow ∞$ and
-	$$ s_0 := 0 < |s_1| ≤ |s_2| ≤ |s_3| ≤ … ≤ |s_j| ≤ … $$
+	Let $\{s_j\} \subset ®C$ be one-to-one, $s_j \rightarrow ∞$ and $s_0 := 0 < |s_1| ≤ |s_2| ≤ |s_3| ≤ … ≤ |s_j| ≤ …$
+
 	Let $P_0, P_1, …, P_j, …$ be polynomials such that $P_j(0) = 0$. Then the function
 	$$ f(z) := P_0\(\frac{1}{z}\) + \sum_{j=1}^∞ \(P_j\(\frac{1}{z - s_j}\) - Q_j(z)\) $$
 	for some polynomials $Q_j$ satisfies:
@@ -310,7 +314,8 @@
 		$\sum_{j=1}^∞ |u_j|$ is bounded on $M$, because there is $n_0 \in ®N$ such that $\sum_{j=n_0 + 1}^∞ |u_j| < 1$. By inequalities there is $C \in (0, +∞)$ such that $|p_n| ≤ C$ $\forall n \in ®N$.
 
 		Let $0 < \epsilon < \frac{1}{2}$. Choose $n_0 \in ®N$ such that $\sum_{n=n_0}^∞ |u_n| < \epsilon$ on $M$. Let $\{n_1, n_2, …\}$ be a permutation of $®N$ and $q_m := \prod_{j=1}^m (1 + u_{n_j})$, $m \in ®N$. Let $n ≥ n_0$ and $m \in ®N$ be such that $\{n_1, …, n_m\} \supseteq [n]$. Then
-		$$ |q_m - p_n| = |p_n·\(\prod_{n_j > n, j \in [m]} (1 + u_{n_j}) - 1\) ≤ |p_n|\(\prod_{…} (1 + |u_{n_j}|) - 1\) ≤ |p_n|·\(e^{\sum_{…} |u_{n_j}|} - 1\) ≤ |p_n|·\(e^\epsilon - 1\) ≤ |p_n|·2\epsilon ≤ 2C\epsilon. $$
+		$$ |q_m - p_n| = |p_n·\(\prod_{n_j > n, j \in [m]} (1 + u_{n_j}) - 1\) ≤ |p_n|\(\prod_{…} (1 + |u_{n_j}|) - 1\) ≤ $$
+		$$ ≤ |p_n|·\(e^{\sum_{…} |u_{n_j}|} - 1\) ≤ |p_n|·\(e^\epsilon - 1\) ≤ |p_n|·2\epsilon ≤ 2C\epsilon. $$
 
 		If $n_j = j$ $\forall j \in ®N$, then $q_m = p_m$ and we get $\forall m > n: |q_m - p_n| < 2C\epsilon$, so $p_n \rightrightarrows f$ on $M$. Moreover we have, for $n ≥ n_0$, $|p_n - p_{n_0}| ≤ 2 \epsilon |p_{n_0}|$, so $|p_n| ≥ |p_{n_0}| - |p_n - p_{n_0}| ≥ (1 - 2\epsilon)|p_{n_0}|$. For $n \rightarrow ∞$: $|f| ≥ (1 - 2\epsilon) |p_{n_0}|$, hence $f(z_0) = 0 \Leftrightarrow p_{n_0}(z_0) = 0$.
 
@@ -362,7 +367,9 @@
 	If $g \in ©H(®C)$ has the same zero points as $f$ including multiplicities, then there is $L \in ©H(®C)$ such that $g = f·e^L$ on ®C.
 
 	\begin{dukazin}
-		By the previous corollary, we know the product converges locally uniformly in ®C if $\sum_{j=1}^∞ |1 - E_{m_j} \(\frac{z}{z_j}\)|$ converges locally uniformly on ®C. By lemma, this is true if $\sum_{j=1}^∞ \left|\frac{z}{z_j}\right|^{m_j + 1}$ converges locally uniformly on ®C.
+		By the previous corollary, we know the product converges locally uniformly in ®C if
+		$$ \sum_{j=1}^∞ \left|1 - E_{m_j} \(\frac{z}{z_j}\)\right| $$
+		converges locally uniformly on ®C. By lemma, this is true if $\sum_{j=1}^∞ \left|\frac{z}{z_j}\right|^{m_j + 1}$ converges locally uniformly on ®C.
 
 		Let $r > 0$ and $|z| ≤ r$. Choose $j_0 \in ®N$ such that $\frac{r}{|z_j|} < \frac{1}{2}$ for $j ≥ j_0$. If $m_j := j - 1$, then $\left|\frac{z}{z_j}\right|^j ≤ \frac{1}{2^j}$, $j ≥ j_0$ and $|z| ≤ r$. So, for $m_j := j - 1$, sum converges uniformly on $|z| ≤ r$.
 	\end{dukazin}
@@ -482,7 +489,7 @@
 
 % 23. 03. 2023
 
-\section{The dual space $©H^*(G)$}
+\section{\texorpdfstring{The dual space $©H^*(G)$}{The dual space H*(G)}}
 \begin{poznamka}
 	1. Let $G = ®D := \{z \in ®C | |z| < 1\}$. Let $L \in ©H^*(®D)$. Let $f \in ©H(®D)$, $f(z) = \sum_{n=0}^∞ a_n z^n$, $z \in ®D$, and $R := \frac{1}{\limsup_{n \rightarrow +∞} \sqrt[n]{|a_n|}} ≥ 1$. Then
 	$$ L(f) = L(\sum_{n=0}^∞ a_n z^n) = L\(\lim_{n \rightarrow ∞} \sum_{k=0}^n a_kz^k\) = \lim_{n \rightarrow ∞} \sum_{k=0}^n a_k L(z^k) = \sum_{n=0}^∞ a_n·b_n, $$
@@ -608,8 +615,9 @@
 	\begin{poznamkain}
 		„In addition“ follows from the properties of $Γ$ and residue's theorem for cycles, but we prove it directly.
 	\end{poznamkain}
+\end{veta}
 
-	\begin{dukazin}
+	\begin{dukaz}[Cauchy formula for compact]
 		Choose $0 < δ < \frac{1}{2} \dist(K, ®C \setminus G)$, if $G \subsetneq ®C$, otherwise, if $G = ®C$, take $δ := 1$. For $m, n \in ®Z$ let $Q_{m, n}$ be the closed square with edges (parallel to the axes) with length $δ$, and such that $m δ + i n δ$ is the lower left vertex of $Q_{m, n}$.
 
 		Denote $Q^* := \{Q_{n, m} | Q_{n, m} \cap K ≠ \O\}$, $U := \int(\bigcup Q^*)$. $Q^*$ is finite because of compactness of $K$. Of course, $K \subseteq U \subseteq \bigcup Q^* \subseteq G$ (by choice of $δ$).
@@ -625,7 +633,8 @@
 		(*) „Every point $c \in ®C$ is the starting point of some edge of $Γ$ as many times as it is the ending point of some edge in $Γ$“:
 
 		Take a polynomial $P$ such that $p(c) = 1$ and $p(a) = 0$, if $a ≠ c$ and $[a, b] \in Γ$ for some $b$. $p(b) = 0$, if $b ≠ c$ and $[a, b] \in Γ$ for some $a$. By a):
-		$$ 0 = \int_Γ p' = \sum_{j=1}^k \int_{Γ_j} p' = \sum_{j=1}^k (p(b_j) - p(a_j)) = \sum_{j=1}^k p(b_1) - \sum_{j=1}^k p(a_j) = \# \text{ $c$ is the ending point} - \# \text{ $c$ is the starting point}. $$
+		$$ 0 = \int_Γ p' = \sum_{j=1}^k \int_{Γ_j} p' = \sum_{j=1}^k (p(b_j) - p(a_j)) = \sum_{j=1}^k p(b_1) - \sum_{j=1}^k p(a_j) = $$
+		$$ = \# \text{ $c$ is the ending point} - \# \text{ $c$ is the starting point}. $$
 
 		„$Γ$ can be viewed as a cycle“: Let $L$ be longest (one of the longest) simple piecewise linear curve consisting of edges of $Γ$ which begins with $Γ1$, i. e.,
 
@@ -648,8 +657,7 @@
 		$$ \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a_j} dt \rightarrow f(a) = \frac{1}{2πi} \int_Γ \frac{f(z)}{z - a} dz. $$
 
 		d) „$U = \Int(Γ)$“: Let $a \in ®C \setminus(U \cup \im Γ)$ $\implies$ $a \in ®C \setminus \bigcup Q^*$. As in a), we show easily that $\ind_Γ a = 0$. If $a \in U$, then by c) we have that $\ind_p(1) = 1$.
-	\end{dukazin}
-\end{veta}
+	\end{dukaz}
 
 \begin{veta}[Description of $©H^*(G)$]
 	Let $G \subset ®C$ be open subset. Then $©H^*(G) \simeq ©H_0(®S \setminus G)$.
@@ -798,8 +806,7 @@
 \end{dusledek}
 
 \begin{dusledek}[Cauchy's theorem for cycles]
-	Let $G \subset ®C$ be open and $Γ$ be a cycle in $G$ (i.e., $\<Γ\> \subset G$). Then
-	$$ \(\forall f \in ©H(G): \int_Γ f = 0\) \Leftrightarrow \Int Γ \subset G. $$
+	Let $G \subset ®C$ be open and $Γ$ be a cycle in $G$ (i.e., $\<Γ\> \subset G$). Then $\(\forall f \in ©H(G): \int_Γ f = 0\) \Leftrightarrow \Int Γ \subset G$.
 
 	\begin{dukazin}
 		„$\implies$“: If $z_0 \in ®C \setminus G$, then $f(z) := \frac{1}{z - z_0} \in ©H(G)$ and $\ind_Γ z_0 = \frac{1}{2π i} \int_Γ f = 0$.
@@ -815,21 +822,22 @@
 		Each rational function $R$ can be uniquely expressed in the form (rational function has $n \in ®N$ poles, and we will write the principal part of Laurent expansion around the pole $z_k$):
 		$$ R(z) = \sum_{k=1}^n \sum_{j=1}^{n_k} \frac{A_j^k}{(z - z_k)^j} + C_0 + C_1z + … + C_mz^m, $$
 		where $n, m, n_k \in ®N$, $z_k \in ®C$ and $A^k_{n_k} ≠ 0$, $C_m ≠ 0$. Then $z_k$ is a pole of $R$ of multiplicity $n_k$ and $∞$ is a pole of $R$ of multiplicity $m$. A rational function $R$ is a polynomial iff $R$ has a pole at most at $∞$.
-
-		Notation: Let $K$ be a compact in $®C$, $U \subset ®S$ and $U \cap K = \O$. Put $B(K, U) = \overline{\{R|_K | R \text{ is rational with poles in } U\}}^{©C(K)}$. (Remark: $B(K, U)$ is a closed subalgebra of $©C(K)$.)
+		
+		Notation: Let $K$ be a compact in $®C$, $U \subset ®S$ and $U \cap K = \O$. Put $B(K, U) = \overline{\{R|_K | R \text{ is rational with poles in } U\}}^{©C(K)}$. ($B(K, U)$ is a closed subalgebra of $©C(K)$.)
 
 		Theorem (pushing poles): Let $K$ be a compact in ®C, $U \subset ®S$ be a domain, $K \cap U = \O$ and $z_0 \in U$. If $R$ is rational function with poles in $U$, then $R \in R(K, \{z_0\})$.
 
 		Corollary: By theorem, we have $B(K, U) = B(K, z_0)$.
+	\end{poznamkain}
 
+	\begin{poznamkain}[Technique: pushing poles]
 		Proof: Put $V := \{ξ \in U | \frac{1}{z - ξ} \in B(K, x_0), \text{ for $ξ \in ®C$ and } z \in B(K, z_0) \text{for $ξ = ∞$}\}$. Of course $B(K, z_0) = B(K, V)$. Indeed, if $ξ \in V$, then $\frac{1}{(z - ξ)^k} \in B(K, z_0)$, for $ξ \in ®C$ and $k \in ®N$, and $z^k \in B(K, z_0)$ for $ξ = ∞$, $k \in ®N$.
 
 		Then each rational $R$ with poles in $V$ is contained in $B(K, z_0)$. Hence $B(K, V) \subset B(K, z_0)$. Since $z_0 \in V$, we have $B(K, z_0) \subset B(K, V)$.
 
 		„$V$ is closed in $U$“: Let $ξ_n \in V$, $ξ_n \rightarrow ξ_0$ and $ξ_0 \in U$. We need to show that $ξ_0 \in V$. WLOG $\forall n \in ®N: ξ_n \in ®C$.
 
-		„$ξ_0 \in ®C$“. Then put $δ := \dist(ξ_0, K) > 0$. Choose $n_0 \in ®N$ such that $\dist(ξ_n, K) ≥ \frac{δ}{2}$ for $n > n_0$. Then
-		$$ \frac{1}{z - ξ_n} \rightrightarrows \frac{1}{z - ξ_0}, \qquad z \in K, $$
+		„$ξ_0 \in ®C$“. Then put $δ := \dist(ξ_0, K) > 0$. Choose $n_0 \in ®N$ such that $\dist(ξ_n, K) ≥ \frac{δ}{2}$ for $n > n_0$. Then $\frac{1}{z - ξ_n} \rightrightarrows \frac{1}{z - ξ_0}$, $z \in K$,
 		$$ \impliedby \left|\frac{1}{z - ξ_n} - \frac{1}{z - ξ_0}\right| = \frac{|ξ_n - ξ_0|}{|z - ξ_n|·|z - ξ_0|} ≤ \frac{2}{δ^2}·|ξ_n - ξ_0| \rightarrow 0, $$
 		if $n > n_0$ and $z \in K$. Hence $\frac{1}{z - ξ_n} \in B(K, z_0)$, so $ξ_0 \in V$.
 
@@ -843,9 +851,7 @@
 
 		„$ξ \in ®C$“: Put $δ := \dist(ξ_0, K) > 0$. Let $ξ \in U(ξ \in U(ξ_0, δ/2))$. Then
 		$$ \frac{1}{z - ξ} = \frac{1}{(z - ξ_0) - (ξ - ξ_0)} = \frac{1}{z - ξ_0}·\frac{1}{1 - \frac{ξ - ξ_0}{z - ξ_0}} = \sum_{k=0}^∞ \frac{(ξ - ξ_0)^k}{(z - ξ_0)^{k + 1}} $$
-		converges uniformly for $z \in K$ because
-		$$ \left|\frac{(ξ - ξ_0)^k}{(z - ξ_0)^{k + 1}}\right| ≤ \frac{\(\frac{δ}{2}\)^k}{δ^{k+1}} = \frac{1}{δ·2^k}, $$
-		for $z \in K$ and $k \in ®N_0$. Hence $\frac{1}{z - ξ} \in B(K, ξ_0) \subset B(K, V) = B(K, z_0)$. So $U(ξ_0, δ/2) \subset V$.
+		converges uniformly for $z \in K$ because $\left|\frac{(ξ - ξ_0)^k}{(z - ξ_0)^{k + 1}}\right| ≤ \frac{\(\frac{δ}{2}\)^k}{δ^{k+1}} = \frac{1}{δ·2^k}$, for $z \in K$ and $k \in ®N_0$. Hence $\frac{1}{z - ξ} \in B(K, ξ_0) \subset B(K, V) = B(K, z_0)$. So $U(ξ_0, δ/2) \subset V$.
 
 		„$ξ_0 = ∞$“: Take $C > 0$ with $\forall z \in K: |z| ≤ C$. Let $ξ \in ®C$ with $|ξ| > 2C$. Then $\frac{1}{z - ξ} = -\frac{1}{ξ}·\frac{1}{1 - \frac{z}{ξ}} = -\sum_{k=0}^∞ \frac{z^k}{ξ^{k+1}}$ converges uniformly for $z \in K$, because $|z^k / ξ^{k+1}| ≤ C^k / (2C)^{k+1} = \frac{1}{C·2^{k+1}}$ for $z \in K$ and $k \in ®N_0$. Hence $\frac{1}{z - ξ} \in B(K, ∞) \subset B(K, z_0)$. So $U\(∞, \frac{1}{2C}\) \subset V$.
 	\end{poznamkain}
@@ -968,7 +974,7 @@
 	For $α \in ®D$ put $φ_α(z) := \frac{z - α}{1 - \overline{α}z}$. Then
 
 	\begin{itemize}
-		\item $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ is one-to-one, $φ_α(®D) = ®D$, $φ_α(®T) = ®T$, where $®T := \{z \in ®C | |z| = 1\}$;
+		\item $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ is one-to-one, $φ_α(®D) = ®D$, $φ_α(®T) = ®T := \{z \in ®C | |z| = 1\}$;
 		\item $(φ_α)_{-1} = φ_{-α}$;
 		\item $φ_α(α) = 0$, $φ_α'(α) = \frac{1}{1 - |α|^2}$, $φ_α'(0) = 1 - |α|^2$.
 	\end{itemize}
@@ -1099,5 +1105,148 @@
 \end{veta}
 
 TODO!!!
+
+% 11. 05. 2023
+
+\section{Harmonic functions}
+\begin{poznamka}
+	We study $f: ®C \rightarrow ®C$. Since $®C = ®R^2$ we have $z = x + iy$, $x = \Re z$, $y = \Im z$ and $f = u + iv$ with $u = \Re f$, $v = \Im f$.
+\end{poznamka}
+
+\begin{poznamka}[Observation]
+	If $G \subseteq ®C$ is a domain, $f, g \in ©H(G)$ and $\Re f = \Re g$ on $G$, then there is $c \in ®C$ such that $\Im f = \Im g + c$ on $G$.
+
+	\begin{dukazin}
+		It follows from CR condition:
+		$$ \frac{\partial v}{\partial y} = + \frac{\partial u}{\partial x}, \qquad \frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y}. $$
+	\end{dukazin}
+	What are the real parts of holomorphic functions?
+\end{poznamka}
+
+\begin{lemma}
+	If $f \in ®C^2(G)$, $G \subseteq ®C$ open, then $\partial \overline{\partial} f = \overline{\partial} \partial f = \frac{1}{4}Δf$, where $Δ := \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$ is the Laplace operator.
+
+	\begin{dukazin}
+		$$ \partial \overline{\partial} f = \frac{1}{4}\(\frac{\partial}{\partial x} - i\frac{\partial}{\partial y}\)\(\frac{\partial}{\partial x} + i \frac{\partial}{\partial y}\)f = \frac{1}{4}Δf. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	If $G \subseteq ®C$ is open, we say that $u \in ®C^2(G)$ is harmonic if $Δu = 0$ on $G$.
+\end{definice}
+
+TODO example?
+
+\begin{priklad}
+	If $G \subset ®C$ is a simply connected domain, $f \in ©H(G)$ and $f ≠ 0$ on $G$, then $\log |f| = \Re F$ for some $F \in ©H(G)$. In particular, $\log |f|$ is harmonic.
+
+	\begin{dukazin}
+		We know that there is a holomorphic branch $F$ of $\log f$, i.e., $F \in ©H(G)$ and $f = e^F$. Then $|f| = e^{\Re F}$.
+	\end{dukazin}
+\end{priklad}
+
+\begin{dusledek}[From examples]
+	If $G \subset ®C$ is open, $0 ≠ f \in ©H(G)$, then $\log |f|$ is harmonic.
+
+	\begin{dukazin}
+		By the previous exercise, $\log |f|$ is harmonic on any open ball $U$ in $G$.
+	\end{dukazin}
+\end{dusledek}
+
+TODO example?
+
+\begin{veta}
+	If $G \subset ®C$ is a simply connected domain and $u: G \rightarrow ®R$ is harmonic, then there is $f \in ©H(G)$ such that $\Re f = u$.
+
+	\begin{poznamkain}
+		Every harmonic function is locally (but not globally) the real part of a holomorphic function.
+
+		If $f \in ©H(G)$, then $f' = \partial f = \partial (f + \overline{f}) = 2\partial (\Re f)$, because $\partial \overline{f} = \overline{(\overline{\partial} f)} = 0$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		We have $\partial u \in ©H(G)$, because $\overline{\partial}(\partial u) = \frac{1}{4}Δu = 0$. Then there is $f_0 \in ©H(G)$ such that $f_0' = 2\partial u$.
+
+		By remark, $2\partial (\Re f_0) = f_0' = 2\partial u$, $\partial (\Re f_0 - u) = 0$. $\implies$ $\frac{\partial}{\partial x}(\Re f_0 - u) = 0$, $\frac{\partial}{\partial y}(\Re f_0 - u) = 0$ on the domain $G$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $G \subset ®C$ be open and $u: G \rightarrow ®R$ be harmonic. Then $u \in ©C^∞(G)$ and $u$ satisfies the mean value property:
+	$$ \frac{1}{2π}\int_0^{2π} u(z_0 + re^{it}) dt = u(z_0), $$
+	whenever $\overline{U(z_0, r)} \subset G$.
+
+	\begin{dukazin}
+		Let $\overline{U(z_0, r)} \subseteq G$. Take $R \in (r, +∞)$ such that $U(z_0, R) \subseteq G$. Then  $u = \Re F$ for some $F \in ©H(U(z_0, R))$. So $u \in ©C^∞(U(z_0, R))$ and, by the Cauchy integral formula,
+		$$ F(z_0) = \frac{1}{2πi} \int_φ \frac{F(z)}{z - z_0} dz = \frac{1}{2πi} \int_0^{2π} F(z_0 + re^{it})·\frac{ire^{it}}{re^{it}} dt, $$
+		where $φ(t) = z_0 + re^{it}$, $t \in [0, 2π]$. This implies mean value property.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[The maximum principle]
+	Let $G \subset ®C$ be a domain and $u: G \rightarrow ®R$ be continuous and $u$ satisfies mean value property. If $u$ is not constant, then $u$ does not attain an extreme in $G$.
+
+	\begin{dukazin}
+		Let us assume that $z_0 \in G$ and, say, $u(z_0) ≥ u$ on $G$. Put $M:=\{z \in G | u(z) = u(z_0)\}$. Obviously, $\O ≠ M$ is closed in $G$. If we show that $M$ is open, then $M = G$. Let $z_1 \in M$ and $U(z_1, r) \subset G$. We show that $U(z_1, r) \subset M$. Assume that there is $z_2 \in U(z_1, r) \setminus M$.
+
+		By mean value property, $u(z_0) = u(z_1) = \frac{1}{2π} \int_0^{2π} u(z_1 + ρ e^{it}) dt < u(z_0)$, where $ρ := |z_1 - z_2|$. The Part inequality is strict because $u ≤ u(z_0)$ on $G$ and $u < u(z_0)$ in a neighbourhood of $z_2$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $G \subset ®C$ be bounded and  open, $u \in ©C(\overline{G})$ and $u$ be harmonic on $G$. Then
+	$$ \min_{\partial G}u ≤ u ≤ \max_{\partial G} u \text{ on } G. $$
+
+	\begin{poznamkain}
+		The assumption of harmonicity can be replaced with mean value property.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Let $z_0 \in G$ and $u(z_0) = \max_{\overline{G}} u$. Then $u$ is constant on the component $G_0$ of $G$ containing $z_0$. So $u$ attains the maximum at the boundary.
+	\end{dukazin}
+\end{dusledek}
+
+\section{Poisson integral}
+\begin{poznamka}
+	Let $u: \overline{®D} \rightarrow ®R$ be harmonic, i.e. $u$ is harmonic on $U(0, r)$ for some $r > 1$. Then there is $f \in ©H(\overline{®D})$ such that $u = \Re f$ on $\overline{®D}$ and $f(z) = \sum_{n=0}^∞ a_n z^n$, $|z| ≤ 1$.
+
+	For $|z| ≤ 1$, $z = re^{iθ}$, we have
+	$$ u(z) = \Re f(z) = \Re a_0 + \sum_{n=0}^{+∞} \frac{1}{2}(a_n r^n e^{inθ} + \overline{a_n} r^n e^{-inθ}). $$
+
+	Hence $u(z) = \sum_{n=-∞}^∞ b_n·r^{|n|} e^{inθ}$, where $b_n = \Re a_0$ for $n = 0$, $b_n = \frac{1}{2}a_n$ for $n > 0$ and $b_n = \frac{1}{2}\overline{a_{-n}}$ for $n < 0$.
+
+	In addition, we have
+	$$ \frac{1}{2π}\int_{-π}^{π} u(e^{it})e^{-imt} dt = \frac{1}{2π} \int_{-π}^π \(\sum_{n=-∞}^∞ b_n e^{int}\) e^{-imt} dt = \frac{1}{2π} \int_{-π}^π \sum_{n=-∞}^∞ b_n e^{i(n - m)t} dt = $$
+	$$ = \sum_{n=-∞}^∞ b_n · \frac{1}{2π} \int_{-π}^π e^{i(n - m)t}dt = b_m. $$
+
+	Putting this equations together, we get, for $z = re^{iθ}$ with $r\in[0, 1)$,
+	$$ u(z) = \sum_{n=-∞}^∞ r^{|n|}·\frac{1}{2π} \int_{-π}^π u(e^{it})e^{in(θ - t)} dt = \frac{1}{2π} \int_{-π}^π \(\sum_{n=-∞}^∞ r^{|n|} e^{in(θ - t)}\) u(e^{it}) dt. $$
+\end{poznamka}
+
+\begin{definice}[Poisonn kernel, poisson integral]
+	For $0 ≤ r < 1$, $θ \in ®R$, put
+	$$ P_r(θ) := \sum_{n=-∞}^∞ r^{|n|} e^{inθ}. $$
+
+	$$ [Pu](re^{iθ}) := \frac{1}{2π} \int_{-π}^π P_r(θ - t) u(e^{it})dt $$
+	for $0 ≤ r < 1$, $θ \in ®R$.
+\end{definice}
+
+\begin{priklad}
+	$$ P_r(θ) = \Re \(\frac{1 + re^{iθ}}{1 - re^{iθ}}\) = \frac{1 - r^2}{1 + r^2 - 2r \cos θ}. $$
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{priklad}
+
+\begin{veta}
+	If $u$ is harmonic on $\overline{®D}$, then $u = Pu$ on ®D.
+
+	\begin{poznamkain}
+		The Poisson formula for harmonic functions is an analogue of the Cauchy integral formula.
+
+		$P1 = 1$.
+	\end{poznamkain}
+\end{veta}
 
 \end{document}

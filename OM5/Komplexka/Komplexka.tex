@@ -397,20 +397,20 @@
 
 \begin{veta}[Cauchyův vzorec na kruhu]
 	Nechť $G \subset ®C$ je otevřené a $f \in ©H(G)$. Nechť $\overline{U(z_0, r)} \subset G$ a $\phi(t) = z_0 + r·e^{it}$, $t \in [0, 2\pi]$. Potom platí
-	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = f(s), \qquad |s - z_0| < r; $$
-	$$ \frac{1}{2\pi} \int_\phi \frac{f(z)}{z - s} dz = 0, \qquad |s - z_0| > r; $$
+	$$ \frac{1}{2\pi i} \int_\phi \frac{f(z)}{z - s} dz = f(s), \qquad |s - z_0| < r; $$
+	$$ \frac{1}{2\pi i} \int_\phi \frac{f(z)}{z - s} dz = 0, \qquad |s - z_0| > r; $$
 
 	\begin{dukazin}
 		1. Nechť $|s - z_0|<r$. Volme $R > r$, aby $U(z, R) \subset G$. Položme
 		$$ h(z) := \begin{cases}\frac{f(z) - f(s)}{z - s},& z \in U(z_0, R) \setminus \{s\};\\f'(s),& z = s. \end{cases} $$
 		
 		Zřejmě $h \in ©H(U(z_0, R) \setminus \{s\})$ je spojitá hvězdovitá oblast $U(z_0, R)$. Z Cauchyho věty je
-		$$ 0 = \frac{1}{2\pi} \int_\phi h = \frac{1}{2\pi} \int_\phi \frac{f(z) dz}{z - s} - \frac{1}{2\pi} \int_\phi \frac{dz}{z - d}·f_s. $$
+		$$ 0 = \frac{1}{2\pi i} \int_\phi h = \frac{1}{2\pi i} \int_\phi \frac{f(z) dz}{z - s} - \frac{1}{2\pi i} \int_\phi \frac{dz}{z - d}·f_s. $$
 
 		2. Nechť $|s - z_0| > r$. Volme $R \in (r, |z_0 - s|)$, aby $U(z_0, R) \subset G$. Potom
 		$$ g(t) := \frac{f(z)}{z - s} \in ©H(U(z_0, R)) $$
 		a z Cauchyho věty je
-		$$ \frac{1}{2\pi} \int_\phi g = 0. $$
+		$$ \frac{1}{2\pi i} \int_\phi g = 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -418,7 +418,7 @@
 	Nechť $G \subset ®C$ je otevřená a $f \in ©H(G)$. Potom $f$ má komplexní derivace libovolného řádu všude na $G$.
 
 	Tedy nechť $U(z_0, r) \subset G$ a $\phi$ je jako v předchozím. Potom
-	$$ \frac{k!}{2\pi} \int_\phi \frac{f(z) dz}{(z - s)^{k+1}} = f^{(k)}(s), |s - z_0| < r, k \in ®N. $$
+	$$ \frac{k!}{2\pi i} \int_\phi \frac{f(z) dz}{(z - s)^{k+1}} = f^{(k)}(s), |s - z_0| < r, k \in ®N. $$
 	Zde $f^{(0)} := f$ a $k$-tá komplexní derivace $f^{(k)}$ je definovaná jako $f^{(k)} := \(f^{(k-1)}\)'$, má-li pravá strana smysl.
 
 	\begin{dukazin}
@@ -450,7 +450,7 @@
 	\begin{dukazin}[CO1]
 		Z věty výše (pro $\phi$ stejné jako tam)
 		$$ \int_\Omega \partial_t (u - u_d) $$
-		$$ \left|f^{(k)}(z)\right| = \left|\frac{k!}{2\pi} \int_\phi \frac{f(z) ds}{(z - s)^{k+1}}\right| ≤ \frac{k!}{2\pi}·2\pi r \max_{<\phi>} |f| \frac{1}{(d(s))^{k+1}}, $$
+		$$ \left|f^{(k)}(z)\right| = \left|\frac{k!}{2\pi i} \int_\phi \frac{f(z) ds}{(z - s)^{k+1}}\right| ≤ \frac{k!}{2\pi}·2\pi r \max_{<\phi>} |f| \frac{1}{(d(s))^{k+1}}, $$
 		protože $|z - s| ≥ d(s)$ $\forall z \in <\phi>$.
 	\end{dukazin}
 
@@ -561,7 +561,7 @@
 \end{veta}
 
 \begin{veta}[O jednoznačnosti pro holomorfní funkce]
-	Nechť $\O = G \subset ®C$ je oblast a $f, g \in ©H(G)$. Následující je ekvivalentní
+	Nechť $\O ≠ G \subset ®C$ je oblast a $f, g \in ©H(G)$. Následující je ekvivalentní
 
 	\begin{enumerate}
 		\item $f = g$ na $G$;
@@ -749,7 +749,7 @@
 
 \begin{veta}[Cauchyho vzorec na mezikruží]
 	Nechť $f \in ©H(P)$, $P := P(z_0, r, R)$. Nechť $r < r_0 < R_0 < R$ a $s \in P(z_0, r_0, R_0)$. Potom platí
-	$$ f(s) = \frac{1}{2\pi} \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - \frac{1}{2\pi} \int_{\phi_{r_0}} \frac{f(z) dz}{z - s}, $$
+	$$ f(s) = \frac{1}{2\pi} \int_{\phi_{R_0}} \frac{f(z) dz}{z - s} - \frac{1}{2\pi i} \int_{\phi_{r_0}} \frac{f(z) dz}{z - s}, $$
 	kde $\phi_\rho$ je jako v předchozím lemmatu.
 
 	\begin{dukazin}
@@ -768,7 +768,7 @@
 	$$ \sum_{n=-∞}^∞ a_n(z - z_0)^n, $$
 	která má na $P$ součet $f$.
 
-	Navíc platí $a_m = \frac{1}{2\pi} \int \frac{f(z) dz}{(z - z_0)^{m+1}}$, kde $m \in ®Z$ a $\phi_\rho$ je jako výše.
+	Navíc platí $a_m = \frac{1}{2\pi i} \int \frac{f(z) dz}{(z - z_0)^{m+1}}$, kde $m \in ®Z$ a $\phi_\rho$ je jako výše.
 
 	\begin{dukazin}[Jednoznačnost]
 		Nechť $f(z) = \sum_{n=-∞}^{+∞} a_n(z - z_0)^n$, $z \in P$. Nechť $\rho \in (r, R)$ a $m \in ®Z$. Potom
