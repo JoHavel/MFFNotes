@@ -1249,4 +1249,65 @@ TODO example?
 	\end{poznamkain}
 \end{veta}
 
+% 18. 05. 2023
+
+\begin{veta}[Properties of PI]
+	Let $g \in L^1(®T)$. Then $Pg$ is harmonic on ®D and if $g$ is continuous at $z_0 \in ®T$, then $\lim_{z \rightarrow z_0, z \in ®D} [Pg](z) = g(z_0)$. In particular, if $g \in ©C(®T)$, then the function $u := Pg$ in ®D and $u := g$ in ®T is continuous on $\overline{®D}$ and harmonic in ®D.
+
+	\begin{dukazin}
+		WLOG, we assume that $g$ is real-valued. For $|z| < 1$, $z = r e^{iθ}$, we have
+		$$ Pg(z) = \frac{1}{2π} \int_{-π}^π \Re \(\frac{1 + re^{i(θ - t)}}{1 - r e^{i(θ - t)}}\) g(e^{it}) dt = $$
+		$$ = \Re \(\frac{1}{2π} \int_{-π}^π \frac{1 + z e^{-it}}{1 - z e^{-it}} g(e^{it})\) dt. $$
+		So we have $f \in ©H(®D)$ and $Pg \Re f$ is harmonic on ®D.
+
+		WLOG, assume $g(z_0) = 0$ (otherwise, consider $g - g(z_0)$ and use the fact that $P 1|_{®T} = 1|_{®D}$). Let $ε > 0$. Take $δ \in (0, π)$ such that $|g(e^{it})| < ε$ $\forall t \in (θ_0 - δ, θ_0 + δ)$. Let $z \in ®D$, $z = r·e^{iθ}$ and $|θ - θ_0| < \frac{δ}{2}$.
+
+		Then
+		$$ Pg(z) = \frac{1}{2π} \int_{θ_0 - δ}^{θ_0 + δ} P_r(θ - t) g(e^{it}) dt + \frac{1}{2π} \int_A P_r(θ - t) g(e^{it}) dt = I_1 + I_2 $$
+		with $A := (θ_0 - π, θ_0 - δ) \cup (θ_0 + δ, θ_0 + π)$. Of course, $P_r > 0$ and
+		$$ P1(re^{iθ}) = \frac{1}{2π} \int_{-π}^π P_r(θ - t) dt = 1 $$
+		for $0 ≤ r < 1$, $θ \in ®R$. Hence $|I_1| < ε$.
+
+		Next we have
+		$$ |I_2| ≤ \frac{1}{2π} \int_A P_r(θ - t)|g(e^{it})| dt ≤ P_r\(\frac{δ}{2}\) \|g\|_{L^1(®T)} \rightarrow 0, $$
+		because
+		$$ 0 < P_r(θ - t) = \frac{1 - r^2}{1 + r^2 - 2r\cos(θ - t)} \overset{*}{≤} P_r\(\frac{δ}{2}\), $$
+		here $\|g\|_{L^1} := \frac{1}{2π} \int_{-π}^π |g(e^{it})| dt$.
+
+		„*“: For $t \in A$, $\frac{δ}{2} ≤ |θ - t| ≤ \frac{3π}{2}$. Indeed, if, say, $t \in (θ_0 + δ, θ_0 + π)$, then
+		$$ θ_0 + δ < t < θ_0 + π, $$
+		$$ - \frac{δ}{2} < θ_0 - θ < \frac{δ}{2}, $$
+		$$ δ < t - θ_0 < π. $$
+
+		By $|I_2| \rightarrow 0$, take $r_0 \in (0, 1)$ such that $|I_2| < ε$ $\forall r \in (r_0, 1)$. Then for all $z = r e^{iθ}$ with $|θ - θ_0| < \frac{δ}{2}$ and $r \in (r_0, 1)$, we have $|Pg(z)| ≤ |I_1| + |I_2| ≤ 2ε$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[The Dirichlet problem]
+	Let $G \subset I$ be open and bounded. Let $g \in ©C(\partial G)$. The Dirichlet problem (DP) is to find $u \in ©C(\overline{G})$ such that u is harmonic on $G$ and $u = g$ on $\partial G$.
+
+	\begin{poznamkain}
+		DP compounds to many problems from physics, e.g., a ? distribution $g$ on $\partial G$ gives an electric potential $u$ on $G$.
+
+		By maximum principle (DP) has at most one solution (indeed, let $u_1, u_2$ be solutions of DP, then, for $u := u_1 - u_2$ we have $0 = \min_{\partial G} u ≤ u ≤ \max_{\partial G} u = 0$ on $G$).
+
+		DP has not always (classical) solution, e.g. for $G := ®D \setminus \{0\}$ and $g:=0$ on $®T$, $1$ at $0$.
+
+		DP has a unique solution on "nice" domains, e.g., on domains with Lipschitz boundaries.
+
+		In particular, DP has a unique solution on any open disc in ®C. (For $G = ®D$ we use the previous theorem. For general disc, use a simple transformations of the form $z \mapsto rz + b$ for $r > 0$ and $b \in ®C$.)
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Let $G \subseteq ®C$ be open and $u: G \rightarrow ®C$. Then $u$ is harmonic on $G$ iff $u$ is continuous on $G$ and satisfies the mean value property.
+
+	\begin{dukazin}
+		„$\implies$“: we already know. „$\impliedby$“ Let $u \in ©C(G)$ satisfy mean value property on $G$. Let $U := U(z_0, r)$ with $\overline{U} \subset G$. Let $h$ be a unique solution of DP on $U$ with the boundary delta $u|_{\partial u}$. Then $v := u - h$ is continuous on $\overline{U}$, satisfies mean value property on $U$ and $v = 0$ on $\partial U$.
+
+		By the maximum principle we get $v = 0$ on $U$, $u = h$ on $U$. In particular, $u$ is harmonic in $U$, so in $G$.
+	\end{dukazin}
+\end{veta}
+
+
 \end{document}
