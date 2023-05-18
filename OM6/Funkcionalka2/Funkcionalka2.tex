@@ -7,13 +7,13 @@
 
 % 13. 02. 2023
 
-\begin{poznamka}[Exam]
-	Oral, similar as in FA1.
-\end{poznamka}
-
-\begin{poznamka}[Credit]
-	Similar as in FA1.
-\end{poznamka}
+%\begin{poznamka}[Exam]
+%	Oral, similar as in FA1.
+%\end{poznamka}
+%
+%\begin{poznamka}[Credit]
+%	Similar as in FA1.
+%\end{poznamka}
 
 \section{Banach algebras}
 \subsection{Basic properties}
@@ -57,9 +57,13 @@
 \begin{priklady}
 	$l_∞(I)$ is commutative Banach algebra with a unit (all ones).
 
-	If $T$ is Hausdorff topological space, then $©C_b(T) = \{f: T \rightarrow ®K | f \text{ is continuous and bounded}\} \subseteq l_∞(T)$ is closed subalgebra.
+	If $T$ is Hausdorff topological space, then
+	$$ ©C_b(T) = \{f: T \rightarrow ®K | f \text{ is continuous and bounded}\} \subseteq l_∞(T) $$
+	is closed subalgebra.
 
-	If $T$ is locally compact, Hausdorff, not compact. Then $©C_0(T) = \{f: T \rightarrow ®K \text{ continuous } | \forall \epsilon > 0: \{t \in T | |f(t)| ≥ \epsilon\} is \text{ compact}\} \subseteq ©C_b(T)$ is closed subalgebra, which doesn't have unit.
+	If $T$ is locally compact, Hausdorff, not compact. Then
+	$$ ©C_0(T) = \{f: T \rightarrow ®K \text{ continuous } | \forall \epsilon > 0: \{t \in T | |f(t)| ≥ \epsilon\} is \text{ compact}\} \subseteq ©C_b(T) $$
+	is closed subalgebra, which doesn't have unit.
 
 	If $X$ is Banach, $\dim X > 1$, then $©L(X)$, with $S·T := S \circ T$, $S, T \in ©L(X)$, is Banach algebra with unit (identity), which isn't commutative.
 
@@ -74,8 +78,8 @@
 	If $(A, \|·\|)$ is normed algebra, then $·: A \oplus_∞ A \rightarrow A$ is Lipschitz on bounded sets.
 
 	\begin{dukazin}
-		$$ \forall r > 0: \forall (a, b) \in B_{A \oplus_∞ A}(¦o, r)\ \forall (c, d) \in B_{A \oplus_∞ A}(¦o, r): $$
-		$$ \|ab - cd\| ≤ \|a(b - d)\| + \|(a - c)·d\| ≤ \|a\|·\|b - d\| + \|a - c\|·\|d\| ≤ R·(\|b - d\| + \|a - c\|) ≤ 2R \|(a, b) - (c, d)\|. $$
+		$$ \forall r > 0: \forall (a, b) \in B_{A \oplus_∞ A}(¦o, r)\ \forall (c, d) \in B_{A \oplus_∞ A}(¦o, r): \|ab - cd\| ≤ $$
+		$$ ≤\|a(b - d)\| + \|(a - c)·d\| ≤ \|a\|·\|b - d\| + \|a - c\|·\|d\| ≤ R·(\|b - d\| + \|a - c\|) ≤ 2R \|(a, b) - (c, d)\|. $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -159,7 +163,7 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		„First item“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}|^∞ x^n \in A$. Moreover,
+		„First“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}^∞ x^n \in A$. Moreover,
 		$$ (e - x)·\(\sum_{n=0}^∞ x^n\) = \lim_{N \rightarrow ∞} (e - x)·(e + x + … + x^N) = \lim_{N \rightarrow ∞} e - x^{N+1} = e, $$
 		because $\lim_{N \rightarrow ∞} \|x^{n+1}\| ≤ \lim_{N \rightarrow ∞} \|x\|^N = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
 
@@ -183,7 +187,7 @@
 
 \subsection{Spectral theory}
 \begin{definice}[Resolvent set, spectrum and resolvent]
-	$A$ Banach algebra with a unit, $x \in A$. We define resolvent set of $x$ as $\rho_A(x) := \{\lambda \in ®K | \exists(\lambda·e - x)^{-1}\}$. Next we define spectrum of $x$ as $\sigma_A(x) := ®K \setminus \rho_A(x)$. Finally we define resolvent of $x$ as $R_x: \rho(x) \rightarrow A$, $R_x(\lambda) := (\lambda·e - x)^{-1}$.
+	Let $A$ be a Banach algebra with a unit, $x \in A$. We define resolvent set of $x$ as $\rho_A(x) := \{\lambda \in ®K | \exists(\lambda·e - x)^{-1}\}$. Next we define spectrum of $x$ as $\sigma_A(x) := ®K \setminus \rho_A(x)$. Finally we define resolvent of $x$ as $R_x: \rho(x) \rightarrow A$, $R_x(\lambda) := (\lambda·e - x)^{-1}$.
 
 	If $A$ doesn't have a unit, then notions above are defined with respect to $A_e$.
 \end{definice}
@@ -248,23 +252,27 @@
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu)·R_x(\nu) = R_x(\nu)·R_x(\mu)$;
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu) - R_x(\nu) = (\nu - \mu)·R_x(\mu)·R_x(\nu)$.
 	\end{itemize}
-
+	
 	\begin{dukazin}
 		First is proved by lemma. Second by lemma we have
 		$$ (\lambda e - x)^{-1} = \lambda^{-1}\(e - \frac{x}{\lambda}\)^{-1} = \lambda^{-1} \sum_{n=0}^∞ \(\frac{x}{\lambda}\)^n. $$
 
+		Fourth: In general $u v = v u \implies u^{-1}v^{-1} = v^{-1}u^{-1}$ (proof: $u^{-1}v^{-1} = (v u)^{-1}$). And we apply it for $u = (\mu e - x)$ and $v = (\nu e - x)$.
+
+		Fifth: In general $u·v = v·u \implies u^{-1}·v = v·u^{-1}$ (proof: $u^{-1} v = v·v^{-1}u^{-1}v = v·u^{-1} v^{-1} v = v u^{-1}$) so:
+		$$ R_x(\mu) - R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))^{-1}R_x(\nu) = $$
+		$$ = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))R_x(\nu)^{-1} = $$
+		$$ = R_x(\mu) R_x(\nu) \(R_x(\nu)^{-1} - R_x(\mu)^{-1}\) = R_x(\mu) R_x(\nu) (\nu - \mu). $$
+	\end{dukazin}
+
+	\begin{dukazin}
 		For third we fix $\lambda \in \rho(x)$ and $t \in (0, \delta)$ for $\delta$ small enough ($\lambda + t \in \rho(x)$ and *). We shall prove that „$R_x'(\lambda) = -R_x(\lambda)^2$“:
-		$$ 0 \overset?= \left\|\frac{R_x(\lambda + t) - R_x(\lambda)}{t} + R_x(\lambda)^2\right\| = \frac{1}{|t|}\left\|(\lambda e - x + t e)^{-1} - (\lambda e - x)^{-1} + (\lambda e - x)^{-1}·t·(\lambda e - x)^{-1}\right\| ≤ $$
+		$$ 0 \overset?= \left\|\frac{R_x(\lambda + t) - R_x(\lambda)}{t} + R_x(\lambda)^2\right\| = $$
+		$$ = \frac{1}{|t|}\left\|(\lambda e - x + t e)^{-1} - (\lambda e - x)^{-1} + (\lambda e - x)^{-1}·t·(\lambda e - x)^{-1}\right\| ≤ $$
 		$$ \overset{* \text{ for existence of the inverse}}≤ \frac{1}{|t|}\|(\lambda e - x)^{-1}\|·\left\|(e + t(\lambda e - x)^{-1})^{-1} - e + (\lambda e - x)^{-1}·t\right\| = $$
 		$$ = \frac{1}{|t|} \|(\lambda e - x)^{-1}\|·\left\|\sum_{n=0}^∞(-t)^n (\lambda e - x)^{-n} - e + (\lambda e - x)^{-1}·t\right\| ≤ $$
 		$$ \overset{\|x^n\| ≤ \|x\|^n}≤ \frac{1}{|t|} \|(\lambda e - x)^{-1}\| · \sum_{n=2}^∞ \|t(\lambda e - x)^{-1}\|^n = $$
 		$$ = \frac{1}{|t|} \|t(\lambda e - x)^{-1}\| · \frac{\|t(\lambda e - x)^{-1}\|^2}{1 - \|t(\lambda e - x)^{-1}\|} \overset{* \text{ for denominator }≤1/2}≤ \frac{2|t|^2}{|t|} \|t(\lambda e - x)^{-1}\| \rightarrow 0. $$
-
-		Fourth: In general $u v = v u \implies u^{-1}v^{-1} = v^{-1}u^{-1}$ (proof: $u^{-1}v^{-1} = (v u)^{-1}$). And we apply it for $u = (\mu e - x)$ and $v = (\nu e - x)$.
-
-		Fifth: In general $u·v = v·u \implies u^{-1}·v = v·u^{-1}$ (proof: $u^{-1} v = v·v^{-1}u^{-1}v = v·u^{-1} v^{-1} v = v u^{-1}$) so:
-		$$ R_x(\mu) - R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))^{-1}R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))R_x(\nu)^{-1} = $$
-		$$ = R_x(\mu) R_x(\nu) \(R_x(\nu)^{-1} - R_x(\mu)^{-1}\) = R_x(\mu) R_x(\nu) (\nu - \mu). $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -353,7 +361,9 @@
 		Since $C \setminus \sigma_B(x)$ is open, if it is nonempty it contains a ball, so it has cluster point. Thus $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is such that $\{\lambda \in C | x^*(R_x(\lambda))\} = 0$ has a cluster point, so from complex analysis (uniqueness theorem) it is constant zero. \lightning with $x^*(R_x(\lambda_0)) = 1$.
 
 		„Second item“: Pick $\lambda \in \sigma_B(x) \setminus \sigma_A(x)$ and let $C \subset \rho_A(x)$ be a component containing $\lambda$. By first item, $C \subseteq \sigma_B(x)$, $C$ is open, so $\lambda \in C \subseteq \Int(\sigma_B(x))$.
+	\end{dukazin}
 
+	\begin{dukazin}
 		„Third item“: If $\rho_A(x)$ is connected, we can apply first item to $C = \rho_A(x)$, we have either $\rho_A(x) \subseteq \sigma_B(x)$ or $\rho_A(x) \cap \sigma_B(x) = \O$. But first is not possible, because $\rho_A(x)$ is unbounded and $\sigma_B(x)$ is bounded. Therefore $\sigma_B(x) \subseteq \sigma_A(x)$.
 
 		„Fourth item“: If $\Int(\sigma_B(x)) = \O$, then (by second item) $\sigma_B(x) \subseteq \partial \sigma_B(x) \subseteq \sigma_A(x) \subseteq \sigma_B(x)$.
@@ -403,8 +413,7 @@
 \end{poznamka}
 
 \begin{veta}[Holomorphic calculus]
-	$A$ Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open such that $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $\Phi: ©H(\Omega) \rightarrow A$ defined as $\Phi(f) = f(x)$ (from definition above) has the following properties:
-
+	$A$ Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open such that $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $\Phi: ©H(\Omega) \rightarrow A$ defined as $\Phi(f) = f(x)$ (from definition above) has the following properties:\vspace{-0.7em}
 	\begin{itemize}
 		\item $\Phi$ is algebra homomorphism, $\Phi(1) = e$, $\phi(\id) = x$;
 		\item $f_n \overset{\text{loc.}}\rightrightarrows f$ in $H(\Omega)$, then $f_n(x) \rightarrow f(x)$;
@@ -428,7 +437,8 @@
 
 \begin{dukaz}[Holomorphic calculus]
 	„1st item“: „$\Phi$ is linear“ is easy, „$\Phi$ is multipicative“: Pick $f, g \in ©H(\Omega)$, open set $U$ such that $\sigma(x) \subset U \subset \overline{U} \subset \Omega$. Let $\Gamma$ cycle circulating $\sigma(x)$ in $U$, $\Lambda$ cycle circulating $\overline{U}$ in $\Omega$. Then
-	$$ f(x)·g(x) = \(\frac{1}{2\pi i} \int_\Gamma f·R_x\)·g(x) \overset{\text{lemma}}= \frac{1}{2\pi i} \int_\Gamma f(t) R_x(t) g(x) dt = \frac{1}{2\pi i} \int_\Gamma f(t)·R_x(t)·\frac{1}{2\pi i} \int_\Lambda g(s)·R_x(s) ds dt \overset{\text{lemma}}= $$
+	$$ f(x)·g(x) = \(\frac{1}{2\pi i} \int_\Gamma f·R_x\)·g(x) \overset{\text{lemma}}= $$
+	$$ = \frac{1}{2\pi i} \int_\Gamma f(t) R_x(t) g(x) dt = \frac{1}{2\pi i} \int_\Gamma f(t)·R_x(t)·\frac{1}{2\pi i} \int_\Lambda g(s)·R_x(s) ds dt \overset{\text{lemma}}= $$
 	$$ = \frac{1}{2 \pi i} \int_\Gamma f(t)·\frac{1}{2\pi i} \int_\Lambda g(s)·R_x(t)·R_x(s) ds dt = $$
 	because $\<\Lambda\> \cap \<\Gamma\> = \O$, we can use theorem after definition of $R_x$:
 	$$ = \frac{1}{(2 \pi i)^2} \int_\Gamma \int_\Lambda f(t)·g(s)·\frac{R_x(t) - R_x(s)}{s - t} ds dt \overset{\text{Fubini to $x^*(…)$ and lemma}}=  $$
@@ -439,11 +449,15 @@
 	It remains that „if $f(z) = z^k$, $k \in ®N \cup \{0\}$ then $f(x) = x^k$“ (we want it for $k = 0$ and $k = 1$). Put $\Gamma(t) = r·e^{it}$, $t \in [0, 2\pi]$, where $r > \|x\|$ arbitrary. By some theorem:
 	$$ R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}, \qquad |\lambda| > \|x\|. $$
 	Thus (we switch integral and sum, because later we realize that sum of integral of absolute value is finite)
-	$$ \forall x^* \in A^*: x^*(f(x)) = \frac{1}{2 \pi i} \int_\Gamma \lambda^k x^*(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n+1}}) d\lambda = \frac{1}{2\pi i} \int_\Gamma \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ \int_\Gamma \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_\Gamma \frac{1}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_0^{2\pi} i \frac{1}{\Gamma(t)^{n - k}} dt = x^*(x^k) + \sum 0, $$
+	$$ \forall x^* \in A^*: x^*(f(x)) = \frac{1}{2 \pi i} \int_\Gamma \lambda^k x^*(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n+1}}) d\lambda = \frac{1}{2\pi i} \int_\Gamma \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = $$
+	$$ = \frac{1}{2\pi i} \sum_{n=0}^∞ \int_\Gamma \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_\Gamma \frac{1}{\lambda^{n - k + 1}} d\lambda = $$
+	$$ = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_0^{2\pi} i \frac{1}{\Gamma(t)^{n - k}} dt = x^*(x^k) + \sum 0, $$
 	because $\Gamma$ (is $2\pi$ periodic).
 
 	„2nd item“: For $\Gamma = \gamma_1 + … + \gamma_N$:
-	$$ \|f_n(x) - f(x)\| = \frac{1}{2\pi i} \|\int_\Gamma (f_n(\lambda) - f(\lambda)) R_x(\lambda) d\lambda\| ≤ \frac{1}{2\pi} \int_\Gamma |f_n(\lambda) - f(\lambda)|·\|R_x(\lambda)\| d\lambda ≤ \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} |\gamma_i'(t)| \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)|·\|R_x(\gamma_i(t))\| dt = \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)| · \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} \|R_x(\gamma_i(t))\|·|\gamma_i'(t)| dt \rightarrow 0. $$
+	$$ \|f_n(x) - f(x)\| = \frac{1}{2\pi i} \left\|\int_\Gamma (f_n(\lambda) - f(\lambda)) R_x(\lambda) d\lambda\right\| ≤ \frac{1}{2\pi} \int_\Gamma |f_n(\lambda) - f(\lambda)|·\|R_x(\lambda)\| d\lambda ≤ $$
+	$$ ≤ \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} |\gamma_i'(t)| \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)|·\|R_x(\gamma_i(t))\| dt = $$
+	$$ = \sup_{z \in \<\Gamma\>} |f_n(z) - f(z)| · \frac{1}{2\pi} \sum_{i=1}^N \int_{a_i}^{b_i} \|R_x(\gamma_i(t))\|·|\gamma_i'(t)| dt \rightarrow 0. $$
 
 	„Moreover part“: By Runge theorem (and second item) it is enough prove it for rational functions. If $R$ was polynom, then $\Phi(R) = \Psi(R)$ by second item. So it suffices „$\forall p$ polynom: $\frac{1}{p} \in ©H(\Omega) \implies \Phi(\frac{1}{p}) = \psi(\frac{1}{p})$“. Pick $p$ polynom. Then $e = \psi(1) = \psi(p·\frac{1}{p}) = \psi(p)·\psi(\frac{1}{p}) = \Phi(p)·\psi(\frac{1}{p})$ (similarly for $\frac{1}{p}·p$). So $\psi(\frac{1}{p}) = \Phi(p)^{-1} = \Phi(\frac{1}{p})$.
 
@@ -460,20 +474,17 @@
 
 % 06. 03. 2023
 
+\vspace{-1.8em}
 \subsection{Multiplicative functionals}
 \begin{definice}[Multiplicative functional]
 	Let $A$ be a Banach algebra. We say $\phi: A \rightarrow ®C$ is multiplicative linear functional $≡$ $\phi$ preserves $+, ·, ·_S$.
-
 	$$ \Delta(A) := \{\phi: A \rightarrow ®C | \phi \text{ multiplicative linear functional }, \phi \not≡ 0\}. $$
 \end{definice}
 
 \begin{tvrzeni}
-	$A$ Banach algebra, $\phi \in \Delta(A) \cup \{0\}$. Then
-
+	$A$ Banach algebra, $\phi \in \Delta(A) \cup \{0\}$. Then\vspace{-1.5em}
 	\begin{itemize}
-		\item $\exists! \tilde\phi \in \Delta(A_e): \tilde \phi((x, 0)) = \phi(x), \forall x \in A$. It is given by
-			$$ \tilde \phi((x, \lambda)) = \phi(x) + \lambda. $$
-			Moreover, $\Delta(A_e) = \{\tilde\phi | \phi \in \Delta(A) \cup \{0\}\}$.
+		\item $\exists! \tilde\phi \in \Delta(A_e): \tilde \phi((x, 0)) = \phi(x), \forall x \in A$. It is given by $\tilde \phi((x, \lambda)) = \phi(x) + \lambda$. Moreover, $\Delta(A_e) = \{\tilde\phi | \phi \in \Delta(A) \cup \{0\}\}$.
 		\item $\forall x \in A: \phi(x) \in \sigma(x)$ whenever $\phi \not≡ 0$.
 		\item $\Delta(A) \subseteq B_{A^*}$.
 		\item $A$ has a unit, $\phi \not≡ 0$ $\implies$ $\|\phi\| ≥ \frac{1}{\|e\|}$. In particular if $\|e\| = 1$, then $\|\phi\| = 1$.
@@ -719,7 +730,7 @@
 	\end{dukazin}
 \end{veta}
 
-\subsection{$C^*$-algebras}
+\subsection{\texorpdfstring{$C^*$}{C*}-algebras}
 \begin{definice}[Involution]
 	$A$ is a Banach algebra. Involution is a mapping $*: A \rightarrow A$ such that
 	$$ \forall x, y \in A\ \forall λ \in ®C: $$
@@ -757,7 +768,8 @@
 	\begin{dukazin}
 		„Step 1: $\|x^2\| = \|x\|^2$“:
 		$$ \|x\|^4 = \|x^* x\|^2 = \|(x^*x)^* (x^*x)\| = \|x^*x x^* x\| = \|x^*x^*x x\| = \|(x x)^* x x\| = \|x x\|^2 = \|x^2\|^2. $$
-		Thus inductively, we obtain $\|x^{2^k}\| = \|x\|^{2^k}$, $k \in ®N$. Thus, Beurling gives $r(x) = \lim_k \sqrt[2^k]{\|x^{2^k}\|} = \|x\|$.
+		Thus inductively, we obtain $\|x^{2^k}\| = \|x\|^{2^k}$, $k \in ®N$. Thus, Beurling gives
+		$$ r(x) = \lim_k \sqrt[2^k]{\|x^{2^k}\|} = \|x\|. $$
 	\end{dukazin}
 \end{veta}
 
@@ -792,13 +804,12 @@
 
 		„a)“: Let $\alpha + i\beta \in ς(x)$, $\alpha, \beta \in ®R$. We want $\beta = 0$. Trick: $x_t := x + i·t·e$, $t \in ®R$. Then
 		$$ \alpha + i·(\beta + t) \in ς(x_t) (\impliedby (\alpha + i(\beta + t))e - x_t = (\alpha + i·\beta)e - x), $$
-		$$ \alpha^2 + (\beta + t)^2 = |\alpha + i(\beta + t)|^2 ≤ \|x_t\|^2 = \|x_t^* x_t\| = \|(x - i·t·e)·(x + i·t·e)\| = \|x^2 + (t·e)^2\| ≤ \|x^2\| + t^2. $$
+		$$ \alpha^2 + (\beta + t)^2 = |\alpha + i(\beta + t)|^2 ≤ \|x_t\|^2 = \|x_t^* x_t\| = \|(x - i·t·e)·(x + i·t·e)\| = \|x^2 + (t·e)^2\| ≤ $$
+		$$ ≤ \|x^2\| + t^2. $$
 		So, $\alpha^2 + (\beta + t)^2 - t^2 ≤ \|x^2\|$, $t \in ®R$ $\implies$ $\beta = 0$ (Otherwise $LHS \rightarrow +∞$ for $t \rightarrow ±∞$.)
 
 		„b)“: ($\|e\| = \|e^2\| = \|e\|^2$.) $1 = \|e\| = \|x^*x\| = \|x\|^2$, so $\|x\| = 1$. Then, for $λ \in ς(x)$, we have $|λ| ≤ \|x\| = 1$. On the other hand $\frac{1}{λ} \in ς(x^{-1})$ (because if not, then $\frac{1}{λ}e - x^{-1}$ ha inverse $\implies$ $λ e - x = (λ e - x)x^{-1}x = (λ x^{-1} - e)x = -λ (\frac{1}{λ}e - x^{-1})x$ $\implies$ $λ e - x$ has inverse.) So
 		$$ \left|\frac{1}{λ}\right| ≤ \|x^{-1}\| = \|x^*\| = \|x\| = 1. $$
-
-
 	\end{dukazin}
 \end{veta}
 
@@ -851,8 +862,7 @@
 \end{veta}
 
 \begin{dusledek}
-	$A, B$ commutative $C^*$-algebras. Then the following items are equivalent:
-
+	$A, B$ commutative $C^*$-algebras. Then the following items are equivalent:\vspace{-1em}
 	\begin{itemize}
 		\item $A$ and $B$ are isometrically $*$-isomorphic;
 		\item $A$ and $B$ are algebraically isomorphic;
@@ -888,7 +898,7 @@
 	$A, B$ are $C^*$-algebras, $h: A \rightarrow B$ is $*$-homomorphism, one-to-one. Then $h$ is isometry.
 
 	\begin{dukazin}
-		WLOG $A$ and $B$ have units and $h(e)$ is a unit ($(a, λ) \mapsto (h(a), λ)$ is one-to-one $*$-homomorphism). Suffices: $\forall x \in A$ self-adjoint: $\|x\| = \|h(x)\|$ ($\forall y \in A: \|h(y)\|^2 = \|h(y^*y)\| = \|y^* y\| = \|y\|^2$). Let $x \in A$ be self-adjoint. Put $A_0 := \overline{alg}\{e, x\} = \overline{\LO}\{e, x, x^2, x^3, …\}$ is commutative and $C^*$-subalgebra.
+		WLOG $A$, $B$ have units and $h(e)$ is a unit ($(a, λ) \mapsto (h(a), λ)$ is 1-to-1 \hbox{$*$-homomorphism}). Suffices: $\forall x \in A$ self-adjoint: $\|x\| = \|h(x)\|$ ($\forall y \in A: \|h(y)\|^2 = \|h(y^*y)\| = \|y^* y\| = \|y\|^2$). Let $x \in A$ be self-adjoint. Put $A_0 := \overline{alg}\{e, x\} = \overline{\LO}\{e, x, x^2, x^3, …\}$ is commutative and $C^*$-subalgebra.
 
 		$$ B_y := \overline{alg}\{e, h(x)\} = \overline{\LO}\{e, h(x), h(x^2), …\} $$
 		is commutative and $C^*$-subalgebra. So, we have $A_0 \overset{h} \rightarrow B_0 \overset{Γ}\rightarrow ©C(Δ(B_0))$, $A_0 \overset{Γ}\rightarrow ©C(Δ(A_0))$. So there is $\tilde h: ©C(Δ(A_0)) \rightarrow ©C(Δ(B_0))$ one-to-one $*$-homeomorphism, $\tilde h(1) = 1$. So, it suffices to prove the following lemma.
@@ -921,7 +931,7 @@
 	\end{dukazin}
 \end{poznamka}
 
-\section{Continuous calculus for formal elements of $C^*$-algebras}
+\section{Continuous calculus for formal elements of \texorpdfstring{$C^*$}{C*}-algebras}
 \begin{poznamka}
 	Idea: $φ(ς(x)) \ni f \mapsto f(x) \in A$.
 
@@ -986,16 +996,129 @@
 		
 		„6.“: Omitted.
 
-		„7.“: Next time.
+% 27. 02. 2023 (I wasn't there) (From lecturer's notes)
+
+		„7.“: TODO!!!
 	\end{dukazin}
 \end{veta}
 
-% 27. 02. 2023 (I wasn't there)
+\begin{veta}[Bent Fuglede (1950), Calvin R. Putnam (1951)]
+	Let $A$ be complex $C^*$-algebra, $x \in A$ and $a, b \in A$ be complex such that $ax = xb$. Then $a^*x = xb^*$.
 
-TODO!!!
+	\begin{dukazin}
+		TODO!!! (Maybe omitted?)
+	\end{dukazin}
+\end{veta}
+
+\section{Operators on Hilbert spaces}
+\begin{definice}[Sesquilinear map, sesquilinear form]
+	Let $X, Y$ be vector spaces over ®C. Map $S: X \times X \rightarrow Y$ is called sesquilinear, if it is linear in the first variable and conjugate-linear in the second one. If $Y = ®C$, $S$ is a sesquilinear form.
+\end{definice}
+
+\begin{tvrzeni}[Polarization identity]
+	$X, Y$ vector spaces over ®C and $S: X \times X \rightarrow Y$ is a sesquilinear map. Then for all $x, y \in X$, it holds that
+	$$ S(x, y) = \frac{1}{4}(S(x + y, x + y) - S(x - y, x - y) + iS(x + iy, x + iy) - iS(x - iy, x - iy)). $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$\{¦o\} ≠ H$ Hilbert space, $T, S \in ©L(H)$. Then $T = S$ iff $\forall x \in H: \<Tx, x\> = \<Sx, x\>$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	$\{¦o\} ≠ H$ Hilbert space and $T \in ©L(H)$. Then
+	
+	\begin{itemize}
+		\item $T$ is self-adjoint iff $\forall x \in H: \<Tx, x\> \in ®R$;
+		\item $T$ is normal iff $\forall x \in H: \|Tx\| = \|T^*x\|$;
+		\item $\forall x \in H: \<Tx, x\> ≥ 0$ iff $T$ is self-adjoint and $ς(T) \subseteq [0, ∞)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Non-negative]
+	$A$ $C^*$-algebra and $x \in A$. We say that $x$ is non-negative ($x ≥ 0$), if $x$ is self-adjoint and $ς(x) \subseteq [0, +∞)$.
+\end{definice}
+
+\begin{veta}
+	$H$ Hilbert space and $T \in ©L(H)$ normal. Then\vspace{-1em}
+	\begin{itemize}
+		\item $\Ker T = \Ker T^*$ and $\Ker T = (\Rang T)^\perp$;
+		\item $\Rang T$ is dense in $H$ iff $T$ is one-to-one;
+		\item $λ \in ς_P(T)$ iff $\overline{λ} \in ς(T^*)$, eigenspace of $T$ associated with $λ$ is equal to eigenspace of $T^*$ associated with $\overline{λ}$;
+		\item if $λ_1 ≠ λ_2$ are eigenvalues of $T$, then $\Ker(λ_1I - T) \perp \Ker(λ_2I - T)$.
+	\end{itemize}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Hilbert–Schmidt]
+	$H$ Hilbert space and $T \in ©K(H)$ nonzero normal. Then exists orthonormal basis $B$ of space $H$ consisting of eigenvectors of $T$. The set of vectors from $B$ associated with nonzero eigenvalues of $T$ is at most countable and we can arrange them to sequence $\{e_n\}_{n=1}^N$, $N \in ®N \cup \{∞\}$, then $\{e_n\}$ is orthonormal basis of $\overline{\Rang T}$ and for every $x \in H$:
+	$$ Tx = \sum_{n=1}^N λ_n\<x, e_n\>e_n, $$
+	where $λ_n$ is eigenvalue associated with the eigenvector $e_n$.
+
+	\begin{dukazin}
+		Omitted. „\verb|OM4/Funkcionalka.pdf|“
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Schmidt]
+	$H$ Hilbert space and $T \in ©L(H)$ nonzero compact. Then exists $N \in ®N_0 \cup \{∞\}$, sequence of positive numbers $\{λ_n\}_{n=1}^N$ and orthonormal systems $\{u_n\}_{n=1}^N$ and $\{v_n\}_{n=1}^N$ such that for every $x \in H$:
+	$$ Tx = \sum_{n=1}^N λ_n\<x, u_n\>v_n. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$H$ Hilbert space and $P \in ©L(H)$ projection. Then following are equivalent: $P$ is orthogonal ($\Rang P \perp \Ker P$); $P ≥ 0$; $P$ is self-adjoint; $P$ is normal.
+
+	Moreover, if $P, Q \in ©L(H)$ are orthogonal projections, then $\Rang(P) \perp \Rang(Q)$ iff $PQ = 0$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Unitary operator]
+	$H, K$ Hilbert spaces. Operator $T \in ©L(H, K)$ is called unitary, if $T^{-1} = T^*$, i.e., $T^*∘T = I_H$ and $T∘T^* = I_K$.
+\end{definice}
+
+\begin{tvrzeni}
+	$H, K$ Hilbert spaces and $T \in ©L(H, K)$. Then $T$ is unitary $\Leftrightarrow$ $T$ is isometry onto $\implies$ $T$ is isometry $\Leftrightarrow$ $\<Tx, Ty\> = \<x, y\>$ for every $x, y \in H$. Moreover if $T$ is onto, then all propositions are equivalent.
+
+	\begin{dukazin}[TODO!!!\vspace{-1em}]
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Partial isometry, initial subspace]
+	$H$ Hilbert space. Operator $U \in ©L(H)$ is called partial isometry, if there is closed subspace $K \subset H$ (initial subspace of $U$) such that $U|_K$ is isometry and $U|_{K^\perp} ≡ 0$.
+\end{definice}
+
+\begin{veta}[Polararization decomposition]
+	$H$ Hilbert space, $T \in ©L(H)$.
+
+	Exists unique operators $P, U \in ©L(H)$ such that $P ≥ 0$, $U$ is partial isometry with initial subspace $\overline{\Rang P}$ and $T = UP$. Moreover $P = \sqrt{T^* T} = U^* T$.
+
+	If $T$ is invertible, then exists unique $P, U \in ©L(H)$ such that $P ≥ 0$ is invertible, $U$ is unitary and $T = UP$.
+\end{veta}
 
 % 03. 04. 2023
 
+\vspace{-2.5em}
 \section{Borel measurable calculus}
 \begin{lemma}[Lax–Milgram]
 	$H$ Hilbert, $S: H \times H \rightarrow C$ sesquilinear, $\|S\| := \sup_{x, y \in S_H} |S(x, y)| < ∞$. Then $\exists! T \in ©L(H): \|T\| = \|S\| \land \<T x, y\> = S(x, y)$.
@@ -1003,14 +1126,14 @@ TODO!!!
 	\begin{dukazin}
 		Fix $y \in H$. Then $H \ni x \mapsto S(x, y)$ is a point in $H^*$ $\implies$ $\exists! U(y) \in H: S(x, y) = \<x, U(y)\>$, $x \in H$. Then $U \in ©L(H)$, $\|U\| = \|S\|$.
 
-		„Linearity“: Easy:
-		$$ \forall y, z \in H, α \in ®K \implies \forall x \in H: \<x, U(α y + z)\> = S(x, α y + z) = \overline{α} S(x, y) + S(x, z) = \overline{α}\<x, U y\> + \<x, U z\>. $$
+		„Linearity“: Easy: $\forall y, z \in H, α \in ®K \implies$
+		$$ \forall x \in H: \<x, U(α y + z)\> = S(x, α y + z) = \overline{α} S(x, y) + S(x, z) = \overline{α}\<x, U y\> + \<x, U z\>. $$
 
 		„$\|U\| ≤ \|S\|$“:
 		$$ \forall y \in H: \|Uy\|^2 = \<Uy, Uy\> = S(Uy, y) ≤ \|S\|·\|Uy\|·\|y\| \implies \|U y\| ≤ \|S\|·\|y\|. $$
 
-		„$\|U\| ≥ \|S\|$“:
-		$$ \forall x, y \in S_H: \|S(x, y)| = |\<x, Uy\>| ≤ \|x\|·\|U\|·\|y\| = \|U\|. $$
+		„$\|U\| ≥ \|S\|$“:\vspace{-0.4em}
+		$$ \forall x, y \in S_H: \|S(x, y)| = |\<x, Uy\>| ≤ \|x\|·\|U\|·\|y\| = \|U\|.\vspace{-0.5em} $$
 
 		„Uniqueness“: Bounded operator is given by values of $\<T x, y\>$.
 	\end{dukazin}
@@ -1029,8 +1152,8 @@ TODO!!!
 	\begin{dukazin}
 		„1.“: $f \mapsto \<Φ(f) x, y\>$ is linear and $|\<Φ(f) x, y\>| ≤ \|Φ(f)\|·\|x\|·\|y\|$. So $f \mapsto \<Φ(f) x, y\> \in ©C(ς(T))^* = M(ς(T))$ $\implies$ $μ$ exists by Riesz representation theorem.
 
-		„2.“:
-		$$ \forall x, x_2, y \in H\ \forall α \in ®K\ \forall f \in ©C(ς(T)): \<Φ(f)(α x_1 + x_2), y\> = α\<Φ(f)x_1, y\> + \<Φ(f) x_2, y\> = α μ_{x, y}(f) + μ_{x_2, y}(f). $$
+		„2.“: $\forall x, x_2, y \in H\ \forall α \in ®K\ \forall f \in ©C(ς(T)):$
+		$$ \<Φ(f)(α x_1 + x_2), y\> = α\<Φ(f)x_1, y\> + \<Φ(f) x_2, y\> = α μ_{x, y}(f) + μ_{x_2, y}(f). $$
 		Thus $· \mapsto μ_{·, y}$ is linear (for each $y$). Analogously $· \mapsto μ_{x, ·}$ is conjugate-linear.
 
 		Thus, $(x, y) \mapsto μ_{x, y}(f) \in ®C$ is sesquilinear form.
@@ -1091,18 +1214,22 @@ TODO!!!
 	\begin{dukazin}
 		$Φ$ is linear (easy from definition). $\|Φ\| ≤ 1$ follows from the second point of the previous theorem, and $\|Φ(1)\| = \|\id\| = 1$, so $\|Φ\| = 1$.
 
-		„$Φ$ is multiplicative“: Step 1: „$©F := \{g \in Bor_b(ς(T)) | \forall f \in ©C(ς(t)): Φ(gf) = Φ(g)·Φ(f)\}$, then $©F = Bor_b(ς(T))$“: $©F \subseteq ©C(ς(T))$ follows from continuous calculus, „$©F$ closed under point-wise limits of bounded sequences“: Let $©F \ni g_n \rightarrow g$ and $f \in ©C(ς(T))$. Then $g_n f \rightarrow gf$ point-wise. So, for $x, y \in H$:
-		$$ \<Φ(g, f)x, y\> = \int_{ς(T)} g f dμ_{x, y} = \lim \int g_n f dμ_{x, y} = \lim \<Φ(g_n) x, y\> = \lim \<Φ(g_n)(Φ(f)x), y\> = \lim \int g_n dμ_{Φ(f)x, y} = \<Φ(g)(Φ(f)x), y\>. $$
+		„$Φ$ is multiplicative“: Step 1: „$©F \!\coloneq \{g \in\! Bor_b(ς(T)) | \forall f \in ©C(ς(t))\mathpunct{:} Φ(gf) = Φ(g)\!·\!Φ(f)\}$, then $©F = Bor_b(ς(T))$“: $©F \subseteq ©C(ς(T))$ follows from continuous calculus, „$©F$ closed under point-wise limits of bounded sequences“: Let $©F \ni g_n \rightarrow g$ and $f \in ©C(ς(T))$. Then $g_n f \rightarrow gf$ point-wise. So, for $x, y \in H$:
+		$$ \<Φ(g, f)x, y\> = \int_{ς(T)} g f dμ_{x, y} = \lim \int g_n f dμ_{x, y} = \lim \<Φ(g_n) x, y\> = $$
+		$$ = \lim \<Φ(g_n)(Φ(f)x), y\> = \lim \int g_n dμ_{Φ(f)x, y} = \<Φ(g)(Φ(f)x), y\>. $$
 		$\implies ©F = Bor_b(ς(T))$.
 
 % 04. 04. 2023
 
 		Step 2: „$©H := \{g \in Bor_b(ς(T)) | \forall f \in Bor_b(ς(t)): Φ(gf) = Φ(g)·Φ(f)\}$, then $©H = Bor_b(ς(T))$“: „©H is closed under point-wise limits of bounded sequences“: $©H \ni f_n \overset{τ_p} f$, $f_n$ bounded, then $\forall x, y \in H$ $\forall g \in Bor_b(ς(T))$:
-		$$ \<Φ(g f)x, y\> \overset{\text{Lebesgue}}= \lim_n \<φ(g f_n)x, y\> = \lim_n \<Φ(g)Φ(f_n)x, y\> = \lim_n \<Φ(f_n) x, Φ(g)^* y\> = \lim_n \int f_n dμ_{x, Φ(g)^* y} \overset{\text{Lebesgue}}= \int f dμ_{x, Φ(g)^*y} = \<Φ(f)x, Φ(g)^* y\> = \<Φ(g) Φ(f) x, y\>. $$
+		$$ \<Φ(g f)x, y\> \overset{\text{Lebesgue}}= \lim_n \<φ(g f_n)x, y\> = \lim_n \<Φ(g)Φ(f_n)x, y\> = \lim_n \<Φ(f_n) x, Φ(g)^* y\> = $$
+		$$ = \lim_n \int f_n dμ_{x, Φ(g)^* y} \overset{\text{Lebesgue}}= \int f dμ_{x, Φ(g)^*y} = \<Φ(f)x, Φ(g)^* y\> = \<Φ(g) Φ(f) x, y\>. $$
 		Thus $Φ(g f) = Φ(g) Φ(f)$.
 
 		„$Φ$ preserves $*$“: $©F := \{g \in Bor_b(ς(T)) | Φ(g)^* = Φ(\overline{g})\}$. Then $©F \subseteq ©C(ς)$ by continuous calculus and $©F$ is "closed under taking limits" analogously as above. $\implies$ $©F = Bor_b(ς(T))$.
 	\end{dukazin}
+
+	\pagebreak
 
 	$(f_n) \in Bor_b(ς(T))^{®N}$ bounded and $f_n \overset{τ_p} f$, then $Φ(f_n) \overset{\text{SOT}}\rightarrow Φ(f)$.
 
@@ -1138,6 +1265,8 @@ TODO!!!
 
 % 11. 04. 2023
 
+\pagebreak
+
 \section{Spectral decomposition of normal operator}
 \begin{definice}[Spectral measure]
 	$H$ Hilbert space, $(X, ©A)$ measurable space. Then $E: ©A \mapsto ©L(H)$ is spectral measure for $(X, ©A, H)$ if
@@ -1169,23 +1298,26 @@ TODO!!!
 
 		„2.“: „Step 1: $A \cap B = \O$“:
 		$$ \id = E(X) = E(A) + E(A^c) ≥ E(A) + E(B), $$
-		so $E(B) ≤ \id - E(A)$, which is orthogonal projection onto $(\Rang E(A))^\perp$. Thus („$P, Q \in ©L(A)$ orthogonal projections, $Q - P ≥ 0$, then $\Rang P \subset (\Rang Q)^\perp$“:
-		$$ \|Px\|^2 = \|QPx\|^2 + \|(\id - Q) Px\|^2 = \<QPx, Px\>) + \|(\id - Q) Px\|^2 ≥ \underbrace{\<PPx, Px\>}_{\|Px\|^2} + \|(\id - Q) Px\|^2, $$
+		so $E(B) ≤ \id - E(A)$, which is orthogonal projection onto $(\Rang E(A))^\perp$. Thus („$P, Q \in ©L(A)$ orthogonal projections, $Q - P ≥ 0$, then $\Rang P \subset (\Rang Q)^\perp$“: $\|Px\|^2 =$
+		$$ = \|QPx\|^2 + \|(\id - Q) Px\|^2 = \<QPx, Px\> + \|(\id - Q) Px\|^2 ≥ \underbrace{\<PPx, Px\>}_{\|Px\|^2} + \|(\id - Q) Px\|^2, $$
 		thus, $(\id - Q) Px = 0$, so $\Rang P \subseteq \Ker(\id - Q) = \Rang Q$.) $\Rang E(B) \subseteq (\Rang E(A))^{\perp}$. Thus $\Rang E(A) \perp \Rang E(B)$, so $E(A)·E(B) = 0$.
 
 		„Step 2: In general“:
 		$$ E(A) = E(A \cap B) + E(A \setminus B), \qquad E(B) = E(A \cap B) + E(B \setminus) \implies $$
-		$$ \implies E(A)·E(B) = (E(A \setminus B) + E(A \setminus B))·(E(A \cap B) + E(B \setminus A)) = E^2(A \cap B) + 0 + 0 + 0 = E(A \cap B). $$
+		$$ E(A)·E(B) = (E(A \setminus B) + E(A \setminus B))·(E(A \cap B) + E(B \setminus A)) = E^2(A \cap B) + 3·0 = E(A \cap B). $$
 
 		„3.“: „$E_{x, y}$ is countably additive“ is easy. By this it is a complex measure. „Calculation of $\|E_{x, y}\|$“: Fix $A_1, …, A_n \in ©A$ disjoint such that $\bigcup_{i=1}^n A_i = X$. For $i \in [n]$ pick $\alpha_i \in S_{®C}: \alpha_i \<E(A_i) x, y\> = |\<E(A_i) x, y\>|$. Then
 		$$ \sum_{i=1}^n |E_{x, y} (A_i)| = \sum_{i=1}^n \alpha_i \<E(A_i) x, y\> \overset{\text{Cauchy–Schwartz}}≤ \|\sum_{i=1}^n \alpha_i E(A_i) x\|·\|y\|. $$
-		$$ \|\sum_{i=1}^n E(A_i)(\alpha_i x) \|^2 \overset{\text{Pythagoras}} = \sum_{i=1}^n \|E(A_i)(\alpha_i x)\| = \sum_{i=1}^n \|E(A_i)(x)\| = \sum_{i=1}^n \<E(A_i)x, x\> = \<E(\bigcup A_i)x, x\> = \<x, x\> = \|x\|^2. $$
+		$$ \left\|\sum_{i=1}^n E(A_i)(\alpha_i x) \right\|^2 \overset{\text{Pythagoras}} = \sum_{i=1}^n \|E(A_i)(\alpha_i x)\| = \sum_{i=1}^n \|E(A_i)(x)\| = \sum_{i=1}^n \<E(A_i)x, x\> = $$
+		$$ = \<E\(\bigcup A_i\)x, x\> = \<x, x\> = \|x\|^2. $$
 
 		„4.“: Easy, using definition. „5.“:
-		$$ |E_{x, y}(A)| = |\<E(A) x, y\>| = |\<E(A) x, E(A) y\>| \overset{\text{Cauchy-Schwartz}}≤ \|E(A) x\|·\|E(A)y\| = \sqrt{E_{x, x}(A)}·\sqrt{E_{y, y}(A)} \overset{\text{A–G}}≤ \frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\). $$
+		$$ |E_{x, y}(A)| = |\<E(A) x, y\>| = |\<E(A) x, E(A) y\>| \overset{\text{Cauchy-Schwartz}}≤ \|E(A) x\|·\|E(A)y\| = $$
+		$$ = \sqrt{E_{x, x}(A)}·\sqrt{E_{y, y}(A)} \overset{\text{A–G}}≤ \frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\). $$
 
 		„6.“:
-		$$ E_{x + y, x + y}(A) = E_{x, x}(A) + E_{y, x}(A) + E_{x, y}(A) + E_{y, y}(A) ≤ E_{x, x}(A) + 2\Re E_{y, x}(A) + E_{y, y}(A) ≤ E_{x, x}(A) + 2·\frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\) + E_{y, y}(A) = 2\(E_{x, x}(A) + E_{y, y}(A)\). $$
+		$$ E_{x + y, x + y}(A) = E_{x, x}(A) + E_{y, x}(A) + E_{x, y}(A) + E_{y, y}(A) ≤ E_{x, x}(A) + 2\Re E_{y, x}(A) + E_{y, y}(A) ≤ $$
+		$$ ≤ E_{x, x}(A) + 2·\frac{1}{2}\(E_{x, x}(A) + E_{y, y}(A)\) + E_{y, y}(A) = 2\(E_{x, x}(A) + E_{y, y}(A)\). $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1208,11 +1340,11 @@ TODO!!!
 
 \begin{tvrzeni}
 	$H$ Hilbert, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ bounded ©A-measurable. Then for $ε > 0$ pick $A_1, …, A_m \in ©A$ disjoint partition of $X$ such that $\diam f(A_i) < \epsilon$ and for $x_i \in A_i$, $i \in [n]$
-	$$ \|\int f dE - \sum_{i=1}^n f(x_i) E(A_i)\| < ε. $$
+	$$ \left\|\int f dE - \sum_{i=1}^n f(x_i) E(A_i)\right\| < ε. $$
 
 	\begin{dukazin}
 		Denote $T = \int f dE$. For $x, y \in H: |\<Tx, y\> - \<\sum f(x_i) E(A_i) x, y\>| =$
-		$$ = |\sum_{i=1}^n \int_{A_i} \(f(t) - f(x_i)\) d E_{x, y}| ≤ \sum_{i=1}^n \int_{A_i} |f(t) - f(x_i)| d|E_{x, y}| ≤ ε\int_X d|E_{x, y}| ≤ ε·\|x\|·\|y\|. $$
+		$$ = \left|\sum_{i=1}^n \int_{A_i} \(f(t) - f(x_i)\) d E_{x, y}\right| ≤ \sum_{i=1}^n \int_{A_i} |f(t) - f(x_i)| d|E_{x, y}| ≤ ε\int_X d|E_{x, y}| ≤ ε·\|x\|·\|y\|. $$
 		This finishes the proof. ($|\< S x, y\>| ≤ ε·\|x\|·\|y\| \implies \|S\| < ε$.)
 	\end{dukazin}
 \end{tvrzeni}
@@ -1236,22 +1368,26 @@ TODO!!!
 		1.) „$ρ$ is linear“: easy. „$\|ρ\| ≤ 1$“: easy as well. „$ρ$ preserves $*$“:
 		$$ \forall x \in H: \<ρ(f)^* x, x\> = \<x, ρ(f) x\> = \overline{\<ρ(f) x, x\>} = \overline{\int f dE_{x, x}} = \int \overline{f} dE_{x, x} = \<ρ(\overline{f}) x, x\>. $$
 		„$ρ$ is multiplicative“: For $f, g \in B(X, ©A)$, $ε > 0$. Find disjoint partition $A_1, …, A_n \in ©A$ of $X$ such that for $ω \in \{f, g, f·g\}$ we have $\diam ω(A_i) < ε$ for $i \in [n]$. Pick $x_1 \in A_1, x_2 \in A_2, …, x_n \in A_n$. Thus using previous proposition we have
-		$$ \|\int f g dE - \(\int f dE\)\(\int g dE\)\| ≤ ε + \|\sum_{i=1}^n (f·g)(x_i) E(A_i) - (\sum f(x_i) E(A_i))(\sum g(x_i) E(A_i))\| + \|(\sum f(x_i) E(A_i))(\sum g(x_i) E(A_i)) - \(\int f dE\)\(\int g dE\)\| ≤ ε + 0 + \|(\sum f(x_i) E(A_i))\(\sum g(x_i) E(A_i) - \int g dE\)\| + \|(\sum f(x_i) E(A_i)) TODO < \|f\|_∞·ε + ε·\|g\|_∞. $$
+		$$ \left\|\int f g dE - \(\int f dE\)\(\int g dE\)\right\| ≤ ε + $$
+		$$ + \left\|\sum_{i=1}^n (f·g)(x_i) E(A_i) - \(\sum f(x_i) E(A_i)\)\(\sum g(x_i) E(A_i)\)\right\| + $$
+		$$ + \left\|\(\sum f(x_i) E(A_i)\)\(\sum g(x_i) E(A_i)\) - \(\int f dE\)\(\int g dE\)\right\| ≤ ε + 0 + $$
+		$$ + \left\|\(\sum f(x_i) E(A_i)\)\(\sum g(x_i) E(A_i) - \int g dE\)\right\| + \|(\sum f(x_i) E(A_i)) TODO < $$
+		$$ < \|f\|_∞·ε + ε·\|g\|_∞.\vspace{-0.4em} $$
 
 		„$\|ρ\| = 1$“: TODO!!!
 
 		„$ρ(1) = \id$“: $\forall x \in H: \<ρ(1) x, x\> = \int_X 1 dE_{x, x} = \<E(X)x, x\> = \<x, x\> = \<\id x, x\>$.
 
-		2.)
+		2.)\vspace{-1.2em}
 		$$ ρ(f)^* ρ(f) = ρ(\overline{f}f) = ρ(f \overline{f}) = ρ(f)ρ(f)^* \implies ρ(f) \text{ is normal}. $$
 		$$ f \text{ is real } \implies f = \overline{f} \implies ρ(f) = ρ(f)^*. $$
 		$$ f ≥ 0 \implies \forall x \in H: \<ρ(f) x, x\> = \int f dE_{x, x} ≥ 0 \implies ρ(f) ≥ 0. $$
 
-		3.)
+		3.)\vspace{-1.7em}
 		$$ \forall x, y \in H: \<ρ(f_n) x, y\> = \int f_n d E_{x, y} \overset{\text{Lebesgue}}\rightarrow \int f dE_{x, y} = \<ρ(f) x, y\>. $$
 
-		4.)
-		$$ \|ρ(f) x\|^2 = \<ρ(f)x, ρ(f)x\> = \<ρ(\overline{f}f) x, x\> = \int \overline{f}f dE_{x, x} = \int |f|^2 dE_{x, x}. $$
+		4.)\vspace{-2.7em}
+		$$ \|ρ(f) x\|^2 = \<ρ(f)x, ρ(f)x\> = \<ρ(\overline{f}f) x, x\> = \int \overline{f}f dE_{x, x} = \int |f|^2 dE_{x, x}.\vspace{-0.8em} $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -1262,7 +1398,8 @@ TODO!!!
 		Whenever $E$ is spectral measure for $(ς(T), Bor(ς(T)), H)$ satisfying $T = \int \id dE$, then $\int f dE = Φ(f)$, $f \in ©B(ς(T), Bor(ς(T)))$. This proves uniqueness.
 
 		„Existence“: Put $E(A) := Φ(A)$, $A \subset ς(T)$ borel. Then $E$ is spectral measure: $E(A)$ is orthogonal projection ($χ_A^2 = χ_A$, $χ_A$ is real), $E(ς(T)) = \id$, $E(\O) = 0$ ($χ_{ς(T)} = 1$ and $Φ(1) = \id$, $χ_{\O} = 0$), $A_i \in Borel(ς(T))$ disjoint, $x \in H$, then
-		$$ \|E(\bigcup A_n)x - \sum E(A_i) x\| = \<E(\bigcup A_i) x, E(\bigcup A_i) x\> = \<E(\bigcup A_i) x, x\> = \int χ_{\bigcup A_i} dμ_{x, x} = \sum_{N+1}^∞ μ_{x, x}(A_i) \rightarrow 0. $$
+		$$ \left\|E\(\bigcup A_n\)x - \sum E(A_i) x\right\| = \<E\(\bigcup A_i\) x, E\(\bigcup A_i\) x\> = \<E\(\bigcup A_i\) x, x\> = $$
+		$$ = \int χ_{\bigcup A_i} dμ_{x, x} = \sum_{N+1}^∞ μ_{x, x}(A_i) \rightarrow 0. $$
 
 		„$T = \int \id dE$“: $E_{x, y} = μ_{x, y}$ ($E_{x, y}(A) = \<E(A) x, y\> = \int χ_A dμ_{x, y} = μ_{x, y}(A)$). Thus
 		$$ \<\int \id dE x, y\> = \int \id dE_{x, y} = \int \id dμ_{x, y} = \<Φ(\id) x, y\> = \<T x, y\>. $$
@@ -1370,13 +1507,8 @@ TODO!!!
 TODO example?
 
 \begin{tvrzeni}
-	$X, Y$ Banach, $T$ one-to-one closed operator from $X$ to $Y$. Then following statements are equivalent:
-
-	\begin{itemize}
-		\item $\Rang T = Y \land T^{-1} \in ©L(Y, X)$;
-		\item $\Rang T = Y$;
-		\item $\Rang T$ is dense and $T^{-1} \in ©L(\Rang T, X)$.
-	\end{itemize}
+	$X, Y$ Banach, $T$ one-to-one closed operator from $X$ to $Y$. Then following statements are equivalent:\vspace{-0.8em}
+	$$ \Rang T = Y \land T^{-1} \in ©L(Y, X); \quad \Rang T = Y; \quad \Rang T \text{ is dense and } T^{-1} \in ©L(\Rang T, X).\vspace{-1em} $$
 
 	\begin{dukazin}
 		„1) $\implies$ 2)“: trivial. „2) $\implies$ 3)“: $\Rang T$ is dense and $T^{-1}(\Rang T, X)$ due to previous proposition (by which $T^{-1}$ is closed).
@@ -1386,12 +1518,9 @@ TODO example?
 \end{tvrzeni}
 
 \begin{definice}[Resolvent set, resolvent function, spectrum of operator]
-	$X$ Banach, $T$ linear operator on $X$. Then resolvent set is
-	$$ ρ(T) := \{λ \in ®K | λI - T \text{ has inverse which belongs to } ©L(X)\}; $$
-	resolvent function is
-	$$ R_T(λ) := (λI - T)^{-1}, \qquad λ \in ρ(T); $$
-	spectrum of $T$ is
-	$$ ς(T) := ®K \setminus ρ(T). $$
+	$X$ Banach, $T$ linear operator on $X$. Then resolvent set is\vspace{-0.5em}
+	$$ ρ(T) := \{λ \in ®K | λI - T \text{ has inverse which belongs to } ©L(X)\};\vspace{-0.5em} $$
+	resolvent function is $R_T(λ) := (λI - T)^{-1}$, $λ \in ρ(T)$; spectrum of $T$ is $ς(T) := ®K \setminus ρ(T)$.
 \end{definice}
 
 \begin{veta}
@@ -1401,11 +1530,11 @@ TODO example?
 		„$ρ(T)$ is open“: Pick $λ \in ρ(T)$ and $h \in ®K$ small ($|·|$) enough: $|h| < \frac{1}{\|(λI - T)^{-1}\|}$. Then $h(λ I - T)^{-1} =: S \in ©L(X)$, $\|S\| < 1$. Thus, $(I + S)^{-1}$ exists, so $(λ + h)I - T = (I + S)·(λI - T)$ has inverse $(λI - T)^{-1} \circ (I + S)^{-1} \in ©L(X)$. $(λI - T)^{-1} ∘ (I + S)^{-1} \in ©L(X)$. So $U(λ, \frac{1}{\|(λI - T^{-1})\|}) \subset ρ(T)$.
 
 		„$R_T$ has derivative at each $λ \in ρ(T)$“: $R_T'(λ) = -R_T(λ)^2$:
-		$$ \forall h \text{ small enough}: \|\frac{R_t(λ + h) - R_t(λ)}{h} + R_T(λ)^2\| = $$
+		$$ \forall h \text{ small enough}: \left\|\frac{R_t(λ + h) - R_t(λ)}{h} + R_T(λ)^2\right\| = $$
 		$$ \frac{1}{h} \|R_T(λ + h) - R_T(λ) + R_T(λ) h R_T(λ)\| = \frac{\|R_T(λ)\|}{\|h\|}·\|(I + S)^{-1} - I + h R_T(λ)\| = $$
 		$$ \((I + S)^{-1} = \sum_{n=0}^∞ (-S)^n = I - S + \sum_{n=2}^∞(-S)^n = I - h R_T(λ) + \sum_{n=2}^∞ (-h R_T(λ))^n\) $$
-		$$ = \frac{\|R_T(λ)\|}{|h|}·\|\sum_{n=2}^∞ (-h R_T(λ))^n\| ≤ \frac{\|R_t(λ)\|}{|h|} \sum_{n=2}^∞ \|h R_t(λ)\|^n = \frac{\|R_T(λ)\|}{|h|}·\frac{\|h R_T(λ)\|^2}{1 - \|h R_T(λ)\|} ≤ $$
-		$$ ≤ \frac{\|R_T(λ)\|}{|h|}·\frac{|h|^2 \|R_T(λ)\|^2}{1 / 2} = 2|h|·\|R_T(λ)\|^3 \rightarrow 0. $$
+		$$ = \frac{\|R_T(λ)\|}{|h|}·\left\|\sum_{n=2}^∞ (-h R_T(λ))^n\right\| ≤ \frac{\|R_t(λ)\|}{|h|} \sum_{n=2}^∞ \|h R_t(λ)\|^n = \frac{\|R_T(λ)\|}{|h|}·\frac{\|h R_T(λ)\|^2}{1 - \|h R_T(λ)\|} ≤ $$
+		$$ ≤ \frac{\|R_T(λ)\|}{|h|}·\frac{|h|^2 \|R_T(λ)\|^2}{1 / 2} = 2|h|·\|R_T(λ)\|^3 \rightarrow 0.\vspace{-1em} $$
 	\end{dukazin}
 \end{veta}
 
@@ -1443,6 +1572,8 @@ TODO example?
 \end{definice}
 
 % 25. 04. 2023
+
+\pagebreak
 
 \begin{tvrzeni}
 	$H$ Hilbert, $S$ and $T$ densely defined in $H$.
@@ -1558,6 +1689,8 @@ TODO example?
 	\end{poznamkain}
 \end{definice}
 
+\pagebreak
+
 \begin{tvrzeni}
 	$H$ Hilbert, $T$ densely defined and symmetric.
 
@@ -1591,12 +1724,14 @@ TODO example?
 	\end{dukazin}
 \end{veta}
 
+\pagebreak
+
 \begin{lemma}
 	$T$ is symmetric on Hilbert $H$, $λ \in ®C \setminus ®R$. Then $(λ I - T)$ is one-to-one, $(λI - T)^{-1}$ is continuous on $R(λI - T)$, and moreover $T$ is closed $\Leftrightarrow$ $R(λI - T)$ is closed.
 
 	\begin{dukazin}
-		$λ = α + i·β$, $β ≠ 0$, $α, β \in ®R$. Then $αI - T$ is symmetric, so
-		$$ \forall x \in D(T): \|(λI - T)x\|^2 = \|(αI - T)x + i·βx\|^2 = \|i·β·x\|^2 + \|(αI - T)x\|^2 + 2\Re \<i·β·x, (αI - T)x\> = $$
+		$λ = α + i·β$, $β ≠ 0$, $α, β \in ®R$. Then $αI - T$ is symmetric, so $\forall x \in D(T)$:
+		$$ \|(λI - T)x\|^2 = \|(αI - T)x + i·βx\|^2 = \|i·β·x\|^2 + \|(αI - T)x\|^2 + 2\Re \<i·β·x, (αI - T)x\> = $$
 		$$ = |β|^2·\|x\|^2 + \|(α I - T)x\|^2 + 0 ≥ |β|^2·\|x\|^2, $$
 		cause $S$ is symmetric, then $\<Sx, x\> \in ®R$, $x \in D(S)$. So, $\|(λI - T)x\| ≥ |β|·\|x\|$, $x \in D(T)$, thus $(λI - T)$ is one-to-one. And $(λI - T)^{-1}$ is bounded on its domain, so continuous on its domain.
 
@@ -1666,20 +1801,20 @@ TODO example?
 
 % 15. 05. 2023
 
+\pagebreak
+
 		\item $T = i\(I + ©C(T)\)·\(I - ©C(T)\)^{-1}$.
 			\begin{dukazin}
 				We know $D(T) = R(I - ©C(T))$ and $R\((I - ©C(T))^{-1}\) = D(I - ©C(T)) = D(I + ©C(T))$. So operator on RHS is well-defined and LHS have same domain as RHS.
 
 				Pick $y \in D(T)$ and $x \in D(©C(T))$ such that $(I - ©C(T)) x = y$. Then
 				$$ y - (I - ©C(T))x = 2i(T + iI)^{-1} x, $$
-				so
-				$$ i(I + ©C(T))·\(I - ©C(T)\) y = i(I + ©C(T))x = i\(x + (T - iI)(T + iI)^{-1}x\) = i\(x + \(T - iI\)·(y / 2i)\) = $$
-				$$ = \frac{i}{2i}\(2ix + (T - iI)y\) = \frac{1}{2} ((T + iI)y + (T - iI)y) = Ty. $$
+				so $i(I + ©C(T))·\(I - ©C(T)\) y = i(I + ©C(T))x = i\(x + (T - iI)(T + iI)^{-1}x\) =$
+				$$ = i\(x + \(T - iI\)·(y / 2i)\) = \frac{i}{2i}\(2ix + (T - iI)y\) = \frac{1}{2} ((T + iI)y + (T - iI)y) = Ty. $$
 			\end{dukazin}
 
 		\item $T$ closed $\Leftrightarrow$ $©C(T)$ closed $\Leftrightarrow$ $D(©C(T))$ closed $\Leftrightarrow$ $R(©C(T))$ closed.
-			\begin{dukazin}
-				Omitted.
+			\begin{dukazin}[Omitted.\vspace{-1em}]
 			\end{dukazin}
 	\end{itemize}
 \end{veta}
@@ -1699,13 +1834,12 @@ TODO example?
 		$$ (T + iI)x = … + ix = … + … = 2i x'. $$
 
 		So, $x' \in R(T + iI) = D(©C(T))$ and $D(U) \subseteq D(©C(T))$ and $D(©C(T)) = R(T + iI) \subseteq D(U)$. Thus, $D(U) = D(©C(T))$. Finally, for $x \in D(T)$:
-		$$ U(Tx + ix) = U(2i x') = 2i U x' = (T - iI)x = Tx - ix. $$
+		$$ U(Tx + ix) = U(2i x') = 2i U x' = (T - iI)x = Tx - ix.\vspace{-1em} $$
 	\end{dukazin}
 \end{veta}
 
 \begin{veta}
-	$H$ Hilbert:
-
+	$H$ Hilbert: \vspace{-1em}
 	\begin{itemize}
 		\item[a)] Let $T$ be a symmetric operator on $H$. Then $T$ is self-adjoint $\Leftrightarrow$ $©C(T)$ is unitary (i.e. $D(®C(T)) = H = R(©C(T))$).
 		\item[b)] $U \in ©U(H)$ such that $I - U$ is one-to-one, then
@@ -1726,7 +1860,8 @@ TODO example?
 
 \begin{definice}[$n_+$ and $n_i$ (deficiency indices)]
 	Let $T$ be a symmetric closed operator in a Hilbert space H. Then
-	$$ n_+(T) = \dim(\Rang(T + iI))^\perp = \dim D(©C(T))^\perp \qquad \text{and} \qquad n_-(T) = \dim(\Rang(T - iI))^\perp = \dim \Rang(©C(T))^\perp $$
+	$$ n_+(T) = \dim(\Rang(T + iI))^\perp = \dim D(©C(T))^\perp, $$
+	$$ n_-(T) = \dim(\Rang(T - iI))^\perp = \dim \Rang(©C(T))^\perp $$
 	are called deficiency indices of the operator $T$.
 \end{definice}
 
@@ -1786,7 +1921,7 @@ TODO example?
 		„Definition of $T$“: For $x \in D$ put $Tx := \lim_{n \rightarrow ∞}\(\int_X f χ_{A_n} dE\)x$. „$T$ well defined“: limit exists, because the sequence is cauchy:
 		$$ \forall m < n: \|\int f χ_{A_n} dE x - \int f χ_{A_m} dE x\|^2 = \|\int f χ_{A_n \setminus A_m} dE x\|^2 = \int_{A_n \setminus A_m} |f|^2 dE_{x, x} \rightarrow 0. $$
 		„$T$ linear“: easy (VAL + Linearity of the integral). „For $T$ equation holds“: By sesquilinearity, suffices to check for $x = y \in D$:
-		$$ \<Tx, x\> = \lim \<\int_X f χ_{A_n} dE x, x\> = \lim \int f χ_{a_n} dE_{x, x} \overset{\text{Lebesgue}}= \int \lim f χ_{a_n} d E_{x, x} = \int f dE_{x, x}. $$
+		$$ \<Tx, x\> = \lim \<\int_X f χ_{A_n} dE x, x\> = \lim \int f χ_{a_n} dE_{x, x} \!\overset{\text{Lebesgue}}=\! \int \lim f χ_{a_n} d E_{x, x} = \int f dE_{x, x}. $$
 		„$\|Tx\| = \sqrt{…}$“:
 		$$ \|Tx\|^2 = \lim \<\int f χ_{A_n} dE x, \int fχ_{A_n} dEx\> = \lim \int |f χ_{A_n}|^2 dE_{x, x} \overset{\text{Lebesgue}}= \int |f|^2 d E_{x, x}. $$
 		„Uniqueness“: $\<Tx, y\> = \<z, y\>$, $y \in D$ $\implies$ $Tx = z$ on $H$, because $D$ is dense.
@@ -1795,34 +1930,30 @@ TODO example?
 
 \begin{veta}
 	Let $H$ Hilbert space, $(X, ©A)$ measurable space, $E$ spectral measure for $(X, ©A, H)$ and $f, g: X \rightarrow ®C$ be ©A-measurable functions. Then the following assertions hold:
+		
+	$\int f dE + \int g dE \subset \int f + g dE$;
+		\begin{dukazin}[Omitted. (From definition.)\vspace{-1em}]
+		\end{dukazin}
+	$\(\int f dE\)\(\int g dE\) \subset \int f g dE$ and $D\(\(\int f dE\)\(\int g dE\)\) = D\(\int g dE\) \cap D\(\int f g dE\)$;
 
-	\begin{itemize}
-		\item $\int f dE + \int g dE \subset \int f + g dE$;
-			\begin{dukazin}
-				Omitted. (From definition.)
-			\end{dukazin}
-		\item $(\int f dE)(\int g dE) \subset \int f g dE$ and $D((\int f dE)(\int g dE)) = D(\int g dE) \cap D(\int f g dE)$;
-			\begin{dukazin}
-				Omitted. (Technical, difficult, from definition of bounded version.)
-			\end{dukazin}
-		\item $(\int f dE)^* = \int \overline{f} dE$ and $\int f dE \(\int f dE\)^* = \int |f|^2 dE = (\int f dE)^* \int f dE$, that is, $\int f dE$ is normal;
-			\begin{dukazin}
-				Omitted.
-			\end{dukazin}
-		\item $\int f dE$ is closed;
-			\begin{dukazin}
-				From the previous item: $\int f dE = \int \overline{\overline{f}} dE = \(\int \overline{f} dE\)^*$ $\implies$ (by the proposition above) $\int f dE$ is closed.
-			\end{dukazin}
-		\item $\int f dE \in ©L(H)$ $\Leftrightarrow$ $\exists A \in ©A$: $E(X \setminus A) = ¦o$ $\land$ $f$ is bounded on $A$.
-			\begin{dukazin}
-				„$\impliedby$“: „$D(\int f dE) = H$“: $\forall x \in H: \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} < ∞$. „$\forall x \in H: \|\int f dE x\|^2 ≤ C·\|x\|^2$“: from the previous theorem:
-				$$ \|\int f dE x\|^2 = \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} ≤ \|f|_A\|_∞·E_{x, x}(X) ≤ \|f|_A\|_∞·\|x\|^2. $$
-
-				„$\implies$“: Put $K := \|\int |f| dE\| < ∞$, $A := \{t | |f(t)| ≤ K+1\}$. Then „$E(X \setminus A) = 0$“: If not, $\exists x \in S_H \cap \Rang E(X \setminus A)$ and then
-				$$ K + 1 = \int (K + 1) dE_{x, x} ≤ \int_{A^c} |f| dE_{x, x} = \int |f| χ_{A^c} d E_{x, x} = \<\int χ_{A^c} dE \int |f| dE x, x\> = $$
-				$$ = \<E(A^c)·\int |f| dE x, x\> = \<\int |f| dE_{x, x}, E(A^c) x\> = \< \int |f| dE x, x\> ≤ \|\int |f| dE x\|·1 ≤ \|\int |f| dE\|·1·1 = K. $$
-			\end{dukazin}
-	\end{itemize}
+		\begin{dukazin}[Omitted. (Technical, difficult, from definition of bounded version.)\vspace{-1em}]
+		\end{dukazin}
+	$(\int f dE)^* = \int \overline{f} dE$ and $\int f dE \(\int f dE\)^* = \int |f|^2 dE = (\int f dE)^* \int f dE$, that is, $\int f dE$ is normal;
+		\begin{dukazin}[Omitted.\vspace{-1em}]
+		\end{dukazin}
+	$\int f dE$ is closed;
+		\begin{dukazin}
+			From the previous item: $\int f dE = \int \overline{\overline{f}} dE = \(\int \overline{f} dE\)^*$ $\implies$ (by the proposition above) $\int f dE$ is closed.
+		\end{dukazin}
+	$\int f dE \in ©L(H)$ $\Leftrightarrow$ $\exists A \in ©A$: $E(X \setminus A) = ¦o$ $\land$ $f$ is bounded on $A$.
+		\begin{dukazin}
+			„$\impliedby$“: „$D(\int f dE) = H$“: $\forall x \in H: \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} < ∞$. „$\forall x \in H: \|\int f dE x\|^2 ≤ C·\|x\|^2$“: from the previous theorem:
+			$$ \|\int f dE x\|^2 = \int_X |f|^2 dE_{x, x} = \int_A |f|^2 dE_{x, x} ≤ \|f|_A\|_∞·E_{x, x}(X) ≤ \|f|_A\|_∞·\|x\|^2. $$
+			„$\implies$“: Put $K := \|\int |f| dE\| < ∞$, $A := \{t | |f(t)| ≤ K+1\}$. Then „$E(X \setminus A) = 0$“: If not, $\exists x \in S_H \cap \Rang E(X \setminus A)$ and then
+			$$ K + 1 = \int (K + 1) dE_{x, x} ≤ \int_{A^c} |f| dE_{x, x} = \int |f| χ_{A^c} d E_{x, x} = \<\int χ_{A^c} dE \int |f| dE x, x\> = $$
+			$$ = \<E(A^c)·\int |f| dE x, x\> = \<\int |f| dE_{x, x}, E(A^c) x\> = \< \int |f| dE x, x\> ≤ $$
+			$$ ≤ \left\|\int |f| dE x\right\|·1 ≤ \left\|\int |f| dE\right\|·1·1 = K. $$
+		\end{dukazin}
 \end{veta}
 
 \begin{veta}
