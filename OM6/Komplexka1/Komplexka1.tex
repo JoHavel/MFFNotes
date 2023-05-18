@@ -26,7 +26,7 @@
 	Let $G \subset ®S$ be open. Then $f$ is holomorphic on $G$ if $f$ is holomorphic at any $z_0$. Denote $©H(G) := \{f: G \rightarrow ®C | f \text{ holomorphic}\}$.
 
 	\begin{prikladyin}
-		From Liouville theorem $®H(®S) =$ constant functions. So $®H(G)$ is interesting only for $G \subsetneq ®S$, so WLOG $G \subset ®C$.
+		From Liouville theorem $©H(®S) =$ constant functions. So $©H(G)$ is interesting only for $G \subsetneq ®S$, so WLOG $G \subset ®C$.
 	\end{prikladyin}
 \end{definice}
 
@@ -53,14 +53,14 @@
 
 	So $©M(G)$ is interesting for $G \subsetneq ®S$, WLOG $G \subset ®C$.
 
-	If $G \subset ®C$ is domain, $f, g \in ®H(G)$ and $g ≡ 0$, then $f / g \in ©M(G)$. The inverse is also true (we will prove it) (but not for $G = ®S$).
+	If $G \subset ®C$ is domain, $f, g \in ©H(G)$ and $g \not≡ 0$, then $f / g \in ©M(G)$. The inverse is also true (we will prove it) (but not for $G = ®S$).
 \end{priklady}
 
 \begin{lemma}
-	Let $®G \subset ®C$ be open. Then there are compacts $K_n$, $n \in ®N$, in $G$ such that $G = \bigcup_{n=1}^∞ K_n$, $K_n \subset \Int (K_{n+1})$ and for any compact $K$ in $G$, $\exists n \in ®N: K \in K_n$.
+	Let $®G \subset ®C$ be open. Then there are compacts $K_n$, $n \in ®N$, in $G$ such that $G = \bigcup_{n=1}^∞ K_n$, $K_n \subset \Int (K_{n+1})$ and for any compact $K$ in $G$, $\exists n \in ®N: K \subset K_n$.
 
 	\begin{dukazin}
-		Set $K_n := \{z \in G | \dist(z, ®C \setminus G) ≥ \frac{1}{n}\} \cap U(0, n)$.
+		Set $K_n := \{z \in G | \dist(z, ®C \setminus G) ≥ \frac{1}{n}\} \cap \overline{U(0, n)}$.
 	\end{dukazin}
 \end{lemma}
 
@@ -96,7 +96,7 @@
 \subsection{Logarithmic integrals}
 
 \begin{definice}[Logarithmic integral]
-	Let $\phi: [a, b] \rightarrow ®C$ be a (regular) curve and let $f$ be a non-zero holomorphic function on $\<\phi\>$. Then we define logarithmic integrals integral as
+	Let $\phi: [a, b] \rightarrow ®C$ be a (regular) curve and let $f$ be a non-zero holomorphic function on $\<\phi\>$. Then we define logarithmic integral as
 	$$ I := \frac{1}{2\pi i} \int_\phi \frac{f'}{f} = \frac{1}{2\pi i} \int_a^b \frac{f'(\phi(t)) \phi'(t)}{f(\phi(t))} dt = \frac{1}{2 \pi i} \int_a^b \frac{(f(\phi(t)))'}{f(\phi(t))} dt = \frac{1}{2\pi i} \int_{f \circ \phi} \frac{dz}{z} = $$
 	$$ = \frac{1}{2\pi i}(\Phi(b) - \Phi(a)), $$
 	where $\Phi$ is a branch (jednoznačná větev) of logarithm of $f \circ \phi$. If $\phi$ is, in addition, closed, then $I = \ind_{f \circ \phi} 0 = \frac{1}{2\pi}(\Theta(b) - \Theta(a)) \in ®Z$, where $\Theta$ is a branch of argument of $f \circ \phi$.
@@ -178,7 +178,7 @@
 \end{definice}
 
 \begin{veta}[On a multiple value]
-	Let $z_0, w_0 \in ®S$, $f$ be a holomorphic function on a $P(z_0)$ and $f(z_0) = w_0$ $p$ times for some $p \in ®N$. Let $\delta_0 > 0$. Then there are $\epsilon > 0$ and $\delta \in (0, \delta_0)$ such that, for any $w \in P(w_0, \epsilon)$ there are just $p$ different points $z_1, …, z_p$ in $P(z_0, \delta)$ with $f(z_j) = w$. In addition, $f(z_j) = 0$ once.
+	Let $z_0, w_0 \in ®S$, $f$ be a holomorphic function on a $P(z_0)$ and $f(z_0) = w_0$ $p$ times for some $p \in ®N$. Let $\delta_0 > 0$. Then there are $\epsilon > 0$ and $\delta \in (0, \delta_0)$ such that, for any $w \in P(w_0, \epsilon)$ there are just $p$ different points $z_1, …, z_p$ in $P(z_0, \delta)$ with $f(z_j) = w$. In addition, $f(z_j) = w$ once.
 
 	\begin{dukazin}
 		WLOG, assume $z_0 = 0 = w_0$.Then $z_0 = 0$ is a zero point of $f$ of order $p$. Choose $\delta \in (0, \delta_0)$ such that $f ≠ 0$ and $f' ≠ 0$ on $P(0, 2\delta)$. Set $\epsilon := \min_{|z| = \delta} |f(z)| > 0$.
@@ -217,14 +217,14 @@
 	In addition, $(f_{-1})' = \frac{1}{f' \circ f_{-1}}$ on $\Omega$.
 
 	\begin{dukazin}
-		WLOG, $G \subset ®C$ is a domain. By first „dusledek“ of previous theorem $f$ is an open map, so $\Omega := f(G)$ is open and $f_{-1}: \Omega \rightarrow G$ is continuous. Let $z_0 \in G$ and $w_0 = f(z_0)$. By second „dusledek“ we have $f'(z_0) ≠ 0$, and
+		WLOG, $G \subset ®C$ is a domain. By the first „dusledek“ of the previous theorem $f$ is an open map, so $\Omega := f(G)$ is open and $f_{-1}: \Omega \rightarrow G$ is continuous. Let $z_0 \in G$ and $w_0 = f(z_0)$. By second „dusledek“ we have $f'(z_0) ≠ 0$, and
 		$$ \frac{1}{f'(z_0)} = \lim_{z \rightarrow z_0} \frac{z - z_0}{f(z) - f(z_0)} \overset*= \lim_{w \rightarrow w_0} \frac{f_{-1}(w) - f_{-1}(w_0)}{w - w_0} = f_{-1}'(w_0). $$
 		The equality * follows from theorem on limits of composite functions because $f_{-1}$ is continuous and $f_{-1}(w) ≠ f_{-1}(w_0)$ for $w ≠ w_0$.
 	\end{dukazin}
 \end{veta}
 
 \begin{veta}[Hurwitz]
-	Let $G \subset ®C$ be a domain, $f_n \in ©H(G)$, $f_n \overset{\text{loc.}}\rightrightarrows f$ on $G$ and $f \not≡ 0$. Let $z_0 \in G$ be a zero point of $f$. Then $\exists$ $\{z_n\}_{n = 1}^∞ \subset G$ and a subsequence $\{f_{k_n}\}$ of $\{f_n\}$ such that $z_n \rightarrow 0$ and $f_{k_n}(z_n) = 0$.
+	Let $G \subset ®C$ be a domain, $f_n \in ©H(G)$, $f_n \overset{\text{loc.}}\rightrightarrows f$ on $G$ and $f \not≡ 0$. Let $z_0 \in G$ be a zero point of $f$. Then $\exists$ $\{z_n\}_{n = 1}^∞ \subset G$ and a subsequence $\{f_{k_n}\}$ of $\{f_n\}$ such that $z_n \rightarrow z_0$ and $f_{k_n}(z_n) = 0$.
 
 	\begin{poznamkain}
 		Not true in ®R! The assumption $f \not≡ 0$ is important! ($f_n(z) := z/n$)
@@ -275,7 +275,7 @@
 	Let $f$ be non-zero holomorphic function on a simply connected domain ($G$ is domain, and $®S \setminus G$ is connected) $G \subset ®C$. Then there is $L \in ©H(G)$ such that $f = e^L$ on $G$.
 
 	\begin{dukazin}
-		1) Let $L \in ©H(G)$ and $f = e^L$ on $G$. Then $f' = L'·e^L$ and $f'/f = L'$.
+		1) Let $L \in ©H(G)$ and assume that $f = e^L$ on $G$. Then $f' = L'·e^L$ and $f'/f = L'$.
 
 		2) Since $G$ is a simply connected domain and $f'/f \in ©H(G)$, by Cauchy theorem, there is $L_0 \in ©H(G)$ such that $L_0' = f'/f$.
 
@@ -314,7 +314,7 @@
 		$\sum_{j=1}^∞ |u_j|$ is bounded on $M$, because there is $n_0 \in ®N$ such that $\sum_{j=n_0 + 1}^∞ |u_j| < 1$. By inequalities there is $C \in (0, +∞)$ such that $|p_n| ≤ C$ $\forall n \in ®N$.
 
 		Let $0 < \epsilon < \frac{1}{2}$. Choose $n_0 \in ®N$ such that $\sum_{n=n_0}^∞ |u_n| < \epsilon$ on $M$. Let $\{n_1, n_2, …\}$ be a permutation of $®N$ and $q_m := \prod_{j=1}^m (1 + u_{n_j})$, $m \in ®N$. Let $n ≥ n_0$ and $m \in ®N$ be such that $\{n_1, …, n_m\} \supseteq [n]$. Then
-		$$ |q_m - p_n| = |p_n·\(\prod_{n_j > n, j \in [m]} (1 + u_{n_j}) - 1\) ≤ |p_n|\(\prod_{…} (1 + |u_{n_j}|) - 1\) ≤ $$
+		$$ |q_m - p_n| = |p_n|·\(\prod_{n_j > n, j \in [m]} (1 + u_{n_j}) - 1\) ≤ |p_n|\(\prod_{…} (1 + |u_{n_j}|) - 1\) ≤ $$
 		$$ ≤ |p_n|·\(e^{\sum_{…} |u_{n_j}|} - 1\) ≤ |p_n|·\(e^\epsilon - 1\) ≤ |p_n|·2\epsilon ≤ 2C\epsilon. $$
 
 		If $n_j = j$ $\forall j \in ®N$, then $q_m = p_m$ and we get $\forall m > n: |q_m - p_n| < 2C\epsilon$, so $p_n \rightrightarrows f$ on $M$. Moreover we have, for $n ≥ n_0$, $|p_n - p_{n_0}| ≤ 2 \epsilon |p_{n_0}|$, so $|p_n| ≥ |p_{n_0}| - |p_n - p_{n_0}| ≥ (1 - 2\epsilon)|p_{n_0}|$. For $n \rightarrow ∞$: $|f| ≥ (1 - 2\epsilon) |p_{n_0}|$, hence $f(z_0) = 0 \Leftrightarrow p_{n_0}(z_0) = 0$.
@@ -405,12 +405,12 @@
 	\end{dukazin}
 \end{lemma}
 
-\section{The space H(G)}
+\section{The space \texorpdfstring{$©H(G)$}{H(G)}}
 \begin{poznamka}[Arzela–Ascoli theorem]
 	Let $©F \subset ©C(K)$ and let the functions of ©F be equibounded (i.e. $\exists M \in (0, +∞)\ \forall f \in ©F: |f| ≤ M$ on $K$) and equicontinuous (i.e. $\forall ε > 0\ \exists δ > 0\ \forall f \in ©F\ \forall x, y \in K: ρ(x, y) < δ \implies |f(x) - f(y)| < ε$, where $ρ$ is metric on $K$).  Then every $\{f_n\} \subset ©F$ has $\{f_{n_k}\}$ which is uniformly convergent on $K$. 
 \end{poznamka}
 
-\subsection{The space C(G)}
+\subsection{The space \texorpdfstring{$©C(G)$}{C(G)}}
 \begin{definice}
 	Let $G \subseteq ®C$, then $©C(G) := \{f: G \rightarrow ®C | f \text{ continuous}\}$.
 \end{definice}
@@ -420,8 +420,8 @@
 	
 	\begin{itemize}
 		\item $f_n \overset{\text{loc.}}\rightrightarrows$ on $G$;
-		\item for any compact $K$ in $G$, $\|f_n - f\| \rightarrow 0$, where $\|f\|_K := \sup_K |f|$ is a seminorm on $©C(G)$;
-		\item $\forall m \in ®N: \|f_n - f\|_{K_m} \rightarrow 0$ for $u \rightarrow ∞$;
+		\item for any compact $K$ in $G$, $\|f_n - f\|_K \rightarrow 0$, where $\|f\|_K := \sup_K |f|$ is a seminorm on $©C(G)$;
+		\item $\forall m \in ®N: \|f_n - f\|_{K_m} \rightarrow 0$ for $n \rightarrow ∞$;
 		\item $ρ(f_n, f) \rightarrow 0$, where $ρ(f_n, f) := \sum_{m=1}^∞ \frac{1}{2^m}·\frac{\|f_n - f\|_{K_m}}{1 + \|f_n - f\|_{K_m}}$.
 	\end{itemize}
 
@@ -463,7 +463,7 @@
 		\item topology $τ$ is the weakest topology on $E$ for which all $p \in ©P$ are continuous;
 		\item $©F \subset E$ is bounded if $©F$ is bounded with respect to any $p \in ©P$, i.e.,
 			$$ \forall p \in ©P\ \exists C \in (0, +∞): p(f) ≤ C\ \forall f \in ©F; $$
-		\item the dual space to $(E, ®P)$ is defined as
+		\item the dual space to $(E, ©P)$ is defined as
 			$$ E^* := \{L: E \rightarrow ®C | L \text{ linear and continuous}\}. $$
 	\end{itemize}
 \end{definice}
@@ -489,10 +489,10 @@
 
 % 23. 03. 2023
 
-\section{\texorpdfstring{The dual space $©H^*(G)$}{The dual space H*(G)}}
+\subsection{\texorpdfstring{The dual space $©H^*(G)$}{The dual space H*(G)}}
 \begin{poznamka}
 	1. Let $G = ®D := \{z \in ®C | |z| < 1\}$. Let $L \in ©H^*(®D)$. Let $f \in ©H(®D)$, $f(z) = \sum_{n=0}^∞ a_n z^n$, $z \in ®D$, and $R := \frac{1}{\limsup_{n \rightarrow +∞} \sqrt[n]{|a_n|}} ≥ 1$. Then
-	$$ L(f) = L(\sum_{n=0}^∞ a_n z^n) = L\(\lim_{n \rightarrow ∞} \sum_{k=0}^n a_kz^k\) = \lim_{n \rightarrow ∞} \sum_{k=0}^n a_k L(z^k) = \sum_{n=0}^∞ a_n·b_n, $$
+	$$ L(f) = L\(\sum_{n=0}^∞ a_n z^n\) = L\(\lim_{n \rightarrow ∞} \sum_{k=0}^n a_kz^k\) = \lim_{n \rightarrow ∞} \sum_{k=0}^n a_k L(z^k) = \sum_{n=0}^∞ a_n·b_n, $$
 	where $b_n := L(z^n) \in ®C$. We show $r := \limsup_{n \rightarrow ∞} \sqrt[n]{|b_n|} < 1$:
 
 	If $r > 1$, then for $a_n := 1$, $n \in ®N_0$, we get $\sum_{n=0}^∞ a_n·b_n$ is divergent. If $r = 1$, then there is $\{n_k\}$ such that such that $0 ≠ \sqrt[n_k]{|b_{n_k}|} \rightarrow 1$. Putting $a_n = \frac{1}{b_{n_k}}$, $n = n_k$, we get $\sum_{n=0}^∞ a_n b_n$ is divergent.
@@ -511,7 +511,7 @@
 \end{poznamka}
 
 \begin{definice}[Notation]
-	Let $A \subset ®S$. Then a function $f$ is holomorphic on $A$ if $f$ is holomorphic on some open superset $U \supset A$. Let $f_1, f_2$ be holomorphic function on $A$. We say that $f_1$ \textasciitilde $f_2$ if there are open $U_1, U_2 \subset ®S$ such that $A \subset U_1 \cap U_2$, $f_1 \in ©H(U_1)$, $f_2 \in ©H(U_2)$ and $f_1 = f_2$ on $U_1 \cap U_2$. Denote $©H(A) := \{[f] | f \text{ is holomorphic on } A\}$, where $[f]$ is an equivalence class for \textasciitilde. As usual, we do not often distinguish between $[f]$ and $f$.
+	Let $A \subset ®S$. Then a function $f$ is holomorphic on $A$ if $f$ is holomorphic on some open superset $U \supset A$. Let $f_1, f_2$ be holomorphic function on $A$. We say that $f_1$ \textasciitilde{} $f_2$ if there are open $U_1, U_2 \subset ®S$ such that $A \subset U_1 \cap U_2$, $f_1 \in ©H(U_1)$, $f_2 \in ©H(U_2)$ and $f_1 = f_2$ on $U_1 \cap U_2$. Denote $©H(A) := \{[f] | f \text{ is holomorphic on } A\}$, where $[f]$ is an equivalence class for \textasciitilde. As usual, we do not often distinguish between $[f]$ and $f$.
 
 	We have that $λ \in ©H_0(®S \setminus ®D) := \{μ \in ©H(®S \setminus ®D) | μ(∞) = 0\}$. Moreover, we have
 	$$ (*) L(f) = \frac{1}{2πi} \int_φ f(z)·λ(z) dz, \qquad f \in ©H(®D); $$
@@ -597,7 +597,7 @@
 \end{veta}
 
 \begin{veta}[Runge (special)]
-	Let $G \subset ®C$ be a finite union of pairwise open discs as in above "poznamka"s. Then for each $f \in ©H(G)$ there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{loc.}}\rightrightarrows f$ on $G$.
+	Let $G \subset ®C$ be a finite union of pairwise disjoint open discs as in above "poznamka"s. Then for each $f \in ©H(G)$ there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{loc.}}\rightrightarrows f$ on $G$.
 
 	\begin{dukazin}
 		Let $©P := \LO \{1, z, …\}$ be the space of polynomials. Then $©P \subset ©H(G)$. Let $L \in ©H^*(G)$ and $L = 0$ on $©P$. We know that there is $λ \in ©H_0(®S \setminus G)$ such that ? is valid. So, $λ^{(n)}(∞) = 0$, $n \in ®N_0$. By the uniqueness theorem, we get $λ ≡ 0$, so $L = 0$ on $©H(G)$ (because $L = 0$ fits and is uniquely determined by $λ$). By HB theorem, $\overline{©P} = ©H(G)$.
@@ -705,7 +705,7 @@
 		Of course $L_2 \in ©C^*(\<Γ\>)$ and $f(z_1) = L_2(F(z_1, z_3))$, $z_1 \in K$.
 
 		Step 3: For a given $f \in ©H(G)$,
-		$$ L(f) = L_1(f(z_1)) = L_1(L_2(F(z_1, z_2))) \overset{\text{Fubini}} L_2(L_1(F(z_1, z_2))), $$
+		$$ L(f) = L_1(f(z_1)) = L_1(L_2(F(z_1, z_2))) \overset{\text{Fubini}}= L_2(L_1(F(z_1, z_2))), $$
 		hence
 		$$ L(f) = \frac{1}{2πi} \int_Γ f(z_2)·λ(z_2) dz_2, $$
 		where
@@ -768,10 +768,10 @@
 \end{definice}
 
 \begin{veta}[Runge]
-	Let $G \subset ®C$ be open, $E \subset ®S \setminus G$ and $m: E \rightarrow N \cup \{∞\}$. If $(E, m)$ has a limit point in every component of $®S \setminus G$, then the linear span of $®F(E, m)$ is dense in $©H(G)$.
+	Let $G \subset ®C$ be open, $E \subset ®S \setminus G$ and $m: E \rightarrow N \cup \{∞\}$. If $(E, m)$ has a limit point in every component of $®S \setminus G$, then the linear span of $©F(E, m)$ is dense in $©H(G)$.
 
 	\begin{dukazin}
-		We shall use Hahn–Banach theorem. Let $L \in ©H^*(G)$ and $L = 0$ on $®F(E, m)$. We need to show $L = 0$ on $©H(G)$. Let $λ \in ©H_0(®S \setminus G)$ which represents $L$ in the sense of theorem describing $©H^*(G)$.
+		We shall use Hahn–Banach theorem. Let $L \in ©H^*(G)$ and $L = 0$ on $©F(E, m)$. We need to show $L = 0$ on $©H(G)$. Let $λ \in ©H_0(®S \setminus G)$ which represents $L$ in the sense of theorem describing $©H^*(G)$.
 
 		If $e \in E \cap ®C$, $m(e) < ∞$, then $λ(e) = -L\(\frac{1}{z - e}\) = 0$. If $e \in E \cap ®C$, $m(e) = ∞$, then $\frac{λ^{(k)}(e)}{k!} = -L\(\frac{1}{(z - e)^k}\) = 0$ $\forall k \in ®N_0$. If $∞ \in E$, $m(∞) = ∞$, then $\frac{λ^{k + 1}(∞)}{(k+1)!} = L(z^k) = 0$ $\forall k \in ®N_0$.
 
@@ -782,13 +782,13 @@
 \end{veta}
 
 \begin{veta}[Runge, classical version]
-	Let $G \subset ®C$ be open and $f \in ©H(G)$. Then there are rational functions $R_n$, $n \in ®N$ with poles outside $G$ such that $R_n \overset{\text{Loc.}} f$ on $G$.
+	Let $G \subset ®C$ be open and $f \in ©H(G)$. Then there are rational functions $R_n$, $n \in ®N$ with poles outside $G$ such that $R_n \overset{\text{Loc.}}\rightrightarrows f$ on $G$.
 
-	If, in addition, $®S \setminus G$ is connected, then there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{Loc.}} f$ on $G$.
+	If, in addition, $®S \setminus G$ is connected, then there are polynomials $P_n$, $n \in ®N$, such that $P_n \overset{\text{Loc.}}\rightrightarrows f$ on $G$.
 
 	\begin{dukazin}
 		„Second part“: Let $E = \{∞\}$ and put $m(∞) = ∞$. Then
-		$$ ®F(E, m) = \{1, z, …, z^k, …\} $$
+		$$ ©F(E, m) = \{1, z, …, z^k, …\} $$
 		and by the previous theorem, the polynomials are dense in $©H(G)$.
 
 		„First part“: Let $E \subset ®S \setminus G$ containing at least one point of every component of $®S \setminus G$. Put $m = ∞$ on $E$. Then $\LO(©F(E, m))$ is dense in $©H(G)$ and it is a subspace of rational functions with poles outside $G$.
@@ -798,7 +798,7 @@
 % 13. 04. 2023
 
 \begin{dusledek}[Cauchy's theorem for simply connected domains]
-	Let $G \subset ®C$ be open a nd $®S \setminus G$ be connected. If $f \in ©H(G)$ and $φ$ is a closed curve in $G$, then $\int_φ f = 0$.
+	Let $G \subset ®C$ be open and $®S \setminus G$ be connected. If $f \in ©H(G)$ and $φ$ is a closed curve in $G$, then $\int_φ f = 0$.
 
 	\begin{dukazin}
 		By Runge, there are polynomials $P_n$ such that $P_n \overset{\text{Loc.}}\rightrightarrows f$ on $G$. Then ($P_n$ has a primitive function in ®C) $0 = \int_φ P_n \rightarrow \int_φ f$.
@@ -952,7 +952,7 @@
 		Let $H: [0, 1] \times [0, 1] \rightarrow G$ be continuous, $φ_0 = φ$, $φ_1 = ψ$ and $φ_s(0) = φ_s(1)$, $\forall s \in [0, 1]$, where $φ_s(t) = H(s, t)$. Put $ε := \dist(z_0, H([0, 1]^2)) > 0$ ($H([0, 1]^2)$ is compact).
 
 		Since $H$ is uniformly continuous, there is $n \in ®N$ such that for each $k \in [n - 1]$ and $t \in [0, 1]$ we have
-		$$ \left| φ_{\frac{k}{n}}(t) - φ_{\frac{k+1}{n}}(t)\right| = \left|H(\frac{k}{n}, t) - H(\frac{k+1}{n}, t)\right| < ε. $$
+		$$ \left| φ_{\frac{k}{n}}(t) - φ_{\frac{k+1}{n}}(t)\right| = \left|H\(\frac{k}{n}, t\) - H\(\frac{k+1}{n}, t\)\right| < ε. $$
 		In particular, $φ_{\frac{k}{n}}$ and $φ_{\frac{k+1}{n}}$ satisfy the assumptions of proposition. Hence
 		$$ \ind_{φ_0} z_0 = \ind_{φ_{\frac{1}{n}}} z_0 = \ind_{φ_{\frac{2}{n}}} z_0 = … = \ind_{φ_1} z_0. $$
 	\end{dukazin}
@@ -974,9 +974,9 @@
 	For $α \in ®D$ put $φ_α(z) := \frac{z - α}{1 - \overline{α}z}$. Then
 
 	\begin{itemize}
-		\item $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ is one-to-one, $φ_α(®D) = ®D$, $φ_α(®T) = ®T := \{z \in ®C | |z| = 1\}$;
-		\item $(φ_α)_{-1} = φ_{-α}$;
-		\item $φ_α(α) = 0$, $φ_α'(α) = \frac{1}{1 - |α|^2}$, $φ_α'(0) = 1 - |α|^2$.
+		\item[i] $φ_α \in ©H\(®C \setminus \{\frac{1}{\overline{α}}\}\)$, $φ_α$ is one-to-one, $φ_α(®D) = ®D$, $φ_α(®T) = ®T := \{z \in ®C | |z| = 1\}$;
+		\item[ii] $(φ_α)_{-1} = φ_{-α}$;
+		\item[iii] $φ_α(α) = 0$, $φ_α'(α) = \frac{1}{1 - |α|^2}$, $φ_α'(0) = 1 - |α|^2$.
 	\end{itemize}
 
 	\begin{dukazin}[ii)]
@@ -1005,9 +1005,9 @@
 \end{veta}
 
 \begin{lemma}[Schwarz–Pick]
-	Let $F \in ©H(®D)$, $F(®D) \subset ®D$ and $F(α) = β$. Then $|F'(α)| ≤ \frac{1 - |β|^2}{1 - |α|^2}$. If the equality occurs, then $F(z) = φ_{-b}(λ φ_α(z))$, $z \in ®D$, for $λ \in ®C$, $|λ| = 1$.
+	Let $F \in ©H(®D)$, $F(®D) \subset ®D$ and $F(α) = β$. Then $|F'(α)| ≤ \frac{1 - |β|^2}{1 - |α|^2}$. If the equality occurs, then $F(z) = φ_{-β}(λ φ_α(z))$, $z \in ®D$, for $λ \in ®C$, $|λ| = 1$.
 
-	In particular $F'(0) < 1$ unless $F$ is a rotation.
+	In particular $|F'(0)| < 1$ unless $F$ is a rotation.
 
 	\begin{dukazin}
 		Use the Schwarz lemma for $f := φ_β ∘ F ∘ φ_{-α}$. Then $|f'(0)| ≤ 1$ and
@@ -1040,7 +1040,7 @@
 	\begin{dukazin}[First property of $Σ$]
 		Let $w_0 \in ®C \setminus G$. Then by (SC7), there is $φ \in ©H(G)$ such that $z - w_0 = φ^2(z)$, $z \in G$. „If $φ(z_1) = ± φ(z_2)$, then $z_1 = z_2$.“: Indeed, $z_1 - w_0 = φ^2(z_1) = φ^2(z_2) = z_2 - w_0$.
 
-		By this, $φ$ is one-to-one and $0 ≠ w \in φ(G) \implies -w \notin φ(G)$. Since $\O ≠ φ(G)$ is open, there is $0 \notin U(a, r) \subset φ(G)$. By previous implication, we have $U(-a, r) \cap φ(G) = \O$, i.e., $|φ(z) + a| ≥ r$, $\forall z \in G$.
+		By this, $φ$ is one-to-one and $0 ≠ w \in φ(G) \implies -w \notin φ(G)$. Since $\O ≠ φ(G)$ is open, there is $0 \notin U(a, r) \subset φ(G)$. By the previous implication, we have $U(-a, r) \cap φ(G) = \O$, i.e., $|φ(z) + a| ≥ r$, $\forall z \in G$.
 
 		Put $ψ := \frac{r}{2(φ(z) + a)}, z \in G$. Then $|ψ| ≤ \frac{1}{2}$ on $G$, so $ψ \in Σ$.
 	\end{dukazin}
@@ -1061,7 +1061,7 @@
 \end{definice}
 
 \begin{definice}
-	Let $Ω, G \subset ®S$ be open. We say that $G$ and $Ω$ are conformally equivalent (we write $G \sim Ω$) if there is a conformal map $f: G \overset{\text{onto}} Ω$.
+	Let $Ω, G \subset ®S$ be open. We say that $G$ and $Ω$ are conformally equivalent (we write $G \sim Ω$) if there is a conformal map $f: G \overset{\text{onto}}\rightarrow Ω$.
 \end{definice}
 
 \begin{priklad}
@@ -1124,7 +1124,7 @@ TODO!!!
 \end{poznamka}
 
 \begin{lemma}
-	If $f \in ®C^2(G)$, $G \subseteq ®C$ open, then $\partial \overline{\partial} f = \overline{\partial} \partial f = \frac{1}{4}Δf$, where $Δ := \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$ is the Laplace operator.
+	If $f \in ©C^2(G)$, $G \subseteq ®C$ open, then $\partial \overline{\partial} f = \overline{\partial} \partial f = \frac{1}{4}Δf$, where $Δ := \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$ is the Laplace operator.
 
 	\begin{dukazin}
 		$$ \partial \overline{\partial} f = \frac{1}{4}\(\frac{\partial}{\partial x} - i\frac{\partial}{\partial y}\)\(\frac{\partial}{\partial x} + i \frac{\partial}{\partial y}\)f = \frac{1}{4}Δf. $$
@@ -1132,7 +1132,7 @@ TODO!!!
 \end{lemma}
 
 \begin{definice}
-	If $G \subseteq ®C$ is open, we say that $u \in ®C^2(G)$ is harmonic if $Δu = 0$ on $G$.
+	If $G \subseteq ®C$ is open, we say that $u \in ©C^2(G)$ is harmonic if $Δu = 0$ on $G$.
 \end{definice}
 
 TODO example?
