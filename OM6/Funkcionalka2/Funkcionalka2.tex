@@ -1962,4 +1962,67 @@ TODO example?
 	Moreover, for $λ \in ®C$ we have $\Ker(λI - \int f dE) = \Rang(E(f^{-1}(\{λ\})))$. Thus $λ \in ς_P(\int TODO)$ TODO.
 \end{veta}
 
+% 22. 05. 2023
+
+\begin{lemma}
+	$H$ Hilbert, $(X, ©A)$ and $(Y, ©B)$ measurable spaces, $E$ spectral measure for $(X, ©A, H)$, $φ: X \rightarrow Y$ measurable. Then $φ(E): ©B \rightarrow ©L(H)$ defined by $φ(E)(B) := E(φ^{-1}(B))$, $B \in ©B$ is spectral measure for $(X, ©B, H)$ such that $\int g dφ(E) = \int g \circ φ dE$, $g: Y \rightarrow ®C$ measurable. In particular if $Y \subseteq ®C$, $\int φ dE = \int \id dφ(E)$.
+
+	\begin{dukazin}
+		„$φ(E)$ spectral measure“: Easy from definition.
+
+		Fix $g: Y \rightarrow ®C$ measurable. Then „$D(…) = D(…)$“:
+		$$ \forall x \in H: \int |g|^2 dφ(E)_{x, x} \overset{\triangle}= \int |g|^2 dφ(E_{x, y}) = \int |g ∘ φ|^2 d E_{x, y}. $$
+		(„$\triangle$“: $φ(E)_{x, y} = φ(E_{x, y})$, because $\forall A$ measurable: $φ(E)_{x, y}(A) = \<φ(E)(A)x, y\> =$\break$\<E(φ^{-1}(A))x, y\> = E_{x, y}(φ^{-1}(A)) = φ(E_{x, y})(A)$.)
+
+		„$\int g dφ(E) = \int g \circ φ dE$“:
+		$$ \forall x, y \in D(\int g d φ(E)): \<\int g dφ(E) x, y\> = \int g dφ(E)_{x, y} \overset{\triangle}= \int g dφ(E_{x, y}) = $$
+		$$ = \int g ∘ φ dE_{x, y} = \<\int g ∘ φ dE x, y\>. $$
+
+		„In particular“: We set $g = \id$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$T$ is self-adjoint operator on $H ≠ \{¦o\}$ Hilbert. Then $\exists!E$ spectral measure for $(®C, Borel(®C), H)$ such that $T = \int \id dE$.
+
+	Moreover $E(®C \setminus ς(T)) = 0$.
+
+	\begin{dukazin}[Existence]
+		Assume $U := ©C(T)$. Then $U \in ©L(H)$ is unitary onto, $I - U$ is one-to-one, $T = i(I + U)(I - U)^{-1}$. Let $F$ is spectral measure for $(ς(U), Borel(ς(U)), H)$ such that $U = \int \id dF$. Then $F(\{1\}) = 0$ (moreover part of the previous theorem). Let $F' = F|_{Borel(ς(U) \setminus \{1\})}$, then „$U = \int \id dF'$“:
+		$$ \forall x, y \in H: \<\int \id' dF' x, y\> = \int \id dF'_{x, y} = \int \id dF_{x, y} = \<Ux, y\>. $$
+
+		Assume $φ: ς(U) \setminus \{1\} \rightarrow ®C$, $ς(z) := i \frac{1 + z}{1 - z}$. Then $\Rang φ \subseteq ®R$ ($φ(z) = i \frac{1 + z}{1 - z}·\frac{1 - \overline{z}}{1 - \overline{z}} = i·\frac{1 - |z|^2 + z - \overline{z}}{|1 - z|^2} \overset{ς(U) \subseteq \{z, |z| = 1\}}= -\frac{2\im z}{|1 - z|^2} \in ®R$).
+
+		Put $E := φ(F')$, then $\int \id dE = \int φ dF'$. We want: $\int φ dF' = T$. Denote $S := \int φ dF'$. Then $S$ is self-adjoint. Then, $φ(z)(1 - z) = i(1 + z)$, so
+		$$ \(\int φ dF'\) \(\int (1 - z) dF'\) = S(I - U) $$
+		$$ LHS = \int i(1 + z) dF' = i(I + U). $$
+		$$ \(\text{because } D((\int φ)(\int 1 - z)) = D(1 - z) \cap D(\int i(1 + z)) = D(U) \cap D(U) = D(\int i(1 + z))\) $$
+
+		Thus ($D(S(I - U)) = D(I + U) = D(I - U)$) $D(S) \subseteq \Rang(I - U) = D(T)$. And $T = i(I + U)(I - U)^{-1} = S(I - U)(I - U)^{-1} = S|_{D(T)}$ ($R(I - U) = D(T)$). So, $T \subseteq S$. And because $S$ and $T$ are self-adjoint, so $S = S^* \subseteq T^* = T$. Thus $T = S$.
+	\end{dukazin}
+
+	\begin{dukazin}[Moreover]
+		„In general, $E'((ess\Rang id)^C) = 0$ (whenever $E'$ spectral measure such that $\int \id dE' = T$)“: Choose $λ \notin ess\Rang \id$, then $\exists r > 0$: $E(U(λ, r)) = 0$. Then, from Lindelöf's property, exist $λ_n$, $r_n$ such that $E(U(λ_n, r_n)) = 0$ and $\bigcup U(λ_n, r_n) \supseteq (ess\Rang \id)^C$. Then $E((ess\Rang \id)^C) = 0$ (countable union of zero sets).
+
+		So, from the theorem above, $E'(ς(T)^C) = E((ess\Rang \id)^C) = 0$.
+	\end{dukazin}
+
+	\begin{dukazin}[Uniqueness]
+		Let $E'$ be such that $T = \id dE'$. We know $E'(ς(T)^C) = 0$. Let $ψ := \frac{z - i}{z + i}$, $z ≠ -i$, and $ψ := 0$, $z = i$, and put $U := \int ψ dE'$. Then „$U = ©C(T)$“: We have $E'((ess\Rang \id)^C) = 0$ and $|ψ(z)| = 1$ on $ess\Rang \id = ς(T) \subseteq ®R$. Thus $U \in ©L(H)$. Next $ψ(z)(z + i) = z - i$ $\implies$ $U(T + iI) = \(\int ψ dE'\)\(\int (z + i) dE'\) = \int (z - i) dE' = T - iI$. So $U = ©C(T)$.
+
+		Next step: Choose $\tilde ψ: ®C \rightarrow ς(©C(T))$ measurable function such that $\tilde ψ = ψ$ on $ψ^{-1}(ς(©C(T)))$. Then whenever $E'$, $E''$ are spectral measures from ?, then $\tilde ψ(E') = \tilde φ(E'')$. Then it suffices „$\int \id d\tilde ψ(E') = ©C(T) = U$“:
+		We have $U = \int ψ dE' = \int \id dψ(E')$, so $E'(ψ^{-1}(ς(U)^C)) ψ(E')(ς(U)^C) = 0$.
+
+		Then $E'(A) = \((φ ∘ ψ)(E)\)(A) = E'(ψ^{-1}φ^{-1}(A)) = E'(\tilde ψ^{-1} \tilde φ^{-1}(A) \cap ς(T)) =$\break$ = E''(\tilde ψ^{-1} \tilde φ^{-1}(A) \cap ς(T)) = … = E''(A)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $T$ be self-adjoint operator on a Hilbert space. Then $T$ is continuous iff $ς(T)$ is bounded.
+
+	\begin{dukazin}
+		„$\implies$“: We already know $ς(T) \subset B(0, \|T\|)$. „$\impliedby$“: We have $T = \int \id dE$ for $E$ spectral measure for $(®C, Borel(®C), H)$ and $E(ς(T)^C) = 0$. Thus $\id$ is "$E$-almost everywhere" bounded.
+	\end{dukazin}
+\end{dusledek}
+
 \end{document}
