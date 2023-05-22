@@ -51,7 +51,7 @@
 \end{definice}
 
 \begin{definice}[Banach algebra]
-	$(A, \|·\|)$ is Banach algebra $≡$ $(A, \|·\|)$ is normed algebra nad Banach space.
+	$(A, \|·\|)$ is Banach algebra $≡$ $(A, \|·\|)$ is normed algebra and Banach space.
 \end{definice}
 
 \begin{priklady}
@@ -104,7 +104,7 @@
 \end{poznamka}
 
 \begin{veta}
-	Let $A$ be a Banach algebra, for $a \in A$ consider $L_a \in ©L(A)$ defined as $L_a(x) := a·x$, $x \in A$. Then $I: A \rightarrow ®L(A)$, $a \mapsto L_a$ is continuous algebra homomorphism, $\|I\| ≤ 1$.
+	Let $A$ be a Banach algebra, for $a \in A$ consider $L_a \in ©L(A)$ defined as $L_a(x) := a·x$, $x \in A$. Then $I: A \rightarrow ©L(A)$, $a \mapsto L_a$ is continuous algebra homomorphism, $\|I\| ≤ 1$.
 
 	Moreover, if $A$ has a unit $e$, then $I$ is isomorphism into and $I(e) = \id$.
 
@@ -114,13 +114,13 @@
 		„$L_a \in ©L(A)$ and $I \in ©L(A, ©L(A))$, $\|I\| ≤ 1$“: Linearity is obvious, $\|L_a(x)\| = \|a·x\| ≤ \|a\|·\|x\|$, so $\|L_a\| ≤ \|a\|$ and so $\|I\| ≤ 1$. Since it is easily $I$ preserves multiplication, so we are left to prove the „Moreover“ part.
 
 		„$A$ has a unit $e$“: WLOG $A ≠ \{¦o\}$.
-		$$ \forall a \in A: \|I a\| = \|L_a\| ≥ \|L_a\(\frac{e}{\|e\|}\) = \frac{a}{\|e\|} = \frac{1}{\|e\|}·a. $$
+		$$ \forall a \in A: \|I a\| = \|L_a\| ≥ \left\|L_a\(\frac{e}{\|e\|}\)\right\| = \frac{|a|}{\|e\|} = \frac{1}{\|e\|}·|a|. $$
 		So $I$ is bounded from below, so $I$ is isomorphism.
 
 		$$ I(e)(x) = L_e(x) = x, \text{ so } I(e) = \id. $$
 
 		Finally, if $\|x^2\| = \|x\|^2$, $x \in A$, then $\forall a \in A:$
-		$$ \|a\| ≥ \|I(a)\| = \|L_a\| ≥ \|L_a \(\frac{a}{\|a\|}\)\| = \frac{\|a^2\|}{\|a\|} = \|a\|. $$
+		$$ \|a\| ≥ \|I(a)\| = \|L_a\| ≥ \left\|L_a \(\frac{a}{\|a\|}\)\right\| = \frac{\|a^2\|}{\|a\|} = \|a\|. $$
 		So $I$ is isometry.
 	\end{dukazin}
 \end{veta}
@@ -145,7 +145,7 @@
 % 14. 02. 2023
 
 \begin{tvrzeni}
-	If $(A, ·, e)$ is monoid and $x_1, …, x_n \in A$ commute, then $x_1·…·x_n \in A^x \Leftrightarrow \{x_1, …, x_n\} \subset A^x$.
+	If $(A, ·, e)$ is monoid and $x_1, …, x_n \in A$ commute, then $x_1·…·x_n \in A^\times \Leftrightarrow \{x_1, …, x_n\} \subset A^\times$.
 
 	\begin{dukazin}
 		It suffices to prove it for $n=2$ (and use induction). „If $x^{-1}$ and $y^{-1}$ exists, then $(xy)^{-1}$“ is easy from asociativity.
@@ -159,28 +159,28 @@
 
 	\begin{itemize}
 		\item $\|x\| < 1 \implies \exists(e - x)^{-1} \land (e - x)^{-1} = \sum_{n=0}^∞ x^n$;
-		\item $\exists x^{-1} \land \|h\| < \frac{1}{\|x^{-1}\|} \implies \exists(x + e)^{-1} \land \|(x + h)^{-1} - x^{-1}\| ≤ \frac{\|x^{-1}\|^2·\|h\|}{1 - \|x^{-1}\|·\|h\|}$.
+		\item $\exists x^{-1} \land \|h\| < \frac{1}{\|x^{-1}\|} \implies \exists(x + h)^{-1} \land \|(x + h)^{-1} - x^{-1}\| ≤ \frac{\|x^{-1}\|^2·\|h\|}{1 - \|x^{-1}\|·\|h\|}$.
 	\end{itemize}
 
 	\begin{dukazin}
 		„First“: We have $\|x^n\| ≤ \|x\|^n$, so $\sum_{n=0}^∞ x^n$ is absolute convergent series, so $\sum_{n=0}^∞ x^n \in A$. Moreover,
 		$$ (e - x)·\(\sum_{n=0}^∞ x^n\) = \lim_{N \rightarrow ∞} (e - x)·(e + x + … + x^N) = \lim_{N \rightarrow ∞} e - x^{N+1} = e, $$
-		because $\lim_{N \rightarrow ∞} \|x^{n+1}\| ≤ \lim_{N \rightarrow ∞} \|x\|^N = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
+		because $\lim_{N \rightarrow ∞} \|x^{N+1}\| ≤ \lim_{M \rightarrow ∞} \|x\|^M = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
 
 		„Second item“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first item), so from previous fact $(x + h)^{-1}$ exists. Moreover
 		$$ (x + h)^{-1} = (e + x^{-1} h)^{-1}·x^{-1} \overset{1)}= \sum_{n=0}^∞ \(-x^{-1} h\)^n x^{-1}, $$
 		so
-		$$ \|(x + h)^{-1} - x^{-1}\| = \|\sum_{n=1}^∞\(-x^{-1} h\)^n x^{-1}\| ≤ \|x^{-1}\|·\sum_{n=1}^∞ \|x^{-1} h\|^n ≤ $$
-		$$ ≤ \|x^{-1}\| \sum_{n=1}^∞ \sum_{n=1}^∞\(\|x^{-1}\|·\|h\|\)^n = \|x^{-1}\| · \frac{\|x^{-1}\| \|h\|}{1 - \|x^{-1}\|·\|h\|}. $$
+		$$ \|(x + h)^{-1} - x^{-1}\| = \left\|\sum_{n=1}^∞\(-x^{-1} h\)^n x^{-1}\right\| ≤ \|x^{-1}\|·\sum_{n=1}^∞ \|x^{-1} h\|^n ≤ $$
+		$$ ≤ \|x^{-1}\| \sum_{n=1}^∞\(\|x^{-1}\|·\|h\|\)^n = \|x^{-1}\| · \frac{\|x^{-1}\| \|h\|}{1 - \|x^{-1}\|·\|h\|}. $$
 	\end{dukazin}
 \end{lemma}
 
 \begin{dusledek}
-	$A$ Banach algebra with a unit $\implies$ $A^x \subset A$ is open and $A^x$ is topological group.
+	$A$ Banach algebra with a unit $\implies$ $A^\times \subset A$ is open and $A^\times$ is topological group.
 
 	\begin{dukazin}
-		$A^x \subset A$ is open by previous lemma (second item). So it remains to prove $x \mapsto x^{-1}$ is continuous:
-		$$ A^x \ni x_n \rightarrow x \in A^x \overset{?}\implies x_n^{-1} \rightarrow x^{-1}. $$
+		$A^\times \subset A$ is open by previous lemma (second item). So it remains to prove $x \mapsto x^{-1}$ is continuous:
+		$$ A^\times \ni x_n \rightarrow x \in A^\times \overset{?}\implies x_n^{-1} \rightarrow x^{-1}. $$
 		$$ \|x_n^{-1} - x^{-1}\| \overset{h:= x_n - x}≤ \frac{\|x^{-1}\|^2·\|x_n - x\|}{1 - \|x^{-1}\|·\|x_n - x\|} \rightarrow 0. $$
 	\end{dukazin}
 \end{dusledek}
@@ -247,7 +247,7 @@
 
 	\begin{itemize}
 		\item $\rho(x)$ is open set;
-		\item $\forall |\lambda| > \|x\|: \lambda \in \rho(x) \land R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$;
+		\item $\forall \lambda \in ®K, |\lambda| > \|x\|: \lambda \in \rho(x) \land R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$;
 		\item (important!) $\rho(x) \ni \lambda \mapsto R_x(\lambda)$ has derivative at each $\lambda \in \rho(x)$;
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu)·R_x(\nu) = R_x(\nu)·R_x(\mu)$;
 		\item $\forall \mu, \nu \in \rho(x): R_x(\mu) - R_x(\nu) = (\nu - \mu)·R_x(\mu)·R_x(\nu)$.
@@ -261,7 +261,7 @@
 
 		Fifth: In general $u·v = v·u \implies u^{-1}·v = v·u^{-1}$ (proof: $u^{-1} v = v·v^{-1}u^{-1}v = v·u^{-1} v^{-1} v = v u^{-1}$) so:
 		$$ R_x(\mu) - R_x(\nu) = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))^{-1}R_x(\nu) = $$
-		$$ = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)(R_x(\mu))R_x(\nu)^{-1} = $$
+		$$ = R_x(\mu)R_x(\nu)(R_x(\nu)^{-1}) - R_x(\mu)R_x(\mu)(R_x(\nu))^{-1} = $$
 		$$ = R_x(\mu) R_x(\nu) \(R_x(\nu)^{-1} - R_x(\mu)^{-1}\) = R_x(\mu) R_x(\nu) (\nu - \mu). $$
 	\end{dukazin}
 
@@ -280,12 +280,12 @@
 	$Y$ Banach space over ®C, $f: ®C \rightarrow Y$ has derivative at each point, $f$ is bounded ($≡$ $\|f\|$ is bounded). Then $f ≡ \const$.
 
 	\begin{dukazin}
-		Assume $f \not≡ \const$, so there are $a ≠ b \in ®C: f(a) ≠ f(b) \implies$ (by Hahn–Banach theorem) $\exists x^* \in Y^*: x^*(f(x)) ≠ x^*(f(x))$. From fact $x^* \in f: ®C \rightarrow ®C$ has derivative at each point is bounded, not constant which is in contradiction with Liouville theorem for complex valued functions.
+		Assume $f \not≡ \const$, so there are $a ≠ b \in ®C: f(a) ≠ f(b) \implies$ (by Hahn–Banach theorem) $\exists x^* \in Y^*: x^*(f(x)) ≠ x^*(f(x))$. From fact $x^* ∘ f: ®C \rightarrow ®C$ has derivative at each point is bounded, not constant which is in contradiction with Liouville theorem for complex valued functions.
 	\end{dukazin}
 \end{veta}
 
 \begin{dukaz}[Theorem before theory]
-	First case: „$A$ has a unit“: Then $\sigma(x) \subseteq B_{®C}(0, \|x\|)$ is closed, so $\sigma(x)$ is compact. Assume that $\rho(x) = ®C$. By previous tvrzeni we have $R_x: ®C \rightarrow A$ has derivative everywhere, and it is bounded because $\lim_|\lambda| \rightarrow ∞ R_x(\lambda) = \lim_{|\lambda|\rightarrow∞} \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}} = 0$. From previous theorem $R_x ≡ \const$ so $\lim_{|\lambda| \rightarrow ∞} R_x(\lambda) = 0 \implies R_x ≡ 0$. In particular $0 = R_x(0) = (-x)^{-1}$. \lightning (If $A ≠ \{0\}$ then $x^{-1} ≠ 0$ for $x \in A$.)
+	First case: „$A$ has a unit“: Then $\sigma(x) \subseteq B_{®C}(0, \|x\|)$ is closed, so $\sigma(x)$ is compact. Assume that $\rho(x) = ®C$. By the previous tvrzeni we have $R_x: ®C \rightarrow A$ has derivative everywhere, and it is bounded because $\lim_{|\lambda| \rightarrow ∞} R_x(\lambda) = \lim_{|\lambda|\rightarrow∞} \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}} = 0$. From previous theorem $R_x ≡ \const$ so $\lim_{|\lambda| \rightarrow ∞} R_x(\lambda) = 0 \implies R_x ≡ 0$. In particular $0 = R_x(0) = (-x)^{-1}$. \lightning{} (If $A ≠ \{0\}$ then $x^{-1} ≠ 0$ for $x \in A$.)
 
 	Second case: „$A$ hasn't a unit“, then $\sigma(x) := \sigma_{A_e}((x, 0))$ so we apply the already proven case.
 \end{dukaz}
@@ -300,7 +300,7 @@
 	\begin{dukazin}
 		Consider $\psi: ®C \rightarrow A$ defined as $\psi(\lambda) := \lambda·e$. This is algebraic homomorphism and $\|\psi(\lambda)\| = |\lambda|·\|e\|$, so it is isomorphism (and isometry, if $\|e\| = 1$).
 
-		It remains „$\phi$ is surjective“: Pick $a \in A$. From previously proved theorem $\exists \lambda \in \sigma(a)$, then $(\lambda e - a) \notin A^x$. So, $\lambda·e - a = 0$, then $\psi(\lambda) = a$.
+		It remains „$ψ$ is surjective“: Pick $a \in A$. From previously proved theorem $\exists \lambda \in \sigma(a)$, then $(\lambda e - a) \notin A^\times$. So, $\lambda·e - a = 0$, then $\psi(\lambda) = a$.
 	\end{dukazin}
 \end{veta}
 
@@ -313,15 +313,15 @@
 \end{veta}
 
 \begin{lemma}
-	$A$ Banach algebra with a unit, $x \in A$. For $p(z) = \sum_{j=1}^n \alpha_j z^j \in ®C$ a polynom (with complex coefficients) we put $p(x) = \sum_{j=1}^n \alpha_j x^j \in A$. Then $\sigma(p(x)) = p(a(x))$.
+	$A$ Banach algebra with a unit, $x \in A$. For $p(z) = \sum_{j=1}^n \alpha_j z^j \in ®C$ a polynom (with complex coefficients) we put $p(x) = \sum_{j=1}^n \alpha_j x^j \in A$. Then $\sigma(p(x)) = p(ς(x))$.
 
 	\begin{dukazin}
-		Fix $\lambda \in ®C$ and write $(\lambda - p)(z) = c·\prod_{i=1}^m(z - z_i)$, where $z_1, …, z_m$ are roots of $\lambda - p$. Then $\lambda \in \sigma(p(x)) \Leftrightarrow (\lambda e - p(x))^{-1}$ does not exists. $(\lambda e - p(x))^{-1} = c·\prod_{i=1}^m (x - z_i·e)$, so it does'nt exists if and only if $\exists i \in [m]$, such that $(x - z_i·e)^{-1}$ doesn't exists $\Leftrightarrow$ $z_i \in \sigma(x)$ $\Leftrightarrow$ $\exists$ root $\nu$ of $\lambda - p$ such that $\nu \in \sigma(x)$ $\Leftrightarrow$ $\exists \nu \in \sigma(x): p(\nu) = \lambda$ $\Leftrightarrow$ $\lambda \in p(\sigma(x))$.
+		Fix $\lambda \in ®C$ and write $(\lambda - p)(z) = c·\prod_{i=1}^m(z - z_i)$, where $z_1, …, z_m$ are roots of $\lambda - p$. Then $\lambda \in \sigma(p(x)) \Leftrightarrow (\lambda e - p(x))^{-1}$ does not exists. $(\lambda e - p(x))^{-1} = c·\prod_{i=1}^m (x - z_i·e)$, so it doesn't exists if and only if $\exists i \in [m]$, such that $(x - z_i·e)^{-1}$ doesn't exists $\Leftrightarrow$ $z_i \in \sigma(x)$ $\Leftrightarrow$ $\exists$ root $\nu$ of $\lambda - p$ such that $\nu \in \sigma(x)$ $\Leftrightarrow$ $\exists \nu \in \sigma(x): p(\nu) = \lambda$ $\Leftrightarrow$ $\lambda \in p(\sigma(x))$.
 	\end{dukazin}
 \end{lemma}
 
 \begin{dukaz}[Beurling–Gelfand]
-	WLOG $A$ has a unit. Step 1, „$r(x) ≤ \inf_n \sqrt[n]{\|x^n\|}$“: fix $\lambda \in \sigma(x)$. By previous lemma $\forall n: \lambda^n \in \sigma(x^n)$. By theorem 'Before theory' we have $\forall n: |\lambda|^n ≤ \|x^n\|$.
+	WLOG $A$ has a unit. Step 1, „$r(x) ≤ \inf_n \sqrt[n]{\|x^n\|}$“: fix $\lambda \in \sigma(x)$. By the previous lemma $\forall n: \lambda^n \in \sigma(x^n)$. By theorem 'Before theory' we have $\forall n: |\lambda|^n ≤ \|x^n\|$.
 
 	Step 2, „$r(x) ≥ \limsup_n \sqrt[n]{\|x^n\|}$“:
 %
@@ -336,7 +336,7 @@
 	$A$ Banach algebra, $x \in A$ and $|\lambda| > r(x)$. Then $\sum_{n=1}^∞ \frac{x^n}{\lambda^n}$ is absolutely convergent and $R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$.
 
 	\begin{dukazin}
-		Fix $q$, such that $\frac{r(x)}{|\lambda|} < q < 1$. By previous theorem, $\exists n_0\ \forall n ≥ n_0: \frac{\sqrt[n]{\|x^n\|}}{\lambda} < q$, so $\frac{\|x^n\|}{|\lambda|^n} < q^n$, $n ≥ n_0$. Thus $\sum \left\| \frac{x^n}{\lambda^n}\right\| ≤ ∞$, so the sum is absolutely convergent.
+		Fix $q$, such that $\frac{r(x)}{|\lambda|} < q < 1$. By the previous theorem, $\exists n_0\ \forall n ≥ n_0: \frac{\sqrt[n]{\|x^n\|}}{\lambda} < q$, so $\frac{\|x^n\|}{|\lambda|^n} < q^n$, $n ≥ n_0$. Thus $\sum \left\| \frac{x^n}{\lambda^n}\right\| ≤ ∞$, so the sum is absolutely convergent.
 
 		Now we easily check that $(\lambda e - x)^{-1} = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}$.
 	\end{dukazin}
@@ -358,7 +358,7 @@
 
 		„First item“: Let $C \subset \rho_A(x)$ be component. Pick $\lambda_0 \in C \cap \sigma_B(x)$. Wanted: „$C \setminus \sigma_B(x) = \O$“. Pick $x^* \in A^*: x^*|_B = 0 \land x^*(R_x(\lambda)) = 1$ (separate $B$ and $R_x(\lambda) \notin B$). Then $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is holomorphic function on open (because maximum) connected set $C$. Which is zero\footnote{For $\lambda \in C \setminus \sigma_B(x)$, $(\lambda e - x)^{-1}$ exists in $B$ so $R_x(\lambda) \in B$ and therefore, $x^*(R_x(\lambda)) = 0$} on $C \setminus \sigma_B(x)$.
 
-		Since $C \setminus \sigma_B(x)$ is open, if it is nonempty it contains a ball, so it has cluster point. Thus $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is such that $\{\lambda \in C | x^*(R_x(\lambda))\} = 0$ has a cluster point, so from complex analysis (uniqueness theorem) it is constant zero. \lightning with $x^*(R_x(\lambda_0)) = 1$.
+		Since $C \setminus \sigma_B(x)$ is open, if it is nonempty it contains a ball, so it has cluster point. Thus $C \ni \lambda \mapsto x^*(R_x(\lambda))$ is such that $\{\lambda \in C | x^*(R_x(\lambda))\} = 0$ has a cluster point, so from complex analysis (uniqueness theorem) it is constant zero. \lightning{} with $x^*(R_x(\lambda_0)) = 1$.
 
 		„Second item“: Pick $\lambda \in \sigma_B(x) \setminus \sigma_A(x)$ and let $C \subset \rho_A(x)$ be a component containing $\lambda$. By first item, $C \subseteq \sigma_B(x)$, $C$ is open, so $\lambda \in C \subseteq \Int(\sigma_B(x))$.
 	\end{dukazin}
@@ -405,7 +405,7 @@
 \end{poznamka}
 
 \begin{definice}
-	Let $A$ be a Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open and $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $f(x) := \frac{1}{2\pi i} \int_\Gamma f·R_x$, where is any cycle which circulates $\sigma(x)$ in $\Omega$.
+	Let $A$ be a Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open and $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $f(x) := \frac{1}{2\pi i} \int_\Gamma f·R_x$, where $Γ$ is any cycle which circulates $\sigma(x)$ in $\Omega$.
 \end{definice}
 
 \begin{poznamka}
@@ -415,11 +415,11 @@
 \begin{veta}[Holomorphic calculus]
 	$A$ Banach algebra with unit, $x \in A$, $\Omega \subset ®C$ open such that $\sigma(x) \subset \Omega$, $f \in ©H(\Omega)$. Then $\Phi: ©H(\Omega) \rightarrow A$ defined as $\Phi(f) = f(x)$ (from definition above) has the following properties:\vspace{-0.7em}
 	\begin{itemize}
-		\item $\Phi$ is algebra homomorphism, $\Phi(1) = e$, $\phi(\id) = x$;
-		\item $f_n \overset{\text{loc.}}\rightrightarrows f$ in $H(\Omega)$, then $f_n(x) \rightarrow f(x)$;
+		\item $\Phi$ is algebra homomorphism, $\Phi(1) = e$, $Φ(\id) = x$;
+		\item $f_n \overset{\text{loc.}}\rightrightarrows f$ in $©H(\Omega)$, then $f_n(x) \rightarrow f(x)$;
 		\item $f(x)^{-1}$ exists $\Leftrightarrow$ $f ≠ 0$ on $\sigma(x)$, in this case $f(x)^{-1} = \frac{1}{f}(x)$;
 		\item $\sigma(f(x)) = f(\sigma(x))$;
-		\item if $\Omega_1$ is open and $f(\sigma(x)) \in \Omega_1$, $g \in ©H(\Omega_1)$, then $(g \circ f)(x) = g(f(x))$;
+		\item if $\Omega_1$ is open and $f(\sigma(x)) \subseteq \Omega_1$, $g \in ©H(\Omega_1)$, then $(g \circ f)(x) = g(f(x))$;
 		\item if $y \in A$ commutes with $x$, then $y$ commutes with $f(x)$.
 	\end{itemize}
 
@@ -449,7 +449,7 @@
 	It remains that „if $f(z) = z^k$, $k \in ®N \cup \{0\}$ then $f(x) = x^k$“ (we want it for $k = 0$ and $k = 1$). Put $\Gamma(t) = r·e^{it}$, $t \in [0, 2\pi]$, where $r > \|x\|$ arbitrary. By some theorem:
 	$$ R_x(\lambda) = \sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}, \qquad |\lambda| > \|x\|. $$
 	Thus (we switch integral and sum, because later we realize that sum of integral of absolute value is finite)
-	$$ \forall x^* \in A^*: x^*(f(x)) = \frac{1}{2 \pi i} \int_\Gamma \lambda^k x^*(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n+1}}) d\lambda = \frac{1}{2\pi i} \int_\Gamma \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = $$
+	$$ \forall x^* \in A^*: x^*(f(x)) = \frac{1}{2 \pi i} \int_\Gamma \lambda^k x^*\(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n+1}}\) d\lambda = \frac{1}{2\pi i} \int_\Gamma \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = $$
 	$$ = \frac{1}{2\pi i} \sum_{n=0}^∞ \int_\Gamma \frac{x^*(x^n)}{\lambda^{n - k + 1}} d\lambda = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_\Gamma \frac{1}{\lambda^{n - k + 1}} d\lambda = $$
 	$$ = \frac{1}{2\pi i} \sum_{n=0}^∞ x^*(x^n) \int_0^{2\pi} i \frac{1}{\Gamma(t)^{n - k}} dt = x^*(x^k) + \sum 0, $$
 	because $\Gamma$ (is $2\pi$ periodic).
@@ -511,7 +511,7 @@
 	$A$ Banach algebra, $M := \Delta(A) \cup \{0\}$. Then $M \subset (B_{A^*}, w^*)$ is compact, $\Delta(A)$ is locally compact and if $A$ has u unit, then $\Delta(A)$ is compact. The mapping $\Phi: M \rightarrow \Delta(A_e)$, $\Phi(\phi) = \tilde \phi$ is $w^*$–$w^*$ homeomorphism.
 
 	\begin{dukazin}
-		By previous proposition, $M \subset (B_{A^*}, w^*)$ ($(B_{A^*}, w^*)$ is compact by previous semester). So, it suffices to check that $M$ is $w^*$-closed.
+		By the previous proposition, $M \subset (B_{A^*}, w^*)$ ($(B_{A^*}, w^*)$ is compact by previous semester). So, it suffices to check that $M$ is $w^*$-closed.
 		$$ M = \bigcap_{x, y \in A} \{\phi \in A^* | \phi(x·y) = \phi(x)·\phi(y)\}. $$
 		Sets from RHS is closed by previous semester, so, $M$ is closed. Thus $M$ is compact.
 
@@ -544,7 +544,7 @@
 
 	\begin{itemize}
 		\item Any proper ideal is contained in a maximum ideal. (From Zorn's lemma. And $I \subset A$ ideal is proper $\Leftrightarrow$ $e \notin I$.)
-		\item $I \subset A$ proper ideal $\implies$ $\overline{I} \in A$ is proper ideal. In particular, maximal ideals are closed. (Easy: $\overline{I}$ is ideal. Moreover, $I \cap A^* = \O$ (if $x \in I$ was invertible thus $e = x·x^{-1} \in I$, but $e \notin I$). So ($A^*$ is open) $\overline{I} \cap A^* = \O$ and therefore $e \notin \overline{I}$.)
+		\item $I \subset A$ proper ideal $\implies$ $\overline{I} \subset A$ is proper ideal. In particular, maximal ideals are closed. (Easy: $\overline{I}$ is ideal. Moreover, $I \cap A^\times = \O$ (if $x \in I$ was invertible thus $e = x·x^{-1} \in I$, but $e \notin I$). So ($A^\times$ is open) $\overline{I} \cap A^\times = \O$ and therefore $e \notin \overline{I}$.)
 	\end{itemize}
 \end{tvrzeni}
 
@@ -558,8 +558,6 @@
 
 \begin{poznamka}
 	From now on, $A$ will be commutative.
-
-	Step 1: „Hahn-Banach“: $I \subset A$ closed ideal $\implies$ $\exists \phi \in \Delta(A): \phi / I ≡ …$.
 \end{poznamka}
 
 \begin{veta}
@@ -587,10 +585,10 @@
 \end{lemma}
 
 \begin{dusledek}[Hahn–Banach like theorem]
-	$A$ is commutative Banach algebra with a unit, $I \subset A$ proper ideal. Then $\exists \phi \in \Delta(A): \phi / I ≡ 0$.
+	$A$ is commutative Banach algebra with a unit, $I \subset A$ proper ideal. Then $\exists \phi \in \Delta(A): \phi|_I ≡ 0$.
 
 	\begin{dukazin}
-		Let $\tilde I \supseteq I$ be maximal ideal. By previous theorem there is $\phi \in \Delta(A): \tilde I = \Ker \phi$.
+		Let $\tilde I \supseteq I$ be maximal ideal. By the previous theorem there is $\phi \in \Delta(A): \tilde I = \Ker \phi$.
 	\end{dukazin}
 \end{dusledek}
 
@@ -600,9 +598,9 @@
 	\begin{dukazin}
 		„$Φ^{\#}(\phi) \in \Delta(A)$“: $Φ^{\#}(φ) = φ \circ Φ \in \Delta(A) \cup \{0\}$ and $φ \not≡ 0 \land Φ$ is onto $\implies φ \circ Φ ≠ 0$.
 
-		„$Φ^{\#}$ is $w^*$-$W^*$ continuous“: $φ_i \overset{w^*}\rightarrow φ \implies φ_i \circ Φ \overset{w^*}\rightarrow φ \circ Φ$.
+		„$Φ^{\#}$ is $w^*$-$w^*$ continuous“: $φ_i \overset{w^*}\rightarrow φ \implies φ_i \circ Φ \overset{w^*}\rightarrow φ \circ Φ$.
 
-		Apply the proven part to $Φ^{-1}$, obtain that $(Φ^{-1})^{\#}: \Delta(A) \rightarrow \Delta(B)$ is $w^*$-$W^*$ continuous. Moreover we have $Φ^{\#} \circ (Φ^{-1})^{\#} = \id \land (Φ^{-1})^{\#} \circ Φ^{\#}$.
+		Apply the proven part to $Φ^{-1}$, obtain that $(Φ^{-1})^{\#}: \Delta(A) \rightarrow \Delta(B)$ is $w^*$-$w^*$ continuous. Moreover we have $Φ^{\#} \circ (Φ^{-1})^{\#} = \id \land (Φ^{-1})^{\#} \circ Φ^{\#}$.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -687,10 +685,10 @@
 	\begin{dukazin}
 		„a) $\subseteq$“: $λ \in ς(x) \Leftrightarrow (λ·e - x)^{-1}$ does not exists $\implies$ (Lemma above) $(λ e - x)A$ is proper ideal $\implies$ $\exists φ \in Δ(A): φ|_{(λ e - x)A} ≡ 0$ $\implies \exists φ \in Δ(A): 0 = φ(λ e - x) = λ - φ(x) = λ - \hat{x}(φ)$ $\implies λ \in \Rang \hat{x}$.
 
-		„$\supseteq$“ follows from Tvrzeni above, $φ(x) \in ς(x)$ for $φ \in Δ(A)$.
+		„$\supseteq$“ follows from the Tvrzeni above, $φ(x) \in ς(x)$ for $φ \in Δ(A)$.
 
 		„b)“ For $x \in A:$
-		$$ ς(x) = ς_{A_e}((x, 0)) \overset{\text{a)}}= \Rng \hat{(x, 0)} = \(\{\tilde φ | φ \in Δ(A) \cup \{0\}\}\) = $$
+		$$ ς(x) = ς_{A_e}((x, 0)) \overset{\text{a)}}= \Rng \widehat{(x, 0)} = \(\{\tilde φ | φ \in Δ(A) \cup \{0\}\}\) = $$
 		$$ = \{φ(x) | φ \in Δ(A) \cup \{0\}\} = \Rang \hat{x} \cup \{0\}. $$
 
 		„c)“ $\|\hat{x}\|_∞ = \sup\{|λ| | λ \in \Rang \hat{x}\} = \sup\{|λ| | λ \in \Rang \hat{x} \cup \{0\}\} = \sup\{|λ| | λ \in ς(x)\} = r(x)$.
@@ -752,7 +750,7 @@
 	\begin{itemize}
 		\item $e$ is left/right unit $\implies$ $e$ is unit and $e = e^*$. ($e$ is left unit $\Leftrightarrow$ $e^*$ is right unit. So there is unit.)
 		\item $A$ is $C^*$-algebra $\Leftrightarrow$ $\|x·x^*\| ≥ \|x\|^2$, $x \in A$. Then $\|x^*\| = \|x\|$, $x \in A$. („$\implies$“: clear, „$\impliedby$“: Then $\forall x \in A: \|x\|^2 ≤ \|x·x^*\| ≤ \|x\|·\|x^*\|$, so $\|x\| ≤ \|x^*\|$, and applying to $x^*$ we get $\|x^*\| ≤ \|x\|$. But then we have $\|x·x^*\| ≤ \|x\|·\|x^*\| = \|x\|^2$.)
-		\item Let $A$ has a unit. then $x^{-1}$ exists $\Leftrightarrow$ $(x^*)^{-1}$ exists. Then $(x^*)^{-1} = (x^{-1})^*$. („$\implies$“: $x^*·(x^{-1})^* = (x^{-1}x)^* = e^* = e$, analogically $(x^{-1})^* x^* = e$. „$\impliedby$“: Apply the proven part to $x^*$.)
+		\item Let $A$ has a unit, then $x^{-1}$ exists $\Leftrightarrow$ $(x^*)^{-1}$ exists. Then $(x^*)^{-1} = (x^{-1})^*$. („$\implies$“: $x^*·(x^{-1})^* = (x^{-1}x)^* = e^* = e$, analogically $(x^{-1})^* x^* = e$. „$\impliedby$“: Apply the proven part to $x^*$.)
 		\item $λ \in ς(x) \Leftrightarrow \overline{λ} \in ς(x^*)$. ($A$ has a unit: $λ \notin ς(x) \Leftrightarrow \exists(λe - x)^{-1} \Leftrightarrow \exists\((λ e - x)^*\)^{-1} \Leftrightarrow \overline{λ} \notin ς(x^*)$. If $A$ has not a unit, then we use previous sentence and next theorem?)
 		\item $x + x^*$, $x^*·x$, $x·x^*$, $i·(x - x^*)$ are self-adjoint. (Easy, omitted.)
 		\item $\exists! u, v \in A$ self-adjoint: $x = u + i·v$. Then $x^* = u - i·v$, and $x$ is normal $\Leftrightarrow$ $uv = vu$.
@@ -800,7 +798,7 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		By previous theorem, WLOG $A$ has a unit.
+		By the previous theorem, WLOG $A$ has a unit.
 
 		„a)“: Let $\alpha + i\beta \in ς(x)$, $\alpha, \beta \in ®R$. We want $\beta = 0$. Trick: $x_t := x + i·t·e$, $t \in ®R$. Then
 		$$ \alpha + i·(\beta + t) \in ς(x_t) (\impliedby (\alpha + i(\beta + t))e - x_t = (\alpha + i·\beta)e - x), $$
@@ -820,7 +818,7 @@
 \end{definice}
 
 \begin{dusledek}
-	Let $A$ be a $C^*$-algebra and $Φ \in Δ_A$. Then $Φ$ is $*$-homomorphism.
+	Let $A$ be a $C^*$-algebra and $Φ \in Δ(A)$. Then $Φ$ is $*$-homomorphism.
 
 	\begin{dukazin}
 		„If $x = x^*$“, then $Φ(x) \in ς(x) \subseteq ®R$, so $Φ(x^*) = Φ(x) = \overline{Φ(x)}$.
@@ -833,14 +831,14 @@
 	Let $A, B$ be $C^*$-algebras, $Φ: A \rightarrow B$ is $*$-homomorphism. Then $Φ$ is continuous and $\|Φ\| ≤ 1$.
 
 	\begin{dukazin}
-		$$ \forall x \in A: \|Φ(x)\|^2 = \|Φ(x)^*·Φ(x)\| = r(Φ(x^*)·Φ(x)) = r(Φ(x^*x)) \overset{*}= r(x^* x) = \|x^*x\| = \|x\|^2.  $$
-		Thus it suffices to show that (by following lemma)
+		$$ \forall x \in A: \|Φ(x)\|^2 = \|Φ(x)^*·Φ(x)\| = r(Φ(x^*)·Φ(x)) = r(Φ(x^*x)) \overset{\circledast}= r(x^* x) = \|x^*x\| = \|x\|^2.  $$
+		Thus for $\circledast$ it suffices to show that (by following lemma)
 		$$ ς(Φ(x^* x)) \subseteq ς(x^* x) \cup \{0\}. $$
 	\end{dukazin}
 \end{tvrzeni}
 
 \begin{lemma}
-	Let $A, B$ be Banach algebras, $Φ: A \rightarrow B$ algebra homomorphism. Then $\forall x \in A: ς_B(φ(x)) \subseteq ς_A(x) \cup \{0\}$.
+	Let $A, B$ be Banach algebras, $Φ: A \rightarrow B$ algebra homomorphism. Then $\forall x \in A: ς_B(Φ(x)) \subseteq ς_A(x) \cup \{0\}$.
 
 	\begin{dukazin}
 		Consider $\tilde Φ: A_e \rightarrow B_e$ defined as $\tilde Φ(a, λ) := (Φ(a), λ)$. Then $\tilde Φ$ is algebra homomorphism preserving unit. Moreover $ς_B(Φ(x)) \subseteq ς_{B_e}((Φ(x), 0)) \cup \{0\}$ and $ς_{A_e}((x, 0)) \subseteq ς_A(x) \cup \{0\}$. Thus, WLOG $A, B$ have units and $Φ(e_A) = e_B$.
@@ -856,8 +854,8 @@
 		By proposition above, $Γ$ is algebra homomorphism, $\|Γ\| ≤ 1$ and from theorem above $\|Γ(x)\|_∞ = r(x)$, $x \in A$. „$Γ$ is $*$-homomorphism“:
 		$$ \forall a \in A\ \forall φ \in Δ(A): Γ(a^*)(φ) = φ(a^*) = \overline{(φ(a))} = \overline{Γ(a)}(φ). $$
 		„$Γ$ is isometry“:
-		$$ \forall x \in A: \|Γ(x)\|^2 = \|\overline{Γ(x)}·Γ(x)\| = \|Γ(x^*x)\| = r(x^*x) = \|x^x\| = \|x\|^2. $$
-		„$Γ$ is onto“: $Γ(A)$ is Banach space so $Γ(A) \subseteq ©C_0(Δ(A))$ is closed and $*$-subalgebra. And $Γ(A)$ separates points of $Δ(A)$. So from Stone–Weierstrass theorem ($A \subset ©C_0(K)$ is $*$-subalgebra separating the points, then $\overline{A}^{\|·\|} = ©C_0(K)$) $Γ(A) = ©C_0(Δ(A))$.
+		$$ \forall x \in A: \|Γ(x)\|^2 = \|\overline{Γ(x)}·Γ(x)\| = \|Γ(x^*x)\| = r(x^*x) = \|x^*x\| = \|x\|^2. $$
+		„$Γ$ is onto“: $Γ(A)$ is Banach space so $Γ(A) \subseteq ©C_0(Δ(A))$ is closed and $*$-subalgebra. And $Γ(A)$ separates points of $Δ(A)$. So from Stone–Weierstrass theorem ($A \subset ©C_0(K)$ is \hbox{$*$-subalgebra} separating the points, then $\overline{A}^{\|·\|} = ©C_0(K)$) $Γ(A) = ©C_0(Δ(A))$.
 	\end{dukazin}
 \end{veta}
 
@@ -870,7 +868,7 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		„2. $\Leftrightarrow$ 3.“ follows from theorem above (where it is proved for $©C_0(K)$-spaces). „1. $\implies$ 2.“: trivial.
+		„2. $\Leftrightarrow$ 3.“ follows from theorem above (where it is proven for $©C_0(K)$-spaces). „1. $\implies$ 2.“: trivial.
 
 		„3. $\implies$ 1.“: easy for $©C_0(K)$-spaces, because if $h: K \rightarrow L$ is homeomorphism, then $f \mapsto f \circ h$ is isometrical $*$-isomorphism.
 	\end{dukazin}
@@ -951,7 +949,7 @@
 	\begin{itemize}
 		\item If $A$ and $B$ have the same unit $\implies$ $\forall x \in B: \exists x^{-1} \in B \Leftrightarrow \exists x^{-1} \in A$;
 		\item $\forall x \in B:$ $B$ has a unit, which is not a unit in $A$ $\implies$ $ς_A(x) = ς_B(x) \cup \{0\}$, otherwise $ς_A(x) = ς_B(x)$;
-		\item (In any case $ς_B(x) = ς_A(x)$).
+		\item (In any case $ς_B(x) \subseteq ς_A(x)$).
 	\end{itemize}
 
 	\begin{dukazin}
@@ -979,7 +977,7 @@
 	\end{enumerate}
 
 	\begin{dukazin}
-		„1.“: Recall theorem above $Γ_B(x): Δ(B) \rightarrow ©C$ continuous and onto $ς_B(x)$. And it is „one-to-one“:
+		„1.“: Recall theorem above $Γ_B(x): Δ(B) \rightarrow ®C$ continuous and onto $ς_B(x)$. And it is „one-to-one“:
 		$$ \forall φ_1, φ_2 \in Δ(B): φ_1(x) = φ_2(x) \implies φ_1 = φ_2 \text{ on } B. $$
 
 		So $Γ_B(x): Δ(B) \rightarrow ς(x)$ is homeomorphism, then $©C(ς(x)) \ni g \mapsto g∘Γ_B(x) \in ©C(Δ(A))$ is isometric $*$-isomorphism onto. Thus $©C(ς(x)) \ni g \mapsto Γ_B^{-1}(g∘Γ_B(x)) \in B$ is isometric $*$-isomorphism onto.
@@ -1003,10 +1001,10 @@
 \end{veta}
 
 \begin{veta}[Bent Fuglede (1950), Calvin R. Putnam (1951)]
-	Let $A$ be complex $C^*$-algebra, $x \in A$ and $a, b \in A$ be complex such that $ax = xb$. Then $a^*x = xb^*$.
+	Let $A$ be complex $C^*$-algebra, $x \in A$ and $a, b \in A$ be normal such that $ax = xb$. Then $a^*x = xb^*$.
 
 	\begin{dukazin}
-		TODO!!! (Maybe omitted?)
+		Omitted.
 	\end{dukazin}
 \end{veta}
 
@@ -1055,7 +1053,7 @@
 	\begin{itemize}
 		\item $\Ker T = \Ker T^*$ and $\Ker T = (\Rang T)^\perp$;
 		\item $\Rang T$ is dense in $H$ iff $T$ is one-to-one;
-		\item $λ \in ς_P(T)$ iff $\overline{λ} \in ς(T^*)$, eigenspace of $T$ associated with $λ$ is equal to eigenspace of $T^*$ associated with $\overline{λ}$;
+		\item $λ \in ς_P(T)$ iff $\overline{λ} \in ς_P(T^*)$, eigenspace of $T$ associated with $λ$ is equal to eigenspace of $T^*$ associated with $\overline{λ}$;
 		\item if $λ_1 ≠ λ_2$ are eigenvalues of $T$, then $\Ker(λ_1I - T) \perp \Ker(λ_2I - T)$.
 	\end{itemize}
 
@@ -1105,34 +1103,38 @@
 \end{tvrzeni}
 
 \begin{definice}[Partial isometry, initial subspace]
-	$H$ Hilbert space. Operator $U \in ©L(H)$ is called partial isometry, if there is closed subspace $K \subset H$ (initial subspace of $U$) such that $U|_K$ is isometry and $U|_{K^\perp} ≡ 0$.
+	$H$ Hilbert space. Operator $U \in ©L(H)$ is called partial isometry, if there is closed subspace $K \subset H$ (initial subspace of $U$) such that $U|_K$ is isometry and $U|_{K^\perp} ≡ ¦o$.
 \end{definice}
 
-\begin{veta}[Polararization decomposition]
+\begin{veta}[Polar decomposition]
 	$H$ Hilbert space, $T \in ©L(H)$.
 
 	Exists unique operators $P, U \in ©L(H)$ such that $P ≥ 0$, $U$ is partial isometry with initial subspace $\overline{\Rang P}$ and $T = UP$. Moreover $P = \sqrt{T^* T} = U^* T$.
 
 	If $T$ is invertible, then exists unique $P, U \in ©L(H)$ such that $P ≥ 0$ is invertible, $U$ is unitary and $T = UP$.
+
+	\begin{dukazin}[TODO!!!\vspace{-1em}]
+	\end{dukazin}
 \end{veta}
 
 % 03. 04. 2023
 
-\vspace{-2.5em}
+\vspace{-3.2em}
 \section{Borel measurable calculus}
+\vspace{-0.2em}
 \begin{lemma}[Lax–Milgram]
 	$H$ Hilbert, $S: H \times H \rightarrow C$ sesquilinear, $\|S\| := \sup_{x, y \in S_H} |S(x, y)| < ∞$. Then $\exists! T \in ©L(H): \|T\| = \|S\| \land \<T x, y\> = S(x, y)$.
 
 	\begin{dukazin}
 		Fix $y \in H$. Then $H \ni x \mapsto S(x, y)$ is a point in $H^*$ $\implies$ $\exists! U(y) \in H: S(x, y) = \<x, U(y)\>$, $x \in H$. Then $U \in ©L(H)$, $\|U\| = \|S\|$.
 
-		„Linearity“: Easy: $\forall y, z \in H, α \in ®K \implies$
-		$$ \forall x \in H: \<x, U(α y + z)\> = S(x, α y + z) = \overline{α} S(x, y) + S(x, z) = \overline{α}\<x, U y\> + \<x, U z\>. $$
+		„Linearity“: Easy: $\forall y, z \in H, α \in ®K \implies$\vspace{-0.5em}
+		$$ \forall x \in H: \<x, U(α y + z)\> = S(x, α y + z) = \overline{α} S(x, y) + S(x, z) = \overline{α}\<x, U y\> + \<x, U z\>.\vspace{-0.5em} $$
 
-		„$\|U\| ≤ \|S\|$“:
-		$$ \forall y \in H: \|Uy\|^2 = \<Uy, Uy\> = S(Uy, y) ≤ \|S\|·\|Uy\|·\|y\| \implies \|U y\| ≤ \|S\|·\|y\|. $$
+		„$\|U\| ≤ \|S\|$“:\vspace{-0.5em}
+		$$ \forall y \in H: \|Uy\|^2 = \<Uy, Uy\> = S(Uy, y) ≤ \|S\|·\|Uy\|·\|y\| \implies \|U y\| ≤ \|S\|·\|y\|.\vspace{-0.5em} $$
 
-		„$\|U\| ≥ \|S\|$“:\vspace{-0.4em}
+		„$\|U\| ≥ \|S\|$“:\vspace{-0.5em}
 		$$ \forall x, y \in S_H: \|S(x, y)| = |\<x, Uy\>| ≤ \|x\|·\|U\|·\|y\| = \|U\|.\vspace{-0.5em} $$
 
 		„Uniqueness“: Bounded operator is given by values of $\<T x, y\>$.
@@ -1140,12 +1142,12 @@
 \end{lemma}
 
 \begin{definice}
-	$H$ Hilbert, $T \in ©L(H)$ normal, $Φ: ©C(ς(T)) \rightarrow ©L(H)$ continuous ?.
+	$H$ Hilbert, $T \in ©L(H)$ normal, $Φ: ©C(ς(T)) \rightarrow ©L(H)$ continuous from "Continuous calculus".
 
 	\begin{itemize}
 		\item $\forall x, y \in H$: $μ_{x, y} \in M(ς(T))$ is the unique measure satisfying
 			$$ \int_{ς(T)} f dμ_{x, y} = \<Φ(f) x, y\>, \qquad f \in ©C(ς(T)). $$
-		\item $\forall f \in Bor_0(ς(T))$ (bounded, Borel) we get $Φ(f) \in ©L(H)$ be the unique operator such that
+		\item $\forall f \in Bor_b(ς(T))$ (bounded, Borel) we define $Φ(f) \in ©L(H)$ as the unique operator such that
 			$$ \<Φ(f) x, y\> = \int_{ς(T)} f dμ_{x, y}, \qquad x, y \in H $$
 	\end{itemize}
 
@@ -1190,8 +1192,8 @@
 	Let $X, Y$ be normed linear spaces. On $©L(X, Y)$ we define the following two Hausdorff locally convex topologies:
 
 	\begin{itemize}
-		\item $τ_{SOT}$ generated by pseudonorms $\{P_x(T) = \|T_x\| | x \in X\}$ (so, $T_i \overset{\text{SOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{\|·\|}\rightarrow T x$);
-		\item $τ_{WOT}$ generated by pseudonorms $\{P_{x, y^*}(T) = y^*(T x) | x \in X \land y^* \in Y^*\}$ (so, $T_i \overset{\text{WOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{w} T x$) (in $X = Y = H$ Hilbert: $\Leftrightarrow \forall x, y \in H: \<T_i x, y\> \rightarrow \<T x, y\>$).
+		\item $τ_{SOT}$ generated by pseudonorms $\{P_x(T) = \|T x\| | x \in X\}$ (so, $T_i \overset{\text{SOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{\|·\|}\rightarrow T x$);
+		\item $τ_{WOT}$ generated by pseudonorms $\{P_{x, y^*}(T) = y^*(T x) | x \in X \land y^* \in Y^*\}$ (so, $T_i \overset{\text{WOT}}\rightarrow T \Leftrightarrow \forall x \in X: T_i x \overset{w}\rightarrow T x$) (in $X = Y = H$ Hilbert: $\Leftrightarrow \forall x, y \in H: \<T_i x, y\> \rightarrow \<T x, y\>$).
 	\end{itemize}
 \end{definice}
 
@@ -1202,7 +1204,7 @@
 		$R_n x := (0, 0, …, 0, x_{n+1}, x_{n+2}, …)$, $x \in l_2$. Then $R_n \in ©L(l_2)$, $n \in ®N$, and $R_n \overset{\|·\|}{\not\rightarrow} 0$, because $\|R_n(e_{n+1})\| = 1$, $n \in ®N$. But $R_n \overset{\text{SOT}}\rightarrow 0$, because $\forall x \in l_2: \|R_n x\|_2^2 = \sum_{i=n+1}^∞ |x_i|^2 \rightarrow 0$.
 
 		$S_n x := (0, 0, …, 0, x_1, x_2, …)$, $x \in l_2$. Then $S_n \in ©L(l_2)$ is isometry $\forall n \in ®N$. But $S_n \overset{\text{SOT}}{\not\rightarrow} 0$, because $\|S_n(e_1)\| = 1 \not\rightarrow 0$. But $S_n \overset{\text{WOT}}\rightarrow 0$, because $\forall x, y \in l_2$:
-		$$ |\<S_n x, y\>| = |\sum_{i=1}^∞ x_i y_{n+i}| ≤ \|x\|_2 \sqrt{\sum_{i=n+1}^∞ |y_i|^2} \rightarrow 0. $$
+		$$ |\<S_n x, y\>| = \left|\sum_{i=1}^∞ x_i y_{n+i}\right| ≤ \|x\|_2 \sqrt{\sum_{i=n+1}^∞ |y_i|^2} \rightarrow 0. $$
 	\end{prikladyin}
 \end{poznamka}
 
@@ -1231,10 +1233,10 @@
 
 	\pagebreak
 
-	$(f_n) \in Bor_b(ς(T))^{®N}$ bounded and $f_n \overset{τ_p} f$, then $Φ(f_n) \overset{\text{SOT}}\rightarrow Φ(f)$.
+	$(f_n) \in Bor_b(ς(T))^{®N}$ bounded and $f_n \overset{τ_p}\rightarrow f$, then $Φ(f_n) \overset{\text{SOT}}\rightarrow Φ(f)$.
 
 	\begin{dukazin}
-		Step 1: „$Φ(f_n) \overset{\text{WOT}} Φ(f)$“:
+		Step 1: „$Φ(f_n) \overset{\text{WOT}}\rightarrow Φ(f)$“:
 		$$ \forall x, y \in H: \<Φ(f_n) x, y\> \overset{\text{Lebesgue}}\rightarrow \<Φ(f)x, uy\>. $$
 
 		Step 2: „$\|Φ(f_n) x\| \rightarrow \|Φ(f) x\|, x \in H$“:
@@ -1273,9 +1275,9 @@
 
 	\begin{itemize}
 		\item $\forall A \in ©A: E(A)$ is orthogonal projection;
-		\item $E(X) = \id$, $E(\O) = 0$;
+		\item $E(X) = \id$, $E(\O) = ¦o$;
 		\item if $\{A_n, n \in ®N\} \subset ©A$ is point-wise disjoint, then
-			$$ E(\bigcup A_n) x = \sum_{n=1}^∞ E(A_n) x, x \in H. $$
+			$$ E\(\bigcup A_n\) x = \sum_{n=1}^∞ E(A_n) x, x \in H. $$
 	\end{itemize}
 \end{definice}
 
@@ -1350,7 +1352,7 @@
 \end{tvrzeni}
 
 \begin{definice}[Notation]
-	$(X, ©A)$ measurable space, $B(X, ©A) \subset l_∞(X)$ $c^*$ algebra consisting of bounded $f: X \rightarrow ©C$ ©A-measurable functions.
+	$(X, ©A)$ measurable space, $B(X, ©A) \subset l_∞(X)$ $C^*$-algebra consisting of bounded $f: X \rightarrow ©C$ ©A-measurable functions.
 \end{definice}
 
 \begin{tvrzeni}
@@ -1424,7 +1426,7 @@
 \end{definice}
 
 \begin{priklady}
-	$D(T) = c_{00} \subset l_2 = X$, $Tx = \(\sum_{n=1}^∞ x_n, 0, 0, 0, 0, …\)$. Then $T$ is densely defined, butt it doesn't have closed extension.
+	$D(T) = c_{00} \subset l_2 = X$, $Tx = \(\sum_{n=1}^∞ x_n, 0, 0, 0, 0, …\)$. Then $T$ is densely defined, but it doesn't have closed extension.
 
 	\begin{dukazin}
 		Consider $x^n = \(\frac{1}{2^n}, …, \frac{1}{2^n}, 0, …\)$ then $(x_n, T x_n) \rightarrow (¦o, e_1)$, so if there is extension, then $(¦o, e_1) \in G(S)$, but $S ¦o = ¦o$, because of linearity.
@@ -1524,16 +1526,16 @@ TODO example?
 \end{definice}
 
 \begin{veta}
-	$X$ Banach, $T$ linear operator on $X$. Then $ρ(T)$ is open, $ρ(T)$ is closed and $R_T$ has derivative at each point of $ρ(T)$. (So, if $X$ is complex, then $R_t$ is holomorphic on $ρ(T)$).
+	$X$ Banach, $T$ linear operator on $X$. Then $ρ(T)$ is open, $ς(T)$ is closed and $R_T$ has derivative at each point of $ρ(T)$. (So, if $X$ is complex, then $R_T$ is holomorphic on $ρ(T)$).
 
 	\begin{dukazin}
 		„$ρ(T)$ is open“: Pick $λ \in ρ(T)$ and $h \in ®K$ small ($|·|$) enough: $|h| < \frac{1}{\|(λI - T)^{-1}\|}$. Then $h(λ I - T)^{-1} =: S \in ©L(X)$, $\|S\| < 1$. Thus, $(I + S)^{-1}$ exists, so $(λ + h)I - T = (I + S)·(λI - T)$ has inverse $(λI - T)^{-1} \circ (I + S)^{-1} \in ©L(X)$. $(λI - T)^{-1} ∘ (I + S)^{-1} \in ©L(X)$. So $U(λ, \frac{1}{\|(λI - T^{-1})\|}) \subset ρ(T)$.
 
 		„$R_T$ has derivative at each $λ \in ρ(T)$“: $R_T'(λ) = -R_T(λ)^2$:
-		$$ \forall h \text{ small enough}: \left\|\frac{R_t(λ + h) - R_t(λ)}{h} + R_T(λ)^2\right\| = $$
+		$$ \forall h \text{ small enough}: \left\|\frac{R_T(λ + h) - R_T(λ)}{h} + R_T(λ)^2\right\| = $$
 		$$ \frac{1}{h} \|R_T(λ + h) - R_T(λ) + R_T(λ) h R_T(λ)\| = \frac{\|R_T(λ)\|}{\|h\|}·\|(I + S)^{-1} - I + h R_T(λ)\| = $$
 		$$ \((I + S)^{-1} = \sum_{n=0}^∞ (-S)^n = I - S + \sum_{n=2}^∞(-S)^n = I - h R_T(λ) + \sum_{n=2}^∞ (-h R_T(λ))^n\) $$
-		$$ = \frac{\|R_T(λ)\|}{|h|}·\left\|\sum_{n=2}^∞ (-h R_T(λ))^n\right\| ≤ \frac{\|R_t(λ)\|}{|h|} \sum_{n=2}^∞ \|h R_t(λ)\|^n = \frac{\|R_T(λ)\|}{|h|}·\frac{\|h R_T(λ)\|^2}{1 - \|h R_T(λ)\|} ≤ $$
+		$$ = \frac{\|R_T(λ)\|}{|h|}·\left\|\sum_{n=2}^∞ (-h R_T(λ))^n\right\| ≤ \frac{\|R_T(λ)\|}{|h|} \sum_{n=2}^∞ \|h R_T(λ)\|^n = \frac{\|R_T(λ)\|}{|h|}·\frac{\|h R_T(λ)\|^2}{1 - \|h R_T(λ)\|} ≤ $$
 		$$ ≤ \frac{\|R_T(λ)\|}{|h|}·\frac{|h|^2 \|R_T(λ)\|^2}{1 / 2} = 2|h|·\|R_T(λ)\|^3 \rightarrow 0.\vspace{-1em} $$
 	\end{dukazin}
 \end{veta}
@@ -1554,7 +1556,7 @@ TODO example?
 	$X$ complex Banach, $T$ operator on $X$, $ς(T) = \O$. Then $T^{-1} \in ©L(X)$ and $ς(T^{-1}) = \{0\}$.
 
 	\begin{dukazin}
-		$0 \in ρ(T) \implies T^{-1} \in ©L(x)$. By previous lemma, $\forall λ ≠ 0: \frac{1}{λ} \notin ς(T^{-1})$. So $ς(T^{-1}) \subset \{0\}$. Since $ς(T^{-1}) ≠ \O$, we have $ς(T^{-1}) = \{0\}$.
+		$0 \in ρ(T) \implies T^{-1} \in ©L(x)$. By the previous lemma, $\forall λ ≠ 0: \frac{1}{λ} \notin ς(T^{-1})$. So $ς(T^{-1}) \subset \{0\}$. Since $ς(T^{-1}) ≠ \O$, we have $ς(T^{-1}) = \{0\}$.
 	\end{dukazin}
 \end{dusledek}
 
@@ -1653,7 +1655,7 @@ TODO example?
 
 	„Second point, $\impliedby$“: $T^*$ is densely defined. Then $(T^*)^*$ is defined and, by first point, it is closed. Moreover, „$T \subset (T^*)^*$“: Pick $x \in D(T)$. Then $D(T^*) \ni y \mapsto \<T^* y, x\> = \<y, Tx\>$, so $x \in D((T^*)^*)$ and $(T^*)^* x = Tx$.
 
-	„Second point, then part“: $T \subseteq (T^*)^*$ is done, „$(T^*)^* \subseteq \overline{T}$“: it suffices to prove „$G((T^*)^*) = \overline{G(T)}$“: By previous lemma, $G((T^*)^*) = V(G(T^*))^\perp = V^*(G(T^*))^\perp = V^*(V(G(T))^\perp)^\perp = V^*V(G(T)^{\perp\perp}) = \overline{G(T)}$.
+	„Second point, then part“: $T \subseteq (T^*)^*$ is done, „$(T^*)^* \subseteq \overline{T}$“: it suffices to prove „$G((T^*)^*) = \overline{G(T)}$“: By the previous lemma, $G((T^*)^*) = V(G(T^*))^\perp = V^*(G(T^*))^\perp = V^*(V(G(T))^\perp)^\perp = V^*V(G(T)^{\perp\perp}) = \overline{G(T)}$.
 
 	„Third point“: „$\implies$“ follows directly from second point, „$\impliedby$“ by second point, $T$ has closed extension and $\overline{T} = (T^*)^* = T$, so ti is closed.
 \end{dukaz}
@@ -1711,7 +1713,7 @@ TODO example?
 	$H$ Hilbert space, $H ≠ \{0\}$, $T$ is self-adjoint operator on $H$. Then $\O ≠ ς(T) \subseteq ®R$.
 
 	\begin{dukazin}
-		Let $T ≠ 0$ be self-adjoint. „$ς(T) ≠ 0$“: If $ς(T) = 0$, then by corollary above, $T^{-1} \in ©L(H)$ and $ς(T^{-1}) = \{0\}$. Moreover $T^{-1}$ is self-adjoint by the previous proposition (third point). So $0 = r(T^{-1}) = \|T^{-1}\|$, so $T^{-1} = 0$. \lightning.
+		Let $T ≠ 0$ be self-adjoint. „$ς(T) ≠ \O$“: If $ς(T) = \O$, then by corollary above, $T^{-1} \in ©L(H)$ and $ς(T^{-1}) = \{0\}$. Moreover $T^{-1}$ is self-adjoint by the previous proposition (third point). So $0 = r(T^{-1}) = \|T^{-1}\|$, so $T^{-1} = 0$. \lightning.
 
 		TODO? (Tady se něco zjednoduší: BÚNO $0 \not≡ T = T^*$. Kdyby $ς(T) = \O$, pak $T^{-1} \in ©L(H)$. Pak $T^{-1}$ je samoadjungovaný ($(T^{-1})^* = (T^*)^{-1} = T^{-1}$.).)
 
@@ -1750,7 +1752,7 @@ TODO example?
 	\begin{itemize}
 		\item $T$ is self-adjoint;
 		\item $T$ is densely defined, symmetric and $ς(T) \subseteq ®R$;
-		\item $T$ is densely defined, symmetric and there is $λ \in ®C \setminus ®R: λ, \overline{λ} \in ς(T)$.
+		\item $T$ is densely defined, symmetric and there is $λ \in ®C \setminus ®R: λ, \overline{λ} \in ρ(T)$.
 	\end{itemize}
 
 	\begin{dukazin}
@@ -1773,7 +1775,7 @@ TODO example?
 	\begin{poznamkain}
 		$©C(T)$ is well defined: $T + iI$ is one-to-one, $\Rang(T + iI)^{-1} = D(T + iI) = D(T - iI)$.
 
-		$Tx + ix \overset{©C(T)} Tx - ix$.
+		$Tx + ix \overset{©C(T)}\rightarrow Tx - ix$.
 	\end{poznamkain}
 \end{definice}
 
@@ -1896,11 +1898,11 @@ TODO example?
 \section{Integral of unbounded function with respect to a spectral measure}
 \begin{definice}
 	$H$ Hilbert, $(X, ©A)$ is measurable space, $E$ spectral measure for $(X, ©A, H)$, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ is ©A-measurable. Then $\int f dE$ is the operator on $H$ such that
-	$$ D(\int f dE) := \{x \in H \middle| \int |f|^2 dE_{x, x} < ∞\}, \qquad \<Tx, y\> := \int_X f dE_{x, y}, \quad x, y \in D(T). $$
+	$$ D\(\int f dE\) := \{x \in H \middle| \int |f|^2 dE_{x, x} < ∞\}, \qquad \<Tx, y\> := \int_X f dE_{x, y}, \quad x, y \in D(T). $$
 \end{definice}
 
 \begin{veta}
-	$H$ Hilbert, $(X, ©A)$ is measurable space, $E$ spectral measure for $(X, ©A, H)$, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ is ©A-measurable. Then $D := \{x \in H | \int_X |f|^2 dE_{x, x} < ∞\}$ is dense subspace of $H$, $\int f dE$ exists (and it is unique).
+	$H$ Hilbert, $(X, ©A)$ is measurable space, $E$ spectral measure for $(X, ©A, H)$, $E$ spectral measure for $(X, ©A, H)$, $f: X \rightarrow ®C$ is ©A-measurable. Then $D := \{x \in H \middle| \int_X |f|^2 dE_{x, x} < ∞\}$ is dense subspace of $H$, $\int f dE$ exists (and it is unique).
 
 	Moreover, $\|Tx\|^2 = \int_X |f(λ)| dE_{x, x}$, $x \in D(\int f dE)$.
 
