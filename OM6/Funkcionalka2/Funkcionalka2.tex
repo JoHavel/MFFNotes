@@ -79,7 +79,7 @@
 
 	\begin{dukazin}
 		$$ \forall r > 0: \forall (a, b) \in B_{A \oplus_∞ A}(¦o, r)\ \forall (c, d) \in B_{A \oplus_∞ A}(¦o, r): \|ab - cd\| ≤ $$
-		$$ ≤\|a(b - d)\| + \|(a - c)·d\| ≤ \|a\|·\|b - d\| + \|a - c\|·\|d\| ≤ R·(\|b - d\| + \|a - c\|) ≤ 2R \|(a, b) - (c, d)\|. $$
+		$$ ≤\|a(b - d)\| + \|(a - c)·d\| ≤ \|a\|·\|b - d\| + \|a - c\|·\|d\| ≤ r·(\|b - d\| + \|a - c\|) ≤ 2r \|(a, b) - (c, d)\|. $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -167,7 +167,7 @@
 		$$ (e - x)·\(\sum_{n=0}^∞ x^n\) = \lim_{N \rightarrow ∞} (e - x)·(e + x + … + x^N) = \lim_{N \rightarrow ∞} e - x^{N+1} = e, $$
 		because $\lim_{N \rightarrow ∞} \|x^{N+1}\| ≤ \lim_{M \rightarrow ∞} \|x\|^M = 0$. And similarly $\(\sum x^n\)·(e - x) = e$.
 
-		„Second item“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first item), so from previous fact $(x + h)^{-1}$ exists. Moreover
+		„Second item“: $x + h = x·(e + x^{-1}h)$ we have $x^{-1}$ exists and $(e + x^{-1}h)^{-1}$ exists (from first item), so $(x + h)^{-1}$ exists. Moreover
 		$$ (x + h)^{-1} = (e + x^{-1} h)^{-1}·x^{-1} \overset{1)}= \sum_{n=0}^∞ \(-x^{-1} h\)^n x^{-1}, $$
 		so
 		$$ \|(x + h)^{-1} - x^{-1}\| = \left\|\sum_{n=1}^∞\(-x^{-1} h\)^n x^{-1}\right\| ≤ \|x^{-1}\|·\sum_{n=1}^∞ \|x^{-1} h\|^n ≤ $$
@@ -300,7 +300,7 @@
 	\begin{dukazin}
 		Consider $\psi: ®C \rightarrow A$ defined as $\psi(\lambda) := \lambda·e$. This is algebraic homomorphism and $\|\psi(\lambda)\| = |\lambda|·\|e\|$, so it is isomorphism (and isometry, if $\|e\| = 1$).
 
-		It remains „$ψ$ is surjective“: Pick $a \in A$. From previously proved theorem $\exists \lambda \in \sigma(a)$, then $(\lambda e - a) \notin A^\times$. So, $\lambda·e - a = 0$, then $\psi(\lambda) = a$.
+		It remains „$ψ$ is surjective“: Pick $a \in A$. From previously proved theorem $\exists \lambda \in \sigma(a)$, then $(\lambda e - a) \notin A^\times$. So, $\lambda·e - a = ¦o$, then $\psi(\lambda) = a$.
 	\end{dukazin}
 \end{veta}
 
@@ -327,9 +327,9 @@
 %
 % 21. 02. 2023
 %
-	Pick $r > r(x)$. Claim: „$\frac{x^n}{r^n} \rightarrow^w 0$“: Fix $x^* \in A^*$ and put $f(\lambda) := \lambda · x^*(R_x(\lambda))$. By fact and tvrzeni after it, $f$ has derivative at each $\lambda \in \rho(x)$. Moreover for $|\lambda| ≥ \|x\|$ we have $f(\lambda) = \lambda · x^*\(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}\) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$. Thus $f(\lambda) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$, $\lambda \in P(0, r(x), ∞)$. From Complex analysis $f \in H(P(0, r, ∞))$ is uniquely given by Laurent series. In particular $f(r) = \sum_{n=0}^∞ \frac{x^*(x^n)}{r^n}$, so $x^*\(\frac{x^n}{r^n}\) \rightarrow 0$.
+	Pick $r > r(x)$. Claim: „$\frac{x^n}{r^n} \overset{w}\rightarrow 0$“: Fix $x^* \in A^*$ and put $f(\lambda) := \lambda · x^*(R_x(\lambda))$. By fact and tvrzeni after it, $f$ has derivative at each $\lambda \in \rho(x)$. Moreover for $|\lambda| ≥ \|x\|$ we have $f(\lambda) = \lambda · x^*\(\sum_{n=0}^∞ \frac{x^n}{\lambda^{n + 1}}\) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$. Thus $f(\lambda) = \sum_{n=0}^∞ \frac{x^*(x^n)}{\lambda^n}$, $\lambda \in P(0, r(x), ∞)$. From Complex analysis $f \in H(P(0, r, ∞))$ is uniquely given by Laurent series. In particular $f(r) = \sum_{n=0}^∞ \frac{x^*(x^n)}{r^n}$, so $x^*\(\frac{x^n}{r^n}\) \rightarrow 0$.
 
-	From princip of unique boundedness (last semester): $\frac{x^n}{r^n}$ if $\|·\|$-bounded, so $\exists c > 0:$ $\|x^n\| ≤ c r^n$, $\sqrt[n]{\|x^n\|} ≤ \sqrt[n]{c}·r \rightarrow r$. So $\limsup \sqrt[n]{\|x^n\|} ≤ r$.
+	From princip of unique boundedness (last semester): $\frac{x^n}{r^n}$ is $\|·\|$-bounded, so $\exists c > 0:$ $\|x^n\| ≤ c r^n$, $\sqrt[n]{\|x^n\|} ≤ \sqrt[n]{c}·r \rightarrow r$. So $\limsup \sqrt[n]{\|x^n\|} ≤ r$.
 \end{dukaz}
 
 \begin{dusledek}
@@ -566,7 +566,7 @@
 	\begin{dukazin}
 		Pick $\phi \in \Delta(A)$. Then „$\Ker \phi$ is maximal ideal“: ideal: $y \in \Ker \phi, x \in A: \phi(x·y) = \phi(x)·\phi(y) = …·0 = 0$, proper: $\phi \not≡ 0$, maximal: $\codim \Ker \phi = 1$: pick $x_0: \phi(x_0) ≠ 0$, $a = a - \phi(a)·\frac{x_0}{\phi(x_0)} + \phi(a)·\frac{x_0}{\phi(x_0)} \in \Ker \phi \oplus ®R$.
 
-		„$\Phi$ is one-to-one“: Pick $\phi, \psi \in \Delta(A)$: $\Ker \phi = \Ker \psi$. Then (by lemma from previous semester) $\phi = c·\psi$ for some $c \in ®K$. But $\phi(e) = 1 = \psi(1)$ so $\phi = \psi$.
+		„$\Phi$ is one-to-one“: Pick $\phi, \psi \in \Delta(A)$: $\Ker \phi = \Ker \psi$. Then (by lemma from previous semester) $\phi = c·\psi$ for some $c \in ®K$. But $\phi(e) = 1 = \psi(I)$ so $\phi = \psi$.
 
 		„$\Phi$ is surjective“: Let $I \subset A$ be maximal ideal ($\implies$ closed). Step 1 „Any nonzero element in $A / I$ is invertible“: For contradiction assume $\exists q(x) \in A / I$ ($q(x) = [x]$), $q(x) ≠ 0 \land q(x)^{-1}$ does not exist. By next lemma $q(x) (A / I)$ is proper ideal. Then $q^{-1}\(q(x) (A / I)\)$ is an ideal in $A$ which is proper and $I \subsetneq q^{-1}\(q(x) (A / I)\)$, which contradicts maximality of $I$. It follows from: ideal: follows from the fact that $q$ is algebra homomorphism; proper: $q(e) = [e] \notin q(x) A / I$; $I \subseteq q^{-1}(…)$: $0 \in q(x) A / I$; $I ≠ q^{-1}(…)$: $q(x) ≠ 0 \implies x \notin I$, but $q(x) = q(x)q(e) \in q(x) (A / I)$, so $x \in q^{-1}(…)$.
 
@@ -1017,16 +1017,16 @@
 	$X, Y$ vector spaces over ®C and $S: X \times X \rightarrow Y$ is a sesquilinear map. Then for all $x, y \in X$, it holds that
 	$$ S(x, y) = \frac{1}{4}(S(x + y, x + y) - S(x - y, x - y) + iS(x + iy, x + iy) - iS(x - iy, x - iy)). $$
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[TODO!!!]
+		($RHS = \frac{1}{4}(4·S(x, y) + 0·S(y, x) + 0·S(x, x) + 0·S(y, y))$.)
 	\end{dukazin}
 \end{tvrzeni}
 
 \begin{dusledek}
 	$\{¦o\} ≠ H$ Hilbert space, $T, S \in ©L(H)$. Then $T = S$ iff $\forall x \in H: \<Tx, x\> = \<Sx, x\>$.
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[TODO!!!]
+		($\<Tx, x\> = \<Sx, x\> \implies \<Tx, y\> = \<Sx, y\> \implies S = T$)
 	\end{dukazin}
 \end{dusledek}
 
@@ -1039,8 +1039,8 @@
 		\item $\forall x \in H: \<Tx, x\> ≥ 0$ iff $T$ is self-adjoint and $ς(T) \subseteq [0, ∞)$.
 	\end{itemize}
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[TODO!!!]
+		($\<Tx, x\> \overset{\implies}= \<x, Tx\> = \overline{\<Tx, x\>} \overset{\impliedby}= \<Tx, x\>$.) ($\<Tx, Tx\> = \<T^*Tx, x\> = \<TT^*x, x\> = \<T^*x, T^*x\>$.) („$\implies$“: $ς(T) \subseteq \overline{N_T}$, „$\impliedby$“: $\inf N_T \in ς(T)$.)
 	\end{dukazin}
 \end{veta}
 
@@ -1051,6 +1051,7 @@
 \begin{veta}
 	$H$ Hilbert space and $T \in ©L(H)$ normal. Then\vspace{-1em}
 	\begin{itemize}
+		\setlength\itemsep{0em}
 		\item $\Ker T = \Ker T^*$ and $\Ker T = (\Rang T)^\perp$;
 		\item $\Rang T$ is dense in $H$ iff $T$ is one-to-one;
 		\item $λ \in ς_P(T)$ iff $\overline{λ} \in ς_P(T^*)$, eigenspace of $T$ associated with $λ$ is equal to eigenspace of $T^*$ associated with $\overline{λ}$;
@@ -1058,7 +1059,7 @@
 	\end{itemize}
 
 	\begin{dukazin}
-		TODO!!!
+		TODO!!! See Funkcionalka (OM3).
 	\end{dukazin}
 \end{veta}
 
@@ -1068,7 +1069,7 @@
 	where $λ_n$ is eigenvalue associated with the eigenvector $e_n$.
 
 	\begin{dukazin}
-		Omitted. „\verb|OM4/Funkcionalka.pdf|“
+		Omitted. „\verb|OM3/Funkcionalka.pdf|“
 	\end{dukazin}
 \end{veta}
 
@@ -1077,7 +1078,7 @@
 	$$ Tx = \sum_{n=1}^N λ_n\<x, u_n\>v_n. $$
 
 	\begin{dukazin}
-		TODO!!!
+		TODO!!! Hilbert–Schmidt on $TT^*$.
 	\end{dukazin}
 \end{veta}
 
@@ -1086,8 +1087,8 @@
 
 	Moreover, if $P, Q \in ©L(H)$ are orthogonal projections, then $\Rang(P) \perp \Rang(Q)$ iff $PQ = 0$.
 
-	\begin{dukazin}
-		TODO!!!
+	\begin{dukazin}[TODO!!!]
+		($4 \implies 1$ and $2 \implies 3$ was in the theorem above, $3 \implies 4$ trivial, $1 \implies 2$ obvious.)
 	\end{dukazin}
 \end{veta}
 
@@ -1346,7 +1347,7 @@
 
 	\begin{dukazin}
 		Denote $T = \int f dE$. For $x, y \in H: |\<Tx, y\> - \<\sum f(x_i) E(A_i) x, y\>| =$
-		$$ = \left|\sum_{i=1}^n \int_{A_i} \(f(t) - f(x_i)\) d E_{x, y}\right| ≤ \sum_{i=1}^n \int_{A_i} |f(t) - f(x_i)| d|E_{x, y}| ≤ ε\int_X d|E_{x, y}| ≤ ε·\|x\|·\|y\|. $$
+		$$ = \left|\sum_{i=1}^n \int_{A_i} \(f(t) - f(x_i)\) d E_{x, y}\right| ≤ \sum_{i=1}^n \int_{A_i} |f(t) - f(x_i)| d|E_{x, y}| ≤ ε·\int_X d|E_{x, y}| ≤ ε·\|x\|·\|y\|. $$
 		This finishes the proof. ($|\< S x, y\>| ≤ ε·\|x\|·\|y\| \implies \|S\| < ε$.)
 	\end{dukazin}
 \end{tvrzeni}
@@ -1713,9 +1714,7 @@ TODO example?
 	$H$ Hilbert space, $H ≠ \{0\}$, $T$ is self-adjoint operator on $H$. Then $\O ≠ ς(T) \subseteq ®R$.
 
 	\begin{dukazin}
-		Let $T ≠ 0$ be self-adjoint. „$ς(T) ≠ \O$“: If $ς(T) = \O$, then by corollary above, $T^{-1} \in ©L(H)$ and $ς(T^{-1}) = \{0\}$. Moreover $T^{-1}$ is self-adjoint by the previous proposition (third point). So $0 = r(T^{-1}) = \|T^{-1}\|$, so $T^{-1} = 0$. \lightning.
-
-		TODO? (Tady se něco zjednoduší: BÚNO $0 \not≡ T = T^*$. Kdyby $ς(T) = \O$, pak $T^{-1} \in ©L(H)$. Pak $T^{-1}$ je samoadjungovaný ($(T^{-1})^* = (T^*)^{-1} = T^{-1}$.).)
+		BÚNO $0 \not≡ T = T^*$. Kdyby $ς(T) = \O$, pak $T^{-1} \in ©L(H)$. Pak $T^{-1}$ je samoadjungovaný ($(T^{-1})^* = (T^*)^{-1} = T^{-1}$.).)
 
 % 09. 05. 2023
 
