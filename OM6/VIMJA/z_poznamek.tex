@@ -1,0 +1,1212 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+% 1. přednáška (2. března)
+
+\section{Diferencovatelnost – základní pojmy}
+
+\begin{definice}[Směrové derivace]
+	$X$, $Y$ Banachovy prostory, $U \subset X$ (otevřená), $f: U \rightarrow Y$, $x \in U$, $h \in X$:
+	$$ \partial_h^+ f(x) = \lim_{t \rightarrow 0_+} \frac{f(x + th) - f(x)}{t} \qquad \partial_h f(x) = \lim_{t \rightarrow 0} \frac{f(x + th) - f(x)}{t}, $$
+	pokud limita (v $Y$) existuje. Je-li $\|h\| = 1$, pak je to směrová derivace.
+\end{definice}
+
+\begin{poznamka}
+	\begin{itemize}
+		\item $\partial_0 f(x) = \partial_0^+ f(x) = 0$;
+		\item $α > 0 \implies \partial_{ah}^+ f(x) = α·\partial_h^+ f(x)$, má-li alespoň jedna strana smysl;
+		\item $α \in ®R \setminus \{0\} \implies \partial_{α·h} f(x) = α·\partial_h f(x)$, má-li alespoň jedna strana smysl;
+		\item $\partial_{-h} f(x) = -\partial_h f(x)$, má-li alespoň jedna strana smysl;
+		\item $\partial_h f(x)$ existuje $\Leftrightarrow$ $\partial_{-h}^+ f(x) = -\partial_h^+ f(x)$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}[Gateauxova derivace]
+	$X$, $Y$ Banachovy prostory, $U \subset X$ (otevřená), $f: U \rightarrow Y$, $f$ má v bodě $x$ Gateauxovu derivaci $≡$ $\exists L \in ©L(X, Y)\ \forall h \in X: L(h) = \partial_h f(x)$. Píšeme $f_G'(x) = L$.
+
+	\begin{poznamkain}
+		Stačí $\forall h \in X: L(h) = \partial_h^+ f(x)$. Znamená to, že $h \mapsto \partial_h f(x)$ ($h \mapsto \partial_h^+ f(x)$) je omezený lineární operátor.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Fréchetova derivace]
+	$X$, $Y$ Banachovy prostory, $U \subset X$ (otevřená), $f: U \rightarrow Y$, $f$ má v bodě $x$ Fréchetovu derivaci, pokud $\exists L \in ©L(X, Y): \lim_{h \rightarrow ¦o} \frac{f(x + h) - f(x) - L(h)}{\|h\|_X} = 0$ v $Y$. Značíme $f'_F(x) = L$.
+\end{definice}
+
+\begin{dusledek}
+	Pokud $f'_F(x)$ existuje, nutně $f'_F(x) = f'_G(x)$.
+
+	\begin{dukazin}
+		$h \in X \setminus \{0\} \implies \lim_{t \rightarrow 0_+} \frac{f(x + th) - f(x) - L(th)}{\|th\|} = 0 \implies$
+		$$ \implies \lim_{t \rightarrow 0_+} \(\frac{f(x + th) - f(x)}{t} - L(h)\) = 0 \implies L(h) = \partial_h^+ f(x). $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	$f'_F(x)$ existuje $\Leftrightarrow$ $f'_G(x)$ existuje a zároveň $\lim_{t \rightarrow 0} \frac{f(x + th) - f(x)}{t} = \partial_h f(x)$ stejnoměrně pro $h \in B_X$ ($h \in S_X$).
+
+	\begin{dukazin}
+		„$\implies$“: existenci $f'_G(x)$ máme z předchozího důsledku, teď ještě stejnoměrnou konvergenci. $f'_F(x)$ existuje $\Leftrightarrow$ $\forall ε > 0\ \exists δ > 0\ \forall h \in X, \|h\| < δ: \|f(x + th) - f(x) - \partial_h f(x)\| ≤ ε·\|h\|$.
+		$$ h \in B_X, t \in P(0, δ) \implies \|th\| < δ, $$
+		\begin{align*}
+			\|f(x + th) - f(x) - \partial_{th} f(x)\| &≤ ε·\|th\|
+			\left\|\frac{f(x + th) - f(x)}{t} - \partial_{h} f(x)\right\| &≤ ε·\|h\| ≤ ε.
+		\end{align*}
+
+		„$\impliedby$“: Nechť $\forall ε > 0\ \exists h \in S_X\ \forall t \in P(0, δ): \left\|\frac{f(x + th) - f(x)}{t} - \partial_h f(x)\right\| ≤ ε$.
+		$$ 0 < \|h\|< δ \implies \frac{h}{\|th\|} \in S_X $$
+		$$ \left\|\frac{f(x + h) - f(x) - \partial_h f(x)}{\|h\|}\right\| = \left\|\frac{f\(x + \|h\|·\frac{h}{\|h\|}\) - f(x)}{\|h\|} - \partial_{\frac{h}{\|h\|}} f(x)\right\| ≤ ε. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	$X = ®R \implies f'_F = f'_G = f'$.
+\end{dusledek}
+
+\begin{dusledek}
+	$\exists f'_F(x)$ $\implies$ $f$ je spojitá v $x$. $\(\lim_{h \rightarrow ¦o} \frac{f(x + h) - f(x) - f'_F(x)(h)}{\|h\|} = 0 \implies \lim \text{ čitatel } = 0.\)$
+\end{dusledek}
+
+\begin{poznamka}
+	$f'_G(x)$ existuje $\;\not\nobreak\!\!\!\!\implies$ $f$ je spojitá v $x$. A to ani když $X = ®R^2$ a $Y = ®R$ (viz $f(x, y) = 1$, když $x = y^2$, kromě $[0, 0]$, $f = 0$ jinak).
+\end{poznamka}
+
+\begin{poznamka}
+	$f'_G(x)$ existuje $\;\not\nobreak\!\!\!\!\implies$ $f'_F(x)$ ani pro spojité funkce (viz $f(x, y) = y$ pro $x = y^2$ a $f(x, y) = 0$ pro $x ≤ 0$ a $x ≥ 2y^2$).
+\end{poznamka}
+
+\pagebreak
+
+\begin{tvrzeni}
+	$\dim X < ∞$, $f: U \rightarrow Y$ je lipschitzovská na $U$. $U \subset X$ otevřená, $x \in U$, $f'_G(x)$ existuje $\implies$ existuje $f'_F(x)$.
+
+	\begin{dukazin}
+		$$ \|f(x) - f(y)\| ≤ L·\|x - y\|, \qquad x, y \in U. $$
+		Nechť existuje $f'_G(x)$. Ať $ε > 0$ a $h_1, …, h_k \in S_X$ je $ε$-síť. Nechť $δ > 0$ je takové, že $B(x, δ) \subset U$ a pokud $0 < |t| < δ$, pak $\left\|\frac{f(x + th_i) - f(x)}{t} - f'_G(x)(h_i)\right\| < ε$ ($i \in [k]$).
+
+		$h \in S_X$ libovolná, existuje $h$, že $\|h_i - h\| < ε$.
+		$$ \left\|\frac{f(x + th) - f(x)}{t} - f'_G(x)(h)\right\| ≤ $$
+		$$ ≤ \underbrace{\left\|\frac{f(x + th) - f(x + th_i)}{t}\right\|}_{≤ L·\frac{\|th - th_i\|}{|t|} ≤ L·ε} + \underbrace{\left\|\frac{f(x + th) - f(x)}{t} - f'_G(x)(h_i)\right\|}_{<ε} + \|f'_G(x)(h_i - h)\| ≤ $$
+		$$ ≤ L·ε + ε + \|f'_G(x)\|·\|h_i - h\| ≤ (L + 1 + \|f'_G(x))\|)·ε. $$
+		Tedy limita je stejnoměrná pro $h \in S_X$, neboli existuje $f'_F(x)$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Stačí, že $f$ je lokálně Lipschitzovská na $U$.
+	\end{poznamkain}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$f: (a, b) \rightarrow ®R$, $f$ konvexní. Potom $f'(x)$ ($ = f'_F(x) = f'_G(x)$) existuje v každém bodě intervalu $(a, b)$ s výjimkou spočetně mnoha.
+
+	\begin{dukazin}
+		1. „$\forall x \in (a, b)$ existuje $f'_+(x)$ vlastní“:
+		$$ f'_+(x) = \lim_{y \rightarrow x_+} \frac{f(y) - f(x)}{y - x} $$
+		je neklesající v $y$ a zdola omezená hodnotou $\frac{f(z) - f(x)}{z - x}$ pro nějaké $z < x$ $\implies$ limita existuje.
+
+		2. „$x \mapsto f'_+(x)$ je neklesající na $(a, b)$.“
+
+		3. „$f'(x)$ neexistuje $\Leftrightarrow$ $f'_+$ má v bodě $x$ skok (je tam nespojitá)“:
+		$$ f'_-(x) = \lim_{y \rightarrow x_-} f'_+(y), \text{ pokud limita existuje a je spojitá v $x_-$}, $$
+		tedy skoků může být jen spočetně mnoho.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 2. přednáška (9. března)
+
+\begin{tvrzeni}
+	$f$ konvexní a shora omezená na $B(x, r)$ ($X$ Banach, $x \in X$, $r > 0$) $\implies$ $f$ je lipschitzovská na $B\(x, \frac{r}{2}\)$.
+
+	\begin{dukazin}
+		1. „$f ≤ M$ na $B(x, r)$ $\implies$ $f(y) ≥ 2f(x) - M$ na $B(x, r)$“
+		$$ y \in B(x, r), \qquad z := x + (x - y) $$
+		$$ f(x) ≤ \frac{1}{2}(f(y) + f(z)) $$
+		$$ f(y) ≥ 2f(x) - f(z) ≥ 2f(x) - M. $$
+
+		2. Nechť $|f| ≤ M$ na $B(x, r)$, $v, w \in B\(x, \frac{r}{2}\)$, $v ≠ w:$
+		$$ z := w + \frac{r}{2}·\frac{w - v}{\|w - v\|} \in B(x, r) $$
+		$$ w\(1 + \frac{r}{2}·\frac{1}{\|w - v\|}\) = z + \frac{r}{2}·\frac{1}{\|w - v\|}·v $$
+		$$ f(w) ≤ \frac{f(z) + \frac{r}{2}\frac{1}{\|w - v\|}f(v)}{1 + \frac{r}{2}\frac{1}{\|w - v\|}} $$
+		$$ f(w) - f(v) ≤ \frac{f(z) - f(v)}{1 + \frac{r}{2\|w - v\|}} $$
+		$$ \frac{f(w) - f(v)}{\|w - v\|} ≤ \frac{f(z) - f(v)}{\|w - v\| + \frac{r}{2}} ≤ \frac{2M}{\frac{r}{2}} = \frac{4}{r}·M. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$\dim X < ∞$, $U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ konvexní. Potom $f$ je lokálně lipschitzovská na $U$.
+
+	\begin{dukazin}
+		BÚNO $X = (®R^n, \|·\|_1)$, $x \in U$, existuje $r$ tak, že $\overline{B_{\|·\|_1}(x, r)} \subset U$ a
+		$$ B_{\|·\|_1}(x, r) = \conv\{x ± r e_i, i \in [n]\} $$
+		$\implies$ $f ≤ \max_{i \in [n]} f(x ± e_i)$ na $B(x, r)$ $\implies$ lipschitzovská na $B\(x, \frac{r}{2}\)$.
+	\end{dukazin}
+\end{dusledek}
+
+\pagebreak
+
+\begin{dusledek}
+	$\dim X < ∞$, $U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ konvexní, $x \in U$. Pak $f'_F(x)$ existuje $\Leftrightarrow$ $f'_G(x)$ existuje.
+
+	\begin{dukazin}
+		„$\implies$“ vždy a „$\impliedby$“ z předchozího důsledku a prvního tvrzení.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	$X$ je obecný Banachův prostor, $U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ spojitý konvexní. Potom je $f$ lokálně lipschitzovská na $U$.
+
+	\begin{dukazin}
+		Spojitost implikuje lokální omezenost a ta implikuje (spolu s předchozím tvrzením) lokální lipschitzovskost.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{poznamka}
+	Pro $\dim X = ∞$ konvexita neimplikuje spojitost, jelikož $\exists$ nespojité lineární funkcionály.
+\end{poznamka}
+
+\begin{priklad}[TODO?]
+	Norma daná skalárním součinem má Fréchetovu derivaci v každém bodě kromě nuly.
+\end{priklad}
+
+\begin{priklad}[TODO?]
+	Pro $X = l_1$ Gateauxova derivace normy existuje právě tehdy, když daný bod nemá nulovou složku (a pak je to $(\sign x_n) \in l_∞$). Zato Fréchetova derivace normy v $l_1$ neexistuje v žádném bodě.
+\end{priklad}
+
+\begin{priklad}[TODO?]
+	Pro $X = l_1(Γ)$, kde $Γ$ je nespočetná, norma nemá Gateauxovu derivaci v žádném bodě.
+\end{priklad}
+
+% 3. přednáška (16. března)
+
+\begin{priklad}[TODO?]
+	Pro $K$ kompaktní, $|K| ≥ 2$, $X = (C(K), \|·\|_∞)$, Gateauxova derivace normy existuje právě tehdy, když absolutní hodnota bodu nabývá svého maxima právě v jednom $t_0 \in K$. Fréchetova derivace normy existuje, když $t_0$ je izolovaný bod $K$.
+\end{priklad}
+
+\begin{definice}[Subdiferenciál]
+	$X$ Banachův prostor, $U \subset X$ otevřená konvexní. Pro $x \in U$ definujeme subdiferenciál $f$ v bodě $x$ jako $\partial f(x) := \{x^* \in X^* | \forall y \in U: x^*(y - x) ≤ f(y) - f(x)\}$.
+\end{definice}
+
+\begin{poznamka}
+	$X$ Banachův prostor, $U \subset X$ otevřená konvexní. Ať $f$ je spojitá a konvexní a $x \in U$. Potom $\forall h \in X$ existuje $\partial_h^+ f(x)$.
+
+	\begin{dukazin}
+		$\frac{f(x + th) - f(x)}{t}$ je neklesající funkce $t$, která je zdola omezená $\frac{f(x - th) - f(x)}{-t}$.
+	\end{dukazin}
+
+	$$ x^* \in \partial f(x) \Leftrightarrow \forall h \in X: x^*(h) ≤ \partial_h^+ f(x). $$
+
+	\begin{dukazin}
+		„$\implies$“: $h \in X$, $\exists δ > 0\ \forall t \in (-δ, δ): x + th \in U$
+		\begin{align*}
+			x^*(x + th - x) &≤ f(x + th) - f(x)\\
+			x^*(h) ≤ \frac{f(x + th) - f(x)}{t} \rightarrow \partial_h^+ f(x)
+		\end{align*}
+
+		„$\impliedby$“: $y \in U$, $h = y - x$:
+		$$ f(y) - f(x) = \frac{f(x + h) - f(x)}{1} ≥ \partial_h^+ f(x) ≥ x^*(h) = x^*(y - x). $$
+	\end{dukazin}
+\end{poznamka}
+
+\begin{priklad}
+	$$ U = X, f(x) = \|x\| \implies \partial f(x) = \{x^* \in X^* | \|x^*\| ≤ 1 \land x^*(x) = \|x\|\}. $$
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+
+	$$ \partial f(¦o) = B_{X^*}, \qquad x≠0: \partial f(x) \subset S_{X^*}. $$
+\end{priklad}
+
+\pagebreak
+
+\begin{tvrzeni}
+	$X$ Banachův, $U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ je spojitá konvexní. Potom $\forall x \in U: \partial f(x)$ je neprázdná, konvexní, $w^*$-kompaktní.
+
+	\begin{dukazin}
+		„$h \mapsto \partial_h^+ f(x)$ je sublineární funkcionál“: $t > 0: \partial_{th}^+ f(x) = t\partial_h^+f(x)$ platí obecně,
+		$$ \partial_{h_1 + h_2}^+ f(x) = \lim_{t \rightarrow 0_+}\frac{f(x + t(h_1 + h_2)) - f(x)}{t} \overset{\text{konvexita } f}≤ $$
+		$$ ≤ \lim_{t \rightarrow 0_+} \(\frac{f(x + 2th_1) - f(x)}{2t} + \frac{f(x + 2th_2) - f(x)}{2t}\) = \partial_{h_1}^+ f(x) + \partial_{h_2}^+ f(x). $$
+
+		$\exists r > 0$: $f$ je $L$-lipschitzovská na $B(x, r)$.
+		$$ |\partial_h^+ f(x)| = \lim_{t \rightarrow 0_+} \left|\frac{f(x + th) - f(x)}{t}\right| ≤ L·\|h\|. $$
+		Z Hahnovy-Banachovy věty $\exists x^*$ lineární funkcionál na $X$: $x^*(h) ≤ \partial_h^+ f(x)$ pro každé $h$. Navíc $x^*(h) ≤ L·\|h\| \implies x^*$ je spojitý $\implies x^* \in \partial f(x)$.
+
+		$\partial f(x)$ je omezený tou konstantou $L$.
+
+% 4. přednáška (23. března)
+
+		„$w^*$-kompaktnost“: jelikož $\partial f(x)$ je omezená, stačí: „$w^*$-uzavřenost“:
+		$$ \partial f(x) = \{x^* \in X^* | \forall y \in U: x^*(y - x) ≤ f(y) - f(x)\} = $$
+		$$ = \bigcap_{y \in U} \{x^* \in X^* | x^*(y - x) ≤ f(y) - f(x)\}. $$
+		$x^* \mapsto x^*(y - x)$ je $w^*$-spojité.
+
+		„Konvexita“: $x^*_1, x^*_2 \in \partial f(x)$, $λ \in <0, 1>$.
+		$$ y \in U: \(λ x^*_1 + (1 - λ)x^*_2\)(y - x) = λ x^*_1 (y - x) + (1 - λ) x^*_2 (y - x) ≤ $$
+		$$ ≤ λ (f(y) - f(x)) + (1 - λ)(f(y) - f(x)) = f(y) - f(x). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\pagebreak
+
+\begin{tvrzeni}
+	$X$ Banachův prostor, $U \subset X$ otevřená konvexní, $f$ spojitá konvexní, $x \in U$. Pak následující je ekvivalentní:
+	$$ \text{1. $f'_G(x)$ existuje;} \quad \text{2. $\partial f(x)$ je jednoprvková množina;} \quad \text{3. $\forall h \in X: \partial_h^+ f(x) = -\partial^+_{-h} f(x)$.} $$
+	Pak $\partial f(x) = \{f'_G(x)\}$.
+
+	\begin{dukazin}
+		„$1. \implies 2.$“: Nechť $f'_G(x)$ existuje. Pak $\forall h \in X: f'_G(x)(h) = \partial_h^+ f(x)$. Tedy $f'_G(x) \in \partial f(x)$ z důsledku za definicí.
+
+		Navíc $x^* \in \partial f(x) \implies \forall h \in X: x^*(h) ≤ \partial_h^+ f(x) = f'_G(x)(h)$
+		$$ x^*(-h) ≤ f'_G(x)(-h) \quad \land \quad x^*(h) ≥ f'_G(x)(h) \implies x^* = f'_G(x). $$
+		Tedy $\partial f(x) = \{f'_G(x)\}$ je jednoprvková.
+
+		„$2. \implies 3.$“: Nechť $\exists h: \partial_h^+ f(x) ≠ -\partial_{-h}^+ f(x)$. $f$ konvexní $\implies$ $-\partial_{-h}^+ f(x) ≤ \partial_h^+ f(x)$. ($φ(t) = f(x + th)$ je konvexní, $φ'_-(0) ≤ φ'_+(0)$.) $\implies$ $-\partial_{-h}^+ < \partial_h^+ f(x)$.
+		\begin{align*}
+			x^*_1(th) := t·\partial_h^+ f(x), \qquad & t \in ®R\\
+			x^*_2(th) := -t·\partial_{-h}^+ f(x), \qquad & t \in ®R
+		\end{align*}
+		$x^*_1$, $x^*_2$ jsou různé lineární funkcionály na $\LO\{h\}$.
+		$$ x^*_j(th) ≤ \partial_{th}^+ f(x), t \in ®R $$
+		$j = 1$:
+		$$ t ≥ 0 \implies \partial_{th}^+ f(x) = t·\partial_h^+ f(x) \quad \text{\lightning} $$
+		$$ t < 0 \implies x^*_1(th) = t·\partial_h^+ f(x) < -t·\partial_{-h}^+ f(x) = \partial_{th}^+ f(x). $$
+		$j = 2$:
+		$$ t ≤ 0 \implies -t\partial_{-h}^+ f(x) = \partial_{th}^+ f(x) \quad \text{\lightning} $$
+		$$ t > 0 \implies x^*_1(th) = -t \partial_{-h}^+ f(x) < t \partial_h^+ f(x) = \partial_{th}^+ f(x). $$
+
+		Z Hahnovy–Banachovy věty lze $x^*_1$, $x^*_2$ rozšířit na lineární funkcionály $x^*_j(h) ≤ \partial_h^+ f(x)$, $h \in X$. Pak $x^*_1, x^*_2 \in \partial f(x)$, $x^*_1 ≠ x^*_2$ (omezenost jako u předchozího tvrzení).
+
+		„$3. \implies 1.$“: Nechť $\forall h \in X: \partial_h^+ f(x) = -\partial_{-h}^+ f(x)$. Pak víme, že $φ(h) = \partial_h^* f(x)$ je sublineární. Navíc $φ(-h) = -φ(h)$, tedy dohromady je $φ$ lineární, neboť zřejmě $φ(th) = tφ(h)$ ($t \in ®R$) a $φ(h_1 + h_2) ≤ φ(h_1) + φ(h_2)$, protože
+		$$ φ(h_1 + h_2) = -φ(-h_1 - h_2) ≥ -\(φ(h_1) + φ(h_2)\) = φ(h_1) + φ(h_2). $$
+
+		Tedy $h \mapsto \partial_h^+ f(x)$ je lineární. Jeho omezenost ukážeme jako v předchozím tvrzení. Tedy je to Gateauxova derivace.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$f(x) = \|x\|$, $x \in X$. Pak $f'_G(x)$ existuje $\Leftrightarrow$ $\exists! x^* \in B_{X^*}: x^*(x) = \|x\|$.
+
+	Toto $x^*$ je pak Gateauxova derivace normy.
+
+	\begin{dukazin}
+		Připomeňme, že $\partial f(x) = \{x^* \in B_{X^*} | x^*(x) = \|x\|\}$. Potom stačí použít předchozí tvrzení.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{priklad}
+	$X$ Hilbertův prostor. Víme $x^* \in X^* \Leftrightarrow \exists y: x^* = \<·, y\>$.
+	$$ x ≠ 0, y \in B_H: \<x, y\> = \|x\| \Leftrightarrow y = \frac{x}{\|x\|}. $$
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}
+	TODO? Už tu jednou bylo.
+\end{priklad}
+
+\begin{priklad}
+	Stejně se ukáže pro $l_1(Γ)$ ($Γ$ nespočetná).
+	$$ \partial f(x) = \{y \in B_{l_∞(Γ)} | \forall γ \in Γ: x_γ ≠ 0 \implies y_γ = \sign x_γ\} \implies $$
+	$\implies$ $\partial f(x)$ není nikdy jednobodová ($\forall x \exists γ: x_γ = 0$).
+\end{priklad}
+
+\begin{priklad}
+	TODO? To už tu také bylo…
+\end{priklad}
+
+\begin{priklad}
+	$X = L_p(μ)$. Gateauxova derivace vždy? existuje pro $x ≠ 0$.
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{priklad}
+
+\pagebreak
+
+\begin{dusledek}
+	$X = ®R^n$. Pak $f'_F(x)$ existuje $\Leftrightarrow$ existují $\frac{\partial f}{\partial x_i}(x)$, $i \in [n]$.
+
+	\begin{dukazin}
+		„$\implies$“: jasné. „$\impliedby$“: Nechť existují parciální derivace. $x^* \in \partial f(x) \implies$
+		$$ \implies x^*(e_i) ≤ \partial_{e_i}^+ f(x) = \frac{\partial f}{\partial x_i}(x) \land x^*(-e_i) ≤ \partial_{-e_i}^+ f(x) = -\frac{\partial f}{\partial x_i}(x) \implies $$
+		$\implies$ $\partial f(x)$ je $1$ bod, tedy existuje Gateauxova derivace. Navíc $f$ je lokálně Lipschitzovská (konvexní a spojitá?) a $X$ je konečnědimenzionální, tedy existuje Fréchetova derivace.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}[Monotónní]
+	$X$ Banachův prostor. Potom $T: D \rightarrow 2^{X^*} \setminus \{\{\}\}$ ($D \subseteq X$) je monotónní, pokud
+	$$ \forall x, y \in D\ \forall x^* \in Tx\ \forall y^* \in Ty: \<x^* - y^*, x - y\> ≥ 0. $$
+\end{definice}
+
+\begin{definice}[usc (shora polospojitý)]
+	$S$ a $T$ topologické prostory. Potom $φ: S \rightarrow 2^T$ je usc (shora polospojitý), pokud $\forall U \subset T$ otevřené: $\{x \in S | φ(x) \subset U\}$ je otevřená.
+
+	\begin{poznamkain}
+		Zdola polospojitý (lsc): $\{x \in S | φ(x) \cap U ≠ \O\}$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{tvrzeni}
+	$X$ Banachův prostor, $U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ spojitá konvexní. Pak $\partial f: U \rightarrow 2^{X^*}$ je
+	\begin{enumerate}
+		\item monotónní;
+		\item lokálně omezená;
+		\item usc z $\|·\|$ do $w^*$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $x, y \in U$, $x^* \in \partial f(x)$, $y^* \in \partial f(y)$
+		$$ x^*(y - x) ≤ f(y) - f(x), \qquad y^*(x - y) ≤ f(x) - f(y). $$
+		Sečteme:
+		$$ x^*(y - x) + y^*(x - y) ≤ 0 \implies (x^* - y^*)(y - x) ≤ 0 \implies (x^* - y^*)(x - y) ≥ 0. $$
+
+		„2.“: $f$ lokálně lipschitzovská
+		$$ \implies \forall x \in U\ \exists r, L > 0, B(x, r) \subset U: f \text{ je $L$-lipschitzovská na } B(x, r) \implies $$
+		$$ \implies \forall y \in B(x, r): \partial f(y) \subset L·B_{X^*}. $$
+
+		„3.“: Ať $G \subset X^*$ je $w^*$-otevřená, $x \in U$, $\partial f(x) \subset G$. Chceme $\exists r > 0: B(x, r) \subset U$ a $\forall y \in B(x, r): \partial f(y) \subset G$.
+
+		Stačí ukázat „$\forall (x_i) \subset U$, $x_n \rightarrow x\ \exists n_0\ \forall n ≥ n_0\ \partial f(x_n) \subset G$.“: protože můžeme vybrat podposloupnost, stačí $\exists n: \partial f(x_n) \subset G$.
+%
+% 5. přednáška (30. března)
+%
+		A to ukážeme sporem: existuje $(y_n) \subset U$, $y_n \rightarrow x$ a přitom $\forall n: \partial f(y_n) \setminus G ≠ \O$.
+
+		$y^*_n \in \partial f(y_n) \setminus G$. Díky lokální omezenosti je posloupnost $(y^*_n)$ omezená, tj. $\exists R > 0\ \forall n: y_n^* \in \overline{B(0, R)}$ (v $X^*$) $\implies$ existuje $y^*$, $w^*$-hromadný bod posloupnosti $(y^*_n)$. Pak $y^* \notin G$ ($G$ je $w^*$-otevřená).
+
+		Sporem ukážeme, že „$y^* \in \partial f(x)$“: $\exists y \in U: y^*(y - x) > f(y) - f(x)$.
+		$$ \exists ε > 0: y^*(y - x) ≥ f(y) - f(x) + ε $$
+		$$ y^*_n(y = x) = y^*_n(y - x + y_n - y_n) ≤ f(y - x + y_n) - f(y_n) \rightarrow $$
+		$$ \rightarrow f(y) - f(x) \implies y^*(y-x) ≤ f(y) - f(x) \text{\lightning}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Maximální monotónní]
+	$X$ Banachův prostor, $U \subset X$, $T: U \rightarrow 2^{X^*}$ je maximální monotónní operátor na $U$, pokud $T$ je monotónní a graf $T$ je maximální mezi grafy monotónních operátorů na $U$.
+
+	\begin{poznamka}[Ekvivalentně]
+		$$ \text{monotónní: } x, y \in U, x^* \in Tx, y^* \in Ty \implies \<x^* - y^*, x - y\> ≥ 0 $$
+		$$ \text{maximalita: } x \in U, x^* \in X^*, \forall y \in U\ \forall y^* \in Ty: \<x^* - y^*, x - y\> ≥ 0 \implies x^* \in Tx $$
+	\end{poznamka}
+\end{definice}
+
+\begin{lemma}
+	$U \subset X$ otevřená, $T: U \rightarrow 2^{X^*}$ monotónní usc z $\|·\|$ do $w^*$ $\forall x \in U: Tx ≠ \O$ konvexní, $w^*$-uzavřená. Pak $T$ je maximální monotónní na $U$.
+
+	\begin{dukazin}
+		$$ y \in U, y^* \in X^*, \forall x \in U\ \forall x^* \in Tx: \<y^* - x^*, y - x\> ≥ 0. $$
+		Nechť $y^* \notin T_y \implies \exists z \in X: y^*(z) > \sup\<Ty, z\> \implies \forall x^* \in Ty: \<x^*, z\> < \<y^*, z\>$.
+		$$ Ty \subset \{z^* \in X^* | \<z^*, z\> < \<y^*, z\>\} =: V $$
+		$T$ usc $\implies$ $\exists r > 0: B(y, r) \subset U$ a $\forall x \in B(y, r): Tx \subset V$. Speciálně pro $t > 0$ dost malé $T(y + tz) \subset TU$.
+		$$ u^* \in T(y + tz) \implies u^*(z) < y^*(z) \implies \<u^* - y^*, z\> < 0 $$
+		$$ \<u^* - y^*, y + tz - y\> = t\<w^* - y^*, z\> ≥ 0 \qquad \text{\lightning}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Minimální konvexně hodnotové usco]
+	$S$ topologický prostor, $X$ Banachův, $φ: S \rightarrow 2^{X^*}$ je minimální konvexně hodnotové usco, pokud
+	\begin{itemize}
+		\item $\forall x \in S$: $φ(x)$ neprázná, $w^*$-kompaktní, konvexní;
+		\item $φ$ je usc z $S$ do $w^*$;
+		\item $φ$ je minimální mezi zobrazeními splňujícími první dvě podmínky ($ψ$ splňuje první dvě podmínky, $\forall x: ψ(x) \subset φ(x) \implies ψ = φ$).
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	$U \subset X$ otevřená konvexní, $f: U \rightarrow X$ spojitá konvexní. Pak $\partial f: U \rightarrow 2^{X^*}$ je maximální monotónní na $U$ a minimální konvexně hodnotové usco ($\|·\| \rightarrow w^*$).
+
+	\begin{dukazin}
+		Podle předchozího tvrzení $\partial f$ je monotónní, konvexně hodnotový, hodnoty neprázdné, $w^*$-kompaktní a je usc z $\|·\|$ do $w^*$.
+
+		Z předchozího lemmatu je $\partial f$ je maximální monotónní na $U$.
+
+		$T \subset \partial f$ (tj. $\forall x \in U: Tx \subset \partial f(x)$) a je to konvexně hodnotové usco (splňuje podmínky výše) $T$ je zřejmě monotónní $\implies$ (z předchozího lemmatu) $T$ je maximální monotónní $\implies$ $T = \partial f$.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	$U \subset X$ otevřená konvexní, $f: U \rightarrow ®R$ spojitá konvexní, $x \in U$. Pak $f'_F(x)$ existuje $\Leftrightarrow$ $\partial f(x)$ je jeden bod a $\partial f$ je v bodě $x$ usc z $\|·\|$ do $\|·\|$ (tj. $\forall G \subset X^*$ $\|·\|$-otevřenou, $\partial f(x) \subset G$, $\exists r > 0: B(x, r) \subset U$ a $\forall y \in B(x, r): \partial f(y) \subset G$).
+
+	\begin{dukazin}
+		„$\implies$“: $f'_F(x)$ existuje $\implies$ $f'_G(x)$ $\implies$ $\partial f(x)$ je 1 bod (víme).
+
+		Pro $ε > 0$, chceme najít $r > 0$, aby $B(x, r) \subset U$ a $\forall y \in B(x, r): \partial f(y) \subset B(y^*, ε)$. Sporem: Nechť existuje $ε > 0$, $(x_n) \subset U$, $x_n \rightarrow x$, $x^*_n \in \partial f(x_n)$, $\|x^*_n - x^*\| > 2ε$. Pak $\exists h_n \in X$, $\|h_n\| = 1$, že $\<x_n^+ - x^*, h_n\> > 2ε$.
+		$$ x^* = f'_F(x) \implies \exists δ > 0\ \forall h \in X, \|h\|≤ δ: f(x + h) - f(x) - x^*(h) ≤ ε·\|h\|, $$
+		$$ x^*_n \in \partial f(x_n) \implies x^*_n(x + δ h_n - x_n) ≤ f(x + δ h_n) - f(x_n)$$
+		$$ x^*(δ h_n) ≤ f(x + δh_n) - f(x) + x^*_n(x_n - x) + f(x) - f(x_n). $$
+		$$ 2·ε·δ < \<x^*_n - x^*, δh_n\> ≤ f(x + δ h_n) - f(x) - x^*(δ h_n) + f(x) - f(x_n) + x^*_n(x_n - x) ≤ $$
+		$$ ≤ εδ + f(x) - f(x_n) + x^*_n(x_n - x) \implies 2εδ ≤ εδ \text{\lightning}. $$
+
+		„$\impliedby$“: $\partial f(x) = \{x^*\}$ už víme, že implikuje $x^* = f'_G(x)$. Ukážeme, že $x^* = f'_F(x)$.
+		$$ ε > 0 \implies \exists δ > 0: B(x, δ) \subset U \land \forall y \in B(x, δ): \partial f(y) \subset B(x^*, ε). $$
+		$y \in B(x, δ)$, $y^* \in \partial f(y)$ libovolné. Pak:
+		$$ x^*(y - x) ≤ f(y) - f(x) \quad\land\quad y^*(x - y) ≤ f(x) - f(y) \implies $$
+		$$ \implies 0 ≤ f(y) - f(x) - x^*(y - x) ≤ y^*(y - x) - x^(y - x) = $$
+		$$ = (y^* - x^*)(y - x) ≤ \|y^* - x^*\|·\|y - x\| ≤ ε\|y - x\|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$U_F := \{x \in U | \exists f'_F(x)\}$ je $G_δ$ a $f'_F: U_F \rightarrow X^*$ je spojitá z $\|·\|$ do $\|·\|$.
+
+	\begin{dukazin}
+		„Spojitost“: přímo z předchozího tvrzení, neboť „$f'_F = \partial f|_{U_F}$“.
+		$$ U_F = \bigcap_{n \in ®N} \underbrace{\{x \in U \middle| \exists V \text{ okolí } x: \diam \{\partial f(y) \middle| y \in V\} ≤ \frac{1}{n}\}}_{\text{otevřená}} $$
+	\end{dukazin}
+
+	\begin{dukazin}[„$\subset$“]
+		„$\subset$“: Z předchozího tvrzení $f'_F(x)$ existuje $\implies$
+		$$ \implies \forall n\ \exists V \text{ okolí } x \forall\ forall y \in V: \partial f(y) \subset B(f'_F(x), \frac{1}{2n}). $$
+	\end{dukazin}
+
+	\begin{dukazin}[„$\supset$“]
+		„$\supset$“: $V_n$ okolí příslušné $\frac{1}{n}$
+		$$ \implies \diam \partial f(x) ≤ \frac{1}{n} (\forall n) \implies \partial f(x) = \{x^*\} \implies $$
+		$$ \implies \forall y \in V_n: \partial f(y) \subset B\(x^*, \frac{1}{n}\) \implies x^* = f'_F(x). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+% 6. přednáška (6. dubna)
+
+\begin{tvrzeni}
+	$U_G = \{x \in U | \exists f'_G(x)\}$. Pak pokud $X$ je separabilní, potom $U_G$ je $G_δ$.
+
+	Zároveň ($X$ libovolný) $f'_G: U_G \rightarrow X^*$ je spojitá z $\|·\|$ do $w^*$.
+
+	\begin{dukazin}
+		„Druhá část“: $U_G = \{x \in U \middle| |\partial f(x)| = 1\}$ a $\partial f(x) = \{f'_G(x)\}$ pro $x \in U_G$. Víme, že $\partial f$ je usc $\|·\| \rightarrow w^*$ $\implies$ na $U_G$ je „spojitý“.
+
+		„První část“: $(x_n) \subset X$ hustá ($\|·\|$-hustá). Pak platí: $\partial f(x)$ je jednobodová $\Leftrightarrow$ $\forall k \in ®N: \{x^*(x_k) | x^* \in \partial f(x)\}$ je jednobodová. („$\implies$“ jasné, „$\impliedby$“: $x^*, y^* \in \partial f(x), x^* ≠ y^* \implies \exists k: x^*(x_k) ≠ y^*(x_k)$.)
+		$U_G = \bigcap_{k \in ®N} \{x \in U | \<\partial f(x), x_k\> \text{ je jednobodová}\} =$
+		$$ = \bigcap_{k \in ®N} \bigcap_{m \in ®N} \underbrace{\{x \in U | \exists r > 0: B(x, r) \subset U \land \diam \<\bigcup_{y \in B(x, r)} \partial f(y), x_k\> ≤ \frac{1}{m}\}}_{\text{otevřená}} $$
+		„$\supset$“: $x$ vpravo $\implies$ $\forall k\ \forall m: \diam \<\partial f(x), x_k\> ≤ \frac{1}{m}$ a ?.
+
+		„$\supset$“: $x \in U_G$, $k, m \in ®N$, $\partial f(x) = \{x^*\}$,
+		$$ W := \{y^* \in X^* \middle| |\<y^* - x^*, x_k\>| < \frac{1}{2m}\} $$
+		$\implies$ $W$ je $w^*$-otevřená, $x^* \in W$ $\implies$ $\partial f(x) \subset W$ $\implies$ ($\partial f$ je usc $\|·\| \rightarrow w^*$) $\exists r > 0: B(x, r) \subset U$ a $\bigcup_{y \in B(x, r)} \partial f(y) \subset W$ $\implies$ $\diam \<\bigcap_{y \in B(x, r)} \partial f(y), x_k\> ≤ \frac{1}{m}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	$X$ není separabilní $\implies$ $U_G$ může být neborelovská. Protipříklady jsou i na neseparabilním Hilbertově prostoru (Holý, Šmídek, Zajíček, …).
+\end{poznamka}
+
+\section{Asplundovy prostory}
+\begin{definice}[Asplundův prostor, Slabě Asplundův prostor, GDS]
+	$X$ Banachův prostor
+	\begin{itemize}
+		\item $X$ je Asplundův, pokud $\forall U \subset X$ otevřenou konvexní $\forall f: U \rightarrow ®R$ spojitou konvexní $\exists G \subset U$ hustá $G_δ$, že $\forall x \in G$ existuje $f'_F(x)$.
+		\item $X$ je slabě Asplundův, pokud $\forall U \subset X$ otevřenou konvexní $\forall f: U \rightarrow ®R$ spojitou konvexní $\exists G \subset U$ hustá $G_δ$, že $\forall x \in G$ existuje $f'_G(x)$.
+		\item $X$ je GDS (Gateaux differentiability space), pokud $\forall U \subset X$ otevřenou konvexní $\forall f: U \rightarrow ®R$ spojitou konvexní $\exists G \subset U$ hustá, $\forall x \in G$ existuje $f'_G(x)$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		Víme, že $U_F$ je $G_δ$, tedy v definici Asplundova prostoru stačí „hustá“ místo „hustá $G_δ$“.
+
+		Pro slabé Asplundovy prostory tvrdíme jen, že $U_G$ obsahuje hustou $G_δ$, sama být $G_δ$ nemusí.
+
+		Existují GDS prostory, co nejsou slabě Asplundovy (Moors–Somasundarum, 2002).
+	\end{poznamkain}
+\end{definice}
+
+\begin{tvrzeni}
+	$X$ separabilní Banachův, $M$ úplný metrický prostor (obecněji $M$ Bairův topologický prostor) $φ: M \rightarrow 2^{X^*}$ minimální konvexně hodnotové usco. Potom $\{m \in M\middle| |φ(m)| = 1\}$ je hustá $G_δ$ podmnožina $M$.
+\end{tvrzeni}
+
+\begin{dusledek}
+	$X$ separabilní Banachův prostor $\implies$ $X$ je slabě Asplundův. (Aplikujeme předchozí tvrzení na $\partial f$.) (Otevřená podmnožina $X$ je Bairův prostor, dokonce úplně metrizovatelný).
+
+	$l_1$ je slabě Asplundův (protože je separabilní), ale ne Asplundův ($\|·\|$ není nikde $F$-diferencovatelná).
+
+	$C[0, 1]$ totéž.
+\end{dusledek}
+
+\begin{dukaz}
+	$X$ separabilní $\implies$ existuje $(x_k)$ hustá v $X$. Označme $φ_k: X^* \rightarrow ®R$, $φ_k(x^*) = x^*(x_k)$, $x^* \in X^*$. Pak $φ_k$ jsou $w^*$-spojité lineární funkcionály na $X^*$ a platí (*):
+	$$ \forall x^*, y^* \in X^*: \(x^* = y^* \Leftrightarrow \forall k: φ_k(x^*) = φ_k(y^*)\). $$
+	Máme $φ: M \rightarrow 2^{X^*}$, definujme množiny $G_{n, k} := \{m \in M | \diam φ_k(φ(m)) < \frac{1}{n}\}$. Pak platí $\bigcap_{n, k} G_{n, k} = \{m \in M \middle| |φ(m)| = 1\}$ („$\supset$“: jasné a „$\subset$“: $m$ vlevo $\implies$ $\forall k: |φ_k(φ(m))| = 1 \overset*\implies |φ(m)| = 1$).
+
+	Ukážeme, že $G_{n, k}$ jsou otevřené a husté: „$G_{n, k}$ otevřená“:
+	$$ m \in G_{n, k} \implies \diam φ_k(φ(m)) < \frac{1}{n} $$
+	$$ \implies φ_k(φ(m)) = [α, β], β - α < \frac{1}{n} \implies \exists (α', β') \supset [α, β], β' - α' < \frac{1}{n}. $$
+	$$ φ_k(φ(m)) \subset (α', β') \implies φ(m) \subset φ_k^{-1}((α', β')) \quad w^*\text{-otevřená} $$
+	$\implies$ ($φ$ je usc) $\exists V$ okolí $m$ v $M$: $\forall m' \in V: φ(m') \subset φ_k^{-1}((α', β'))$ $\implies$ $φ_k(φ(m')) \subset (α', β')$ $\implies$ $\diam φ_k(φ(m')) < \frac{1}{n}$ $V \subset G_{n, k}$ $\implies$ $G_{n, k}$ otevřená.
+
+	„$G_{n, k}$ je hustá“: $m \in M$, $U$ otevřené okolí $m$ v $M$ jako výše $φ_k(φ(m)) = [α, β]$. Zvolme $c > β$ $\implies(m) \subset φ_k^{-1}((-∞, c))$ $\implies$ ($φ$ je usc) $\exists V$ okolí $m$, $V \subset U$: $\bigcup_{m' \in V} φ(m') = φ(V) \subset φ_k^{-1} ((-∞, c))$ $\implies$ $φ_k(φ(V)) \subset (-∞, c)$.
+
+	$d := \sup φ_k(φ(V))$, $β ≤ d ≤ c$. Tvrdíme, že $\exists m' \in V: φ_k(φ(m')) \subset \(d - \frac{1}{2n}, d\]$. Nechť ne: $\forall m' \in V: φ_k(φ(m')) \cap \(-∞, d - \frac{1}{2n}\] ≠ \O$ $\implies$ $φ(m') \cap φ_k^{-1}\(\(-∞, d - \frac{1}{2n}\]\) ≠ \O$.
+
+	Definujeme $ψ: M \rightarrow 2^{X^*}$:
+	$$ ψ(m') = \begin{cases}φ(m'), &m' \in M \setminus V,\\φ(m') \cap φ_k^{-1}\(\(-∞, d - \frac{1}{2n}\]\), & m' \in V.\end{cases} $$
+	Pak: $\forall m' \in M: ψ(m') ≠ \O$, konvexní, $2^*$-kompaktní, $ψ$ je usc v každém bodě (v bodech mimo $V$ to plyne z vlastností $φ$, v bodech $V$: $m' \in V$ $H$ $w^*$-otevřená, $H \supset φ(m')$, $\tilde H = H \cup φ_k^{-1}\(\(d - \frac{1}{2n}, +∞\)\) \implies \tilde H$ je $w^*$-otevřená, $φ(m') \subset \tilde H$; $φ$ je usc $\implies$ $\exists W \subset V$ okolí $m'$: $φ(W) \subset \tilde H$, pak $ψ(W) \subset H$, což dokazuje, že $ψ$ je usc).
+
+	$\implies$ $ψ$ je konvexně hodnotové usco, $ψ \subset φ$, $φ$ minimální $\implies$ $ψ = φ$.
+	$$ \implies \forall m' \in V: φ(m') \subset φ_k^{-1}\(\(-∞, d - \frac{1}{2n}\]\), \qquad φ_k(φ(m')) \subset \(-∞, d - \frac{1}{2n}\] $$
+	(spolu s definicí $d = \sup φ_k(φ(V))$.) Tedy opravdu $\exists m' \in V: φ_k(φ(m')) \subset \(d - \frac{1}{2n}, d\]$
+	$$ \implies φ_k(φ(m)) < \frac{1}{2n} \implies m' \in G_{n, k} \cap V. $$
+	To dokazuje hustotu $G_{n, k}$. Tedy $\bigcap_{n, k} G_{n, k}$ je hustá $G_δ$ množina.
+\end{dukaz}
+
+\begin{priklad}
+	Proto $l_1(Γ)$, $Γ$ nespočetná, není slabě Asplundův ani GDS. ($\|·\|$ není Gateaux-diferencovatelná v žádném bodě.)
+\end{priklad}
+
+\begin{poznamka}
+	Stejně lze dokázat: předchozí tvrzení bez konvexně hodnotové.
+
+	\begin{dukazin}[Viz další tvrzení.]
+		usco = usc + $w^*$-kompaktně hodnotové s neprázdnými hodnotami.
+	\end{dukazin}
+\end{poznamka}
+
+% 7. přednáška (13. dubna)
+
+\begin{tvrzeni}
+	$M$ topologický prostor (Baireův), $X$ Banachův.
+
+	Je-li $φ: M \rightarrow 2^{X^*}$ usco (do $w^*$ topologie), pak $ψ(m) := \overline{\conv}^{w^*} φ(m)$, $m \in M$, je usco.
+
+	Je-li $ψ: M \rightarrow 2^{X^*}$ minimální konvexně hodnotové usco, $φ: M \rightarrow 2^{X^*}$ minimální usco, $φ \subset ψ$ ($\forall m: φ(m) \subset ψ(m)$). Pak $\forall m \in M: |φ(m)| = 1 \Leftrightarrow |ψ(m)| = 1$.
+
+	\begin{dukazin}
+		„První bod“: Zřejmě $\forall m \in M: ψ(m) ≠ \O$, $ψ(m)$ je konvexní $w^*$-kompaktní. „usc“: $U \subset X^*$ $w^*$-otevřené, $m \in M$, $ψ(m) \subset U$, $\exists V w^*\text{-otevřená}: ψ(m) \subset V \subset \overline{V}^{w^*} \subset U$.
+		(Z regularity $w^*$-topologie a $w^*$-kompaktnosti $ψ(m)$.)
+		$x^* \in ψ(m)$ $\implies$ existuje $H_{x^*}$ konvexní $w^*$-okolí $¦o$, že $x^* + 2H_{x^*} \subset V$.
+
+		$φ(m)$ $w^*$-kompaktní $\implies$ $\exists x^*_1, …, x^*_n \in ψ(m): ψ(m) \subset \bigcup_{i=1}^n(x^*_i + H_{x^*_i})$. $H := \bigcap_{i=1}^n H_{x^*_i}$ konvexní $w^*$-okolí ¦o.
+		$$ ψ(m) + H \subset \bigcup_{i=1}^n (x^*_i + H_{x^*_i}) + H \subset \bigcup_{i=1}^n (x^*_i + 2 H_{x^*_i}) \subset V. $$
+		$T_j ψ(m) + H \subset V$. $ψ(m) + H$ je $w^*$-otevřená konvexní množina obsahující $ψ(m) \supset φ(m)$.
+
+		$φ$ je usc $\implies$ $\exists W$ okolí $m$: $\forall m' \in W: φ(m') \subset ψ(m) + H$
+		$$ ψ(m') = \overline{\conv}^{w^*} φ(m') \subset \overline{ψ(m) + H}^{w^*} \subset \overline{V}^{w^*} \subset U. $$
+		Tedy $ψ$ je také usc.
+
+		„Druhý bod“: $|ψ(m)| = 1 \implies |φ(m)| = 1$ ($φ(m) \subset ψ(m)$). Obráceně ať $|φ(m)| = 1$.
+		$$ \tilde ψ(m') = \overline{\conv}^{w^*}φ(m'), m' \in M \implies \tilde ψ \text{ je usco}, \tilde ψ \subset ψ \overset{ψ \text{ minimální}}\implies \tilde ψ = ψ $$
+		$$ ψ(m) = \tilde ψ(m) = \overline{\conv}^{w^*} φ(m) \text{ je jednobodová}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	$φ$ je usco [konvexně hodnotové] $\implies$ $\exists \tilde φ \subset φ$ minimální usco [konvexně hodnotové].
+
+	\begin{dukazin}
+		Zornovo l.: $(φ_α), α \in A$ je řetězec usco [konvexně hodnotový] $\implies$ $ψ(m) = \bigcap_{α \in A} φ_α(m)$ je usco (dolní závora). (Hodnoty jsou $≠\O$, jelikož je to průnik řetězce kompaktních neprázdných množin, a jsou kompaktní [konvexní]. usc: $\bigcap_{α \in A} φ_α(m) \subset U$ otevřená $\implies$ $\exists F \subset A$ konečná $\bigcap_{α \in F} φ_α(m) \subset U$ $\implies$ $\exists α: φ_α(m) \subset U$ atd.)
+
+		Pak existují minimální prvky.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{tvrzeni}
+	$X$ Banachův prostor, $X^*$ separabilní, $M$ Baireův topologický prostor (např. úplný metrický) $φ: M \rightarrow 2^{X^*}$ minimální konvexně hodnotové usco. Pak\vspace{-0.8em}
+	$$ \{m \in M | φ(m) \text{ je jednobodový a } φ \text{ je v bodě } m \text{ usc do } \|·\|\}\vspace{-0.8em} $$
+	je hustá $G_δ$ v $M$.
+
+	\begin{dukazin}
+		$X^*$ separabilní, tj. $\{x^*_k, k \in ®N\}$ je hustá v $X^*$.
+		$$ A_n := \{m \in M | \forall U \text{ okolí } m: \diam φ(U) > \frac{1}{n}\}. $$
+		$\implies$ $A_n$ je uzavřená, protože $M \setminus A_n$ je otevřená. $M \setminus \bigcup_n A_n$ je množina ze znění.
+
+		Ukážeme, že $A_n$ je první kategorie v $M$.
+		$$ A_n = \bigcup_{k=1}^∞ A_{n, k}, \qquad A_{n, k} = \{m \in A_n | \dist(φ(m), x^*_k) < \frac{1}{8n}\} $$
+		($m \in A_n$ $\implies$ $φ(m) ≠ \O$, $\{x^*_k, k \in ®N\}$ hustá $\implies$ $\exists k: \diam(φ(m), x^*_n) < \frac{1}{8n}$)
+
+		Ukážeme, že „$A_{n, k}$ je řídká“: $m \in A_{n, k}$ libovolné, $U$ okolí $m$ libovolné$π$. Zvolme $m^* \in φ(m)$, aby $\|m^* - x^*_k\| < \frac{1}{8n}$.
+		$$ m \in A_n \implies \exists z_1, z_2 \in U, z^*_1 \in φ(z_1), z^*_2 \in φ(z_2): \|z^*_1 - z^*_2\| > \frac{1}{n}. $$
+		$$ \triangle\text{-nerovnost} \implies \exists z \in \{z_1, z_2\}: \|z^* - m^*\| > \frac{1}{2n} \implies \|z^* - x^*_k\| > \frac{1}{2n} - \frac{1}{8n} > \frac{1}{4n} \implies $$
+		$$ \implies \exists x \in X, \|x\| = 1: \<z^* - x^*_k, x\> > \frac{1}{4n} \implies \<z^*, x\> > \<x^*_k, x\> + \frac{1}{4n}. $$
+
+		„Pak $\exists v \in V\ \forall v^* \in φ(v): \<v^*, x\> > \<x^*_k, x\> + \frac{1}{4n}$.“ Kdyby ne:
+		$$ \forall v \in V: φ(v) \cap \underbrace{\{y^* | \<y^*, x\> ≤ \<x^*_k, x\> + \frac{1}{4n}\}}_{=:Y} ≠ \O, $$
+		ale podobně jako v předpřechozím tvrzení to bude spor s minimalitou:
+		$$ \tilde(m') = \begin{cases}φ(m') \cap Y, & m' \in V,\\ φ(m'), & m' \in M \setminus V.\end{cases} $$
+		Jako v předpředchozím tvrzení $\implies$ $\tilde φ$ je konvexně hodnotové usco, $\tilde φ \subset φ$ $\implies$ ($φ$ minimální) $\tilde φ = φ$ $\implies$ $\forall v \in V: φ(v) \subset Y$, ale pro $z$ to neplatí.
+
+		$$ \implies φ(v) \subset \{y^* | \<y^*, x\> > \<x^*_k, x\> + \frac{1}{4n}\} =: Z \implies $$
+		$$ \implies \exists W \text{ okolí } v, W \subset V, φ(W) \subset Z \implies W \cap A_{n, k} = \O $$
+		($w \in W \implies \forall w^* \in φ(w): \|w^* - x^*_k\| ≥ \<w^* - x^*_k, x\> > \frac{1}{4n} \implies \dist (φ(w), x^*_n) ≥ \frac{1}{4n} > \frac{1}{8n}$.)
+
+		Tedy $A_{n, k}$ řídká $\implies$ $A_n$ 1. kategorie (řídká, protože uzavřená).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $X$ je separabilní Banachův prostor. Pak $X$ je Asplundův $\Leftrightarrow$ $X^*$ je separabilní.
+
+	\begin{dukazin}
+		„$\impliedby$“ Z předchozího tvrzení aplikovaného na $\partial f$. „$\implies$“: $X$ separabilní a $X^*$ neseparabilní $\implies$ $B_{X^*}$ je neseparabilní $\implies$ existuje $M_0 \subset B_{X^*}$ nespočetná, že existuje $ε > 0$ $\forall m_1, m_2 \in M_0, m_1 ≠ m_2 \implies \|m_1 - m_2\| > ε$.
+
+		„$(B_{X^*}, w^*)$ je kompaktní (Banach–Alaoglu) metrizovatelný (separabilní) prostor $\implies$ $\exists M \subset M_0$ nespočetná bez $w^*$-izolovaných bodů.“:
+		$$ ©U = \{U \subset B_{X^*} | U \text{ je $w^*$-otevřená (relativně v $B_{X^*}$) } \land U \cap M_0 \text{ je spočetná}\}. $$
+		Pak ©U je systém otevřených množin v separabilním metrickém prostoru $\implies$ $\exists ©V \cap M_0 = \bigcup \{V \cap M_0 | V \in ©V\}$ je spočetná $\implies$ $M_0 \setminus \bigcup ©U =: M$ je nespočetná a $\forall U$ $w^*$-otevřenou: $U \cap M ≠ \O \implies U \cap M$ je nespočetná [$U \cap M$ spočetná $\implies$ $U \cap M_0$ spočetná $\implies$ $U \in ©U$.] speciálně $M$ nemá $w^*$-izolované body.
+
+		Tedy každá neprázdná relativně $w^*$-otevřená podmnožina $M$ má diametr $> ε$.
+		$$ p(x) := \sup \{\<x^*, x\> | x^* \in M\}, x \in X \implies $$
+		$\implies$ $p$ je spojitá konvexní funkce na $X$ (jelikož $M \subset B_{X^*}$, $p(x) ≤ \|x\|$, je konvexní, supremum afinních?, spojitá, 1-Lipschitz, supremum 1-Lipschitz).
+
+		„$p$ není nikde fréchetovsky diferencovatelná“: $x \in X$ libovolné
+		$$ \implies \forall n: \diam \underbrace{\{x^* \in M |\<x^*, x\> > p(x) - \frac{ε}{3n}\}}_{=: Y} > ε \implies $$
+		$$ \implies \exists x^*_n, y^*_n \in Y: \|x^*_n - y^*_n\| > ε \implies $$
+		$$ \implies \exists x_n \in X, \|x_n\| = 1: \<x^*_n - y^*_n, x_n\> > ε. $$
+
+		$$ p\(x + \frac{1}{n} x_n\) + p\(x - \frac{1}{n} x_n\) - 2p(x) ≥ $$
+		$$ \<x^*_n, x + \frac{1}{n} x_n\> + \<y^*_n, x - \frac{1}{n} x_n\> - \<x^*_n + y^*_n, x\> - \frac{2ε}{3n} = $$
+		$$ = \frac{1}{n} \<x^*_n - y^*_n, x_n\> - \frac{2ε}{3n} > \frac{ε}{n} - \frac{2ε}{3n} = \frac{ε}{3n} \implies $$
+		$$ \implies \frac{ε}{3} < \frac{p\(x + \frac{1}{n}x_n\) + p\(x - \frac{1}{n} x_n\) - 2p(x)}{\frac{1}{n}} = $$
+		$$ = \frac{p\(x + \frac{1}{n} x_n\) - p(x) - u^*\(\frac{1}{n}x_n\)}{\frac{1}{n}} - \frac{p\(x - \frac{1}{n}x_n\) - p(x) - u^*\(-\frac{1}{n}x_n\)}{-\frac{1}{n}} \rightarrow 0 - 0 = 0. \text{ \lightning}. $$
+		($p$ fréchetovsky diferencovatelná v $X$, $u^* = p'_F$.) Tedy Fréchetova derivace neexistuje.
+	\end{dukazin}
+\end{veta}
+
+% 8. přednáška (20. dubna)
+
+\begin{priklady}
+	$\dim X < ∞ \implies X$ Asplundův.
+
+	$X$ separabilní reflexivní $\implies$ $X$ Asplundův.
+
+	$l_p, p \in (1, ∞)$ Asplundovy, stejně tak $L_p(0, 1)$.
+
+	$c_0$ je Asplundův ($c_0^* = l_1$, separabilní).
+
+	$l_1$, $©C[0, 1]$ nejsou Asplundovy (norma není nikde fréchetovsky diferencovatelná, nebo $l_1^* = l_∞$ a $©C[0, 1]^* = ©M([0, 1])$ jsou neseparabilní).
+\end{priklady}
+
+\begin{veta}
+	$X$ Banachův prostor. Pak následující je ekvivalentní:
+
+	\begin{enumerate}
+		\item $X$ je Asplundův.
+		\item Každá ekvivalentní norma na $X$ má alespoň jeden bod fréchetovské-diferencovatelnosti.
+		\item $\forall M \subset X^*$, $M ≠ \O$, $M$ omezená, $\forall ε > 0$ $\exists x \in X$ $\exists c \in ®R$: $S_{M, x, c} := \{x^* \in M | x^*(x) > c\}$\break je neprázdná a její diametr $< ε$. ($S_{M, x, c}$ jako slice – krajíc, plátek) „$w^*$-dualicita“.
+		\item $\forall M \subset X^*$, $M ≠ \O$, $M$ omezená, $\forall ε > 0$ $\exists U \subset X^*$ $w^*$-otevřená: $U \cap M ≠ \O$ a $\diam(U \cap M) < ε$.
+		\item $\forall Y \subset X$ uzavřený podprostor: $Y$ splňuje čtvrtý bod.
+		\item $\forall Y \subset X$ $\forall M$ Baireův topologický prostor $\forall φ: M \rightarrow 2^{Y^*}$ lokálně omezené minimální usco: $\{m \in M | \text{$φ(m)$ je jednobodová a $φ$ je v bodě $m$ usc do $\|·\|$}\}$ je hustá $G_δ$ podmnožina $M$.
+		\item Totéž jako šestý bod pro konvexně hodnotová usco.
+		\item $\forall Y \subset X$: $Y$ je Asplundův.
+		\item $\forall Y \subset X$ separabilní: $Y$ je Asplundův.
+	\end{enumerate}
+
+	\begin{dukazin}[$1. \implies 2.$]
+		Triviální, protože ekvivalentní norma je spojitá konvexní funkce.
+	\end{dukazin}
+
+	\begin{dukazin}[$2. \implies 3.$]
+		Obměna: Nechť neplatí 3.: Mějme $M \subset X^*$ neprázdnou omezenou, $ε > 0$, že každý (neprázdný) slice $M$ má diametr $> ε$. BÚNO $M$ je konvexní a symetrická ($M_1 := M \cup (-M)$, potom $slice(M_1) = slice(M) \cup slice(-M)$, ta je alespoň jedna neprázdná, tedy $\diam > ε$, $M_2 := \conv(M_1)$ je konvexní symetrická. Pokud poloprostor protíná $M_2$, protíná i $M_1$, neboť když $M_1 \subset \{x^* | x^*(x) ≤ c\}$, tak $M_2$ také konvexní $\implies$ každý slice $M_2$ má $\diam > ε$).
+
+		BÚNO $M$ je $w^*$-uzavřená (jinak vezmu $\overline{M}^{w^*}$, pokud $w^*$-otevřený poloprostor protíná $\overline{M}^{w^*}$, protíná i $M$, tj. i slice $\overline{M}^{w^*}$ má $\diam > ε$).
+
+		Tedy BÚNO $M$ je $w^*$-kompaktní, konvexní, symetrická. $B := M + B_{X^*}$ $\implies$ $B$ je $w^*$-kompaktní, konvexní, symetrická, $\|·\|$-okolí ¦o.
+		$$ \| |x| \| = \max \{f(x) | f \in B\}, x \in X. $$
+		Pak $\| |·| \|$ je ekvivalentní norma na $X$ ($B$ konvexní symetrická $\implies$ je to pseudonorma, $B \supset B_{X^*} \implies \| |·| \| ≥ \|·\|$, $M$ omezená $\implies$ $B$ omezená $\implies$ $\| |·| \| ≤ \konst.·\|·\|$).
+
+		Tato norma nemá žádný bod fréchetovské diferencovatelnosti. Použijeme důkaz předchozí věty: stačí ověřit, že každý slice $B$ má diametr $> ε$.
+
+		$$ S = \{x^* \in B | x^*(x) > c\} ≠ \O $$
+		$x^*_0 \in S$ $\implies$ $x^*_0 = b^* + m^*$ ($b^* \in B_{X^*}$, $m^* \in M$), $x^*_0(x) = b^*(x) + m^*(x)$ $\implies$ $m^*(x) = x^*_0 - b^*(x) > c - b^*(x)$ $\implies$
+		$$ \implies m^* \in S_{M, x, c - b^*(x)}, \qquad \diam S_{M, x, c - b^*(x)} > ε \implies $$
+		$$ \implies \exists m^*_1, m^*_2 \in S_{M, x, c - b^*(x)}: \|m^*_1 - m^*_2\| > ε \implies $$
+		$$ \implies b^* + m^*_1, b^* + m^*_2 \in S $$
+		(jsou v $B$ a $(b^* + m^*_1)(x) = b^*(x) + m^*_1(x) > b^*(x) + c - b^*(x) = c$).
+		$$ \|(b^* + m^*_1) - (b^* + m^*_2)\| = \|m^*_1 - m^*_2\| > ε. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$3. \implies 4.$]
+		Triviální.
+	\end{dukazin}
+
+	\begin{dukazin}[$4. \implies 5.$]
+		$Y \subset X$ podprostor, $π: X^* \rightarrow Y^*$, $π(x^*) = x^*|_Y$, $π$ je $w^*$-$w^*$ spojité.
+
+		$M \subset Y^*$ neprázdná omezená, $ε > 0$, hledáme $w^*$-otevřenou $U \subset Y^*: U \cap M ≠ \O, \diam U \cap M < ε$.
+
+		BÚNO $M$ je $w^*$-kompaktní (nahradíme $M$ množinu $\overline{M}^{w^*}$).
+
+		$\exists N \subset X^*$ $w^*$-kompaktní, $π(N) = M$ ($y^* \in M \overset{\text{HB}} \exists x^* \in X^*, \|x^*\| = \|y^*\|, π(x^*) = y^*$, najdeme $N_0$ omezenou, nahradíme ji $\overline{N_0}^{w^*}$, která je $w^*$-kompaktní, $π(\overline{N_0}^{w^*}) \subseteq \overline{π(N_0)}^{w^*} = \overline{M}^{w^*} = M$).
+
+		Existuje $\tilde N \subset N$ minimální $w^*$-kompaktní: $π(\tilde N) = M$ (Zornovo lemma: $(N_α)$ řetězec $w^*$-kompaktních množin, $π(N_α) = M$, potom $\bigcap_α N_α$ je $w^*$-kompaktní množina a $π(\bigcap_α N_α) = M$, neboť $\subset$ je triviální a pro $\supset$: $y^* \in M \implies π^{-1}(y^*) \cap N_α ≠ \O$ pro každé $α$).
+
+		Existuje $U \subset \tilde N$ relativně $w^*$-otevřená, $U ≠ \O$, $\diam U < ε$. $\tilde N$ minimální, $\tilde N \setminus U \subsetneq \tilde N$ $w^*$-kompaktní $\implies$ $π(\tilde N \setminus U) \subsetneq M$ a zároveň $π(\tilde N \setminus U)$ je $w^*$-kompaktní
+
+		$\implies V := M \setminus π(\tilde N \setminus U)$ je neprázdná relativně $w^*$-otevřená podmnožina $M$. Navíc $V \subset π(U)$ [$M = π(\tilde N)$], $\|π\| ≤ 1 \implies \diam V ≤ \diam π(U) ≤ \diam U < ε$.
+	\end{dukazin}
+
+	\begin{dukazin}[$5. \implies 6.$]
+		$Y \subset X$ podprostor, $φ: M \rightarrow 2^{Y^*}$ lokálně omezená minimální usco (do $w^*$).
+		$$ \{m \in M \middle| |φ(m)| = 1 \land \text{$φ$je v bodě $m$ usc do $\|·\|$}\} = $$
+		$$ = \bigcap_{n=1}^∞ G_n, \qquad G_n := \{m \in M | \exists U \text{ okolí v $M$}: \diam φ(U) < \frac{1}{n}\} = $$
+		$$ = \bigcap_{k=1}^∞ G_{n, k}, \qquad G_{n, k} := \{m \in M | \exists U \text{ okolí v $M$}: \diam φ(U) \cap k·B_{Y^*} < \frac{1}{n}\} $$
+		$G_{n, k}$ jsou otevřená. (Důkaz poslední rovnosti: „$\subset$“ triviální, „$\supset$“: $m$ vpravo, potom z lokální omezenosti existuje $V$ okolí $m$ a $k_0 \in ®N$, že $φ(V) \subset k_0 B_{Y^*}$, tedy $m \in G_{n, k_0}$, a když vezmeme $U$ z definice $G_{n, k_0}$, pak $U \cap V$ funguje pro $G_n$).
+
+		„$G_{n, k}$ je hustá“: Mějme $m \in M$, $U$ otevřené okolí $m$:
+		$$ φ(m) \cap k·B_{Y^*} = \O \overset{φ \text{ je usc}} \implies \exists \tilde U \text{ okolí } m: φ(\tilde U) \cap k·B_{Y^*} = \O \implies \tilde U \subset G_{n, k}; $$
+		$$ φ(m) \cap k·B_{Y^*} ≠ \O \implies \exists w^*\text{-otevřené } H \subset Y^*: H \cap φ(U) \cap k·B_{Y^*} ≠ \O \text{ má } \diam < ε, $$
+		„$\implies \exists m' \in U: φ(m') \subset H$“: jinak $\tilde φ(m) = \begin{cases}φ(m') \setminus H, & m' \in U,\\ φ(m'), & m' \in M \setminus U.\end{cases}$
+		$\implies$ $\tilde φ$ je usco, $\tilde φ \subset φ$ $\implies$ ($φ$ minimální) $\tilde φ = φ$. A to je spor s $φ(U) \cap H = \O$.
+
+		$\overset{φ \text{ je usc}}\implies$ $\exists V \subset U$ otevřené obsahující $M$: $φ(V) \subset H$. Pak $φ(V) \cap k·B_{Y^*} = φ(V) \cap H \cap k·B_{Y^*} \subset φ(U) \cap H \cap k·B_{Y^*}$ a to má $\diam < ε$. $\implies m' \in G_{n, k}$.
+	\end{dukazin}
+
+% 9. přednáška (27. dubna)
+
+	\begin{dukazin}[$6. \implies 7.$]
+		$Y \subset X$ podprostor, $M$ Baireův topologický prostor $φ: M \rightarrow 2^{Y^*}$ minimální konvexně hodnotové usco. Nechť $ψ: M \rightarrow 2^{Y^*}$ je minimální usco, $ψ \subset φ$. Pak víme, že $\forall m \in M: φ(m) = \overline{\conv}^{w^*} ψ(m)$. Speciálně $|φ(m)| = 1 \Leftrightarrow |ψ(m)| = 1$.
+
+		Navíc (v bodech jednohodnotnosti)? $φ$ je v $m$ usc do $\|·\|$ $\Leftrightarrow$ $ψ$ je v $m$ usc do $\|·\|$
+		$$ \Leftrightarrow \forall ε > 0\ \exists U \text{ okolí } m: ψ(U) \subset ψ(m) + ε·B_{Y^*} $$
+		a to samé pro $φ$. „$φ(m) = ψ(m)$“: $m' \in U:$
+		$$ φ(m') \subset ψ(m) + ε·B_{Y^*} \implies ψ(m') \subset ψ(m) + ε·B_{Y^*} \implies φ(m') \subset ψ(m) + ε·B_{Y^*} $$
+	\end{dukazin}
+
+	\begin{dukazin}[$7. \implies 8.$]
+		$Y \subset X$, $U \subset Y$ otevřená konvexní, $f: U \rightarrow ®R$ spojitá konvexní. Pak $\partial f: U \rightarrow 2^{Y^*}$ je minimální konvexně hodnotové usco. $\implies$ z 7. je ta množina hustá $G_δ$ v $U$, a je to přesně množina bodů fréchetovské diferencovatelnosti.
+	\end{dukazin}
+
+	\begin{dukazin}[$8. \implies 9.$]
+		Triviální.
+	\end{dukazin}
+
+	\begin{dukazin}[$9. \implies 1.$]
+		Obměnou. Nechť $X$ není Asplundův $\implies$ $\exists U \subset X$ otevřená konvexní $\exists f: U \rightarrow ®R$ spojitá konvexní, že množina bodů fréchetovské diferencovatelnosti není hustá v $U$.
+		$$ G_n(f) := \{x \in U | \exists δ > 0: \sup_{\|y\| = 1} \frac{f(x + δy) + f(x - δy) - 2f(x)}{δ} < \frac{1}{n}\}. $$
+		„Pak $\bigcap_n G_n(f)$ je množina bodů fréchetovské diferencovatelnosti.“:
+
+		„$\supseteq$“: $x^* = f'_F(x) \implies \lim_{h \rightarrow ¦o} \frac{f(x + h) - f(x) - x^*(h)}{\|h\|} = 0 \implies$
+		$$ \implies \exists δ > 0\ \forall h ≠ 0, \|h\| ≤ δ: \left|\frac{f(x + h) - f(x) - x^*(h)}{\|h\|}\right| < \frac{1}{2n} \implies $$
+		$$ \implies \frac{f(x + h) - f(x) - x^*(h)}{\|h\|} < \frac{1}{2n} \land \frac{f(x - h) - f(x) + x^*(h)}{\|h\|} < \frac{1}{2n} \implies $$
+		$$ \implies \frac{f(x + h) + f(x - h) - 2f(x)}{\|h\|} < \frac{1}{n}. $$
+
+		„$\subseteq$“: Ta podmínka znamená (kdyby supremum prázdné, pak $\|y\| ≤ 1$)
+		$$ \lim_{h \rightarrow ¦o} \frac{f(x + h) + f(x - h) - 2f(x)}{\|h\|} = 0. $$
+		$$ 0 \leftarrow \frac{f(x + δy) + f(x - δy) - 2f(x)}{δ} = \frac{f(x + δy) - f(x)}{δ} - \frac{f(x - δy) - f(x)}{-δ} $$
+		$f$ je konvexní a výrazy výše jsou tak neklesající v $δ$, tedy
+		$$ \partial_y^+ f(x) = \lim_{δ \rightarrow 0_+} \frac{f(x + δy) - f(x)}{δ} \land \partial_{-y} f(x) = \lim_{δ \rightarrow 0_+} \frac{f(x - δy) - f(x)}{δ} \implies $$
+		$\implies \partial_y^+ f(x) = -\partial_{-y}^+ f(x) \implies$ existuje Gateauxova derivace. Navíc limity jsou stejnoměrné, tedy existuje i Fréchetova derivace.
+
+		„$G_n(f)$ je otevřená“: $f$ je lokálně lipschitzovská, $x \in G_n(X)$, $f$ je $L$-Lipschitzovská na $B(x, r) \subset U$:
+		$$ \bigg|\underbrace{\frac{f(x' + δy) + f(x - δy) - 2f(x)}{δ}}_{≤c + \frac{4L \eta}{δ}} - \underbrace{\frac{f(x + δy) + f(x - δy) - 2f(x)}{δ}}_{≤ -L}\bigg| ≤ \frac{4L}{δ}\|x - x'\|\vspace{-2em} $$
+	\end{dukazin}
+
+	\begin{dukazin}[$9. \implies 1.$ pokračování]
+		$\bigcap_n G_n(x)$ není hustá v $U$ $\overset{Baire}\implies$ $\exists m: G_m(x)$ není v $U$ $\implies$ $\exists \O ≠ V \subset U$ otevřená: $V \cap G_m(x) = \O$. $x_1 \in V$ $\implies$ $\exists y_{1, j}, j \in ®N: \|y_{1, j}\| = 1$ a
+		$$ \forall δ > 0\ \frac{\sup_j f(x_1 + δ y_{1, j}) + f(x_1 - δy_{1, j}) - 2f(x_1)}{δ} ≥ \frac{1}{2m}. $$
+
+		$$ F_1 := \overline{\LO}\{x_1, y_{1, j}, j \in ®N\}, $$
+		pak $F_1$ je separabilní, $F_1 \cap V ≠ \O$.
+
+		Pokud máme $F_k$ separabilní, $F_k \cap V ≠ \O$. Potom $\{x_{k, p}, p \in ®N\}$ ustá v $F_k \cap V$. $x_{k, p} \in V$, potom $\exists y_{k, p, j}, j \in ®N: \|y_{k, p, j}\| = 1$.
+		$$ \forall δ > 0: \sup_j \frac{f(x_{k, p} + δ y_{k, p, j}) + f(x_{k, p} - δ y_{k, p, j}) - 2f(x_{k, p})}{δ} ≥ \frac{1}{2m}. $$
+		$$ F_{k+1} = \overline{\LO}(F_k \cup \{y_{k, p, j}, p, j \in ®N\}) $$
+		$F = \overline{\bigcup F_n}$ je separabilní. $\{x_{k, p}, k, p \in ®N\}$ je hustá v $F \cap V$. $x_{k, p} \notin G_{2m}(f|_{F \cap U})$ $\implies$ $G_{2m}(f|_{F \cap u}) \cap V = \O$.
+
+		$\implies f|_{F \cap U}$ není fréchetovsky diferencovatelná v žádném bodě $F \cap V$ $\implies$ $F$ není Asplundův.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$X$ Asplundův $\Leftrightarrow$ $\forall Y \subset X$ separabilní: $Y^*$ separabilní.
+
+	\begin{dukazin}
+		Předchozí věta $1. \Leftrightarrow 9.$ a předchozí tvrzení.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	Podprostor Asplundova prostoru je Asplundův.
+
+	\begin{dukazin}
+		Předchozí věta $1. \implies 8.$.
+	\end{dukazin}
+
+	Kvocient Asplundova prostoru je Asplundův.
+
+	\begin{dukazin}
+		$X$ Asplundův, $q: X \rightarrow Y$ kvocient, $q^*: Y^* \rightarrow X^*$ je izometrické (izomorfní) vnoření a $w^*$-$w^*$ homeomorfní. Pak použijeme předchozí větu $1. \Leftrightarrow 4.$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{priklady}
+	Reflexivní prostory jsou Asplundovy. ($X$ reflexivní, $Y \subset X$ separabilní $\implies$ $Y$ reflexivní, $Y^*$ separabilní.)
+
+	$C_0(Γ)$ je Asplundův pro každé $Γ$. ($Y \subset C_0(Γ)$ separabilní, existuje $(y_n)$ hustá v $Y$, Spt $y_t$ spočetná $\forall n$ $\implies$ $U_n Spt y_n$ spočetná $\implies$ $\exists Γ' \subset Γ$ spočetná $\forall y \in Y: y|_{Γ \setminus Γ'} ≡ 0$ $\implies$ „$Y \subset C_0(Γ')$“ $C_0(Γ')^* = l_1(Γ)$ separabilní $\implies$ $C_0(Γ')$ Asplundův $\implies$ $Y$ je Asplundův $\implies$ $c_0(Γ)$ je Asplundův.)
+\end{priklady}
+
+\begin{definice}[Řídce rozložný (scattered)]
+	K je scattered, když každá neprázdná podmnožina $K$ má izolovaný bod.
+\end{definice}
+
+\begin{veta}
+	$C(K)$ je Asplundův $\Leftrightarrow$ $K$ je scattered (řídce rozložný).
+
+	\begin{dukazin}[Jiný „$\implies$“]
+		S použitím předchozí věty (bod 4.): $K \hookrightarrow (C(K)^*, w^*)$ homeomorfně ($x \mapsto δ_x := f \mapsto f(x)$) navíc $x ≠ y$ $\implies$ $\|δ_x - δ_y\| = 2$.
+
+		$\O ≠ A \subset K \implies δ(A) \subset C(K)^*$ omezená množina. Pokud $C(K)$ je Asplundův, pak (předchozí věta) $\exists U \subset C(K)^*$ $w^*$-otevřená: $U \cap δ(A) ≠ \O$ $\diam U \cap δ(A) < 1$ $\implies U \cap δ(A)$ je jediný bod $δ_x$. Toto $x$ je izolovaný bod $A$.
+	\end{dukazin}
+
+	\begin{dukazin}
+		„$\implies$“: $K$ není scattered $\implies$ $\exists A \subset K$ neprázdná bez izolovaných bodů $\implies$ $L := \overline{A}$ také nemá izolované body. Tedy $L$ je kompakt bez izolovaných bodů $\implies$ $C(L)$ není Asplundův, protože norma na $C(L)$ nemá žádný bod fréchetovské diferencovatelnosti. Navíc $C(L)$ je kvocient $C(K)$ ($q: C(K) \rightarrow C(L)$, $q(f) = f|_L$ je na díky Tietzeho větě). Z předchozího důsledku $C(K)$ také není Asplundův.
+
+% 10. přednáška (4. května)
+
+		„$\impliedby$“: Nechť $K$ je scattered kompakt. $X \subset C(K)$ separabilní prostor. $\{x_n, n \in ®N\}$ hustá v $B_X$. Definujeme $h: K \rightarrow [-1, 1]^{®N}$, $h(k)(n) = x_n(k)$ ($k \in K, n \in ®N$), tj. $h(k) = \{x_n(k)\}_{n=1}^∞$.
+
+		Dobře definované, neboť $\|x_n\|_∞ ≤ 1$. $h$ je spojité zobrazení ($\forall n \in ®N: k \mapsto h(k)(n) x_n(k)$ spojité na $K$). $L := h(K)$ je kompakt. $L$ je také metrizovatelný ($L \subset [-1, 1]^{®N}$ a tento součin je metrizovatelný).
+
+		„Dále je $L$ scattered“: $F \subset L$ neprázdná uzavřená, najdeme $H \subset K$ kompaktní minimální, že $h(H) = F$ ($l \in L$ … $k_l \in K$, $h(k_l) = l$; $H_0 := \overline{\{k_l, l \in F\}} \implies h(H_0) = F$, neboť $\supset$ jasné a $h(H_0) \subseteq \overline{h(\{k_l, l \in F\})} = \overline{F} = F$; dále použijeme Zornovo lemma.)
+
+		$K$ scattered $\implies$ $\exists k \in H$ izolovaný bod. Pak $h(k)$ je izolovaný bod $F$ ($H \setminus \{k\} \subsetneq H$ uzavřená $\implies$ $h(H \setminus \{k\}) \subsetneq F$ a je uzavřená jako spojitý obraz kompaktu $\implies$ $h(H \setminus \{k\}) = F \setminus \{h(k)\}$ uzavřená $\implies$ $h(k)$ je izolovaný).
+
+		$L$ je metrizovatelný a scattered $\implies$ spočetný. $L^{(0)} = L$, $L^{α + 1} = (L^{α})'$ (hromadné body $L^{(α)}$, tj. odstraníme izolované body). A pro limitní ordinál $λ$: $L^{(λ)} = \bigcap_{α < λ} L^{(α)}$. Vždy platí $\exists L^{(α + 1)} = L^{(α)}$. Tedy $L$ scattered $\Leftrightarrow$ $\exists α: L^{(α)} = \O$.
+
+		$L^{(α)}$ je vždy uzavřená množina ($L \setminus L^{(α)}$ je otevřená, $L \setminus L^{β} \supset L \setminus L^{(α)}$) $α < β$ $\implies$ $L^{(β)} \subset L^{(α)}$.
+
+		$$ L \setminus L^{ω_1} = \bigcup_{α < ω_1} (L \setminus L^{(α)}) \implies \exists C \subset [0, ω_1): L \setminus L^{(ω_1)} = \bigcup_{α \in C} (L \setminus L^{(α)}). $$
+		$$ \exists β < ω_1\ \forall α \in C: α < β \implies L \setminus L^{(ω_1)} = L \setminus L^{(β)}, $$
+		neboli $L^{(β)} = L^{ω_1}$, tedy i $L^{(β)} = L^{(β + 1)}$. $L$ scattered $\implies$ $L^{(β)} = \O$ $\implies$ $L = \bigcup_{α < β}\(L^{(α)} \setminus L^{(α + 1)}\)$, což jsou spočetné body $L^{(α)}$, a tech je spočetně mnoho. Spočetné sjednocení spočetných množin je spočetná.
+
+		Tedy $L$ je spočetný. Dále $C(L)^* = ©M(L) = l_1(L) = l_1$ separabilní. Izometricky $C(L) \subset C(K)$ ($h: K \overset{\text{na}}\rightarrow L$ spojité, $f \in C(L) \mapsto f ∘ h \in C(K)$, toto je izometrické lineární vnoření, $\|f∘h\|_∞ = \sup_{k \in K} |f(h(k))| = \sup_{l \in L} |f(l)| = \|f\|_∞$).
+
+		$\forall n: X_n \in$ obraz $C(L)$ v $C(K)$, $h(k) = \{x_n(k)\}_{n=1}^∞$, $π_n = π_n|_L ∘ h$, $π_n|_L: [-1, 1]^{©N} \rightarrow [-1, 1]$ projekce na $n$-tou složku a ta je spojitá.
+
+		$\implies X \subset C(L) \implies X^*$ separabilní ($C(L)$ uzavřená v $C(K)$, $C(L)^* \rightarrow X^*$ aneb ze separabilního do separabilního, $φ \mapsto φ|_X$ je na z Hahnovy–Banachovy věty).
+	\end{dukazin}
+\end{veta}
+
+\section{Fragmentovanost, slabé Asplundovy prostory, atp.}
+\begin{definice}[Fragmentovaný metrikou]
+	Nechť $(T, τ)$ je topologický prostor a $ρ$ je nějaká metrika na $T$. Říkáme, že $(T, τ)$ je fragmentovaný metrikou $ρ$, pokud
+	$$ \forall \O ≠ A \subset T\ \forall ε > 0\ \exists U \subset T\ τ-\text{otevřená}: U \cap A ≠ \O \land \diam_ρ(U \cap A) < ε. $$
+\end{definice}
+
+\begin{poznamka}
+	$X$ je Asplundův $\Leftrightarrow$ omezené množiny v $(X^*, w^*)$ jsou fragmentované normou.
+\end{poznamka}
+
+\begin{priklad}
+	Topologický prostor $T$ je scattered $\Leftrightarrow$ $T$ je fragmentovaný diskrétní metrikou.
+\end{priklad}
+
+\begin{tvrzeni}
+	$Y$ topologický prostor fragmentovaný metrikou $ρ$, $B$ Baireův topologický prostor a $φ: B \rightarrow 2^Y$ minimální usco. Potom
+	$$ \exists G \subset B \text{ hustá } G_δ\ \forall b \in G: |φ(b)| = 1 \land φ \text{ je v bodě $b$ usc do } (Y, ρ). $$
+
+	\begin{dukazin}
+		$$ G_n := \{b \in B | \exists U \text{ okolí } b: \diam_ρ φ(U) < \frac{1}{n}\} \implies G_n \subset B \text{ otevřená}. $$
+		$G = \bigcap_n G_n$ má ty vlastnosti, je $G_δ$, zbývá hustota: $B$ Baireův, tedy stačí ukázat, že „$\forall n: G_n$ je hustá“:
+
+		Zafixujme $n \in ®N$, $V \subset B$ neprázdná otevřená
+		$$ φ(V) ≠ \O \implies \exists W \subset Y \text{ otevřená}: W \cap φ(V) ≠ \O \land \diam_ρ(W \cap φ(V)) < \frac{1}{n}. $$
+		Pak $\exists b \in V: φ(b) \subset W$ (kdyby ne, pak $ψ(b) = φ(b)$, pokud $b \in B \setminus V$ a $φ(b) \setminus W$ pro $b \in V$ je usco obsažené v minimálním $φ$, tedy $φ = ψ$ $\implies \forall b \in V: φ(b) \cap = \O \implies φ(V) \cap W = \O$. \lightning.)
+
+		$φ$ je usc, tudíž $\exists U$ okolí $b$, $U \subset V$: $φ(U) \subset W$. Pak $φ(U) \subset W \cap φ(V)$ $\implies \diam_ρ φ(U) < \frac{1}{n}$ $\implies$ $b \in G_n \cap V$. Tedy $V \cap G_n ≠ \O$, tedy $G_n$ hustá.
+	\end{dukazin}
+\end{tvrzeni}
+
+\pagebreak
+
+\begin{veta}
+	$X$ Banachův prostor. Uvažme následující vlastnosti:
+	\vspace{-1em}
+	\begin{itemize}
+		\setlength\itemsep{0em}
+		\item[1\hphantom{'}] $(X^*, w^*)$ je fragmentovaný nějakou metrikou;
+		\item[1'] $(B_{X^*}, w^*)$ je fragmentovaný nějakou metrikou;
+		\item[2\hphantom{'}] $\forall B$ Baireův topologický prostor $\forall φ: B \rightarrow 2^{X^*}$ minimální usco, $\exists G \subset B$ hustá $G_δ$: $\forall b \in G: |φ(b)| = 1$;
+		\item[2'] je totéž jako 2. pro $B$ úplný metrický prostor;
+		\item[3\hphantom{'}] je totéž jako 2'. (včetně $B$ úplný metrický prostor) pro $\den(B) ≤ \den(X)$;
+		\item[4\hphantom{'}] $X$ je slabě Asplundův;
+		\item[5\hphantom{'}] $\forall M$ úplný metrický prostor $\forall φ: M \rightarrow 2^{X^*}$ minimální usco: $\{m \in M \middle| |φ(m)| = 1\}$ je hustá v $M$;
+		\item[5'] je totéž jako 5. (včetně $B$ úplný metrický prostor) pro $\den(M) ≤ \den(X)$;
+		\item[6\hphantom{'}] $X$ je GDS.
+	\end{itemize}
+	\vspace{-1em}
+
+	Pak platí $1. \Leftrightarrow 1'.$ („$\implies$“: triviální, „$\impliedby$“: snadné); $1'. \implies 2.$ (předchozí tvrzení); $2. \Leftrightarrow 2'.$ („$\implies$“: triviální, „$\impliedby$“: nebude – Choba–Verderov?); $2'. \implies 3.$ (triviální); $3. \implies 5'.$ (triviální); $5. \Leftrightarrow 5'.$ („$\implies$“ triviální, „$\impliedby$“: nebude – Mooretali?) $3. \implies 4.$ a $5'. \implies 6.$ (aplikací na $\partial f$); $4. \implies 6.$ (triviální).
+\end{veta}
+
+% 11. přednáška (11. května)
+
+\begin{veta}
+	$X$ kompaktní nebo úplně metrizovatelný, $Y$ kompaktní, $f: X \times Y \rightarrow ®R$ odděleně spojitá\footnote{$\forall y \in Y: x \mapsto f(x, y)$ spojitá na $X$ a $\forall x \in X: y \mapsto f(x, y)$ spojitá na $Y$}. Potom $\exists A \subset X$ hustá $G_δ$, že $f$ je spojitá v každém bodě $A \times Y$.
+\end{veta}
+
+% 12. přednáška (18. května)
+
+\begin{dukaz}
+	I. Pro $ε > 0$ označme $Ω_ε := \{(x, y) \in X \times Y | \exists \text{ okolí bodu } (x, y): \diam f(U) ≤ ε\}$, ta je otevřená v $X \times Y$, a označme $A_ε := \{x \in X | \{x\} \times Y \subset Ω_ε\}$, a ta je otevřená v $X$.
+
+	Fixujeme $ε > 0$, $U \subset X$ neprázdná otevřená. Chceme: „$U \cap A_ε ≠ \O$“: sporem. Nechť $U \cap A_ε = \O$. $p: X \times Y \rightarrow X$ projekce ($p(x, y) = x$), pak $U \subset p(X \times Y \setminus Ω_ε)$ najdeme $F \subset X \times Y \setminus Ω_ε$ minimální uzavřenou, že $U \subset p(F)$.
+
+	II. Platí (*): $\forall (x_0, y_0) \in F$ $\forall V$ okolí $x_0$ $\forall W$ okolí $y_0$:\vspace{-1em}
+	$$ \exists u \in V\ \exists v, w \in W, (u, w) \in F: |f(u, v) - f(u, w)| ≥ \frac{ε}{6}. $$
+
+	\vspace{-1.5em}
+	III. Zvolíme (indukcí) $x_i \in U$, $y_i, z_i \in Y$ tak, aby platilo:
+	\vspace{-1em}
+	\begin{enumerate}
+		\setlength\itemsep{0em}
+		\item $(x_i, z_i) \in F$;
+		\item $|f(x_j, y_i) - f(x_i, y_i)| < \frac{ε}{18}$, pro $i < j$;
+		\item $|f(x_i, y_j) - f(x_i, z_i)| < \frac{ε}{18}$, pro $i < j$;
+		\item $|f(x_i, z_j) - f(x_i, z_i)| < \frac{ε}{18}$, pro $i < j$;
+		\item $|f(x_i, y_i) - f(x_i, z_i)| ≥ \frac{ε}{6}$.
+	\end{enumerate}
+
+	$x_0 \in U$ libovolné, $(x_0, y_0) \in F$ ($U \subset p(F)$). (*) na $V = U$, $W = Y$, $x_1, y_1, z_1$ (tak aby platili 1., 5.)
+
+	Mějme $x_1, …, x_n$, $y_1, …, y_n$, $z_1, …, z_n$ splňující (1.–5.)
+	$$ V_{n+1} = U \cap \{x \in X \middle| |f(x, y_i) - f(x_i, y_i)| < \frac{ε}{18}, i ≤ n\} $$
+	$$ W_{n+1} := \{w \in Y \middle| |f(x_i, w) - f(x_i, z_i)| < \frac{ε}{18}, i ≤ n\} $$
+	otevřené, díky oddělené spojitosti. $x_n \in V_{n+1}$, $z_n \in W_{n+1}$ (z indukčních předpokladů) $\implies$ $x_{n+1}$, $y_{n+1}$, $z_{n+1}$. Z (*) plyne 1. a 5., z $x_{n+1} \in V_{n+1}$ plyne 2. a z $y_{n+1}, z_{n+1} \in W_{n+1}$ plyne 3. a 4.
+
+	IV. $i ≠ j$ $\implies$ $|f(x_i, y_j) - f(x_j, y_i)| =$
+	$$ = |f(x_i, y_j) - f(x_i, z_i) + f(x_i, z_i) - f(x_i, y_i) + f(x_i, y_i) - f(x_j, y_i)| > \frac{ε}{6} - \frac{ε}{18} - \frac{ε}{18} = \frac{ε}{18}. $$
+
+	$F_{x_0, y_0}(x, y) = |f(x_0, y) - f(x, y_0)|$ je spojitá pro každé $(x_0, y_0) \in X \times Y$ posloupnost $(x_i, y_i)$ má hromadný bod v $X \times Y$, označme ho $(a, b)$ ($X$ kompaktní $\implies$ $X \times Y$ kompaktní, $X$ úplný metrický, můžeme zabezpečit, že $(x_i)$ konverguje, stačí aby $\diam V_n \rightarrow 0$).
+	$$ \frac{ε}{18} ≤ |f(x_i, y_j) - f(x_j, y_i)| \rightarrow |f(a, y_j) - f(x_j, b)| \rightarrow |f(a, b) - f(a, b)| = 0. \text{\lightning}. $$
+\end{dukaz}
+
+% 11. přednáška (11. května)
+
+\begin{dusledek}
+	$E$ Banachův prostor, $\O ≠ K \subset E$ slabě kompaktní. Pak $\id: (K, w) \rightarrow (K, \|·\|)$ má bod spojitosti.
+
+	\begin{dukazin}
+		$f: (K, w) \times (B_{E^*}, w^*) \rightarrow ®R$, $f(x, x^*) = x^*(x)$. $f$ je odděleně spojité. Z předchozí věty $\exists x \in K$: $f$ je spojitá v každém bodě $\{x\} \in B + E^*$. Ukážeme, že $\id$ je spojitá ($w \rightarrow \|·\|$) v bodě $x$.
+		$$ ε > 0\ \forall x^* \in B_{E^*}\ \exists U_{x^*}\ w\text{-okolí } x\ (\text{v }K)\ \exists V_{x^*}\ w^*\text{-okolí } x^*\ (\text{v }B_{E^*}): $$
+		$$ f(U_{x^*}\times V_{x^*}) \subset B(x^*(x), ε). $$
+		$V_{x^*}$ ($x^* \in B_{E^*}$) je otevřené pokrytí $B_{E^*}$ $\implies$ existují $x^*_1, …, x^*_n \in B_{E^*}: B_{E^*} = \bigcup_{i=1}^n V_{x^*_i}$.
+
+		$U := \bigcap_{i=1}^n U_{x^*_i}$ je $w$-okolí $x$ (v $K$).
+		$$ y \in U, x^* \in B_{E^*} \implies \exists k: x^* \in U_{x^*_k}: |x^*(y - x)| = |x^*(y) - x^*(x)| ≤ $$
+		$$ ≤ |x^*(y) - x^*_k(x)| + |x^*_k(x) - x^*(x)| < ε + ε = 2ε \implies \|y - x\| ≤ 2ε $$
+	\end{dukazin}
+\end{dusledek}
+
+\pagebreak
+
+\begin{dusledek}
+	$E$ Banachův prostor, $K \subset E$ slabě kompaktní $\implies$ $(K, w)$ je fragmentovaný normou.
+
+	\begin{dukazin}
+		$\O ≠ F \subset K$ slabě uzavřená, $ε > 0$. Potom z předchozího důsledku $\exists x \in F: \id: (F, w) \rightarrow (F, \|·\|)$ je spojitá v bodě $x$ $\implies$ $\exists U$ slabé okolí $x$: $\diam(U \cap F) < ε$.
+	\end{dukazin}
+\end{dusledek}
+
+% 12. přednáška (18. května)
+
+\begin{definice}
+	$X$ Banachův prostor patří do třídy $\tilde{©F}$, pokud $(B_{X^*}, w^*)$ je fragmentovaná nějakou metrikou.
+\end{definice}
+
+\begin{poznamka}
+	\ 
+	\begin{itemize}
+		\item $X \in \tilde{©F}$ $\implies$ $X$ je slabě Asplundův (viz věta a tvrzení ze začátku kapitoly);
+		\item $X$ je Asplundův $\implies$ $X \in \tilde{©F}$ ($(B_{X^*}, w^*)$ je fragmentovaná normou);
+		\item $X$ separabilní $\implies$ $(B_{X^*}, w^*)$ je metrizovatelná, $?$ fragmentovaná $\implies$ $X \in \tilde{©F}$;
+		\item $X$ je WCG (slabě kompaktně generovaný), tj. $\exists K \subset X$ slabě kompaktní: $\overline{\LO} K = X$, potom je $X \in \tilde{©F}$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}
+	Kompakt $K$ je Eberleinův, pokud existuje $X$ Banachův, že $L \subset X$, že $K$ je homeomorfní $(L, w)$.
+\end{definice}
+
+\begin{poznamka}
+	Z předchozího důsledku plyne, že Eberleinův kompakt je fragmentovaný nějakou metrikou.
+\end{poznamka}
+
+\begin{tvrzeni}
+	$X$ WCG $\implies$ $(B_{X^*, w^*})$ je Eberleinův. $K$ Eberleinův $\Leftrightarrow$ $C(K)$ je WCG.
+
+	\begin{dukazin}
+		$X$ WCG $\implies$ $\exists K \subset X$ slabě kompaktní, $\overline{\LO} K = X$. $T: X^* \rightarrow C(K, w)$, $T(x^*) = x^*|_K$ $\implies$ $T$ je omezený lineární operátor, je prostý a je $w^* \rightarrow τ_p$ spojité $\implies$ $T$ zobrazuje homeomorfně do $(C(K), τ_p)$, a to na omezenou množinu.
+
+		Eberlein–Šmulian–Gretherdiech … ten obraz je i slabě kompaktní $\implies$ $(B_{X^*}, w^*)$ je Eberleinův, ale $K \hookrightarrow (B_{C(K)^*}, w^*)$ $\implies$ $K$ Eberleinův.
+
+		Obráceně $K$ Eberleinův $\implies$ $C(K)$ je WCG … Stone Weierstrass.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{priklady}
+	WCG prostoty jsou například: reflexivní prostory ($K = B_X$), separabilní prostory ($\{x_n\}$ hustá v $B_X$, $K = \{¦o\} \cup \{\frac{x_n}{n}, n \in ®N\}$), $C_0(Γ)$ pro $Γ$ libovolné ($K = \{e_γ, γ \in Γ\} \cup \{0\}$), $L_1(μ)$ pro konečnou míru $μ$ ($K = B_{L_2(μ)}$, nebo $K = B_{L_∞}(μ)$).
+\end{priklady}
+
+\begin{tvrzeni}
+	1) $X \in \tilde{©F}$, $Y \subset X \implies Y \in \tilde{©F}$. \ \ \ 2) $X \in \tilde{©F}$, $T \in ©L(X, Y)$, $\overline{TX} = Y \implies Y \in \tilde{©F}$.
+
+	\begin{dukazin}
+		Důkaz prvního bodu odložíme, druhý bod: $T: X \rightarrow Y$, $\overline{TX} = Y$. Uvažme $T^*: Y^* \rightarrow X^*$. To je $w^*$-$w^*$ spojitý. Navíc „je prostý“: $T^* y^* = 0 \implies y^* ∘ T = 0 \implies y^*|_{TX} = 0 \implies y^* = 0$. Tedy $T^*$ zobrazuje $(B_{Y^*}, w^*)$ homeomorfně na podmnožinu $(\|T\| B_{X^*}, w^*)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[Není známo, zda podprostor slabě Asplundova prostoru je slabě Asplundův.]
+	Také není známo, zda druhý bod platí pro slabě Asplundovy prostory (je známo, že kvocient slabě Asplundův prostor je slabě Asplundův).
+\end{poznamka}
+
+\begin{dusledek}
+	$X$ Asplundův, $T: X \rightarrow Y$, $\overline{TX} = Y$ $\implies$ $Y \in \tilde{©F}$.
+\end{dusledek}
+
+\begin{definice}[Asplundovsky generované prostory (AG, GSG)]
+	Prostory $Y$, pro které $\exists X$ Asplundův a $\exists T: X \rightarrow Y$: $\overline{TX} = Y$, se nazývají asplundovsky generované (AG), někdy též GSG (Grothediech–Šmulian generated).
+\end{definice}
+
+\begin{definice}
+	$X$ Banachův prostor, $A \subset X$ je Asplundova množina, pokud: $A ≠ \O$, $A$ omezená, $\forall M \subset A$ spočetnou je $(X^*, \|·\|_M)$ separabilní, kde $\|x^*\|_M = \sup_{x \in M} |x^*(x)|$ jsou pseudonormy.
+\end{definice}
+
+\vbox{
+\begin{poznamka}
+	$X$ je Asplundův $\Leftrightarrow$ $B_X$ je Asplundova množina. \ \ \ $A$ Asplundova $\implies$ $\overline{\aco} A$ je Asplundova.
+
+	\begin{dukazin}[První]
+		„$\impliedby$“: $Y \subset X$ separabilní, $M \subset B_Y$ spočetná, potom „$\|·\|_M = \|·\|_{Y^*}$“, $\|x^*\|_M = \|x^*|_Y\|$ $\implies$ $M \subset B_X$ spočetná, potom $Y = \overline{\LO} M$ je separabilní, $Y^*$ je separabilní a $\|·\|_M ≤ \|·\|_{B_Y}$, a tedy $(Y^*, \|·\|_M)$ je separabilní.
+	\end{dukazin}
+
+	\begin{dukazin}[Druhý]
+		$\|·\|_{\overline{\aco} M} = \|·\|_M$, $M \subset \overline{\aco} A$ spočetná $\implies$ $\exists N \subset A$ spočetná: $M \subset \overline{\aco} N$.
+		Na konci ukážeme, že $X$ je AG $\Leftrightarrow$ existuje $A \subset X$ Asplundův, že $\overline{\LO} A = X$.
+	\end{dukazin}
+	\nobreak
+\end{poznamka}
+\vspace{-1em}
+}
+
+% 14. přednáška (1. června)
+
+\begin{dusledek}
+	Banachův prostor $X$ je WCG $\Leftrightarrow$ $\exists Y$ reflexivní $T: Y \rightarrow X$, $\overline{TY} = X$.
+
+	\begin{dukazin}
+		„$\impliedby$“: $Y$ reflexivní $\implies$: $B_Y$ je slabě kompaktní $T: Y \rightarrow X$ omezený $\implies$ $T$ je $w$-$w$ spojitý ($x^* \in X^* \implies x^* ∘ T$ je $w$-spojitý, ale to je jasné, je to prvek $Y^*$). Tedy $K = T(B_Y)$ je slabě kompaktní a $\overline{\LO} K = X$.
+
+		„$\implies$“ $X$ je WCG, potom existuje $K \subset X$ slabě kompaktní $\overline{\LO K} = X$. BÚNO $K$ je absolutně konvexní (z Kreinovy věty máme, že $\overline{\aco} K$ je slabě kompaktní). Provedu to konstrukcí. Mám $Y$, $T: Y \rightarrow X$. Z bodu 2 konstrukce máme $T(B_Y) \supset K \implies \overline{TY} = X$, z bodu 5 pak $Y$ je reflexivní.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}
+	Banachův prostor $X$ je AG $\Leftrightarrow$ $\exists A \subset X$ Asplundova: $\overline{\LO} A = X$.
+
+	\begin{dukazin}
+		„$\impliedby$“ $A \subset X$ Asplundova, $\overline{\LO} A = X$. BÚNO $A$ absolutně konvexní ($\overline{\aco} A$ je Asplundova), provedeme tu konstrukci: $Y$, $T: Y \rightarrow X$. Z bodu 2 je $\overline{TY} = X$ a z bodu 6 je $Y$ Asplundův. Tedy $X$ je AG.
+
+		„$\implies$“ $X$ je AG $\implies$ $\exists Y$ Asplundův $\exists T: Y \rightarrow X$ $\overline{TY} = X$. Pak $A := T(B_Y)$ je Asplundova a $\overline{\LO} A = X$. $C \subset A$ spočetná $\implies$ $\exists D \subset B_Y$ spočetná, že $T(D) = C$. $Y_0 := \overline{\LO} D$ je separabilní podprostor $Y$ $\implies$ $Y_0^*$ je separabilní.
+
+		Z toho plyne, že $(X^*, \|·\|_C)$ je separabilní. $T^*: X^* \rightarrow Y^*$ je prosté ($T^*x^* = x^*∘T$, $T^*x^* = 0$ $\implies$ $x^*∘T = 0$ $\implies$ $x^*|_{TY} = 0$ $\implies$ $x^* = 0$).
+		$$ \|x^*\|_C = \sup_{x \in C} |x^*(x)| = \sup_{y \in D} |x^*(Ty)| = \sup_{y \in D} |T^*x^*(y)| = \|T^*x^*\|_D ≤ $$
+		$$ ≤ \|T^* x^*\|_{B_{Y_0}} = \|T^*x^* |_{Y_0}\|_{Y_0^*}. $$
+		($Y_0^*$ separabilní $\implies$ $(Y^*, \|·\|_{B_{Y^0}})$ je separabilní $\implies$ $(T^*x^*, \|·\|_{B_{Y_0}})$ je separabilní $\implies$ ($T^*$ prosté) $(X^*, \|·\|_C)$ je separabilní.)
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}[Radonův–Nikodymův (RN) prostor]
+	Kompaktní prostor $K$ je Radonův–Nikodymův, pokud existuje $X$ Asplundův, že $K$ je homeomorfní podmnožině $(X^*, w^*)$.
+\end{definice}
+
+\begin{poznamka}
+	Kompakt $K$ je RN $\Leftrightarrow$ $K$ je fragmenovaný nějakou lsc metrikou na $K$.
+
+	\begin{dukazin}
+		„$\implies$“ Z charakterizace Asplundových prostorů víme, že omezené podmnožiny $(X^*, w^*)$ jsou fragmentované normou a $\|·\|$ je $w^*$-lsc. „$\impliedby$“ netriviální (Namioka)
+	\end{dukazin}
+
+	Kompaktní $K$ je Eberleinův $\implies$ $K$ je RN $\overset{\text{výše}}\implies$ $K$ fragmentovaný.
+
+	\begin{dukazin}
+		$K$ Eberleinův $\implies$ $\exists X$ Baireův: $K \subset (X, w)$. Vezměme $X_0 = \overline{\LO} K$ $\implies$ $X_0$ je WCG, $K \subset (X_0, w)$.
+
+		Krein $\implies$ $L := \overline{\aco} K$ je slabě kompaktní. Konstako $\implies$ $\exists Y$ reflexivní, $T: Y \rightarrow X_0$, $T(B_Y) \supset L \supset K$. BÚNO $T$ je prosté (v konstrukci bylo $T$ prosté). $B_Y$ slabě kompaktní a $T$ $w$-$w$ spojité $\implies$ $T|_{B_y}$ je $w$-$w$ homeomorfní $\implies$ $T^{-1}(K) \subset B_Y \subset Y$, $T^{-1}(K)$ slabě kompaktní homeomorfismus.
+
+		BÚNO $X$ je reflexivní. Pak $(X, w) = (X^{**}, w^*)$ a $X^*$ je Asplundův $\implies$ $K$ je RN.
+	\end{dukazin}
+	
+	Také je: $K$ scattered $\implies$ $K$ je RN.
+
+	\begin{dukazin}
+		$K$ scattered $\implies$ $C(K)$ je Asplundův, $K \hookrightarrow (C(K)^*, w^*)$, $x \mapsto δ_X$.
+
+		Nebo jinak: $K$ scattered $\implies$ $K$ je fragmentovaný diskrétní $0–1$ metrikou a to je evidentně lsc.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{tvrzeni}
+	$X$ je AG $\implies$ $(B_{X^*}, w^*)$ je RN kompaktní.
+
+	\begin{dukazin}
+		$X$ AG $\implies$ $\exists Y$ Asplundův $T: Y \rightarrow X$, $\overline{TY} = X$. $T^*: X^* \rightarrow Y^*$ $w^*$-$w^*$ spojitý a prostý ($\overline{TY} = X$) $\implies$ $T^*|_{B_{X^*}}$ je $w^*$-$w^*$ homeomorfismus, tedy $(B_{X^*}, w^*)$ je homeomorfní podmnožině $(Y^*, w^*)$, tedy je to RN kompakt.
+	\end{dukazin}
+
+	$K$ je RN $\Leftrightarrow$ $C(K)$ je AG.
+
+	\begin{dukazin}
+		$C(K)$ je AG $\implies$ $(B_{C(K)^*}, w^*)$ je RN kompakt $\implies$ $K \subset (B_{C(K)^*}, w^*)$ je RN kompakt.
+
+		$K$ je RN kompakt $\implies$ $K \subset (Y^*, w^*)$, $Y$ Asplundův. $T: Y \rightarrow C(K)$, $T(y) = κ(y)|_K$ ($κ: Y \rightarrow Y^{**}$). TY odděluje body $K$ ($k_1 ≠ k_2 \implies \exists x \in Y: Tx(k_2) = k_2(x) ≠ k_2(x) = Tx(k_2)$) $\overset{SW}\implies \overline{\alg}^{\|·\|}(TY \cup \{1\}) = C(K)$.
+
+		Protože $TB_y$ je Asplundova množina, dostaneme generující Asplundovu množinu v~prostoru $C(K)$, tedy $C(K)$ je AG.
+	\end{dukazin}
+\end{tvrzeni}
+
+\pagebreak
+
+\begin{veta}
+	$X$ Banachův. Pak následující podmínky jsou ekvivalentní:
+	\begin{enumerate}
+		\item $X$ je GDS;
+		\item $X \times ®R$ je GDS;
+		\item $\forall φ$ Minkowského funkcionál na $X$: $φ$ má hustou množinu bodů gateauxovské diferencovatelnosti;
+		\item každá ekvivalentní norma na $X$ má alespoň jeden bod gateauxovské diferencovatelnosti;
+		\item $\forall K \subset X^*$ konvexní $w^*$-kompaktní: $K = \overline{co}^{w^*}$ ($w^*$-exp $K$).
+	\end{enumerate}
+
+	\begin{poznamkain}
+		Pro slabé Asplundovy prostory analogické charakterizace nejsou známy.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		„$1. \implies 3. \implies 4.$“ triviální. „$4. \implies 3.$“: $φ$ Minkowského funkcionál $\implies$ $φ(x) + φ(-x) + \|x\|$ je ekvivalentní norma na $X$. Ve všech bodech, kde je gateauxovsky diferencovatelná, je gateauxovsky diferencovatelná i $φ$.
+
+		$φ$ konvexní: nechť není gateuaxovsky diferencovatelná v $x$ $\implies \exists$ směr $h$, že v tomto směru je „zlom“. Když se k tomu přidá konvexní funkce, tak se to nespraví?
+
+		„$1. \implies 2.$“ $D \subset X \times ®R$ otevřená konvexní, $f: D \rightarrow ®R$ spojité konvexní. $(x_0, t_0) \in D$, $U$ okolí $(x_0, t_0)$ v $D$.
+		$$ U = B(x_0, r) \times [t_0 - δ, t_0 + δ], |f| ≤ M \text{ na } D $$
+		$$ g: [t_0 - δ, t_0 + δ] \rightarrow [-∞, 0], g(t_0), g \in C^∞(t_0 - δ, t_0 + δ), $$
+		mimo interval (a v krajních bodech a limity v krajních bodech): $g = -∞$.
+		$$ h(x) := \sup\{f(x, t) + g(t), t \in ®R\} $$
+		spojitá konvexní funkce na $B(x_0, r)$ $\implies$ $\exists x_1 \in B(x_0, t)$ bod gauteauxovské diferencovatelnosti $h$.
+		$$ h(x_1) = f(x_1, t_1) + g(t_1), \qquad t_1 \in (t_0 - δ, t_0 + δ) $$
+		$\implies$ $f$ je gauteauxovsky diferencovatelná na $(x_1, t_1)$.
+		$$ 0 ≤ f(x_1 + t y, t_1 + t s) + f(x_1 - t y, x_1 - t s) - 2f(x_1, t_1) ≤ $$
+		$$ ≤ h(x_1 + t y) + h(x_1 - t y) - 2h(x_1) - (g(x_1 + t s) + g(x_1 - t s) - 2g(t_1)). $$
+		Vydělíme a spočteme limitu pro $t \rightarrow 0_+$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Konstrukce generujícího prostoru (důkaz předchozího?)]
+% 12. přednáška (18. května)
+	$X$ Banachův, $K \subset X$ omezená, absolutně konvexní, $\overline{\LO} K = X$. Pro $n \in ®N$ položme $U_n := 2^n·K + 2^{-n}·B_X$, což je absolutně konvexní omezené okolí $¦o$.
+
+	$\|·\|_n :=$ Minkowského funkcionál $U_n$ … to je ekvivalentní norma na $X$. Pro $x \in X$ označme $|x| := \(\sum_{n=1}^∞ \|x\|_n^2\)^{\frac{1}{2}} \in [0, +∞]$. $Y := \{x \in X \middle| |x|<+∞\}$ $\implies$ $(Y, |·|)$ je NLP ($|·|$ je „norma“, která nabývá i $+∞$, je lsc  … supremum spojité?).
+
+	Označme $T: Y \rightarrow X$ přirozenou inkluzi. Pak $T$ je omezený: $\exists c > 0: K \subset c·B_X$ $\implies$ $U_n \subset (2^n·c + 2^{-n})B_X$ $\implies$ $\|·\|_n ≥ \frac{1}{2^n c + 2^{-n}} \|·\|$ $\implies$ $|·| ≥ \(\sum_{n=1}^∞ \(\frac{1}{2^n c + 2^{-n}}\)^2\)^{\frac{1}{2}}·\|·\|$ $\implies$ $\|T\| ≤ \frac{1}{\(\sum_{n=1}^∞ \(\frac{1}{2^n c + 2^{-n}}\)^2\)^{\frac{1}{2}}}$.
+
+% 13. přednáška (25. května)
+
+	TODO!!!
+
+% 14. přednáška (1. června)
+
+	TODO!!!
+
+\end{poznamka}
+
+
+\end{document}
