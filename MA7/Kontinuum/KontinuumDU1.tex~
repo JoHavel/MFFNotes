@@ -1,0 +1,68 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	We already know that
+	$$ ε_{ijk} ε_{imn} = δ_{jm}δ_{kn} - δ_{jn}δ_{km}, $$
+	and let us further assume that we also know that
+	$$ ε_{ijk}ε_{lmn} = \det \begin{bmatrix}δ_{il} & δ_{im} & δ_{in}\\ δ_{jl} & δ_{jm} & δ_{jn}\\ δ_{kl} & δ_{km} & δ_{kn}\end{bmatrix}. $$
+	Show that
+	\begin{align*}
+		ε_{ijk} ε_{ijn} &= 2δ_{kn},\\
+		ε_{ijk} δ_{lm} &= ε_{jkm} δ_{il} + ε_{kim}δ_{jl} + ε_{ijm}δ_{kl}.
+	\end{align*}
+
+	\begin{dukazin}
+		První rovnici vysčítáme přes $j = m$, čímž dostaneme (v menšenci víme, že $δ_{ac}δ_{cb} = δ_{ab}$, neboť ze součtu může být výraz nenulový jen pro $c = a$, a pak je jedna právě tehdy, když $b = c := a$):
+		$$ ε_{ijk} ε_{ijn} = δ_{jj}δ_{kn} - δ_{jn}δ_{kj} = 3·1·δ{kn} - δ_{kn} = 2δ_{kn}. $$
+
+		Využijeme první dokazovanou rovnost, poté druhou rovnost ze zadání (a nakonec $ε_{xyz} = -ε_{yxz}$):
+		$$ ε_{ijk}δ_{lm} = \frac{ε_{ijk}ε_{abl}ε_{abm}}{2} = \frac{\det(…)ε_{abm}}{2} = $$
+		$$ = \frac{ε_{abm}(δ_{ia}δ_{jb}δ_{kl} + δ_{ib}δ_{jl}δ_{ka} + δ_{il}δ_{ja}δ_{kb} - δ_{ia}δ_{jl}δ_{kb} - δ_{ib}δ_{ja}δ_{kl} - δ_{il}δ_{jb}δ_{ka})}{2} = $$
+		$$ = \frac{ε_{ijm}δ_{kl} + ε_{kim}δ_{jl} + ε_{jkm}δ_{il} - ε_{ikm}δ_{jl} - ε_{jim}δ_{kl} - ε_{kjm}δ_{il}}{2} = ε_{ijm} δ_{kl} + ε_{kim}δ_{jl} + ε_{jkm}δ_{il}. $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Let $®A, ®B \in ®R^{3 \times 3}$ be non-singular matrices such that $®A + ®B$ is non-singular matrix as well. Show that
+	$$ \text{a)} \qquad \det(®A + ®B) = \det ®A + \tr(®A^T \cof ®B) + \tr(®B^T \cof ®A) + \det ®B $$
+	$$ \text{b)} \qquad (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)}\,· $$
+	$$·\,\(®A^2 + ®B^2 + ®A®B + ®B®A - (®A + ®B)\tr(®A + ®B) + \frac{1}{2}\(\(\tr(®A + ®B)\)^2 - \tr(®A + ®B)^2\)®I\) $$
+	The Cayley-Hamilton theorem might be useful.
+
+	\begin{dukazin}[a]
+		Použijeme C–H ve tvaru $(\det ®A)®I = ®A^3 - (\tr ®A)®A^2 + (\tr \cof ®A)®A$ a linearitu $\tr$:
+		$$ (\det (®A + ®B) - \det ®A - \det ®B)®I = \underbrace{(®A + ®B)^3 - ®A^3 - ®B^3}_{= ®A^2®B + ®B^2 ®A} - $$
+		$$ \underbrace{- (\tr (®A + ®B))(®A + ®B)^2 + (\tr ®A)®A^2 + (\tr ®B)®B^2}_{=-(\tr ®B)®A^2 - (\tr ®A)®B^2 - (\tr ®A + ®B)(®A®B + ®B®A)} + \underbrace{(\tr \cof (®A + ®B)) - (\tr \cof ®A)®A - (\tr \cof ®B)®B}_{=?} $$
+		Část ? upravíme pomocí * příkladu a linearity $\tr$ na:
+		$$ ? = \frac{1}{2}\(\(\tr (®A + ®B)\)^2 - \tr \((®A + ®B)^2\)\)(®A + ®B) - \frac{1}{2}\((\tr ®A)^2 - \tr ®A^2\)®A - \frac{1}{2}\((\tr ®B)^2 - \tr ®B^2\)®B = $$
+		$$ = (\tr \cof ®A)®B + (\tr \cof ®B)®A + \((\tr ®A)(\tr ®B) - \tr (®A®B)\)(®A + ®B) $$
+	\end{dukazin}
+
+	\begin{dukazin}[b]
+		Z C-H, kam dosadíme koeficienty odvozené na přednášce, velmi triviální úpravou rovnic (matice není singulární, tedy jí i jejím determinantem můžeme dělit) dostaneme
+		$$ ®C^{-1} = \frac{1}{c_3}®C^2 - \frac{c_1}{c_3}®C + \frac{c_2}{c_3}®I = \frac{1}{\det ®C}®C^2 - \frac{\tr ®C}{\det ®C}®C + \frac{\tr \cof ®A}{\det ®A}®I. $$
+		Tam můžeme dosadit $®C = ®A + ®B$:
+		$$ \text{b)} \qquad (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)} · \((®A + ®B)^2 - (®A + ®B)\tr(®A + ®B) + \tr \cof (®A + ®B)\). $$
+		To můžeme roznásobit a dosadit z * příkladu:
+	$$ (®A + ®B)^{-1} = \frac{1}{\det(®A + ®B)}\,· $$
+	$$·\,\(®A^2 + ®B^2 + ®A®B + ®B®A - (®A + ®B)\tr(®A + ®B) + \frac{1}{2}\(\(\tr(®A + ®B)\)^2 - \tr(®A + ®B)^2\)\) $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[*]
+	Let $®A \in ®R^{3 \times 3}$ be a non-singular matrix. Show that $\frac{1}{2}\((\tr ®A)^2 - \tr ®A^2\) = \tr(\cof(®A))$.
+
+	\begin{dukazin}
+		Vezměme C–H ve tvaru (®A není singulární, takže s ní můžeme vydělit)
+		$$ -®A^2 + (\tr ®A)®A - (\tr \cof ®A)®I = (\det ®A) ®A^{-1} $$
+		a vypusťme na to $\tr$ (ta je invariantní vůči transpozici a „$\tr - = - \tr$“):
+		$$ -\tr ®A^2 + (\tr ®A)^2 - 3(\tr \cof ®A)®I = \tr \((\det ®A)A^{-1}\) = \tr \((\det ®A)A^{-T}\) =: \tr \cof ®A. $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

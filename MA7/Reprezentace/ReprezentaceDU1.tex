@@ -1,0 +1,26 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% z 04. 10. 2023 na 18. 10. 2023
+
+\begin{priklad}
+	Dokažte, že pro daný okruh $R$ a monoid $M$, a $α, β$ ze cvičení platí:
+
+	Je-li $γ: R \rightarrow S$ okruhový homomorfismus a $δ: M \rightarrow (S, ·, 1)$ monoidový homomorfismus a platí-li navíc $(\forall r \in R)(\forall m \in M)\ γ(r)·δ(m) = δ(m)·γ(r)$, existuje právě jeden okruhový homomorfismus $ε: R[M] \rightarrow S$ takový, že $ε ∘ α = γ$ a $ε ∘ β = δ$.
+
+	\begin{dukazin}[Existence]
+		Definujeme $ε$ následovně: Je-li $f \in R[M]$, můžeme (jednoznačně) psát „$f = \sum_{m \in \supp f} f_m·m$“ (tj. $f(m) = f_m$ pro $m \in \supp f$ a $f(m) = 0$ jinak). $ε(f)$ potom položíme rovné\footnote{Jelikož $\supp f$ je konečné, $γ(f_m), δ(m) \in S$ a jelikož rozklad „$f = \sum_{m \in \supp f} f_m·m$“ je jednoznačný, je $ε(f)$ dobře definovaná funkce $R[M] \rightarrow S$.} $\sum_{m \in \supp f} γ(f_m)·δ(m)$.
+
+		Zřejmě\footnote{Protože ($γ(1_R) = 1_S = δ(1_M)$ je vlastnost homomorfismu):
+			$$ ε(α(r)) = ε\(\text{„$\sum_{m \in \{1\}} r·m$}\) = \sum_{m \in \{1\}} γ(r)·δ(1) = γ(r)·1 = γ(r), $$
+			$$ ε(β(k)) = ε\(\text{„$\sum_{m \in \{k\}} 1·m$}\) = \sum_{m \in \{k\}} γ(1)·δ(m) = 1·δ(k) = δ(k), $$
+		} $ε ∘ α = γ$ a $ε ∘ β = δ$. Nyní ověříme, že je to okruhový homomorfismus
+	\end{dukazin}
+\end{priklad}
+
+\end{document}
+

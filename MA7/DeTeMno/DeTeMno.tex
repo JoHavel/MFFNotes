@@ -1,0 +1,100 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2022
+
+\begin{poznamka}[Literature]
+	Kechris.
+\end{poznamka}
+
+\begin{definice}[Polish space]
+	We say TS $(X, τ)$ is polish (PTS) if $X$ is separable and completely metrizable.
+\end{definice}
+
+\begin{poznamka}
+	% PTS is $(X, τ)$.
+	Complete compatible metric is not unique: $\tilde ρ = \min\{1, ρ\}$.
+\end{poznamka}
+
+\begin{priklady}
+	®R, ®C, $®R^n$, $®C^n$, $2 := \{0, 1\}$, $ω := \{0, 1, 2, …\}$ with discrete topology, Separable Banach space (SBS), metrizable compacts, $2^ω$, $ω^ω$ (both with product topology).
+\end{priklady}
+
+\begin{veta}[Baire]
+	$X$ TS metrizable with complete metric. Then countable intersection of open dense subsets of $X$ is dense in $X$.
+
+	\begin{dukazin}
+		Without proof. (We should know it already.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$X$ complete metric space, $\{F_n\}$ is decreasing sequence of closed subsets of $X$, such that $\diam(F_n) \rightarrow 0$. Then $|\bigcap F_n| = 1$.
+
+	\begin{dukazin}
+		Without proof. (We should know it already.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	(i) If $X_n$ are PTS, $n \in ω$. Then $\prod_{n \in ω} X_n$ is PTS.
+
+	(ii) $X$ PTS, $H \subset X$. Then $H$ is PTS $\Leftrightarrow$ $H \in ©G_δ(X)$
+
+	\begin{dukazin}[(i)]
+		Let $d_n$ be CCM (complete compatible metric) on $X_n$, $n \in ω$. Then
+		$$ d(x, y) := \sum_{n=0}^∞ \min\{2^{-n}, d_n(x_n, y_n)\} $$
+		is CCM on $X = \prod_{n \in ω} X_n$, where $x = (x_n)$, $y = (y_n)$. („Definition is correct“ is trivial, „$d$ is metric“ straightforward, „$d$ is complete“ also easy, compatibility too).
+	\end{dukazin}
+
+	\begin{dukazin}[(ii)]
+		$H = \O$, $H = X$ trivial. Assume $H ≠ \O, X$.
+
+		„$\implies$“: Fix CCM $ρ$ on $H$. $V_n := \bigcup\{V \subset X | V \text{ open in $X$} \land V \cap H ≠ \O \land \diam_ρ(V \cap H) < 2^{-n}\}$, $n \in ω$. We want to show $H \overset{?}= \bigcap_{n \in ω}(V_n \cap \overline{H}) \in ©G_δ$:
+		$$ \text{„$\subseteq$“: } x \in H, n \in ω, x \in B_ρ(x, 2^{-n-2}) \subset V_n. $$
+		„$\supseteq$“: $x \in V_n \cap \overline{H}$ for every $n \in ω$ $\implies$ $\exists$ open sets $G_n$: $x \in G_n$, $G \cap H ≠ \O$, $\diam(G_n \cap H) < 2^{-n}$. We can assume: $G_{n+1} \supset G_n$ (we can use intersection: $G_{n+1} \cap G_n \cap H \overset{?}≠ \O$ $\impliedby$ $x \in G_n \cap G_{n+1} \cap \overline{H} ≠ \O$).
+
+		$\{y\} := \bigcap_{n \in ω} \overline{G_n \cap H}^H \in H$. For contradiction: $x ≠ y$ $\implies$ $\exists O \subset X$ open: $x \notin \overline{O}$, $y \in O$, $G_n \cap H \subset B(y, 2^{-n})$, $n \in ω$. $\implies \exists n \in ω G_n \cap H \subset O$, $x \in G_n \cap (X \setminus \overline{O}) \cap \overline{H}$ $\implies$ $G_n \cap (X \setminus \overline{O}) \cap H ≠ \O$.
+
+		„$\impliedby$“: fix CCM $d$ on $X$, $H = \bigcap_{n \in ω} U_n$, $\O = U_n ≠ X$. $F_n := X \setminus U_n$, $\tilde d(x, y) = d(x, y) + \sum_{n=0}^∞ \min\{2^{-n}, \left|\frac{1}{\dist(x, F_n)} - \frac{1}{\dist(y, F_n)}\right|\}$, $x, y \in H$. Next we verified that $\tilde d$ is metric, that $\tilde d$ is equivalent with $d$ on $H$ (by convergence), and that $(H, \tilde d)$ is complete metric space and separable. TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Notation]
+	$A ≠ 0$:
+
+	\begin{itemize}
+		\item $A^{< ω} :=$ finite sequence of elements of $A$ = $\bigcup_{n \in ω} A^n$;
+		\item $s \in A^k$, $t \in A^{< ω} \cup A^ω$: $s^\wedge t := (s_0, s_1, …, s_{k-1}, t_0, t_1, …)$, where $s = (s_0, …, s_{k-1})$, $t = (t_0, t_1, …)$;
+		\item $s \in A^{<ω} \cup A^ω$: $|s|$ is the number of elements of sequence $s$ ($|s| \in ω \cup \{∞\}$);
+		\item $s \in A^{<ω} \cup A^ω$, $k \in ω$, $|s| ≥ k$, then we denote restriction of $s$ on first $k$ elements as $s / k$;
+		\item $s \prec t$ iff $|t| ≥ |s|$ and $s = t / |s|$ ($s \in A^{<ω}$, $t \in A^{<ω} \cup A^ω$).
+	\end{itemize}
+\end{definice}
+
+\section{Baire space $ω^ω$}
+\begin{definice}
+	For $s \in ω^{<ω}$ we define Baire interval of $s$ as $©N(s) := \{ν \in ω^ω | s \prec ν\}$.
+
+	$©N(s)$ are clopen ($©N(s) = ω^ω \setminus \bigcup\{©N(t) \middle| |t| = |s|, t ≠ s, t \in ω^{<ω}\}$).
+
+	$\{©N | s \in ω^{<ω}\}$ is base of topology of $ω^ω$.
+\end{definice}
+
+\begin{veta}[Alexandrov–Urysohn]
+	$ω^ω$ is up to homeomorphism unique nonempty multi-dimension PTS such that every compact has empty interior.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$ω^ω$ is homeomorphic to $®R \setminus ®Q$.
+\end{dusledek}
+
+\end{document}

@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 05. 10. 2022
+\section{Úvod aneb Projektivní přímka a rovina}
+\begin{poznamka}[O čem to bude]
+	Nevlastní body, homogenní souřadnice. Projektivní geometrie = „geometrie polohy“, tj. neměří se vzdálenosti ani úhly. Máme pojmy (v rovině) bod, přímka, incidence ($X \in p$).
+
+	Inspirováno perspektivou v malířství (realismus, 17. století).
+
+	Klíčové pojmy: nevlastní body („body v nekonečnu“), princip duality.
+\end{poznamka}
+
+\begin{poznamka}[Možné přístupy ke geometrii]
+	Axiomatický (jen axiomy, bez obrázků) (dnes), syntetický (důraz kladen na obrázky, bez souřadnic) (tento semestr), analytický (souřadnice, bez obrázků) (příští semestr).
+\end{poznamka}
+
+\subsection{Axiomatika projektivní geometrie (v rovině)}
+\begin{poznamka}[Primitivní pojmy]
+	Bod, přímka, incidence.
+\end{poznamka}
+
+\begin{definice}[Axiom A1]
+	Ke každým dvěma (různým) bodům $\exists!$ přímka s oběma body incidentní. (Přímce říkáme \emph{spojnice} daných bodů.)
+\end{definice}
+
+\begin{definice}[Axiom A2]
+	Ke každým dvěma (různým) přímkám $\exists!$ bod s oběma přímkami incidentní. (Bodu říkáme \emph{průsečík} daných přímek.)
+
+	\begin{poznamkain}
+		A2 vzniklo z A1 záměnnou pojmů bod a přímka. V EG neplatí, ale v PG chceme mít Princip duality.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Princip duality]
+	Veškerá tvrzení zůstávají v platnosti, pokud v nich zaměníme pojmy bod a přímka, incidence (prochází bodem a leží na přímce, průsečík a spojnice), a pojmy z nich odvozené.
+\end{definice}
+
+\begin{definice}[Nevlastní bod, vlastní bod]
+	Máme-li dvě rovnoběžky v EG, pak za jejich průsečík v PG označíme společný směr (bez orientace), neboli nevlastní bod (značíme $X_∞$, atd.).
+
+	Původní body v rovině budeme nazývat vlastní.
+\end{definice}
+
+\begin{definice}[Nevlastní přímka, vlastní přímka]
+	Nevlastní přímka ($n_∞$) = množina všech nevlastních bodů.
+\end{definice}
+
+\begin{poznamka}
+	S nevlastními body a přímkou splňuje rovina A1 i A2.
+\end{poznamka}
+
+\begin{definice}[Axiom A3]
+	Existují alespoň 4 body, z nichž každé 3 jsou nekolineární.
+\end{definice}
+
+\begin{poznamka}[„A4“]
+	Duální tvrzení k A3 už je dokazatelné z A1 až A3.
+\end{poznamka}
+
+\begin{definice}[Projektivní rovina]
+	Rovina s nevlastními body a nevlastní přímkou splňuje i A3. Takové rovině ($®R^2 \cup n_∞$) budeme říkat projektivní rovina a značit ji $®RP^2$ nebo $P^2$.
+\end{definice}
+
+\begin{poznamka}[Idea: existující různé geometrie]
+	Euklidovská geometrie (EG) (body, přímky, incidence, vzdálenosti, úhly), Afinní geometrie (AG) (body, přímky, incidence, rozlišení rovnoběžek a různoběžek, případně vlastních a nevlastních bodů), Projektivní geometrie (PG) (body, přímky, incidence).
+
+	(Hyperbolická geometrie = Lobačevského geometrie (body, přímky, incidence, jiné vzdálenosti, jiné úhly))
+\end{poznamka}
+
+\subsection{Afinní geometrie}
+\begin{poznamka}
+	Body $A, B, …$ a vektory $u, v, …$.
+
+	$\rightarrow$ přímky, vzájemné polohy přímek (ale ne kolmost).
+\end{poznamka}
+
+\begin{poznamka}[Lze zavést střed úsečky:]
+	$\vec{AS} = \frac{1}{2} \vec{AB} \Leftrightarrow \vec{SA} = -\vec{SB}$.
+\end{poznamka}
+
+\begin{definice}[Dělící poměr]
+	Dělící poměr 3 bodů $A, B, C$ na (jedné) přímce je číslo $λ = (ABC)$ splňující $C - A = λ(C - B)$.
+
+	\begin{poznamkain}
+		Odsud lze odvodit Euklidovskou definici dělícího poměru: $|λ| = \frac{\|C - A\|}{\|C - B\|}$.
+
+		$A, B, C$ různé, pak $λ$ nenabývá hodnot $0$ ($A = C$), $1$ ($A = B$) a $∞$ ($B = C$).
+
+		$C$ je středem úsečky $AB$, právě když $(ABC) = -1$.
+
+		Dělící poměr jako graf funkce ($A, B$ pevné, $C$ proměnné) je hyperbola.
+
+		Pro každé dva body $A ≠ B$ a $\forall λ \in ®R \setminus \{0, 1\}$, existuje právě jedno $C$, že $(ABC) = λ$.
+
+		Konstrukce: dány úsečky délek $1$ a $λ$, a body $A, B$.
+
+		Pokud $λ = (ABC)$, tak $(BAC) = \frac{1}{λ}$, $(ACB) = 1 - λ$, $(BCA) = \frac{λ - 1}{λ}$, $(CAB) = \frac{1}{1 - λ}$, $(CBA) = \frac{λ}{λ - 1}$. Tyto permutace se některé rovnají pro $λ$ z trojice $(0, 1, ∞)$ (každé tam bude dvakrát), z trojice $(-1, 2, 1 / 2)$ (také každé dvakrát) a z dvojice $(1 / 2 + i\sqrt{3}/2, 1 / 2 - i\sqrt{3}/2)$ (každé třikrát).
+	\end{poznamkain}
+\end{definice}
+
+\begin{poznamka}[Role zobrazení v jednotlivých geometriích]
+	V EG: posunutí, otáčení a osová souměrnost (tj. shodnosti) zachovávají délky a úhly (tj. (pro zajímavost) jsou to invarianty euklidovské grupy).
+
+	V AG: isomorfismy (lineární zobrazení na) zachovávají dělící poměr.
+\end{poznamka}
+
+\subsection{Projektivní přímka}
+\begin{definice}[Označení]
+	Je-li $v = (x_0, x_1) \in ®R^2 \setminus \{(0, 0)\}$, označíme $\<v\> =$ lineární obal $v =$ přímka generovaná $v$ (procházející počátkem). Tedy $\<(x_0, x_1)\> = \<v\> = \<av\> = \<ax_0, ax_1\>$ pro $\forall a ≠ 0, a \in ®R$.
+\end{definice}
+
+\begin{definice}[Projektivní přímka $®RP^1$, geometrický bod, aritmetický zástupce, homogenní souřadnice]
+	Projektivní přímka je množina $®RP^1 = \{\<v\> | v \in ®R^2 \setminus \{(0, 0)\}\} =$ množina všech přímek v $®R^2$ (procházejících počátkem). Prvek $\<v\> \in ®RP^2$ nazýváme geometrický bod, vektor $v \in ®R^2 \setminus \{(0, 0)\}$ nazýváme jeho aritmetickým zástupcem.
+
+	\begin{poznamkain}
+		Tedy každý geometrický bod má nekonečně mnoho aritmetických zástupců (a ti se všichni liší jen nenulovým násobkem).
+	\end{poznamkain}
+
+	Je-li $v = (x_0, x_1)$, píšeme $\<v\> = [x_0:x_1]$. Tomuto se říká homogenní souřadnice geometrického bodu.
+
+	\begin{poznamkain}
+		Jsou určeny až na nenulový násobek.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Kanonické vnoření afinní přímky ®R do projektivní přímky $®RP^1$]
+	Kanonické vnoření afinní přímky ®R do projektivní přímky $®RP^1$ je zobrazení $®R \rightarrow ®RP^1$, bod $x \mapsto [1:x]$ (body vlastní) a vektor $1 \mapsto [0:1]$ (bod nevlastní).
+
+	První souřadnice je tzv. rozlišovací souřadnice (1 znamená vlastní, 0 nevlastní).
+\end{definice}
+
+
+\end{document}

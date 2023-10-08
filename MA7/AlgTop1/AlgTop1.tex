@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 02. 10. 2023
+\begin{poznamka}
+	At least 1 from (3-)4 homework (flexible deadlines -- last lecture).
+\end{poznamka}
+
+\begin{poznamka}
+	In this lecture, there was also the revision of topology. (Topological space, topology, basis of topology, continuous map, quotient space, product topology, Hausdorff spaces).
+\end{poznamka}
+
+\begin{poznamka}
+	World Homotopy comes from homós (= same, simiar) and topos (place).
+\end{poznamka}
+
+\begin{definice}[Homotopic functions]
+	Given two topological spaces $X$ and $Y$ and two continuous functions $f, g: X \rightarrow Y$, we say that $f$ is homotopic to $g$ ($f \sim g$) if there is a $1$-parametric family $f_t: X \rightarrow Y$: $f_0 = f$, $f_1 = g$ and the map $F: [0, 1] \times X \rightarrow Y$ defined by $(t, x) \mapsto f_t(x)$ is continuous.
+\end{definice}
+
+\begin{definice}[Homotopy equivalent spaces]
+	Given two topological spaces $X$ and $Y$ we say that $X$ and $Y$ are homotopy equivalent if there is a pair of continuous maps $(f, g)$ such that $f: X \rightarrow Y$ and $g: Y \rightarrow X$ and $X \overset{f}\rightarrow Y$ and $Y \overset{g}\rightarrow X$, $g ∘ f \sim \id_X$, $f ∘ g \sim \id_Y$.
+\end{definice}
+
+\begin{priklad}
+	Given $®R$, $®R^2$ with the standard Euclidean topology and two maps $f: ®R \rightarrow ®R^2$, $x \mapsto f(x) = (x, x^3)$, $g: ®R \rightarrow ®R^2$, $x \mapsto g(x) = (x, e^x)$.
+
+	Are $f$ and $g$ homotopic? (Show that by constructing homotopy.)
+
+	\begin{reseni}
+		$$ F(t, x) = (1 - t)(x, x^3) + t(x, e^x) = (x, (1-t)x^3 + te^x). $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Given three topological spaces $(X, τ_X), (Y, τ_Y), (Z, τ_Z)$ and two pairs of continuous maps $f_1, g_1: (X, τ_X) \rightarrow (Y, τ_Y)$ and $f_2, g_2: (Y, τ_Y) \rightarrow (Z, τ_Z)$. Assume that $f_1$ is homotopic to $g_1$ and $f_2$ is homotopic to $g_2$. Show that $f_2 ∘ f_1$ is homotopic to $g_2 ∘ g_1$.
+
+	\begin{reseni}
+		$$ F(t, x) = F_2(t, F_1(t, x)). $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Take $B^n := \{x, …, x_n | \sqrt{x_1^2 + … + x_n^2} ≤ 1\} \subseteq ®R^n$. And take a map $f: B^n \rightarrow B^n$: $f(x) = (0, …, 0) \in B^n$ for all $x \in B^n$. Shows that there is a homotopy from $\id$ to $f$.
+
+	\begin{reseni}
+		$$ F: [0, 1] \times B^n \rightarrow B^n, \qquad (t, x) \mapsto (1 - t)x. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Take a 2-ball $B^2$. $B^2$ is homotopy equivalent to its center by previous problem, but it is not homeomorphic to $(0, 0)$.
+\end{priklad}
+
+
+
+\end{document}

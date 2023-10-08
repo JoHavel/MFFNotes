@@ -1,0 +1,85 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 05. 10. 2022
+
+\begin{definice}[Category, map (arrow, morphism), composition, domain, codomain]
+	A category $©A$ consists of: a collection $\ob(©A)$ of objects, and for each $A, B \in ©A$, a collection $©A(A, B)$ of maps, arrows, or morphisms from $A$ to $B$. Such that for each $A, B, C \in \ob(©A)$ a function (named composition) $∘: ©A(B, C) \times ©A(A, B) \rightarrow ©A(A, C)$, $(g, f) \mapsto g∘f$ meets following:
+
+	For each $f \in ©A(A, B), g \in ©A(B, C), h \in ©S(C, D): (h ∘ g) ∘ f = h ∘ (g ∘ f)$ (asociativity). For each $A \in \ob(©A)$ $\exists 1_A \in ©A(A, A)$, called the identity, such that, for each $f \in ©A(A, B): f ∘ 1_A = f = 1_B ∘ f$.
+
+	\begin{poznamka}[Notation]
+		$$ A \in \ob(©A) \Leftrightarrow A \in ©A. $$
+		$$ f \in ©A(A, B) \Leftrightarrow A \overset{f}\rightarrow B \Leftrightarrow f: A \rightarrow B. $$
+	\end{poznamka}
+
+	For $f \in ©A(A, B)$: $\dom(f) := A$ and $\codom(f) := B$.
+\end{definice}
+
+\begin{priklady}[of categories]
+	Category of:
+	\begin{itemize}
+		\item sets (SET): $\ob(SET) :=$ sets, $SET(A, B) :=$ functions from $A$ to $B$, $∘$ is composition;
+		\item groups (GRP): $\ob(GRP) :=$ groups, $GRP(G, H) :=$ group homomorphisms, $∘$ is composition;
+		\item rings (RING): $\ob(RING) :=$ rings, $RING(A, B) :=$ ring homomorphisms, $∘$ is composition;
+		\item vector spaces (VECT$_{®K}$): $\ob(VECT_{®K}) :=$ vector spaces over ®K, $RING(A, B) :=$ ®K linear maps, $∘$ is composition;
+		\item topological spaces (TOP): $\ob(TOP) :=$ topological spaces, $RING(A, B) :=$ continuous maps, $∘$ is composition.
+	\end{itemize}
+\end{priklady}
+
+\begin{definice}[Isomorphism, inverse]
+	$f: A \rightarrow B$ in a category ©A is an isomorphism if exists a map $g: B \rightarrow A$ in ©A such that $g ∘ f = 1_A$ and $f ∘ g = 1_B$. Then we call $g$ the inberse of $f$.
+\end{definice}
+
+\begin{priklady}
+	In SET isomorphisms are bijections.
+\end{priklady}
+
+\begin{priklad}
+	Show that inverses are unique (justifying the use of the determine article in the previous definition).
+\end{priklad}
+
+\begin{poznamka}
+	0-morphisms are called morphisms (between objects), 1-morphisms are called functors (between categories), 2-morphisms are called natural transformations (between functors).
+\end{poznamka}
+
+\begin{definice}[Functor]
+	Let ©A and ©B be categories. A functor $F: ©A \rightarrow ©B$ consists of: a function $F: \ob(©A) \rightarrow \ob(©B)$, and for each $A, A' \in ©A$ a function $F: ©A(A, A') \rightarrow ©B(F(A), F(A'))$. Such that
+	$$ F(f' ∘ f) = F(f) ∘ F(f'), \qquad \forall A \overset{f} A' \overset{f'} A'' \in ©A, $$
+	$$ F(1_A) = 1_{F(A)} \qquad \forall A \in ©A. $$
+\end{definice}
+
+\begin{priklady}[Forgetful functors]
+	$U: GRP \rightarrow SET$, for any group $(G, ·)$, $U((G, ·)) := G$, and for any morphism $f$, $U(f: (G, ·) \rightarrow (H, *)) := f: G \rightarrow H$. (Exercise: Convince yourself that this is a well-defined functors.)
+	
+	We can do the same for rings, vector spaces and topological spaces.
+\end{priklady}
+
+% 05. 10. 2023
+
+\begin{priklady}
+	Let ©A be the following category: $\ob(©A) = \{·\}$, $©A(·, ·) = 1_·$, and $1_· ∘ 1_· = 1_·$. It is called discrete category with one object.
+
+	$\ob(®B) = \{·, *\}$, $®B(·, ·) = 1_·$, $®B(·, *) = \O$
+
+	Directed transitive graph (with all loops) with concatenation of edges.
+
+	From group $(G, +)$ we construct category ©G by putting: $\ob(©G) := {·}$, $©G(·, ·) := G$ and $∘ := +$. We can generalize to a monoid $(M, +)$.
+
+	Now, let ©A be a category with one object $\{·\}$ (and assume that $©S(·, ·)$ is a set). Then homomorphism with composition are monoid. And isomorphisms with composition are groups (so one-object category with all homomorphism isomorphic represents group).
+
+	(Category, where $©A(·, ·)$ is a set, is often called locally small.)
+
+	Let $G$ and $H$ be groups and ©G, ©H their associated one-object categories. What is a functor from ©G to ©H? For $F: \ob(©G) \rightarrow \ob(©H)$ we have no other choice than $F(·) := *$. For $F: ©G(·, ·) \rightarrow ©H(*, *) = ©H(F(·), F(·))$ we demonstrated (see lecture) that $F$ needs to be group homomorphism (and every group homomorphism $G \rightarrow H$ is functor). (All this work for monoids too.)
+
+	Let $AB$ be the category of $\ob(AB) :=$ Abelian groups and $AB(A, B) :=$ group homomorphism. Then $U: AB \rightarrow GRP$ as „forgetful functor“ is „identity“. The same for commutative rings. Also we have forgetful functor $U: RING \rightarrow AB$, $(R, +, ·) \mapsto (R, +)$ and functor $U: RING \rightarrow MONOIDS$, $(R, +, ·) \mapsto (R, ·)$.
+
+	$U: SET \rightarrow VECT_{®K}$ we can define by $F(X) = (X \rightarrow F)$ (functions from $X$ to $F$) (free vector space).
+\end{priklady}
+
+
+\end{document}

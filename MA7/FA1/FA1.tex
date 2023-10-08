@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 03. 10. 2022
+
+\begin{poznamka}
+	Topology…
+\end{poznamka}
+
+\begin{definice}[Topological vector space (TVS)]
+	A Topological vector space over ®F is a pair $(X, τ)$, where $X$ is a vector space over ®F and $τ$ is a topology on $X$ with the following two properties:
+	\begin{enumerate}
+		\item The mapping $(x, y) \mapsto x + y$ is a continuous mapping of $X \times X$ into $X$;
+		\item The mapping $(t, x) \mapsto tx$ is a continuous mapping of $®F \times X$ into $X$;
+	\end{enumerate}
+
+	We also denote Hausdorff topological vector space by HTVS. And the symbol $τ(¦o)$ will denote the family of all the neighbourhoods of ¦o in $(X, τ)$.
+\end{definice}
+
+\begin{definice}[Locally convex (LCS, HLCS)]
+	Let $(X, τ)$ be a TVS. The space $X$ is said to be locally convex, if there exists a base of neighbourhoods of zero consisting of convex sets.
+\end{definice}
+
+\begin{poznamka}
+	Two homework (in Moodle) and one presentation.
+\end{poznamka}
+
+\begin{priklady}
+	Let $(X, \|·\|)$ be a normed linear space. Let $τ$ be the topology induced by $\|·\|$. The $(X, τ)$ is HLCS.
+
+	\begin{dukazin}
+		$ρ(x, y) = \|x - y\|$ metric induced by $\|·\|$. $τ$ induced by $ρ$. This $τ$ is Hausdorff. Continuity of the operations: (from Funkcionalka)
+		$$ x_n \rightarrow x, y_n \rightarrow y, t_n \rightarrow t \implies x_n + y_n \rightarrow x + y \land t_nx_n \rightarrow tx. $$
+
+		So, it is a HTVS. Base of neighbourhood of ¦o is e. g. $U(0, r), r > 0$, which is convex.
+	\end{dukazin}
+
+	Let $Γ$ be any nonempty set, $X = ®F^Γ$ (= all functions $Γ \rightarrow ®F$) with point-wise operations, so it is a vector space over ®F. It is a HLCS.
+
+	\begin{dukazin}
+		„Continuity of addition:“ $x, y \in ®F^Γ$, $U$ a neighbourhood of $x + y$ $\implies$ $\exists F \subset Γ$ finite $\exists ε > 0$ such that
+		$$ U_{¦o} = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - (x(γ) + y(γ))| < ε\} \subset U $$
+		$$ U_x = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2}\} $$
+		$$ U_y = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - y(γ)| < \frac{ε}{2}\} $$
+		$\implies$ $V_x$ is neighbourhood of $x$, and $V_y$ is neighbourhood of $y$, and $U_x + U_y \subset U_0 \subset U$. Thus $z_1 \in V_x$, $z_2 \in V_y$ $\implies$ $z_1 + z_2 \in U_0 \subset U$.
+
+		„Continuity of multiplication“: $λ \in ®F$, $x \in ®F^Γ$, $U$ a neighbourhood of $λ x$ $\implies$ $\exists F \subset Γ$ finite $\exists μ > 0$ such that
+		$$ U_0 = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - λx(γ)| < ε\} \subset U $$
+		$$ |μz(γ) - λx(γ)| ≤ |μ|·|z(γ) - x(γ)| + |μ - λ|·|x(f)|. $$
+		$$ M:= \max_{γ \in F}|x(γ)|. $$
+		$$ V = \{μ \in ®F \middle| |μ - λ| < \frac{ε}{2(M + 1)}\}, \qquad W = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2(|λ| + \frac{ε}{2(M+1)})}\}. $$
+		$$ μ \in V, z \in W \implies μ z \in U_0 \subset U. $$
+
+		„Local convexity“: Base of neighbourhoods of ¦o: $\{x \in ®F^Γ \middle| \forall γ \in F: |x(γ)| < ε\}$, $F \subset Γ$ finite, $ε > 0$, consists of convex sets.
+
+		„Hausdorff“: $x ≠ y \implies \exists γ \in Γ: x(γ) ≠ y(γ)$. Take $ε = \frac{|x(γ) - y(γ)|}{2}$.
+		$$ U = \{z \in ®F^Γ \middle| |z(γ) - x(γ)| < ε\}, V = \{z \in ®F^Γ \middle| |z(γ) - y(γ)| < ε\} \implies U \cap V = \O. $$
+	\end{dukazin}
+
+	$X = C(®R, ®F) = \{f: ®R \rightarrow ®F \text{ continuous}\}$,
+	$$ ρ(f, g) = \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, \max_{t \in [-n, n]}\{|f(t) - g(t)|\}\} =: \sum_{N=1}^∞ \frac{1}{2^N} \min\{1, p_N(f - g)\} $$
+	is translation invariant (that implies addition is continuous, see lecture) metric.
+	
+	\begin{dukazin}
+		$f_n \rightarrow f$ in $ρ$ $\Leftrightarrow$ $\forall N: f_n \rightrightarrows f$ on $[-N, N]$.
+
+% 06. 10. 2023
+
+		„$f_n \rightarrow f$, $λ_n \rightarrow λ$ $\implies$ $λ_n f_n \rightarrow λ f$“: Let $N \in ®N$. We will show $λ_n f_n \rightrightarrows λ f$ in $[-N, N]$. $x \in [-N, N]$:
+	$$ |λ_n f_n(x) - λ f(x)| ≤ |λ_n|·|f_n(x) - f(x)| + |λ_n - λ|·|f(x)| ≤ c·p_N(f_n - f) + |λ_n - λ|·p_N(f) \rightarrow 0. $$
+
+		Hence, $X$ is HTVS. „Local convexity“: $U_{N, ε} = \{f \in X | p_N(t) < ε\}$, clearly $U_{N, ε}$ is a convex set and $U_{N, ε}$ is neighbourhood of ¦o. If $ε<λ$, then $\{f | ρ(f, ¦o) < \frac{ε}{2^N}\} \subset U_{N, ε}$, because for $ρ(f, ¦o) < \frac{ε}{2^N}$ it is $\frac{1}{2^N}p_N(f) < \frac{ε}{2^N}$. „they form a base“: $f \in U_{N, ε} \implies ρ(f, ¦o) < ε + \frac{1}{2^N}$. Hence fix $r > 0$ and take $N \in ®N$ such that $\frac{1}{2^N} < \frac{r}{2}$. Then $U_{N, \frac{r}{2}} \subset \{f | ρ(f, ¦o) < r\}$
+	\end{dukazin}
+
+	$(Ω, Σ, μ)$ a measure space, $p \in (0, 1)$. $L^p(Ω, Σ, μ) = \{f: Ω \rightarrow ®F \text{ measurable} | \int |f|^p dμ < ∞\}$ (we identify functions equal almost everywhere). $ρ(f, g) = \int |f - g|^p dμ$ is a metric making $X = L^p(Ω, Σ, μ)$ a HTVS (but not locally convex).
+
+	\begin{dukazin}
+		„$ρ$ is a metric“: „$\triangle$-inequality“: $a, b \in [0, ∞): (a + b)^p ≤ a^p + b^p$. (Fix $a ≥ 0$, take $φ_a(b) = (a + b)^p - a^p - b^p$ $\implies$ $φ_a$ is continuous on $[0, ∞)$, $φ_a(0) = 0$. For $b > 0$: $φ_a(b) = p(a + b)^{p - 1} - pb^{p - 1} = p·\((a + b)^{p-1} - b^{p - 1}\) < 0$ as $p - 1 < 0$ $\implies$ $φ_a$ decreasing on $[0, ∞)$ and $φ_a ≤ 0$.)
+
+		$φ$ is translation invariant $\implies$ addition is continuous. „Multiplication“: We can see that $ρ(λf, ¦o) = |λ|^pρ(f, ¦o)$. $f_n \rightarrow f$, $λ_n \rightarrow λ$:
+		$$ ρ(λ_n f_n, λ f) ≤ ρ(λ_n f_n, λ_n f) + ρ(λ_n f, λ f) = |λ_n|^p ρ(f_n, f) + |λ_n - λ|^p ρ(f, ¦o) \rightarrow 0. $$
+		Hence, we have a HTVS.
+	\end{dukazin}
+\end{priklady}
+
+\begin{tvrzeni}[Observation]
+	If $(X, τ)$ is a LCS, then $τ$ is translation invariant ($U \subset X, x \in X \implies (U \in τ \Leftrightarrow x + U \in τ)$). Hence $τ$ is determined by $τ(¦o)$.
+\end{tvrzeni}
+
+\begin{definice}[convex, symmetric, balanced, absolutely convex, and absorbing set]
+	$X$ is a vector space, $A \subset X$. Then $A$ is
+	\begin{itemize}
+		\item convex if $tx + (1 - t)y \in A$ for $x, y \in A$, $t \in [0, 1]$;
+		\item symmetric if $A = -A$;
+		\item balanced if $α A \subset A$ for $α \in ®F$, $|α| ≤ 1$;
+		\item absolutely convex if it is convex and balanced;
+		\item absorbing if $\forall x \in X\ \exists t > 0: \{s X | s \in [0, t]\} \subset A$.
+	\end{itemize}
+\end{definice}
+
+\begin{definice}
+	$\co(A) = $ convex hull, $\b(A) = $ balanced hull, $\aco(A) = $ absolutely convex hull.
+\end{definice}
+
+\begin{tvrzeni}
+	$X$ is a metric space over ®F, $A \subset X$. Then:
+
+	(a) If $®F = ®R$, it holds $A$ is absolutely convex $\Leftrightarrow$ $A$ is convex and symmetric.
+
+	(b) $\co A = \{t_1x_1 + … + t_kx_k | x_1 … x_k \in A, t_1 … t_k ≥ 0, t_1 + … + t_k = 1, k \in ®N\}$.
+
+	(c) $\b(A) = \{αx | x \in A, α \in ®F, |α| ≤ 1\}$.
+
+	(d) $\aco(A) = \co(\b(A))$.
+
+	(e) $A$ is convex $\Leftrightarrow$ $(s + t) A = sA + tA$ for all $s, t > 0$.
+
+	\begin{dukazin}[a]
+		„$\implies$“: trivial (and it also holds for $®F = ®C$). „$\impliedby$“: Assume $A$ is convex and symmetric. We show that $A$ is balanced:
+		$$ x \in A, α \in ®R, |α| ≤ 1 \implies α \in [-1, 1]. $$
+		And $x \in A, -x \in A$, so the segment from $x$ to $-x$ is contained in $A$ ($α x = \frac{1 - α}{2}(-x) + \frac{(1 + α)}{2} x \in A$).
+	\end{dukazin}
+
+	\begin{dukazin}[b]
+		„$\subseteq$“: by induction on $k$:
+		$$ t_1 x_1 + … + t_{k+1} x_{k+1} = (t_1 + … + t_k) \frac{t_1x_1 + … + t_k x_k}{t_1 + … + t_k} + t_{k+1}x_{k+1}. $$
+
+		„$\supseteq$“: the set on the RHS is convex and contain $A$.
+	\end{dukazin}
+
+	\begin{dukazin}[c]
+		„$\supseteq$“: clear. „$\subseteq$“: RHS is a balanced set.
+	\end{dukazin}
+
+	\begin{dukazin}[d]
+		„$\supseteq$“: clear. „$\subseteq$“ the set on the RHS is absolutely continuous (Clearly RHS is convex. „balanced“: using (b) and (c): $\co(\b(A)) = \{t_1 α_1 x_1 + … + t_kα_kx_k | x_1, …, x_k \in A, |α_j| ≤ 1, t_j ≥ 0, t_1 + … + t_k = 1\}$ is clearly balanced.)
+	\end{dukazin}
+
+	\begin{dukazin}[e]
+		„$\implies$“: „$\subseteq$“: always, „$\supseteq$“: $sa_1 + ta_2 = (s + t)·\(\frac{s}{s + t} a_1 + \frac{t}{s + t} a_2\)$.
+
+		„$\impliedby$“: in particular $\forall t \in (0, 1)$: $tA + (1 - t)A \subset A$, it is the definition of convexity.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Let $(X, τ)$ be a LCS, $U \in τ(¦o)$. Then
+	
+	(i) $U$ is absorbing.
+
+	(ii) $\exists V \in T(0): V + V \subset U$.
+
+	(iii) $\exists V \in τ(¦o)$ absolutely convex, open: $V \subset U$.
+
+	\begin{dukazin}[i]
+		$$ x \in X \implies 0·x = ¦o \in U \implies \exists V \text{ a neighbourhood of $0$ in ®F}: V·x \subset U \implies \exists t > 0: [0, t] \subset V $$
+	\end{dukazin}
+
+	\begin{dukazin}[ii]
+		$$ ¦o + ¦o = ¦o \in U \implies \exists W_1, W_2 \text{ neighbourhoods of ¦o}: W_1 + W \subset U. $$
+		Take $V = W_1 \cap W_2$.
+	\end{dukazin}
+
+	\begin{dukazin}
+		$$ \exists U_0 \in τ(¦o) \text{ convex}, U_0 \subset U: ¦o·¦o = ¦o \in U_0 \implies \exists c > 0\ \exists W \in τ(¦o) \text{ open}: $$
+		$$ \forall λ, |λ| < c: λW \subset U_0. $$
+		$V_1 := \bigcup_{0 < |λ| < 1} λW$. Then $V_1 \in τ(0)$ open, balanced, $V_1 \subset U_0$. Let $V := \co V_1$. Then $V$ is absolutely convex (the previous proposition (d)), $V \subset U_0 \subset U$ (as $V_0$ is convex). $V \in τ(¦o)$ as $V \supset V_1$. „$V$ is open“:
+		$$ V = \bigcup\{t_1x_1 + … + t_nx_n + t_{n+1}V_1 | t_1, …, t_{n+1} ≥ 0, t_1 + … + t_{n+1} = 1, x_1, …, x_n \in V_1\} $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\end{document}

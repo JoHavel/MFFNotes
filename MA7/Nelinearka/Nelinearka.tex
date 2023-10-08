@@ -1,0 +1,178 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 06. 10. 2022
+
+\begin{poznamka}
+	There will be homework. We will discus it on practicals (particular solutions are good).
+\end{poznamka}
+
+\begin{poznamka}[What it is about]
+	Functional analysis generalizes Linear Algebra. This lecture generalizes (real) Analysis in $®R^n$ ($Df(x_0): ®R^n \rightarrow ®R^m$ is linear) by replacing $®R^n$ with Banach spaces.
+\end{poznamka}
+
+\begin{priklad}[Calculus of variations]
+	Know things: $f: ®R \rightarrow ®R$, differentiable has minimizer at $x_0 \in ®R$ $\implies$ $f'(x_0) = 0$ (in $®R^n$: $Df(x_0) = 0$). Generalize it:
+
+	\begin{reseni}
+		Trick: For example $F: u \mapsto \int_Ω \frac{1}{2} |\nabla u|^2 - f u dx$, $W^{1, 2}_g(Ω) \rightarrow ®R$ ($g$ means bounded values). For any $φ \in W^{1, 2}_0(Ω)$ consider $ε \mapsto F(u + εφ)$, $®R \rightarrow ®R$.
+		$$ 0 = \frac{d}{dε}|_{ε = 0} F(u + εφ) = \frac{d}{dε}|_{ε = 0} \int_Ω \frac{1}{2} |\nabla u + ε\nabla φ|^2 - f·(u + εφ) dx = $$
+		$$ = \frac{d}{dε}|_{ε = 0} \[\int_Ω \frac{1}{2} |\nabla u|^2 - f u dx + ε\int_Ω \nabla u \nabla φ - fφ dx + ε^2 \int_Ω \frac{1}{2} |\nabla φ|^2 dx\] = $$
+		$$ = \int_Ω \nabla u \nabla φ - fφ. $$
+		Assume $u \in W^{2, 2}(Ω)$:
+		$$ \overset{\text{P.I.}} \int_{\partial Ω} \frac{\partial u}{\partial n} φ dx - \int_Ω (\triangle u + f)φ dx \qquad \forall φ \in W^{1, 2}_0(Ω). $$
+		$$ \overset{\text{Fundamental lemma}} \triangle u + f = 0. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Mapping degree]
+	Consider $f \in ©C([-1, 1]; ®R)$. How many zeroes does $f$ have? Let assume $f(-1) < 0 < f(1)$. Let assume $f \in ®C^1$. And 0 is a regular value ($f(x_0) = 0 \implies f'(x_0) ≠ 0$).
+
+	\begin{reseni}
+		From 0 to $∞$. After assumption: by intermediate value theorem at least 1. After second assumption: odd and finitely many. Moreover, the number of zeros with positive derivative minus the number of zeros with the negative one is 1, which is called degree of $f$.
+
+		Observation: In one dimension $\deg(f) \in \{-1, 0, 1\}$. $\deg(f)$ is invariant under perturbations. $\deg f$ depends on boundary values. Can be extended from $©C^1$ to $©C$ (we take smooth perturbation).
+
+		Ad second observation: homotopy: $h: [0, 1] \times [-1, 1] \rightarrow ®R$, $(s, x) \mapsto h_s(x)$ continuous $h_0 = f$, $h_1 = g$.. And it is admissible if $h_s(-1) ≠ 0$ and $h_s(1) ≠ 0$ for all $s$.
+	\end{reseni}
+
+	There is generalization to $®R^n$, to Manifolds, and to Banach spaces. And we get „corollaries“: Fix point theorems, topological statements,inability to comb a hedgehog, 
+\end{priklad}
+
+\section{Derivatives in Banach spaces}
+\subsection{The notion of a derivative}
+\begin{poznamka}[In $®R^n$]
+	Partial derivative, directional derivative, total derivative.
+\end{poznamka}
+
+\begin{definice}[Directional and Gateaux derivative]
+	Let $X, Y$ be Banach spaces, $A \subset X$ open, $f: A \rightarrow Y$. For any $x_0 \in A$, $v \in X$ if
+	$$ \frac{\partial f}{\partial v}(x_0) := \lim_{h \rightarrow 0} \frac{f(x_0 + hv) - f(x_0)}{h} $$
+	exists, we call it directional derivative (at $x_0$, in direction $v$).
+
+	If $v \mapsto \frac{\partial f}{\partial v}(x_0)$ is a continuous linear operator from $X$ to $Y$, we denote it by $\partial f(x_0)$ and call it the Gateaux derivative (at $x_0$).
+\end{definice}
+
+\begin{poznamka}[Notation]
+	Some authors omit continuous and linear, i.e. for them directional $\Leftrightarrow$ Gateaux.
+
+	Some use $df$ or $Df$ instead of $\partial f$.
+
+	We will write $\frac{\partial f}{\partial v}(x_0) = \partial f(x_0)\<v\>$. ($\<·\>$ for linear arguments.)
+\end{poznamka}
+
+\begin{priklady}
+	Consider $F: L^2([0, 1]) \rightarrow L^2([0, 1])$, $u \mapsto F(u)$, $F(u)(x) := \sin(u(x))$. It is continuous ($\|F(u) - F(v)\|_{L^2}^2 = \int|\sin(u(x)) - \sin(v(x))|^2 ≤ \int |u(x) - v(x)|^2$). Fix $φ \in L^2([0, 1])$ and calculate:
+	$$ \frac{\partial F}{\partial φ}(u) = \lim_{h \rightarrow 0} \frac{\sin(u(·) + h φ(·)) - \sin(u(·))}{h} = \cos(u(·))·φ(·) $$
+	point-wise almost everywhere and by domain convergence everywhere.
+
+	$\frac{\partial F}{\partial φ}$ is linear in $φ$ and bounded $\implies$ $F$ is Gateaux differentiable. Consider $u \mapsto \frac{\partial F}{\partial φ}(u)$ for fixed $φ$. It is continuous.
+
+	Is $\partial F$ a good linear approximation? I.e. $\|F(u + φ) - F(u) - \partial F(u)\<φ\>\|_{L^2} \overset? = o(\|φ\|_{L^2})$. No: Pick $u = 0$ $φ_k = πχ_[0, \frac{1}{k}]$, then $\|φ_k\|_2 = \sqrt{\frac{1}{k} π^2} \rightarrow 0$.
+	$$ F(u + φ_k)(x) = \begin{cases}\sin(0), & x > \frac{1}{k},\\ \sin(π), & x ≤ \frac{1}{k}.\end{cases} = 0. $$
+	$$ \|…\| = \|0 - 0 - \partial F(0)\<φ_k\>\|_{L^2} = \|φ_k\|_{L^2} \notin o(\|φ_k\|_{L^2}). $$
+\end{priklady}
+
+\begin{definice}[Fréchet derivative]
+	Let $X, Y$ be Banach, $A \subset X$ open $f: A \rightarrow Y$. For any $x_0 \in A$ if there exists $Df(x_0) \in ©L(X, Y)$ such that
+	$$ \lim_{v \rightarrow ¦o} \frac{\|f(x_0 + v) - f(x_0)\|_Y}{\|v\|_X} = 0 $$
+	then $Df(x_0)$  is called Fréchet derivative.
+\end{definice}
+
+\begin{lemma}[Fréchet $\implies$ Gateaux]
+	$X$, $Y$ Banach spaces, $A \subset X$ open, $f: A \rightarrow Y$. If $F$ is Fréchet differentiable at $x_0$, it is also Gateaux differentiable with $\partial f(x_0) = D f(x_0)$.
+
+	\begin{dukazin}
+		Trivial.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Gradient]
+	Let $H$ be a Hilbert space, $A \subset H$ open $f: A \rightarrow ®R$. If $f$ is Gateaux differentiable at $x_0 \in A$, then the unique $\nabla  f(x_0) \in H$ such that $\<\nabla f(x_0), v\>_H = \partial f(x_0) \<v\>\quad\forall v \in H$ is called the gradient of $f$ at $x_0$.
+\end{definice}
+
+\begin{poznamka}[Gradients in different spaces]
+	Derivatives are „independent“ of the space used: $X_1 \hookrightarrow X_2$, $Y_1 \hookrightarrow Y_2$ Banach, $f_1: X_1 \rightarrow Y_1$, $f_2: X_2 \rightarrow Y_2$ such that $f_2|_{X_1} = f_1$. Then $Df_2(x_0)|_{X_1} = Df_1(x_0)$, if both exist.
+
+	For Hilbert spaces $H_1 \hookrightarrow H_2$:
+	$$ \<a, v\>_{H_1} = \<b, v\>_{H_2} \forall v \in H_1 \nRightarrow a = b. $$
+	$\implies$ $\nabla f$ depends on the space! Notation $\nabla_H f(x_0)$.
+
+	One can define „formal gradients“: Let $X$ Banach, $H$ Hilbert, $X \hookrightarrow H$. $f: A \subset X \rightarrow ®R$ Gateaux differentiable. Then there might be $\nabla f(x_0) \in H$ such that
+	$$ \<v, \nabla f(x_0)\>_H = Df(x_0)(v) \qquad \forall v \in X. $$
+	If $X$ is dense in $H$, then $\nabla f(x_0)$ is unique.
+
+	Classically gradients are associate inner product, but principle works with dual pairings, ($\<·, ·\>_{L^p \times L^q}$, $\frac{1}{p} + \frac{1}{q} = 1$).
+\end{poznamka}
+
+\subsection{Calculation rules}
+\begin{tvrzeni}[Chain rule]
+	Let $X, Y, Z$ be Banach, $A \subset X$, $B \subset Y$ open, $f: B \rightarrow Z$, $g: A \rightarrow B$, $x_0 \in A$, $y_0 := g(x_0)$.
+
+	\begin{enumerate}
+		\item If $f$ is Fréchet differentiable at $y_0$ and $g$ is Gateaux differentiable at $x_0$, then $f ∘ g$ is Gateaux differentiable at $x_0$ with
+			$$ \partial(f ∘ g)(x_0)\<v\> = Df(x_0)\<\partial g(x_0)\<v\>\> \qquad \forall v \in X. $$
+		\item If $g$ is additionally Fréchet differentiable, then so is $f ∘ g$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		$$ \lim_{h \rightarrow 0} \left\|\frac{f(g(x_0 + hv)) - f(g(x_0))}{h} - Df(y_0)\<\partial g(x_0)\<v\>\>\right\|_Z ≤ $$
+		$$ ≤ \lim_{h \rightarrow 0} \left\|\frac{f(g(x_0 + hv) + y_0 - g(x_0)) - f(y_0) - Df(y_0)\<g(x_0 + hv) - g(x_0)\>}{h}\right\|_Z + $$
+		$$ + \lim_{h \rightarrow 0} \underbrace{\left\|D f(y_0) \<\partial g(x_0)\<v\> - \frac{g(x_0 + hv) - g(x_0)}{h}\>\right\|_Z}_{\rightarrow 0} = $$
+		$$ = \lim_{h \rightarrow 0} \frac{\|f(x_0 + g(x_0 + hv) - g(x_0)) - f(y_0) - Df(x_0)\<g(x_0 + hv) - g(x_0)\>\|_Z}{\|g(x_0 + hv) - g(x_0)\|_Y}·\frac{\|g(x_0 + hv) - g(x_0)\|_Y}{h} = 0·\|\partial g(x_0)\<v\>\|. $$
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Last convergence in 1. is independent of $v$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}[Mean value]
+	Let $I \subset ®R$ be an interval, $Y$ Banach, $f: I \rightarrow Y$ differentiable, $a \in Y$. Then $\forall x, y \in I$, $x > y$, $\exists ξ \in [y, x]$ such that
+	$$ \left\|\frac{f(x) - f(y)}{x - y} - a\right\|_Y ≤ \|f'(ξ) - a\|_Y. $$
+
+	\begin{dukazin}
+		By Hahn–Banach $\exists φ \in Y^*$ such that
+		$$ * := \left\|\frac{f(x) - f(y)}{x - y} - a\right\|_Y = φ\<\frac{f(x) - f(y)}{x - y} - a\> \land \|φ\|_{Y^*} = 1. $$
+		Define $Ψ: [y, x] \rightarrow ®R$, $s \mapsto φ\<f(s) - s·a\>$. Then
+		$$ * = \frac{φ\<f(x)\> - φ\<f(y)\>}{x - y} - \frac{x - y}{x - y}φ\<a\> = \frac{ψ(x) - ψ(y)}{x - y} \overset{\text{Mean value theorem}} ψ'(ξ) \overset{\text{Chain rule}} = φ\<f'(ξ) - a\> ≤ \|f'(ξ) - a\|_Y. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}[Product spaces]
+	Let $X_1$, $X_2$, $Y$ be Banach, $f: X_1 \times X_2 \rightarrow Y$. Let $x_1 \in X_1$, $x_2 \in X_2$, and denote by $\partial_1 f(x_1, x_2)$ the Gateaux derivative of $x \mapsto f(x, x_2)$ at $x_1$, by $\partial_2 f(x_1, x_2)$ the Gateaux derivative of $x \mapsto f(x_1, x)$ and similarly $D_1f(x_1, x_2)$ and $D_2f(x_1, x_2)$.
+
+	\begin{enumerate}
+		\item If $f$ is Gateaux differentiable at $(x_1, x_2)$ then $\partial_1 f(x_1, x_2)$, $\partial_2 f(x_1, x_2)$ exists and we have
+			$$ \forall v_1 \in X_1, v_2 \in X_2: \partial f(x_1, x_2)\<(v_1, v_2)\> = \partial_1 f(x_1, x_2)\<v_1\> + \partial_2 f(x_1, x_2)\<v_2\>. $$
+		\item If $\partial_1 f$ and $\partial_2 f$ exists at $(x_1, x_2)$ and one of them is continuous (as a function $X_1 \times X_2 \mapsto ©L(X_i; Y)$) then $f$ is Gateaux differentiable.
+		\item The previous points hold also for Fréchet derivation.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		From definition:
+		$$ \partial_1 f(x_1, x_2) = \partial f(x_1, x_2)\<(v_1, 0)\> = \lim_{h \rightarrow 0} \frac{f(x_1 + h v_1, x_2) - f(x_1, x_2)}{h}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		WLOG $\partial_2 f$ is continuous.
+		$$ \lim_{h \rightarrow 0} \left\| \frac{f(x_1 + hv_1, x_2 + hv_2) - f(x_1, x_2)}{h} - \partial_1 f(x_1, x_2)\<v_1\> - \partial_2 f(x_1, x_2)\<v_2\> \right\|_Y ≤ $$
+		$$ ≤ \lim_{h \rightarrow 0} \underbrace{\left\|\frac{f(x_1 + hv_1, x_2) - f(x_1, x_2)}{h} - \partial_1 f(x_1, x_2) \<v_1\>\right\|_Y}_{\rightarrow 0} + $$
+		$$ + \lim_{h \rightarrow 0} \underbrace{\left\|\frac{f(x_1 + hv_1, x_2 + hv_2) - f(x_1 + hv_1, x_2)}{h} - \partial_2 f(x_1 + hv_1, x_2) \<v_2\>\right\|_Y}_{*} + $$
+		$$ + \underbrace{\lim_{h \rightarrow 0} \|\partial_2 f(x_1 + hv_1, x_2)\<v_2\> - \partial_2 f(x_1, x_2)\<v_2\>\|_Y}_{\rightarrow 0} = 0 $$
+
+		Consider $ψ: s \mapsto f(x_1 + hv_1, x_2 + sv_2)$.
+		$$ * ≤ \sup_{ξ \in [0, h]} \|\partial_2 f(x_1 + hv_1, x_2 + ξv_2)\<v_2\> - \partial_2 f(x_1 + hv_1, x_2)\<v_2\>\| \rightarrow 0 $$
+		by continuous of $\partial_2 f$.
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Similarly.
+	\end{dukazin}
+\end{tvrzeni}
+
+\end{document}

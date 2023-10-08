@@ -1,0 +1,168 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 04. 10. 2022
+
+\section{Preliminaries}
+\begin{definice}[Slabá derivace]
+	Nechť $f \in L^1_{loc}(®R^n)$. Říkáme, že $g \in L^1_{loc}(®R^n)$ je slabou derivací $f$ podle $i$-té proměnné, pokud platí
+	$$ \int_{®R^n} f \partial_i φ dλ^n = - \int_{®R^n} g φ dλ^n \qquad φ \in ©D(®R^n) = ®C^∞_0(®R^n). $$
+\end{definice}
+
+\begin{definice}[Značení]
+	$$ \partial_i f(x) = \lim_{h \rightarrow ¦o} \frac{f(x + e_i h) - f(x)}{h}, \qquad \nabla f(x) = \begin{pmatrix} \partial_1f(x) \\ \vdots\\ \partial_n f(x) \end{pmatrix}, $$
+	$$ D_if \text{ slabá derivace dle $i$-té proměnné}, \qquad \nabla f(x) = \begin{pmatrix} \partial_1f(x) \\ \vdots\\ Dn f(x) \end{pmatrix}, $$
+	$D·$ bude také značit derivaci distribuce? (Distribuční derivaci?)
+
+	$f \in Lip(X, Y)$ jsou všechny Lipschitzovská zobrazení (tj. $ρ_Y(f(a), f(b)) ≤ lip(f)·ρ_X(a, b)$) z $X$ do $Y$.
+
+	$A \triangle B := (A \setminus B) \cup (B \setminus A)$ (symetrický rozdíl množin).
+\end{definice}
+
+\begin{definice}[Lebesgueova–Stieltjesova míra]
+	$μ$ míra vytvořená $M: I(®R) \rightarrow [0, ∞)$ pomocí Caratheodorovy konstrukce se nazývá Lebesgueova–Stieltjesova míra.
+\end{definice}
+
+\begin{definice}[Radonova míra]
+	$©M^+_{loc}(Ω)$ je prostorem všech Borelovských měr na $Ω \subset ®R^n$, které jsou vnitřně regulární ($μ(E) = \sup\{\mu(K) | K \subset E\}$), lokálně kompaktní.
+
+	Pokud navíc $|μ| < ∞$, pak je to prostor $©M^+$. $©M_{loc}(Ω) = μ^+ - μ^-$.
+\end{definice}
+
+\begin{definice}[?]
+	$$ ψ(x) = \begin{cases}e^{-\frac{1}{1 - |x|^2}}, & |x| < 1,\\ 0, & |x| ≥ 1.\end{cases} $$
+
+	$$ ψ_k(x) = k^n ψ(kx) $$
+
+	\begin{poznamkain}
+		$$\int |Ψ| = 1, \qquad ψ(x) = ψ(x'), |x| = |x'|, \qquad ψ \in ©D(®R^n) $$
+		$$ ψ_k(x) > 0 \implies |x| < \frac{1}{k} $$
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[Lebesgueova o derivaci 1]
+	Nechť $1 ≤ p < ∞$. Nechť $Ω \subset ®R^n$ otevřená. A nechť $f \in L^p_{loc}(Ω)$. Potom pro skoro všechna $x \in Ω$:
+	$$ \lim_{r \rightarrow 0} \fint_{B(x, r)} |f(y) - f(x)|^p dλ^n(x) = 0. $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Lebesgueův bod]
+	Každý takový bod se nazývá ($p$) Lebesgueův bod.
+\end{definice}
+
+\begin{definice}[Konvoluce]
+	$$ f*g(x) = \int_{®R^n} f(x - y)g(y) dy. $$
+	Za podmínek, kdy pravá strana existuje. $g$ může být i míra.
+
+	\begin{poznamka}
+		Je-li $f * g \in L^1$ pak $f*g=g*f$. (Z Fubiniovy věty.)
+	\end{poznamka}
+\end{definice}
+
+\begin{tvrzeni}
+	Nechť $u \in L^1_{loc}(®R^n)$. Pak $ψ_k*u(x)$ je definováno $\forall x \in ®R^n$ a $\forall k \in ®N$.
+
+	\begin{dukazin}
+		Nebyl. Viz Funkcionalka.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$u \in L^1_{loc}(®R^n)$. Pak $ψ_k * u \in ®C^∞(®R^n)$ a $\partial_i(ψ_k*u) = \partial_iψ_k*u$.
+
+	\begin{dukazin}
+		Nebyl. Viz Funkcionalka.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $f \in L^p$. Potom $ψ_k * f \in L^p$ $p \in [1, ∞]$. Navíc $\|ψ_k*f\|_p ≤ \|f\|_p$.
+
+	\begin{dukazin}
+		Nebyl. Viz Funkcionalka.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$f \in L^1_{loc}(®R^n)$ nechť $x$ je Lebesgueův bod $f$ (a $f(x) = \lim_{r \rightarrow 0} \fint_{B(x, r)} f$) pak $ψ_k * f(x) \overset{k} \rightarrow f(x)$.
+
+	\begin{dukazin}
+		Nebyl.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $f \in ©C^∞_0(®R^n)$. Potom $ψ_k * f \rightrightarrows f$ na $®R^n$.
+
+	\begin{dukazin}
+		Nebyl.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Pro $p \in [1, ∞)$ platí $\overline{©C^∞_0(®R^n)}^{L^p} = L^p(®R^n)$.
+
+	\begin{dukaz}
+		Nebyl. (Docela jednoduchý.)
+	\end{dukaz}
+\end{lemma}
+
+\begin{veta}
+	$1 ≤ p < ∞$: $f \in L^p(®R^n)$ $\implies$ $ψ_k * f \rightarrow f$ v $L^p(®R^n)$.
+
+	\begin{dukazin}
+		Nebyl.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		($ψ_1 * f \overset{w}\rightarrow f$ v $L^∞$)
+	\end{poznamkain}
+\end{veta}
+
+\begin{veta}
+	Nechť $u \in Lip(®R^n, ®R)$. Pak $u$ je slabě diferencovatelná na $®R^n$ a $\|Du\|_{L^∞} ≤ lip(u)$.
+
+	\begin{dukazin}
+		Nechť $x, z \in ®R^n$.
+		$$ |ψ_k * u(z) - ψ_k * u(x)| = \left|\int(u(z - y) - u(x - y))ψ_k(y)dλ^n\right| ≤ lip(u) |z - x|. $$
+		$lip(u_k) := lip(ψ_k * u) ≤ lip(u)$.
+		Nechť $B$ je koule v $®R^n$. $\{\nabla u_k\}$ je omezená v $L^2(B)$ slabě konverguje k $g \in L^2(B, ®R^n)$.
+
+		$\{f \in L^2(B): \|f\|_∞ ≤ c\}$ konvexní a uzavřená $\implies$ slabě uzavřená $\implies$ $\|g\|_∞ ≤ lip(u)$. Tedy
+		$$ \int_B u\nabla φ \leftarrow \int_B u_k \nabla φ = -\int_B \nabla u_k φ \rightarrow -\int_B g φ. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $E \subset Ω$ a pro nějaké $r > 0$: $E + B(¦o, r) \subset Ω$. Potom $\exists η \in ©D(Ω)$, že $η = 1$ na $E$.
+
+	\begin{dukazin}
+		$E + B\(0, \frac{r}{2}\) \subset\subset Ω$. Najdeme $k$, že $\frac{1}{k} < \frac{r}{2}$. Potom $ψ_k * χ_{E + B\(0, \frac{r}{2}\)}$ je hledaná funkce.
+	\end{dukazin}
+\end{lemma}
+
+\section{Absolutně spojité funkce}
+\begin{poznamka}[V této kapitole vždy]
+	$I = (a_0, b_0)$ je interval. $®D(I)$ bude množina všech konečných dělení ($a_0 < x_0 < … < x_n < b_0$) intervalu.
+\end{poznamka}
+
+\begin{definice}[Variace funkce]
+	Nechť $D = \{x_0 < x_1 < … < x_m\} \in ®D(I)$ a $u: I \rightarrow ®R$. Potom variace $u$ podle dělení $D$ je $V(u, D) = \sum_{i=1}^n |u(x_i) - u(x_{i-1})|$.
+
+	Variace $u$ je $V(u, I) = \sup_{D \in ®D(I)} V(u, D)$.
+
+	Je-li $V(u, I) < ∞$ pak říkáme, že $u$ má konečnou variaci na $I$.
+\end{definice}
+
+\begin{definice}[Absolutně spojité funkce]
+	Nechť $u: I \rightarrow ®R$. Říkáme, že $u$ je (klasicky) absolutně spojité na $I$, jestliže ke každému $ε > 0$ existuje $δ > 0$ takové, že pro všechny $\{[a_i, b_i]\}_{i=1}^m$ po dvou disjunktní $\sum_{i=1}^m b_i - a_i < δ$ je $\sum_{i=1}^n |u(b_i) - u(a_i)| < ε$.
+\end{definice}
+
+\end{document}

@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 03. 10. 2022
+
+\section{Introduction}
+\begin{poznamka}[Literature]
+	„Riemann surfaces and algebraic curves“, Renzo Cavalieri and Eric Miles
+\end{poznamka}
+
+\subsection{Differentiability}
+\begin{definice}[Differentiable]
+	A function $f: ®C \rightarrow ®C$ is differentiable (also holomorphic) at a point $z_0 \in ®C$ if the following limit exists
+	$$ \lim_{|h| \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h} =: f'(z_0) \in ®C. $$
+
+	We call $f'(z_0)$ the derivative of $f$ at $z_0$. A function $f$ is differentiable on a domain (open connected subset of ®C) if its differentiable for all points of this domain.
+\end{definice}
+
+\begin{poznamka}[Writing complex numbers in cartesian cooridnates]
+	$z = x + iy$, for $x, y \in ®R$, we can write a function $f: ®C \rightarrow ®C$ in terms of two functions $u, v: ®R^2 \rightarrow ®R$ such that
+	$$ f(x, y) = u(x, y) + i·v(x, y). $$
+\end{poznamka}
+
+\begin{veta}[Cauchy–Riemann equations]
+	Let $f: ®C \rightarrow ®C$ be a holomorphic function on an open subset of ®C. Considering $f = u + iv$, then
+	$$ \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial v}{\partial x} = -\frac{\partial u}{\partial y}. $$
+\end{veta}
+
+\begin{definice}[Orientability, orientation-preserving function]
+	Define and equivalence relation on the set of all bases of $®R^2$ by saying that $B_1 \sim B_2$ iff the determinant of the change of basis matrix is positive.
+
+	A function $f: ®R^2 \supset U \rightarrow ®R^2$ is said to be orientation-preserving if on an open dense subset of $U$, the determinant of the Jacobi matrix is positive. Jacobi matrix:
+	$$ J(f) = \begin{pmatrix} \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y}\\ \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} \end{pmatrix}. $$
+\end{definice}
+
+\begin{dusledek}
+	Let $f$ be a non-constant holomorphic function, then $f$ is orientation-preserving.
+
+	\begin{dusledek}
+		Since $f$ is holomorphic, the Cauchy-Riemann equations implies that
+		$$ \det(J(f)) = \frac{\partial u}{\partial x} \frac{\partial v}{y} - \frac{\partial v}{\partial x} \frac{\partial u}{\partial y} \overset{\text{C–R}}= \(\frac{\partial v}{\partial x}\)^2 + \(\frac{\partial v}{\partial y}\)^2 ≥ 0. $$
+		Since $f$ is non-constant, the inequality is strict on a dense open subset of the domain of definition.
+	\end{dusledek}
+\end{dusledek}
+
+\begin{veta}[Open mapping theorem]
+	A non-constant holomorphic function $f$ is open (that is if $U$ is an open subset of ®C, then $f(U)$ is also open).
+\end{veta}
+
+\subsection{Integration}
+\begin{definice}
+	For a path $γ$ (smooth function, $γ: ®R \supset [a, b] \rightarrow ®C$) we define
+	$$ \int_γ f(x) dx := \int_a^b f(γ(t))·γ'(t) dt $$
+\end{definice}
+
+\end{document}

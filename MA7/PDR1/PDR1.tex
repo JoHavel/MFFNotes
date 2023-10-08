@@ -1,0 +1,55 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 02. 10. 2022
+TODO(you should know).
+
+TODO(motivation)
+
+\section{Sobolev spaces}
+\begin{definice}[Multiindex]
+	$α$ je multi-index $≡$ $α = (α_1, …, α_d)$, $α_i \in ®N$. Length of multi-index $α$ is $|α| := α_1 + … + α_d$. If $u \in C^k(Ω)$ then $D^α := \frac{\partial^{|α|}u}{\partial x_1^{α_1} … \partial x_d^{α_d}}$, $α ≤ k$.
+\end{definice}
+
+\begin{definice}[Weak derivative]
+	Let $u, v_α \in L^1_{loc}(Ω)$ and $α$ be a multi-index. We say that $v_α$ is the $α$-th weak derivative of $u$ in $Ω$ iff $\forall φ \in C_0^∞(Ω): \int_Ω uD^α φ = (-1)^{|α|} \int v_α φ$.
+\end{definice}
+
+\begin{lemma}
+	Weak derivative is unique. If the classical derivative exists then it is also the weak derivative.
+
+	\begin{dukazin}
+		Let $v_α^1$ and $v_α^2$ be two weak derivatives. Then
+		$$ \int_Ω (v_α^1 - v_α^2) φ = 0 \qquad \forall φ \in C_0^∞(Ω) $$
+		$\implies v_α^1 = v_α^2$ almost everywhere in $Ω$.
+
+		If classical $D^α u$ exists, then
+		$$ \int_Ω \underbrace{D^α u}_{v_α} φ \overset{\text{BP}} = (-1)^{|α|} \int_Ω u D^α φ. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}[Notation for this course]
+	$D^α$ always means the weak derivative.
+\end{poznamka}
+
+\begin{definice}[Sobolev space]
+	Let $Ω \subseteq ®R^d$ be open, $k \in ®N$, $p \in [1, ∞]$. We define $W^{k, p}(Ω) = \{u \in L^p(Ω) | \forall α, |α| ≤ k: D^αu \in L^p(Ω)\}$.
+	$$ \|u\|_{W^{k, p}(Ω)} = \(\sum_{α, |α| ≤ k} \|D^α u\|_{L^p(Ω)}^p\)^{\frac{1}{p}} $$
+	$$ \|u\|_{W^{k, ∞}(Ω)} = \sup_{α, |α| ≤ k} \|D^α u\|_{L^∞(Ω)} $$
+\end{definice}
+
+\begin{lemma}[Base properties of Sobolev spaces]
+	Let $u, v \in W^{k, p}(Ω)$, $k \in ®N$ and $α$ is multi-index. Then
+	\begin{itemize}
+		\item $D^α u \in W^{k - |α|, p}(Ω)$, if $|α| ≤ k$;
+		\item $λu + μv \in W^{k, p}(Ω)$ $\forall λ, μ \in ®R$ ($D^α(λu + μv) = λD^α u + μD^α v$);
+		\item $\tildeΩ \subset Ω$ open, $u \in W^{k, p}(\tildeΩ)$;
+		\item $\forall η \in C^∞(Ω): η·u \in W^{k, p}(Ω)$.
+	\end{itemize}
+\end{lemma}
+
+\end{document}
