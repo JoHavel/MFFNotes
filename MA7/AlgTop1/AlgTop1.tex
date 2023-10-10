@@ -56,6 +56,78 @@
 	Take a 2-ball $B^2$. $B^2$ is homotopy equivalent to its center by previous problem, but it is not homeomorphic to $(0, 0)$.
 \end{priklad}
 
+% 09. 10. 2023
 
+\begin{definice}[Deformation retraction]
+	A deformation retraction of a topological space $X$ onto a subspace $A$ is a family of maps $f_t: X \rightarrow X$, $t \in [0, 1]$: $f_0 = \id_X$, $f_1(X) = A$ and $f_t|_A = \id_A$. And family $f_t$ is continuous in the following sense:
+	$$ F: [0, 1] \times X \rightarrow X, (t, x) \rightarrow f_t(x), \text{ is continuous}. $$
+\end{definice}
+
+\begin{tvrzeni}
+	Given a deformation retraction $f_t: X \rightarrow X$, there is a pair $(f, g): X\overset{f}\rightarrow A\overset{g}\rightarrow X: g ∘ f \sim \id_X, f ∘ g \sim \id_A$.
+
+	\begin{poznamka}[Suggestion]
+		$f = f_1$, $g = f_i \circ i_A$ ($A \overset{i_A}\hookrightarrow X$), tj. $f∘g: A \overset{i_A}\hookrightarrow X \overset{f_1}\rightarrow X \overset{f_1}\rightarrow X$, $a \mapsto a \mapsto a \mapsto a$ (or $A$) $\implies$ $f \circ g = \id_A$. $g∘f: X \overset{f_i}\rightarrow A \overset{i_A}\rightarrow X$ $\implies f_1(x) \sim \id_X$.
+	\end{poznamka}
+\end{tvrzeni}
+
+\begin{definice}
+	Given two topological spaces $X$ and $Y$ and a continuous map $f: X \rightarrow Y$, the mapping cylinder $M_f$ is defined to be the quotient space of $X \times [0, 1] \coprod Y$ and $\sim$: $(x, 1) \sim f(x)$. $M_f = X \times [0, 1]\times Y / \sim$.
+\end{definice}
+
+\begin{tvrzeni}
+	Given $X$, $Y$ and $f$, $M_f$ deformation retracts to $Y$.
+
+	\begin{dukazin}[/ Idea of proof]
+		The way to construct $f_t = F(·, t): M_f \rightarrow M_f$ is to slide each point $(x, t)$ along the segment $\{x\}\times[0, 1]$ to $f(x)$:
+		$$ F: (x, t) \mapsto f(x), \qquad \forall y \in Y: y = F \mapsto \{f_1 = \id Y \rightarrow Y\} $$
+		In your HW you will check that $F(x, t)$ is continuous.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Cell complex (CW complex)]
+	\begin{poznamkain}
+		Cell complex (CW complex) is a topological space with a nice decomposition into small pieces.
+	\end{poznamkain}
+
+	1. Start with a discrete set $X^0$, whose points are called $0$-cells.
+
+	2. We form the $n$-skeleton $X^n$ from $X^{n - 1}$ by attaching cells $e_α^n = I^n = [0, 1]^n$. By the attachment we mean ($e_a^n = B_α^n, \partial e_a^n = S_α^n$) $φ_α: \partial e_α^n \rightarrow X^{n-1}$. Hence we can view $X^n = X^{n-1} \coprod \coprod B_α^n / \sim$, where $x \sim φ_α(x)$ for $x \in \partial \partial B_α^n$.
+
+	3. We can either stop this inductive process at a certain finite steps or take an infinite number of steps. In the first case $X = X^n$ for some $n$, in the second one $X = \bigcup_{n \in ®N_0} X^n$ with the weak topology ($A \subset X$ is open $\leftrightarrow$ $A \cap X^n$ is open for all $n$).
+
+	\begin{prikladyin}
+		Example of $1$-skeleton is graph.
+	\end{prikladyin}
+\end{definice}
+
+\begin{definice}
+	Given a cell complex $X$. Each cell $e_α^n$ has a characteristic map $Φ_α: e_α^n = B_α^n \rightarrow X$ which extends the attaching map $φ_α: \partial B_α^n \rightarrow X^n$, it is homeomorphism from the interior of $B_α^n$ onto $e_α^n$. Namely
+	$$ B_α^n \hookrightarrow X^{n-1} \coprod \coprod_β B_β^n \overset{quotient}\rightarrow X^n \rightarrow X, \qquad B_α^n \rightarrow X $$
+\end{definice}
+
+\begin{definice}
+	A subcomplex of CW complex is a closed subspace $A \subset X$ that is a union of cells with the corresponding attachments.
+\end{definice}
+
+\begin{priklad}
+	Construct two different CW structures on $S^2$.
+	
+	\begin{reseni}
+		$S^2 = e^0 \cup e^2$, $S^2 = e^0 \cup e^1 \cup \{e^2_1, e^2_2\}$. (See practicals.)
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	We define $®RP^n$ to be the quotient of $S^n / \sim$, where $V \sim $ the antipodal point to $V$. TODO?
+\end{priklad}
+
+\begin{definice}
+	Consider a pair $(X, A)$ where $X$ is a CW complex and $A$ is subcomplex. Then we define the quotient complex $X / A$ to be the CW complex with the structure: There are all the cells of $X \setminus A$ with the corresponding attaching maps, and there is a extra $0$-cell which is $A$ in $X \setminus A$. For a cell $e_α^n$ of $X \setminus A$ attached by $φ_α: S^{n-1} \rightarrow X^{n - 1}$, the attaching map in the corresponding cell in $X \setminus A$ is the composition $S^{n-1} \rightarrow X^{n-1} \rightarrow X^{n-1} / A^{n-1}$.
+\end{definice}
+
+\begin{priklad}
+	Show that $S^n = e^0 \cup e^n$ is $B^n / S^{n-1} = TODO / e^0 \cup e^{n-1}$.
+\end{priklad}
 
 \end{document}

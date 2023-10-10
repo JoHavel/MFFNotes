@@ -52,4 +52,124 @@ TODO(motivation)
 	\end{itemize}
 \end{lemma}
 
+% 09. 10. 2023
+
+TODO?
+
+\begin{veta}[Properties of Sobolev spaces]
+	$Ω \subseteq ®R^d$, $p \in [1, ∞]$, $k \in ®N$:
+	\begin{enumerate}
+		\item $W^{k, p}(Ω)$ is a Banach space;
+		\item if $p < ∞$, then $W^{k, p}(Ω)$ is separable;
+		\item if $p \in (1, ∞)$, then $W^{k, p}(Ω)$ is reflexive.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		„Linear space“ is from Minkowski inequality. „Completeness“: $u^n$ is Cauchy in $W^{k, p}(Ω)$ $\implies$ $\exists u \in W^{k, p}(Ω)$ $\implies$ $u^n \rightarrow u$ in $L^p(Ω)$, $D^α u^n \rightarrow v_α$ in $L^p(Ω)$ $\forall |α| ≤ k$. We must check that „$v_α = D^α u$“:
+		$$ \int_Ω v_α η dx = \int_Ω (v_α - D^α u^n)η + \int_Ω D^α u^n η = $$
+		$$ \overset{IBP}= \int_Ω (v_α - D^α u^n)η + (-1)^{|α|} \int_Ω u^n D^αη = TODO? $$
+		
+		$$ |\int_Ω (v_α - D^α u^n)η| ≤ \|η\|_∞·\|v_α - D^α u^n\|_{L^p} \rightarrow 0. $$
+	\end{dukazin}
+	
+	\begin{dukazin}[2. + 3. for $W^{1, p}(Ω)$]
+		$W^{1, p}(Ω) = X \subseteq L^p(Ω) \times … L^p(Ω)$ ($d + 1$ times) and it is closed.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Approximation of Sobolev functions}
+\begin{veta}
+	$Ω \subseteq ®R^d$ open, bounded. $k \in ®N$, $p \in [1, ∞)$. Then
+	$$ \overline{©C^∞(Ω)}^{\|·\|_{k, p}} = W^{k, p}(Ω). $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{upozorneni}
+	$$ \overline{©C^∞(\overline{Ω})}^{\|·\|_{k, p}} ≠ W^{k, p}(Ω). $$
+\end{upozorneni}
+
+\begin{poznamka}
+	If $Ω \subset ®R^d$ open, connected, then $u = \const \Leftrightarrow \frac{\partial u}{\partial x_i} = 0\ \forall_i = 1, …, d$.
+
+	$W^{1, 1}(I)$, $I$ interval. Then $W^{1, 1}(I) \hookrightarrow C(\overline{I})$.
+	\begin{dukazin}
+		„$\implies$“: easy. „$\impliedby$“: $u_ε = u * η_ε$, $Ω_ε := \{x \in Ω, \dist(x, \partial Ω) > ε\}$.
+		$$ x \in Ω_ε: \frac{\partial u_ε}{\partial x_1}(x) = \(\frac{\partial u}{\partial x_i}\)_ε(x) = 0 \implies u_ε ≡ \const \text{ in } Ω_ε. $$
+		Fix $ε_0 > 0$: $ε ≤ ε_0$: $u_ε \rightarrow u$ in $W^{1, 1}(Ω_{ε_0})$ $\implies$ $u ≡ \const$ in $Ω_{ε_0}$. $u \in W^{1, 1}(I)$.
+		$$ \tilde u(x) := \int_0^x \frac{\partial u(y)}{\partial y} dy, \qquad \|\tilde u(x)\|_∞ ≤ \int_0^1 |\nabla u| dx. $$
+
+		Aim $\frac{\partial \tilde u}{\partial x} = \frac{\partial u}{\partial x}$. $η \in C_0^∞(0, 1)$:
+		$$ \int_0^1 \tilde u(x) \frac{\partial η}{\partial x}(x) dx = \int_0^1 \int_0^1 \frac{\partial u(y)}{\partial y} \frac{\partial η(x)}{\partial x} χ_{\{0 ≤ y ≤ x\}} dx dy = $$
+		$$ = \int_0^1 \int_y^1 \frac{\partial u}{\partial y}(y) \frac{\partial η(x)}{\partial x_i} dx dy = $$
+		$$ = -\int_0^1 \frac{\partial u(y)}{\partial y}η(y) dy. $$
+		$\implies \tilde u - u = \const =: c$.
+		$$ |u(x_1) - u(x_2)| = |\tilde(x_1) - c - \tilde u(x_2) + c| = |\tilde u(x_1) - \tilde u(x_2)| ≤ \int_{x_1}^{x_2}\left|\frac{\partial u}{\partial y}\right| dy \rightarrow 0. $$
+		$\implies C(I)$.
+
+		„$\|u\|_∞ ≤ K·\|u\|_1$“:
+		$$ |c| = \int_0^1 |c| = \int_0^1 |\tilde u(x) - u(x)| ≤ \|\tilde u\|_∞ + \|u\|_1 ≤ \|u\|_{1, 1}. $$
+	\end{dukazin}
+
+	$W^{d, 1}(Ω) \hookrightarrow C(\overline{Ω})$ (for Lipschitz domain $Ω$).
+\end{poznamka}
+
+\subsection{Characterization of Sobolev functions}
+\begin{veta}
+	Let $Ω \subset ®R^d$, $p \in [1, ∞]$, $Ω_d := \{x \in Ω | \dist(x, \partial Ω) > δ\}$. 1. Then
+	$$ u \in W^{1, p}(Ω): \|\triangle_i^n u\|_{L^p(Ω_δ)} ≤ \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)}, $$
+	where $\triangle_i^n u(x) = \frac{u(x + h e_i) - u(x)}{h}$.
+
+	2. If $\forall h, i, δ: \|\triangle_i^h u\|_{L^p(Ω_δ)} ≤ c_i$ ($p > 1$). Then
+	$$ \exists \frac{\partial u}{\partial x_i}, \qquad \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)} ≤ c_i. $$
+\end{veta}
+
+\begin{upozorneni}
+	This works only for $(p > 1)$.
+\end{upozorneni}
+
+\begin{definice}[Domains of class $C^{k, α}$]
+	Let $\Omega \subseteq ®R^d$ open bounded set. We say that $\Omega \in C^{k, \mu}$ $(\partial\Omega \in C^{k, \mu})$ iff:
+	\begin{itemize}
+		\item there exist $M$ coordinate systems $¦x = \(x_{r_1}, …, x_{r_d}\) = \(x_r', x_{r_d}\)$ and functions $a_r: \Delta_r \rightarrow ®R$ where $\Delta_r = \{x_r' \in ®R^{d - 1} |\ |x_{r_i}| ≤ \alpha\}$ such that $a_r \in C^{k, \mu}(\Delta_r)$,
+		\item denoting $Tr$ the orthogonal transformation from $(x_r', x_{r_d})$ to $(x', x_d)$, then $\forall x \in \partial \Omega$ $\exists r \in \{1, …, M\}$ such that $x = Tr\(x_{r_1}', a(x_{r_d})\)$,
+		\item $\exists \beta > 0$, if we define
+			$$ V_r^+ := \{(x_r', x_{r_d}) \in ®R^d | x_r' \in \Delta_r, a(x_r') < x_{r_d} < a(x_r') + \beta\} $$
+			$$ V_r^- := \{(x_r', x_{r_d}) \in ®R^d | x_r' \in \Delta_r, a(x_r') - \beta < x_{r_d} < a(x_r')\} $$
+			$$ \Lambda_r := \{(x_r', x_{r_d}) \in ®R^d | x_r' \in \Delta_r, a(x_r') = x_{r_d}\} $$
+			Then $Tr (V_r^+) \subset \Omega, Tr(V_r^-) \subset ®R^d \setminus \overline{\Omega}, Tr(\Lambda_r) \subseteq \partial \Omega$ and $\bigcup_{r=1}^M Tr(\Lambda_r) = \partial \Omega$.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}[Density]
+	Let $Ω \in C^{0, 1}$ and $p ≠ ∞$, then $W^{k, p}(Ω) = \overline{C^∞(\overline{Ω})}^{\|·\|_{k, p}}$.
+\end{veta}
+
+\begin{veta}[Extension]
+	Let $Ω \in C^{0, 1}$, $k \in ®N$, $p \in [1, ∞]$. Then $\exists $ continuous bounded operator $E: W^{k, p}(Ω) \rightarrow W^{k, p}(®R^d)$ such that
+	\begin{enumerate}
+		\item $\|Eu\|_{W^{k, p}}(®R^d) ≤ c·\|u\|_{W^{k, p}(Ω)}$ ($E u$ has compact support);
+		\item $Eu = u$ almost everywhere in $Ω$.
+	\end{enumerate}
+\end{veta}
+
+\begin{veta}[Trace]
+	Let $Ω \in C^{0, 1}$, $p \in [1, ∞]$. Then $\exists $ continuous bounded operator $\tr: W^{1, p}(Ω) \rightarrow L^p(\partial Ω)$ such that:
+	\begin{enumerate}
+		\item $\|\tr u\|_{L^p(\partial Ω)} ≤ c·\|u\|_{W^{1, p}(Ω)}$;
+		\item $u \in W^{1, p}(Ω) \cap C(\overline{Ω}) \implies \tr u = u |_{\partial Ω}$.
+	\end{enumerate}
+\end{veta}
+
+\begin{definice}
+	$W^{k, p}_0(Ω) = \overline{u \in C^∞_0(Ω)}^{\|·\|_{k, p}}$.
+
+	\begin{poznamkain}
+		$W^{1, p}_0(Ω) = \{u \in W^{1, p}(Ω) | \tr u = 0\}$.
+	\end{poznamkain}
+\end{definice}
+
+
 \end{document}

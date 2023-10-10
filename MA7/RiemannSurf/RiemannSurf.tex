@@ -57,4 +57,77 @@
 	$$ \int_γ f(x) dx := \int_a^b f(γ(t))·γ'(t) dt $$
 \end{definice}
 
+% 10. 10. 2023
+
+\begin{definice}[Continuous deformation]
+	For $γ, μ: [a, b] \rightarrow U$ ($U$ simply connected), paths with the same endpoints ($γ(a) = μ(a)$ and $γ(b) = μ(b)$). Then a continuous deformation $γ$ into $μ$ is a continuous function $H: [a, b] \times [0, 1] \rightarrow U \subseteq ®C$ such that $H(s, 0) = γ(s)$, $H(s, 1) = μ(s)$, $H(a, t) = z_a := γ(a) = μ(a)$ and $H(b, t) = z_b := γ(b) = μ(b)$.
+\end{definice}
+
+\begin{veta}
+	Suppose that $γ, μ: [a, b] \rightarrow U$ ($U$ simply connected) are related by a continuous deformation of paths $H$. Then for any holomorphic function $f$ on $U$ we have
+	$$ \int_γ f(z)dz = \int_μ f(z) dz. $$
+
+	\begin{dukazin}[Partial proof assuming $H$ admits partial derivatives]
+		For any $t \in [0, 1]$ we integrate the function $INT(t) = \int_{H(·, t)} f(z) dz$. Consider the derivative of $INT(t)$ with respect to $t$:
+		$$ \frac{d}{dt} (INT(t)) = \frac{d}{dt} \(\int_a^b f(H(s, t)) \frac{\partial H}{\partial s}(s, t) ds\) \overset{\text{Leibniz + chain rule}}=  $$
+		$$ = \int_a^b f'(H(s, t)) \frac{\partial H}{\partial t}(s, t)·\frac{\partial H}{\partial s}(s, t) + f(H(s, t)) \frac{\partial^2 H}{\partial s \partial t}(s, t) ds = $$
+		$$ = \int_a^b \frac{d}{ds}\[f(H(s, t)) \frac{\partial H}{\partial t}\]ds = $$
+		$$ = f(H(s, t)) \frac{\partial H}{\partial t} |_{s=a}^{s = b} \overset{\text{constant endpoints}}= 0. $$
+
+		Having derivative identically equal to 0, means that $INT(t)$ is a constant function and $\int_γ f(z)dz = INT(0) = INT(1) = \int_μ f(z) dz$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $U$ be a simply connected subset of ®C and $f: U \rightarrow ®C$ a holomorphic function. For any closed path whose image is inside $U$, $\int_γ f(z) dz = 0$.
+
+	\begin{dukazin}[Sketch]
+		The definition of simply connected is (essentially) the same as saying that any closed path can be continuously deformed to a constant path $c$.
+		$$ \int_γ f(z) dz = \int_c f(z) dz = \int_a^b f(c(z))·c'(z) dz = \int_a^b f(c(z)) · 0 dz = 0 $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{priklad}
+	Let $U$ be a simple connected domain and $f: U \rightarrow ®C$ a holomorphic function on $U \setminus \{z_0\}$. For $j = 1, 2$, let $γ_j$ be a path parametrizing a circle centered at $z_0$ of radius $r_j$, oriented counterclockwise and completely contained in $U$. Show that $\oint_{γ_1} f(z) dz = \oint_{γ_2} f(z) dz$.
+\end{priklad}
+
+\subsection{Cauchy's integral formula}
+\begin{veta}[Cauchy's integral formula]
+	Let $γ$ be a loop around $z \in ®C$, and $f: U \rightarrow ®C$ a holomorphic function. For $U$ a neighbourhood of $γ$,
+	$$ f(z) = \frac{1}{2πi} \oint_γ \frac{f(w)}{w - z} dw. $$
+
+	\begin{dukazin}
+		Conway 1978, Chapter IV.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$$ f(z) = \frac{1}{2πi} \oint_γ \frac{f(w)}{w - z_0 + z_0 - z} dw = \frac{1}{2πi} \oint \frac{f(w)}{w - z_0}·\(\frac{1}{1 - \frac{z - z_0}{w - z_0}}\)dw = $$
+	$$ = \frac{1}{2πi} \oint_γ \frac{f(w)}{w - z_0} \(\sum_{n=0}^∞ \frac{(z - z_0)^n}{(w - z_0)^n}\) dw = $$
+	$$ = \sum_{n=0}^∞ \(\frac{1}{2πi} \oint_γ \frac{f(w)}{(w - z_0)^n}\) (z - z_0)^n. $$
+	For sufficiently "small" (shrunken) $γ$. So $f$ is smooth (infinitely differentiable). Moreover, it is analytic (that is, its Taylor expansion around $z_0$ converges to $f$ in a neighbourhood of $z_0$).
+\end{dusledek}
+
+\begin{definice}[Pole]
+	Given a positive integer $n$, a complex function $f$ has pole of order $n$ at the point $z_0 \in ®C$ if $(z - z_0)^n f(z)$ is holomorphic at $z_0$ but $(z - z_0)^{n - 1} f(z)$ is not.
+\end{definice}
+
+\begin{priklad}
+	Show that if $f$ has a pole of order $n$ at $z_0 \in ®C$. Then it admits a Laurient expansion $f(z) = \sum_{k = -n}^∞ a_k (z - z_0)^k$ with $a_{-n} ≠ 0$.
+\end{priklad}
+
+\begin{definice}[Residue]
+	Let $f$ have a pole of order $n$ at the point $z_0 \in ®C$. Then the residue of $f$ at $z_0$ is the $k=-1$ coefficient of the Laurent expansion of $f$ at $z_0$.
+\end{definice}
+
+\begin{priklad}
+	Show that if $f$ has a pole of order $1$ at $z_0$, then the residue of $f$ at $z_0$ can be computed as the following limit:
+	$$ \res_{z=z_0} f(z) = \lim_{z \rightarrow z_0} (z - z_0)f(z). $$
+\end{priklad}
+
+\begin{priklad}[Residue theorem]
+	Let $γ: [a, b] \rightarrow U \subset ®C$ be a simple closed path, bounding a domain $W$ containing the points $z_1, …, z_m$. Assume that $f$ is holomorphic on $U \setminus \{z_1, …, z_m\}$ and has poles at $\{z, …, z_m\}$. Show that
+	$$ \oint_γ f(z) dz = 2πi \sum_{j=1}^m \res_{z = z_j} f(z). $$
+\end{priklad}
+
 \end{document}
