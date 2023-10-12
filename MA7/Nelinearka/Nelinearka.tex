@@ -175,4 +175,69 @@
 	\end{dukazin}
 \end{tvrzeni}
 
+% 11. 10. 2023
+
+\subsection{Inverse and implicit function theorem}
+\begin{veta}[Inverse function theorem]
+	Let $X$, $Y$, $A \subset X$ open, $f: A \rightarrow Y$ continuously Fréchet differentiable. If $x_0 \in A$ such that $Df(x_0): X \rightarrow Y$ is an isomorphism then there exists $U \subset A$, $V \subset Y$ such that $f|_U: U \rightarrow V$ is bijection and $(f|_U)^{-1}$ is Fréchet differentiable with
+	$$ D(f^{-1})(y_0) = \(D f(x_0)\)^{-1}, \qquad y_0 := f(x_0). $$
+
+	\begin{dukazin}
+		Given $\hat{y}$ close to $f(x_0)$ find $\hat{x}$ such that $f(\hat{x}) = \hat{y}$. Idea: fix $\hat{y}$ try $x$: error in $y$ is $f(x) - y$ and error in x is $\(D f(x_0)\)^{-1}\<f(x) - y\>$. Therefore try iteration:
+		$$ F_{\hat{y}}(x) := x - (Df(x_0))<f(x) - y>. $$
+		If $F_{\hat{y}}$ has fix point $\hat{x}$ then $\hat{x} = F_{\hat{y}}(\hat{x}) = \hat{x} - (D f(x_0))\<f(\hat{x} - y)\>$ $\implies$ $f(\hat{x}) = \hat{y}$. So we use Banach fixed point theorem: „$F_{\hat{y}}$ is contraction“: ($x_1, x_2 \in B_δ(x_0)$)
+		$$ \|F_{\hat{y}}(x_1) - F_{\hat{y}}(x_2)\|_X = \|x_1 - x_2 - (Df(x_0))^{-1}\<f(x_1) - f(x_2)\>\|_X = $$
+		$$ = \|(Df(x_0))^{-1}\<Df(x_0)\<x_1, x_2\> + f(x_1) - f(x_2)\>\|_X ≤ $$
+		$$ ≤ \|(Df(x_0))^{-1}\|_{©L(Y, X)}·\|Df(x_0) \<x_1 - x_2\> + f(x_1) - f(x_2)\|_Y = * $$
+		Consider $a := Df(x_0)\<x_1 - x_2\>$. $ψ: [0, 1] \rightarrow Y$, $f(1 - ξ)x_1 + ξx_2)$ and apply Mennroltz? lemma.
+		$$ * ≤ \|(D f(x_0))^{-1}\|_{©L(Y, X)}·\|Df(x_0)<x_1 - x_2> - Df((1 - ξ)x_1 + ξx_2)\<x_2 - x_1\>\|_Y ≤ $$
+		$$ ≤ \|(D f(x_0))^{-1}\|_{©L(Y, X)}·\sup_{x \in B_0(x_0)}\|Df(x_0) - Df(x)\|_{©L(X, Y)}·\|x_1 - x_2\|_X \ll 1 $$
+
+		$$ \|F_{\hat{y}}(x) - x_0\|_X = \|F_{\hat{y}}(x) - F_{\hat{y}}(x_j)\|_X + \|F_{\hat{y}}(x_0) - x_0\|_X ≤ $$
+		$$ ≤ \frac{1}{2}\|x - x_0\|_X + \|(D f(x_0))^{-1}\|·\|\hat{y} - x_0\| $$
+		$\|\hat{y} - x_0\|$ can chosen to be small $\implies$ $F_{\hat{y}}$ maps $\overline{B_δ(x_0)}$ to $\overline{B_δ(x_0)}$ $\implies$ $F_{\hat{y}}$ has unique fix point.
+
+		Next „regularity“: ($y_1 := f(x_1)$, $y_2 := f(x_2)$)
+		$$ \|f^{-1}(y_1) - f^{-1}(y_2)\|_X = \|F_{y_1}(x_1) - F_{y_2}(x_2)\|_X ≤ $$
+		$$ ≤ \|F_{y_1}(x_1) - F_{y_1}(x_2)\|_X + \|F_{y_1}(x_2) - F_{y_2}(x_2)\|_X ≤ $$
+		$$ ≤ \frac{1}{2} \|x_1 - x_2\|_X + \|(Df(x_0))^{-1}\<y_1 - y_2\>\|_X ≤ \frac{1}{2}\underbrace{\|x_1 + x_2\|_X}_{=\|f^{-1}(y_1) - f^{-1}(y_2)\|} + c·TODO!!! $$
+		$$ \implies \frac{1}{2}\|f^{-1}(x_1) - f^{-1}(x_2)\|_X ≤ c·\|y_1 - y_2\|_Y \implies f^{-1} \text{ is Lipschitz}. $$
+
+		Pick $δ$ so small that
+		$$ \|Df(x) - Df(x_0)\| ≤ \frac{1}{2}·\frac{1}{\|(Df(x_0))^{-1}\|}\qquad \forall x \in B_δ(x_0). $$
+		$\implies$ $(Df(x))^{-1}$ exists and is uniformly bounded (from functional analysis).
+
+		$$ \|\underbrace{f^{-1}(y + w) - f^{-1}(y)}_{=: v} - (Df(x))^{-1}\<w\>\| $$
+		($f(x + v) + f(x) = f(f^{-1}(y + w)) - y = w$)
+		$$ \|v - (Df(x))\<f(x + v) - f(x)\>\| = \|(Df(x))^{-1}\<Df(x)\<v\> - f(x + v) + f(x)\> ≤ \|(Df(x))^{-1}\|·ς(\|v\|) ≤ ς(\|w\|) $$
+		because $f^{-1}$ is Lipschitz.
+
+		„Continuity of $Df^{-1}$“ follows from continuity of $f^{-1}$, $Df(·)$ and $(·)^{-1}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Global inverse function theorem]
+	Let $X, Y$ Banach, $f: X \rightarrow Y$ continuously Fréchet differentiable and $(D f(x))^{-1}$ exists, depends continuously on $X$ and $c > 0$ such that $\|(Df(x))^{-1}\| < c$ $\forall x \in X$. Then $f: X \rightarrow Y$ is a diffeomorphism.
+
+	\begin{dukazin}
+		Last theorem $\implies$ $f$ is a local diffeomorphism. Left to show: $f$ is bijective. „Surjectivity“: Fix $x_0 \in X$, $y_0 \in Y$, $ $. Let $y \in Y$, $φ(t) = y_0 + t(y - y_0)$, $t \in [0, 1]$. Goal: find $ψ(t)$ continuous, such that $φ(t) = f(ψ(t))$ (then $y = f(φ(t))$) (so called lifting). Local diffeomorphism implies $ψ$ exists on $[0, δ]$, in fact if $Y$ is defined on $[0, t_0]$, it can be extended to $[0, t_0 + δ]$. Similarly, if $ψ$ is defined on $[0, t_0]$, per chain rule:
+		$$ \|ψ'(t)\| = \|Df^{-1}(φ(t))\<φ'(t)\>\| < c. $$
+		$ψ$ is Lipschitz, $\lim_{t \nearrow t_0} ψ(t)$ is well defined and $ψ$ can be extended to $[0, t_0]$. From Zorn lemma $Ψ$ is defined on $[0, 1]$.
+
+		„Injectivity“: Assume $f(x_1) = f(x_2) = y$. Pick $ψ_1(t) := x_1 + t(x_2 - x_1)$. $φ_1(t) = f(ψ_1(t))$. Define $φ_s(t) = sφ_1(t) + (1 - s)y$ ($t, s \in [0, 1]$). Similar to before (homework) $\exists ψ_s(t)$ continuous in $s$ and $t$, such that $f(ψ_s(t)) = φ_s(t)$. But then
+		$$ x_1 = ψ_1(0) = ψ_s(0) = ψ_0(0) = ψ_0(t) = ψ_0(1) = ψ_s(1) = ψ_1(1) = x_2. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Implicit function theorem]
+	Let $X_1, X_2, Y$ Banach, $A_1 \subset X_1$, $A_2 \subset X_2$ open, $f: A_1 \times A_2 \rightarrow Y$ continuously Fréchet differentiable and exists $\hat{x}_1 \in A_1$ and $\hat{x}_2 A_2$ with $f(x_1, x_2) = 0$. If $D_2f(\hat{x}_1, \hat{x}_2)$ is an isomorphism (between $X_2$ and $Y$), then are neighbourhoods $U_1, U_2$ of $x_1, x_2$ such that $\forall \hat{x}_1 \in U_1\ \exists! \hat{x}_2 \in U_2$ with $f(\hat{x}_1, \hat{x}_2) = 0$.
+
+	If we call $\hat{x}_2 = g(x_1)$, then $g$ is continuously Fréchet differentiable with $Dg(x) = - (D_2f(x, g(x)))^{-1} ∘ D_1f(x, g(x))$.
+
+	\begin{dukazin}
+		Apply the inverse function theorem to
+		$$ F(x_1, x_2) := (x_1, (D(f(\hat{x}_1, \hat{x}_2)))^{-1})\<f(x_1, x_2)\> $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}

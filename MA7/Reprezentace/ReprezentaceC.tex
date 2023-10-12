@@ -60,4 +60,22 @@
 	$(\forall r \in R)(\forall m \in M) α(r)·β(m) = β(m)·α(r)$.
 \end{poznamka}
 
+% 11. 10. 2023
+
+TODO?
+
+\begin{tvrzeni}
+	Existuje vzájemně jednoznačná korespondence mezi strukturami pravých $R$-modulů na $M$ a okruhovými homomorfismy $ψ: R \rightarrow End_Z(M)$.
+
+	\begin{dukazin}
+		„$\rightarrow$“: definujeme $ψ: R \rightarrow End_Z(M)$ jako $r \mapsto (m \mapsto m·r)$. $(m + n)·r = mr + nr$, tedy vhodně definované zobrazení.
+		$$ ψ(1_R) = \id_M = 1_{End_Z(M)}. $$
+		$$ ψ(r + s) = ψ(r) + ψ(s), \qquad m(r + s) = m·r + m·s. $$
+		$$ ψ(r·s) \overset{?} = ψ(r)·ψ(s) $$
+		$$ (m)(ψ(r·s)) = m·(r·s) = (m·r)·s = ((m)ψ(r))ψ(s) = (m)(ψ(r) ∘ ψ(s)) $$
+
+		„$\leftarrow$“: $ψ$ fixovaný, pro $m \in M$, $r \in R$ definujeme $m·r := (m)(ψ(r))$.
+	\end{dukazin}
+\end{tvrzeni}
+
 \end{document}

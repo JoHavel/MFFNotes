@@ -28,7 +28,7 @@
 \end{definice}
 
 \begin{definice}[Radonova míra]
-	$©M^+_{loc}(Ω)$ je prostorem všech Borelovských měr na $Ω \subset ®R^n$, které jsou vnitřně regulární ($μ(E) = \sup\{\mu(K) | K \subset E\}$), lokálně kompaktní.
+	$©M^+_{loc}(Ω)$ je prostorem všech Borelovských měr na $Ω \subset ®R^n$, které jsou vnitřně regulární ($μ(E) = \sup\{\mu(K) | K \subset E\}$), lokálně kompaktní.
 
 	Pokud navíc $|μ| < ∞$, pak je to prostor $©M^+$. $©M_{loc}(Ω) = μ^+ - μ^-$.
 \end{definice}
@@ -158,11 +158,92 @@
 
 	Variace $u$ je $V(u, I) = \sup_{D \in ®D(I)} V(u, D)$.
 
-	Je-li $V(u, I) < ∞$ pak říkáme, že $u$ má konečnou variaci na $I$.
+	Je-li $V(u, I) < ∞$ pak říkáme, že $u$ má konečnou variaci na $I$.
 \end{definice}
 
 \begin{definice}[Absolutně spojité funkce]
 	Nechť $u: I \rightarrow ®R$. Říkáme, že $u$ je (klasicky) absolutně spojité na $I$, jestliže ke každému $ε > 0$ existuje $δ > 0$ takové, že pro všechny $\{[a_i, b_i]\}_{i=1}^m$ po dvou disjunktní $\sum_{i=1}^m b_i - a_i < δ$ je $\sum_{i=1}^n |u(b_i) - u(a_i)| < ε$.
 \end{definice}
+
+% 11. 10. 2023
+
+\begin{definice}
+	Nechť $u: (a_0, b_0) \rightarrow ®R$. Říkáme, že $u \in W^{1, 1}(I)$ $\Leftrightarrow$ $u \in L^1(I)$ a $\exists Du \in L^1(I)$. ($Du = f dλ^1, f \in L^1$.)
+\end{definice}
+
+\begin{veta}
+	Nechť $T \in ©D^*(I)$ a $\<T, φ'\> = 0$ $\forall φ \in ©D(I)$. Then $\exists c \in ®R$, $T = c(dλ^1)$ (tj. $\<T, φ\> = \int c φ$).
+
+	\begin{dukazin}
+		Nechť $η \in ©D(I): \int_I η = 1$. Nechť $φ \in ©D(I)$ a $λ = \<1, φ\> = \int_I φ$. Označme $c := \<T, η\>$. Zadefinujeme $Φ(x) = \int_{a_0}^x φ - λ η$, $Φ(b_0) = 0$, $Φ \in ©C_c^∞(I)$.
+		$$ 0 = \<T, Φ'\> = \<T, φ\> - λ\<T, η\> = \<T, φ\> - λc = \<T, φ\> - \int c φ \implies $$
+		$$ \implies \<T, φ\> = \int c φ. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $f: I = (a_0, b_0) \rightarrow ®R$, $f \in L^1(I)$. Potom
+	\begin{enumerate}
+		\item $\exists!$(až na aditivní $c$) $u$: $u(b) - u(a) = \int_a^b f$ (pro $a_0 < a < b < b_0$);
+		\item $u$ má slabou derivaci a $Du = f$;
+		\item $\exists!T \in ©D^*(I)$ (až na aditivní c), že $T' = f$;
+		\item $T = udλ^1 + c dλ^1$;
+		\item $u$ je absolutně spojitá;
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“ $u(x) = \int_{a_0}^x f(t) dt$.
+
+		„2.“ $\int_I u(x) φ'(x) dx = \int_I φ'(x) \int_{a_0}^x f(t) dt dx \overset{\text{Fubini}}= \int_{a_0}^x f(t) \int_I φ'(x) dx dt = - \int_I φ(t) f(t) dt$. Tedy $Du = f$ na $I$.
+
+		„3.“ a „4.“ jednoduché.
+
+		„5.“: $f \in L^1 \implies \forall ε > 0\ \exists δ > 0\ \forall A \subset I$ měřitelná a $©L^1(A) < δ$: $\int_A |f| < ε$. Nechť $[a_i, b_i]$ po dvou disjunktní, $i \in [n]$, $\sum b_i - a_i < δ \implies \sum |u(b_i) - u(a_i)| ≤ \int_{\bigcup (a_i, b_i)} |f| < ε$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $u$ je absolutně spojitá na $I = (a_0, b_0)$. Potom
+	\begin{enumerate}
+		\item $u$ je spojitá a lze ji spojitě dodefinovat na $\overline{I}$;
+		\item $V(u, I) < ∞$ a $V(u, (a_0, x])$ je absolutně spojitá;
+		\item $u$ je rozdílem 2 neklesajících funkcí;
+		\item $\exists! f \in L^1: u(b) - u(a) = \int_a^b f$;
+		\item $\exists u'$ skoro všude, $u'(x) = f(x)$ skoro všude;
+		\item $Du = u' dλ^1$ na $I$;
+		\item $u(b) - u(a) = \int_a^b u'(x)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“ $\forall ε > 0 \exists δ: ε_k = 2^{-k} … δ_k$. $x_k \in (a_0, a_0 + δ_k)$.
+		$$ \sum_{k=n}^∞ |u(x_{k + 1}) - u(x_k)| < 2^{-n + 1}. $$
+		Značme $u(a_0)$ jakoukoliv limitu $u(x_k)$. Potom $|u(a_0) - u(x)| < 2ε_k$ jakmile $x \in (a_0, a_0 + δ_k)$.
+
+		„2.“ $ε = 1$, $\exists δ > 0$. $λ^1(I) = b_0 - a_0$. Najdeme $N \in ®N$, že $N ≥ \frac{b_0 - a_0}{δ}$. $D$ je dělení $I$. $v(u, D) ≤ N$. $ε > 0$, $\exists δ > 0$: $V(u, (a_0, x]) := g(x)$ mějme konečné intervaly $λ^1(\bigcup [a_i, b_i]) < δ$ $\implies$ $\sum |u(b_i) - u(a_i)| < ε$.
+
+		„3.“: $v(x) = V(u, [a_0, x])$ a $v(x) - u(x)$ jsou hledané funkce. ($V(u, [a_0, x]) + V(u, (x, y)) = TODO$)
+
+		„4.“: (z 3. předpokládejme, že $u$ je neklesající) Caratheodorovou konstrukcí nalezneme míru: $M((a, b)) = u(b) - u(a)$ a ukážeme o ní, že je spojitá (pak je to Lebesgue-Stieltjesova míra, tedy platí $M((a, b)) = \int_a^b f$). Nechť $λ^1(N) = 0$. $\forall δ > 0$ najdu $G \supset N$ $λ^1(G) < δ$, $G$ otevřená, tedy $G = \bigcup_{i=1}^∞(a_i, b_i)$. $μ(G) = \sum_{i=1}^m |u(b_i) - u(a_i)| < ε$.
+		$$ \frac{1}{2δ} \int_{x - δ}^{x + δ} f(y) dy \overset{δ \rightarrow 0^+} f(x). $$
+
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $u$ je spojitá na $I$. Pak NÁPOJE:
+	\begin{itemize}
+		\item $u$ je absolutně spojitá na $I$;
+		\item $u \in W^{1, 1}(I)$;
+		\item $\exists f \in L^1(I): Du = fdλ^1$;
+		\item $Du$ má $L^1$ reprezentanta $u(b) - u(a) = \int_a^b Du$;
+		\item $\exists u'$ skoro všude, $u' \in L^1$ a $u(b) - u(a) = \int_a^b u'$;
+		\item $\exists f \in L^1: u(b) - u(a) = \int_a^b$;
+		\item $\exists g \in L^1: |u(b) - u(a)| ≤ \int_a^b g$.
+	\end{itemize}
+
+	\begin{dukazin}
+		Máme vše kromě „poslední bod $\implies$ první“: $λ^1(\bigcup(a_i, b_i)) < δ \implies \sum |u(b_i) - u(a_i)| < ε$.
+	\end{dukazin}
+\end{veta}
 
 \end{document}
