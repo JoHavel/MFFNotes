@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
 
-
+\newcommand{\op}{^{\text{op}}}
 
 \begin{document}
 
@@ -32,7 +32,7 @@
 \end{priklady}
 
 \begin{definice}[Isomorphism, inverse]
-	$f: A \rightarrow B$ in a category ©A is an isomorphism if exists a map $g: B \rightarrow A$ in ©A such that $g ∘ f = 1_A$ and $f ∘ g = 1_B$. Then we call $g$ the inberse of $f$.
+	$f: A \rightarrow B$ in a category ©A is an isomorphism if exists a map $g: B \rightarrow A$ in ©A such that $g ∘ f = 1_A$ and $f ∘ g = 1_B$. Then we call $g$ the inverse of $f$.
 \end{definice}
 
 \begin{priklady}
@@ -64,7 +64,7 @@
 \begin{priklady}
 	Let ©A be the following category: $\ob(©A) = \{·\}$, $©A(·, ·) = 1_·$, and $1_· ∘ 1_· = 1_·$. It is called discrete category with one object.
 
-	$\ob(®B) = \{·, *\}$, $®B(·, ·) = 1_·$, $®B(·, *) = \O$
+	$\ob(©B) = \{·, *\}$, $©B(·, ·) = 1_·$, $©B(·, *) = \O$
 
 	Directed transitive graph (with all loops) with concatenation of edges.
 
@@ -81,5 +81,135 @@
 	$U: SET \rightarrow VECT_{®K}$ we can define by $F(X) = (X \rightarrow F)$ (functions from $X$ to $F$) (free vector space).
 \end{priklady}
 
+% 12. 10. 2023
+
+\begin{definice}[Functor composition]
+	When we have functor $F: ©A \rightarrow ©B$ and $F': ©B \rightarrow ©C$. We want to $F' ∘ F$ to be functor, so it has function on objects and functions on morphism classes. Function on object is simply composition $F' ∘ F$. Functions on morphism classes is also composition:
+	$$ ©A(A, A') \overset{F}\rightarrow B(F(A), F(A')) \overset{F'}\rightarrow ©C(F'∘F(A), F'∘F(A')) \implies F'∘F: ©A(A, A') \rightarrow ©C(F'∘F(A), F'∘F(A')). $$
+
+	\begin{dukazin}
+		1. $(F'∘F)(1_A) = F'(F(1_A)) = F'(1_{F(A)}) = 1_{F'∘F(A)}$. (For $A \in ©A$.)
+
+		2. $(F'∘F)(f'∘f) = F'(F(f'∘f)) = F'((F(f')) ∘ (F(f))) = (F'∘F(f')) ∘ (F'∘F(f))$. (For $A \overset{f}\rightarrow A'\overset{f'}\rightarrow A'' \in ©A$.)
+	\end{dukazin}
+
+	So $F' ∘ F$ is a functor. We call it the composition of $F$ and $F'$.
+\end{definice}
+
+\begin{definice}[CAT]
+	The category of categories (CAT) has categories as objects and functors as morphisms (with its composition from the previous definition).
+
+	\begin{dukazin}
+		We need: 1. An identity functor $1_{©A} \in CAT(©A, ©A)$ (function on objects is identity, function on $CAT(©A, ©B)$ is identity too), we can easily see that it fulfills condition from category definition.
+
+		2. Associativity of composition: composition of functions is associative, so we see this from the definition of the functor composition.
+	\end{dukazin}
+\end{definice}
+
+\begin{definice}[Dual category (opposite category)]
+	For a category ©A, its dual category (or opposite category) $©A\op$ is defined by: $\ob(©A\op) = \ob(©A)$, $©A\op(B, A) = ©A(A, B)$ ($\forall A, B \in \ob(©A)$), composition in $©A\op$ is the composition in ©A.
+\end{definice}
+
+\begin{priklad}[Excercise]
+	$$ (©A\op)\op = ©A. $$
+\end{priklad}
+
+\begin{definice}[Contravariant functor]
+	For two cats $©A, ©B$ a contravariant functor: $©A \rightarrow ©B$ is a functor $F: ©A\op \rightarrow ©B$ ($F(f' ∘ f) = (F(f)) ∘ (F(f'))$).
+\end{definice}
+
+\begin{priklad}
+	Functor $C: TOP \rightarrow ALG_{®K}$ is $X \in TOP \mapsto C(X) \in ALG_{®K}$, where $C(X)$ is the collection of all continuous functions $X \rightarrow ®K$ with addition, multiplication and scalar multiplication. But when we try to define $C$ for morphisms, we find that it cannot be done this way. ($C(X \overset{f}\rightarrow Y) = C(X) \overset{C(f)}\rightarrow C(Y)$, so $C(f)(φ) = φ ∘ f$ $\implies$ this does not define a functor.)
+
+	So we „fix it“ by taking contravariant functor.
+\end{priklad}
+
+\begin{definice}[Presheaf]
+	Let ©A be a category a presheaf on ©A is a functor $©A\op \rightarrow SET$.
+\end{definice}
+
+\begin{priklad}
+	Let $X$ be a topological space. Write $O(X)$ for ordered subsets of $X$ ordered by inclusion $\rightarrow$ category $©O(X)$: objects are open subsets, morphisms are inclusion and $∘$ is composition of inclusions.
+\end{priklad}
+
+\begin{definice}[Faithful functor, full functor]
+	A functor $F: ©A \rightarrow ©B$ is faithful (resp. full) if for each $A, A' \in ©A$ the function
+	$$ ©A(A, A') \rightarrow ©B(F(A), F(A')), \qquad f \mapsto F(f), $$
+	is injective (resp. surjective) $\forall A, A' \in ©A$.
+\end{definice}
+
+\begin{upozorneni}
+	If $F$ is faithful, we do not have $F(f_1) ≠ F(f_2)$ $\forall$ distinct morphisms $f_1, f_2$. ($F(A)$ still can be equal to $F(A')$, so it can be $f_1: A \rightarrow A$, $f_2: A' \rightarrow A'$.)
+\end{upozorneni}
+
+\begin{definice}[Subcategory]
+	Let ©A be a category. A subcategory $©S \subset ©A$ consists of a subclass $\ob(©S) \subseteq \ob(©A)$ together with, for $S, S' \in \ob(©S)$, a subclass $©S(S, S') \subseteq ©A(S, S')$ such that ©S is closed under composition.
+\end{definice}
+
+\begin{definice}[Full subcategory]
+	We say that subcategory ©S is full if $©S(S, S') = ©A(S, S')$, $\forall S, S' \in \ob(©S)$.
+
+	\begin{poznamkain}
+		A full subcategory is identified by its objects.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklady}
+	$AB$ is the full subcategory of $GRP$.
+\end{priklady}
+
+\begin{priklad}
+	For any subcategory $©S \subset ©A$, we have an inclusion functor $I: ©S \rightarrow ©A$.
+
+	$I$ is faithful, and it is full $\Leftrightarrow$ $©S$ is full.
+\end{priklad}
+
+\begin{definice}
+	$F: ©A \rightarrow ©B$, $\im(F)$ has objects $F(A)$ and morphisms $F(f)$.
+\end{definice}
+
+\begin{upozorneni}
+	$\im(F)$ nemusí být kategorie. (Mohou vzniknout „možnosti složení“, které v původní kategorii nebyly.)
+\end{upozorneni}
+
+\subsection{2-morphism and natural transformations}
+\begin{definice}[Natural transformation]
+	Let ©A and ©B be categories and $©A \overset{F}{\underset{G}\rightrightarrows} ©B$ two functors. A natural transformation between $F$ and $G$ ia s family of morphisms in ©B: $(F(A) \overset{α_A}\rightarrow G(A))_{A \in ©A}$ such that $F(f)∘α_B = α_A G(f)$ for every $A \overset{f}\rightarrow B \in ©A$.
+
+	We call the morphisms $α_A$ the components of the natural transformation.
+\end{definice}
+
+\begin{priklad}
+	Define a composition of natural transformations and use it to define the functor category of $©A$ and $©B$ (objects functors $F: ©A \rightarrow ©B$ and morphisms natural transformations $α$).
+\end{priklad}
+
+\begin{priklad}
+	For two graphs $H, K$, functors between their 1-object cats $\leftrightarrow$ group homomorphism. What is a natural transformations between two functors?
+\end{priklad}
+
+\subsection{Free functors}
+\begin{poznamka}
+	Recall forgetfull functors. What about functors in the other direction?
+\end{poznamka}
+
+\begin{priklady}
+	$F: SET \rightarrow VECT_{®K}$, $X \mapsto F(X)$. $F(X)$ (the free ®K-vector space) is is functions $f: X \rightarrow ®K$ endowed with the vector space structure (addition and scalar multiplication). (Alternatively $F(X)$ is the vector space with a basis $\{e_x^X | x \in X\}$).
+
+	Morphisms: $F(f)(e_x^X) := e_{f(x)}^X$.
+\end{priklady}
+
+\begin{priklady}
+	$U: GRP \rightarrow SET$, so free functor should look like $F: SET \rightarrow GRP$. $S \mapsto F(S)$, where $F(S)$ (the free group) is a sets for which $\exists i: S \rightarrow F(S)$ inclusion of sets to $F(S)$, that for every $f: S \rightarrow ©G$ function between sets and groups, $\exists! φ_i$ such that $i ∘ φ_i$ commutes.
+
+	Think about / look up: this defines $F(S)$ uniquely up to group isomorphism.
+\end{priklady}
+
+\begin{priklad}
+	Take the set $©S^{-1} = \{S^{-1} | S \in ©S\}$. Take all words in the alphabet $©S\cup ©S^{-1}$ that are reduced, i.e. we remove pairs of the form $SS^{-1}$, $S^{-1}S$ and ? is concatenation of words with reduction.
+\end{priklad}
+
+\begin{priklad}
+	How does act on morphisms.
+\end{priklad}
 
 \end{document}

@@ -1,0 +1,134 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 06. 10. 2023
+
+TODO!!!
+
+% 13. 10. 2023
+
+\begin{definice}[Dot product on the space of matrices]
+	$$ ®A : ®B = \tr(®A ®B^T). $$
+\end{definice}
+
+\begin{definice}[Norm of matrix]
+	$$ |®A| = (®A : ®A)^{\frac{1}{2}}. $$
+\end{definice}
+
+\begin{priklad}
+	$$ (¦a \otimes ¦b)^T = ¦b \otimes ¦a. $$
+
+	\begin{dukazin}
+		$$ ¦u·(¦a \otimes ¦b)^T ¦v = (¦a\otimes¦b)¦u·¦v = (¦a(¦b·¦u))¦v = (¦b·¦u) (¦a·¦v) = ¦u·(¦b(¦a·¦v)) = ¦u·(¦b \otimes ¦a)¦v. $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}
+	$$ \det(e^{®A}) = e^{\tr ®A}. $$
+
+	\begin{dukazin}
+		$$ e^{®A} = \lim\(®I + \frac{®A}{n}\)^n. $$
+		$$ \det e^{®A} = \lim_{n \rightarrow ∞} \(\det \(®I + \frac{®A}{n}\)^n\) = \lim_{n \rightarrow ∞} \(\det\(®I + \frac{®A}{n}\)\)^n = ? $$
+		Subtask: Is there an approximation for $\det(®I + ®S)$, where $®S$ is a „small“ matrix. Yes, we did it (KontinuumDU1.pdf) for $®S \in ®R^{3 \times 3}$:
+		$$ \det(®I + ®S) = \det ®I + \tr(®I \cof ®S) + \tr(®S^T \cof ®I) + \det ®S \approx 1 + \tr(®S^T \cof ®I) + o(®S^2) = 1 + \tr(S) + o(®S^2). $$
+		And for $®S \in ®R^{n \times n}$, one can see that:
+		$$ \det(®I + ®S) = \begin{pmatrix} 1 + s_{11} & s_{12} & … & s_{1n} \\ s_{21} & 1 + s_{22} & … & s_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ s_{n1} & s_{n2} & … & 1 + s_{nn} \end{pmatrix} = (1 + s_{11})(1 + s_{22})·…·(1 + s_{nn}) + o(®S^2) = $$
+		$$ = 1 + s_{11} + s_{22} + … + s_{nn} + o(®S^2) = 1 + \tr ®S + o(®S^2). $$
+		$$ ? = \lim_{n \rightarrow ∞} \(1 + \frac{\tr ®A}{n} + …\)^n = e^{\tr ®A}. $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{tvrzeni}
+	$$ \det(®I + ®S) = 1 + \tr ®S + … $$
+\end{tvrzeni}
+
+\begin{definice}[Gateaux derivative]
+	$$ D¦f(¦x)[¦y] := \frac{d}{dτ} ¦f(¦x + τ¦y)|_{τ=0}. $$
+\end{definice}
+
+\begin{definice}[Fréchet derivative]
+	$¦f: U \rightarrow V$:
+	$$ \lim_{\|¦y\|_U \rightarrow 0} \frac{\|¦f(¦x + ¦y) - ¦f(¦x) - D¦f(¦x)[¦y]\|_V}{\|¦y\|_V} = 0. $$
+
+	\begin{poznamkain}
+		Sometimes we write $\nabla f(¦x)·¦y$ instead of $Df(¦x)[¦y]$ (from Riesz representation theorem).
+	\end{poznamkain}
+
+	For matrices ($φ: ®A \in ®R^{3\times 3} \rightarrow ®R$):
+	$$ \frac{\|φ(®A + ®B) - φ(®A) - Dφ(®A)[®B]\|_{®R}}{\|®B\|_{®R^{3 \times 3}}}. $$
+
+	\begin{poznamkain}
+		We write $\frac{\partial φ}{\partial ®A}(®A):®B$ instead of $Dφ(®A)[®B]$, where $\frac{\partial φ}{\partial ®A}(®A)$ is right matrix. Warning $\frac{\partial φ}{\partial ®A}(®A) ≠ Dφ(®A)$, because of transposition ($®A:®B = \tr(®A®B^T) = \tr(®A^T®B)$).
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklad}
+	$$ \frac{\partial \tr ®A}{\partial ®A}(®A)[®B] = \frac{d}{dτ}(\tr(®A + τ®B))|_{τ = 0} = \frac{d}{dτ}\(\tr ®A + τ\tr ®B\)|_{τ = 0} = \tr ®B = ®I:®B. $$
+	So $\frac{\partial \tr ®A}{\partial ®A} = ®I$.
+\end{priklad}
+
+\begin{priklad}
+	$$ \frac{\partial \det ®A}{\partial ®A}(®A)[®B] = \frac{d}{dτ}(\det(®A + τ®B))|_{τ = 0} = \frac{d}{dτ}\(\det(®A)·\det\(®I + τ®A^{-1}®B\)\)|_{τ = 0} = $$
+	$$ = \frac{d}{dτ}\((\det ®A)·\(1 + τ\tr(®A^{-1}®B) + o(τ^2)\)\)|_{τ = 0} = (\det ®A) \tr\(®A^{-1}®B\) = $$
+	$$ = (\det ®A)\tr\(\(®A^{-T}\)^T®B\) = \((\det ®A)®A^{-T}\):®B. $$
+	So $\frac{\partial \det ®A}{\partial ®A} = (\det ®A)®A^{-T} = \cof(®A)$.
+\end{priklad}
+
+\begin{priklad}
+	$®A: ®R \rightarrow ®R^{3 \times 3}$.
+	$$ \frac{d}{dt}(\det ®A(t)) = (\det ®A(t)) \tr\(®A(t)^{-1} \frac{d®A(t)}{dt}\). $$
+\end{priklad}
+
+\begin{priklad}
+	$®F: ®A \in ®R^{3 \times 3} \rightarrow ®F(®A) \in ®R^{3 \times 3}$. $®F(®A) = ®A^{-1}$. (We know $\frac{1}{1 + x} = 1 - x + …$.)
+	$$ \frac{\partial ®F(®A)}{\partial ®A}(®A)[®B] = \frac{d}{dτ}\((®A + τ®B)^{-1}\)|_{τ = 0} = \frac{d}{dτ}\(\(®A\(®I + τ®A^{-1}®B\)\)^{-1}\)|_{τ = 0} = $$
+	$$ = \frac{d}{dτ} \(\(®I + τ®A^{-1}®B\)^{-1}®A^{-1}\)|_{τ = 0} = \frac{d}{dτ} \(\(®I - τ®A^{-1}®B + …\)®A^{-1}\)|_{τ = 0} = -®A^{-1}®B®A^{-1}. $$
+	So we have $\frac{\partial (®A^{-1})_{ij}}{\partial(®A)_{kl}} (®B)_{kl}$.
+
+	From chain rule (but this is easily solvable by differentiating $®A^{-1}(t)®A(t) = ®I$):
+	$$ \frac{d}{dt}\(®A^{-1}\) = -®A^{-1} \frac{d®A}{dt} ®A^{-1}. $$
+\end{priklad}
+
+\begin{priklad}
+	$®F(®A) = e^{®A}$
+	$$ \frac{\partial e^{®A}}{\partial ®A}[®B] = \frac{d}{dτ}(e^{®A + τ®B})|_{τ = 0} = \frac{d}{dτ} \(®I + \frac{®A + τ®B}{1!} + \frac{(®A + τ®B)^2}{2!}\)|_{τ = 0}. $$
+\end{priklad}
+
+\begin{veta}[Daleckii–Krein]
+	®A real symmetric matrix, $®A \in ®R^{k \times k}$, $®A = \sum_{i=1}^k λ_i ¦v_i \otimes ¦v_i$, where $λ_i$ are eigenvalues and $¦v_i$ are normalised orthogonal ($¦v_i·¦v_j = δ_{ij}$) eigenvectors.
+
+	$f$ continuously differentiable real function defined on open set containing the spectrum of ®A
+	$$ ®F(®A) := \sum_{i=1}^k f(λ_i) ¦v_i \otimes ¦v_i =: \sum_{i=1}^k f(λ_i) ®P_i. $$
+
+	Then the formula for the Gateaux derivative of $f$ at point ®A in direction ®X reads
+	$$ D®F(®A)[®X] = \frac{\partial ®F}{\partial ®A}[®X] = \sum_{i=1}^k \frac{df}{dλ}|_{λ = λ_i} ®P_i ®X ®P_i + \sum_{i=1}^k\sum_{j=1, j≠i}^k \frac{f(λ_i) - f(λ_j)}{λ_i - λ_j} ®P_i ®X ®P_j. $$
+
+	Sometimes we write $D®F(®A)[®X] = f^{[1]}(®A) \ocircle ®X$ (Schur product of matrices, it is point-wise multiplication). Then
+	$$ [f^{[1]}(®A)]_{ij} = \begin{cases}\frac{df}{dλ}|_{λ = λ_i}, & i = j,\\ \frac{f(λ_i) - f(λ_j)}{λ_i - λ_j}, & i ≠ j.\end{cases} $$
+
+	\begin{dukazin}
+		No summation conventions, all sums are stated explicitly!
+		$$ ®F(®A) = \sum_{i=1}^k f(λ_i)¦v_i \otimes ¦v_i = $$
+		$$ = \sum_{i=1}^k f(λ_i(a_{11}, a_{12}, …, a_{21}, …))¦v_i(a_{11}, a_{12}, …, a_{21}, …) \otimes ¦v_i(a_{11}, a_{12}, …, a_{21}, …). $$
+		$$ \frac{\partial ®F(®A)}{\partial ®A} = \sum_{i=1}^k \(\frac{\partial f}{\partial λ_i} \frac{\partial λ_i}{\partial ®A} ¦v_i \otimes ¦v_i + f(λ_i) \frac{\partial ¦v_i}{\partial ®A} \otimes ¦v_i + f(λ_i)¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A}\) = ?. $$
+
+		We derivate $®A¦v_i = λ_i¦v_i$:
+		$$ \frac{\partial ®A}{\partial ®A}¦v_i + ®A \frac{\partial ¦v_i}{\partial ®A} = \frac{\partial λ_i}{\partial ®A}¦v_i + λ_i \frac{\partial ¦v_i}{\partial ®A}. $$
+		We multiply (with dot product) it by $¦v_i$:
+		$$ ®P_i + \frac{\partial ¦v_i}{\partial ®A}·®A^T¦v_i = \frac{\partial λ_i}{\partial ®A}·1 + \frac{\partial ¦v_i}{\partial ®A}®A·¦v_i. $$
+		$$ \frac{\partial λ_i}{\partial ®A} = ®P_i = ¦v_i \otimes ¦v_i. $$
+		
+		We again multiply derivative of $®A|¦v_i = λ¦v_i$, but this time by $¦v_j$:
+		$$ ¦v_j \otimes ¦v_i + \frac{\partial ¦v_i}{\partial ®A}·λ_j¦v_j = 0 + λ_i \frac{\partial ¦v_i}{\partial ®A}·¦v_j. $$
+		$$ (λ_j - λ_i) \frac{\partial ¦v_i}{\partial ®A}·¦v_j = -¦v_j \otimes ¦v_i. $$
+
+		We also need $(¦v_j \otimes ¦v_i)®X_{ij} = … = ®P_i ®X ®P_j$:
+		$$ … = (¦v_j \otimes ¦v_i)(¦v_i·®X¦v_j) = (¦v_j \otimes ¦v_i) ®X(¦v_j \otimes ¦v_j). $$
+	\end{dukazin}
+\end{veta}
+
+\end{document}

@@ -200,9 +200,9 @@
 	\begin{dukazin}[2.]
 		Set $τ = \{G \subset X | \forall x \in G\ \exists U \in ©U: x + U \subset G\}$. This is a unique possibility so uniqueness is clear.
 
-		„$τ$ is topology“: $\O, X \in τ$ and $τ$ is closed to arbitrary union (clear). $τ$ is closed to finite intersections by third item ($G_1, g_2 \in τ$, $x \in G_1 \cap G_2 \ldots U_1, U_2 \in τ$, $x + U_1 \subset G_1$, $x + U_2 \subset G_2$; $\exists V \in ©U: V \subset U_1 \cap U_2$, then $x + V \subset (x + U_1)\cap (x + U_2) \subset G_1 \cap G_2$ $\implies$ $G_1 \cap G_2 \in τ$).
+		„$τ$ is topology“: $\O, X \in τ$ and $τ$ is closed to arbitrary union (clear). $τ$ is closed to finite intersections by third item ($G_1, g_2 \in τ$, $x \in G_1 \cap G_2 \ldots U_1, U_2 \in τ$, $x + U_1 \subset G_1$, $x + U_2 \subset G_2$; $\exists V \in ©U: V \subset U_1 \cap U_2$, then $x + V \subset (x + U_1)\cap (x + U_2) \subset G_1 \cap G_2$ $\implies$ $G_1 \cap G_2 \in τ$).
 
-		„Elements of ©U are neighbourhoods of ¦o“: $U \in ©U$. $V:=\{x \in U | \exists W \in ©U: x + W \subset U\}$. Then $V \subset U$, $0 \in V$ (take $W = U$). $V \in τ$ ($x \in V \implies \exists W \in ©U: x + W \subset U$; let $\tilde W \in ©U$ such that $2\tilde W \subset W$, then $x + \tilde W \subset V$, because $y \in \tilde W \implies X + y + \tilde W \subset x + \tilde W + \tilde W \subset x + W \subset U$).
+		„Elements of ©U are neighbourhoods of ¦o“: $U \in ©U$. $V:=\{x \in U | \exists W \in ©U: x + W \subset U\}$. Then $V \subset U$, $0 \in V$ (take $W = U$). $V \in τ$ ($x \in V \implies \exists W \in ©U: x + W \subset U$; let $\tilde W \in ©U$ such that $2\tilde W \subset W$, then $x + \tilde W \subset V$, because $y \in \tilde W \implies X + y + \tilde W \subset x + \tilde W + \tilde W \subset x + W \subset U$).
 
 		„©U is a base of neighbourhood of ¦o“: now clear.
 
@@ -211,7 +211,7 @@
 
 		„Local convexity“: by first item: $\forall U \in ©U: U$ is convex.
 
-		Assume $\bigcap ©U = \{¦o\}$. Take $x, y \in X, x ≠ y \implies x - y ≠ ¦o \implies \exists U \in ©U: x - y \notin U$. Take $V \in ©U: 2V \subset U$. Then if $(x + V) \cap (y + V) = \O$, $x + v_1 = y + v_2$, $x - y = v_2 - v_1 \in V + V = 2V \subset U$ \lightning.
+		Assume $\bigcap ©U = \{¦o\}$. Take $x, y \in X, x ≠ y \implies x - y ≠ ¦o \implies \exists U \in ©U: x - y \notin U$. Take $V \in ©U: 2V \subset U$. Then if $(x + V) \cap (y + V) = \O$, $x + v_1 = y + v_2$, $x - y = v_2 - v_1 \in V + V = 2V \subset U$ \lightning.
 	\end{dukazin}
 \end{veta}
 
@@ -260,5 +260,99 @@
 \end{lemma}
 
 TODO!!!
+
+% 13. 10. 2023
+
+\begin{dukaz}[Continuity of multiplication? Theorem 4. TODO?]
+	„$U$ is a neighbourhood of ¦o in $τ$, $λ > 0$ $\implies$ $λU$ is neighbourhood of ¦o“: $λ ≥ 1$: $\exists V \in ©U: V \subset U \implies V \subset λV \subset λU$ ($V$ is absolutely convex) $\implies λU$ is neighbourhood of ¦o. $λ = \frac{1}{2}$: $\exists V \in ©U: V \subset U$, then $\exists W \in ©U: 2W \subset V$, then $W \subset \frac{1}{2} V \subset \frac{1}{2}U \implies \frac{1}{2} U$ is a neighbourhood of ¦o. Now by induction for $λ = \frac{1}{2^n}$. For $λ > 0$ find $n \in ®N$ such that $λ > \frac{1}{2^n}$.
+
+	$λx \in G$ ($λ \in ®F, x \in X, G \in τ$) $\implies \exists U \in ©U: λx + U \in G$. Find $V \in ©U: 2V \subset U$ such that $V$ is absorbing ($\implies \exists c > 0\ \forall t \in [0, c]: tx \in V$) and $V$ is balanced ($\implies \forall μ \in ®F, |μ| ≤ c: μ x \in V$). Let $μ \in F, y \in X$ such that
+	$$ |μ - λ| < c \land y \in x + \frac{1}{|λ| + c}V \text{ (a neighbourhood of ¦o)} $$
+	$$ \implies μy - λx = μ(y - x) + (μ - λ)x \in V + V = 2V \subset U \implies μy \in λx + U \subset G. $$
+\end{dukaz}
+
+\begin{tvrzeni}[8. see notes of lecturer]
+	Let $X$ be LCS, $A \subset X$ a convex neighbourhood of ¦o.
+
+	Clearly: $[p_A \subset 1] \subset A \subset [p_A ≤ 1]$.
+	\begin{dukazin}
+		„$[p_a < 1] = \Int A$“: „$\subseteq$“: $p_A(x) < 1 \implies \exists c > 1$ such that $cx \in A$ $\implies x = \frac{1}{c} cx \in \Int A$. „$\supseteq$“: $x \in \Int A \implies \exists U \in τ(¦o): x + U \subset A$. $U$ absorbing $\implies$ $\exists α > 0: αx \in U$. Then $(1 + α)x \in A \implies p(x) ≤ \frac{1}{1 + α} < 1$.
+
+		„$[p_A ≤ 1] = \overline{A}$“: „$\subseteq$“: $p_A(x) ≤ 1 \implies \forall n \in ®N: p_x\(\(1 - \frac{1}{n}\)x\) = \(1 - \frac{1}{n}\) p_A(x) ≤ 1$. $\(1 - \frac{1}{n}\)x \in \Int A \implies x \in \overline{\Int A} \subset \overline{A}$. „$\supseteq$“: $x \in \overline{A} \implies \forall n \in ®N: \(1 - \frac{1}{n}\)x \in \Int A$, so, $p_A\(\(1 - \frac{1}{n}\)x\) < 1$ $\overset{n \rightarrow ∞}\implies$ $p_A(x) ≤ 1$.
+	\end{dukazin}
+
+	$p_A$ is continuous on $X$.
+	\begin{dukazin}
+		$[p_A < c] = \O$ if $c ≤ 0$ and $c·\Int A$ if $c > 0$. $[p_A > c] = X$ if $c < 0$, $X \setminus (c·\overline{A})$ if $c > 0$, and $\bigcup_{t > 0} X \setminus t \overline{A}$ if $c = 0$. All these sets are open.
+	\end{dukazin}
+
+	$p_A = p_{\overline{A}} = p_{\Int A}$.
+	\begin{dukazin}
+		$\Int A \subset A \subset \overline{A} \implies p_{\overline{A}} ≤ p_A ≤ p_{\Int A}$. „Conversely“: Assume that $p_{\overline{A}}(x) < c$ $\implies$ $\exists d < c: x \in d·\overline{A}$ $\implies$ $\forall n \in ®N: \(1 - \frac{1}{n}\)x \in d \Int A$ $\implies$ $\(1 - \frac{1}{n}\)p_{\Int A}(x) ≤ d$ $\implies$ $p_{\Int A}(x) ≤ d < c$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	Any LCS ($X$) is completely regular.
+
+	\begin{dukazin}
+		$x \in X$, $U$ an open neighbourhood of $x$. Take $V$ a convex neighbourhood of ¦o such that $x + V \in U$. $f(y) := \min\{1, p_V(y - x)\}$. The $f$ is continuous by the previous proposition, $f(x) = 0$.
+		$$ y \in X \setminus U \implies y - x \notin V \implies p_V(y - x) ≥ 1 \implies f(y) = 1. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}
+	TODO!!! The topology generated by $©P_τ$ coincides with $τ$.
+
+	\begin{dukazin}
+		Let $τ_1$ be topology induced by $©P_τ$. $τ_1 \subset τ$ (seminorms from $©P_τ$ are $τ$-continuous, hence the sets from theorem 5? are $τ$-open). „$τ \subset τ_1$“: Let $U \in τ(¦o)$ $\implies$ $\exists V$ a neighbourhood of ¦o such that $V \subset U$. The $p_V \in ©P_τ$ (from the previous proposition is continuous) $\implies$ $[p_V < 1] = V \subset U \implies U \in τ_1(¦o)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	$X$ a vector space.
+	\begin{enumerate}
+		\item $p$ is seminorm $\implies$ $[p < 1]$ is absolutely convex, absorbing, and $p_{[p < 1]} = p$.
+		\item $p, q$ are seminorms, then $p ≤ q \Leftrightarrow [p < 1] \supset [q < 1]$.
+		\item ©P a set of seminorms generated by a topology $τ$. $p$ a seminorm on $X$. Then $p$ is $τ$-continuous $\Leftrightarrow$ $\exists p_1, …, p_k \in ©P\ \exists c > 0: p ≤ c·\max\{p_1, …, p_k\}$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		Absolutely convex and absorbing is clear.
+		$$ p_{[p < 1]}(x) = \inf \{λ > 0 | x \in λ[p < 1]\} = \inf \{λ > 0 | x \in [p < λ]\} = p(x). $$
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		„$\implies$“ trivial. „$\impliedby$“: $[p < 1] \supset [q < 1] \implies p = p_{[p < 1]} ≤ p_{[q < 1]} = q.$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		„$\impliedby$“: $A := [p < 1]$ $\implies$ $A \supset [c·\max \{p_1, …, p_k\} < 1] = \[p_1 < \frac{1}{c}, …, p_k < \frac{1}{c}\]$, which is a $τ$-open set $\implies$ $A$ is a neighbourhood of ¦o $\implies$ $p = p_A$ is continuous (by 1. and the previous proposition).
+
+		„$\implies$“: $p$ is continuous $\implies$ $[p < 1]$ is neighbourhood of ¦o ($p(¦o) = 0$) $\implies$ $\exists p_1, …, p_k \in ©P\ \exists c_1, …, c_k > 0$ such that $[p < 1] \supset [p_1 < c_1, …, p_k < c_k] \supset [p_1 < c, …, p_k < c] = [\frac{1}{c}\max\{p_1, …, p_k\} < 1]$ ($c = \min\{c_1, …, c_k\}$). Use 2. for seminorms $p, \frac{1}{2\max\{p_1, …, p_k\}}$ and get $p ≤ \frac{1}{c} \max\{p_1, …, p_k\}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\section{Continuous and bounded linear mapping}
+\begin{tvrzeni}
+	$(X, τ), (Y, ©U)$ LCS, $L: X \rightarrow Y$ linear. Then the following assertions are equivalent:
+	\begin{enumerate}
+		\item $L$ is continuous;
+		\item $L$ is continuous at ¦o;
+		\item $L$ is uniformly continuous.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“ trivial, „$2. \implies 3.$“ assume $L$ continuous at ¦o. Then, given $U \in ©U(¦o)$, there is $V \in τ(¦o)$ such that $L(V) \subset U$. Take $x, y \in X$ such that $x - y \in V$. Then $L(x) - L(y) = L(x - y) \in U$ and that's continuous. „$3. \implies 1.$“ trivial.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$L: X \rightarrow Y$ linear. $L$ is continuous $\Leftrightarrow$ $\forall q$ a continuous seminorm on $Y$ $\exists p$ a continuous seminorm on $X$: $\forall x \in X: q(L(x)) ≤ p(x)$.
+
+	\begin{dukazin}
+		„$\implies$“: $L$ continuous, $q$ a continuous seminorm on $Y$, the $p(x) = q(L(x))$ is a continuous seminorm on $X$. „$\impliedby$“: By the previous proposition it is enough „$L$ is continuous at ¦o“: $U$ neighbourhood of ¦o in $Y$, $\exists V \subset U$ an absolutely convex neighbourhood of ¦o. $q:=p_V$ is a continuous seminorm. Let $p$ be a continuous seminorm on $X$ such that $q ∘ L ≤ p$. $W := [p < 1]$ a neighbourhood of ¦o in $X$ and $L(W) \subset V \subset U$. $x \in W \implies p(x) < 1 \implies q(L(x)) < 1 \implies L(x) \in V \subset U$.
+	\end{dukazin}
+\end{tvrzeni}
 
 \end{document}
