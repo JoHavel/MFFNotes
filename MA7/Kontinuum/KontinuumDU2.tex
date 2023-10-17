@@ -1,0 +1,75 @@
+\documentclass[12pt,leqno]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let $®A \in ®R^{n\times n}$ be a matrix, and let $¦a \in ®R^n$ and $¦b \in ®R^n$ be arbitrary vectors. Show that $®A (¦a \otimes ¦b) = (®A ¦a) \otimes ¦b$.
+	
+	\begin{dukazin}
+		Podle definice tensorového součinu (a asociativity násobení):
+		$$ \forall ¦u \in ®R^n: ®A ((¦a \otimes ¦b)¦u) = ®A\(¦a(¦b·¦u)\) = (®A¦a)(¦b·¦u) = ((®A ¦a) \otimes ¦b)¦u. $$	
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Let $®X \in R^{n\times n}$ be a symmetric matrix given by the formula $®X = \sum_{i, j = 1}^n X_{ij} ¦v_i \otimes ¦v_j$, where $\{v\}_{i=1}^n$ is an orthonormal basis in $®R^n$. Show that
+	\renewcommand{\theequation}{\alph{equation}}
+	\begin{align}
+		%(a) && \qquad
+		X_{ij} &= ¦v_i · ®X ¦v_j.\\
+		%(b) && \qquad
+		\(¦v_j \otimes ¦v_i\) X_{ij} &= \(¦v_j \otimes ¦v_j\) ®X \(¦v_i \otimes ¦v_i\).
+	\end{align}
+	Summation convention is not being used!
+	
+	\begin{dukazin}[a]
+		Dosadíme do pravé strany za ®X, použijeme definici tensorového součinu a aplikujeme linearitu násobení a skalárního součinu:
+		$$ ¦v_i · ®X ¦v_j = ¦v_i · \(\sum_{k, l = 1}^n X_{kl} ¦v_k \otimes ¦v_l\) ¦v_j = \(\sum_{k, l = 1}^n X_{kl} ¦v_i·\(¦v_k\(¦v_l·¦v_j\)\)\) =  \(\sum_{k, l = 1}^n X_{kl} δ_{ki} δ_{lj}\) = X_{ij}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[b]
+		Pravou stranu upravíme pomocí příkladu 1. a definice tensorového součinu:
+		$$ \(¦v_j \otimes ¦v_j\) ®X \(¦v_i \otimes ¦v_i\) = \(\(¦v_j \otimes ¦v_j\) ®X ¦v_i\) \otimes ¦v_i = \(¦v_j \(¦v_j · ®X ¦v_i\)\) \otimes ¦v_i $$
+		a z linearity tensorového součinu a symetričnosti ®X (tj. $¦v_j · ®X¦v_i = ®X¦v_j · ¦v_i = ¦v_i · ®X¦v_j \overset{\text{(a)}}= X_{ij}$)
+		$$ \(¦v_j \(¦v_j · ®X ¦v_i\)\) \otimes ¦v_i = \(¦v_j\otimes ¦v_i\) X_{ij} $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[3.]
+	\makeatletter\tagsleft@false\makeatother%
+	\setcounter{equation}{0}
+	In the proof of Daleckii–Krein formula, we have already shown that
+	$$ \frac{\partial ®F(®A)}{\partial ®A} = \sum_{i=1}^k \(\frac{d f(λ)}{d λ}\middle|_{λ = λ_i} \frac{\partial λ_i}{\partial ®A} ¦v_i \otimes ¦v_i + f(λ_i) \frac{\partial ¦v_i}{\partial ®A} \otimes ¦v_i + f(λ_i)¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A}\), $$
+	which means that
+	\begin{align}
+		\frac{\partial ®F(®A)}{\partial ®A}[®X] = \sum_{i=1}^k \(\frac{d f(λ)}{d λ}\middle|_{λ = λ_i} \frac{\partial λ_i}{\partial ®A}[®X] ¦v_i \otimes ¦v_i + f(λ_i) \frac{\partial ¦v_i}{\partial ®A}[®X] \otimes ¦v_i + f(λ_i)¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A}[®X]\).
+	\end{align}
+	(Recall that ®X is a symmetric matrix.) Furthermore, we already know that $\frac{\partial λ_i}{\partial ®A} = ¦v_i \otimes ¦v_i$, which implies that
+	\vspace{-0.5em}
+	\begin{align}
+		\frac{\partial λ_i}{\partial ®A}[®X] = \sum_{m, n=1}^3(¦v_i \otimes ¦v_i)_{mn} X_{mn} = X_{ii}.
+	\end{align}
+	Finally, we also know that for $i ≠ j$ it holds $\frac{\partial (v_i)_j}{\partial A_{mn}} = \frac{δ_{im}δ_{jn}}{λ_i - λ_j}$, which implies that
+	\begin{align}
+		\frac{\partial v_i}{\partial ®A}[®X] = \underset{j≠i}{\sum_{j=1}^k} \frac{X_{ij}}{λ_i - λ_j}¦v_j = \underset{j≠i}{\sum_{j=1}^k} \frac{¦v_i · ®X¦v_j}{λ_i - λ_j}¦v_j.
+	\end{align}
+	(For $i = j$ it suffices to differentiate the identity $¦v_i · ¦v_i = 1$, which immediately implies that $\frac{\partial (¦v_i)_j}{\partial A_{mn}} = 0$ for $i = j$. Consequently, we can safely ignore the identical indices.) Substitute (3) and (2) into (1) and show that the result can be rewritten as
+	$$ D_{®A}®F(®A)[®X] = \sum_{i=1}^k \frac{df(λ)}{dλ}|_{λ=λ_i} ®P_i ®X ®P_i + \sum_{i=1}^k \underset{j≠i}{\sum_{j=1}^k} \frac{f(λ_i) - f(λ_j)}{λ_i - λ_j} ®P_i ®X ®P_j, $$
+	where $\{®P_i\}_{i=1}^k$ denote the projection operators to the $i$-th (normalised) eigenvector $¦v_i$, that is $®P_i := ¦v_i \otimes ¦v_i$. Summation convention is not being used!
+
+	\vspace{-0.5em}
+
+	\begin{dukazin}
+		Z (2) a příkladu 2. (b) (pro $i = j$) máme
+		$$ \frac{d f(λ)}{d λ}\big|_{λ = λ_i} \frac{\partial λ_i}{\partial ®A}[®X] ¦v_i \otimes ¦v_i = \frac{d f(λ)}{d λ}\big|_{λ = λ_i} X_{ii} ¦v_i \otimes ¦v_i = \frac{d f(λ)}{d λ}\big|_{λ = λ_i} ¦v_i \otimes ¦v_i ®X ¦v_i \otimes ¦v_i = \frac{d f(λ)}{d λ}\big|_{λ = λ_i} ®P_i®X®P_i. $$
+		Z (3) a linearity tensorového součinu máme
+		$$ f(λ_i) \frac{\partial ¦v_i}{\partial ®A}[®X] \otimes ¦v_i + f(λ_i)¦v_i \otimes \frac{\partial ¦v_i}{\partial ®A}[®X] = f(λ_i) \underset{j≠i}{\sum_{j=1}^k} \frac{¦v_i · ®X¦v_j}{λ_i - λ_j}¦v_j \otimes ¦v_i + f(λ_i)¦v_i\otimes \underset{j≠i}{\sum_{j=1}^k} \frac{¦v_i · ®X¦v_j}{λ_i - λ_j}¦v_j. $$
+		V druhém členu použijeme příklad 2. (a) i (b) a dostaneme $\underset{j≠i}{\underset{j=1}{\overset{k}{\sum}}} \frac{f(λ_i) ®P_i®X®P_j}{λ_i - λ_j}$. První člen upravíme stejně na $\underset{j≠i}{\underset{j=1}{\overset{k}{\sum}}} \frac{f(λ_i) ®P_j®X®P_i}{λ_i - λ_j}$, ale u toho si ještě uvědomíme, že v součtech $\underset{i=1}{\overset{k}{\sum}} \underset{j≠i}{\underset{j=1}{\overset{k}{\sum}}}$ je tento člen i s prohozeným $i$ a $j$, čímž „dostaneme“: $\underset{j≠i}{\overset{k}{\underset{j=1}{\sum}}} \frac{f(λ_j) ®P_i®X®P_j}{λ_j - λ_i}$
+	\end{dukazin}
+\end{priklad}
+
+
+\end{document}
