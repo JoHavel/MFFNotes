@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Let $\phi$, $\psi$, ¦u, ¦v and ®A be smooth scalar, vector and tensor fields in $®R^3$. Show that:
+	$$ \Div (\phi ¦v) = ¦v·(\nabla \phi) + \phi \Div ¦v $$
+
+	\begin{dukazin}
+		Ze vzorce pro (parciální) derivaci součinu ($\phi v_i$ je skalární funkce):
+		$$ \Div (\phi ¦v) = \nabla (\phi¦v) = \sum_i \frac{\partial \phi v_i}{\partial x_i} = \sum_i \(\frac{\partial \phi}{\partial x_i}v_i + \phi \frac{\partial v_i}{\partial x_i}\) = \sum_i \frac{\partial \phi}{\partial x_i}v_i + \sum_i \phi \frac{\partial v_i}{\partial x_i} = $$
+		$$ = ¦v·(\nabla \phi) + \phi (\nabla·¦v) = ¦v·(\nabla \phi) + \phi \Div ¦v $$	
+	\end{dukazin}
+
+	$$ \Div(¦u \times ¦v) = ¦v·\rot ¦u - ¦u·\rot ¦v $$
+	\begin{dukazin}
+		Ze vzorce pro derivaci součinu a $\epsilon_{ijk} = \epsilon_{jki} = \epsilon_{kij}$:
+		$$ \Div (u \times v) = \nabla · (u \times ¦v) = \sum_k\(\sum_{i, j} \frac{\partial \epsilon_{ijk} u_i·v_j}{\partial x_k}\) = \sum_{i,j,k} \(\epsilon_{ijk} \frac{\partial u_i}{\partial x_k} v_j + \epsilon_{ijk} u_i \frac{\partial v_j}{\partial x_k}\) = $$
+		$$ = \sum_j\(\sum_{k,i} \epsilon_{kij} \frac{\partial u_i}{\partial x_k}v_j\) + \sum_i\(\sum_{j,k} \epsilon_{jki} u_i \frac{\partial v_j}{\partial x_k}\) = (\nabla \times ¦u) · ¦v + ¦u·(¦v \times \nabla) = $$
+		$$ = ¦v · (\nabla \times ¦u) - ¦u · (\nabla \times ¦v) = ¦v·\rot¦u - ¦u·\rot¦v $$
+	\end{dukazin}
+
+	$$ \Div(¦u \otimes ¦v) = [\nabla ¦u]¦v + ¦u \Div ¦v $$
+
+	\begin{dukazin}
+		$$ \Div(¦u \otimes ¦v) = \sum_i \frac{\partial u_j v_i}{\partial x_i} = \sum_i \frac{\partial u_j}{\partial x_i}v_i + \sum_i u_j \frac{\partial v_i}{\partial x_i} = [\nabla ¦u]¦v + ¦u (\nabla · ¦v) = [\nabla ¦u]¦v + ¦u \Div ¦v $$
+	\end{dukazin}
+
+	\break
+
+	$$ \Div(\phi ®A) = ®A (\nabla \phi) + \phi \Div ®A $$
+
+	\begin{dukazin}
+		$$ \Div(\phi ®A) = \sum_k \frac{\partial \phi A_{ik}}{\partial x_k} = \sum_k \(\frac{\partial \phi}{\partial x_k}A_{ik} + \phi \frac{\partial A_{ik}}{\partial x_k}\) = \sum_k \frac{\partial \phi}{\partial x_k}A_{ik} + \sum_k \frac{\partial A_{ik}}{\partial x_k} \phi = $$
+		$$ = ®A(\nabla \phi) + \phi \Div ®A $$
+	\end{dukazin}
+
+	Further, show that:
+	$$ \nabla (\phi\psi) = \psi\nabla\phi + \phi\nabla\psi $$
+
+	\begin{dukazin}
+		$$ \nabla (\phi \psi) = \frac{\partial \phi \psi}{\partial x_i} = \frac{\partial \phi}{\partial x_i}\psi + \frac{\partial \psi}{\partial x_i}\phi = \psi\nabla\phi + \phi\nabla\psi. $$
+	\end{dukazin}
+
+	$$ \nabla(\phi¦v) = ¦v \otimes \nabla\phi + \phi \nabla ¦v $$
+
+	\begin{dukazin}
+		$$ \nabla (\phi¦v)) = (\frac{\partial \phi v_i}{\partial x_j}e_i)e_j = (\frac{\partial \phi}{\partial x_j}v_i·e_i)e_j + (\phi\frac{\partial v_i}{\partial x_j}e_i)e_j = ¦v \otimes \nabla \phi + \phi \nabla ¦v $$
+	\end{dukazin}
+
+	$$ \nabla (¦u·¦v) = (\nabla ¦u)^T¦v + (\nabla ¦v)^T¦u $$
+
+	\begin{dukazin}
+		$$ \nabla (¦u·¦v) = \frac{\partial \sum_j u_j·v_j}{\partial x_i} = \sum_j \frac{\partial u_j·v_j}{\partial x_i} = \sum_j \(\frac{\partial u_j}{\partial x_i}v_j + u_j·\frac{\partial v_j}{\partial x_i}\) = $$
+		$$ = \sum_j (\nabla u_j)v_j + \sum_j (\nabla v_j)u_j = (\nabla ¦u)^T¦v + (\nabla ¦v)^T¦u. $$
+	\end{dukazin}
+
+	\break
+
+	$$ \rot (\phi¦v) = \phi \rot ¦v - ¦v \times \nabla \phi $$
+
+	\begin{dukazin}
+		$$ \rot(\phi¦v) = \nabla \times (\phi¦v) = \sum_{ij}\epsilon_{ijk} \frac{\partial \phi v_j}{\partial x_i} = \sum_{ij}\epsilon_{ijk}\(\phi\frac{\partial v_j}{\partial x_i} + \frac{\partial \phi}{\partial x_i}v_j\) = $$
+		$$ = \sum_{ij} \epsilon_{ijk} \phi \frac{\partial v_j}{\partial x_i} - \sum_{ij}\epsilon_{jik} v_j \frac{\partial \phi}{\partial x_i} = \phi(\nabla \times ¦v) - ¦v \times \nabla \phi = \phi \rot ¦v - ¦v \times \nabla \phi $$
+	\end{dukazin}
+\end{priklad}
+	
+\begin{priklad}[2.]
+	 Let $v$ be a smooth vector field. Show that
+	$$ \rot (\rot ¦v) = \nabla (\Div ¦v) - \Delta ¦v. $$
+
+	\begin{dukazin}
+		$$ \hspace{-0.2em}\rot(\rot ¦v) = \nabla \times (\nabla \times ¦v) = \nabla \times \(\sum_{i,j} \epsilon_{ijk} \frac{\partial v_j}{\partial x_i}\) = \sum_{l, k, i, j} \epsilon_{lkm} \frac{\partial}{\partial x_l} \epsilon_{ijk} \frac{\partial v_j}{\partial x_i} = \sum_{i,j,k,l} \epsilon_{kml} \epsilon_{kij} \frac{\partial^2 v_j}{\partial x_l \partial x_i} = \hspace{-0.2em} $$
+		$$ = \sum_{ijkl} \delta_{mi} \delta_{kj} \frac{\partial^2 v_j}{\partial x_l \partial x_i} - \delta_{mj}\delta_{li}\frac{\partial^2 v_j}{\partial x_l \partial x_i} = \frac{\partial}{\partial x_m}\(\sum_l \frac{\partial v_l}{\partial x_l}\) - \sum_l\frac{\partial^2 v_m}{\partial x_l^2} = \nabla (\nabla · ¦v) - (\nabla · \nabla)¦v $$
+	\end{dukazin}
+\end{priklad}
+
+\break
+
+\begin{priklad}[3.]
+	Let ®A be a sufficiently smooth tensor/matrix field, and let ®A be (at every point $¦x$) a \emph{symmetric matrix}. Show that
+	$$ \rot \((\rot ®A)^T\) = [\Delta \tr ®A - \Div (\Div ®A)] ®I + \nabla (\Div ®A) + [\nabla (\Div ®A)]^T - \nabla (\nabla \tr ®A) - \Delta ®A. $$
+
+	\begin{dukazin}
+		Z definice:
+		$$ \rot\((\rot ®A)^T\) = \rot\(\epsilon_{jkl} \frac{\partial A_{il}}{\partial x_k}·¦e_j\otimes ¦e_i\) = \epsilon_{nop}\epsilon_{mkl} \frac{\partial^2 A_{pl}}{\partial x_k \partial x_o} ¦e_m \otimes ¦e_n $$
+		Z rovnosti
+		$$ \epsilon_{nop}\epsilon_{mkl} = \det \begin{pmatrix} \delta_{nm} & \delta_{nk} & \delta_{nl} \\ \delta_{om} & \delta_{ok} & \delta_{ol} \\ \delta_{pm} & \delta_{pk} & \delta_{pl} \end{pmatrix} $$
+		dostáváme na pravé straně 6 členů:
+
+		\begin{itemize}
+			\item $\frac{\partial^2 A_{pp}}{\partial x_k \partial x_o} ¦e_m \otimes ¦e_n = (\Delta \tr ®A)®I$, neboť
+				$$ A_{pp} = \tr ®A, \qquad \frac{\partial^2}{\partial x_o^2} = \nabla · \nabla = \Delta, \qquad ¦e_n \otimes ¦e_n = ®I; $$
+			\item $- \frac{\partial^2 A_{po}}{\partial x_p \partial x_o} ¦e_n \otimes ¦e_n = - \Div(\Div ®A)$;
+			\item $\frac{\partial^2 A_{po}}{\partial x_n \partial x_o} ¦e_p \otimes ¦e_n = \frac{\partial (\nabla · ®A^T)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \frac{\partial (\nabla · ®A)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \frac{\partial (\Div ®A)_p}{\partial x_n} ¦e_p \otimes ¦e_n = \nabla(\Div ®A);$
+			\item $\frac{\partial^2 A_{pn}}{\partial x_p \partial x_o} ¦e_o \otimes ¦e_n = \frac{\partial (\nabla · ®A)_n}{\partial x_o} ¦e_o \otimes ¦e_n = \frac{\partial (\Div ®A)_n}{\partial x_o} ¦e_o \otimes ¦e_n = [\nabla(\Div ®A)]^T;$
+			\item $-\frac{\partial^2 A_{pp}}{\partial x_n \partial x_o} e_n \otimes e_o = -\frac{\partial^2 \tr ®A}{\partial x_n \partial x_o} e_n \otimes e_o = -\nabla (\nabla \tr ®A)$;
+			\item $- \frac{\partial^2}{\partial x_o^2} A_{pm} ¦e_p \otimes ¦e_n = - \frac{\partial^2}{\partial x_o^2} ®A = -\Delta ®A$.
+		\end{itemize}
+
+		Tím jsme dokázali rovnost.
+	\end{dukazin}
+\end{priklad}
+
+
+\end{document}

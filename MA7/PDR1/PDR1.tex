@@ -171,5 +171,124 @@ TODO?
 	\end{poznamkain}
 \end{definice}
 
+% 16. 10. 2023
+
+TODO!!!
+
+% 23. 10. 2023
+
+\subsection{Existence theory via Lax–Milgram}
+
+\begin{definice}[Eliptic forms]
+	Let $B: V \times V \rightarrow ®R$ a linear form and $V$ be a Hilbert space. We say that $B$ is elliptic iff
+	\begin{enumerate}
+		\item $B$ is $V$-bounded, it is $\exists c_2\ \forall u, φ \in V: |B(u, φ)| ≤ c_2 \|u\|_V·\|φ\|_V$;
+		\item $B$ is $V$-coercive, it is $\exists c_1 > 0\ \forall u \in V: B(u, u) ≥ c_1 \|u\|_V^2$.
+	\end{enumerate}
+\end{definice}
+
+\begin{veta}[Lax–Milgram]
+	Let $B$ be linear and satisfying two previous properties. Then $\forall F \in V^*\ \exists! u \in V: \forall φ \in V: B(u, φ) = \<F, φ\>$.
+\end{veta}
+
+\begin{definice}[Lipschitz, unifomly monototne]
+	Let $B: V \rightarrow V^*$. We say that $B$ is
+	\begin{enumerate}
+		\item Lipschitz iff $\forall u, v \in V: \|B(u) - B(v)\|_{V^*} ≤ \overline{c_2} \|u - v\|_V$;
+		\item uniformly monotone iff $\forall u, v \in V: \<B(u) - B(v), u - v\> ≥ \overline{c_1} \|u - v\|_V^2$.
+	\end{enumerate}
+\end{definice}
+
+\begin{veta}[Non-linear Lax–Milgram]
+	Let $V$ be a Hilbert space, $B: V \rightarrow V^*$ be Lipschitz and uniformly monotone. Then $\forall F \in V^*\ \exists! u \in V: \forall φ \in V: \<B(u), φ\> = \<F, φ\>$. ($B(u) = F$.)
+\end{veta}
+
+\begin{dukaz}[Lax–Milgram by using non-linear version]
+	Define $B: V \rightarrow V^*: \<B(u), φ\> =: B(u, φ)$. We show that $B$ is Lipschitz and uniformly monotone:
+	$$ \|B(u) - B(v)\|_{V^*} = \sup_{φ \in V, \|φ\| ≤ 1} \<B(u) - B(v), φ\> = \sup_φ (B(u, φ) - B(v, φ)) \overset{\text{linear}}= \sup_φ B(u - v, φ) \overset{\text{bounded}}≤ \sup_φ c_2 \|u - v\|_V·\|φ\|_V ≤ c_2 \|u - v\|_V. $$
+	$$ \<B(u) - B(v), u - v\> = B(u, u - v) - B(v, u - v) = B(u - v, u - v) ≥ c_1 \|u - v\|_V^2. $$
+
+	So $\forall F^*\ \exists! u \in V: B(u, φ) = \<B(u), φ\> = \<F, φ\>$ ($\forall φ \in V$).
+\end{dukaz}
+
+\begin{dukazin}[Non-linear Lax–Milgram]
+	„Uniqueness“: $u_1 ≠ u_2$:
+	$$ \forall φ: \<B(u_1), φ\> = \<B(u_2), φ\> = \<F\> \implies \forall φ \in V: \<B(u_1) - B(u_2), φ\> = 0. $$
+	$$ φ = u_1 - u_2 \implies 0 = \<B(u_1) - B(u_2), u_1 - u_2\> ≥ \overline{c_1}\|u_1 - u_2\|_V^2 \implies u_1 = u_2. $$
+
+	„Existence“: $\forall \<B(u), φ\> = \<F, φ\>$ $\Leftrightarrow$ $\exists ε > 0: (u, φ)_V = (u, φ)_V - ε\(\<B(u), φ\> - \<F, φ\>\)$. Desire $M: V \rightarrow V, v \mapsto u$:
+	$$ (u, v)_V = (v, φ)_V - ε\(\<B(v), φ\> - \<F, φ\>\). $$
+	If $M$ is well-defined and if it has a fixed point then we find solution.
+
+	„$M$ well defined“:
+	$$ \forall v \in V\ \exists \tilde F \in V^* \<\tilde F, φ\>_V = (v, φ)_V - ε\(\<B(v), φ\> - \<F, φ\>\). $$
+	Riesz $\implies$ $\exists! u \in V (u, φ) = \<\tilde F, φ\>$.
+
+	„$M$ contraction“: We want bound $\|M(u) - M(v)\|_V^2$.
+	$$ M(u) = \overline{u}, \qquad (\overline{u}, φ) = (u, φ) - ε\(\<B(u), φ\> - \<F, φ\>\). $$
+	$$ M(v) = \overline{v}, \qquad (\overline{v}, φ) = (v, φ) - ε\(\<B(v), φ\> - \<F, φ\>\). $$
+	$$ (\overline{u} - \overline{v}, φ) = (u - v, φ) - ε\<B(u) - B(v), φ\>. $$
+	Riesz: $\exists! w_1: \<B(u), φ\> = (w_1, φ)$ and $\exists! w_2: \<B(v), φ\> = (w_2, φ)$.
+
+	$$ (*) \|\overline{u} - \overline{v}\|_V^2 = \|u - v - ε(w_1 - w_2)\|_V^2 = \|u - v\|_V^2 + ε^2 \|w_1 - w_2\|_V^2 - 2ε(w_1 - w_2, u - v). $$
+
+	$$ (w_1 - w_2, w_1 - w_2) = \|w_1 - w_2\|_V^2 = \<B(u) - B(v), w_1 - w_2\> ≤ \|B(u) - B(v)\|_{V^*}·\|w_1 - w_2\|_V \implies \|w_1 - w_2\|_V ≤ \|B(u) - B(v)\|_{V^*} ≤ c_2·\|u - v\|_V. $$
+	$$ (w_1 - w_2, u - v) = \<B(u) - B(v), u - v\> \overset{\text{Uniformly monotone}}≥ c_1 \|u - v\|_V^2 $$
+	By (*):
+	$$ \|M(u) - M(v)\|_V^2 ≤ \|u - v\|_V^2 + ε^2 \overline{c}_2^2 \|u - v\|_V^2 - 2ε \overline{c}_1 \|u - v\|_V^2 = $$
+	$$ = (1 + ε^2 \overline{c}_2 - 2ε\overline{c}_1) \|u - v\|_V^2. $$
+	$\implies$ $M$ is contraction and has a fixed point (for $ε$ such that this constant is less than 1, so $ε(ε c_2^2 - 2c_1) < 0$, so $0 < ε < \frac{2c_1}{c_2^2}$).
+\end{dukazin}
+
+\begin{veta}
+	Let $B_{L, ς}$ be bilinear, $V$-bounded and $V$-elliptic. Then $\exists! u$ weak solution:
+	$$ u_0 \in W^{1, 2}, \qquad u - 0 \in V, \qquad B_{L, ς}(u, φ) = \<f, φ\> + \int_{Γ_2 \cup Γ_3} g φ. $$
+
+	\begin{dukazin}
+		„Uniqueness“: $u_1, u_2 \implies u_1 - u_0 \in V, u_2 - u_0 \in V$ TODO!!!
+
+		„Existence“: $w \in V$ ($u - u_0 = w$):
+		$$ B_{L, ς}(w, φ) = \<f, φ\> + \int_{Γ_2 \cup Γ_3} g φ - B_{L, ς}(u_0, φ) := \<\overline{F}, φ\>. $$
+		Find $w \in V$.
+		$$ \<\overline{F}, φ\> := \<f, φ\> + \int_{Γ_2 \cup Γ_3} g φ + \int_Ω -A \nabla u·\nabla φ - bu_0φ - ¦c·\nabla u_0φ + ¦d·\nabla φ u_0 - \int_{Γ_2} ς u_0 φ. $$
+		Is $\overline{F}$ in $V^*$? ($φ \in V \subseteq W^{1, 2}(Ω)$)
+		$$ |\<\overline{F}, φ\>| ≤ \|φ\|_V c\(\|f\|_{V^*} + \|g\|_{L^2(\partial Ω)} + \|A\|_∞·\|u_0\|_{1, 2} + \|b\|_∞ \|u_0\|_2 + \|c\|_∞\|u_0\|_{1, 2} + …\). $$
+	\end{dukazin}
+\end{veta}
+
+TODO!!!
+
+\subsection{Existence theory via Fredholm alternative}
+\begin{lemma}[Fredholm alternative]
+	Let $H$ be a Hilbert space and $K: H \rightarrow H$ be linear compact.
+	\begin{itemize}
+		\item[F1] $\Ker(I - K)$ has finite dimension ($u \in \Ker(I - K) \Leftrightarrow (I - K)(u) = 0$);
+		\item[F2] $\Rang(I - K)$ is closed ($u \in \Rang(I - K) \Leftrightarrow \exists w \in H (I - K)w = u$);
+		\item[F3] $\Rang(I - K) = (\Ker(I - K^*))^\perp$ ($u \in \Rang(I - K), w \in \Ker(I - K^*) \Leftrightarrow (u, w) = 0$);
+		\item[F4!] $\Ker(I - K) = \{¦o\} \Leftrightarrow \Rang(I - K) = H$;
+		\item[F5] $\dim(\Ker(I - K)) = \dim(\Ker(I - K^*)) < ∞$;
+		\item[F6] spectrum of $K$ is at most countable and if it is infinite then zero is the only attracting point.
+	\end{itemize}
+\end{lemma}
+
+\begin{veta}[Fredholm alternative for PDR]
+	Let $Ω \in C^{0, 1}$, $u_0 = 0$ and $Γ_1 = \partial Ω$ and $L$ be an elliptic operator.
+	\begin{enumerate}
+		\item Either $\forall f \in L^2(Ω)\ \exists! u \in W_0^{1, 2}(Ω): Lu = f$ in $Ω$ and $u = 0$ on $\partial Ω$, or $\exists u ≠ 0: Lu = 0$ in $Ω$ and $u = 0$ on $\partial Ω$.
+		\item $N_L := \{u \in V | Lu = ¦o\}$: $B_L(u, φ) = 0$ $\forall φ \in W_0^{1, 2}(Ω)$, $N_{L^*} := \{φ \in V | L^* φ = ¦o\}$. Then $N_L$ and $N_{L^*}$ are closed subspaces of $W_0^{1, 2}(Ω)$, $\dim N_L = \dim N_{L^*} < ∞$.
+		\item For $f \in L^2(Ω)$: $(\exists u \in W_0^{1, 2}: Lu = f) \Leftrightarrow (\forall φ \in N_{L^*}: \int_Ω fφ = 0)$.
+	\end{enumerate}
+
+	Where
+	$$ Lu = -\Div(A \nabla u) + ¦c·\nabla u + \Div(¦du) + bu, $$
+	$$ L^*φ = -\Div(A^T \nabla φ) - ¦d·\nabla φ - \Div(¦c φ) + bφ. $$
+	$$ Lu = f \Leftrightarrow \forall φ: B_L(u, φ) = \int_Ω fφ, \qquad L^*φ = g \Leftrightarrow \forall u: B_L(φ, u) = \int_Ω g u. $$
+	
+	\begin{dukazin}
+		From Lax–Milgram $\exists p > 0$:
+		$$ \forall f \in L^2\ \exists! u \in W_0^{1, 2}(Ω) L_pu := Lu + pu = f. $$
+		$$ B_{L, p}(u, φ) = B_L(u, φ) + p·\int_Ω u φ. $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

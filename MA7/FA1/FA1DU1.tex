@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[11]
+	Let $X = C^∞([0,1])$ be the space of $C^∞$ functions on $[0,1]$ (i.e., $C^∞$ functions on $(0,1)$ such that all the derivatives can be continuously extended to $[0,1]$) equipped with the family of seminorms ©P:
+	$$ p_n(f) = \sup_{t \in [0,1]}\left|f^{(n)}(t)\right|, \qquad f \in X \qquad \(n \in ®N_0\). $$
+
+	1. Describe a base of neighborhoods of zero.
+
+	\begin{reseni}
+		Podle Věty 5 je báze okolí ¦o rovná
+		$$ \{\{x \in X \middle| p_1(x) < c_1, …, p_k(x) < c_k\} \middle | p_1, …, p_k \in ©P, c_1, …, c_k > 0\}, $$
+		tedy jsou to množiny těch funkcí, které mají vždy určité (konečný počet) derivace omezené určitými konstantami.
+	\end{reseni}
+
+	2. Is $X$ Hausdorff? Is $X$ metrizable? Is it a Fréchet space?
+
+	\begin{reseni}
+		Je Hausdorfův, protože pro každou nenulovou $f \in C^∞$ je už $p_0$ nenulová (a použijeme Větu 5 z přednášky). Z Věty 5 také plyne, že $X$ je (s kanonickou topologií) LCS, tedy podle Věty 22 (i a iv) je $X$ metrizovatelný.
+
+		Aby to byl Fréchetův prostor, musíme ukázat, že je úplný: Mějme tedy cauchyovskou posloupnost (podle tvrzení 21. je tedy cauchyovská v každé $p_n$). To znamená, že každá $i$-tá derivace konverguje stejnoměrně, tedy konverguje k derivaci $(i-1)$-ní derivaci (o záměně limity a derivace) a zároveň k spojité funkci (stejnoměrná konvergence spojitých funkcí je spojitá), tedy limita posloupnosti má všechny derivace spojité.
+	\end{reseni}
+
+	\break
+
+	3. Is $X$ normable?
+
+	\begin{reseni}
+		Podle Věty 23 nám stačí rozhodnout, zda existuje omezené (podle lemma 15 omezené v každé normě) okolí ¦o. Každé okolí ¦o musí obsahovat množinu z báze okolí ¦o. Ale taková množina je omezená vždy jen v konečně mnoha normách. Je-li $p_n$ poslední norma (to neznamená, že v nějaké menší není omezena), ve které je daná množina omezená, $ε$ minimum z konstant z definice báze okolí ¦o (BÚNO $ε < 1$), pak můžeme pro každé $1 < K \in ®R$ najít $f(x) = ε\frac{ε^n}{K^n} gon_n\(\frac{K}{ε}x\)$, kde ($gon_i$ je $\sin$ pro sudé $i$ a $\cos$ pro liché $i$), což je funkce, která je jistě $C^∞$, pro $k ≤ n$ je
+		$$ p_k(f) = \sup_{x \in [0, 1]} \left|f^{(k)}(x)\right| = \sup_{x \in [0, 1]} \left|ε·\frac{ε^{n - k}}{K^{n - k}} gon_{n - k}\(\frac{K}{ε}x\)\right| ≤ \sup_{x \in [0, 1]} ε·1·1 = ε, $$
+		ale
+		$$ p_{n+1}(f) = \sup_{x \in [0, 1]} \left|f^{(n+1)}(x)\right| = \sup_{x \in [0, 1]} \left|K·\cos\(\frac{K}{ε}x\)\right| = K. $$
+		Tedy $p_{n+1}$ na tomto okolí je neomezená. Tedy neexistuje okolí ¦o, které by bylo omezené, tedy prostor $X$ není normovatelný.
+	\end{reseni}
+
+	4. Describe all the continuous linear functionals on $X$.
+
+	\begin{reseni}
+		$X \subset C([0, 1])$ a libovolný spojitý lineární funkcionál na $X$ je zřejmě lineární i v $C([0, 1])$ a zároveň musí být spojitý vůči $p_0$, což je norma na $C([0, 1])$, tedy musí být spojitý i na množině $X$ jako podprostoru $C([0, 1])$ a z Hahnovy–Banachovy věty ho lze rozšířit na spojitý lineární funkcionál na $C([0, 1])$. Tedy „$X^* \subset C([0, 1])^* = ©M([0, 1])$“ (regulární borelovské znaménkové míry).
+
+		My víme (ze spojitosti), že pro $μ \in C([0, 1])^*$ existuje $C$ tak, že $\forall f \in C([0, 1]), p_0 = \|f\|_∞ < 1: μ(f) < C$, tedy po libovolné $μ \in C([0, 1])^*$ existuje okolí ¦o ($\{f | p_0(f) < 1\}$), že $μ$ je na tomto okolí omezené. Tedy podle Tvrzení 14 je $μ$ spojité.
+
+		Jediné, co zbývá, je ukázat, že různé $μ, ν \in C([0, 1])^*$ jsou jako prvky $X^*$ také různé (tedy že existuje jednoznačná korespondence mezi $X^*$ a $©M([0, 1])$). To ale víme, protože z Weierstrassovy věty je $X$ jako množina husté v $C([0, 1])$ a spojité funkce jsou jednoznačně určené hodnotami na husté podmnožině.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

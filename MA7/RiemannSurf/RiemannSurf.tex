@@ -130,4 +130,116 @@
 	$$ \oint_γ f(z) dz = 2πi \sum_{j=1}^m \res_{z = z_j} f(z). $$
 \end{priklad}
 
+% 17. 10. 2023
+
+TODO!!!
+
+% 24. 10. 2023
+
+\subsection{(Real) Projective space}
+\begin{poznamka}[Building structures]
+	Set $\rightarrow$ Topology $\rightarrow$ Differential structure (atlas) $\rightarrow$ Riemann metric $\rightarrow$ Connection…
+\end{poznamka}
+
+\begin{definice}[Real projective space]
+	The set $®P^n(®R)$ is defined to be either of the following bijective sets: Lines through the origin in $®R^{n+1}$; Equivalence classes of $(n+1)$-tuples of real numbers $(x_0, …, x_n) ≠ (0, …, 0)$, such that for any real number $λ \in ®R^* = ®R \setminus \{0\}$: $(x_0, …, x_n) \sim (λ x_0, …, λ x_n)$.
+\end{definice}
+
+\begin{priklad}
+	Confirm that the sets above are in bijection with each other.
+\end{priklad}
+
+\begin{poznamka}[Notation]
+	We will often denote a point in $®P^n(®R)$ as the equivalence class $[x_0, …, x_n]$.
+\end{poznamka}
+
+\begin{definice}[Topology of $®P^n(®R)$]
+	We give a topology to $®P^n(®R)$ by endowing it with following quotient topology: consider the surjection $π: ®R^{n+1} \setminus \{¦o\} \rightarrow ®P^n(®R)$, $(x_0, …, x_n) \mapsto [x_0, …, x_n]$. A set $U \subset ®P^n(®R)$ is defined to be open if $π^{-1}(U) := \{x \in ®R^{n+1} \setminus \{¦o\} \middle| π(x) \in U\}$ is open in $®R^{n+1} \setminus \{¦o\}$.
+
+	That is we give $®P^n(®R)$ the finest topology that makes $π$ continuous.
+\end{definice}
+
+\begin{priklad}
+	Check that for ®C we can define $®P^n(®C)$ or $®C ®P^n$ the same way.
+\end{priklad}
+
+\begin{priklad}[Projective space]
+	$®R^* = ®R \setminus \{0\}$ is an abelian group. Let $®R^*$ act on $®R^{n+1}$ by component wise multiplication. When a general group $G$ acts on a set $X$ we have equivalence relation $x \sim y$ if $y = g ∘ x$. We call the equivalence classes the orbits of $G$. So $®P^n(®R) = \(®R^{n+1} \setminus \{¦o\}\) / ®R^*$.
+
+	Sphere quotient: Let $S^n \subseteq ®R^{n+1}$. Denote the unit sphere. Then the group $®Z_2 = \{+1, -1\}$ act on the sphere by $±1(x_0, …, x_n) = (±x_0, …, ±x_n)$. Then $S^n / ®Z_2 = ®P^n(®R)$.
+
+	Disk model: Consider the $n$-dimensional closed unit disk $\overline{®D^n} \subseteq ®R^n$, and the equivalence relation on the points of the boundary: $x \sim -x$ if $\|x\| = 1$. Then $®P^n(®R)$ is the quotient (collection of equivalence classes), i.e. $\overline{D^n} \setminus \sim \simeq ®P^n(®R)$.
+\end{priklad}
+
+\begin{priklad}
+	Conclude from either of these models of $®P^n(®R)$ that as a topological space, $®R^n(®P)$ is compact and Hausdorff.
+\end{priklad}
+
+\begin{poznamka}
+	Now we come to the smooth manifold structures. Let's start with $®P^1(®R)$. Define
+	$$ U_x := ®P^1(®R) \setminus \{[x, y] \in ®P^1(®R) | x = 0\}, \qquad φ_x: U_x \rightarrow ®R, \quad φ_x([x, y]) = \frac{x}{y}. $$
+	Similarly, we define a second chart:
+	$$ U_y := ®P^1(®R) \setminus \{[x, y] \in ®P^1(®R) | y = 0\}, \qquad φ_y: U_y \rightarrow ®R, \quad φ_y([x, y]) = \frac{y}{x}. $$
+
+	\begin{prikladin}
+		Check that $U_x, U_y$ are open and that $φ_x, φ_y$ are homeomorphisms.
+	\end{prikladin}
+
+	\begin{dukazin}
+		Consider the translation functions:
+		$$ U = U_x \cap U_y = \{[x, y] \in ®P^1(®R) | x, y ≠ 0\}, \qquad φ_x(U) = φ_y(U) = ®R \setminus \{0\}. $$
+		The translation function $T_{x, y} := φ_y ∘ (φ_x)^{-1}$ sends, for $y ≠ 0$:
+		$$ T_{x, y}: y \overset{(φ_x)^{-1}}\mapsto [1, y] = \[\frac{1}{y}, 1\] \overset{φ_y}\mapsto \frac{1}{y}. $$
+		Which is smooth on the domain $®R \setminus \{0\}$.
+
+		TODO smooth. Thus $®P^1(®R)$ is a smooth manifold.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{priklad}
+	Show that $®P^1(®R)$ is homomorphic to the circle $S^1$. We call $®P^1(®R)$ the real projective line.
+\end{priklad}
+
+\begin{priklad}
+	Try to show that $®C®P^1 = ®P^1(®C)$ is a smooth manifold.
+\end{priklad}
+
+\begin{priklad}
+	For $®P^2(®R)$ the followings charts form atlas:
+	$$ U_x := \{[x, y, z] | x ≠ 0\}, \qquad φ_x: U_x \rightarrow ®R, \quad φ_x([x, y, z]) = \(\frac{y}{x}, \frac{z}{x}\), $$
+	$$ U_y := \{[x, y, z] | y ≠ 0\}, \qquad φ_y: U_y \rightarrow ®R, \quad φ_y([x, y, z]) = \(\frac{x}{y}, \frac{z}{y}\), $$
+	$$ U_z := \{[x, y, z] | z ≠ 0\}, \qquad φ_z: U_z \rightarrow ®R, \quad φ_z([x, y, z]) = \(\frac{x}{z}, \frac{y}{z}\). $$
+	Check these are open subsets and homeomorphisms, with smooth transformation functions. And extend this to $®P^n(®R)$.
+\end{priklad}
+
+\subsection{Compact surfaces}
+\begin{definice}[Surface]
+	A surface is a manifold of real dimension 2.
+\end{definice}
+
+\begin{priklady}
+	$®R^2$, ®C, and any of their open subsets are surfaces. $S^2$ is a compact surface, as is $®P^2(®R)$.
+\end{priklady}
+
+\begin{definice}[Connected surface]
+	Given two connected surfaces $S_1$ and $S_2$, the connected surface $S_1 \# S_2$ is the surface obtained by removing an open disc from each of the surfaces and identifying the resulting boundaries via a homeomorphism.
+\end{definice}
+
+\begin{priklad}
+	At the level of topological spaces, show that the operation $\#$ is well defined up to homeomorphism, that is, show that the choice of disks in $S_1$ and $S_2$ does not change the definition of $S_1 \# S_2$ / homeomorphism.
+\end{priklad}
+
+\begin{priklad}
+	Show that $\#$ gives the set of homeomorphism classes of connected compact surfaces the structure of a monoid. (Which surface is the identity of the monoid?)
+\end{priklad}
+
+\begin{veta}[Classification of compact surfaces]
+	Any connected, compact surfaces is homeomorphic to exactly one surface in the following list:
+	\begin{itemize}
+		\item $S^2$;
+		\item $T^{\# g} := T \# … \# T$, $g \in ®N_0$;
+		\item $®P^2(®R)^{\#n} := ®P^2(®R) \# … \# ®P^2(®R)$, $n \in ®N_0$.
+	\end{itemize}
+\end{veta}
+
 \end{document}

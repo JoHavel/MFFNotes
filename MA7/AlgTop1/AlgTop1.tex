@@ -130,4 +130,93 @@
 	Show that $S^n = e^0 \cup e^n$ is $B^n / S^{n-1} = TODO / e^0 \cup e^{n-1}$.
 \end{priklad}
 
+% 16. 10. 2023
+
+TODO!!!
+
+% 23. 10. 2023
+
+\begin{tvrzeni}
+	There is an isomorphism $∏_1(X, x_1) \rightarrow ∏_1(X, x_0)$ for $x_0$ and $x_1$ in the same path connected component.
+
+	\begin{dukazin}
+		Since $x_0$, $x_1$ are in one path connected component $\tilde X$, $\exists$ path $h: [0, 1] \rightarrow X$: $h$ is in $\tilde X$ and $h(0) = x_0, h(1) = x_1$. $\overline{h}(s) := h^{-1}(s) := h(1 - s)$, $s \in [0, 1]$.
+
+		To each loop $f$ based at $x_1$ we associate a loop $h∘f∘h^{-1}$. $h∘f∘h^{-1}$ is based at $x_0$. $β_h : ∏_1(x, x_1) \rightarrow ∏_1(x, x_0), [f] \mapsto [h∘f∘h^{-1}]$. We claim, that $β_h$ is an isomorphism. „$β_h$ is homomorhism“:
+		$$ β_h([f·h]) = [hfgh^{-1}] = [hfh^{-1} hgh^{-1}] = [hfh^{-1}]·[hgh^{-1}] = β_h([f])·β_h([g]). $$
+		„$β_h$ is isomorphism“: „the inverse of $β_h$ is $β_{h^{-1}}$“ (which is homomorphism too by the argument we used for $β_h$):
+		$$ β_{h^{-1}}(β_h([f])) = β_{h^{-1}}([hfh^{-1}]) = [h^{-1}hfh^{-1}h] = [f]. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Fundamental group of $S^1$]
+	$S^1$ is path connected, thus $∏_1(S^1, x_0) = ∏_1(S^1)$.
+	
+	$∏_1(S^1) \simeq ®Z$.
+
+	\begin{dukazin}
+		We claim that $∏_1(S^1) \simeq \<[ω]\>$, where $ω: [0, 1] \rightarrow S^1$, $s \mapsto (\cos(2πs), \sin(2πs)) \in ®R^2$, $s \in [0, 1]$. $ω_n(s) := (\cos(2π n s), \sin(2π n s)) \sim ω^n$, so $[ω]^n = [ω_n]$.
+
+		Now our theorem is equivalent to the statement that every loop in $S^1$ based at $(1, 0)$ is homotopic to the unique $ω_n$. We use the following two facts:
+
+		Fact 1: For every path $f: I \rightarrow X$ starting at $x_0 \in X$ and each $\tilde x_0 \in p^{-1}(x_0)$ there is a unique lift $\tilde f: I \rightarrow \tilde X$ starting at $x_0$.
+
+		Fact 2: For each homotopy $f_x: I \rightarrow X$ of paths starting at $x_0$ and each $\tilde x_0 \in p^{-1}(x_0)$ $\exists$ unique lifted homotopy $\tilde f_t: I \rightarrow \tilde X$ of paths starting at $\tilde x_0$.
+
+		$p$ that we need: $p: ®R \rightarrow S^1$; $p(s) = (\cos 2π s, \sin 2π s)$. If we define $\tilde ω_n(s) = n·s$. We will apply Facts 1 and 2 to $p: ®R \rightarrow S^1$, $\tilde ω_n$: Given $f: [0, 1] \rightarrow S^1$ based at $(0, 1)$ representing some element of $∏_1(S^1)$. We take $\tilde f$. Since $p \tilde f(1) = f(1) = (1, 0)$ (and $p^{-1}(1) \in ®Z$), we can argument that if $\tilde f$ ends at $u$ (i.e. $\tilde f(1) = f$), it is homotopoc to $\tilde ω_n$ by the homotopy $\tilde F = (1 - t)\tilde f + t\tilde ω_n$.
+
+		From fact 1 exists $\tilde f$ starting at 0 and ending at $p^{-1}(1) \in ®Z$.
+
+		Theorem: Exists homotopy $\tilde F$ from $\tilde ω_k$ to $\tilde f$ denoted by $(*)$.
+
+		So we define homotopy $F$ from $ω_n$ to $f$ by $F = p∘\tilde F$, homotopy from $ω_n$ to $f$. Since $[ω_n] = n·[ω]$, $∏_1(S^1) \simeq ®Z$.
+
+		Now we would like to show that $[f]$ is uniformly determined. Assume that $f \sim ω_n$ and $f \sim ω_m$, then using Facts 1 and 2 we have $[ω_n] = [ω_m]$ which lends to contradiction since they have different endpoints on ®R.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Given a topological space $X$, a covering space of $X$ consists of a topological space $\tilde X$ and a continuous map $p: \tilde X \rightarrow X$ satisfying that $\forall x \in X$ $\exists$ open neighbourhood $U$ of $x$ in $X$ such that $p^{-1}(U)$ is a disjoint union of open subsets $U_α$ each of which is homeomorphically mapped to $U$.
+\end{definice}
+
+\begin{definice}
+	Given a map $[0, 1] \overset{f}\rightarrow X$ and $p: \tilde X \rightarrow X$ we say that $\tilde f:[0, 1] \rightarrow \tilde X$ is a lift of $f$ if $p ∘ \tilde f = f$.
+
+	The same construction can be defined for homotopy.
+\end{definice}
+
+\begin{tvrzeni}
+	Given a map $F: Y \times [0, 1] \rightarrow X$ and a map $\tilde F: Y \times \{¦o\} \rightarrow \tilde X$, where $p: \tilde X \rightarrow X$ is a covering space, and $\tilde F$ lifts $F|_{Y \times \{¦o\}}$; there restricting to $\tilde F$ on $Y \times \{¦o\}$.
+
+	\begin{poznamka}[Corollary: Fact 1 and Fact 2 from the previous proof]
+		Fact 1 is free, it comes when $Y = \{\text{point}\}$, Fact 2 also follows.
+	\end{poznamka}
+\end{tvrzeni}
+
+% 23. 10. 2023
+
+\begin{priklad}
+	We say that a topological (path-connected) space is simply connected $\Leftrightarrow$ $∏_1(X) = \{e\}$. Examples of simply connected topological spaces: $®R, ®R^2, …$. $S^1$ is not simply connected.
+\end{priklad}
+
+\begin{priklad}
+	Given $X, Y$ path-connected and $x_0 \in X$, $y_0 \in Y$. Show that $∏_1(X\times Y, (x_0, y_0)) \simeq ∏_1(X, x_0) \times ∏_1(Y, y_0)$.
+
+	\begin{reseni}
+		Product topology is defined to be such that a map $f: Z \rightarrow X \times Y$ is continuous $\Leftrightarrow$ ($p_x: X\times Y \rightarrow X$, $p_y: X \times Y \rightarrow Y$) $p_x ∘ f$ and $p_y ∘ f$ are continuous.
+
+		A loop $γ: [0, 1] \rightarrow X \times Y$ based at $(x_0, y_0)$ splits at two loops $γ_1: [0, 1] \rightarrow X$, $γ_2: [0, 1] \rightarrow Y$. The same holds for homotopy, i.e. $F$ from $γ$ to $\tilde γ$ splits into $(F_1, F_2)$, where $F_1$ is a homotopy on $X$ from $γ_1$ to $\tilde γ_1$ and $F_2$ is a homotopy on $Y$ from $γ_2$ to $\tilde γ_2$.
+	\end{reseni}
+\end{priklad}
+
+\begin{dusledek}
+	$∏_1(T^n) := ∏_1(S^1 \times S^1 \times … \times S^1) = ®Z^n$.
+\end{dusledek}
+
+\begin{priklad}
+	Show that TODO!!! is a covering space for $S^1 V S^1$.
+\end{priklad}
+
+TODO!!!
+
 \end{document}
