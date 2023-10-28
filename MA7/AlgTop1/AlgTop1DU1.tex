@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	As we have discussed in class, a mapping cylinder $M_f$ for a map $f: X \rightarrow Y$ deformation retracts to the subspace $Y$ by sliding each point $(x, t)$ along the segment $\{x\} \times [0, 1] \subset M_f$ to the endpoint $f(x) \in Y$. Show continuity of this deformation retraction. Hint: Check the discussion on this subject on p. 2 of Hatcher’s book.
+
+	\begin{dukazin}
+		We have deformation retraction $F(x, t) = (x, t)$. Firstly we show continuity of $F$ from $X \times [0, 1]$ to space $X \times [0, 1]$ (without $Y$ and quotient). When we compose $F$ with projection to $X$ or $[0, 1]$, we get identity, so $F$ is continuous to $X \times [0, 1]$.
+
+		Now we do the quotient. In domain of $F$ (now $X \times [0, 1] \coprod Y / \sim$), there are even more open sets. Open sets in $X \times [0, 1)$ is unchanged. In $Y = X \times \{1\}$ we have in addition open sets „created“ by $Y$. But $f(x)$ is continuous, so if $U \subset Y$ is open, $f^{-1}(U)$ is open and so $U \subset X \times \{1\}$ was already open. Thus continuity to $X \times [0, 1] \coprod Y / \sim$ is the same as the continuity to $X \times [0, 1]$.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Construct an explicit deformation retraction of $®R^n \setminus \{¦o\}$ onto $S^{n-1}$.
+
+	\begin{reseni}
+		$$ F(t, x) = f_t(x) = t·\frac{x}{\|x\|} + (1 - t)·x, \qquad \|x\| = \sqrt{x_1^2 + x_2^2 + … + x_n^2}. $$
+		Obviously for $t=0$: $f_0(x) = x$, so $f_0 = \id_X$, and $f_1(x) = \frac{x}{\|x\|} \in S^{n-1}$, so $f_1(X) = S^2$ and $f_1|_A = \id_A$ ($x \in A \implies \|x\| = 1$).
+
+		It remains to show continuity: multiplication, addition, and square root are continuous. $\|x\| ≠ 0$ ($x ≠ ¦o$), thus $\frac{1}{\|x\|}$ is continuous.
+	\end{reseni}
+\end{priklad}
+
+\break
+
+\begin{priklad}[3.]
+	Given positive integers $v$ (for vertices), $e$ (for edges), and $f$ (for faces) satisfying $v - e + f = 2$, construct a cell structure on $S^2$ having $v$ 0-cells, $e$ 1-cells, and $f$ 2-cells.
+
+	\begin{reseni}
+		We take „chain“ of vertex–edge–vertex–edge–…–vertex so we use all vertices ($e ≥ v - 1$ from equality $v - e + f = 2$ so we have enough edges): Take $e^0_1, …, e^0_v$, $e^1_1, …, e^1_{v - 1}$, such that we have $φ^1_i: \partial e^1_i \rightarrow \bigcup_j e^0_j$, $φ^1_i(0) := e^0_i$, $φ^1_i(1) := e^0_{i+1}$.
+
+		Now we add „balloons“ aka faces wrapped with one edge starting and ending in first vertex. So we add $e^1_v$ ($e^1_{v+1}, …, e^1_{v - 1 + f - 1}$) and $e^2_1$ ($e^2_2, …, e^2_{f - 1}$) with $φ^1_i: \partial e^1_i \rightarrow \bigcup_j e^0_j$, $φ^1_i(0) := φ^1_i(1) := e^0_1$ a $φ^2_i: \partial e^2_i \rightarrow \bigcup_j e^0_j \cup \bigcup_j e^1_j$ homeomorphism on $e^1_{v - 1 + i}$.
+
+		Finally we add $e^2_f$ and $φ^2_f: \partial e^2_f \rightarrow \bigcup_j e^0_j \cup \bigcup_j e^1_j$ which "goes through"
+		$$ e^1_1, e^1_2, …, e^1_{v - 1}, e^1_{v - 1}, e^1_{v - 2}, …, e^1_1, e^1_v, e^1_{v+1}, …, e^1_{v - 1 + f - 1}. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[4.]
+	Show that the change-of-basepoint homomorphism $β_h$ (for fundamental groups) depends only on the homotopy class of $h$.
+
+	\begin{dukazin}
+		We define $β_h$ as $[f] \mapsto [h·f·h^{-1}]$. When we have $\tilde h$ and $h$ and homotopy $F(·, 0) = h$ and $F(·, 1) = \tilde h$, than we can define
+		$$ G(x, t) = \begin{cases}F\(3x, t\), & \text{for } x ≤ \frac{1}{3} \\ f(3x - 1), & \text{for } \frac{1}{3} ≤ x ≤ \frac{2}{3} \\ F\(3 - 3x, t\), \text{for } \frac{2}{3} ≤ x,\end{cases} $$
+		where $x \in [0, 1]$ and $f, h: [0, 1] \rightarrow X$, $h·f·h^{-1}: [0, 3] \rightarrow X$. $G$ is homotopy $h·f·h^{-1}$ to $\tilde h·f·\tilde h^{-1}$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

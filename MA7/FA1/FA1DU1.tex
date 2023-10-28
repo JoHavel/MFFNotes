@@ -13,7 +13,7 @@
 
 	\begin{reseni}
 		Podle Věty 5 je báze okolí ¦o rovná
-		$$ \{\{x \in X \middle| p_1(x) < c_1, …, p_k(x) < c_k\} \middle | p_1, …, p_k \in ©P, c_1, …, c_k > 0\}, $$
+		$$ \{\{x \in X \middle| \tilde p_1(x) < c_1, …, \tilde p_k(x) < c_k\} \middle | \tilde p_1, …, \tilde p_k \in ©P, c_1, …, c_k > 0\}, $$
 		tedy jsou to množiny těch funkcí, které mají vždy určité (konečný počet) derivace omezené určitými konstantami.
 	\end{reseni}
 
@@ -40,11 +40,13 @@
 	4. Describe all the continuous linear functionals on $X$.
 
 	\begin{reseni}
-		$X \subset C([0, 1])$ a libovolný spojitý lineární funkcionál na $X$ je zřejmě lineární i v $C([0, 1])$ a zároveň musí být spojitý vůči $p_0$, což je norma na $C([0, 1])$, tedy musí být spojitý i na množině $X$ jako podprostoru $C([0, 1])$ a z Hahnovy–Banachovy věty ho lze rozšířit na spojitý lineární funkcionál na $C([0, 1])$. Tedy „$X^* \subset C([0, 1])^* = ©M([0, 1])$“ (regulární borelovské znaménkové míry).
+		Podle Tvrzení 14 musí pro $φ \in X^*$ existovat $c > 0$, $\tilde p_1, …, \tilde p_n \in ©P$, že $\forall f \in X: |L(f)| ≤ c·\max\{\tilde p_1(f), …, \tilde p_n(f)\}$.
 
-		My víme (ze spojitosti), že pro $μ \in C([0, 1])^*$ existuje $C$ tak, že $\forall f \in C([0, 1]), p_0 = \|f\|_∞ < 1: μ(f) < C$, tedy po libovolné $μ \in C([0, 1])^*$ existuje okolí ¦o ($\{f | p_0(f) < 1\}$), že $μ$ je na tomto okolí omezené. Tedy podle Tvrzení 14 je $μ$ spojité.
+		A pokud v předchozí $n$-tici norem máme pouze jednu, $p_k$, pak se můžeme podívat, jak působí tento funkcionál na $k$-tou derivaci $f \in X$ jako prvek prostoru $C([0, 1])$, tj. $f^{(k)} \in C([0, 1])$. $|L(f)| ≤ c·p_k(f) = c·\|f^{(k)}\|_∞$, tedy $L$ je spojitá (a zřejmě lineární) i na $\{f^{(k)}\} \subset C([0, 1])$. Navíc z Weierstrassovy věty je $\{f^{(k)}\}$ (libovolné nekonečně hladké funkce, neboť „odderivovat“ můžeme vždy neurčitým Lebesgueovým integrálem, který je spojitý) hustá v $C([0, 1])$, tedy $L$ jednoznačně určuje prvek $C([0, 1])^* = ©M([0, 1])$ (regulární borelovské znaménkové míry).
 
-		Jediné, co zbývá, je ukázat, že různé $μ, ν \in C([0, 1])^*$ jsou jako prvky $X^*$ také různé (tedy že existuje jednoznačná korespondence mezi $X^*$ a $©M([0, 1])$). To ale víme, protože z Weierstrassovy věty je $X$ jako množina husté v $C([0, 1])$ a spojité funkce jsou jednoznačně určené hodnotami na husté podmnožině.
+		Naopak libovolný prvek $μ \in C([0, 1])^*$ lze aplikovat na $\{f^{(k)}\}$ a splňuje podmínku $\forall f \in X: |μ(f)| := |μ(f^{(k)})| ≤ \|μ\| · \|f^{(k)}\|_∞ = c·p_k(f)$. Tedy spojité funkcionály splňující $|L(f)| ≤ c·p_k$ odpovídají (pro každé $k$ zvlášť) jedna ku jedné $C([0, 1])^*$.
+
+		Navíc si můžeme všimnout, že pokud nenulové spojité funkcionály $K, L$ odpovídají jiným $p_k, p_l$, $l < k$, pak jsou jiné, neboť 
 	\end{reseni}
 \end{priklad}
 

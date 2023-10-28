@@ -246,4 +246,82 @@
 	\end{dukazin}
 \end{veta}
 
+% 25. 10. 2023
+
+\begin{definice}
+	Nechť $Ω \subseteq ®R^n$ otevřená:
+	$$ W^{1, 1}_{loc}(Ω) := \{u \in L^1_{loc}(Ω) | \forall i \in [n]\ \exists D_i u \in L^1_{loc}(Ω)\}, $$
+	$$ W^{1, p}(Ω) = \{u \in W^{1, 1}_{loc} \middle| \|u\|_{1, p} < ∞\}, \text{ kde } \|u\|_{1, p} = \sqrt[p]{\sum_{i=1}^n \int_Ω |D_i u|^p + \int_Ω |u|^p}, $$
+	$$ W^{1, p}_c(Ω) = \{u \in W^{1, p}(Ω) \middle| \exists K \subset Ω: \{u ≠ 0\} \subset K\}, $$
+	$$ p \in [1, ∞): W^{1, p}_0(Ω) = \overline{W_c^{1, p}(Ω)}^{\|·\|_{1, p}}, \qquad p = ∞: W^{1, p}_0(Ω) = \overline{W^{1, ∞}(Ω) \cap C_0(Ω)}^{\|·\|_{1, p}}. $$
+\end{definice}
+
+\begin{veta}
+	$(W^{1, p}(Ω), \|·\|_{1, p})$ je Banachův prostor.
+
+	\begin{dukazin}
+		Linearita a funkčnost normy je zřejmá. Jak je to s úplností? $u_k$ cauchyovská v $\|·\|_{1, p}$. $W^{1, p} \hookrightarrow L^p$ $\implies$ $u_k$ cauchyovská v $L^p$ $\implies$ $\exists u \in L^p: u_k \rightarrow u$ v $L^p$.
+		$$ φ \in ©D(Ω): \int_Ω u \partial_i φ \leftarrow \int_Ω u_k \partial_i φ = -\int_Ω D_i u_k φ \rightarrow -\int g φ. $$
+		Poslední konvergence z $\exists g: D_i u_k \rightarrow g$ v $L^p$ a $D_i u = g \in L^p$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Rieszova pro $W^{1, p}$]
+	Nechť $Ω \subset ®R^n$ otevřená. $1 ≤ p < ∞$, $p' = \frac{1}{1 - \frac{1}{p}}$. Pak pro každý $L \in \(W^{1, p}(Ω)\)^*$ existuje $f \in L^{p'}(Ω, ®R^{n+1})$ takové, že $L(u) = \sum_{i=1}^n \int_Ω f^i D_i u + \int_Ω f^{n+1} u$ a navíc $\|L\|_{(W^{1, p})^*} = \|f\|_{L^p}$.
+
+	\begin{dukazin}
+		Definujeme $T: W^{1, p}(Ω) \rightarrow L^p(Ω, ®R^{n+1})$, $u \mapsto (D_1 u, …, D_n u, u)$. $T W^{1, p}(Ω) \Subset L^p(Ω, ®R^{n+1})$. Díky HB větě každý $L \in \(W^{1, p}(Ω)\)^*$ lze rozšířit na $L^1 \in (L^p(Ω, ®R^{n+1}))^* = L^{p'}(Ω, ®R^{n+1})$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		$f, h \in L^{p'}(Ω, ®R^{n+1})$ jsou takové, že
+		$$ \sum_i \int f^i D_i u + \int f^{n+1} u = \sum_i \int h^i D_i u + \int h^{n+1} u. $$
+
+		$\Div h = \Div f$ na $Ω$ a $f·ν = h·ν$ na $\partial Ω$. $Δu = f$.
+	\end{poznamkain}
+\end{veta}
+
+\begin{poznamka}
+	$u_k \rightarrow u$ v $W^{1, p}$ $\Leftrightarrow$ $\|u_k - \|_{1, p} \rightarrow 0$.
+
+	Pro $p = ∞$
+\end{poznamka}
+
+\begin{veta}
+	Nechť 1. $u \in W^{1, p}(®R^n)$, $1 ≤ p < ∞$, nebo 2. $u \in W^{1, ∞}(®R^n) ψ_k * u \overset{*}\rightarrow u$ v $W^{1, ∞}(®R^n)$, potom $\|ψ_k * u - u\|_{1, p} \overset{k \rightarrow ∞}\longrightarrow 0$.
+
+	\begin{dukazin}
+		Víme $\int |ψ_k * D_i u - D_i u|^p \overset{k \rightarrow ∞}\longrightarrow 0$. Stačí dokázat $ψ_k * D_i u = D_i(ψ * u) = \partial_i (ψ_k * u)$. Nechť $φ \in ©D(®R^n)$, pak
+		$$ - \int_{®R^n} D_i(ψ_k * u)φ = \int_{®R^n} ψ_k * u \partial φ = \int_{®R^n} \int_{®R^n} ψ_k(x - y) u(y) dy \partial_i φ(x) dx = $$
+		$$ = \int_{®R^n} \int_{®R^n} ψ_k(y - x) \partial_i φ(x) dx u(y) dy = $$
+		$$ = \int_{®R^n} ψ_k * \partial_i φ(y) u(y) dy = \int_{®R^n} \partial(ψ_k * φ) u(y) = $$
+		$$ = - \int_{®R^n}(ψ_k * φ)D_i u = \int_{®R^n} (ψ_k * D_i u) φ. $$
+		Tedy $ψ_k * D_i u = D_i(ψ_k * u)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$$ \overline{©D(®R^n)}^{W^{1, p}} = W^{1, p}(®R^n). $$
+
+	\begin{dukazin}
+		Definujeme $η(x) = 1$ na $B(0, 1)$, $η(x) = 0$ na $®R^n \setminus B(0, 2)$, $η(x) \in [0, 1]$ in $®R^n$ a $η \in C^∞(®R^n)$.
+
+		$u_k(x) = u(x) η(x / k)$. $u_k(x) = u(x)$ na $B(0, k)$, $u_k(x) = 0$ na $®R^n \setminus B(0, 2k)$.
+		$$ \int_{®R^n} |u_k - u|^p ≤ \int_{®R^n \setminus B(0, k)} |2u|^p \overset{k \rightarrow ∞}\longrightarrow 0. $$
+		$$ D_i u_k = D_i u(x)η\(\frac{x}{k}\) = (D_i u(x))η\(\frac{x}{k}\) + u(x) D_i η\(\frac{x}{k}\). $$
+		$$ \int_{®R^n} |D_i u_k - D_i u|^p ≤ \int_{®R \setminus B(0, k)} \left|2D_i u + u(x) \frac{\|\nabla η\|_∞}{k}\right|^p ≤ $$
+		$$ ≤ c·\int_{®R^n \setminus B(0, k)} |D_iu|^p + |u|^p \overset{k \rightarrow ∞}\longrightarrow 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$©D(®R^n)$ jsou slabě $*$ sekvenciálně husté v $W^{1, ∞}(®R^n)$. (Jinak řečeno, pro každé $u \in W^{1, ∞}$ najdeme $φ_k \subset ©D$, $φ_k \overset{*} \rightarrow u$ v $W^{1, ∞}(®R^n)$).
+
+	\begin{dukazin}
+		$u \in W^{1, ∞}$, $u_k(x) = u(x) η\(\frac{x}{k}\)$. Zvolme $f \in L^1$.
+		$$ \int D_i u_k f = \int_{®R^n} χ_{B(0, 2k) \setminus B(0, k)} \frac{\partial_i η(\frac{x}{k})}{k} u(x) f(x) + \int_{?} η\(\frac{x}{k}\) D_i u f(x) = \int_{B(0, k)} D_i u f(x) \rightarrow \int D_i u f. $$
+%		$\int η D_i u f(x) \rightarrow $
+	\end{dukazin}
+\end{veta}
+
 \end{document}

@@ -169,7 +169,7 @@
 \end{definice}
 
 \begin{upozorneni}
-	$\im(F)$ nemusí být kategorie. (Mohou vzniknout „možnosti složení“, které v původní kategorii nebyly.)
+	$\im(F)$ nemusí být kategorie. (Mohou vzniknout „možnosti složení“, které v původní kategorii nebyly.)
 \end{upozorneni}
 
 \subsection{2-morphism and natural transformations}
@@ -193,7 +193,7 @@
 \end{poznamka}
 
 \begin{priklady}
-	$F: SET \rightarrow VECT_{®K}$, $X \mapsto F(X)$. $F(X)$ (the free ®K-vector space) is is functions $f: X \rightarrow ®K$ endowed with the vector space structure (addition and scalar multiplication). (Alternatively $F(X)$ is the vector space with a basis $\{e_x^X | x \in X\}$).
+	$F: SET \rightarrow VECT_{®K}$, $X \mapsto F(X)$. $F(X)$ (the free ®K-vector space) is is functions $f: X \rightarrow ®K$ endowed with the vector space structure (addition and scalar multiplication). (Alternatively $F(X)$ is the vector space with a basis $\{e_x^X | x \in X\}$).
 
 	Morphisms: $F(f)(e_x^X) := e_{f(x)}^X$.
 \end{priklady}
@@ -211,5 +211,65 @@
 \begin{priklad}
 	How does act on morphisms.
 \end{priklad}
+
+% 19. 10. 2023
+
+TODO!!!
+
+% 26. 10. 2023
+
+\section{Adjunction}
+\begin{definice}
+	Let $©A \overset{F}{\underset{G}\rightleftarrows} ©B$ be categories and functors. We say that $F$ is left adjoint to $G$, and $G$ is right adjoint to $F$, and write $F -| G$ if $B(F(A), B) \cong ©A(A, G(B))$ „naturally“ in $A \in ©A$, and $B \in ©B$.
+
+	\begin{poznamkain}
+		Naturally: $\overline{\ }: ©B(F(A), B) \rightarrow ©A(A, G(B))$ and $\overline{\ }: ©A(A, G(B)) \rightarrow ©B(F(A), B)$.
+
+		1. $\overline{F(A) \overset{g}\rightarrow B \overset{q}\rightarrow B'} = A \overset{\overline{g}}\rightarrow G(B) \overset{F(q)}\rightarrow G(B') \in ©A$.
+		2. $\overline{A' \overset{p}\rightarrow A \overset{f}\rightarrow G(B)} = F(A') \overset{F(p)}\rightarrow F(A) \overset{\overline{f}}\rightarrow B \in ©B$.
+
+		An adjunction between $F$ and $G$ is a choice of such isomorphism in $B(F(A), B) \cong ©A(A, G(B))$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklad}[Think about this]
+	Adjoints may not exist. But if an adjunction does exist, then it is unique up to unique isomorphism.
+\end{priklad}
+
+\begin{definice}[Initial, terminal and zero object]
+	Let ©A be a category. An object $I \in ©A$ is initial if for every $A \in ©A$, $\exists !$ map $I \rightarrow A$. An object $T \in ©A$ is terminal if for every $A \in ©A$ $\exists!$ map $A \rightarrow T$. If object is both initial and terminal, we say that it is a zero object.
+\end{definice}
+
+\begin{priklady}
+	In SET, we have an initial object. It is empty set.
+
+	In GRP we have an initial object $\{e\}$. And it is also a terminal object.
+
+	What object is a terminal object in SET? $T =$ the set with one element.
+
+	The terminal object in CAT is 1, the discrete category with one object.
+\end{priklady}
+
+\begin{lemma}
+	Let $I$ and $I'$ be two initial objects in a category ©A. Then there is a unique isomorphism $I \rightarrow I'$, i.e. $I \cong I'$.
+
+	\begin{dukazin}
+		Since $I$ and $I'$ are both initial objects, $\exists!$ morphisms $\id_I: I \rightarrow I$, $f: I \rightarrow I'$, $g: I' \rightarrow I$ and $\id_{I'}: I' \rightarrow I'$. Because $g ∘ f = \id_I$ and $f ∘ g = \id_{I'}$, $f$ and $g$ give an isomorphism between $I$ and $I'$. Moreover we see that it is unique.
+	\end{dukazin}
+\end{lemma}
+
+\begin{priklady}
+	$VECT_{®K}$: initial object and terminal object is zero vector space (this is part of the „abelian category structure“ of $VECT_{®K}$).
+
+	Let $R$ be a ring. Then we denote by $MOD_R$ the category of $R$-modules with $R$-linear maps. This has zero object 0 – the zero module.
+\end{priklady}
+
+\begin{priklad}
+	Initial and terminal objects can be described via adjunctions: Let ©A be a category, then $\exists!$ functor $©A \rightarrow 1$ (the discrete category with one element). What bout a functor $1 \rightarrow ©A$? We see that such functor $F$ $\leftrightarrow$ objects $A \in ©A$.
+
+	TODO?
+\end{priklad}
+
+TODO!!!
 
 \end{document}

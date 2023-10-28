@@ -240,4 +240,74 @@
 	\end{dukazin}
 \end{veta}
 
+% 18. 10. 2023
+
+TODO!!!
+
+% 25. 10. 2023
+
+\begin{tvrzeni}[Noether–type theorem]
+	Let $Ω \subset ®R^n$, $F(u) := \int_Ω f(x, u, Du)$ with $f \in C^2(Ω \times ®R^n \times ®R^{m \times n})$ and $(ψ_s)_{s \in ®R} \subset C^2(®R^n, ®R^n)$ is a smooth family with $ψ_0 = \id$, such that
+	$$ f(x, ψ_s ∘ u, D(ψ_s ∘ u)) = f(x, u, Du). $$
+	Then there exists a conservation ? $Q: Ω \times ®R^n \times ®R^{m \times n} \rightarrow ®R^n$ such that $\Div (Q (x, u, Du)) = 0$ $\forall$ critical points of $u$.
+
+	\begin{dukazin}
+		$$ 0 = \frac{d}{ds} |_{s = 0} f(x, ψ_s ∘ u, TODO!!! ∘ u) = $$
+		$$ \sum_i \frac{\partial ψ^i}{\partial s} |_{s = 0} \frac{\partial f}{\partial z^i}(x, u, D_u) + \sum_{ij} \frac{\partial^2 ψ_j}{\partial s \partial y^j}\frac{\partial u^i}{\partial x_j}\frac{\partial f}{\partial p^{ij}}(x, u, Du) = $$
+		$$ = \sum_i \frac{\partial ψ^i}{\partial s} |_{s = 0} \sum_j \frac{\partial}{\partial x^j} \(\frac{\partial f}{\partial p_{ij}}(x, u, Du)\) + \sum_{ij} \frac{\partial^2 ψ_s}{\partial s \partial y^j} \frac{\partial u^j}{\partial x_i} \frac{\partial f}{\partial p_{ij}}(x, y, Du) = $$
+		$$ = \sum_j \frac{\partial}{\partial x^j}\(\sum_i \frac{\partial(ψ^i ∘ u)}{\partial s}\middle|_{s=0} \frac{\partial f}{\partial p^{ij}}(x, u, Du)\). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{priklad}[Particle in potential well]
+	$y: I \rightarrow ®R^n$ position of a particle, $V: ®R^n \rightarrow ®R$ a physical potential. $F(u) := \int_I \frac{m}{2} |\dot y|^2 - V(y) dt$ (Physics: critical points are behaviour of a ion particle). El eg: $\frac{\partial V}{\partial x_i} + \frac{d}{dt}\(m \dot y^i\) = 0 \implies m \ddot y = -\nabla V(y)$.
+
+	Assume that $V$ is invariant under rotations, i.e. $V(R(θ)y) = V(y)$, where $R(θ) = \begin{pmatrix} \cos θ & - \sin θ & 0 \\ \sin θ & \cos θ & 0 \\ 0 & 0 & I \end{pmatrix}$. And always $|\frac{d}{dt} R(θ) y|^2 = y^T R(θ)^T R(θ)$. $\implies$ (Noether)
+	$$ 0 = \frac{d}{dt}\(\frac{dR(θ)}{dθ} |_{θ = 0} \frac{\partial f}{\partial p}(y, \dot y)\) = $$
+	$$ = \frac{d}{dt} · \(\begin{pmatrix} 0 & -1 & … \\ 1 & 0 & … \\ … & … & 0 \end{pmatrix}y\) · m \dot y = m\(y_1\dot y_2 - y_2 \dot y_1\). $$
+	(Which is angular momentum.)
+\end{priklad}
+
+\begin{poznamka}[Conservation law in $n+1$ dimensions]
+	If we single out one direction as time, e.g.
+	$$ (t, x) = (t, x_1, …, x_n), $$
+	then the conservation law reads as
+	$$ \frac{\partial}{\partial t} Q_0 + \Div_x(\overline{Q}) = 0. $$
+	($Q_0$ – conserved quantity, $\overline{Q}$ – conservation current.) And
+	$$ \frac{d}{dt} \int_Ω Q_0 = \int_Ω \Div_x \overline{Q}. $$
+\end{poznamka}
+
+\begin{tvrzeni}[2nd Variation]
+	Let $X$ be Banach space $A \subset X$ open, $F: A \rightarrow ®R$.
+	\begin{enumerate}
+		\item If $x_0 \in A$ is local minimizer of $F$ and $F$ is twice Gateaux differentiable in $x_0$, then $\partial^2 F(x)\<v, v\> ≥ 0$ $\forall v \in X$;
+		\item If $x_0$ is critical point of $F$ and $F$ is twice Fréchet differentiable and $D^2 F(x_0)\<v, v\> ≥ c·\|v\|^2$ $\forall v \in X$ with $c$ independent of $v$, then $x_0$ is a local minimum.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: Consider $φ: ε \mapsto F(x_0 + ε·v)$, if $x_0$ is local minimum of $F$, then $0$ is local minimum of $φ$ $\implies$
+		$$ \implies 0 ≤ φ''(0) = \frac{d^2}{d ε^2} |_ε F(x_0 + εv) = \partial^2 F(x_0)\<v, v\>. $$
+
+		„2.“: By continuity $\exists δ > 0$ such that $D^2 F(x)\<v, v\> ≥ \frac{c}{2} \|v\|^2$ $\forall v \in X$ $\forall x \in B_δ(x_0)$. Pick $x \in B_δ(x_0)$, define $ψ(t) := x_0 + t(x - x_0)$, $H(t) := J(ψ(t))$.
+		$$ H(j) - H(0) = \int_0^1 1·H'(t) dt \overset{BP} H'(0) + \int_0^1 (1 - t) H''(t) dt = (*). $$
+		$$ H'(t) = DF(ψ(t))\<x - x_0\> \implies H'(0) = 0. $$
+		$$ H''(t) = D^2F(ψ(t))\<x - x_0, x - x_0\> ≥ 0. $$
+		$$ \implies (*) ≥ 0 \implies F(x) ≥ F(x_0) \forall x \in B_δ(x_0). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[Lebesgue–Hadamard]
+	If $F(u) = \int_Ω f(x, u, Du)$, then $D^2 F(u) \<φ, φ\>$ includes
+	$$ \int_Ω \sum_{ijkl} \frac{\partial}{\partial p_{ij}}\frac{\partial f}{\partial p_{kl}}(x, u, Du) \frac{\partial φ_i}{\partial x_j} \frac{\partial φ_k}{\partial x_l} ds. $$
+	This is the dominant term. Even more, its enough:
+	$$ \sum_{ijkl} \frac{\partial}{\partial p_{ij}}\frac{\partial}{\partial p_{kl}} f(x, u, Du) ξ^iξ^j η^kη^l ≥ c·?. $$
+\end{poznamka}
+
+\subsection{Lagrange multipliers}
+\begin{tvrzeni}[Lagrange multipliers]
+	Let $X$ Banach, $A \subset X$ open $F, G: A \rightarrow ®R$ continuous Fréchet differentiable. Let $x_0$ be a local minimizer of $F|_{\{G = 0\}}$ with $DG(x) ≠ 0$. Then $\exists λ \in ®R$ such that $DF(x_0) + λ DG(x_0) = 0$.
+
+	$λ$ is called the Lagrange multiplier, any $x_0$ that satisfies this equation is called critical point.
+\end{tvrzeni}
+
 \end{document}

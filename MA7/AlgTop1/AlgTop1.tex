@@ -72,7 +72,7 @@
 \end{tvrzeni}
 
 \begin{definice}
-	Given two topological spaces $X$ and $Y$ and a continuous map $f: X \rightarrow Y$, the mapping cylinder $M_f$ is defined to be the quotient space of $X \times [0, 1] \coprod Y$ and $\sim$: $(x, 1) \sim f(x)$. $M_f = X \times [0, 1]\times Y / \sim$.
+	Given two topological spaces $X$ and $Y$ and a continuous map $f: X \rightarrow Y$, the mapping cylinder $M_f$ is defined to be the quotient space of $X \times [0, 1] \coprod Y$ and $\sim$: $(x, 1) \sim f(x)$. $M_f = X \times [0, 1]\coprod Y / \sim$.
 \end{definice}
 
 \begin{tvrzeni}
@@ -80,7 +80,7 @@
 
 	\begin{dukazin}[/ Idea of proof]
 		The way to construct $f_t = F(·, t): M_f \rightarrow M_f$ is to slide each point $(x, t)$ along the segment $\{x\}\times[0, 1]$ to $f(x)$:
-		$$ F: (x, t) \mapsto f(x), \qquad \forall y \in Y: y = F \mapsto \{f_1 = \id Y \rightarrow Y\} $$
+		$$ F: (x, t) \mapsto f_t(x), \qquad \forall y \in Y: y = F(y, t) \mapsto \{f_1 = \id Y \rightarrow Y\} $$
 		In your HW you will check that $F(x, t)$ is continuous.
 	\end{dukazin}
 \end{tvrzeni}
@@ -142,7 +142,7 @@ TODO!!!
 	\begin{dukazin}
 		Since $x_0$, $x_1$ are in one path connected component $\tilde X$, $\exists$ path $h: [0, 1] \rightarrow X$: $h$ is in $\tilde X$ and $h(0) = x_0, h(1) = x_1$. $\overline{h}(s) := h^{-1}(s) := h(1 - s)$, $s \in [0, 1]$.
 
-		To each loop $f$ based at $x_1$ we associate a loop $h∘f∘h^{-1}$. $h∘f∘h^{-1}$ is based at $x_0$. $β_h : ∏_1(x, x_1) \rightarrow ∏_1(x, x_0), [f] \mapsto [h∘f∘h^{-1}]$. We claim, that $β_h$ is an isomorphism. „$β_h$ is homomorhism“:
+		To each loop $f$ based at $x_1$ we associate a loop $h·f·h^{-1}$. $h·f·h^{-1}$ is based at $x_0$. $β_h : ∏_1(x, x_1) \rightarrow ∏_1(x, x_0), [f] \mapsto [h·f·h^{-1}]$. We claim, that $β_h$ is an isomorphism. „$β_h$ is homomorhism“:
 		$$ β_h([f·h]) = [hfgh^{-1}] = [hfh^{-1} hgh^{-1}] = [hfh^{-1}]·[hgh^{-1}] = β_h([f])·β_h([g]). $$
 		„$β_h$ is isomorphism“: „the inverse of $β_h$ is $β_{h^{-1}}$“ (which is homomorphism too by the argument we used for $β_h$):
 		$$ β_{h^{-1}}(β_h([f])) = β_{h^{-1}}([hfh^{-1}]) = [h^{-1}hfh^{-1}h] = [f]. $$

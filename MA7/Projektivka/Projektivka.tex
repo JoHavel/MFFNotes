@@ -134,5 +134,153 @@
 	První souřadnice je tzv. rozlišovací souřadnice (1 znamená vlastní, 0 nevlastní).
 \end{definice}
 
+% 19. 10. 2023
+
+TODO!!! (Konstrukce 4. harmonického bodu nebo 4. harmonické přímky).
+
+% 26. 10. 2023
+
+\begin{definice}[Projektivní škála]
+	Máme body $0$, $1$ a $∞$ na jedné přímce. Následně provedeme několik kroků: 1. najdeme bod -1 tak, aby $(0\, ∞\, 1\, -1) = -1$, najdeme bod -2 tak, aby $(-1\, ∞\, 0\, -2) = -1$
+\end{definice}
+
+TODO!!!
+
+\begin{poznamka}
+	Této konstrukce se dá použít k nakreslení pražců na sbíhající se koleje (průsečík = $∞$, první pražec 0, druhý 1).
+\end{poznamka}
+
+\section{Projektivita a perspektivita lineárních soustav}
+\begin{definice}[Soustava]
+	Bodová = označené body na přímce. Píšeme $p(A, B, C, …)$.
+
+	Přímková = označené přímky ve svazku. Píšeme $P(a, b, c, …)$.
+
+	Dvě soustavy jsou sourodé, pokud jsou stejného typu a nesourodé, pokud jsou různých typů. Pokud jsou sourodé, pak mohou být soumístné, tedy na stejné přímce / ve stejném svazku, nebo nesoumístné (různé přímky / různé svazky).
+\end{definice}
+
+\begin{definice}[Perspektiva]
+	Perspektiva nesoumístných sourodých soustav je zobrazení: pro bodové soustavy jde o středové promítání z bodu $O \notin p, p'$ (píšeme $p(A, B< C)::p'(A', B', C')$), pro přímkové soustavy duálně (přímka $o$ protne soustavu procházející $P$ v bodech, které spojíme s bodem $P'$ a dostaneme druhou soustavu).
+
+	Bod $O$ se nazývá bod perspektivity (střed promítání). Přímka $o$ je přímkou perspektivity.
+
+	\begin{poznamkain}
+		Bod $O$ nemusí být vlastni.
+	\end{poznamkain}
+
+	\begin{poznamkain}[Značení $::$]
+		Perspektivita je určená dvěma páry bodů/přímek (potřebujeme najít bod $O$ nebo přímku $o$), proto „dvakrát dvě tečky“.
+	\end{poznamkain}
+\end{definice}
+
+\begin{dusledek}
+	V každé perspektivitě existuje samodružný element: průsečík $p \cap p'$ respektive spojnice $P P'$.
+\end{dusledek}
+
+\begin{upozorneni}
+	Složení perspektivit obecně není perspektivita! (Nemusí být zachován samodružný element.)
+\end{upozorneni}
+
+\begin{definice}[Projektivita]
+	Projektivita je složení konečného počtu perspektivit.
+
+	\begin{poznamkain}
+		Dá se dokázat, že každá projektivita je složením $≤ 2$ perspektivit.
+	\end{poznamkain}
+\end{definice}
+
+\begin{dusledek}
+	Projektivita obecně nemá samodružný element, ale pokud už ho obsahuje, již je perspektivitou.
+\end{dusledek}
+
+\begin{upozorneni}
+	Perspektivita nezachovává dělící poměr 3 bodů.
+\end{upozorneni}
+
+\begin{tvrzeni}
+	Perspektivita zachovává dvojpoměry 4 bodů.
+\end{tvrzeni}
+
+\begin{dusledek}
+	Projektivita zachovává dvojpoměry 4 bodů.
+\end{dusledek}
+
+\begin{tvrzeni}[Lze dokázat i opak]
+	Pokud zobrazení zachovává kolinearitu a dvojpoměr, je to nutně projektivita.
+\end{tvrzeni}
+
+\begin{poznamka}[Druhý způsob (analytický) zavedení projektivity a perspektivity]
+	Nejprve se zavede projektivní souřadný systém (PSS) na projektivní přímce. Je to trojice bodů $0, 1, ∞$. Souřadnice bodu $X$ vůči tomuto PSS je homogenní dvojice $[1:x]$, kde $x = (X 1 0 ∞)$. Pak projektivní zobrazení je $®RP^1 \rightarrow ®RP^1$, $[x_0:x_1] \mapsto [x_0':x_1']$, kde $(x_0', x_1') = A·(x_0, x_1)^T$, kde $A$ je regulární matice $2 \times 2$ určená až na násobek $≠0$.
+
+	\begin{dusledekin}
+		Projektivita zachovává dvojpoměr.
+	\end{dusledekin}
+
+	Pak perspektivita = projektivita mající samodružný bod.
+\end{poznamka}
+
+\begin{poznamka}[Značení projektivity]
+	Projektivitu značíme $p(A, B, C) ::: p'(A', B', C')$.
+
+	\begin{poznamkain}
+		Projektivita je určena třemi páry bodů.
+	\end{poznamkain}
+\end{poznamka}
+
+\begin{definice}[Perspektivita nesourodých soustav]
+	Dvě nesourodé soustavy jsou v perspektivitě, je-li jedna soustava průmětem/průsekem té druhé.
+\end{definice}
+
+\begin{veta}
+	Dvě sourodé nesoumístné soustavy jsou v perspektivitě $\Leftrightarrow$ obě jsou v perspektivitě s touž nesourodou soustavou.
+
+	\begin{dukazin}
+		Obrázkem. (Dává nám to přesně ty body a přímky, které potřebujeme.)
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Doplňování soustav]
+	Doplňování perspektivit ($p(A, B, C)::p'(A', B', C')$ dáno, k bodu $X$ na $p$ doplňte $X'$) je jednoduché.
+
+	Doplňování projektivit ($p(A, B, C):::p'(A', B', C')$ dáno, m bodu $X$ na $p$ doplňte $X'$) je těžší, budeme potřebovat následující větu.
+\end{poznamka}
+
+\begin{veta}[O direkční přímce]
+	Nechť $p(A, B, C) ::: p'(A', B', C')$ je projektivita nesoumístných bodových soustav. Pak průsečíky spojnic $AB'$ a $A'B$, $AC'$ a $CA'$, $BC'$ a $CB'$ leží na jedné přímce $d$.
+
+	\begin{dukazin}
+		Zvolme si význačné body $A$, $A'$ a uvažujme přímky: $a = AA'$, $b = AB'$ a $c = AC'$, stejně tak $a' = A'A$, $b' = A'B$, $c' = A'C$. Hned je jasné, že $a = a'$.
+
+		Pak máme $A(a, b, c)::p'(A', B', C'):::p(A, B, C)::A'(a', b', c')$. Tedy $A(a, b, c):::A'(a', b', c')$. Ale ta má samodružnou přímku $a = a'$, tedy je to perspektivita 2 přímkových soustav, tedy podle předchozí věty jsou obě v perspektivitě s touž nesourodou soustavou (body na přímce). Označme ji $d$. A víme, že se s ní protínají odpovídající si páry přímek, tj. páry $B = AB'$, $b' = A'B$, $c = AC'$, $c' = A'C$.
+
+		Potřebujeme ukázat, že přímka $d$ nezávisí na volbě páru $AA'$. A tím také to, že také přímky $BC'$, $B'C$ se protínají na $d$. Označme $M = N'$ průsečík $p \cap p'$. Kde je $M'$ a $N$? Platí $M' = p' \cap d$ a $N = p \cap d$. $N \in p$ zřejmé (leží v soustavě $p(A, B, C)$). $N \in d$? máme přímky $n = AN = p$, $n' = A'N$, víme, že průsečík $n \cap n' = N \in d$. Stejně tak $M' = p' \cap d$.
+
+		Důsledek: $d = M'N$, ale $M$, $N'$ nezáleží na volbě páru $AA'$, tedy máme hotovo.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Direkční přímka projektivity]
+	Přímku z předchozí věty nazveme direkční přímka projektivity.
+\end{definice}
+
+\begin{poznamka}
+	Projektivita je perspektivita $\Leftrightarrow$ $p \cap p' \in d$.
+\end{poznamka}
+
+\begin{priklad}
+	Doplňování projektivity (nesoumístných soustav) je teď jednoduché. Doplňování projektivity soumístných soustav uděláme přes další soustavu.
+\end{priklad}
+
+\begin{priklad}
+	Spojení bodu $V$ s nepřístupným průsečíkem přímek $p, p'$.
+
+	\begin{reseni}
+		Na $p$ a $p'$ doplníme body $A$, $A'$, $B$, $B'$ tak, aby $V \in AB', BA'$. $AA'$ a $BB'$ se protínají v bodě, ze kterého vedeme přímku, na která protne $p$ a $p'$ v bodech $C$ a $C'$. Nyní najdeme direkční přímku.
+	\end{reseni}
+\end{priklad}
+
+\begin{veta}[Papova o šestiúhelníku]
+	Stejné jako věta o direkční přímce. (Jinak formulovaná.)
+\end{veta}
 
 \end{document}
