@@ -8,14 +8,42 @@
 \begin{priklad}[2.]
 	Consider the following problem:
 	\begin{align*}
-		-(1 + |x|^2) \frac{\partial^2 u}{\partial x_1^2} - (4 - |x|^2) \frac{\partial^2 u}{\partial x_2^2} &= \frac{\partial \sqrt{1 - |x|}}{\partial x_1} & \qquad \text{in } & Ω\\
+		-(1 + |x|^2) \frac{\partial^2 u}{\partial x_1^2} - (4 - |x|^2) \frac{\partial^2 u}{\partial x_2^2} &= \frac{\partial \sqrt{1 - |x|}}{\partial x_1} & \qquad \text{in } & Ω\\
 		(2x_1 - x_2) \frac{\partial u}{\partial x_1} + (x_1 + 3x_2) \frac{\partial u}{\partial x_2} &= 0 \qquad & \text{on } & \partial Ω,
 	\end{align*}
 	where $Ω \subset ®R^2$ is a unit ball centered at zero. Write down the weak formulation of the above problem. Show that if the weak solution is smooth then it satisfies the above problem.
 
 	\begin{reseni}
-		
+		Přepíšeme zadání do maticového zápisu $Lu := - \Div(A \nabla u) + ¦c·\nabla u = f$ v $Ω$ a $A\nabla u · ¦n = g$ na $\partial Ω$ (máme neumannovskou okrajovou podmínku). Zřejmě $a_{11} = 1 + |x|^2$ a $a_{22} = 4 - |x|^2$. S $a_{12}$ a $a_{22}$ to není tak jednoduché, protože s první rovnice bychom řekli, že $a_{12} = a_{21} = 0$, ale to by nám pak nevyšla okrajová podmínka. Jak tedy vypadá okrajová podmínka. Normála ¦n v bodech $\partial Ω$ je rovna $(x_1, x_2)$, neboť $Ω$ je jednotkový kruh. To znamená, že potřebujeme, aby na $\partial Ω$ bylo
+		$$ A = \begin{pmatrix} 2 & 1 \\ -1 & 3 \end{pmatrix}. $$
+		S $a_{11} = 1 + |x|^2 = 1 + 1 = 2$ a $a_{22} = 4 - |x|^2 = 4 - 1 = 3$ máme štěstí a můžeme si všimnout, že $a_{12} = 1$ a $a_{21} = -1$ nám nevadí ani na $Ω$, neboť když bude $u$ dostatečně hladké ($u \in C^2$), pak dostaneme $\frac{\partial^2 u}{\partial x_1 \partial x_2} - \frac{\partial^2 u}{\partial x_2 \partial x_1} = 0$.
+
+		Dobře, to je matice $A$. Kromě toho nám z derivace součinu v $-\Div(A \nabla u)$ vypadnou členy
+		$$ -\frac{\partial (1 + |x|^2)}{\partial x_1}·\frac{\partial u}{\partial x_1} - \frac{\partial (4 - |x|^2)}{\partial x_2}·\frac{\partial u}{\partial x_2} = -2x_1 \frac{\partial u}{\partial x_1} + 2x_2 \frac{\partial u}{\partial x_2}, $$
+		které jsme tam předtím neměli. Proto musíme ještě zvolit $¦c = (2x_1, -2x_2)^T$. Nakonec zřejmě $g = 0$ a místo $f$ použijeme $\tilde f(x) := \sqrt{1 - |x|}$, kde $f = \frac{\partial \tilde f}{\partial x_1}$. Neboť pak (pro dostatečně hladké $φ$):
+		$$ \int_Ω f φ = \int_Ω \frac{\partial \sqrt{1 - |x|}}{\partial x_1} φ \overset{\text{per partes}}= \int_{\partial Ω} \sqrt{1 - |x|}φ ¦n·¦e_1 - \int_Ω \sqrt{1 - |x|} \frac{\partial φ}{\partial x_1} = \int_{\partial Ω} 0 · … - \int_Ω \tilde f \frac{\partial φ}{\partial x_1}. $$
+
+		%$f = \frac{\partial \sqrt{1 - |x|}}{\partial x_1} = \frac{1}{2}\frac{x_1}{|x|·\sqrt{1 - |x|}}$.
+
+		Tedy můžeme jako na přednášce zadefinovat slabé řešení pomocí
+		$$ \text{bilineární formy: } B_L(u, φ) = \int A \nabla u · \nabla φ - ¦c·\nabla u\, φ \qquad \text{a aplikace $\tilde f$: } \<\tilde f, φ\> = -\int_Ω \tilde f \frac{\partial φ}{\partial x_1} $$
+		jako $u \in W^{1, 2}(Ω)$, splňující $\forall φ \in W^{1, 2}(Ω): B_L(u, φ) = \<\tilde f, φ\>$ neboli
+		$$ \forall φ \in W^{1, 2}(Ω): \int_Ω \begin{pmatrix} 1 + |x|^2 & 1 \\ -1 & 4 - |x|^2 \end{pmatrix}\! \nabla u\, \nabla φ - \begin{pmatrix} \hphantom{-}2x_1 \\ -2x_2 \end{pmatrix}\!·\!\nabla u \, φ\, dx = -\int_Ω \sqrt{1 - |x|} \frac{\partial φ}{\partial x_1}  $$
 	\end{reseni}
+
+	\begin{dukazin}[Smooth weak solution is classical solution]
+		Nechť tedy $u \in C^2(\overline{Ω})$, potom $\forall φ \in C^∞(\overline{Ω}) \subset W^{1, 2}(Ω)$: pravá strana je rovna $\int_Ω f φ$, jak už jsme ukázali. Levá strana:
+		$$ B_L(u, φ) \overset{\text{per partes}}= \int_{\partial Ω} A \nabla u \, ¦n φ - \int_Ω \Div(A \nabla u)φ - ¦c\,·\,\nabla u\, φ = $$
+		$$ = \int_{\partial Ω} ((1 + |x|^2)x_1 - x_2) \frac{\partial u}{\partial x_1}φ + (x_1 + (4 - |x|^2)x_2) \frac{\partial u}{\partial x_2}φ\, dx + $$
+		$$ + \int_Ω -(1 + |x|^2) \frac{\partial^2 u}{\partial x_1^2}φ - 2x_1 \frac{\partial u}{\partial x_1}φ -(4 - |x|^2) \frac{\partial^2 u}{\partial x_2^2}φ + 2x_2 \frac{\partial u}{\partial x_2}φ - \frac{\partial^2 u}{\partial x_1 \partial x_2}φ + \frac{\partial^2 u}{\partial x_2 \partial x_1}φ + $$
+		$$ + 2x_1 \frac{\partial u}{\partial x_1}φ - 2x_2 \frac{\partial u}{\partial x_2}φ\, dx = $$
+		$$ = \int_{\partial Ω} (2x_1 - x_2) \frac{\partial u}{\partial x_1}φ + (x_1 + 3x_2) \frac{\partial u}{\partial x_2}φ\, dx + \int_Ω -(1 + |x|^2) \frac{\partial^2 u}{\partial x_1^2}φ - (4 - |x|^2) \frac{\partial^2 u}{\partial x_2^2}φ\, dx. $$
+		Ta je tedy rovna pravé ($\int_Ω f φ = \int_Ω \frac{\partial \sqrt{1 - |x|}}{\partial x_1} φ$), tedy podle fundamentální věty (formálně nejprve aplikujeme na $φ \in C^∞_0(Ω) \subset C^∞(\overline{Ω})$ čímž dostaneme první rovnost, tu dosadíme a pro $φ \in C^∞(\overline{Ω})$ nám vypadne druhá)
+		\begin{align*}
+			-(1 + |x|^2) \frac{\partial^2 u}{\partial x_1^2} - (4 - |x|^2) \frac{\partial^2 u}{\partial x_2^2} &= \frac{\partial \sqrt{1 - |x|}}{\partial x_1} & \qquad \text{na } & Ω\\
+			(2x_1 - x_2) \frac{\partial u}{\partial x_1} + (x_1 + 3x_2) \frac{\partial u}{\partial x_2} &= 0 \qquad & \text{na } & \partial Ω,
+		\end{align*}
+	\end{dukazin}
 \end{priklad}
 
 \end{document}

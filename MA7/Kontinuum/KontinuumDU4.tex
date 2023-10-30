@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	We have argued that the right concept of time derivative for a second order tensor that maps normal-like vectors to tangent-like vectors is introduced by the formula
+	$$ \dall{®A}(¦x, t)|_{¦x=¦χ(¦X,t)} := ®F(¦X, t) \[\frac{d}{dt}\(®F^{-1}(¦X, t) ®A(¦χ(¦X, t), t)®F^{-T}(¦X, t)\)\] ®F(¦X, t)^T. $$
+	Use the formula for the time derivative of the deformation gradient $\frac{d®F}{dt} = ®L®F$ and the concept of material time derivative, and show that this reduces to 
+	$$ \dall{®A}(¦x, t) = \frac{d®A}{dt}(¦x, t) - ®L(¦x, t)®A(¦x, t) - ®A(¦x, t)®L(¦x, t)^T. $$
+	
+	\begin{dukazin}
+		První spočítáme $®F \frac{d}{dt}®F^{-1}$ a to tak, že zderivujeme jednotku jako součin:
+		$$ ®O = \frac{d}{dt}®I = \(\frac{d}{dt}®F\) ®F^{-1} + ®F \frac{d}{dt} ®F^{-1}, $$
+		$$ ®F \frac{d}{dt} ®F^{-1} = -\(\frac{d}{dt}®F\) ®F^{-1} = -®L®F ®F^{-1} = -®L. $$
+		Transponováním $\(\frac{d}{dt} ®F^{-T}\) ®F^T = \(®F \frac{d}{dt} ®F^{-1}\)^T = -®L^T$.
+
+		Nyní z derivace součinu
+		$$ \dall{®A} := ®F\[\frac{d}{dt}\(®F^{-1} ®A ®F^{-T}\)\]®F^{-T} = $$
+		$$ = ®F\(\frac{d}{dt}®F^{-1}\)®A®F^{-T}®F^T + ®F®F^{-1}\(\frac{d}{dt}®A\)®F^{-T}®F^T + ®F®F^{-1}®A\(\frac{d}{dt}®F^{-T}\)®F^T = $$
+		$$ = -®L®A®I + ®I \(\frac{d}{dt}®A\) ®I - ®I ®A ®L^T = \frac{d}{dt}®A - ®L®A - ®A®L^T. $$
+
+		Teď už by stačilo jen vzít tyto veličiny ne vůči $¦X$, ale vůči $¦x$. Jen ®A musíme správně zderivovat. Podle řetízkového pravidla:
+		$$ \frac{d}{dt}®A(¦χ(¦X, t), t) = \frac{\partial ®A}{\partial t} (¦χ(¦X, t), t) + \frac{\partial ®A}{\partial x_i}(¦χ(¦X, t), t)·\frac{\partial χ_i}{\partial t}(¦χ(¦X, t), t) = $$
+		$$ = \frac{\partial ®A}{\partial t} (¦χ(¦X, t), t) + (¦v(¦χ(¦X, t), t) · \nabla_{¦x})®A(¦χ(¦X, t), t). $$
+		To je ale přesně to, co jsme dostali v časové derivaci materiálu, tedy $\frac{d®A}{dt}(¦x, t)$, čímž opravdu dostáváme
+		$$ \dall{®A}(¦x, t) = \frac{d®A}{dt}(¦x, t) - ®L(¦x, t)®A(¦x, t) - ®A(¦x, t)®L(¦x, t)^T. $$
+	\end{dukazin}
+\end{priklad}
+	
+\end{document}

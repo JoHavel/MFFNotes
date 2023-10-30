@@ -141,7 +141,7 @@ TODO!!!
 \begin{definice}
 	We have some abstract body with point $P$. We can look at it in reference configuration (some point in past), where $K_0(P) = ¦X$ ($K_0$ = placer), $t = t_0$. Or in current configuration (how it is situated now), where $K_t(P) = ¦x$.
 
-	The change of configuration, $χ$ in $¦x = \chi (¦X, t)$ is called deformation (but it contains translation and rotation too!).
+	The change of configuration, $¦χ$ in $¦x = ¦χ (¦X, t)$ is called deformation (but it contains translation and rotation too!).
 \end{definice}
 
 \begin{definice}
@@ -154,15 +154,15 @@ TODO!!!
 	But people write those functions without $\hat{\ }$ or $\tilde{\ }$
 
 	\begin{poznamka}
-		$$ \tilde θ(¦x, t)|_{¦x = χ(¦X, t)} = \hat{θ}(¦X, t). $$
+		$$ \tilde θ(¦x, t)|_{¦x = ¦χ(¦X, t)} = \hat{θ}(¦X, t). $$
 	\end{poznamka}
 \end{definice}
 
 \begin{definice}[Deformation gradient]
-	$$ d¦x = ¦x_2 - ¦x_1 = χ(¦X_2, t) - χ(¦X_1, t) = $$
-	$$ = χ(¦X_1 + d¦X, t) - χ(¦X_1, t) = χ(¦X_1, t) + \frac{\partial χ}{¦X}(¦X_1, t) d¦X + … - χ(¦X_1, t) = \frac{\partial χ}{¦X}(¦X_1, t) d¦X. $$
+	$$ d¦x = ¦x_2 - ¦x_1 = ¦χ(¦X_2, t) - ¦χ(¦X_1, t) = $$
+	$$ = ¦χ(¦X_1 + d¦X, t) - ¦χ(¦X_1, t) = ¦χ(¦X_1, t) + \frac{\partial ¦χ}{¦X}(¦X_1, t) d¦X + … - ¦χ(¦X_1, t) = \frac{\partial ¦χ}{¦X}(¦X_1, t) d¦X. $$
 
-	$$ ®F(¦X, t) := \frac{\partial χ}{¦X}(¦X_1, t) d¦X. \qquad d¦x = ®F d¦X $$
+	$$ ®F(¦X, t) := \frac{\partial ¦χ}{¦X}(¦X_1, t) d¦X. \qquad d¦x = ®F d¦X $$
 
 	\begin{poznamkain}
 		It can be derived by derivatives on curves (see lecture).
@@ -178,13 +178,13 @@ TODO!!!
 \end{dusledek}
 
 \begin{dusledek}[In tangent spaces]
-	$$ F(¦X, t_0) = f(χ(¦X, t), t). $$
+	$$ F(¦X, t_0) = f(¦χ(¦X, t), t). $$
 
 	Representation theorem:
 	$$ (Grad F) ¦W = ¦U_{Grad F}·¦W $$
 	$$ (Grad f) ¦w = ¦u_{Grad f} ·¦w $$
-	$f(χ(¦X, t), t) = F(¦X, t_0)$
-	$$ Grad f(¦x, t) |_{¦x = χ(¦X, t)} = Grad F(¦X, t_0) $$
+	$f(¦χ(¦X, t), t) = F(¦X, t_0)$
+	$$ Grad f(¦x, t) |_{¦x = ¦χ(¦X, t)} = Grad F(¦X, t_0) $$
 	$$ ¦U_{Grad F}·¦W = (Grad F)¦W = (Grad f)®F ¦W = (grad f)(®F ¦W) = ¦u_{grad f}·®F ¦W = ®F^T ¦u_{Grad f}·¦W. $$
 
 	$¦u_{grad f} = ®F^{-T} ¦U_{Grad F}$.
@@ -197,7 +197,7 @@ TODO!!!
 		$$ ®F = \frac{\partial χ_i}{\partial x_j} ¦e_i \otimes ¦E_j $$
 
 		$$ X_1 = R \cos Φ, \qquad X_2 = R \sin Φ, x_1 = r \cos Φ, x_2 = r \sin Φ. $$
-		$$ x_1 = χ_1(X_1, X_2, t), \qquad x_2 = χ(x_1, x_2, t), x_i = χ_i(X_j, t). $$
+		$$ x_1 = χ_1(X_1, X_2, t), \qquad x_2 = ¦χ(x_1, x_2, t), x_i = χ_i(X_j, t). $$
 
 		By chain rule:
 		$$ \frac{\partial x_1}{\partial X_2} = \frac{\partial r \cos Φ}{\partial \partial X_2} = \frac{\partial}{\partial X_2} f(R) \cos Φ. $$
@@ -220,32 +220,32 @@ TODO!!!
 	How to differentiate in time tensorial quantities related to the current configuration?
 	
 	Upper convected derivative:
-	$$ \dot{\overline{®A}} (¦x, t) |_{¦x = χ(¦X, t)} = \det ®F(¦X, t)\[\frac{d}{dt}\(®F^{-1}(¦X, t) ®A(χ(¦X, t), t) ®F^{-T}(¦X, t)\)\]®F^T(¦X, t). $$
+	$$ \dall{®A} (¦x, t) |_{¦x = ¦χ(¦X, t)} = \det ®F(¦X, t)\[\frac{d}{dt}\(®F^{-1}(¦X, t) ®A(¦χ(¦X, t), t) ®F^{-T}(¦X, t)\)\]®F^T(¦X, t). $$
 \end{poznamka}
 
 \subsection{Derivatives}
 \begin{definice}[Lagragian velocity]
-	$$ ¦V(¦X, t) = \frac{dχ(¦X, t)}{dt}. $$
-	$$ ¦v(¦x, t)|_{¦x = χ(¦X, t)} $$
+	$$ ¦V(¦X, t) = \frac{d¦χ(¦X, t)}{dt}. $$
+	$$ ¦v(¦x, t)|_{¦x = ¦χ(¦X, t)} $$
 \end{definice}
 
 \begin{definice}[Eulerian velocity]
-	$$ ¦v(¦x, t) = ¦V(¦X, t)|_{¦X = χ^{-1}(¦x, t)}. $$
+	$$ ¦v(¦x, t) = ¦V(¦X, t)|_{¦X = ¦χ^{-1}(¦x, t)}. $$
 \end{definice}
 
 \begin{definice}[Material time derivative]
 	$\frac{d}{dt}=$ keep ¦X fixed, and differentiate with respect to time.
 	$$ ψ(¦X, t) \rightarrow \frac{d}{dt} ψ(¦X, t) = \frac{\partial ψ}{\partial t}(¦X, t) $$
-	$$ ψ(¦x, t) \rightarrow \frac{d}{dt} ψ(χ(¦X, t), t) = \frac{\partial ψ}{\partial t}|_{¦x = χ(¦X, t)} + \frac{\partial ψ}{\partial x_i}(¦x, t)|_{¦x = χ(¦X, t)} \frac{dχ_i}{dt}(¦X, t) = $$
-	$$ = \(\frac{\partial ψ}{\partial t}(¦x, t)|_{¦x = χ(¦X, t)} + V_i(¦X, t) \frac{\partial ψ}{\partial x_i}(¦x, t)|_{¦x = χ(¦X, t)}\) = $$
-	$$ = \(\frac{\partial ψ}{\partial t}(¦x, t) + v_i(¦x, t) \frac{\partial ψ}{\partial x_i}(¦x, t)\)|_{¦x = χ(¦x, t)} $$
+	$$ ψ(¦x, t) \rightarrow \frac{d}{dt} ψ(¦χ(¦X, t), t) = \frac{\partial ψ}{\partial t}|_{¦x = ¦χ(¦X, t)} + \frac{\partial ψ}{\partial x_i}(¦x, t)|_{¦x = ¦χ(¦X, t)} \frac{dχ_i}{dt}(¦X, t) = $$
+	$$ = \(\frac{\partial ψ}{\partial t}(¦x, t)|_{¦x = ¦χ(¦X, t)} + V_i(¦X, t) \frac{\partial ψ}{\partial x_i}(¦x, t)|_{¦x = ¦χ(¦X, t)}\) = $$
+	$$ = \(\frac{\partial ψ}{\partial t}(¦x, t) + v_i(¦x, t) \frac{\partial ψ}{\partial x_i}(¦x, t)\)|_{¦x = ¦χ(¦x, t)} $$
 
 	$$ \frac{d}{dt}ψ(¦x, t) = \frac{\partial ψ}{\partial t}(¦x, t) + (¦v(¦x, t)·\nabla)ψ(¦x, t). $$
 \end{definice}
 
 \begin{definice}[Time derivative of deformation gradient ®F]
-	$$ \frac{d}{dt} ®F (¦X, t) = \frac{d}{dt} \(\frac{\partial χ(¦X, t)}{\partial ¦X}\) = \frac{\partial}{\partial ¦X} \frac{d χ(¦X, t)}{dt} = \frac{\partial}{\partial ¦X}¦V(¦X, t) = $$
-	$$ = \frac{\partial}{\partial ¦X} ¦v(χ(¦X, t), t) = \frac{\partial ¦v}{\partial ¦x}(¦x, t)|_{¦x = χ(¦X, t)} \frac{\partial χ}{\partial ¦X}(¦X, t) = \frac{\partial ¦v}{\partial x}|_{¦x = χ(¦X, t)}®F(¦X, t). $$
+	$$ \frac{d}{dt} ®F (¦X, t) = \frac{d}{dt} \(\frac{\partial ¦χ(¦X, t)}{\partial ¦X}\) = \frac{\partial}{\partial ¦X} \frac{d ¦χ(¦X, t)}{dt} = \frac{\partial}{\partial ¦X}¦V(¦X, t) = $$
+	$$ = \frac{\partial}{\partial ¦X} ¦v(¦χ(¦X, t), t) = \frac{\partial ¦v}{\partial ¦x}(¦x, t)|_{¦x = ¦χ(¦X, t)} \frac{\partial ¦χ}{\partial ¦X}(¦X, t) = \frac{\partial ¦v}{\partial x}|_{¦x = ¦χ(¦X, t)}®F(¦X, t). $$
 
 	$$ ®L(¦x, t) := \nabla ¦V(¦x, t) = \frac{\partial ¦v}{\partial ¦x}(¦x, t). $$
 \end{definice}
@@ -255,7 +255,7 @@ TODO!!!
 \end{dusledek}
 
 \begin{dusledek}
-	$$ \dot{\overline{®A}} = \frac{d®A}{dt} - ®L®A - ®A®L^T $$
+	$$ \dall{®A} = \frac{d®A}{dt} - ®L®A - ®A®L^T $$
 \end{dusledek}
 
 \end{document}

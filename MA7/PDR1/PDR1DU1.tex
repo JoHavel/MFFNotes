@@ -10,13 +10,55 @@
 
 	b) Show that if $u \in W^{1, d}(Ω)$ then it has bounded mean oscillations, i.e., for any $q \in [1, ∞)$, there exists a constant $C$ such that for all balls $B_R(x_0) \subset Ω$, we have
 	$$ \frac{1}{|B_R(x_0)|} \int_{B_R(x_0)} \left|u(x) - \frac{1}{|B_R(x_0)|} \(\int_{B_R(x_0)} u(y) dy\)\right|^q dx ≤ C(q, d)\|\nabla u\|_{L^d(Ω)}^q. $$
+	Jinak zapsáno
+	$$ \fint_{B_R(x_0)} \left|u - \fint_{B_R(x_0)} u\right|^q ≤ C(q, d) \|\nabla u\|_d^q. $$
 
-	\begin{reseni}[a)]
-		
+	\begin{reseni}[a]
+		Mějme bod $\tilde x \in Ω$. Z otevřenosti $Ω$ víme, že nějaká (dostatečně malá) koule se středem $\tilde x$ je stále v $Ω$. Definujme $f = \frac{1}{|x - \tilde x|^\alpha}$ ($α > 0$ zvolíme později). Tato funkce jistě není $L^∞(Ω)$, neboť hodnoty větší než libovolná konstanta nabývá na dostatečně malé kouli (množina nenulové míry) se středem $\tilde x$. To nám bude sporovat $W^{1, d}(Ω) \hookrightarrow L^∞(Ω)$.
+
+		Nyní potřebujeme k ověření $f \in W^{1, d}(Ω)$ ukázat 3 věci: že $f \in L^d(Ω)$, že $D_if := \frac{\partial f}{\partial x_i}$ existuje a že $D_if \in L^d(Ω)$. Začneme existencí derivace: Pokud z $Ω$ vyjmeme $\tilde x$, dostaneme otevřenou podmnožinu, na které je $f$ (nekonečně) diferencovatelná s derivacemi
+		$$ D_if(x) = \frac{\partial f(x)}{\partial x_i} = (-α)·\frac{1}{|x - \tilde x|^{α - 1}}·\frac{1}{|x - \tilde x|}·(x_i - \tilde x_i) = (-α)·\frac{x_i - \tilde x_i}{|x - \tilde x|^{α - 2}}. $$
+		Pokud tedy $D_if$ existuje (všude na $Ω$), musí být rovna tomuto (na hodnotě v $\tilde x$ nezáleží). To dokážeme z definice, a to tím, že vyřízneme z $Ω$ kouli o středu $\tilde x$ (tím nám bude ze spojitosti platit per partes) a její poloměr pošleme k nule:
+		$$ \forall φ \in C^∞_0(Ω): \int_{Ω \setminus B_r(\tilde x)} \frac{1}{|x - x|^α} \frac{\partial φ}{\partial x_i}(x) dx \overset{\text{per partes}}= $$
+		$$ = \int_{\partial (Ω \setminus B_r(\tilde x))} φ(x)·\frac{1}{|x - \tilde x|^α}·¦n·¦e_i dx - \int_{Ω \setminus B_r(\tilde x)} (-α) \frac{x_i - \tilde x_i}{|x - \tilde x|^{α - 2}}φ(x) dx. $$
+		Z kompaktního supportu víme, že
+		$$ \int_{\partial (Ω \setminus B_r(\tilde x))} φ(x)·\frac{1}{|x - \tilde x|^α}·¦n·¦e_i dx = - \int_{\partial B_r(\tilde x)} φ(x)·\frac{1}{|x - \tilde x|^α}·¦n·¦e_i dx. $$
+		$$ \left| - \int_{\partial B_r(\tilde x)} φ(x)·\frac{1}{|x - \tilde x|^α}·¦n·¦e_i dx \right| ≤ \|φ\|_∞ · \left|\int_{S_r(\tilde x)} \frac{1}{r^α} dx\right| = \|φ\|_∞·\frac{1}{r^α}·|S_r| = \|φ\|_∞·|S|·r^{d - 1 - α}. $$
+		My potřebujeme, aby tato hodnota šla k 0, pokud poloměr pošleme také do 0. Tím pádem zvolíme $α < d - 1$. Pak už (posláním $r \rightarrow 0$ v rovnici výše) dostaneme definici slabé derivace:
+		$$ \forall φ \in C^∞_0(Ω): \int_Ω \frac{1}{|x - x|^α} \frac{\partial φ}{\partial x_i}(x) dx \overset{\text{per partes}}= - \int_Ω (-α) \frac{x_i - \tilde x_i}{|x - \tilde x|^{α - 2}}φ(x) dx. $$
+
+		Teď dokážeme $f \in L^d$ a $D_i f \in L^d$:
+		$$ \int_Ω \left|\frac{1}{|x - \tilde x|^α}\right|^d dx = \int_{…} \frac{1}{r^{αd}}·r^{d - 1}·\cos … · … · \sin … ≤ \konst · \int_0^R r^{d - 1 - αd} \overset?< ∞. $$
+		$$ \int_Ω \left|(-α)·\frac{x_i - \tilde x_i}{|x - \tilde x|^{α - 2}}\right|^d dx = \int_{…} α^d·\frac{r^d·\sin …}{r^{αd}}·r^{d - 1}·\cos … · … ≤ \konst · \int_0^R r^{2d - αd - 1} \overset?< ∞. $$
+		($R$, protože Lipschitzovská oblast je omezená.) A to zařídíme volbou $d - 1 - αd > -1$ a $2d - αd - 1 > -1$, tedy $α < \frac{d}{d} = 1$ a $α < \frac{2d}{d} = 2$. Tedy všechny podmínky na $α$ splňuje např. $α = 1 / 2$.
 	\end{reseni}
 
-	\begin{reseni}[b)]
-		
+	\begin{reseni}[b]
+		BÚNO $Ω = B_R(x_0)$ (neboť zvětšením $Ω$ zvětšíme pouze pravou stranu).
+
+		Máme-li $R, R_0 > 0$, $x_0 \in ®R^d$ a funkci $u \in W^{1, d}(B_R(x_0))$, pak zřejmě
+		$$ u_0(x) := u\(R\frac{x}{R_0} + x_0\) \in W^{1, d}(B_{R_0}(¦o)) $$
+		a z derivace složené funkce a věty o substituci:
+		$$ \|\nabla u_0\|_d^d = \int_{B_{R_0}(¦o)} \left|\nabla_y u_0(y)|_{y = x}\right|^d dx = \int_{B_{R_0}(¦o)} \left|\nabla_y u\(R \frac{y}{R_0} + x_0\)|_{y = x}\right|^d dx = $$
+		$$ = \int_{B_{R_0}(¦o)} \left|\nabla_z u(z)|_{z = R \frac{x}{R_0} + x} · \frac{R}{R_0}\right|^d dx = \int_{B_{R_0}(¦o)} \left|\nabla_z u(z)|_{z = R \frac{x}{R_0} + x}\right|^d · \(\frac{R}{R_0}\)^d dx = $$
+		$$ = \int_{B_R(x_0)} \left|\nabla_z u(z)|_{z = w}\right|^d · 1 dw = \|\nabla u\|_d^d. $$
+
+		Z věty o substituci a poměrů objemů koulí
+		$$ \fint_{B_{R_0}(¦o)} \left|u_0 - \fint_{B_{R_0}(¦o)} u_0\right|^q = \fint_{B_{R_0}(¦o)} \left|u_0 - \(\frac{R_0}{R}\)^d\fint_{B_R(x_0)} u_0·\(\frac{R}{R_0}\)^d\right|^q = $$
+		$$ = \(\frac{R_0}{R}\)^d\fint_{B_R(x_0)} \left|u_0 - \fint_{B_R(x_0)} u\right|·\(\frac{R}{R_0}\)^d = \fint_{B_R(x_0)} \left|u - \fint_{B_R(x_0)} u\right|^q. $$
+
+		Zafixujme $d$ a zvolme BÚNO $Ω = B_R(¦o)$, kde $R$ je poloměr koule o objemu 1, a $x_0 = ¦o$. (Tj. můžeme přestat škrtat integrály.)
+
+		Nechť $v = u - \int_{B_R(¦o)} u$. Potom zřejmě $\nabla u = \nabla v$, tedy nerovnost můžeme přepsat jako
+		$$ \int_{B_R(¦o)} |v|^q = \|v\|_q^q ≤ C(q, d) \|\nabla v\|_d^q. $$
+	\end{reseni}
+
+	\begin{reseni}[b, pokračování]
+		Pro spor předpokládejme $\exists v_n = u_n - \int u_n$ že $\forall n \in ®N: \|v_n\|_q^q > n·\|\nabla v_n\|_d^q$, tj. $\frac{1}{n^{d / q}} > \frac{\|\nabla v_n\|_d^d}{\|v_n\|_q^d}$. Zadefinujeme-li $w_n = \frac{v_n}{\|v_n\|_{1, d}}$, pak s využitím faktu\footnote{Jelikož $W^{1, d}$ se kompaktně vnořuje do $L^q$, a obrazem $\{\|·\|_{1, d} ≤ 1\}$ tak musí být kompaktní, čili $c$-omezená množina. Zbytek plyne z linearity normy.} $c·\|v_n\|_{1, d} ≥ \|v_n\|_q$ z linearity derivace dostáváme $\frac{1}{n^{d / q}} > \frac{1}{c^d}·\|\nabla w_n\|_d^d$, tedy $\|\nabla w_n\|_d^d \rightarrow 0$.
+
+		Zároveň však $\|w_n\|_{1, d} = 1$, tedy $w_n$ je omezená množina v $W^{1, p}$, a proto má $w_n$ hromadný bod $w$ v $L^{\tilde q}$ pro libovolné $1 ≤ \tilde q < ∞$ z věty o (kompaktním) vnoření $W$. Použijme $\tilde q = 1$, pak z Lebesgueovy věty, protože $w_n$ je omezená v $L^1$ (zase z kompaktnosti vnoření), plyne
+		$$ \int w = \int \lim_{n \rightarrow ∞}w_n = \lim_{n \rightarrow ∞} \int w_n = \lim_{n \rightarrow ∞} \int \frac{u_n - \int u_n}{\|v_n\|_{1, d}} = \lim_{n \rightarrow ∞} \frac{\int u_n - \int u_n}{\|v_n\|_{1, d}} = \lim_{n \rightarrow ∞} 0 = 0 $$
+		a zároveň $\nabla w = 0$ (neboť\footnote{$$ -\int D_i w φ = \int w D_iφ = \int \lim_{n \rightarrow ∞}w_n D_i φ = \lim_{n \rightarrow ∞} \int w_n D_iφ = \lim_{n \rightarrow ∞} - \int φD_i w_n = - \int φ \lim_{n \rightarrow ∞}D_i w_n. $$} $\nabla w_n \rightarrow \nabla w$ a $\|\nabla w_n\| \rightarrow 0$), tj. $w = \konst$, tudíž $w = 0$. Ale (protože norma je spojitá) $\|w\|_{1, d} = \lim_{n \rightarrow ∞} \|w_n\|_{1, d} = \lim_{n \rightarrow ∞} 1 = 1$. \lightning.
 	\end{reseni}
 \end{priklad}
 

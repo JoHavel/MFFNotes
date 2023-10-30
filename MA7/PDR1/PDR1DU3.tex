@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\renewcommand{\binom}[2]{\begin{pmatrix} #1 \\ #2 \end{pmatrix}}
+
+\begin{document}
+
+\begin{priklad}[3.]
+	The goal is to show that maximal regularity cannot hold in Lipschitz domains or when changing the type of boundary conditions. Let $\phi_0 \in (0, 2\pi)$ be arbitrary and consider $\Omega \subset ®R^2$ given by
+	$$ \Omega := \{(r, \phi) | r \in (0, 1), \phi \in (0, \phi_0)\}. $$
+	
+	Denote $\Gamma_i \subset \partial \Omega$ in the following way $\Gamma_1 := \{(r, 0) | r \in (0, 1)\}$, $\Gamma_2 := \{(r, \phi_0) | r \in (0, 1)\}$ a $\Gamma_3 := \{(1, \phi) | \phi \in (0, \phi_0)\}$.
+
+	Consider two functions
+	$$ u_1(r, \phi) := r^{\alpha_1} \sin\(\frac{\phi \pi}{\phi_0}\), \qquad u_2(r, \phi) := r^{\alpha_2} \sin\(\frac{\phi \pi}{2\phi_0}\). $$
+
+	\begin{itemize}
+		\item Find the condition on $\alpha_i$ so that $u_i \in W^{1, 2}(\Omega)$ -- find an explicit formula for $\nabla u_i$ -- and prove that it is really the weak derivative.
+
+		\begin{reseni}
+			Běžné derivace těchto funkcí jsou:
+			$$ \nabla u_i = \binom{\frac{\partial u_i}{\partial r}}{\frac{1}{r}\frac{\partial u_i}{\partial \phi}} = \binom{\alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\)}{\frac{\pi}{i·\phi_0} r^{\alpha_i - 1} \cos\(\frac{\phi \pi}{i·\phi_0}\)} $$
+			Jelikož tyto derivace jsou spojité, tak pro ně platí per-partes (používám jen $\supp \psi$, abych se vyhnul $r = 0$, $\psi$ i $\psi'$ jsou na doplňku nulové, tedy i integrovaná funkce):
+			$$ \int_\Omega u_i \partial_j\psi = \int_{\supp \psi} u_i \partial_j \psi + 0 \overset{\text{p-p}}= -\int_{\supp \psi}  \psi \partial_j u_i + \int_{\partial\(\overline{\supp \psi}\)} \psi u_i dS_j = -\int … + \int 0 = $$
+			$$ = -\int_{\supp \psi}\psi \partial_j u_i = -\int_{\Omega} \psi \partial_j u_i + 0. $$
+			Tedy jsou to slabé derivace. Že $u_i \in W^{1, 2}(\Omega)$ platí, pokud jsou integrály druhých mocnin derivací konečné:
+			$$ \int_\Omega \(\alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\)\)^2 = \int_\Omega \alpha_i^2 r^{2\alpha_i - 2} \(\sin\(\frac{\phi \pi}{i·\phi_0}\)\)^2 < ∞, $$
+			$$ \int_\Omega \(\frac{\pi}{i·\phi_0} r^{\alpha_i - 1} \cos\(\frac{\phi \pi}{i·\phi_0}\)\)^2 = \int_\Omega \(\frac{\pi}{i·\phi_0}\)^2 r^{2\alpha_i - 2} \(\cos\(\frac{\phi \pi}{i·\phi_0}\)\)^2 < ∞. $$
+			To bude zřejmě tehdy, když $\alpha_i > 0$.
+		\end{reseni}
+
+	\item Find the proper condition on $\alpha_i$ so that $u_i$ solves the problem
+		$$ a) \quad -\Delta  u_1 = 0 \text{ in } \Omega, \qquad b) \quad u_1 = 0 \text{ on } \Gamma_1 \cup \Gamma_2, \qquad c) \quad u_1 = \sin\(\frac{\phi \pi}{\phi_0}\) \text{ on } \Gamma_3, $$
+		$$ d) \quad -\Delta u_2 = 0 \text{ in } \Omega, \qquad e) \quad u_2 = 0 \text{ on } \Gamma_1, \qquad f) \quad u_2 = \sin\(\frac{\phi \pi}{2\phi_0}\) \text{ on } \Gamma_3, $$
+		$$ g) \quad \nabla u_2·n = 0 \text{ on } \Gamma_2. $$
+
+		\begin{reseni}
+			Rovnice $b), c), e), f)$ splňují funkce z definice (když dosadíme $r = 1$, tak nám zbude pouze $\sin$, když dosadíme $\phi = 0$ nebo $\phi = \phi_0$, tak bude $\sin$ nulový).
+
+			Norma $n$ je v $\Gamma_2$ kolmá na poloměr, tedy
+			$$ \nabla u_2·n = \frac{\pi}{2\phi_0} r^{\alpha_2 - 1} \cos\(\frac{\phi \pi}{2\phi_0}\) = \frac{\pi}{2\phi_0} r^{\alpha_2 - 1} \cos\(\frac{\phi_0 \pi}{2\phi_0}\) = … · \cos\(\frac{\pi}{2}\) = … · 0 = 0. $$
+			V polárních souřadnicích $\Delta f = \frac{\partial^2 f}{\partial r^2} + \frac{1}{r^2}\frac{\partial^2 f}{\partial \phi^2} + \frac{1}{r} \frac{\partial f}{\partial r}$. Tedy
+			$$ \Delta u_i = \alpha_i·(\alpha_i - 1) r^{\alpha_i - 2} \sin\(\frac{\phi \pi}{i·\phi_0}\) + r^{-2}\(\frac{\pi}{i·\phi_0}\)^2 r^{\alpha_i} \sin\(\frac{\phi \pi}{i·\phi_0}\) + $$
+			$$ + r^{-1} \alpha_i r^{\alpha_i - 1} \sin\(\frac{\phi \pi}{i·\phi_0}\) = r^{\alpha_i - 2}·\sin\(\frac{\phi \pi}{i·\phi_0}\)·\(\alpha_i·(\alpha_i - 1) + \(\frac{\pi}{i·\phi_0}\)^2 + \alpha_i\). $$
+			Výraz před závorkou je na vnitřku $\Omega$ nenulový, tedy musí být nulová závorka:
+			$$ 0 = \alpha_i·(\alpha_i - 1) + \(\frac{\pi}{i·\phi_0}\)^2 + \alpha_i = \alpha_i^2 - \(\frac{\pi}{\phi_0}\)^2 \implies \alpha_i = ±\frac{\pi}{\phi_0}. $$
+		\end{reseni}
+
+		\item Find all p's for which $u_i \in W^{2, p}(\Omega)$. What is the criterium on $\alpha_i$ so that $u_i \in W^{2, 2}(\Omega)$.
+
+			\begin{reseni}
+				Je to podobné jako v prvním bodě, jen chceme druhé derivace, tedy $r$ bude v mocnině $p·(\alpha_i - 2)$, tedy chceme, aby $p·(\alpha_i - 2) > -1$. Tedy kritérium pro $\alpha_i$ je $\alpha_i > 1.5$.
+			\end{reseni}
+
+		\pagebreak
+
+		\item With the help of the above computation, find $f_i \in L^2(\Omega)$ such that the problems with homogeneous boundary conditions, i.e.,
+			$$ -\Delta v_1 = f_1 \text{ in } \Omega, \qquad v_1 = 0 \text{ on } \partial \Omega, $$
+			$$ -\Delta v_2 = f_2 \text{ in } \Omega, \qquad v_2 = 0 \text{ on } \Gamma_1 \cup \Gamma_3, \qquad \nabla v_2·n = 0 \text{ on } \Gamma_2 $$
+			poses unique weak solutions $v_i \in W^{1, 2}(\Omega)$ but $v_1 \notin W^{2, 2}(\Omega)$ if $\phi_0 > \pi$ and $v_2 \notin W^{2, 2}(\Omega)$ for $\phi_0 > \frac{\pi}{2}$.
+
+			\begin{reseni}
+				Když zadefinujeme $v_i = u_i - \sin\(\frac{\phi \pi}{i·\phi_0}\)$, dostaneme splněné okrajové podmínky tohoto problému, neboť v $\Gamma_3$ jsme odečetli přesně hodnotu, v $\Gamma_1$ jsou právě tyto siny nulové a v $\Gamma_2$ je v prvním případě také nulový a v druhém chceme, aby byla druhá část gradientu, což je ale příslušný kosinus, který je přesně v $\nabla u_2 · n$ a je též nulový.
+
+				Zbývají $f_1$ a $f_2$:
+				$$ f_i = -\Delta v_i = -\Delta u_i + \Delta \sin\(\frac{\phi \pi}{i·\phi_0}\) = $$
+				$$ = 0 + \(0 + \frac{1}{r^2}·\(\frac{\pi}{i·\phi_0}\)^2·\sin\(\frac{\phi \pi}{i·\phi_0}\) + \frac{1}{r}·0\) = \(\frac{\pi}{r·i·\phi_0}\)^2 $$
+			\end{reseni}
+	\end{itemize}
+\end{priklad}
+
+\end{document}
