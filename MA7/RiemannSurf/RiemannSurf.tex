@@ -242,4 +242,78 @@ TODO!!!
 	\end{itemize}
 \end{veta}
 
+% 31. 10. 2023
+
+\begin{poznamka}[Deep fact]
+	For $d ≤ 3$, if two $d$-dimensional manifolds are homeomorphic, then they are diffeomorphic.
+\end{poznamka}
+
+\section{Riemann surfaces}
+\begin{definice}[Riemann surface]
+	A Riemann surface is a complex analytic manifold of dimension 1:
+	\begin{itemize}
+		\item $X$ is a Hausdorff, connected topological space;
+		\item for all $x \in X$, there is a homeomorphism $φ_x: U_x \rightarrow V_x$, where $U_x$ is an open neighbourhood of $x \in X$, $V_x$ is an open set in ®C;
+		\item for any $U_x$, $U_y$ such that $U_x \cap U_y ≠ \O$, the transition function $T_{x, y} := φ_y ∘ φ_x^{-1}: φ_x(U_x \cap U_y) \rightarrow φ_y(U_x \cap U_y)$ is holomorphic.
+	\end{itemize}
+
+	\begin{poznamkain}
+		We saw in the first lecture that a holomorphic preserves orientation when thought of as a function from the real plane to itself. Since our transition functions are holomorphic, any Riemann surface is orientable.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklad}[The complex projective line]
+	Just as for $®P^1(®R)$, we define $®P^1(®C)$ to be the set whose elements are complex $1$-dimensional subspaces of $®C^2$.
+
+	Let $U_1 = U_2 := ®C$ and define $g: U_1 \setminus \{0\} \rightarrow U_2 \setminus \{0\}$, $z \mapsto \frac{1}{z}$. We define $®P^1(®C)$ to be the quotient $®P^1(®C) := U_1 \coprod U_2 / (z \sim g(z))$.
+\end{priklad}
+
+\begin{priklad}[Show that]
+	As a set $®P^1(®C)$ is ®C plus a point.
+
+	As a topological space $®P^1(®C)$ is the one point compactification of ®C.
+
+	Conclude from the previous sentence that $®P^1(®C)$ is homeomorphic to the two sphere.
+\end{priklad}
+
+\begin{poznamka}
+	In complex analysis $®P^1(®C)$ is known as the Riemann sphere.
+\end{poznamka}
+
+\begin{poznamka}
+	For $i = 1, 2$, we denote the image of $U_i$ in the quotient $U_1 \coprod U_2 / (z \sim g(z))$ by $[U_i]$. Note that $U_i$ define the local coordinate functions: $φ_i: [U_i] \rightarrow U_i$, $p \mapsto z_i$, where $z_i$ is the complex numbers in $U_i$ such that $[z_i] = p_i$. Both $φ_1$, $φ_2$ are homeomorphisms.
+
+	We now consider the transition functions: the intersection
+	$$ [U_1] \cap [U_2] = [U_i \setminus \{0\}] = [U_2 \setminus \{0\}]. $$
+	The image of the intersection under $φ_1$ is $φ_1([U_i] \cap [U_2]) = ®C \setminus \{0\}$ (*). Thus (*) is the domain of our single transition function $T = φ_2 ∘ φ_1^{-1}$. For $z_1 ≠ 0$, we have $T: z_1 \overset{φ_1^{-1}}\mapsto [z_1] = [z_2 := g(z_1) = 1 / z_1] \overset{φ_1}\mapsto z_2 = 1 / z_1$. Thus
+	$$ T: ®C \setminus \{0\} \rightarrow ®C \qquad z \mapsto \frac{1}{z}. $$
+	Since $T$ has a pole only at $z_1 = 0$, we see that it is holomorphic on $®C \setminus \{0\}$. A symmetric (exchange 1 for 2) calculation shows that $T^{-1}$ is also holomorphic. So $®P^1(®C)$ is a Riemann surface.
+\end{poznamka}
+
+\begin{priklad}[Hopf fibration]
+	Consider the 3-dimensional real sphere $S^3 \subseteq ®C^2 = ®R^4$. Given a point $p \in S^3$, $\exists$ a unique line $l_p$ through the origin and $p$. Thus we got a function $H: S^3 \rightarrow ®P^1(®C)$, $p \mapsto l_p$.
+
+	Check that $H$ is continuous and surjective. Since $S^3$ is closed and bounded, it is compact. Moreover, since the image of a compact set under a continuous function is compact, $®P^1(®C)$ is compact.
+
+	What is the fiber of the surjective map $H: S^3 \rightarrow ®P^1(®C)$, i.e. what is $H^{-1}(p)$, for any point $p \in ®P^1(®C)$. (Hint: It is $S^1$.)
+
+	This gives us $S^2 \times S^1 = S^3$ as set. (Not as topological space!)
+\end{priklad}
+
+\begin{priklad}[Complex tori]
+	Definition: Let $τ_1$ and $τ_2$ be two complex numbers, that are linearly independent. The set of all integral linear combinations of $τ_1$ and $τ_2$:
+	$$ Λ := \{nτ_1, mτ_2 | n,m \in ®Z\} \subseteq ®C $$
+	is called the lattice of $τ_1$ and $τ_2$.
+
+	Observe that we can assume that $τ_1 = 1$, and $\Im(τ_2) > 0$, allowing to make simplifying assumption: that our lattice has the form $Λ = \{n + mτ | n, m \in ®Z, τ \in ®H\}$, where $®H$ is the upper half plane.
+
+	Consider the quotient space $T = ®C / Λ$. THat is the quotient space with respect to the equivalence relation $z_2 \sim z_1 \Leftrightarrow z_2 = z_1 + w$ for $w \in Λ$.
+
+	The canonical projection map $π: ®C \rightarrow T$ (i.e. $π(z) = [z]$) induces a quotient topology on $T$ (i.e. $V \subseteq T$ is open iff $p^{-1}(V)$ is open in ®C).
+\end{priklad}
+
+\begin{priklad}
+	For $P$ the closed parallelogram with vertices $0, 1, τ, 1+τ$, show that for any $z \in ®C\ \exists z' \in P$ that $π|_p \rightarrow T$ is surjective. Hence we can restrict our attention to $p$.
+\end{priklad}
+
 \end{document}

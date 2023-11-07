@@ -185,7 +185,7 @@ TODO!!!
 	The same construction can be defined for homotopy.
 \end{definice}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[*]
 	Given a map $F: Y \times [0, 1] \rightarrow X$ and a map $\tilde F: Y \times \{¦o\} \rightarrow \tilde X$, where $p: \tilde X \rightarrow X$ is a covering space, and $\tilde F$ lifts $F|_{Y \times \{¦o\}}$; there restricting to $\tilde F$ on $Y \times \{¦o\}$.
 
 	\begin{poznamka}[Corollary: Fact 1 and Fact 2 from the previous proof]
@@ -218,5 +218,46 @@ TODO!!!
 \end{priklad}
 
 TODO!!!
+
+% 30. 10. 2023
+
+\begin{dukaz}[Proposition *]
+	To prove our proposition we need to construct $\tilde F: N \times I \rightarrow \tilde X$, where $N$ is an open neighbourhood in $Y$ of a given point $y_0 \in Y$. Since $F$ is continuous, every point $(y_0, t) \in Y \times I$ has a product neighbourhood $N_t \times (a_t, b_t)$ such that $F(N_t \times (a_t, b_t))$ is contained in an evenly covered neighbourhood of $F(y_0, t)$.
+
+	By compactness of $\{y_0\} \times I$, finitely many such products $N_t \times (a_t, b_t)$ cover $\{y_0\} \times I$. This implies that we can choose a single neighbourhood $N$ of $y_0$, and a partition of $[0, 1]$ $0 = t_0 < t_1 < t_2 < … < t_n = 1$ such that $F|_{N \times [t_i, t_{i+1}]}$ is contained in an evenly covered neighbourhood $U_i$.
+
+	Assume inductively that $\tilde F$ has been constructed for $N \times [0, t_i]$ starting at a given $\tilde F$ on $N \times \{0\}$. We have that $F(N \times [t_i, t_{i+1}]) \subset U_i$, so since $U_i$ is evenly covered, there is an open set $\tilde U_i \subset \tilde X$ projecting homeomorphically to $U_i$ via $p$ and $\tilde F((y_0, t_i)) \in \tilde U_i$. After replacing $N$ by a smaller neighbourhood of $y_0$. (We replace $N \times \{t_i\}$ with the intersection with ?) we may assume that $\tilde F(N \times \{t_0\}) \in \tilde U_i$. Now we define $\tilde F$ on $N \times [t_i, t_{i+1}]$ to be the composition of $F$ with $p^{-1}: U_i \rightarrow \tilde U_i$. After a finite number of steps, we eventually get a lift $\tilde F: N \times I \rightarrow \tilde X$ for $N$ (some neighbourhood of $y_0$).
+
+	Next we show the uniqueness for $Y = \{\text{point}\}$. In this case we ?
+	Suppose there are two lifts $\tilde F: I \rightarrow \tilde X$, $\tilde F': I \rightarrow \tilde X$. As before we choose a partition $0 = t_0 < t_1 < … < t_n = 1$ of $[0, 1]$ so that $\forall i: F([t_i, t_{i+1}])$ is contained in some evenly covered neighbourhood $U_i$. Assume inductively that $\tilde F = \tilde F'$ on $[0, t_i]$. Since $[t_i, t_{i+1}]$ is connected, co is $\tilde F([t_i, t_{i+1}])$, which must therefore lie in one of the disjoint open sets $\tilde U_i$ projecting homeomorphically to $U_i$. By the same token, $\tilde F'([t_i, t_{i+1}])$ lies in a single $\tilde U_i$, in fact in the same containing $\tilde F([t_i, t_{i+1}])$ (by the assumption of induction). Since $p$ is injective on $\tilde U_i$ and $p \tilde F = p \tilde F'$, it follows that $\tilde F = \tilde F'$ on $[t_i, t_{i+1}]$ and the induction step follows.
+
+	The last step of the prove is to observe that since $\tilde F$, $\tilde F'$ are constructed on the sets of form $N \times I$ and are unique when we restrict to each segment $\{y\} \times I$, they must agree whenever two such sets $N \times I$ overlap, so we get in fact a well-defined lift $\tilde F$ on $Y \times I$. This $\tilde F$ is continuous since it is continuous on each segment $\{y\} \times I$.
+\end{dukaz}
+
+\begin{poznamka}
+	We would like to see $π$, as a functor $π_1: Top \rightarrow Grp$. In order for $π_1$ to be a functor, we want for $φ: (X, x_0) \overset{\text{cont.}}\rightarrow (Y, y_0)$ associate $φ_*: π_1(X, x_0) \rightarrow π_1(Y, y_0)$. How to get $φ_*$? Given a loop $γ$ on $X$ based at $x_0$. We have a loop $φ ∘ γ$ on $Y$ based at $y_0$. $φ_*([γ]) := [φ ∘ γ]$. Is $φ_*$ a homomorphism? $φ_*([γ; γ_2]) = [φ ∘ (γ_1·γ_2)] = [φ ∘ γ_1 · φ · γ_2] = [φ ∘ γ_1]·[φ ∘ γ_2]$. Hence $φ_*$ is a homomorphism.
+
+	$$ \forall (X, x_0) \in Fb(Top) \exists φ=1 \in Hom((X, x_0), (X, x_0)). $$
+
+	We want $π_1(1) = \id_{π_1(X, x_0)}$.  This because of the definition of $π_1(1)$, which maps $[γ] \rightarrow [γ]$ $\implies$ $π_1(1): [γ] \mapsto [γ]$, so it is $\id_{π_1(X, x_0)}$.
+
+	In order for $π_1$ to be a functor we also need: given $(X, x_0) \overset{φ}\rightarrow (Y, y_0) \overset{ψ}\rightarrow (Z, z_0)$ then $i(ψ ∘ φ)_* = π_1(ψ ∘ φ) = π_1(ψ) ∘ π_1(φ) = (ψ)_* · (φ)_*$. This is because
+	$$ π_1(ψ ∘ φ)([γ]) = (ψ ∘ φ)_* ([γ]) = [ψ ∘ φ ∘ γ] = ψ_*([φ ∘ γ]) = π_1(ψ)(φ_*([γ])) = π_1(ψ) ∘ π_1(φ)([γ]). $$
+	Hence it holds and $π_1$ is functor $TOP \rightarrow GRP$.
+\end{poznamka}
+
+\begin{tvrzeni}
+	Given a topological space $X$. If $X = \bigcup A_α$, where each of $A_α$ is a path connected subspace of $X$ and $A_α \cap A_β$ is path connected $\forall α, β$, then each loop in $X$ based at $x_0$ can be decomposed as a product of loops each of which is in some $A_α$.
+
+	\begin{dukazin}
+		Given $f: I \rightarrow X$ with the basepoint $x_0$, we claim that there is a partition $0 = s_0 < s_1 < … < s_m = 1$ of $I$ such that $[s_{i-1}, s_i]$ is mapped by $f$ to a single $A_α$ (that by call $A_i$). Since $f$ is continuous, each $s \in I$ has an open neighbourhood $V_i$ in $I$ mapped by $f$ to some $A_α$. We may in fact take $V_s$ to be an interval whose closure is mapped to a single $A_α$. By compactness of $I$, we see that a finite number of such intervals cover $I$. The endpoints of these intervals form a partition of $I$: $0 = s_0 < s_1 < … < s_m = 1$. Again $A_i$ we call $A_α: f([s_{i-1}, s_i]) \subset A_α$. Let $f_i$ be denoted as $f|_{[s_{i-1}, s_i]}$. Then $f = f_i, …, f_m$, where $f_i$ is a path in $A_i$.
+
+		Since $f([s_{i-1}, s_i]) \subset A_i$ $\land$ $f([s_i, s_{i+1}]) \subset A_{i+1}$ $\implies$ $f(s_i) \in A_i \cap A_{i-1}$. Since $A_i \cap A_{i+1}$ is path connected, we can choose path $g_i \subset A_i \cap A_{i+1}$, $g_i$ starts at $x_0$ and ends at $f(s_i)$. Hence $[f][f_1 g_1^{-1}][g_1 f_2 g_2^{-1}]…[g_{n-1} f_n g_n^{-1}]$, loops in $A_1, A_2, …, A_n$.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 30. 10. 2023
+
+TODO?
 
 \end{document}

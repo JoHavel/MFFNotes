@@ -306,4 +306,113 @@ TODO!!!
 	$\{(K, x) \in ©K(X) \times X | x \in K\}$ is closed.
 \end{poznamka}
 
+% 01. 11. 2023
+
+\begin{definice}
+	$$ Σ_1^1(X) := \{A \subset X | \exists Y \text{ PTS}, f: Y \rightarrow X \text{ continuous}: f(Y) = A\}. $$
+\end{definice}
+
+\begin{poznamka}
+	\begin{itemize}
+		\item $\O \in Σ_1^1$;
+		\item $∏_2^0(X) \subset Σ_1^1(X)$, $f = \id$;
+		\item $X$, $Z$ PTS, $ψ: X \rightarrow Z$ continuous, $A \in Σ_1^1(X) \implies ψ(A) \in Σ_1^1(Z)$;
+		\item $Σ_{n+1}^1(X) = \{A \subset X | \exists Y \text{ PTS}, ψ: Y \rightarrow X \text{ continuous}, B \in ∏_n^1(X), A = ψ(B)\}$, $n \in ω \setminus \{0\}$;
+		\item $∏_n^1(X) = \{A \subset X | X \setminus A \in Σ_n^1(X)\}$, $Δ_n^1(X) = \sum_n^1(X) \cap ∏_n^1(X)$;
+		\item $\bigcup_{n \in ®N} Σ_n^1(X) = \bigcup_{n \in ®N} ∏_n^1 = \bigcup_{n \in ®N}Δ_n^1(x) = ®P(X)$;
+		\item $\# ®P(X) ≤ 2^ω$, $®P(X)$ is closed under continuous images and inverse images;
+		\item $Σ_1^1(X) = \{A \subset X | \exists ψ: ω^ω \rightarrow X \text{ continuous}: ψ(ω^ω) = A\}$; $Y$ PTS, $f: Y \rightarrow X: f(Y) = A$, $g: ω^ω \rightarrow Y: g(ω^ω) = Y$, $g, f$ are constant. So $ψ = f ∘ g$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{veta}
+	$X$ PTS, $A_n \in Σ_1^1(X)$, $n \in ω$. Then $\bigcup_{n \in ω} A_n, \bigcap_{n \in ω} A_n \in Σ_1^1(X)$.
+
+	\begin{dusledekin}
+		Similar for $∏_1^1(X)$.
+	\end{dusledekin}
+
+	\begin{dukazin}
+		„Union“: Assume $A_n ≠ \O$, $n \in ω$ $\implies$ $φ_n: ω^ω \rightarrow X: φ_n(ω^ω) = A_n$ continuous. Define $φ: ω^ω \rightarrow X$ by $φ(ν_0, ν_1, …) = φ_{ν_0}(ν_1, ν_2, …)$. „$φ$ is continuous“: $ν^j \rightarrow ν \implies \exists n_0 \in ω\ \forall j ≥ n_9: ν^j_0 = ν_0$.
+		$$ \lim_{j \rightarrow ∞} φ(ν^j) = \lim_{j \rightarrow ∞} φ_{ν^j_0}(ν^j_1, ν^j_2, …) = \lim_{j \rightarrow ∞} φ_{ν_0}(ν^j_1, …) = φ_{ν_0}(ν_1, …) = φ(ν). $$
+		„$φ(ω^ω) = \bigcup_{n \in ω} A_n$“:
+		$$ x \in \bigcup A_n \implies \exists n \in ω: x \in A_n \implies \exists ν \in ω^ω: φ_n(ν) = x \implies φ(n^{\wedge}ν) = x. $$
+		$$ x \in φ(ω^ω) \implies \exists \tilde ν \in ω^ω: φ(\tilde ν) = x \implies x = φ_{\tilde ν_0}(\tilde ν_1, …) \implies z \in A_{\tilde ν_0} \implies x \in \bigcup A_n. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Intersection]
+	WLOG: $A_n ≠ \O$, $n \in ω$. $Y := (ω^ω)^ω$, $Y$ PTS by the theorem above (first item). $φ_n: ω^ω \rightarrow X$, meh that $φ_n(ω^ω) = A_n$.
+	$$ F:= \{y = (y_0, y_1, …) \in Y | \forall n, m \in ω: φ_n(y_n) = φ_m(y_m)\} = \bigcap_{n, m \in ω}\{y \in Y | φ_n(y_n) = φ_m(y_m)\} = \bigcap))n, m \in ω \{y \in Y | φ_n ∘ π_n(y) = φ_m ∘ π_m(y)\} $$
+	intersection of closed, so $F$ is closed and is PTS.
+
+	„$φ_0 ∘ π_0(F) = \bigcap_{n \in ω} A_n$“:
+	$$ x \in φ_0 ∘ π_0(F) \implies \exists y \in F: x = φ_0(y_0) = φ_1(y_1) = φ_2(y_2) = … \implies x \in \bigcap_{n \in ω} A_n. $$
+	$$ x \in \bigcap A_n \implies \exists y_0, y_1, … \in ω^ω: φ_0(y_0) = x, φ_1(y_1) = x, … \implies y = (y_0, y_1, …) \in F, φ_0 ∘ π_0(y) = x \implies x \in φ_0 ∘ π_0(F). $$
+\end{poznamka}
+
+\begin{poznamka}
+	$Σ_1^1(X)$ is not closed under complement: $ς(Σ_1^1(X)) \supset Σ_1^1(X) \cup ∏_1^1(x)$.
+
+	$Borel(X) \subset Σ_1^1(X) \cap ∏_1^1(X) = Δ_1^1(X)$.
+\end{poznamka}
+
+\begin{veta}
+	$X$, $Y$ PTS, $A \in Σ_1^1(X)$ (respective $∏_1^1(X)$), $B \subset Y$, $A$ and $B$ are homeomorphism. Then $B \in Σ_1^1(Y)$ (resp. $∏_1^1(Y)$).
+
+	\begin{dukazin}
+		For $Σ_1^1$ trivial. $A \in ∏_1^1(X)$, $φ: A \rightarrow B$ homeomorphism. Then from the theorem above, $\exists \tilde A \in ∏_2^0(X), \tilde B \in ∏_2^0(Y)$ and $\tilde φ: \tilde A \rightarrow \tilde B$ homeomorphism extending $φ$, $A \subset \tilde A$, $B \subset \tilde B$. Then $\tilde A \setminus A = (X \setminus A) \cap \tilde A \in Σ_1^1(X) \implies \tilde B \setminus B \in Σ_1^1(Y)$. $B = Y \setminus (\tilde B \setminus B \cup Y \setminus \tilde B) \in ∏_1^1(Y)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$X$ PTS. Then $Borel(X) \subset Δ_1^1(X)$.
+	
+	\begin{dukazin}
+		Trivial.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Luzin theorem}
+\begin{veta}[Luzin]
+	$X$ PTS, $A_1, A_2 \in Σ_1^1(X)$, $A_1 \cap A_2 = \O$. Then there exists $B \in Borel(X)$, such that $A_1 \subset B \subset X \setminus A_2$.
+\end{veta}
+
+\begin{dusledek}
+	$X$ PTS. $Δ_1^1(X) = Borel(X)$.
+
+	\begin{dukazin}
+		$Δ_1^1(X) \subseteq Borel(X)$ we already have.
+		$$ A \in Δ_1^1(X) \implies A \in Σ_1^1(X), X \setminus A \in Σ_1^1 \implies \exists B \in Borel(X): A \subset B \subset X \setminus (X \setminus A) = A \implies A = B \implies A \in Borel(X). $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{lemma}
+	$C_n, D_n \subset X$, $n, m \in ω$ and $\forall n, m \in ω$ we can separate $C_n, D_m$ by some Borel set. Then we can separate $\bigcup_{n \in ω}C_n$ and $\bigcup_{m \in ω} D_m$ by Borel set.
+
+	\begin{dukazin}
+		Let $B_{n, m} \in Borel(X)$ separating $C_n$ from $D_m$ ($C_n \subset B_{n, m} \subset X \setminus D_m$). Put $B := \bigcup_{n \in ω} \bigcap_{m \in ω} B_{n, m}$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Luzin theorem]
+	Assume $A_1, A_2 ≠ \O$. Then  exists $φ_1, φ_2: ω^ω \rightarrow X$ $φ_i(ω^ω) = A_i$. We assume $A_1$ can't be separated from $A_2$ by any Borel set.
+	$$ A_i = φ_i(ω^ω) \implies A_i = \bigcup_{n \in ω} φ_i(©N(n)) \implies \exists ν_0, μ_0 \in ω: φ_i(©N(μ_0)) \text{ can't be separated from } φ_2(©N(ν_0)). $$
+	We use lemma again and obtain $μ, ν \in ω^ω$ such that $\forall k \in ω: φ_1(©N(μ / k))$ can't be separated from $φ_2(©N(ν / k))$
+	$$ φ_1(μ) \in A_1, φ_2(ν) \in A_2 \implies φ_1(μ) ≠ φ_2(ν) \implies \exists G_1, G_2 \text{ open }, G_1 \cap G_2 = \O $$
+	such that $φ_1(μ) \in G_1$, $φ_2(ν) \in G_2$, $φ_1, φ_2$ are continuous $\implies$ $\exists k \in ω: φ_1(©N(μ / k)) \subset G_1$, $φ_2(©N(ν / k)) \subset G_2$ which is continuous.
+\end{dukaz}
+
+\begin{priklady}
+	$\{f \in C([0, 1]) | \forall x \in [0, 1]: f'(x) \in ®R\} \in ∏_1^1 \setminus Δ_1^1$.
+
+	$\{f \in C([0, 2π) | \text{ Fourier series converges to $f$ for every } x \in [0, 2π]\} \in ∏_1^1 \setminus Δ_1^1$.
+
+	$\{K \in ©K([0, 1]) \middle| |K| ≤ ω\}, \{K \in ©K(®R) | K \subset ®Q\} \in ∏_1^1 \setminus Δ_1^1$.
+\end{priklady}
+
+\begin{priklady}
+	$\{x \in X | \exists y \in Y: (x, y) \in B\} \in Σ_1^1(X)$.
+\end{priklady}
+
 \end{document}

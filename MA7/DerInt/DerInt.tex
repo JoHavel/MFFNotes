@@ -324,4 +324,43 @@
 	\end{dukazin}
 \end{veta}
 
+% 01. 11. 2023
+
+\begin{veta}
+	Nechť $1 ≤ p < ∞$, $Ω \subset ®R^n$ otevřená, $u \in W^{-1, p}(Ω)$. Potom $\exists u_k \in C^∞(Ω) \cap W^{1, p}(Ω): u_k \rightarrow u$ v $W^{1, p}(Ω)$.
+
+	\begin{dukazin}
+		$Ω_1 \Subset Ω_2 \Subset … \Subset Ω$, $\overline{Ω_k}$ kompaktní, $Ω_k$ Otevřené, $Ω = \bigcup_{j=1}^∞ Ω_j$. Najdeme rozklad jednotky $ω_j$ (tj. $ω_j \in ©D(Ω)$, $ω_j(x) \in [0, 1]$, $ω_j ≥ χ_{Ω_j}$, $\forall x \in Ω_n: \sum_{j=1}^∞ ω_j(x) = 1$).
+
+		Mějme $ω_ju \in W^{1, p}_0(Ω)$ $\exists v_{k, j} \in ©D(Ω)$: $v_{k, j} \rightarrow ω_j u$ v $W^{1, p}$. Takže najdeme $v_j \in ©D(Ω): \int_Ω |v_j - ω_j u|^p + |Dv_j - Dω_j u| < 2^{-j} ε$, $v_j \in W^{1, p}$. $\sum_{j=1}^∞ ω_j u = u \in W^{1, p}$.
+
+		Položme $v = \sum_{j=1}^∞ v_j$. Chceme dokázat $\|v - u\|_{1, p} < ε$. Nejprve na $Ω_n$. Máme $u|_{Ω_n} = \sum_{j=1}^n (ω_j u) |_{Ω_n} v|_{Ω_n}  = \sum_{j=1}^n v_j|_{Ω_n}$.
+		$$ \int_Ω \|v - u\|^p + \|Dv - Du\|^p ≤ \int_{Ω_n} \sum_{j=1}^n |v_j - u_j|^p + |Dv_j - Du_j|^2 ≤ \sum_{j=1}^n \|v_j - u_j\|_{W^{1, p}(Ω_n)}^p ≤ \sum_{j=1}^n 2^j ε ≤ ε. $$
+		Pošleme $n \rightarrow ∞$ a zjistíme, že $\|u - v\|_{W^{1, p}(Ω)}^p ≤ ε$.
+	\end{dukazin}
+
+	\begin{poznamkain}[Konstrukce rozkladu jednotky]
+		Mějme nějaké $η_j: η_j \in ©D(Ω)$, $ TODO!!!$
+	\end{poznamkain}
+\end{veta}
+
+\section{Absolutní spojitost po přímkách}
+\begin{veta}
+	Nechť $Ω \subset ®R^n$ otevřená a $a \in L^1$. Nechť platí následující: Pro každé $i \in [n]$ a pro $λ^n$-skoro všechna $x \in Ω$ je funkce $t \mapsto u(x + te_i)$ lokálně absolutně spojitá a $\partial_i u \in L^1(Ω)$. Pak $u \in W^{1, 1}(Ω)$ a $D_i u = \partial_i u dλ^n$.
+
+	\begin{dukazin}
+		$u \in L^1 \implies u$ měřitelná. $φ_x: t \mapsto u(x + te_i)$ absolutně spojitá $\implies$ $\exists φ_x'(t)$ pro skoro všechna $t$ a
+		$$ φ_x'(t) = \lim_{y \rightarrow t, y \in Q} \frac{φ_x(y) - φ_x(t)}{y - t} \implies φ'(x, t) = \partial_i u(x + te_i) \text{ je $λ^n$-měřitelná}. $$
+		BÚNO $Ω = (a_1, b_1) \times (a_2, b_2) \times … \times (a_n, b_n)$. Označme $\tilde Ω := (a_2, b_2) \times … \times (a_n, b_n)$. Nechť $φ \in ©D(Ω)$ pro $λ^n$-skoro všechna $\tilde x \in \tilde Ω$ máme ($u$ absolutně spojitá v $L^1$ $\implies$ $Du = u'$):
+		$$ \int_{\tilde Ω} \int_{a_1}^{b_1} \partial_1 u(t, \tilde x) φ(t, x) dt d\tilde x = \int_{\tilde Ω} \int_{a_1}^{b_1} u(t, \tilde x) \partial_1 φ(t, x) dt d\tilde x. $$
+		$$ \(\forall φ \in ©D(Ω): \int_Ω \partial u φ = -\int_Ω u \partial_1 φ\) $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $Ω \subset ®R^n$ otevřená, $u \in W^{1, 1}(Ω)$. Pak existuje vhodný reprezentant funkce $u$ takový, že platí následující: Pro TODO!!!
+\end{veta}
+
+TODO!!!
+
 \end{document}

@@ -291,4 +291,50 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 30. 10. 2023
+
+TODO!!! (First lecture)
+
+\begin{definice}[Real spectrum of $L$]
+	$Γ_1 = \partial Ω$. We say that $λ \in ®R$ belongs to the spectrum of $L$ iff $\exists u ≠ 0$, $Lu = lu$ in $Ω$, $u = 0$ on $\partial Ω$. Denote $Σ := \{λ \in ®R | \exists u ≠ ¦o, Lu = λu\}$.
+\end{definice}
+
+\begin{veta}
+	Let $Ω \in C^{0, 1}$, $L$ elliptic operator. Then
+	\begin{enumerate}
+		\item $Σ$ is at most countable, and if it is infinite, $Σ = \{λ_k\}_{k=1}^∞$ then $λ_k \rightarrow ∞$;
+		\item $(λ ≠ Σ) \Leftrightarrow \forall f \in L^2\ \exists! u \in W^{1, 2}_0: Lu = f + λu$;
+		\item $\forall λ \notin Σ\ \exists c > 0\ \forall f \in L^2\ \exists! u \in W^{1, 2}_0: Lu = f+λu$, $\|u\|_{1, 2} ≤ c\|f\|_2$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		$$ L_γ u = Lu + γu, \qquad K = γL^{-1}_γ, \qquad Lu + γu = γu + λu = -? u $$
+		If $λ \in Σ$, then $λ ≥ -γ$.
+
+		TODO!!!
+
+		$$ Lu + γu = λu + γu = (λ + γ)u $$
+		$$ L_γu + (-λ - γ)u = 0 \implies u ≡ 0. $$
+
+		TODO!!!
+
+		If $λ \in Σ$: $Lu = λu + 0$
+
+		TODO!!!
+
+		Spectrum $K$ is at most countable, thus spectrum $L$ is at most countable. Moreover, if spectrum $K$ is infinite, then $\frac{γ}{γ + λ_k} \rightarrow 0$ $\implies$ $λ$.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Vynechán.
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		$λ \notin Σ$. For contradiction $\forall n: u^n, f^n: Lu^n = f^n + λu^n$ and $\|u^n\|_{1, 2} > n·\|f^n\|_2$.
+	\end{dukazin}
+\end{veta}
+
+TODO!!!
+
+
 \end{document}

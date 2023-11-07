@@ -249,7 +249,7 @@ TODO!!!
 \begin{tvrzeni}[Noether–type theorem]
 	Let $Ω \subset ®R^n$, $F(u) := \int_Ω f(x, u, Du)$ with $f \in C^2(Ω \times ®R^n \times ®R^{m \times n})$ and $(ψ_s)_{s \in ®R} \subset C^2(®R^n, ®R^n)$ is a smooth family with $ψ_0 = \id$, such that
 	$$ f(x, ψ_s ∘ u, D(ψ_s ∘ u)) = f(x, u, Du). $$
-	Then there exists a conservation ? $Q: Ω \times ®R^n \times ®R^{m \times n} \rightarrow ®R^n$ such that $\Div (Q (x, u, Du)) = 0$ $\forall$ critical points of $u$.
+	Then there exists a conservation ? $0 ≠ Q: Ω \times ®R^n \times ®R^{m \times n} \rightarrow ®R^n$ such that $\Div (Q (x, u, Du)) = 0$ $\forall$ critical points of $u$.
 
 	\begin{dukazin}
 		$$ 0 = \frac{d}{ds} |_{s = 0} f(x, ψ_s ∘ u, TODO!!! ∘ u) = $$
@@ -309,5 +309,45 @@ TODO!!!
 
 	$λ$ is called the Lagrange multiplier, any $x_0$ that satisfies this equation is called critical point.
 \end{tvrzeni}
+
+TODO!!!
+
+\begin{priklad}[Principal eigenvalue of $Δ$]
+	Consider $Ω \subset ®R^n$ domain, bounded. Minimize $F(u) := \int_Ω \frac{1}{2} |Du|^2$, $u \in W^{1, 2}_0(Ω)$, under constraint $\frac{1}{2} \int_Ω |u|^2 = 1$, i.e. $G(u) = \frac{1}{2} \int |u|^2 dx - 1 = 0$.
+
+	\begin{reseni}
+		We are looking for $u_1 \in W^{1, 2}_0(Ω)$ such that
+		$$ \forall φ \in W^{2, 2}_0(Ω): 0 = DF(u_1)\<φ\> + λ_1 D G(u_1)\<φ\> = $$
+		$$ = \<\nabla u_1, \nabla φ\>_{L^2} + λ_1\<u_1, φ\>. $$
+		I.e. a weak solution to $Δ u_1 = λ_1 u_1$ in $Ω$ and $u_1 = 0$ on $\partial Ω$. Additionally take $φ = u_1$ $\implies$ $λ_1 = - \frac{\int_Ω |\nabla u_1|^2}{\int_Ω |u_1|^2}$ $\implies$ $λ_1$ is largest eigenvalue.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Stokes problem]
+	Minimize $F(u) := \int_Ω \frac{1}{2} |\nabla u|^2 - fu dx$ in $W^{1, 2}_0(Ω, ®R^3)$ under the constant $\Div(u) = 0$.
+\end{priklad}
+
+TODO!!!!
+
+\section{The direct method on convex integrands}
+\subsection{Direct method}
+\begin{tvrzeni}[Direct method in the calculus of variations]
+	Let $X$ be topological space, $f: X \rightarrow ®R$ such that
+	\begin{enumerate}
+		\item All sublevel sets ($\{x \in X | F(x) ≤ c\}$) are sequentially precompact;
+		\item $F$ is sequentially lower-semi-continuous ($x_k \rightarrow x_0 \implies \liminf_{k \rightarrow ∞} F(x_k) ≥ F(x_0)$.)
+	\end{enumerate}
+	Then $F$ has a minimizer in $X$.
+
+	\begin{dukazin}
+		Let $s:= \inf_X F$. Pick sequence $(x_k)_k \subset X$ such that $F(x_n) \rightarrow s$. For $k_0$ large enough $(x_i)_{i ≥ k_0} \subset x \in X: F(x) ≤ s + 1$. $\overset{1.}\implies$ $\exists$ subsequenc (not relabeled) and $x_0 \in X$ such that $x_k \rightarrow x_0$. $s = \inf F ≤ F(x_0) ≤ \liminf_{k \rightarrow ∞} F(x_k) = s$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[The three c's of the direct method]
+	Equivalent conditions: Coercivity (sublebel sets are bounded with respect to metric), Compactness (bounded sets are compact with respect to some topology) and lower-semi-Continuity (As before.)
+
+	Sometimes also Convexity (if $F$ is strictly convex, then the minimum is unique).
+\end{poznamka}
 
 \end{document}
