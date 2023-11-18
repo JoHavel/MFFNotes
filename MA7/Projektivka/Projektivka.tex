@@ -283,4 +283,180 @@ TODO!!!
 	Stejné jako věta o direkční přímce. (Jinak formulovaná.)
 \end{veta}
 
+% 09. 11. 2023
+
+TODO!!! (charakteristika projektivity, involuce, …)
+
+\begin{definice}[Involuce]
+	Involuce je projektivita (soumístných soustav) splňující jednu z následujících podmínek:
+	\begin{itemize}
+		\item $w = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
+		\item $\exists X ≠ S, T: X'' = X$;
+		\item $\forall X: X'' = X$;
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Hyperbolická a eliptická involuce]
+	$S, T$ reálné různé $\implies$ involuce je hyperbolická (nesouhlasné soustavy, neboli směr je proti).
+
+	$S, T$ komplexně sdružené $\implies$ eliptická (souhlasné soustavy, neboli směr se zachovává).
+
+	\begin{poznamka}
+		$S = T$ je parabolická involuce (ale není to projektivita, neboť to není prosté zobrazení).
+	\end{poznamka}
+\end{definice}
+
+% 16. 11. 2023
+
+\begin{poznamka}[Pár involuce]
+	$X \rightarrow X'$ a $X' \rightarrow X$, pak $X, X'$ je pár involuce.
+\end{poznamka}
+
+\begin{poznamka}
+	Projektivita je určena 3 páry, involuce je určena 2 páry.
+\end{poznamka}
+
+\begin{dusledek}
+	$A A' B' B$ a $B A A' B'$ (ve skutečnosti vzhledem k zahrnutí $∞$ jsou to stejné případy) jsou hyperbolické (říkáme páry se nerozdělují), $A B A' B'$ jsou hyperbolické (páry se rozdělují).
+\end{dusledek}
+
+\begin{priklad}[Konstrukce]
+	Určit druhý samodružný bod ($T$) involuce určené jedním samodružným bodem ($S$) a jedním párem ($A$, $A'$).
+
+	\begin{reseni}
+		Využijeme $(AA'ST) = -1$ a najdeme čtvrtý harmonický bod, jak jsme to již dělali.
+	\end{reseni}
+\end{priklad}
+
+\begin{veta}[O bodu na direkční přímce]
+	Mějme projektivitu $p(A, B, C) ::: p'(A', B', C')$ (nesourodých soustav), $d$ nechť je direkční přímka, $H \in d$ libovolný bod na direkční přímce. Pak páry přímek $a = HA$, $A' = HA'$, $b = HB$, $b' = HB'$, atd. jsou páry téže involuce přímek ve svazku se středem $H$. Neboli $H(a, b, c) ::: H(a', b', c')$ je involuce.
+
+	\begin{dukazin}
+		„1. Projektivita“:
+		$$ H(a, b, c) :: p(A, B, C) ::: p'(A', B', C') :: H(a', b', c'). $$
+		(Složení tří projektivit je projektivita, tedy existuje $H(a, b, c) ::: H(a', b', c')$)
+
+		„2. Involuce“: Tato projektivita je involuce, protože pokud označíme $X = a' \cap p \implies x = a'$, pak z věty o direkční přímce platí $X' = a \cap p' \implies a = x'$, tedy $(a, a')$ je pár involuce a to už stačí.
+
+		(Pokud $H \in AA'$, zvolíme místo $A$ jiný bod.)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O přímce procházející direkčním bodem]
+	Mějme projektivitu $P(a, b, c) ::: P'(a', b', c')$, $D$ nechť je direkční bod a $D \in h$. Pak páry bodů $A = h \cap a$, $A' = h \cap a'$, $B = h \cap b$, $B' = h \cap b'$ jsou páry téže involuce bodů na přímce $h$. ($h(A, B, C) ::: h(A', B', C')$ je involuce.)
+
+	\begin{dukazin}
+		Dualita.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}
+	Doplňování bodové involuce dané dvěma páry.
+
+	\begin{reseni}
+		Použijeme předchozí větu a doplníme projektivitu. (Další způsoby jsou klasicky jako doplňování projektivity, nebo použití původní, neduální, verze předchozí věty.)
+	\end{reseni}
+\end{priklad}
+
+\subsection{Úplný čtyřroh a úplný čtyřstran}
+\begin{definice}[Úplný čtyřroh]
+	Čtveřice bodů v rovině ($M$, $N$, $P$, $Q$), přičemž žádné tři nejsou kolineární, se nazývá čtyřroh.
+
+	Tyto body ($M$, $N$, $P$, $Q$) jsou vrcholy čtyřrohu. Jejich 6 spojnic jsou strany čtyřrohu.
+
+	Máme 3 páry protějších stran ($MN$ a $PQ$, $MP$ a $NQ$, $MQ$ a $NP$), 3 diagonální vrcholy = průsečíků protějších stran ($X$, $Y$, $Z$) a 3 diagonální strany ($XY$, $XZ$, $YZ$).
+
+	Všemu tomuto dohromady se říká úplný čtyřroh.
+\end{definice}
+
+\begin{definice}[Úplný čtyřstran]
+	Čtveřice přímek v rovině ($m$, $n$, $p$, $q$), přičemž žádné tři neprochází jedním bodem, se nazývá čtyřstran.
+
+	Tyto přímky ($m$, $n$, $p$, $q$) jsou strany čtyřstranu. Jejich 6 průsečíků jsou vrcholy čtyřstrnu.
+
+	Máme 3 páry protějších vrcholů ($m \cap n$ a $p \cap q$, $m \cap p$ a $n \cap q$, $m \cap q$ a $n \cap p$), 3 diagonální strany = spojnice protějších vrcholů ($x$, $y$, $z$) a 3 diagonální vrcholy ($x \cap y$, $x \cap z$, $y \cap z$).
+
+	Všemu tomuto dohromady se říká úplný čtyřstran.
+\end{definice}
+
+\begin{veta}
+	Každá (i diagonální) strana úplného čtyřrohu je proťata ostatními stranami jen ve 4 bodech, které tvoří harmonickou čtveřici.
+
+	\begin{dukazin}
+		„První část“ se spočítá z obrázku. „Druhá část“ je vidět z konstrukce čtvrtého bodu harmonické čtveřice.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Duální k přechozí]
+	Každý (i diagonální) vrchol úplného čtyřstranu je spojen s ostatními vrcholy pouze 4 přímkami, ty tvoří harmonickou čtveřici.
+\end{veta}
+
+\begin{veta}[O přímce a čtyřrohu]
+	Je dán úplný čtyřroh a libovolná přímka $h$ různá od jeho 9 stran. Pak protější strany 4 rohu vytínají na $h$ páry téže involuce.
+
+	\begin{dukazin}
+		Nechť $P$ a $Q$ jsou středy svazků $a = PM$, $b = PN$ a $a' = QN$, $b' = QM$ ($a$ a $a'$ protější, $b$ a $b'$ taktéž). Páry $AA'$, $BB'$ zadávají involuci na $h$. Je pár $CC'$ také párem této involuce?
+
+		Zároveň máme projektivitu $P(a, b, …) ::: Q(a', b', …)$. Dle věty o přímce procházející direkčním bodem je průsečík $D = C' = MN \cap h$ direkčním bodem této projektivity a proto $D' = C = PQ \cap h$. Tedy $DD' = C'C$ je pár téže involuce.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O bodu a čtyřstranu]
+	Je dán úplný čtyřstran a bod $H$ různý od jeho vrcholů. Pak spojnice protějších vrcholů čtyřstranu s $H$ tvoří páry téže involuce.
+\end{veta}
+
+\begin{poznamka}
+	$A$, $A'$, $B$, $B'$, $C$, $C'$ z předchozí věty (původní verze) se nazývá čtyřstranná množina.
+\end{poznamka}
+
+\section{Kuželosečky}
+\begin{definice}[Bodová kuželosečka]
+	Mějme projektivitu nesoumístných přímkových soustav $H(a, b, c) ::: H'(a', b', c')$. Bodová kuželosečka $©B = $ množina průsečíků odpovídajících si přímek (tj. $a \cap a'$, $b \cap b'$, atd.).
+\end{definice}
+
+\begin{veta}
+	Zadaná projektivita je perspektivitou $\Leftrightarrow$ kuželosečka $B$ se skládá ze dvou přímek, a sice přímky $HH'$ a z přímky perspektivity.
+
+	\begin{dukazin}
+		Z obrázku a rozpravy nad ním.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Singulární a regulární]
+	Když $H::H'$ ©B je singulární. V opačném případě je regulární.
+\end{definice}
+
+\begin{tvrzeni}[Platí]
+	$H, H' \in ©B$. (Pro singulární kuželosečku celá $H H' \in ©B$. Pro regulární křivku $H = n \cap n'$ a $H' = m \cap m'$, tedy $H, H' \in ©B$.)
+\end{tvrzeni}
+
+\begin{poznamka}
+	Dále budeme uvažovat jen regulární křivky.
+\end{poznamka}
+
+\begin{definice}[Vzájemná poloha přímky a kuželosečky]
+	Přímka v rovině je (ve vztahu ke kuželosečce)
+	\begin{itemize}
+		\item vnější přímka, pokud nemají žádný společný bod;
+		\item tečna, má-li jeden průsečík;
+		\item sečna, má-li dva průsečíky.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	Bodem $H$ (resp. $H'$) prochází jediná tečna, a sice $n$ (resp. $m'$), kde $m = n' = HH'$. Průsečík $D = n \cap m'$ je direkčním bodem zadané projektivity.
+
+	\begin{dukazin}
+		Přímka $x \in H(a, b, c)$ protíná kuželosečku ©B ve 2 bodech, pouze pro $x = n$ tyto 2 body splývají do 1 bodu ($H$). Podobně pro $H'$, $m'$. $D = n \cap m'$ už víme.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Je-li dána ©B pomocí projektivity $H(a, b, c) ::: H'(a', b', c')$ a zvolíme-li 5 bodů na ©B: $K$, $K'$, $A$, $B$, $C$ a označíme-li $α = KA$, $β = KB$, …, pak projektivita $K(α, β, γ) ::: K(α', β', γ')$ zadává tutéž kuželosečku.
+
+	\begin{dukazin}
+		Vynechán.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

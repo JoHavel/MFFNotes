@@ -350,4 +350,80 @@ TODO!!!!
 	Sometimes also Convexity (if $F$ is strictly convex, then the minimum is unique).
 \end{poznamka}
 
+% 08. 11. 2023
+
+TODO!!!
+
+% 15. 11. 2023
+
+TODO!!!
+
+\begin{dukaz}[of tonelli, sketch]
+	Weak convergence "averages" functions, convex functions decrease when taking averages.
+
+	Reminder (Mazur's Lemma): If $u_k \rightharpoonup u$ then $\exists v_k \in \conv\{u_k, …, u_{N(k)}\}$ such that $v_k \rightarrow u$.
+
+	First step: If $f(x, z, p) = f(x, p)$ and $v_k = \sum_{i=k}^{N(k)} α_{i, k} u_k$ with $\sum_{i=k}^{N(k)} α_{i, k} = 1$. Then Nemitsky:
+	$$ F(u) = \lim_{k \rightarrow ∞} F(v_k) = \lim_{k \rightarrow ∞} \int_Ω f(x, \sum α_{i, k} Du_k) \overset{\text{Jensen}}≤ \lim_{k \rightarrow ∞} \sum α_{i, k} \int_Ω f(x, Du_k) = \lim_{k \rightarrow ∞} \sum_{i=k}^{N(k)} α_{i, k} F(u_i) ≤ \lim_{k \rightarrow ∞} \sup_{i ≥ k} F(u_i) = \lim_{k \rightarrow ∞} F(u_k). $$
+
+	Second step: Replace $f$ by $\tilde f(x, z, p) = f(x, z p) - a(x)·p - b(x) - c|z|^q$. Then $\tilde f$ has the same mean, continuous, and ? condition and
+	$$ u \mapsto \int \tilde f(x, u, Du) - f(x, u, Du) $$
+	is weakly continuous. So we can assume $f(…) ≥ 0$.
+
+	TODO!!!
+	By first step:
+	$$ \liminf_{k \rightarrow ∞} \int f(x, u, Du_k) ≥ \int_Ω f(x, u, Du). $$
+	Now need to estimate $|f(x, u, Du_k) - f(x, u_k, Du_k)| =: *$. Similarly to the proof of Nemitzky:
+	$$ \forall ε > 0\ \exists K_ε \subset Ω, |?_ε| < ε: f|_{Ω \setminus K_ε \times ®R^m \times ®R^{m·n}} \text{ is continuous and } \int_{K_ε} * \overset{ε \rightarrow 0}\longrightarrow 0. $$
+
+	As last time, $u_k = \overline u_k + \tilde u_k = $ uniformly convergent + small support.
+	$$ \int_{\supp \tilde u_k} * \rightarrow 0. $$
+	$$ \int_{Ω \setminus (K_ε \cup \supp \tilde u_k)} |f(x, u, Du_k) - f(x, u_k, Du_k)| \rightarrow 0. $$
+\end{dukaz}
+
+\begin{poznamka}[Convexity v.s. convexity]
+	$F(u)$ convex $\not\Leftrightarrow$ $f(x, z, p)$  convex. (For example $\int_Ω \det Du dx$ is convex for fixed boundary, but $\det p$ is not convex. For example $\int \frac{1}{4} (1 - u^2)^2 + \frac{1}{2} |u'|^2$ not convex, but $(1 - z^2) + p^2$ is convex in $p$.)
+\end{poznamka}
+
+\section{The mapping degree in finite dimensions}
+\begin{definice}[Axioms of mapping degree]
+	The degree $\deg_{®R^n}(u, Ω, y_0)$ should be an integer defined for all continuous functions all domains $Ω$ and all $y_0 \notin u(\partial Ω)$ and it should satisfy
+	\begin{itemize}
+		\item[D1] Unity of identity
+			$$ \deg(id, Ω, y_0) = \begin{cases}1, & \text{ if } y_0 \in Ω\\0, & \text{ if } y_0 \notin \overline{Ω}.\end{cases} $$
+		\item[D2] Additivity of domains: If $(Ω_i)_{i \in [k]}$ are disjoint domains such that $\overline{Ω} = \overline{\bigcup_{i=1}^k Ω_i}$, then $\forall y_0 \notin u(\partial Ω) \cup \bigcup_i u(\partial Ω_i)$, then
+			$$ \deg_{®R^n}(u, Ω, y_0) = \sum_{i=1}^k \deg(u, Ω_i, y_0). $$
+		\item[D3] Base point invariance: $y \mapsto \deg(u, Ω, y)$ is continuous in $®R^n \setminus u(\partial Ω)$ $\implies$ if $y_1$, $y_2$ are in the same connected component, then $\deg(u, Ω, y_1) = \deg(u, Ω, y_2)$.
+		\item[D4] Homotopy invariance: If $h: [0, 1] \times ®R^n \rightarrow ®R^n$ is continuous such that $y_0 \notin h(s, \partial Ω)$ $\forall s \in [0, 1]$ then $s \mapsto \deg_{®R^n}(h_s, Ω, y_0)$ is constant.
+	\end{itemize}
+\end{definice}
+
+\begin{veta}
+	There exists a unique function $\deg_{®R^n}$ satisfying these axioms.
+
+	\begin{poznamkain}[Notation]
+		When clear; $y_0 = ¦o$; if $Ω$ is clear:
+		$$ \deg_{®R^n}(u, Ω, y_0) = \deg(u, Ω, y_0) = \deg(u, Ω) = \deg(u). $$
+	\end{poznamkain}
+\end{veta}
+
+\begin{lemma}
+	TODO!!!
+
+	\begin{dukazin}
+		Assume $u_0, u_1: ®R^n \rightarrow ®R^n$ continuous such that $u_0|_{\overline{Ω}} = u_1|_{\overline{Ω}}$. Consider: $h_s(x) := (1 - s) u_0(x) + s u_1(x)$. $h_s(\partial Ω) = u_0(\partial Ω) = u_1(\partial Ω)$. $\implies$ $\deg(u_0, Ω, y_0) = \deg(h_0, Ω, y_0) = \deg(h_1, Ω, y_0) = \deg(u_1, Ω, y_0)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}[Degree as existence criterion]
+	Let $u: ®R^n \rightarrow ®R^n$ continuous, $Ω \subset ®R^n$ bounded domain, $y_0 \in ®R^n \setminus u(\partial Ω)$. If $y_0 \notin u(Ω)$, then $\deg(u, Ω, y_0) = 0$. Conversely if $\deg(u, Ω, y_0) ≠ 0$ then $\exists x_0 \in Ω$ such that $u(x_0) = y_0$.
+
+	\begin{dukazin}
+		Assume $y_0 \in u(Ω)$. Split $Ω$ into finitely many disjoint subdomains $Ω_i$ (with $\overline{Ω} = \overline{\bigcup Ω_i}$) such that $u(Ω_i) \subset B_ε(y_i)$, where $ε$ is such that $B_ε(y_0) \subset ®R^n \setminus u(Ω)$. Pick $\tilde y_0$ such that $|\tilde y_0| ≥ \sup_{x \in u(Ω)} |y| + \sup_{x \in Ω} |x|$.
+		$$ \deg(u, Ω, y_0) \overset{\text{D2}} = \sum_{i=1}^k \deg_{®R^n}(u, Ω_i, y_0) \overset{\text{D3}} \sum_{i=1}^k \deg_{®R^n} (u, Ω_i, \tilde y_0) =: *. $$
+		$h_s(x) := (1 - s)u(x) + sx$.
+		$$ * = \sum_{i=1}^k \deg_{®R^n}(\id, Ω_i, \tilde y_0) = 0. $$
+	\end{dukazin}
+\end{tvrzeni}
+
 \end{document}

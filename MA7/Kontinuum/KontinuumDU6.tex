@@ -1,0 +1,93 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	In the discussion of compatibility conditions we have used several identities. It remains to prove them. I recall that we have decomposed the displacement gradient to the symmetric and the skew-symmetric part as
+	$$ \nabla ¦U = \bepsilon + \bomega, $$
+	and we have also solved the equation
+	$$ (\rot \bepsilon)^T = \nabla ¦a $$
+	for the vector field ¦a. Furthermore, using the vector field ¦a and the concept of the axial vector we have defined the skew-symmetric matrix $®A_{¦a}$ such that $®A_{¦a} ¦w = ¦a \times ¦w$ holds for any fixed vector ¦w. Show that
+
+	$$ \rot \bepsilon = \frac{1}{2} (\nabla  (\rot ¦U ))^T, $$
+
+	\begin{dukazin}[Z minulého roku]
+		$\bepsilon$ je symetrická část $\nabla ¦U$, tedy $\bepsilon = \frac{1}{2} \nabla ¦U + \frac{1}{2} (\nabla ¦U)^T$. Tudíž
+		$$ (\rot \bepsilon)_{ij} \overset{\text{def}}= \epsilon_{jkl} \frac{\partial \bepsilon_{il}}{\partial x_k} = \epsilon_{jkl} \frac{\partial \(\frac{1}{2}\frac{\partial u_i}{\partial x_l} + \frac{1}{2}\frac{\partial u_l}{\partial x_i}\)}{\partial x_k} = $$
+		$$ \frac{1}{2} \epsilon_{jkl} \frac{\partial^2 u_i}{\partial x_k \partial x_l} + \frac{1}{2} \epsilon_{jkl} \frac{\partial^2 u_l}{\partial x_k \partial x_i} = 0 + \frac{1}{2} \frac{\partial}{\partial x_i} \(\epsilon_{jkl}\frac{\partial u_l}{\partial x_k}\) = \frac{1}{2} \(\nabla \(\rot ¦U\)\)_{li} = \frac{1}{2} \(\(\nabla \(\rot ¦U\)\)^T\)_{il}. $$
+	\end{dukazin}
+
+	$$ \rot ®A_{¦a} = (\Div ¦a) ®I − (\nabla ¦a)^T. $$
+
+	\begin{dukazin}[Z minulého roku]
+		Pro nějaké fixní ¦w máme ($®A_{¦a}^T ¦w = ¦w \times ¦a$ díky antisymetrii $®A_{¦a}$ a $\times$)
+		$$ (\rot ®A_{¦a})^T ¦w \overset{\text{def}}= \rot (®A_{¦a}^T ¦w) = \rot (¦w \times ¦a) = $$
+		(podle vzorců, které jsme dokazovali v třetím domácím úkolu, a linearity $\Div$)
+		$$ = \Div(¦w \otimes ¦a - ¦a \otimes ¦w) = \Div(¦w \otimes ¦a) - \Div(¦a \otimes ¦w) = [\nabla ¦w]¦a + ¦w \Div ¦a - [\nabla ¦a]¦w + ¦a \Div ¦w = $$
+		(¦w je konstantní)
+		$$ = ¦o + ¦w \Div ¦a - [\nabla ¦a]¦w + ¦o = \((\Div ¦a)·®I - (\nabla ¦a)\)¦w. $$
+		Tedy $\rot ®A_{¦a} = \((\Div ¦a)·®I - (\nabla ¦a)\)^T = (\Div ¦a) ®I - (\nabla ¦a)^T$.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	Show that the Leibniz integral rule (LIR)
+	$$ \frac{d}{dt} \int_{\xi = a(t)}^{b(t)} f(\xi, t) d\xi = \int_{\xi = a(t)}^{b(t)} \frac{\partial f(\xi, t)}{\partial t} d\xi + f(b(t), t) \frac{db}{dt} - f(a(t), t) \frac{da}{dt} $$
+	where $f$, $a$ and $b$ are some smooth scalar valued functions, is a special case of Reynolds transport theorem (RTT).
+\end{priklad}
+
+	\begin{dukaz}[Z minulého roku]
+		V RTT zvolíme $\forall ¦x, t: \phi(¦x, t) = 1$, $\chi: [0, 1]^3\times ®R \rightarrow ®R^3$ $\chi(X_1, X_2, X_3, t) = (a(t) + X_1 (b(t) - a(t)), X_2 f(a(t) + X_1 (b(t) - a(t)), t), X_3)$, tedy nebudeme integrovat „žádnou funkci“, jen nás zajímá změna objemu, který právě v první souřadnici odpovídá proměnné v LIR, v druhé funkční hodnotě v LIR a ve třetí souřadnici se nemění.
+
+		Nejdříve dosadíme a pomocí Gaussovy věty a linearity integrálu převedeme RTT na
+		$$ \frac{d}{dt} \int_{V(t)} 1 dv = \int_{V(t)} \frac{d 1}{dt} + \int_{\partial V(t)} 1·(¦v·¦n) ds = 0 + \int_{\partial V(t)} 1·(¦v·¦n) ds. $$
+		Dále můžeme použít Lagrangeovo kritérium pro vyjádření $¦v·¦n$:
+		$$ \frac{d}{dt} \int_{V(t)} dv = \int_{\partial V(t)} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds, $$
+		pro diferencovatelnou funkci $g$, která je na $\Int V(t)$ kladná a na $\partial V(t)$ nulová (oproti přednášce je tedy gradient opačný vůči normále, tedy jsme dostali výraz bez mínus).
+
+		Teď bychom si chtěli zvolit správnou funkci $g$. Můžeme využít toho, že nulový činitel nám zaručuje nulový součin, tedy podmínky $x_i ≤ h$ zapíšeme jako $(h - x_i)$ a vynásobíme:
+		$$ g(x_1, x_2, x_3, t) = (x_1 - a(t))·(b(t) - x_1)·x_2·(f(x_1, t) - x_2)·x_3·(1 - x_3). $$
+
+		Teď můžeme spočítat (podle vzorců pro derivování) vyžadované $\frac{\partial g}{\partial t}$, $\nabla_{¦x}$, $g / …$ označuji $g$ bez tohoto členu (tedy v $… = 0$, kde nás tento výraz reálně zajímá, je to dodefinováno intuitivně):
+		$$ \frac{\partial g}{\partial t} = -\frac{da}{dt}·\frac{g}{x_1 - a(t)} + \frac{db}{dt}·\frac{g}{b(t) - x_1} + \frac{\partial f}{\partial t}·\frac{g}{f(x_1, t) - x_2}, $$
+		$$ \nabla_{¦x} g = \(\frac{g}{x_1 - a(t)} - \frac{g}{b(t) - x_1} + \frac{\partial f(x_1, t)}{\partial x_1} · \frac{g}{f(x_1, t) - x_2}, \frac{g}{x_2} - \frac{g}{f(x_1, t) - x_2}, \frac{g}{x_3} - \frac{g}{1 - x_3}\). $$
+
+		Teď se zase vrátíme k RTT. Vždy když $g(¦x, t) = 0$, tak musí být nulový jeden z činitelů, tedy integrál přes povrch můžeme rozložit na jednotlivé případy:
+		\begin{itemize}
+			\item $x_3 = 0$, pak $\frac{\partial g}{\partial t} = 0$, neboť ve všech členech je $g$ nevydělené $x_3$. Tedy
+				$$ \int_{\partial V(t), x_3 = 0} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds = \int 0 = 0. $$
+			\item $x_3 = 1$, pak ze stejného důvodu $\int_{\partial V(t), x_3 = 1} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds = 0$.
+			\item $x_2 = 0$ taktéž dává $\int_{\partial V(t), x_2 = 0} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds = 0$.
+			\item $x_2 = f(x_1, t)$ je složitější, neboť $\frac{\partial g}{\partial t} = \frac{\partial f(x_1, t)}{\partial t} \frac{g}{f(x_1, t) - x_2}$, jelikož je to zase jediný nenulový člen. Stejně tak $\nabla¦x g = (\frac{\partial f(x_1, t)}{\partial x_1} \frac{g}{f(x_1, t) - x_2}, -\frac{g}{f(x_1, t) - x_2}, 0)$. Takže v $\frac{\frac{\partial g}{\partial t}}{|\nabla_x g|}$ můžeme zkrátit $\frac{g}{f(x_1, t) - x_2}$ a zbude nám:
+				$$ \int_{\partial V(t), x_2 = f(x_1, t)} \frac{\frac{\partial f(x_1, t)}{\partial t}}{\left|\(\frac{\partial f(x_1, t)}{\partial x_1}, -1, 0\)\right|} dv = \int_{\partial V(t), x_2 = f(x_1, t)} \frac{\frac{\partial f(x_1, t)}{\partial t}}{\sqrt{\(\frac{\partial f(x_1, t)}{\partial x_1}\)^2 + 1}} dv. $$
+				Což můžeme z Fubiniovy věty rozložit na nezajímavý integrál přes $z$ a křivkový integrál přes křivku $f(x_1, t)$ tedy
+				$$ … = \int_0^1 \int_{a(t)}^{b(t)} \frac{\frac{\partial f(x_1, t)}{\partial t}}{\sqrt{\(\frac{\partial f(x_1, t)}{\partial x_1}\)^2 + 1}} · \sqrt{\(\frac{\partial f(x_1, t)}{\partial x_1}\)^2 + 1} dx_1 dx_3 = \int_{a(t)}^{b(t)} \frac{\partial f(x_1, t)}{\partial t} dx_1. $$
+			\item $x_1 = a(t)$, potom (jediné nenulové, Fubini, …)
+				$$ \frac{\frac{\partial g}{\partial t}}{\nabla_{¦x} g} = \frac{-\frac{da}{dt}·\frac{g}{x_1 - a(t)}}{\left|\(\frac{g}{x - a(t)}, 0, 0\)\right|} = -\frac{da}{dt} \implies $$
+				$$ \implies \int_{\partial V(t), x_1 = a(t)} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds = \int_0^1 \int_0^{f(x_1, t)} - \frac{da}{dt} dx_2 dx_3 = - \frac{da}{dt} f(a(t), t). $$
+			\item $x_1 = b(t)$, potom úplně stejně jako v předchozím
+				$$ \frac{\frac{\partial g}{\partial t}}{\nabla_{¦x} g} = \frac{\frac{db}{dt}·\frac{g}{b(t) - x_1}}{\left|\(-\frac{g}{b(t) - x_1}, 0, 0\)\right|} = -\frac{da}{dt} \implies $$
+				$$ \implies \int_{\partial V(t), x_1 = b(t)} \frac{\frac{\partial g}{\partial t}}{|\nabla_x g|} ds = \int_0^1 \int_0^{f(x_1, t)} \frac{db}{dt} dx_2 dx_3 = \frac{db}{dt} f(b(t), t). $$
+		\end{itemize}
+
+		Tedy máme
+		$$ \frac{d}{dt}\int_{V(t)} dv = \int_{a(t)}^{b(t)} \frac{\partial f(x_1, t)}{\partial t} dx_1 + \frac{db}{dt} f(b(t), t) - \frac{da}{dt} f(a(t), t), $$
+		což už je skoro to, co chceme, stačí jen rozložit integrál na levé straně pomocí Fubiniovy věty:
+		$$ \frac{d}{dt}\int_{V(t)} dv = \frac{d}{dt}\int_0^1 \int_{a(t)}^{b(t)} \int_0^{f(x_1, t)} dx_2 dx_1 dx_3 = \frac{d}{dt}\int_{a(t)}^{b(t)} f(x_1, t) dx_1. $$
+	\end{dukaz}
+
+\begin{priklad}[3.]
+	Prove the following lemma. Let $ρ$ be the Eulerian density field, and let $φ(¦x, t)$ be a sufficiently smooth scalar Eulerian field. Then
+	$$ \frac{d}{dt} \int_{V(t)} ρ(¦x, t) φ(¦x, t)\,dv = \int_{V(t)} ρ(¦x, t) \frac{d}{dt}φ(¦x, t)\,dv. $$
+
+	\begin{dukazin}
+		Podle Reynolds transport theorem, derivace součinu a Balance of mass:
+		$$ \frac{d}{dt} \int_{V(t)} ρ(¦x, t) φ(¦x, t)\,dv = \int_{V(t)} \frac{d\(ρ(¦x, t)φ(¦x, t)\)}{dt} + ρ(¦x, t)φ(¦x, t) \Div ¦v(¦x, t)\,dv = $$
+		$$ = \int_{V(t)} \frac{dρ(¦x, t)}{dt}φ(¦x, t) + ρ(¦x, t)\frac{dφ(¦x, t)}{dt} + ρ(¦x, t)φ(¦x, t)\Div ¦v(¦x, t)\,dv = $$
+		$$ = \int_{V(t)} 0·φ(¦x, t) + ρ(¦x, t) \frac{d}{dt}φ(¦x, t)\,dv = \int_{V(t)} ρ(¦x, t) \frac{d}{dt}φ(¦x, t)\,dv $$
+	\end{dukazin}
+\end{priklad}
+\end{document}

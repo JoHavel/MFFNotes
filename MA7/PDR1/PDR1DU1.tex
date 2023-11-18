@@ -13,7 +13,7 @@
 	Jinak zapsáno
 	$$ \fint_{B_R(x_0)} \left|u - \fint_{B_R(x_0)} u\right|^q ≤ C(q, d) \|\nabla u\|_d^q. $$
 
-	\begin{reseni}[a]
+	\begin{reseni}[a, špatně, muselo by se použít $\ln \|x\|^α$, někde jsem špatně derivoval…]
 		Mějme bod $\tilde x \in Ω$. Z otevřenosti $Ω$ víme, že nějaká (dostatečně malá) koule se středem $\tilde x$ je stále v $Ω$. Definujme $f = \frac{1}{|x - \tilde x|^\alpha}$ ($α > 0$ zvolíme později). Tato funkce jistě není $L^∞(Ω)$, neboť hodnoty větší než libovolná konstanta nabývá na dostatečně malé kouli (množina nenulové míry) se středem $\tilde x$. To nám bude sporovat $W^{1, d}(Ω) \hookrightarrow L^∞(Ω)$.
 
 		Nyní potřebujeme k ověření $f \in W^{1, d}(Ω)$ ukázat 3 věci: že $f \in L^d(Ω)$, že $D_if := \frac{\partial f}{\partial x_i}$ existuje a že $D_if \in L^d(Ω)$. Začneme existencí derivace: Pokud z $Ω$ vyjmeme $\tilde x$, dostaneme otevřenou podmnožinu, na které je $f$ (nekonečně) diferencovatelná s derivacemi

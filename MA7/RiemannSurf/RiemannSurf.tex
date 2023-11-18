@@ -186,7 +186,7 @@ TODO!!!
 	\end{prikladin}
 
 	\begin{dukazin}
-		Consider the translation functions:
+		Consider the transition functions:
 		$$ U = U_x \cap U_y = \{[x, y] \in ®P^1(®R) | x, y ≠ 0\}, \qquad φ_x(U) = φ_y(U) = ®R \setminus \{0\}. $$
 		The translation function $T_{x, y} := φ_y ∘ (φ_x)^{-1}$ sends, for $y ≠ 0$:
 		$$ T_{x, y}: y \overset{(φ_x)^{-1}}\mapsto [1, y] = \[\frac{1}{y}, 1\] \overset{φ_y}\mapsto \frac{1}{y}. $$
@@ -315,5 +315,128 @@ TODO!!!
 \begin{priklad}
 	For $P$ the closed parallelogram with vertices $0, 1, τ, 1+τ$, show that for any $z \in ®C\ \exists z' \in P$ that $π|_p \rightarrow T$ is surjective. Hence we can restrict our attention to $p$.
 \end{priklad}
+
+%%% 07. 11. 2023
+
+% 14. 11. 2023
+
+\begin{poznamka}
+	By considering the identification points in $p$, we see that $T$ is topologically a torus.
+\end{poznamka}
+
+\begin{priklad}
+	Prove that $π$ (from previous exercise) is an open map, i.e. that $V$ an open subset of ®C implies that $π(V)$ is open in $T$.
+\end{priklad}
+
+\begin{poznamka}
+	Now to the complex structure: from the previous exercise, we see that if $π$ restricted to a subset $V \subseteq ®C$ is bijective, then it is a homeomorphism onto its image in $T$. In this case, $(π|_{V})^{-1}$ is also a homeomorphism from the image of $π|_V$ to $V$. Hence we can use $(π|_V)^{-1}$ as a chart for $T$.
+\end{poznamka}
+
+\begin{priklad}
+	Find a real number $r$ (depends on $t$) such that for any $z \in ®C$: $π$ restricted to $B_r(z)$ is a bijective map.
+
+	Given this $r$, define $U_z := π(B_r(z)) \subseteq T$ and $φ_z := (π|_{B_r(z)})^{-1}$. We claim that the collection $©A = \{U_z, φ_z | z \in ®C\}$ forms an atlas for $T$. It is clear that ©A gives a cover for $T$. Moreover, by definition the maps $φ_z$ are homeomorphic to their images. Assume that $U_{z_1} \cap U_{z_2} ≠ \O$. For $j \in [2]$ denote by $(α_j, β_j)$ the unique pair of real numbers such that $z_j = α_j + t β_j$. We have that $T_{21}(z) = \(φ_{z_1} ∘ φ_{z_2}^{-1}\) (z) = z + k$, where $k = ([α_2] - [α_1]) + ([β_1] - [β_2]) t$ is just a constant depending on $z_1$ and $z_2$. Therefore the transition function $T_{21}$ is holomorphic $\implies$ $T$ is a Riemann surface.
+\end{priklad}
+
+\section{Graph of complex functions}
+\begin{definice}[Graph]
+	Let $f: ®C \rightarrow ®C$ be a continuous function. The graph of $f$ is the set
+	$$ Γ_f := \{(z, f(z)) | z \in ®C\} \subseteq ®C \times ®C, $$
+	given the subset topology.
+\end{definice}
+
+\begin{poznamka}
+	Note that $Γ_f$ is Hausdorff since $®C \times ®C$ is Hausdorff. The graph of $f$ is naturally given the structure of a Riemann surface by an atlas, with one chart, namely $Γ_f$: the local coordinate function is the projection map $φ := π_1|_{Γ_f}$, i.e. $(z, f(z)) \mapsto z$. TODO!!!(Jedna celá tabule)
+\end{poznamka}
+
+\begin{definice}[Affine plane curve]
+	For any polynomial $p(x, y) \in ®C[x, y]$, the set $V(p) := \{(x, y) | p(x, y) = 0\} \subseteq ®C^2$, is called an affine plane curve. We say that $V(p)$ is smooth if $\nexists (x_0, y_0) \in V(p)$ such that $\frac{\partial p}{\partial x}(x_0, y_0) = 0 = \frac{\partial p}{\partial y}(x_0, y_0)$.
+\end{definice}
+
+\begin{veta}
+	A smooth affine plane curve is a Riemann surface.
+
+	\begin{dukazin}
+		Let $(x_0, y_0) \in V(p)$. Since $V(p)$ is smooth, then for at least one of $\frac{\partial p}{\partial x}$, $\frac{\partial p}{\partial y}$ is non-zero at $(x_0, y_0)$. Assume (WLOG) that $\frac{\partial p}{\partial y}(x_0, y_0) ≠ 0$. Then by the implicit function theorem, exists a neighbourhood $U_{(x_0, y_0)} \subseteq ®C^2$, and a neighbourhood $V_{x_0} \subseteq ®C$ and a holomorphic function $f: V_{x_0} \rightarrow ®C$ such that $V(p) \cap U_{(x_0, y_0)} = \{(x, f(x)) | x \in V_{x_0}\}$. We call this the graph of $f$.
+
+		We get a local chart on $V(p)$ around $(x_0, y_0)$ (as in the previous example) by setting $φ_{(x_0, y_0)}: V(p) \cap U_{(x_0, y_0)} \rightarrow V_{x_0}$, $(x, f(x)) \mapsto x$. Finally, we show that the transition functions are holomorphic: for $U_{(x_0, y_0)} \cap U_{(x, y)} \cap V(p) ≠ 0$, if $φ_{(x_0, y_0)}$ and $φ_{(x, y)}$ are both projections to the same axis, the transition function $φ_{(x_0, y_0)} ∘ φ_{(x_0, y_0)}^{-1}$ is the identity function restricted to the appropriate domain in ®C. Assume now that $φ_{(x_0, y_0)}$ is projection onto the $x$-axis and that $φ_{(x, y)}$ is projection to the axis $y$. Then set $U_{(x_0, y_0)} \cap U_{(x, y)} \cap V(p)$ is simultaneously on the graph of a holomorphic function $f_0$ and of a holomorphic function $f_1$. Then functions all $φ_{(x, y)} ∘ φ_{(x_0, y_0)}^{-1} = f_0(x)$ and $φ_{(x_0, y_0)} ∘ φ_{(x, y)}^{-1} = f_1(x)$ restricted to the appropriate domains, which are holomorphic.
+	\end{dukazin}
+\end{veta}
+
+\section{Projective curves}
+\begin{priklad}
+	Consider the polynomial $p(x, y, z) = x^2 + y + z + 1$. Note that $p(1, 1, 1) = 4 ≠ 7 = p(2, 2, 2)$ since $[1, 1, 1] = [2, 2, 2]$ in $®P^2(®C)$ $p$ does not restrict to $®P^2(®C)$.
+\end{priklad}
+
+\begin{definice}[Homogeneous polynomial]
+	A polynomial $p \in ®C[x, y, z]$ is said to be homogeneous of degree $l$, if the following equivalent conditions hold
+	\begin{itemize}
+		\item every monomial of $p$ has degree $l$;
+		\item for each $t \in ®C$: $p(tx, ty, tz) = t^l p(x, y, z)$;
+		\item $x \frac{\partial p}{\partial x} + y \frac{\partial p}{\partial y} + z \frac{\partial p}{\partial z} = lp$.
+	\end{itemize}
+
+	\begin{dusledekin}
+		If $p$ is homogeneous, $V(p) \subset ®P^2(®C)$ is well-defined.
+	\end{dusledekin}
+\end{definice}
+
+% 15. 11. 2023
+
+\begin{priklad}
+	Confirm that these three conditions are equivalent.
+\end{priklad}
+
+\begin{priklad}
+	Show that if $p \in ®C[x, y, z]$ is a homogeneous polynomial, then the set of points $[x, y, z] \in ®P^2(®C)$ satisfying $p(x, y, z) = 0$ is well-defined.
+\end{priklad}
+
+\begin{definice}
+	We call
+	$$ V(p) := \{[x, y, z] \in ®P^2(®C) | p(x, y, z) = 0\} $$
+	the vanishing locus of $p$. Moreover, we call $V(p)$ a (plane) projective curve of degree $l$.
+
+	If
+	$$ \{(x, y, z) \in ®C^3 | \frac{\partial p}{\partial x} = \frac{\partial p}{\partial y} = \frac{\partial p}{\partial z} = 0\} $$
+	the $V(p)$ is said to be smooth.
+\end{definice}
+
+\begin{tvrzeni}
+	A smooth projective plane curve $V(p)$ is a compact Riemann surface.
+
+	\begin{dukazin}
+		We first show that $V(p)$ is compact by showing that $V(p)$ is closed set in $®P^2(®C)$ which is a compact space.
+
+		Consider the diagram $®P^2(®C) \overset{π}\leftarrow ®C^3 \setminus \{(0, 0, 0)\} \overset{p}\rightarrow ®C$, where $π$ is the natural projection function and $p$ is the continuous function defined by the homogeneous polynomial $p: ®C^3 \setminus \{(0, 0, 0)\} \rightarrow ®C$, $(x, y, z) \mapsto p(x, y, z)$ by definition $V(p)$ is a closed subset of $®P^2(®C)$ if $π^{-1}(V(p))$ is closed in $®C^3 \setminus \{(0, 0, 0)\}$. But $π^{-1}(V(p)) = p^{-1}(0)$ is the inverse image of the closed set $\{0\} \subseteq ®C$. Thus since $p$ is continuous, $p^{-1}(0)$ is closed, in other words, $π^{-1}(V(p))$ is closed. Thus $V(p)$ is compact.
+
+		So, to show that $V(p)$ is Riemann surface, we need to show that its intersection with any of the coordinate open sets of $®P^2(®C)$ is a Riemann surface. So let us consider (WLOG) the chart $U_z = \{[x, y, z] | z ≠ 0\} \subseteq ®P^2(®C)$ with affine coordinates $φ_z(x, y, z) = \(\frac{x}{z}, \frac{y}{z}\)$. The set $φ_z(V(p) \cap U_z)$ is equal to $V(\tilde p)$ where $\tilde p(x, y) = p(x, y, 1)$.
+
+		Now for any $(x, y) \in ®C^2$:
+		$$ (*): \frac{\partial \tilde p}{\partial x}(x, y) = \frac{\partial p}{\partial x}(x, y, 1), \qquad (**): \frac{\partial \tilde p}{\partial y}(x, y) = \frac{\partial p}{\partial y}(x, y, 1). $$
+		We claim $\nexists$ an $(\hat{x}, \hat{y}) \in ®C^2$ such that
+		$$ \tilde p(\hat{x}, \hat{y}) = \frac{\partial \tilde p}{\partial x}(\hat{x}, \hat{y}) = \frac{\partial \tilde p}{\partial y}(\hat{x}, \hat{y}) = 0. $$
+		This claim implies that $V(\tilde p)$ is a smooth affine plane curve and hence a Riemann surface. Since the restriction of $V(p)$ with any affine chart is a Riemann surface, then so is $V(p)$.
+
+		So it remains to prove the claim: Assume $\exists (\hat{x}, \hat{y}) \in ®C$ satisfying condition above. By $(*)$ and $(**)$, together smoothness of $V(p)$, which would imply that $\frac{\partial p}{\partial z}(\hat{x}, \hat{y}, 1) ≠ 0$. But now Euler's identity implies $0 ≠ \frac{\partial p}{\partial x}(\hat{x}, \hat{y}, 1) + \frac{\partial p}{\partial y}(\hat{x}, \hat{y}, 0) + \frac{\partial p}{\partial z}(\hat{x}, \hat{y}, 1) = l p(\hat{x}, \hat{y}, 1) = 0$ $\implies$ contradiction $\implies$ we are done.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{priklad}
+	Confirm that $V(p)$ is Hausdorff.
+\end{priklad}
+
+\begin{priklady}[Elliptic curves]
+	Consider a polynomial $p$ of the form $p(x, y, z) = y^2z - (x - α_1z)(x - α_2z)(x - α_3z)$ where $α_1, α_2, α_3 \in ®C$ are distinct complex numbers. Note that the partial derivative with respect to $y$ satisfies $\frac{\partial p}{\partial y} = 2yz$, which is zero only if $y = 0$ or $z = 0$. We show that $V(p)$ is a smooth projective curve by considering the case $z = 0$, $y = 0$, and finding in each chase a non-vanishing partial derivative.
+
+	„Case $z = 0$“: Then the only part in $®P^2(®C)$ belonging to $V(p)$ is $[0, 1, 0]$. But we have $\frac{\partial p}{\partial z} = y^2 + Q(x, z) = 1 + 0 ≠ 0$.
+
+	„Case $y = 0$“: Then the parts belonging to $V(p)$ are $[α_1, 0, 1]$, $[α_2, 0, 1]$, $[α_3, 0, 1]$. For $j \in [3]$: $\frac{\partial p}{\partial x}(α_j, 0, 1) ≠ 0$, follows from the fact that the $α_1$, $α_2$, $α_3$ are distinct.
+
+	So $V(p)$ is a smooth projective curve of degree 3.
+\end{priklady}
+
+\begin{priklady}
+	Consider the function $φ: ®P^1(®C) \rightarrow ®P^3(®C)$ defined in homogeneous coordinates by $φ[s, t] = [s^3, s^2t, st^2, t^3]$. We call the image of $φ$ the twisted cubic in $®P^3(®C)$.
+\end{priklady}
 
 \end{document}

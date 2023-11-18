@@ -137,12 +137,12 @@ TODO!!!
 % 23. 10. 2023
 
 \begin{tvrzeni}
-	There is an isomorphism $∏_1(X, x_1) \rightarrow ∏_1(X, x_0)$ for $x_0$ and $x_1$ in the same path connected component.
+	There is an isomorphism $π_1(X, x_1) \rightarrow π_1(X, x_0)$ for $x_0$ and $x_1$ in the same path connected component.
 
 	\begin{dukazin}
 		Since $x_0$, $x_1$ are in one path connected component $\tilde X$, $\exists$ path $h: [0, 1] \rightarrow X$: $h$ is in $\tilde X$ and $h(0) = x_0, h(1) = x_1$. $\overline{h}(s) := h^{-1}(s) := h(1 - s)$, $s \in [0, 1]$.
 
-		To each loop $f$ based at $x_1$ we associate a loop $h·f·h^{-1}$. $h·f·h^{-1}$ is based at $x_0$. $β_h : ∏_1(x, x_1) \rightarrow ∏_1(x, x_0), [f] \mapsto [h·f·h^{-1}]$. We claim, that $β_h$ is an isomorphism. „$β_h$ is homomorhism“:
+		To each loop $f$ based at $x_1$ we associate a loop $h·f·h^{-1}$. $h·f·h^{-1}$ is based at $x_0$. $β_h : π_1(x, x_1) \rightarrow π_1(x, x_0), [f] \mapsto [h·f·h^{-1}]$. We claim, that $β_h$ is an isomorphism. „$β_h$ is homomorhism“:
 		$$ β_h([f·h]) = [hfgh^{-1}] = [hfh^{-1} hgh^{-1}] = [hfh^{-1}]·[hgh^{-1}] = β_h([f])·β_h([g]). $$
 		„$β_h$ is isomorphism“: „the inverse of $β_h$ is $β_{h^{-1}}$“ (which is homomorphism too by the argument we used for $β_h$):
 		$$ β_{h^{-1}}(β_h([f])) = β_{h^{-1}}([hfh^{-1}]) = [h^{-1}hfh^{-1}h] = [f]. $$
@@ -150,12 +150,12 @@ TODO!!!
 \end{tvrzeni}
 
 \begin{veta}[Fundamental group of $S^1$]
-	$S^1$ is path connected, thus $∏_1(S^1, x_0) = ∏_1(S^1)$.
+	$S^1$ is path connected, thus $π_1(S^1, x_0) = π_1(S^1)$.
 	
-	$∏_1(S^1) \simeq ®Z$.
+	$π_1(S^1) \simeq ®Z$.
 
 	\begin{dukazin}
-		We claim that $∏_1(S^1) \simeq \<[ω]\>$, where $ω: [0, 1] \rightarrow S^1$, $s \mapsto (\cos(2πs), \sin(2πs)) \in ®R^2$, $s \in [0, 1]$. $ω_n(s) := (\cos(2π n s), \sin(2π n s)) \sim ω^n$, so $[ω]^n = [ω_n]$.
+		We claim that $π_1(S^1) \simeq \<[ω]\>$, where $ω: [0, 1] \rightarrow S^1$, $s \mapsto (\cos(2πs), \sin(2πs)) \in ®R^2$, $s \in [0, 1]$. $ω_n(s) := (\cos(2π n s), \sin(2π n s)) \sim ω^n$, so $[ω]^n = [ω_n]$.
 
 		Now our theorem is equivalent to the statement that every loop in $S^1$ based at $(1, 0)$ is homotopic to the unique $ω_n$. We use the following two facts:
 
@@ -163,13 +163,13 @@ TODO!!!
 
 		Fact 2: For each homotopy $f_x: I \rightarrow X$ of paths starting at $x_0$ and each $\tilde x_0 \in p^{-1}(x_0)$ $\exists$ unique lifted homotopy $\tilde f_t: I \rightarrow \tilde X$ of paths starting at $\tilde x_0$.
 
-		$p$ that we need: $p: ®R \rightarrow S^1$; $p(s) = (\cos 2π s, \sin 2π s)$. If we define $\tilde ω_n(s) = n·s$. We will apply Facts 1 and 2 to $p: ®R \rightarrow S^1$, $\tilde ω_n$: Given $f: [0, 1] \rightarrow S^1$ based at $(0, 1)$ representing some element of $∏_1(S^1)$. We take $\tilde f$. Since $p \tilde f(1) = f(1) = (1, 0)$ (and $p^{-1}(1) \in ®Z$), we can argument that if $\tilde f$ ends at $u$ (i.e. $\tilde f(1) = f$), it is homotopoc to $\tilde ω_n$ by the homotopy $\tilde F = (1 - t)\tilde f + t\tilde ω_n$.
+		$p$ that we need: $p: ®R \rightarrow S^1$; $p(s) = (\cos 2π s, \sin 2π s)$. If we define $\tilde ω_n(s) = n·s$. We will apply Facts 1 and 2 to $p: ®R \rightarrow S^1$, $\tilde ω_n$: Given $f: [0, 1] \rightarrow S^1$ based at $(0, 1)$ representing some element of $π_1(S^1)$. We take $\tilde f$. Since $p \tilde f(1) = f(1) = (1, 0)$ (and $p^{-1}(1) \in ®Z$), we can argument that if $\tilde f$ ends at $u$ (i.e. $\tilde f(1) = f$), it is homotopoc to $\tilde ω_n$ by the homotopy $\tilde F = (1 - t)\tilde f + t\tilde ω_n$.
 
 		From fact 1 exists $\tilde f$ starting at 0 and ending at $p^{-1}(1) \in ®Z$.
 
 		Theorem: Exists homotopy $\tilde F$ from $\tilde ω_k$ to $\tilde f$ denoted by $(*)$.
 
-		So we define homotopy $F$ from $ω_n$ to $f$ by $F = p∘\tilde F$, homotopy from $ω_n$ to $f$. Since $[ω_n] = n·[ω]$, $∏_1(S^1) \simeq ®Z$.
+		So we define homotopy $F$ from $ω_n$ to $f$ by $F = p∘\tilde F$, homotopy from $ω_n$ to $f$. Since $[ω_n] = n·[ω]$, $π_1(S^1) \simeq ®Z$.
 
 		Now we would like to show that $[f]$ is uniformly determined. Assume that $f \sim ω_n$ and $f \sim ω_m$, then using Facts 1 and 2 we have $[ω_n] = [ω_m]$ which lends to contradiction since they have different endpoints on ®R.
 	\end{dukazin}
@@ -196,11 +196,11 @@ TODO!!!
 % 23. 10. 2023
 
 \begin{priklad}
-	We say that a topological (path-connected) space is simply connected $\Leftrightarrow$ $∏_1(X) = \{e\}$. Examples of simply connected topological spaces: $®R, ®R^2, …$. $S^1$ is not simply connected.
+	We say that a topological (path-connected) space is simply connected $\Leftrightarrow$ $π_1(X) = \{e\}$. Examples of simply connected topological spaces: $®R, ®R^2, …$. $S^1$ is not simply connected.
 \end{priklad}
 
 \begin{priklad}
-	Given $X, Y$ path-connected and $x_0 \in X$, $y_0 \in Y$. Show that $∏_1(X\times Y, (x_0, y_0)) \simeq ∏_1(X, x_0) \times ∏_1(Y, y_0)$.
+	Given $X, Y$ path-connected and $x_0 \in X$, $y_0 \in Y$. Show that $π_1(X\times Y, (x_0, y_0)) \simeq π_1(X, x_0) \times π_1(Y, y_0)$.
 
 	\begin{reseni}
 		Product topology is defined to be such that a map $f: Z \rightarrow X \times Y$ is continuous $\Leftrightarrow$ ($p_x: X\times Y \rightarrow X$, $p_y: X \times Y \rightarrow Y$) $p_x ∘ f$ and $p_y ∘ f$ are continuous.
@@ -210,7 +210,7 @@ TODO!!!
 \end{priklad}
 
 \begin{dusledek}
-	$∏_1(T^n) := ∏_1(S^1 \times S^1 \times … \times S^1) = ®Z^n$.
+	$π_1(T^n) := π_1(S^1 \times S^1 \times … \times S^1) = ®Z^n$.
 \end{dusledek}
 
 \begin{priklad}
@@ -259,5 +259,48 @@ TODO!!!
 % 30. 10. 2023
 
 TODO?
+
+% 06. 11. 2023
+
+TODO!!!
+
+% 13. 11. 2023
+
+\begin{tvrzeni}[*, should be somewhere above]
+	If $X = \bigcup_{α \in I} A_α$, $x_0 \in \bigcap_{α \in I} A_α$, $A_α \cap A_β$ is path connected for all $α$, $β$. Then for each loop $γ$ in $X$ based at $x_0$, there is a sequence of loops $γ_{α_1}, … γ_{α_k}: [γ] = [γ_{α_1}]·…·[γ_{α_k}]$, where $γ_{α_i}$ is a loop in $A_{α_i}$.
+\end{tvrzeni}
+
+\begin{veta}[Van Kampen]
+	Given a topological space $X$ such that $X = \bigcup A_α$, where $A_α$'s are path connected subspaces of $X$, $x_0 \in \bigcap A_α ≠ \O$. Besides that we assume $A_α \cap A_β$ is connected $\forall α, β$. Then $\exists Φ: *_{α \in I} π_1(A_α, x_0) \rightarrow π_1(X, x_0)$, which is a surjective homomorphism. If in addition $\forall α, β, γ: A_α \cap A_β \cap A_γ$ is path connected, then $\Ker Φ = \<i_{αβ}(ω) i_{βα}(ω)^{-1}\>$.
+	$$ *_{α \in I} π_1(A_α, x_0) / <i_{αβ}(ω)i_{βα}(ω)^{-1}> \simeq π_1(X, x_0). $$
+\end{veta}
+
+	\begin{dukaz}
+		The proof uses Proposition *. Same terminology: Given a loop $f$ in $X$ based at $x_0$, by a factorization of $[f] \in π_1(X, x_0)$ we mean a formal product $[f_1]·…·[f_k]$, where each $f_i$ is a loop in some $A_α$ based at $x_0$ and $[f_i] \in π_1(A_α, x_0)$, and where $f$ is homotopic to $f_1·…·f_k$. (Factorization is a presentation from Proposition *. Factorization can be seen as a word in $*_{α \in I} π_1(A_α, x_0)$, but not necessary reduced word.)
+
+		We construct $Φ$ by sending $[f]$ to $[f_1]·…·[f_k]$ coming from Proposition * with the potential reduction. We will be concerned with the uniqueness of such factorizations. We define an equivalence relation on factorizations. We say that two sequences are equivalent iff they are related by a sequence of moves: combine adjacent terms: $[f_i]·[f_j] = [f_if_j]$ if $[f_i], [f_j] \in π_1(A_α, x_0)$ for some $α$; and regard $[f_i] \in π_1(A_α)$ as $[f_i] \in π_1(A_β)$ if $f_i$ is a loop in $A_β$; and we do not write constant loops in the decomposition.
+
+		This equivalence relation mimics, what is necessary for words in $* π_1(A_α, x_0)$. We modify this equivalence relation by substituting second condition (regard …) by: For $f_i$, $f_j$: $[f_i] \in π_1(A_α, x_0)$, $[f_j] \in π_1(A_β, x_0)$, we view $[f_i]$, $[f_j]$ as elements of $π_1(A_α \cap A_β, x_0)$. So first and third condition do not change the elements in $*_{α \in I} π_1(A_α, x_0)$ and the new second one is such that it does not change elements $*_{α \in I} π_1(A_α, x_0) / N$.
+
+		So equivalent factorizations supposed to give the same element $*_{α \in I} π_1(A_α, x_0)$. Hence we can show that any two factorizations of $f$ are equivalent, this will imply $*_{α \in I} π_1(A_α, x_0) / N \rightarrow π_1(X, x_0)$ is injective, and therefore $*_{α \in I} π_1(A_α, x_0) / N \rightarrow *_{α \in I} π_1(A_α, x_0)$ is trivial, and this map is an isomorphism.
+
+		„Equivalence of two factorizations“: We take two factorizations $[f_1]·…·[f_k]$ and $[f_1']·…·[f_l']$ of $[f] \in π_1(X, x_0)$. We would like to show that $[f_1]·…·[f_k] \sim [f_1']·…·[f_l']$. Since they represent $[f]$, they are homotopic. Let $F: I \times I \rightarrow X$ is a homotopy from $f_1·…·f_k$ to $f_1'·…·f_l'$. Then we say that $\exists$ decompositions $0 = s_0 < s_1 < … < s_m = 1$, $0 = t_0 < t_1 < … < t_n = 1$ such that each $R_{ij} := [s_{i-1}, s_i] \times [t_{j-1}, t_j]$ is mapped by $F$ to a single $A_α$, which we label by $A_{ij}$. These partitions can be obtained from $I \times I$ by finitely many rectangles $[a, b] \times [c, d]$ mapping to a single $A_α$ by compactness of $I \times I$.
+
+		With this type of description, we can assume that $R_{ij}$'s are such that they are to the subdivision giving homotopies between $f_i$'s and $f_j$'s.
+
+		Since $F$ maps a neighbourhood of $R_{ij}$ into $A_{ij}$, we may perturb the vertical sides of $R_{ij}$ so that each point of $I \times I$ lies in at most three $R_{ij}$'s. After this modification we do the relabelling by the following scheme: label row by row starting from the first one, and label from left to right.
+
+		If $γ$ is path in $I \times I$ from the left edge (i.e. $\{0\} \times [0, 1]$) to the right edge (i.e. $\{1\} \times [0, 1]$), then $F|_γ$ is a loop from $x_0$ to $x_0$. We write $γ_r$ to be the path (through edges of rectangles) separating the first $r$ rectangles $R_1, …, R_r$ from the remaining rectangles. $γ_0$ is bottom edge, $γ_m$ is the top edge.
+
+		Let us call the corners of $R_i$'s vertices. So for each vertex $v$ with $F(v) ≠ x_0$, there is a path $g_v$ from $x_0$ to $F(v)$ that lies in the intersection of the two or three $A_{ij}$'s corresponding to $R_i$'s containing $v$. (This is by the choice of $R_i$'s and the fact that $A_α$'s are path connected and contains $x_0$ and $F(v)$. And by path connectedness of disjoint of $A$'s.)
+
+		Then we obtain a factorization $[F|_{γ_r}]$ by inserting the appropriate path connection $x_0$ with $F|_{\text{vertices corresponds of $R_i$'s}}$ then we can say that $[F|_{γ_r}]$ has a decomposition that depends on the choice of $A_{ij}$ that corresponds to the edge of $R_i$ on which the component of the decomposition lies.
+
+		$[F|_{γ_r}]$ has a decomposition by inserting $g_v^{-1} g_v$. Different choices of $A_{ij}$'s will change the factorization of $[F|_{γ_r}]$. (Our equivalence relation $\sim$ is designed to make the choice of $A_{ij}$'s for such paths irrelevant. I.e. the different factorizations coming from different choices are equivalent.)
+
+		Factorizations for two consecutive paths $γ_r$ and $γ_{r+1}$ are equivalent since pushing along $R_{r+1}$ from $γ_r$ to $γ_{r+1}$ changing $F|_{γ_r}$ to $F|_{γ_{r+1}}$ by a homotopy within $A_{ij}$ corresponding to $R_{r+1}$, so we can choose this $A_{ij}$ for all segments of $γ_r$.
+
+		We can arrange that the factorization associated to $γ_0$ is equivalent to $[f_1]·…·[f_k]$ by choosing $g_r$'s for each vertex $v$ along the lower edge of $I \times I$ to lie not just in the two $A_{ij}$'s corresponding to $R_s$'s containing $v$, but also to lie in the $A_α$ for $f_i$ containing $v$ in its domain. In the case when $v$ is the common point of two domains for two consecutive $f_i$ and $f_{i+1}$ we have $F(v) = x_0$, so there is no need to choose $g_v$'s for such $v$'s. In this fashion we can assume that the factorization for $[f_1]·…·[f_k]$ and $[f_1']·…·[f_l']$ are equivalent.
+	\end{dukaz}
 
 \end{document}

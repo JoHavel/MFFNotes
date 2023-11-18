@@ -252,7 +252,7 @@
 	Nechť $Ω \subseteq ®R^n$ otevřená:
 	$$ W^{1, 1}_{loc}(Ω) := \{u \in L^1_{loc}(Ω) | \forall i \in [n]\ \exists D_i u \in L^1_{loc}(Ω)\}, $$
 	$$ W^{1, p}(Ω) = \{u \in W^{1, 1}_{loc} \middle| \|u\|_{1, p} < ∞\}, \text{ kde } \|u\|_{1, p} = \sqrt[p]{\sum_{i=1}^n \int_Ω |D_i u|^p + \int_Ω |u|^p}, $$
-	$$ W^{1, p}_c(Ω) = \{u \in W^{1, p}(Ω) \middle| \exists K \subset Ω: \{u ≠ 0\} \subset K\}, $$
+	$$ W^{1, p}_c(Ω) = \{u \in W^{1, p}(Ω) \middle| \exists K \subset Ω: \{u ≠ 0\} \subset K\}, $$
 	$$ p \in [1, ∞): W^{1, p}_0(Ω) = \overline{W_c^{1, p}(Ω)}^{\|·\|_{1, p}}, \qquad p = ∞: W^{1, p}_0(Ω) = \overline{W^{1, ∞}(Ω) \cap C_0(Ω)}^{\|·\|_{1, p}}. $$
 \end{definice}
 
@@ -332,7 +332,7 @@
 	\begin{dukazin}
 		$Ω_1 \Subset Ω_2 \Subset … \Subset Ω$, $\overline{Ω_k}$ kompaktní, $Ω_k$ Otevřené, $Ω = \bigcup_{j=1}^∞ Ω_j$. Najdeme rozklad jednotky $ω_j$ (tj. $ω_j \in ©D(Ω)$, $ω_j(x) \in [0, 1]$, $ω_j ≥ χ_{Ω_j}$, $\forall x \in Ω_n: \sum_{j=1}^∞ ω_j(x) = 1$).
 
-		Mějme $ω_ju \in W^{1, p}_0(Ω)$ $\exists v_{k, j} \in ©D(Ω)$: $v_{k, j} \rightarrow ω_j u$ v $W^{1, p}$. Takže najdeme $v_j \in ©D(Ω): \int_Ω |v_j - ω_j u|^p + |Dv_j - Dω_j u| < 2^{-j} ε$, $v_j \in W^{1, p}$. $\sum_{j=1}^∞ ω_j u = u \in W^{1, p}$.
+		Mějme $ω_ju \in W^{1, p}_0(Ω)$ $\exists v_{k, j} \in ©D(Ω)$: $v_{k, j} \rightarrow ω_j u$ v $W^{1, p}$. Takže najdeme $v_j \in ©D(Ω): \int_Ω |v_j - ω_j u|^p + |Dv_j - Dω_j u| < 2^{-j} ε$, $v_j \in W^{1, p}$. $\sum_{j=1}^∞ ω_j u = u \in W^{1, p}$.
 
 		Položme $v = \sum_{j=1}^∞ v_j$. Chceme dokázat $\|v - u\|_{1, p} < ε$. Nejprve na $Ω_n$. Máme $u|_{Ω_n} = \sum_{j=1}^n (ω_j u) |_{Ω_n} v|_{Ω_n}  = \sum_{j=1}^n v_j|_{Ω_n}$.
 		$$ \int_Ω \|v - u\|^p + \|Dv - Du\|^p ≤ \int_{Ω_n} \sum_{j=1}^n |v_j - u_j|^p + |Dv_j - Du_j|^2 ≤ \sum_{j=1}^n \|v_j - u_j\|_{W^{1, p}(Ω_n)}^p ≤ \sum_{j=1}^n 2^j ε ≤ ε. $$
@@ -362,5 +362,98 @@
 \end{veta}
 
 TODO!!!
+
+% 08. 11. 2023
+
+TODO!!!
+
+% 15. 11. 2023
+
+\begin{definice}
+	Nechť $U$ je konvexní otevřená omezená a $x \in U$. Značíme $U_t := \{x + t(y - x) | y \in U\} = \{z | x + \frac{1}{t}(z - x) \in U\}$. Dále značíme $\overline{u}_U = \fint_{U} u dy$.
+
+	Minkowského funkcionál množiny $U$ je $p(y) = \inf \{t | y \in U_t\}$. Platí, že $U_t = \{y | p(y) < t\}$.
+\end{definice}
+
+\begin{veta}[O odhadu potenciálem]
+	Nechť $U$ je konvexní otevřená omezená, $x \in U$, $u \in W^{1, 1}(U)$. Dále nechť $x$ je Lebesgueův bod $u$, pak
+	$$ |u(x) - \overline{u}_U| ≤ \frac{\diam U}{λ^n(U)} \int_0^1 \frac{1}{t^n} \int_{U_t} |Du(y)| dλ^n(y) dλ^1(t). $$
+	Je-li navíc ? konečný, pak
+	$$ u(x) - \overline{u}_U = \int_0^1 \frac{1}{t} \fint_{U_t} |Du(y)| (y - x) dλ^n(y) dλ^1(t). $$
+
+	\begin{dukazin}
+		Nechť $u \in ©C^1(U)$ ($\forall u \in W^{1, 1}\ \exists u_k \rightarrow u$ v $W^{1, 1}$, $u_k \in ©C^1$).
+		$$ ξ(t) = \fint_U u(x + t(y - x)) dλ^n(y) = \fint_{U_t} u dλ^n. $$
+		$ξ(1) = \fint_U u = \overline{u}_U$. $\lim_{s \rightarrow 0_+} ξ(s) = u(x)$ Lebesgueův bod. $0 < a < b < 1$:
+		$$ ξ(b) - ξ(a) = \int_a^b \partial_t\(\fint_U u(x + t(y - x)) dy\) dt = \int_a^b \fint_U \nabla u(x + t(y - x))·(y - x) dy dt = \int_a^b \frac{1}{λ^n(U) t^n} \int_{U_t} \nabla u(z)\frac{(z - x)}{t} dz dt. $$
+		$$ ω_a^b(z) = \begin{cases}\frac{1}{λ^n(u)} \int_{\max\{a, p(z)\}}^b \frac{1}{t^{n+1}} dt, & p(z) < b, \\ 0, & p(z) ≥ b.\end{cases} \qquad ω_a^b \in ®C_c(U) $$
+		$$ ξ(b) - ξ(a) = \frac{1}{λ^n(U)} \int_a^b \int_{U_t} \nabla u(z) (z - x) dλ^n(z) \frac{dt}{t^{n+1}} =: ** = $$
+		$$ = \frac{1}{λ^n(U)} \int_a^b \int_{\{p(z) < t\}} \nabla u(z) (z - x) dλ^n(z) \frac{dt}{t^{n+1}} = $$
+		$$ = \frac{1}{λ^n(U)} \int_{U_b} \int_{(a, b) \cap \{p(z) < t\}} \nabla \frac{u(z) (z - x)}{t^{n+1}} dλ^n(z) dt = $$
+		$$ = \int_U ω_a^b(z) \nabla u(z) (z - x) dz =: * $$
+		Pomocí silné aproximace hladkými funkcemi v $W^{1, 1}(U)$ dostaneme $*$ i pro $\forall u \in W^{1, 1}(U)$.
+		$$ ξ(b) - ξ(a) \overset{\text{Fubini}} \int_a^b \frac{1}{t} \(\fint_{U_t} D_u(z)(z - x) dz\) dt. $$
+		Použijeme odhad $|z - x| ≤ \diam U_t = t \diam U$:
+		$$ |ξ(b) - ξ(a)| ≤ \diam U \int_a^b \fint_{u_t} |D_u(z)| dz dt = \frac{\diam U}{λ^n(U)} \int_a^b \int_{U_t} |Du(z)| dz \frac{dt}{t^n}. $$
+		$$ |ξ(1) - ξ(0)| ≤ \frac{\diam U}{λ^n(U)} \int_0^1 \int_{U_t} Du(z) dz \frac{dt}{t^n}. $$
+
+		$$ ** \overset{b \rightarrow 1_-, a \rightarrow 0_+}\longrightarrow \int_0^1 \frac{1}{t} \fint_{U_t} Du(z) (z - x) dz dt $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Nechť $U \in ®R^n$ otevřená konvexní omezená, $u \in W^{1, 1}(U)$ a nechť $x \in U$ je Lebesgueův. Pak
+	$$ \int_U |u(y) - u(x)| dλ^n(y) ≤ c_U \int_U \frac{|Du(y)|}{|y - x|^{n-1}} dλ^n(y), $$
+	kde $C_U$ závisí pouze na tvaru $U$.
+
+	\begin{dukazin}
+		Označme $R = \diam U$. Potom $p(y) ≥ \frac{|y - x|}{R}$, $y \in ®R^n$. Víme, že $|ξ(b) - ξ(a)| ≤ \int_U ω_a^b(y) |Du(y)|·|y - z| dλ^n(y)$.
+		$$ ω_a^b(y) ≤ \frac{1}{λ^n(U)} \int_{p(y)}^∞ \frac{1}{t^{n+1}} = \frac{1}{n·λ^n(U)} [p(y)]^{-n} ≤ \frac{1}{n·λ^n(u)} \frac{R^n}{|y - x|^n}. $$
+		Potom
+		$$ |ξ(b) - ξ(a)| ≤ C_U · \frac{R^n}{n·λ^n(U)} \int_U \frac{|Du(y)|}{|y - x|^{n-1}}. $$
+		$$ |\fint_U u(y) - u(x) dy| ≤ C_U \int_U \frac{|Du(y)|}{|y - x|^{n-1}}. $$
+
+		$v(y) = |u(y) - u(x)| \in W^{1, 1}$.
+		$$ \int_{B(x, r)} | v(y) - v(x) | \rightarrow 0, \qquad \int \left| |u(y) - u(x)| - 0\right| = \int |u(y) - u(x)|. $$
+		$|Dv| = |Du|$ skoro všude.
+		$$ \left| \fint |u(y) - u(x)| \right| ≤ Cu \int \frac{|Du|}{|y - x|^{n-1}}. $$
+	\end{dukazin}
+\end{dusledek}
+
+\begin{lemma}
+	Nechť $r > 0$ a $x \in ®R^n$. Potom
+	$$ \int_{B(¦o, r)} |x - y|^{1 - n} dλ^n(y) ≤ Cr. $$
+	Odhad platí také, když vyměníme $B(¦o, r)$ za $Q(¦o, r)$
+
+	\begin{dukazin}
+		Nechť $x \in ®R^n \setminus B(¦o, 2r)$, pak $|y - x| > r$. $|y - x|^{1 - n} ≤ r^{1 - n}$. $λ^n (B(¦o, 1)) =: ω_n$, $λ^n(B(¦o, r)) = r^n ω_n$.
+		$$ \int_{B(¦o, r)} |y - x|^n ≤ \int_{B(¦o, r)} r^{1 - n} = λ^n(B(¦o, r)) r^{1 - n} = ω_n r. $$
+
+		$x \in B(0, 2r)$, $B(x, 3r) \supset B(0, r)$.
+		$$ \int_{B(0, r)} |y - x|^{1 - n} ≤ \int_{B(x, 3r)} |y - x|^{1 - n} = \int_{B(0, r)} |y|^{1 - n}·\int_0^{3r} ©H^{n - 1}(S_t) t^{1 - n} = 3 ©H^{n - 1} (S_n) r. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Symetrizace Rieszova integrálu s jádrem]
+	Nechť $E \subseteq ®R^n$ měřitelná, pak $\int_E |x|^{1 - n} dλ^n(x) ≤ c·λ^n(E)^{\frac{1}{n}}$.
+
+	\begin{dukazin}
+		Nechť $R: λ^n(B(0, R)) = λ^n(E)$. Pak $λ^n(B \setminus E) = λ^n(E \setminus B)$.
+		$$ \int_{E \setminus B} \frac{1}{|x|^{n-1}} ≤ \int_{E \setminus B} \frac{1}{R^{n+1}} = \int_{B \setminus E} R^{1 - n} ≤ \int_{B \setminus E} |x|^{1 - n}. $$
+		$$ \int_E |x|^{1 - n} ≤ \int_B |x|^{1 - n} ≤ C R = C λ^n(B(0, R))^{\frac{1}{n}} = c(λ(E))^{\frac{1}{n}}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$Ω$ otevřená v $®R^n$, $u \in W^{1, 1}(Ω)$. Potom $\forall B \subset Ω$ platí
+	$$ \int_B |u - \overline{u}_B| dλ^n ≤ c·r·\int_B |Du| dλ^n,  $$
+	kde $C$ závisí pouze na $n$ a $r = \frac{\diam B}{2}$.
+
+	\begin{dukazin}
+		Je-li $x$ Lebesgueův bod pro $u$, pak
+		$$ |u(x) - \overline{u}_B| ≤ C_B \int_B \frac{|Du(y)|}{|y - x|^{n - 1}} dy $$
+		$$ \int_B |u(x) - \overline{u}_B| ≤ \int_B C(n) \int_B \frac{|D u(y)|}{|y - x|^{n - 1}} dy dx ≤ C(n) r \int_B |Du(y)|. $$
+	\end{dukazin}
+\end{veta}
 
 \end{document}

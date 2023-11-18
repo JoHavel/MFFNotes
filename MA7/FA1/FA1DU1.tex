@@ -42,11 +42,13 @@
 	\begin{reseni}
 		Podle Tvrzení 14 musí pro $φ \in X^*$ existovat $c > 0$, $\tilde p_1, …, \tilde p_n \in ©P$, že $\forall f \in X: |L(f)| ≤ c·\max\{\tilde p_1(f), …, \tilde p_n(f)\}$.
 
-		A pokud v předchozí $n$-tici norem máme pouze jednu, $p_k$, pak se můžeme podívat, jak působí tento funkcionál na $k$-tou derivaci $f \in X$ jako prvek prostoru $C([0, 1])$, tj. $f^{(k)} \in C([0, 1])$. $|L(f)| ≤ c·p_k(f) = c·\|f^{(k)}\|_∞$, tedy $L$ je spojitá (a zřejmě lineární) i na $\{f^{(k)}\} \subset C([0, 1])$. Navíc z Weierstrassovy věty je $\{f^{(k)}\}$ (libovolné nekonečně hladké funkce, neboť „odderivovat“ můžeme vždy neurčitým Lebesgueovým integrálem, který je spojitý) hustá v $C([0, 1])$, tedy $L$ jednoznačně určuje prvek $C([0, 1])^* = ©M([0, 1])$ (regulární borelovské znaménkové míry).
+		Pokud v předchozí $n$-tici norem máme pouze jednu, $p_k$, pak se můžeme podívat, jak působí tento funkcionál na $k$-tou derivaci $f \in X$ jako prvek prostoru $C([0, 1])$, tj. $f^{(k)} \in C([0, 1])$. $|L(f)| ≤ c·p_k(f) = c·\|f^{(k)}\|_∞$, tedy $L$ je spojitá (a zřejmě lineární) i na $\{f^{(k)}\} \subset C([0, 1])$. Navíc z Weierstrassovy věty je $\{f^{(k)}\}$ (libovolné nekonečně hladké funkce, neboť „odderivovat“ můžeme vždy neurčitým Lebesgueovým integrálem, který je spojitý) hustá v $C([0, 1])$, tedy $L$ jednoznačně určuje prvek $C([0, 1])^* = ©M([0, 1])$ (regulární borelovské znaménkové míry).
 
 		Naopak libovolný prvek $μ \in C([0, 1])^*$ lze aplikovat na $\{f^{(k)}\}$ a splňuje podmínku $\forall f \in X: |μ(f)| := |μ(f^{(k)})| ≤ \|μ\| · \|f^{(k)}\|_∞ = c·p_k(f)$. Tedy spojité funkcionály splňující $|L(f)| ≤ c·p_k$ odpovídají (pro každé $k$ zvlášť) jedna ku jedné $C([0, 1])^*$.
 
-		Navíc si můžeme všimnout, že pokud nenulové spojité funkcionály $K, L$ odpovídají jiným $p_k, p_l$, $l < k$, pak jsou jiné, neboť 
+		Pokud máme dvojici (a obdobně pro trojici, čtveřici, …) norem $p_k$ a $p_l$ v podmínce ze začátku, můžeme se $k$-tou a $l$-tou derivaci dívat jako na dvojici spojitých funkcí (zapomeneme, že je mezi nimi nějaká souvislost a že musí být hladké), tedy na prostor $C([0, 1]) \times C([0, 1])$. Pokud přidáme k tomuto prostoru normu $\|(g, h)\| = \max\{\|g\|, \|h\|\}$, pak $|L(f)| ≤ c·\max\{p_k(f), p_l(f)\}$ je totéž jako $L$ spojité na naší podmnožině $C([0, 1]) \times C([0, 1])$ s touto normou neboli $C([0, 1]) \oplus_∞ C([0, 1])$. Každé takový lineární spojitý funkcionál lze rozšířit na celé $C([0, 1]) \oplus_∞ C([0, 1])$ My ale víme, že $(X \oplus_p Y)^* = X^* \oplus_q Y^*$, kde $q$ je sdružený koeficient k $p$. Takže všechny lineární funkcionály splňující $L(f) ≤ c·\max\{p_k(f), p_l(f)\}$ jsou „podmnožinou“ $©M([0, 1]) \oplus_1 ©M([0, 1])$ (aplikujeme na $k$-tou a $l$-tou derivaci). Opačnou „inkluzi“ také víme, neboť $©M([0, 1])$ aplikované na $k$-tou, respektive $l$-tou, derivaci jsou funkcionály na $X$, tedy i jejich součet bude.
+
+		Tedy funkcionály na $X$ budou (ne jednoznačného) tvaru $©M([0, 1])^n$, pro každou $n$-tici $k_1, k_2, …, k_n$, kde aplikace znamená, že aplikujeme první míru na $k_1$-tou derivaci, druhou na $k_2$-tou derivaci, …
 	\end{reseni}
 \end{priklad}
 

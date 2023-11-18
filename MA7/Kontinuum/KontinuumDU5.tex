@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Recall that the Euler–Almansi strain tensor is defined as
+	$$ \btau(¦x, t)|_{¦x=¦χ(¦X, t)} := \frac{1}{2} \(®I - ®F^{-T}(¦X, t) ®F^{-1}(¦X, t)\). $$
+	Show that the material time derivative of Euler–Almansi strain tensor is given by the formula $\frac{d\bepsilon}{dt} = ®D - ®L^T \bepsilon - \bepsilon ®L$.
+
+	\begin{dukazin}
+		$$ \frac{d \btau}{dt} = \frac{1}{2}\frac{d}{dt}\(®I - ®F^{-T} ®F^{-1}\) = -\frac{1}{2}\frac{d}{dt}\(®F^{-T} ®F^{-1}\) = $$
+		$$ = -\frac{1}{2} \frac{d®F^{-T}}{dt}®F^{-1} - \frac{1}{2}®F^{-T} \frac{d®F^{-1}}{dt} = -\frac{1}{2} \frac{d®F^{-T}}{dt}®F^T®F^{-T}®F^{-1} - \frac{1}{2}®F^{-T} ®F^{-1} ®F \frac{d®F^{-1}}{dt} = $$
+		(Z minulého domácího úkolu už víme, že $\frac{d®F^{-T}}{dt}®F^T = -®L^T$ a $®F \frac{d®F^{-1}}{dt} = -®L$.)
+		$$ = ®L^T\frac{1}{2}®F^{-T}®F^{-1} + \frac{1}{2}®F^{-T}®F^{-1}®L = ®L^T\(-\bepsilon + \frac{1}{2}®I\) + \(-\bepsilon + \frac{1}{2}®I\)®L= \frac{1}{2}®L^T + \frac{1}{2}®L - ®L^T \bepsilon - \bepsilon ®L = $$
+		$=®D - ®L^T \bepsilon - \bepsilon ®L$.
+	\end{dukazin}
+\end{priklad}
+	
+\begin{priklad}[2.]
+	Let ¦v denote the Eulerian velocity field. Show that $\frac{d¦v}{dt} = \frac{\partial ¦v}{\partial t} + (\rot ¦v) \times ¦v + \nabla \(\frac{1}{2}¦v·¦v\)$, where $\frac{d}{dt}$ in the material time derivative.
+
+	\begin{dukazin}
+		Víme, že „material time derivative“ $\implies$ $\frac{d¦v}{dt} = \frac{\partial ¦v}{\partial t} + (¦v · \nabla)¦v$. První členy se shodují, tedy se podíváme na druhý a třetí člen ze zadání:
+		$$ \((\rot ¦v) \times ¦v + \nabla \(\frac{1}{2}¦v·¦v\)\)_i = \((\nabla \times ¦v) \times ¦v + \sum_{j=1}^3 \frac{1}{2} \frac{\partial v_j^2}{\partial x_i}\)_i = $$
+		$$ \!\!\!\!\!\!= \!\(\sum_{j=1}^3 \sum_{k=1}^3 \sum_{l=1}^3 \sum_{m=1}^3 \!ε_{ijk}ε_{jlm} \frac{\partial v_m}{\partial x_l}v_k\) + \sum_{j=1}^3 \frac{1}{2}·2\frac{\partial v_j}{\partial x_i}v_j = \!\(\sum_{k=1}^3 \sum_{l=1}^3 \sum_{m=1}^3 \sum_{j=1}^3\!\! -ε_{jik}ε_{jlm} \frac{\partial v_m}{\partial x_l}v_k\) + \sum_{j=1}^3 \frac{\partial v_j}{\partial x_i}v_j. $$
+		Z prvního domácího úkolu (tedy spíše z přednášky před ním) víme, že $\sum_{j=1}^3 ε_{jik}ε_{jlm} = δ_{il}δ_{km} - δ_{im}δ_{kl}$. Tedy levý člen je:
+		$$ \sum_{k=1}^3 \sum_{l=1}^3 \sum_{m=1}^3 \sum_{j=1}^3 -ε_{jik}ε_{jlm} \frac{\partial v_m}{\partial x_l}v_k = \sum_{k=1}^3 -\frac{\partial v_k}{\partial x_i}v_k + \frac{\partial v_i}{\partial x_k}v_k. $$
+		Po sečtení s druhým členem nám zbude $\sum_{k=1}^3 \frac{\partial v_i}{\partial x_k}v_k$, což je přesně $(¦v·\nabla) v_i$, tedy $i$-tá složka druhého členu v „material time derivative“.
+	\end{dukazin}
+\end{priklad}
+	
+\begin{priklad}[3.]
+	Prove Zorawski lemma. The lemma claims that
+	$$ \frac{d}{t} \int_{s(t)} ¦q·¦n\,ds = \int_{s(t)} \(\frac{d¦q}{dt} + ¦q \Div ¦v - ®L¦q\)·¦n\,ds, $$
+	where $s(t)$ is material surface.
+
+	\begin{dukazin}
+		$$ \frac{d}{dt} \int_{s(t)} ¦q·¦n\,ds = \frac{d}{dt} \int_{s(t_0)} ¦q·(\det ®F)®F^{-T}¦N\,dS = \int_{s(t_0)} \frac{d}{dt}\(¦q·(\det ®F)®F^{-T}¦N\)\,dS = $$
+		$$ = \int_{s(t_0)} \(\frac{d}{dt} ¦q\)·(\det ®F)®F^{-T}¦N + 0 + ¦q·\(\frac{d}{dt}\det ®F\)(\det ®F)^{-1}(\det ®F)®F^{-T}¦N + $$
+		$$ + ¦q·(\det ®F)\(\frac{d}{dt}®F^{-T}\)®F^T®F^{-T}¦N\,dS = $$
+		$$ = \int_{s(t)} \(\frac{d}{dt} ¦q\)·¦n + ¦q·\(\frac{d}{dt}\det ®F\)(\det ®F)^{-1}¦n + ¦q·\(\frac{d}{dt}®F^{-T}\)®F^T¦n\,ds = $$
+		(První člen: Necháme. Druhý člen: $\frac{d}{dt} (\det ®A) = (\det ®A) \tr\(®A^{-1} \frac{d®A}{dt}\)$. Třetí člen: Z minulého DU máme $\(\frac{d}{dt} ®F^{-T}\)®F^T = -®L^T$ a použijeme definici transpozice.)
+		$$ = \int_{s(t)} \(\frac{d}{dt} ¦q\)·¦n + ¦q·\tr\(®F^{-1} \frac{d®F}{dt}\)¦n - ®L¦q·¦n\,ds. $$
+		Tedy zbývá prostřední člen. Tj. $\tr\(®F^{-1} \frac{d®F}{dt}\) \overset?= \Div ¦v$. Z minulého úkolu už víme, že $\tr(…) = \tr(®L)$. Ale my víme, že $®L = \nabla ¦v$, tedy $\tr(®L) = \nabla · ¦v = \Div¦v$.
+	\end{dukazin}
+\end{priklad}
+	
+\end{document}
