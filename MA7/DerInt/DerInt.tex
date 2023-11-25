@@ -456,4 +456,58 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 22. 11. 2023
+\begin{poznamka}
+	Aproximace $u \in W^{1, p}$ … $\exists u_k \in ©C^∞$, $u_k \rightarrow u$ v $W^{1, p}$. ($\int |u_k - u|^p < ε$.) $u_k \rightarrow u$ v $W^{1, 1}$ ($λ^n(\{u_k ≠ u\}) < \frac{1}{k}$), $u_k \in Lip$.
+\end{poznamka}
+
+\begin{veta}
+	Nechť $u \in W^{1, 1}(B)$. Pak $\exists E_m: B \supset E_1 \supset E_2 \supset …$ takové, že $m·λ^n(E_m) \overset{m \rightarrow ∞}\longrightarrow 0$ a $\exists g_m \in Lip(B)$:
+	\begin{itemize}
+		\item $lip g_m ≤ C·m$;
+		\item $\{g_n = u\} \subseteq B \setminus E_m$;
+		\item $\|u - g_m\|_{1,1} \rightarrow 0$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		$Mf(x) = \sup_{r > 0} \fint_{B(x, r)} |f|$ ($f \in L^1_{loc}(®R^n)$). Slabý odhad:
+		$$ λ^n(Mf > α) ≤ \frac{C}{α} \int_{|f| > \frac{α}{2}} |f| dλ^n \overset{α \rightarrow ∞}\longrightarrow 0. $$
+	\end{poznamkain}
+
+	\begin{dukazin}
+		Definujeme $h(x) = |Du(x)|$ pro $x \in B$ a $h(x) = 0$ jinak. $h \in L^1(®R)$. Dále definujme $E_m = \{Mh > m\}$. Díky slabému odhadu je $λ^n(E_m) ≤ \frac{C}{m} \int_{\{|h| > \frac{m}{2}\}} |h| = ς\(\frac{1}{m}\)$. Chceme dokázat, že $x, y \in B \setminus E_m$ je $|u(x) - u(y)| ≤ C·m·|x - y|$. Definujme $B_j = B(x, 2^{-j} |x + y|)$, $B_{-j} = B(y, 2^{-j} |x + y|)$, $B_0 = B\(\frac{x}{2} + \frac{y}{2}, 2|x - y|\)$, $j \in ®N$.
+
+		Protože je $x, y \in B \setminus E_m$ je $\fint_{B_j} h ≤ m$ $\forall j \in ®Z$ (pro $j = 0$, protože to tak vyjde). Předefinujeme $E_m$ jako $\{Mh > m\} \cup \{x \text{ má Lebesgueův bod pro $u$}\}$. Tím pádem máme $\lim_{j \rightarrow ∞} \fint_{B_j} u =: \lim_{j \rightarrow ∞} \overline{u_{B_j}} = u(x)$. Potom
+		$$ |u(x) - u(y)| ≤ \left|\overline u_{B_1} - \overline u_{B_{-1}}\right| + \sum_{j=1}^∞ \left|\overline u_{B_{j+1}} - \overline u_{B_j}\right| + \left|\overline u_{B_{-j-1}} - \overline u_{B_{-j}}\right|. $$
+		$$ |\overline u_{B_{j+1}} - \overline u_{B_j}| = \left| \fint_{B_{j+1}} u - \overline u_{B_j} \right| ≤ \fint_{B_{j+1}} |u - \overline u_{B_j} ≤ 2^n \fint_{B_j} |u - \overline u_{B_j}| ≤ C·|x - y|·2^{-j} \fint_{B_j} |Du|. $$
+		$$ |\overline u_{B_1} - \overline u_{B_{-1}}| = \left|\fint_{B_0} \overline u_{B_1} - u + \fint_{B_0} u - \overline u_{B_{-1}}\right| =  $$
+		$$ = \left|\fint_{B_1} u - \overline u_{B_0} + \fint_{B_{-1}} \overline u_{B_0} - u\right| ≤ TODO!!! $$
+		TODO!!!
+		Použijeme McShanovu rozšiřovací větu.
+
+		$g_m \in W^{1, 1}(B)$. „$Dg_m = Du$ skoro všude na $B \setminus E_m$“: stačí $D_1g_m = D_1u$. Když vybereme správného reprezentanta $u$: $\exists \partial_1 u(·, \tilde x)$, $\exists \partial_1 g_m(·, \tilde x)$, $u = g_m$ skoro všude $\implies$ $\partial_1 u = \partial_1 g_m$ skoro všude (na $(a, b) \cap B \setminus E_m$).
+
+		$\int_B |u - g_n| ≤ \int_{B \setminus E_m} |u| + \int_{E_m} |g_m| \rightarrow 0 + \lim_{m \rightarrow ∞} \int_{E_m} |g_m|$. A $|g_n| ≤ \sup |u|_{B \setminus E_m}|$.
+		$$ \int_B |Du - Dg_m| ≤ \int_{E_m} |Du| dλ^n + c·m λ^n(E_m) \rightarrow 0, $$
+		neboť $λ^n(E_m) \rightarrow 0$ a slabý odhad.
+		$$ \int_B |g_m - \overline{g_m}_B| ≤ C·r·\int_B |D g_m| ≤ C·\int_B |Du|. $$
+		$g_m - \overline{g_m}_B \in L^1$.
+		$$ |\overline u - \overline{g_m}_B| ≤ \fint_B |u - \overline u_B| + |g_m - \overline{g_m}_B| ≤ c·\int_B |Du|. $$
+		Tedy $\int_{E_m} g_m \rightarrow 0$ (neboť $g_m$ je omezená).
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Frunchi–Hajtasz–Koskala]
+	Nechť $u \in L^1(Ω)$. Pak $u \in W^{1, 1}(Ω)$ $\Leftrightarrow$ $\exists f \in L^1(Ω)\ \forall B(x, r) \subset\subset Ω: \int_B |u - \overline u_B| ≤ r·\int_B f$.
+
+	\begin{dukazin}
+		$u \in W^{1, 1} \implies \int |u - \overline u_B| ≤ C·r·\int_B |Du|$.
+
+		„$\implies$“: Viz věta výše. „$\impliedby$“: Nechť $Ω' \subset \subset Ω: Ω' + B(0, \frac{1}{k}) \subset Ω$, pak $ψ_k * u \in ©C^1(Ω')$ ($ψ_k(x) = k^n ψ(kx)$).
+		$$ \forall i \in [n]\ \forall x \in Ω': \int_{B(x, k^{-1})} \partial_i ψ_k(x - y) \overline u_{B(x, k^{-1})} = \overline u_{B(x, k^{-1})} \int_{B(0, k^{-1})} \partial_i ψ_k(y) dy = 0. $$
+		$$ \int |\partial_i ψ_k * u| = \left| \int_{B(x, k^{-1})} \partial_i ψ_k(x - y)(u(y) - \overline u_{B(x, k^{-1})}) \right| ≤ $$
+		$$ ≤ C k^{n+1} \int_{B(x, k^{-1})} |u - \overline u_{B(x, k^{-1})}| ≤ C k^n \int_{B(x, k^{-1})} f ≤ C \|f\|_1. $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}

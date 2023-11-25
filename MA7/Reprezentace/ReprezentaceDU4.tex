@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% z ?. 11. 2023 na 22. 11. 2023
+
+\begin{priklad}
+	Ať $N \in Mod{-}R$, $\{M_i, i \in I\} \subset Mod{-}R$, $I ≠ \O$. Dokažte, že (jako levé $End_R(N)$-moduly) $Hom_R(\bigoplus_{i \in I} M_i, N) \simeq \prod_{i \in I} Hom(M_i, N)$.
+
+	\begin{dukazin}
+		Pravá strana jsou $R$-homomorfismy do $N$ z $\bigoplus_{i \in I} M_i$, tedy ze souborů $¦m = \{m_i, i \in I\}$ (s operacemi po složkách), kde $m_i \in M_i$ a pouze konečně mnoho $m_i$ jsou nenulové. Zatímco pravá strana jsou soubory homomorfismů $¦φ = \{φ_i, i \in I\}$ (s operacemi po složkách), kde každé $φ_i$ je homomorfismus z $M_i$ do $N$.
+
+		Rovnost těchto levých $End_R(N)$-modulů ukážeme tak, že najdeme mezi nimi zobrazení, které je zároveň bijekcí a homomorfismem: Mějme tedy $¦φ \in \prod_{i \in I} Hom(M_i, N)$. Potom definujme $h(¦φ) (¦m) = \sum_{i \in I} φ_i(m_i)$.
+
+		„Dobrá definovanost“: Z „konečné nenulovosti“ v ¦m a jednoznačnosti $¦m = \{m_i, i \in I\}$ (a uzavřenosti $N$ na sčítání) máme dobrou definovanost $h(¦φ)$. Teď ještě potřebujeme $h(¦φ) \in Hom_R(\bigoplus_{i \in I} M_i, N)$: Máme-li $¦m, \tilde{¦m} \in \bigoplus_{i \in I} M_i$ a $r \in R$, potom ($φ_i$ jsou homomorfismy)
+		$$ h(¦φ)(¦m + \tilde{¦m}) = \sum_{i \in I} φ_i(m_i + \tilde m_i) = \sum_{i \in I} \(φ_i(m_i) + φ_i(\tilde m_i)\) = \sum_{i \in I} φ_i(m_i) + \sum_{i \in I} φ_i(\tilde m_i) = $$
+		$$ = h(¦φ)(¦m) + h(¦φ)(\tilde{¦m}), $$
+		$$ h(¦φ)(r¦m) = \sum_{i \in I} φ_i(r·m_i) = \sum_{i \in I} r·φ_i(m_i) = r·\sum_{i \in I} φ_i(m_i) = r·h(¦φ)(¦m). $$
+
+		Zároveň $h$ je prosté, protože když $¦φ ≠ ¦ψ$, tj. $φ_j(m_j) ≠ ψ_j(m_j)$ pro nějaké $j \in I$ a $m_j$, pak $h(¦φ)(\{m_j\} \cup \{0, i \in I \setminus \{j\}\}) = φ_j(m_j) ≠ ψ_j(m_j) = h(¦ψ)(\{m_j\} \cup \{0, i \in I \setminus \{j\}\})$.
+
+		$h$ je taktéž homomorfismus (a obdobně pak pro inverzi):
+		$$ h(r·¦φ)(m_i) = \sum_{i \in I} (r·φ_i)(m_i) = \sum_{i \in I} r·φ_i(m_i) = r·\sum_{i \in I} φ_i(m_i) = (r·h(¦φ))(¦m), $$
+		$$ h(¦φ + ¦ψ)(m_i) = \sum_{i \in I} (φ_i + ψ_i)(m_i) = \sum_{i \in I} \(φ_i(m_i) + ψ_i(m_i)\) = \sum_{i \in I} φ_i(m_i) + \sum_{i \in I} ψ_i)(m_i) = $$
+		$$ = (h(¦φ) + h(¦ψ))(¦m). $$
+
+		Jediné, co zbývá je surjektivita. Ale to víme z toho, že $f \in Hom_R(\bigoplus_{i \in I} M_i, N)$ je jednoznačně určeno hodnotami na $\{m_j\} \cup \{0, j=i \in I\}$, neboť každý prvek $\bigoplus_{i \in I}$ je konečným součtem těchto hodnot (a $f$ je homomorfismus, takže $f$ na součtu je součet $f$ na sčítancích). A k takovému $f$ tedy můžeme nalézt ($\forall j \in I$) $h^{-1}(f)_j(m_j) = f(\{m_j\} \cup \{0, j≠i \in I\})$, tak, že $h^{-1}(f) = \{h^{-1}(f)_i, i \in I\}$ se zřejmě zobrazuje na $f$.
+	\end{dukazin}
+\end{priklad}
+
+\end{document}
+

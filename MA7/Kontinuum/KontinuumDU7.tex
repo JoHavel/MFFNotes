@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	(We assume $e = e(\eta, \rho)$.) Let us assume that our substance of interest is the calorically perfect ideal gas. We know that the engineering equation of state for this substance reads
+	$$ p_{th} = c_{V,ref} (\gamma − 1) \rho \theta, $$
+	where $c_{V,ref}$ is a positive constant (specific heat at constant volume) and $\gamma$ is a positive constant greater that one (adiabatic exponent). Symbol $θ$ denotes the absolute temperature. Further, we also know that the internal energy of the substance is proportional to the temperature
+	$$ e = c_{V,ref} \theta. $$
+
+	Use this characterisations, solve the partial differential equations for $e$ and identify -- for our particular substance -- the formula for the internal energy $e$ as a function of the entropy and the density. Once you find the function $e(\eta, \rho)$, find also the explicit formula for the entropy $\eta$ as a function of the temperature and the density, $\eta(\theta, \rho)$.
+
+	\begin{reseni}[Poupravené řešení z minulého roku]
+		Z přednášky / celého znění zadání máme diferenciální rovnice pro $e$, kam dosadíme rovnosti výše:
+		$$ \frac{\partial e}{\partial \eta}(\eta, \rho) = \theta = \frac{e}{c_{V, ref}}, $$
+		$$ \rho^2\frac{\partial e}{\partial \rho}(\eta, \rho) = p_{th} = c_{V, ref}(\gamma - 1)\rho \theta = (\gamma - 1)\rho e. $$
+		Takže když se na funkci $e$ podíváme ve směru $\eta$, dostaneme $e(\eta, \const) = C·\exp\(\frac{\eta}{c_{V, ref}}\)$. Když se podíváme ve směru $\rho$, dostaneme $e(\const, \rho) = C·\rho^{\gamma - 1}$. Tudíž máme $e(\eta, \rho) = C·\exp\(\frac{\eta}{c_{V, ref}}\)·\rho^{\gamma - 1}$.
+
+		Uvažujme, že v referenčním stavu je nulová entropie, konstantní teplota $θ_{ref}$ a konstantní hustota $ρ_{ref}$. Tedy $\frac{\partial e}{\partial \eta}(0, \rho_{ref}) = \theta_{ref}$, tedy $C·\frac{1}{c_{V, ref}}·\rho_{ref}^{\gamma - 1} = \theta_{ref}$, tj.
+		$$ e(\eta, \rho) = \frac{c_{V, ref}·\theta_{ref}}{\rho_{ref}^{\gamma - 1}} · \exp\(\frac{\eta}{c_{V, ref}}\) · \rho^{\gamma - 1}. $$
+
+		Pokud z toho vyjádříme $\eta$, tak dostaneme:
+		$$ \frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma} = \exp\(\frac{\eta}{c_{V, ref}}\), $$
+		$$ \ln\(\frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \frac{\eta}{c_{V, ref}}, $$
+		$$ c_{V, ref}·\ln\(\frac{e(\eta, \rho)}{c_{V, ref}·\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \eta. $$
+
+		Nyní už stačí dosadit $\frac{e}{c_{V, ref}} = \theta$:
+		$$ \eta(\theta, \rho) = c_{V, ref}·\ln\(\frac{\theta}{\theta_{ref}}·\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\) = \eta. $$
+
+	\end{reseni}
+\end{priklad}
+
+\pagebreak
+
+\begin{priklad}[2.]
+	Consider the energetic equation of state for the calorically perfect ideal gas $e(\eta, \rho)$. Show that the specific Helmholtz free energy $\psi$ for the calorically perfect ideal gas is given by the formula
+	$$ \psi(\theta, \rho) = - c_{V, ref} \theta \(\ln\(\frac{\theta}{\theta_{ref}}\) - 1\) + c_{V, ref} \theta (\gamma - 1) \ln\(\frac{\rho}{\rho_{ref}}\), $$
+	where $\rho_{ref}$ and $\theta_{ref}$ are some constants. (Temperature and density at a reference state.)
+
+	\begin{dukazin}[Z minulého roku]
+		Z předchozího příkladu víme
+		$$ e(\eta, \rho) = c_{V, ref} \theta_{ref} \(\frac{\rho}{\rho_{ref}}\)^{\gamma - 1} \exp\(\frac{\eta}{c_{V, ref}}\). $$
+		Také víme (z jeho zadání), že $e(\eta, \rho) = \theta c_{V, ref}$, což můžeme také dostat jako
+		$$ \theta = \frac{\partial e}{\partial \eta} = \theta_{ref} \(\frac{\rho}{\rho_{ref}}\)^{\gamma - 1} \frac{1}{c_{V, ref}} \exp\(\frac{\eta}{c_{V, ref}}\), \qquad e(\eta, \rho) = \theta \frac{e}{\theta} = \theta c_{V, ref}. $$
+
+		Nakonec výsledkem prvního příkladu byla i entropie (vyjádřená z $e(\theta, \rho)$), kterou můžeme upravit podle vzorců pro logaritmus:
+		$$ \eta(\theta, \rho) = c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\(\frac{\rho}{\rho_{ref}}\)^{1 - \gamma}\] = c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\] + c_{V, ref} \ln\[\frac{\rho}{\rho_{ref}}\]·(1 - \gamma). $$
+
+		Nyní už stačí dosadit:
+		$$ \psi(\theta, \rho) = e(\eta, \rho)|_{\eta=\eta(\theta, \rho)} - \theta \eta(\theta, \rho) = $$
+		$$ = \theta c_{V, ref} - \theta\(c_{V, ref} \ln\[\frac{\theta}{\theta_{ref}}\] + c_{V, ref} \ln\[\frac{\rho}{\rho_{ref}}\]·(1 - \gamma)\) = $$
+	$$ = - c_{V, ref} \theta \(\ln\(\frac{\theta}{\theta_{ref}}\) - 1\) + c_{V, ref} \theta (\gamma - 1) \ln\(\frac{\rho}{\rho_{ref}}\). $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

@@ -5,71 +5,87 @@
 
 \begin{document}
 
-TODO OPRAVIT!!! (Jsou tam chyby.)
-
 \begin{priklad}[4. – Fredholm alternative vs Lax-Milgram lemma vs minimum principe]
-	Consider $\Omega \subset ®R^d$ a Lipschitz domain. Let $®A: \Omega \rightarrow ®R^d$ be an elliptic matrix. Assume that $¦c \in L^∞(\Omega, ®R^d)$ and $b ≥ 0$. Consider the problem
-	$$ -\Div(®A \nabla u) + bu + ¦c·\nabla u = f \text{ in } \Omega, \qquad u = u_0 \text{ on } \partial \Omega. $$
+	Consider $Ω \subset ®R^d$ a Lipschitz domain. Let $®A: Ω \rightarrow ®R^d$ be an elliptic matrix. Assume that $¦c \in L^∞(Ω, ®R^d)$ and $b ≥ 0$. Consider the problem
+	$$ -\Div(®A \nabla u) + bu + ¦c·\nabla u = f \text{ in } Ω, \qquad u = u_0 \text{ on } \partial Ω. $$
 
 	\begin{itemize}
-		\item[a)] Consider the case $b = 0$, $¦c = ¦o$ and $f \in L^2(\Omega)$ fulfilling $f ≥ 0$. Let $u_0 \in W^{1, 2}(\Omega)$ and denote $m := \essinf_{\partial \Omega} u_0$. Show that the unique weak solution $u$ satisfies $u ≥ m$ almost everywhere in $\Omega$.
+		\item[a)] Consider the case $b = 0$, $¦c = ¦o$ and $f \in L^2(Ω)$ fulfilling $f ≥ 0$. Let $u_0 \in W^{1, 2}(Ω)$ and denote $m := \essinf_{\partial Ω} u_0$. Show that the unique weak solution $u$ satisfies $u ≥ m$ almost everywhere in $Ω$.
 	\end{itemize}
 
 	\begin{dukazin}
-		Jak nám napovídá hint, definujeme $\phi(x) := (u(x) - m)_-$. Jelikož $\Omega$ je omezené a $u \in W^{1, 2}$, tak
-		$$ ||\phi||_2^2 = \int_\Omega (u(x) - m)_-^2 dx ≤ \int_\Omega (u(x) - m)^2 dx = ||u(x) - m||_2^2 ≤ \(||u(x)||_2 + ||m||_2\)^2 < ∞ $$
-		
-		Zároveň $u_0 = u ≥ m$ na $\partial \Omega$, tedy $\phi$ je na $\partial \Omega$ nulové.
+		Jak nám napovídá hint, definujeme $φ(x) := (u(x) - m)_- = \min(u(x) - m, 0)$. Chceme $φ \in W_0^{1, 2}$. Víme, že $u \in W^{1, 2}$. Nejprve ukážeme „$φ \in L_2$“: ($φ$ je zřejmě měřitelná, neboť $u$ je měřitelná a $\min(\text{měřitelná}, \text{měřitelná})$ je měřitelná)
+		$$ \int_Ω |φ|^2 = \int_Ω |(u - m)_-|^2 ≤ \int_Ω |u - m|^2 ≤ \int_Ω |u|^2 + |m|^2 = \|u\|_2^2 + |m|^2·λ^d(Ω) ≤ ∞, $$
+		jelikož $u \in L^2$ a $Ω$ je omezená (protože je lipschitzovská).
 
-		$$ \forall \psi \in C_0^∞(\Omega): \int_\Omega (\nabla \phi(x)) \psi(x) dx = \int_\Omega \nabla ((u(x) - m)_-)\psi(x) dx = $$
-		$$ = \int_{u(x) > m} \nabla (u(x) - m) \psi(x) dx + \int_{u(x) ≤ m} 0 \psi(x) dx = \int_{u(x) > m} (\nabla u(x)) \psi(x) dx = $$
-		$$ = \int_\Omega (\nabla \chi_{u(x) > m} u(x))·\psi(x) dx. $$
-		Tedy $\nabla \phi = \nabla u \chi_{u(x) > m}$, tedy $||\nabla \phi||_2 < ||\nabla u||_2 < ∞$, tj. $\phi \in W_0^{1, 2}$.
+		Na další stráně ukážeme $\nabla φ = χ_{\{u < m\}}\nabla u$. Tedy $\|\nabla φ\|_2 = \|χ\nabla u\|_2 ≤ \|\nabla u\|_2$ a $φ \in W^{1, 2}$. Následně „$\tr((u - m)_-) = 0$“: můžeme si všimnout, že $\tr(\min(a, b)) = \min(\tr(a), \tr(b))$ (platí pro $W^{1, 2} \cap C(\overline{Ω})$, a spojitostí $\tr$ a $\min$ rozšíříme na $W^{1, 2}$), tedy
+		$$ \!\!\tr((u - m)_-) {=} \min(\tr(u - m), \tr(0)) {=} \min(\tr(u) - \tr(m), 0) {=} \min(\tr(u_0) - \tr(m), 0) \overset{\tr (u_0) ≥ m}= 0. $$
 
-		Nyní použijeme $\phi$ jako testovací funkci:
-		$$ \int_\Omega -\Div(®A \nabla u) \phi = \int_\Omega f \phi $$
-		$$ \underbrace{\int_\Omega ®A \nabla u \nabla \phi}_{≥ C_1 |\nabla u|^2 ≥ 0} = \int_\Omega \underbrace{f}_{>0} \underbrace{\phi}_{≤ 0} $$
-		Tedy levá strana $≥0$, pravá $≤0$, tudíž se rovnají nule. Aby se pravá strana rovnala nule ($f$ je nenulové), tak musí být $\phi = 0$ skoro všude, tedy $u ≥ m$ skoro všude na $\Omega$.
+		Nyní můžeme použít $\phi$ jako testovací funkci:
+		$$ 0 ≥ \int_Ω \underbrace{f}_{>0} \underbrace{\phi}_{≤ 0} = \int_Ω ®A \nabla u \nabla \phi = \int_Ω ®A \nabla u \(χ_{\{u < m\}}\nabla u\) = \int_Ω ®A \nabla u \(χ_{\{u < m\}}^2\nabla u\) = $$
+		$$ = \int_Ω ®A \(χ_{\{u < m\}}\nabla u\) \(χ_{\{u < m\}}\nabla u\) = \int_Ω ®A \nabla φ \nabla φ ≥ \int_Ω C_1 |\nabla φ|^2 = C_1 \|\nabla φ\|_2^2 \overset{\text{Poincaré s $α_i = 0$}}≥ $$
+		$$ ≥ c\|φ\|_{1, 2} ≥ 0. $$
+		Tedy $\|φ\|_{1, 2} = 0$, tudíž $\|φ\|_2 = 0$, tj. $φ = 0$ skoro všude, a proto $u ≥ m$ skoro všude.
+	\end{dukazin}
+
+	\begin{dukazin}[$\nabla φ = χ_{\{u < m\}}\nabla u$]
+		Z charakterizace sobolevovských funkcí víme $\exists u_n \in C^∞(Ω): u_n \overset{W^{1, 2}}\rightarrow u$. Tedy $\nabla u_n \overset{L^2}\rightarrow \nabla u$ a $u_n \overset{L^2}\rightarrow u$. Navíc z omezenosti $Ω$ a Hölderovi nerovnosti můžeme konvergenci v $L^2$ nahradit konvergencí v $L^1$.
+
+		Označme $φ_n = (u_n - m)_-$. Potom
+		$$ |φ_n - φ| = |(u_n - m)_- - (u - m)_-| ≤ |(u_n - m) - (u - m)| = |u_n - u| $$
+		(třeba rozebráním všech čtyř možností), tedy $φ_n \overset{L_1}\rightarrow 0$. Tudíž
+		$$ \forall ψ \in C^∞_0(Ω): \int_Ω φ_n \nabla ψ \rightarrow \int_Ω φ \nabla ψ \impliedby \left|\int_Ω (φ_n - φ) \nabla ψ\right| ≤ \|φ_n - φ\|_1 · \|\nabla ψ\|_∞. $$
+
+		Nyní použijeme na tento integrál per partes (ze spojitosti $u_n$ jsou $\{u_n < m\}$ otevřené a $\partial\{u_n < m\} \subseteq \{u_n = m\}$):
+		$$ \int_Ω φ_n \nabla ψ \leftarrow \int_Ω φ_n \nabla ψ = \int_Ω (u_n - m)_- \nabla ψ = \int_{\{u_n < m\}} (u_n - m) \nabla ψ + 0 \overset{\text{pp}}= $$
+		$$ = \int_{\partial\{u_n < m\}} (u_n - m) ψ - \int_{\{u_n < m\}} \nabla u_n ψ - \int_Ω \nabla m ψ = 0 - \int_Ω χ_{\{u_n < m\}} \nabla u_n ψ - 0 = $$
+		$$ = - \int_Ω χ_{u < m} \nabla u_n ψ + \int_Ω χ_{\{u < m \land u_n ≥ m\}}\nabla u ψ - \int_Ω χ_{\{u < m \land u_n ≥ m\}}(\nabla u - \nabla u_n) ψ. $$
+		Poslední integrál konverguje k 0, neboť
+		$$ \left|\int_Ω χ_{\{u < m \land u_n ≥ m\}}(\nabla u - \nabla u_n) ψ\right| ≤ \int_Ω |(\nabla u - \nabla u_n)ψ| ≤ \|\nabla u - \nabla u_n\|_1 · \|ψ\|_∞ \rightarrow 0, $$
+		druhý jde k 0, protože $u_n \overset{L^1}\rightarrow u$ nám dává, že pro každé $ε$ je $λ^d(\{u_n ≥ m \land u < m - ε\}) \rightarrow 0$. Ale protože $λ^d(\{u_n ≥ m \land u < m - ε\}) \overset{ε \rightarrow 0}\rightarrow λ^d(\{u_n ≥ m \land u < m\})$, tak dostáváme, že $λ^d(\{u < m \land u_n ≥ m\}) \rightarrow 0$. Tedy integrujeme přes „mizející“ množinu.
+
+		Nakonec třetí z těch integrálů konverguje k $- \int_Ω χ_{u < m} \nabla u ψ$, tedy $\nabla φ = χ_{u < m} \nabla u$, protože
+		$$ \left|\int_Ω χ_{u < m} (\nabla u - \nabla u_n) ψ\right| ≤ \int_Ω |(\nabla u - \nabla u_n) ψ| ≤ \|\nabla u - \nabla u_n\|_1·\|ψ\|_∞ $$
 	\end{dukazin}
 
 \newpage
 
 	\begin{itemize}
-		\item[b)] Consider $b > 0$ and ¦c arbitrary. Prove that for any $u_0 \in W^{1, 2}(\Omega)$ and any $f \in L^2(\Omega)$ there exists a weak solution.
+		\item[b)] Consider $b > 0$ and ¦c arbitrary. Prove that for any $u_0 \in W^{1, 2}(Ω)$ and any $f \in L^2(Ω)$ there exists a weak solution.
 	\end{itemize}
 
 	\begin{dukazin}
 		Nejprve si podle hintu převedeme úlohu na důkaz tvrzení, že
-		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } \Omega $$
-		má pouze jedno řešení $u \in W_0^{1, 2}(\Omega)$, $u = 0$.
+		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } Ω $$
+		má pouze jedno řešení $u \in W_0^{1, 2}(Ω)$, $u = 0$.
 
 		Převedení bych moc rád udělal tak, že místo $f$ na pravé straně použiji $f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u)$, protože to k tomu hrozně nabádá, navíc mě nenapadá nic jiného, co by šlo použít, než Fredholmova alternativa a nenapadá mě žádný jiný postup, jak se dostat z FA na boundary value problém. Jenže $\Div(®A \nabla u)$ prostě nemusí být v $L^2$. Asi mi něco jednoduchého uniká, ale bohužel už nemám moc času do deadlinu. Takže řekněme, že nová pravá strana je v $L^2$.
 
 		Potom z Fredholmovy alternativy a z tvrzení (pokud tedy platí, což si dokážeme dále) plyne, že problém
-		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u) \text{ v } \Omega, \qquad u = 0 \text{ na } \partial \Omega, $$
-		má (právě jedno) řešení $u \in W_0^{1, 2}(\Omega)$. Pokud tedy zvolíme $\tilde u = u + u_0$, pak $\tilde u$ je slabé řešení problému
-		$$ -\Div(®A \nabla \tilde u) + b \tilde u + ¦c·\nabla \tilde u = f \text{ v } \Omega, \qquad \tilde{u} = u_0 \text{ na } \partial \Omega, $$
+		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u) \text{ v } Ω, \qquad u = 0 \text{ na } \partial Ω, $$
+		má (právě jedno) řešení $u \in W_0^{1, 2}(Ω)$. Pokud tedy zvolíme $\tilde u = u + u_0$, pak $\tilde u$ je slabé řešení problému
+		$$ -\Div(®A \nabla \tilde u) + b \tilde u + ¦c·\nabla \tilde u = f \text{ v } Ω, \qquad \tilde{u} = u_0 \text{ na } \partial Ω, $$
 		neboť „všechno“ je zde lineární, takže „přičtením“ $u_0$ k $u$ na levé straně se přičtou odpovídající členy na pravé.
 	\end{dukazin}
 
 	\begin{dukazin}
-		Mějme $u$ řešící $-\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } \Omega$.
+		Mějme $u$ řešící $-\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } Ω$.
 
-		Nyní dokážeme, že pro nějaké $M$ je $|u| < M$ skoro všude, tedy $u \in L^∞(\Omega)$ a $\|u\|_{L^∞} ≤ M$. Pokud $d = 1$, tak je z věty o vnoření $u$ spojité, takže se omezenost může „rozbíjet“ pouze na hranici $\Omega$, ale my víme, že $\tr u = 0$. Pro tuto část důkazu tedy předpokládejme $d > 1$.
+		Nyní dokážeme, že pro nějaké $M$ je $|u| < M$ skoro všude, tedy $u \in L^∞(Ω)$ a $\|u\|_{L^∞} ≤ M$. Pokud $d = 1$, tak je z věty o vnoření $u$ spojité, takže se omezenost může „rozbíjet“ pouze na hranici $Ω$, ale my víme, že $\tr u = 0$. Pro tuto část důkazu tedy předpokládejme $d > 1$.
 
-		Ať $M > 0$ a $\phi_M := (u - M)_+$. Protože je $u \in W_0^{1, 2}(\Omega)$, tak $\phi_M \in W^{1, 2}(\Omega)$ ze stejných důvodů jako v a), $\nabla \phi_M = \nabla u · \chi_{u ≥ M}$, a navíc $\phi_M \in W_0^{1, 2}$, neboť $u$ zůstává 0 tam, kde 0 bylo.
+		Ať $M > 0$ a $\phi_M := (u - M)_+$. Protože je $u \in W_0^{1, 2}(Ω)$, tak $\phi_M \in W^{1, 2}(Ω)$ ze stejných důvodů jako v a), $\nabla \phi_M = \nabla u · \chi_{u ≥ M}$, a navíc $\phi_M \in W_0^{1, 2}$, neboť $u$ zůstává 0 tam, kde 0 bylo.
 
 		Tedy ho můžeme použít jako testovací funkci: $\int ®A \nabla u · \nabla \phi_M + b u \phi_M + ¦c·\nabla u \phi_M = \int 0 · \phi_M$.
 		První a třetí člen už je na $u < M$ stejně nulový, tedy můžeme psát
 		$$ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
-		Levou stranu můžeme zezdola odhadnout pomocí toho, že $b>0$, $\phi_M ≥ 0$ a tam, kde $\phi_M ≠ 0$, $u ≥ M > 0$. Navíc $®A$ je eliptické, takže
+		Levou stranu můžeme zezdola odhadnout pomocí toho, že $b>0$, $\phi_M ≥ 0$ a tam, kde $\phi_M ≠ 0$, $u ≥ M > 0$. Navíc $®A$ je eliptické, takže
 		$$ c_1\|\nabla \phi_M\|_2^2 = \int c_1 \|\nabla \phi_M\|_{®R^d}^2 ≤ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
 		
 		Levou část můžeme shora odhadnout pomocí dvakrát použité Hölderovy nerovnosti:
 		$$ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_2. $$
 		Nyní znovu použijeme Hölderovu nerovnost, tentokrát na $\|\phi_M\|_2$. Protože $\psi$ je na $u < M$ nulové, můžeme psát (jak bylo na přednášce)
 		$$ \|\phi_M\|_2 = \sqrt{\int \phi_M^2} = \sqrt{\int \phi_M^2 \chi_{u ≥ M}} ≤ \sqrt{\(\int \phi_M^{2p}\)^{\frac{1}{p}} · \(\int \chi^q_{{u ≥ M}}\)^{\frac{1}{q}}} = \|\phi_M\|_{2p} · \(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}, $$
-		kde $\frac{1}{p} + \frac{1}{q} = 1$, avšak musíme použít správné $p ≠ 1$ ($p = 1$ nám nedává nic nového), aby $\phi_M \in L^{2p}$. To můžeme z věty o vnoření Sobolevových prostorů: pokud $d = 2$, tak $W^{1, 2}(\Omega) \hookrightarrow L^r$ pro $r$ jakékoliv, takže není co řešit. Pokud $d > 2$, tak můžeme vybrat $2p = r = \frac{d·2}{d - 2} = \frac{2}{1 - (2 / d)} > 2$ ($p > 1$).
+		kde $\frac{1}{p} + \frac{1}{q} = 1$, avšak musíme použít správné $p ≠ 1$ ($p = 1$ nám nedává nic nového), aby $\phi_M \in L^{2p}$. To můžeme z věty o vnoření Sobolevových prostorů: pokud $d = 2$, tak $W^{1, 2}(Ω) \hookrightarrow L^r$ pro $r$ jakékoliv, takže není co řešit. Pokud $d > 2$, tak můžeme vybrat $2p = r = \frac{d·2}{d - 2} = \frac{2}{1 - (2 / d)} > 2$ ($p > 1$).
 
 		Nakonec $∞ > \int u ≥ \int_{u > M} u ≥ \int_{u > M} M$, tedy míra $\{u > M\}$ se musí pro rostoucí $M$ zmenšovat k nule. Takže můžeme zvolit libovolně malé $\(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}$ v nerovnosti:
 		$$ c_1·C·\|\nabla \phi_M\|_2·\|\phi_M\|_{2p} \overset{\text{Sob.}}{\underset{nerov}≤} c_1\|\nabla \phi_M\|_2^2 ≤ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_{2p}\(\int \chi_{u ≥ M}\)^{\frac{1}{q}}, $$
@@ -79,12 +95,12 @@ TODO OPRAVIT!!! (Jsou tam chyby.)
 	\begin{dukazin}
 		Úplně stejně dostaneme $u ≥ -M'$ pro nějaké $M' > 0$ z $\phi_{M'} = (u + M)_-$, jelikož pak 
 		$$ \int ®A \nabla \phi_{M'} · \nabla \phi_{M'} + b (-u) (-\phi_{M'}) = - \int ¦c·\nabla \phi_{M'} \phi_{M'}. $$
-		má úplně stejné vlastnosti jako rovnice výše, jelikož v prvním členu je druhá mocnina, v druhém je to zase kladné a vpravo omezujeme vlastně absolutní hodnotu (víme, že pravá strana je nezáporná, takže i levá musí být) normami, takže na znamínkách nezáleží.
+		má úplně stejné vlastnosti jako rovnice výše, jelikož v prvním členu je druhá mocnina, v druhém je to zase kladné a vpravo omezujeme vlastně absolutní hodnotu (víme, že pravá strana je nezáporná, takže i levá musí být) normami, takže na znamínkách nezáleží.
 	\end{dukazin}
 
 	\begin{dukazin}
-		Nyní máme tedy dokázáno, že $u$ je „omezená skoro všude“, tedy $u \in L^∞$. Tedy i $u^k \in L^∞$ pro $k \in ®N$, navíc $\nabla u^k = k·u^{k-1}\nabla u$, protože $\nabla (u·…·u) = u \nabla (u·…·u) + (\nabla u) (u·…·u)$ a $u^{k-1} \in L^∞$, tedy $u^k \in W^{1, 2}(\Omega)$. Nakonec $\tr u^k|_{\partial \Omega} = 0$, neboť
-		$$ \tr u^k|_{\partial \Omega} = u^k|_{\partial \Omega} = (u|_{\partial \Omega})^k = (\tr u|_{\partial \Omega})^k = 0^k =0. $$
+		Nyní máme tedy dokázáno, že $u$ je „omezená skoro všude“, tedy $u \in L^∞$. Tedy i $u^k \in L^∞$ pro $k \in ®N$, navíc $\nabla u^k = k·u^{k-1}\nabla u$, protože $\nabla (u·…·u) = u \nabla (u·…·u) + (\nabla u) (u·…·u)$ a $u^{k-1} \in L^∞$, tedy $u^k \in W^{1, 2}(Ω)$. Nakonec $\tr u^k|_{\partial Ω} = 0$, neboť
+		$$ \tr u^k|_{\partial Ω} = u^k|_{\partial Ω} = (u|_{\partial Ω})^k = (\tr u|_{\partial Ω})^k = 0^k =0. $$
 		Tedy $u^k \in W_0^{1, 2}$.
 
 		Použijme $u^k$ pro $k$ liché jako testovací funkci:

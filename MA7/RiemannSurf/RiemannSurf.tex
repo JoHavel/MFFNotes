@@ -439,4 +439,89 @@ TODO!!!
 	Consider the function $φ: ®P^1(®C) \rightarrow ®P^3(®C)$ defined in homogeneous coordinates by $φ[s, t] = [s^3, s^2t, st^2, t^3]$. We call the image of $φ$ the twisted cubic in $®P^3(®C)$.
 \end{priklady}
 
+% 21. 11. 2023
+
+\section{Holomorphic maps of Riemann surfaces}
+\begin{definice}
+	Let $X$, $Y$ be two Riemann surfaces, and $f: X \rightarrow Y$ a function (of sets).
+
+	\begin{itemize}
+		\item We say that $f$ is holomorphic at $x \in X$ if for every choice of charts $φ_x$, $φ_{f(x)}$, the function $φ_{f(x)} ∘ f ∘ φ_x^{-1}$ is holomorphic.
+		\item If $U \subseteq X$ is open, we say that $f$ is holomorphic on $U$ if $f$ is holomorphic at each $x \in U$.
+		\item If $f$ is holomorphic on $U = X$, then we say that $f$ is a holomorphic map.
+	\end{itemize}
+
+	The function $F := φ_{f(x)} ∘ f ∘ φ_x^{-1}$ is called a local expression for $f$.
+\end{definice}
+
+\begin{priklad}
+	Show that a map of Riemann surfaces $f: X \rightarrow Y$ is holomorphic at $x \in X$ $\Leftrightarrow$ $\exists$ a choice of charts $φ_x$, $φ_{f(x)}$ such that $φ_{f(x)} ∘ f ∘ φ_x^{-1}$ is holomorphic at $x$.
+\end{priklad}
+
+\begin{priklad}[Eg]
+	Let $X$, $Y$ be two Riemann surfaces and choose a point $y \in Y$. Denote associated constraint map $c: X \rightarrow Y$, $x \mapsto y$. We see that $c$ is a holomorphic map.
+\end{priklad}
+
+\begin{priklad}[Eg]
+	Let $X$ be a Riemann surface. The identity map on $X$ is the function $I_X: X \rightarrow X$, $x \mapsto x$. We see that $I_x$ is a holomorphic map.
+\end{priklad}
+
+\begin{priklad}[Eg]
+	Consider an arbitrary rational function $f(z) = \frac{p(z)}{q(z)}$, where $p(z), q(z) \in ®C[z]$ are two polynomials with distinct roots. We can extend $f$ to a function from $®P^1(®C)$ to $®P^1(®C)$ as follows:
+	\begin{itemize}
+		\item $f(α) := ∞$ (point at infinity of the Riemann sphere) where $α$ is a root of $q$;
+		\item $f(∞) := \lim_{z \rightarrow ∞} \frac{p(z)}{q(z)}$.
+	\end{itemize}
+
+	Show that $f$ is a holomorphic function from $®P^1(®C)$ to $®P^1(®C)$.
+%\end{priklad}
+
+%\begin{priklad}[Eg]
+	Recall that $®P^1(®C)$ is $®C \cup ∞$ with a topology. Identifying ®C with image of the first affine chart $φ_1([U_1])$, the additional chart point corresponds to the image of zero in the second affine chart. We denote this point by $∞$.
+
+	This we have that $®P^1(®C) = ®C \cup \{∞\}$. Using this identification, define the function $f: ®P^1(®C) \rightarrow ®P^1(®C)$, $z \mapsto z^2 =: ω, ∞ \mapsto ∞$. We will now show that $f$ is a holomorphic map.
+
+	We denote by $z$ the local coordinate on the source and by $ω$ the local coordinate on the range. Then since $ω = f(z) = z^2$ is a holomorphic function on all of ®C, $f$ is holomorphic on the image of $U_1$.
+
+	It remains to show that $f$ is holomorphic at $∞$. We consider the local expression for $f$ using the chart $U_2$ whose image contains $∞$. We denote by $\tilde z := \frac{1}{z}$ the corresponding local coordinate for the source and $\tilde ω := \frac{1}{ω}$ for the range.
+
+	The local expression $\tilde F$ for $f$ in these coordinates is then obtained by composing $F(z)$ with the transition functions for the local coordinate:
+	$$ \tilde F(\tilde z) = \tilde ω = \frac{1}{ω} = \frac{1}{z^2} = (\tilde z)^2. $$
+	Since the point at $ω$ corresponding to $\tilde z = \tilde ω = 0$, and we have that $f(∞) = ∞$ and $\tilde F(0) = 0$, the local expression extends to the whole chart, and in particular, it is a holomorphic function at $0$. So $f$ is holomorphic at every point of $®P^1(®C)$.
+\end{priklad}
+
+\begin{definice}
+	Two Riemann surfaces $X, Y$ are called isomorphic (or bi-holomorphic) if $\exists$ holomorphic maps $f: X \rightarrow Y$ and $g: Y \rightarrow X$ such that $g ∘ f = I_X$ and $f ∘ g = I_Y$. In this case we write $X \simeq Y$. We call $f$ and $g$ isomorphisms (or bi-holomorphisms). An isomorphism $h: X \rightarrow X$ from a Riemann surface to itself is called an automorphism.
+\end{definice}
+
+\begin{priklad}
+	Let $f: ®C \rightarrow ®C$ be a holomorphic function and $Γ_f \subseteq ®C^2$ its graph. Show that $Γ_f \simeq ®C$.
+\end{priklad}
+
+\begin{definice}
+	We say that a chart $(U_x, φ_x)$ for a Riemann surface is centered at $x$ if $φ_x(x) = 0$.
+\end{definice}
+
+\begin{veta}
+	Let $f: X \rightarrow Y$ be a non-constant holomorphic map of Riemann surfaces. For any $x \in X$ $\exists$ charts centered at $x$ such that the local expression of $f$ in terms of these charts is $z \mapsto z^h$, for some $h ≥ 1$.
+
+	\begin{dukazin}
+		Let $φ$ and $ψ$ be two charts centered at $x$, and $f(x)$, respectively. This gives the local expression $F = ψ ∘ f ∘ φ^{-1}$. Consider the Taylor expansion of $F$ at 0 and let $k$ be the smallest positive integer such that the coefficient of $z^h$ does not vanish. Since $F(0) = 0$, $k > 1$, and $F(z) = z^k \(\sum_{n=0}^∞ a_{k + n} z^n\)$. Denote by $G(z) = a_k + a_{k+1} z + …$ the second factor in that equation. The function $G(z)$ is holomorphic at $0$ and $G(0) = a_k ≠ 0$. Thus we can make a choice of root $\sqrt[n]{G(z)}$ such that the associated map is well-defined and holomorphic around $0 = φ(z)$.
+
+		Defining $h(z) = z·\sqrt[k]{G(z)}$ we have that $F = h^k$. The function $h$ is holomorphic in a neighbourhood $U$ of $0 = φ(x)$, $h(0) = 0$, and $h'(0) = 0$. The inverse function theorem now implies that $h$ is bi-holomorphic on a neighbourhood $U' \subseteq U$ of $φ(x)$, and therefore the composition $\tilde φ = h ∘ φ$ gives local chart for $x$ centered at $x$. The local coordinate $\tilde z$ coming from $\tilde φ$ is related to $z$ with $\tilde z = h(z)$. The local expression for $f$ allows $x$ is now obtained by changing coordinates from $z$ to $\tilde z$ in $F$:
+		$$ \tilde F(\tilde z) = F(z(\tilde z)) = h(z)^k = (\tilde z)^k. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Let $f: X \rightarrow Y$ be a non-konstant holomorphic map of Riemann surfaces
+	\begin{itemize}
+		\item Given a point $x \in X$, the integer $k_x$ such that $\exists$ a local expression centered at $x$ of the form $F(z) = z^{k_x}$ is called the Ramification index of $f$ at $x$.
+		\item The quantity $V_x = k_x - 1$ the differential length of $f$ at $x$.
+		\item A point $x$ with Ramification index $k_x = 1$ is called unramified.
+		\item A point for which $k_x ≥ 2$ is ramified.
+		\item If $x$ is a ramification point, then $f(x) \in Y$ is called a branch point.
+	\end{itemize}
+\end{definice}
+
 \end{document}

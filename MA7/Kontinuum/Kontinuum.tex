@@ -258,4 +258,132 @@ TODO!!!
 	$$ \dall{®A} = \frac{d®A}{dt} - ®L®A - ®A®L^T $$
 \end{dusledek}
 
+% 10. 11. 2023
+
+TODO!!!
+
+% 24. 11. 2023
+
+\begin{poznamka}[Balance laws in Eulerian description (revision, the last lecture)]
+	$$ \frac{dρ}{dt} + ρ \Div ¦v = 0; $$
+	$$ ρ \frac{d¦v}{dt} = \Div ®T + ρ¦b, \qquad ®T = ®T^T; $$
+	$$ ρ \frac{de}{dt} = ®T:®L - \Div ¦j_q; $$
+	or
+	$$ ρ \frac{d}{dt}(e + \frac{1}{2}¦v·¦v) = \Div(®T^T ¦v) + ρ¦b·¦v - \Div ¦j_q. $$
+\end{poznamka}
+
+\begin{poznamka}[Balance laws in Lagrangian description]
+	Starting with $\frac{d}{dt}_{V(t)} ρ(¦x, t) dv = \frac{d}{dt} m_{V(t)} = 0$ i.e. mass remains same: $m_{V(t)} = m_{V(t_0)}$). We integrate over volume:
+	$$ \int_{V(t_0)} ρ_R(¦X) dV = \int_{V(t)} ρ(¦x, t) dv = \int_{V(t_0)} ρ(¦x, t)|_{¦x = ¦χ(¦X, t)} \det ®F dV. $$
+	Localization principle:
+	$$ ρ(¦x, t)|_{¦x = ¦χ(¦X, t)} \det ®F = ρ_R(¦X). $$
+
+	$$ \int_{V(t)} ρ \frac{d¦v}{dt} dv = \int_{V(t)} \Div ®T d¦v + \int_{V(t)} ρ¦b dv. $$
+	$$ \int_{V(t)} \Div ®T d¦v = \int_{\partial V(t)} ®T ¦n\,ds = \int_{\partial V(t_0)} ®T(\det ®F)®F^{-T} ¦N\, dS \overset{\text{Stokes}} \int_{V(t_0)} \Div_{¦X}((det ®F) ®T ®F^{-T}) dV =: \int_{V(t_0)}(®T_R) dV. $$
+	$$ ®T_R(¦X, t) := (\det ®F(¦X, t))®T(¦x, t)|_{¦x = ¦χ(¦X, t)} ®F^{-T}(¦X, t) $$
+	is first Piola–Kirchhoff stress tensor. Cauchy ($®T$) is current $\rightarrow$ current. P–K ($®T_R$) is reference $\rightarrow$ current.
+	$$ \int_{\partial V(t)} dv \rightarrow \int_{\partial V(t_0)} (\Div_{¦X} ®T_R) dV. $$
+	$$ \int_{V(t)} ρ¦b dv = \int_{V(t_0)} \rho(¦x, t)|_{¦x = ¦χ(¦X, t)} ¦b(¦x, t)|_{¦x = ¦χ(¦X, t)} \det ®F dV = \int_{V(t_0)} ρ_R(¦X) ¦b dV. $$
+	$$ \int_{V(t)} ρ \frac{d¦v}{dt} dv = \int_{V(t_0)} ρ \frac{\partial^2 ¦χ}{\partial t^2}(¦X, t) \det ®F dV = \int_{V(t_0)} ρ_R \frac{\partial^2 ¦χ}{\partial t^2} dV. $$
+	Altogether:
+	$$ ρ_R \frac{\partial^2 ¦χ}{\partial t^2} = \Div_{¦X} ®T_R + ρ_R¦b \qquad (\text{Solve for $¦χ$}). $$
+	
+	$®T = ®T^T \rightarrow ®T_R®F^T = ®F®T_R^T$ (P–K is not symmetric!).
+
+	$$ ρ \frac{de}{dt} = ®T:®L - \Div ¦j_q \rightarrow \int_{V(t)} ρ \frac{de}{dt} dv = \int_{V(t)}®T:®L dv - \int_{V(t)}\Div ¦j_q dv. $$
+	$$ \int_{V(t)} \Div ¦j_q dv = \int_{\partial V(t)} ¦j_q·¦n ds = \int_{\partial V(t_0)} ¦j_q(¦x, t)|_{¦x = ¦χ(¦X, t)} · \det ®F(¦X, t)®F^{-T}(¦X, t)¦N dS = $$
+	$$ = \int_{\partial V(t_0)}(\det ®F(¦X, t)®F^{-1}(¦X, t)¦j_q(¦x, t))·¦N dS = $$
+	$$ = \int_{V(t_0)} \Div((\det ®F)®F^{-1}¦j_q) dV. $$
+	$¦J_q = (\det ®F)®F^{-1}¦j_q$ is called referential heat flux. (It cannot be given by Fouriers law ($¦j_q = k \nabla_{¦x} θ$, $\Div ¦j_q = \Div(k \nabla θ)$).)
+	$$ \int_{V(t)} \underbrace{®T:\overbrace{®L}^{\nabla_{¦x} ¦v}}_{\tr(®T®L^T) = \tr(®L®T^T)} dv = \int_{V(t_0)} (\det ®F) ®T:®L dV = $$
+	$$ = \int_{V(t_0)} \tr((\det ®F)®T®L^T) dV = \int_{V(t_0)} \tr\((\det ®F)®T®F^{-T}\(\frac{d®F}{dt}\)^T\)dV = \int_{V(t_0)} ®T_R : \dot{®F} dV. $$
+	Altogether
+	$$ ρ_R \frac{\partial e}{\partial t} = ®T_R:\dot{®F} - \Div_{¦X} ¦J_q. $$
+\end{poznamka}
+
+\section{Entropy}
+\begin{poznamka}[Objective]
+	Find quantity that is increasing/decreasing in time.
+\end{poznamka}
+
+\begin{poznamka}[With no interior]
+	$$ ρ \frac{d}{dt}\(e + \frac{1}{2}¦v·¦v\) = \Div ®T + ρ¦b - \Div ¦j_q = \Div ®T + 0 + \Div(k \nabla θ). $$
+	Let us work with\footnote{$®D_δ := ®D - \frac{1}{3} (\tr ®D)®I$. (Traceless part of ®D.)} $\Div ®T = -p_{th}®I + \tilde λ(\Div ¦v) + 2μ®D_δ$, and assume that $®T = -p_{th}(ρ, θ)®I + \tilde λ(\Div ¦v)®I + 2μ®D_δ$ (from $\frac{pV}{T} = \const$).
+
+	$$ ρ \frac{d}{dt}(e + \frac{1}{2}¦v·¦v) = \Div(®T^T¦v) - \Div ¦j_q. $$
+	$$ \frac{d}{dt} \int_{V(t)}ρ(e + \frac{1}{2}¦v·¦v) dv = \int_{\partial V(t)} ®T^T ¦v·¦n ds - \int_{\partial V(t)} ¦j_q·¦n ds. $$
+	The first part is work and it is zero if we have boundary condition $¦v|_{\partial V} = 0$. The second part is heat exchange which is zero if we have boundary condition $¦j_q·¦n|_{\partial V} = 0$. Both boundary conditions together are math way to say system with \emph{no interactions}.
+
+	$ρ, θ, ¦v \rightarrow ρ, e, θ$.
+
+	Assume $η = η(ρ, e) \rightarrow e=e(η, ρ)$. (We will write $e = e(η, ρ) = e(η(¦x, t), ρ(¦x, t)) = e(¦x, t)$.)
+
+	We have 1. Balance of internal energy
+	$$ ρ\frac{de}{dt} = ®T:®D - \Div ¦j_q; $$
+	2. Chain rule
+	$$ ρ\frac{de}{dt} = \frac{\partial e}{\partial η}(η, ρ) \frac{dη}{dt} + \frac{\partial e}{\partial ρ}(η, ρ) \frac{dρ}{dt}. $$
+	$$ ρ\frac{\partial e}{\partial η}(η, ρ) \frac{dη}{dt} = ®T:®D - \Div ¦j_q - \frac{\partial e}{\partial ρ}(η, ρ) \frac{dρ}{dt}, $$
+	$$ ρ\frac{\partial e}{\partial η}(η, ρ) \frac{dη}{dt} = ®T:®D - \Div ¦j_q + \frac{\partial e}{\partial ρ}(η, ρ)ρ \Div ¦v, $$
+	$$ ρ\frac{\partial e}{\partial η}(η, ρ) \frac{dη}{dt} = (-p_{th}®I + \tilde(\Div ¦v)®I + 2μ®D_δ):®D - \Div ¦j_q + \frac{\partial e}{\partial ρ}(η, ρ)ρ \Div ¦v, $$
+	$$ ρ\frac{\partial e}{\partial η}(η, ρ) \frac{dη}{dt} = \(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\) \Div ¦v + \tilde λ (\Div ¦v)^2 + 2μ®D_δ:®D_δ - \Div ¦j_q, $$
+	$$ ρ \frac{dη}{dt} = \frac{\(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\)}{\frac{\partial e}{\partial η}}\Div ¦v - \frac{\Div ¦j_q}{\frac{\partial e}{\partial η}} + \frac{\tilde λ (\Div ¦v)^2 + 2μ|®D_δ|^2}{\frac{\partial e}{\partial η}}. $$
+	There is no chance that this could be positive. (Its obvious, because the value can flow, so point-wise $≥0$ is lost case.) But we can integrate over volume. Thus instead of $\frac{dη}{dt} ≥ 0$ we want just $\frac{d}{dt} \int_{V(t)} ρη dv ≥ 0$.
+	$$ \frac{d}{dt} \int_{V(t)} ρη dv = \int_{V(t)}\frac{\(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\)}{\frac{\partial e}{\partial η}}\Div ¦v dv - \int_{V(t)}\frac{\Div ¦j_q}{\frac{\partial e}{\partial η}}dv + \int_{V(t)} \frac{\tilde λ (\Div ¦v)^2 + 2μ|®D_δ|^2}{\frac{\partial e}{\partial η}} dv. $$
+	The third integral OK, if $\frac{\partial e}{\partial η} > 0$.
+	$$ \Div \(\frac{¦j_q}{\frac{\partial e}{\partial η}}\) = \frac{\Div ¦j_q}{\frac{\partial e}{\partial η}} + \nabla \(\frac{1}{\frac{\partial e}{\partial η}}\)·¦j_q. $$
+	$$ \frac{d}{dt} \int_{V(t)} ρη dv = \int_{V(t)}\frac{\(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\)}{\frac{\partial e}{\partial η}}\Div ¦v dv - \int_{V(t)}\Div \(\frac{¦j_q}{\frac{\partial e}{\partial η}}\)dv + \int_{V(t)} \nabla \(\frac{1}{\frac{\partial e}{\partial η}}\)·¦j_q dv + REST. $$
+	The second integral is zero from Stokes and boundary condition $¦j_q·¦n|_{\partial V} = 0$. On the third integral, we can use derivative of inverse value:
+	$$ \frac{d}{dt} \int_{V(t)} ρη dv = \int_{V(t)}\frac{\(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\)}{\frac{\partial e}{\partial η}}\Div ¦v dv - \int_{V(t)} \frac{\nabla \(\frac{\partial e}{\partial η}\)·¦j_q}{\(\frac{\partial e}{\partial η}\)^2} dv + REST =  $$
+	$$ = \int_{V(t)}\frac{\(-p_{th} + ρ\frac{\partial e}{\partial ρ}(η, ρ)\)}{\frac{\partial e}{\partial η}}\Div ¦v dv + k\int_{V(t)} \frac{\nabla \(\frac{\partial e}{\partial η}\)·\nabla θ}{\(\frac{\partial e}{\partial η}\)^2} dv + REST. $$
+	If we set $\frac{\partial e}{\partial η}(η, ρ) = θ$, the second integral is non-negative. Moreover, for $θ ≥ 0$ we satisfy the assumption for the "first third integral". Moreover if we enforce $ρ^2 \frac{\partial e}{\partial ρ}(ρ, η) = p_{th}(θ, ρ)$, the first integral is zero, so we win.
+\end{poznamka}
+
+\begin{poznamka}
+	Volíme si tedy $\tilde λ, μ > 0$.
+\end{poznamka}
+
+\begin{dusledek}
+	$$ \frac{d}{dt} \int_{V(t)} ρ η dv ≥ 0 $$
+	is granted for quantity that solves equations
+	$$ e = e(η, ρ), \qquad \frac{\partial e}{\partial η} = θ, \qquad ρ^2 \frac{de}{dρ} = p_{th}(θ, ρ). $$
+\end{dusledek}
+
+\begin{priklad}
+	$$ p_{th}(θ, ρ) = c_V(γ - 1)ρθ, \qquad e(θ, ρ) = c_V θ. $$
+\end{priklad}
+
+\begin{poznamka}[?]
+	\ 
+	\begin{enumerate}
+		\item Energy is constant.
+		\item Energy is function of entropy and volume.
+		\item Entropy increases.
+	\end{enumerate}
+\end{poznamka}
+
+\begin{poznamka}
+	$e = e(η, ρ)$ is given $\rightarrow$ we know everything $θ = \frac{\partial e}{\partial η}(η, ρ)$, $p_{th} = ρ^2 \frac{\partial e}{\partial ρ}(η, ρ)$. (Warning: $e = e(ρ, θ)$ is not enough!)
+\end{poznamka}
+
+\begin{poznamka}
+	Is there a better function that will allow us to do something like this?
+\end{poznamka}
+
+\begin{definice}[Helmholtz free energy density]
+	$$ ψ(θ, ρ) := e(η, ρ)|_{η = η(θ, ρ)} - θη|_{η = η(θ, ρ)}. $$
+
+	\begin{poznamka}
+		This is le Legrende transformation of internal energy.
+	\end{poznamka}
+\end{definice}
+
+\begin{dusledek}
+	$$ \frac{\partial ψ}{\partial θ}(θ, ρ) = -η, \qquad \frac{\partial ψ}{\partial ρ}(θ, ρ) = \frac{\partial e}{\partial ρ}(η, ρ)|_{η = η(θ, ρ)} \quad \(= \frac{p_{th}}{ρ^2}\). $$
+	
+	\begin{dukazin}
+		$$ \frac{\partial ψ}{\partial θ}(θ, ρ) = \frac{\partial e(η, ρ)}{\partial η}|_{η = η(θ, ρ)} \frac{\partial η}{\partial θ}(θ, ρ) - η|_{η = η(θ, ρ)} - θ \frac{\partial η}{\partial θ}(θ, ρ) = -η|_{η = η(θ, ρ)}. $$
+		$$ \frac{\partial ψ}{\partial ρ}(θ, ρ) = \frac{\partial e}{\partial η}(η, θ) \frac{\partial η}{\partial ρ}(θ, ρ) + \frac{\partial e}{\partial ρ}(η, ρ)|_{η = η(θ, ρ)} - θ \frac{\partial η}{\partial ρ}(θ, ρ) = \frac{\partial e}{\partial ρ}(η, ρ)|_{η = η(θ, ρ)}. $$
+	\end{dukazin}
+\end{dusledek}
+
 \end{document}

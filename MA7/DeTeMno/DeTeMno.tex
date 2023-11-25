@@ -318,7 +318,7 @@ TODO!!!
 		\item $∏_2^0(X) \subset Σ_1^1(X)$, $f = \id$;
 		\item $X$, $Z$ PTS, $ψ: X \rightarrow Z$ continuous, $A \in Σ_1^1(X) \implies ψ(A) \in Σ_1^1(Z)$;
 		\item $Σ_{n+1}^1(X) = \{A \subset X | \exists Y \text{ PTS}, ψ: Y \rightarrow X \text{ continuous}, B \in ∏_n^1(X), A = ψ(B)\}$, $n \in ω \setminus \{0\}$;
-		\item $∏_n^1(X) = \{A \subset X | X \setminus A \in Σ_n^1(X)\}$, $Δ_n^1(X) = \sum_n^1(X) \cap ∏_n^1(X)$;
+		\item $∏_n^1(X) = \{A \subset X | X \setminus A \in Σ_n^1(X)\}$, $Δ_n^1(X) = \sum_n^1(X) \cap ∏_n^1(X)$;
 		\item $\bigcup_{n \in ®N} Σ_n^1(X) = \bigcup_{n \in ®N} ∏_n^1 = \bigcup_{n \in ®N}Δ_n^1(x) = ®P(X)$;
 		\item $\# ®P(X) ≤ 2^ω$, $®P(X)$ is closed under continuous images and inverse images;
 		\item $Σ_1^1(X) = \{A \subset X | \exists ψ: ω^ω \rightarrow X \text{ continuous}: ψ(ω^ω) = A\}$; $Y$ PTS, $f: Y \rightarrow X: f(Y) = A$, $g: ω^ω \rightarrow Y: g(ω^ω) = Y$, $g, f$ are constant. So $ψ = f ∘ g$.
@@ -342,8 +342,8 @@ TODO!!!
 \end{veta}
 
 \begin{poznamka}[Intersection]
-	WLOG: $A_n ≠ \O$, $n \in ω$. $Y := (ω^ω)^ω$, $Y$ PTS by the theorem above (first item). $φ_n: ω^ω \rightarrow X$, meh that $φ_n(ω^ω) = A_n$.
-	$$ F:= \{y = (y_0, y_1, …) \in Y | \forall n, m \in ω: φ_n(y_n) = φ_m(y_m)\} = \bigcap_{n, m \in ω}\{y \in Y | φ_n(y_n) = φ_m(y_m)\} = \bigcap))n, m \in ω \{y \in Y | φ_n ∘ π_n(y) = φ_m ∘ π_m(y)\} $$
+	WLOG: $A_n ≠ \O$, $n \in ω$. $Y := (ω^ω)^ω$, $Y$ PTS by the theorem above (first item). $φ_n: ω^ω \rightarrow X$, meh that $φ_n(ω^ω) = A_n$.
+	$$ F:= \{y = (y_0, y_1, …) \in Y | \forall n, m \in ω: φ_n(y_n) = φ_m(y_m)\} = \bigcap_{n, m \in ω}\{y \in Y | φ_n(y_n) = φ_m(y_m)\} = \bigcap))n, m \in ω \{y \in Y | φ_n ∘ π_n(y) = φ_m ∘ π_m(y)\} $$
 	intersection of closed, so $F$ is closed and is PTS.
 
 	„$φ_0 ∘ π_0(F) = \bigcap_{n \in ω} A_n$“:
@@ -383,7 +383,7 @@ TODO!!!
 
 	\begin{dukazin}
 		$Δ_1^1(X) \subseteq Borel(X)$ we already have.
-		$$ A \in Δ_1^1(X) \implies A \in Σ_1^1(X), X \setminus A \in Σ_1^1 \implies \exists B \in Borel(X): A \subset B \subset X \setminus (X \setminus A) = A \implies A = B \implies A \in Borel(X). $$
+		$$ A \in Δ_1^1(X) \implies A \in Σ_1^1(X), X \setminus A \in Σ_1^1 \implies \exists B \in Borel(X): A \subset B \subset X \setminus (X \setminus A) = A \implies A = B \implies A \in Borel(X). $$
 	\end{dukazin}
 \end{dusledek}
 
@@ -478,8 +478,105 @@ TODO!!!
 		$$ \forall s \in ω^{<ω}\ \forall i, j \in ω, i ≠ j B'_{s^\wedge i} \cap B'_{s^\wedge j} = \O. $$
 		(separation $B_{s^\wedge i}$, $\bigcup_{j < i} B_{s^\wedge j} \cup \bigcup_{l > i} B_{s^\wedge l}$) $\forall s \in ω^{<ω}: B_s \subset B'_s$.
 
-		Put: $B^*_{\O} = Y$, $B^*_{s^\wedge j} = B_{s^\wedge j}$ TODO!!!
+		Put: $B^*_{\O} = Y$, $B^*_{s^\wedge j} = B_{s^\wedge j} \cap \overline{B_{s^\wedge j}} \cap B^*_s$. $\forall s \in ω^{<ω}: B^*_s \in Δ_1^1(Y), B_s \subset B^*_s \subset \overline{B_s}$, $B_{s^\wedge j}^* \subset B_s^*$, $B_{s^\wedge j}^* \cap B_{s^\wedge i}^* = \O$, $s \in ω^{<ω}$, $i, j \in ω, i ≠ j$. We proof: $f(A) \overset?= \bigcup_{s \in ω^{<ω}} \bigcap_{k \in ω} B^*_{s / k} = \bigcap_{k \in ω} \bigcup_{s \in ω^k} B_s^* \in Δ_1^1(Y)$.
+
+% 22. 11. 2023
+
+		$B_s^*, s \in ω^{<ω}, B_s^* \in Δ_1^1(Y)$. $f(A) = \bigcap_{k \in ω} \bigcup_{s \in ω^k} B_s^*$:
+
+		„$\subseteq$“: $x \in f(A) \implies \exists ν \in A: f(ν) = x$. Then $x \in f(©N_{ν / k} \cap A) = B_{ν / k} \subset B_{ν / k}^*$, $k \in ω$ $\implies$ $x \in \bigcap_{k \in ω} \bigcup_{s \in ω^k} B_s^*$.
+
+		„$\supseteq$“: $x \in \bigcap_{k \in ω} \bigcup_{s \in ω^k} B_s^* \implies \forall k \in ω\ \exists ν^k \in ω^ω: x \in B_{ν / k}^*$. $\exists ν \in ω^ω: ν^k = ν$, $k \in ω$. $\implies \forall k \in ω\ \exists ν \in ω^ω: f(©N(ν / k) \cap A) ≠ \O$. $\implies$ $\exists ν^k \in ©N(ν / k) \cap A, ν^k \rightarrow ν \implies ν \in A$ ($A$ is closed). $f(ν) = x$? Assume $f(ν) ≠ x$ $\implies$ $\exists U$ neighbourhood of $f(ν)$, such that $x \notin \overline{U}$ $\implies$ ($f$ is continuous) $\exists k_0 \in ω: x \in B_{ν / k_0}^* \subset \overline{f(©N_{ν / k_0}) \cap A} = \overline{B_{ν / k_0}} \subset \overline{U}$ which is contradiction.
+
+		a) Let $f$ is continuous and $A \in Δ_1^1(X)$. On $X$ we find Polish topology $τ_A$ such that $A \in Δ_1^0(τ_A)$, $τ \subset τ_A$ (so $f$ is continuous with respect to $τ_A$), $Δ_1^1(τ) = Δ_1^1(τ_A)$.
+
+		b) Let $f \in Δ_1^1$. Then $f(A) = π_Y(\graph(f) \cap A \times Y)$. Observe that $π_Y$ is injective on $(\graph(f) \cap A \times Y$ if $f$ is injective on $A$.
 	\end{dukazin}
 \end{veta}
+
+\begin{veta}
+	$X$, $Y$ PTS, $f \in Δ_1^1(X \times Y)$.
+	\begin{enumerate}
+		\item $A \in Σ_1^1(X) \implies f(A) \in Σ_1^1(Y)$;
+		\item $B \in Σ_1^1(Y) \implies f^{-1}(B) \in Σ_1^1(X)$;
+		\item $B \in ∏_1^1(Y) \implies f^{-1}(B) \in ∏_1^1(X)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $f(A) = π_Y((\graph(f) \cap A \times Y)$ is continuous image of $Σ_1^1$ set.
+		
+		„2.“: $f^{-1}(B) = π_X((\graph(f) \cap X \times B)$ is continuous image of $Σ_1^1$ set.
+
+		„3.“: $f^{-1}(B) = f^{-1}(Y) \setminus f^{-1}(Y \setminus B)$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Standard Borel spaces (SBS)}
+\begin{definice}[Standard Borel space (SBS)]
+	Measurable space $(X, ©S)$ is called standard Borel space (SBS) if there exists Polish topology $τ$ on $X$ such that $Δ_1^1(X, τ) = ©S$.
+\end{definice}
+
+\begin{definice}[Effros Borel space]
+	Let $X$ be PTS and $©F(X) := ∏_1^0(X)$. Let ©S be $ς$-algebra generated by sets of form $\{F \in ©F(X) | F \cap U ≠ \O\} =: M_U$, where $U \in Σ_1^0(X)$. $(©F(X), ©S)$ is called Effros Borel space.
+\end{definice}
+
+\begin{veta}
+	$X$ PTS. Then $(©F(X), ©S)$ is SBS.
+
+	\begin{dukazin}
+		Without proof.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$X$ be measurable compact. Then $©F(X)$ can be equipped by Vietoris topology.
+\end{poznamka}
+
+\begin{priklad}
+	$SB := \{Y \in ©F(C([0, 1])) \middle| Y \text{ is Banach subspace of $C([0, 1])$} \}$. If we restrict Effros $ς$-algebra on SB then SB is SBS.
+
+	$$ SD = \{Y \in SB \middle| Y \text{ has separable dual}\}, $$
+	$$ NU = \{Y \in SB \middle| Y \text{ is not universal}\}, $$
+	$$ REFL = \{Y \in SB \middle| Y \text{ is reflexive}\}, $$
+	$$ NL_1 = \{Y \in SB \middle| Y \text{ does not contain $l_1$}\}. $$
+\end{priklad}
+
+\section{Regularity of $Σ_1^1$ sets}
+\subsection{Sets with Baire property (BP)}
+\begin{definice}[Baire property (BP)]
+	$X$ TS, $A \subset X$ has Baire property (BP) in $X$ if there exists open $U \subset X$ and set of 1. category $M \subset X$ such that $A = U \triangle M := (U \setminus M) \cup (M \setminus U)$. Collection of all sets with BP we denote as $Baire(X)$.
+\end{definice}
+
+\begin{veta}
+	$X$ TS. Then $Baire(X)$ is $ς$-algebra and $Baire(X) \supset Δ_1^1(X)$.
+
+	\begin{dukazin}
+		1. „$Baire(X) \supset Σ_1^0(X)$“ trivial. 2. „$Baire(X)$ is $ς$-algebra“: a) „$A \in Baire(X) \overset?\implies X \setminus A \in Baire(X)$“: $A \in Baire(X) \implies \exists G \in Σ_1^0(X)$ and $M$ meagre such that $A = G \triangle M$.
+		$$ X \setminus A = X \setminus (G \triangle M) = (X \setminus G) \triangle M = (\Int(X \setminus G) \cup (X \setminus G) \setminus \Int(X \setminus G)) \triangle M = $$
+		$$ = (V \cup M_1) \triangle M_2 = V \triangle M \qquad (M = M_1 \triangle M_2). $$
+		b) „$A_n \in Baire(X) \overset?\implies \bigcup A_n \in Baire(X)$“: $A_n = G_n \triangle M_n$, $G_n \in Σ_1^0(X)$, $M_n$ meager. $M_n' = G_n \cap M_n$ (meager), $M_n'' = M_n \setminus G_n$ (meager).
+		$$ \bigcup A_n = \bigcup((G_n \setminus M_n') \cup M_n'') = ((\bigcup G_n) \setminus M''') \cup \bigcup M_n'', $$
+		where $M''' \subset \bigcup_{n \in ω} M_n'$.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	$X$ TS, $A \subset X$. Then $A$ is meager iff $\forall x \in A\ \exists V \in Σ_1^0(X)$ such that $x \in V$ and $A \cap V$ is meager.
+
+	\begin{dukazin}
+		„$\implies$“ trivial. „$\impliedby$“ ©U denote as maximal collection of disjoint $Σ_1^0$ sets such that $U \cap A$ is meager for $U \in ©U$. We show that $A \cap \bigcup ©U$ is meager, $X \setminus \bigcup ©U$ is nowhere dense, so meager.
+
+		„$X \setminus \bigcup ©U$ is nowhere dense“: By contradiction we assume that there exists $\O ≠ V \in Σ_1^0(X)$, $V \subset X \setminus \bigcup ©U$. Now we have 2 cases: $A \cap V = \O \implies V \in ©U$ contradiction, or $A \cap V ≠ \O \implies \exists x \in A \cap V \implies \exists W \in Σ_1^0(X): x \in W, W \cap A$ is meager $\implies x\in W \cap V ≠ \O, W \cap V \cap A$ is meager $\implies$ $W \cap V \in ©U$ contradiction.
+
+		„$\bigcup ©U \cap A$ is meager“: $©U := \{U_α | α \in I\}$, $U_α \cap A$ meager $\implies$ exist? $F_n^α \in ∏_1^0(X)$ nowhere dense: $U_α \cap A \subset \bigcup F_n^α \subset \overline{U_α}$. We show that $\bigcup_{α \in I} F_n^α$ is nowhere dense:
+		$$ a) \bigcup_{α \in I} U_α \setminus F_n^α \in Σ_1^0(X), \quad (\bigcup_{α \in I} U_α \setminus F_n^α) \cap (\bigcup_{α \in I} F_n^α) = \O \impliedby F_n^α \subset \overline{U_α}, \quad \overline{U_α} \cap U_β = \O, α ≠ β $$
+		So ©U is disjoint collection, so $\bigcup_{α \in I} U_α F_n^α \cap \overline{\bigcup_{α \in I} F_n^α} = \O$.
+		$$ \implies \overline{\bigcup_{α \in I} F_n^α} \subset (\bigcup_{α \in I} (U_α \cap F_n^α)) \cup (X \setminus \bigcup ©U). $$
+
+		b) We assume $\exists V \in Σ_1^0(X)$, $V ≠ \O$, $V \subset \overline{\bigcup_{α \in I} F_n^α}$.
+		$$ ? \implies V \not \subset X \setminus \bigcup ©U \overset{a)}\implies V \cap \bigcup_{α \in I} (U_α \cap F_n^α) ≠ \O \implies \exists α \in I: V \cap U_α ≠ \O. $$
+		$$ a) \implies V \cap U_α \subset \bigcup_{α \in I}(U_α \cap F_n^α) \overset{\text{©U disjoint}}\implies V \cap U_α \subset F_n^α \text{ \lightning}. $$
+	\end{dukazin}
+\end{lemma}
 
 \end{document}

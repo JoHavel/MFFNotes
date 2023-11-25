@@ -136,7 +136,17 @@
 
 % 19. 10. 2023
 
-TODO!!! (Konstrukce 4. harmonického bodu nebo 4. harmonické přímky).
+TODO!!!
+
+\begin{priklad}[Konstrukce]
+	Zkonstruovat 4. harmonický bod. (Mějme body $M, N, A$ a chceme najít $C$ tak, aby $(MNAC) = -1$)
+
+	\begin{reseni}
+		Zvolíme nekolineární bod $H$, do kterého vedeme přímky $m, n, a$. Vedeme libovolnou přímku z $A$, průsečíky s $m$ a $n$ označme $X$ a $Y$. Do nich vedeme přímky z $N$ a $M$ a průsečík těchto přímek spojíme s $H$ a máme přímku $c$.
+	\end{reseni}
+\end{priklad}
+
+TODO!!! (Konstrukce 4. harmonické přímky).
 
 % 26. 10. 2023
 
@@ -288,11 +298,11 @@ TODO!!!
 TODO!!! (charakteristika projektivity, involuce, …)
 
 \begin{definice}[Involuce]
-	Involuce je projektivita (soumístných soustav) splňující jednu z následujících podmínek:
+	Involuce je projektivita (soumístných soustav) splňující jednu z následujících ekvivalentních podmínek:
 	\begin{itemize}
 		\item $w = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
 		\item $\exists X ≠ S, T: X'' = X$;
-		\item $\forall X: X'' = X$;
+		\item $\forall X: X'' = X$.
 	\end{itemize}
 \end{definice}
 
@@ -351,7 +361,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \end{veta}
 
 \begin{priklad}
-	Doplňování bodové involuce dané dvěma páry.
+	Doplňování bodové involuce dané dvěma páry.
 
 	\begin{reseni}
 		Použijeme předchozí větu a doplníme projektivitu. (Další způsoby jsou klasicky jako doplňování projektivity, nebo použití původní, neduální, verze předchozí věty.)
@@ -458,5 +468,222 @@ TODO!!! (charakteristika projektivity, involuce, …)
 		Vynechán.
 	\end{dukazin}
 \end{veta}
+
+\begin{dusledek}
+	V definici kuželosečky můžeme vzít za středy svazků libovolné dva body na kuželosečce.
+\end{dusledek}
+
+\begin{dusledek}
+	Každým bodem (regulární) kuželosečky prochází jediná tečna.
+\end{dusledek}
+
+\begin{dusledek}
+	Kuželosečka je zadána 5 body (nebo šesti přímkami, z nichž 3 a 3 prochází stejným a stejným bodem).
+\end{dusledek}
+
+% 23. 11. 2023
+
+\begin{priklad}[Konstrukce (!!!)]
+	Sestrojit kuželosečku z 5 bodů. (Tj. dány body $H, H', A, B, C$, najít alespoň 1 další bod kuželosečky procházející těmito body. Pak umíme najít libovolný konečný počet bodů.)
+
+	\begin{reseni}
+		Nalezneme direkční bod a následně provedeme konstrukci druhé přímky v perspektivitě k nějaké zvolené přímce (ta nám určuje, který bod dostaneme).
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[DÚ]
+	K zadaným 5 bodům najít 10–15 dalších bodů kuželosečky. (Ručně nebo v geogebře.)
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka zadána 5 body, v jednom z nich najít tečnu.
+
+	\begin{reseni}
+		Tento bod vezmeme jako bod soustavy, k němu zvolíme druhý bod a najdeme direkční bod perspektivity přímkových soustav procházejících zbylými třemi body. Ten spojíme s naším bodem a máme tečnu.
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}
+	Tečna s bodem dotyku = 2 podmínky pro kuželosečku.
+
+	Kuželosečka je tedy zadána 5 podmínkami:
+	\begin{itemize}
+		\item 5 bodů;
+		\item 4 body + tečna v jednom z nich;
+		\item 3 body + tečny ve dvou z nich.
+	\end{itemize}
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Sestrojit kuželosečku z jedné tečny a 4 bodů.
+
+	\begin{reseni}
+		Zvolíme ze 3 zbývajících bodů bod druhé přímkové soustavy. Poté průsečík tečny a spojnice (správných) průsečíků vzniklých 4 přímek je direkční bod.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Sestrojit kuželosečku ze dvou tečen a 3 bodů.
+
+	\begin{reseni}
+		Zde máme direkční bod rovnou.
+	\end{reseni}
+\end{priklad}
+
+\subsection{Soustavy na bodové kuželosečce}
+\begin{definice}
+	$©B(A, B, C)$ je bodová soustava na ©B. Zase mohou bít soumístné/nesoumístné. Perspektivita soustavy na kuželosečce a soustavy na přímce je „promítnutí“ bodů soustavy $©B(A, B, C)$ z libovolného bodu $\in ©B$ na danou přímku. Složení perspektivit je zase projektivita. Dvojpoměr 4 bodů na ©B je definován přenesením na bodovou soustavu na přímce (zachovává se v každé projektivitě).
+
+	\begin{poznamka}
+		Projektivita je dána 3 páry bodů.
+
+		Projektivita soumístných soustav na ©B má 2/1/0 samodružných bodů.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}
+	Je-li dána projektivita $©B(A, B, C) ::: ©B(A', B', C')$, pak průsečíky $AB' \cap A'B$, $AC' \cap A'C$, $BC', B'C$ leží na jedné, tzv. direkční přímce $d$. Navíc $d \cap ©B$ jsou samodružné body dané projektivity.
+
+	\begin{dukazin}
+		Označíme si $b = A'B$, $b' = AB'$, $c = A'C$, $c = AC'$ a $a = A'A = a'$.
+		$$ A(a', b', c') ::: ©B(A', B', C') ::: ©B(A, B, C) ::: A'(a, b, c). $$
+		Tato projektivita ($A(a', b', c') ::: A'(a, b, c)$) je perspektivita (neboť $a = a'$ je samodružná). Tedy existuje přímka perspektivity $d$, na níž se kříží $b', b$ a $c, c'$.
+
+		Dále chceme ukázat i $BC' \cap B'C \in d$ a $d \cap ©B = $ samodružné body projektivity. Nejprve ukážeme druhou část (a z ní už plyne první, protože samodružné body nezávisí na volbě $A$): $S = S'$, $T = T'$ samodružné body ($\in ©B$ z definice), potom $S = S' \in d$, neboť $s = A'S$ a $s' = AS'$ se protínají na $d$, ale jediný jejich průsečík je $S = S'$ ($T = T'$ obdobně).
+	\end{dukazin}
+
+	\begin{dukazin}
+		Důkaz pro 0 samodružných bodů (případně pro 1) by se prováděl algebraicky.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Direkční přímka je sečnou / tečnou / vnější přímkou k ©B $\Leftrightarrow$ daná projektivita má 2/1/0 reálné samodružné body.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Doplňování projektivity na bodové kuželosečce.
+
+	\begin{reseni}
+		Nemůžeme to udělat tak, jak bychom chtěli, protože nemáme „nakreslenou“ kuželosečku (neumíme s ní dělat průsečík).
+
+		Co ale můžeme, můžeme obvyklým způsobem najít dvě přímky procházející doplňovaným bodem a najít jejich průsečík.
+	\end{reseni}
+\end{priklad}
+
+\begin{definice}[Involuce (totéž, co výše)]
+	Involuce je projektivita (soumístných soustav) splňující jednu z následujících ekvivalentních podmínek:
+	\begin{itemize}
+		\item $w = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
+		\item $\exists X ≠ S, T: X'' = X$;
+		\item $\forall X: X'' = X$.
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	Involuce je dána 2 páry bodů.
+
+	Rozlišujeme involuci hyperbolickou a eliptickou podle toho, zda má 2 nebo 0 samodružných bodů.
+\end{poznamka}
+
+\begin{veta}[O involuci na bodové kuželosečce]
+	Nechť je dána involuce na ©B dvěma páry bodů $A, A'$; $B, B'$. Pak platí:
+	\begin{enumerate}
+		\item Na direkční přímce $d$ leží nejen průsečíky $AB'$, $A'B$, … ale i průsečíky $AB$, $A'B'$, …
+		\item Spojnice $AA'$, $BB'$, … se protínají v jediném bodě $P$.
+		\item Průsečíky $α \cap ©B$ jsou samodružné body involuce ($S$, $T$), přímky $PS$ a $PT$ jsou tečny z bodu $P$ k ©B.
+		\item Tečny v bodech $A$, $A'$ se také protínají na $d$.
+	\end{enumerate}
+
+	\begin{definicein}
+		$d$ se pak nazývá osa involuce, $P$ se nazývá střed involuce.
+	\end{definicein}
+
+	\begin{dukazin}[1.]
+		Průsečík $AB'$ a $A'B$ $\in d$ z definice $d$. Průsečík $AB$ a $A'B'$ $\in d$ záměnou $A \leftrightarrow A'$.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Body $A, A', B, B'$ zadávají úplný čtyřroh. $d$ je jednou z jeho diagonálních stran (plyne z 1. bodu) a to každého takového. Tedy bod $R = AA' \cap d$ zůstává pevný pro každý čtyřroh obsahující body $A$ a $A'$. Dále bod $P$ je protější diagonální vrchol k diagonálni straně $d$. Navíc víme, že $A, R, A', P$ je harmonická čtveřice takže (protože $A$, $R$ a $A'$ jsou pevné) $P$ je pevný pro každou volbu $B, B'$.
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Víme už, že $S, T = d \cap ©B$ a díky $S = S'$ a $T = T'$ se jedná o tečny.
+	\end{dukazin}
+
+	\begin{dukazin}[4.]
+		„Limitním přechodem“ z bodu 1.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Říkáme též, že involuce je indukována svým středem $P$.
+
+	Taktéž definujeme vnější a vnitřní bod kuželosečky v následující tabulce:
+
+	\begin{tabular}{c|ccc}
+		Involuce      & Reálné samodružné body & Osa involuce  & Střed involuce \\ \hline
+		hyperbolická  & 2                      & sečna         & vnější bod     \\
+		eliptická     & 0                      & vnější přímka & vnitřní bod    \\
+		„parabolická“ & 1                      & tečna         & $\in ©B$
+	\end{tabular}
+
+	(U parabolické se všechny body zobrazí do $P$.)
+\end{definice}
+
+\begin{definice}[Další názvy]
+	$P$ = pól přímky $d$, $d$ = polára bodu $P$.
+\end{definice}
+
+\begin{poznamka}
+	$p =$ vnitřní bod ©B $\implies$ každá přímka z bodu $P$ je sečna ©B.
+
+	$p =$ vnější bod ©B $\implies$ existují právě dvě tečny a ty oddělují sečny od vnějších přímek.
+\end{poznamka}
+
+\begin{dusledek}
+	Je-li $R = A'A \cap T_1T_2$ ($T_i$ tečné body z bodu $P$), pak $(AA'RP) = -1$.
+\end{dusledek}
+
+\subsection{Čtyři malé věty}
+\begin{veta}[A]
+	Mějme na ©B dány dvě involuce se středy $P ≠ Q$. Tyto dvě involuce mají jediný společný pár, jsou to právě průsečíky $PQ \cap ©B$. Navíc je-li alespoň jeden z bodů $P$, $Q$ vnitřní, je tento pár reálný.
+
+	\begin{dukazin}
+		Jednoduchý.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[B]
+	Nechť $A, A' =$ pár involuce indukovaný na ©B středem $P$, $Q :=$ průsečík tečen k ©B v bodech $A$ a $A'$. $X, X' = PQ \cap ©B$. Pak $X, X'$ je jediný pár involuce se středem $P$, který splňuje $(XX'AA' = -1)$.
+
+	\begin{dukazin}
+		Pro involuci ze středem $Q$ platí $A, A'$ jsou samodružné body. $X, X'$ je pár této involuce, tedy $(XX'AA') = -1$. A dle Věty A je to jediný takový pár.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[C]
+	$P =$ libovolný vnější bod ©B. $M, N =$ body dotyku tečen z $P$ k ©B. $A, C = $ 2 (libovolné) body na ©B kolineární s bodem $P$. $B =$ libovolný další bod na ©B. $a:=BA$, $c:=BC$, $m:=BM$, $n:=BN$. Pak $(mnac) = -1$.
+
+	\begin{dukazin}
+		Okamžitě z Věty B.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[D]
+	$P, M, N, A, C$ jako ve větě $C$. $m:=CM$, $n:=CN$, $a:=CA$ a $c$ je tečna v bodě $C$. Pak $(mnac) = -1$. (Věta C s $C = B$.)
+
+	\begin{dukazin}
+		$C = B$ ve Větě C.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka je dána 3 body a tečnami ve 2 z nich. Sestrojit tečnu ve 3 bodě.
+
+	\begin{reseni}
+		Věta D.
+	\end{reseni}
+\end{priklad}
 
 \end{document}

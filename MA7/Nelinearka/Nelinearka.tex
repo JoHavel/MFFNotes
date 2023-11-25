@@ -426,4 +426,45 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
+% 22. 11. 2023
+
+TODO!!!
+
+\begin{tvrzeni}
+	Let $u: ®R^n \rightarrow ®R^n$ continuous, $Ω \subset ®R^n$ bounded domain $y_0 \in ®R \setminus u(\partial Ω)$. If $u|_Ω \in ©C^1$ and $y_0$ is a regular value of $u|_Ω$, then $\deg_{®R^n}(u, Ω, y_0) = \sum_{x \in u^{-1}(y_0)} \sgn \det Du(x)$.
+
+	\begin{dukazin}
+		Split $Ω$ into $Ω_0, Ω_1, …, Ω_k$, where $k = \# u^{-1}(y_0)$, such that $Ω_0 \cap u^{-1}(y_0) = \O$, $u|_{Ω_i}$ diffeomorphism? $Ω_i \cap u^{-1}(y_0) = \{x_i\}$. Then $\deg(u, Ω, y_0) = \sum_{i=1}^n \deg(u, Ω_i, y_0) + \deg(u, Ω_0, y_0) = \sum_{i=1}^n \sgn \det Du(x_i) + 0$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Sard]
+	Let $Ω \subset ®R^n$ open, $u \in ©C^1(Ω, ®R^n)$. Then the set of singular (i.e. not regular) values is a Lebesgue zero set.
+
+	\begin{dukazin}[Idea]
+		If $\det Du(x_0) = 0$, then exists $v$ such that $\frac{\partial u}{\partial v} = 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}[Integral formula]
+	Let $u \in ©C^1(®R^n, ®R^n)$, $Ω$ bounded, $y_0 \in ®R^n \setminus u(\partial Ω)$. If $f \in ©C^1(®R^n, ®R^n)$ is any function such that $\supp f$ is in the connected component of $y_0$ in $®R^n \setminus u(\partial Ω)$, then
+	$$ \deg(u, Ω, y_0) \int_{®R^n} f dy = \int_Ω f(u(x)) \det Du dx. $$
+
+	\begin{dukazin}
+		By Sard and inverse of degree $y_0$ is regular. Pick $ε > 0$ such that $u^{-1}(B_ε(y_0))$ consists of neighbourhoods of $\{x_i\}_i = u^{-1}(y_0) \cap Ω$, where $u$ is a diffeomorphism. This means that $\sgn \det Du$ is constant in each connected component of $u^{-1}(B_ε(y_0))$. Assume $f$ such that $\supp f \subset B_ε(y_0)$.
+		$$ \deg(u, Ω, y_0) \int_{®R^n} f dy = \sum_{x_i \in u^{-1}(y_0)} \sgn \det Du(x_i) · \int_{®R^n} f dy = $$
+		$$ \overset{\text{Tento}}= \sum_{i=1}^k \sgn \det Du(x_i) \int_{U_i} f(u(x)) |\det Du| dx = \sum_{i=1}^k \int_{U_i} f(u(x)) \det Du dx = \int_Ω f(u) \det Du dx. $$
+
+		Now let $\tilde f$ arbitrary, but $\int_{®R^n} \tilde f = 0$. Then $LHS = 0$, we need to prove
+		$$ \int_Ω \tilde f(u(x)) \det Du(x) dx = 0. \qquad (\text{Homework}.) $$
+		$$ (f_0, \quad \int f_0 ≠ 0, \quad \supp f_0 \subset B_ε(y_0), \qquad \tilde f = f - \frac{\int f}{\int f_0} f_0.) $$
+		Now generic $f$ can be written as sum of both cases and equation is linear in $f$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$$ \deg(u, Ω, y_0) = \frac{\int_Ω f(u) \det Du}{\int_{®R^n} f} $$
+	for any $f$ as above such that $\int f ≠ 0$.
+\end{dusledek}
+
 \end{document}

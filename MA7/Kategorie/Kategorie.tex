@@ -292,11 +292,140 @@ TODO!!!
 TODO!!!
 
 \begin{lemma}
-	Take an adjunction $©A \overset{F}\rightarrow ©B \overset{G}\rightarrow ©B$, $F -| G$, and $A \in ©A$. Then $(F(A), η_A: A \rigtharrow GF(A))$ is an initial object in the category ($A \Rightarrow G$)
+	Take an adjunction $©A \overset{F}\rightarrow ©B \overset{G}\rightarrow ©B$, $F -| G$, and $A \in ©A$. Then $(F(A), η_A: A \rightarrow GF(A))$ is an initial object in the category ($A \Rightarrow G$)
 
 	TODO!!!
 \end{lemma}
 
 TODO!!!
+
+% 23. 11. 2023
+
+\section{Representable functors}
+\begin{poznamka}
+	From now on all categories are assumed to be locally small (i.e. $©A(A, B)$ is a set).
+\end{poznamka}
+
+\begin{definice}
+	Let ©A be a locally small category and let $A \in ©A$. We define a functor
+	$$ H^A(·) := ©A(A, ·): ©A \rightarrow SET $$
+	as follows:
+	\begin{itemize}
+		\item objects: $B \in ©A$, $H^A(B) := ©A(A, B)$;
+		\item morphisms: for $B \overset{g}\rightarrow B' \in ©A$ the map $H^A(g) := ©A(A, g): ©A(A, B) \rightarrow ©A(A, B')$ is defined by $p \mapsto g ∘ p$.
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	Let $(V, \<·, ·\>)$ be an inner product space. Define $f_V := \<v, ·\>: V \rightarrow ®K$, $w \mapsto \<v, w\>$. For some $v \in V$.
+\end{poznamka}
+
+\begin{definice}
+	Let ©A be a locally small category, a functor $X: ©A \rightarrow SET$ is called representable if, for some $A \in ©A$, we have $X \simeq H^A$. A representation is a choice of isomorphism: $X \rightarrow H^A$.
+\end{definice}
+
+\begin{priklady}
+	Let $G$ be a group and let $©G$ be the associated one object category. Recall that (functors $©G \rightarrow SET$ $\Leftrightarrow$ $G$-sets.)
+
+	Since a representable functor is a functor, it must correspond to a $G$-set. The corresponding $G$-set is $G$ itself, i.e. the left regular representation. (Since we only have one object, we only have one representable functor $H^·: ©G \rightarrow SET, · \mapsto ©G(·, ·)$.)
+\end{priklady}
+
+\begin{tvrzeni}
+	Any SET valued with a left adjoint is representable.
+
+	\begin{dukazin}
+		$G: ©A \rightarrow SET \implies ©G(A) \simeq SET(1, G(A))$, where $1$ is 1-element set.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{priklad}
+	The forgetful functor $U: VECT_{®K} \rightarrow SET$ is representable, since it admits a left adjoint, i.e. the free functor.
+
+	($f_v: V \rightarrow ®K$, $w \mapsto \<v, w\>$, $v \in V$, $\implies$ $V \rightarrow V^* = LIN_{®K}(V, ®K)$, $v \mapsto f_v = \<v, ·\>$.)
+\end{priklad}
+
+\begin{poznamka}
+	A morphism $A' \overset{f}\rightarrow A$ induces a natural transformation $H^A \overset{H^f}\Rightarrow H^{A'}$, defined by $H^A(B) = ©A(A, B) \overset{H_B^f}\rightarrow H^{A'}(B) = ©A(A', B)$, $p \mapsto p∘f$.
+\end{poznamka}
+
+\begin{definice}
+	Let ©A be a locally small cat, the functor $H^·: ©A\op \rightarrow [©A, SET]$ (functor category: objects are $F: ©A \rightarrow SET$, morphisms are natural transformations) is defined on objects $H^·(A) = H^A$ and on morphisms $H^·(f) = H^f$.
+\end{definice}
+
+\begin{poznamka}[Moral]
+	This is a „representation“ of $©A\op$ in $[©A, SET]$. (Functor categories „nicer“ than general categories.)
+\end{poznamka}
+
+\begin{definice}
+	Let ©A be a locally small category and $A \in ©A$. We define a functor $H_A: ©A(·, A): ©A \rightarrow SET$, as following:
+	\begin{itemize}
+		\item objects: $H_A(B) = ©A(B, A)$, $B \in ©A$;
+		\item morphism: $B' \overset{g}\rightarrow B$ define $H_A(g) := ©A(g, A): ©A(B, A) \rightarrow ©A(B', A)$, $p \mapsto p∘g$.
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	This now gives the definition of representable functor for functors $X: ©A\op \rightarrow SET$.
+\end{poznamka}
+
+\begin{definice}[Recall]
+	The functor category $[©A\op, SET]$ is called the category of pre-sheaves on ©A.
+\end{definice}
+
+\begin{definice}
+	Let ©A be a locally small category. The Yoneda embedding of ©A is the functor $H_·: ©A \rightarrow [©A\op, SET]$ (defined in analogy with $H^·$).
+
+	\begin{poznamkain}
+		Embedding for categories is defined at the level of homomorphism sets $©A(A, B) \overset{F}\rightarrow ©B(F(A), F(B))$ is injective, $\forall A, B \in ©A$, i.e. $F$ is a faithfull functor.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklady}
+	Recall the functor $C: TOP\op \rightarrow RING$, $X \mapsto C(X)$ (continuous functions from $X$ to $®C$ or $®R$, ring with respect to point-wise operations). The functor $TOP\op \overset{C}\rightarrow RING \underset{U}\rightarrow SET$ is representable since
+	$$ U(C(X)) = TOP(X, ®R) \text{ or } TOP(X, ®C) = H_{®R}(X) \text{ or } H_{®C}(X). $$
+\end{priklady}
+
+\begin{veta}[Yoneda lemma]
+	Let ©A be locally small small category. Then $[©A\op, SET](H_A, X) \simeq X(A)$. Naturally in $A \in ©A$, and $X \in [©A\op, SET]$ (pre-sheaf), where naturality means that the composite functor
+	$$ ©A\op \times [©A\op, SET] \overset{H_·\op \times 1}\rightarrow [©A\op, SET]\op \times [©A\op, SET] \overset{Hom_{[©A\op, SET]}} SET, $$
+	$$ (A, X) \mapsto (H_A, X) \mapsto [©A\op, SET](H_A, X) $$
+	is naturally isomorphic to the evaluation functor
+	$$ ©A\op \times [©A\op, SET] \overset{en}\rightarrow SET, \qquad (A, X) \mapsto X(A). $$
+\end{veta}
+
+\begin{priklad}
+	Confirm how the two functors act on morphisms.
+\end{priklad}
+
+\begin{dukaz}[Yoneda]
+	Strategy for the proof: we want a natural isomorphism between our two functors:
+	\begin{itemize}
+		\item components are isomorphisms in $SET$ labelled by the objects of $©A\op \times [©A\op, SET]$; (This we need to look up.)
+		\item naturality conditions labelled by morphisms in $©A\op \times [©A\op, SET]$. (This is what we need to check.)
+	\end{itemize}
+
+	Let's focus this week on the first point. So for every $A \in ©A\op$, and every $X \in [©A\op, SET]$ we want an isomorphism of sets:
+	$$ [©A\op, SET](H_A, X) \overset{\hat{\ }_{(A, X)}}\rightarrow X(A) \overset{\tilde{\ }_{(A, X)}}\rightarrow [©A\op, SET](H_A, X). $$
+	$$ F(A) \overset{α_A}\rightarrow G(A) \overset{α_A^{-1}} F(A). $$
+
+	\begin{lemmain}[Observation]
+		A function is defined by $[©A\op, SET](H_A, X) \overset{\hat{\ }}\rightarrow X(A)$, $(α: H_A \rightarrow X) \mapsto \hat{α} := α_A(1_A)$.
+
+		Rough work: $α: H_A \rightarrow X$ $\Leftrightarrow$ $α_B: ©A(B, A) \rightarrow X(B)$ ($B \in ©A$). Let's look at the case $B = A: α_A: ©A(A, A) \rightarrow X(A)$, $1_A \mapsto α_A(1_A)$.
+	\end{lemmain}
+
+	\begin{lemmain}
+		A function is defined by
+		$$ [©A\op, SET](H_A, X) \overset{\tilde{\ }}\leftarrow X(A), \qquad \tilde x \leftarrow| x. $$
+	\end{lemmain}
+
+	\begin{dukazin}[The previous lemma]
+		$x \in X(A)$, we need natural transformation $\tilde X: H_A \rightarrow X$, that is, for each $B \in ©A\op$ a function $\tilde x_B: H_A(B) = ©A(B, A) \rightarrow X(V)$, which is natural in $B$.
+
+		TODO!!!
+	\end{dukazin}
+
+	TODO!!!
+\end{dukaz}
 
 \end{document}

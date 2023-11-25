@@ -303,4 +303,46 @@ TODO!!!
 		We can arrange that the factorization associated to $γ_0$ is equivalent to $[f_1]·…·[f_k]$ by choosing $g_r$'s for each vertex $v$ along the lower edge of $I \times I$ to lie not just in the two $A_{ij}$'s corresponding to $R_s$'s containing $v$, but also to lie in the $A_α$ for $f_i$ containing $v$ in its domain. In the case when $v$ is the common point of two domains for two consecutive $f_i$ and $f_{i+1}$ we have $F(v) = x_0$, so there is no need to choose $g_v$'s for such $v$'s. In this fashion we can assume that the factorization for $[f_1]·…·[f_k]$ and $[f_1']·…·[f_l']$ are equivalent.
 	\end{dukaz}
 
+% 20. 11. 2023
+
+TODO? (Examples of covering space)
+
+\begin{tvrzeni}
+	Given a covering space $p: \tilde X \rightarrow X$, a homotopy $f_t: Y \rightarrow X$ and a map $\tilde f_ς: Y \rightarrow \tilde X$ lifting $f_0$, then there is a unique homotopy $\tilde f_t: Y \rightarrow \tilde X$ of $\tilde f_0$ that lifts $f_t$.
+
+	\begin{poznamka}
+		This statement in a more general form has already appeared on practicals.
+	\end{poznamka}
+
+	\begin{poznamka}
+		One can use this proposition in two ways: We have a lifting property for paths which says that $\forall$path $f: [0, 1] = I \rightarrow X$and each lift $\tilde x_0$ of $f(0) = x_0 \in X$ there is a unique $\tilde f: I \rightarrow \tilde X$ lifting $f$ starting at $\tilde x_0$.
+
+		If $Y = I$, we get that every homotopy $f_t$ of a path $f_0$ in $X$ lifts to a homotopy $\tilde f_t$ of each lift $\tilde f_0$ of $f_0$.
+
+		As a corollary of Proposition (*) we can write:
+	\end{poznamka}
+\end{tvrzeni}
+
+\begin{dusledek}
+	The map $p_*: π_1(\tilde X, \tilde x_0) \rightarrow π_1(X, x_0)$ induced by the covering space map $p: \tilde X \rightarrow X$ is injective. The image subgroup $p_*(π_1(\tilde X, \tilde x_0))$ in $π_1(X, x_0)$ consists of the homotopy classes of loops in $X$ based at $x_0$ whose lifts to $\tilde X$ starting at $\tilde x_0$ are loops.
+	
+	\begin{dukazin}[Of corollary]
+		An element of the kernel of $p_*$ is represented by a loop $\tilde f_0: I \rightarrow \tilde X$ with a homotopy $f_t: I \rightarrow X$ of $f_0 = p·\tilde f_0$ to the trivial loop. By ? the applications of proposition (*) there is a lifted homotopy of loops $\tilde f_t$ starting at $f_0$ and ending with a constant loop. Hence $[\tilde f_0] = 0$ in $π_1(\tilde X, \tilde x_0)$ and $p_*$ is injective.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	The number of sheets of a covering space $p: \tilde X \rightarrow X, \tilde x \mapsto x$ with $X$ and $\tilde X$ path connected equals the index of $p_*(π_1(\tilde X, \tilde x_0))$ in $π_1(X, x_0)$.
+
+	\begin{dukazin}
+		For a loop $g$ in $X$ based at $x_0$ let $\tilde g$ be its lift in $\tilde X$ based at $\tilde x_0$. A product $h·g$, $[h] \in H = p_*(π_1(\tilde X, \tilde x_0))$ has a lift $\tilde h·\tilde g$ ending at the same point as $\tilde g$ (since $\tilde h$ is a loop). Hence we can define a map $Φ$ from cosets $H[g]$ to $p^{-1}(x_0)$ implies that $Φ$ is surjective since $\tilde x_0$ can be lowed by a path $\tilde g$ to an arbitrary point in $p^{-1}(x_0)$ and $\tilde g$ projects to a loop $g$ at $x_0$.
+
+		To show that $Φ$ is injective, observe that $Φ(H[g_1]) = Φ(H[g_2])$ $\implies$ $g_1·g_2^{-1}$ lifts to a loop in $\tilde X$ based at $\tilde x_0$, so $[g_1][g_2]^{-1} \in H$ $\implies$ $H[g_1] = H[g_2]$ $\implies$ injectivity + surjectivity $\implies$ bijectivity of $Φ$.
+	\end{dukazin}
+\end{tvrzeni}
+
+% 20. 11. 2023
+
+TODO? (Problems)
+
 \end{document}

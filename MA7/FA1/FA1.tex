@@ -588,7 +588,7 @@ TODO?
 	Properties:
 	\begin{enumerate}
 		\item $(X, ς(X, M))$ is LCS (by the theorem above).
-		\item $(X, ς(X, M))$ is Hausdorff $\Leftrightarrow$ $\forall x \in X \setminus \{0\}\ \exists f \in M: f(x) ≠ 0$ (i.e. $M$ separates points) (by the theorem above).
+		\item $(X, ς(X, M))$ is Hausdorff $\Leftrightarrow$ $\forall x \in X \setminus \{0\}\ \exists f \in M: f(x) ≠ 0$ (i.e. $M$ separates points) (by the theorem above).
 		\item $f \in M$ $\implies$ $f$ is continuous on $(X, ς(X, M))$ (fix $f \in M$, $p(x) = |f(x)|$, $x \in X$ is a continuous seminorm and $|f(x)| = p(x) ≤ p(x)$).
 		\item $ς(X, M)$ is the weakest topology on $X$ making all $f \in M$ continuous.
 		\item $ς(X, M) = ς(X, \LO(M))$.
@@ -617,5 +617,230 @@ TODO?
 \begin{priklad}
 	$X$ LCS. Then $X^* \Subset X^{\#}$. So, we may consider $ς(X, X^*)$ „the weak topology of $X$“. $ς(X, X^*)$ is Hausdorff when $X$ is HLCS.
 \end{priklad}
+
+% ?????????? (many lectures)
+
+TODO!!!
+
+% 21. 11. 2023
+
+TODO!!!
+
+\begin{lemma}
+	TODO
+
+	\begin{itemize}
+		\item[a)] $\|·\|_N$ is a norm on $©D(Ω)$;
+		\item[b)] $©D_K(Ω)$ is a Fréchet space when equipped with $(\|·\|_N)_{N \in ®N_0}$.
+	\end{itemize}
+
+	\begin{dukazin}[a)]
+		TODO!!!
+	\end{dukazin}
+
+	\begin{dukazin}[b)]
+		$\|·\|_0 ≤ \|·\|_1 ≤ \|·\|_2 ≤ … $ $\implies$ $©D_K(Ω)$ is a metrizable LCS (by translation invarinat metric $ρ$ from the proposition above).
+
+		$(φ_n) \subset ©D_k(Ω)$ $ρ$-cauchy, then $\forall N \in ®N_0$: $(φ_n)$ is $\|·\|_N$-cauchy $\implies$ $\forall α$: $(D^α φ_n)$ is $\|·\|_∞$-cauchy $\implies$ $\forall α\ \exists ψ_n$ such that $D^α φ_n \rightrightarrows ψ_α$ on $Ω$. The $ψ_α$ is continuous, $φ_α = 0$ on $Ω \setminus K$. Fix $α \in ®N_0^d$ and $j \in [d]$. Then
+		$$ D^α φ_n \rightrightarrows ψ_α \land \frac{\partial}{\partial x_j} D^α φ_n = D^{α+e_j}φ_n \rightrightarrows ψ_{α + e_j} \implies ψ_{α + e_j} = \frac{\partial}{\partial x_j} ψ_α. $$
+		$\implies ψ_α = D^α ψ_0$.
+
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	$Λ: ©D(Ω) \rightarrow ®F$ linear then following assertions are equivalent:
+	\begin{enumerate}
+		\item $φ_n \rightarrow φ$ in $©D(Ω)$ $\implies$ $Λ(φ_n) \rightarrow Λ(φ)$;
+		\item $φ_n \rightarrow 0$ in $©D(Ω)$ $\implies$ $Λ(φ_n) \rightarrow 0$;
+		\item $\forall K \subset Ω$ compact and $Λ|_{©D_K(Ω)}$ is continuous;
+		\item $\forall K \subset Ω$ compact $\exists N \in ®N_0$ $\exists C > 0$ such that
+			$$ |Λ(φ)| ≤ C·\|φ\|_N, \qquad φ \in ©D_K(Ω). $$
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“ is trivial. „$2. \implies 3.$“: Fix $K \subset Ω$ compact. $φ_n \rightarrow 0$ on $©D_K(Ω)$ $\implies$ $φ_n \rightarrow 0$ in $©D(Ω)$ $\overset{2.} \implies$ $Λ(φ_n) \rightarrow 0$. Thus $Λ|_{©D_K(Ω)}$ is continuous at ¦o, so it is continuous.
+
+		„$3. \implies 1.$“ $φ_n \rightarrow φ$ in $©D(Ω)$ $\implies$ $\exists K \subset Ω$ compact such that $\supp φ_n \subset K$ for each $n$. Then $(φ_n) \subset ©D_K(Ω)$ $\implies$ $φ_n \rightarrow φ$ in $©D_K(Ω)$ $\overset{3.}\implies$ $Λ(φ_n) \rightarrow φ(φ)$.
+
+		„$3. \Leftrightarrow 4.$“. By the proposition above.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Distribution, finite order]
+	A distribution on $Ω$ is a linear functional $Λ: ©D(Ω) \rightarrow ®F$ satisfying assertions from the previous proposition. We will denote distributions on $Ω$ by $©D'(Ω)$.
+
+	$Λ \in ©D'(Ω)$ is of finite order, if $N \in ®N_0$ in 4. of the previous proposition can be chosen independently on $K$.
+\end{definice}
+
+\begin{priklady}
+	$f \in L^1_{loc}(Ω)$. $Λ_f(φ) = \int_Ω f·φ$ ($φ \in ©D(Ω)$) $\implies$ $Λ_f$ is a distribution of order 0. Because $K \subset Ω$ compact $\implies$ $\int_K |f| < ∞$, $φ \in D_K(Ω)$:
+	$$ |Λ_f(φ)| = |\int_Ω f·φ| = |\int_K f·φ| ≤ \int_K |fφ| ≤ \|φ\|_∞·\int_K|f| = \|φ\|_0·\int_K|f|. $$
+
+	$μ ≥ 0$ regular Borel measure, finite on compacts. $Λ_μ(φ) = \int_Ω φ dμ$ is a distribution on $Ω$ of order 0. Because if $K \subset Ω$, $φ \in ©D_K(Ω)$, then
+	$$ |Λ_μ(φ)| = |\int_Ω φ dμ| = |\int_K φ dμ| ≤ \|φ\|_∞ μ(K). $$
+
+	$μ$ is a signed (or complex) finite measure $Λ_μ(φ) = \int_Ω φ dμ$ is a distribution of order 0:
+	$$ |\int_K φ dμ| ≤ \int_K |φ| d|μ| ≤ |μ|(K) · \|φ\|_∞ ≤ \|μ\|·\|φ\|_∞. $$
+
+	$Λ(φ) = φ'(0)$, $φ \in ©D(®R)$ is a distribution of order 1. (Clearly $|Λ(φ)| ≤ \|φ'\|_∞ ≤ \|φ\|_1$.) $Λ$ not of order 0: Find $φ \in ©D(®R)$ such that $φ'(0) = 1$, $\supp φ \subset [-c, c]$ for some $c > 0$. $φ_n(x) = φ(nx)$, $x \in ®R$, $n \in ®N$, $\implies$ $φ_n \in ©D(®R)$. $\supp φ_n \subset [-c / n, c / n] \subset [-c, c]$. $\|φ_n\|_0 = \|φ\|_0$. $Λ(φ_n) = φ_n'(0) = φ'(0)·n = n$.
+
+	$Λ(φ) = \sum_{n=0}^∞ φ^{(n)}(n)$, $φ \in ©D(®R)$ $\implies$ $Λ$ is a distribution on ®R, not of finite order ($\supp φ \subset [-k, k], k \in ®N, \implies |Λ(φ)| ≤ (k + 1)\|φ\|_K$.)
+\end{priklady}
+
+\begin{poznamka}
+	If $f, g \in L^1_{loc}(Ω)$, $Λ_f = Λ_g$, then $f = g$ almost everywhere. If $μ, ν$ measures, $Λ_μ = Λ_ν$, then $μ = ν$.
+
+	If $f \in L^1(Ω)$, $μ$ finite measure, $Λ_f = Λ_μ$, then $μ(A) = \int_A f$, for each $A \subset Ω$ Borel.
+\end{poznamka}
+
+\begin{definice}
+	$Λ \in ©D'(Ω)$.
+
+	\begin{itemize}
+		\item For $α \in ®N_0^d$ define $D^αΛ(φ) = (-1)^{|α|} Λ(D^α φ)$. (For any $φ \in ©D(Ω)$.)
+		\item For $f \in C^∞(Ω)$ define $(f Λ)(φ) = Λ(f φ)$. (For any $φ \in ©D(Ω)$.)
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}
+	a) $Λ \in ©D'(Ω)$, $α \in ®N_0^d$ $\implies$ $D^αΛ \in ©D'(Ω)$.
+
+	\begin{dukazin}
+		Clear: $D^α Λ: ©D(Ω) \rightarrow ®F$ linear, $K \subset Ω$ compact $\implies$ $\exists N \in ®N_0, C > 0: |Λ(φ)| ≤ C·\|φ\|_N, φ \in ©D_K(Ω)$. Then $\forall φ \in ©D_k(Ω)$:
+		$$ |D^α Λ(φ)| = |Λ (D^α φ)| ≤ C·\|D^α φ\|_N ≤ C·\|φ\|_{|α| + N} $$.
+	\end{dukazin}
+
+	b) $f \in C^∞(Ω) \implies D^α Λ_f = Λ_{D^α f}$
+
+	\begin{dukazin}[For $\partial / \partial x_1$]
+		$$ \frac{\partial}{\partial x_1} Λ_f(φ) = -Λ_f\(\frac{\partial φ}{\partial x_1}\) = ? = -\int_Ω f·\frac{\partial φ}{\partial x_1} $$
+		TODO
+	\end{dukazin}
+
+	c) $d = 1$, $Ω = (a, b)$, $f \in L^1_{loc}(Ω)$. Then $(Λ_f)' = Λ_g \Leftrightarrow g$ is the weak derivative of $f$. And $(Λ_f)' = Λμ \Leftrightarrow μ$ is the weak derivative of $f$.
+
+	\begin{dukazin}
+		By definitions.
+	\end{dukazin}
+
+	d) $Λ \in ©D'(Ω)$, $f \in C^∞(Ω)$ $\implies$ $f Λ \in ©D'(Ω)$.
+
+	\begin{dukazin}
+		clear: $f Λ: ©D(Ω) \implies$ IF linear
+	\end{dukazin}
+\end{tvrzeni}
+
+% 24. 11. 2023
+
+\begin{tvrzeni}
+	a) $Λ \in ©D'((a, b)), Λ' = 0 \implies \exists c \in ®F: Λ = Λ_c$.
+
+	\begin{dukazin}
+		We will prove $\Ker Λ_1 \subset \Ker Λ$. Then $\exists c: Λ = c·Λ_1 = Λc$.
+
+		$$ φ \in \Ker Λ_1 \implies Λ_1(φ) = 0, i.e. \int_a^b φ = 0. $$
+		Define $φ(t) = \int_a^t φ$, $t \in (a, b)$. Then $ψ \in ©D((a, b))$, $ψ' = φ$ ($ψ' = φ$ … differentiation of indefinite integral $\implies$ $ψ \in C^∞((a, b))$, $ψ = 0$ on $(a, \min\supp φ)$ and $(\max\supp φ, b)$ $\implies$ $ψ \in ©D((a, b))$). Hence $Λ(φ) = Λ(ψ') = -Λ'(ψ) = 0$, so $φ \in \Ker Λ$.
+	\end{dukazin}
+
+	b) $Ω \subset ®R^d$ open connected, $Λ \in ©D'(Ω)$, $D^αΛ = 0$ for $|α| = 1$ $\implies$ $\exists c \in ®F: Λ = Λ_c$.
+
+	\begin{dukazin}
+		„Step 1: $Ω = \prod_{j=1}^d (a_j, b_j)$“: Induction on $d$. For $d = 1$ use a). Assume it holds for $d - 1$, denote $Ω' = \prod_{j=1}^{d - 1}(a_j, b_j)$, $x \in Ω \implies x = (x', x_d)$ ($x' \in ®R^{d - 1}$, $x_d \in ®R$), $α \in N_0^d \implies α = (α', α_d)$.
+
+		$Λ \in ©D'(Ω)$, $D^αΛ = 0$ for $|α| = 1$. It means: $\forall φ \in ©D(Ω)\ \forall j \in [d]: Λ\(\frac{\partial φ}{\partial x_j}\) = 0$.
+
+		Claim: $ψ \in ©D(Ω)$. Then $\exists φ \in ©D(Ω): \frac{\partial φ}{\partial x_d} = ψ \Leftrightarrow \forall x' \in Ω': \int_{a_d}^{b_d} ψ(x', x_d) dx_d = 0$. („$\implies$“ clear, „$\impliedby$“: define $φ(x', x_d) = \int_{a_d}^{x_d} ψ(x', t) dt$). Define
+		$$ T: ©D(Ω) \rightarrow ©D(Ω'), \qquad Tφ(x') = \int_{a_d}^{b_d}φ(x', x_d) d x_d, \quad φ \in ©D(Ω). $$
+		$T$ is linear, $\Ker T \subset \Ker Λ$ ($Tφ = 0 \implies \exists ψ \in ©D(Ω): φ = \frac{\partial ψ}{\partial x_d}$, thus $Λ(φ) = 0$). Fix $η \in ©D((a_d, b_d))$, $\int_{a_d}^{b_d} η = 1$. For $φ \in ©D(Ω')$ define $(φη)(x) = φ(x')η(x_d)$. Then $φη \in ©D(Ω)$. $\tilde Λ(φ) = Λ(φη)$, $φ \in ©D(Ω')$. Then $\tilde Λ \in ©D'(Ω')$.
+
+		Moreover, $\forall α'$ with $|α'| = 1: D^{α'}\tilde Λ = 0$.
+		$$ \(\forall j \in [d-1]: \frac{\partial}{\partial x_j} \tilde Λ(φ) = -\tilde Λ\(\frac{\partial φ}{\partial x_j}\) = - Λ\(\frac{\partial φ}{\partial x_j}η\) = -Λ\(\frac{\partial}{\partial x_j}(φη)\) = 0.\) $$
+		$\implies \exists c \in ®F: \tilde Λ = Λ_c$ in $©D'(Ω')$. Then $Λ = Λ_c$ (in $©D(Ω)$) cause
+		$$ φ \in ©D(Ω) \implies φ - (Tφ)η \in ©D(Ω), φ - (Tφ)η \in \Ker T \subset \Ker Λ, \text{ so,} $$
+		$$ Λ(φ) = Λ((Tφ)η) = \tilde Λ(Tφ) = Λ_c(Tφ) = \int_{Ω'} c·Tφ = \int_{Ω'}c·\int_{a_d}^{b_d} φ(x', x_d) dx_d dx' \overset{\text{FUBINI}}= \int_Ω c·φ = Λ_c(φ). $$
+
+		„Step 2: $Ω$ is open connected, $Λ \in ©D'(Ω)$, $D^αΛ = 0$, $|α| = 1$.“: Step 1 $\implies$ $\forall Q \subset Ω$ cuboid $\exists c: Λ|_{©D(Q)} = Λ_c$. Fix one cuboid $Q_0 \subset Ω$ and the respective $c$.
+		$$ A := \{x \in Ω | \exists Q \subset Ω \text{ cuboid}, x \in Q, Λ|_{©D(Q)} = Λ_c\}. $$
+		Fix $A ≠ \O$ ($Q_0 \subset A$), $A$ is open, $A$ is closed in $Ω$ ($x \in \overline{A} \cap Ω$, $Q \cap A ≠ \O$, $Λ|_{©D(Q)} = Λ_d$, $y \in Q \cap A \implies Λ|_{©D(Q_y)} = Λ_c$ $\implies$ on $©D(Q \cap Q_y): Λ = Λ_c = Λ_d \implies c = d$ $\implies$ $x \in A$.). So $A = Ω$ as $Ω$ is connected. The $Λ = Λ_c$ in $©D'(Ω)$. (Proof of this was skipped, it remains that for every $φ \in ©D(Ω)$, not only for every $φ \in ©D(Q)$, it holds $Λ(φ) = Λ_c(φ)$.)
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{A bit more on distributions}
+\begin{definice}
+	$Λ_n \rightarrow Λ$ in $©D(Ω)$ $≡$ $\forall φ \in ©D(Ω): Λ_n(φ) = Λ(φ)$.
+\end{definice}
+
+\begin{tvrzeni}
+	a) $Λ_n \rightarrow Λ$ in $©D(Ω)$, then:
+	\begin{itemize}
+		\item $\forall α: D^αΛ_n \rightarrow D^αΛ$;
+			\begin{dukazin}
+				$$ D^αΛ_n(φ) = (-1)^{|α|}Λ_n(D^α φ) \rightarrow (-1)^{|α|}Λ(D^αφ) = D^αΛ(φ). $$
+			\end{dukazin}
+		\item $f \in C^∞(Ω): fΛ_n \rightarrow fΛ$.
+			\begin{dukazin}
+				$$ fΛ_n(φ) = Λ_n(fφ) \rightarrow Λ(fφ) = fΛ(φ). $$
+			\end{dukazin}
+	\end{itemize}
+
+	b) $f_n \rightarrow f$ in $L^1_{loc}(Ω)$ ($\forall K \subset Ω$ compact: $\int_K |f_n - f| \rightarrow 0$). Then $Λ_{f_n} \rightarrow Λ_f$ in $©D'(Ω)$.
+
+	\begin{dukazin}
+		$$ φ \in ©D(Ω): |Λ_{f_n}(φ) - Λ_f(φ)| = \left|\int_Ω f_n φ - \int_Ω f φ\right| ≤ \int_Ω |f_n - f|·|φ| = \int_{\supp φ} |f_n - f|·|φ| ≤ \|φ\|_∞ \int_{\supp φ} |f_n - f| \rightarrow 0. $$
+	\end{dukazin}
+
+	c) $f_n \rightarrow f$ in $L^p(Ω)$ for some $p \in [1, ∞]$. Then $Λ_{f_n} \rightarrow Λ_f$.
+
+	\begin{dukazin}
+		Let $K \subset Ω$ be compact, $q$ the dual exponent. Then use b) with
+		$$ \int_K |f_n - f| ≤ \|f_n - f\|_{L^p(K)}·\|1\|_{L^q(K)} \rightarrow 0. $$
+	\end{dukazin}
+
+	d) $φ_n \rightarrow φ$ in $©D(Ω)$. Then $Λ_{φ_n} \rightarrow Λ_φ$ in $©D'(Ω)$.
+
+	\begin{dukazin}
+		$$ φ_n \rightarrow φ \text{ in } ©D(Ω) \implies φ_n \rightarrow φ \text{ in } C^∞(Ω), \text{ and use c)}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$(Λ_n) \subset ©D'(Ω)$ and $\forall φ \in ©D(Ω): (Λ_n(φ))$ converges in ®F. Then $Λ(φ) = \lim_{n \rightarrow ∞} Λ_n(φ)$ is a distribution on $Ω$.
+
+	\begin{dukazin}
+		Clearly $Λ$ is a linear functional on $©D(Ω)$. Further: $K \subset Ω$ compact $\implies$ $\forall n: Λ_n|_{©D_K(Ω)}$ is continuous. $©D_K(Ω)$ is a Fréchet space $\overset{\text{the lemma above, b)}} \implies$ $Λ|_{©D_K(Ω)}$ continuous $\implies$ $Λ \in ©D'(Ω)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	$Λ \in ©D'(Ω)$.
+	\begin{itemize}
+		\item $G \subset Ω$ open. $Λ$ vanishes on $G$ if $Λ(φ) = 0$ whenever $φ \in ©D(Ω), \supp φ \subset G$.
+		\item $\supp Λ = Ω \setminus \{G \subset Ω \text{ open }| Λ \text{ vanishes on $G$}\} = \{x \in Ω | \forall ε > 0 \exists φ \in ©D(Ω): \supp φ \subset U(x, ε) \land Λ(φ) ≠ \O\}$.
+		\item $Λ$ has compact support if $\supp Λ$ is a compact subset of $Ω$.
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}
+	a) $Λ = Λ_f$ for some $f \in L^1_{loc}(Ω)$. Then
+	$$ \supp Λ_f = \supp f = \{x \in Ω | \forall ε > 0: λ^d\(\{y \in U(x, ε) \cap Ω | f(y) ≠ 0\}\) > 0\} $$
+
+	\begin{dukazin}
+		„$\subseteq$“: $X \notin \supp f$ $\implies$ $\exists ε > 0: f = 0$ almost everywhere on $U(x, ε) \cap Ω$ $\implies$ $Λ_f$ vanishes on $U(x, ε) \cap Ω$ $\implies$ $x \notin \supp Λ_f$.
+
+		„$\supseteq$“: $x \in \supp$. Let $ε > 0$. Then $f$ is not 0 almost everywhere on $U(x, ε) \cap Ω \implies \exists φ \in ©D(U(x, ε) \cap Ω)$ 
+	\end{dukazin}
+
+	b) $Λ = Λ_μ$. Then $\supp Λ = \supp μ = Ω \setminus \bigcup \{G \subset Ω \text{ open } | \forall B \subset G \text{ Borel } μ(B) = 0\}$.
+
+	\begin{dukazin}
+		$G \subset Ω$ open the $\forall B \subset G$ Borel $μ(B) = 0$ $\Leftrightarrow$ $\forall φ \in ©D(G): \int φ dμ = 0$ $\Leftrightarrow$ $Λ_μ$ vanishes on $G$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		$f$ is continuous $\implies$ $\supp f = \overline{\{x | f(x) ≠ 0\}} \cap Ω$.
+	\end{poznamkain}
+\end{tvrzeni}
 
 \end{document}
