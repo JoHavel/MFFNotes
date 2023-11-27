@@ -59,7 +59,7 @@
 		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = 0 \text{ v } Ω $$
 		má pouze jedno řešení $u \in W_0^{1, 2}(Ω)$, $u = 0$.
 
-		Převedení bych moc rád udělal tak, že místo $f$ na pravé straně použiji $f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u)$, protože to k tomu hrozně nabádá, navíc mě nenapadá nic jiného, co by šlo použít, než Fredholmova alternativa a nenapadá mě žádný jiný postup, jak se dostat z FA na boundary value problém. Jenže $\Div(®A \nabla u)$ prostě nemusí být v $L^2$. Asi mi něco jednoduchého uniká, ale bohužel už nemám moc času do deadlinu. Takže řekněme, že nová pravá strana je v $L^2$.
+		Doplňme si do zadání $a_{ij}, b \in L^∞$. Pak $f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u) \in L^2$ (z Höldera a $u_0 \in W^{1, 2}$, tj. $u_0 \in L^2$ a $\nabla u_0 \in L^2$).
 
 		Potom z Fredholmovy alternativy a z tvrzení (pokud tedy platí, což si dokážeme dále) plyne, že problém
 		$$ -\Div(®A \nabla u) + b u + ¦c·\nabla u = f - bu_0 - ¦c·\nabla u_0 + \Div(®A \nabla u) \text{ v } Ω, \qquad u = 0 \text{ na } \partial Ω, $$
@@ -79,16 +79,15 @@
 		První a třetí člen už je na $u < M$ stejně nulový, tedy můžeme psát
 		$$ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
 		Levou stranu můžeme zezdola odhadnout pomocí toho, že $b>0$, $\phi_M ≥ 0$ a tam, kde $\phi_M ≠ 0$, $u ≥ M > 0$. Navíc $®A$ je eliptické, takže
-		$$ c_1\|\nabla \phi_M\|_2^2 = \int c_1 \|\nabla \phi_M\|_{®R^d}^2 ≤ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$
-		
+		$$ c_1\|\nabla \phi_M\|_2^2 = \int c_1 \|\nabla \phi_M\|_{®R^d}^2 ≤ \int ®A \nabla \phi_M · \nabla \phi_M + b u \phi_M = - \int ¦c·\nabla \phi_M \phi_M. $$	
 		Levou část můžeme shora odhadnout pomocí dvakrát použité Hölderovy nerovnosti:
-		$$ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_2. $$
+		$$ - \int ¦c·\nabla \phi_M \phi_M ≤ \|¦c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_2. $$
 		Nyní znovu použijeme Hölderovu nerovnost, tentokrát na $\|\phi_M\|_2$. Protože $\psi$ je na $u < M$ nulové, můžeme psát (jak bylo na přednášce)
 		$$ \|\phi_M\|_2 = \sqrt{\int \phi_M^2} = \sqrt{\int \phi_M^2 \chi_{u ≥ M}} ≤ \sqrt{\(\int \phi_M^{2p}\)^{\frac{1}{p}} · \(\int \chi^q_{{u ≥ M}}\)^{\frac{1}{q}}} = \|\phi_M\|_{2p} · \(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}, $$
 		kde $\frac{1}{p} + \frac{1}{q} = 1$, avšak musíme použít správné $p ≠ 1$ ($p = 1$ nám nedává nic nového), aby $\phi_M \in L^{2p}$. To můžeme z věty o vnoření Sobolevových prostorů: pokud $d = 2$, tak $W^{1, 2}(Ω) \hookrightarrow L^r$ pro $r$ jakékoliv, takže není co řešit. Pokud $d > 2$, tak můžeme vybrat $2p = r = \frac{d·2}{d - 2} = \frac{2}{1 - (2 / d)} > 2$ ($p > 1$).
 
-		Nakonec $∞ > \int u ≥ \int_{u > M} u ≥ \int_{u > M} M$, tedy míra $\{u > M\}$ se musí pro rostoucí $M$ zmenšovat k nule. Takže můžeme zvolit libovolně malé $\(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}$ v nerovnosti:
-		$$ c_1·C·\|\nabla \phi_M\|_2·\|\phi_M\|_{2p} \overset{\text{Sob.}}{\underset{nerov}≤} c_1\|\nabla \phi_M\|_2^2 ≤ - \int ¦c·\nabla \phi_M \phi_M ≤ \|c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_{2p}\(\int \chi_{u ≥ M}\)^{\frac{1}{q}}, $$
+		Nakonec $∞ > \int u ≥ \int_{u > M} u ≥ \int_{u > M} M$, tedy míra $\{u > M\}$ se musí pro rostoucí $M$ zmenšovat k nule. Takže můžeme zvolit libovolně malé $\(\int \chi_{{u ≥ M}}\)^{\frac{1}{2q}}$ v nerovnosti:\vspace{-0.5em}
+		$$ \!\!c_1·C·\|\nabla \phi_M\|_2·\|\phi_M\|_{2p} \!\!\overset{\text{Sob.}}{\underset{nerov}≤}\!\! c_1\|\nabla \phi_M\|_2^2 ≤ - \int ¦c·\nabla \phi_M \phi_M ≤ \|¦c\|_∞ · \|\nabla \phi_M\|_2 · \|\phi_M\|_{2p}\(\int \chi_{u ≥ M}\)^{\!\!\frac{1}{q}}\!\!\!, $$
 		tedy $\|\nabla \phi_M\|_2 = 0$ (nebo $\|\phi_M\|_2 = 0$, ale to bychom byli hotovi). Tudíž se nám celá rovnost s testovací funkcí $\phi_M$ stala $\int b · u · \phi_M = 0$, ale $b > 0$, $u > 0$ (kde $\phi_M ≠ 0$), takže musí být $\phi_M = 0$ skoro všude, tedy $u ≤ M$ skoro všude.
 	\end{dukazin}
 
@@ -101,19 +100,25 @@
 	\begin{dukazin}
 		Nyní máme tedy dokázáno, že $u$ je „omezená skoro všude“, tedy $u \in L^∞$. Tedy i $u^k \in L^∞$ pro $k \in ®N$, navíc $\nabla u^k = k·u^{k-1}\nabla u$, protože $\nabla (u·…·u) = u \nabla (u·…·u) + (\nabla u) (u·…·u)$ a $u^{k-1} \in L^∞$, tedy $u^k \in W^{1, 2}(Ω)$. Nakonec $\tr u^k|_{\partial Ω} = 0$, neboť
 		$$ \tr u^k|_{\partial Ω} = u^k|_{\partial Ω} = (u|_{\partial Ω})^k = (\tr u|_{\partial Ω})^k = 0^k =0. $$
-		Tedy $u^k \in W_0^{1, 2}$.
-
-		Použijme $u^k$ pro $k$ liché jako testovací funkci:
+		
+		Tedy $u^k \in W_0^{1, 2}$. Použijme $u^k$ pro $k$ liché jako testovací funkci:
 		$$ \int ®A \nabla u · \nabla u^k = \int k·u^{k-1}®A \nabla u · \nabla u = \int - b u·u^k - u^k¦c·\nabla u. $$
-		Na levou stranu můžeme použít elipticitu ®A ($u^{k-1}$ je sudé), napravo je $-b u^{k+1}$ určitě záporné, tedy ji můžeme zvětšit přidáním absolutní hodnoty do části s ¦c:
-		$$ \int c_1 (\nabla u)^2·k·u^{k-1} ≤ - \int b u^{k+1} + \int |¦c·\nabla u|·|u^{(k-1)/2}|·|u^{(k+1)/2}|. $$
-		Chtěli bychom se zbavit integrálu s ¦c, tedy rozdělíme výraz jako výše a použijeme Yangovu nerovnost pro koeficienty $p=q=2$, tj. $\(|¦c·\nabla u|·|u^{(k-1)/2}|\)·|u^{(k+1)/2}| ≤ \frac{|¦c·\nabla u|^2·u^{k-1}}{2} + \frac{u^{k+1}}{2}$:
-		$$ \int (c_1·k - |c|/2) (\nabla u)^2·u^{k-1} ≤ \int (-b+|c|/2) u^{k+1}. $$
-		Hölderovou nerovností (pro $1, ∞$) (a tím, že na levé straně vytýkáme kladnou a zmenšujeme zápornou část a na pravé vytýkáme zápornou a zvětšujeme kladnou)
-		$$ (c_1·k - \|c\|_∞/2) \int (\nabla u)^2·u^{k-1} ≤ (-b+\|c\|_∞/2) \int u^{k+1}, $$
-		$$ \int (\nabla u)^2·u^{k-1} ≤ \frac{-b+\|c\|_∞/2}{c_1·k - \|c\|_∞/2} \|u^{\frac{k+1}{2}}\|_2^2. $$
-		Teď už stačí jen $\int (\nabla u)^2·u^{k-1} ≥ \konst \|u\|_{k+1}$. Takže konstantu na pravé straně můžeme libovolně zmenšit, takže $\|u\|_{k+1} = 0$, tedy $u = 0$ skoro všude.
+		Na levou stranu můžeme použít elipticitu ®A (existuje $c_1 > 0$, že $®A ¦v ¦v ≥ c_1 |¦v|$), napravo je $-b u^{k+1}$ určitě záporné, tedy ji můžeme zvětšit přidáním absolutní hodnoty do části s ¦c (absolutní hodnotu si hned rozdělíme pro použití v Youngově nerovnosti, použitím faktu $k+1$ a $k - 1$ jsou sudá):
+		$$ \int c_1 (\nabla u)^2·k·u^{k-1} = \int k·u^{k-1}®A \nabla u · \nabla u ≤ - \int b u^{k+1} + \int |¦c·\nabla u|·|u^{(k-1)/2}|·|u^{(k+1)/2}|. $$
+		Chtěli bychom se zbavit integrálu s ¦c, tedy použijeme Youngovu nerovnost pro koeficienty $p=q=2$, tj. $\(|¦c·\nabla u|·|u^{(k-1)/2}| / \sqrt{K}\)·|u^{(k+1)/2}|·\sqrt{K} ≤ \frac{|¦c·\nabla u|^2·u^{k-1}}{2K} + \frac{K·u^{k+1}}{2}$, kde $K > 0$ libovolné: (na $¦c·\nabla u$ navíc použijeme Cauchy-Schwarze)
+		$$ \int c_1 (\nabla u)^2·k·u^{k-1} ≤ - \int b u^{k+1} + \int |…| ≤ -\int b u^{k+1} + \int \frac{|¦c·\nabla u|^2·u^{k-1}}{2K} + \frac{u^{k+1}·K}{2}, $$
+		$$ \int (c_1·k - |¦c|^2/2K) (\nabla u)^2·u^{k-1} ≤ \int (-b+K/2) u^{k+1}. $$
+		Tím, že $-|¦c| ≥ -\|¦c\|_∞$ a $-b ≤ -\essinf b$ skoro všude, a Hölderovou nerovností (pro $1, ∞$):
+		$$ (c_1·k - \|¦c\|_∞^2/2K) \int (\nabla u)^2·u^{k-1} ≤ (-\essinf b+K/2) \int u^{k+1}. $$
+		Volbou $K = \frac{1}{\sqrt{k}}$ dostaneme $\sqrt{k}(c_1·\sqrt{k} - \|¦c\|_∞^2/2) \int (\nabla u)^2·u^{k-1} ≤ (-\essinf b+1/2\sqrt{k}) \int u^{k+1}$. Pro $k > \|¦c\|_∞^4 / 4c_1^2$ je levá strana nezáporná. A je-li $\essinf b > 0$, pak pro $k > 4 / (\essinf b)^2$ je koeficient vpravo záporný, tedy $\int u^{k+1} = 0$, takže $\|u\|_{k+1} = 0$,
+		tedy $u = 0$.
 	\end{dukazin}
+
+	%\begin{dukazin}
+	%	Pokud $\essinf b = 0$, pak zvolíme $K = \frac{\|¦c\|_∞^2}{2\(c_1·k + (k+1)^2 / 4C\)}$, kde $C$ je z Poincarého nerovnosti v:
+	%	$$ \int (\nabla u)^2 · u^{k - 1} = \int \(\frac{1}{\frac{k+1}{2}}\)^2 · (\nabla u^{\frac{k+1}{2}})^2 \overset{\text{Poincaré}}≥ \frac{4C}{(k+1)^2}·\|u^{\frac{k+1}{2}}\|_{1, 2}^2 ≥ \frac{4C}{(k+1)^2}·\|u^{\frac{k+1}{2}}\|_2^2. $$
+	%	Potom $K \rightarrow 0$ a $\|u^{\frac{k+1}{2}}\|_2^2 ≤ \frac{K}{2} \int u^{k+1} = \frac{K}{2} \|u^{\frac{k+1}{2}}\|_2^2$, tedy $\|u^{\frac{k+1}{2}}\|_2 = 0$, tj. $u^{\frac{k+1}{2}} = 0$, takže $u = 0$.
+	%\end{dukazin}
 \end{priklad}
 
 \end{document}
