@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}					% Začátek dokumentu
 \usepackage{../../MFFStyle}					    % Import stylu
+\usepackage{ stmaryrd }
 
 \newcommand{\op}{^{\text{op}}}
 
@@ -427,5 +428,235 @@ TODO!!!
 
 	TODO!!!
 \end{dukaz}
+
+% 30. 11. 2023
+
+TODO!!!
+
+\section{Limits and colimits}
+\begin{poznamka}
+	Change of viewpoint. We will look at the zero level, i.e. back inside categories.
+\end{poznamka}
+
+\begin{priklady}
+	In $VECT_{®K}$, the category of all vector spaces, take $V, W$ two objects. Consider $V \oplus W$ as a way to produce a new object from $V$ and $W$.
+\end{priklady}
+
+\begin{priklad}
+	In $SET$ let $X, Y$ be two objects. How can we form a new object from $X$ and $Y$.
+
+	\begin{reseni}
+		Cartesian product $X \times Y$.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklady}
+	In $GROUP$, we can also take Cartesian product of two groups $G \times H$.
+\end{priklady}
+
+\begin{definice}
+	Let ©A be a category. A product of $X$ and $Y$ consists of object $P$ and morphisms $X \overset{p_1} \leftrightarrow P \overset{p_2}\rightarrow Y$ with the property that for all objects and morphisms $X \overset{f_1} \leftrightarrow A \overset{f_2}\rightarrow Y$ $\exists!$ map $\overline{f}: A \rightarrow P$ such that $f_2 = \overline{f} ∘ p_2$ and $f_1 = \overline{f} ∘ p_1$.
+
+	We call $p_1$ and $p_2$ the projections of the product.
+\end{definice}
+
+\begin{priklady}
+	For $V, W \in VECT_{®K}$ we define $P = V \oplus W$, $p_1: V \oplus W \rightarrow V, (v, w) \mapsto v$ and $p_2: V \oplus W \rightarrow W, (v, w) \mapsto w$.
+\end{priklady}
+
+% 07. 12. 2023
+
+\begin{priklady}
+	For $V, W \in VECT_{®K}$, we have maps
+	$$ p_1: V \oplus W \rightarrow V, \quad (v, w) \mapsto v, \qquad p_2: V \oplus W \rightarrow W, \quad (v, w) \mapsto w. $$
+	Assume $\exists A \in VECT_{®K}$ + maps $f_1: A \rightarrow V$, $f_2: A \rightarrow W$. Then for $\overline{f}$ we take the linear map
+	$$ \overline{f}(a) = (\overline{f}_V(a), \overline{f}_w(a)) = (f_1(a), f_2(a)). $$
+	$\implies$ by definition the diagram commutes and $\hat{f}$ is the unique linear such that this happens. $\implies$ $V \oplus W$ is the product of $V$ and $W$.
+\end{priklady}
+
+\begin{priklad}
+	Verify that products are unique up to unique isomorphism.
+\end{priklad}
+
+\begin{priklad}
+	For $X, Y \in SET$ consider the Cartesian product $X \times Y$, and the maps $p_1: X \times Y \rightarrow X$, $p_2: X \times Y \rightarrow Y$. Consider another set $Z$ and functions $f_1: Z \rightarrow X$, $f_2: Z \rightarrow Y$. Consider the diagram of the product. What is $\hat{f}$?
+
+	\begin{reseni}
+		Take $\hat{f}(z) := (f_1(z), f_2(z))$ and we are done.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklady}
+	$X, Y \in TOP$. Then the product of $X$ and $Y$ is the Cartesian product of $X$ and $Y$ endowed with the product topology.
+
+	Take $2 = (X Y)$ (two-objects category with only identities). There is no cone, objects that maps to both $X$ and $Y$, hence the product of $X$ and $Y$ does not exist.
+\end{priklady}
+
+\begin{priklad}
+	Show that for $1 = ()$ the product of $X$ with itself is $X$.
+\end{priklad}
+
+\begin{priklad}
+	$V_1, …, V_n \in VECT_{®K}$ then we can consider $V_1 \oplus V_2 \oplus … \oplus V_k \in VECT_{®K}$.
+
+	\begin{poznamkain}
+		This is a generalised product over $I := \{1, …, k\}$.
+	\end{poznamkain}
+\end{priklad}
+
+\begin{definice}[Generalised product]
+	Let ©A be a category, $I$ a set and $(X_i)_{i \in I}$ a family of objects of ©A. A product of $(X_i)_{i \in I}$ consists of an object $P$ and a family of maps $(P \overset{p_i}\rightarrow X_i)_{i \in I}$ such that $\forall A \in ©A$ and maps $(A \overset{f_i} X_i)_{i \in I}$ ('cone') $\exists!$ map $\overline{f}: A \rightarrow P$ such that $p_i \circ \overline{f} = f_i$, $\forall i \in I$.
+
+	\begin{poznamkain}
+		Generalised products do not need to exist, but if they do exist, then they are unique.
+	\end{poznamkain}
+
+	\begin{dusledekin}
+		When $|I| = 2$, generalised products reduce to products (binary products).
+	\end{dusledekin}
+\end{definice}
+
+\begin{definice}[Diagram of shape, cone, limit]
+	Let ©A be a category, and let ©I be a small category. A diagram of shape ©I is a functor $D: ©I \rightarrow ©A$.
+
+	\begin{prikladyin}
+		A binary product is a diagram of shape ($A \leftarrow B \rightarrow C$).
+	\end{prikladyin}
+
+	\begin{itemize}
+		\item A cone on $D$ is an object $A \in ©A$ (the vertex) together with a family $(A \overset{f_I}\rightarrow D(I))_{I \in ©I}$ ('cone') of maps in ©A such that for all $I \overset{U}\rightarrow J$ in ©I the triangle $A \overset{f_I}\rightarrow D(I) \overset{D(U)}\rightarrow D(J) \overset{f_J}\leftarrow A$ commutes
+		\item A limit of $D$ is a cone $(L \overset{p_i} D(I))_{I \in ©I}$ such that for any other cone $L$ on $D$, $\exists!$ map $\overline{f}: A \rightarrow L$ such that $p_I ∘ \overline{f} = f_I$, $\forall I \in ©I$. (Factorisation in terms of $\overline{f}$.)
+	\end{itemize}
+\end{definice}
+
+\begin{priklady}
+	A binary product is a limit of shape $I = 2 := (X Y)$. A (generalised) product is a limit of shape ©I, where ©I is a discrete category.
+\end{priklady}
+
+\begin{priklady}[Equaliser]
+	For a diagram $E = (X \rightrightarrows Y)$. A limit in a category ©A is called the equaliser.
+\end{priklady}
+
+\begin{priklady}[Pullback]
+	For a diagram of shape $P = (A \rightarrow B \leftarrow C)$, the limit is called a pullback.
+\end{priklady}
+
+\begin{definice}[Has all limits]
+	A category has all limits, if it has limits of shape ©I, $\forall$ small categories ©I.
+\end{definice}
+
+\begin{tvrzeni}
+	Let ©A be a category.
+	\begin{itemize}
+		\item If ©A has all products and equaliser $\implies$ it has all limits.
+		\item If ©A has binary products, a terminal objects and equalisers. Then ©A has finite limits (©I is a finite category).
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{definice}[Monics]
+	Let ©A be a category, a map $X \overset{f}\rightarrow Y$ in ©A is monic, if for all objects $A$ and maps $A \overset{x}{\underset{x'}\rightrightarrows X}$,
+	$$ f ∘ x = f ∘ x' \implies x = x'. $$
+\end{definice}
+
+\begin{priklad}
+	In $SET$ a map is monic if it is injective: $f$ injective $\implies$ monic (easy), $f$ monic $\implies$ injective $1 \overset{x}{\underset{x'} \rightrightarrows} X \overset{f}\rightarrow Y$, tj. $x ≠ x' \implies f(x(1)) ≠ f(x'(1))$.
+\end{priklad}
+
+\begin{priklad}
+	Similarly, for $GRP$, $VEC_{®K}$, $RING$, … monics $\Leftrightarrow$ injective.
+\end{priklad}
+
+\begin{lemma}
+	$X \overset{f}\rightarrow Y$ is monic iff $X \overset{1_X}\rightarrow X \overset{f}\rightarrow Y \overset{f}\leftarrow X \overset{1_X}\leftarrow X$ is a pullback.
+\end{lemma}
+
+\section{Colimits}
+\begin{definice}[Cocone, colimit]
+	Let ©A be a category and ©I a small category in ©A, and write $D\op: ©I\op \rightarrow ©A\op$. A cocone on $D$ is a cone on $D\op$ and a colimit of $D$ is a limit of $D\op$.
+
+	Explicitly a cocone on $D$ is an object $A \in ©A$ (vertex) plus a family $(D(I) \overset{f_I}\rightarrow A)_{I \in ©I}$ (cocone) of morphisms such that $\forall (I \overset{u} J) \in ©I$: $D(I) \overset{D(u)}\rightarrow D(J) \overset{f_J} \rightarrow A \overset{f_I} \leftarrow D(I)$.
+
+	A colimit is a universal cocone $(D(I) \overset{p_I} L)$, i.e. it satisfies TODO (diagram with commutation).
+\end{definice}
+
+\begin{definice}[Coproduct / sum]
+	Coproduct (or sum) is a colimit of a discrete category.
+\end{definice}
+
+\begin{priklady}
+	$SET$ coproducts/sums are disjoint unions.
+
+	$GROUP$. The coproduct of two groups $G$ and $H$ is $G*H$, the free product of $G$ and $H$.
+
+	$V, W \in VECT_{®K}$, what is the coproduct of $V$ and $W$? $V \oplus W$.
+
+	\begin{dusledekin}
+		Sometimes products and coproducts are same. (This is a general fact about Abelian categories.)
+	\end{dusledekin}
+\end{priklady}
+
+\begin{priklady}[Coequaliser]
+	A colimit of shape $E := (X \rightrightarrows Y)$ is called a coequaliser.
+\end{priklady}
+
+\begin{priklady}[Pushout]
+	A colimit of shape $(A \leftarrow B \rightarrow C)$ is called pushout (i.e. a pushback in $©A\op$).
+\end{priklady}
+
+\begin{priklady}
+	Take $©A = AB$ (the category of Abelian groups). The coequaliser of $A \overset{s}{\underset{d}\rightrightarrows} B$ is $B \overset{proj}\rightarrow B / (\Im(t) \cup \Im(s))$. For $s = 0$ we get the cokernel of $t: A \rightarrow B$.
+\end{priklady}
+
+\begin{definice}[Epics]
+	A map $X \overset{f}\rightarrow Y$ in ©A is epic, if $\forall Y \overset{g}{\underset{g'}\rightrightarrows} Z$:
+	$$ g ∘ f = g'∘f \implies g = g'. $$
+\end{definice}
+
+\begin{priklady}
+	$SET$ epics $\Leftrightarrow$ surjective maps.
+
+	$HAUSD TOP$. Any morphism $f: X \rightarrow Y$ with dense image is an epic.
+\end{priklady}
+
+\begin{priklad}
+	Express epics as a pushout.
+\end{priklad}
+
+\begin{definice}[Preservation of limits]
+	Let ©I be a small category, a functor $F: ©A \rightarrow ©B$ preserves limits of shape ©I if for all diagrams $D: ©I \rightarrow ©A$ and all cones $(A \overset{p_I}\rightarrow D(I))$ on $D$, $(A \overset{p_I}\rightarrow D(I))_{I \in ©I}$ is a limit on $D$ in $A$. $\implies$ $(F(A) \overset{F(p_1)}\rightarrow F(D(I)))_{I \in ©I}$, cone on $F ∘ D$ in $B$, is a limit cone.
+\end{definice}
+
+\begin{priklady}
+	Take $I = \O$, empty category, and $D: \O \rightarrow ©A$. What is any object $A \in ©A$? $L$ is a limit if for any other cone $A$ we have a unique morphism $A \overset{\hat{f}}\rightarrow L$. So a limit of shape $\O$ is a terminal object. Dually a colimit over $\O$ is an initial object.
+\end{priklady}
+
+\begin{priklady}[Equalisers]
+	A fork in a category consists of objects and maps $A \overset{f}\rightarrow X \overset{s}{\underset{t}\rightrightarrows} Y$ such that $s ∘ f = t ∘ f$.
+	\begin{definicein}
+		Let ®A be a category, and $X \overset{s}{\underset{t}\rightrightarrows} Y$ be objects and morphisms. An equaliser of $s$ and $t$ is $E \overset{i}\rightarrow X$ such that $E \overset{i}\rightarrow X \overset{s}{\underset{t}\rightrightarrows} Y$ is a fork such that for any other fork $\exists!$ map $\hat{f}: A \rightarrow E$ such that $X \leftarrow A \overset{\hat{f}}\rightarrow E \overset{i}\rightarrow X$.
+	\end{definicein}
+\end{priklady}
+
+\begin{priklady}
+	In $SET$ $X \overset{s}{\underset{t}\rightrightarrows}Y$. $E := \{x \in X | s(x) = t(x)\}$.
+
+	Let $o: G \rightarrow H$ be a morphism in $GROUP$. This gives us a fork $\Ker(o) \hookrightarrow G \overset{o}{\underset{e}\rightrightarrows} H$, where $e(g) = e_H$ (identity of $H$) $\implies$ Kernels are equalisers.
+
+	$V \overset{s}{\underset{t}\rightrightarrows} W \in VECT_{®K}$ then the equaliser of this diagram is $\Ker(t - s) \hookrightarrow V$.
+\end{priklady}
+
+\begin{poznamka}[Pullbacks]
+	Recall that a pullback was a limit of shape $©I := (A \rightarrow B \leftarrow C)$. For a category $©A$, $D: ©I \rightarrow ©A$ we get $(X \overset{s}\rightarrow Z \overset{t}\leftarrow Y) \in @A$.
+
+	A pullback is an object $P \in ©A$ together with maps $p_1: P \rightarrow X$, $p_2: P \rightarrow Y$ such that $P \overset{p_1}\rightarrow Y \overset{t}\rightarrow Z \overset{s}\leftarrow X \overset{p_1}\leftarrow P$ commutes and such that for any other cone … we have … commutes.
+\end{poznamka}
+
+\begin{priklady}[Pullbacks in $SET$]
+	The pullback of a diagram $(X \rightarrow Z \leftarrow Y)$ in $SET$ is $P = \{(x, y) \in X \times Y | s(x) = t(y)\}$. $P \overset{p_X}\rightarrow X \overset{t}\rightarrow Z \overset{s}\leftarrow Y \overset{p_Y}\leftarrow P$.
+
+	Inverse image (on $SET$): $f^{-1}(Y') \overset{p_y}\rightarrow Y \overset{j}\hookrightarrow Y \overset{f}\leftarrow X \overset{p_X}\leftarrow f^{-1}(Y')$, where $j$ is inclusion, $f^{-1}(Y')$ are $(x, y)$ such that $f(x) = y \in Y'$. $\Leftrightarrow$ the pullback $f^{-1}(Y)$ since $y$ is determined by $x$.
+
+	Intersection: Let $X, Y \subseteq Z$. Then $P \overset{p_y}\rightarrow Y \overset{\text{inclusion}}\hookrightarrow Z \overset{\text{inclusion}}\hookleftarrow X \overset{p_X}\leftarrow P$, $(x, y) \overset{p_y}\mapsto y \mapsto y = x \mapsfrom x \overset{p_X}\mapsfrom (x, y)$ $\implies P \simeq X \cap Y$.
+\end{priklady}
 
 \end{document}

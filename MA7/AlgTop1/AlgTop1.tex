@@ -353,4 +353,60 @@ TODO!!!
 
 TODO? (Problems)
 
+% 04. 12. 2023
+
+\begin{poznamka}
+	Typically homology is easier to compute than homotopy.
+\end{poznamka}
+
+\begin{definice}[Simplex defined by points, standard simplex, direction of simplex]
+	Take $®R^m$ and points $v_0, …, v_m \in ®R^m$ such that $v_1 - v_0$, $v_2 - v_0$, …, $v_n - v_0$ are linearly independent (this condition is necessary to say that $v_0, …, v_m$ will not live on hyperplane of dimension $< n$). We define
+	$$ [v_0, v_1, …, v_n] := \{\sum_{i=1}^n t_i v_i | \sum t_i = 1, t_i ≥ 0\}, $$
+	the smallest convex set in $®R^m$ containing $v_0, …, v_n$. We call $[v_0, v_1, …, v_n]$ a simplex defined by points $v_0, …, v_n$.
+
+	Standard simplex:
+	$$ Δ_n = \{(t_0, …, t_n) \in ®R^{n+1}\}: \sum_{i=0}^n t_i = 1 \land \forall i \in [0, n] t_i ≥ 0 $$
+
+	The order we use for points in particular determines directions of 1-simplices. Specifying the direction in such a way we got a canonical homeomorphism $Δ^n \rightarrow [v_0, …, v_n]$ given by $(t_0, …, t_n) \rightarrow \sum_{i=1}^n t_i v_i$.
+\end{definice}
+
+\begin{definice}[Faces, boundary, and interior of simplex]
+	Given $[v_0, …, v_n]$, if we remove $v_i$, i.e. we write $[v_0, …, v_{i-1}, v_{i-2}, …, v_n]$, then such a simplex is a face of $[v_0, …, v_n]$. Same way we can remove more vectors and get faces of lower dimensions.
+
+	$\partial Δ_n =$ boundary of $Δ_n$ $=$ union of all faces (including lower dimensional) of $Δ_n$. (The same for $[v_0, …, v_n]$.)
+
+	$\mathring Δ_n := Δ_n \setminus \partial Δ_n$ is interior of $Δ_n$. (The same for $[v_0, …, v_n]$.)
+\end{definice}
+
+\begin{definice}[$Δ$ complex structure ($Δ$-complex)]
+	A $Δ$ complex structure on a topological space $X$ is a collection of maps $δ_α: Δ^n \rightarrow X$ with $n$ independent of $α$ (i.e. $n$ is fixed, $α$ indexes collection) such that
+	\begin{itemize}
+		\item $δ_α |_{\mathring Δ^n}$ is injective, and each point of $X$ can be in the image of exactly one such restriction;
+		\item $δ_α |_{\text{face of $Δ^n$}}$ is one of the maps $δ_β: Δ^{n - 1} \rightarrow X$. Here we identify the face of $Δ^n$ with $Δ^{n-1}$ by the canonical linear homeomorphism that preserves the ordering of vertices.
+		\item $A \subset X$ is open $\Leftrightarrow$ $\partial_α^{-1}(A)$ is open in $Δ^n$ for each $δ_α$.
+	\end{itemize}
+
+	\begin{poznamkain}
+		$Δ$-complex can be built from the collection of disjoint simplices by identifying various subcomplexes spanned by the subsets of the vertices, where the identification can be done by canonical linear homeomorphisms that preserves the ordering of vertices.
+
+		From the discussion about CW complexes it follows that interiors of $Δ^n$ that define $δ_α(\mathring Δ_n)$ (open simplices on X) are the $e_α^n$ of a CW complex structure on $X$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Simplicial homology]
+	Given a topological space with a fixed $Δ$-complex structure on it. We define $Δ_n(X) = C_n(X)$ which is by definition the free Abelian group with basis consist of $ς_n(\mathring Δ_n) = e_α^n$ of $X$. (Free module over $\{e_α^n\}$.)
+
+	\begin{poznamkain}
+		Elements of $Δ_n(X) = C_n(X)$ can be written as formal sums $\sum_α n_α e_α^n$, where $n_α \in ®Z$. Elements of $Δ_n(X) = C_n(X)$ are typically called chains.
+
+		Equivalently we could write $\sum_α n_α δ_α$, where $δ_α$ are the defining on characteristic maps of $e_α^n$. We remember that $\partial([v_0, v_n])$ consists of $n-1$-simplices.
+	\end{poznamkain}
+\end{definice}
+
+TODO? (Last remarks)
+
+% 04. 12. 2023
+
+TODO? (Problems)
+
 \end{document}

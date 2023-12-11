@@ -462,9 +462,144 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\begin{dusledek}
-	$$ \deg(u, Ω, y_0) = \frac{\int_Ω f(u) \det Du}{\int_{®R^n} f} $$
-	for any $f$ as above such that $\int f ≠ 0$.
+%\begin{dusledek}
+%	$$ \deg(u, Ω, y_0) = \frac{\int_Ω f(u) \det Du}{\int_{®R^n} f} $$
+%	for any $f$ as above such that $\int f ≠ 0$.
+%\end{dusledek}
+
+% 29. 11. 2023
+
+\begin{dusledek}[Integral definition of degree]
+	For any $u \in C^1(®R^n, ®R^n)$ $\deg_{®R^n}(u, Ω, y_0)$ is uniquely defined by
+	$$ \deg_{®R^n}(u, Ω, y_0) = \frac{\int_Ω f((u(x))) \det Du dx}{\int_{®R^n} f dy}, $$
+	where $f$ is as in the last theorem and $\int_{®R^n} f ≠ 0$.
+
+	\begin{dukazin}
+		(D1) $u = \id$ $\implies$ $\deg = 1$ if $x_0 \in Ω$ and $0$ otherwise.
+
+		(D2) Additivity of domains is trivial.
+
+		(D3) Base point invariance: proof of last theorem independence choice of $f$.
+
+		(D4) $s \mapsto \int_Ω f(h_s) \det Dh_s(x)dx$ is continuous.
+	\end{dukazin}
 \end{dusledek}
+
+\begin{dukaz}[Theorem above ($C^0$-degree?)]
+	If $u, \tilde u \in C^1(®R^n, ®R^n)$, $\|u - \tilde u\|_{C^0} < ε$, where $ε < \dist(y_0, u(\partial Ω))$. By homotopy invariance $\deg(u, Ω, y_0) = \deg(u, Ω, y_0)$. Let $u_0 \in C^0(®R^n, ®R^n)$ by convolution arg $\exists u \in C^∞$ such that $\|u_0 - u\|_{C^0} < \frac{ε}{2}$.
+
+	$\deg(u_0, Ω, y_0) := \deg(u, Ω, y_0)$. Well defined (independent of $u$). Axioms can be derived easily.
+\end{dukaz}
+
+\begin{tvrzeni}[Odd maps have odd degree]
+	Let $u: ®R^n \rightarrow ®R^n$ continuous and odd ($u(x) = -u(-x)$ $\forall x \in ®R^n$). $0 \in Ω, 0 \notin u(\partial Ω)$, $Ω = - Ω$. Then $\deg(u, Ω, 0)$ is odd.
+
+	\begin{dukazin}
+		WLOG assume that $u \in C^∞$ and $0$ is regular value. $u(0) = -u(0) = 0$. Other zeros occur in pairs such that $(-1)^n \det (Du)(-x)= \det D(u(-x)) = \det D(-u(x)) = (-1)^n \det (Du)(x)$ $\implies \sign$ is related.
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{Degrees on manifolds}
+\begin{poznamka}
+	Let $M, N$ be $n$-dimensional oriented manifolds.
+\end{poznamka}
+
+\begin{definice}[$C^1$ degree on manifolds]
+	Let $u \in C^1(M, N)$, $Ω \subset M$ open, such that $\overline{Ω}$ is compact and $y_0 \in N \setminus u(\partial Ω)$ be regular value (in the sense $Du(x): T_x M \rightarrow T_{u(x)} N$ is an isomorphism $\forall x \in u^{-1}(y_0)$). Then define $\deg_{M \rightarrow N} (u, Ω, y_0) := \sum_{x \in u^{-1} \cap Ω} ς(Du)$, where
+	$$ ς(Du) := \begin{cases}+1, & \text{ if $Du$ is orientation preserving},\\-1, & \text{ if not}.\end{cases} $$
+\end{definice}
+
+\begin{tvrzeni}
+	$\deg_{M \rightarrow N}$ fulfills (D2), (D3) and (D4).
+
+	\begin{dukazin}
+		Domain additivity from definition $\implies$ We can pick domains small enough to fit in coordinate chart. Then
+		$$ \deg_N(u, Ω, y_0) = \deg_{®R^n}(ψ^{-1}∘u∘φ, φ^{-1}(Ω), ψ^{-1}(y_0)) $$
+		implies the rest.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	(D1) only makes sense if $M = N$, otherwise $\id$ is not well defined.
+
+	If $M$ is compact, then $\deg_{M \rightarrow N} (u, M, y_0) = \deg_{M \rightarrow N}(u)$.
+
+	There are cases where $\deg_{M \rightarrow N}(u) = 0$ $\forall u$.
+\end{poznamka}
+
+\begin{priklad}[$®S^n$ degree]
+	Consider $M = N = ®S^n = \{x \in ®R^{n + 1} \middle| |x| = 1\}$. $®S^n$ is compact $\implies$ choose $Ω = ®S^n$. $\id ®S^n \rightarrow ®S^n$ is well defined and $\deg_{®S^n}(\id) = 1$. Pick $f = 1$ in the integral formulation:
+	$$ \deg_{®S^n}(u) = \frac{1}{|®S^n|} \int_{®S^n} \det(u|Du) dx, $$
+	where $u$ is normal vector at $u$ and $Du$ as matrix for orthonormal basis of $Tx ®S^n$.
+
+	In parametrization: stereoscopic projection $Φ: ®R^n \rightarrow ®S^n \setminus \{N\}$; $Φ$ is angle-preserving, then
+	$$ \deg_{®S^n}(u) = \frac{1}{|®S^n|} \int_{®R^n} \det(u |\partial_1 u|…|\partial_n u) dx. $$
+
+	We have Hopf's theorem: $C^0(®S^n, ®S^n) / \sim_{\text{Homotopy}} \overset{\deg_{®S^n}}\simeq ®Z$.
+\end{priklad}
+
+\begin{tvrzeni}[Relation between $®R^{n+1}$ and $®S^n$ degree]
+	Let $u: ®R^{n+1} \rightarrow ®R^{n+1}$ continuous differentiable and $0 \notin u(®S^n)$ (where $®S^n \subset ®R^n$). Then
+	$$ \deg_{®S^n}\(\frac{u}{|u|}\middle|_{®S^n}\) = \deg_{®R^{n+1}}(u, B_1(¦o), ¦o). $$
+
+	\begin{dukazin}
+		Let $ρ: [0, ∞) \rightarrow [0, 1]$ smooth such that $ρ(0) = 0$, $ρ(s) = 1$ for $s > r$, and $φ: ®R^{n+1} \rightarrow ®R^{n+1}$, $y \mapsto ρ(|y|)·\frac{y}{|y|^{n+1}}$. Then
+		$$ \Div φ(y) = ρ'(|y|) \frac{y}{|y|}·\frac{y}{|y|^{n+1}} + ρ(|y|)\(\frac{y}{|y|^{n+1}} - n \frac{y}{|y|}·\frac{y}{|y|^{n+2}}\) = \frac{ρ'(|y|)}{|y|^n} \implies \supp \Div φ \subset B_r(¦o), \qquad r < 1. $$
+		$$ \implies \int_{B_1} \Div φ dy = \int_{\partial B_1} φ·νdy = \int_{\partial B_1} \frac{y·ν}{|y|^{n+1}}dy = |®S^n|. $$
+
+		$$ \deg_{®R^n}(u, B_1(¦o), ¦o) = \frac{1}{|®S^n|} \int_{B_1(¦o)} (\Div φ)∘u \det Du dx = $$
+		$$ = \frac{1}{|®S^n|} \int_{B_1(¦o)} \Div(φ∘u \cof Du) dx = \frac{1}{|®S^n|} \int_{®S^n} φ ∘ u \cof Du·νdx = $$
+		$$ = \frac{1}{|®S^n|} \int_{®S^n} u·\cof Du · ν dx. $$
+		(Last equation WLOF from homotopy, $|u| = 1$, $u \in ®S^n$). It equals to
+		$$ \frac{1}{|®S^n|} \int \det(u | Du) dx = \deg_{®S^n}(u). $$
+	\end{dukazin}
+\end{tvrzeni}
+
+% 06. 12. 2023
+
+\subsection{Brouwer's fixed-point theorem and other consequences}
+\begin{veta}[No interaction]
+	There is no continuous map $u: \overline{B_1(¦o)} \subset ®R^{n+1} \rightarrow ®S^n$ such that $u |_{\partial B_1(¦o)} = \id$.
+
+	\begin{dukazin}
+		Assume $u$ is such a map. Define $h_s: [0, 1] \times ®S^n \rightarrow ®S^n$, $(s, x) \mapsto u(s·x)$. $h_s$ is homotopy. So $\deg_{®S^n}(\const) = \deg_{®S^n}(h_0) = \deg_{®S^n}(h_1) = \deg_{®S^n}(\id) = 1$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Brouwer's fixed-point theorem]
+	Let $u: \overline{B_1(¦o)} \rightarrow \overline{B_1(¦o)}$ continuous. Then $u$ has a fixed-point, i.e. $\exists x_0 \in \overline{B_1(¦o)}$ such that $u(x_0) = x_0$.
+
+	\begin{dukazin}
+		Assume $u$ has no fixed-point. Let $g(x) \in ®S^n$ such that $u(x)$, $x$, $g(x)$ are on a line (in that order). $f: \overline{B_1(¦o)} \rightarrow ®S^n$ is continuous, $x \in ®S^n \implies g(x) = x$, \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $Ω \subset ®R^n$ compact and convex, $u: Ω \rightarrow Ω$ continuous, then $u$ has a fixed point.
+
+	\begin{dukazin}
+		If $Ω$ has interior, then $Ω$ is homeomorphic to a ball, so apply the previous theorem. If not, restrict to lower dimenzional subspace.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Borsak–Ulam]
+	If $u: ®S^n \rightarrow ®R^n$ is continuous, then there is a pair of antipodal points with the same value, i..e. $\exists x_0 \in ®S^n$ such that $u(x_0) = u(-x_0)$.
+
+	\begin{dukazin}
+		Assume the opposite. Define $v: ®S^n \rightarrow ®S^{n-1}$, $x \mapsto \frac{u(x) - u(-x)}{|u(x) - u(-x)|}$. Consider
+		$$ h_s: [0, 1] \times ®S^{n - 1} \rightarrow ®S^{n-1}, \qquad h_s(x) = v(sx, \sqrt{1 - s^2}), $$
+		then $h_0 = \const \implies \deg_{®S^{n-1}}(h_0) = 0$, $h_1$ is odd $\implies$ $\deg_{®S^{n-1}}(h_1) = odd$. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[?Lyusternik–Shnirelmann?]
+	Let $A_1, …, A_{n+1} \subset ®S^n$ open cover of $®S^n$. Then there is a set $A_i$ that contains an antipodal pair of points.
+
+	\begin{dukazin}
+		for $i \in [n]$ define $u_i := \dist(x, ®S^n \setminus A_i)$. Then $u: ®S^n \rightarrow ®R^n$ is continuous $\implies$ (by Borsak–Ulam) $\exists x_0 \in ®S^n$: $u(x_0) = u(-x_0)$. Either $u_i(x_0) > 0$ for some $i$ $\implies$ $x_0, -x_0 \in A_i$ or $u(x_0) = 0$ $\implies$ $x_0, -x_0 \in A_{n+1}$.
+	\end{dukazin}
+\end{dusledek}
+
+TODO!!!
 
 \end{document}

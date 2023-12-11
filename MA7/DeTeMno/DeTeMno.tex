@@ -579,4 +579,78 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 29. 11. 2023
+
+TODO!!!
+
+% 06. 12. 2023
+
+\subsection{Solecky theorem}
+\begin{poznamka}[Notation]
+	$X$ PTS, $©I \subset ∏_1^0(X)$.
+	$$ ©I^{ext} := \{A \subset X | \exists ©F \subset ©I, |©F| = ω, A \subset \bigcup ©F\}. $$
+
+	\begin{priklady}
+		$©I = \{A \subset X \middle| |A| < ω\}$, $©I = \{A \subset X | A \text{ nowhere dense}\}$.
+	\end{priklady}
+
+	$$ ©I^{perf} = \{A \subset X | A ≠ \O, \forall U \in Σ_1^0(X): U \cap A ≠ \O \implies U \cap A \notin ©I^{ext}\}. $$
+	$$ \Ker A := A \setminus \bigcup \{U \subset X | U \in Σ_1^0(X), U \cap A \in ©I^{ext}\} = $$
+	= max perfect subset of $A$ $\impliedby$ $X$ has countable base.
+	$$ MGR(A) = \{Z \subset A | Z \text{ be meager in } A\}, \qquad A \subset X. $$
+\end{poznamka}
+
+\begin{veta}[Solecki]
+	$X$ PTS, $A \in Σ_1^1(A)$, $©I \subset ∏_1^0(X)$. $A \notin ©I^{ext} \implies \exists H \in ∏_2^0(X), H \subset A, H \notin ©I^{ext}$
+\end{veta}
+
+\begin{lemma}[For proof of Solecki]
+	$A \in Σ_1^1(X) \setminus ©I^{ext}$. Then there exists Suslin scheme $(A_s)_{s \in ω^{<ω}}$ of closed subsets of $X$ such that:
+	$$ A_{\O} = \O, \qquad a_s A_s \subset A, \qquad A_s ≠ \O \implies A \cap A_s \in ©I^{perf}, \overline{A \cap A_s} = A_s, \qquad \overline{\bigcup_{n \in ω} A_{s^\wedge n}} = A_s. $$
+
+	\begin{dukazin}
+		$(H_s)_{s \in ω^{<ω}}$ closed subsets of $X$, decreasing ($H_s \supset H_{s^\wedge n}, n \in ω$), $A = a_sH_s \impliedby A \in Σ_1^1(X)$. For $s \in ω^{<ω}: L_s := a_t H_{s^\wedge t}, A_s := \overline{\Ker(L_s)}$.
+		\begin{enumerate}
+			\item $A_\O = \overline{\Ker(L_\O)} = \overline{\Ker(A)} ≠ \O \impliedby A \notin ©I^{ext}$ ($X$ has countable base).
+			\item $H_s \searrow \implies L_s \subset H_s \implies \Ker(L_s) \subset H_s \overset{H_s \in ∏_1^0(X)}\implies A_s \subset H_s \implies a_s A_s \subset a_s H_s = A$.
+			\item $\Ker(L_s) \subset A_s, L_s \subset A: (A = \bigcup_{|s| = k} L_s, k \in ω \impliedby H_s \searrow) \implies \Ker(L_s) \subset A_s \cap A$, $\overline{\Ker(L_s)} = A_s$.
+				$$ A_s = \overline{\Ker(L_s)} \subset \overline{A_s \cap A} \subset \overline{A_s} = A_s. $$
+				Assume $A_s ≠ \O \implies A \cap A_s ≠ \O$. $U \in Σ_1^0(X)$, $U \cap A \cap A_s ≠ \O$ $\implies$ $U \cap \Ker(L_s) ≠ \O$ $\implies$ $U \cap \Ker(L_s) \notin ©I^{ext}$. $\implies U \cap A \cap A_s \notin ©I^{ext}$.
+			\item $\bigcup_{n \in ω} A_{s^\wedge n} \subset A_s \impliedby (H_s\searrow \implies L_s \searrow \implies A_s \searrow)$. Let $U \in Σ_1^0(X)$, $U \cap A_s ≠ \O$ $\implies$ $U \cap \Ker(L_s) ≠ \O \implies U \cap L_s \notin ©I^{ext}$.
+				$$ L_s = \bigcup_{n \in ω} L_{s^\wedge n} \implies \exists n_0 \in ω: U \cap L_{s^\wedge n_0} \notin ©I^{ext} \implies U \cap \Ker(L_{s^\wedge n_0}) \notin ©I^{ext} \implies U \cap A_{s^\wedge n_0} ≠ \O. $$
+		\end{enumerate}
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Solecki theorem, not in exam]
+	$A \in Σ_1^1(X) \setminus ©I^{ext}$, $(A_s)_{s \in ω^{<ω}}$ from the previous lemma. There are 2 cases:
+
+	„1st case $\exists s \in ω^{<ω}\ \exists U \in Σ_1^0(X): A_s \cap U ≠ \O \land MGR(A_s \cap U) \subset ©I^{ext}$“: Put $\tilde A := A \cap A_s \cap U$. Then from the third item of the previous lemma $\tilde A \in ©I^{perf}$, $\tilde A \in Σ_1^1(X)$. $A_s ≠ \O$, $A \cap A_s \in ©I^{perf}$, $U \cap A_s ≠ \O \implies U \cap A \cap A_s ≠ \O \impliedby \overline{A \cap A_s} = A_s$.
+	$$ \implies \tilde A \in Baire(A_s \cap U) \impliedby (A_s \cap U \in ∏_2^0(X)), A_s \cap U \text{ PTS}. $$
+	$$ \tilde A = H \cup M, H \in ∏_2^0(A_s \cup U), M \in MGR(A_s \cap U) \subset ©I^{ext} \implies H \notin ©I^{ext}, H \subset A. $$
+
+	„2nd case $\forall s \in ω^{<ω}\ \forall U \in Σ_1^0(X), U \cap A_s ≠ \O: MGR(A_s \cap U) \setminus ©I^{ext} ≠ \O$“: Notation: $©F \subset 2^X: ©F^d := \overline{\bigcup ©F} \setminus \bigcup\{\overline{F} | F \in ©F\}$. Choose CCM $≤ 1$ on $X$. We will inductively construct $φ: ω^{<ω} \rightarrow ω^{<ω}$, $U_s \subset X$, $s \in ω^{<ω}$ such that:
+	\begin{enumerate}
+		\item $|φ(s)| = |s|$ TODO
+		\item $U_s \in Σ_1^0(X)$;
+		\item $\diam U_s ≤ 2^{-|s|}$;
+		\item $\lim_{n \rightarrow ∞} \diam(U_{s^\wedge n}) = 0$;
+		\item $\forall t, s \in ω^{<ω}, t < s, t ≠ s: \overline{U_s} \subset U_t$;
+		\item $\forall s \in ω^{<ω}\ \forall m, n \in ω, m ≠ n: U_{s^\wedge m \cap U_{s^\wedge n}} = \O$;
+		\item $U_a \cap A_{φ(s)} ≠ \O$;
+		\item $\{U_{s^\wedge n} | n \in ω\}^d \notin ©I^{ext}$;
+		\item $\{U_{s^\wedge n} | n \in ω\}^d \subset U_s$;
+		\item (9. + 5.) $\overline{\bigcup_{n \in ω} U_{s^\wedge n}} \subset U_s$.
+	\end{enumerate}
+	Construction: $φ(\O) = \O$, $U_\O$ be arbitrary open subset of $X$: $U_{\O} \cap A_{\O} ≠ \O$. Then all items are satisfied. We assume that $U_s$, $φ_s$ are constructed for all $s \in ω^{<ω}$, $|s| ≤ N \in ω$. Let $s \in ω^{<ω}$, $|s| ≤ N$ be arbitrary. From 7th item $U_s \cap A_{φ(s)} ≠ \O$, $MGR(A_{φ(s)} \cap U_s) \notin ©I^{ext}$ $\implies$ $\exists K \subset A_{φ(s)} \cap U_s, K \in ∏_1^0(X)$, nowhere dense in $A_{φ(s)} \cap U_s$, $K \notin ©I^{ext}$. Because
+	$$ \exists L \in MGR(A_{φ(s)} \cap U_s) \setminus ©I^{ext} \implies \exists H \in Σ_2^0(X), H \supset L, H \in Σ_2^0(A_{φ(s)} \cap U_s), H \notin ©I^{ext}, $$
+	so $H = \bigcup F_n$, $F_n \in ∏_1^0(X)$, nowhere dense in $A_{φ(s)} \cap U_s$ $\implies$ $\exists n_0 \in ω: F_{n_0} = K \notin ©I^{ext}$.
+
+	Find $D \subset A_{φ(s)} \cap U_s$: $D$ is discrete in $X \setminus K$. $D \cap K = \O$. $\overline{D} = K \cup D$. Let $\{y_n\} \subset K$, $\overline{\{y_n\}} = K$, and every element of $\{y_n\}$ repeats infinitely many times. Find $x_n \in (A_{φ(s)} \cap U_s) \setminus K$ such that $ρ(x_n, y_n) < \frac{1}{n}$ (it exists $\impliedby$ $K$ is nowhere dense in $A_{φ(s)} \cap U_s$). Then $D = \{x_n | n \in ω\}$, $D \cap K = \O$, $\overline{D} \supset \overline{D \cup \{y_n | n \in ω\}} \supset D \cup K$, $x \notin K \cup D \implies \exists n \in ω \setminus \{0\}: ρ(x, K) > \frac{1}{n}$ $\implies$ $\#(B(x, 1 / 2n) \cap D) ≤ 2n \implies x \notin \overline{D}$. $\implies$ $\overline{D} = D \cup K$, $D$ is discrete in $X \setminus K$. Assume $x_n ≠ x_m$, $n ≠ m$.
+
+	Define $U_{s^\wedge n}$ as open ball with center $x_n$: $\overline{U_{s^\wedge n}} \subset U_s$. $U_{s^\wedge n} \cap U_{s^\wedge m} = \O$ ($D$ is discrete), $\diam U_{s^\wedge n}≤ 2^{-|s|-1}$, $\lim_{n \rightarrow ∞} \diam U_{s^\wedge n} = 0$, $\overline{\bigcup_{n \in ω} U_{s^\wedge n}} \setminus \bigcup_{n \in ω} \overline{U_{s^\wedge n}} = \{U_{s^\wedge n} | n \in ω\} = K \impliedby \overline{U_{s^\wedge n}} \cap K = \O$, $\overline{D} = K \cup D$. $x_n \in A_{φ(s)} \implies U_{s^\wedge n} \cap A_{φ(s)} ≠ \O$, $\overline{\bigcup_{k \in ω} A_{φ(s)^\wedge k}} = A_{φ(s)} \implies \exists k \in ω: U_{s^\wedge n} \cap A_{φ(s)^\wedge k} ≠ \O$.
+
+	Put $φ(s^\wedge n) = φ(s)^\wedge k$. And then all items are satisfied. $H = \bigcap_{n \in ω} \bigcup_{|s| = n, s \in ω^{<ω}} U_s \in ∏_2^0(X)$, $H \subset A$, $H \notin ©I^{ext}$.
+\end{dukaz}
+
 \end{document}

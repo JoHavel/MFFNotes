@@ -519,9 +519,131 @@ TODO!!!
 		\item Given a point $x \in X$, the integer $k_x$ such that $\exists$ a local expression centered at $x$ of the form $F(z) = z^{k_x}$ is called the Ramification index of $f$ at $x$.
 		\item The quantity $V_x = k_x - 1$ the differential length of $f$ at $x$.
 		\item A point $x$ with Ramification index $k_x = 1$ is called unramified.
-		\item A point for which $k_x ≥ 2$ is ramified.
+		\item A point for which $k_x ≥ 2$ is ramified (ramification point).
 		\item If $x$ is a ramification point, then $f(x) \in Y$ is called a branch point.
+%
+% 28. 11. 2023
+%
+		\item The ramification locus is the subset of $X$ consisting of all ramification points of $f$.
+		\item The branch locus is $f(R)$.
 	\end{itemize}
 \end{definice}
+
+\begin{priklad}
+	Let $f: X \rightarrow Y$ be a non-constant holomorphic map of two Riemann surfaces, and let $x \in X$. Suppose that $f$ has two local expressions around $x$ of the form $F(z) = z^k$, $\tilde F(\tilde z) = \tilde z^{\tilde k}$, then $k = \tilde k$.
+
+	\begin{reseni}[Hint]
+		Let $φ$, $\tilde φ$, $ψ$, $\tilde ψ$ be charts. Observe that the change of coordinates near $x$ must be of the form $\tilde z = z α(z)$, where $α(z)$ is holomorphic in a neighbourhood of 0, and $α(0) ≠ 0$. (Try to draw this in picture.)
+
+		Similarly (but going in the opposite direction) $ω = \tilde ω β(\tilde ω)$ for some holomorphic function $β$ with $β(0) ≠ 0$. Write down the Taylor expansions of $α$ and $β$ and use the fact that $F$ is obtained from $\tilde F$ via the above changes of coordinates.
+	\end{reseni}
+\end{priklad}
+
+\begin{lemma}
+	The ramification locus $R$ is a discrete subset of open subsets (i.e. $\exists U_i \subset X$, such that $U_i$ contains exactly one element of $R$).
+
+	\begin{poznamkain}
+		A discrete subset of a compact set is finite (an infinite set has a limit point, thus a discrete subset, which has no limit points, must be finite).
+	\end{poznamkain}
+\end{lemma}
+
+\begin{lemma}
+	If $X$ is a compact Riemann surface and $f: X \rightarrow Y$ is a non-constant holomorphic map of two Riemann surfaces, the ramification locus $R$ is a finite set. Moreover, the branch locus is also finite.
+\end{lemma}
+
+\section{Holomorphic maps between compact Riemann surfaces}
+\begin{veta}
+	Let $f: X \rightarrow Y$ be a holomorphic of Riemann surfaces. If $X$ is compact and $f$ is non-constant, then $f$ is onto / surjective.
+
+	\begin{dukazin}
+		Consider the image $f(X) \subset Y$. By Liouville's theorem (from complex analysis) $f(x)$ is open. On the other hand, since $X$ is compact and $f$ is continuous, $f(X)$ is compact. Since $Y$ is Hausdorff, we must have that $f(x)$ is closed.
+
+		Finally, since $f(X)$ is an open, closed, and non-empty subset of a connected topological space, we must have that $f(X) = Y$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Hence $Y$ is also compact.
+\end{dusledek}
+
+\begin{dusledek}
+	If $X$ is a compact Riemann surface, the only holomorphic functions $f: X \rightarrow ®C$ are the constant functions.
+\end{dusledek}
+
+\begin{poznamka}[Discusion]
+	Let $f: X \rightarrow Y$ be a non-constant map of compact Riemann surfaces. Consider a point $x \in f^{-1}(y)$. We know that $\exists$ a neighbourhood $U_x$ and coordinate charts centered at $x$ such that we have local expression $z \rightarrow z^{k_x}$.
+
+	Since $F^{-1}(0) = 0$, there are no other pre-images of $y$ in $U_x$. Thus the pre-image set $f^{-1}(y)$ is discrete, and since $X$ is compact, the pre-image is a finite set.
+\end{poznamka}
+
+\begin{veta}
+	Let $f: X \rightarrow Y$ be a non-constant holomorphic map of compact Riemann surfaces. If $y_0, y_1$ are not in the branch locus of $f$ then $|f^{-1}(y_0)| = |f^{-1}(y_1)|$.
+
+	\begin{dukazin}
+		Next week.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	For $f: X \rightarrow Y$ a non-constant map of compact Riemann surfaces, the degree of $f$ is the cardinality of the fiber $f^{-1}(y)$,for any $y \notin$ branch locus of $f$. If $f$ is constant, then we say that its degree is 0.
+\end{definice}
+
+% 05. 12. 2023
+
+\begin{dukaz}[next week proof]
+	Let $B$ be the branch locus of $f$. Since $B$ is finite, $Y \setminus B$ is a connected topological space ($Y$ is a surface). Hence it cannot have a proper subset which is both closed and open. Let $y_0 \in Y \setminus B$ and set $d := |f^{-1}(y_0)|$.
+
+	The set $A := \{y \in Y \setminus B \middle| |f^{-1}(y)| = d\}$ is non-empt since it contains $y_0$. We claim that „$A$ is open in $Y \setminus B$“: For any $y \in A$ we show that $y$ is an interior point of $A$. Denote by $\{x_1, …, x_d\}$ the inverse images of $y$ and by $U_{x_1}, …, U_{x_d}$ pairwise disjoint charts around each inverse such that $f$ admits the local expression $F(z) = z$ on each chart. We can choose (see exercise below) $V_y \subseteq F(U_{x_1}) \cap … \cap f(U_{x_d})$ a connected neighbourhood of $y$ homeomorphic to a disk, such that the inverse image $f^{-1}(V_y)$ consists of $d$ connected components $\tilde U_{x_i}$ (each contains one of the $x_i$ and is contained in $U_{x_i}$). Then $f$ restricted to each $\tilde U_{x_i}$ is bijective onto $V_y$. This implies that every point of $V_y$ has $d$ inverse images, and hence that $y$ is an interior point for $A$.
+
+	Now consider $A^c = \{y \in Y \setminus B \middle| |f^{-1}(y)| ≠ d\}$. With essentially the same argument, one shows that $A^c$ is also open in $Y \setminus B$. Thus we can conclude that $A$ is closed. Since $A$ is a non-empty, open and closed subset of a connected topological space, $A = Y \setminus B$.
+\end{dukaz}
+
+\begin{priklad}
+	Show that a $V_y$ (as in the previous proof) exists by showing that otherwise one may construct a sequence $\{ξ_n\}$ of points of $X$ such that $ξ_n \rightarrow ξ$, $f(ξ_n) \rightarrow y$ but $f(ξ) ≠ y$ violating continuity.
+\end{priklad}
+
+\begin{definice}[Degree]
+	For $f: X \rightarrow Y$ a non-constant holomorphic map of compact Riemann surfaces, the degree of $f$ is the cardinality of the fiber $|f^{-1}(y)|$, for any $y \in Y$ such that $y \notin $ branch locus. If $f$ is constant then we say that it has degree 0.
+\end{definice}
+
+\begin{priklad}
+	Let $f: X \rightarrow Y$ be a holomorphic map of compact Riemann surfaces, of degree $d > 0$, $y \in Y$ and $f^{-1}(y) = \{x_1, …, x_n\}$. Prove that $\sum_{i=1}^n k_{x_i} = d$.
+\end{priklad}
+
+\begin{poznamka}[Recall the classification of compact Riemann surfaces]
+	Any compact, connected surface is homeomorphic to one surface in the following list: $S^2$ (two sphere, also ®C-projective plane $®P®C$), $T^{\# g}$, $®P^2(®R)^{\# n}$.
+
+	The first two are Riemann surfaces (Ex: the connected sum of Riemann surfaces is again a Riemann surface). The third are not orientable, so not Riemann surfaces.
+\end{poznamka}
+
+\begin{definice}[Genus]
+	Define the genus of a compact connected Riemann surface as 0 for 2 sphere and $g$ for connected sum of $g$ tori.
+
+	\begin{poznamkain}[Alternative definition of genus]
+		A vector field $X$ on a differential manifolds is a derivation on $C^∞(m)$ i.e. a ®R linear map $X: C^∞(m) \rightarrow C^∞(m)$ such that$X(f·g) = X(f)·g + f·X(y)$ $\forall f, g \in C^∞(m)$. The space of vector fields is denoted by $©X(m)$. Note that $©X(m)$ is a $C^∞(m)$-module. $(fX)(g) = f(X(g))$. ($(fX)(g·h) = f(X(g·h)) = f(X(g)·h + g·X(h)) = f(X(g))·h + g·f(X(h))$.)
+
+		Denote $Ω^1(m) = ©X(m)^* = Morf_{C^∞(m)}(©X(m), C^∞(m))$. This is again $C^∞(m)$-module (just as for any dual module)
+		$$ (fω)(X) := f(ω(X)) \qquad \((fω)(gX) = f(ω(gX)) = g(fω(X)) = g((fω)(X))\). $$
+		Consider the map $d: C^∞(m) \rightarrow Ω^1(m), \qquad f \mapsto df$, where $df: ©X(m) \rightarrow C^∞(m), X \mapsto X(f)$. (Note that $d(fg)(X) = X(fg) = X(f)·g + f·X(g) = df(x)·g + fdg(X) = (g·df)(X) + (f·dg)(x) \implies d(f·g) = g·df + f·dg$.)
+
+		Now let's restrict to surfaces:
+		$$ Ω^2(m) := \frac{Ω^1(m) \otimes_{C^∞(m)} Ω^1(m)}{\{ω \otimes ν + ν \otimes ω\}}. $$
+		We denote the product in $Ω^2(m)$ by $\wedge$. $\implies$ $ω \wedge ν = - ν \wedge ω$.i
+
+		TODO example?
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}[Riemann–Hurwitz]
+	For $f: X \rightarrow Y$ be non-constant, degree $d$, holomorphic map of compact Riemann surfaces. Denote by $g_x$, resp. $g_y$, the genus of $X$, and $Y$. Then $2 g_X - 2 = d(2g_Y - 2) + \sum_{x \in X} v_x$, where $v_x = h_x - 1$ is the differential length of $f$ at $x$.
+\end{veta}
+
+\begin{priklad}
+	Observe that $\sum_{x \in X} v_x = \sum_{x \in \text{Ram. locus}} v_x$ and hence conclude that this sum is well-defined.
+\end{priklad}
+
+
+
+
 
 \end{document}

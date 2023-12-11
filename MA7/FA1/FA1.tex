@@ -622,6 +622,10 @@ TODO?
 
 TODO!!!
 
+\section{Distributions}
+
+TODO!!!
+
 % 21. 11. 2023
 
 TODO!!!
@@ -841,6 +845,396 @@ TODO!!!
 	\begin{poznamkain}
 		$f$ is continuous $\implies$ $\supp f = \overline{\{x | f(x) ≠ 0\}} \cap Ω$.
 	\end{poznamkain}
+
+% 28. 11. 2023
+
+	c) $φ \in ©D(Ω)$, $\supp φ \cap \supp Λ = \O$ $\implies$ $Λ(φ) = 0$.
+
+	\begin{dukazin}
+		$\supp φ \cap \supp Λ = \O \implies \supp φ \subset \bigcup \{G \subset Ω \text{ open } | Λ \text{ vanishes on $G$}\}$ $\implies$ $\exists G_1, G_2, …, G_n \subset Ω$ open such that $Λ$ vanishes on each $G_j$ and $\supp φ \subset G_1 \cup … \cup G_n$. We will be done if we show that $Λ$ vanishes on $G_1 \cup … \cup G_n$.
+	\end{dukazin}
+
+	\begin{dukazin}[$Λ$ vanishes on $G_1, G_2$ $\implies$ vanishes on $G_1 \cup G_2$]
+		$ψ \in ©D(Ω)$, $\supp ψ \subset G_1 \cup G_2$. If $\supp ψ \subset G_1$ or $\supp ψ \subset G_2$, then $Λ(ψ) = 0$. Assume $\supp ψ \not\subset G_1$ and $\supp ψ \not\subset G_2$. Then $L:=\supp φ \setminus G_2$ $\implies$ $L$ is compact, nonempty, $L \subset G_1$. Fix $δ > 0$ such that $3δ < \dist(L, ®R^d \setminus G_1)$, $h_k$ smooth kernel.
+
+		Fix $k \in ®N$ such that $\frac{1}{k} < δ$, $ξ := h_k * χ_{L + B(0, 2δ)} \implies ξ \in C^∞(®R^d)$. $\supp ξ \subset L + B(0, 2δ) + U(0, 1 / k) \subset L + U(0, 3δ) \subset G_1$, $ξ = 1$ on $L + B(0, δ)$. Set $ψ_1 = ξ·ψ$, $ψ_2 = (1 - ξ)ψ$ $\implies$ $ψ_1, ψ_2 \in ©D(Ω)$, $\supp ψ_1 \subset ξ \subset G_1$, $\supp ψ_2 \subset \overline{\supp ψ \setminus (L + B(0, δ))} \subset \supp ψ \setminus (L + U(0, δ)) \subset \supp ψ \setminus L \subset G_2$ $\implies$ $Λ(ψ_1) = Λ(ψ_2) = 0$. $ψ = ψ_1 + ψ_2$ $\implies$ $Λ(ψ) = Λ(ψ_1) + Λ(ψ_2) = 0$.
+	\end{dukazin}
+
+	d) $Λ$ has compact support $\implies$ $\exists N \in ®N_0\ \exists c > 0: |Λ(φ)| ≤ C·\|φ\|_N$ for $φ \in ©D(Ω)$. In particular, $Λ$ has finite order.
+
+	\begin{dukazin}
+		$\supp Λ$ is a compact subset of $Ω$ $\implies$ $\exists δ > 0: K := \supp Λ + B(0, 3δ) \subset Ω$ $\implies$ $K \subset Ω$ is compact $\implies$
+		$$ \exists N \in ®N_0\ \exists c > 0: |Λ(φ)| ≤ C·\|φ\|_N, φ \in ©D_K(Ω). $$
+		$ξ := h_k * χ_{\supp Λ + B(0, 2δ)}$. ($1 / k < δ$.) $ξ \in C^∞(®R^d), \supp ξ \subset \supp Λ + B(0, 2δ) + U(0, 1 / k) \subset K$. $ξ = 1$ on $\supp Λ + B(0, δ)$.
+
+		$\forall φ \in ©D(Ω): Λ(φ) = Λ(φ ξ)$. $(1 - ξ)φ \in ©D(Ω) = 0$ on $\supp Λ + B(0, δ)$ $\implies$ $\supp (1 - ξ)φ \cap \supp Λ = \O$. $\implies Λ((1 - ξ)φ) = 0 \implies Λ(φ) = Λ(ξ φ)$.
+
+		Then
+		$$ |Λ(φ)| = |Λ(φ ξ)| ≤ C·\|ξ·φ\|_N ≤ C·2^N·\|ξ\|_N·\|φ\|_N. $$
+	\end{dukazin}
+
+	e) $\supp Λ = \{p\} \Leftrightarrow \exists N \in ®N_0, C_α \in ®F, |α| ≤ N, Λ = \sum_{|α| ≤ N} C_α D^α Λ_{δ_p}$.
+
+	\begin{dukazin}
+		„$\impliedby$“: trivial. „$\implies$“: $\{p\}$ is compact $\implies$ $\exists N, C: |Λ(φ)| ≤ C·\|φ\|_M$, $φ \in D(Ω)$. The $Λ$ is a linear combination of $D^α Λ_{δ_p}$, $|α| ≤ N$. To prove this, we use lemma above and show
+		$$ \bigcap_{|α| ≤ N} \Ker D^α Λ_{δ_p} \subset \Ker Λ, $$
+		i.e. $\forall φ \in ©D(Ω): D^α φ(p) = 0$ for each $|α| ≤ N$ $\implies$ $Λ(φ) = 0$.
+	\end{dukazin}
 \end{tvrzeni}
+
+\section{Convolution of distribution}
+\begin{definice}[Notation]
+	$M \subset ®R^d$, $f: M \rightarrow ®F$
+	\begin{itemize}
+		\item $y \in ®R^d$, $τ_y f(x) = f(x - y)$, $x \in y + M$;
+		\item $\hat{f}(x) = f(-x)$, $x \in -M$;
+		\item $a, e \in ®R^d$: $\partial_e f(a) = \lim_{r \rightarrow 0}: \frac{f(a + re) - f(a)}{r}$.
+	\end{itemize}
+\end{definice}
+
+\begin{lemma}
+	$φ \in ©D(®R^d)$.
+
+	a) $x_n \rightarrow x$ in $®R^d$ $\implies$ $τ_{x_n} φ \rightarrow τ_x φ$ in $©D(®R^d)$.
+
+	\begin{dukazin}
+		$\supp φ \subset U(0, r_1)$ for some $r_1 > 0$, $\{x_n, n \in ®N\} \subset U(0, r_2)$ for some $r_2 > 0$. $K := \overline{U(0, r_1 + r_2)}$ $\implies$ $K$ is compact and $\supp τ_{x_n} φ \subset K$ for each $n$.
+
+		$$ α \in ®N_0^d: \|D^α τ_{x_n} φ - D^α τ_x φ\|_∞ = \sup_{y \in ®R^d} |D^α φ(y - x_n) - D^αφ(y - x)| = \sup_{y \in K} |D^α φ(y - x_n) - D^α φ(y - x)|. $$
+		Thus $D^α φ$ is continuous, so it is uniformly continuous on $\overline{U(2r_2 + r_1)}$.
+		$$ ε > 0 \implies \exists δ > 0\ \forall y_1, y_2 \in \overline{U(2r_2 + r_1)}: \(\|y_1 - y_2\| < δ \implies |D^αφ(y_1) - D^αφ(y_2)| < ε\). $$
+		$$ x_n \rightarrow x \implies \exists n_0\ \forall n ≥ n_0: \|x_n - x\| < δ. $$
+		$$ n ≥ n_0, y \in K \implies y - x_n, y - x \in \overline{U(2r_2 + r_1)}, \|(y - x_n) - (y - x)\| = \|x_n - x\| < δ \implies $$
+		$$ \implies |D^α φ(y - x_n) - D^αφ(y - x)| < ε \implies D^α τ_{x_n}φ \rightrightarrows D^α τ_x φ. $$
+	\end{dukazin}
+
+	b) $e \in ®R^d \implies \partial_e φ \in ©D(®R^d)$. Moreover, set
+	$$ φ_r(x) := \frac{1}{r}(φ(x + re) - φ(x)), \qquad x \in ®R^d, $$
+	then $φ_r \overset{r \rightarrow 0}\longrightarrow \partial_e φ$ in $©D(®R^d)$.
+
+	\begin{dukazin}[$e \in ®R^d \implies \partial_e φ \in ©D(®R^d)$]
+		$x \in ®R^d$. $g_x(t) := φ(x + te)$, $t \in ®R$. Then $g_x \in C^∞(®R)$.
+		$$ \partial_e φ(x) = g_x'(0) = \sum_{j=1}^d \frac{\partial φ}{\partial x_j}(x + te)·e_j |_{t = 0} = $$
+		$$ = \sum_{j=1}^d \frac{\partial φ}{\partial x_j}(x)e_j \implies \partial_e φ = \sum_{j=1}^d e_j \frac{\partial φ}{\partial x_j} \in ©D(®R^d). $$
+	\end{dukazin}
+
+	\begin{dukazin}[Moreover part]
+		Fix $c > 0$, such that $\supp φ \subset U(0, c)$, and $0 < |r| < 1$. Then $\supp φ_r \subset \overline{U(0, c + \|e\|)}$.
+		$$ |φ_r(x) - \partial_e φ(x)| = \left| \frac{1}{r}(g_x(r) - g_x(0)) - g'_x(0) \right| = \left| \frac{1}{r} \int_0^r g_x' - g_x'(0)\right| = \left| \frac{1}{r} \int_0^r (g_x'(t) - g_x'(0)) dt \right| = $$
+		$$ = \left| \frac{1}{r} \int_0^r \sum_{j=1}^d e_j \(\frac{\partial φ}{\partial x_j}(x + te) - \frac{\partial φ}{\partial x_j}(x)\) dt \right| ≤ $$
+		$$ ≤ \left| \frac{1}{r} \int_0^r \|e\|\(\sum_{j=1}^d \left\|\frac{\partial φ}{\partial x_j}(x + te) - \frac{\partial φ}{\partial x_j}(x)\right\|^2\)^{1 / 2} dt \right| ≤ $$
+		$$ ≤ \left| \frac{1}{r} \int_0^r \|e\|\(\sum_{j=1}^d \left\|τ_{-te} \frac{\partial φ}{\partial x_j} - \frac{\partial φ}{\partial x}\right\|_∞^2\)^{1 / 2} dt \right|. $$
+
+		$$ ε > 0 \implies \exists δ\ \forall y, \|y\| < δ: \left\|τ_{-te} \frac{\partial φ}{\partial x_j} - \frac{\partial φ}{\partial x}\right\|_∞ < ε. $$
+		If $0 < |t|·\|e\|·c$, then
+		$$ \|e\|\(\sum_{j=1}^d \left\|τ_{-te} \frac{\partial φ}{\partial x_j} - \frac{\partial φ}{\partial x}\right\|_∞^2\)^{1 / 2} ≤ \|e\|·\sqrt{d}·ε. $$
+		So $φ_r \rightrightarrows \partial_e φ$, $D^α φ_r = (D^αφ)_r \rightrightarrows \partial_e(D^α φ) = D^α(\partial_e φ)$.
+	\end{dukazin}
+\end{lemma}
+
+% 01. 12. 2023
+
+\begin{tvrzeni}
+	$φ \in ©D(®R^{d_1} \times ®R^{d_2})$.
+
+	a) $Λ \in ©D'(®R^{d_1})$. Define $ψ(y) = Λ(x \mapsto φ(x, y))$ ($y \in ®R^{d_2}$). Then $ψ \in ©D(®R^{d_2})$.
+
+	\begin{dukazin}
+		Fix $c > 0$ such that $\supp φ \subset \overline{U(¦o, c)}$. 1. „$ψ$ is well defined“: given $y \in ®R^{d_2}$, $x \mapsto φ(x, y)$ belongs to $©D(®R^{d_1})$, i.e. it is $C^∞$ and $\supp \subset \overline{U(0, c)}$. 2. $\supp ψ \subset \overline{U(¦o, c)}$, so it is compact.
+
+		3. $y \in ®R^{d_2}$, $φ_y(x) = φ(x, y)$ ($x \in ®R^{d_1}$). Then „$y_n \rightarrow y$ in $®R^{d_2}$ $\implies$ $φ_{y_n} \rightarrow φ_y$ in $©D(®R^{d_2})$“: Assume $y_n \rightarrow y$ in $®R^{d_2}$. WLOG $\|y_n\| ≤ c$ for each $n$. $\forall n: \supp φ_{y_n} \subset \overline{U(¦o, c)}$. Fix $α \in ®N_0^{d_1}$. Then „$D^α φ_{y_n} \rightrightarrows D^α φ_y$“:
+
+		$D^α φ_{y_n}(x) = D^{(α, 0)} φ(x, y_n)$. $D^{(α, 0)}φ$ is continuous, hence uniformly continuous on $\overline{U(¦o, c)}$. So, give $ε .> 0$ $\exists δ > 0$ $\forall(u_1, u_2), (v_1, v_2) \in \overline{U(¦o, c)}$:
+		$$ \|(u_1, v_1) - (u_2, v_2)\| < δ \implies |D^{(α, 0)} φ(u_1, v_1) - D^{(α, 0)}φ(u_2, v_2) < ε. $$
+		Fix $n_0 \in ®N$ such that $\forall n ≥ n_0: \|y - y_n\| < d$. If $n ≥ n_0$ and $x \in \overline{U_{®R^{d_1}}(¦o, c)}$, then
+		$$ |D^{(α, 0)}φ(x, y_n) - D^{(α, 0)}φ(x, y)| < ε \qquad \impliedby \|(x, y_n) - (x, y)\| < δ. $$
+		Hence $\|D^αφ_{y_n} - D^αφ_y\| ≤ ε$ for $n ≥ n_0$.
+
+		4. „$ψ$ is continuous“:
+		$$ y_n \rightarrow y \overset{3.}\implies φ_{y_n} \rightarrow φ_y \text{ in } ©D(®R^{d_1}) \implies ψ(y_n) = Λ(φ_{y_n}) \rightarrow Λ(φ_y) = ψ(y). $$
+
+		5. „$\frac{\partial ψ}{\partial y_j}(y) = Λ(x \mapsto \frac{\partial φ}{\partial y_j}(x, y))$“:
+		$$ \frac{\partial ψ}{\partial y_j}(y) = \lim_{t \rightarrow 0} \frac{ψ(y + t e_j) - ψ(y)}{τ} \overset{Λ \text{ linear}}= \lim_{t \rightarrow 0} Λ\(x \mapsto \frac{φ(x, y+te_j) - φ(x, y)}{t}\) = $$
+		$$ = \lim_{t \rightarrow 0} Λ(x \mapsto φ_t(x, y)). $$
+		We know $φ_t \rightarrow \partial_{(0, y_j)}φ$ in $©D(®R^{d_1} \times ®R^{d_2})$. So we have $φ_t \rightarrow \frac{\partial φ}{\partial y_j}$ in $©D(®R^{d_1} \times ®R^{d_2})$. Hence, for each $y \in ®R^{d_2}$: $(φ_t)_y \rightarrow \(\frac{\partial φ}{\partial y_j}\)_y$ in $©D(®R^{d_1})$ $\implies$ $Λ((φ_t)_y) \rightarrow Λ\(\(\frac{\partial φ}{\partial y_j}\)_y\)$.
+
+		$$ (*) = Λ\(\(\frac{\partial φ}{\partial y_j}\)_y\) = Λ(x \mapsto \frac{\partial φ}{\partial y_j}(x, y)). $$
+
+		6. „$ψ \in C^∞(®R^{d_2})$ and $\forall α: D^α ψ(y) = Λ(x \mapsto D^{(0, α)} φ((x, y)))$“: 5. $\implies$ for $|α| = 1$. 4. applied to $\frac{\partial φ}{\partial y_j}$ implies $ψ \in C^1(®R^{d_2})$. Induction: Assume it holds for $|α| ≤ k$, take $|α| = k+1$. Then $α = β + e_j$, $|β| = k$, $j \in [d]$.
+		$$ D^α ψ(y) = \frac{\partial }{y_j} (D^βψ)(y) = \frac{\partial}{\partial y_j} \(y \mapsto Λ\(x \mapsto D^{(0, β)}φ(x, y)\)\) \overset{5.}= $$
+		$$ = Λ(x \mapsto \frac{\partial}{\partial y_j} D^{(0, β)} φ(x, y)) = Λ(x \mapsto D^{(0, α)}φ(x, y)). $$
+	\end{dukazin}
+
+	\begin{lemmain}
+		$Ω \subset ®R^d$ open, $Λ \in ©D(Ω)$, $K \subset Ω$ compact. Then $\exists N \in ®N_0$, $\exists μ_α$, $|α| ≤ N$, finite (signed or complex) Borel measure on $K$ such that
+		$$ Λ(φ) = \sum_{|α| ≤ N} \int_K D^α φ dμ_α, \qquad φ \in ©D_K(Ω). $$
+	\end{lemmain}
+
+	\begin{dukazin}[of lemma, sketch]
+		From the proposition above $\exists N, C$ such that
+		$$ |Λ(φ)| ≤ C·\|φ\|_N, φ \in ©D_K(Ω). $$
+		$X := (C(K))^{\{α \middle| |α| ≤ N\}}$. $T: ©D_K(Ω) \rightarrow X$ by $T φ = (D^α φ)_{|α| ≤ N}$ $\implies$ $Λ ∘ T^{-1}$ is continuous on $T(©D_K(Ω))$ $\implies$ extend to $X$ $\implies$ (by Riesz) find $μ_α, |α| ≤ N$.
+	\end{dukazin}
+
+	b) $Λ_1 \in ©D'(®R^{d_1})$, $Λ_2 \in ©D'(®R^{d_2})$. Then
+	$$ Λ_2(y \mapsto Λ_1(x \mapsto φ(x, y))) = Λ_1(x \mapsto Λ_2(y \mapsto φ(x, y))). $$
+
+	\begin{dukazin}
+		By a) both sides are well defined. $\supp φ \subset \overline{U(¦o, c)}$. From the previous lemma: $Λ_1$ (resp. $Λ_2$) on $\overline{U(¦o, c)}$ is equal to $μ_α$ (resp. $ν_α$) for some $|α| ≤ N_1$ (resp. $|α| ≤ N_2$).
+		$$ Λ_2(y \mapsto Λ_1(x \mapsto φ(x, y))) = \sum_{|β| ≤ N_2} \int D^β λ_1(x \mapsto φ(x, y)) dν_β(y) = $$
+		$$ = \sum_{|β| ≤ N_2} \int Λ_1(x \mapsto D^{(0, β)}φ(x, y)) dν_β(y) = $$
+		$$ = \sum_{|β| ≤ N_2} \sum_{|α| ≤ N_1} \int \int D^{(α, β)} φ(x, y) dμ_α(x)dν_β(y) \overset{\text{FUBINI}}= $$
+		$$ = \sum_{|β| ≤ N_2} \sum_{|α| ≤ N_1} \int \int D^{(α, β)} φ(x, y) dν_β(y)dμ_α(x) … $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Konvoluce v distribucích]
+	$U \in ©D'(®R^d)$, $φ \in ©D(®R^d)$, $U * φ(x) = U(τ_x \check φ) = U(y \mapsto φ(x - y))$ ($x \in ®R^d$).
+\end{definice}
+
+\begin{veta}
+	a) $f \in L^1_{loc} \implies Λ_f * φ = f*φ$.
+
+	\begin{dukazin}
+		$$ Λ_f * φ(x) = Λ_f(y \mapsto φ(x - y)) = \int_{®R^d} f(y)φ(x - y) dy = f*φ(x). $$
+	\end{dukazin}
+
+	b) $U * φ \in C^∞(®R^d)$, $D^α(U * φ) = D^α U * φ = U * D^α φ$.
+
+	\begin{dukazin}
+		„$U * φ$ is continuous“:
+		$$ x_n \rightarrow x \text{ in } ®R^d \implies τ_{x_n} \check φ \rightarrow τ_x \check φ \text{ in } ©D(®R^d) \implies U*φ(x_n) = U(τ_{x_n}\check φ) \rightarrow U(τ_x \check φ) = U*φ(x). $$
+
+		$$ \frac{\partial}{\partial x_j}(U * φ)(x) = \lim_{t \rightarrow 0} \frac{U*φ(x + te_j) - U*φ(x)}{t} = $$
+		$$ = \lim_{t\rightarrow 0} U\(\frac{τ_{x + te_j} \check φ - τ_x \check φ}{t}\) \overset{ψ := τ_x \check φ}= \lim_{t \rightarrow 0} U\(\frac{τ_{te_j}ψ - ψ}{t}\) = U(\partial_{-e_j} ψ) = $$
+		$$ = U\(τ_x\(\frac{\partial φ}{\partial x_j}\)\) = U*\frac{\partial φ}{\partial x_j}(x). $$
+		$$ \partial_{-e_j}ψ = -\partial_{e_j} ψ = - \frac{\partial ψ}{\partial y_j} = - \frac{\partial}{\partial y_j}(τ_x \check φ) = τ_x \(\frac{\partial φ}{\partial y_j}\)^v. $$
+		$$ \frac{\partial}{\partial x_j}(U * φ) = U * \frac{\partial φ}{\partial x_j}. $$
+		$$ \frac{\partial U}{\partial x_j} * φ(x) = \frac{\partial U}{\partial x_j}τ_x \check φ = -U\(\frac{\partial τ_x \check φ}{\partial x}\) = U*\frac{\partial φ}{\partial x_j}(x). $$
+
+		So, we have it for $|α| = 1$. The general case by induction.
+	\end{dukazin}
+
+	c) $\supp (U*φ) \subset \supp U + \supp φ$.
+
+	\begin{dukazin}
+		$$ U*φ(x) ≠ 0 \implies U(τ_x \check φ) ≠ 0 \implies \supp (τ_x \check φ) \cap \supp U ≠ \O \implies x \in \supp φ + \supp U. $$
+	\end{dukazin}
+
+	\begin{dusledekin}
+		So $U$ has compact support $\implies$ $U*φ$ has compact support.
+	\end{dusledekin}
+
+	d) $h_j$ smoothing kernel. Then $Λ_{U * h_j} \rightarrow U$ in $©D'(®R^d)$.
+
+	\begin{dukazin}
+		$$ Λ_{U * h_j}(φ) = \int(U * h_j) (x) φ(x) dx = \int U(y \mapsto h_j(x - y))φ(x) dx = $$
+		$$ = \int U(y \mapsto φ(x) h_j(x - y))dx = Λ_1(y \mapsto φ(x)h_j(x - y)) = U(y \mapsto Λ_1(x \mapsto φ(x) h_j(x - y))) = $$
+		$$ = U(y \mapsto \int φ(x) h_j(x - y) dx) = U(φ*\check h_j) \rightarrow Λ(φ). $$
+		Because $φ*\check h_j \rightarrow φ$ in $©D(®R^d)$ and
+		$$ \supp (φ * \check h_j) \subset \supp φ + U(0, 1 / j) \subset φ + \overline{U(0, 1)}, $$
+		$$ D^α(φ * \check h_j) = (D^α φ) * h_j \rightrightarrows D^α φ. $$
+	\end{dukazin}
+
+% 05. 12. 2023
+
+	e) $τ_x(U * φ) = τ_x U * φ = U*τ_x φ$
+
+	\begin{dukazin}
+		$$ τ_x(U*φ)(z) = (U * φ)(z - x) = U(τ_{z - x} \check φ) = U(τ_{-x} τ_z \check φ) = τ_xU(τ_z \check φ) = τ_x U * φ(z). $$
+		$$ τ_x(U*φ)(z) = (U * φ)(z - x) = U(τ_{z - x} \check φ) = U(τ_z(τ_{-x} \check φ)) = U(τ_z(\widecheck{τ_x φ})) = U * τ_x φ(z). $$
+		$$ \(τ_{-x}\check φ(y) = \check φ(y + x) = φ(-y - x) = τ_x φ(-y) = (\widecheck{τ_x φ})(y).\) $$
+	\end{dukazin}
+
+	f) $U * (φ * ψ) = (U * φ) * ψ$ ($U \in ©D'(®R^d), φ, ψ \in ©D(®R^d)$).
+
+	\begin{dukazin}
+		$$ U * (φ * ψ) (x) = U(y \mapsto (φ*ψ)(x - y)) = U(y \mapsto \int_{®R^d} φ(x - y - z) ψ(z) dz) = $$
+		$$ = U(y \mapsto Λ_1(z \mapsto φ(x - y - z)ψ(z))) = Λ_1(z \mapsto U(y \mapsto φ(x - y - z)ψ(z))) = $$
+		$$ = Λ_1(z \mapsto ψ(z)·U(y \mapsto φ(x - y - z))) = Λ_1(z \mapsto ψ(z)·(U * φ)(x - z)) = $$
+		$$ = \int ψ(z)·(U*φ(x - z)) dz = (U * f) * ψ(x). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$$ \check U(φ) = U(\check φ), φ \in ©D(®R^d). $$
+
+	$τ_x U$ and $\check U$ are distributions, $τ_x Λ_f = Λ_{τ_x f}$, $\check Λ_f = Λ_{\check f}$, $f \in L^1_{loc}(®R^d)$ (standard one page of computations or less).
+\end{poznamka}
+
+\begin{poznamka}
+	$U, V$ distributions, $U*V(φ) = U(\check V * φ)$, $φ \in ©D(®R^d)$:
+	
+	\begin{itemize}
+		\item It is natural formula:
+			$$ V = Λ_ψ, ψ \in ©D(®R^d) \implies Λ_{U*ψ}(φ) = U(\check ψ * φ). $$
+			\begin{dukazin}
+				$$ Λ_{U*ψ}(φ) = \int_{®R^d} U * ψ(x)φ(x) dx = \int_{®R^d} U(y \mapsto ψ(x - y)) φ(x) dx = $$
+				$$ = \int_{®R^d} U(y \mapsto ψ(x - y)φ(x)) dx = U(y \mapsto \int_{®R^d} ψ(x - y) φ(x) dx) = U(y \mapsto \check ψ * φ(y)). $$
+			\end{dukazin}
+		\item This formula does not work in general because $\check V * φ$ is a $C^∞$-function but it need not have compact support.
+	\end{itemize}
+\end{poznamka}
+
+\begin{poznamka}[1.]
+	$\supp V$ is compact, then $V*φ \in ©D(®R^n)$ for each $φ \in ©D(®R^d)$ ($\supp \check V * φ \subset \supp \check V + \supp φ$, so it is compact). Then $U*V$ is linear functional on $©D(®R^d)$. Moreover, „it is a distribution“:
+
+	Fix $K \subset ®R^d$ compact. Set $L := \supp \check V + K$ $\implies$
+	$$ \implies \exists C>0, N \in ®N_0: |V(ψ)| ≤ C·\|ψ\|, \qquad \forall ψ \in ©D_L(®R^d). $$
+	$$ φ \in ©D_K(®R^d) \implies \check V * φ \in ©D_L(®R^d) \implies |(U * V)(φ)| = |U(\check V * φ)| ≤ C·\|\check V * φ\|_N ≤ C·D·\|φ\|_{N+M}. $$
+	($\check V * φ(x) = V(y \mapsto φ(x + y))$, $V$ has compact support $\implies$ $\exists D, M: |V(η)| ≤ D·\|η\|_M$, $\forall η \in ©D(®R^d)$.)
+\end{poznamka}
+
+\begin{poznamka}[2.]
+	$\supp U$ is compact $\implies$ $\exists ψ \in ©D(®R^d)$ such that $U(φ) = U(ψ·φ), φ \in ©D(®R^d)$. (Proof of the theorem above item d.) So, define $(U * V)(φ) = U(ψ·(\check V * φ))$. Again $U * V \in ©D'(®R^d)$. (Proof skipped.)
+\end{poznamka}
+
+\begin{poznamka}[3.]
+	$\forall r > 0: (\overline{U(¦o, r)} - \supp V) \cap \supp U$ is compact. For $r > 0$ let $ψ_r \in ©D(®R^d)$, $ψ_r = 1$ on a neighbourhood of this set. Then $U$ may be extended to $Y = \{f \in C^∞(®R^d) \middle| \supp f \subset \overline{U(¦o, r)} - \supp V \text{ for some } r > 0\}$. $\tilde U(f) = U(ψ_r · f)$ if $\supp f \subset \overline{U(¦o, r)} - \supp V$.
+
+	Then define $U * V(φ) = \tilde U(\check V * φ)$ ($\supp \check V * φ \subset \supp φ - \supp V$).
+\end{poznamka}
+
+\begin{poznamka}[4.]
+	Assume $\exists m, n \in ®N_0$, $c, d > 0$:
+	$$ |U(φ)| ≤ c·\|φ\|_n \land |V(φ)| ≤ d·\|φ\|_m, \qquad \forall φ \in ©D(®R^d). $$
+	$\implies$ $μ_α, |α| ≤ n$ measures (finite …):
+	$$ U(φ) = \sum_{|α| ≤ n} \int_{®R^d} D^α φ dμ_α, φ \in ©D(®R^d) \implies $$
+	$$ \implies (U * V)(φ) = \sum_{|α| ≤ n} \int_{®R^d} D^α(\check V * φ) dμ_α. $$
+	$$ |(U*V)(φ)| ≤ c·d·\|φ\|_{n+m}. $$
+\end{poznamka}
+
+\subsection{Tempered distributions}
+\begin{definice}[Schwartz space]
+	$$ ©S(®R^d) = \{f \in C^∞(®R^d) \middle| \forall α \in ®N_0^d\ \forall N \in ®N: x \mapsto (1 + \|x\|^2)^N D^αf(x) \text{ is bounded on } ®R^d\}. $$
+	$$ f \in ©S(®R^d), \quad N \in ®N_0, \quad p_N(f) := \max_{|α| ≤ N} \|x \mapsto (1 + \|x\|^2)^N D^α f(x)\|_∞. $$
+	Then $(p_N)_{N=0}^∞$ is sequence of norms on $©S(®R^d)$, $p_0 ≤ p_1 ≤ p_2 ≤ …$. ($p_0(f) = \|f\|_∞$)
+\end{definice}
+
+\begin{tvrzeni}
+	a) $©S(®R^d)$ is a Fréchet space when equipped with $(p_N)_{N=0}^∞$.
+
+	\begin{dukazin}
+		$©S(®R^d)$ is a metrizable LCS. Let $ρ$ be the respective translation invariant metric. „Completeness“: Assume $(f_n)$ is $ρ$-Cauchy $\implies$ $\forall N$: $(f_n)$ is $p_N$-Cauchy $\implies$ $\forall N\ \forall α, |α| ≤ N: (x \mapsto (1 + \|x\|^2)D^α f_k(x))_{k=1}^∞$ is $\|·\|_∞$-Cauchy $\implies$ $\forall N, α, |α| ≤ N\ \exists g_{N, α}$ such that $(1 + \|x\|^2)^N D^α f_n(x) \rightrightarrows g_{N, α}(x)$ on $®R^d$. $D^α f_k(x) \rightrightarrows \frac{g_{N, α}(x)}{(1 + \|x\|^2)^N}$. $\implies$ $\forall α\ \exists h_α$ continuous such that $g_{N, α}(x) = (1 + \|x\|^2)^N h_α(x)$ if $N ≥ |α|$. $D^α f_k \rightrightarrows h_α \implies h_α = D^α h_α \implies h_α \in C^∞(®R^d)$.
+
+		„$h_0 \in ©S(®R^d)$“:
+		$$ (1 + \|x\|^2)^N D^αh_0(x) = g_{N, α}(x), $$
+		which is bounded (uniform limit of bounded functions). Moreover $f_k \rightarrow h_0$ in $p_N$, hence by the theorem above $f_n \rightarrow h_0$ in $©S(®R^d)$ (in $ρ$).
+	\end{dukazin}
+
+% 08. 12. 2023
+
+	b) $©D(®R^d)$ is a dense subset of $©S(®R^d)$.
+
+	\begin{dukazin}
+		Clearly $©D(®R^d) \subset\subset ©S(®R^d)$. „Density“: Fix $φ \in ©D(®R^d)$ such that $0 ≤ φ ≤ 1$, $φ = 1$ na $U(¦o, 1)$. Let $f \in ©S(®R^d)$. Let $f_n(x) = f(x) · φ(x / n)$, $x \in ®R^d$. Then $f_n \in ©D(®R^d)$. Moreover, „$f_n \rightarrow f$ in $©S(®R^d)$“: Let $N \in ®N_0$, $d \in ®N_0^d$, $|α| ≤ N$:
+		$$ \left|(1 + \|x\|^2)^N (D^α f(x) - D^αf_n(x))\right| = (1 + \|x\|^2)^N \left|D^α((1 - φ(x / n)))f(x)\right| = $$
+		$$ = (1 + \|x\|^2)^N \left|(1 - φ(x / n))D^αf(x) + \sum_{0 ≠ β ≤ α} \binom{α_1}{β_1}·…·\binom{α_d}{β_d} (-1) \frac{1}{n^{|β|}} D^β φ(x / n) D^{α - β} f(x)\right| $$
+		$$ \begin{cases}=0, \quad & \|x\| ≤ n\\ ≤ \sup_{\|x\| ≥ n, |γ| ≤ N} \frac{(1 + \|x\|^2)^{N+1}|D^γ f(x)|}{1 + \|x\|^2}, \quad & \|x\| > n\end{cases} $$
+		$$ \(\sup_{\|x\| ≥ n} \(1 + \sum_{0 ≠ β ≤ α} \binom{α_1}{β_1}·…·\binom{α_d}{β_d}·\underbrace{\frac{1}{n^{|β|}}}_{≤1} \underbrace{|D^β φ(x / n)|}_{≤ \|φ\|_N}\)\) ≤ 1 + 2^N \|φ\|_N. $$
+		$$ ≤ (1 + 2^N·\|φ\|_n)·\frac{p_{N+1}(f)}{1 + n^2} \rightarrow 0. $$
+	\end{dukazin}
+
+	c) $φ_n \rightarrow φ$ in $©D(®R^d)$ $\implies$ $φ_n \rightarrow φ$ in $©S(®R^d)$.
+
+	\begin{dukazin}
+		Assume $φ_n \rightarrow φ$ in $©D(®R^d)$ $\implies$ $\exists R > 0$ such that $\supp φ_n \subset \overline{U(¦o, R)}$. Then
+		$$ p_n(φ_n - φ) = \max_{|α| ≤ N} \left\|x \mapsto (1 + \|x\|^2)^N(D^α φ_n(x) - D^αφ(x))\right\|_∞ ≤ (1 + R^2)^N·\|φ_n - φ\|_N \rightarrow 0. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[A tempered distribution on $®R^d$]
+	A tempered distribution on $®R^d$ is a continuous linear functional on $©S(®R^d)$. Notation: $©S'(®R^d)$.
+\end{definice}
+
+\begin{poznamka}
+	$Λ \in ©S'(®R^d) \implies Λ|_{©D(®R^d)} \in ©D'(®R^d)$. (By the previous theorem item c.)
+
+	$©D'(®R^d) \subset \subset ©D'(®R^d)$. (By item a. and b.)
+
+	We say that distribution is tempered, if it can be extended to $©S(®R^d)$.
+\end{poznamka}
+
+\begin{tvrzeni}
+	a) $Λ: ©S(®R^d) \rightarrow ®F$ linear. Then
+	$$ Λ \in ©S'(®R^d) \Leftrightarrow \exists N \in ®N_0\ \exists C > 0: |Λ(φ)| ≤ C·p_N(φ), \qquad φ \in ©S(®R^d). $$
+
+	\begin{dukazin}
+		By the proposition above.
+	\end{dukazin}
+
+	b) Assume $Λ \in ©D'(®R^d)$. Then $Λ$ is tempered iff
+	$$ \exists N \in ®N_0\ \exists c > 0: |Λ(φ)| ≤ C·p_N(φ), \qquad φ \in ©D(®R^d). $$
+
+	\begin{dukazin}
+		„$\implies$“: a). „$\impliedby$“: For example by Hahn–Banach and a).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	$Λ_n \rightarrow Λ$ in $©S'(®R^d)$ $≡$ $\forall φ \in ©S(®R^d): Λ_n(φ) \rightarrow Λ(φ)$, i.e. $Λ_n \overset{w^*}\rightarrow Λ$.
+\end{definice}
+
+\begin{veta}
+	$(Λ_n) \subset ©S'(®R^d)$, $\forall φ \in ©S(®R^d)$: $(Λ_n(φ))$ converges in ®F. Then $Λ(φ) = \lim_{n \rightarrow ∞} Λ_n(φ)$, $φ \in ©S(®R^d)$ is tempered distribution.
+	
+	\begin{dukazin}
+		Use the previous proposition item a) and the theorem above.
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}
+	a) $Λ \in ©D'(®R^d)$, $\supp Λ$ is compact $\implies$ $Λ$ is tempered.
+
+	\begin{dukazin}
+		$Λ$ has compact support $\implies$ $\exists C > 0\ \exists N \in ®N_0: |Λ(φ)| ≤ C·\|φ\|_N ≤ C·p_N(φ)$, $φ \in ©D(®R^d)$.
+	\end{dukazin}
+
+	b) $f \in L^p(®R^d)$ for some $p \in [1, ∞]$. Then $Λ_f \in ©S(®R^d)$ and, moreover, $L_f(φ) = \int_{®R^d} fφ, φ \in ©S(®R^d)$.
+
+	\begin{dukazin}
+		Theorem IV.11(a) $\implies$ $©S(®R^d) \subset \bigcap_{p \in [1, ∞]} L^p(®R^d)$. (It was stated and almost proven at chapter IV, but full proof is not easy.) So, fix $p \in [1, ∞]$ and $f \in L^p(®R^d)$. Let $p'$ be the dual exponent. Then $\forall φ \in ©S(®R^d): φ \in L^{p'}(®R^d)$, hence $f φ \in L^1(®R^d)$.
+
+		So $\tilde Λ(φ) = \int_{®R^d} f φ$, $φ \in ©S(®R^d)$ is a well-defined linear functional on $©S(®R^d)$: „continuity“:
+		$$ p = 1: |\tilde Λ(φ)| = |\int_{®R^d} f φ| ≤ \|f\|_1·\|φ\|_∞ = \|f\|_1·p_0(φ); $$
+		$$ p > 1: \forall n \in ®N: f·χ_{U(¦o, n)} \in L^1(®R^d) \implies Λ_{f·χ_{U(¦o, n)}} \in ©S(®R^d) \text{ by the first case} \implies $$
+		$$ \implies \tilde Λ(φ) = \int_{®R^d} fφ = \lim_{n \rightarrow ∞} \int_{®R^d} f·χ_{U(¦o, n)} φ = \lim_{n \rightarrow ∞} Λ_{f·χ_{U(¦o, n)}}(φ) = Λ(φ). $$
+	\end{dukazin}
+
+	c) $f$ measurable on $®R^d$, $|f| ≤ |p|$ for some polynomial $p$ on $®R^d$. Then $Λ_f \in ©S'(®R^d)$ and $Λ_f(φ) = \int_{®R^d} fφ, f \in ©S(®R^d)$.
+
+	\begin{dukazin}
+		$p$ polynomial $\implies$ $p(x) = \sum_{|α| ≤ N} c_α x^α$ ($c_α \in ®F, x^α = x_1^{α_1}·…·x_d^{α_d}$).
+		$$ \implies |p(x)| ≤ c·(\sqrt{2})^{dN} (1 + \|x\|^2)^{N·\frac{d}{2}}, \qquad c = \max_α |c_α|. $$
+		So, if $|f| ≤ |p|$, then $\frac{|f(x)|}{(1 + \|x\|^2)^m} ≤ c·(\sqrt{2})^{d·N}·(1 + \|x\|^2)^{N·\frac{d}{2} - m}$. If $m$ is large enough (such that $N·\frac{d}{2} - m < -\frac{d}{2}$), then $f(x) / (1 + \|x\|^2)^m$ is integrable in $®R^d$. ($1 / (1 + \|x\|^2)^k$ is integrable for $k > \frac{d}{2}$ see the comment before theorem IV.11). Then:
+		$$ \left|\int_{®R^d} f·φ\right| = \left|\int_{®R^d} \frac{f(x)·(1 + \|x\|^2)^m}{(1 + \|x\|^2)^m}\right| ≤ \(\int_{®R^d} \frac{|f(x)|}{(1 + \|x\|^2)^m}\)·p_m(f). $$
+	\end{dukazin}
+
+	d) $μ$ is a finite measure $\implies$ $Λ_μ \in ©S'(®R^d)$, $Λ_m(φ) = \int_{®R^d} φ dμ$, $φ \in ©S(®R^d)$.
+
+	\begin{dukazin}
+		$φ \in ©S(®R^d)$ $\implies$ $φ$ is continuous and bounded.
+		$$ \left| \int_{®R^d} φ dμ\right| ≤ \int_{®R^d} |φ| d|μ| ≤ \|f\|_∞·\|μ\| = p_0(φ)·\|μ\|. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}
+	Let $L: ©S(®R^d) \rightarrow ©S(®R^d)$ is linear. Then $L$ is continuous $\Leftrightarrow$ $\forall N \in ®N_0\ \exists c > 0\ \exists M \in ®N_0: p_N(c·(f)) ≤ c·p_M(f)$, $f \in ©S(®R^d)$, $α \in ®N_0^d$, $f \mapsto D^α f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
+
+	\begin{dukazin}
+		$f \in ©S(®R_6d)$, $α \in ®N_0^d$ $\implies$ $D^α f \in L^∞()®R^d$. Fix $N \in ®N_0$ and $β$, $|β| ≤ N$:
+		$$ |(1 + \|x\|^2)^N D^β(D^α f)(x)| = (1 + \|x\|^2)^N |D^{β+α} f(x)| ≤ p_{N + |α|}(f) \implies p_N(D^α f) ≤ p_{N+|α|}(f). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	$p$ is polynomial $\implies$ $f \mapsto p·f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
+
+	\begin{dukazin}
+		Clearly $p·f \in C^∞(®R^d)$. Fix $N \in ®N_0$. Then $\exists c > 0, m \in ®N$ such that
+		$$ \forall α, |α| ≤ N,\ \forall x \in ®R^dL |D^α p(x)| ≤ c·(1 + \|x\|^2)^m. $$
+		-> next lecture
+	\end{dukazin}
+\end{poznamka}
 
 \end{document}

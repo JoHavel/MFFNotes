@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\ 
+
+\vspace{-4.5em}
+
+\begin{priklad}[1.]
+	We know that the speed of sound is given by the formula $c = \sqrt{\frac{\partial p_{th}}{\partial ρ}(ρ, η)}$. Find the explicit formula for the speed of sound in the calorically perfect ideal gas, that is for the substance described by the equations from the previous homework.
+
+	\begin{reseni}[Z minulého roku]
+		Z přednášky máme $p_{th} = \rho^2 \frac{\partial e}{\partial \rho}(\eta, \rho)$. Ze sedmého domácího úkolu máme
+		$$ e(\eta, \rho) = \frac{c_{V, ref}·\theta_{ref}}{\rho_{ref}^{\gamma - 1}} · \exp\(\frac{\eta}{c_{V, ref}}\) · \rho^{\gamma - 1} =: C(\eta)·\rho^{\gamma - 1}. $$
+		Tedy $c^2 = \frac{\partial p_{th}}{\partial \rho}(\rho, \eta) =$
+		$$ = \frac{\partial \(\rho^2·\frac{\partial C(\eta)·\rho^{\gamma - 1}}{\partial \rho}\)}{\partial \rho} = \frac{\partial \(\rho^2 · C(\eta)·(\gamma - 1) \rho^{\gamma - 2}\)}{\partial \rho} = (\gamma - 1)\gamma·C(\eta)·\rho^{\gamma - 1} = (\gamma - 1)\gamma·e(\eta, \rho). $$
+		Takže jsme vlastně vyjádřili $c^2$ jako funkci $e$ ($\gamma$ je konstanta), ale ze zadání pátého domácího úkolu také umíme $e$ vyjádřit jako $e = e(\rho, \theta) = c_{V,ref}\theta$. Tedy
+		$$ c = \sqrt{(\gamma - 1)\gamma·e(\eta, \rho)} = \sqrt{(\gamma - 1)\gamma c_{v, ref}\theta}. $$
+	\end{reseni}
+\end{priklad}
+
+\vspace{-0.5em}
+
+\begin{priklad}[2.]
+	We have seen that the product $®T:®D$ plays an important role in the formulation of the governing equation for the internal energy. Assume that the Cauchy stress tensor is given by the formula $®T = ®T (®B)$, where ®B denotes the left Cauchy–Green tensor, and that the Cauchy stress tensor commutes with ®B, that is $®T®B = ®B®T$. Show that under these assumptions we can write $®T : ®D = ®T : \frac{d®H}{dt},$ where $®H := \frac{1}{2} \ln ®B$ denotes the Hencky strain tensor.
+
+	\begin{dukazin}
+		Nejprve ukážeme $®T : \frac{d®H}{dt} := \frac{1}{2} ®T : \frac{d \ln ®B}{dt} = \frac{1}{2} ®T : ®B^{-1} \frac{d®B}{dt}$. Podle řetízkového pravidla je $\frac{d\ln ®B}{dt} = \frac{d\ln ®B}{d®B}:\frac{d®B}{dt}$. Podle Daleckii–Krein je pro $®B = \sum_i λ_i ®P_i$:
+		$$ \frac{d\ln ®B}{d®B}:\frac{d®B}{dt} = \sum_i \frac{1}{λ_i} P_i \frac{d®B}{dt} ®P_i + \sum_{i≠j} \frac{\ln(λ_i) - \ln(λ_j)}{λ_i - λ_j} ®P_i \frac{d®B}{dt}®P_j. $$
+		Jelikož ®B a ®T komutují, tak podle ekvivalentní charakterizace musí mít stejné vlastní vektory. Tedy $®T = \sum_i \tilde λ_i ®P_i$. Takže když násobíme $®T:$ druhý člen, vyjde nula, neboť $®P_i$ v zápise ®T se nikdy nebude zároveň rovnat $®P_i$ a $®P_j$ v druhém členu. Tedy zbývá první člen, kde nám hezky vyjde $®B^{-1} = \sum \frac{1}{λ_i} ®P_i$ a $\frac{d®B}{dt}$.
+
+		Potom podle $\dall{®B} = ®O$ a linearity $\tr$ je $®T : \frac{d®H}{dt} = \frac{1}{2} ®T : ®B^{-1} \frac{d®B}{dt} := \frac{1}{2}\(®T:®L^T + ®T:(®B^{-1}®L®B)\)$. Když si napíšeme druhý člen v indexech: $®T_{ij}(®B^{-1})_{ik}®L_{kl}®B_{lj}$, tak si můžeme všimnout, že vzhledem ke komutativitě $®T$ a $®B$ můžeme vyměnit indexy v ®T a ®B, čímž získáme to, že se $®B$ bude maticově násobit s $®B^{-1}$, tedy $®T:(®B^{-1}®L®B) = ®T:®L$.
+
+		Ale to už jsme hotovi, protože $®T : \frac{d®H}{dt} = \frac{1}{2}\(®T:(®L^T + ®L))\) =: ®T:®D$.
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

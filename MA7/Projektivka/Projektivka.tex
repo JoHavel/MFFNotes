@@ -686,4 +686,300 @@ TODO!!! (charakteristika projektivity, involuce, …)
 	\end{reseni}
 \end{priklad}
 
+% 30. 11. 2023
+
+\section{Tečnové kuželosečky}
+\begin{definice}[Tečnová kuželosečka]
+	Mějme projektivitu nesourodých bodových soustav $h(A, B, C):::h'(A', B', C')$. Tečnová kuželosečka ©T je množina spojnic odpovídajících si bodů.
+
+	\begin{poznamkain}
+		Tedy prvky tečnové kuželosečky nejsou body, ale tečny klasické kuželosečky. (Tj. budeme je nazývat tečny kuželosečky ©T.)
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	$h(A, B, C)::h'(A', B', C')$ $\Leftrightarrow$ ©T se skládá ze dvou bodů (formálněji dvou svazků s těmito středy) a sice středu perspektivity a průsečíku $h \cap h'$.
+\end{veta}
+
+\begin{poznamkain}
+	Takovýmto kuželosečkám budeme říkat singulární a dále budeme mluvit jen o těch, co to nesplňují, tedy regulárních kuželosečkách.
+\end{poznamkain}
+
+\begin{definice}[Vnější, ]
+	Bod v rovině se nazývá vnější bod / bod dotyku / vnitřní bod ©T, pokud jím procházejí 2 / 1 / 0 tečny z ©T
+\end{definice}
+
+\begin{dusledek}[Pozorovani, z definice]
+	$h, h' \in ©T$.
+
+	Na $h, h'$ leží jediný bod dotyku, a to odpovídající body průsečíku přímek. Navíc spojnice těchto bodů je direkční přímka zadané projektivity.
+\end{dusledek}
+
+\begin{veta}
+	Buď ©T tečnová kuželosečka.
+
+	\begin{itemize}
+		\item Na volbě tečen $h, h'$ nezáleží, lze je nahradit jinou dvojicí.
+		\item Na každé tečně leží jeden bod dotyku.
+		\item ©T je zadána 5 tečnami, nebo 4 tečnami s 1 bodem dotyku, nebo 3 tečnami s 2 body dotyku.
+	\end{itemize}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Tečnová kuželosečka z 5 tečen / 4 tečen a 1 bodu dotyku / 3 tečen a 2 bodů dotyku.
+
+	\begin{reseni}
+		V případě bodu dotyku zvolíme body dotyku na $h$ nebo $h'$. A poté najdeme direkční přímku projektivity bodových soustav (procházející body dotyku). Pak vždy najdeme další bod této projektivity a spojíme.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Na tečně z tečnové kuželosečky najděte bod dotyku.
+
+	\begin{reseni}
+		Zvolíme si danou tečnu jako $h$ a najdeme průsečík direkční přímky s $h$.
+	\end{reseni}
+\end{priklad}
+
+\begin{dusledek}
+	Umíme přecházet mezi tečnovými a bodovými kuželosečkami. Tj. nemusíme rozlišovat ©B a ©T.
+\end{dusledek}
+
+\subsection{Další duální tvrzení}
+\begin{veta}[O direkčním bodu na ©T]
+	$©T(a, b, c):::©T(a', b', c')$ $\implies$ spojnice „křížem“, tj. $a \cap b'$ a $a' \cap b$, … prochází jedním bodem, tzv. direkčním bodem projektivity, $D$. Tečny z bodu $D$ jsou samodružné přímky této pojektivity.
+\end{veta}
+
+\begin{veta}[O involuci na ©T]
+	Je dána involuce tečen na ©T (dvěma páry $a$ a $a'$, $b$ a $b'$). Pak
+	\begin{itemize}
+		\item direkčním bodem $D$ procházejí nejen spojnice průsečíků $a \cap b'$, $a' \cap b$, ale též $a \cap b$, $a' \cap b'$;
+		\item průsečíky $a \cap a'$, $b \cap b'$ leží na jedné přímce $p$;
+		\item samodružné přímky involuce jsou tečny z bodu $D$ $=: m, n$, jejichž body dotyku jsou průsečíky s $p$;
+		\item spojnice bodů dotyku tečen $a, a'$ prochází $D$.
+	\end{itemize}
+
+	\begin{definicein}[Střed involuce, osa involuce]
+		Bodu $D$ říkáme střed involuce. Přímce $p$ říkáme osa involuce.
+	\end{definicein}
+\end{veta}
+
+\begin{definice}
+	Říkáme též, že involuce je indukována svojí osou $p$.
+
+	Taktéž definujeme sečnu a vnější přímku kuželosečky v následující tabulce:
+
+	\begin{tabular}{c|ccc}
+		Involuce      & Reálné samodružné body & Osa involuce  & Střed involuce \\ \hline
+		hyperbolická  & 2                      & sečna         & vnější bod     \\
+		eliptická     & 0                      & vnější přímka & vnitřní bod    \\
+		„parabolická“ & 1                      & tečna         & $\in ©B$
+	\end{tabular}
+
+	(U parabolické se všechny body zobrazí do $P$.)
+\end{definice}
+
+\begin{dusledek}
+	$(aa'rp) = -1$ ($a, a'$ odpovídající si tečny, $p$ osa involuce, $r$ spojnice průsečíku všech tří předchozích a $D$).
+\end{dusledek}
+
+\begin{veta}[D$^*$]
+	$p$ libovolná sečna ©T, $m, n$ tečny v průsečících $p \cap ©T$. $a, c \in ©T$ libovolné, konkurentní (duál kolineární, česky sbíhavé) s přímkou $p$. $C$ bod dotyku na $c$. $M = m \cap c$, $N = n \cap c$, $A = a \cap c \cap p$. Potom $(MNAC) = -1$.
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	©T je dána 3 tečnami a 2 body dotyku. Najděte bod dotyku na třetí tečně.
+
+	\begin{reseni}
+		Z minulé věty a hledání čtvrtého harmonického bodu.
+	\end{reseni}
+\end{priklad}
+
+\section{Elipsa, parabola, hyperbola, aneb afinní klasifikace (regulárních) kuželoseček}
+\begin{poznamka}
+	V $®R P^2$ jsou nerozlišitelné.
+\end{poznamka}
+
+\begin{poznamka}
+	Nyní tedy rozlišujeme vlastní a nevlastní. Tj. máme
+	\begin{enumerate}
+		\item rozlišení vlastní/nevlastní;
+		\item rozlišení rovnoběžek a různoběžek;
+		\item dělící poměr 3 bodů (připomenutí: $(ABC) = (ABCD_∞)$, kde $D_∞$ je směr dané přímky);
+		\item úsečky (neobsahuje nevlastní bod / množina bodů, že $ABX < 0$);
+		\item střed úsečky ($(ABSD_∞) = (ABS) = -1$);
+		\item rovnoběžný přenos délek (2 úsečky na rovnoběžkách jsou stejně dlouhé, když jsou to protější strany rovnoběžníku).
+	\end{enumerate}
+	Ale ztratili jsme dualitu. (Nevlastní bod není duální k nevlastní přímce.)
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Najděte střed úsečky.
+
+	\begin{reseni}
+		Přes konstrukci čtvrtého harmonického bodu. Nebo jako průsečík úhlopříček rovnoběžníku (dokážeme přes úplný čtyřroh).
+	\end{reseni}
+\end{priklad}
+
+\begin{definice}[Elipsa, parabola, hyperbola, asymptoty, střed kuželosečky, průměr kuželosečky, omezený průměr kuželosečky]
+	Kuželosečka je elipsa/parabola/hyperbola pokud má 0/1/2 reálné nevlastní body. (Elipsa má 2 komplexní nevlastní body.)
+
+	Asymptoty kuželosečky jsou tečny v nevlastních bodech. (Tj. pro E/P/H máme 0/1/2 reálné asymptoty.)
+
+	Střed kuželosečky je průsečík jejích asymptot. (Pro parabolu za střed považujeme její nevlastní bod. Pro elipsu se ukáže, že ty dvě imaginární asymptoty mají reálný průsečík.) Podle toho rozlišujeme středové kuželosečky (elipsa, hyperbola) a nestředové/osové kuželosečky (parabola).
+
+	Průměr kuželosečky je libovolná přímka procházející středem dané kuželosečky. Omezený průměr je úsečka na průměru vymezená vlastními průsečíky.
+\end{definice}
+
+\begin{poznamka}
+	Polára ($p$) je spojnice tečných bodů tečen z pólu ($P$). Pól je průsečík tečen z průsečíků kuželosečky s polárou.
+\end{poznamka}
+
+\begin{dusledek}
+	Střed kuželosečky je pól nevlastní přímky vzhledem k této kuželosečce.
+\end{dusledek}
+
+\begin{veta}
+	Střed E/H půlí (je středem) každý její omezený průměr.
+
+	\begin{dukazin}
+		Víme, že střed je pól nevlastní přímky. A my víme, že $(ARA'P)$, kde $P = S$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť jsou spojnice bodů $X$ a $X'$, $Y$ a $Y'$ (na kuželosečce) rovnoběžné. Pak spojnice středů úseček $XX'$ a $YY'$ prochází středem kuželosečky ($S$).
+
+	\begin{dukazin}
+		„Pro elipsu a hyperbolu“: $X$ a $X'$, $Y$ a $Y'$ jsou páry involuce indukované nevlastním bodem (bodem $P = XX' \cap YY'$). A $(AA'RP) = -1$, kde $A = X$ a $A' = X'$, nám dává, že $R = S_X$ leží na ose této involuce a z předchozí věty máme, že $S$ tam leží také.
+
+		„Pro parabolu“: Zase uvažujme involuci danou $XX'$, $YY'$. Její střed je nevlastní bod, tedy jedna z tečen z tohoto bodu je nevlastní přímka, tedy bod dotyku je střed paraboly a zároveň jím prochází osa involuce.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Najít střed kuželosečky dané pěti body.
+
+	\begin{reseni}
+		Provedeme dvakrát předchozí větu.
+	\end{reseni}
+\end{priklad}
+
+% 07. 12. 2023
+
+\begin{poznamka}
+	Středu v parabole se také říká směr průměrů (nebo směr osy).
+\end{poznamka}
+
+\begin{veta}
+	Spojnice bodů dotyku rovnoběžných tečen elipsy/hyperboly je průměrem této kuželosečky.
+
+	\begin{dukazin}
+		Uvažujme involuci indukovanou společným směrem tečen (označme si ho $P_∞$). Spojnice bodů dotyku je její osa a díky harmonické čtveřici $(AA'SP_∞) = -1$ tam leží i $S$, kde $A, A'$ je  průměr procházející $P_∞$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Tato věta je vlastně limitním přechodem předchozí. (Ale limitní přechody nemáme.)
+	\end{poznamkain}
+\end{veta}
+
+\begin{upozorneni}
+	Parabola nemá rovnoběžné tečny.
+
+	\begin{dukazin}
+		Pro spor předpokládejme, že má 2 rovnoběžné tečny $\implies$ jejich průsečík je nevlastní a z něj tedy vedou 3 tečny (ještě nevlastní přímka).
+	\end{dukazin}
+\end{upozorneni}
+
+\begin{veta}
+	Nechť $Y, Y'$ jsou vlastní body dotyku tečen ke kuželosečce z bodu $Z$ a $C = $ střed $YY'$. Pak střed kuželosečky $S \in ZC$.
+
+	\begin{dukazin}
+		Uvažujme involuci indukovanou směrem přímky $YY'$. Její osa prochází body $Z$ (z věty o involuci, bod 4), $C$ (harmonická čtveřice) a $S$ (harmonická čtveřice).
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce středu kuželosečky]
+	Mějme kuželosečku danou 5 tečnami, zkonstruujte její střed.
+
+	\begin{reseni}
+		Nalezneme tečné body (stačí 3) a použijeme předchozí větu.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce hyperboly]
+	Sestrojit hyperbolu včetně středu a asymptot, jsou-li dány 3 body a 2 směry asymptot (5 bodů).
+
+	\begin{reseni}
+		Zvolíme směry asymptot jako $H$ a $H'$. Pak direkční bod je střed a jeho spojnice s $H$ a $H'$ jsou asymptoty.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce hyperboly 2]
+	Sestrojte hyperboly ze dvou asymptot a jednoho bodu.
+
+	\begin{reseni}
+		Direkční bod projektivity soustav svazků ve směrech asymptot je průsečík asymptot (střed). A máme v podstatě hotovo.
+	\end{reseni}
+
+	\begin{poznamkain}
+		U hyperboly lze dohledávat body pomocí středové symetrie.
+	\end{poznamkain}
+\end{priklad}
+
+\begin{veta}[Hyperbola a její asymptoty]
+	Hyperbola a její asymptoty vytínají na libovolné sečně stejně dlouhé úsečky.
+
+	\begin{dukazin}
+		Z předchozí konstrukce + definice stejně dlouhých úseček.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Limitní verze předchozí]
+	Na tečně také. (Bod dotyku je středem úsečky spojující průsečíky tečny s asymptotami.)
+\end{veta}
+
+\begin{poznamka}
+	Zkouška bude $±$ na hodinku: dvě konstrukce (provést a zdůvodnit). Domluvíme se na nějakých dvou termínech.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce hyperboly 3]
+	Sestrojte hyperbolu včetně asymptot a středu, jsou-li dány čtyři body a jeden směr asymptoty.
+\end{priklad}
+
+\begin{priklad}[Konstrukce hyperboly 4 a 5]
+	DÚ: Sestrojte hyperbolu včetně asymptot a středy, jsou-li dány (3 body + 1 asymptota) nebo (3 tečny a 1 asymptota).
+\end{priklad}
+
+\begin{poznamka}
+	Úlohu „najít obě asymptoty při zadání 5 vlastních bodů“ zatím neumíme řešit.
+\end{poznamka}
+
+\subsection{Speciální konstrukce pro parabolu}
+\begin{poznamka}
+	Pokud je jeden z pěti bodů v konvexním obalu zbylých 4, pak je to hyperbola. Jak ale zadat parabolu? No tím, že má nevlastní přímku.
+
+	Tedy „parabola je dána 4 tečnami“ (nebo 3 tečny + směr průměrů, nebo 3 tečny a bod na jedné z nich, nebo 2 tečny a směr průměru a bod na jedné z nich, atd.)
+\end{poznamka}
+
+\begin{poznamka}[Připomenutí]
+	Průměry paraboly jsou rovnoběžné a jejich společný směr je střed, tedy bod dotyku s nevlastní přímkou.
+
+	Parabola nemá rovnoběžné tečny.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce paraboly]
+	Parabola dána 4 tečnami, najděte 1 další tečnu.
+
+	\begin{reseni}
+		Nevlastní přímku zvolíme za $h$. TODO?
+	\end{reseni}
+
+	A najít směr průměrů.
+
+	\begin{reseni}
+		Je to průsečík direkční přímky v předchozí konstrukci s nevlastní přímkou.
+	\end{reseni}
+\end{priklad}
+
 \end{document}

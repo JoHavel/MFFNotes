@@ -373,7 +373,7 @@ TODO!!!
 	$$ ψ(θ, ρ) := e(η, ρ)|_{η = η(θ, ρ)} - θη|_{η = η(θ, ρ)}. $$
 
 	\begin{poznamka}
-		This is le Legrende transformation of internal energy.
+		This is le Legendre transformation of internal energy.
 	\end{poznamka}
 \end{definice}
 
@@ -385,5 +385,292 @@ TODO!!!
 		$$ \frac{\partial ψ}{\partial ρ}(θ, ρ) = \frac{\partial e}{\partial η}(η, θ) \frac{\partial η}{\partial ρ}(θ, ρ) + \frac{\partial e}{\partial ρ}(η, ρ)|_{η = η(θ, ρ)} - θ \frac{\partial η}{\partial ρ}(θ, ρ) = \frac{\partial e}{\partial ρ}(η, ρ)|_{η = η(θ, ρ)}. $$
 	\end{dukazin}
 \end{dusledek}
+
+% 01. 12. 20
+
+\begin{poznamka}[Why do we call $c_{V, ref}$ the specific heat at constant volume?]
+	(Constant volume = constant density.) $¦j_q = -k\nabla θ$, $®T \approx -p_{th}®I$, $®D = \frac{1}{2}\((\nabla ¦v) + (\nabla ¦v)^T\)$.
+	$$ ρ \frac{de}{dt} = ®T : ®D - \Div ¦j_q, $$
+	$$ ρ \frac{\partial e}{\partial θ}(θ, ρ) \frac{dθ}{dt} + ρ \frac{\partial e}{\partial ρ} \frac{dρ}{dt} = -p_{th}(\underbrace{¦Div ¦v}_{\frac{dρ}{dt} + ρ\Div ¦v = 0}) + \Div(k \nabla θ), $$
+	$$ ρ \frac{\partial e}{\partial θ}(θ, ρ) \frac{dθ}{dt} + 0 = 0 + \Div(k \nabla θ), $$
+	$$ \int_V ρ \frac{\partial e}{\partial θ}(θ, ρ) \frac{dθ}{dt} dv = \int_{\partial V} (k \nabla θ)¦n ds. $$
+	So in left we multiply $ρ$, difference of temperature and some $c_V(θ, ρ) := \frac{\partial e}{\partial θ}(θ, ρ)$. (On the right there is flow of heat, $¦j_q$, through boundary).
+	
+	For calorically perfect ideal gas: $e = e(ρ, θ) = c_{V, ref}·θ$.
+\end{poznamka}
+
+\begin{poznamka}[How to get specific heat at constant pressure?]
+	$$ e = e(η(θ, p_{th}), ρ(θ, p_{th})), \qquad ρ \frac{de}{dt} = ®T:®D - \Div ¦j_q = -p_{th}·(\Div ¦v) + \Div(k \nabla θ). $$
+	Chain rule:
+	$$ \frac{de}{dt} = \frac{\partial e}{\partial η}(η, ρ) \frac{\partial η}{\partial θ}(θ, p_{th}) \frac{dθ}{dt} + \frac{\partial e}{\partial ρ}(η, ρ) \frac{dρ}{dt} + … \frac{d p_{th}}{dt} = θ \frac{\partial η}{\partial θ}(θ, p_{th}) \frac{dθ}{dt} + \frac{\partial e}{\partial ρ}(η, ρ) \frac{dρ}{dt}. $$
+	$$ ρ θ \frac{\partial η}{\partial θ}(θ, p_{th}) \frac{dθ}{dt} + ρ\frac{\partial e}{\partial ρ}(η, ρ) \frac{dρ}{dt} = -p_{th}·(\Div ¦v) + \Div(k \nabla ¦θ), $$
+	$$ ρ θ \frac{\partial η}{\partial θ}(θ, p_{th}) \frac{dθ}{dt} + ρ \frac{p_{th}}{ρ^2} (ρ·(\Div ¦v)) = -p_{th}·(\Div ¦v) + \Div(k \nabla ¦θ), $$
+	$$ ρ θ \frac{\partial η}{\partial θ}(θ, p_{th}) \frac{dθ}{dt} = \Div(k \nabla ¦θ). $$
+	So $c_p(θ, p_{th}) := θ \frac{\partial η}{\partial θ}(θ, p_{th})$ is specific heat at constant pressure.
+\end{poznamka}
+
+\begin{poznamka}[Alternative formula for the specific heat at constant volume]
+	Chain rule:
+	$$ θ \frac{\partial η}{\partial θ} (θ, ρ) = \frac{\partial e}{\partial η}(η, ρ) \frac{\partial η}{\partial θ}(θ, ρ) = \frac{\partial}{\partial θ} e(θ, ρ) = c_V(θ, ρ). $$
+	$$ c_V(θ, ρ) := θ \frac{\partial η}{\partial θ}(θ, ρ). $$
+\end{poznamka}
+
+\begin{poznamka}[Another alternative formula for the specific heat at constant volume, for usage in practice]
+	$$ c_V(θ, ρ) = θ \frac{\partial η}{\partial θ}(θ, ρ) = - θ \frac{\partial^2 ψ}{\partial θ^2} (θ, ρ), $$
+	because $η(θ, ρ) = - \frac{\partial ψ}{\partial θ}(θ, ρ)$ (property of Helmholtz free energy).
+
+	Conclusion: If $ψ(θ, ρ)$ is given, then
+	$$ c_V(θ, ρ) = - θ \frac{\partial^2 ψ}{\partial θ^2} (θ, ρ), \qquad p_{th}(θ, ρ) = ρ^2 \frac{\partial ψ}{\partial ρ}(θ, ρ). $$
+\end{poznamka}
+
+\begin{poznamka}[Where are my evolution equations?]
+	Unknowns: $¦v, ρ, θ$.
+	$$ \frac{dρ}{dt} + ρ \Div ¦v = 0, $$
+	$$ ρ \frac{d¦v}{dt} = \Div ®T + ρ¦b, \qquad ®T = -p_{th}(θ, ρ)®I + \tilde λ(\Div ¦v) ®I + 2μ ®D_δ. $$
+
+	\begin{poznamkain}[Third equation]
+	TODO!!!
+
+		$$ ρ θ \frac{dη}{dt} = \Div(k \nabla θ) + \tilde λ(\Div ¦v)^2 + 2μ ®D_δ : ®D_δ. $$
+		$$ \frac{dη}{dt} = - \frac{d}{dt}\(\frac{\partial ψ}{\partial θ}(θ, ρ)\) = - \frac{\partial^2 ψ}{\partial θ^2}(θ, ρ) \frac{dθ}{dt} - \frac{\partial^2 ψ}{\partial θ \partial ρ}(θ, ρ) \frac{dρ}{dt}. $$
+		$$ θ c_V(θ, ρ) \frac{dθ}{dt} = - ρ^2 θ \frac{\partial^2 ψ}{\partial θ \partial ρ}(θ, ρ) \Div ¦v +  \Div(k \nabla θ) + \tilde λ(\Div ¦v)^2 + 2μ ®D_δ : ®D_δ, $$
+		$$ θ c_V(θ, ρ) \frac{dθ}{dt} = - θ \frac{\partial}{\partial θ}\(ρ^2 \frac{\partial ψ}{\partial ρ}\) \Div ¦v +  \Div(k \nabla θ) + \tilde λ(\Div ¦v)^2 + 2μ ®D_δ : ®D_δ. $$
+	\end{poznamkain}
+	
+	$$ θ c_V(θ, ρ) \frac{dθ}{dt} = - θ \frac{\partial}{\partial θ}\(ρ^2 \frac{\partial ψ}{\partial ρ}\) \Div ¦v +  \Div(k \nabla θ) + \tilde λ(\Div ¦v)^2 + 2μ ®D_δ : ®D_δ. $$
+
+	And we can get $c_V(θ, ρ)$ and $p_{th}$ from $ψ = ψ(θ, ρ)$.
+\end{poznamka}
+
+\begin{poznamka}[Why do we call $γ$ the adiabatic exponent?]
+	(This applies only to the ideal gas.)
+
+	$$ p_{th} = c_{V, ref}(γ - 1) ρ θ, $$
+	$$ ρ \frac{de}{dt} = ®T:®D - \Div ¦j_q = ®T:®D, \qquad ®T = -p_{th} ®I, $$
+	$$ ρ \frac{de}{dt} = -p_{th} \Div ¦v, $$
+	$$ e = c_{V, ref}·θ $$
+	$$ ρ c_{V, ref} \frac{dθ}{dt} = \frac{p_{th}}{ρ} \frac{dρ}{dt} \impliedby \frac{dρ}{dt} + ρ \Div ¦v = 0. $$
+	
+	$$ \frac{dp_{th}}{dt} = c_{V, ref}(γ - 1) \frac{dρ}{dt} θ + c_{V, ref} (γ - 1) ρ \frac{dθ}{dt}, $$
+	$$ \(ρ c_{V, ref} \frac{dθ}{dt} = \frac{1}{γ - 1} \frac{dp_{th}}{dt} - c_{V, ref} θ \frac{dρ}{dt}.\) $$
+	$$ \frac{1}{γ - 1} \frac{dp_{th}}{dt} - c_{V, ref} θ \frac{dρ}{dt} = \frac{p_{th}}{ρ} \frac{dρ}{dt}, $$
+	$$ \frac{1}{γ - 1} \frac{1}{p_{th}} \frac{dp_{th}}{dt} = \(\frac{c_{V, ref} θ}{p_{th}} + \frac{1}{ρ}\) \frac{dρ}{dt}, $$
+	$$ \frac{1}{γ - 1} \frac{1}{p_{th}} \frac{dp_{th}}{dt} = \(\frac{1}{ρ}\(\frac{1}{γ - 1} + 1\)\) \frac{dρ}{dt}. $$
+	$$ \(\frac{c_{V, ref} θ}{p_{th}} + \frac{1}{ρ} =? \frac{c_{V, ref}θ}{c_{V, ref} θ ρ (γ - 1)}.\) $$
+	$$ \frac{d}{dt}(L_n p_{th}) = γ \frac{d}{dt} L_n ρ. $$
+	$$ p_{th} = p_{th, ref} \(\frac{ρ}{ρ_{ref}}\)^γ. $$
+\end{poznamka}
+
+\begin{poznamka}[Where is my hyperbolic equation?]
+	Assuming isentropic process ($η = \const$). $®T = -p_{th}®I = -p_{th}(ρ, η)®I$. ($\Div -p_{th}®I = -\nabla p_{th}$.)
+
+	$ρ(¦x, t) = \hat{ρ} + \tilde ρ(¦x, t) =$ referential density + small perturbations, similarly $¦v(¦x, t) = \hat{¦v} + \tilde{¦v}(¦x, t) = \tilde{¦v}(¦x, t)$.
+	$$ \(\frac{dρ}{dt} + ρ \Div ¦v = 0, \qquad ρ \frac{d¦v}{dt} = - \nabla p_{th}(ρ, η).\) $$
+	$$ \frac{dρ}{dt} = \frac{\partial ρ}{\partial t} + (¦v · \nabla)ρ = \frac{\partial}{\partial t} (\hat{ρ} \tilde ρ) + (\hat{¦v} + \tilde{¦v})·\nabla (\hat{ρ} + \tilde ρ) \approx \frac{\partial \tilde ρ}{\partial t}. $$
+
+	$$ \frac{d ρ}{dt} + ρ \Div ¦v = 0 \overset{\text{Linearize}}\longrightarrow \frac{\partial \tilde ρ}{\partial t} + \hat{ρ}\Div \tilde{¦v} = 0, $$
+	$$ ρ\frac{d¦v}{dt} = -\nabla p_{th}(ρ, η) \overset{\text{Linearize}}\longrightarrow \hat{ρ} \frac{\partial \tilde{¦v}}{\partial t} = - \frac{\partial p_{th}}{\partial ρ}(ρ, η)|_{ρ = \hat{ρ}} \nabla \tilde ρ. $$
+
+	Differentiate by time:
+	$$ \frac{\partial^2 \tilde ρ}{\partial t} - \hat{ρ} \Div \(\frac{\partial \tilde{¦v}}{\partial t}\) = 0 $$
+	$$ \frac{\partial^2 \tilde ρ}{\partial t^2} - \Div \(\frac{\partial p_{th}}{\partial ρ}\middle|_{ρ = \hat{ρ}} \nabla \tilde ρ\) = 0. $$
+	$$ \frac{\partial^2 \tilde ρ}{\partial t^2} = \(\frac{\partial p_{th}}{\partial ρ}\middle|_{ρ = \hat{ρ}}\) Δ\tilde ρ. $$
+
+	(Speed of sound: $c = \sqrt{\frac{\partial p_{th}}{\partial ρ}|_{ρ = \hat{ρ}}(ρ, η)}$.)
+\end{poznamka}
+
+\begin{poznamka}[Stability of test state]
+	Set
+	$$ ¦v = \hat{¦v} + \tilde{¦v}, \quad \hat{¦v} = 0, \qquad θ = \hat{θ} + \tilde θ, \quad \hat{θ} ≠ \hat{θ}(¦x, t), \qquad ρ = \hat{ρ} + \tilde ρ, \quad \hat{ρ} ≠ \hat{ρ}(¦x, t). $$
+	Is it $\tilde{¦v}, \tilde ρ, \tilde θ \rightarrow 0$?
+
+	$$ \frac{dρ}{dt} + ρ \Div ¦v = 0 \longrightarrow \frac{\partial \tilde ρ}{\partial t} + \hat{ρ} \Div \tilde{¦v} = 0, $$
+	$$ ρ \frac{d¦v}{dt} = \Div ®T + ρ¦b = \Div ®T \longrightarrow \hat{ρ} \frac{\partial \tilde{¦v}}{\partial t} = - \frac{\partial p_{th}}{\partial ρ}|_{ρ = \hat{ρ}, θ = \hat{θ}} \nabla \tilde ρ - \frac{\partial p_{th}}{\partial θ}|_{ρ = \hat{ρ}, θ = \hat{θ}} \nabla \tilde θ + \Div \(\tilde λ (\Div \tilde{¦v})®I + 2μ \tilde{®D}_δ\), $$
+	$$ ρ c_V \frac{dθ}{dt} = - θ \frac{\partial p_{th}}{\partial θ}(θ, ρ) \Div ¦v + \Div (k \nabla θ) + \tilde λ(\Div ¦v)^2 + 2μ ®D_δ:®D_δ = 0 \longrightarrow $$
+	$$ \longrightarrow \hat{ρ} c_V|_{ρ=\hat{ρ}, θ = \hat{θ}} \frac{\partial \tilde θ}{\partial t} = \Div(k \nabla \tilde θ) - \hat{θ} \frac{\partial p_{th}}{\partial ρ} |_{ρ = \hat{ρ}, θ = \hat{θ}} \Div \tilde{¦v}. $$
+
+	Test by $\tilde{¦v}$:
+	$$ \int_V \hat{ρ} \frac{\partial \tilde{¦v}}{\partial t}·\tilde{¦v} = \int_V \(- \frac{\partial p_{th}}{\partial ρ} \nabla \tilde ρ - \frac{\partial p_{th}}{\partial θ} \nabla \tilde θ\)·\tilde{¦v} dv + \int_V \Div\(\tilde λ(\Div \tilde{¦v})®I + 2μ \tilde{®D}_δ\)·\tilde{¦v} dv = $$
+	$$ = … + \int_V \Div\(\(\tilde λ(\Div \tilde{¦v})®I + 2μ \tilde{®D}_δ\)\tilde{¦v}\) - \int_V \(\tilde λ(\Div \tilde{¦v})^2 + 2μ\tilde{®D}_δ:\tilde{®D}_δ \Div ¦v\) = … + 0 - …. $$
+	$$ \frac{d}{dt} \frac{1}{2} \int_V \hat{ρ}(\tilde{¦v})^2 dv = \int_V\(-\frac{\partial p_{th}}{\partial ρ} \nabla \tilde ρ - \frac{\partial p_{th}}{\partial θ} \nabla \tilde θ\)·\tilde{¦v} dv - \int_V \(\tilde λ (\Div \tilde{¦v})^2 + 2μ \tilde{®D}_δ:\tilde{®D}_δ\)dv. $$
+	See that viscosity kills kinetic energy. Now we use $\nabla φ · \tilde{¦v} = \Div(φ \tilde{¦v}) - φ \Div \tilde{¦v}$ and on $\Div(…)$ we use Stokes theorem.
+	$$ \frac{d}{dt} \frac{1}{2} \int_V \hat{ρ}(\tilde{¦v})^2 dv = \int_V \frac{\partial p_{th}}{\partial ρ}\tilde ρ \Div \tilde{¦v} dv + \int_V \frac{\partial p_{th}}{\partial θ} \tilde θ \Div \tilde{¦v} dv - \int_V \(\tilde λ (\Div \tilde{¦v})^2 + 2μ \tilde{®D}_δ:\tilde{®D}_δ\)dv. (1) $$
+
+	$$ \frac{\partial \tilde ρ}{\partial t} = - \hat{ρ} \Div \tilde{¦v} \qquad /· \frac{\partial p_{th}}{\partial ρ} \frac{\tilde ρ}{\hat{ρ}}, \int_V $$
+	$$ \frac{d}{dt} \int_V \frac{1}{2} (\tilde ρ)^2 TODO!!! dv = -\int_V \frac{\partial p_{th}}{\partial ρ} \tilde ρ \Div \tilde{¦v} dv. (2) $$
+
+	$$ \hat{ρ} c_V|_{ρ=\hat{ρ}, θ = \hat{θ}} \frac{\partial \tilde θ}{\partial t} = \Div(k \nabla \tilde θ) - \hat{θ} \frac{\partial p_{th}}{\partial ρ} |_{ρ = \hat{ρ}, θ = \hat{θ}} \Div \tilde{¦v} \qquad /· \frac{\tilde θ}{\hat{θ}}, \int_V $$
+	$$ \frac{d}{dt} \int_V \frac{\hat{ρ} c_V}{\hat{θ}}(\tilde θ)^2 dv = - \frac{1}{\hat{θ}} \int_V \nabla \tilde θ · \nabla \tilde θ dv - \int_V \frac{\partial p_{th}}{\partial ρ}|_{ρ = \hat{ρ}, θ = \hat{θ}} (\Div \tilde{¦v})\tilde θ dv. (3) $$
+
+	$(1) + (2) + (3)$:
+	$$ \frac{d}{dt} \int_V \frac{1}{2} \hat{ρ}(\tilde{¦v})^2 + \frac{1}{2} \frac{1}{\hat{ρ}}\frac{\partial p_{th}}{\partial ρ}|_{ρ = \hat{ρ}, θ = \hat{θ}}(\tilde ρ)^2 + \frac{\hat{ρ} c_V}{\hat{θ}}|_{ρ = \hat{ρ}, θ = \hat{θ}} (\tilde θ)^2 = $$
+	$$ = - \frac{1}{\hat{θ}} \int_V \nabla \tilde θ \nabla \tilde θ dv - \int_V \tilde λ (\Div \tilde{¦v})^2 + 2μ\tilde{®D}_δ : \tilde{®D}_δ dv. $$o
+
+	When we rightly choose Helmholtz free energy, $\frac{\partial p_{th}}{ρ, θ} > 0$ and $c_V$ will be positive and we win (perturbations go to zero).
+
+	Z $c_V > 0$ máme $\frac{\partial^2 ψ}{\partial θ^2} < 0$.
+
+	TODO!!!
+\end{poznamka}
+
+% 08. 12. 2023
+
+\begin{poznamka}[For Homework]
+	$\frac{d®H}{dt} ≠ \frac{1}{2} ®B^{-1} \frac{d®B}{dt}$, because there is no commutativity. We must use $®T:…$.
+\end{poznamka}
+
+\begin{poznamka}[*]
+	$®T = \underbrace{-p_{th}(ρ, τ) I} + \underbrace{\tilde λ(\Div ¦v) + 2μ ®D_δ}_{\text{Why this?}}$.
+
+	$$ ®T = -p_{th}(ρ, θ)®I + ®S(¦v). $$
+	Now we use Galilei principle of relativity „$¦x = ¦x + ¦w t$“. We see that this don't work. So we use $\nabla ¦v$ ($\nabla (¦v + ¦w) = \nabla ¦v + \nabla ¦w = \nabla ¦v$):
+	$$ ®T = -p_{th}(ρ, θ)®I + ®S(\nabla ¦v). $$
+	®T is symmetric matrix, so:
+	$$ ®T = -p_{th}(ρ, θ)®I + ®S(®D). $$
+\end{poznamka}
+
+\subsection{Representation theorems for isotropic functions}
+\begin{definice}
+	We say that $φ: ®R^{3 \times 3} \rightarrow ®R$ is isotropic $≡$ $φ(®Q®A®Q^T) = φ(®A)$ holds for any $®Q \in Orth^+$ (= proper orthogonal matrices, i.e. $®Q®Q^T = ®I$, $\det ®Q > 0$).
+
+	\begin{prikladyin}
+		$\tr$ is isotropic, $®A \mapsto a_{11}$ is not isotropic.
+	\end{prikladyin}
+
+	We say that $®F: ®R^{3 \times 3} \rightarrow ®R^{3 \times 3}$ is isotropic $≡$ $©F(®Q®A®Q^T) = ®Q®F(®A)®Q^T$ holds for any $®Q \in Orth^+$.
+
+	\begin{prikladyin}
+		$\id$, $^{-1}$, $\exp$, $\ln$, … is isotropic. $®A \mapsto a_{ii}®I$ is not isotropic.
+	\end{prikladyin}
+\end{definice}
+
+\begin{veta}
+	$φ: Sym(®R^{3 \times 3}) \rightarrow ®R$, $φ$ isotropic $\implies$ $φ(®A) = φ(I_1(®A), I_2(®A), I_3(®A))$.
+	
+	$f: Sym(®R^{3 \times 3}) \rightarrow Sym(®R^{3 \times 3})$, $f$ isotropic $\implies$ $f(®A) = α_0 ®I + α_1 ®A + α_2 ®A$, where $α_i = α_i(I_1(®A), I_2(®A), I_3(®A))$.
+
+	\begin{poznamkain}
+		The second one goes from: Assume $f(®A) = \sum_{i=0}^{+∞} f_i ®A^i$. Then by Cayley–Hamilton $f(®A) = \sum_{i=0}^{2} f_i ®A^i$. Furthermore, $f_i(®A)$ must be isotropic…
+	\end{poznamkain}
+\end{veta}
+
+\begin{poznamka}[Continuation of *]
+	Isotropic fluid: $®S(®D)$ is isotropic function, $®S(®D) = α_0®I + α_1®D + α_2®D^2$. What if we want Linear relation (i.e. $®S(®D)$ is linear function of ®D)? Then $®S(®D) = c_0(\tr ®D)®I + c_1®D$, where $c_0, c_1 = \const$.
+\end{poznamka}
+
+\begin{upozorneni}
+	This remarks (not theorem) works only for fluids, where 0 velocity means 0 stress.
+\end{upozorneni}
+
+\begin{poznamka}[Governing equations for incompressible isotropic fluids]
+	TODO?
+
+	\begin{align*}
+		\Div ¦v &= 0\\
+		ρ \frac{d¦v}{dt} &= -\nabla p + \Div(2μ®D) + ρ¦b\\
+		ρ c_V \frac{dθ}{dt} = …
+	\end{align*}
+
+	So
+	$$ ®T = - p®I + 2μ®D, \qquad \Div ®T = -\nabla p + \Div(2μ®D). $$
+
+	The kind of this $p$ is other than $p_{th}$. This is (artificial) pressure maintaining the incompressibility, and we solve! for it. ($p_{th}$ is function of $ρ$ and $θ$). ®T is not obtained by simply substitution, but from equations above!
+\end{poznamka}
+
+\begin{priklad}[Archimedes law]
+	Any object, wholly or partially immersed in a fluid, is buoyed up by a force equal to the weight of the fluid displaced by the object.
+
+	\begin{poznamkain}
+		Fluid = incompressible fluid. So $®T = -p ®I + 2μ®D$.
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		Weight = body force = gravitation force
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		It talks about floating, so nothing moves!
+	\end{poznamkain}
+
+	\begin{poznamkain}[Governing equations]
+		\begin{align*}
+			\Div ¦v &= 0,\\
+			ρ \frac{d¦v}{dt} &= \Div ®T + ρ ¦b, \qquad ¦b = -g¦e_{\hat{z}},\\
+			®T &= -p®I + 2μ®D,\\
+			¦F &= \int_{\partial ©B} ®T ¦n ds.
+		\end{align*}
+	\end{poznamkain}
+
+	\begin{reseni}
+		1. Solve for ¦v and $p$.
+
+		2. Evaluate ¦F.
+
+		„1.“ is easy, we have static problem, so $¦v = 0$.
+		$$ ρ \frac{d¦v}{dt} = \Div ®T + ρ ¦b \land \Div  ®T = -\nabla p + \Div(2μ®D) \implies \implies 0 = -\nabla p - ρ_{fluid}g ¦e_{\hat{z}} \implies $$
+		$$ \implies \(\frac{\partial p}{\partial x}, \frac{\partial p}{\partial y}, \frac{\partial p}{\partial z}\) = (0, 0, -ρ g) \implies p = -ρ g z + p_0. $$
+
+		„2.“:
+		$$ \int_{\partial ©B} ®T ¦n ds = \int_{\partial ©B}-p®I¦n ds = \int_{\partial ©B} (ρ_{fluid} g z - p_0) = \int_{\partial ©B} (ρ_{fluid} g z¦n)ds - p_0 \int_{\partial ©B}¦n ds =: *. $$
+		By stokes (for constant $¦w$)
+		$$ ¦w·\int_{\partial ©B}¦n ds = \int_{\partial ©B}¦w·¦n = \int_{©B} \Div ¦w dv = 0. $$
+		So $\int_{\partial ©B}¦n ds = 0$. Continue:
+		$$ * = \int_{\partial ©B} (ρ_{fluid} g z ¦n) ds, $$
+		for constant ¦w:
+		$$ ¦F·¦w = \int_{\partial ©B} (ρ_{fluid} g z ¦w)·¦n ds = \int_{©B} ρ_{fluid} g \Div (z ¦w) dv + \int_{©B} ρ_{fluid} g ((\nabla z)·¦w + z\Div ¦w dv = ρ_{fluid} g \int_{©B} 1dv ¦e_{\hat{z}}·¦w. $$
+	
+		So $¦F = ρ_{fluid} g V ¦e_{\hat{z}}$.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Stability of flow in a container]
+	$¦v|_{\partial Ω} = ¦o$, $®T = -p®I + 2μ®D$.
+
+	$t \rightarrow +∞ \implies ¦v \rightarrow ¦o$.
+
+	\begin{prikladin}
+		$$ \Div ®T = -\nabla p + μΔ¦v. $$
+	\end{prikladin}
+
+	\begin{poznamkain}[Governing equations]
+		\begin{align*}
+			\Div ¦v &= 0,\\
+			ρ \frac{d¦v}{dt} &= \Div ®T = -\nabla p + μ Δ ¦v,\\
+			¦v|_{\partial Ω} &= ¦o,\\
+			¦v|_{t_0} &= ¦v_0.
+		\end{align*}
+	\end{poznamkain}
+
+	\begin{reseni}
+		Test equation by solution:
+		$$ \int_Ω ρ \frac{d¦v}{dt}·¦v = \int_Ω (-(\nabla p)·¦v + μ(Δ¦v)·¦v) dv. $$
+		$$ ρ \int_Ω \((¦v·\nabla)¦v\)·¦v dv = ρ \int_Ω v_i \frac{\partial v_j}{\partial x_i} v_j dv = \frac{1}{2}ρ \int_Ω v_i \frac{\partial}{\partial x_i}(v_j)^2 dv = $$
+		$$ = ρ \in_Ω ¦v·\nabla \(\frac{|¦v|^2}{2}\)dv = ρ \int_Ω \Div(¦v \frac{|¦v|^2}{2}) dv = ρ \int_{\partial Ω} \frac{|¦v|^2}{2}(¦v·¦n)ds = 0. $$
+		$$ \frac{d}{dt} \int_{©B} \frac{1}{2} ρ(¦v)^2 dv = … - μ\int_{©B} (\nabla ¦v):\nabla ¦v dv. $$
+		Poincaré inequality (we live in Dirichlet zero $\impliedby$ boundary conditions):
+		$$ \int |\nabla ¦v|^2 ≤ C_p^2 \int |\nabla ¦v|^2. $$
+		$$ \frac{1}{2} ρ \frac{d}{dt} \int_Ω ≤ - \frac{μ}{C_p} \int_Ω |¦v|^2 dv $$
+		$$ \frac{d}{dt}(\|¦v\|^2_{L^2(Ω)}) ≤ \frac{-2μ}{ρC_p} \|¦v\|_{L^2(Ω)}^2. $$
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	$$ \Div ¦v = 0 \qquad ρ \frac{d¦v}{dt} = -\nabla p + μ Δ¦v. $$
+
+	\begin{poznamkain}[Dimensionless form]
+		$l_{char}$ = Characteristic length = arbitrary chosen length. $v_{char}$ = characteristic velocity. $t_{char} = l_{char} / v_{char}$.
+
+		Dimensionless variables: $¦x^* = ¦x / l_{char}$, $t^* = t / t_{char}$, $¦v^* = ¦v / v_{char}$.
+
+		$$ \Div^* ¦v^* = 0. $$
+		$$ ρ \frac{v_{char}}{t_{char}} \frac{d¦v^*}{dt^*} = - \frac{1}{l_{char}}(\nabla^* p^*)p_{char} + \frac{μ}{l_{char}^2}(Δ^*¦v^*)v_{char}, $$
+		$$ \frac{d¦v^*}{dt^*} = \frac{t_{char}}{ρ v_{char} l_{char}}(\nabla^* p^*)p_{char} + \frac{μv_{char}}{l_{char}^2} \frac{t_{char}}{ρ v_{char}} Δ^* ¦v^*, $$
+		$$ \frac{dv^*}{dt^*} = - \frac{p_{char}}{ρv_{char}^2}(\nabla^* p^*) + \frac{μ}{ρ l_{char} v_{char}} Δ^* ¦v^*. $$
+
+		$p_{char} := ρv_{char}^2$
+		$$ \implies \frac{d¦v^*}{dt^*} = -\nabla^* p^* + \frac{1}{Re}Δ^* ¦v^*, $$
+		where $\frac{1}{Re} := \frac{μ}{ρ l_{char} v_{char}}$ is Reinold's number.
+	\end{poznamkain}
+\end{priklad}
 
 \end{document}
