@@ -1219,21 +1219,334 @@ TODO!!!
 \end{tvrzeni}
 
 \begin{lemma}
-	Let $L: ©S(®R^d) \rightarrow ©S(®R^d)$ is linear. Then $L$ is continuous $\Leftrightarrow$ $\forall N \in ®N_0\ \exists c > 0\ \exists M \in ®N_0: p_N(c·(f)) ≤ c·p_M(f)$, $f \in ©S(®R^d)$, $α \in ®N_0^d$, $f \mapsto D^α f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
+	%Let $L: ©S(®R^d) \rightarrow ©S(®R^d)$ is linear. Then $L$ is continuous $\Leftrightarrow$ $\forall N \in ®N_0\ \exists c > 0\ \exists M \in ®N_0: p_N(c·(f)) ≤ c·p_M(f)$, $f \in ©S(®R^d)$, $α \in ®N_0^d$.
+
+	$f \mapsto D^α f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
 
 	\begin{dukazin}
 		$f \in ©S(®R_6d)$, $α \in ®N_0^d$ $\implies$ $D^α f \in L^∞()®R^d$. Fix $N \in ®N_0$ and $β$, $|β| ≤ N$:
 		$$ |(1 + \|x\|^2)^N D^β(D^α f)(x)| = (1 + \|x\|^2)^N |D^{β+α} f(x)| ≤ p_{N + |α|}(f) \implies p_N(D^α f) ≤ p_{N+|α|}(f). $$
 	\end{dukazin}
-\end{lemma}
-
-\begin{poznamka}
+	
 	$p$ is polynomial $\implies$ $f \mapsto p·f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
 
 	\begin{dukazin}
 		Clearly $p·f \in C^∞(®R^d)$. Fix $N \in ®N_0$. Then $\exists c > 0, m \in ®N$ such that
 		$$ \forall α, |α| ≤ N,\ \forall x \in ®R^dL |D^α p(x)| ≤ c·(1 + \|x\|^2)^m. $$
-		-> next lecture
+
+% 12. 12. 2023
+
+		Fix $α$, $|α| ≤ N$, $x \in ®R^d$:
+		$$ |(1 + \|x\|^2)^N D^α(p·f)(x)| = (1 + \|x\|^2)^N |\sum_{β ≤ α} \binom{α}{β} D^β p(x) D^{α - β}f(x)| ≤ $$
+		$$ ≤ c·(1 + \|x\|^2)^{N+M} \sum_{β ≤ α} \binom{α}{β} |D^{α - β} f(x)| ≤ c·\sum_{β ≤ α} \binom{α}{β} p_{N+M}(f) ≤ c·2^N p_{N+M}(f) \implies $$
+		$$ \implies p_N(p·f) ≤ c·2^N p_{N+M}(f). $$
+	\end{dukazin}
+
+	$g \in ©S(®R^d)$ $\implies$ $f \mapsto f·g$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
+
+	\begin{dukazin}
+		$g \in ©S(®R^d)$ $\implies$ $\forall α: D^α g$ is bounded on $®R^d$. Fix $N \in ®N_0$. Set $C := \max_{|α| ≤ N} \|D^α g\|_∞$. Fix $α$, $|α| ≤ N$, $x \in ®R^d$.
+		$$ \left|(1 + \|x\|^2)^N D^α(f·g) (x)\right| = (1 + \|x\|^2)^N \left|\sum_{β ≤ α} \binom{α}{β} D^β g(x) D^{α - β}f(x)\right| ≤ $$
+		$$ C·\sum_{β ≤ α} p_N(f) ≤ C·2^N ·p_N(f) \implies p_N(g·f) ≤ C·2^N p_N(f). $$
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Similarly one may probe that:
+		$$ g \in C^∞(®R^d), \forall α\ \exists P_α \text{ polynomial }: |D^α g| ≤ |P_α| \text{ on } ®R^d \implies f \mapsto f·g \text{ is a continuous mapping } ©S(®R^d) \rightarrow ©S(®R^d). $$
+	\end{poznamkain}
+\end{lemma}
+
+\begin{tvrzeni}
+	Let $Λ \in ©S'(®R^d)$.
+
+	a) $\forall α: D^α Λ \in ©S'(®R^d)$ and $D^α Λ(φ) = (-1)^{|α|}Λ(D^α φ)$, $φ \in ©S(®R^d)$.
+
+	\begin{dukazin}
+		$φ \in ©S(®R^d) \implies D^αφ \in ©S(®R^d)$. So, $\tilde Λ(φ) = (-1)^{|α|}Λ(D^α φ)$, $φ \in ©S(®R^d)$, is well-defined linear functional on $©S(®R^d)$ whose restriction to $©D(®R^d)$ is $D^αΛ$. „Continuity:“ $φ_n \rightarrow φ$ in $©S(®R^d)$ $\implies$ (by the previous lemma) $D^α φ_n \rightarrow D^α φ$ in $©S(®R^d)$, so $\tilde Λ(φ_n) = (-1)^{|α|}Λ(D^αφ_n) \rightarrow (-1)^{|α|} Λ(D^α φ) = \tilde Λ(φ)$.
+	\end{dukazin}
+
+	b) $f \in ©S(®R^d)$ and $f$ is a polynomial $\implies$ $f·Λ \in ©S'(®R^d)$ and $fΛ(φ) = Λ(fφ)$, $φ \in ©S(®R^d)$.
+
+	\begin{dukazin}[Skipped on lecture]
+		Completely analogous to a).
+	\end{dukazin}
+
+	c) $y \in ®R^d \implies τ_y Λ \in ©S'(®R^d), τ_yΛ(φ) = Λ(τ_{-y} φ), φ \in ©S'(®R^d)$.
+
+	\begin{dukazin}
+		„$φ \in ©S(®R^d) \implies τ_{-y}φ \in ©S(®R^d)$, $τ_{-y}φ(x) = φ(x - y)$“: Clearly $τ_{-y} φ \in C^∞(®R^d)$.
+		$$ |α| ≤ N: (1 + \|x\|^2)^N D^α τ_{-y}φ(x) = (1 + \|α\|^2)^N D^α φ(x + y) = \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·(1 + \|x + y\|^2)^N D^α φ(x + y) ≤ \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·p_N(φ) ≤ M^N, $$
+		where $M = \sup_{t \in [0, ∞)} \frac{1 + t^2}{1 + (t - \|y\|)^2} < ∞$. $\implies$ $τ_{-y}φ \in ©S(®R^d)$ and $p_N(τ_{-y}φ) ≤ M^N p_N(φ)$. So $φ \mapsto τ_{-y} φ$ is continuous and then continue as in a).
+	\end{dukazin}
+
+	d) $\check Λ \in ©S'(®R^d)$, $\check Λ(φ) = Λ(\check φ)$, $φ \in ©S(®R^d)$.
+
+	\begin{dukazin}
+		Observe that $φ \in ©S(®R^d) \implies \check φ \in ©S(®R^d)$ ($\check φ(x) = φ(-x)$) and $p_N(\check φ) = p_N(φ)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$Λ_n \rightarrow Λ$ in $©S'(®R^d)$. a) $\forall α: D^α Λ_n \rightarrow D^α Λ$, b) $f \in ©S(®R^d)$ and $f$ is polynomial $\implies$ $f Λ_n \rightarrow fΛ$.
+
+	\begin{dukazin}
+		„a)“: $φ \in ©S(®R^d)$:
+		$$ D^α Λ_n(φ) = (-1)^{|α|} Λ_n(D^α φ) \rightarrow (-1)^{|α|}Λ(D^α φ) = D^α Λ(φ). $$
+		„b)“ similarly.
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{Convolution and the Fourier transform of tempered distributions}
+\begin{poznamka}[Recall]
+	$f \in L^1(®R^d) \implies \hat{f}(t) = \int_{®R^d} f(x) e^{-i\<t, x\>} d m_d(x)$.
+
+	Fourier transform maps $L^1(®R^d)$ into $C_0(®R^d)$ and $©S(®R^d)$ onto $©S(®R^d)$.
+
+	$$ \hat{\hat{f}} = \check f, \qquad f \in ©S(®R^d), \qquad \(\hat{\hat{\hat{\hat{f}}}} = f\). $$
+\end{poznamka}
+
+\begin{lemma}
+	Fourier transform is an isomorphism of $©S(®R^d)$ onto $©S(®R^d)$.
+
+	\begin{dukazin}
+		1. The theorem above $\implies$ Fourier transform is a linear bijection $©S(®R^d)$ and $©S(®R^d)$.
+
+		2. $m := \left\lfloor\frac{d}{2}\right\rfloor + 1$. Then
+		$$ C:= \int_{®R^d} \frac{1}{(1 + \|x\|^2)^m} d m_d(x) ≤ ∞ $$
+		$$ f \in ©S(®R^d) \implies \|\hat{f}\|_∞ ≤ \|f\|_{L^1} = \int_{®R^d} |f(x)| d m_d(x) ≤ \int_{®R^d} \frac{(1 + \|x\|^2)^m |f(x)|}{(1 + \|x\|^2)^m} d m_d(x) ≤ C·p_m(f). $$
+		TODO!!!
+
+		3. Fix $N \in ®N_0$, $α$, $|α| ≤ N$.
+		$$ f \in ©S(®R^d): (1 + \|x\|^2)^N D^α \hat{f}(x) = (1 + \|x\|^2)^N \widehat{(y \mapsto (-1)^{|α|} y^α f(y))}(x) = $$
+		$$ = (-1)^{|α|} \widehat{(y \mapsto \breve{\breve{p}}(D) (y^α(f(y))))}(x) = (-1)^{|α|} \widehat{(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))}(x), $$
+		where $\breve p(x) = p(ix)$, $p(D)f = \sum_{c_α}D^α f$ if $p(x) = \sum c_α x^α$. $\breve{\breve p}(x) = (1 - \sum_{j=1}^d x_j^2)^N$ a polynom of degree $2N$.
+
+		So, $\|x \mapsto (1 + \|x\|^2)^N D^α \hat{f}(x)\|_∞ ≤ c·p_m(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))$. From the previous lemma $f \mapsto \sum_{|β| ≤ @N} a_β D^β (y^α f(y))$ is continuous.
+
+		So, $\exists M = M_{N, α} > 0$, $\exists m = m_{N, α} \in ®N_0$:
+		$$ p_m(y \mapsto \sum_{|β| ≤ 2N} a_β D^β (y^α f(y))) ≤ M·p_n(f) \implies $$
+		$$ \implies \|x\| \mapsto (1 + \|x\|^2)^N D^α \hat{f}(x)\|_∞ ≤ C·M·p_m(f). $$
+
+		4. So, $p_N(\hat{f}) ≤ C·\tilde M· p_{\tilde m}(t)$, where $\tilde M = \max_{|α| ≤ N} M_{N, α}$, $\tilde m = \max_{|α| ≤ N} m_{N, α}$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}
+	$Λ \in ©S'(®R^d)$: $\hat{Λ}(φ) = Λ(\hat{φ})$, $φ \in ©S(®R^d)$.
+
+	\begin{poznamkain}
+		$\hat{Λ} \in ©S'(®R^d)$: $φ_n \rightarrow φ$ in $©S(®R^d)$ $\implies$ $\hat{φ_n} \rightarrow \hat{φ}$ in $©S(®R^d)$ $\implies$ $\hat{Λ}(φ_n) = Λ(\hat{φ_n}) \rightarrow Λ(\hat{φ}) = \hat{Λ}(φ)$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	a) Fourier transform is a linear bijection of $©S'(®R^d)$ onto $©S'(®R^d)$.
+
+	\begin{dukazin}
+		$\hat{\hat{Λ}} = \check Λ$, $\hat{\hat{\hat{\hat{Λ}}}} = Λ$ for $Λ \in ©S'(®R^d)$, $\check(Λ)(φ) = Λ(\check φ)$, $\hat{Λ_1} = \hat{Λ_2} \implies \hat{\hat{\hat{\hat{Λ_1}}}} = \hat{\hat{\hat{\hat{Λ_2}}}} \implies Λ_1 = Λ_2$.
+	\end{dukazin}
+
+% 15. 12. 2023
+
+	b) $Λ_n \rightarrow Λ$ in $©S'(®R^d)$ $\implies$ $\hat{Λ_n} \rightarrow \hat{Λ}$ in $©S'(®R^d)$.
+
+	\begin{dukazin}
+		$$ \hat{Λ_n}(φ) = Λ_n(\hat{φ}) \rightarrow Λ(\hat{φ}) = \hat{Λ}(φ). $$
+	\end{dukazin}
+
+	c) $f \in C^1(®R^d) \implies \hat{Λ_f} = Λ_{\hat{f}}$.
+
+	\begin{dukazin}
+		$$ \hat{Λ_f}(φ) = Λ_f(\hat{φ}) = \int f \hat{φ} d m_d = \int \hat{f} φ d m_d = Λ_{\hat{f}}(φ). $$
+	\end{dukazin}
+
+	d) $f \in L^2(®R^d) \implies \hat{Λ_f} = Λ_{©P(f)}$, where ©P is the Plancherel transform.
+
+	\begin{dukazin}
+		$f_n := f·χ_{U(¦o, n)}$. Then $f_n \in L^1(®R^d) \cap L^2(®R^d)$, $f_n \rightarrow f$ in $L^2(®R^d)$, and, moreover, $\hat{f_n} \rightarrow ©P(f)$ in $L^2(®R^d)$. So,
+		$$ \hat{Λ_f}(φ) = Λ_f (\hat{φ}) = \int_{®R^d} f \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} f_n \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} \hat{f_n} φ = \int_{®R^d} ©P(f) φ d m_d = L_{©P(f)}(φ). $$
+	\end{dukazin}
+
+	e) $p$ polynomial $\implies$ $\widehat{p(D) Λ} = \breve p \hat{Λ}$, $\widehat{p·Λ} = \breve p(D) \hat{Λ}$.
+	$$ \(\breve p(t) = p(it), \qquad \check p(t) = p(-t), \qquad p(t) = \sum c_α t^α \implies p(D) f = \sum c_α D^α f.\) $$
+
+	\begin{dukazin}
+		$$ \widehat{p(D) Λ}(φ) = p(D) Λ(\hat{φ}) = Λ(\check(D) \hat{φ}) = Λ\(\widehat{\breve p φ}\) = \hat{Λ}(\breve p φ) = \breve p \hat{Λ}(φ). $$
+		$$ \widehat{p·Λ}(φ) = p·Λ(\hat{φ}) = Λ(p \hat{φ}) = Λ\(\widehat{\breve{\check{p}}(D)φ}\) = \hat{Λ}(\breve{\check{p}}(D)φ) = \breve p(D)\hat{Λ}(φ). $$
+	\end{dukazin}
+
+	\begin{poznamkain}
+		In particular
+		$$ \widehat{D^α Λ} = (x \mapsto c^{|α|}x^α) \hat{Λ}, \qquad \widehat{(x \mapsto x^α) L} = c^{|α|}D^α \hat{Λ}. $$
+	\end{poznamkain}
+\end{veta}
+
+\begin{poznamka}
+	Next two lemmata are analogues of Lemmata above.
+\end{poznamka}
+
+\begin{lemma}
+	a) $φ \in ©S(®R^d)$, $x_n \rightarrow x$ in $®R^d$ $\implies$ $τ_{x_n} φ \rightarrow τ_x φ$ in $©S(®R^d)$.
+
+	\begin{dukazin}
+		Fix $N \in ®N_0$, $α \in ®N_0^d$, $|α| ≤ N$. $x, z \in ®R^d$:
+		$$ \left|(1 + \|x\|^2)^N D^α τ_z φ(y) - (1 + \|y\|^2)^N D^α τ_x φ(y)\right| = (1 + \|y\|^2)^N \left| \int_0^1 \frac{d}{dt} D^α φ(y - x - t(z - x)) dt \right| ≤ $$
+		$$ ≤ (1 + \|y\|^2)^N \int_0^1 \left| \sum_{j = 1}^d D^{α + e_j} φ(y - x - t(z - x))(x_j - z_j)\right| dt ≤ $$
+		$$ ≤ (1 + \|y\|^2)^N \int_0^1 \left| \sum_{j = 1}^d D^{α + e_j} φ(y - x - t(z - x))^2\right|^{1 / 2} \|x - z\| dt ≤ $$
+		$$ ≤ \|x - z\| p_{N+1}(φ) (1 + \|y\|^2)^N \int_0^1 \frac{\sqrt{d} dt}{(1 + \|y - x - t(z - x)\|^2)^{N+1}} ≤ $$
+		$$ ≤ \|x - z\| p_{N+1}(φ)·\sqrt{d} \frac{(1 + \|y\|^2)^N}{(1 + \|y - x\|^2 - \|y - x\|)^{N+1}}. $$
+		$$ \(1 + \|y - x\| - t\|z - x\|^2 ≥ 1 + \|y - x\|^2 - \|y - x\|, \text{ if } \|z - x\| ≤ \frac{1}{2}.\) $$
+	\end{dukazin}
+
+	b) skipped and proof skipped too.
+\end{lemma}
+
+\begin{lemma}[RT]
+	$$ Λ \in ©S'(®R^d) \Leftrightarrow \exists N \in ®N_0, μ_α, |α| ≤ N_0: Λ(φ) = \sum_{|Λ| ≤ N} \int_{®R^d} (1 + \|x\|^2)^N D^α φ(x) d μ_α(x), \quad φ \in ©S(®R^d). $$
+	(Finite signed/complex measure on $®R^d$.)
+\end{lemma}
+
+\begin{definice}
+	$$ U \in ©S'(®R^d), φ \in ©S(®R^d) \implies U * φ(x) = U(τ_x \check φ) = U(y \mapsto φ(x - y)). $$
+\end{definice}
+
+\begin{veta}[Analogues to the theorem above]
+	a) skipped.
+
+	b) $Λ_{U*φ}$ is a tempered distribution.
+
+	\begin{dukazin}
+		The proposition above $\implies$ $\exists N, C$ such that $|U(ψ)| ≤ c·p_N(ψ)$
+		$$ \implies |(U*φ)(x)| = |U(τ_x \check φ)| ≤ C·p_N(τ_x \check φ). $$
+
+		$$ |α| ≤ N: |(1 + \|y\|^2)^N D^α φ(x - y)| ≤ p_N(φ)·\(\frac{1 + \|y\|^2}{1 + \|x - y\|^2}\)^N ≤ p_N(φ) (1 + \|y\| + \|x\|^2)^N \implies Λ_{U*φ}' \text{ is tempered}. $$
+		$$ \frac{1 + \|y\|^2}{1 + \|x - y\|^2} = \frac{1 + \|y - x\|^2 + 2\<y - x, x\> + \|x\|^2}{1 + \|x - y\|^2} = $$
+		$$ = 1 + \frac{2·\|y - x\|·\|x\|}{1 + \|x - y\|^2} + \frac{\|x\|^2}{1 + \|x - y\|^2} ≤ 1 + \|x\| + \|x\|^2. $$
+	\end{dukazin}
+
+	c) skipped.
+
+	d) $\widehat{Λ_{U*φ}} = \hat{φ}·\hat{U}$, $\widehat{φ·U} = Λ_{\hat{φ}*\hat{U}}$.
+
+	\begin{dukazin}
+		$$ \widehat{Λ_{U*φ}}(ψ) = Λ_{U*φ}(\hat{ψ}) = \int_{®R^d} (U*φ)(x) \hat{ψ}(x) f m_d(x) = \int_{®R^d} U(y \mapsto φ(x - y)) \hat{ψ}(x) d m_d(x) = $$
+		$$ = U(y \mapsto \int_{®R^d} φ(x - y)\hat{ψ}(x) d m_d(x)) = U(\check φ * \hat{ψ}) = U(\hat{\hat{φ}} + \hat{ψ}) = U(\widehat{\hat{φ}·ψ}) = \hat{U}(\hat{φ}·ψ) = \hat{φ}·\hat{U}(ψ). $$
+		$$ Λ_{\hat{φ}*\hat{U}} = \widehat{\widehat{\widehat{\widehat{Λ_{\hat{φ} + \hat{U}}}}}} = \widehat{\widehat{\widehat{\hat{\hat{φ}}·\hat{\hat{U}}}}} = \widehat{\widehat{\widehat{\check φ·\check U}}} = \widehat{\widecheck{\check φ · \check U}} = \widehat{φ U}. $$
+	\end{dukazin}
+\end{veta}
+
+\section{Elements of vector integration}
+\begin{poznamka}
+	$(M, ©A)$ is measure space, $(Ω, Σ, μ)$ is a complete measure space ($μ≥0$), $X$ is a Banach space.
+\end{poznamka}
+
+\subsection{Measurability}
+\begin{definice}
+	$f: M \rightarrow X$.
+
+	\begin{itemize}
+		\item $f$ is simple, if $f(M)$ is finite , i.e. $f = \sum_{j=1}^k x_j χ_{A_j}$, where $x_j \in X$, $A_j \subset M$ pairwise disjoint;
+		\item $f$ is simple measurable, if $f$ is a simple and, moreover, $A_j \in ©A$;
+		\item $f$ is (strongly) ©A-measurable if $\exists (u_n)$ simple measurable: $u_n \rightarrow f$ point-wise, i.e. $\forall x \in M: u_n(x) \rightarrow f(x)$ in $(X, \|·\|)$;
+		\item $f$ is Borel ©A-measurable, if $\forall U \subset X$ open: $f^{-1}(U) \in ©A$;
+		\item $f$ is weakly ©A-measurable if $\forall φ \in X^*: φ ∘ f$ is ©A-measurable.
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}
+	a) Simple functions, simple measurable functions, strongly ©A-measurable functions, and weakly ©A-measurable functions form vector spaces.
+	\begin{dukazin}
+		$f, g: M \rightarrow X$, $α, β \in ®F$.
+		\begin{itemize}
+			\item „$f, g$ simple $\implies$ $α f + β g$ is simple“: $(αf + βg)(M) \subset αf(M) + βg(M)$.
+			\item „$f, g$ simple measurable $α f + βg$ is simple measurable“:
+				$$ f = \sum_{j=1}^k x_j χ_{A_j}, \quad g = \sum_{l=1}^m y_l χ_{B_l}, \qquad αf + βg = \sum_{j=1}^k \sum_{l=1}^m (αx_j + β y_l)·χ_{A_j \cap B_l}, \qquad A_j, B_l \in ©A \implies A_j \cap B_l \in ©A. $$
+			\item „$f, g$ strongly ©A-measurable $\implies$ $α f + β g$ is strongly ©A-measurable“: $f = \lim u_n$, $g = \lim v_n$, $u_n, v_n$ simple measurable, $α f + β g = \lim (α u_n + β v_n)$.
+			\item „$f, g$ weakly ©A-measurable $\implies$ $α f + β g$ weakly ©A-measurable“: $\forall φ \in X^*: φ∘(α f + β g) = α φ ∘ f + β φ ∘ g$ (measurable by the scakercah?).
+		\end{itemize}
+	\end{dukazin}
+
+	b) $f_n \rightarrow f$ point-wise, $f_n$ Borel ©A-measure (resp. weakly ©A-measurable) $\implies$ $f$ is Borel ©A-measurable (resp. weakly ©A-measurable).
+
+	\begin{dukazin}
+		Assume that $\forall n$: $f_n$ is Borel ©A-measurable. $U \subset X$ open:
+		$$ f^{-1}(U) = \bigcup_{n \in ®N} \bigcup_{m \in ®N} \bigcap_{k=m}^∞ f_k^{-1}(\{x \in X | \dist(x, X \setminus U) > \frac{1}{n}\}), $$
+		$$ f(x) \in U \Leftrightarrow \exists n \in ®N\ \exists m \in ®N\ \forall k ≥ m: \dist(f_k(x), X \setminus U) > \frac{1}{n}. $$
+
+		$f_n$ are wakly ©A-measurable, $φ \in X^*$ $\implies$ $\forall n: φ ∘ f_n$ is Borel ©A-measurable and $φ ∘ f_n \rightarrow φ ∘ f$, so, $φ ∘ f$ is Borel ©A-measurable.
+	\end{dukazin}
+
+	c) $f$ is strongly ©A-measurable $\implies$ $f$ is Borel ©A-measurable $\implies$ $f$ is weakly ©A-measurable.
+
+	\begin{dukazin}
+		$f$ is simple $\implies$ ($f$ is simple measurable $\Leftrightarrow$ $f$ is Borel ©A-measurable).
+
+		„$f$ strongly ©A-measurable $\implies$ $f$ Boreal ©A measurable“: $f = \lim u_n$, $u_n$ simple measurable, then $u_n$ are Borel ©A-measurable, so by b), $f$ is Borel ©A-measurable.
+
+		„$f$ Borel ©A-measurable $\implies$ $f$ is weakly ©A-measurable“: $φ \in X^*$, $U \subset ®F$ open $\implies$ $(φ ∘ f)^{-1}(U) = f^{-1}(\underbrace{φ^{-1}(U)}_{\text{open}}) \in ©A$.
+
+		„$f$ simple, weakly ©A-measurable $\implies$ $f$ is simple measurable“: $f(M) = \{x_1, …, x_k\}$, distinct points. „$f^{-1}(x_1) \in ©A$“: for $j \in \{2, …, k\}$ find $φ_j \in X^*$, $φ_j(x_1) ≠ φ_j(x_j)$. Then
+		$$ f^{-1}(x_1) = \bigcap_{j=2}^k \{t \in M | φ_j(f(t) - x_j) ≠ 0\} = \bigcap_{j=2}^k \overbrace{(φ_j ∘ f)^{-1}(\underbrace{®F \setminus \{φ_j(x_j)\}}_{\text{open}})}^{\in ©A}. $$
+	\end{dukazin}
+
+	d) $f: M \rightarrow X$ strongly ©A-measurable $\implies$ $f(M)$ is separable.
+
+	\begin{dukazin}
+		$f = \lim u_n$, $u_n$ simple measurable. $f(M) \subset \overline{\bigcup_n u_n(M)}$.
+	\end{dukazin}
+
+	e) $f$ Borel ©A-measurable $\implies$ $t \mapsto \|f(t)\|$ measurable.
+
+	\begin{dukazin}
+		$h(x) = \|x\|$, $x \in X$, is continuous, hence $h ∘ f$ is measurable:
+		$$ U \text{ open}: (h∘f)^{-1}(U) = f^{-1}(\underbrace{h^{-1}}_{\text{open}}) \in ©A. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}
+	$(f_n)$ strongly ©A-measurable, $f_n \rightarrow f$ point-wise $\implies$ $f$ is strongly ©A-measurable.
+
+	\begin{dukazin}
+		$u_{m, n}$ simple measurable, $u_{m, n} \overset{m}\rightarrow f_n$.
+		$$ C = \bigcup_{m, n} u(m, n)(M) \text{ is countable, so, } C = \{x_k, k \in ®N\}. $$
+		For $k \in ®N$ define $g_k: M \rightarrow X$ by $g_k(x) = $ the point from $\{x_1, …, x_k\}$ nearest to $f(x)$ (the first such point). Then $g_k$ is simple, $g_k \rightarrow f$ point-wise ($t \in M$, $ε > 0$ $\implies$ $\exists n_0\ \forall n ≥ n_0: \|f_n(t) - f(t)\| < ε/2$. Fix one $n ≥ n_0$ $\implies \exists m_9\ \forall m ≥ m_0: \|u_{m, n}(t) - f_n(t)\| < ε/2$. Fix one $m ≥ m_0$ $\implies \|u_{m, n}(t) - f(t)\| < ε$, and there is $k_0$ such that $u_{m, n}(t) = x_{k_0}$. Then for $k ≥ k_0$: $\|f(t) - g_k(t)\| ≤ \|f(x) - x_{k_0}\| < ε$).
+
+		„$g_k$ are also simple measurable“: $f$ is Borel ©A–measurable $\implies$ $\forall x \in X$: $f - x$ is Borel ©A-measurable $\implies$ $\forall x \in X$: $t \mapsto \|f(t) - x\|$ is measurable, $g_k(t) = x_j$
+		$$ \Leftrightarrow \forall i \in [k]: \|x_j - f(x)\| ≤ \|x_i - f(x)\| \land \forall i < j: \|x_j - f(x)\| < \|x_i - f(x)\| $$
+		$$ \Leftrightarrow \forall i \in [k]\ \forall g \in ®Q: \|x_j - f(x)\| ≤ q \lor \|x_i - f(x)\| ≥ q \land \forall i < j\ \exists q \in ®Q: \|x_j - f(x)\| < q \land \|x_i - f(x)\| > q. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$f: M \rightarrow X$. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $f$ is strongly ©A-measurable;
+		\item $f$ is Borel ©A-measurable and $f(M)$ is separable;
+		\item $f$ is weakly ©A-measurable and $f(M)$ is separable.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2. \implies 3.$“ from the previous proposition. „$3. \implies 1.$“: Firstly WLOG  $X$ is separable (replace $X$ by $\overline{\LO f(M)}$). Secondly let $(x_n)$ be a dense sequence in $X$.
+		$$ \forall n: \text{ fix } φ_n \in X^*, \|φ_n\| = 1, φ_n(x_n) = \|x_n\|. $$
+		Thirdly $\forall x \in X: \|x\| = \sup_n |φ_n(x)|$ („$≥$“: clear as $\|φ_n\| = 1$, „$≤$“: it holds for $x = x_n$, so on dense set, LHS is continuous, RHS is continuous (supremum of 1-Lipschitz functions), so it holds on $X$). Fourthly $\forall x \in X: t \mapsto \|f(t) - x\|$ is measurable ($\|f(t) - x\| = \sup_n |(φ_n ∘ f)(t) - φ_n(x)|$, so supremum from ©A-measurable functions).
+
+		Fifthly $k, n \in ®N$: $A_n^k := f^{-1}(U(x_n, 1 / k)) = \{t \in M\middle| \|f(t) - x_n\| < 1 / k\} \in ©A$ by fourthly.
+		$$ \bigcup_n A_n^k = M, \qquad B_n^k = A_n^k \setminus \bigcup_{j < n} A_j^k \in ©A, \qquad \bigcup_n B_n^k = M, $$
+		and $\{B_n^k, n \in ®N\}$ is pair-wise disjoint.
+
+		Define $g_k(t) = x_n$, $t \in B_n^k$. Then $\|g_k(t) - f(t)\| < \frac{1}{k}$. So $g_k \rightrightarrows f$ on $M$. $g_n$ is strongly measurable. $g_k = \lim_{n \rightarrow ∞} \sum_{j=1}^n x_j χ_{B_j^k}$, so, by the previous lemma $f$ is strongly ©A-measurable.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	$(Ω, Σ, μ)$ complete measure space, $f: Ω \rightarrow X$ is strongly $μ$-measurable if $\exists (u_n)$ simple measurable such that $u_n \rightarrow f$ point-wise $μ$-almost everywhere.
+\end{definice}
+
+\begin{poznamka}
+	$f$ is strongly $μ$-measurable $\Leftrightarrow$ $\exists g$ strongly $Σ$-measurable: $f = g$ almost everywhere.
+
+	\begin{dukazin}
+		„$\impliedby$“ obvious. „$\implies$“: $u_n$ simple measurable, $u_n \rightarrow f$ almost everywhere. $\exists N, μ(N) = 0: u_n \rightarrow f$ on $Ω \setminus N$. Modify $u_n, f$: $v_n = 0$ on $N$ and $u_n$ on $Ω \setminus N$, $g = 0$ on $N$ and $f$ on $Ω \setminus N$. $v_n$ simple measurable, $v_n \rightarrow g$.
 	\end{dukazin}
 \end{poznamka}
 

@@ -9,35 +9,46 @@
 	Find all distributions $U$ on ®R satisfying $\sin · U = 0$.
 
 	\begin{reseni}
-		Nejprve dokážeme, že „$\supp U \subseteq \{k·π | k \in ®Z\} =: π®Z$“: Máme-li $f \in ©D(®R)$ takovou, že $\supp φ \subset (a, b)$ pro nějaký interval $[a, b] \cap π®Z = \O$. Potom definujme
+		Nejprve dokážeme, že „$\supp U \subseteq \{k·π | k \in ®Z\} =: π®Z$“: Máme-li $φ \in ©D(®R)$ takovou, že $\supp φ \subset (a, b)$ pro nějaký interval $[a, b] \cap π®Z = \O$, potom definujme
 		$$ ψ(x) = \begin{cases}0, \qquad x \notin (a, b)\\ \frac{φ(x)}{\sin(x)}, \qquad x \in (a, b)\end{cases}. $$
-		Potom $ψ$ je zřejmě dobře definované, neboť $\sin(x) ≠ 0$ pro žádné $x \in (a, b)$. Navíc podíl dvou $C^∞$ funkcí, kde jmenovatel nenabývá nuly, je $C^∞$ funkce, a zřejmě každá derivace bude mít support uvnitř $(a, b)$. Tedy $ψ \in C^∞$. Tudíž dostáváme, co jsme chtěli dokázat:
+		Potom $ψ$ je zřejmě dobře definované, neboť $\sin(x) ≠ 0$ pro žádné $x \in (a, b)$. Navíc podíl dvou $C^∞$ funkcí, kde jmenovatel nenabývá nuly, je $C^∞$ funkce\footnote{Použijeme $g' = \(\frac{1}{f}\)' = \frac{-f'}{f^2} = -f·g·g$, což je součin tří derivovatelných funkcí.}, a zřejmě každá derivace bude mít support uvnitř $(a, b)$. Tedy $ψ \in C^∞$. Tudíž dostáváme, co jsme chtěli dokázat:
 		$$ 0 = (\sin·U)(ψ) = U(\sin · ψ) = U(φ). $$
 
-		Nyní mějme $ε < 1 / 4$ hladké jádro $h_ε$ a definujme $ξ_k = χ_{B(k·π, ε)} * h_ε$ a pro libovolné $φ \in ©D(®R)$ definujme $φ_k = ξ_k · φ$. Potom $\supp φ_k \subset B(k·π, 1 / 2)$ a $\supp \(φ - \sum_{k=-∞}^∞ φ_k\) \cap π®Z = \O$ (v sumě je pouze konečně mnoho nenulových prvků, protože $\supp φ$ je kompaktní). Tedy (s použitím linearity $U$):
+		Nyní mějme $ε < 1 / 4$ a hladké jádro $h_ε$. Definujme $ξ_k = χ_{B(k·π, ε)} * h_ε$ a pro $φ \in ©D(®R)$ definujme $φ_k = ξ_k · φ$. Potom $\supp φ_k \subset B(k·π, 1 / 2)$ a $\supp \(φ - \sum_{k=-∞}^∞ φ_k\) \cap π®Z = \O$ (v sumě je pouze konečně mnoho nenulových prvků, protože $\supp φ$ je kompaktní). Tedy (s použitím linearity $U$):
 		$$ U(φ) = U\(\(φ - \sum_{k=-∞}^∞ φ_k\) + \sum_{k=-∞}^∞ φ_k\) = U\(φ - \sum_{k=-∞}^∞ φ_k\) + \sum_{k=-∞}^∞ U(φ_k). $$
 		První člen napravo je nulový z Větičky 12 bod c), druhý „člen“ pak má pro každé $k$ tvar $U(φ_k) = \sum_{α, |α| ≤ N_k} c_{k, α}D^α Λ_{δ_{k·π}}$ pro $c_{k, α} \in ®R$ a nějaké $N_k \in ®N_0$, neboť buď je $k·π \in \supp U$ a pak je $\supp U|_{B(k·π, 1 / 2)} = \{k·π\}$, tedy použijeme Větičku 12 bod e), nebo je $k·π \notin \supp U$ a pak je $U|_{B(k·π, 1 / 2)} = 0$ (to nám přidává všechna $c_{k, α} = 0$).
+	\end{reseni}
+
+	\begin{reseni}[závěr]
+		Navíc umíme dokázat, že pro libovolné celé $k$ a přirozené $α ≠ 0$ je $c_{k, α} = 0$. BÚNO $k = 0$ (celou situaci můžeme libovolně posouvat o násobky $π$). Buď pro spor $α ≠ 0$ největší takové, že $c_{0, α} ≠ 0$. Potom dosazením\footnote{$ξ_0$ z předchozího odstavce pro support neprotínající $π®Z$ v jiném bodě než 0 a zároveň neovlivňující derivace v 0.} $ξ_0·\sin^{α - 1}$ do $\sin · U = 0$ dostaneme
+		$$ 0 = U(ξ_0·\sin^α) = \sum_{k=-∞}^∞ \sum_{\tilde α, |\tilde α| ≤ N_k} c_{k, \tilde α} D^{\tilde α} Λ_{δ_{k·π}}(ξ_0·\sin^α) = \sum_{\tilde α ≤ α} c_{0, \tilde α} D^{\tilde α} Λ_{δ_0}(ξ_0·\sin^α) = $$
+		$$ = \sum_{\tilde α ≤ α} c_{0, \tilde α} (D^{\tilde α} \sin^α)(0) = c_{0, α}·(α!). $$
+		(Poslední rovnost z toho, že jediný způsob, jak ze $\sin^α = \sin · … · \sin$ dostat v nule nenulovou funkci, je z derivace součinu situace, kdy na každý činitel aplikujeme alespoň jednou derivaci. Pak ale $\tilde α ≥ α$. A v případě $\tilde α = α$ máme přesně $α!$ posloupností, jak aplikovat na každý činitel alespoň jednu, tj. jednu, derivaci, a vždy dostaneme $\cos^α$, který je v nule roven 1.)
 
 		Tedy všechna taková $U$ jsou přesně
-		$$ U = \sum_{k=-∞}^∞ \sum_{α, |α| ≤ N_k} c_{k, α} D^α Λ_{δ_{k·π}}, $$
-		kde pro všechna $k$ je $N_k \in ®N_0$ a pro všechna $|α| ≤ N_k$ pak $c_{k, α} \in ®R$. $U \in ©D'(®R)$ máme z toho, že $U|_{©D_K(®R)}$ je spojitá (Tvrzení 6 bod (3) a uzavřenost $©D'(®R)$ na sčítání).
+		$$ U = \sum_{k=-∞}^∞ c_{k, 0} D^0 Λ_{δ_{k·π}} = \sum_{k=-∞}^∞ c_k Λ_{δ_{k·π}}, $$
+		kde pro všechna $k$ je $c_k \in ®R$. $U \in ©D'(®R)$ máme z toho, že $U|_{©D_K(®R)}$ je spojitá (Tvrzení 6 bod (3) a uzavřenost $©D'(®R)$ na sčítání). Zároveň zřejmě $\sin · U = 0$, protože
+		$$ \forall φ \in ©D(®R): \sin · U(φ) = U(\sin·φ) = \sum_{k=-∞}^∞ c_k Λ_{δ_{k·π}}(\sin·φ) = \sum_{k=-∞}^∞ c_k \sin(kπ)·φ(kπ) = $$
+		$$ = \sum_{k=-∞}^∞ c_k·0·φ(kπ) = 0. $$
 	\end{reseni}
+
+	\pagebreak
 
 	Find all distributions $V$ on ®R satisfying $\sin · V = Λ_1$.
 
 	\begin{reseni}
 		Jsou-li $V_1$ a $V_2$ takové distribuce, pak $\sin·(V_1 - V_2) = \sin·V_1 - \sin·V_2 = Λ_1 - Λ_1 = 0$. Tedy všechna taková $V$ se liší právě o řešení předchozí části.
 
-		Tedy hledáme jedno řešení. Ukážeme, že jedno takové řešení je
-		$$ Λ(φ) = \lim_{n \rightarrow ∞} Λ_n(φ) = \lim_{n \rightarrow ∞} \int_{®R \setminus \(π®Z + B\(¦o, \frac{1}{n}\)\)} \frac{φ(x)}{\sin(x)} dx, \qquad φ \in ©D(®R). $$
-		Z TODO(název věty) nám stačí ukázat, že $Λ_n$ jsou distribuce a že $\exists \lim_{n \rightarrow ∞} Λ_n(φ) ≠ ±∞$ pro každé $φ$. To, že je $Λ_n = Λ_{\frac{1}{\sin}}$ je distribuce je jasné, neboť $\frac{1}{\sin}$ je lokálně integrovatelná, neboť je dokonce omezená, na $®R \setminus \(π®Z + B\(¦o, \frac{1}{n}\)\)$.
+		Tedy hledáme jedno řešení (ostatní řešení dostaneme právě přičtením řešení první části). Ukážeme, že jedno takové řešení je
+		$$ Λ(φ) := \lim_{n \rightarrow ∞} Λ_n(φ) := \lim_{n \rightarrow ∞} \int_{®R \setminus \(π®Z + B\(¦o, \frac{1}{n}\)\)} \frac{φ(x)}{\sin(x)} dx, \qquad φ \in ©D(®R). $$
+		Z Banachovy-Steinhausovy věta pro distribuce nám stačí ukázat, že $Λ_n$ jsou distribuce a že $\exists \lim_{n \rightarrow ∞} Λ_n(φ) ≠ ±∞$ pro každé $φ$. To, že $Λ_n = Λ_f$, kde $f = 0$ na $π®Z + B\(¦o, \frac{1}{n}\)$ a $f = \frac{1}{\sin}$ jinak, je distribuce je jasné, neboť $f$ je lokálně integrovatelná, neboť je dokonce omezená.
 
-		BÚNO $\supp φ \subset \(-\frac{3}{4} π, \frac{3}{4} π\)$, protože jinak použijeme na všechny nenulové funkce $φ_k = φ(χ_{\{k·π\} + \(\frac{1}{2}π, \frac{1}{2}π\)} * h_{\frac{1}{4}π})$ a na $φ - \sum_{k \in ®Z}φ_k$. Potom z definice derivace $φ'(0)$, která existuje z hladkosti $φ$, $\exists$ $ε > 0$ a $C_1 := 2φ'(0)$, že $φ(x)$ je mezi $0$ a $φ(0) + C_1·x$ na intervalu $(-ε, ε)$. Navíc můžeme z definice derivace $\sin'(0) = 1$ ($-1$ v případě lichých $k$) zvolit $ε$ takové, aby i $|\sin(x)| > C_2·|x| := \frac{1}{2}·|x|$ na intervalu $(-ε, ε)$. Nechť $m > n > \frac{1}{ε}$, potom
+		BÚNO $\supp φ \subset \(-\frac{3}{4} π, \frac{3}{4} π\)$, protože jinak použijeme na všechny nenulové funkce $φ_k = φ(χ_{\{k·π\} + \(-\frac{1}{2}π, \frac{1}{2}π\)} * h_{\frac{1}{4}π})$ a na $φ - \sum_{k \in ®Z}φ_k$. Potom z definice derivace $φ'(0)$, která existuje z hladkosti $φ$, $\exists$ $ε > 0$ a $C_1 := 2φ'(0)$, že $φ(x)$ je mezi $φ(0)$ a $φ(0) + C_1·x$ na intervalu $(-ε, ε)$. Navíc můžeme z definice derivace $\sin'(0) = 1$ ($-1$ v případě lichých $k$) zvolit $ε$ takové, aby i $|\sin(x)| > C_2·|x| := \frac{1}{2}·|x|$ na intervalu $(-ε, ε)$. Nechť $m > n > \frac{1}{ε}$, potom
 		$$ |Λ_n(φ) - Λ_m(φ)| = \left|\int_{®R \setminus \(π®Z + B\(¦o, \frac{1}{n}\)\)} \frac{φ(x)}{\sin(x)}dx - \int_{®R \setminus \(π®Z + B\(¦o, \frac{1}{m}\)\)} \frac{φ(x)}{\sin(x)}dx\right| = $$
 		$$ = \left|\int_{-\frac{1}{n}}^{-\frac{1}{m}} \frac{φ(x)}{\sin(x)}dx + \int_{\frac{1}{m}}^{\frac{1}{n}} \frac{φ(x)}{\sin(x)}dx\right| = $$
 		$$ = \left|\underbrace{\int_{-\frac{1}{n}}^{-\frac{1}{m}} \frac{φ(0)}{\sin(x)}dx + \int_{\frac{1}{m}}^{\frac{1}{n}} \frac{φ(0)}{\sin(x)}dx}_{=0} + \int_{-\frac{1}{n}}^{-\frac{1}{m}} \frac{φ(x) - φ(0)}{\sin(x)}dx + \int_{\frac{1}{m}}^{\frac{1}{n}} \frac{φ(x) - φ(0)}{\sin(x)}dx\right| ≤ $$
 		$$ ≤ \left|\int_{-\frac{1}{n}}^{-\frac{1}{m}} \frac{C_1·|x|}{C_2·|x|}dx + \int_{\frac{1}{m}}^{\frac{1}{n}} \frac{C_1·|x|}{C_2·|x|}dx\right| = 2·\frac{C_1}{C_2} \(\frac{1}{n} - \frac{1}{m}\) ≤ 2·\frac{C_1}{C_2}·ε \overset{ε\rightarrow 0}\longrightarrow 0. $$
-		Tedy dle B–C (pro každé $n > \frac{1}{ε}$ můžeme $ε$ zmenšit na $\frac{1}{n}$, čímž nám předpoklady pořád platí, $C_1, C_2$ jsou na $ε$ nezávislé) podmínky posloupnost konverguje.
+		Tedy dle B–C (pro každé $n > \frac{1}{ε}$ můžeme $ε$ zmenšit na $\frac{1}{n}$, čímž nám předpoklady pořád platí, $C_1, C_2$ jsou na $ε$ nezávislé) podmínky posloupnost konverguje.
 
 		% Sporem dokážeme, že takové $V$ neexistuje: Mějme tedy takové $V$. Nechť $K = [-π, π]$ a $L = [0, l]$, kde $0 < l < π$. Z definice distribuce (Tvrzení 6 bod 4) máme (pro naše konkrétní $K$):
 		% $$ \exists N \in ®N_0\ \exists C > 0\ \forall φ \in ©D_K(Ω): |V(φ)| ≤ C·\|φ\|_N. $$

@@ -507,6 +507,135 @@ TODO!!!
 		$$ \forall i \in [n]\ \forall x \in Ω': \int_{B(x, k^{-1})} \partial_i ψ_k(x - y) \overline u_{B(x, k^{-1})} = \overline u_{B(x, k^{-1})} \int_{B(0, k^{-1})} \partial_i ψ_k(y) dy = 0. $$
 		$$ \int |\partial_i ψ_k * u| = \left| \int_{B(x, k^{-1})} \partial_i ψ_k(x - y)(u(y) - \overline u_{B(x, k^{-1})}) \right| ≤ $$
 		$$ ≤ C k^{n+1} \int_{B(x, k^{-1})} |u - \overline u_{B(x, k^{-1})}| ≤ C k^n \int_{B(x, k^{-1})} f ≤ C \|f\|_1. $$
+
+% 29. 11. 2023
+
+TODO!!!
+
+		Chceme ?
+		$$ \int_{Ω'} u_n \partial_i φ = -\int_Ω $$
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Gagliardo–Nirembergoum]
+	Nechť $U$ je otevřená omezená konvexní. Nechť $u \in W^{1, 1}(U)$ s nulovým mediánem v $U$. Pak
+	$$ \|u\|_{L^{\frac{n}{n - 1}}} = \(\int_U |u|^{\frac{n}{n-1}}\)^{\frac{n-1}{n}} ≤ C_U \int_U |Du|, $$
+	$$ \|u\|_{L^{p^*}} = \(\int_U |u|^{p^*}\)^{\frac{1}{p^*}} ≤ C_U \(\int_U |Du|^p\)^{\frac{1}{p}}, \qquad p^* = \frac{np}{n - p}, \qquad p \in [1, ∞]. $$
+\end{veta}
+
+\begin{definice}
+	Nechť $M \subset ®R^n$ a $0 < λ^n(M) < ∞$ a $u: M \rightarrow ®R$ je měřitelná. Říkáme, že $c \in ®R$ je mediánem $u$ na $M$, pokud:
+	$$ λ^n(\{u > c\} \cap M) ≤ \frac{1}{2} λ^n(M), \qquad λ^n(\{u < c\} \cap M) ≤ \frac{1}{2} λ^n(M). $$
+\end{definice}
+
+\begin{tvrzeni}[Odhad slabého typu]
+	Nechť $U \subset ®R^n$ je otevřená omezená konvexní, $u \in W^{1, 1}(U)$ s nulovým mediánem na $U$. Pak
+	$$ s\(λ^n(\{u > s\})\)^{1 - \frac{1}{n}} ≤ c· \int_U |Du| dλ^n. $$
+
+	\begin{dukazin}
+		Označme $G_s := \{|u| > s\}$, $s λ^n(G_s) ≤ C· \int_{G_s} |u|$.
+		$$ sλ^n(G_s) = \fint_U sλ^n(G_s) ≤ c·\fint_U \int_{G_s} |u(x)| dx dy = $$
+		$$ = c· \int_{G_s} \fint_{U} |u(x)| dy dx ≤ $$
+		$$ \(|u(x)| ≤ |u(x) - u(y)| \qquad \forall y: \sgn(u(y)) ≠ \sgn(u(x)).\) $$
+		$$ ≤ c·\int_{G_s} \fint_{\{\sgn(u(y)) ≠ \sgn(u(x))\}} |u(x) - u(y)| \overset{\text{0 je med}}≤ c·\fint_{G_s} \fint_U |u(x) - u(y)| dy dx ≤ $$
+		$$ ≤ c·\int_{G_s} \int_U \frac{|Du(y)Z|}{|x - y|^{n-1}} dy dx \overset{\text{Fubini}}= c·\int_U |Du(y)| \int_{G_s} \frac{1}{|x - y|^{n-1}} dx dy ≤ c·\int_U |Du(y)| λ^n(G_s)^{\frac{1}{n}}. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Nechť $U$ je otevřená omezená konvexní a $u \in W^{1, 1}(U)$ s nulovým mediánem v $U$. Pak
+	$$ \int_0^∞ λ^n(\{|u| > s\})^{1 - \frac{1}{n}} ds ≤ c \int_u |Du|. $$
+
+	\begin{dukazin}
+		Zvolme $a > 0$, $k \in ®N$. Nechť $u ≥ 0$ (BÚNO, aplikujeme na $u_+ := \max\{u, 0\}$ a $u_- := \max\{-u, 0\}$). Zadefinujeme
+		$$ v(x) := v_{a, k}(x) := \begin{cases}u(x) - (k - 1)a, & u(x) \in [(k-1)a, k·a] \\ 0, & u(x) ≤ (k-1)a\end{cases}. $$
+		$v$ má nulový medián v $U$ a $Du = Dv$ skoro všude v $\{x | a(k - 1) ≤ u(x) ≤ ak\}$. $s·λ^n(\{|v| > s\})^{1 - \frac{1}{n}} ≤ c·\int_U Dv$.
+		$$ \int_{(k-1)a}^k·a \(λ^n(\{u > s\})\)^{1 - \frac{1}{n}} ds ≤ a(λ^n(\{u > (k - 1)a\}))^{1 - \frac{1}{n}} ≤ c·\int_{U \cap V_{a, k}} |Du|. $$
+		Sečteme přes $k \in ®N$:
+		$$ \int_a^∞ λ^n(\{u > s\})^{1 - \frac{1}{n}} ds ≤ c·\int_U |Du|, \qquad \forall a > 0. $$
+		$a \rightarrow 0$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$M$ měřitelná, $u: M \rightarrow ®R$ měřitelná. Pak
+	$$ \int_M |u|^p = \int_0^∞ ps^{p - 1} λ^n(M \cap \{|u| > s\})ds. $$
+\end{poznamka}
+
+\begin{lemma}
+	$f: (0, ∞) \rightarrow [0, ∞)$ nerostoucí a $q ≥ 1$, $r > 1$. Pak
+	$$ \int_0^∞ s^{qr - 1} f(s) ds ≤ c·\(\int_0^∞ s^{q - 1} f(s)^{\frac{1}{r}}ds\)^r. $$
+
+	\begin{dukazin}
+		$$ I := \int_0^∞ s^{q - 1} f(s)^{\frac{1}{r}}. $$
+		
+	\end{dukazin}
+\end{lemma}
+
+% 13. 12. 2023
+
+\begin{veta}[Gagliardova–Nirembergonova]
+	Nechť $U$ je otevřená konvexní omezená a nechť $u \in W^{1, 1}(U)$ s nulovým mediánem v $U$. Pak
+	$$ \(\int_U |u|^{\frac{n}{n - 1}}\)^{\frac{n-1}{n}} ≤ C_U \int_U |Du|, $$
+	kde $C_U$ závisí pouze na tvaru $U$.
+
+	\begin{dukazin}
+		$$ \int_M |u|^p = \int_0^∞ ps^{p - 1} λ^n(\{|u| > s\}), \qquad p = \frac{n}{n - 1}. $$
+		$$ \int_0^∞ s^{qr - 1} f(s) ≤ c·\(\int_0^∞ s^{q - 1} f^{\frac{1}{r}}\)^r, \qquad \frac{n}{n-1} - 1 = \frac{1}{n-1}. $$
+		$$ \int_U |u|^{\frac{n}{n-1}} \int_0^∞ \frac{n}{n-1} s^{\frac{1}{n-1}} λ^n(U \cap \{|u| > s\}) ≤, \qquad q = 1, r = \frac{n}{n-1}. $$
+		$$ ≤ c_n\(\int_0^∞ λ^n(U \cap\{|u| > s\})^{\frac{n-1}{n}}\)^{\frac{n}{n-1}} ≤ \(c·\int_U |Du|\)^{\frac{n}{n-1}}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Sobolevova nerovnost]
+	$U$ omezená otevřená konvexní, $1 ≤ p < n$ a nechť $u \in W^{1, p}(U)$ s nulovým mediánem v $U$. Pak
+	$$ \(\int |u|^{p^*}\)^{\frac{1}{p^*}} ≤ C_U \frac{pn - p}{n - p} \(\int_U |Du|^p\)^{\frac{1}{p}}. $$
+
+	\begin{dukazin}
+		„$p = 1$“ triviální. „$p > 1$“: $u = u^+ - u^-$, tedy BÚNO $u ≥ 0$. Nejdřív předpokládejme navíc, že $u \in L^∞(U)$. Definujme $v = u^{\frac{pn - p}{n - p}}$. (?$\frac{p}{p - n}(n - 1) v$ je ACL?.)
+		$$ \nabla v = \frac{pn - p}{n - p} u^{\frac{pn - n}{n - p}} \nabla u \implies v \in W^{1, 1}(U). $$
+		$$ \(\int_U |u|^{p^*}\)^{\frac{n-1}{n}} = \(\int_U |v|^{\frac{n}{n - 1}}\)^{\frac{n - 1}{n}} ≤ C_U \int_U |Dv| = C_U \frac{pn - p}{n - p} \int_U u^{\frac{np - n}{n - p}} |Du| ≤ C_U \frac{pn - p}{n - p} \(\int_U |Du|^p\)^{\frac{1}{p}}·\(\int_U u^{p^*}\)^{\frac{p - 1}{p}}. $$
+		$$ \(\frac{n - 1}{n} - \frac{p - 1}{p} = \frac{np - p - np + n}{np} = \frac{n - p}{np} = \frac{1}{p^*}.\) $$
+
+		Tím je důkaz hotov pro $u \in W^{1, p} \cap L^∞$. Nechť $u \in W^{1, p}$. Zadefinujeme $u_k = \min\{u, k\}$. $\exists Du_k$ a $|Du_k| ≤ |Du|$.
+		$$ \(\int |u|^{p^*}\)^{\frac{1}{p^*}} \leftarrow \(\int |u_k|^{p^*}\)^{\frac{1}{p^*}} ≤ c·\(\int |Du_k|^p\)^{\frac{1}{p}} ≤ c·\(\int |Du|^p\)^{\frac{1}{p}}. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Sobolevova nerovnost na celém $®R^n$]
+	Nechť $1 ≤ p < n$ a nechť $u \in W^{1, p}$. Pak
+	$$ \|u\|_{L^{p^*}(®R^n)} ≤ C_β \frac{p n - p}{n - p} \|Du\|_{L^p(®R^d)}. $$
+
+	\begin{dukazin}
+		Nechť $φ \in ©D(®R^n)$, $\supp φ$ je kompaktní, $φ$ má nulový medián v $B(¦o, R)$ pro $R$ dostatečně velké. Tím pádem je
+		$$ \|φ\|_{L^{p^*}} ≤ C_β \frac{pn - p}{n - p} \|Dφ\|_{L^p(®R^n)}. $$
+		Mějme $u \in W^{1, p}(®R^n)$, najdeme $φ_k \rightarrow u$ v $W^{1, p}$ a tudíž platí odhad i pro $u$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Sobolevova–Poincarého nerovnost]
+	$U$ je omezená otevřená kompaktní, $p·q ≥ 1$. Nechť $u \in W^{1, p}(U)$. Pokud $\frac{1}{q} ≥ \frac{1}{p} - \frac{1}{n}$, pak
+	$$ \(\fint_U |u - \overline{u}_U|^q\)^{\frac{1}{q}} ≤ C_{p, q, U} (\diam U)·(\fint |Du|^p)^{\frac{1}{p}}. $$
+
+	\begin{dukazin}
+		BÚNO $u$ má nulový medián v $U$. Za prvé nechť „$\frac{1}{q} = \frac{1}{p} - \frac{1}{n}$“: $q = \frac{np}{n - p}$:
+		$$ \(\fint_U |u|^q\)^{\frac{1}{q}} ≤ c·(\diam U)^{\frac{-n}{q}} \(\int_u |u|^q\)^{\frac{1}{q}} ≤ c·(\diam U)^{\frac{-n}{q}} \(\int_U |Du|^p\)^{\frac{1}{p}} ≤ $$
+		$$ ≤ c·(\diam U)^{\frac{-n}{q} + \frac{n}{p}} \(\fint_U |Du|^p\)^{\frac{1}{p}} = c·(\diam U)·\(\fint_U |Du|^p\)^{\frac{1}{p}}. $$
+
+		„$q < \frac{1}{p} - \frac{1}{n}$“: Najdeme $s \in [1, n)$, $\(\fint |u|^q\)^{\frac{1}{q}} ≤ \(\fint |u|^{s^*}\)^{\frac{1}{s^*}}$, $\frac{1}{q} - \frac{1}{s^*} = \frac{1}{t}$.
+		TODO?
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[O vnoření $W^{1, p}(®R^n) \hookrightarrow L^q(Ω)$]
+	Nechť $Ω \subset ®R^n$ otevřená a $λ^n(Ω) < ∞$, nechť $\frac{1}{q} ≥ \frac{1}{p} - \frac{1}{n}$ a nechť $u \in W^{1, p}(®R^n)$. Pak
+	$$ (λ^n(Ω))^{-\frac{1}{q}} \|u\|_{L^q(Ω)} ≤ C_{p, n}(λ^n(Ω))^{-\frac{1}{p}} \|u\|_{L^p(Ω)} + C_{p, n} (λ^n(Ω))^{\frac{1}{n} - \frac{1}{p}} \|Du\|_{L^p(®R^n)}. $$
+
+	\begin{dukazin}
+		$\frac{1}{q} = \frac{1}{p} - \frac{1}{n}$ ($q = p^*$):
+		$$ \(\fint_Ω |u|^q\)^{\frac{1}{q}} ≤ (λ^n(Ω))^{-\frac{1}{q}} \(\int_{®R^n} |u|^{p^*}\)^{\frac{1}{p^*}} ≤ (λ^n(Ω))^{-\frac{1}{q}} C·\frac{pn - p}{n - p} \(\int_{®R^n} |Du|^p\)^{\frac{1}{p}}. $$
+		TODO!!!
 	\end{dukazin}
 \end{veta}
 

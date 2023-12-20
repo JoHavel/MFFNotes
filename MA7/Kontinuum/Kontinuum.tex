@@ -581,7 +581,7 @@ TODO!!!
 	Any object, wholly or partially immersed in a fluid, is buoyed up by a force equal to the weight of the fluid displaced by the object.
 
 	\begin{poznamkain}
-		Fluid = incompressible fluid. So $®T = -p ®I + 2μ®D$.
+		Fluid = incompressible fluid. So $®T = -p ®I + 2μ®D$.
 	\end{poznamkain}
 
 	\begin{poznamkain}
@@ -672,5 +672,101 @@ TODO!!!
 		where $\frac{1}{Re} := \frac{μ}{ρ l_{char} v_{char}}$ is Reinold's number.
 	\end{poznamkain}
 \end{priklad}
+
+% 15. 12. 2023
+
+\section{Solids}
+
+TODO!!!
+
+
+\begin{priklad}
+	TODO!!!
+
+	\begin{reseni}
+		TODO!!!
+
+
+
+		$$ 0 = \Div \btau = \begin{pmatrix} \frac{\partial τ_{\hat{r}\hat{r}}}{\partial r} + \frac{1}{r} \(\frac{\partial τ_{\hat{r}\hat{φ}}}{\partial φ} - τ_{\hat{φ}\hat{φ}} + τ_{\hat{r}\hat{r}}\) + \frac{\partial τ_{\hat{r}\hat{z}}}{\partial z} \\ \frac{\partial τ_{\hat{φ}\hat{r}}}{\partial r} + \frac{1}{r} \(\frac{\partial τ_{\hat{φ}\hat{φ}}}{\partial φ} + τ_{\hat{r}\hat{φ}} + τ_{\hat{φ}\hat{r}}\) + \frac{\partial τ_{\hat{φ}\hat{z}}}{\partial z} \\ \frac{\partial τ_{\hat{r}\hat{r}}}{\partial r} + \frac{1}{r} \(\frac{\partial τ_{\hat{z}\hat{φ}}}{\partial φ} τ_{\hat{z}\hat{r}}\) + \frac{\partial τ_{\hat{z}\hat{z}}}{\partial z} \end{pmatrix}, $$
+		where $\btau = \begin{pmatrix} τ_{\hat{r}\hat{r}} & τ_{\hat{r}\hat{φ}} & τ_{\hat{r}\hat{z}} \\ & τ_{\hat{φ}\hat{φ}} & τ_{\hat{φ}\hat{z}} \\ & & τ_{\hat{z}\hat{z}} \end{pmatrix}$. So $\btau = \begin{pmatrix} 0 & 0 & 0 \\ & 0 & 0\\ & & τ_{\hat{z}\hat{z}} \end{pmatrix} =: \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0\\ 0 & 0 & T \end{pmatrix}$.
+
+		Thus $\left.\begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0\\ 0 & 0 & T \end{pmatrix}\middle|_{z = L}\begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix} = \frac{1}{S} \begin{pmatrix} 0 \\ 0 \\ F \end{pmatrix}\right.$, so $T = \frac{F}{S}$.
+		$$ \btau = λ(\tr \bepsilon) ®I + 2μ\bepsilon. \tr \btau = (3λ + 2μ)\tr \bepsilon \implies \tr \bepsilon = \frac{\tr \btau}{3λ + 2μ}. $$
+		$$ \bepsilon = f(\btau). \qquad \bepsilon = \frac{1}{2μ} \(\btau - \frac{λ}{3λ + 2μ}(\tr \btau) ®I\). $$
+
+		$$ RHS = \frac{1}{2μ} (\bepsilon - \frac{λ}{3λ + 2μ}(\tr \btau)®I) = \begin{pmatrix} -\frac{λ}{2μ(3λ + 2μ)}\frac{F}{S} & 0 & 0 \\ 0 & -\frac{λ}{2μ(3λ + 2μ)}\frac{F}{S} & 0 \\ 0 & 0 & \frac{λ + μ}{μ(3λ + 2μ)}\frac{F}{S} \end{pmatrix}. $$
+		$$ LHS = \frac{1}{2}(\nabla  ¦U + (\nabla ¦U)^T). $$
+
+		Symmetric gradient in cylindrical coordinate system is another long formula, so expect: $¦U = (U_{\hat{r}}(r), 0, U_{\hat{z}}(z))^T$.
+		$$ \frac{1}{2} \nabla ¦U + \frac{1}{2}(\nabla ¦U)^T = \begin{pmatrix} \frac{dU_{\hat{r}}}{dr} & 0 & 0 \\ 0 & \frac{U_{\hat{r}}}{r} & 0 \\ 0 & 0 & \frac{dU_{\hat{z}}}{dz} \end{pmatrix}. $$
+
+		Together: $U_{\hat{r}} = -\frac{λ}{2μ(3λ + 2μ)}·\frac{F}{S}·r$, $U_{\hat{z}} = \frac{λ + μ}{μ(3λ + 2μ)}·\frac{F}{S}·z$.
+
+		Length of cylinder: $ε := \frac{ΔL}{L} = \frac{¦U|_{z = L}}{L} = \frac{\frac{λ + μ}{μ(3λ + 2μ)}·\frac{F}{S}·L}{L} = \frac{λ + μ}{μ(3λ + 2μ)}·\frac{F}{S} =: \frac{1}{E}ς$, where $ς = Eε$ is Hooke law, where $E$ is Young modulus, $ς$ is „applied force“ and $ε$ is change of length.
+
+		Change of radius:
+		$$ - \frac{\frac{ΔR}{R}}{\frac{ΔL}{L}} = - \frac{\frac{-\frac{λ}{2μ(3λ + 2μ)}·\frac{F}{S}·R}{R}}{\frac{ΔL}{L}} = \frac{\frac{λ}{2μ(3λ + 2μ)}}{\frac{λ + μ}{μ(3λ + 2μ)}} = \frac{λ}{2(λ + μ)} =: ν. $$
+	\end{reseni}
+
+	\begin{poznamkain}
+		This is easy to measure -> we can measure Young modulus $E := \frac{μ(3λ + 2μ)}{λ + μ}$ and Poisson ration $ν := \frac{λ}{2(λ + μ)}$.
+	\end{poznamkain}
+\end{priklad}
+
+\begin{poznamka}
+	Young modulus is certainly positive. However, Poisson ration can be negative. (Move $V$s horizontally in $\mathrm{V}\!Λ\!\mathrm{V}\!Λ\!\mathrm{V}\!Λ\!\mathrm{V}\!Λ\!\mathrm{V}\!Λ\!\mathrm{V}\!Λ$.)
+\end{poznamka}
+
+\begin{poznamka}[Fixing negativity of constants (Poisson ration)]
+	$$ \btau = \frac{1}{2μ}\(\btau - \frac{λ}{3λ + 2μ} (\tr \btau)®I\), \qquad \btau = λ(\tr <BS>\bepsilon)®I + 2μ\bepsilon. $$
+	$$ \bepsilon = \frac{1}{2μ} \(\(\btau - \frac{1}{3} (\tr \btau)®I\) + \(\frac{1}{3} - \frac{λ}{3λ + 2μ}\)(\tr \btau)®I\). $$
+	$$ \bepsilon = \frac{1}{2μ} \btau_δ + \frac{1}{9(λ + \frac{2}{3}μ)} (\tr \btau) ®I. $$
+
+	Experiment: compress material. Then we see, that $K := λ + \frac{2}{3}μ$ must be positive. It is called bulk modulus (related to change of volume). $G := μ > 0$ is shear modulus.
+\end{poznamka}
+
+\begin{dusledek}
+	$$ λ = \frac{E ν}{(1 + ν)(1 - 2ν)}, \qquad μ = \frac{E}{2(1 + ν)}, \qquad K = \frac{E}{3(1 - 2ν)}, $$
+	$$ μ = \frac{E}{2(1 + ν)}, \qquad E = \frac{9Kμ}{μ + 3K}, \qquad ν = \frac{3K - 2μ}{2(3K + μ)}. $$
+
+	$$ \implies -1 < ν < \frac{1}{2}. $$
+	$ν = \frac{1}{2}$ means incompressible (solid) material (= no $\bepsilon$).
+\end{dusledek}
+
+\begin{definice}
+	Spherical stress: $\btau = \begin{pmatrix} τ & 0 & 0 \\ 0 & τ & 0 \\ 0 & 0 & τ \end{pmatrix}$. Sheer stress: $\btau = \begin{pmatrix} 0 & τ & 0 \\ τ & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}$.
+\end{definice}
+
+\subsection{Elastic materials}
+\begin{definice}
+	Elastic material is a material that does not produce entropy. No energy loss/gain in cyclic mechanical processes.
+
+	We have $®T = ®T(®B) = α_0 ®I + α_1 ®B + α_2 ®B^2$ (for solids, isotropic solids) (hence $®T®B = ®B®T$), $e(η, ρ)$, $ψ(θ, ρ)$, and from $ρ \det ®F = ρ_R$ ($ρ(\det ®B)^{1 / 2} = ρ_R$), we get $ψ(θ, \det ®B)$. So $ψ = ψ(θ, ®B) = ψ(θ, I_1(®B), I_2(®B), I_3(®B))$.
+
+	From $ρ \frac{de}{dt} = ®T:®D - \Div ¦j_q$ we get $ψ(θ, ®B) = (e(η, ®B) - θη)|_{η = η(θ, ®B)}$.
+	$$ \frac{\partial ψ}{\partial ®B}:\frac{d®B}{dt} + \frac{\partial ψ}{\partial θ}\frac{dθ}{dt} = \frac{de}{dt} - \frac{dθ}{dt}η - θ·\frac{dη}{dt}. $$
+\end{definice}
+
+\begin{dusledek}[$\dall{®B} = ®O$]
+	% $$ ®B^{-1}\frac{d®B}{dt} - ®L - ®B®L^T®B^{-1} = ®O. $$
+	$$ \frac{de}{dt} = \frac{\partial ψ}{\partial ®B}(θ, ®B):\frac{d®B}{dt} + θ \frac{dη}{dt}, $$
+	$$ ρθ\frac{dη}{dt} - ρ \frac{\partial ψ}{\partial ®B}:\frac{d®B}{dt}. $$
+	$$ ρ \frac{de}{dt} = ®T:®D - \Div ¦j_q \rightarrow ρθ \frac{dη}{dt} = ®T:®D - \Div ¦j_q - ρ \frac{\partial ψ}{\partial ®B}:\frac{d®B}{dt} = $$
+	$$ = \(®T:®D - ρ \frac{\partial ψ}{\partial ®B}:(®L®B + ®B®L^T)\) - \Div ¦j_q = ®T:®D - 2ρ ®B \frac{\partial ψ}{\partial ®B} : ®D - \Div ¦j_q. $$
+	$$ \frac{\partial ψ}{\partial ®B} ®B = ®B \frac{\partial ψ}{\partial ®B}, $$
+	because $ψ$ is isotropic function of ®B. Thus we get evolution equation for entropy.
+	$$ ρθ \frac{dη}{dt} = \(®T - 2ρ ®B \frac{\partial ψ}{\partial ®B}\) : ®D - \Div ¦j_q. $$
+\end{dusledek}
+
+\begin{dusledek}
+	No entropy production can be done (for all processes at once) "only" by setting $®T = 2ρ ®B \frac{\partial ψ}{\partial ®B}$.
+\end{dusledek}
+
+\begin{dusledek}
+	$$ 0 = \(\int_V ρ ψ(θ, ®B)\)|_{t_{end}} - \(\int_V ρ ψ(θ, ®B)\)|_{t_{start}} = $$
+	$$ = \int_{t_{start}}^{t_{end}} \(\int_V ®T:®D dv\)dt = \int_{t_{start}}^{t_{end}} \int_V 2ρ ®B \frac{\partial ψ}{\partial ®B}: ®D dv dt = $$
+	$$ = \int_{t_{start}}^{t_{end}} \int_V \(ρ \frac{\partial ψ}{\partial ®B}\frac{d®B}{dt} dv\) dt = \int_{t_{start}}^{t_{end}} \frac{d}{dt} \int_V ρ ψ dv dt. $$
+\end{dusledek}
 
 \end{document}

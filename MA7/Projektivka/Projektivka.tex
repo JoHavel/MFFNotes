@@ -982,4 +982,124 @@ TODO!!! (charakteristika projektivity, involuce, …)
 	\end{reseni}
 \end{priklad}
 
+% 14. 12. 2023
+
+\begin{priklad}[Konstrukce paraboly 2]
+	Sestrojte parabolu, je-li dána 3 tečnami a 1 bodem dotyku (na některé vlastní tečně).
+
+	\begin{reseni}
+		Zvolíme si přímku s bodem a nevlastní přímku jako bodové soustavy, najdeme direkční přímku (prochází tečným bodem) a postupujeme jako obvykle.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce tečny s daným směrem]
+	K parabole dané 4 tečnami sestrojte tečnu s daným směrem.
+
+	\begin{reseni}
+		Najdeme direkční přímku a pak daným směrem vedeme přímku procházející jedním z bodů. Její průsečík s direkční přímkou spojíme s dalším bodem a vedeme rovnoběžku.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce paraboly 3]
+	Sestrojte parabolu ze tří bodů a směru průměru.
+
+	\begin{reseni}
+		Úloha 4 body a tečna -> kuželosečka.
+	\end{reseni}
+\end{priklad}
+
+\subsection{Elipsa/Kružnice}
+\begin{poznamka}
+	Pro elipsu nejsou žádné speciální konstrukce (nemá speciální tečny / body). Budeme tedy studovat kružnici.
+
+	Jak ale kružnici definovat? a) Skoro euklidovsky: potřebujeme pojem stejně dlouhé úsečky i na různoběžkách. b) Pomocí kolmosti: tj. k afinní geometrii přidáme pojem kolmosti.
+\end{poznamka}
+
+\begin{poznamka}
+	Kružnice $\implies$ přenos délek mezi různoběžkami $\implies$ půlení úhlu $\implies$ kolmost.
+
+	Z kolmosti pak přes Thaletovu větu můžeme konstruovat bodově kružnici.
+\end{poznamka}
+
+\begin{definice}[Absolutní involuce]
+	Absolutní involuce ve svazku přímek je involuce daná dvěma páry kolmic.
+
+	\begin{poznamkain}
+		Je to otočení o 90 stupňů.
+	\end{poznamkain}
+
+	\begin{poznamkain}[Pozorování]
+		Jde o eliptickou involuci (páry se rozdělují, nemá reálné samodružné přímky).
+
+		Má 2 komplexně sdružené samodružné přímky, tzv. izotropické přímky. Jejich směry se nazývají izotropické body.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}
+	Kružnice je elipsa, jejíž asymptoty jsou izotropické přímky procházející jejím středem.
+\end{definice}
+
+\begin{dusledek}
+	Proto je každá kružnice dána třemi body (resp. třemi podmínkami). (Zbývající dva body jsou body na asymptotách.)
+\end{dusledek}
+
+\begin{priklad}[Konstrukce kružnice]
+	Sestrojte kružnici, je-li dáno
+	\begin{itemize}
+		\item 3 body (průsečík os je střed, podle toho uděláme středovou souměrnost a máme 6 bodů);
+		\item 2 body a 1 tečna (průsečík osy a kolmice na tečnu v bodě je střed);
+		\item 1 bod a 2 tečny (bez kružítka asi nejde, potřebujeme osu úhlu).
+	\end{itemize}
+\end{priklad}
+
+\begin{poznamka}
+	V praxi budeme používat kružítko.
+
+	Platí všechny obvyklé vlastnosti kružnice. Zejména umíme vést ke kružnici tečny z vnějšího bodu.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce samodružné body projektivity]
+	Sestrojte samodružné body projektivity soumístné bodové soustavy dané 3 páry bodů.
+
+	\begin{reseni}
+		Sestrojíme tečny z daných bodů k libovolně zvolené kružnici dotýkající se přímky. ($p(A, B, C):::p(A', B', C') \implies k(a, b, c):::k(A', B', C')$). Najdeme direkční bod a z něho vedeme tečny ke kružnici. Ty jsou tedy samodružné body projektivity na tečnové kuželosečce, tedy jejich průsečíky s bodovou soustavou (její přímkou) jsou samodružné body.
+	\end{reseni}
+
+	\begin{poznamkain}
+		Kdyby direkční bod vyšel na kružnici, pak je jeden dvojitý samodružný bode, a kdyby byl vnitřní, tak jsou samodružné body imaginární.
+	\end{poznamkain}
+\end{priklad}
+
+\begin{priklad}[Konstrukce duální k předchozí]
+	Sestrojte samodružné přímky projektivity soumístných přímkových soustav.
+
+	\begin{reseni}
+		Duálně.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce průsečík kuželosečky s přímkou]
+	Najít průsečíky kuželosečky dané 5 body s danou přímkou.
+
+	\begin{reseni}
+		Jako obvykle vyrobíme soustavy $H(a, b, c):::H'(a', b', c')$. Ty nám na přímce vytvoří další soustavy v projektivitě a nalezneme samodružné body.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce duální k předchozí]
+	Kuželosečka dána 5 tečnami a dán bod. Nalezněte tečny procházející $R$.
+\end{priklad}
+
+\begin{priklad}[Konstrukce asymptot v hyperbole]
+	Najděte asymptoty hyperboly zadané 5 body.
+
+	\begin{poznamkain}
+		Tj. najít zejména směry asymptot, jelikož střed už najít umíme.
+	\end{poznamkain}
+
+	\begin{reseni}
+		Směry asymptot jsou průsečíky s nevlastní přímkou, tedy minulá konstrukce. Ale máme nevlastní přímku. Takže to uděláme tak, že pomocnou kružnici položíme procházející bodem $H$, přeneseme si na ní body $A$, $B$, $C$ a pomocí přímek rovnoběžných s čárkovanými přímkami i body $A'$, $B'$, $C'$.
+	\end{reseni}
+\end{priklad}
+
 \end{document}

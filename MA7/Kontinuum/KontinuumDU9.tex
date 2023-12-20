@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	The Cauchy stress ®T tensor is related to the derivative of the Helmholtz free energy via the formula $®T = 2\rho \frac{\partial \psi}{\partial ®B} ®B$.
+
+	Since the material is isotropic, the Helmholtz free energy must be in fact a function of the invariants of ®B: $\psi = \psi(\theta, I_1, I_2, I_3)$, where the invariants are given by the formulae
+	$$ I_1 := \tr ®B, \qquad I_2 := \frac{1}{2}\((\tr ®B)^2 - \tr ®B^2\), \qquad I_3 := \det ®B. $$
+
+	Show that $®T = \alpha_0 ®I + \alpha_1®B + \alpha_2®B^2$, where
+	$$ \alpha_0 := 2 \rho I_3 \frac{\partial\psi}{\partial I_3}, \qquad
+	\alpha_1 := 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\), \qquad
+	\alpha_2 := -2 \rho \frac{\partial \psi}{\partial I_2}. $$
+
+	\begin{dukazin}[Z minulého roku]
+		Z řetízkového pravidla:
+		$$ ®T = 2\rho \frac{\partial \psi}{\partial ®B} ®B = 2\rho \frac{\partial \psi}{\partial I_1}\frac{\partial I_1}{\partial ®B} ®B + 2\rho \frac{\partial \psi}{\partial I_2}\frac{\partial I_2}{\partial ®B}®B + 2\rho \frac{\partial \psi}{\partial I_3}\frac{\partial I_3}{\partial ®B}®B. $$
+
+		Zřejmě $\frac{\partial I_1}{\partial ®B} = ®I$,
+		$$ \frac{\partial I_2}{\partial ®B} = \frac{1}{2} \frac{\partial (\tr ®B)^2}{\partial \tr ®B}\frac{\partial \tr ®B}{\partial ®B} - \frac{1}{2} \frac{\partial \tr ®B^2}{\partial (®B^2)}\frac{\partial ®B^2}{\partial ®B} = \frac{2}{2}(\tr ®B)®I - \frac{2}{2}®I\,®B = ®I \tr ®B - ®B. $$
+		Z přednášky navíc víme $\frac{\partial I_3}{\partial ®B} = (\det ®B) ®B^{-T}$. Navíc $®B$ je symetrické (např. z definice $®B^T = (®F®F^T)^T = (®F^T)^T ®F^T = ®F®F^T = ®B$), tedy $\frac{\partial I_3}{\partial ®B} = (\det ®B) ®B^{-1}$.
+
+		Dosazením:
+		$$ ®T = 2\rho \frac{\partial \psi}{\partial I_1}®I\,®B + 2\rho \frac{\partial \psi}{\partial I_2}\(®I\,I_1 - ®B\)®B + 2\rho \frac{\partial \psi}{\partial I_3}\(I_3®B^{-1}\)®B = $$
+		$$ = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}®B^2. $$
+	\end{dukazin}
+
+	Furthermore show that an alternative form reads
+	$$ ®T = \beta_0 ®I + \beta_1 ®B + \beta_{-1}®B^{-1}, $$
+	where
+	$$ \beta_0 := 2 \rho \(I_2 \frac{\partial \psi}{\partial I_2} + I_3 \frac{\partial\psi}{\partial I_3}\), \qquad
+	\beta_1 := 2\rho\frac{\partial \psi}{\partial I_1}, \qquad
+	\beta_{-1} := -2 \rho I_3 \frac{\partial \psi}{\partial I_2}. $$
+
+	\begin{dukazin}[Z minulého roku]
+		Z přednášky víme
+		$$ ®B^{-1} = \frac{1}{I_3}®B^2 - \frac{I_1}{I_3}®B + \frac{I_2}{I_3}®I, $$
+		tedy
+		$$ ®B^2 = I_3 ®B^{-1} + I_1®B - I_2®I. $$
+
+		Dosadíme:
+		$$ ®T = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}®B^2 = $$
+		$$ = 2 \rho I_3 \frac{\partial\psi}{\partial I_3}®I + 2\rho\(\frac{\partial \psi}{\partial I_1} + I_1\frac{\partial \psi}{\partial I_2}\)®B - 2\rho \frac{\partial \psi}{\partial I_2}\(I_3 ®B^{-1} + I_1®B - I_2®I\) = $$
+		$$ = 2 \rho \(I_2 \frac{\partial \psi}{\partial I_2} + I_3 \frac{\partial\psi}{\partial I_3}\)®I + 2\rho\frac{\partial \psi}{\partial I_1}®B - 2\rho I_3\frac{\partial \psi}{\partial I_2}®B^{-1}. $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

@@ -651,6 +651,74 @@ TODO!!!
 	Define $U_{s^\wedge n}$ as open ball with center $x_n$: $\overline{U_{s^\wedge n}} \subset U_s$. $U_{s^\wedge n} \cap U_{s^\wedge m} = \O$ ($D$ is discrete), $\diam U_{s^\wedge n}≤ 2^{-|s|-1}$, $\lim_{n \rightarrow ∞} \diam U_{s^\wedge n} = 0$, $\overline{\bigcup_{n \in ω} U_{s^\wedge n}} \setminus \bigcup_{n \in ω} \overline{U_{s^\wedge n}} = \{U_{s^\wedge n} | n \in ω\} = K \impliedby \overline{U_{s^\wedge n}} \cap K = \O$, $\overline{D} = K \cup D$. $x_n \in A_{φ(s)} \implies U_{s^\wedge n} \cap A_{φ(s)} ≠ \O$, $\overline{\bigcup_{k \in ω} A_{φ(s)^\wedge k}} = A_{φ(s)} \implies \exists k \in ω: U_{s^\wedge n} \cap A_{φ(s)^\wedge k} ≠ \O$.
 
 	Put $φ(s^\wedge n) = φ(s)^\wedge k$. And then all items are satisfied. $H = \bigcap_{n \in ω} \bigcup_{|s| = n, s \in ω^{<ω}} U_s \in ∏_2^0(X)$, $H \subset A$, $H \notin ©I^{ext}$.
+
+% 13. 12. 2023
+
+	$$ H := \bigcap_{n \in ω} \bigcup \{U_s | s \in ω^{< ω}, |s| = n\} \in ∏_2^0 (\impliedby 2.). $$
+	$H \subset A?$, $H \notin ©I^{ext}$. „$H \subset A$“: 5. and 6. $\implies$ $H = \bigcup_{ν \in ω^ω} \bigcap_{n \in ω} \bigcup_{ν / m} = a_s U_s$?
+	$$ x \in H \Leftrightarrow \forall n \in ω\ \exists ω^{< ω}, |s| = n: x \in U_s \overset{5. \land 6.}\Leftrightarrow \exists s \in ω^ω\ \forall n \in ω x \in U_{s / n} \Leftrightarrow a_sU_s. $$
+	$$ \(3. \implies \diam (U_{ν / n}) ≤ 2^{-n}, \(7. \implies U_{ν / m} \cap A_{φ(ν / n)} ≠ \O\)\) \implies \bigcap_{n \in ω} \overline{U_{ν / n}} \subset \bigcap_{n \in ω} A_{φ(ν / n)} \subset A \implies H \subset A. $$
+
+	„$H \notin ©I^{ext}$“: $\forall ν \in ω^ω: \bigcap_{n \in ω} U_{ν / n} ≠ \O \impliedby 3. \land 5.$, so $\forall s \in ω^{<ω}: U_s \cap H ≠ \O$. Assume $H \subset \bigcup_{m \in ω} F_m$, $F_m \in ©I$. $H \in G_δ \implies \exists n_0 \in ω: F_{n_0}$ is not meager in $H$ $\implies$ $\exists U ≠ \O$ open in $X$: $\O ≠ U \cap H \subset F_{n_0}$. Let $x \in U \cap H$. Then there exist $ν \in ω^ω\ \forall n \in ω: x \in U_{ν / n}$ $\implies$ $\exists m_0 \in ω: U_{ν / m_0} \subset U$ $\implies$ $\O ≠ U_{ν / m_0} \cap H \subset F_{n_0}$. Denote $ν / m_0 =: s$. For contradiction assume 9. $\land$ 3. $\overset{?}\implies$ $\{U_{s^\wedge n}, n \in ω\}^d \subset F_{n_0}$ which contradicts 8. So 9. $\implies$ $\{U_{s^\wedge n}, n \in ω\}^d \subset U_s$,
+	$$ x \in \{U_{s^\wedge n}, n \in ω\}^d \implies \exists n_k\nearrow, x_k \in U_{s^\wedge n_k}: x_k \rightarrow x, y_k \in U_{s^\wedge n_k} \cap H \subset F_{n_0} \implies $$
+	$\implies$ 4. $\implies$ $y_k \rightarrow x$ $\implies$ $x \in F_{n_0}$.
 \end{dukaz}
+
+TODO!!!
+
+\section{Infinite games}
+\subsection{Baire definitions}
+\begin{definice}
+	Assume $A ≠ \O$, $X \subset A^ω$. In game $G(X)$, there are 2 players I, II and those players choose $a_i, i \in ω, a_i \in A$:
+	$$ I: a_0, a_2, a_4, … $$
+	$$ II: a_1, a_3, a_5, … $$
+	Player I wins $≡$ $(a_i) \in X$, otherwise player II wins.
+
+	Strategy for I is mapping $©S: A^{<ω} \rightarrow A^{<ω}$ such that $\forall s \in A^{<ω}: |©S(s)| = |s| + 1$ and $\forall s, t \in A^{<ω}$, $s < t$: $©S(s) < ©S(t)$.
+\end{definice}
+
+\begin{definice}[Notation]
+	$ς \subset A^{<ω}$ be tree iff $\forall s, t \in A^{<ω}$, $s < t: t \in ς \implies s \in ς$
+	
+	Let $ς$ be tree, $s \in ς$. Then $s$ is leaf iff $\forall n \in A: s^\wedge n \notin ς$.
+
+	Let $ς$ be tree. Then $ς$ is prunned $≡$ $ς$ does not have leaves ($\forall s \in ς: \exists a \in A: s^\wedge a \in ς$).
+
+	$$ [ς] = \{ν \in A^ω | \forall n \in ω: ν / n \in ς\}, \qquad [ς] \in ∏_1^0(A^ω). $$
+
+	$\forall F \in ∏_1^0(A^ω)$ $\exists!$ prunned tree $ς \subset A^{<ω}$: $[ς] = F$.
+
+	Strategy for I is prunned tree $ς \subset A^{<ω}$ such that $ς ≠ \O$, $(a_0, a_1, …, a_{2j}) \in ς \implies \forall a \in A: (a_0, …, a_{2j}, a) \in ς$, and $(a_0, …, a_{2j+1}) \in ς \implies \exists! a \in A: (a_0, …, a_{2j + 1}, a) \in ς$.
+\end{definice}
+
+\begin{definice}
+	Strategy $ς$ for I is winning $\Leftrightarrow$ I wins if the follows this strategy $[ς] \subset X$.
+\end{definice}
+
+\begin{poznamka}
+	In Game $G(A, X)$ at most one player has winning strategy. It can happen (ZFC) that nobody has winning strategy.
+\end{poznamka}
+
+\begin{definice}[Game with rulse]
+	$T \subset A^{<ω}$ be prunned tree, $X \subset [T]$. 
+	$$ I: a_0, a_2, a_4, … $$
+	$$ II: a_1, a_3, a_5, … $$
+	such that $\forall n \in ω: (a_0, …, a_n) \in T$ ($T$ is tree of rules). Other notions are similar.
+\end{definice}
+
+\begin{poznamka}
+	Assume $X = \{x \in A^ω | x \in X \cap [T] \cup (\exists n \in ω: x / n \notin T \text{ and the least } n \in ω: x / n \notin T \text{ is odd})\}$ then I (resp. II) has wining strategy in $G(X')$ $\Leftrightarrow$ I (resp. II) has winning strategy in $G(T, X)$.
+\end{poznamka}
+
+\begin{priklady}
+	$SG(A, B_0, B_1)$. Let $S, T$ be nonempty prunned trees on $ω$, $A \subset [S]$, $B_0, B_1 \subset [T]$.
+	$$ I: x(0), x(1), x(2), … $$
+	$$ II: y(0), y(1), y(2), … $$
+	$x(i), y(i) \in ω, x / n \in S, y / n \in T$. Player II wins $\Leftrightarrow$ $(x \in A \implies y \in B_0) \land (x \notin A \implies y \in B_1)$.
+
+	I has winning strategy $\Leftrightarrow$ $\exists f: [T] \rightarrow [S]$ continuous: $f(B_0) \cap A = \O$, $f(B_1) \subset A$ $\Leftrightarrow$ $f^{-1}(A)$ separates $B_1$ from $B_2$.
+
+	II has winning strategy $\Leftrightarrow$ $\exists g: [S] \rightarrow [T]$ continuous: $g(A) \subset B_0$, $g(A^c) \subset B_1$.
+\end{priklady}
 
 \end{document}
