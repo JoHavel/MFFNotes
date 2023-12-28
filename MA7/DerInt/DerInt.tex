@@ -639,4 +639,81 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 20. 12. 2023
+
+\begin{definice}
+	Říkáme, že $x$ je bodem hustoty měřitelné množiny $E$, pokud $\lim_{r \rightarrow 0} \frac{λ^n(E \cap B(x, r))}{λ^n(B(x, r))} = 1$.
+
+	Nechť $u: ®R^n \rightarrow ®R$ a nechť $x \in ®R^n$. Říkáme, že $L = \aplim_{y \rightarrow x} u(y)$ je aproximativní limita $u$ v bodě $x$, pokud $\exists E \subseteq ®R^n$ měřitelná: $x$ je bodem hustoty $E$ a $\lim_{y \rightarrow x, y \in E} u(y) = L$.
+
+	\begin{poznamkain}
+		$u$ měřitelná:
+		$$ L = \aplim_{y \rightarrow x} u(y) \Leftrightarrow \forall ε, ς > 0\ \exists r_0: \forall r \in (0, r_0): \frac{1}{r^n} λ^n(\{|u(y) - L| ≥ ε\}) ≤ ς \Leftrightarrow $$
+		$\Leftrightarrow$ $x$ je bodem hustoty $M_ε = \{y \in ®R^n \middle| |u(y) - u(x)| < ε\}$ $\forall ε$.
+	\end{poznamkain}
+
+	$A = \nabla_a u ≡ \aplim_{y \rightarrow x} \frac{u(y) - u(x) - A(y - x)}{|x - y|} = 0$.
+\end{definice}
+
+\begin{lemma}
+	Nechť $Ω \subset ®R^n$ a $u \in W^{1, 1}_{loc}(Ω)$. Pak pro skoro všechna $x \in Ω$:
+	$$ \lim_{r \rightarrow 0_+} \frac{1}{r} \fint_{B(x, r)} |u(y) - u(x) - Du(x) (y - x)| dλ^n(y) = 0. $$
+
+	\begin{dukazin}
+		BÚNO $x$ je Lebesgueův bod pro $u$ a $Du$. Definujeme $v(y) = u(y) - u(x) - Du(x)(u - x)$. $v(x) = 0$.
+		$$ \frac{1}{R} \fint |v(y)| = \frac{1}{R} \fint_{B(x, R)} |v(y) - v(x)| ≤ \frac{C}{R} \int_{B(x, R)} \frac{|Du(y)|}{|x - y|^{n-1}} = $$
+		$$ = \frac{C}{R} \int_{B(x, R)} \(\int_{|x - y|}^∞ \frac{1}{r^n}dr\) |Du(y)| = \frac{C}{R} \int_0^R \frac{1}{r^n} \int_{B(x, r)} |Du(y) - Du(x)| dy dr + \frac{C}{R} \int_R^∞ \frac{1}{r^n} \int_{B(x, R)} |Du(y) - Du(x)| dy xr ≤ $$
+		$$ ≤ c_1·\fint_0^R \underbrace{\fint_{B(x, r)} |Du(y) - Du(x)|}_{\overset{R \rightarrow 0_+}\longrightarrow 0} + c_2·\fint_{B(x, R)} \underbrace{|Du(y) - Du(x)|}_{\overset{R \rightarrow 0_+}\longrightarrow 0} \rightarrow 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Nechť $u \in W^{1, 1}(Ω)$. Potom $\exists \nabla_a u(x) = Du(x)$ pro skoro všechna $x \in Ω$.
+
+	\begin{dukazin}
+		Mějme $x$ takové, že $\lim_{r \rightarrow 0_+} \frac{1}{r} \fint_{B(x, r)} |u(y) - u(x) - Du(x)(y - x)| dy = 0$. Zvolme $ε > 0$ a $τ \in (0, ε)$ (např. $ε^2$). Označme $v(y) = u(y) - u(x) - Du(x)(y - x)$ a $ς = \(\frac{τ}{ε}\)^{\frac{1}{n+1}}$. Najděme $r_0 > 0$: $\fint_{B(x, ς)} |v| ≤ τς$ $\forall r \in (0, r_0)$.
+
+		Máme
+		$$ λ^n(\{|v(y)| ≥ ε |y - x|\} \cap B(x, r)) ≤ λ^n(\{y \in B(x, r) \setminus B(x, ςr) \middle| |v(y)| ≥ ε·|y - x| ≥ ε·ς·r\}) + λ^n(B(x, δ·r)) ≤ $$
+		$$ ≤ \int_{B(x, r) \cap \{|v| > ς·ε·r\}} \frac{|v|}{ς·ε·r} dy + ς^n λ^n(B(x, r)) ≤ \frac{τ·r}{ς·ε·r}·r^n + c·δ^n·r^n = \(\frac{τ}{ε·δ} + δ^n·c\)·r^n. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Nechť $v \in Lip_{loc}(Ω, ®R)$ a nechť $\exists \nabla_a v(x)$. Potom $\exists \nabla v(x) = \nabla_a v(x)$.
+
+	\begin{dukazin}
+		BÚNO $u$ je lipschitzovská a $Lip u =: L$. Najděme $r_0 > 0$: $B(x, r_0) \subset Ω$ a $\forall r \in (0, r_0)$ platí
+		$$ λ^n(B(x, r) \cap E) ≤ \(\frac{ε}{L}\)^n λ^n(B(x, r)), \qquad E := \{y\middle| |v(y)| > ε|y - x|\}, $$
+		protože $\exists \nabla_a u(x)$. Nechť $E \cap B\(x, \frac{c}{4}\) \setminus B\(x, \frac{c}{8}\)$ ($|v(y)| ≤ C·ε|y - x|$) otevřená, tedy $\overline{B(x, r)} \setminus E$ je uzavřená $\implies$ $\exists z' \in \overline{B(x, r)} \setminus E$ nejbližší k $z$. $|z - z'| ≤ \frac{r}{4}$, protože $x \in B(x, r) \setminus E$.
+
+		$z' \in B\(x, \frac{r}{2}\)$ a $B(z, |z - z'|) \subset B(x, r)$.
+		$$ \(\frac{|z' - z|}{r}\)^n ≤ \frac{λ^n(E \cap B(x, r))}{λ^n(B(x, r))} ≤ \(\frac{ε}{L}\)^n. $$
+		$|z' - z| ≤ \frac{ε}{L}r$, $|v(z') - v(z)| ≤ ε r$,
+		$$ |v(z)| ≤ |v(z')| + |v(z) - v(z')| ≤ ε|z' - x| + ε r ≤ 2ε r ≤ c·ε·|z - x|. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Rademacher]
+	Nechť $u \in Lip_{loc}(Ω)$. Potom $\exists \nabla$ skoro všude na $Ω$, $u \in W^{1, 1}_{loc}(Ω)$ a $D u = \nabla u$.
+
+	\begin{dukazin}
+		$\implies$ $\exists \nabla_a u$ skoro všude $\implies$ $\exists \nabla u$ skoro všude. ? $\nabla u$ je měřitelná. $|\nabla u| < M \implies \nabla u \in L^1_{loc}(Ω)$. Funkce $u$ má $\partial_? u$ skoro všude na skoro všech přímkách $\implies$ (ACL charakterizace) $u \in W^{1, 1}_{loc}(Ω)$.
+
+		$Lip(u, x) = \limsup_{y \rightarrow x} \frac{|u(y) - u(x)|}{|y - x|}$. $S(u) = \{x \middle| Lip(u, x) < ∞\}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Stepanov]
+	Nechť $u$ je reálná funkce na $Ω$. Potom $u$ je diferencovatelná skoro všude na $S(u)$.
+
+	\begin{dukazin}
+		Nechť $\{B_j\}$ – střed racionální poloměr ?. Pro každé $B_j$ definujeme lipschitsovské obálky:
+		$$ w_j(x) = \inf\{w(x) | w(x) ≥ u(x) lip(u, B_j) ≤ j\}, $$
+		$$ v_j(x) = \sup\{v(x) | v(x) ≤ u(x) lip(u, B_j) ≤ j\}. $$
+
+		Dokažme, že pro $N := \bigcup \{x \in B | \nexists \nabla w_j(x) \lor \nexists v_j(x)\}$ je $λ^n(N) = 0$. Nechť $x \in S(u) \setminus N$. $\exists r > 0\ \exists l > 0: |u(x) - u(y)| ≤ l·|x - y|$. $lip(u, B_j) ≤ L ≤ j$ $\implies$ $w_j = u = v_j$ na $B_j$, $x \notin N$.
+	\end{dukazin}
+\end{veta}
+
 \end{document}

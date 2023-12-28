@@ -340,7 +340,7 @@ TODO!!!!
 	Then $F$ has a minimizer in $X$.
 
 	\begin{dukazin}
-		Let $s:= \inf_X F$. Pick sequence $(x_k)_k \subset X$ such that $F(x_n) \rightarrow s$. For $k_0$ large enough $(x_i)_{i ≥ k_0} \subset x \in X: F(x) ≤ s + 1$. $\overset{1.}\implies$ $\exists$ subsequenc (not relabeled) and $x_0 \in X$ such that $x_k \rightarrow x_0$. $s = \inf F ≤ F(x_0) ≤ \liminf_{k \rightarrow ∞} F(x_k) = s$.
+		Let $s:= \inf_X F$. Pick sequence $(x_k)_k \subset X$ such that $F(x_n) \rightarrow s$. For $k_0$ large enough $(x_i)_{i ≥ k_0} \subset x \in X: F(x) ≤ s + 1$. $\overset{1.}\implies$ $\exists$ subsequence (not relabeled) and $x_0 \in X$ such that $x_k \rightarrow x_0$. $s = \inf F ≤ F(x_0) ≤ \liminf_{k \rightarrow ∞} F(x_k) = s$.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -614,7 +614,7 @@ TODO!!!
 		$$ y(t) = F(y)(t) := y_0 + \int_0^t f(s, y(s)) ds, $$
 		TODO!!!
 
-		„$F$ is continuous“: $\|y - \hat{y}\|_\sup < δ \implies \|F(y) - F(\hat{y})\|_\sup ≤ \sup_{t \in (0, T^*)} \int_0^t |f(s, y) - f(s, \hat{y})| < T^*ε$.
+		„$F$ is continuous“: $\|y - \hat{y}\|_{\sup} < δ \implies \|F(y) - F(\hat{y})\|_{\sup} ≤ \sup_{t \in (0, T^*)} \int_0^t |f(s, y) - f(s, \hat{y})| < T^*ε$.
 
 		„$F$ is compact“: All functions in $F(©C([0, T^*], B_R(y_0)))$ are equibounded and equicontinuous, so by Arzela–Ascoli $\exists$ converging subsequence $\implies$ precompact.
 	\end{dukazin}
@@ -623,5 +623,51 @@ TODO!!!
 \begin{poznamka}
 	Consider $\dot y(t) = |y|^{1 / 3}$ (continuous and bounded for small $y$), $y(0) = 0$. It has many solutions (0, $(2 / 3)^{3 / 2}(t - a)^{3 / 2}$ for $t ≥ a$ and 0 otherwise, …).
 \end{poznamka}
+
+% 20. 12. 2023
+
+\section{The Leray–Schauder degree}
+\begin{definice}
+	$$ \deg_X(\id, Ω, y_0) = \begin{cases}0, \qquad \text{if } x \in Ω,\\ 1, \qquad \text{if } x \in X \setminus Ω.\end{cases} $$
+\end{definice}
+
+\begin{veta}[Leray–Schauder degree]
+	Let $X$ be Banach, $T: X \rightarrow X$ compact and $(P_n)_n$ be a finite dimension approximation with $X_n \subset X$ finite dimensional, such that $P_n(X) \subset X_n$. Let $Ω \subset X$ open, bounded, $0 \notin (\id - T)(\partial Ω)$ then $\deg_X(\id - T, Ω, 0) := \lim_{n \rightarrow ∞} \deg_{X_n}((\id - P_n)|_{X_n}, Ω \cap X_n, 0)$ is well defined (actually RHS is constant for $n$ large enough). We'll call this the Leray–Schauder degree.
+
+	\begin{dukazin}
+		1. Make sense of $\deg_{X_n}((\id - R)|_{X_n}, Ω \cap X_n, 0)$. Assume $\exists (x_n)_n$ such that $x_n \in \partial(X_n \cap Ω)$ such that $x_n - P_n x_n = 0$. $x_n$ bounded and $T$ compact $\implies$ $\exists$ subsequence $Tx_n \rightarrow x$:
+		$$ \|T x_n - P_n x_n \| < \frac{1}{n} \implies P_n x \rightarrow x. $$
+		$x_n \rightarrow x \implies Tx = x$. \lightning.
+		$$ \dist((\id - T)(\partial Ω), 0) =: r > 0. $$
+
+		2. Let $P_n, P_m$ be such that $\frac{1}{n} < \frac{r}{2}$, $\frac{1}{m} < \frac{r}{2}$. Denote by $\tilde X := X_n + X_m$ the smallest linear subspace of $X$ including $X_n$ and $X_m$.
+		$$ \deg_{X_n}((\id P_n)|_{X_n}, Ω \cap X_n, 0) = \deg_{\tilde X} ((\id - P_n)|_{\tilde X}, Ω \cap \tilde X, 0), $$
+		since $(\id - P_n)(x) = 0 \implies x - P_nx = 0 \implies x \in X_n$. WLOG for all such $x$ $\det((I - DP_n))(x) ≠ 0$. TODO!!!
+
+		3. TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Leray–Schauder degree as existencial criterion]
+	Let $X$ be Banach space and $Ω \subset X$ open, bounded, $T: X \rightarrow X$ compact and $0 \notin (\id - T)(\partial Ω)$. If $\deg_X(\id - T, Ω, 0) ≠ 0$, then there is $x \in Ω$ such that $x = Tx$.
+
+	\begin{dukazin}
+		Approx $T$ by $P_n$ as before. Then $\deg_{X_n}((\id - P_n)|_{X_n}, Ω \cap X_n, 0) ≠ 0$ for $n$ large enough $\implies$ $\exists(x_n)$ such that $x_n = P_n x_n$. $\exists$ subsequence $Tx_n \rightarrow x$. As before $x = Tx$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Homotopies for the Leray-Schauder degree]
+	Let $X$ Banach, $T_s: X \rightarrow X$ for $s \in [0, 1]$ a family of compact operators, uniformly continuous in the sense
+	$$ \exists ε > 0, Ω \subset X \text{ bounded } \exists δ > 0\ \forall x \in Ω\ \forall |s_1 - s_2| < δ: \|T_{s_1}(x) - T_{s_2}(x)\| < ε. $$
+	If $Ω$ is open and bounded such that $0 \notin (\id - T_s)(\partial Ω)$ $\forall s \in [0, 1]$, then $s \mapsto \deg_X(\id - T_n, Ω, 0)$ is constant.
+
+	\begin{dukazin}
+		Similar to before we show $\dist((\id - T_s)(\partial Ω), 0) ≥ r > 0$ independently of $s$. Assume $\exists (s_n)_n \subset [0, 1], (x_n)_n \subset \partial Ω$ such that $\|x_n - T_{s_n} x_n\| \rightarrow 0$. By compactness $\exists$ subsequence $s_n \rightarrow s$ and $T_s x_n \rightarrow x$. Now
+		$$ \|x_n - T_s x_n\| ≤ \underbrace{\|x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by assumption }} + \underbrace{\|T_s x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by uniform continuity}} \implies $$
+		$\implies x_n \rightarrow x \in Ω \land x - Tx = 0$. \lightning.
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
 
 \end{document}

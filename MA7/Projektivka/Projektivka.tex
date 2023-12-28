@@ -289,7 +289,7 @@ TODO!!!
 	\end{reseni}
 \end{priklad}
 
-\begin{veta}[Papova o šestiúhelníku]
+\begin{veta}[Pappova o šestiúhelníku]
 	Stejné jako věta o direkční přímce. (Jinak formulovaná.)
 \end{veta}
 
@@ -1101,5 +1101,193 @@ TODO!!! (charakteristika projektivity, involuce, …)
 		Směry asymptot jsou průsečíky s nevlastní přímkou, tedy minulá konstrukce. Ale máme nevlastní přímku. Takže to uděláme tak, že pomocnou kružnici položíme procházející bodem $H$, přeneseme si na ní body $A$, $B$, $C$ a pomocí přímek rovnoběžných s čárkovanými přímkami i body $A'$, $B'$, $C'$.
 	\end{reseni}
 \end{priklad}
+
+% 21. 12. 2023
+
+\section{Pascalova a Brianchonova věta}
+\begin{poznamka}[Idea]
+	Kuželosečka je dána 5 body. Tedy 6 bodů na kuželosečce musí být nějak vázáno.
+\end{poznamka}
+
+\begin{veta}[Pascalova]
+	Šest bodů 1, 2, 3, 4, 5, 6 leží na kuželosečce $\Leftrightarrow$ průsečíky spojnic 12 a 45, 23 a 56, 34 a 61 leží na jedné, tzv. Pascalově přímce ($p$).
+
+	\begin{dukazin}
+		„$\implies$“: Označíme $1 = A$, $2 = B'$, $3 = C$, $4 = A'$, $5 = B$, $6 = C'$. Pak $p$ = direkční přímka projektivity $©B(A, B, C) ::: ©B(A', B', C')$.
+
+		„$\impliedby$“: Mějme kuželosečku danou body $1, …, 5$. Ukážeme, že i $6$ na ní leží. Označme $6' ≠ 5$ průsečík ©B a přímky $56$ (a chceme ukázat, že $6' = 6$). Protože $6' \in 56$, tak $56' = 56$. Spojnice $12$ a $45$, $23$ a $56'$ se protínají na $p$, na které leží i průsečík $34$ a $6'1$ (dle první části, $p = $ Pascalova přímka pro $1, …, 5, 6'$). Zároveň dle předpokladu věty se na téže přímce $p$ protínají i $34$ a $61$. Proto nutně $6' = 6$.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Speciální případ pro singulární kuželosečku 2 přímky]
+	Pappova věta.
+\end{dusledek}
+
+\begin{poznamka}[Historická]
+	Původní důkaz Pascalovy věty byl euklidovský.
+\end{poznamka}
+
+\begin{poznamka}
+	Pro $6$ bodů existuje celkem $60 = \frac{6!}{6·2}$ Pascalových přímek.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka je dána $5$ body, přímka $x$ prochází jedním z nich. Najděte druhý průsečík $x \cap ©B$.
+
+	\begin{reseni}
+		Použijeme Pascalovu větu. (Bod s přímkou musí být číselně sousední s hledaným.)
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka dána 5 body, sestrojte v jednom z nich tečnu.
+
+	\begin{reseni}
+		Označíme si jeden bod dvěma sousedními čísly a použijeme Pascalovu větu. (Tečna bude rovnoběžka)
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka je dána 3 body a tečnami ve dvou z nich. Sestrojte tečnu ve třetím bodě.
+
+	\begin{reseni}
+		Označíme si každý bod dvěma sousedními čísly a použijeme Pascalovu větu.
+	\end{reseni}
+
+	\begin{poznamkain}
+		Odpovídá řešení za pomoci nalezení harmonické čtveřice (po Malé větě D).
+	\end{poznamkain}
+\end{priklad}
+
+\begin{veta}[Brianchonova (duální k Pascalově)]
+	6 přímek ($1, …, 6$) je tečnami k tečnami k téže kuželosečce $\Leftrightarrow$ spojnice průsečíků $1 \cap 2$ a $4 \cap 5$, $2 \cap 3$ a $5 \cap 6$, $3 \cap 4$ a $6 \cap 1$, prochází jedním, tzv. Brianchonovým bodem.
+\end{veta}
+
+\begin{poznamka}[Historická]
+	Také byla dokázána ještě eukleidovsky.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka dána 5 tečnami, bod $X$ leží na jedné z nich. Najděte druhou tečnu z bodu $X$.
+
+	\begin{reseni}
+		Duální ke konstrukci výše.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka dána 5 tečnami. Sestrojte na jedné z nich bod dotyku.
+
+	\begin{reseni}
+		Duální ke konstrukci výše.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Kuželosečka dána 3 tečnami a 2 body dotyku. Najděte bod dotyku na třetí tečně.
+
+	\begin{reseni}
+		Duální ke konstrukci výše.
+	\end{reseni}
+\end{priklad}
+
+\section{Pól a polára}
+\begin{poznamka}[Už víme]
+	Involuce na kuželosečce: $P$ = střed involuce = pól přímky $p$. $p$ = osa involuce = polára bodu $P$.
+
+	Involuce je hyperbolická $\Leftrightarrow$ $P$ je vnější bod a $p$ sečna, je eliptická $\Leftrightarrow$ $P$ je vnitřní bod a $p$ vnější přímka, „je“ parabolická $\Leftrightarrow$ $P$ je tečný bod tečny $p$.
+
+	Polára $p$ = spojnice bodů dotyku tečen z pólu $P$. Pól $P$ = průsečík tečen v průsečících poláry s kuželosečkou.
+
+	$(AA'RP) = -1 = (aa'rp)$.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Kuželosečka je dána 5 body, sestrojte poláru k danému bodu $P$.
+
+	\begin{reseni}
+		TODO!!! Přes Pascalovu větu najdeme další dva body a použili harmonickou čtveřici?
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Kuželosečka dána 5 tečnami. Najděte k přímce $p$ pól.
+
+	\begin{reseni}
+		Samostudium (duálně k předchozí konstrukci).
+	\end{reseni}
+\end{priklad}
+
+\begin{veta}
+	Dvojice pól+polára jsou 2 podmínky pro kuželosečku.
+
+	\begin{dukazin}
+		Nechť je to $x$ podmínek. Předpokládejme, že známe navíc tečny $s, t$ z bodu $p$, tedy máme $x + 2$ podmínek. $S = s \cap p$, $T = t \cap p$ jsou body dotyku, tedy $s, S, t, T$ jsou 4 podmínky, tedy $x + 2 ≥ 4$. Přitom není $x + 2 > 4$, protože podmínkami $P, p, s, t$ není kuželosečka určena jednoznačně. Tedy $x + 2 = 4$, tj. $x = 2$.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce, kuželosečka z poláry]
+	Sestrojte kuželosečku (tj. najděte další 2 body), je-li dán pól, polára a 3 body $A, B, C$.
+
+	\begin{reseni}
+		Přes harmonickou čtveřici. (A druhý se dá získat různými triky.)
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}
+	Duální k předchozímu.
+
+	\begin{reseni}
+		Na doma.
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}[Platí]
+	Vepíšeme-li kuželosečce úplný čtyřroh, pak dvojice pól+polára = diagonální vrchol + protější diagonální strana čtyřrohu.
+\end{poznamka}
+
+\begin{definice}[Názvosloví]
+	$PQR$ (se stranami $p, q, r$) je polární trojúhelník.
+\end{definice}
+
+\begin{poznamka}[Platí]
+	$P \in q \Leftrightarrow Q \in p$.
+\end{poznamka}
+
+\begin{definice}
+	V situaci z předchozí poznámky nazýváme body $P, Q$ (resp. přímky $p, q$) polárně sdružené (vůči kuželosečce ©B) (sdružené póly, resp. sdružené poláry).
+
+	\begin{poznamkain}
+		V polárním trojúhelníku máme 3 dvojice polárně sdružených bodů a 3 dvojice polárně sdružených přímek.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	Dvojice sdružených pólů tvoří 1 podmínku pro kuželosečku.
+
+	\begin{dukazin}
+		Ať zadávají $x$ podmínek. Předpokládejme, že navíc známe $s, t$ = dvě tečny z bodu $P$. $T$ bod dotyku na $t$. $(P, Q), s, t, T$ je $x + 3$ podmínek. Známe i $S = s \cap p$, tedy $s, S, t, T$ máme 4 podmínky. Tedy $x + 3 ≥ 4$. Ale opět potřebujeme 1 další bod pro určení kuželosečky, tj. $x + 3 = 4$ a $x = 1$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Polární trojúhelník tvoří 3 podmínky pro kuželosečku.
+
+	\begin{dukazin}
+		$(P, Q)$, $(Q, R)$, $(P, R)$ jsou tři podmínky a tím už jsou určeny i strany $p, q, r$.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Zkonstruujte kuželosečku z polárního trojúhelníku a 2 bodů ($A$, $B$).
+
+	\begin{reseni}
+		Přes harmonickou čtveřici dohledáme body.
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}[Bonusová informace]
+	V polárním trojúhelníku je vždy jeden vrchol vnitřní a dva vnější.
+\end{poznamka}
 
 \end{document}
