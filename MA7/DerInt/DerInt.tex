@@ -47,6 +47,7 @@
 \begin{veta}[Lebesgueova o derivaci 1]
 	Nechť $1 ≤ p < ∞$. Nechť $Ω \subset ®R^n$ otevřená. A nechť $f \in L^p_{loc}(Ω)$. Potom pro skoro všechna $x \in Ω$:
 	$$ \lim_{r \rightarrow 0} \fint_{B(x, r)} |f(y) - f(x)|^p dλ^n(x) = 0. $$
+	\vspace{-1em}
 
 	\begin{dukazin}
 		Bez důkazu.
@@ -125,6 +126,8 @@
 		($ψ_1 * f \overset{w}\rightarrow f$ v $L^∞$)
 	\end{poznamkain}
 \end{veta}
+
+% \pagebreak
 
 \begin{veta}
 	Nechť $u \in Lip(®R^n, ®R)$. Pak $u$ je slabě diferencovatelná na $®R^n$ a $\|Du\|_{L^∞} ≤ lip(u)$.
@@ -221,13 +224,15 @@
 
 		„2.“ $ε = 1$, $\exists δ > 0$. $λ^1(I) = b_0 - a_0$. Najdeme $N \in ®N$, že $N ≥ \frac{b_0 - a_0}{δ}$. $D$ je dělení $I$. $v(u, D) ≤ N$. $ε > 0$, $\exists δ > 0$: $V(u, (a_0, x]) := g(x)$ mějme konečné intervaly $λ^1(\bigcup [a_i, b_i]) < δ$ $\implies$ $\sum |u(b_i) - u(a_i)| < ε$.
 
-		„3.“: $v(x) = V(u, [a_0, x])$ a $v(x) - u(x)$ jsou hledané funkce. ($V(u, [a_0, x]) + V(u, (x, y)) = TODO$)
+		„3.“: $v(x) = V(u, [a_0, x])$ a $v(x) - u(x)$ jsou hledané funkce (jsou omezené a snadno se dokáže, že jsou neklesající).
 
 		„4.“: (z 3. předpokládejme, že $u$ je neklesající) Caratheodorovou konstrukcí nalezneme míru: $M((a, b)) = u(b) - u(a)$ a ukážeme o ní, že je spojitá (pak je to Lebesgue-Stieltjesova míra, tedy platí $M((a, b)) = \int_a^b f$). Nechť $λ^1(N) = 0$. $\forall δ > 0$ najdu $G \supset N$ $λ^1(G) < δ$, $G$ otevřená, tedy $G = \bigcup_{i=1}^∞(a_i, b_i)$. $μ(G) = \sum_{i=1}^m |u(b_i) - u(a_i)| < ε$.
 		$$ \frac{1}{2δ} \int_{x - δ}^{x + δ} f(y) dy \overset{δ \rightarrow 0^+} f(x). $$
 
 	\end{dukazin}
 \end{veta}
+
+\break
 
 \begin{veta}
 	Nechť $u$ je spojitá na $I$. Pak NÁPOJE:
@@ -270,7 +275,7 @@
 	Nechť $Ω \subset ®R^n$ otevřená. $1 ≤ p < ∞$, $p' = \frac{1}{1 - \frac{1}{p}}$. Pak pro každý $L \in \(W^{1, p}(Ω)\)^*$ existuje $f \in L^{p'}(Ω, ®R^{n+1})$ takové, že $L(u) = \sum_{i=1}^n \int_Ω f^i D_i u + \int_Ω f^{n+1} u$ a navíc $\|L\|_{(W^{1, p})^*} = \|f\|_{L^p}$.
 
 	\begin{dukazin}
-		Definujeme $T: W^{1, p}(Ω) \rightarrow L^p(Ω, ®R^{n+1})$, $u \mapsto (D_1 u, …, D_n u, u)$. $T W^{1, p}(Ω) \Subset L^p(Ω, ®R^{n+1})$. Díky HB větě každý $L \in \(W^{1, p}(Ω)\)^*$ lze rozšířit na $L^1 \in (L^p(Ω, ®R^{n+1}))^* = L^{p'}(Ω, ®R^{n+1})$.
+		Definujeme $T\!: W^{1, p}(Ω) \rightarrow L^p(Ω, ®R^{n+1})$, $u \mapsto (D_1 u, …, D_n u, u)$. $T W^{1, p}(Ω) \Subset L^p(Ω, ®R^{n+1})$. Díky HB větě každý $L \in \(W^{1, p}(Ω)\)^*$ lze rozšířit na $L^1 \in (L^p(Ω, ®R^{n+1}))^* = L^{p'}(Ω, ®R^{n+1})$.
 	\end{dukazin}
 
 	\begin{poznamkain}
@@ -318,8 +323,8 @@
 	$©D(®R^n)$ jsou slabě $*$ sekvenciálně husté v $W^{1, ∞}(®R^n)$. (Jinak řečeno, pro každé $u \in W^{1, ∞}$ najdeme $φ_k \subset ©D$, $φ_k \overset{*} \rightarrow u$ v $W^{1, ∞}(®R^n)$).
 
 	\begin{dukazin}
-		$u \in W^{1, ∞}$, $u_k(x) = u(x) η\(\frac{x}{k}\)$. Zvolme $f \in L^1$.
-		$$ \int D_i u_k f = \int_{®R^n} χ_{B(0, 2k) \setminus B(0, k)} \frac{\partial_i η(\frac{x}{k})}{k} u(x) f(x) + \int_{?} η\(\frac{x}{k}\) D_i u f(x) = \int_{B(0, k)} D_i u f(x) \rightarrow \int D_i u f. $$
+		$u \in W^{1, ∞}$, $u_k(x) = u(x) η\(\frac{x}{k}\)$. Zvolme $f \in L^1$. $\int D_i u_k f =$
+		$$ = \int_{®R^n} χ_{B(0, 2k) \setminus B(0, k)} \frac{\partial_i η(\frac{x}{k})}{k} u(x) f(x) + \int_{?} η\(\frac{x}{k}\) D_i u f(x) = \int_{B(0, k)} D_i u f(x) \rightarrow \int D_i u f. $$
 %		$\int η D_i u f(x) \rightarrow $
 	\end{dukazin}
 \end{veta}
@@ -335,12 +340,12 @@
 		Mějme $ω_ju \in W^{1, p}_0(Ω)$ $\exists v_{k, j} \in ©D(Ω)$: $v_{k, j} \rightarrow ω_j u$ v $W^{1, p}$. Takže najdeme $v_j \in ©D(Ω): \int_Ω |v_j - ω_j u|^p + |Dv_j - Dω_j u| < 2^{-j} ε$, $v_j \in W^{1, p}$. $\sum_{j=1}^∞ ω_j u = u \in W^{1, p}$.
 
 		Položme $v = \sum_{j=1}^∞ v_j$. Chceme dokázat $\|v - u\|_{1, p} < ε$. Nejprve na $Ω_n$. Máme $u|_{Ω_n} = \sum_{j=1}^n (ω_j u) |_{Ω_n} v|_{Ω_n}  = \sum_{j=1}^n v_j|_{Ω_n}$.
-		$$ \int_Ω \|v - u\|^p + \|Dv - Du\|^p ≤ \int_{Ω_n} \sum_{j=1}^n |v_j - u_j|^p + |Dv_j - Du_j|^2 ≤ \sum_{j=1}^n \|v_j - u_j\|_{W^{1, p}(Ω_n)}^p ≤ \sum_{j=1}^n 2^j ε ≤ ε. $$
+		$$ \!\!\!\int_Ω \|v - u\|^p + \|Dv - Du\|^p ≤ \int_{Ω_n} \sum_{j=1}^n |v_j - u_j|^p + |Dv_j - Du_j|^2 ≤ \sum_{j=1}^n \|v_j - u_j\|_{W^{1, p}(Ω_n)}^p ≤ \sum_{j=1}^n 2^j ε ≤ ε.\!\! $$
 		Pošleme $n \rightarrow ∞$ a zjistíme, že $\|u - v\|_{W^{1, p}(Ω)}^p ≤ ε$.
 	\end{dukazin}
 
 	\begin{poznamkain}[Konstrukce rozkladu jednotky]
-		Mějme nějaké $η_j: η_j \in ©D(Ω)$, $ TODO!!!$
+		Mějme nějaké $η_j: η_j \in ©D(Ω)$ tak, že $0 ≤ η_1 ≤ η_2 ≤ …$ a $η_j = 1$ na $Ω_j$. Označme $ω_1 = η_1$ a $ω_j = η_j - η_{n-1}$ pro $j ≥ 2$. Potom $ω_j$ mají kompaktní nosič a tvoří rozklad jednotky.
 	\end{poznamkain}
 \end{veta}
 
@@ -358,14 +363,41 @@
 \end{veta}
 
 \begin{veta}
-	Nechť $Ω \subset ®R^n$ otevřená, $u \in W^{1, 1}(Ω)$. Pak existuje vhodný reprezentant funkce $u$ takový, že platí následující: Pro TODO!!!
+	Nechť $Ω \subset ®R^n$ otevřená, $u \in W^{1, 1}(Ω)$. Pak existuje vhodný reprezentant funkce $u$ takový, že platí následující: Pro $λ^n$-skoro všechny $x \in ®R^n$ je funkce $t \mapsto u(x + te_i)$ lokálně absolutně spojitá na $\{t \in ®R | x + te_i \in Ω\}$. Funkce $u$ má všechny parciální derivace v $λ^n$ skoro každém bodě a $D_i u = \partial_i u λ^n$.
+
+	\begin{dukazin}
+		Jako v předchozím důkazu můžeme předpokládat, že $Ω$ je interval a označíme $\tilde Ω = (a_2, b_2) \times \cdots \times (a_n, b_n)$. Podle předpředchozí věty existuje posloupnost $\{u_k\}$ $©C^1$-funkcí tak, že $\|u_k - u\|_{1, 1} \rightarrow 0$. Dokonce můžeme předpokládat, že $\|u_k - u_{k+1}\|_{1, 1} < 2^{-k}$.
+
+		Potom řada
+		$$ \lim_{k \rightarrow ∞} u_{k + 1} = u_1 + (u_2 - u_1) + (u_3 - u_2) + … = u_1 + \sum_{k=1}^∞ \(u_{k+1} - u_k\) $$
+		konverguje skoro všude a její součet je skoro všude původní funkce $u$. Můžeme tedy předpokládat, že funkce $u$ je reprezentována tímto součtem. Máme:
+		$$ \!\!\!\int_Ω \sum_{k=1}^∞ \(|u_{k+1} - u_k| + |\nabla u_{k+1} - \nabla u_k|\)dλ^n = \sum_{k=1}^∞ \int_Ω \(|u_{k+1} - u_k| + |\nabla u_{k+1} - \nabla u_k|\) dλ^n < ∞,\!\! $$
+		tedy pro $λ^{n-1}$-skoro každý $\tilde x \in \tilde Ω$ je integrál
+		$$ \int_{a_1}^{b_1} \sum_{k=1}^∞ \(|u_{k+1}(t, \tilde x) - u_k(t, \tilde x)| + |\nabla u_{k+1}(t, \tilde x) - \nabla u_k(t, \tilde x)|\) dλ^1(t) < ∞. $$
+
+		Pro takový $\tilde x$ je $u|_{(a_1, b_1) \times \{\tilde x\}} \in W^{1, 1}((a_1, b_1))$ a dle věty výše je $u|_{(a_1, b_1) \times \{\tilde x\}}$ absolutně spojitá funkce na $(a_1, b_1)$. Dále je $\partial_1 u_k \rightarrow \partial_1 u$ v $L^1((a_1, b_1))$. Provedením limitního přechodu diferenčních podílů přes racionální čísla, dostaneme, množina bodů, kde parciální derivace existuje je měřitelná a tudíž derivace existuje skoro všude.
+
+		Pro každé $φ \in ©D(Ω)$ je $u|_{(a_1, b_1) \times \{\tilde x\}} \in ©D((a_1, b_1))$ a dle věty výše (bod 6.) a dle Fubiniovy věty je $D_1 u = \partial_1 u \in L^1(Ω)$. Podobně pro ostatní parciální derivace.
+	\end{dukazin}
 \end{veta}
 
-TODO!!!
+\begin{poznamka}
+	Předchozí dvě věty dávají dohromady tzv. Beppo Leviho charakterizaci Sobolevových prostorů.
+\end{poznamka}
 
-% 08. 11. 2023
+\begin{veta}[Svazové vlastnosti Sobolevových prostorů]
+	Nechť $u, v \in W^{1, p}(Ω)$. Potom též funkce $w := \max \{u, v\} \in W^{1, p}$ a $\nabla w = \nabla u$ na $\{w = u\}$ a $\nabla w = \nabla v$ na $\{w = v\}$.
 
-TODO!!!
+	\begin{dukazin}
+		Pro případ $n = 1$ si stačí uvědomit, že $Duχ_{\{u ≥ v\}} + Dvχ_{\{v > u\}} \in L^1$ ($|u(b) - u(a)| ≤ \int_a^b f$ a $|v(b) - v(a)| ≤ \int_a^b g$ $\implies$ $|w(b) - w(a)| ≤ \int_a^b f + g$). Pro $n ≥ 2$ je tvrzení zřejmým důsledkem předchozích vět a jednorozměrného případu.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$u \in W^{1, p} \implies |u| \in W^{1, p} \land \nabla |u| = \sgn u \nabla u$.
+\end{dusledek}
+
+% 08. 11. 2023 Odpadlo.
 
 % 15. 11. 2023
 
@@ -385,7 +417,8 @@ TODO!!!
 		Nechť $u \in ©C^1(U)$ ($\forall u \in W^{1, 1}\ \exists u_k \rightarrow u$ v $W^{1, 1}$, $u_k \in ©C^1$).
 		$$ ξ(t) = \fint_U u(x + t(y - x)) dλ^n(y) = \fint_{U_t} u dλ^n. $$
 		$ξ(1) = \fint_U u = \overline{u}_U$. $\lim_{s \rightarrow 0_+} ξ(s) = u(x)$ Lebesgueův bod. $0 < a < b < 1$:
-		$$ ξ(b) - ξ(a) = \int_a^b \partial_t\(\fint_U u(x + t(y - x)) dy\) dt = \int_a^b \fint_U \nabla u(x + t(y - x))·(y - x) dy dt = \int_a^b \frac{1}{λ^n(U) t^n} \int_{U_t} \nabla u(z)\frac{(z - x)}{t} dz dt. $$
+		$$ ξ(b) - ξ(a) = \int_a^b \partial_t\(\fint_U u(x + t(y - x)) dy\) dt = \int_a^b \fint_U \nabla u(x + t(y - x))·(y - x) dy dt = $$
+		$$ = \int_a^b \frac{1}{λ^n(U) t^n} \int_{U_t} \nabla u(z)\frac{(z - x)}{t} dz dt. $$
 		$$ ω_a^b(z) = \begin{cases}\frac{1}{λ^n(u)} \int_{\max\{a, p(z)\}}^b \frac{1}{t^{n+1}} dt, & p(z) < b, \\ 0, & p(z) ≥ b.\end{cases} \qquad ω_a^b \in ®C_c(U) $$
 		$$ ξ(b) - ξ(a) = \frac{1}{λ^n(U)} \int_a^b \int_{U_t} \nabla u(z) (z - x) dλ^n(z) \frac{dt}{t^{n+1}} =: ** = $$
 		$$ = \frac{1}{λ^n(U)} \int_a^b \int_{\{p(z) < t\}} \nabla u(z) (z - x) dλ^n(z) \frac{dt}{t^{n+1}} = $$
@@ -401,13 +434,16 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+\break
+
 \begin{dusledek}
 	Nechť $U \in ®R^n$ otevřená konvexní omezená, $u \in W^{1, 1}(U)$ a nechť $x \in U$ je Lebesgueův. Pak
 	$$ \int_U |u(y) - u(x)| dλ^n(y) ≤ c_U \int_U \frac{|Du(y)|}{|y - x|^{n-1}} dλ^n(y), $$
 	kde $C_U$ závisí pouze na tvaru $U$.
 
 	\begin{dukazin}
-		Označme $R = \diam U$. Potom $p(y) ≥ \frac{|y - x|}{R}$, $y \in ®R^n$. Víme, že $|ξ(b) - ξ(a)| ≤ \int_U ω_a^b(y) |Du(y)|·|y - z| dλ^n(y)$.
+		Označme $R = \diam U$. Potom $p(y) ≥ \frac{|y - x|}{R}$, $y \in ®R^n$. Víme, že 
+		$$ |ξ(b) - ξ(a)| ≤ \int_U ω_a^b(y) |Du(y)|·|y - z| dλ^n(y). $$
 		$$ ω_a^b(y) ≤ \frac{1}{λ^n(U)} \int_{p(y)}^∞ \frac{1}{t^{n+1}} = \frac{1}{n·λ^n(U)} [p(y)]^{-n} ≤ \frac{1}{n·λ^n(u)} \frac{R^n}{|y - x|^n}. $$
 		Potom
 		$$ |ξ(b) - ξ(a)| ≤ C_U · \frac{R^n}{n·λ^n(U)} \int_U \frac{|Du(y)|}{|y - x|^{n-1}}. $$
@@ -480,9 +516,9 @@ TODO!!!
 		Protože je $x, y \in B \setminus E_m$ je $\fint_{B_j} h ≤ m$ $\forall j \in ®Z$ (pro $j = 0$, protože to tak vyjde). Předefinujeme $E_m$ jako $\{Mh > m\} \cup \{x \text{ má Lebesgueův bod pro $u$}\}$. Tím pádem máme $\lim_{j \rightarrow ∞} \fint_{B_j} u =: \lim_{j \rightarrow ∞} \overline{u_{B_j}} = u(x)$. Potom
 		$$ |u(x) - u(y)| ≤ \left|\overline u_{B_1} - \overline u_{B_{-1}}\right| + \sum_{j=1}^∞ \left|\overline u_{B_{j+1}} - \overline u_{B_j}\right| + \left|\overline u_{B_{-j-1}} - \overline u_{B_{-j}}\right|. $$
 		$$ |\overline u_{B_{j+1}} - \overline u_{B_j}| = \left| \fint_{B_{j+1}} u - \overline u_{B_j} \right| ≤ \fint_{B_{j+1}} |u - \overline u_{B_j} ≤ 2^n \fint_{B_j} |u - \overline u_{B_j}| ≤ C·|x - y|·2^{-j} \fint_{B_j} |Du|. $$
-		$$ |\overline u_{B_1} - \overline u_{B_{-1}}| = \left|\fint_{B_0} \overline u_{B_1} - u + \fint_{B_0} u - \overline u_{B_{-1}}\right| =  $$
-		$$ = \left|\fint_{B_1} u - \overline u_{B_0} + \fint_{B_{-1}} \overline u_{B_0} - u\right| ≤ TODO!!! $$
-		TODO!!!
+		$$ |\overline u_{B_1} - \overline u_{B_{-1}}| = \left|\fint_{B_0} \overline u_{B_1} - u + \fint_{B_0} u - \overline u_{B_{-1}}\right| = \left|\fint_{B_1} u - \overline u_{B_0} + \fint_{B_{-1}} \overline u_{B_0} - u\right| ≤ $$
+		$$ ≤ \fint_{B_1} |u - \overline{u}_{B_0} + \fint_{B_{-1}} |u - \overline{u}_{B_0}| ≤ C \fint_{B_0} |u - \overline{u}_{B_0}| ≤ C·|x - y|·\fint_{B_0} |Du|. $$
+		$$ |u(x) - u(y)| ≤ C·|x - y|·\fint_{B_0} |Du| + C·|x - y|·\sum_{j=1}^∞ 2^{-j} \fint_{B_j}|Du| + 2^{-j} \fint_{B_{-j}} |Du| ≤ C·m·|x - y|. $$
 		Použijeme McShanovu rozšiřovací větu.
 
 		$g_m \in W^{1, 1}(B)$. „$Dg_m = Du$ skoro všude na $B \setminus E_m$“: stačí $D_1g_m = D_1u$. Když vybereme správného reprezentanta $u$: $\exists \partial_1 u(·, \tilde x)$, $\exists \partial_1 g_m(·, \tilde x)$, $u = g_m$ skoro všude $\implies$ $\partial_1 u = \partial_1 g_m$ skoro všude (na $(a, b) \cap B \setminus E_m$).
@@ -497,7 +533,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}[Frunchi–Hajtasz–Koskala]
+\begin{veta}[Franchi–Hajlasz–Koskela]
 	Nechť $u \in L^1(Ω)$. Pak $u \in W^{1, 1}(Ω)$ $\Leftrightarrow$ $\exists f \in L^1(Ω)\ \forall B(x, r) \subset\subset Ω: \int_B |u - \overline u_B| ≤ r·\int_B f$.
 
 	\begin{dukazin}
@@ -510,11 +546,18 @@ TODO!!!
 
 % 29. 11. 2023
 
-TODO!!!
+		Z toho vidíme, že pro $u_k = ψ_k * u$ je posloupnost $\{\partial_i u_k\}$ omezená v $L^1(Ω')$ a tudíž existuje $μ_i \in ©M(Ω)$ tak, že (podposloupnost) $\partial_i u_k χ_{Ω'}$ konverguje slabě s * k $μ_i$. Tedy pro každou $φ \in ©D(Ω')$ je
+		$$ \int_{Ω'} u(\partial_i φ) dλ^n = \lim_{k \rightarrow ∞} \int_{Ω'} u_k(\partial_i φ) dλ^n = - \lim_{k \rightarrow ∞} \int_{Ω'} (\partial_i u_k) φ dλ^n = - \int_{Ω'} φ dμ_i. $$
+		Tím jsme ověřili, že $μ$ je distributivní derivací $u$ v $Ω'$. Distributivní derivace v celém $Ω$ je tedy lokálně znaménková míra a díky nezávislosti odhadů na $Ω'$ je to globálně znaménková míra.
 
-		Chceme ?
-		$$ \int_{Ω'} u_n \partial_i φ = -\int_Ω $$
-		TODO!!!
+		Chceme $μ_i \ll λ^n$ ($φ \in C_c^∞(Ω')$):
+		$$ \int_Ω u \partial_i φ \overset{u_k \rightarrow u \text{ v } L^2}\leftarrow \int_{Ω'} u_k \partial_i φ = -\int_{Ω'} \partial_i u_k φ \overset{(w^*)}\rightarrow -\intφ dμ_i. $$
+		Tj. $μ_i = D_i u$ ve smyslu distribucí.
+
+		$$ \int_G |\partial_i u_k φ| ≤ c·k^k \int_G \int_{B\(x, \frac{1}{k}\)} f(y) dy φ(x) dx ≤ c·k^n \int_G \int_{B\(x, \frac{1}{k}\)} f(y) φ(x) ≤ $$
+		$$ ≤ c·k^n·\int_{G + B\(0, \frac{1}{k}\) \cap \supp φ} f(x) λ^n\(B\(x, \frac{1}{k}\)\) ≤ C·\int_G |f|. $$
+		Limitním přechodem $k \rightarrow ∞$ a supremum přes $φ$:
+		$$ \left| \int_G φ dμ_i \right| ≤ c·\int_G |f|, \qquad |dμ_i|(G) ≤ |f| dλ^n(G), \qquad μ_i \ll λ^n. $$
 	\end{dukazin}
 \end{veta}
 
@@ -522,6 +565,10 @@ TODO!!!
 	Nechť $U$ je otevřená omezená konvexní. Nechť $u \in W^{1, 1}(U)$ s nulovým mediánem v $U$. Pak
 	$$ \|u\|_{L^{\frac{n}{n - 1}}} = \(\int_U |u|^{\frac{n}{n-1}}\)^{\frac{n-1}{n}} ≤ C_U \int_U |Du|, $$
 	$$ \|u\|_{L^{p^*}} = \(\int_U |u|^{p^*}\)^{\frac{1}{p^*}} ≤ C_U \(\int_U |Du|^p\)^{\frac{1}{p}}, \qquad p^* = \frac{np}{n - p}, \qquad p \in [1, ∞]. $$
+
+	\begin{dukazin}
+		Níže.
+	\end{dukazin}
 \end{veta}
 
 \begin{definice}
@@ -550,11 +597,12 @@ TODO!!!
 	\begin{dukazin}
 		Zvolme $a > 0$, $k \in ®N$. Nechť $u ≥ 0$ (BÚNO, aplikujeme na $u_+ := \max\{u, 0\}$ a $u_- := \max\{-u, 0\}$). Zadefinujeme
 		$$ v(x) := v_{a, k}(x) := \begin{cases}u(x) - (k - 1)a, & u(x) \in [(k-1)a, k·a] \\ 0, & u(x) ≤ (k-1)a\end{cases}. $$
-		$v$ má nulový medián v $U$ a $Du = Dv$ skoro všude v $\{x | a(k - 1) ≤ u(x) ≤ ak\}$. $s·λ^n(\{|v| > s\})^{1 - \frac{1}{n}} ≤ c·\int_U Dv$.
+		$v$ má nulový medián v $U$ a $Du = Dv$ skoro všude v $\{x | a(k - 1) ≤ u(x) ≤ ak\}$.
+		$$ s·λ^n(\{|v| > s\})^{1 - \frac{1}{n}} ≤ c·\int_U Dv. $$
 		$$ \int_{(k-1)a}^k·a \(λ^n(\{u > s\})\)^{1 - \frac{1}{n}} ds ≤ a(λ^n(\{u > (k - 1)a\}))^{1 - \frac{1}{n}} ≤ c·\int_{U \cap V_{a, k}} |Du|. $$
 		Sečteme přes $k \in ®N$:
 		$$ \int_a^∞ λ^n(\{u > s\})^{1 - \frac{1}{n}} ds ≤ c·\int_U |Du|, \qquad \forall a > 0. $$
-		$a \rightarrow 0$.
+		$a \rightarrow 0_+$.
 	\end{dukazin}
 \end{veta}
 
@@ -563,13 +611,18 @@ TODO!!!
 	$$ \int_M |u|^p = \int_0^∞ ps^{p - 1} λ^n(M \cap \{|u| > s\})ds. $$
 \end{poznamka}
 
+\break
+
 \begin{lemma}
 	$f: (0, ∞) \rightarrow [0, ∞)$ nerostoucí a $q ≥ 1$, $r > 1$. Pak
 	$$ \int_0^∞ s^{qr - 1} f(s) ds ≤ c·\(\int_0^∞ s^{q - 1} f(s)^{\frac{1}{r}}ds\)^r. $$
 
 	\begin{dukazin}
 		$$ I := \int_0^∞ s^{q - 1} f(s)^{\frac{1}{r}}. $$
-		
+		$$ \forall t > 0: t^q f(t)^{\frac{1}{r}} = \int_0^t q s^{q - 1} (f(t))^{\frac{1}{r}} ds ≤ \int_0^t q s^{q - 1} (f(s))^{\frac{1}{r}} ≤ c·I. $$
+
+		$$ s^{qr - q} f(s)^{1 - \frac{1}{r}} ≤ c·I^{r - 1}, \qquad t \mapsto t^{r - 1} \text{ rostoucí pro } r > 1. $$
+		$$ \int_0^∞ s^{qr - 1} f(s) ≤ \int_0^∞ s^{qr - q} f(s)^{1 - \frac{1}{r}} ≤ c·I^{r - 1} \int_0^∞ s^{q - 1} f(s)^{\frac{1}{r}} = c·I^r. $$
 	\end{dukazin}
 \end{lemma}
 
@@ -588,6 +641,8 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+\break
+
 \begin{veta}[Sobolevova nerovnost]
 	$U$ omezená otevřená konvexní, $1 ≤ p < n$ a nechť $u \in W^{1, p}(U)$ s nulovým mediánem v $U$. Pak
 	$$ \(\int |u|^{p^*}\)^{\frac{1}{p^*}} ≤ C_U \frac{pn - p}{n - p} \(\int_U |Du|^p\)^{\frac{1}{p}}. $$
@@ -595,7 +650,8 @@ TODO!!!
 	\begin{dukazin}
 		„$p = 1$“ triviální. „$p > 1$“: $u = u^+ - u^-$, tedy BÚNO $u ≥ 0$. Nejdřív předpokládejme navíc, že $u \in L^∞(U)$. Definujme $v = u^{\frac{pn - p}{n - p}}$. (?$\frac{p}{p - n}(n - 1) v$ je ACL?.)
 		$$ \nabla v = \frac{pn - p}{n - p} u^{\frac{pn - n}{n - p}} \nabla u \implies v \in W^{1, 1}(U). $$
-		$$ \(\int_U |u|^{p^*}\)^{\frac{n-1}{n}} = \(\int_U |v|^{\frac{n}{n - 1}}\)^{\frac{n - 1}{n}} ≤ C_U \int_U |Dv| = C_U \frac{pn - p}{n - p} \int_U u^{\frac{np - n}{n - p}} |Du| ≤ C_U \frac{pn - p}{n - p} \(\int_U |Du|^p\)^{\frac{1}{p}}·\(\int_U u^{p^*}\)^{\frac{p - 1}{p}}. $$
+		$$ \(\int_U |u|^{p^*}\)^{\frac{n-1}{n}} = \(\int_U |v|^{\frac{n}{n - 1}}\)^{\frac{n - 1}{n}} ≤ C_U \int_U |Dv| = C_U \frac{pn - p}{n - p} \int_U u^{\frac{np - n}{n - p}} |Du| ≤ $$
+		$$ ≤ C_U \frac{pn - p}{n - p} \(\int_U |Du|^p\)^{\frac{1}{p}}·\(\int_U u^{p^*}\)^{\frac{p - 1}{p}}. $$
 		$$ \(\frac{n - 1}{n} - \frac{p - 1}{p} = \frac{np - p - np + n}{np} = \frac{n - p}{np} = \frac{1}{p^*}.\) $$
 
 		Tím je důkaz hotov pro $u \in W^{1, p} \cap L^∞$. Nechť $u \in W^{1, p}$. Zadefinujeme $u_k = \min\{u, k\}$. $\exists Du_k$ a $|Du_k| ≤ |Du|$.
@@ -624,7 +680,6 @@ TODO!!!
 		$$ ≤ c·(\diam U)^{\frac{-n}{q} + \frac{n}{p}} \(\fint_U |Du|^p\)^{\frac{1}{p}} = c·(\diam U)·\(\fint_U |Du|^p\)^{\frac{1}{p}}. $$
 
 		„$q < \frac{1}{p} - \frac{1}{n}$“: Najdeme $s \in [1, n)$, $\(\fint |u|^q\)^{\frac{1}{q}} ≤ \(\fint |u|^{s^*}\)^{\frac{1}{s^*}}$, $\frac{1}{q} - \frac{1}{s^*} = \frac{1}{t}$.
-		TODO?
 	\end{dukazin}
 \end{veta}
 
@@ -633,13 +688,17 @@ TODO!!!
 	$$ (λ^n(Ω))^{-\frac{1}{q}} \|u\|_{L^q(Ω)} ≤ C_{p, n}(λ^n(Ω))^{-\frac{1}{p}} \|u\|_{L^p(Ω)} + C_{p, n} (λ^n(Ω))^{\frac{1}{n} - \frac{1}{p}} \|Du\|_{L^p(®R^n)}. $$
 
 	\begin{dukazin}
-		$\frac{1}{q} = \frac{1}{p} - \frac{1}{n}$ ($q = p^*$):
+		„$\frac{1}{q} = \frac{1}{p} - \frac{1}{n}$ ($q = p^*$)“:
 		$$ \(\fint_Ω |u|^q\)^{\frac{1}{q}} ≤ (λ^n(Ω))^{-\frac{1}{q}} \(\int_{®R^n} |u|^{p^*}\)^{\frac{1}{p^*}} ≤ (λ^n(Ω))^{-\frac{1}{q}} C·\frac{pn - p}{n - p} \(\int_{®R^n} |Du|^p\)^{\frac{1}{p}}. $$
-		TODO!!!
+		
+		„$\frac{1}{q} > \frac{1}{p} - \frac{1}{n}$“: BÚNO $λ^n(Ω) = 1$ (jinak rozšíříme $W^{1, p}$ na celé $®R^n$ za pomoci věty z PDR1 a pak položíme $v(y) = r·u(y / r)$, kde $r = (λ^n(Ω))^{1 / n}$). $\forall t ≥ s ≥ 1: \(\fint_Ω |u|^s\)^{\frac{1}{s}} = \(\fint_Ω |u|^t\)^{\frac{1}{t}}$. $q > p$, jinak Hölder a stačí první člen na pravé straně.
+		$$ p < q < p^* \implies \(\fint_Ω |u|^q\)^{\frac{1}{q}} \overset{\text{Hölder}}≤ \(\fint_Ω |u|^{p^*}\)^{\frac{1}{p^*}} ≤ C_β \frac{p·n - p}{n - p} \(\int_{®R^n} |Du|^p\)^{\frac{1}{p}}. $$
 	\end{dukazin}
 \end{veta}
 
 % 20. 12. 2023
+
+\break
 
 \begin{definice}
 	Říkáme, že $x$ je bodem hustoty měřitelné množiny $E$, pokud $\lim_{r \rightarrow 0} \frac{λ^n(E \cap B(x, r))}{λ^n(B(x, r))} = 1$.
@@ -661,11 +720,14 @@ TODO!!!
 
 	\begin{dukazin}
 		BÚNO $x$ je Lebesgueův bod pro $u$ a $Du$. Definujeme $v(y) = u(y) - u(x) - Du(x)(u - x)$. $v(x) = 0$.
-		$$ \frac{1}{R} \fint |v(y)| = \frac{1}{R} \fint_{B(x, R)} |v(y) - v(x)| ≤ \frac{C}{R} \int_{B(x, R)} \frac{|Du(y)|}{|x - y|^{n-1}} = $$
-		$$ = \frac{C}{R} \int_{B(x, R)} \(\int_{|x - y|}^∞ \frac{1}{r^n}dr\) |Du(y)| = \frac{C}{R} \int_0^R \frac{1}{r^n} \int_{B(x, r)} |Du(y) - Du(x)| dy dr + \frac{C}{R} \int_R^∞ \frac{1}{r^n} \int_{B(x, R)} |Du(y) - Du(x)| dy xr ≤ $$
+		$$ \frac{1}{R} \fint |v(y)| = \frac{1}{R} \fint_{B(x, R)} |v(y) - v(x)| ≤ $$
+		$$ ≤ \frac{C}{R} \int_{B(x, R)} \frac{|Du(y)|}{|x - y|^{n-1}} = \frac{C}{R} \int_{B(x, R)} \(\int_{|x - y|}^∞ \frac{1}{r^n}dr\) |Du(y)| = $$
+		$$ = \frac{C}{R} \int_0^R \frac{1}{r^n} \int_{B(x, r)} |Du(y) - Du(x)| dy dr + \frac{C}{R} \int_R^∞ \frac{1}{r^n} \int_{B(x, R)} |Du(y) - Du(x)| dy xr ≤ $$
 		$$ ≤ c_1·\fint_0^R \underbrace{\fint_{B(x, r)} |Du(y) - Du(x)|}_{\overset{R \rightarrow 0_+}\longrightarrow 0} + c_2·\fint_{B(x, R)} \underbrace{|Du(y) - Du(x)|}_{\overset{R \rightarrow 0_+}\longrightarrow 0} \rightarrow 0. $$
 	\end{dukazin}
 \end{lemma}
+
+\break
 
 \begin{veta}
 	Nechť $u \in W^{1, 1}(Ω)$. Potom $\exists \nabla_a u(x) = Du(x)$ pro skoro všechna $x \in Ω$.
@@ -674,7 +736,8 @@ TODO!!!
 		Mějme $x$ takové, že $\lim_{r \rightarrow 0_+} \frac{1}{r} \fint_{B(x, r)} |u(y) - u(x) - Du(x)(y - x)| dy = 0$. Zvolme $ε > 0$ a $τ \in (0, ε)$ (např. $ε^2$). Označme $v(y) = u(y) - u(x) - Du(x)(y - x)$ a $ς = \(\frac{τ}{ε}\)^{\frac{1}{n+1}}$. Najděme $r_0 > 0$: $\fint_{B(x, ς)} |v| ≤ τς$ $\forall r \in (0, r_0)$.
 
 		Máme
-		$$ λ^n(\{|v(y)| ≥ ε |y - x|\} \cap B(x, r)) ≤ λ^n(\{y \in B(x, r) \setminus B(x, ςr) \middle| |v(y)| ≥ ε·|y - x| ≥ ε·ς·r\}) + λ^n(B(x, δ·r)) ≤ $$
+		$$ λ^n(\{|v(y)| ≥ ε |y - x|\} \cap B(x, r)) ≤ $$
+		$$ ≤ λ^n(\{y \in B(x, r) \setminus B(x, ςr) \middle| |v(y)| ≥ ε·|y - x| ≥ ε·ς·r\}) + λ^n(B(x, δ·r)) ≤ $$
 		$$ ≤ \int_{B(x, r) \cap \{|v| > ς·ε·r\}} \frac{|v|}{ς·ε·r} dy + ς^n λ^n(B(x, r)) ≤ \frac{τ·r}{ς·ε·r}·r^n + c·δ^n·r^n = \(\frac{τ}{ε·δ} + δ^n·c\)·r^n. $$
 	\end{dukazin}
 \end{veta}
@@ -693,6 +756,8 @@ TODO!!!
 		$$ |v(z)| ≤ |v(z')| + |v(z) - v(z')| ≤ ε|z' - x| + ε r ≤ 2ε r ≤ c·ε·|z - x|. $$
 	\end{dukazin}
 \end{lemma}
+
+\break
 
 \begin{veta}[Rademacher]
 	Nechť $u \in Lip_{loc}(Ω)$. Potom $\exists \nabla$ skoro všude na $Ω$, $u \in W^{1, 1}_{loc}(Ω)$ a $D u = \nabla u$.
@@ -713,6 +778,72 @@ TODO!!!
 		$$ v_j(x) = \sup\{v(x) | v(x) ≤ u(x) lip(u, B_j) ≤ j\}. $$
 
 		Dokažme, že pro $N := \bigcup \{x \in B | \nexists \nabla w_j(x) \lor \nexists v_j(x)\}$ je $λ^n(N) = 0$. Nechť $x \in S(u) \setminus N$. $\exists r > 0\ \exists l > 0: |u(x) - u(y)| ≤ l·|x - y|$. $lip(u, B_j) ≤ L ≤ j$ $\implies$ $w_j = u = v_j$ na $B_j$, $x \notin N$.
+	\end{dukazin}
+\end{veta}
+
+% 03. 01. 2024
+
+\begin{lemma}
+	Nechť $U \subset ®R^n$ je omezená otevřená konvexní, nechť $p > r$ a nechť $u \in W^{1, p}(U)$. Pokud $x$ je Lebesgueův bod pro $u$, pak
+	$$ |u(x) - \overline{u}_U| ≤ C·r^{1 - \frac{n}{p}} \(\int_U |Du|^p\)^{\frac{1}{p}}, $$
+	kde $r = \diam U$ a $C = C(n, p, U)$.
+
+	\begin{dukazin}
+		$$ |u(x) - \overline{u}_U| ≤ c·\int_U \frac{|Du(y)|}{|x - y|^{n-1}} dy ≤ c·\(\int_U |Du|^p\)^{\frac{1}{p}}·\(\int_U \frac{1}{|x - y|^{\frac{np - p}{p - 1}}}\)^{1 - \frac{1}{p}} ≤ $$
+		$$ ≤ c·\(\int_U |Du|^p\)^{\frac{1}{p}} · \(\int_{B(x, r)} |x - y|^{\frac{(1 - n)p}{p - 1}}\)^{1 - \frac{1}{p}} ≤ $$
+		$$ ≤ c·(…)^{\frac{1}{p}} \(\int_0^r \underbrace{\overbrace{t^{\frac{1 - np}{p-1}}}^{\approx r^{1 - \frac{n - 1}{p - 1}}} · t^{\frac{(n - 1)·(p - 1)}{p - 1}}}_{=t^{\frac{-n-1}{p - 1}}}\)^{\frac{p - 1}{p}} ≤ c·(…)^{\frac{1}{p}}·\(r^{\frac{p - n}{p - 1}}\)^{\frac{p - 1}{p}}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Morrey]
+	Nechť $U$ je omezená otevřená konvexní a nechť $p > n$ a $u \in W^{1, p}(U)$. Pak $u$ má spojitého reprezentanta. Navíc
+	$$ osc_U u := \sup\{|u(x) - u(y)|, x,y \in U\} ≤ c·r^{1 - \frac{n}{p}} \(\int_U |Du|^p\)^{\frac{1}{p}} = c·r^{1 - \frac{n}{p}}·\|Du\|_p, $$
+	$$ \sup_U u ≤ C·r^{1 - \frac{n}{p}}\(\int_U |Du|^p + r^{-p}|u|^p\). $$
+
+	\begin{dukazin}
+		Pokud $u$ má spojitého reprezentanta, potom každý bod $x \in U$ je Lebesgueův pro $u$. Pak platí první (a z $\sup u ≤ \overline{u} + osc u$) i druhý odhad.
+
+		% Z poznámek:
+		Najdeme $u_k \in C^∞(U)$, $u_k \rightarrow u$ v $W^{1, p}(U)$. Druhý odhad $\implies$ konvergence v $W^{1, p}$ implikuje konvergenci v $L^∞$ a hledaná limita je náš reprezentant.
+
+		% Na hodině: Ať $U^* := \{x \in U | x \text{ je Lebesgueův}\}$. $U^*$ je hustá v $U$, $u|_{U^*}$ je spojitá (použijeme tuto větu na $u|_U^*$, první odhad) a omezená (druhý odhad), a tudíž má spojité rozšíření na $U$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $U$ je omezená otevřená kompaktní, $p > n$ a $u \in W^{1, p}(U)$.
+	$$ \|u\|_{C^{0, 1 - \frac{n}{p}}} = \sup_{x ≠ y \in U} \frac{|u(y) - u(x)|}{|y - x|^{1 - \frac{n}{p}}} ≤ c·\(\int |Du|^p\)^{\frac{1}{p}} = c·\|Du\|_p. $$
+
+	\begin{dukazin}
+		$r = \diam U$. $\exists z \in U$ a $ρ > 0$: $\forall B(w, s) \subset U: s ≤ 2ρ$. Pak $\frac{r}{ρ}$ závisí pouze na tvaru $U$. Vybereme $x, y \in U$ a označme $t = \frac{|x - y|}{ρ}$ ($tρ = |x - y|$). Pokud $t ≥ 1$, pak stačí použít předchozí větu. Nechť tedy $t < 1$:
+		$$ φ^x(w) = x + t(w - x), \quad φ^y(w) = y + t·(w - y), \qquad U^x = φ^x(U), \quad U^y = φ^y(U), \qquad x^* = φ^x(z), \quad y^* = φ^y(z). $$
+		$$ |y^* - x^*| = |y + t(z - y) - x - t(z - x)| = |1 - t|·|y - x| < t·ρ. $$
+		$$ \O ≠ B(x^*, t·ρ) \cap B(y^*, t·ρ) \subset U^x \cap U^y. $$
+		$$ |u(y) - u(x)| ≤ c·(osc_{U_x}u + osc_{U^y}u) ≤ c·(\diam U^x + \diam U^y)^{1 - \frac{n}{p}}\|Du\|_p ≤ $$
+		$$ ≤ c·(t·r)^{1 - \frac{n}{p}} \|Du\|_p ≤ C·|x - y|^{1 - \frac{n}{p}} \|Du\|_p. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Nechť $p > n$, $u \in W^{1, p}(®R^n)$. Pak
+	$$ \sup_{x≠y} \frac{|u(x) - u(y)|}{|x - y|^{1 - \frac{n}{p}}} ≤ c·\|Du\|_{L^p(®R^n)} $$
+	a
+	$$ \sup_{®R^n} u ≤ c·\(\int_{®R^n} |Du|^p + |u|^p\)^{\frac{1}{p}}. $$
+	Navíc $u \in C_0(®R^n)$.
+
+	\begin{dukazin}
+		$z \in ®R^n$, $u = B(z, 1)$, $u(z) ≤ c·\(\int_{B(z, 1)} |Du|^p + |u|^p\)^{\frac{1}{p}} ≤ c·\(\int_{®R^n}…\)^{\frac{1}{p}}$. $u \in C_0(®R^n)$ je důsledkem hustoty testovaček v $W^{1, p}$ a vnoření $W^{1, p} \hookrightarrow L^∞$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$p > n$, $Ω \subset ®R^n$ omezená, rozšiřitelná. Pak $W^{1, p}(®R^n) \overset{\text{kompaktně}}\hookrightarrow ®C(\overline{Ω})$.
+
+	\begin{dukazin}
+		$$ \exists C: |u(x) - u(y)| ≤ c·|x - y|^{1 - \frac{n}{p}} \qquad \forall x, y \in Ω\ \forall u: \|u\|_{W^{1, p}(®R^n)} $$
+		Totiž jsou to funkce stejně stejnoměrně spojité a $\sup u ≤ C$, tedy jsou stejně omezené. Použijeme Arzela-Ascoli (tj. $W^{1, p}(®R^n) \hookrightarrow C(\overline{Ω})$ kompaktně).
+
+		$v(y):= u(y) - u(x) - Du(x)(y - x)$. $x$ je $p$-Lebesgeův bod $Du$. Potom $\frac{|v(y)|}{r} ≤ c·\(\fint |Dv|^p\)^{\frac{1}{p}} \rightarrow 0$.
 	\end{dukazin}
 \end{veta}
 

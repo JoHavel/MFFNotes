@@ -721,4 +721,111 @@ TODO!!!
 	II has winning strategy $\Leftrightarrow$ $\exists g: [S] \rightarrow [T]$ continuous: $g(A) \subset B_0$, $g(A^c) \subset B_1$.
 \end{priklady}
 
+% 03. 01. 2024
+
+\begin{veta}[H?]
+	$X$ Polish topological space, $A \in Σ_1^1(X) \setminus Σ_2^0(X)$. Then there exists $C$, the cantor set, $C \subset X$, such that $\overline{C \setminus A} = C$, $|C \setminus A| = ω$ ($C \cap A$ is homeomorphic to ©N).
+\end{veta}
+
+\begin{poznamka}[Similarly]
+	$A \in ∏_1^1(X)$. Than $A$ is polish space or it contains rel. closed set homeomorphic to ®Q.
+\end{poznamka}
+
+\subsection{Banach–Mazur game}
+\begin{definice}[Banach–Mazur game $G^{**}(M, Y)$]
+	Let $Y$ be PTS, $M \subset Y$, $Y ≠ \O$.
+	$$ I: U_0, U_1, U_2, … $$
+	$$ II: V_0, V_1, V_2, … $$
+	$U_i, V_i ≠ \O$ base open sets (some $©V$, the countable base of $Y$, $V_i, U_i \in ©V$).
+
+	\begin{poznamka}
+		There is some ccm on $Y$ and $\diam(U_i) \rightarrow 0$.
+	\end{poznamka}
+	
+	$U_i \supset V_i \supset U_{i+1}, i \in ω$.
+
+	II player wins $≡$ $\bigcap V_n = \bigcap u_n \subset M$.
+\end{definice}
+
+\begin{veta}
+	$X ≠ \O$ topological space: 1. II has wining strategy $\Leftrightarrow$ $M$ is co-meager. 2. $X$ Polish topological space: I has wining strategy $\Leftrightarrow$ ($\exists U \subset X$ open, $U ≠ \O$: $M \cap U$ is meager).
+
+	\begin{dukazin}
+		„1.“: „$\impliedby$“: Let $W_n$ be open, dense: $M \supseteq \bigcap W_n$. II plays playes $V_n \subseteq U_n \cap W_n$ $\land$ $\bigcap V_n \subset \bigcap W_n \subset M$.
+
+		„$\implies$“:
+		$$ ©M_0 := \{V_0 | V_0 \text{ is answer of II on some $U_n$ from I}\}, $$
+		$\tilde{©M}_0$ maximal disjoin subsystem of $©M_0$. $W_0 := \bigcup \tilde{©M}_0$ is open and dense.
+		$$ ©M_n := \{V_n | V_n \text{ is answer of II on some $U_n$ from base which is continued in some element of $\tilde {©M}_{n-1}$}\}, $$
+		$\tilde{©M}_n$ is maximal disjoin subsystem of $©M_n$. $W_n := \bigcup \tilde{©M}_n$ is open and dense.
+
+		$\bigcap W_n \subset M \implies M$ is co-meager.
+	
+		„2.“: „$\implies$“: I has wining strategy. Put $U := V_0$. Then rest of the game is played inside of $U_0$ and $I$ wins $\Leftrightarrow \bigcap U_n \subset U_0 \setminus A$ $\implies$ $U_0 \setminus A$ is co-meager in $U_0$ $\implies$ $A$ is meager in $U_0 = U$.
+
+		„$\impliedby$“: $M \subset \bigcup F_n$, $F_n$ are closed, nowhere dense in $U_0 = U$. $U_i \subseteq V_{i-1} \setminus F_{i-1}$, $i ≥ 1$. $\bigcap U_n \not \subset \bigcup F_n \implies \bigcap U_n \not \subset M$. $\overline{U_i \subset V_i}, |V_i| \rightarrow 0$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Game of J. Malý (point-line game)}
+\begin{definice}[Game of J. Malý]
+	Let $B$ be unit ball in $®R^2$.
+	$$ I: a_0, a_1, a_2, … $$
+	$$ II: p_0, p_1, … $$
+	$a_i \in B$, $p_i$ line in $®R^2$, $a_i, a_{i+1} \in p_i$. II player wins $≡$ $(a_i)$ is convergent.
+\end{definice}
+
+\begin{veta}[From Real functions]
+	II player has wining strategy in this game.
+\end{veta}
+
+\subsection{Determinacy of games}
+\begin{definice}
+	We say that game $G(A, X)$ is determined, if I or II player has winning strategy.
+
+	\begin{poznamka}[Remark]
+		I has wining strategy if $\exists a_0\ \forall a_1\ \exists a_2\ \forall a_3 … (a_0, a_1, …) \in X$.
+
+		II has wining strategy if $\forall a_0\ \exists a_1\ \forall a_2\ \exists a_3 … (a_0, a_1, …) \notin X$.
+	\end{poznamka}
+\end{definice}
+
+\begin{veta}[Gale–Steward, 1953]
+	$A ≠ \O$, $T \subset A^{<ω}$, $T ≠ \O$ pruned tree, $X \subset [T] \subset A^ω$ be closed in $[T]$. Then $G(T, X)$ is determined.
+
+	\begin{dukazin}
+		Assume II does not have winning strategy in $G(T, X)$. We say that $p = (a_0, a_1, …, a_{2n - 1}) \in T$ is non-loosing for I, if II player does not have winning strategy in game with this beginning. II does not have winning strategy $\implies$ $\O$ is non-loosing. If $p$ is non-loosing than there exist $a_{2n} \in A$ such that $(a_0, a_1, …, a_{2n}) \in T$ and $\forall a = a_{2n + 1} \in A$ such that $(a_0, a_1, …, a_{2n + 1}) \in T$ this position is non-loosing for I. The strategy for I player is choosing non-loosing positions. Assume that this strategy is not winning strategy. So, there exists $(a_0, a_1, …) \in [T] \setminus X$ and for every $n \in ω$: $(a_0, …, a_{2n + 1})$ are non-loosing position. But from fact that $[T]\setminus X$ is open, $\exists n \in ω: ©N(a_0, a_1, …, a_{2n+1}) \cap [T] \subset [T] \setminus X$ $\implies$ this is loosing position for I.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[„Closed“ is nessesary]
+	$A = \{0, 1\}, T = 2^{<ω}$, $X = 2^ω \setminus \{0, 0, …\}$. This game is determined, but the previous proof cannot be used:
+	$$ I: 0, 0, 0, 0, … $$
+	$$ II: 0, 0, 0, 0, … $$
+	is always non-loosing, but $(0, 0, 0, …) \notin X$.
+\end{priklad}
+
+\begin{dusledek}
+	$T ≠ \O$ pruned tree on $A$, $X \in [T]$ is open in $[T]$. Then $G(T, X)$ is determined.
+
+	\begin{dukazin}
+		I player playes $a_0$ and we assume game where $II$ player starts and we play with set $(©N(a_0) \cap A^{<ω})$. Using the previous theorem we have that game is determined.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{poznamka}[Historical remark]
+	$G(T, X)$ be determined for:
+
+	\begin{itemize}
+		\item $X \in ∏_1^0$: 1953 Gale-Stewnar.
+		\item $X \in ∏_2^0$: 1955 Woolfe.
+		\item $X \in ∏_3^0$: 1964 Davis.
+		\item $X \in ∏_4^0$: 1972 Paris.
+		\item Martin:
+			$T ≠ \O$ pruned tree on $A$, $X \subset [T]$, $X \in Δ_1^1([T])$. Then $G(T, X)$ is determined.
+	\end{itemize}
+
+	Analytic determinacy is independent of ZFC.
+\end{poznamka}
+
 \end{document}

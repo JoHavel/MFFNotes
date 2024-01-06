@@ -1,0 +1,35 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[1.]
+	Show that the linearisation of
+	$$ P_{out} - P_{in} = μ \int_{\sqrt{R_{in}^2 + c·R_{in}^2}}^{\sqrt{R_{out}^2 + c·R_{in}^2}} \frac{(r^2 - c·R_{in}^2)^2 - r^4}{r^3(r^2 - c·R_{in}^2)}\,dr $$
+	with respect to $c$ indeed yields
+	$$ P_{out} - P_{in} \approx - μ \int_{R_{in}}^{R_{out}} \frac{2c·R_{in}^2}{R^3}\,dR. $$
+
+	\begin{dukazin}
+		Úpravou a linearizací $c·f(c) \approx c·f(0)$:
+		$$ P_{out} - P_{in} = μ \int_{\sqrt{R_{in}^2 + c·R_{in}^2}}^{\sqrt{R_{out}^2 + c·R_{in}^2}} \frac{r^4 + c^2·R_{in}^4 - 2c·r^2·R_{in}^2 - r^4}{r^5 - c·r^3·R_{in}^2}\,dr = $$
+		$$ = c·μ \!\! \int_{\sqrt{R_{in}^2 + c·R_{in}^2}}^{\sqrt{R_{out}^2 + c·R_{in}^2}} \frac{c·R_{in}^4 - 2r^2·R_{in}^2}{r^5 - c·r^2·R_{in}^2}\,dr = c·μ \!\! \int_{\sqrt{R_{in}^2}}^{\sqrt{R_{out}^2}} \frac{-2r^2·R_{in}^2}{r^5}\,dr \approx - μ \!\! \int_{R_{in}}^{R_{out}} \frac{2cR_{in}^2}{R^3}\,dR. $$
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}[2.]
+	It is known that the identity $\Div \cof ®F = ¦o$ holds for every deformation ¦χ, $®F := \nabla ¦χ$. (This identity is usually referred to as the Piola identity, and it is straightforward to show using similar manipulations that lead to the relation between the Cauchy stress tensor and the first Piola–Kirchhoff stress tensor. Direct differentiation is not a good idea.) Use the identity and show that the functional
+	$$ ¦Ψ(¦χ) := \int_{V(t_0)} \det ®F dV $$
+	is a null Lagrangian. The null Lagrangian is a functional for which the corresponding Euler–Lagrange equations are identically satisfied.
+
+	\begin{dukazin}
+		Máme (použijeme rozepsání determinantu podle sloupce/řádku) pro libovolné $i \in [n]$
+		$$ L\(χ_1, χ_2, …, \frac{\partial}{\partial x_1}χ_1, \frac{\partial}{\partial x_1}χ_2, …, \frac{\partial}{\partial x_2}χ_1, …\) = \det(\nabla ¦χ) = \sum_{j=1}^n (\nabla ¦χ)_{ij} (\cof(\nabla ¦χ))_{ij}. $$
+		A příslušné Eulerovy–Lagrangeovy rovnice jsou (postupně pro každé $i \in [n]$):
+		$$ \underbrace{\frac{\partial L}{\partial χ_i}}_{= 0} - \sum_{j=1}^n \frac{\partial}{\partial x_j}\(\frac{\partial L}{\frac{\partial χ_i}{\partial x_j}}\) = - \sum_{j=1}^n \frac{\partial}{\partial x_j} (\cof (\nabla ¦χ))_{ij} = (\Div (\cof (\nabla ¦χ)))_i = 0. $$
+		\vspace{-1em}
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

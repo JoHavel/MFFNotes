@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[6. General boundary condition for the parabolic equation]
+	Let $Ω \subset ®R^d$ be a Lipschitz domain, $T > 0$ be given and denote $Q := (0, T) \times Ω$. Assume that $®A \in L^∞(Q; ®R_{sym}^{d \times d})$ be elliptic matrix and $f \in L^2(0, T; L^2(Ω))$, $b \in L^2(0, T; L^∞(\partial Ω))$ and $g \in L^2(0, T; L^2(\partial Ω))$ be given. Consider the problem
+	\begin{align*}
+		\partial_t u - \Div(®A \nabla u) &= f && \text{in } Q,\\
+		®A \nabla u ¦ν + bu &= g && \text{on } Γ := (0, T) \times \partial Ω,\\
+		u(0) := u(0, x) &= u_0(x) && \text{in } Ω,
+	\end{align*}
+	where $u_0 \in L^2(Ω)$.
+
+	Define a notion of a weak solution for general setting. Assume that $b ≥ 0$ and prove the existence and the uniqueness of the weak solution.
+
+	\begin{reseni}
+		Zvolíme nám již známou Gelfandovu trojici $V := W^{1, 2}(Ω) \overset{\text{dense}} \hookrightarrow H := L^2(Ω) \simeq H^* \overset{\text{dense}} \hookrightarrow V^*$.\break Potom řekneme, že $u$ je slabé řešení, pokud $u \in L^2(0, T; V) \cap W^{1, 2}(0, T; V^*)$, $u(0, ·) = u_0$ (z předchozího $C([0, T]; V^*)$, tedy to dává smysl) a $\forall w \in V$ a skoro všechna $t \in (0, T)$:
+		$$ \<\underbrace{\partial_t u}_{\in V^*}, w\>_{\!\!\!\!V} + \int_Ω ®A \nabla u \nabla w + \int_{\partial Ω} b·u·w = \<\underbrace{f}_{\in V^*}, w\>_{\!\!\!\!V} + \<\underbrace{g}_{\in (L^2(\partial Ω))^*}, w\>_{\!\!\!\!L^2(\partial Ω)} $$
+	\end{reseni}
+
+	\begin{dukazin}[Pro dostatečně hladké $u$ je to totéž jako klasické řešení]
+		Pokud $u$ je dostatečně hladké = dvakrát spojitě diferencovatelné, můžeme na prostřední člen vlevo použít per partes:
+		$$ \int_Ω ®A \nabla u \nabla w = \int_{\partial Ω} ®A \nabla u ¦ν w - \int_Ω \Div(®A \nabla u) w = $$
+		$$ = \(®A \nabla u ¦ν, w\)_{L^2(\partial Ω)} - \(\Div(®A) \nabla u, w\)_H = \<®A \nabla u ¦ν, w\>_{L^2(\partial Ω)} - \<\Div(®A) \nabla u, w\>_V. $$
+		Stejně tak $\int_{\partial Ω} b·u·w = \<bu, w\>_{L^2(\partial Ω)}$. Tedy když to rozdělíme, tak slabá formulace pro toto $u$ je totéž jako $u(0) = u_0$ a:
+		$$ \<\partial_t u - \Div(®A \nabla u) - f, w\>_V + \<®A \nabla u ¦ν + bu - g, w\>_{L^2(\partial Ω)} = 0. $$
+		Tedy pokud $u$ je klasickým řešením, tak tyto rovnosti hned dostáváme, pokud je naopak slabým řešením, tak dosazením $w = 0$ na $\partial Ω$ a potom obecného $w$ nám vypadnou přesně zadané rovnice.
+	\end{dukazin}
+
+	\begin{dukazin}[Jednoznačnost]
+		$\forall t \in (0, T): v(t) := u_1(t) - u_2(t) \in V$, tedy můžeme „otestovat $u(t)$“, tj. pro skoro všechna $t \in (0, T)$ dostaneme ze slabé formulace (a linearity aplikace duálu / integrálů)
+		$$ 0 = \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) + \int_{\partial Ω} b·v^2(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t). $$
+		S použitím elipticity ®A dostáváme
+		$$ 0 ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω c_1 |\nabla v(t)|^2 ≥ \<\partial_t v(t), v(t)\>_V $$
+		Aplikujeme $\int_0^{t_1}$ na obě strany a použijeme integraci per partes pro Sobolevovy–Bochnerovy funkce a $v(0) = u_1(0) - u_2(0) = u_0 - u_0 = 0$:
+		$$ \int_0^{t_1} 0 = 0 ≥ \int_0^{t_1} \<\partial_t v(t), v(t)\> = \frac{1}{2} \((v(t_1), v(t_1))_H - (v(t_0), v(t_0))_H\) = \frac{1}{2}\|v(t_1)\|_{L^2(Ω)}^2 + 0. $$
+		Tedy pro všechna $t_1$ je $\|v(t_1)\|_{L^2(Ω)} = 0$, tudíž $v = 0$ a $u_1 = u_2$.
+	\end{dukazin}
+
+	\begin{dukazin}[Existence]
+		Už víme, že $\exists$ báze $\{w_j\}_{j=1}^∞$ prostoru $V$, která je ortogonální ve $V$, ortonormální v $L^2(Ω)$, tak, že pro pro projekci $P^N v = \sum_{j=1}^N a_j w_j := \sum_{j=1}^N \(\int_Ω v w_j\)w_j$ platí, že $\|P^N v\|_V ≤ c·\|v\|_V$ (a $P^N v \rightarrow v$ pro $N \rightarrow ∞$). Budeme hledat „řešení“ ve tvaru $u^n(t, x) := $„$P^n u(t)$“$ = \sum_{j=1}^n a_j^n(t) w_j(x)$.
+
+		Počáteční podmínka nám říká, že $u^n(0) = P^n u_0$. Když dosadíme do rovnice slabého řešení, „otestujeme $w = w_j$“, dosadíme z definice $u^n$ a použijeme ortogonálnost+ortonormálnost (a jejich kombinace) dostaneme
+		$$ \partial_t a_j + \sum $$
+	\end{dukazin}
+\end{priklad}
+
+\end{document}

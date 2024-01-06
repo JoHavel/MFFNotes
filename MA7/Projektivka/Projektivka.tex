@@ -1155,7 +1155,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 	\end{reseni}
 
 	\begin{poznamkain}
-		Odpovídá řešení za pomoci nalezení harmonické čtveřice (po Malé větě D).
+		Odpovídá řešení za pomoci nalezení harmonické čtveřice (po Malé větě D).
 	\end{poznamkain}
 \end{priklad}
 
@@ -1255,7 +1255,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \end{poznamka}
 
 \begin{definice}
-	V situaci z předchozí poznámky nazýváme body $P, Q$ (resp. přímky $p, q$) polárně sdružené (vůči kuželosečce ©B) (sdružené póly, resp. sdružené poláry).
+	V situaci z předchozí poznámky nazýváme body $P, Q$ (resp. přímky $p, q$) polárně sdružené (vůči kuželosečce ©B) (sdružené póly, resp. sdružené poláry).
 
 	\begin{poznamkain}
 		V polárním trojúhelníku máme 3 dvojice polárně sdružených bodů a 3 dvojice polárně sdružených přímek.
@@ -1288,6 +1288,134 @@ TODO!!! (charakteristika projektivity, involuce, …)
 
 \begin{poznamka}[Bonusová informace]
 	V polárním trojúhelníku je vždy jeden vrchol vnitřní a dva vnější.
+
+% 04. 01. 2024
+
+	\begin{dukazin}
+		Kuželosečka + 4 body $\implies$ 3 možná párování. Dvě dávají vnější (hyperbolická involuce), jedno vnitřní (eliptická involuce)
+	\end{dukazin}
+\end{poznamka}
+
+\subsection{Pól a polára v afinní rovině}
+\begin{poznamka}[Platí]
+	Střed kuželosečky (tedy průsečík asymptot, tedy průsečík tečen v nevlastním bodě) je pólem nevlastní přímky.
+
+	Polára nevlastního bodu prochází středem kuželosečky (je jejím průměrem).
+\end{poznamka}
+
+\begin{poznamka}
+	Mějme středovou kuželosečku, střed $O$, nějaký její průměr a uvažujme sdružené póly na tomto průměru.
+
+	Sdruženost pólů (na průměru) je symetrická $\implies$ tvoří to involuci sdružených pólů na průměru. Její samodružné body jsou průsečíky ($S$ a $T$) průměru s kuželosečkou.
+
+	\begin{tabular}{c|ccc}
+		S,T        & involuce  & průměr        & definice        \\ \hline
+		reálné     & hyperbola & sečna         & reálný průměr   \\
+		imaginární & eliptická & vnější přímka & pomyslný průměr
+	\end{tabular}
+\end{poznamka}
+
+\begin{priklad}
+	Jak najít k bodu $P$ sdružený pól na průměru?
+
+	\begin{reseni}[1.]
+		Body $S, T, P, P'$ tvoří harmonickou čtveřici.
+	\end{reseni}
+
+	\begin{reseni}[2.]
+		Zavedeme tzv. afinní vzdálenost (na afinní přímce) viz další definice. A pak z druhého důsledku a Euklidovy věty.
+	\end{reseni}
+\end{priklad}
+
+\begin{definice}[Afinní vzdálenost (na afinní přímce)]
+	Zvolí se 2 body $P, J$ (počátek a jednotka) a definujeme afinní vzdálenost bodů $X, Y$ (na téže přímce jako $P, J$) jako číslo $(XY) := (XJP∞) - (YJP∞)$.	
+\end{definice}
+
+\begin{dusledek}
+	Afinní vzdálenost splňuje:
+
+	\begin{itemize}
+		\item Je to orientovaná vzdálenost, tj. $(YX) = -(XY)$.
+		\item Jde-li o eukleidovskou přímku, je $(XY) = \konst · d(X, Y)$.
+		\item Je-li $(X, X')$ pár involuce, a $(O, ∞)$ pár téže involuce, pak $(XO)·(X'O) = \konst$. Navíc tato konstanta je kladná pro hyperbolickou involuci a záporná pro eliptickou involuci.
+	\end{itemize}
+\end{dusledek}
+
+\begin{poznamka}[Použití]
+	Pro středové kuželosečky máme pro reálný průměr: $(OP)·(OP') = (OS)^2 = (OT)^2 > 0$, tedy $P, P'$ leží na stejné straně od $O$.
+
+	Pro pomyslný průměr zavádíme tzv. náhradní body $A, B$, jsou to body na pomyslném průměru splňující $(OA) = - (OB)$, $(OS)^2 = (OT)^2 = -(OA)^2 = -(OB)^2 < 0$ ($S, T$ jsou ryze imaginární). Potom $(OP)·(OP') = (OS)^2 = -(OA)^2 < 0$, tedy $P, P'$ leží na opačných stranách od $O$.
+\end{poznamka}
+
+\begin{dusledek}
+	$OS$ je geometrický průměr $(OP)$ a $(O'P)$. (Geometrický průměr se konstruuje přes Euklidovu větu. Tj. nad $a+b$ narýsujeme půlkružnici a v bodě mezi $a,b$ vztyčíme „výšku“ $c$, pak $c^2 = a·b$.)
+\end{dusledek}
+
+\subsection{Sdružené průměry}
+\begin{definice}[Sdružené průměry kuželosečky, sdružené směry]
+	Sdružené průměry kuželosečky jsou sdružené jakožto poláry. Jejich směry se nazývají sdružené směry.
+\end{definice}
+
+\begin{poznamka}
+	Toto má smysl jen pro středové kuželosečky, pro parabolu je každý průměr sdružen s nevlastní přímkou.
+
+	Páry sdružených průměrů tvoří involuci, jejíž samodružné přímky jsou asymptoty. U elipsy jde o eliptickou involuci, u hyperboly o hyperbolickou.
+
+	Asymptoty oddělují sdružené průměry harmonicky.
+
+	U hyperboly: pár tvoří vždy reálný a pomyslný průměr.
+
+	$R \in q \Leftrightarrow Q_∞ \in r \implies r \parallel p$.
+\end{poznamka}
+
+\begin{veta}[Zobecněná afinní verze Thaletovy věty]
+	Spojnice libovolného bodu $X$ na kuželosečce s koncovými body $A, B$ jejího libovolného průměru jsou rovnoběžné s nějakou dvojicí sdružených průměrů.
+
+	Speciálně pro kružnici: sdružené průměry jsou kolmé $\Leftrightarrow$ Thaletova věta.
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Kuželosečka je dána párem omezených průměrů.
+
+	\begin{dukazin}
+		Pár sdružených průměrů + nevlastní přímka tvoří polární trojúhelník (3 podmínky) + máme 2 body na průměrech = 5 podmínek.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Určete kuželosečku z páru omezených sdružených průměrů $AB$, $CD$, kde $AB$ je reálný.
+
+	\begin{reseni}
+		Na $CD$ sestrojíme 1 pár sdružených pólů $P, P'$ a doplníme 5. (6.) bod? TODO?
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Sestrojte kuželosečku je-li dán omezený průměr $AB$, neomezený průměr $CD$ a 1 další bod $E$.
+
+	\begin{reseni}
+		Podobně jako předchozí konstrukce?
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Středová kuželosečka je dána omezenými sdruženými průměry $AB$, $CD$. Najděte k dané poláře $p$ pól $P$ nebo naopak.
+
+	\begin{reseni}
+		Pomocí $X \in p \Leftrightarrow P \in x$ a $Y \in p \Leftrightarrow P \in y$.
+
+		$x \ni$ pól $CD$ = směr $AB$, $y \ni$ pól $AB$ = směr $CD$. Najdeme sdružené póly na průměrech $X', Y'$ (přes geometrický průměr).
+	\end{reseni}
+\end{priklad}
+
+\begin{poznamka}
+	U hyperboly $AB$ = reálný, $CD$ = pomyslný $\implies$ úhlopříčky = asymptoty $\implies$ hyperbol je určená.
+
+	Záměna rolí $AB \leftrightarrow CD$ $\implies$ sdružená hyperbola.
 \end{poznamka}
 
 \end{document}

@@ -670,4 +670,28 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
+% 03. 01. 2024
+
+TODO!!!
+
+\subsection{Existence theory}
+\begin{veta}[Minty and Browder]
+	Let $X$ be a reflective separable Banach space and $f: X \rightarrow X^*$ monotone, hemi-continuous and coercive in the sense that $\lim_{\|x\| \rightarrow ∞} \frac{\<f(x), x\>}{\|x\|} = ∞$. Then for all $b \in X^*$ the set $\{x \in X | f(x) = b\}$ is closed, bounded, convex and non-empty. If $f$ is strictly monotone, then it consist of one point.
+
+	\begin{dukazin}
+		Plan: 1. Solve approximation problem in $X_n$; 2. Show uniform estimate; 3. Converge to solution of the full problem.
+
+		„1.“: Define $g_n: ®R^n \rightarrow ®R^n$, $y \mapsto \(\<f\(\sum_{i=1}^n y_i e_i\)- b, e_k\>\)_{k \in [n]}$. Hemi-continuity $\implies$ $g_n$ is continuous in every compact. Finite dimension $\implies$ $g_n$ is continuous.
+		$$ \frac{g_n(y)·y}{|y|} = \frac{\<f\(\sum_{i=1}^n y_i e_i\), \sum_{i=1}^n y_i e_i\>}{|y|} - \frac{\<b, \sum_{i=1}^n y_i e_i\>}{|y|} \rightarrow ∞ + \const $$
+		Homework (sheet 8) $\implies$ $\exists y_n$ such that $g_n(y_n) = 0$ $\implies$
+		$$ x_n := \sum_{i=1}^n y_i e_i: \qquad \forall i \in [n]: \<f(x_n) - b, e_i\> = 0. $$
+
+		„2.“: TODO!!!
+
+		Using $0 ≤ \<f[x_1] - f[w], x_n - w\>:$
+		$$ \|f[x_n]\| = \sup_{\|w\| ≤ δ} \frac{1}{b}\<f(x_n), w\> ≤ \sup_{\|w\| < δ} \frac{1}{b} \(\<f[x_n], x_n\> - \<f[w], x_1\> + \<f[w], w\>\) ≤ $$
+		$$ ≤ \frac{1}{b} \(\|b\|·\|x_n\| + R_1\|x_1\| + δ·R_1\) \implies f[x_n] \text{ is bounded}. $$
+	\end{dukazin}
+\end{veta}
+
 \end{document}
