@@ -14,7 +14,7 @@
 	\end{align*}
 	where $u_0 \in L^2(Ω)$.
 
-	Define a notion of a weak solution for general setting. Assume that $b ≥ 0$ and prove the existence and the uniqueness of the weak solution.
+	\paragraph{Goal 1:} Define a notion of a weak solution for general setting. Assume that $b ≥ 0$ and prove the existence and the uniqueness of the weak solution.
 
 	\begin{reseni}
 		Zvolíme nám již známou Gelfandovu trojici $V := W^{1, 2}(Ω) \overset{\text{dense}} \hookrightarrow H := L^2(Ω) \simeq H^* \overset{\text{dense}} \hookrightarrow V^*$.\break Potom řekneme, že $u$ je slabé řešení, pokud $u \in L^2(0, T; V) \cap W^{1, 2}(0, T; V^*)$, $u(0, ·) = u_0$ (z předchozího $C([0, T]; V^*)$, tedy to dává smysl) a $\forall w \in V$ a skoro všechna $t \in (0, T)$:
@@ -31,21 +31,98 @@
 	\end{dukazin}
 
 	\begin{dukazin}[Jednoznačnost]
-		$\forall t \in (0, T): v(t) := u_1(t) - u_2(t) \in V$, tedy můžeme „otestovat $u(t)$“, tj. pro skoro všechna $t \in (0, T)$ dostaneme ze slabé formulace (a linearity aplikace duálu / integrálů)
-		$$ 0 = \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) + \int_{\partial Ω} b·v^2(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t). $$
-		S použitím elipticity ®A dostáváme
-		$$ 0 ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω c_1 |\nabla v(t)|^2 ≥ \<\partial_t v(t), v(t)\>_V $$
-		Aplikujeme $\int_0^{t_1}$ na obě strany a použijeme integraci per partes pro Sobolevovy–Bochnerovy funkce a $v(0) = u_1(0) - u_2(0) = u_0 - u_0 = 0$:
-		$$ \int_0^{t_1} 0 = 0 ≥ \int_0^{t_1} \<\partial_t v(t), v(t)\> = \frac{1}{2} \((v(t_1), v(t_1))_H - (v(t_0), v(t_0))_H\) = \frac{1}{2}\|v(t_1)\|_{L^2(Ω)}^2 + 0. $$
+		$\forall t \in (0, T): v(t) := u_1(t) - u_2(t) \in V$, tedy můžeme „otestovat $u(t)$“, tj. pro skoro všechna $t \in (0, T)$ dostaneme ze slabé formulace (a linearity aplikace duálu / integrálů)\vspace{-0.25em}
+		$$ 0 = \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) + \int_{\partial Ω} b(t)·v^2(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t). \vspace{-0.25em} $$
+		S použitím elipticity ®A dostáváme\vspace{-0.25em}
+		$$ 0 ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω ®A \nabla v(t) \nabla v(t) ≥ \<\partial_t v(t), v(t)\>_V + \int_Ω c_1 |\nabla v(t)|^2 ≥ \<\partial_t v(t), v(t)\>_V \vspace{-0.25em} $$
+		Aplikujeme $\int_0^{t_1}$ na obě strany a použijeme integraci per partes pro Sobolevovy–Bochnerovy funkce a $v(0) = u_1(0) - u_2(0) = u_0 - u_0 = 0$:\vspace{-0.25em}
+		$$ \int_0^{t_1} 0 = 0 ≥ \int_0^{t_1} \<\partial_t v(t), v(t)\> = \frac{1}{2} \((v(t_1), v(t_1))_H - (v(t_0), v(t_0))_H\) = \frac{1}{2}\|v(t_1)\|_{L^2(Ω)}^2 + 0. \vspace{-0.25em} $$
 		Tedy pro všechna $t_1$ je $\|v(t_1)\|_{L^2(Ω)} = 0$, tudíž $v = 0$ a $u_1 = u_2$.
 	\end{dukazin}
 
 	\begin{dukazin}[Existence]
-		Už víme, že $\exists$ báze $\{w_j\}_{j=1}^∞$ prostoru $V$, která je ortogonální ve $V$, ortonormální v $L^2(Ω)$, tak, že pro pro projekci $P^N v = \sum_{j=1}^N a_j w_j := \sum_{j=1}^N \(\int_Ω v w_j\)w_j$ platí, že $\|P^N v\|_V ≤ c·\|v\|_V$ (a $P^N v \rightarrow v$ pro $N \rightarrow ∞$). Budeme hledat „řešení“ ve tvaru $u^n(t, x) := $„$P^n u(t)$“$ = \sum_{j=1}^n a_j^n(t) w_j(x)$.
+		Už víme, že $\exists$ báze $\{w_j\}_{j=1}^∞$ prostoru $V$, která je ortogonální ve $V$, ortonormální v $L^2(Ω)$, tak, že pro pro projekci $P^N v = \sum_{j=1}^N a_j w_j := \sum_{j=1}^N \(\int_Ω v w_j\)w_j$ platí, že $\|P^N v\|_V ≤ c·\|v\|_V$ (a $P^N v \rightarrow v$ pro $N \rightarrow ∞$). Hledáme „řešení“ ve tvaru $u^n(t, x) := $„$P^n u(t)$“$ = \sum_{j=1}^n a_j^n(t) w_j(x)$.
 
-		Počáteční podmínka nám říká, že $u^n(0) = P^n u_0$. Když dosadíme do rovnice slabého řešení, „otestujeme $w = w_j$“, dosadíme z definice $u^n$ a použijeme ortogonálnost+ortonormálnost (a jejich kombinace) dostaneme
-		$$ \partial_t a_j + \sum $$
+		Počáteční podmínka nám říká, že $u^n(0) = P^n u_0$. Když dosadíme do rovnice slabého řešení, „otestujeme $w = w_j$“, dosadíme z definice $u^n$ a použijeme ortogonálnost a ortonormálnost (a jejich kombinace) dostaneme (pro každé $j \in [n]$)
+		$$ \partial_t a_j^n + \sum_k a_k^n \int_Ω ®A \nabla w_k \nabla w_j + \sum_k a_k^n \int_{\partial Ω} b·w_k·w_j = \<f, w_j\>_V + \<g, w_j\>_{L^2(\partial Ω)}. $$
+		Pokud si to představíme jako $\partial_t a_j^n = f(t, ¦a^n(t))$, je $f$ zřejmě spojité vůči $¦a^n$ (dokonce lineární) a měřitelné vůči $t$ (neboť všechny funkce jsou z měřitelných prostorů). Navíc (z Höldera, linearity integrálu a Trace theorem) $\int_{t_1}^{t_2} |f(t, ¦y)| ≤$
+		$$ ≤ \sum_k y_k · (\|A\|_{L^∞(Q)} · \|\nabla w_k\|_{L^2(Ω)} · \|\nabla w_j\|_{L^2(Ω)} + \underbrace{\left\|\|b\|_{L^∞(\partial Ω)}\right\|_{L^1(t_1, t_2)}}_{≤\left\|\|b\|_{L^∞(\partial Ω)}\right\|_{L^2(t_1, t_2)}} · \underbrace{\|w_k\|_{L^2(\partial Ω)}}_{≤\|w_k\|_{L^2(Ω)}} · \underbrace{\|w_j\|_{L^2(\partial Ω)}}_{≤\|w_j\|_{L^2(Ω)}}) + $$
+		$$ + \underbrace{\left\|\|f\|_{V^*}\right\|_{L^1(t_1, t_2)}}_{≤ \left\|\|f\|_{V^*}\right\|_{L^2(t_1, t_2)}} · \|w_j\|_V + \underbrace{\left\|\|g\|_{L^2(\partial Ω)}\right\|_{L^1(t_1, t_2)}}_{≤ \left\|\|g\|_{L^2(\partial Ω)}\right\|_{L^2(t_1, t_2)}} · \underbrace{\|w_j\|_{L^2(\partial Ω)}}_{≤\|w_j\|_{L^2(Ω)}} < ∞. $$
+		Takže $f$ má integrovatelnou majorantu, tudíž z Carathéodorovy teorie existuje řešení $¦a^n$ v nějakém (pravém) okolí libovolného počátečního bodu, takže buď $¦a^n \rightarrow ∞$ (vyloučeno dalšími odhady nutnými i ke konvergenci těchto „řešení“) nebo existuje řešení $¦a^n$ na $[0, T)$ ($¦a_0$ je z $P^n u_0$), tj. $\exists u^n(t, x)$, tak že „platí slabá formulace“ pro $w \in \LO (w_1, …, w_n)$.
 	\end{dukazin}
+
+\break
+
+	\begin{dukazin}[Existence (pokračování): odhad]
+		Když rovnice z předchozí části vynásobíme $a_j^n$ a sečteme, dostaneme:
+		$$ \frac{1}{2} \partial_t \|u^n\|_2^2 + \int_Ω ®A \nabla u^n \nabla u^n + \int_{\partial Ω} b·(u^n)^2 = \<f, u^n\>_V + \<g, u^n\>_{L^2(\partial Ω)} = \(f, u^n\)_H + \<g, u^n\>_{L^2(\partial Ω)}. $$
+		Člen s $b$ je kladný, tedy ho můžeme „vynechat“ a $®A$ odhadneme elipticitou:
+		$$ \partial_t \|u^n\|_2^2 + 2·c_1 \|\nabla u^n\|_2^2 ≤ 2·\|f\|_{L^2(Ω)}·\|u^n\|_{L^2(Ω)} + 2·\|g\|_{L^2(\partial Ω)}·\|u^n\|_{L^2(\partial Ω)} \overset{\text{Young}}≤ $$
+		$$ ≤ \|f\|_{L^2(Ω)}^2 + \|g\|_{L^2(\partial Ω)}^2 + 2·\|u^n\|_2^2. \qquad (*) $$
+		Nyní když vlevo zapomeneme na druhý člen (je kladný), tak z Grönwallova lemmatu máme ($\forall t \in [0, T]$):
+		$$ \|u^n(t)\|_2^2 ≤ e^{2t}·\(\|u^n(0)\|_2^2 + \int_0^t \|f\|_{L^2(Ω)}^2 + \|g\|_{L^2(\partial Ω)}^2 \) ≤ $$
+		$$ ≤ e^{2T}·\(\|u_0\|_2^2 + \left\|\|f\|_{L^2(Ω)}\right\|_{L^2(0, T)}^2 + \left\|\|g\|_{L^2(\partial Ω)}\right\|_{L^2(0, T)}^2\) < ∞ $$
+
+		Odhad závisí na je nezávislý na $t$, takže $¦a^n \nrightarrow ∞$. Tedy $u^n$ opravdu existují.
+
+		Odhad je také nezávislý na $n$ a můžeme ho dosadit zpět do $(*)$ a zintegrovat podle času, čímž omezíme nezávisle na $n$ i všechny prostorové derivace $u$.
+
+		Potom stejně jako v přednášce omezíme ($\|P^n φ\|_V ≤ c·\|φ\|_V$ nezávisle na $n$)
+		$$ \|\partial_t u^n(t)\|_{V^*} ≤ c·\sup_{\|φ\| ≤ 1, φ \in \LO(w_1, …, w_n)} -\int_Ω ®A \nabla u^n \nabla φ - \int_{\partial Ω} b·u^n·φ + \<f, φ\>_V + \<g, φ\>_{L^2(\partial Ω)} ≤ $$
+		$$ ≤ c·\tilde c·\sup_{\|φ\| ≤ 1, φ \in \LO(w_1, …, w_n)} (\|\nabla u^n\|_2·\|\nabla φ\|_2 + \|b\|_∞·\|u^n\|_2·\|φ\|_2 + \|f\|_{V^*} \|φ\|_V + \|g\|_2 \|φ\|_2) ≤ $$
+		$$ ≤ C·\sup_{\|φ\| ≤ 1, φ \in \LO(w_1, …, w_n)} \|φ\|·(\|u^n\|_V + \|f\|_{V^*} + \|g\|_2) ≤ C·(\|u^n\|_V + \|f\|_{V^*} + \|g\|_2). $$
+
+		Zintegrováním a dosazením předchozích odhadů ($u^n$ a $\nabla u^n$) dostaneme uniformní omezenost $\partial u^n$, tedy máme omezenou posloupnost v reflexivním prostoru, tudíž můžeme vybrat slabě konvergentní podposloupnost. A poté postupujeme stejně jako na přednášce. (Abychom dokázali, že slabá formulace pro $u^{n_k}$ $\forall {n_k}$ už nám dává slabou formulaci pro jejich slabou limitu.)
+	\end{dukazin}
+
+	\paragraph{Goal 2:} Assume that $b ≥ ε > 0$ almost everywhere on $Γ$ and $f \in L_{loc}^2 (0, ∞; L^2(Ω))$, $b \in L_{loc}^2(0, ∞; L^∞(\partial Ω))$, $g \in L_{loc}^2(0, ∞; L^2(\partial Ω))$ and satisfies for some $τ > 0$ that $f$, $b$ and $g$ are time periodic with the period $τ$ (i. e. $…(t, x) = …(t + τ, x)$ for almost every $(t, x) \in (0, ∞) \times …$).
+	Show that there exists unique $u_0 \in L^2(Ω)$ (i.e. unique initial data), for which, the weak solution $u$ is $τ$-periodic.
+
+	\begin{dukazin}
+		Omezme se prozatím na interval $(0, τ)$, tak dostaneme stejný problém jako v části 1. Tedy víme, že pro každou počáteční podmínku (z $L^2(Ω)$) má právě jedno řešení. Budeme chtít ukázat, že $F: L^2(Ω) \rightarrow L^2(Ω)$, $u(τ) \mapsto u(0)$ je kontrakce.
+
+		Mějme tedy dvě počáteční podmínky $u_{01}, u_{02} \in L^2(Ω)$ a jim odpovídající řešení $u_1, u_2 \in u \in L^2(0, T; V) \cap W^{1, 2}(0, T; V^*)$. Stejně jako v důkazu existence výše máme pro $v := u_1 - u_2$:
+		$$ \forall w \in V: \<\partial_t v, w\>_V + \int_Ω ®A \nabla v \nabla w - \int_{\partial Ω} b·v·w = 0. $$
+		Nyní budeme chtít pro dva časy $t_1 < t_2 \in [0, τ]$ odhadnout $\|v(t_2)\|_2 - \|v(t_1)\|_2$. Pro to použijeme integraci per partes pro Gelfandovu trojici a použijeme předchozí rovnost s $w = v \in V$ (následně použijeme elipticitu ®A a $b ≥ ε$ a nakonec Poincarého nerovnost s $β_1 = b > 0$):
+		$$ \(\|v(t_2)\|_2 - \|v(t_1)\|_2\)·\(\|v(t_2)\|_2 + \|v(t_1)\|_2\) = \|v(t_2)\|_2^2 - \|v(t_1)\|_2^2 = $$
+		$$ = \(v(t_2), v(t_2)\)_H - \(v(t_1), v(t_1)\)_H = 2·\int_{t_1}^{t_2} \<\partial_t v, v\>_V = \int_{t_1}^{t_2} - \underbrace{\int_Ω ®A \nabla v \nabla v}_{≥ c_2 \|\nabla v\|_{L^2(Ω)}^2} - \underbrace{\int_{\partial Ω} b·v·v}_{≥ ε·\|v\|_{L^2(\partial Ω)^2}} ≤ $$
+		$$ ≤ -\int_{t_1}^{t_2} \! \(c_2·\|\nabla v\|_{L^2(Ω)}^2 + ε·\|v\|_{L^2(\partial Ω)}^2\) ≤ - \int_{t_1}^{t_2} \! c_{Poin1}·\min(ε, c_2)·\|v\|^2_{W^{1, 2}(Ω)} ≤ -\int_{t_1}^{t_2} \! k·\|v\|_2^2. $$
+		Máme $k > 0$, to znamená, že $t \mapsto \|v(t)\|_2$ je nerostoucí funkce, tedy $\|v(t)\|_2 ≥ \|v(τ)\|_2$. Pro $t_1 = 0$ a $t_2 = τ$ tak máme:
+		$$ \|v(τ)\|_2^2 - \|v(0)\|_2^2 ≤ -\int_0^τ k·\|v\|_2^2 ≤ -τ·k·\|v\|_2^2, $$
+		$$ \|v(τ)\|_2^2·(1 - τ·k) ≤ \|v(0)\|_2^2, \qquad \|v(τ)\|_2 ≤ \frac{\|v(0)\|_2}{\sqrt{1 + τ·k}}. $$
+
+		$F$ je tedy kontrakce (s konstantou $1 / \sqrt{1 + τ·k}$), takže podle Banachovy věty o kontrakci ($L^2$ je úplný) existuje $u_0 \in L^2$ tak, že pro odpovídající řešení $u$ platí $u(τ) = u(0) = u_0$.
+
+		Navíc pokud vezmeme interval $(0, 2·τ)$, pak $u_0$ odpovídá z prvního cíle i nějaké slabé řešení $\tilde u$, které se z jednoznačnosti musí na $(0, τ)$ shodovat s $u$ a zároveň se musí na $(τ, 2·τ)$ shodovat s o $τ$ posunutým $u$, neboť $\tilde u(τ) = u(τ) = u_0$, tedy máme celý problém posunutý o $τ$.
+
+		Nyní můžeme celou situaci posouvat o $τ$ a tak získat řešení na celém $(0, ∞)$, které je v $0$ rovno $u_0$ a v libovolném jiném bodě platí slabá formulace, neboť je to nějaký vnitřní bod intervalu $(0 + n·τ, 2τ + n·τ)$.
+	\end{dukazin}
+
+	\paragraph{Goal 3:} Improve the result of Goal 1 and prove the existence and the uniqueness without the assumption $b ≥ 0$ and for arbitrary $f \in L^1(0, T; L^2(Ω))$ and $g \in L^{\frac{4}{3}}(0, T; L^2(\partial Ω))$.
+
+	\begin{dukazin}[Gelfandova trojice a existence]
+		Gelfandova trojice zůstává stejná, jelikož „prostorové“ prostory zůstali stejné. Začátek důkazu existence je stejný, neboť tam jsme nepotřebovali $b ≥ 0$, a použili dokonce jen $f, g \in L^1$. Pro odhady začneme s nerovnicí
+		$$ (\partial_t \|u^n\|_2)·\|u^n\|_2 + c_1 \|\nabla u^n\|_2^2 ≤ \|f\|_{L^2(Ω)}·\|u^n\|_{L^2(Ω)} + \|g\|_{L^2(\partial Ω)}·\|u^n\|_{L^2(\partial Ω)} + \|b\|_{L^∞(\partial Ω)}·\|u^n\|_{L^2(Ω)}^2. $$
+		Tentokrát však nepoužijeme Youngovu nerovnost, ale zapomeneme na člen s $c_1$ rovnou, vydělíme $\|u^n\|_2$ a použijeme Grönwalla:
+		$$ \|u^n(t)\|_2 ≤ \exp\(\int_0^t \|b\|_∞\)·\(\|u^n(0)\|_2 + \int_0^t \|f\|_{L^2(Ω)} + \|g\|_{L^2(\partial Ω)}\) ≤ $$
+		$$ ≤ e^{\left\|\|b\|_∞\right\|_1}·\(\|u_0\|_2 + \left\|\|f\|_2\right\|_1 + \left\|\|g\|_2\right\|_{4 / 3}\). $$
+		Následně zase dosadíme zpět a zintegrujeme, což nám dá uniformní odhad na normu $\nabla u$. Dále pokračujeme jako v cíli 1.
+	\end{dukazin}
+
+	\begin{dukazin}[Jednoznačnost]
+		Začneme stejně jako v jednoznačnosti cíle 1, akorát se z elipticity zbavíme členu s ®A, takže nám zůstane:
+		$$ \<\partial_t v(t), v(t)\>_V ≤ - \int_{\partial Ω} b(t) · v(t)^2 ≤ \|b(t)\|_{L^∞(\partial Ω)}·\|v(t)\|_{L^2(\partial Ω)} ≤ \|b(t)\|_{L^∞(\partial Ω)}·\|v(t)\|_{L^2(Ω)}. $$
+		Nyní na levou stranu použijeme $\partial_t \int_0^t = \id$ a per partes pro Sobolevovy–Bochnerovy funkce:
+		$$ 2·\<\partial_t v(t), v(t)\> = \partial_t 2\int_0^t \<\partial_t v(τ), v(τ)\> = \partial_t \(\|v(t)\|_{L^2(Ω)}^2 - \|v(0)\|_{L^2(Ω)}^2\) = \partial_t \|v(t)\|_{L^2(Ω)}^2. $$
+		Tedy z Grönwallova lemmatu je $\|v(t)\|_{L^2(Ω)}^2 ≤ \|v(0)\|_{L^2(Ω)}^2 · \exp\(\int_0^t \|b(t))\|_{L^∞(\partial Ω)}\) = 0$. Tedy $v = 0$ a $u_1 = u_2$.
+	\end{dukazin}
+
+	Then consider $f = 0$, $g = 1$, $b = 1$ and look for the behaviour of $u(t)$ as $t \rightarrow ∞$.
+
+	\begin{reseni}
+		Vezmeme stejný odhad jako v existenci, akorát si uvědomíme, že nemusíme brát $\|b\|_∞$, ale můžeme vzít $-1$. Tak dostaneme odhad
+		$$ \|u\|_2 ≤ e^{-1t}·\(\|u_0\|_2 + 0 + t·λ(Ω)\) \rightarrow 0. $$
+	\end{reseni}
 \end{priklad}
 
 \end{document}
