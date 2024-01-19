@@ -1160,7 +1160,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \end{priklad}
 
 \begin{veta}[Brianchonova (duální k Pascalově)]
-	6 přímek ($1, …, 6$) je tečnami k tečnami k téže kuželosečce $\Leftrightarrow$ spojnice průsečíků $1 \cap 2$ a $4 \cap 5$, $2 \cap 3$ a $5 \cap 6$, $3 \cap 4$ a $6 \cap 1$, prochází jedním, tzv. Brianchonovým bodem.
+	6 přímek ($1, …, 6$) je tečnami k téže kuželosečce $\Leftrightarrow$ spojnice průsečíků $1 \cap 2$ a $4 \cap 5$, $2 \cap 3$ a $5 \cap 6$, $3 \cap 4$ a $6 \cap 1$, prochází jedním, tzv. Brianchonovým bodem.
 \end{veta}
 
 \begin{poznamka}[Historická]
@@ -1417,5 +1417,123 @@ TODO!!! (charakteristika projektivity, involuce, …)
 
 	Záměna rolí $AB \leftrightarrow CD$ $\implies$ sdružená hyperbola.
 \end{poznamka}
+
+% 11. 01. 2024
+
+\section{Osy středových kuželoseček}
+\begin{veta}
+	V involuci sdružených průměrů existuje alespoň 1 pár sdružených průměrů, které jsou na sebe kolmé.
+
+	\begin{dukazin}[Konstrukcí]
+		Sestrojte osy kuželosečky, jsou-li dány dva páry neomezených sdružených průměrů $(a, a'; b, b')$. ($O$ střed kuželosečky.)
+
+		Zvolíme libovolně pomocnou kružnici procházející bodem $O$ se středem $S$. Její druhé průsečíky s průměry si pojmenujeme $A, A', B, B'$. Víme, že tyto body jsou v involuci na této kružnici. Její střed je $P = AA' \cap BB'$. Nyní když vezmeme průsečík libovolné přímky z $P$ s kružnicí, tak dostaneme sdružené body. Tedy vezmeme průsečíky $PS$ s kružnicí a jejich spojnice s $O$ budou sdružené (z předchozího) kolmé (z Thaletovy věty) průměry.
+
+		Tímto způsobem tyto průměry vždy zkonstuujeme, což dokazuje jejich existenci.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Pokud $P = S$, jedná se o kružnici a všechny sdružené průměry jsou kolmé. Jinak vždy jen 1 pár os.
+
+		Asymptoty této kuželosečky jsou spojnice $O$ s tečnými body z $P$.
+	\end{poznamkain}
+\end{veta}
+
+\begin{definice}[Osy kuželosečky, vrcholy, vrcholové tečny]
+	Kolmé sdružené průměry se nazývají osy (středové) kuželosečky. Jejich průsečíky s kuželosečkou se nazývají vrcholy. Tečny v těchto bodech se nazývají vrcholové tečny.
+
+	\begin{poznamkain}
+		Kružnice má obě stejně dlouhé, elipsa má osy reálné (hlavní = větší, vedlejší = menší, k tomu už ale potřebujeme umět porovnávat délky), hyperbola má jednu reálnou a jednu pomyslnou (osy hyperboly = osy úhlu asymptot).
+
+		Přidáme-li ke dvěma párům sdružených průměrů 1 bod, máme 5 podmínek.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklad}[Konstrukce]
+	Sestrojte kuželosečku včetně os, jsou-li dány 3 body $A, B, C$ a střed $O$ (který neleží na žádné z přímek $AB$, $AC$, $BC$).
+
+	\begin{reseni}
+		Ze středové symetrie máme i body $A', B', C'$, tedy jich máme $≥$ 5. Tudíž budeme hledat jen osy.
+
+		Buď přes najití tečen. Nebo vezmeme průměr rovnoběžný s $AB$, pak víme, že jeho sdružený průměr prochází středem úsečky $AB$. Zopakujeme stejný postup a použijeme předchozí důkaz-konstrukci.
+	\end{reseni}
+\end{priklad}
+
+\begin{dusledek}
+	Středové příčky středově souměrného čtyřúhelníku vepsaného kuželosečce jsou sdružené průměry.
+\end{dusledek}
+
+\begin{poznamka}
+	Naopak úhlopříčky (středově souměrného) opsaného čtyřúhelníku jsou sdružené průměry.
+\end{poznamka}
+
+\begin{priklad}
+	Kuželosečka dána třemi tečnami a středem, nalezněte kuželosečku včetně os.
+
+	\begin{reseni}
+		Využijeme předchozí poznámky.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Nalezněte vrcholy kuželosečky, jsou-li dány omezené sdružené průměry.
+
+	\begin{reseni}[Nebude ke zkoušce?]
+		Rytzova konstrukce.
+	\end{reseni}
+\end{priklad}
+
+\section{Sdružené elementy a osa na parabole}
+\begin{definice}[Sdružená tečna s průměrem (pro parabolu)]
+	Tečna v koncovém bodě průměru paraboly a tento průměr se nazývají sdružené.
+\end{definice}
+
+\begin{poznamka}
+	Spojnice středů rovnoběžných tětiv je průměrem paraboly (už víme). Tj. směr těchto tětiv je rovněž směrem tečny sdružené s tímto průměrem.
+\end{poznamka}
+
+\begin{veta}
+	Mějme body dotyku $U, V$ tečen z $P$ a střed $N$ úsečky $UV$ ($\implies$ $PN$ je průměr paraboly podle věty výše). Označme $M = PN \cap $parabola. Pak $M$ je střed $PN$.
+
+	\begin{dukazin}
+		Involuce se středem $P$ má osu $UV$, tedy $(PNM) = (PNMS_∞) = (PNS_∞M) = -1$ $\implies$ $M$ je střed $PN$.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Parabola dána čtyřmi tečnami, sestrojte směr průměrů.
+
+	\begin{reseni}
+		Buď postupem ze stejné konstrukce někdy dávno. (Hledáme bod dotyku na páté, nevlastní, tečně.)
+
+		Nebo (pomaleji) můžeme nalézt dva body dotyku, a spojit průsečík tečen se středem úsečky dané těmito body.
+
+		Tečné body hledáme přes Brianchonova.
+	\end{reseni}
+\end{priklad}
+
+\begin{priklad}[Konstrukce]
+	Sestrojte parabolu, jsou-li dány dvě tečny, pól a polára.
+
+	\begin{reseni}
+		Jedna kuželosečka je z předchozí věty rovnoběžka s $p$ v polovině mezi $P$ a $p$.
+
+		Jednu tečnu protneme s $p$, z průsečíku vezmeme přímku procházející $P$ a k těmto 3 přímkám nalezneme harmonickou čtveřici = další tečna.
+	\end{reseni}
+\end{priklad}
+
+\begin{veta}
+	Existuje jediná tečna, jejíž směr je kolmý k průměru paraboly.
+
+	\begin{dukazin}[Konstrukcí]
+		Najděte osu paraboly danou čtyřmi tečnami.
+
+		Nalezneme směr průměru paraboly, k němu najdeme kolmý směr. K tomuto směru nalezneme tečnu.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Vrcholová tečna, vrchol paraboly, osa paraboly]
+	Tečna z předchozí věty se nazývá vrcholová tečna, její bod dotyku vrchol paraboly a její sdružený průměr osa paraboly (a směr osy se nazývá směr osy).
+\end{definice}
 
 \end{document}

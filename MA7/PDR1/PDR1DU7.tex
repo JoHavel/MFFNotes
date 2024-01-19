@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+\begin{priklad}[7. Finite speed of propagation of WS to linear hyperbolic equation of 2nd order]
+	Let $\Omega \subset ®R^d$ be an open set fulfilling $B_1(0) \subset \Omega$. Assume that $®A \in L^∞(\Omega) \in L^∞(\Omega; ®R^{d \times d}_{sym})$ be elliptic and that $u$ is weak solution to
+	$$ \partial_{t t} u - \Div(®A \nabla u) = 0 \qquad \text{in } Q := (0, T) \times \Omega, $$
+	i. e.,
+	$$ u \in L^2\(0, T; W^{1, 2}(\Omega)\) \cap W^{1, 2}\(0, T; L^2(\Omega)\) \cap W^{2, 2}\(0, T; \(W_0^{1, 2}(\Omega)\)^*\) $$
+	satisfies for almost all $t \in (0, T)$ and all $w \in W_0^{1, 2}(\Omega)$
+	$$ \<\partial_{t t} u, w\> + \int_\Omega ®A \nabla u · \nabla w = 0. $$
+
+	Find proper/optimal relation between $\Omega_0 \subset B_1(0)$ and $Q_0 \subset Q$ such that the following implication holds true
+	$$ u(0) = \partial_t u(0) = 0 \text{ in } \Omega_0 \qquad \implies \qquad u = 0 \text{ in } Q_0. $$
+	\paragraph{Subgoal1}: Show the result for constant matrix ®A.
+	\paragraph{Subgoal2}: Show it for general ®A.
+	
+	\begin{reseni}[První odhad]
+		Z rovnosti $\partial_{tt} u - \Div(®A \nabla u) = 0$ můžeme vynásobením $\partial_t u$ a za pomoci
+		$$ \Div(®A \nabla u \partial_t u) = \Div(®A \nabla u) \partial_t u + (®A \nabla u)\nabla (\partial_t u) $$
+		dostat $\partial_{tt} u · \partial_t u - \Div(®A \nabla u \partial_t u) + (®A \nabla u) \nabla (\partial_t u) = 0$.
+
+		Můžeme použít derivaci druhé mocniny a $\partial_t (®A \nabla u · \nabla u) = 0 + 2·®A \nabla u · \nabla (\partial_t u)$
+		$$ \frac{1}{2} \partial_t \((\partial_t u)^2 + ®A \nabla u · \nabla u\) - \Div(®A \nabla u \partial_t u) = 0. $$
+		Integrujeme přes „nějaké dobře zvolené“ $Q_0$ a zapíšeme ve formě $d+1$ divergence (a použijeme divergence theorem):
+		$$ \int_{Q_0} \Div_{d+1} \begin{pmatrix} \frac{1}{2} (\partial_t u)^2 + \frac{1}{2}®A \nabla u · \nabla u \\ -®A \nabla u \partial_t u \end{pmatrix} = \int_{\partial Q_0} \begin{pmatrix} \frac{1}{2} (\partial_t u)^2 + \frac{1}{2}®A \nabla u · \nabla u \\ -®A \nabla u \partial_t u \end{pmatrix}·ν_{d + 1} = \int_{\partial Q_0 \setminus Ω_0} …. $$
+		Zřejmě můžeme počítat s $\(Q_0 \cap \{t = 0\}\) \setminus Ω_0$ je nulová. Nyní předpokládejme, že $ν_t > 0$, neboť $ν_t = 0$ znamená, že se vlny nešíří, což je nesmysl pro eliptické $\implies$ nenulové $®A$. Při $ν_t < 0$ by dokonce vlny zanikali. Tudíž můžeme rovnost zapsat jako
+		$$ \int_{\partial Q_0 \setminus Ω_0} \frac{1}{2}(\partial_t u)^2 + \frac{1}{2}®A \nabla u · \nabla u = \int_{\partial Q_0 \setminus Ω_0} ®A \nabla u \partial_t u \frac{ν_d}{ν_t} ≤ $$
+		$$ ≤ \int_{\partial Q_0 \setminus Ω_0} \left|®A \nabla u · \frac{ν_d}{ν_t}\right| · |\partial_t u| \overset{\text{Young}}≤ \frac{1}{2}\int_{\partial Q_0 \setminus Ω_0} \frac{\left|®A \nabla u · \frac{ν_d}{ν_t}\right|^2}{(1 - ε)^2} + (\partial_t u)^2·(1 - ε)^2. $$
+		Tím se dokážeme zbavit $(\partial_t u)^2$ na pravé straně. Nyní potřebujeme
+		$$ \frac{1}{(1 - ε)^2} \left|®A \nabla u · \frac{ν_d}{ν_t}\right|^2 < |®A \nabla u · \nabla u|, \qquad \forall \nabla u ≠ 0, $$
+		abychom se zbavili i druhého členu na pravé straně. Na $ε$ můžeme zapomenout (prostě ho zvolíme správně velké). Zároveň můžeme znormovat $\nabla u$, jelikož na obou stranách vystupuje v druhé mocnině: $\left|®A (\nabla u)_{norm} (ν_d / ν_t)\right|^2 < |®A (\nabla u)_{norm}·(\nabla u)_{norm}|$.
+
+		To potřebujeme pro libovolné nenulové $\nabla u$, tedy levou stranu můžeme nahradit minimem ($c_1$ z elipticity ®A) a na levé straně můžeme naopak potkat tu největší hodnotu ($c_2$ z omezenosti ®A). Tedy $\left\|ν_d / ν_t\right\| < \sqrt{c_1} / c_2$ nám implikuje že (pro kladná $K_1$, $K_2$) $\int_{\partial Q_0 \setminus \partial Ω} K_1·(\partial_t u)^2 + K_2·\|\nabla u\|^2 ≤ 0$, tj. $\partial_t u = 0$ a $\nabla u = ¦o$ skoro všude na $\partial Q_0 \setminus Ω_0$. To je to, co potřebujeme, neboť zvýšením sklonu $\partial Q_0$ budeme tím spíše dodržovat tuhle rovnost, tedy uvnitř „kuželu“ určeném rovností v předchozí nerovností budou všechny derivace $u$ nulové a tedy $u$ bude konstantně $0$ ($u = 0 = \partial_t u$ na $Ω_0$).
+
+		Jestliže místo předchozí nerovnosti budeme mít rovnost, pak takové $Q_0$ je sjednocením kuželů $(1 - ε)·\|x - x_0\| + \frac{c_2}{\sqrt{c_1}}·t - r ≤ 0$, kde $x_0$ jsou postupně všechny body $Ω_0$ a $r$ je takové, že $B_{Ω}(x_0, r) \setminus Ω_0$ je nulová množina (a vrchol kužele je nejvýše v $T$) a $1 > ε > 0$ je libovolně malé.
+	\end{reseni}
+
+	\begin{reseni}[Rigorózní důkaz]
+		Zvolme libovolný takový kužel $Q_1$ a označme $g := \min\(0, (1 - ε)·\|x - x_0\| + \frac{c_2}{\sqrt{c_1}}·t - r\)$. $g$ je zřejmě lipschitzovská funkce, která je pro každý vnitřní bod $Q_1$ nenulová, a jinde nulová, na $Q_1$ má časovou derivaci $\frac{c^2}{\sqrt{c_1}}$ a prostorové derivace splňující $\|\nabla g\| = (1 - ε)$ (samozřejmě ve vnitřních bodech kužele, jinde jsou derivace 0).
+
+		Začneme zintegrováním rovnosti ze zadání podle času s $w$ nezávislým na $t$ (a použitím IBP pro Gelfandovu trojici):
+		$$ \int_0^τ \<\partial_{tt} u, w\> + \int_0^T \int_{Ω_0} ®A \nabla u · \nabla w = 0, \vspace{-0.8em} $$
+		$$ (\partial_t u(τ), w)_2 - (\partial_t u(0), w)_2 + \int_0^T \int_{Ω_0} ®A \nabla u · \nabla w = 0. $$
+		Nyní za $w$ zvolíme $u(τ)·g(τ)$, což víme, že je $W^{1, 2}_0(Ω)$ (neboť je to součin $W^{1, 2}(Ω)$ funkce a $g(τ)$ je na $\partial Ω$ nulová). Nyní je v 0 nulová buď $u$ nebo $g$ (tj. i $w$), tedy člen s mínus odpadá. První rozepíšeme z definice a derivace druhé mocniny. Třetí přes Fubiniovu větu prohodíme integrály, z linearity integrálu i ®A (a konstantnosti ®A v čase) dáme integrál dovnitř, nakonec ještě použijeme derivaci součinu.
+		$$ \frac{1}{2} \int_{Ω} (\partial_t u^2)(τ) · g(τ) - 0 + \int_Ω ®A \(\int_0^τ \nabla u\) · (g·\nabla u + u·\nabla g). $$
+		Následně použijeme (první IBP, druhé z derivace součinu, derivace integrálu podle horní meze a symetrie ®A):
+		$$ \int_0^T \int_Ω (\partial_t u^2)(τ) · g(τ) = \int_Ω (\partial_t u^2)(T) · \underbrace{g(T)}_{=0} - \int_Ω \underbrace{(\partial_t u^2)(0) · g(0)}_{=0} - \int_0^T \int_Ω u^2(τ) (\partial_t g)(τ), \vspace{-0.5em} $$
+		$$ \partial_τ\(®A \(\int_0^τ \nabla u\)·\(\int_0^τ \nabla u\)·g(τ)\) = $$
+		$$ = 2·®A \(\int_0^τ \nabla u\)·\(\nabla u(τ)\)·g(τ) + ®A \(\int_0^τ \nabla u\)·\(\int_0^τ \nabla u\)·(\partial_t g)(τ). $$
+		Zároveň využijeme, že $g$ a derivace $g$ jsou nulové na doplňku $Q_1$
+		$$ \frac{1}{2}\int_{Q_1} \!\! u^2(τ) (\partial_t g)(τ) = \! \int_{Q_1} \!\! ®A \(\int_0^τ \nabla u\)·\nabla g · u + \frac{1}{2}\int_Ω \int_0^T \!\! \partial_τ \(®A \(\int_0^τ \nabla u\)\!·\!\(\int_0^τ \nabla u\) g(τ)\) - {} \vspace{-0.5em} $$
+		$$ {} - \frac{1}{2}\int_{Q_1} ®A \(\int_0^τ \nabla u\)·\(\int_0^τ \nabla u\) · (\partial_t g)(τ), $$
+	$$ \int_{Q_1} \(u^2(τ) + ®A \(\int_0^τ \nabla u\)·\(\int_0^τ \nabla u\)\)·(\partial_t g)(τ) = $$
+	$$ = 2·\int_{Q_1} ®A \(\int_0^τ \nabla u\)·\nabla g · u + \int_Ω \underbrace{… · g(T) - … \int_0^0}_0. \vspace{-0.5em} $$
+	\end{reseni}
+
+	\begin{reseni}
+		Z Youngovy nerovnosti (a $z ≤ |z|$)
+		$$ \int_{Q_1} 2 · ®A \(\sqrt[4]{c_1}·\int_0^τ \nabla u\)·\nabla g · \frac{u}{\sqrt[4]{c_1}} ≤ \int_{Q_1} c_2 · \(\sqrt{c_1} · \left|\int_0^τ \nabla u\right|^2 + \frac{|u|^2}{\sqrt{c_1}}\)·\|\nabla g\|, \text{ navíc} $$
+		$$ \int_{Q_1} \(u^2(τ) + ®A \(\int_0^τ \nabla u\)·\(\int_0^τ \nabla u\)\)·\frac{c_2}{\sqrt{c_1}} ≥ \int_{Q_1} \(\frac{u^2(τ)}{\sqrt{c_1}} + \sqrt{c_1} \left|\int_0^τ \nabla u\right|^2\)·c_2 $$
+		Tedy $\int_{Q_1} (…) ≤ \int_{Q_1} (…)·(1 - ε)$. Tudíž $… ≤ 0$, ale zároveň víme, že $… ≥ 0$, tedy $… = 0$ a $u = 0$ skoro všude na $Q_1$.
+	\end{reseni}
+\end{priklad}
+
+\end{document}

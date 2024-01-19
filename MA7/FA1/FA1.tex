@@ -11,6 +11,10 @@
 	Topology…
 \end{poznamka}
 
+\vspace{-2em}
+
+\section{Locally convex spaces}
+
 \begin{definice}[Topological vector space (TVS)]
 	A Topological vector space over ®F is a pair $(X, τ)$, where $X$ is a vector space over ®F and $τ$ is a topology on $X$ with the following two properties:
 	\begin{enumerate}
@@ -29,63 +33,63 @@
 	Two homework (in Moodle) and one presentation.
 \end{poznamka}
 
-\begin{priklady}
-	Let $(X, \|·\|)$ be a normed linear space. Let $τ$ be the topology induced by $\|·\|$. The $(X, τ)$ is HLCS.
-
-	\begin{dukazin}
-		$ρ(x, y) = \|x - y\|$ metric induced by $\|·\|$. $τ$ induced by $ρ$. This $τ$ is Hausdorff. Continuity of the operations: (from Funkcionalka)
-		$$ x_n \rightarrow x, y_n \rightarrow y, t_n \rightarrow t \implies x_n + y_n \rightarrow x + y \land t_nx_n \rightarrow tx. $$
-
-		So, it is a HTVS. Base of neighbourhood of ¦o is e. g. $U(0, r), r > 0$, which is convex.
-	\end{dukazin}
-
-	Let $Γ$ be any nonempty set, $X = ®F^Γ$ (= all functions $Γ \rightarrow ®F$) with point-wise operations, so it is a vector space over ®F. It is a HLCS.
-
-	\begin{dukazin}
-		„Continuity of addition:“ $x, y \in ®F^Γ$, $U$ a neighbourhood of $x + y$ $\implies$ $\exists F \subset Γ$ finite $\exists ε > 0$ such that
-		$$ U_{¦o} = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - (x(γ) + y(γ))| < ε\} \subset U $$
-		$$ U_x = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2}\} $$
-		$$ U_y = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - y(γ)| < \frac{ε}{2}\} $$
-		$\implies$ $V_x$ is neighbourhood of $x$, and $V_y$ is neighbourhood of $y$, and $U_x + U_y \subset U_0 \subset U$. Thus $z_1 \in V_x$, $z_2 \in V_y$ $\implies$ $z_1 + z_2 \in U_0 \subset U$.
-
-		„Continuity of multiplication“: $λ \in ®F$, $x \in ®F^Γ$, $U$ a neighbourhood of $λ x$ $\implies$ $\exists F \subset Γ$ finite $\exists μ > 0$ such that
-		$$ U_0 = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - λx(γ)| < ε\} \subset U $$
-		$$ |μz(γ) - λx(γ)| ≤ |μ|·|z(γ) - x(γ)| + |μ - λ|·|x(f)|. $$
-		$$ M:= \max_{γ \in F}|x(γ)|. $$
-		$$ V = \{μ \in ®F \middle| |μ - λ| < \frac{ε}{2(M + 1)}\}, \qquad W = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2(|λ| + \frac{ε}{2(M+1)})}\}. $$
-		$$ μ \in V, z \in W \implies μ z \in U_0 \subset U. $$
-
-		„Local convexity“: Base of neighbourhoods of ¦o: $\{x \in ®F^Γ \middle| \forall γ \in F: |x(γ)| < ε\}$, $F \subset Γ$ finite, $ε > 0$, consists of convex sets.
-
-		„Hausdorff“: $x ≠ y \implies \exists γ \in Γ: x(γ) ≠ y(γ)$. Take $ε = \frac{|x(γ) - y(γ)|}{2}$.
-		$$ U = \{z \in ®F^Γ \middle| |z(γ) - x(γ)| < ε\}, V = \{z \in ®F^Γ \middle| |z(γ) - y(γ)| < ε\} \implies U \cap V = \O. $$
-	\end{dukazin}
-
-	$X = C(®R, ®F) = \{f: ®R \rightarrow ®F \text{ continuous}\}$,
-	$$ ρ(f, g) = \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, \max_{t \in [-n, n]}\{|f(t) - g(t)|\}\} =: \sum_{N=1}^∞ \frac{1}{2^N} \min\{1, p_N(f - g)\} $$
-	is translation invariant (that implies addition is continuous, see lecture) metric.
-	
-	\begin{dukazin}
-		$f_n \rightarrow f$ in $ρ$ $\Leftrightarrow$ $\forall N: f_n \rightrightarrows f$ on $[-N, N]$.
-
+%\begin{priklady}
+%	Let $(X, \|·\|)$ be a normed linear space. Let $τ$ be the topology induced by $\|·\|$. The $(X, τ)$ is HLCS.
+%
+%	\begin{dukazin}
+%		$ρ(x, y) = \|x - y\|$ metric induced by $\|·\|$. $τ$ induced by $ρ$. This $τ$ is Hausdorff. Continuity of the operations: (from Funkcionalka)
+%		$$ x_n \rightarrow x, y_n \rightarrow y, t_n \rightarrow t \implies x_n + y_n \rightarrow x + y \land t_nx_n \rightarrow tx. $$
+%
+%		So, it is a HTVS. Base of neighbourhood of ¦o is e. g. $U(0, r), r > 0$, which is convex.
+%	\end{dukazin}
+%
+%	Let $Γ$ be any nonempty set, $X = ®F^Γ$ (= all functions $Γ \rightarrow ®F$) with point-wise operations, so it is a vector space over ®F. It is a HLCS.
+%
+%	\begin{dukazin}
+%		„Continuity of addition:“ $x, y \in ®F^Γ$, $U$ a neighbourhood of $x + y$ $\implies$ $\exists F \subset Γ$ finite $\exists ε > 0$ such that
+%		$$ U_{¦o} = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - (x(γ) + y(γ))| < ε\} \subset U $$
+%		$$ U_x = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2}\} $$
+%		$$ U_y = \{z \in ®F^Γ \middle|\ \forall γ \in F: |z(γ) - y(γ)| < \frac{ε}{2}\} $$
+%		$\implies$ $V_x$ is neighbourhood of $x$, and $V_y$ is neighbourhood of $y$, and $U_x + U_y \subset U_0 \subset U$. Thus $z_1 \in V_x$, $z_2 \in V_y$ $\implies$ $z_1 + z_2 \in U_0 \subset U$.
+%
+%		„Continuity of multiplication“: $λ \in ®F$, $x \in ®F^Γ$, $U$ a neighbourhood of $λ x$ $\implies$ $\exists F \subset Γ$ finite $\exists μ > 0$ such that
+%		$$ U_0 = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - λx(γ)| < ε\} \subset U $$
+%		$$ |μz(γ) - λx(γ)| ≤ |μ|·|z(γ) - x(γ)| + |μ - λ|·|x(f)|. $$
+%		$$ M:= \max_{γ \in F}|x(γ)|. $$
+%		$$ V = \{μ \in ®F \middle| |μ - λ| < \frac{ε}{2(M + 1)}\}, \qquad W = \{z \in ®F^Γ \middle| \forall γ \in F: |z(γ) - x(γ)| < \frac{ε}{2(|λ| + \frac{ε}{2(M+1)})}\}. $$
+%		$$ μ \in V, z \in W \implies μ z \in U_0 \subset U. $$
+%
+%		„Local convexity“: Base of neighbourhoods of ¦o: $\{x \in ®F^Γ \middle| \forall γ \in F: |x(γ)| < ε\}$, $F \subset Γ$ finite, $ε > 0$, consists of convex sets.
+%
+%		„Hausdorff“: $x ≠ y \implies \exists γ \in Γ: x(γ) ≠ y(γ)$. Take $ε = \frac{|x(γ) - y(γ)|}{2}$.
+%		$$ U = \{z \in ®F^Γ \middle| |z(γ) - x(γ)| < ε\}, V = \{z \in ®F^Γ \middle| |z(γ) - y(γ)| < ε\} \implies U \cap V = \O. $$
+%	\end{dukazin}
+%
+%	$X = C(®R, ®F) = \{f: ®R \rightarrow ®F \text{ continuous}\}$,
+%	$$ ρ(f, g) = \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, \max_{t \in [-n, n]}\{|f(t) - g(t)|\}\} =: \sum_{N=1}^∞ \frac{1}{2^N} \min\{1, p_N(f - g)\} $$
+%	is translation invariant (that implies addition is continuous, see lecture) metric.
+%	
+%	\begin{dukazin}
+%		$f_n \rightarrow f$ in $ρ$ $\Leftrightarrow$ $\forall N: f_n \rightrightarrows f$ on $[-N, N]$.
+%
 % 06. 10. 2023
-
-		„$f_n \rightarrow f$, $λ_n \rightarrow λ$ $\implies$ $λ_n f_n \rightarrow λ f$“: Let $N \in ®N$. We will show $λ_n f_n \rightrightarrows λ f$ in $[-N, N]$. $x \in [-N, N]$:
-	$$ |λ_n f_n(x) - λ f(x)| ≤ |λ_n|·|f_n(x) - f(x)| + |λ_n - λ|·|f(x)| ≤ c·p_N(f_n - f) + |λ_n - λ|·p_N(f) \rightarrow 0. $$
-
-		Hence, $X$ is HTVS. „Local convexity“: $U_{N, ε} = \{f \in X | p_N(t) < ε\}$, clearly $U_{N, ε}$ is a convex set and $U_{N, ε}$ is neighbourhood of ¦o. If $ε<λ$, then $\{f | ρ(f, ¦o) < \frac{ε}{2^N}\} \subset U_{N, ε}$, because for $ρ(f, ¦o) < \frac{ε}{2^N}$ it is $\frac{1}{2^N}p_N(f) < \frac{ε}{2^N}$. „they form a base“: $f \in U_{N, ε} \implies ρ(f, ¦o) < ε + \frac{1}{2^N}$. Hence fix $r > 0$ and take $N \in ®N$ such that $\frac{1}{2^N} < \frac{r}{2}$. Then $U_{N, \frac{r}{2}} \subset \{f | ρ(f, ¦o) < r\}$
-	\end{dukazin}
-
-	$(Ω, Σ, μ)$ a measure space, $p \in (0, 1)$. $L^p(Ω, Σ, μ) = \{f: Ω \rightarrow ®F \text{ measurable} | \int |f|^p dμ < ∞\}$ (we identify functions equal almost everywhere). $ρ(f, g) = \int |f - g|^p dμ$ is a metric making $X = L^p(Ω, Σ, μ)$ a HTVS (but not locally convex).
-
-	\begin{dukazin}
-		„$ρ$ is a metric“: „$\triangle$-inequality“: $a, b \in [0, ∞): (a + b)^p ≤ a^p + b^p$. (Fix $a ≥ 0$, take $φ_a(b) = (a + b)^p - a^p - b^p$ $\implies$ $φ_a$ is continuous on $[0, ∞)$, $φ_a(0) = 0$. For $b > 0$: $φ_a(b) = p(a + b)^{p - 1} - pb^{p - 1} = p·\((a + b)^{p-1} - b^{p - 1}\) < 0$ as $p - 1 < 0$ $\implies$ $φ_a$ decreasing on $[0, ∞)$ and $φ_a ≤ 0$.)
-
-		$φ$ is translation invariant $\implies$ addition is continuous. „Multiplication“: We can see that $ρ(λf, ¦o) = |λ|^pρ(f, ¦o)$. $f_n \rightarrow f$, $λ_n \rightarrow λ$:
-		$$ ρ(λ_n f_n, λ f) ≤ ρ(λ_n f_n, λ_n f) + ρ(λ_n f, λ f) = |λ_n|^p ρ(f_n, f) + |λ_n - λ|^p ρ(f, ¦o) \rightarrow 0. $$
-		Hence, we have a HTVS.
-	\end{dukazin}
-\end{priklady}
+%
+%		„$f_n \rightarrow f$, $λ_n \rightarrow λ$ $\implies$ $λ_n f_n \rightarrow λ f$“: Let $N \in ®N$. We will show $λ_n f_n \rightrightarrows λ f$ in $[-N, N]$. $x \in [-N, N]$:
+%	$$ |λ_n f_n(x) - λ f(x)| ≤ |λ_n|·|f_n(x) - f(x)| + |λ_n - λ|·|f(x)| ≤ c·p_N(f_n - f) + |λ_n - λ|·p_N(f) \rightarrow 0. $$
+%
+%		Hence, $X$ is HTVS. „Local convexity“: $U_{N, ε} = \{f \in X | p_N(t) < ε\}$, clearly $U_{N, ε}$ is a convex set and $U_{N, ε}$ is neighbourhood of ¦o. If $ε<λ$, then $\{f | ρ(f, ¦o) < \frac{ε}{2^N}\} \subset U_{N, ε}$, because for $ρ(f, ¦o) < \frac{ε}{2^N}$ it is $\frac{1}{2^N}p_N(f) < \frac{ε}{2^N}$. „they form a base“: $f \in U_{N, ε} \implies ρ(f, ¦o) < ε + \frac{1}{2^N}$. Hence fix $r > 0$ and take $N \in ®N$ such that $\frac{1}{2^N} < \frac{r}{2}$. Then $U_{N, \frac{r}{2}} \subset \{f | ρ(f, ¦o) < r\}$
+%	\end{dukazin}
+%
+%	$(Ω, Σ, μ)$ a measure space, $p \in (0, 1)$. $L^p(Ω, Σ, μ) = \{f: Ω \rightarrow ®F \text{ measurable} | \int |f|^p dμ < ∞\}$ (we identify functions equal almost everywhere). $ρ(f, g) = \int |f - g|^p dμ$ is a metric making $X = L^p(Ω, Σ, μ)$ a HTVS (but not locally convex).
+%
+%	\begin{dukazin}
+%		„$ρ$ is a metric“: „$\triangle$-inequality“: $a, b \in [0, ∞): (a + b)^p ≤ a^p + b^p$. (Fix $a ≥ 0$, take $φ_a(b) = (a + b)^p - a^p - b^p$ $\implies$ $φ_a$ is continuous on $[0, ∞)$, $φ_a(0) = 0$. For $b > 0$: $φ_a(b) = p(a + b)^{p - 1} - pb^{p - 1} = p·\((a + b)^{p-1} - b^{p - 1}\) < 0$ as $p - 1 < 0$ $\implies$ $φ_a$ decreasing on $[0, ∞)$ and $φ_a ≤ 0$.)
+%
+%		$φ$ is translation invariant $\implies$ addition is continuous. „Multiplication“: We can see that $ρ(λf, ¦o) = |λ|^pρ(f, ¦o)$. $f_n \rightarrow f$, $λ_n \rightarrow λ$:
+%		$$ ρ(λ_n f_n, λ f) ≤ ρ(λ_n f_n, λ_n f) + ρ(λ_n f, λ f) = |λ_n|^p ρ(f_n, f) + |λ_n - λ|^p ρ(f, ¦o) \rightarrow 0. $$
+%		Hence, we have a HTVS.
+%	\end{dukazin}
+%\end{priklady}
 
 \begin{tvrzeni}[Observation]
 	If $(X, τ)$ is a LCS, then $τ$ is translation invariant ($U \subset X, x \in X \implies (U \in τ \Leftrightarrow x + U \in τ)$). Hence $τ$ is determined by $τ(¦o)$.
@@ -126,9 +130,8 @@
 	\end{dukazin}
 
 	\begin{dukazin}[b]
-		„$\subseteq$“: by induction on $k$:
-		$$ t_1 x_1 + … + t_{k+1} x_{k+1} = (t_1 + … + t_k) \frac{t_1x_1 + … + t_k x_k}{t_1 + … + t_k} + t_{k+1}x_{k+1}. $$
-
+		„$\subseteq$“: by induction on $k$:\vspace{-0.6em}
+		$$ t_1 x_1 + … + t_{k+1} x_{k+1} = (t_1 + … + t_k) \frac{t_1x_1 + … + t_k x_k}{t_1 + … + t_k} + t_{k+1}x_{k+1}. \vspace{-0.2em} $$
 		„$\supseteq$“: the set on the RHS is convex and contain $A$.
 	\end{dukazin}
 
@@ -137,7 +140,9 @@
 	\end{dukazin}
 
 	\begin{dukazin}[d]
-		„$\supseteq$“: clear. „$\subseteq$“ the set on the RHS is absolutely continuous (Clearly RHS is convex. „balanced“: using (b) and (c): $\co(\b(A)) = \{t_1 α_1 x_1 + … + t_kα_kx_k | x_1, …, x_k \in A, |α_j| ≤ 1, t_j ≥ 0, t_1 + … + t_k = 1\}$ is clearly balanced.)
+		„$\supseteq$“: clear. „$\subseteq$“ the set on the RHS is absolutely continuous (Clearly RHS is convex. „balanced“: using (b) and (c):\vspace{-0.6em}
+		$$ \co(\b(A)) = \{t_1 α_1 x_1 + … + t_kα_kx_k | x_1, …, x_k \in A, |α_j| ≤ 1, t_j ≥ 0, t_1 + … + t_k = 1\} \vspace{-0.6em} $$
+		is clearly balanced.)
 	\end{dukazin}
 
 	\begin{dukazin}[e]
@@ -157,7 +162,8 @@
 	(iii) $\exists V \in τ(¦o)$ absolutely convex, open: $V \subset U$.
 
 	\begin{dukazin}[i]
-		$$ x \in X \implies 0·x = ¦o \in U \implies \exists V \text{ a neighbourhood of $0$ in ®F}: V·x \subset U \implies \exists t > 0: [0, t] \subset V $$
+		$$ x \in X \implies 0·x = ¦o \in U \implies \exists V \text{ a neighbourhood of $0$ in ®F}: V·x \subset U \implies $$
+		$$ \implies \exists t > 0: [0, t] \subset V. $$
 	\end{dukazin}
 
 	\begin{dukazin}[ii]
@@ -215,15 +221,17 @@
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}
-	Let $X$ be a vector space and let ©P be a family of seminorms on $X$. The there is a unique topology $τ$ on $X$ such that $(X, τ)$ is a LCS and $©U = \{\{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\} \middle| p_1, …, p_k \in ©P, c_1, …, c_k > 0\}$ is a base of neighbourhood of ¦o.
+\begin{veta}[On the topology generated by a family of seminorms]
+	Let $X$ be a vector space and let ©P be a family of seminorms on $X$. The there is a unique topology $τ$ on $X$ such that $(X, τ)$ is a LCS and
+	$$ ©U = \{\{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\} \middle| p_1, …, p_k \in ©P, c_1, …, c_k > 0\} $$
+	is a base of neighbourhood of ¦o.
 
 	$(X, τ)$ is Hausdorff $\Leftrightarrow$ $\forall x \in X \setminus \{¦o\}\ \exists p \in ©P, p(x) > 0$.
 
 	\begin{dukazin}
-		Use the previous theorem (2.) on ©U: The sets are absolutely convex (by properties of seminorms). „Absorbing“: $U = \{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\}$. Take $x \in X$ ?, $j \in [k]$. Then $p_j(x) \in (0, ∞)$ as for $t > 0: p_j(t·x) = t·p_j)_x$ and $\exists c > 0$ such that $c·p_j(x) < c_j$ for $j \in [k]$. Now for $t \in [0, c]: tx \in U$.
+		Use the previous theorem 2. on ©U: The sets are absolutely convex (by properties of seminorms). „Absorbing“: $U = \{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\}$. Take $x \in X$ ?, $j \in [k]$. Then $p_j(x) \in (0, ∞)$ as for $t > 0: p_j(t·x) = t·p_j)_x$ and $\exists c > 0$ such that $c·p_j(x) < c_j$ for $j \in [k]$. Now for $t \in [0, c]: tx \in U$.
 
-		$U = \{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\}$. Take $V = \{x \in X | p_1(x) \subset \frac{c_1}{2}, …, p_k(x) < \frac{c_k}{2}\}$.
+		$U\!=\!\{x \in X | p_1(x) < c_1, …, p_k(x) < c_k\}$. Take $V\!=\!\{x \in X | p_1(x) \subset \frac{c_1}{2}, …, p_k(x) < \frac{c_k}{2}\}$.
 
 		$U, V \in ©U \implies U \cap V \in ©U$ trivially.
 
@@ -234,16 +242,13 @@
 \end{veta}
 
 \begin{priklady}
-	$(X, \|·\|)$ is a normed space, then its topology is generated by $©P = \{\|·\|\}$.
-
-	The topology on $®F^Γ$ is generated by seminorms $p_γ(f) = |f(γ)|$, $f \in ®F^Γ$ ($γ \in Γ$).
-
-	$C(®R, ®F)$ the topology is generated by this sequence of seminorms: $p_N(f) = \max_{x \in [-N, N]} |f(x)|$.
+	$(X, \|·\|)$ is a normed space, then its topology is generated by $©P = \{\|·\|\}$.\\
+	The topology on $®F^Γ$ is generated by seminorms $p_γ(f) = |f(γ)|$, $f \in ®F^Γ$ ($γ \in Γ$).\\
+	$C(®R, ®F)$ + topology is generated by this sequence of seminorms: $p_N(f) = \max_{x \in [-N, N]} |f(x)|$.
 \end{priklady}
 
 \begin{definice}[Minkowski functional]
-	$X$ vector space, $A \subset X$ convex absorbing. Then
-	$$ p_A(x) := \inf \{λ > 0 | x \in λ·A\}. $$
+	$X$ vector space, $A \subset X$ convex absorbing. Then Minkowski functional of set $A$ is defined by the formula $p_A(x) := \inf \{λ > 0 | x \in λ·A\}$.
 \end{definice}
 
 \begin{lemma}
@@ -253,26 +258,22 @@
 	\begin{dukazin}
 		WLOG $y = 0$. $t = 0$ clear, $0 \in \Int A$. $t \in (0, 1)$:
 
-		Fix $U$, an open absolutely convex neighbourhood of ¦o such that $U \subset A$. Then $x + \frac{1 - t}{t} U$ is a neighbourhood of $x$ $\implies$ $\exists $
-
-		TODO!!!
+		Fix $U$, an open absolutely convex neighbourhood of ¦o such that $U \subset A$. Then $x + \frac{1 - t}{t} U$ is a neighbourhood of $x$ $\implies$ $\exists z \in \(x + \frac{1 - t}{t}U\) \cap A$, i.e. $\exists m \in U$ $z = x + \frac{1 - t}{t}m$ $\implies$ $-m \in U \subset m + A$. Find $V$ an absolutely convex open neighbourhood of ¦o such that $-m + V \subset U \subset A$ $\implies$ $tz + (1 - t)(-m + V) \subset A$ (an open set containing $tx$). (Because $tx = tz - (1 - t)a$.) And that's it.
 	\end{dukazin}
 \end{lemma}
 
-TODO!!!
-
 % 13. 10. 2023
 
-\begin{dukaz}[Continuity of multiplication? Theorem 4. TODO?]
-	„$U$ is a neighbourhood of ¦o in $τ$, $λ > 0$ $\implies$ $λU$ is neighbourhood of ¦o“: $λ ≥ 1$: $\exists V \in ©U: V \subset U \implies V \subset λV \subset λU$ ($V$ is absolutely convex) $\implies λU$ is neighbourhood of ¦o. $λ = \frac{1}{2}$: $\exists V \in ©U: V \subset U$, then $\exists W \in ©U: 2W \subset V$, then $W \subset \frac{1}{2} V \subset \frac{1}{2}U \implies \frac{1}{2} U$ is a neighbourhood of ¦o. Now by induction for $λ = \frac{1}{2^n}$. For $λ > 0$ find $n \in ®N$ such that $λ > \frac{1}{2^n}$.
+%\begin{dukaz}[Continuity of multiplication? Theorem 4. TODO?]
+%	„$U$ is a neighbourhood of ¦o in $τ$, $λ > 0$ $\implies$ $λU$ is neighbourhood of ¦o“: $λ ≥ 1$: $\exists V \in ©U: V \subset U \implies V \subset λV \subset λU$ ($V$ is absolutely convex) $\implies λU$ is neighbourhood of ¦o. $λ = \frac{1}{2}$: $\exists V \in ©U: V \subset U$, then $\exists W \in ©U: 2W \subset V$, then $W \subset \frac{1}{2} V \subset \frac{1}{2}U \implies \frac{1}{2} U$ is a neighbourhood of ¦o. Now by induction for $λ = \frac{1}{2^n}$. For $λ > 0$ find $n \in ®N$ such that $λ > \frac{1}{2^n}$.
+%
+%	$λx \in G$ ($λ \in ®F, x \in X, G \in τ$) $\implies \exists U \in ©U: λx + U \in G$. Find $V \in ©U: 2V \subset U$ such that $V$ is absorbing ($\implies \exists c > 0\ \forall t \in [0, c]: tx \in V$) and $V$ is balanced ($\implies \forall μ \in ®F, |μ| ≤ c: μ x \in V$). Let $μ \in F, y \in X$ such that
+%	$$ |μ - λ| < c \land y \in x + \frac{1}{|λ| + c}V \text{ (a neighbourhood of ¦o)} $$
+%	$$ \implies μy - λx = μ(y - x) + (μ - λ)x \in V + V = 2V \subset U \implies μy \in λx + U \subset G. $$
+%\end{dukaz}
 
-	$λx \in G$ ($λ \in ®F, x \in X, G \in τ$) $\implies \exists U \in ©U: λx + U \in G$. Find $V \in ©U: 2V \subset U$ such that $V$ is absorbing ($\implies \exists c > 0\ \forall t \in [0, c]: tx \in V$) and $V$ is balanced ($\implies \forall μ \in ®F, |μ| ≤ c: μ x \in V$). Let $μ \in F, y \in X$ such that
-	$$ |μ - λ| < c \land y \in x + \frac{1}{|λ| + c}V \text{ (a neighbourhood of ¦o)} $$
-	$$ \implies μy - λx = μ(y - x) + (μ - λ)x \in V + V = 2V \subset U \implies μy \in λx + U \subset G. $$
-\end{dukaz}
-
-\begin{tvrzeni}[8. see notes of lecturer]
-	Let $X$ be LCS, $A \subset X$ a convex neighbourhood of ¦o.
+\begin{tvrzeni}[on the Minkowski functional of a convex neighborhood of zero]
+	Let $X$ be LCS, $A \subset X$ a convex neighbourhood of ¦o. Then:
 
 	Clearly: $[p_A \subset 1] \subset A \subset [p_A ≤ 1]$.
 	\begin{dukazin}
@@ -301,8 +302,8 @@ TODO!!!
 	\end{dukazin}
 \end{dusledek}
 
-\begin{veta}
-	TODO!!! The topology generated by $©P_τ$ coincides with $τ$.
+\begin{veta}[On generating of locally convex topologies]
+	Let $(X, τ)$ be a LCS. Let $©P_τ$ be the family of all continuous seminorms on $(X, τ)$. Then topology generated by $©P_τ$ coincides with $τ$.
 
 	\begin{dukazin}
 		Let $τ_1$ be topology induced by $©P_τ$. $τ_1 \subset τ$ (seminorms from $©P_τ$ are $τ$-continuous, hence the sets from theorem 5? are $τ$-open). „$τ \subset τ_1$“: Let $U \in τ(¦o)$ $\implies$ $\exists V$ a neighbourhood of ¦o such that $V \subset U$. The $p_V \in ©P_τ$ (from the previous proposition is continuous) $\implies$ $[p_V < 1] = V \subset U \implies U \in τ_1(¦o)$.
@@ -333,7 +334,7 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\section{Continuous and bounded linear mapping}
+\subsection{Continuous and bounded linear mapping}
 \begin{tvrzeni}
 	$(X, τ), (Y, ©U)$ LCS, $L: X \rightarrow Y$ linear. Then the following assertions are equivalent:
 	\begin{enumerate}
@@ -355,16 +356,150 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-% 17. 10. 2023
+% 17. 10. 2023 from notes of lecturer; and
+% 20. 10. 2023 from notes of lecturer
 
-TODO!!!
+\begin{tvrzeni}
+	Let $(X, τ)$ be a LCS over ®F and let $L: X \rightarrow ®F$ be a linear mapping. Then the following assertions are equivalent:
+	\begin{itemize}
+		\item $L$ is continuous;
+		\item $\Ker L$ is a closed subspace of $X$;
+		\item there exists $U \in τ(¦o)$ such that $L(U)$ is a bounded subset of ®F.
+	\end{itemize}
 
-% 20. 10. 2023
+	If ©P is a family of seminorms generating the topology of $X$, the continuity of $L$ is also equivalent to
+	$$ \exists p_1, …, p_k \in ©P\ \exists c > 0\ \forall x \in X: |L(x)| ≤ c·\max\{p_1(x), …, p_k(x)\}. $$
 
-TODO!!!
+	If $L$ is discontinuous, then $\Ker L$ is a dense subspace of $X$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}
+	Let $(X, τ)$ be a LCS and let $A \subset X$. The set $A$ is said to be bounded in $(X, τ)$, if for any $U \in τ(¦o)$, there exists $λ > 0$ such that $A \subset λ U$.
+\end{definice}
+
+\begin{lemma}
+	Let $(X, τ)$ be a LCS and let $A \subset X$. Then the set $A$ is bounded in $X$ if and only if each continuous seminorm $p$ on $X$ is bounded on $A$. (It is enough to test it for a family of seminorms generating the topology of $X$.)
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}
+	Let $(X, τ)$ and $(Y, ς)$ be LCS over ®F and let $L: X \rightarrow Y$ be a linear mapping. Consider the following two assertions: 1. $L$ is continuous. 2. for any bounded subset $A \subset X$ its image $L(A)$ is bounded in $Y$ (i.e., $L$ is a bounded mapping).
+
+	Then $1. \implies 2.$. In case $τ$ is generated by a translation invariant metric on $X$, then $1. \Leftrightarrow 2.$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Isomorphism, isomorphic LCS]
+	Let $(X, τ)$ and $(Y, ς)$ be LCS over ®F and let $L: X \rightarrow Y$ be a linear mapping. Then mapping $L$ is said to be an isomorphism of $X$ into $Y$, if $L$ is continuous, one-to-one and $L^{-1}$ is continuous on $L(X)$; and isomorphism of $X$ onto $Y$ if $L$ is continuous, one-to-one, onto and $L^{-1}$ is continuous on $Y$.
+
+	The spaces $X$ and $Y$ are said to be isomorphic if there is an isomorphism of $X$ onto $Y$.
+\end{definice}
+
+\subsection{Spaces of finite and infinite dimension}
+\begin{tvrzeni}
+	Let $X$ be a HLCS of finite dimension. If $Y$ is any LCS and $L : X \rightarrow Y$ is any linear mapping, then $L$ is continuous. The space $X$ is isomorphic to $®F^n$, where $n = \dim X$.
+
+	\begin{dukazin}
+		If $\dim X = 0$, i.e., $X = \{¦o\}$, it is trivial. Assume $n := \dim X \in ®N$. Fix a basis $x_1, …, x_n$ of $X$. Define $T: (F^n, \|·\|_2) \rightarrow X$ by $T(λ_1, …, λ_n) = λ_1x_1 + … + λ_nx_n$.
+
+		$T$ is clearly a linear bijection of $®F^n$ onto $X$ (since $x_1, …, x_n$ is a basis). „$T$ is continuous“:
+
+		1. The mapping $(λ_1, …, λ_n) \mapsto λ_j$ is continuous $®F^n \rightarrow ®F$ for each $j$. 2. $\forall x \in X$ the mapping $x \mapsto λ·x$ is continuous $®F \rightarrow X$. 3. By composition $(λ_1, …, λ_n) \mapsto λ_j·x_j$ is continuous $®F^n \rightarrow X$.
+
+		Hence $T$ is the sum of $n$ continuous mappings $®F^n \rightarrow X$. It is enough to show that the sum of two continuous mapping is continuous and use mathematical induction: „$Ω$ topological space, $X$ LCS, $f_1, f_2: Ω \rightarrow X$ continuous $\implies$ $f_1 + f_2$ is continuous“: $t \in Ω$ arbitrary, let $G \subset X$ be open such that $f_1(t) + f_2(t) \in G$ $\implies$ $\exists U$ neighbourhood of ¦o: $V + V \subset U$. $f_i$ continuous at $t$ $\implies$ $\exists W_i$ open in $Ω$, $t \in W_i$: $f_i(W_i) \subset f_i(t) + V$. $W := W_1 \cap W_2$ open in $Ω$, $t \in W$. $s \in W \implies f_1(s) + f_2(s) \in f_1(t) + V + f_2(t) + V \subset f_1(t) + f_2(t) + U \subset G$.
+
+		So $T$ is continuous. „$T^{-1}$ is continuous as well“: $S_{F^n}$ the sphere of $®F^n$ is compact in $®F^n$ $\implies$ $T(S_{F^n})$ is compact in $X$. $X$ Hausdorff $\implies$ $T(S_{F^n})$ is closed. Clearly $¦o \notin T(S_{®F^n})$ ($T$ is a linear bijection and $¦o \notin S_{F^n}$) $\implies$ $\exists U$ an absolutely convex neighbourhood of $¦o$ in $X$ such that $U \cap T(S_{®F^n}) = \O$. We clam that $U \subset T(U_{®F^n})$ (open unit ball). Assume $x \in U \setminus T(U_{®F^n})$ $\implies$ $z := T^{-1}(X)$ satisfies $\|z\|_2 ≥ 1$. Then $\frac{z}{\|z\|_2} \in S_{®F^n}$, $T\(\frac{z}{\|z\|_2}\) = \frac{1}{\|z\|_2}·T(z) = \frac{1}{\|z\|_2}·x \in U$ ($U$ is balanced) $\implies$ $\frac{1}{\|z\|_2}·x \in U \cap T(S_{®F^n})$ a contradiction. So $T^{-1}$ is continuous at ¦o ($(T^{-1})^{-1}(U_{®F})$ is a neighbourhood of ¦o and the same for all multiplies).
+
+		$\implies$ $T^{-1}$ is continuous. So, $T$ is an isomorphism and second part is proven.
+
+		By the second part WLOG $X = ®F^n$. Let $L: ®F^n \rightarrow Y$ be linear, $Y$ LCS. Let $e_1, …, e_n$ be the canonical basis of $®F^n$. Then $L(λ_1, …, λ_n) = λ_1 L(e_1) + … + λ_n L(e_n)$. This is continuous (by the same argument as in the second part for $T$).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	Let $X$ be a HLCS. Then any its finite-dimensional subspace is closed.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{dusledek}
+
+\begin{definice}
+	Let $(X, τ)$ be a LCS and let $A \subset X$. Then set $A$ is said to be totally bounded (or precompact), if for any $U \in τ(¦o)$ there exists a finite set $F \subset X$ such that $A \subset F + U$.
+\end{definice}
+
+\begin{poznamka}
+	Any compact set in any LCS is totally bounded. Any totally bounded set is bounded.
+\end{poznamka}
+
+\begin{lemma}
+	Let $(X, τ)$ be a LCS and let $A \subset X$. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $A$ is totally bounded in $X$.
+		\item $A$ is totally bounded in $(X, p)$, for any continuous seminorm $p$ on $X$.
+		\item For any continuous seminorm $p$ on $X$ and any sequence $(x_n)$ in $A$ there is a subsequence $x_{n_k}$ which is Cauchy with respect to $p$, i.e. $\forall ε > 0\ \exists k_0\ \forall k, l ≥ k_0: p(x_{n_k} - x_{n_l}) < ε$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
 
 \begin{veta}
-	TODO[Theorem 22]!!!
+	Let $X$ be a HLCS. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $\dim X < ∞$.
+		\item There exists a compact neighbourhood of zero in $X$.
+		\item There exists a totally bounded neighbourhood of zero in $X$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“ by the proposition above. „$2. \implies 3.$“ trivial. „$3. \implies 1.$“: Let $U$ be an absolutely convex totally bounded open neighbourhood of $¦o$. Then $\frac{1}{2}U$ is also a neighbourhood of ¦o, so, there is $F \subset X$ finite with $U \subset F + \frac{1}{2}U$. Set $Y := \LO F$. We claim that $Y = X$.
+
+		„$\forall n \in ®N: U \subset Y + 2^{-n}·U$“: By induction: $n = 1$ follows by the previous. $n \mapsto n+1:$ suppose $U \subset Y + 2^{-n}·U$. Then
+		$$ U \subset Y + 2^{-n}·U = Y + 2^{-n + 1}·\(\frac{1}{2}U\) \subset Y + 2^{-n + 1}\(\frac{1}{2}\(Y + \frac{1}{2}U\)\) = $$
+		$$ = Y + 2^{-n + 1}\(Y + \frac{1}{4}·U\) = Y + 2^{-n+1}·Y + 2^{-n-1}·U = Y + 2^{-n-1}·U. $$
+		($Y$ is linear subspace.)
+
+		If $Y ≠ X$, then $\exists x \in X \setminus Y$. Since $U$ is absorbing $\exists t > 0$ such that $tx \in U$. So $U \setminus Y ≠ \O$. Fix $x \in U \setminus Y$. $X$ Hausdorff, $\dim Y < ∞$ $\implies$ $Y$ is closed. Hence there is $V$, an absolutely convex neighbourhood of ¦o such that $x + V \subset U \setminus Y$.
+
+		Since $U$ is totally bounded, it is also bounded, so $\exists n \in ®N: U \subset 2^n·V$, i.e. $\frac{1}{2^n}·U \subset V$. It follows that $x + \frac{1}{2^n}·U \cap Y = \O \implies x \notin Y + \frac{1}{2^n}·U$. So, $x \in U \setminus \(Y + \frac{1}{2^n}·U\)$, a contradiction.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Metrizability of locally convex spaces}
+
+\begin{tvrzeni}
+	1. Let $(X, τ)$ be a metrizable LCS. Then the topology $τ$ is generated by a sequence of seminorms $(p_n)$ satisfying $p_1 ≤ p_2 ≤ p_3 ≤ …$
+
+	2. Let $X$ be a vector space and let $(p_n)$ be a sequence of seminorms on $X$ satisfying conditions: $p_1 ≤ p_2 ≤ p_3 ≤ …$ and $\forall x \in X \setminus \{¦o\}\ \exists n: p_n(x) > 0$. Then
+	$$ ρ(x, y) := \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, p_n(x - y)\}, \qquad x, y \in X $$
+	is a translation invariant metric on $X$ which generates the locally convex topology on $X$ generated by the sequence of seminorms $(p_n)$. Moreover, given a sequence $(x_k)$ in $X$ we have $ρ(x_k, x) \rightarrow 0 \Leftrightarrow \forall n \in ®N: p_n(x_n - x) \rightarrow 0$; and the sequence $(x_k)$ is Cauchy in $ρ$ if and only if it is Cauchy in each of the seminorms $p_n$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[On metrizability of LCS]
+	Let $(X, τ)$ be a HLCS. Then the following assertions are equivalent:
+
+	\begin{enumerate}
+		\item $X$ is metrizable (i.e., the topology $τ$ is generated by a metric on $X$).
+		\item There exists a translation invariant metric on $X$ generating the topology $τ$.
+		\item There exists a countable base of neighbourhoods of ¦o in $(X, τ)$.
+		\item The topology $τ$ is generated by a countable family of seminorms.
+	\end{enumerate}
 
 % 24. 10. 2023
 
@@ -373,7 +508,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{veta}
+\begin{veta}[A characterization of normable LCS]
 	$(X, τ)$ is HLCS. $X$ is normable $\Leftrightarrow$ $\exists U$, a bounded neighbourhood of ¦o.
 
 	\begin{dukazin}
@@ -383,38 +518,38 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\section{Fréchet spaces}
+\subsection{Fréchet spaces}
 \begin{definice}[Fréchet space]
 	A LCS whose topology is generated by a complete translation invariant metric is called Fréchet space.
 \end{definice}
 
-\begin{priklady}
-	$X$ Banach space $\implies$ $X$ Fréchet space. $®F^{®N}, C(®R, ®F), H(Ω)$ are Fréchet spaces.
-
-	\begin{dukazin}[$®F^{®N}$]
-		$$ p_n((x_k)) = \max \{|x_k| \middle| k \in [n]\} $$
-		seminorms generating the topology, $p_1 ≤ p_2 ≤ …$
-		$$ ρ(x, y) = \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, p_n(x - y)\} $$
-		is translation invariant metric generating the topology. It is complete: $\(\(x_k^m\)_k\)_{m=1}^∞$ a $ρ$-Cauchy sequence $\implies$ $\forall n \in ®N: \(\(x_k^m\)\)_m$ is $p_n$-Cauchy $\implies$ it is $\|·\|_∞$-Cauchy in $®F^{®N}$ $\implies$ (because $®F^{®N}$ is complete) $\forall n \in ®N: \(x_k^m\)_{k=1}^n \overset{m \rightarrow ∞}\longrightarrow (y_1^n, …, y_n^n) \in ®F^n$.
-
-		Moreover, if $i ≤ n_1 ≤ n_2$, then $y_i^{n_1} = y_i^{n_2}$. So, we have $y = (y_k)_{k=1}^∞ \in ®F^{®N}$, such that $\forall n \in ®N: (x_k^m)_{k=1}^n \overset{m}\rightarrow (y_k)_{k=1}^n$
-		$$ \implies \forall n \in ®N: p_n(x^n - y) \overset{m}\rightarrow 0 \implies ρ(x^n, y) \rightarrow 0, \text{ i.e. } x^n \rightarrow y \text{ in } X. $$
-	\end{dukazin}
-
-	\begin{dukazin}[$®C(®R, ®F)$]
-		$$ p_n(f) = \max_{x \in [-n, n]} |f(x)|. $$
-		$(f_k)$ $ρ$-Cauchy $\implies$ $\forall n: (f_k)$ is $p_n$-Cauchy $\implies$ $\forall n: (f_k|_{[-n, n]})$ is $\|·\|_∞$-Cauchy in $C([-n, n)$ $\implies$ $\forall n\ \exists g_n \in C([-n, n])$ such that $f_k |_{[-n, n]} \overset{k}\rightarrow g_n$ in $C([-n, n])$.
-
-		$\forall n_1 ≤ n_2: g_{n_2} |_{[-n_1, n_1]} = g_{n_1}$ so, we have one function $g: ®R \rightarrow ®F$ such that $\forall n \in ®N: g|_{[-n, n] = g_n}$. Then $g$ is continuous, i.e. $g \in C(®R, ®F)$ and $\forall n \in ®N: p_n(f_k - g) \overset{k}\rightarrow 0$. So $p_n(f_k, g) \rightarrow 0$ $\implies$ $f_n \rightarrow g$.
-	\end{dukazin}
-\end{priklady}
+%\begin{priklady}
+%	$X$ Banach space $\implies$ $X$ Fréchet space. $®F^{®N}, C(®R, ®F), H(Ω)$ are Fréchet spaces.
+%
+%	\begin{dukazin}[$®F^{®N}$]
+%		$$ p_n((x_k)) = \max \{|x_k| \middle| k \in [n]\} $$
+%		seminorms generating the topology, $p_1 ≤ p_2 ≤ …$
+%		$$ ρ(x, y) = \sum_{n=1}^∞ \frac{1}{2^n} \min\{1, p_n(x - y)\} $$
+%		is translation invariant metric generating the topology. It is complete: $\(\(x_k^m\)_k\)_{m=1}^∞$ a $ρ$-Cauchy sequence $\implies$ $\forall n \in ®N: \(\(x_k^m\)\)_m$ is $p_n$-Cauchy $\implies$ it is $\|·\|_∞$-Cauchy in $®F^{®N}$ $\implies$ (because $®F^{®N}$ is complete) $\forall n \in ®N: \(x_k^m\)_{k=1}^n \overset{m \rightarrow ∞}\longrightarrow (y_1^n, …, y_n^n) \in ®F^n$.
+%
+%		Moreover, if $i ≤ n_1 ≤ n_2$, then $y_i^{n_1} = y_i^{n_2}$. So, we have $y = (y_k)_{k=1}^∞ \in ®F^{®N}$, such that $\forall n \in ®N: (x_k^m)_{k=1}^n \overset{m}\rightarrow (y_k)_{k=1}^n$
+%		$$ \implies \forall n \in ®N: p_n(x^n - y) \overset{m}\rightarrow 0 \implies ρ(x^n, y) \rightarrow 0, \text{ i.e. } x^n \rightarrow y \text{ in } X. $$
+%	\end{dukazin}
+%
+%	\begin{dukazin}[$®C(®R, ®F)$]
+%		$$ p_n(f) = \max_{x \in [-n, n]} |f(x)|. $$
+%		$(f_k)$ $ρ$-Cauchy $\implies$ $\forall n: (f_k)$ is $p_n$-Cauchy $\implies$ $\forall n: (f_k|_{[-n, n]})$ is $\|·\|_∞$-Cauchy in $C([-n, n)$ $\implies$ $\forall n\ \exists g_n \in C([-n, n])$ such that $f_k |_{[-n, n]} \overset{k}\rightarrow g_n$ in $C([-n, n])$.
+%
+%		$\forall n_1 ≤ n_2: g_{n_2} |_{[-n_1, n_1]} = g_{n_1}$ so, we have one function $g: ®R \rightarrow ®F$ such that $\forall n \in ®N: g|_{[-n, n] = g_n}$. Then $g$ is continuous, i.e. $g \in C(®R, ®F)$ and $\forall n \in ®N: p_n(f_k - g) \overset{k}\rightarrow 0$. So $p_n(f_k, g) \rightarrow 0$ $\implies$ $f_n \rightarrow g$.
+%	\end{dukazin}
+%\end{priklady}
 
 \begin{tvrzeni}
 	$(X, τ)$ is a Fréchet space, $ρ$ any translation invariant metric on $X$ generating $τ$ $\implies$ $ρ$ is complete.
 
 	\begin{dukazin}
-		$ρ, d$ two translation invariant metrics generating by $τ$. Idea: convergent sequences with respect to $ρ$ and $d$ coincide, Cauchy sequences with respect to $ρ$ and $d$ coincide. $(x_n)$ $ρ$-Cauchy: $ε > 0 \implies \{x | d(x, ¦o) < ε\}$ is a neighbourhood of ¦o $\implies$ $\exists δ > 0: \{x | ρ(x, ¦o) < δ\} \subset \{x | d(x, ¦o) < ε\}$.
-		$$ \exists n_0\ \forall m, n > n_0: ρ(x_m - x_n, ¦o) = ρ(x_m, x_n) < δ \implies d(x_m - x_n, 0) = d(x_m, x_n) < ε \implies (x_n) \text{ is $d$-Cauchy.} $$
+		$ρ, d$ two translation invariant metrics generating by $τ$. Idea: convergent sequences with respect to $ρ$ and $d$ coincide, Cauchy sequences with respect to $ρ$ and $d$ coincide. $(x_n)$ $ρ$-Cauchy: $ε > 0 \implies \{x | d(x, ¦o) < ε\}$ is a neighbourhood of ¦o $\implies$ $\exists δ > 0: \{x | ρ(x, ¦o) < δ\} \subset \{x | d(x, ¦o) < ε\}$. $\exists n_0$ $\forall m, n > n_0$:
+		$$ ρ(x_m - x_n, ¦o) = ρ(x_m, x_n) < δ \implies d(x_m - x_n, 0) = d(x_m, x_n) < ε \implies (x_n) \text{ is $d$-Cauchy.} $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -430,8 +565,8 @@ TODO!!!
 	$X$ LCS, $A \subset X$ totally bounded $\implies$ $\aco A$ is totally bounded.
 
 	\begin{dukazin}
-		Let $U$ be a neighbourhood of ¦o. Let $V$ be an absolutely convex neighbourhood of ¦o such that $2V \subset U$ $\implies$ $\exists F \subset X$ finite such that $A \subset F + V$. Then clearly $\aco A \subset (\aco F) + V$. $\aco F$ is compact,
-		$$ F = \{x_1, …, x_k\} \implies \aco(F) = \co(\b(F)) = \co\{λ x_j | j \in [k], |λ| ≤ 1\} = \{t_1λ_1x_1 + … t_n λ_n x_n \middle| |λ_j| ≤ 1, t_j ≥ 0, \sum t_j = 1\}. $$
+		Let $U$ be a neighbourhood of ¦o. Let $V$ be an absolutely convex neighbourhood of ¦o such that $2V \subset U$ $\implies$ $\exists F \subset X$ finite such that $A \subset F + V$. Then clearly $\aco A \subset (\aco F) + V$. $\aco F$ is compact, $F = \{x_1, …, x_k\} \implies \aco(F) = \co(\b(F)) =$
+		$$ = \co\{λ x_j | j \in [k], |λ| ≤ 1\} = \{t_1λ_1x_1 + … t_n λ_n x_n \middle| |λ_j| ≤ 1, t_j ≥ 0, \sum t_j = 1\}. $$
 
 		$$ B = \{(λ_1, …, λ_n, t_1, …, t_n) \middle| |λ_j| ≤ 1, t_j ≥ 0, \sum t_j = 1\} $$
 		a compact set in $®F^n \times ®R^n$. $(λ_1, …, λ_n, t_1, …, t_n) \mapsto t_1λ_1x_1 + … + t_nλ_nx_n$ is a continuous map and maps $B$ onto $\aco F$.
@@ -466,7 +601,8 @@ TODO?
 
 	Baire category theorem $\implies$ $\exists m \in ®N: \Int A_m ≠ \O$ $\implies$ $\exists x \in A_m\ \exists U$ an absolutely convex neighbourhood of ¦o such that $x + U \subset A_m$ $\implies$ $-(x + U) \subset A_m$ $\implies$ ($A_m$ convex) $U \subset A_m$ ($y \in U \implies y = \frac{1}{2}(x + y + (-x + y))$) „$\implies$ $q(Ty) ≤ m p_U(y)$“:
 
-	$$ p_U(y) < c \implies \frac{y}{c} \in U \subset A_m \implies \forall n \in ®N q(T_n \frac{y}{c}) ≤ m \implies q(T \frac{y}{c}) ≤ m \implies q(T y) ≤ cm. $$
+	$$ p_U(y) < c \implies \frac{y}{c} \in U \subset A_m \implies \forall n \in ®N: q\(T_n \frac{y}{c}\) ≤ m \implies $$
+	$$ \implies q\(T \frac{y}{c}\) ≤ m \implies q\(T y\) ≤ c·m. $$
 	\end{dukazin}
 \end{veta}
 
@@ -486,10 +622,10 @@ TODO?
 
 		We will prove it for $n = 1$: So we will ? $TU_1 \subset TU_0$. Fix $y \in \overline{TU_1}$. Since $\overline{TU_2}$ is a neighbourhood of ¦o $(y - \overline{TU_2}) \cap TU_1 ≠ \O$. So there is $x_1 \in U_1$ such that $y - Tx_1 \in \overline{TU_2}$. $\overline{TU_3}$ is a neighbourhood of ¦o in $Y$ $\implies$ $y - Tx_1 - \overline{TU_3} \subset ap TU_2 = \O$ so, there is $x_2 \in U_2$ such that $y - Tx_1 - Tx_2 \in \overline{TU_3}$.
 
-		By induction we find $x_n \in U_n$ such that
-		$$ y - Tx_1 - Tx_2 - … - Tx_n \in \overline{T U_{n+1}} \quad (n \in ®N). $$
+		By induction we find $x_n \in U_n$ such that $y - Tx_1 - Tx_2 - … - Tx_n \in \overline{T U_{n+1}} \quad (n \in ®N)$.
 		$$ x := \sum_{n=1}^∞ x_n = \lim_{N \rightarrow ∞} \sum_{n=1}^N x_n: $$
-		$$ M > N \implies ρ\(\sum_{n=1}^M x_n, \sum_{n=1}^N x_n\) = ρ\(\sum_{n = N+1}^M x_n, ¦o\) ≤ \underbrace{ρ\(\sum_{n=N+1}^M x_n, \sum_{n=N+2}^M\)}_{ρ(x_{N+1}, ¦o)} + \underbrace{ρ\(\sum_{n=N+2}^M x_n, \sum_{n=N+3}^M\)}_{ρ(x_{N+2}, ¦o)} + … + ρ(x_{M}, ¦o). $$
+		$$ M > N \implies ρ\(\sum_{n=1}^M x_n, \sum_{n=1}^N x_n\) = ρ\(\sum_{n = N+1}^M x_n, ¦o\) ≤ $$
+		$$ ≤ \underbrace{ρ\(\sum_{n=N+1}^M x_n, \sum_{n=N+2}^M\)}_{ρ(x_{N+1}, ¦o)} + \underbrace{ρ\(\sum_{n=N+2}^M x_n, \sum_{n=N+3}^M\)}_{ρ(x_{N+2}, ¦o)} + … + ρ(x_{M}, ¦o). $$
 
 		$$ Tx = y: y - Tx = \lim_{n \rightarrow ∞} (y - Tx_1 - … - Tx_n) $$
 		$$ y - Tx_1 - … - Tx_n \in \overline{TU_{N+1}} \subset \overline{TU_k} \qquad \text{for $n+1 > k$} $$
@@ -497,16 +633,16 @@ TODO?
 	\end{dukazin}
 \end{veta}
 
-\section{Extension and separation theorems}
-\begin{definice}
+\subsection{Extension and separation theorems}
+\begin{definice}[Dual space (the dual)]
 	$X$ LCS, $X^*$ is the vector space of continuous linear functions on $X$.
 \end{definice}
 
-\begin{veta}
+\begin{veta}[Hahn–Banach extension theorem]
 	$X$ LCS, $Y \Subset X$, $f \in Y^*$. Then $\exists g \in X^*$ such that $g|_Y = f$.
 
 	\begin{poznamkain}
-		If topology of $X$ is generated by ©P a topology of seminorms TODO!!!
+		If topology of $X$ is generated by ©P a topology of seminorms TODO?
 	\end{poznamkain}
 
 	\begin{dukazin}
@@ -516,7 +652,7 @@ TODO?
 	\end{dukazin}
 \end{veta}
 
-\begin{dusledek}
+\begin{dusledek}[Separation from a subspace]
 	$X$ LCS, $Y \Subset X$ closed, $x \in X \setminus Y$. Then $\exists f \in X^*: f|_Y = 0, f(x) = 1$.
 
 	\begin{dukazin}
@@ -524,7 +660,7 @@ TODO?
 	\end{dukazin}
 \end{dusledek}
 
-\begin{dusledek}
+\begin{dusledek}[A proof of density using Hahn–Banach theorem]
 	$X$ LCS, $Z \Subset Y \Subset X$.
 	$$ \overline{Z} \supset Y \Leftrightarrow \forall f \in X^*: f|_Z = 0 \implies f|_Y = 0. $$
 
@@ -533,7 +669,7 @@ TODO?
 	\end{dukazin}
 \end{dusledek}
 
-\begin{dusledek}
+\begin{dusledek}[The dual separates the points]
 	$X$ HLCS, $x \in X \setminus \{¦o\} \implies \exists f \in X^*: f(x) ≠ 0$.
 
 	\begin{dukazin}
@@ -555,8 +691,7 @@ TODO?
 		Analogous to the theorem above. Assume $X$ is a real space $(®F = ®R)$. „First item“: $\Int A ≠ \O$ $\implies$ $\Int(B - A) ≠ \O$ and $- \notin B - A$. Fix $z \in \Int(B - A)$, set $U := z - (B - A)$. The $U$ is a convex neighbourhood of ¦o, $z \notin U \implies p_U(z) ≥ 1$. Define $g_0: \LO \{z\} \rightarrow ®R$ by $g_0(t·z) = t·p_U(z)$ $\implies$ $g_0$ is a linear functional, $g_0 ≤ p_U$ on $\LO\{z\}$ ($t ≥ 0 \implies g_0(t·z) = t·p_U(z) = p_U(t·z)$, $t < 0 \implies g_0(t·z) =t·p_U(z) < 0 ≤ p_U(t·z)$).
 
 		From algebraic Hahn–Banach $\exists g: X \rightarrow ®R$ linear, $g|_{\LO\{z\}} = g_0$, $g ≤ p_U$ on $X$. $g$ is continuous ($g ≤ 1$ on $U$ $\implies$ $g ≥ -1$ on $-U$, so $|g| ≤ 1$ on $U \cap (-U)$, a neighbourhood of ¦o). $a \in A$, $b \in B$ $\implies$
-		$$ \implies g(z) - g(b) + g(a) = g(z - (b - a)) ≤ p_U(z - (b - a)) ≤ 1, $$
-		$$ g(a) ≤ g(b) + \underbrace{1 - \overbrace{g(z)}^{= p_U(z) ≥ 1}}_{≤ 0}. $$
+		$$ \implies g(z) - g(b) + g(a) = g(z - (b - a)) ≤ p_U(z - (b - a)) ≤ 1, \quad g(a) ≤ g(b) + \underbrace{1 - \overbrace{g(z)}^{= p_U(z) ≥ 1}}_{≤ 0}. $$
 		So, $\forall a \in A\ \forall b \in B: g(a) ≤ g(b)$, $c := \sup g(A)$.
 
 		„Second item“: $A$ compact, $B$ closed. For $x \in A$ $\exists U_x$ an absolutely convex open neighbourhood of ¦o such that $(x + U_x) \cap B = \O$. The $(x + \frac{1}{2} U_x)_{x \in A}$, is an open cover of $A$. $A$ is compact $\implies$ $\exists x_1, …, x_n \in A: A \subset \(x_1 + \frac{1}{2}U_{x_1}\) \cup … \cup \(x_n + \frac{1}{2}U_{x_n}\)$. Set $V := \frac{1}{2}U_{x_1} \cap … \cap \frac{1}{2}U_{x_n}$ an absolutely convex open neighbourhood of ¦o. Then $(A + V) \cap B = \O$
@@ -564,16 +699,16 @@ TODO?
 		Apply first item to $A + V$ (open convex), $B$ (convex) $\implies$ $\exists f \in X^* \setminus \{0\}$ such that
 		$$ \sup f(A) + \sup f(V) = \sup(f(A) + f(V)) = \sup f(A + V) ≤ \inf f(B), $$
 		observe that $\sup f(V) > 0$ ($f ≠ 0$, $V$ is neighbourhood of ¦o, hence absorbing).
-		$$ c := \sup f(A), \qquad d := \sup f(A) + \sup f(V). $$
+		$$ c := \sup f(A), \qquad d := \sup f(A) + \sup f(V). \vspace{-1em} $$
 
 		„$X$ complex“: look at $X$ as a real space, $f: X \rightarrow ®R$ real-linear such that. Define $f_c(x) = f(x) - if(ix), x \in X$.
 	\end{dukazin}
 \end{veta}
 
 \begin{dusledek}
-	$X$ LCS, $\O ≠ A \subset X$, $x \in X$.
+	$X$ LCS, $\O ≠ A \subset X$, $x \in X$.\vspace{-1.5em}
 	\begin{itemize}
-		\item $x \in X \setminus \overline{\co} A \Leftrightarrow \exists f \in X^*: \Re f(x) > \sup\{\Re f(a) | a \in A\}$. („$\impliedby$“: Clear as $\{y \in X, \Re f(y) ≤ \sup \{\Re f(x) | a \in A\}\}$ is closed convex set containing $A$. „$\implies$“: Apply the previous theorem to $\{x\}$ and $\overline{\co} A$, get $f$ and take $-f$.)
+		\item $x \in X \setminus \overline{\co} A \Leftrightarrow \exists f \in X^*: \Re f(x) > \sup\{\Re f(a) | a \in A\}$. („$\impliedby$“: is clear because $\{y \in X, \Re f(y) ≤ \sup \{\Re f(x) | a \in A\}\}$ is closed convex set containing $A$. „$\implies$“: Apply the previous theorem to $\{x\}$ and $\overline{\co} A$, get $f$ and take $-f$.)
 		\item $x \in X \setminus \overline{\aco} A \Leftrightarrow \exists f \in X^*: |f(x)| > \sup \{|f(a)| \middle| a \in A\}$ („$\impliedby$“: Clear. „$\implies$“: Apply the previous theorem to $\{x\}$ and $\overline{\aco} A$ (and multiply by $-1$), $f \in X^*$: $|f(x)| ≥ \Re f(x) > \sup \{\Re f(y) | y \in \overline{\aco} A\} = \sup\{|f(y)| \middle| y \in \overline{\aco} A\}$. „$≤$“ clear, „$≥$“: $y \in \overline{\aco A} \implies \exists α \in ®F, |α| = 1: |f(y)| = αf(y)$, then $|f(y)| = λ f(y) = \Re α f(y) = \Re f(α y)$, $α y \in \overline{\aco A}$).
 	\end{itemize}
 \end{dusledek}
@@ -592,12 +727,12 @@ TODO?
 		\item $f \in M$ $\implies$ $f$ is continuous on $(X, ς(X, M))$ (fix $f \in M$, $p(x) = |f(x)|$, $x \in X$ is a continuous seminorm and $|f(x)| = p(x) ≤ p(x)$).
 		\item $ς(X, M)$ is the weakest topology on $X$ making all $f \in M$ continuous.
 		\item $ς(X, M) = ς(X, \LO(M))$.
-		\item $T$ a topological space, $F: T \rightarrow X$ mapping. Than $F$ is continuous $T \rightarrow ς(X, M)$ $\Leftrightarrow$ $\forall f \in M: f ∘ F$ is continuous ($T \rightarrow ®F$).
+		\item $T$ a topological space, $F: T \rightarrow X$ mapping. Then $F$ is continuous $T \rightarrow ς(X, M)$ $\Leftrightarrow$ $\forall f \in M: f ∘ F$ is continuous ($T \rightarrow ®F$).
 	\end{enumerate}
 
 	\begin{dukazin}[4.]
 		Assume $τ$ is any topology on $X$ such that all $f \in M$ are $τ$-continuous $\implies$
-		$$ \implies \forall x \in X\ \forall f_1, …, f_n \in M\ \forall c_1, …, c_n > 0: \{y \in X \middle| |f_j(y) - f_j(x)| < c_j\ \forall j \in [n]\} \text{ is $τ$-open} $$
+		$$ \forall x \in X\ \forall f_1, …, f_n \in M\ \forall c_1, …, c_n > 0: \{y \in X \middle| |f_j(y) - f_j(x)| < c_j\ \forall j \in [n]\} \text{ is $τ$-open} $$
 		but these sets form a base of $ς(X, M)$ $\implies$ $ς(X, M) \subset τ$.
 	\end{dukazin}
 
@@ -616,23 +751,260 @@ TODO?
 
 \begin{priklad}
 	$X$ LCS. Then $X^* \Subset X^{\#}$. So, we may consider $ς(X, X^*)$ „the weak topology of $X$“. $ς(X, X^*)$ is Hausdorff when $X$ is HLCS.
+
+	TODO?
 \end{priklad}
 
-% ?????????? (many lectures)
+% ?????????? (many lectures) from notes of lecturer
 
-TODO!!!
+\begin{lemma}
+	Let $X$ be a vector space and $f, f_1, …, f_k \in X^{\#}$. The following assertions are equivalent:
+	\begin{enumerate}
+		\item $f \in \LO\{f_1, …, f_k\}$;
+		\item $\exists C > 0\ \forall x \in X: |f(x)| · C · \max\{|f_1(x)|, …, |f_k(x)|\}$;
+		\item $\bigcap_{j=1}^k \Ker f_j \subset \Ker f$.
+	\end{enumerate}
 
-\section{Distributions}
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
 
-TODO!!!
+\begin{veta}
+	Let $X$ be a vector space and let $M \subset X^{\#}$ be a nonempty set. Then $(X, ς(X, M))^* = \LO M$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	\ \vspace{-2em}
+	\begin{enumerate}
+		\item Let $X$ be a LCS and let $f \in X^{\#}$. Then $f$ is continuous on $X$ (i.e., $f \in X^*$), if and only if it is weakly continuous (i.e., $ς(X, X^*)$-continuous) on $X$.
+		\item Let $X$ be a LCS. Then $(X^*, ς(X^*, X))^* = κ(X)$.
+		\item Let $X$ be a normed linear space and let $f \in X^{**}$. Then $f \in κ(X)$, if and only if $f$ is weak$^*$ continuous (i.e., $ς(X^*, X)$ continuous) on $X^*$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{dusledek}
+
+\subsection{Weak topologies on locally convex spaces}
+\begin{veta}[Mazur theorem]
+	Let $X$ be a LCS and let $A \subset X$ be a convex set. Then a) $\overline{A}^w = \overline{A}$ b) $A$ is closed if and only if it is weakly closed.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $X$ be a metrizable LCS and let $(x_n)$ be a sequence in $X$ weakly converging to a point $x \in X$. Then there is a sequence $(y_n)$ in $X$ such that $y_n \in \co\{x_k, k ≥ n\}$ for each $n \in ®N$ and $y_n \rightarrow x$ in (the original topology of) $X$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Boundedness and weak boundedness]
+	Let $X$ be a LCS and let $A \subset X$. Then $A$ is bounded in $X$ if and only if it is bounded in $ς(X, X^*)$.
+
+	\begin{dukazin}
+		„$\implies$“: trivial. „$\impliedby$“: TODO!!! (notes)
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}[Weak topology on a subspace]
+	Let $X$ be a LCS and let $Y \Subset X$. Then the weak topology $ς(Y, Y^*)$ coincides with the restriction of the weak topology $ς(X, X^*)$ to $Y$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{Polars and their applications}
+\begin{definice}[Polars, absolute polars and anihilators]
+	Let $X$ be a LCS. Let $A \subset X$ and $B \subset X^*$ be nonempty sets. We define
+	\begin{alignat*}{4}
+		A^\triangleright &:= \{f \in X^* | \forall x \in A: \Re f(x) ≤ 1\}, \qquad && B_\triangleright &:= \{x \in X | \forall f \in B: \Re f(x) ≤ 1\},\\
+		A^∘ &:= \{f \in X^* | \forall x \in A: |f(x)| ≤ 1\}, \qquad && B_∘ &= \{x \in X | \forall f \in B: |f(x)| ≤ 1\},\\
+		A^\perp &:= \{f \in X^* | \forall x \in A: f(x) = 0\}, \qquad && B_\perp &= \{x \in X | \forall f \in B: f(x) = 0\}.
+	\end{alignat*}
+\end{definice}
+
+\begin{priklad}
+	Let $X$ be a normed linear space. Then $(B_X)^\triangleright = (B_X)^∘ = B_{X^*}$, $(B_{X^*})_\triangleright = (B_{X^*})_∘ = B_X$.
+\end{priklad}
+
+\begin{tvrzeni}[Polar calculus]
+	Let $X$ be a LCS and let $A \subset X$ be a nonempty set.
+	\begin{enumerate}
+		\item The set $A^\triangleright$ is convex and contains the zero functional, $A^∘$ is absolutely convex and $A^\perp$ is a subspace of $X^*$. All the three sets are moreover weak$^*$ closed.
+		\item $A^\perp \subset A^∘ \subset A^\triangleright$.
+		\item If $A$ is balanced, then $A^\triangleright = A^∘$. If $A \Subset X$, then $A^\triangleright = A^∘ = A^\perp$.
+		\item $\{¦o\}^\triangleright = \{¦o\}^∘ = \{¦o\}^\perp = X^*$, $X^\triangleright = X^∘ = X^\perp = \{¦o\}$.
+		\item $(c·A)^\triangleright = \frac{1}{c}·A^\triangleright$ and $(c·A)^∘ = \frac{1}{c}·A^∘$ whenever $c > 0$.
+		\item Let $(A_i)_{i \in I}$ be a nonempty family of nonempty subsets of $X$. Then $\(\bigcup_{i \in I} A_i\)^∘ = \bigcap_{i \in I} A_i^∘$. The analogous formulas hold for polars and anihilators too.
+	\end{enumerate}
+
+	\begin{poznamkain}
+		Analogous statements hold for $B \subset X^*$. There are just two differences: The sets $B_\triangleright$, $B_∘$ and $B_\perp$ are weakly closed and for the validity of the second statement in 4. one needs to assume that $X$ is Hausdorff.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[Bipolar theorem]
+	Let $X$ be a LCS and let $A \subset X$ and $B \subset X^*$ be nonempty sets. Then
+	\begin{alignat*}{4}
+		(A^\triangleright)_\triangleright &= \overline{\co}(A \cup \{¦o\}) \(= \overline{\co}^w(A \cup \{¦o\})\), \quad &&, (B_\triangleright)^\triangleright &= \overline{\co}^w(B \cup \{¦o\}),\\
+		(A^∘)_∘ &= \overline{\aco} A \(= \overline{\aco}^w A\), \qquad &&, (B_∘)^∘ &= \overline{\aco}^w B,\\
+		(A^\perp)_\perp &= \overline{\LO} A \(= \overline{\LO}^w A\), \qquad &&, (B_\perp)^\perp &= \overline{\LO}^w B.
+	\end{alignat*}
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Let $X$ and $Y$ be normed linear spaces and let $T \in L(X, Y)$. Then $(\Ker T)^\perp = \overline{T^*(Y^*)}^{w^*}$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Goldstine]
+	Let $X$ be a normed linear space and let $κ: X \rightarrow X^{**}$ be the canonical embedding. Then $B_{X^{**}} = \overline{κ(B_X)}^{ς(X^{**}, X^*)}$.
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Banach–Alaoglu]
+	Let $X$ be a LCS and let $U \subset X$ be a neighbourhood of ¦o. Then
+	\begin{enumerate}
+		\item $U^∘$ is a weak$^*$ compact subset of $X^*$.
+		\item If $X$ is moreover separable, $U^∘$ is metrizable in the topology $ς(X^*, X)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO!!! (notes)
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Banach–Alaoglu for normed spaces]
+	Let $X$ be a normed linear space. Then $(B_{X^*}, w^*)$ is compact. If $X$ is separable $(B_{X^*}, w^*)$ is moreover metrizable.
+\end{dusledek}
+
+\begin{dusledek}[Reflexivity and weak compactness]
+	Let $X$ be a Banach space. Then $X$ is reflexive if and only if $B_X$ is weakly compact. If $X$ is reflexive and separable, $(B_X, w)$ is moreover metrizable.
+\end{dusledek}
+
+\begin{dusledek}
+	Let $X$ be a reflexive Banach space and let $f: X \rightarrow ®R$ be a function with the following properties:
+	\begin{itemize}
+		\item $f$ is weakly sequentially lower semi-continuous, i.e.
+			$$ \forall x \in X\ \forall (x_n) \subset X: x_n \overset{w}\rightarrow x \implies f(x) ≤ \liminf f(x_n); $$
+		\item $\lim_{\|x\| \rightarrow ∞} f(x) = +∞$.
+	\end{itemize}
+	Then $f$ attains its minimum at some point of $X$.
+
+	\begin{dukazin}
+		TODO?
+	\end{dukazin}
+\end{dusledek}
+
+\section{Elements of the theory of distributions}
+\subsection{Space of test functions and weak derivatives}
+
+\begin{definice}[Support, test functions, the space of test functions, locally integrable, approximate unit (smoothing kernel)]
+	Let $d \in ®N$ and let $Ω \subset ®R^d$ be an open set.
+	\begin{itemize}
+		\item If $f: Ω \rightarrow ®F$ is continuous, its support is the set
+			$$ \supp f = \overline{\{x \in Ω | f(x) ≠ 0\}}, $$
+			where the closure is taken in $Ω$.
+		\item Let $©D(Ω, ®F) := \{f \in C^∞(Ω, ®F) | \supp f \text{ is compact subset of } Ω\}$. Elements of $©D(Ω, ®F)$ are called test functions, the space $©D(Ω, ®F)$ is called the space of test functions.
+		\item A measurable function $f: Ω \rightarrow ®F$ is called locally integrable in $Ω$, if for any $x \in Ω$ there exists $r > 0$ such that $f$ is Lebesgue integrable on $U(¦x, r)$ (i.e. $\int_{U(¦x, r)} |f| < ∞$). The space of all locally integrable functions in $Ω$ is denoted by $L^1_{loc}(Ω, ®F)$. (More precisely, the space of equivalence classes.)
+		\item Choose a non-negative $h \in ©D(®R^d)$ such that $\supp h \subset U(0, 1)$ and $\int_{®R^d} h = 1$. For $j \in ®N$ we define a function $h_j$ by $h_j(¦x) := j^d · h(j·¦x)$ for $¦x \in ®R^d$. The sequence $(h_j)$ obtained in this way is called an approximate unit in $©D(®R^d)$ or a smoothing kernel.
+	\end{itemize}
+\end{definice}
+
+\begin{lemma}
+	Let $Ω \subseteq ®R^d$ be open. Then $©D(Ω)$ is a dense subspace of $L^p(Ω)$ for any $p \in [1, ∞)$.
+
+	\begin{dukazin}
+		TODO? (notes)
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	Let $Ω \subset ®R^d$ be an open set.
+	\begin{enumerate}
+		\item Let $μ$ be a (finite) signed or complex regular Borel measure on $Ω$. If $\int_Ω φ dμ = 0$ for any $φ \in ©D(Ω)$, then $μ = 0$.
+		\item Let $f \in L^1_{loc}(Ω)$ and $\int_Ω f φ = 0$ for any $φ \in ©D(Ω)$. Then $f = 0$ almost everywhere on $Ω$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO? (notes)
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Weak derivative]
+	Let $(a, b) \subset ®R$ be an open interval an let $f \in L^1_{loc}((a, b))$.
+	\begin{itemize}
+		\item A function $g \in L^1_{loc}((a, b))$ is called a weak derivative of a function $f$, if for any $φ \in ©D((a, b))$ we have $\int_a^b f φ' = -\int_a^b g φ$.
+		\item Let $μ$ be a finite regular Borel measure on $(a, b)$ (signed or complex). The measure $μ$ is said to be a weak derivative of a function $f$ if for any $φ \in ©D((a, b))$ we have $\int_a^b f φ' = - \int_{(a, b)} φ dμ$.
+	\end{itemize}
+\end{definice}
+
+\begin{tvrzeni}
+	Let $(a, b) \subset ®R$ be an open interval and let $f \in L^1_{loc}((a, b))$. If $\int_a^b f φ' = 0$ for any $φ \in ©D((a, b))$, the function $f$ is constant.
+
+	\begin{dukazin}
+		TODO? (notes)
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	Let $f \in L^1_{loc}((a, b))$.
+
+	\begin{enumerate}
+		\item The weak derivative of f is uniquely determined.
+		\item If $f$ is absolutely continuous on $[a, b]$, it has a finite derivative almost everywhere, $f' \in L^1((a, b))$ and $f'$ is the weak derivative of $f$. Conversely, if a function $f$ has a weak derivative $g \in L^1((a, b))$, there exists a function $f_0$ absolutely continuous on $[a, b]$, equal to $f$ almost everywhere on $(a, b)$. In this case $g = f_0'$ almost everywhere.
+
+			More generally, a function $f$ has a weak derivative in $L^1_{loc}((a, b))$ if and only if there exists function $f_0$ locally absolutely continuous on $(a, b)$ such that $f_0 = f$ almost everywhere.
+		\item There exists a finite measure $μ$, which is a weak derivative of function $f$ if and only if there exists a function $f_0$ of bounded variation on $[a, b]$ such that $f_0 = f$ almost everywhere on $(a, b)$. In this case for each subinterval $(c, d) \subset (a, b)$ we have $μ((c, d)) = \lim_{x \rightarrow d_-} f_0(x) - \lim_{x \rightarrow c_+} f_0(x).$
+
+			Moreover, $μ$ is real-valued if and only if $f_0$ may be real-valued and $μ$ is non-negative if and only if $f_0$ may be non-increasing.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO? (notes)
+	\end{dukazin}
+\end{veta}
+
+\subsection{Distributions – basic properties and operations}
+
+\begin{definice}[Convergence in ©D]
+	Let $Ω \subset ®R^d$ be an open set, $(φ_n)$ a sequence in $©D(Ω)$ and $φ \in ©D(Ω)$. We say that the sequence $(φ_n)$ converges to $φ$ in $©D(Ω)$, if the following two conditions are fulfilled:
+	\begin{itemize}
+		\item There exists $K \subset Ω$ compact such that $\supp φ_n \subset K$ for each $n \in ®N$.
+		\item $D^α φ_n \rightrightarrows D^α φ$ on $K$ for each multiindex $α \in ®N_0^d$.
+	\end{itemize}
+	This is expressed by writing $φ_n \rightarrow φ$ in $©D(Ω)$.
+\end{definice}
 
 % 21. 11. 2023
 
-TODO!!!
-
 \begin{lemma}
-	TODO
-
+	Let $Ω \subset ®R^d$ be an open set.\vspace{-1em}
 	\begin{itemize}
 		\item[a)] $\|·\|_N$ is a norm on $©D(Ω)$;
 		\item[b)] $©D_K(Ω)$ is a Fréchet space when equipped with $(\|·\|_N)_{N \in ®N_0}$.
@@ -649,7 +1021,7 @@ TODO!!!
 		$$ D^α φ_n \rightrightarrows ψ_α \land \frac{\partial}{\partial x_j} D^α φ_n = D^{α+e_j}φ_n \rightrightarrows ψ_{α + e_j} \implies ψ_{α + e_j} = \frac{\partial}{\partial x_j} ψ_α. $$
 		$\implies ψ_α = D^α ψ_0$.
 
-		TODO!!!
+		$\implies ψ_0 \in ©D_K(Ω)$, $\forall α: D^α φ_n \rightrightarrows D^α ψ_0$, i.e. $\forall N: φ_n \rightarrow ψ_0$ in $\|·\|_N$. $\implies φ_n \rightarrow ψ_0$ in $ρ$.
 	\end{dukazin}
 \end{lemma}
 
@@ -720,7 +1092,9 @@ TODO!!!
 
 	\begin{dukazin}[For $\partial / \partial x_1$]
 		$$ \frac{\partial}{\partial x_1} Λ_f(φ) = -Λ_f\(\frac{\partial φ}{\partial x_1}\) = ? = -\int_Ω f·\frac{\partial φ}{\partial x_1} $$
-		TODO
+		TODO!!!
+		$$ = \int_{\bigcup_j (a_j, b_j)} f \frac{\partial φ}{\partial x_1} dx_1 = $$
+		$$ = \sum_{j=1}^n\([f·φ]_{a_j}^{b_j} - \int_{a_j}^{b_j} \frac{\partial f}{\partial x_1} φ dx_1\) = \int_Ω \frac{\partial f}{\partial x_1} φ = Λ_{\frac{\partial f}{\partial x_1}}(φ). $$
 	\end{dukazin}
 
 	c) $d = 1$, $Ω = (a, b)$, $f \in L^1_{loc}(Ω)$. Then $(Λ_f)' = Λ_g \Leftrightarrow g$ is the weak derivative of $f$. And $(Λ_f)' = Λμ \Leftrightarrow μ$ is the weak derivative of $f$.
@@ -762,8 +1136,8 @@ TODO!!!
 		Moreover, $\forall α'$ with $|α'| = 1: D^{α'}\tilde Λ = 0$.
 		$$ \(\forall j \in [d-1]: \frac{\partial}{\partial x_j} \tilde Λ(φ) = -\tilde Λ\(\frac{\partial φ}{\partial x_j}\) = - Λ\(\frac{\partial φ}{\partial x_j}η\) = -Λ\(\frac{\partial}{\partial x_j}(φη)\) = 0.\) $$
 		$\implies \exists c \in ®F: \tilde Λ = Λ_c$ in $©D'(Ω')$. Then $Λ = Λ_c$ (in $©D(Ω)$) cause
-		$$ φ \in ©D(Ω) \implies φ - (Tφ)η \in ©D(Ω), φ - (Tφ)η \in \Ker T \subset \Ker Λ, \text{ so,} $$
-		$$ Λ(φ) = Λ((Tφ)η) = \tilde Λ(Tφ) = Λ_c(Tφ) = \int_{Ω'} c·Tφ = \int_{Ω'}c·\int_{a_d}^{b_d} φ(x', x_d) dx_d dx' \overset{\text{FUBINI}}= \int_Ω c·φ = Λ_c(φ). $$
+		$$ φ \in ©D(Ω) \implies φ - (Tφ)η \in ©D(Ω), φ - (Tφ)η \in \Ker T \subset \Ker Λ, \text{ so, } Λ(φ) = Λ((Tφ)η) = $$
+		$$ = \tilde Λ(Tφ) = Λ_c(Tφ) = \int_{Ω'} c·Tφ = \int_{Ω'}c·\int_{a_d}^{b_d} φ(x', x_d) dx_d dx' \overset{\text{FUBINI}}= \int_Ω c·φ = Λ_c(φ). $$
 
 		„Step 2: $Ω$ is open connected, $Λ \in ©D'(Ω)$, $D^αΛ = 0$, $|α| = 1$.“: Step 1 $\implies$ $\forall Q \subset Ω$ cuboid $\exists c: Λ|_{©D(Q)} = Λ_c$. Fix one cuboid $Q_0 \subset Ω$ and the respective $c$.
 		$$ A := \{x \in Ω | \exists Q \subset Ω \text{ cuboid}, x \in Q, Λ|_{©D(Q)} = Λ_c\}. $$
@@ -772,11 +1146,11 @@ TODO!!!
 \end{tvrzeni}
 
 \subsection{A bit more on distributions}
-\begin{definice}
+\begin{definice}[Convergence in distributions (in $©D'$)]
 	$Λ_n \rightarrow Λ$ in $©D(Ω)$ $≡$ $\forall φ \in ©D(Ω): Λ_n(φ) = Λ(φ)$.
 \end{definice}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[On the convergence of distributions]
 	a) $Λ_n \rightarrow Λ$ in $©D(Ω)$, then:
 	\begin{itemize}
 		\item $\forall α: D^αΛ_n \rightarrow D^αΛ$;
@@ -792,7 +1166,8 @@ TODO!!!
 	b) $f_n \rightarrow f$ in $L^1_{loc}(Ω)$ ($\forall K \subset Ω$ compact: $\int_K |f_n - f| \rightarrow 0$). Then $Λ_{f_n} \rightarrow Λ_f$ in $©D'(Ω)$.
 
 	\begin{dukazin}
-		$$ φ \in ©D(Ω): |Λ_{f_n}(φ) - Λ_f(φ)| = \left|\int_Ω f_n φ - \int_Ω f φ\right| ≤ \int_Ω |f_n - f|·|φ| = \int_{\supp φ} |f_n - f|·|φ| ≤ \|φ\|_∞ \int_{\supp φ} |f_n - f| \rightarrow 0. $$
+		$$ φ \in ©D(Ω): |Λ_{f_n}(φ) - Λ_f(φ)| = \left|\int_Ω f_n φ - \int_Ω f φ\right| ≤ \int_Ω |f_n - f|·|φ| = $$
+		$$ = \int_{\supp φ} |f_n - f|·|φ| ≤ \|φ\|_∞ \int_{\supp φ} |f_n - f| \rightarrow 0. $$
 	\end{dukazin}
 
 	c) $f_n \rightarrow f$ in $L^p(Ω)$ for some $p \in [1, ∞]$. Then $Λ_{f_n} \rightarrow Λ_f$.
@@ -817,16 +1192,17 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{definice}
+\begin{definice}[Vanishing of distributions, support of distribution, distribution with compact support]
 	$Λ \in ©D'(Ω)$.
 	\begin{itemize}
 		\item $G \subset Ω$ open. $Λ$ vanishes on $G$ if $Λ(φ) = 0$ whenever $φ \in ©D(Ω), \supp φ \subset G$.
-		\item $\supp Λ = Ω \setminus \{G \subset Ω \text{ open }| Λ \text{ vanishes on $G$}\} = \{x \in Ω | \forall ε > 0 \exists φ \in ©D(Ω): \supp φ \subset U(x, ε) \land Λ(φ) ≠ \O\}$.
+		\item $\supp Λ = Ω \setminus \{G \subset Ω \text{ open }| Λ \text{ vanishes on $G$}\} = $
+			$$ = \{x \in Ω | \forall ε > 0 \exists φ \in ©D(Ω): \supp φ \subset U(x, ε) \land Λ(φ) ≠ \O\}. $$
 		\item $Λ$ has compact support if $\supp Λ$ is a compact subset of $Ω$.
 	\end{itemize}
 \end{definice}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[On the support of a distribution]
 	a) $Λ = Λ_f$ for some $f \in L^1_{loc}(Ω)$. Then
 	$$ \supp Λ_f = \supp f = \{x \in Ω | \forall ε > 0: λ^d\(\{y \in U(x, ε) \cap Ω | f(y) ≠ 0\}\) > 0\} $$
 
@@ -851,7 +1227,7 @@ TODO!!!
 	c) $φ \in ©D(Ω)$, $\supp φ \cap \supp Λ = \O$ $\implies$ $Λ(φ) = 0$.
 
 	\begin{dukazin}
-		$\supp φ \cap \supp Λ = \O \implies \supp φ \subset \bigcup \{G \subset Ω \text{ open } | Λ \text{ vanishes on $G$}\}$ $\implies$ $\exists G_1, G_2, …, G_n \subset Ω$ open such that $Λ$ vanishes on each $G_j$ and $\supp φ \subset G_1 \cup … \cup G_n$. We will be done if we show that $Λ$ vanishes on $G_1 \cup … \cup G_n$.
+		Máme $\supp φ \cap \supp Λ = \O \implies \supp φ \subset \bigcup \{G \subset Ω \text{ open } | Λ \text{ vanishes on $G$}\}$ $\implies$\break $\exists G_1, G_2, …, G_n \subset Ω$ open such that $Λ$ vanishes on each $G_j$ and $\supp φ \subset G_1 \cup … \cup G_n$. We will be done if we show that $Λ$ vanishes on $G_1 \cup … \cup G_n$.
 	\end{dukazin}
 
 	\begin{dukazin}[$Λ$ vanishes on $G_1, G_2$ $\implies$ vanishes on $G_1 \cup G_2$]
@@ -882,8 +1258,8 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\section{Convolution of distribution}
-\begin{definice}[Notation]
+\subsection{Convolution of distribution}
+\begin{definice}[Notation: translate, reflexion and derivative in direction]
 	$M \subset ®R^d$, $f: M \rightarrow ®F$
 	\begin{itemize}
 		\item $y \in ®R^d$, $τ_y f(x) = f(x - y)$, $x \in y + M$;
@@ -898,9 +1274,8 @@ TODO!!!
 	a) $x_n \rightarrow x$ in $®R^d$ $\implies$ $τ_{x_n} φ \rightarrow τ_x φ$ in $©D(®R^d)$.
 
 	\begin{dukazin}
-		$\supp φ \subset U(0, r_1)$ for some $r_1 > 0$, $\{x_n, n \in ®N\} \subset U(0, r_2)$ for some $r_2 > 0$. $K := \overline{U(0, r_1 + r_2)}$ $\implies$ $K$ is compact and $\supp τ_{x_n} φ \subset K$ for each $n$.
-
-		$$ α \in ®N_0^d: \|D^α τ_{x_n} φ - D^α τ_x φ\|_∞ = \sup_{y \in ®R^d} |D^α φ(y - x_n) - D^αφ(y - x)| = \sup_{y \in K} |D^α φ(y - x_n) - D^α φ(y - x)|. $$
+		$\supp φ \subset U(0, r_1)$ for some $r_1 > 0$, $\{x_n, n \in ®N\} \subset U(0, r_2)$ for some $r_2 > 0$. $K := \overline{U(0, r_1 + r_2)}$ $\implies$ $K$ is compact and $\supp τ_{x_n} φ \subset K$ for each $n$. $α \in ®N_0^d$:
+		$$ \|D^α τ_{x_n} φ - D^α τ_x φ\|_∞ = \sup_{y \in ®R^d} |D^α φ(y - x_n) - D^αφ(y - x)| = \sup_{y \in K} |D^α φ(y - x_n) - D^α φ(y - x)|. $$
 		Thus $D^α φ$ is continuous, so it is uniformly continuous on $\overline{U(2r_2 + r_1)}$.
 		$$ ε > 0 \implies \exists δ > 0\ \forall y_1, y_2 \in \overline{U(2r_2 + r_1)}: \(\|y_1 - y_2\| < δ \implies |D^αφ(y_1) - D^αφ(y_2)| < ε\). $$
 		$$ x_n \rightarrow x \implies \exists n_0\ \forall n ≥ n_0: \|x_n - x\| < δ. $$
@@ -920,8 +1295,8 @@ TODO!!!
 
 	\begin{dukazin}[Moreover part]
 		Fix $c > 0$, such that $\supp φ \subset U(0, c)$, and $0 < |r| < 1$. Then $\supp φ_r \subset \overline{U(0, c + \|e\|)}$.
-		$$ |φ_r(x) - \partial_e φ(x)| = \left| \frac{1}{r}(g_x(r) - g_x(0)) - g'_x(0) \right| = \left| \frac{1}{r} \int_0^r g_x' - g_x'(0)\right| = \left| \frac{1}{r} \int_0^r (g_x'(t) - g_x'(0)) dt \right| = $$
-		$$ = \left| \frac{1}{r} \int_0^r \sum_{j=1}^d e_j \(\frac{\partial φ}{\partial x_j}(x + te) - \frac{\partial φ}{\partial x_j}(x)\) dt \right| ≤ $$
+		$$ |φ_r(x) - \partial_e φ(x)| = \left| \frac{1}{r}(g_x(r) - g_x(0)) - g'_x(0) \right| = \left| \frac{1}{r} \int_0^r g_x' - g_x'(0)\right| = $$
+		$$ = \left| \frac{1}{r} \int_0^r (g_x'(t) - g_x'(0)) dt \right| = \left| \frac{1}{r} \int_0^r \sum_{j=1}^d e_j \(\frac{\partial φ}{\partial x_j}(x + te) - \frac{\partial φ}{\partial x_j}(x)\) dt \right| ≤ $$
 		$$ ≤ \left| \frac{1}{r} \int_0^r \|e\|\(\sum_{j=1}^d \left\|\frac{\partial φ}{\partial x_j}(x + te) - \frac{\partial φ}{\partial x_j}(x)\right\|^2\)^{1 / 2} dt \right| ≤ $$
 		$$ ≤ \left| \frac{1}{r} \int_0^r \|e\|\(\sum_{j=1}^d \left\|τ_{-te} \frac{\partial φ}{\partial x_j} - \frac{\partial φ}{\partial x}\right\|_∞^2\)^{1 / 2} dt \right|. $$
 
@@ -988,11 +1363,11 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\begin{definice}[Konvoluce v distribucích]
+\begin{definice}[Convolution in distributions]
 	$U \in ©D'(®R^d)$, $φ \in ©D(®R^d)$, $U * φ(x) = U(τ_x \check φ) = U(y \mapsto φ(x - y))$ ($x \in ®R^d$).
 \end{definice}
 
-\begin{veta}
+\begin{veta}[On the convolution of a distribution and a test function]
 	a) $f \in L^1_{loc} \implies Λ_f * φ = f*φ$.
 
 	\begin{dukazin}
@@ -1029,8 +1404,8 @@ TODO!!!
 
 	\begin{dukazin}
 		$$ Λ_{U * h_j}(φ) = \int(U * h_j) (x) φ(x) dx = \int U(y \mapsto h_j(x - y))φ(x) dx = $$
-		$$ = \int U(y \mapsto φ(x) h_j(x - y))dx = Λ_1(y \mapsto φ(x)h_j(x - y)) = U(y \mapsto Λ_1(x \mapsto φ(x) h_j(x - y))) = $$
-		$$ = U(y \mapsto \int φ(x) h_j(x - y) dx) = U(φ*\check h_j) \rightarrow Λ(φ). $$
+		$$ = \int U(y \mapsto φ(x) h_j(x - y))dx = Λ_1(y \mapsto φ(x)h_j(x - y)) = $$
+		$$ = U(y \mapsto Λ_1(x \mapsto φ(x) h_j(x - y))) = U(y \mapsto \int φ(x) h_j(x - y) dx) = U(φ*\check h_j) \rightarrow Λ(φ). $$
 		Because $φ*\check h_j \rightarrow φ$ in $©D(®R^d)$ and
 		$$ \supp (φ * \check h_j) \subset \supp φ + U(0, 1 / j) \subset φ + \overline{U(0, 1)}, $$
 		$$ D^α(φ * \check h_j) = (D^α φ) * h_j \rightrightarrows D^α φ. $$
@@ -1081,7 +1456,7 @@ TODO!!!
 
 	Fix $K \subset ®R^d$ compact. Set $L := \supp \check V + K$ $\implies$
 	$$ \implies \exists C>0, N \in ®N_0: |V(ψ)| ≤ C·\|ψ\|, \qquad \forall ψ \in ©D_L(®R^d). $$
-	$$ φ \in ©D_K(®R^d) \implies \check V * φ \in ©D_L(®R^d) \implies |(U * V)(φ)| = |U(\check V * φ)| ≤ C·\|\check V * φ\|_N ≤ C·D·\|φ\|_{N+M}. $$
+	$$ φ \in ©D_K(®R^d)\!\!\implies\!\!\check V * φ \in ©D_L(®R^d)\!\!\implies\!\!|(U * V)(φ)| = |U(\check V * φ)| ≤ C·\|\check V * φ\|_N ≤ C·D·\|φ\|_{N+M}. $$
 	($\check V * φ(x) = V(y \mapsto φ(x + y))$, $V$ has compact support $\implies$ $\exists D, M: |V(η)| ≤ D·\|η\|_M$, $\forall η \in ©D(®R^d)$.)
 \end{poznamka}
 
@@ -1090,7 +1465,9 @@ TODO!!!
 \end{poznamka}
 
 \begin{poznamka}[3.]
-	$\forall r > 0: (\overline{U(¦o, r)} - \supp V) \cap \supp U$ is compact. For $r > 0$ let $ψ_r \in ©D(®R^d)$, $ψ_r = 1$ on a neighbourhood of this set. Then $U$ may be extended to $Y = \{f \in C^∞(®R^d) \middle| \supp f \subset \overline{U(¦o, r)} - \supp V \text{ for some } r > 0\}$. $\tilde U(f) = U(ψ_r · f)$ if $\supp f \subset \overline{U(¦o, r)} - \supp V$.
+	$\forall r > 0: (\overline{U(¦o, r)} - \supp V) \cap \supp U$ is compact. For $r > 0$ let $ψ_r \in ©D(®R^d)$, $ψ_r = 1$ on a neighbourhood of this set. Then $U$ may be extended to
+	$$ Y = \{f \in C^∞(®R^d) \middle| \supp f \subset \overline{U(¦o, r)} - \supp V \text{ for some } r > 0\}. $$
+	$\tilde U(f) = U(ψ_r · f)$ if $\supp f \subset \overline{U(¦o, r)} - \supp V$.
 
 	Then define $U * V(φ) = \tilde U(\check V * φ)$ ($\supp \check V * φ \subset \supp φ - \supp V$).
 \end{poznamka}
@@ -1129,7 +1506,7 @@ TODO!!!
 	\begin{dukazin}
 		Clearly $©D(®R^d) \subset\subset ©S(®R^d)$. „Density“: Fix $φ \in ©D(®R^d)$ such that $0 ≤ φ ≤ 1$, $φ = 1$ na $U(¦o, 1)$. Let $f \in ©S(®R^d)$. Let $f_n(x) = f(x) · φ(x / n)$, $x \in ®R^d$. Then $f_n \in ©D(®R^d)$. Moreover, „$f_n \rightarrow f$ in $©S(®R^d)$“: Let $N \in ®N_0$, $d \in ®N_0^d$, $|α| ≤ N$:
 		$$ \left|(1 + \|x\|^2)^N (D^α f(x) - D^αf_n(x))\right| = (1 + \|x\|^2)^N \left|D^α((1 - φ(x / n)))f(x)\right| = $$
-		$$ = (1 + \|x\|^2)^N \left|(1 - φ(x / n))D^αf(x) + \sum_{0 ≠ β ≤ α} \binom{α_1}{β_1}·…·\binom{α_d}{β_d} (-1) \frac{1}{n^{|β|}} D^β φ(x / n) D^{α - β} f(x)\right| $$
+		$$ = (1 + \|x\|^2)^N \left|(1 - φ(x / n))D^αf(x) +\!\!\sum_{0 ≠ β ≤ α}\!\binom{α_1}{β_1}·…·\binom{α_d}{β_d} (-1) \frac{1}{n^{|β|}} D^β φ(x / n) D^{α - β} f(x)\right| $$
 		$$ \begin{cases}=0, \quad & \|x\| ≤ n\\ ≤ \sup_{\|x\| ≥ n, |γ| ≤ N} \frac{(1 + \|x\|^2)^{N+1}|D^γ f(x)|}{1 + \|x\|^2}, \quad & \|x\| > n\end{cases} $$
 		$$ \(\sup_{\|x\| ≥ n} \(1 + \sum_{0 ≠ β ≤ α} \binom{α_1}{β_1}·…·\binom{α_d}{β_d}·\underbrace{\frac{1}{n^{|β|}}}_{≤1} \underbrace{|D^β φ(x / n)|}_{≤ \|φ\|_N}\)\) ≤ 1 + 2^N \|φ\|_N. $$
 		$$ ≤ (1 + 2^N·\|φ\|_n)·\frac{p_{N+1}(f)}{1 + n^2} \rightarrow 0. $$
@@ -1155,7 +1532,7 @@ TODO!!!
 	We say that distribution is tempered, if it can be extended to $©S(®R^d)$.
 \end{poznamka}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[A characterization of tempered distributions]
 	a) $Λ: ©S(®R^d) \rightarrow ®F$ linear. Then
 	$$ Λ \in ©S'(®R^d) \Leftrightarrow \exists N \in ®N_0\ \exists C > 0: |Λ(φ)| ≤ C·p_N(φ), \qquad φ \in ©S(®R^d). $$
 
@@ -1171,11 +1548,11 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\begin{definice}
+\begin{definice}[Convergence in $©S'$]
 	$Λ_n \rightarrow Λ$ in $©S'(®R^d)$ $≡$ $\forall φ \in ©S(®R^d): Λ_n(φ) \rightarrow Λ(φ)$, i.e. $Λ_n \overset{w^*}\rightarrow Λ$.
 \end{definice}
 
-\begin{veta}
+\begin{veta}[BVanach–Steinhaus theorem for tempered distribution]
 	$(Λ_n) \subset ©S'(®R^d)$, $\forall φ \in ©S(®R^d)$: $(Λ_n(φ))$ converges in ®F. Then $Λ(φ) = \lim_{n \rightarrow ∞} Λ_n(φ)$, $φ \in ©S(®R^d)$ is tempered distribution.
 	
 	\begin{dukazin}
@@ -1183,7 +1560,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[Examples of tempered distributions]
 	a) $Λ \in ©D'(®R^d)$, $\supp Λ$ is compact $\implies$ $Λ$ is tempered.
 
 	\begin{dukazin}
@@ -1218,14 +1595,15 @@ TODO!!!
 	\end{dukazin}
 \end{tvrzeni}
 
-\begin{lemma}
+\begin{lemma}[Continuity of operations on the Schwartz space]
 	%Let $L: ©S(®R^d) \rightarrow ©S(®R^d)$ is linear. Then $L$ is continuous $\Leftrightarrow$ $\forall N \in ®N_0\ \exists c > 0\ \exists M \in ®N_0: p_N(c·(f)) ≤ c·p_M(f)$, $f \in ©S(®R^d)$, $α \in ®N_0^d$.
 
 	$f \mapsto D^α f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
 
 	\begin{dukazin}
 		$f \in ©S(®R_6d)$, $α \in ®N_0^d$ $\implies$ $D^α f \in L^∞()®R^d$. Fix $N \in ®N_0$ and $β$, $|β| ≤ N$:
-		$$ |(1 + \|x\|^2)^N D^β(D^α f)(x)| = (1 + \|x\|^2)^N |D^{β+α} f(x)| ≤ p_{N + |α|}(f) \implies p_N(D^α f) ≤ p_{N+|α|}(f). $$
+		$$ |(1 + \|x\|^2)^N D^β(D^α f)(x)| = (1 + \|x\|^2)^N |D^{β+α} f(x)| ≤ p_{N + |α|}(f) \implies $$
+		$\implies$ $p_N(D^α f) ≤ p_{N+|α|}(f)$.
 	\end{dukazin}
 	
 	$p$ is polynomial $\implies$ $f \mapsto p·f$ is continuous $©S(®R^d) \rightarrow ©S(®R^d)$.
@@ -1251,12 +1629,11 @@ TODO!!!
 	\end{dukazin}
 
 	\begin{poznamkain}
-		Similarly one may probe that:
-		$$ g \in C^∞(®R^d), \forall α\ \exists P_α \text{ polynomial }: |D^α g| ≤ |P_α| \text{ on } ®R^d \implies f \mapsto f·g \text{ is a continuous mapping } ©S(®R^d) \rightarrow ©S(®R^d). $$
+		Similarly one may probe that: $g \in C^∞(®R^d)$, $\forall α$ $\exists P_α$ polynomial: $|D^α g| ≤ |P_α|$ on $®R^d$ $\implies$ $f \mapsto f·g$ is a continuous mapping $©S(®R^d) \rightarrow ©S(®R^d)$.
 	\end{poznamkain}
 \end{lemma}
 
-\begin{tvrzeni}
+\begin{tvrzeni}[Operations with tempered distributions]
 	Let $Λ \in ©S'(®R^d)$.
 
 	a) $\forall α: D^α Λ \in ©S'(®R^d)$ and $D^α Λ(φ) = (-1)^{|α|}Λ(D^α φ)$, $φ \in ©S(®R^d)$.
@@ -1275,7 +1652,8 @@ TODO!!!
 
 	\begin{dukazin}
 		„$φ \in ©S(®R^d) \implies τ_{-y}φ \in ©S(®R^d)$, $τ_{-y}φ(x) = φ(x - y)$“: Clearly $τ_{-y} φ \in C^∞(®R^d)$.
-		$$ |α| ≤ N: (1 + \|x\|^2)^N D^α τ_{-y}φ(x) = (1 + \|α\|^2)^N D^α φ(x + y) = \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·(1 + \|x + y\|^2)^N D^α φ(x + y) ≤ \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·p_N(φ) ≤ M^N, $$
+		$$ |α| ≤ N: (1 + \|x\|^2)^N D^α τ_{-y}φ(x) = (1 + \|α\|^2)^N D^α φ(x + y) = $$
+		$$ = \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·(1 + \|x + y\|^2)^N D^α φ(x + y) ≤ \(\frac{1 + \|x\|^2}{1 + \|x + y\|^2}\)^N·p_N(φ) ≤ M^N, $$
 		where $M = \sup_{t \in [0, ∞)} \frac{1 + t^2}{1 + (t - \|y\|)^2} < ∞$. $\implies$ $τ_{-y}φ \in ©S(®R^d)$ and $p_N(τ_{-y}φ) ≤ M^N p_N(φ)$. So $φ \mapsto τ_{-y} φ$ is continuous and then continue as in a).
 	\end{dukazin}
 
@@ -1311,9 +1689,8 @@ TODO!!!
 	\begin{dukazin}
 		1. The theorem above $\implies$ Fourier transform is a linear bijection $©S(®R^d)$ and $©S(®R^d)$.
 
-		2. $m := \left\lfloor\frac{d}{2}\right\rfloor + 1$. Then
-		$$ C:= \int_{®R^d} \frac{1}{(1 + \|x\|^2)^m} d m_d(x) ≤ ∞ $$
-		$$ f \in ©S(®R^d) \implies \|\hat{f}\|_∞ ≤ \|f\|_{L^1} = \int_{®R^d} |f(x)| d m_d(x) ≤ \int_{®R^d} \frac{(1 + \|x\|^2)^m |f(x)|}{(1 + \|x\|^2)^m} d m_d(x) ≤ C·p_m(f). $$
+		2. $m := \left\lfloor\frac{d}{2}\right\rfloor + 1$. Then $C:= \int_{®R^d} \frac{1}{(1 + \|x\|^2)^m} d m_d(x) ≤ ∞$. $f \in ©S(®R^d)$ $\implies$
+		$$ \implies \|\hat{f}\|_∞ ≤ \|f\|_{L^1} = \int_{®R^d} |f(x)| d m_d(x) ≤ \int_{®R^d} \frac{(1 + \|x\|^2)^m |f(x)|}{(1 + \|x\|^2)^m} d m_d(x) ≤ C·p_m(f). $$
 		TODO!!!
 
 		3. Fix $N \in ®N_0$, $α$, $|α| ≤ N$.
@@ -1331,7 +1708,7 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
-\begin{definice}
+\begin{definice}[Fourier transform of tempered distribution]
 	$Λ \in ©S'(®R^d)$: $\hat{Λ}(φ) = Λ(\hat{φ})$, $φ \in ©S(®R^d)$.
 
 	\begin{poznamkain}
@@ -1363,8 +1740,8 @@ TODO!!!
 	d) $f \in L^2(®R^d) \implies \hat{Λ_f} = Λ_{©P(f)}$, where ©P is the Plancherel transform.
 
 	\begin{dukazin}
-		$f_n := f·χ_{U(¦o, n)}$. Then $f_n \in L^1(®R^d) \cap L^2(®R^d)$, $f_n \rightarrow f$ in $L^2(®R^d)$, and, moreover, $\hat{f_n} \rightarrow ©P(f)$ in $L^2(®R^d)$. So,
-		$$ \hat{Λ_f}(φ) = Λ_f (\hat{φ}) = \int_{®R^d} f \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} f_n \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} \hat{f_n} φ = \int_{®R^d} ©P(f) φ d m_d = L_{©P(f)}(φ). $$
+		$f_n := f·χ_{U(¦o, n)}$. Then $f_n \in L^1(®R^d) \cap L^2(®R^d)$, $f_n \rightarrow f$ in $L^2(®R^d)$, and, moreover, $\hat{f_n} \rightarrow ©P(f)$ in $L^2(®R^d)$. So, $\hat{Λ_f}(φ) = Λ_f (\hat{φ}) =$
+		$$ = \int_{®R^d} f \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} f_n \hat{φ} d m_d = \lim_{n \rightarrow ∞} \int_{®R^d} \hat{f_n} φ = \int_{®R^d} ©P(f) φ d m_d = L_{©P(f)}(φ). $$
 	\end{dukazin}
 
 	e) $p$ polynomial $\implies$ $\widehat{p(D) Λ} = \breve p \hat{Λ}$, $\widehat{p·Λ} = \breve p(D) \hat{Λ}$.
@@ -1390,7 +1767,8 @@ TODO!!!
 
 	\begin{dukazin}
 		Fix $N \in ®N_0$, $α \in ®N_0^d$, $|α| ≤ N$. $x, z \in ®R^d$:
-		$$ \left|(1 + \|x\|^2)^N D^α τ_z φ(y) - (1 + \|y\|^2)^N D^α τ_x φ(y)\right| = (1 + \|y\|^2)^N \left| \int_0^1 \frac{d}{dt} D^α φ(y - x - t(z - x)) dt \right| ≤ $$
+		$$ \left|(1 + \|x\|^2)^N D^α τ_z φ(y) - (1 + \|y\|^2)^N D^α τ_x φ(y)\right| = $$
+		$$ = (1 + \|y\|^2)^N \left| \int_0^1 \frac{d}{dt} D^α φ(y - x - t(z - x)) dt \right| ≤ $$
 		$$ ≤ (1 + \|y\|^2)^N \int_0^1 \left| \sum_{j = 1}^d D^{α + e_j} φ(y - x - t(z - x))(x_j - z_j)\right| dt ≤ $$
 		$$ ≤ (1 + \|y\|^2)^N \int_0^1 \left| \sum_{j = 1}^d D^{α + e_j} φ(y - x - t(z - x))^2\right|^{1 / 2} \|x - z\| dt ≤ $$
 		$$ ≤ \|x - z\| p_{N+1}(φ) (1 + \|y\|^2)^N \int_0^1 \frac{\sqrt{d} dt}{(1 + \|y - x - t(z - x)\|^2)^{N+1}} ≤ $$
@@ -1402,11 +1780,11 @@ TODO!!!
 \end{lemma}
 
 \begin{lemma}[RT]
-	$$ Λ \in ©S'(®R^d) \Leftrightarrow \exists N \in ®N_0, μ_α, |α| ≤ N_0: Λ(φ) = \sum_{|Λ| ≤ N} \int_{®R^d} (1 + \|x\|^2)^N D^α φ(x) d μ_α(x), \quad φ \in ©S(®R^d). $$
+	$$ Λ \in ©S'(®R^d) \Leftrightarrow \exists N \in ®N_0, μ_α, |α| ≤ N_0: Λ(φ) = \!\!\sum_{|Λ| ≤ N} \int_{®R^d} (1 + \|x\|^2)^N D^α φ(x) d μ_α(x), φ \in ©S(®R^d). $$
 	(Finite signed/complex measure on $®R^d$.)
 \end{lemma}
 
-\begin{definice}
+\begin{definice}[Convolution of function and tempered distribution]
 	$$ U \in ©S'(®R^d), φ \in ©S(®R^d) \implies U * φ(x) = U(τ_x \check φ) = U(y \mapsto φ(x - y)). $$
 \end{definice}
 
@@ -1418,8 +1796,8 @@ TODO!!!
 	\begin{dukazin}
 		The proposition above $\implies$ $\exists N, C$ such that $|U(ψ)| ≤ c·p_N(ψ)$
 		$$ \implies |(U*φ)(x)| = |U(τ_x \check φ)| ≤ C·p_N(τ_x \check φ). $$
-
-		$$ |α| ≤ N: |(1 + \|y\|^2)^N D^α φ(x - y)| ≤ p_N(φ)·\(\frac{1 + \|y\|^2}{1 + \|x - y\|^2}\)^N ≤ p_N(φ) (1 + \|y\| + \|x\|^2)^N \implies Λ_{U*φ}' \text{ is tempered}. $$
+		$$ |α| ≤ N: |(1 + \|y\|^2)^N D^α φ(x - y)| ≤ p_N(φ)·\(\frac{1 + \|y\|^2}{1 + \|x - y\|^2}\)^N \!\!≤ p_N(φ) (1 + \|y\| + \|x\|^2)^N \!\implies $$ 
+		$\implies$ $Λ_{U*φ}'$ is tempered.
 		$$ \frac{1 + \|y\|^2}{1 + \|x - y\|^2} = \frac{1 + \|y - x\|^2 + 2\<y - x, x\> + \|x\|^2}{1 + \|x - y\|^2} = $$
 		$$ = 1 + \frac{2·\|y - x\|·\|x\|}{1 + \|x - y\|^2} + \frac{\|x\|^2}{1 + \|x - y\|^2} ≤ 1 + \|x\| + \|x\|^2. $$
 	\end{dukazin}
@@ -1460,7 +1838,8 @@ TODO!!!
 		\begin{itemize}
 			\item „$f, g$ simple $\implies$ $α f + β g$ is simple“: $(αf + βg)(M) \subset αf(M) + βg(M)$.
 			\item „$f, g$ simple measurable $α f + βg$ is simple measurable“:
-				$$ f = \sum_{j=1}^k x_j χ_{A_j}, \quad g = \sum_{l=1}^m y_l χ_{B_l}, \qquad αf + βg = \sum_{j=1}^k \sum_{l=1}^m (αx_j + β y_l)·χ_{A_j \cap B_l}, \qquad A_j, B_l \in ©A \implies A_j \cap B_l \in ©A. $$
+				$$ f = \sum_{j=1}^k x_j χ_{A_j}, \quad g = \sum_{l=1}^m y_l χ_{B_l}, \qquad αf + βg = \sum_{j=1}^k \sum_{l=1}^m (αx_j + β y_l)·χ_{A_j \cap B_l}, $$
+				$A_j, B_l \in ©A \implies A_j \cap B_l \in ©A$.
 			\item „$f, g$ strongly ©A-measurable $\implies$ $α f + β g$ is strongly ©A-measurable“: $f = \lim u_n$, $g = \lim v_n$, $u_n, v_n$ simple measurable, $α f + β g = \lim (α u_n + β v_n)$.
 			\item „$f, g$ weakly ©A-measurable $\implies$ $α f + β g$ weakly ©A-measurable“: $\forall φ \in X^*: φ∘(α f + β g) = α φ ∘ f + β φ ∘ g$ (measurable by the scakercah?).
 		\end{itemize}
@@ -1507,18 +1886,16 @@ TODO!!!
 	$(f_n)$ strongly ©A-measurable, $f_n \rightarrow f$ point-wise $\implies$ $f$ is strongly ©A-measurable.
 
 	\begin{dukazin}
-		$u_{m, n}$ simple measurable, $u_{m, n} \overset{m}\rightarrow f_n$.
-		$$ C = \bigcup_{m, n} u(m, n)(M) \text{ is countable, so, } C = \{x_k, k \in ®N\}. $$
-		For $k \in ®N$ define $g_k: M \rightarrow X$ by $g_k(x) = $ the point from $\{x_1, …, x_k\}$ nearest to $f(x)$ (the first such point). Then $g_k$ is simple, $g_k \rightarrow f$ point-wise ($t \in M$, $ε > 0$ $\implies$ $\exists n_0\ \forall n ≥ n_0: \|f_n(t) - f(t)\| < ε/2$. Fix one $n ≥ n_0$ $\implies \exists m_9\ \forall m ≥ m_0: \|u_{m, n}(t) - f_n(t)\| < ε/2$. Fix one $m ≥ m_0$ $\implies \|u_{m, n}(t) - f(t)\| < ε$, and there is $k_0$ such that $u_{m, n}(t) = x_{k_0}$. Then for $k ≥ k_0$: $\|f(t) - g_k(t)\| ≤ \|f(x) - x_{k_0}\| < ε$).
+		$u_{m, n}$ simple measurable, $u_{m, n} \overset{m}\rightarrow f_n$. $C = \underset{{m, n}}\bigcup u(m, n)(M)$ is countable, so, $C = \{x_k, k \in ®N\}$. For $k \in ®N$ define $g_k: M \rightarrow X$ by $g_k(x) = $ the point from $\{x_1, …, x_k\}$ nearest to $f(x)$ (the first such point). Then $g_k$ is simple, $g_k \rightarrow f$ point-wise ($t \in M$, $ε > 0$ $\implies$ $\exists n_0\ \forall n ≥ n_0: \|f_n(t) - f(t)\| < ε/2$. Fix one $n ≥ n_0$ $\implies \exists m_9\ \forall m ≥ m_0: \|u_{m, n}(t) - f_n(t)\| < ε/2$. Fix one $m ≥ m_0$ $\implies \|u_{m, n}(t) - f(t)\| < ε$, and there is $k_0$ such that $u_{m, n}(t) = x_{k_0}$. Then for $k ≥ k_0$: $\|f(t) - g_k(t)\| ≤ \|f(x) - x_{k_0}\| < ε$).
 
 		„$g_k$ are also simple measurable“: $f$ is Borel ©A–measurable $\implies$ $\forall x \in X$: $f - x$ is Borel ©A-measurable $\implies$ $\forall x \in X$: $t \mapsto \|f(t) - x\|$ is measurable, $g_k(t) = x_j$
-		$$ \Leftrightarrow \forall i \in [k]: \|x_j - f(x)\| ≤ \|x_i - f(x)\| \land \forall i < j: \|x_j - f(x)\| < \|x_i - f(x)\| $$
-		$$ \Leftrightarrow \forall i \in [k]\ \forall g \in ®Q: \|x_j - f(x)\| ≤ q \lor \|x_i - f(x)\| ≥ q \land \forall i < j\ \exists q \in ®Q: \|x_j - f(x)\| < q \land \|x_i - f(x)\| > q. $$
+		$$ \Leftrightarrow \forall i \in [k]: \|x_j - f(x)\| ≤ \|x_i - f(x)\| \land \forall i < j: \|x_j - f(x)\| < \|x_i - f(x)\| \Leftrightarrow \forall i \in [k]\ \forall g \in ®Q:$$
+		$$ \|x_j - f(x)\| ≤ q \lor \|x_i - f(x)\| ≥ q \land \forall i < j\ \exists q \in ®Q: \|x_j - f(x)\| < q \land \|x_i - f(x)\| > q. $$
 	\end{dukazin}
 \end{lemma}
 
-\begin{veta}
-	$f: M \rightarrow X$. Then following assertions are equivalent:
+\begin{veta}[Pettis]
+	$f: M \rightarrow X$. Then following assertions are equivalent:\vspace{-0.8em}
 	\begin{enumerate}
 		\item $f$ is strongly ©A-measurable;
 		\item $f$ is Borel ©A-measurable and $f(M)$ is separable;
@@ -1538,7 +1915,7 @@ TODO!!!
 	\end{dukazin}
 \end{veta}
 
-\begin{definice}
+\begin{definice}[Strongly $μ$-measurable]
 	$(Ω, Σ, μ)$ complete measure space, $f: Ω \rightarrow X$ is strongly $μ$-measurable if $\exists (u_n)$ simple measurable such that $u_n \rightarrow f$ point-wise $μ$-almost everywhere.
 \end{definice}
 
@@ -1552,6 +1929,249 @@ TODO!!!
 
 % 05. 01. 2024
 
+\begin{definice}[Essentially separably valued]
+	(If $f: Ω \rightarrow X$ is (strongly) $μ$-measurable, then)
+	$$ \exists Y ≤ X \text{ separable } \exists N \in Σ: μ(N) = 0 \land f(Ω \setminus N) \subset Y. $$
+\end{definice}
+
+\begin{lemma}
+	Let $(f_n)$ be a sequence of strongly $μ$-measurable functions $f_n: M \rightarrow X$ almost everywhere converging to a function $f: M \rightarrow X$. Then $f$ is strongly $μ$-measurable as well.
+
+	\begin{dukazin}
+		TODO!!! (notes)
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Pettis]
+	Let $f: Ω \rightarrow X$ be a function. Then following assertions are equivalent
+	\begin{enumerate}
+		\item $f$ is strongly $μ$-measurable.
+		\item $f$ is Borel $μ$-measurable and essentially separably valued.
+		\item $f$ is weakly $μ$-measurable and essentially separably valued.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO!!! (Notes)
+	\end{dukazin}
+\end{veta}
+
+\subsection{Integrability of vector-valued functions}
+\begin{definice}[Integrable over set, integral over set, integrable, Bochner integrable, Bochner integral, weakly integrable]
+	Let $f: Ω \rightarrow X$ be a simple measurable function of the form $f = \sum_{j=1}^k x_j χ_{E_j}$. Let $E \in Σ$. We say that $f$ is integrable over $E$, if for each $j \in [k]$ one has either $μ(E \cap E_j) < ∞$ or $x_j = ¦o$. By the integral of $f$ over $E$ we mean the element of $X$ defined by the formula
+	$$ \int_E f dμ = \sum_{j=1}^k μ(E \cap E_j) x_j, \qquad (∞·¦o = ¦o). $$
+	If $f$ is integrable over $Ω$, it is called integrable.
+
+	Let $f: Ω \rightarrow X$ be strongly $μ$-measurable. Then function $f$ is said to be Bochner integrable if there exists a sequence $(f_n)$ of simple integrable functions such that
+	$$ \lim_{n \rightarrow ∞} \int_Ω \|f_n(ω) - f(ω)\| dμ(ω) = 0. $$
+	By Bochner integral of $f$ we then mean the element of $X$ defined by
+	$$ (B) \int_Ω f dμ = \lim_{n \rightarrow ∞} \int_Ω f_n dμ. $$
+
+	A function $f: Ω \rightarrow X$ is said to be weakly integrable if $φ ∘ f$ is integrable (i.e., $φ ∘ f \in L^1(μ)$) for each $φ \in X^*$.
+\end{definice}
+
+\begin{tvrzeni}[Basic properties of the Bochner integral]
+	a) Integrable functions form a vector space, and the mapping assigning to a simple integrable function $f$ its integral $\int_Ω f dμ$ is linear.
+
+	b) Let $f$ be a simple measurable function. Then $f$ is integrable if and only if the function $ω \mapsto \|f(ω)\|$ is integrable. In this case $\left\|\int_Ω f dμ\right\| ≤ \int_Ω \|f(ω)\| d μ(ω)$.
+
+	c) The limit defining the Bochner integral does exist and does not depend on the choice of the sequence $(f_n)$.
+
+	d) Bochner integrable functions form a vector space and the mapping assigning to a Bochner integrable function its Bochner integral is linear.
+
+	e) If $f: Ω \rightarrow X$ is Bochner integrable, then the function $ω \mapsto \|f(ω)\|$ is integrable and $\left\|(B)\int_Ω f dμ\right\| ≤ \int_Ω \|f(ω)\| d μ(ω)$.
+
+	f) If $f: Ω \rightarrow X$ Bochner integrable, then $χ_E·f$ is Bochner integrable for each $E \in Σ$. (The value $(B) \int_Ω χ_E · f dμ =: (B) \int_E f dμ$ is called the Bochner integral of $f$ over $E$.)
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}[A characterization of Bochner integrability]
+	Let $f: Ω \rightarrow X$ be a strongly $μ$-measurable function. Then $f$ is Bochner integrable if and only if $\int_Ω \|f(ω)\| dμ(ω) < ∞$.
+
+	\begin{dukazin}
+		TODO!!! (notes)
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Lebesgue dominated convergence theorem for Bochner integral]
+	Let $(f_n)$ be a sequence of Bochner integrable functions $f_n: Ω \rightarrow X$ almost everywhere converging to a function $f: Ω \rightarrow X$. Let $g: Ω \rightarrow ®R$ be an integrable function such that for each $n \in ®N$ one has $\|f_n(Ω)\| ≤ g(ω)$ for almost all $ω \in Ω$. Then $f$ is Bochner integrable and $(B) \int_Ω f dμ = \lim_{n \rightarrow ∞} (B) \int_Ω f_n dμ$.
+
+	\begin{dukazin}
+		TODO!!! (notes)
+	\end{dukazin}
+\end{veta}
+
+\begin{tvrzeni}[Absolute continuity of Bochner integral]
+	Let $f: Ω \rightarrow X$ be Bochner integrable. Then
+	$$ \forall ε > 0\ \exists δ > 0\ \forall E \in Σ: μ(E) < δ \implies \left\|\int_E f dμ\right\| < ε. $$
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+% 09. 01. 2024
+
+\begin{poznamka}
+	$(Ω, Σ, μ)$ complete measure space, $X$ Banach space, $f: Ω \rightarrow X$ is weakly integrable $≡$ $\forall φ \in X^*: φ ∘ f$ is integrable.
+\end{poznamka}
+
+\begin{tvrzeni}[Weak integral]
+	$f$ weakly integrable $\implies$ $F(φ) = \int_Ω φ ∘ f dμ$, $φ \in X^*$ belongs to $X^{**}$.
+
+	Then
+	\begin{itemize}
+		\item $(D) \int_Ω f dμ := F$;
+		\item $E \in Σ$, then $(D) \int_E f dμ := (D) \int_Ω χ_E · f dμ$;
+		\item $f$ is Pettits-integrable if $\forall E \in Σ: (D) \int_E f dμ \in κ(X)$.
+	\end{itemize}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Let $f: Ω \rightarrow X$ be Bochner integrable. Let $L: X \rightarrow Y$ be bounded linear operator. Then $L ∘ f$ is Bochner integrable and $(B) \int_Ω L ∘ f dμ = L((B) \int_Ω f dμ)$.
+
+	\begin{dukazin}
+		„1. $L ∘ f$ is strongly $μ$-measurable.“: $f$ strongly $μ$-measurable $\implies$ $\exists s_n$ simple measurable $s_n \rightarrow f$ almost everywhere. The $L ∘ s_n$ are simple measurable and $L ∘ s_n \rightarrow L ∘ f$ almost everywhere.
+
+		2. $f$ Bochner integrable $\implies$ $\exists (s_n)$ simple integrable such that $\int_Ω \|s_n - f\| dμ \rightarrow 0$. The $L∘s_n$ are simple integrable
+		$$ \int \|(L ∘ s_n)(ω) - (L ∘ f)(ω)\| dμ(ω) = \int \|L(s_n(ω) - f(ω))\| dμ(ω) ≤ $$
+		$$ ≤ \int \|L\|·\|s_n(ω) - f(ω)\| dμ(ω) \rightarrow 0 \implies $$
+		$\implies$ $L ∘ f$ is Bochner integrable.
+
+		$$ 3. (B) \int_Ω L ∘ f dμ = \lim_{n \rightarrow ∞} \overbrace{\int_Ω L ∘ s_n dμ}^{\sum L(x_j) μ(E_j)} = \lim_{n \rightarrow ∞} L\overbrace{\underbrace{\(\int_Ω s_n dμ\)}_{\rightarrow (B) \int_Ω f dμ}}^{\sum x_j μ(E_j)} = L\((B) \int_Ω f dμ\), $$
+		where $s_n = \sum_{j=1}^k x_j χ_{E_j}$, $L∘s_n = \sum_{j=1}^n L(x_j), χ_{E_j}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$f$ Bochner integrable $\implies$ $f$ is Pettis integrable.
+\end{dusledek}
+
+\begin{priklad}
+	$Ω = ®N$, $Σ = ©P(®N)$, $μ$ the contg measure. $f : Ω \rightarrow X$
+
+	a) $f$ is Bochner integrable $\sum f(n)$ is absolutely convergent.
+	
+	\begin{dukazin}
+		$\sum f(n)$ absolutely convergent $\Leftrightarrow$ $\int_Ω \|f(n)\| dμ(n) = \sum \|f(n)\| < ∞$ $\Leftrightarrow$ $f$ Bochner integrable.
+	\end{dukazin}
+
+	b) If $\sum f(n)$ is unconditionally convergent then $f$ is Pettis integrable
+
+	\begin{dukazin}
+		$\sum_{n \in ®N} f(n)$ is unconditionally convergent $\implies$ $\forall A \subset ®N: \sum_{n \in A} f(n)$ unconditionally convergent $\implies$
+		$$ \implies \forall A \subset ®N\ \forall φ \in X^*\!: \sum_{n \in A} φ(f(n)) \text{ unconditionally convergent} \implies \!\! \sum_{n \in A} |φ(f(n))| < ∞. $$
+		$\implies$ $f$ is weakly integrable. Moreover $\sum_{n \in A} φ(f(n)) = φ\(\sum_{n \in A} f(n)\)$ $\implies$ $f$ is Pettis integrable.
+	\end{dukazin}
+\end{priklad}
+
+\begin{priklad}
+	$f: ®N \rightarrow l_2$, $f(n) = \frac{e_n}{n}$. Then $f$ is Pettis integrable, not Bochner integrable ($f$ strongly measurable).
+
+	$g: ®N \rightarrow C_0$, $g(n) = e_n$. Then $g$ is weakly integrable not Pettis integrable. The weak integral is $(1)_{n=1}^∞ \in l^∞$.
+\end{priklad}
+
+\subsection{Lebesgue–Bochner spaces}
+\begin{definice}
+	$f: Ω \rightarrow X$ strongly $μ$-measurable.
+
+	$p \in [1, ∞)$: $f \in L^p(μ; X)$ if $\int_{Ω} \|f(ω)\|^p dμ(ω) < ∞$, $\|f\|_p = \(\int_Ω \|f(ω)\|^p dμ(ω)\)^{1 / p}$.
+	
+	$p = ∞$: $f \in L^∞(μ; X)$ if $ω \mapsto \|f(ω)\|^p$ is essentially bounded, $\|f\|_∞ = \esssup_{ω \in Ω} \|f(ω)\|^p$.
+\end{definice}
+
+\begin{poznamka}
+	1. Simple integrable functions belong to $L^p(μ; X)$, $p \in [1, ∞)$.
+	$$ \left\|\sum_{j=1}^n x_i χ_{e_i}\right\|_p = \(\sum_{j=1}^n \|x_j\|^p μ(E_j)\)^{1 / p}. $$
+
+	2. Simple measurable functions belong to $L^∞(μ; X)$.
+	$$ \|\sum_{j=1}^n x_j χ_{E_j}\|_∞ = \max \{\|x_j\|, μ(E_j) > 0\}. $$
+
+	3. $p \in [1, ∞]$, $h \in C^p(μ)$, $x \in X$. Then $f(ω) = h(ω)·x$, $ω \in Ω$ ($f = h·x$), $f \in L^p(μ; X)$, $\|f\|_p = \|h\|_p·\|x\|$.
+\end{poznamka}
+
+\begin{veta}
+	a) $(L^p(μ; X), \|·\|_p)$ is a Banach space.
+	\begin{dukazin}
+		It is a NLS by the Minkowski inequality. Completeness: $p = ∞$ easy, $p \in [1, ∞)$: Assume $(f_n) \subset L^p(μ; X)$, $\sum_{n=1}^∞ \|f_n\|_p < ∞$. Define $g_n(ω) = \|f_n(ω)\|$, $ω \in Ω$. Then $g_n \in L^p(μ)$, $\|g_n\|_p = \|f_n\|_p$. So, $\sum_{n=1}^∞ \|g_n\|_p < ∞$, $L^p(μ)$ complete $\implies$ $g := \sum_{n=1}^∞ g_n \in L^p(μ)$ $\implies$ $\exists$ a subsequence of the sequence of partial sums which converges almost everywhere. But $g_n ≥ 0$, so $g(ω) = \sum_{n=1}^∞ g_n(ω)$ almost everywhere. So, for almost all $ω \in Ω$. We have $\sum g_n (ω) < ∞$, hence $\sum \|f_n(ω)\| < ∞$, so $f(n) = \sum_{n=1}^∞ f_n(ω)$ is defined almost everywhere.
+
+		Then $f$ is strongly $μ$-measurable. $\|f(ω)\| ≤ \sum_{n=1}^∞ \|f_n(ω)\| = g(ω)$. Since $g \in L^p(ω)$, we deduce $f \in L^p(μ; X)$.
+		$$ \|f(ω) - \sum_{k=1}^n f_k(ω)\| = \|\sum_{k > n} f_k(ω)\| ≤ \sum_{k > n} \|f_k(ω)\| \text{ almost everywhere } \implies $$
+		$$ \implies \|f - \sum_{k=1}^n f_n\|_p ≤ \|ω \mapsto \sum_{k > n} \|f_k(ω)\| \|_p ≤ $$
+		$$ ≤ \sum_{k > n} \|ω \mapsto \|f_n(ω)\| \|_p = \sum_{k > n} \|f_n\|_p \overset{n \rightarrow ∞}\longrightarrow 0. $$
+		So $f = \sum_{k=1}^∞ f_k$ is $L^p(μ; X)$.
+	\end{dukazin}
+
+	b) $L^1(μ; X) =$ Bochner-integrable functions. (se the definition and a theorem above.)
+
+	c) If $X$ is a Hilbert space. Then $L^2(μ; X)$ is also a Hilbert space.
+	$$ \<f, g\> := \int_Ω \<f(ω), g(ω)\> dμ(ω). $$
+
+	\begin{dukazin}
+		$ω \mapsto \<f(ω), g(ω)\>$ is (strongly) measurable. $ω \mapsto \<f(ω), g(ω)\>$ is integrable
+		$$ \int |\<f(ω), g(ω)\>| ≤ \int \|f(ω)\|·\|g(ω)\| ≤ \(\int \|f(ω)\|^2\)^{\frac{1}{2}} · \(\int \|g(ω)\|^2\)^{\frac{1}{2}} = \|f\|_2·\|g\|_2 < ∞. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$p \in [1, ∞)$.
+
+	a) Simple integrable function are dense in $L^p(μ; X)$.
+
+	\begin{dukazin}
+		$f \in L^p(μ; X)$ $\implies$ $f$ is strongly measurable. Find $(s_n)$ simple measurable, $s_n \rightarrow f$ almost everywhere. Define $f_n : Ω \rightarrow X$:
+		$$ f_n(ω) := \begin{cases}s_n(ω) & \text{if } \|f(ω) - s_n(ω)\| < 2·\|f(ω)\|, \\ 0 & \text{otherwise}.\end{cases} $$
+		Then $f_n$ are simple measurable, $f_n \rightarrow f$ almost everywhere (a proof above). $\|f_n(ω) - f(ω)\| ≤ 2·\|f(ω)\|$. So,
+		$$ f_n - f \in L^p(μ; X) \implies f_n \in L^p(μ; X) \implies f_n \text{ simple integrable}. $$
+		$\|f_n(ω) - f(ω)\|^p \rightarrow 0$ almost everywhere, $2·\|f(ω)\|^p$ is a majorant $\implies$
+		$$ \int \|f_n(ω) - f(ω)\|^p dμ(ω) \rightarrow 0 \qquad f_n \rightarrow f \text{ in } L^p(p; X). $$
+	\end{dukazin}
+
+% 09. 01. 2024
+
+	b) $L^p(μ)$, $X$ separable $\implies$ $L^p(m; X)$ is separable.
+
+	\begin{dukazin}
+		$\{z_n, n \in ®N\}$ dense in $X$, $\{k_n, n \in ®N\}$ dense in $L^p(μ)$.
+		$$ A = \{\sum_{j=1}^k z_{n_k}·k_{m_j}, n_1, …, n_k \in ®N, m_1, …, m_k \in ®N, k \in p\} $$
+		is a countable dense set of $L^p(μ; X)$
+
+		1. $A$ is countable subset of $L^p(μ; X)$.
+
+		2. $f \in L^p(μ; X)$, $ε > 0$ by a): $\exists g_1$ simple integrable $\|f - g_1\|_p < \frac{ε}{3}$. Then $g_1 = \sum_{j=1}^k x_j χ_{E_j}$ ($E_j \in Σ$, disjoint, $x_j \in X$, $μ(E_j) < ∞$).
+
+		3. Find $n_1, …, n_k \in ®N$ such that $\|x_j - z_{n_j}\|$ is so small, such that
+		$$ \sum_{j=1}^k \|x_j - z_{n_j}\|^p μ(E_j) < \(\frac{ε}{3}\)^p. $$
+		Set $g_2 := \sum_{j=1}^k z_{n_j} χ_{E_j}$. Then $\|g_2 - g_1\|_p < \frac{ε}{3}$.
+
+		4. Find $m_1, …, m_k \in ®N$ such that $\|χ_{E_j} - k·m_j\|_p$ is so small that
+		$$ \sum_{j=1}^k \|z_{n_j}\|·\|χ_{E_j} - k_{m_j}\|_p ≤ \frac{ε}{3}. $$
+		Then $g_3 := \sum_{j=1}^k z_{n_j}·k_{m_j} \in A$, $\|g_3 - g_2\|_p < \frac{ε}{3}$.
+
+		To summarize: $\|g_3 - f\| < ε$.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}
+	1. $G \subset ®R^n$ Lebesgue measurable. $μ := λ^n|_G$ for some $μ(G) > 0$. $L^p(G; X) := L^p(μ; X)$. $p \in [1, ∞)$, $X$ separable $\implies$ $L^p(G; X)$ is separable.
+
+	2. $μ = $ the counting measure on ®N $\implies$ $L^p(μ, X) = l^p(X)$. $X$ separable, $p \in [1, ∞)$ $\implies$ $l^p(X)$ separable.
+\end{priklad}
+
+\begin{poznamka}[Representation of duals]
+	$p$, $p^*$ dual exponents, $p \in [1, ∞)$ ($p^* \in (1, ∞]$).
+	$$ \(l^p(X)\)^* ≈ l^{p^*}\(X^*\). $$
+	$X$ reflexive, $μ$ $ς$-finite:
+	$$ \(L^p(μ; X)\)^* = L^{p^*}\(μ; X^*\). $$
+
+	$X$ reflexive, $μ$ $ς$-finite, $p \in (1, ∞)$: $L^p(μ; X)$ is also reflexive
+\end{poznamka}
+
+% 12. 01. 2024 from notes of lecturer
+
+\section{Compact convex sets}
 TODO!!!
 
 \end{document}

@@ -773,4 +773,61 @@ TODO!!!
 
 TODO!!!
 
+% 12. 01. 2024
+
+TODO? (Torsion of right circular cylinder)
+
+\begin{poznamka}
+	Where is my biharmonic equation $Δ(Δ φ) = g$?
+
+	And related question:
+	What are the compatibility conditions good for?
+\end{poznamka}
+
+\begin{poznamka}
+	$¦o = \Div \btau + ρ_R ¦b$ (where $ρ_R¦b$ is force $¦f$ and $\btau ¦n|_{\partial Ω} = ¦g$) is only 3 equations (2 in 2D) for ($\btau$ is symmetric) 6 equations (3 in 3D). Here comes the compatibility condition $\rot\((\rot \bepsilon)^T\) = ®O$ ($\bepsilon := \frac{1}{2μ}\(\btau - \frac{λ}{3λ + 2μ}(\tr \btau)®I\)$).
+\end{poznamka}
+
+\begin{poznamka}[Going from equations for $\bepsilon$ to equations for $\btau$]
+	Using $\rot(\rot ¦v) = \nabla (\Div ¦v) - Δ ¦v$.
+	$$ ®O = \nabla (\Div \bepsilon) + (\nabla (\Div \bepsilon))^T - \nabla (\nabla \tr \bepsilon) - Δ\bepsilon. $$
+	Doing algebra (and using $¦o = \Div \btau + ¦f$, problem for exam), we get (Beltram–Michell equation):
+	$$ Δ \btau + \frac{1}{1 + ν} \nabla (\nabla \tr \btau) = -(\nabla ¦f) + (\nabla ¦f)^T - \frac{ν}{1 - ν}(\Div ¦f)®I. $$
+\end{poznamka}
+
+\begin{definice}[Plane strain problems]
+	$$ \btau = \begin{pmatrix} ε_{xx}(x, y) & ε_{xy}(x, y) & 0 \\ ε_{yx}(x, y) & ε_{yy}(x, y) & 0 \\ 0 & 0 & 0 \end{pmatrix}. $$
+
+	\begin{dusledekin}
+		$$ \btau = λ(\tr \bepsilon)®I + 2μ \bepsilon \implies \btau = \begin{pmatrix} ? & ? & 0 \\ ? & ? & 0 \\ 0 & 0 & τ_{\hat{z}\hat{z}} \end{pmatrix}. $$
+		$$ \bepsilon := \frac{1}{2μ}\(\btau - \frac{λ}{3λ + 2μ}(\tr \btau)®I\) \implies 0 = ε_{\hat{z}\hat{z}} = \frac{1}{2μ}\(τ_{\hat{z}\hat{z}} - \frac{λ}{3λ + 2μ}\(τ_{xx} + τ_{yy} + τ_{zz}\)\) \implies $$
+		$$ τ_{\hat{z}\hat{z}} = \frac{λ}{2(λ + μ)}(τ_{\hat{x}\hat{x}} + τ_{\hat{y}\hat{y}}) = \frac{λ}{2(λ + μ)} \tr_{2D} \btau_{2D}. $$
+	\end{dusledekin}
+
+	\begin{dusledekin}[$\bepsilon_{2D}$ vs. $\btau_{2D}$]
+		$$ \tr \btau = τ_{\hat{z}\hat{z}} + \tr_{2D} \btau_{2D} = \(\frac{λ}{2(λ + μ)} + 1\)\tr_{2D} \btau_{2D}. $$
+		$$ \bepsilon_{2D} = \frac{1}{2μ}\(\btau_{2D} - \frac{λ}{2(λ + μ)}(\tr_{2D} \btau_{2D})®I_{2D}\). $$
+		It is different from the 2D theory!
+
+		$$ ¦o = \Div_{2D} \btau_{2D} + ¦f_{2D}. \qquad \btau_{2D} ¦n|_{\partial Ω} = ¦g. \qquad \bepsilon_{2D} = \frac{1}{2}\(\nabla_{2D} ¦u_{2D} + \(\nabla_{2D} ¦u_{2D}\)\). $$
+	\end{dusledekin}
+
+	\begin{dusledekin}
+		We need just one additional equation. We take trace of Beltrami–Michelle:
+		$$ Δ(\tr \btau) + \frac{1}{1 + ν} Δ(\tr \btau) = -2(\Div ¦f) - \frac{3ν}{1 - ν}(\Div ¦f). $$
+		Using $\tr \btau = \(\frac{λ}{2(λ + μ)} + 1\)\tr_{2D} \btau_{2D}$:
+		$$ Δ_{2D}(\tr_{2D} \btau_{2D}) = -\frac{1}{1 - ν} \Div_{2D} ¦f_{2D}. $$
+	\end{dusledekin}
+\end{definice}
+
+\begin{poznamka}[Airy stress function]
+	$$ ¦o = \Div_{2D} \btau_{2D} - \nabla_{2D} φ. $$
+	Let us think $\btau$ is given by this "strange" potential:
+	$$ \btau_{2D} = \begin{pmatrix} \frac{\partial^2 φ}{\partial y^2} + φ & - \frac{\partial^2 φ}{\partial x \partial y}\\ -\frac{\partial^2 φ}{\partial x \partial y} & \frac{\partial^2 φ}{\partial x^2} + φ \end{pmatrix}. $$
+	$\implies ¦i = \Div_{2D} \btau_{2D} - \nabla_{2D} φ$.
+	$$ Δ_{2D} (\tr_{2D} \btau_{2D}) = \frac{1}{1 - ν} \Div_{2D}(\nabla_{2D} φ) \implies Δ_{2D}(Δ_{2D} φ) + \frac{1 - 2ν}{1 - ν} Δ_{2D} φ = 0.  $$
+	This is nice equation, but boundary conditions are awful.
+\end{poznamka}
+
+
 \end{document}

@@ -828,4 +828,66 @@ TODO!!!
 	Analytic determinacy is independent of ZFC.
 \end{poznamka}
 
+% 10. 01. 2024
+
+\subsection{Game $G^*(A)$}
+\begin{definice}[Game $G^*(A)$]
+	$X ≠ \O$ Polish topological space, $d$ is compatible compact norm on $X$, $V = (V_n)$ countable bare of $X$, $V_n ≠ \O$, $A \subset X$.
+
+	$$ I: (U_0^{(0)}, U_1^{(0)}), (U_0^{(1)}, U_1^{(1)}), … $$
+	$$ II: i_0, i_1, … $$
+
+	$i_n \in \{0, 1\}$. $U_i^{(n)} \in V$, $\diam U_i^{(n)} < 2^{-n}$. $\overline{U_0^{(n)}} \cap \overline{U_1^{(n)}} = \O$, $\overline{U_0^{(n+1)} \cup U_1^{(n+1)}} \subset U_{i_n}^{(n)}$.
+
+	We define $x \in X$ by $\{x\} = \bigcap_{n \in ω} \bigcup_{i_n}^{(n)}$, then $I$ wins $\Leftrightarrow$ $x \in A$.
+\end{definice}
+
+\begin{poznamka}
+	$X$ Polish topological space, $|x| > ω$. Then there exist $\tilde X \in ∏_1^0(X)$ such that $|X \setminus \tilde X| = ω$, $\tilde X$ is perfect. ($\Ker (X), I = \{M \subset X, |M| < ω\}$).
+\end{poznamka}
+
+\begin{veta}
+	$X ≠ \O$, perfect Polish topological space, $A \subset X$. Then 1. I player has winning strategy $\Leftrightarrow$ $A$ contains homomorphic copy of $2^ω$. 2. II player has winning strategy $\Leftrightarrow$ $|A| ≤ ω$.
+
+	\begin{dukazin}
+		„1. $\implies$“: Winning strategy for I gives scheme $(U_s)_{s \in 2^ω \setminus \{\O\}}$ such that $U_s ≠ \O$ open $\overline{U_{s^\wedge 0} \cup U_{s^\wedge 1}} \subset U_s$, $\overline{U_{s^\wedge 0}} \cap \overline{U_{s^\wedge 1}} = \O$, $\diam U_s < \sum 2^{|s| + 1}$ $\forall y \in 2^ω$: $\bigcap_{n \in ω} \bigcup y|_m = \{x\} \subset A$. ($\impliedby f(y) = x$ clearly homeomorphism.).
+		$$ C = \bigcap_{n=1}^∞ \bigcup_{|s| = n} \bigcup s = \bigcup_{s \in 2^ω} \bigcap_{k \in ω \setminus \{0\}} \bigcup s / k \subset A. $$
+
+		„1. $\impliedby$“: A continuous copy $C$ of $2^ω$ (homeomorphic). I player choose $U_i^{(n+1)}$: $\diam (U_i^{(n+1)}) < 2^{-n-1}$, $U_i^{(n+1)} \cap C ≠ \O$, $\overline{U_0^{(n+1)}} \cap \overline{U_1^{(n+1)}} = \O$, $\overline{U_0^{(n+1)}} \cup U_1^{(n+1)} \subset U_{i_n}^{(n)}$.
+
+		„2. $\impliedby$“: $|A| ≤ ω$: $A = \{x_0, x_1, …\}$. II in $n$-th move choose $i_n \in \{0, 1\}$ to have $x_n \notin U_{i_n}^{(n)}$. $\implies \bigcap_{n \in ω} \bigcup_{i_n}^{(n)} \not\subset A$.
+
+		„2. $\implies$“ Let $ς$ be winning strategy for $II$ player. Let $x \in A$. We say that position $p = ((U_0^{(0)}, U_1^{(0)}), i_0, …, (U_0^{(n-1)}, U_1^{(n-1)}), i_{n-1})$ is good for $x$ if we get to this position following one winning strategy and $x \in U_{i_{n-1}}^{(n-1)}$. We assume empty sequence be good for $x$. Assume that every good position $p$ for $x$ has nontrivial extension, which is still good for $x$. Then there exists some play following $ς$, such that the result is $x \in A$, which is const. So $\forall x \in A$ $\exists$maximal good position $p$ for $x$. $A_p = \{y \in U_{i_{(n-1)}}^{(n-1)} | \right.$ for every extension following rules $(U_0^{(n)}, U_1^{(n)})$ if $i$ is the move following $ς$, then $y \notin U_i^{(n)}\left.\}$ = $\{y | p \text{ maximal good for } y\}$.
+
+		$A \subset \bigcup_p A_p$, $|A_p| = 1$? By constr. $y_0 ≠ y_1$, $y_0, y_1 \in A_p$. We choose $U_0^{(n)}, U_1^{(n)}: y_i \in U_i^{(n)}$ $\implies$ $y_0$ or $y_1$ $\in U_{i_n}^{(n)}$ and $p$ is not maximal for this element. $\implies |A| = ω$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Game $G^*_u(F)$}
+\begin{definice}[Game $G^*_u(F)$]
+	$X ≠ \O$, perfect, Polish topological space, $F \subset X \times ω^ω$.
+	$$ I: y(0), (U_0^{(0)}, U_1^{(0)}), y(1), (U_0^{(1)}, U_1^{(1)}), … $$
+	$$ II: i_0, i_1, … $$
+
+	$U_i^{(n)}, i_n$ are same like in the previous game, $U_i^{(n)} \in V$ (fix constant bare), $y(u) \in ω$, $x \in X$ like before, $y = (y(0), y(1), …)$. $I$ wins $\Leftrightarrow$ $(x, y) \in F$.
+\end{definice}
+
+\begin{veta}
+	$X ≠ \O$, perfect, Polish topological space, $F \subset X \times ω^ω$, $A = \prod_X(F)$. Then 1. I has winning strategy in $G^*_u$ $\implies$ $A$ contains $2^ω$. 2. II has winning strategy in $G^*_u(F)$ $\implies$ $|A| ≤ ω$.
+
+	\begin{dukazin}
+		„1.“ proof is same like proof of 1. in the previous theorem.
+
+		„2.“ Let II has winning strategy in $G^*_n(F)$. Assume $(x, y) \in F$. Similarly like before we find maximal good position for $(x, y)$ ($p = \(y(0), (U_0^{(0)}, U_1^{(0)}), i_0, y(1), (U_0^{(1)}, U_1^{(1)}), i_1, …, y(n-1), (U_0^{(n-1)}, U_1^{(n-1)}), i_{n-1}\)$). $p \in ς$, $x \in U_{i_n}^{(n-1)}$. Put $A_{p, ς} = \{ z \in U_{i_{n-1}}^{(n-1)} | \right.$ for any possible extension $(a, U_0^{(n)}, U_1^{(n)})$, if $i$ is played winning $ς$, then $\left.z \notin U_i^{(n)}\}$. If $a = y_0(n)$ and $p$ as above, there $x \in A_{p, a}$.
+
+		Similarly like before $|A_{p, n}'| ≤ 1$, $A \subset \bigcup_{p \in ς, a \in ω} A_{p, a} \implies |A| ≤ ω$.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Let $Γ$ be class of subsets of Polish topological spaces, $A \subset X$ ($X$ Polish topological space) be $Γ$-hard $≡$ $\forall B \in Γ(ω^ω)$ $\exists f: ω^ω \rightarrow X: f^{-1}(A) = B$.
+
+	$A$ is $Γ$-complete $≡$ $A \in Γ$ $\land$ $A$ be $Γ$-hard.
+\end{definice}
+
 \end{document}

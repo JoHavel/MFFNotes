@@ -646,7 +646,7 @@ TODO!!!
 \end{priklady}
 
 \begin{poznamka}[Pullbacks]
-	Recall that a pullback was a limit of shape $©I := (A \rightarrow B \leftarrow C)$. For a category $©A$, $D: ©I \rightarrow ©A$ we get $(X \overset{s}\rightarrow Z \overset{t}\leftarrow Y) \in @A$.
+	Recall that a pullback was a limit of shape $©I := (A \rightarrow B \leftarrow C)$. For a category $©A$, $D: ©I \rightarrow ©A$ we get $(X \overset{s}\rightarrow Z \overset{t}\leftarrow Y) \in ©A$.
 
 	A pullback is an object $P \in ©A$ together with maps $p_1: P \rightarrow X$, $p_2: P \rightarrow Y$ such that $P \overset{p_1}\rightarrow Y \overset{t}\rightarrow Z \overset{s}\leftarrow X \overset{p_1}\leftarrow P$ commutes and such that for any other cone … we have … commutes.
 \end{poznamka}
@@ -658,5 +658,50 @@ TODO!!!
 
 	Intersection: Let $X, Y \subseteq Z$. Then $P \overset{p_y}\rightarrow Y \overset{\text{inclusion}}\hookrightarrow Z \overset{\text{inclusion}}\hookleftarrow X \overset{p_X}\leftarrow P$, $(x, y) \overset{p_y}\mapsto y \mapsto y = x \mapsfrom x \overset{p_X}\mapsfrom (x, y)$ $\implies P \simeq X \cap Y$.
 \end{priklady}
+
+% 11. 01 2024
+
+TODO!!!
+
+\begin{tvrzeni}
+	A morphism $f: X \rightarrow Y$ of objects in an additive category ©C is monic (resp. epic) iff $\Ker (f) = (0, 0 \rightarrow m)$, respective (resp. $coker(f) = (0, n \rightarrow 0)$).
+
+	\begin{dukazin}
+		Exercise.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Pre-abelian category]
+	A pre-abelian category ©C is an additive category such that every morphism in ©C has a kernel and a cokernel.
+\end{definice}
+
+\begin{poznamka}
+	Now suppose we have a morphism $f: X \rightarrow Y$ in a pre-abelian category. Then consider following diagram:
+	$$ 0 \rightarrow \Ker(f) \rightarrow X \overset{f}\rightarrow Y \rightarrow coker(f) \rightarrow 0, $$
+	$$ X \rightarrow coker \ker (f) \overset{h}\rightarrow \ker coker(f) \leftarrow Y, \qquad coker \ker (f) \overset{g?}\rightarrow Y. $$
+	The arrow $g$ is induced by the universal property of $coker \Ker (f)$ applied to the composite $\ker(f) \rightarrow X \rightarrow Y$ and the same for $h$.
+
+	So we see that in a pre-abelian category, an morphism factors through its coimage $coim(f) := coker \Ker (f)$ and its image $\Im(f) := \Ker ckoer(f)$.
+\end{poznamka}
+
+\begin{definice}[Abelian category]
+	A pre-abelian category ©A is abelian if for every morphism $f \in ©A$, the canonical morphism $coim(f) \rightarrow \Im(f)$ is an isomorphism.
+\end{definice}
+
+\begin{priklad}
+	Show that this is true in $MOD_R$. (Use the fundamental 3-theorems of modules).
+\end{priklad}
+
+\begin{veta}[Frey–Mitchel embedding theorem]
+	Let ©A be a small abelian category. Then exists a ring $R$ and a full-faithful functor $F: ©A \rightarrow MOD_R$.
+\end{veta}
+
+\begin{poznamkain}
+	How can we tell when $©A \simeq MOD_R$?
+\end{poznamkain}
+
+\begin{veta}[Morita's theorem]
+	Let ©A be a complete abelian category, with „pregenerator“ $P \in ©A$, and let $R = ©A(P, P)$. Then the functor $©A(P, -): ©A \rightarrow MOD_R$ is an equivalence of categories.
+\end{veta}
 
 \end{document}
