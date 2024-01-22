@@ -25,7 +25,7 @@
 \end{tvrzeni}
 
 \begin{tvrzeni}[Reflexivity of Sobolev spaces]
-	Let $\Omega \subseteq ®R^d$ be open set, $k \in ®N$ and $p \in (1, ∞)$. Then $W^{k, p}(\Omega)$ is separable.
+	Let $\Omega \subseteq ®R^d$ be open set, $k \in ®N$ and $p \in (1, ∞)$. Then $W^{k, p}(\Omega)$ is reflexive.
 \end{tvrzeni}
 
 \begin{definice}[Scalar product of $W^{k, 2}$]
@@ -37,17 +37,17 @@
 	$$ \forall u \in W^{k, p}(\Omega)\ \exists \{u_n\}_{n=1}^∞ \subseteq C_0^∞(®R^d)\ \forall\tilde\Omega\ open, \overline{\tilde \Omega} \subseteq \Omega: u^n \rightarrow u \ \text{in}\ W^{k, p}(\tilde\Omega). $$
 \end{veta}
 
-\begin{definice}[Domain of the class $C^{k, \alpha}$]
+\begin{definice}[Domain of the class $C^{k, μ}$]
 	Let $\Omega \subseteq ®R^d$ be open bounded set and $\alpha > 0$. We say that $\Omega \in C^{k, \mu}$ iff:
 
 	\begin{itemize}
 		\item there exist $M$ ($r \in [M]$) coordinate systems $¦x^r = (x_1^r, …, x_d^r) = (\tilde x^r, x_d^r)$ and functions $a^r: \Delta^r \rightarrow ®R$, where $\Delta^r = \{\tilde x^r \in ®R^{d - 1}\ |\ |x_d^r| ≤ \alpha\}$ such that $a^r \in C^{k, \mu}(\Delta^r)$;
-		\item if we denote $t^r$ the original transformation from $¦x^r$ to $¦x = (\tilde x, x_d)$, then $\forall x \in \partial\Omega$ $\exists r \in [M]$ such that $x = t^r(\tilde x', a(\tilde x_d))$;
+		\item if we denote $T_r$ the original transformation from $¦x^r$ to $¦x = (\tilde x, x_d)$, then $\forall x \in \partial\Omega$ $\exists r \in [M]$ such that $x = T_r(\tilde x', a(\tilde x_d))$;
 		\item $\exists \beta > 0$ such that if we define
 			$$ V_+^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) < x_d^r < a^r(\tilde x^r) + \beta\}, $$
 			$$ V_-^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) - \beta < x_d^r < a^r(\tilde x^r)\}, $$
 			$$ \Lambda^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) = x_d^r\}, $$
-			then $t^r(V_+^r) \subseteq \Omega$, $t^r(V_-^r) \subseteq ®R^d \setminus \Omega$, $t^r(\Lambda^r) \subseteq \partial \Omega$ and $\bigcup_{r\in[M]} t^r(\Lambda_r) = \partial \Omega$.
+			then $t^r(V_+^r) \subseteq \Omega$, $T_r(V_-^r) \subseteq ®R^d \setminus \Omega$, $T_r(\Lambda^r) \subseteq \partial \Omega$ and $\bigcup_{r\in[M]} T_r(\Lambda_r) = \partial \Omega$.
 	\end{itemize}
 \end{definice}
 
