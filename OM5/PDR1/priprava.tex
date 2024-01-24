@@ -41,8 +41,8 @@
 	Let $\Omega \subseteq ®R^d$ be open bounded set and $\alpha > 0$. We say that $\Omega \in C^{k, \mu}$ iff:
 
 	\begin{itemize}
-		\item there exist $M$ ($r \in [M]$) coordinate systems $¦x^r = (x_1^r, …, x_d^r) = (\tilde x^r, x_d^r)$ and functions $a^r: \Delta^r \rightarrow ®R$, where $\Delta^r = \{\tilde x^r \in ®R^{d - 1}\ |\ |x_d^r| ≤ \alpha\}$ such that $a^r \in C^{k, \mu}(\Delta^r)$;
-		\item if we denote $T_r$ the original transformation from $¦x^r$ to $¦x = (\tilde x, x_d)$, then $\forall x \in \partial\Omega$ $\exists r \in [M]$ such that $x = T_r(\tilde x', a(\tilde x_d))$;
+		\item there exist $M$ ($r \in [M]$) coordinate systems $¦x^r = (x_1^r, …, x_d^r) = (\tilde x^r, x_d^r)$ and functions $a^r: \Delta^r \rightarrow ®R$, where $\Delta^r = \{\tilde x^r \in ®R^{d - 1}\ |\ |x_i^r| ≤ \alpha\}$ such that $a^r \in C^{k, \mu}(\Delta^r)$;
+		\item if we denote $T_r$ the orthogonal transformation from $¦x^r$ to $¦x = (\tilde x, x_d)$, then $\forall x \in \partial\Omega$ $\exists r \in [M]$ such that $x = T_r(\tilde x', a(\tilde x_d))$;
 		\item $\exists \beta > 0$ such that if we define
 			$$ V_+^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) < x_d^r < a^r(\tilde x^r) + \beta\}, $$
 			$$ V_-^r := \{¦x^r \in ®R^d | \tilde x^r \in \Delta_r \land a^r(\tilde x^r) - \beta < x_d^r < a^r(\tilde x^r)\}, $$
@@ -51,7 +51,7 @@
 	\end{itemize}
 \end{definice}
 
-\begin{veta}[Extension theorem for $W^{1, p}(\Omega)$]
+\begin{veta}[Extension theorem for $W^{k, p}(\Omega)$]
 	Let $\Omega \in C^{0, 1}$ and $k \in ®N$, $p \in [1, ∞]$. Then there exists a continuous linear operator $E: W^{k, p}(\Omega) \rightarrow W^{k, p}(®R^d)$ such that (for $C$ independent of $u$):
 	$$ \|E u\|_{W^{k, p}(®R^d)} ≤ C·\|E u\|_{W^{k, p}(\Omega)} \land E u |_\Omega = u. $$
 \end{veta}
@@ -60,7 +60,7 @@
 	Let $\Omega \in C^{0, 1}$ and let $p \in [1, ∞]$. Then
 	\vspace{-1em}
 	\begin{itemize}
-		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ for all $1 ≤ \frac{dp}{d - p}$,
+		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ for all $q ≤ \frac{dp}{d - p}$,
 		\item if $p = d$, then $W^{1, p}(\Omega) \hookrightarrow L^q(\Omega)$ for all $q < ∞$,
 		\item if $p > d$, then $W^{1, p}(\Omega) \hookrightarrow C^{0, 1 - \frac{d}{p}}(\overline{\Omega})$.
 	\end{itemize}
@@ -68,7 +68,7 @@
 	Moreover
 	\vspace{-1em}
 	\begin{itemize}
-		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ for all $1 ≤ \frac{dp}{d - p}$,
+		\item if $p < d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ for all $q ≤ \frac{dp}{d - p}$,
 		\item if $p = d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ for all $q < ∞$,
 		\item if $p > d$, then $W^{1, p}(\Omega) \hookrightarrow\hookrightarrow C^{0, \alpha}(\overline{\Omega})$ for all $\alpha < 1 - \frac{d}{p}$.
 	\end{itemize}
@@ -106,7 +106,7 @@
 	Let $s: I \rightarrow X$ be a simple function ($|\im s| = |\{x_1, …, x_n\}| < ∞$) on interval. We define
 	$$ \int_I s(t) dt := \sum_{j=1}^n x_j·|I_j|. $$
 
-	Let $f: I \rightarrow X$ be a Bochner measurable function. We say that $f$ is Bochner integrable if $\exists \{s^n\}_{n=1}^∞$ such that $s^n(t) \rightarrow f(t)$ for almost every $t \in I$ and $\int_I \|s^n(t) - f(t)\|_X dt \rightarrow 0$ as $n \rightarrow ∞$ and we set
+	Let $f: I \rightarrow X$ be a Bochner measurable function (see the next definition). We say that $f$ is Bochner integrable if $\exists \{s^n\}_{n=1}^∞$ such that $s^n(t) \rightarrow f(t)$ for almost every $t \in I$ and $\int_I \|s^n(t) - f(t)\|_X dt \rightarrow 0$ as $n \rightarrow ∞$ and we set
 	$$ X \ni \int_I f(t) dt = \lim_{n \rightarrow ∞} \int_I s^n(t) dt. $$
 \end{definice}
 
@@ -139,9 +139,9 @@
 
 \begin{definice}[Scalar product of $W^{1, 2}(I; H)$]
 	If $H$ is Hilbert space and $u, v \in $, then
-	$$ (u, v)_{H^1(I; X)} := (u, v)_{L^2(I; X)} + (u', v')_{L^2(I; X)}, $$
+	$$ (u, v)_{W^{1,2}(I; H)} := (u, v)_{L^2(I; H)} + (u', v')_{L^2(I; H)}, $$
 	where
-	$$ (u, v)_{L^2(I; X)} := \int_I (u(t), v(t))dt. $$
+	$$ (u, v)_{L^2(I; H)} := \int_I (u(t), v(t))_Hdt. $$
 \end{definice}
 
 \begin{definice}[Gelfand triple]
@@ -149,14 +149,14 @@
 \end{definice}
 
 \begin{veta}[Integration by parts for Sobolev-Bochner functions]
-	Let $p \in (1, ∞)$, $X, H, X^*$ a Gelfond triple, $u, v \in L^p(0, T; X)$, $\partial_t u, \partial_t v \in L^{p'}(0, T; X^*)$. Then $u, v \in C([0, T]; H)$ and $\forall 0 ≤ t_1 < t_2 ≤ T$:
+	Let $p \in (1, ∞)$, $X, H, X^*$ a Gelfand triple, $u, v \in L^p(0, T; X)$, $\partial_t u, \partial_t v \in L^{p'}(0, T; X^*)$. Then $u, v \in C([0, T]; H)$ and $\forall 0 ≤ t_1 < t_2 ≤ T$:
 	$$ \int_{t_1}^{t_2} \<\partial_t u, v\>_X + \<\partial_t v, u\>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
 \end{veta}
 
 \break
 
 \begin{dukaz}[Completeness of Sobolev space]
-	$u^n$ is Cauchy in $L^p(\Omega)$ so $\exists u \in L^p: u^n \rightarrow u$ in $L^p$. $D^\alpha u^n$ is Cauchy in $L^p(\Omega)$ $\forall |\alpha| < k$ so $\exists v_\alpha \in L^p: D^\alpha u^n \rightarrow v_\alpha \in L^p$. It remains prove that $D^\alpha u = v_\alpha$.
+	$u^n$ is Cauchy in $W^{k,p}(\Omega)$ so $\exists u \in W^{k,p}: u^n \rightarrow u$ in $W^{k,p}$. $D^\alpha u^n$ is Cauchy in $L^p(\Omega)$ $\forall |\alpha| < k$ so $\exists v_\alpha \in L^p: D^\alpha u^n \rightarrow v_\alpha \in L^p$. It remains prove that $D^\alpha u = v_\alpha$.
 	$$ \forall \eta \in C_0^∞(\Omega): \int_\Omega v_\alpha \eta = \int_\Omega (v_\alpha - D^\alpha u^n)\eta + \int_\Omega D^{\alpha}u^n\eta = $$
 	$$ = \int_\Omega(v_\alpha - D^\alpha u^n) \eta + (-1)^{|\alpha|} \int_\Omega D^\alpha \eta u^n = $$
 	$$ = \int_\Omega(v_\alpha - D^\alpha u) \eta + (-1)^{|\alpha|} \int_\Omega(u^n - u)D^\alpha\eta + (-1)^{|\alpha|}\int_\Omega u D^\alpha \eta. $$
@@ -297,7 +297,7 @@
 	\begin{dukazin}[Step 3]
 		We have
 		$$ \int_{t_1}^{t_2} \<\partial_t u_{h_1}, v_{h_2}\>_X + \<\partial_t v_{h_2}, u_{h_1}\>_X dt = (u_{h_1}(t_2), v_{h_2}(t_2))_H - (u_{h_1}(t_1), v_{h_2}(t_1))_H $$
-		Let $h_1 \rightarrow 0_+$ and $h_2 \rightarrow 0_+$. We have $\partial_t u_{h_1} \rightarrow \partial_t u$ in $L^{p'}(0, T, X^*)$, $\partial_t v_{h_2} \rightarrow \partial_t v$ in $L^{p'}(0, T, X^*)$, $u_{h_1} \rightarrow u$ in $L^p(0, T, X)$, $V_{h_2} \rightarrow v$ in $L^p(0, T, X)$. So for almost all $t$ in $(0, T)$: $v_{h_2}(t) \rightarrow v(t)$ in $X \hookrightarrow H$ and $u_{h_1}(t) \rightarrow u(t)$ in $X \hookrightarrow H$.
+		Let $h_1 \rightarrow 0_+$ and $h_2 \rightarrow 0_+$. We have $\partial_t u_{h_1} \rightarrow \partial_t u$ in $L^{p'}(0, T, X^*)$, $\partial_t v_{h_2} \rightarrow \partial_t v$ in $L^{p'}(0, T, X^*)$, $u_{h_1} \rightarrow u$ in $L^p(0, T, X)$, $v_{h_2} \rightarrow v$ in $L^p(0, T, X)$. So for almost all $t$ in $(0, T)$: $v_{h_2}(t) \rightarrow v(t)$ in $X \hookrightarrow H$ and $u_{h_1}(t) \rightarrow u(t)$ in $X \hookrightarrow H$.
 
 		$$ \int_{t_1}^{t_2} \<\partial_t u, v\>_X + \<\partial_t v, u\>_X = (u(t_2), v(t_2))_H - (u(t_1), v(t_1))_H. $$
 		Now, it is enough to show $u, v \in C([0, T); H)$. We show that $u_h$ is Cauchy in $C([0, T]; H)$. Use IBP $u_{h_1} = u_{h^n} - u_{h^m}$, $v_{h_2} = u_{h^n} - u_{h^m}$:

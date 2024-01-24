@@ -102,7 +102,7 @@
 		\item symmetric if $A = -A$;
 		\item balanced if $α A \subset A$ for $α \in ®F$, $|α| ≤ 1$;
 		\item absolutely convex if it is convex and balanced;
-		\item absorbing if $\forall x \in X\ \exists t > 0: \{s X | s \in [0, t]\} \subset A$.
+		\item absorbing if $\forall x \in X\ \exists t > 0: \{s·x | s \in [0, t]\} \subset A$.
 	\end{itemize}
 \end{definice}
 
@@ -200,7 +200,7 @@
 	\begin{dukazin}[1.]
 		Let ©U be the family of all open absolutely convex neighbourhoods of ¦o. The previous proposition (iii) gives us ©U is a base of neighbourhoods of ¦o, (1) gives us elements of ©U are absorbing, so the first item holds. (ii) gives us $U \in ©U \implies \frac{1}{2} U \in ©U$.
 
-		Assume $X$ i Hausdorff: $x \in X \setminus \{¦o\} \overset{\text{Hausdorff}}\implies \exists U \in τ(¦o): x \notin U \implies \exists V \in ©U: V \subset U: x \notin V$.
+		Assume $X$ is Hausdorff: $x \in X \setminus \{¦o\} \overset{\text{Hausdorff}}\implies \exists U \in τ(¦o): x \notin U \implies \exists V \in ©U: V \subset U: x \notin V$.
 	\end{dukazin}
 	
 	\begin{dukazin}[2.]
@@ -306,7 +306,7 @@
 	Any LCS ($X$) is completely regular.
 
 	\begin{dukazin}
-		$x \in X$, $U$ an open neighbourhood of $x$. Take $V$ a convex neighbourhood of ¦o such that $x + V \in U$. $f(y) := \min\{1, p_V(y - x)\}$. The $f$ is continuous by the previous proposition, $f(x) = 0$.
+		$x \in X$, $U$ an open neighbourhood of $x$. Take $V$ a convex neighbourhood of ¦o such that $x + V \in U$. $f(y) := \min\{1, p_V(y - x)\}$. Then $f$ is continuous by the previous proposition, $f(x) = 0$.
 		$$ y \in X \setminus U \implies y - x \notin V \implies p_V(y - x) ≥ 1 \implies f(y) = 1. $$
 	\end{dukazin}
 \end{dusledek}
@@ -734,7 +734,7 @@ TODO?
 	\end{itemize}
 
 	\begin{dukazin}
-		Analogous to the theorem above. Assume $X$ is a real space $(®F = ®R)$. „First item“: $\Int A ≠ \O$ $\implies$ $\Int(B - A) ≠ \O$ and $- \notin B - A$. Fix $z \in \Int(B - A)$, set $U := z - (B - A)$. The $U$ is a convex neighbourhood of ¦o, $z \notin U \implies p_U(z) ≥ 1$. Define $g_0: \LO \{z\} \rightarrow ®R$ by $g_0(t·z) = t·p_U(z)$ $\implies$ $g_0$ is a linear functional, $g_0 ≤ p_U$ on $\LO\{z\}$ ($t ≥ 0 \implies g_0(t·z) = t·p_U(z) = p_U(t·z)$, $t < 0 \implies g_0(t·z) =t·p_U(z) < 0 ≤ p_U(t·z)$).
+		Analogous to the theorem above. Assume $X$ is a real space $(®F = ®R)$. „First item“: $\Int A ≠ \O$ $\implies$ $\Int(B - A) ≠ \O$ and $¦o \notin B - A$. Fix $z \in \Int(B - A)$, set $U := z - (B - A)$. The $U$ is a convex neighbourhood of ¦o, $z \notin U \implies p_U(z) ≥ 1$. Define $g_0: \LO \{z\} \rightarrow ®R$ by $g_0(t·z) = t·p_U(z)$ $\implies$ $g_0$ is a linear functional, $g_0 ≤ p_U$ on $\LO\{z\}$ ($t ≥ 0 \implies g_0(t·z) = t·p_U(z) = p_U(t·z)$, $t < 0 \implies g_0(t·z) =t·p_U(z) < 0 ≤ p_U(t·z)$).
 
 		From algebraic Hahn–Banach $\exists g: X \rightarrow ®R$ linear, $g|_{\LO\{z\}} = g_0$, $g ≤ p_U$ on $X$. $g$ is continuous ($g ≤ 1$ on $U$ $\implies$ $g ≥ -1$ on $-U$, so $|g| ≤ 1$ on $U \cap (-U)$, a neighbourhood of ¦o). $a \in A$, $b \in B$ $\implies$
 		$$ \implies g(z) - g(b) + g(a) = g(z - (b - a)) ≤ p_U(z - (b - a)) ≤ 1, \quad g(a) ≤ g(b) + \underbrace{1 - \overbrace{g(z)}^{= p_U(z) ≥ 1}}_{≤ 0}. $$
@@ -807,7 +807,7 @@ TODO?
 	Let $X$ be a vector space and $f, f_1, …, f_k \in X^{\#}$. The following assertions are equivalent:
 	\begin{enumerate}
 		\item $f \in \LO\{f_1, …, f_k\}$;
-		\item $\exists C > 0\ \forall x \in X: |f(x)| · C · \max\{|f_1(x)|, …, |f_k(x)|\}$;
+		\item $\exists C > 0\ \forall x \in X: |f(x)| ≤ C · \max\{|f_1(x)|, …, |f_k(x)|\}$;
 		\item $\bigcap_{j=1}^k \Ker f_j \subset \Ker f$.
 	\end{enumerate}
 
@@ -894,9 +894,9 @@ TODO?
 \begin{definice}[Polars, absolute polars and anihilators]
 	Let $X$ be a LCS. Let $A \subset X$ and $B \subset X^*$ be nonempty sets. We define
 	\begin{alignat*}{4}
-		A^\triangleright &:= \{f \in X^* | \forall x \in A: \Re f(x) ≤ 1\}, \qquad && B_\triangleright &:= \{x \in X | \forall f \in B: \Re f(x) ≤ 1\},\\
-		A^∘ &:= \{f \in X^* | \forall x \in A: |f(x)| ≤ 1\}, \qquad && B_∘ &= \{x \in X | \forall f \in B: |f(x)| ≤ 1\},\\
-		A^\perp &:= \{f \in X^* | \forall x \in A: f(x) = 0\}, \qquad && B_\perp &= \{x \in X | \forall f \in B: f(x) = 0\}.
+		A^\triangleright &:= \{f \in X^* | \forall x \in A: \Re f(x) ≤ 1\}, \qquad & B_\triangleright &:= \{x \in X | \forall f \in B: \Re f(x) ≤ 1\},\\
+		A^∘ &:= \{f \in X^* | \forall x \in A: |f(x)| ≤ 1\}, \qquad & B_∘ &:= \{x \in X | \forall f \in B: |f(x)| ≤ 1\},\\
+		A^\perp &:= \{f \in X^* | \forall x \in A: f(x) = 0\}, \qquad & B_\perp &:= \{x \in X | \forall f \in B: f(x) = 0\}.
 	\end{alignat*}
 \end{definice}
 
@@ -927,9 +927,9 @@ TODO?
 \begin{veta}[Bipolar theorem]
 	Let $X$ be a LCS and let $A \subset X$ and $B \subset X^*$ be nonempty sets. Then
 	\begin{alignat*}{4}
-		(A^\triangleright)_\triangleright &= \overline{\co}(A \cup \{¦o\}) \(= \overline{\co}^w(A \cup \{¦o\})\), \quad &&, (B_\triangleright)^\triangleright &= \overline{\co}^w(B \cup \{¦o\}),\\
-		(A^∘)_∘ &= \overline{\aco} A \(= \overline{\aco}^w A\), \qquad &&, (B_∘)^∘ &= \overline{\aco}^w B,\\
-		(A^\perp)_\perp &= \overline{\LO} A \(= \overline{\LO}^w A\), \qquad &&, (B_\perp)^\perp &= \overline{\LO}^w B.
+		(A^\triangleright)_\triangleright &= \overline{\co}(A \cup \{¦o\}) \(= \overline{\co}^w(A \cup \{¦o\})\), \quad & (B_\triangleright)^\triangleright &= \overline{\co}^w(B \cup \{¦o\}),\\
+		(A^∘)_∘ &= \overline{\aco} A \(= \overline{\aco}^w A\), \qquad & (B_∘)^∘ &= \overline{\aco}^w B,\\
+		(A^\perp)_\perp &= \overline{\LO} A \(= \overline{\LO}^w A\), \qquad & (B_\perp)^\perp &= \overline{\LO}^w B.
 	\end{alignat*}
 
 	\begin{dukazin}
@@ -1008,7 +1008,7 @@ TODO?
 	Then $f$ attains its minimum at some point of $X$.
 
 	\begin{dukazin}
-		TODO?
+		TODO!!!
 	\end{dukazin}
 \end{dusledek}
 
@@ -1143,13 +1143,13 @@ TODO?
 
 \begin{priklady}
 	$f \in L^1_{loc}(Ω)$. $Λ_f(φ) = \int_Ω f·φ$ ($φ \in ©D(Ω)$) $\implies$ $Λ_f$ is a distribution of order 0. Because $K \subset Ω$ compact $\implies$ $\int_K |f| < ∞$, $φ \in D_K(Ω)$:
-	$$ |Λ_f(φ)| = |\int_Ω f·φ| = |\int_K f·φ| ≤ \int_K |fφ| ≤ \|φ\|_∞·\int_K|f| = \|φ\|_0·\int_K|f|. $$
+	$$ |Λ_f(φ)| = \left|\int_Ω f·φ\right| = \left|\int_K f·φ\right| ≤ \int_K |fφ| ≤ \|φ\|_∞·\int_K|f| = \|φ\|_0·\int_K|f|. $$
 
 	$μ ≥ 0$ regular Borel measure, finite on compacts. $Λ_μ(φ) = \int_Ω φ dμ$ is a distribution on $Ω$ of order 0. Because if $K \subset Ω$, $φ \in ©D_K(Ω)$, then
-	$$ |Λ_μ(φ)| = |\int_Ω φ dμ| = |\int_K φ dμ| ≤ \|φ\|_∞ μ(K). $$
+	$$ |Λ_μ(φ)| = \left|\int_Ω φ dμ\right| = \left|\int_K φ dμ\right| ≤ \|φ\|_∞ μ(K). $$
 
 	$μ$ is a signed (or complex) finite measure $Λ_μ(φ) = \int_Ω φ dμ$ is a distribution of order 0:
-	$$ |\int_K φ dμ| ≤ \int_K |φ| d|μ| ≤ |μ|(K) · \|φ\|_∞ ≤ \|μ\|·\|φ\|_∞. $$
+	$$ \left|\int_K φ dμ\right| ≤ \int_K |φ| d|μ| ≤ |μ|(K) · \|φ\|_∞ ≤ \|μ\|·\|φ\|_∞. $$
 
 	$Λ(φ) = φ'(0)$, $φ \in ©D(®R)$ is a distribution of order 1. (Clearly $|Λ(φ)| ≤ \|φ'\|_∞ ≤ \|φ\|_1$.) $Λ$ not of order 0: Find $φ \in ©D(®R)$ such that $φ'(0) = 1$, $\supp φ \subset [-c, c]$ for some $c > 0$. $φ_n(x) = φ(nx)$, $x \in ®R$, $n \in ®N$, $\implies$ $φ_n \in ©D(®R)$. $\supp φ_n \subset [-c / n, c / n] \subset [-c, c]$. $\|φ_n\|_0 = \|φ\|_0$. $Λ(φ_n) = φ_n'(0) = φ'(0)·n = n$.
 
@@ -1786,10 +1786,10 @@ TODO?
 
 		3. Fix $N \in ®N_0$, $α$, $|α| ≤ N$.
 		$$ f \in ©S(®R^d): (1 + \|x\|^2)^N D^α \hat{f}(x) = (1 + \|x\|^2)^N \widehat{(y \mapsto (-1)^{|α|} y^α f(y))}(x) = $$
-		$$ = (-1)^{|α|} \widehat{(y \mapsto \breve{\breve{p}}(D) (y^α(f(y))))}(x) = (-1)^{|α|} \widehat{(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))}(x), $$
+		$$ = (-i)^{|α|} \widehat{(y \mapsto \breve{\breve{p}}(D) (y^α(f(y))))}(x) = (-i)^{|α|} \widehat{(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))}(x), $$
 		where $\breve p(x) = p(ix)$, $p(D)f = \sum_{c_α}D^α f$ if $p(x) = \sum c_α x^α$. $\breve{\breve p}(x) = (1 - \sum_{j=1}^d x_j^2)^N$ a polynom of degree $2N$.
 
-		So, $\|x \mapsto (1 + \|x\|^2)^N D^α \hat{f}(x)\|_∞ ≤ c·p_m(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))$. From the previous lemma $f \mapsto \sum_{|β| ≤ @N} a_β D^β (y^α f(y))$ is continuous.
+		So, $\|x \mapsto (1 + \|x\|^2)^N D^α \hat{f}(x)\|_∞ ≤ c·p_m(y \mapsto \sum_{|β| ≤ 2N} a_β D^β(y^α f(y)))$. From the previous lemma $f \mapsto \sum_{|β| ≤ N} a_β D^β (y^α f(y))$ is continuous.
 
 		So, $\exists M = M_{N, α} > 0$, $\exists m = m_{N, α} \in ®N_0$:
 		$$ p_m(y \mapsto \sum_{|β| ≤ 2N} a_β D^β (y^α f(y))) ≤ M·p_n(f) \implies $$
