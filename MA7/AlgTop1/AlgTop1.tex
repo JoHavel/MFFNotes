@@ -130,9 +130,92 @@
 	Show that $S^n = e^0 \cup e^n$ is $B^n / S^{n-1} = TODO / e^0 \cup e^{n-1}$.
 \end{priklad}
 
-% 16. 10. 2023
+% 16. 10. 2023 (from notes of lecturer)
 
-TODO!!!
+\begin{definice}[Suspension]
+	For a space $X$, the suspension $SX$ is the quotient of $X \times T := X \times [0, 1]$ by collapsing $X \times \{0\}$ to one point and $X \times \{1\}$ to another point.
+
+	\begin{prikladyin}[Motivation]
+		$$ X = S^n \implies SX = X \times [0, 1] / \sim = S^{n+1}. $$
+	\end{prikladyin}
+\end{definice}
+
+\begin{definice}[Wedge sum]
+	Given spaces $X$ and $Y$ with chosen points $x_0 \in X$ and $y_0 \in Y$, the wedge sum $X \wedge Y$ is the quotient of the disjoint union $X \coprod Y$ obtained by identifying $x_0$ and $y_0$ to a single point.
+\end{definice}
+
+\section{Fundamental group}
+\subsection{Paths and homotopy}
+\begin{definice}[Path, endpoints]
+	Given a topological space $X$, a path in $X$ is a continuous map $f: [0, 1] =: I \rightarrow X$. Then points $f(0)$ and $f(1)$ are usually called and endpoints of $f$.
+\end{definice}
+
+\begin{definice}[Homotopy]
+	A homotopy of paths in $X$ is a family $f_t: [0, 1] =: I \rightarrow X$, $t \in [0, 1]$, such that the endpoints $f_t(0) = x_0$, $f_t(1) = x_1$ for all $t \in [0, 1]$, i.e. the endpoints are independent of $t$; the associated map $F: I \times I \rightarrow X$ defined by $F(s, t) := f_t(s)$ is continuous.
+\end{definice}
+
+\begin{tvrzeni}
+	The relation of homotopy on paths with fixed endpoints in any space is an equivalence relation.
+
+	\begin{dukazin}
+		„Reflexivity“: $X$ topological space. We want $f: [0, 1] \rightarrow X$ $\implies$ $f$ is homotopic to $f$. The homotopy is trivial, i.e. we take $f_t(s) = f(s)$ $\forall t$.
+
+		„Symmetry“: We have $f_0: [0, 1] \rightarrow X$, $f_1: [0, 1] \rightarrow X$. $f_0$ is homotopic to $f_1$ via $f_t(s)$. We want to have a homotopy $g_t$ from $f_1$ to $f_0$. We can define $g_t(s) = f_{1 - t}(s)$.
+
+		„Transitivity“: $f_0$ homotopic to $f_1$ via $f_t$, and $f_1$ to $f_2$ via $g_t$. We define homotopy from $f_0$ to $f_2$ by $h_t(s) = f_{2t}(s)$ if $t \in [0, 1 / 2]$ and $h_t(s) = g_{2t - 1}(s)$ if $t \in [1 / 2, 1$. $h_t$ is continuous since $f_t, g_t$ are continuous.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Composition of paths (product of paths)]
+	Given two paths $f, g: I \rightarrow X$ such that $f(1) = g(0)$. We can take a composition of paths also called the product of paths
+	$$ f·g(s) := \begin{cases}f(2s), \qquad& 0 ≤ s ≤ \frac{1}{2},\\g(2s - 1), \qquad& \frac{1}{2} ≤ s ≤ 1.\end{cases} $$
+\end{definice}
+
+\begin{poznamka}[Loop, constant loop]
+	From now on, we will consider not all paths but loops, i.e. $f: [0, 1] \rightarrow X$ continuous such that $f(0) = f(1)$.
+
+	We take a fixed point $x_0$. There is a special loop -- constant loop -- $f: [0, 1] \rightarrow X$: $f(s) = x_0$ $\forall s \in [0, 1]$.
+\end{poznamka}
+
+\begin{poznamka}[Homotopy equivalence, product of equivalence classes]
+	When we take product $f·g$ for two loops $f$ and $g$ starting and ending at $x_0$, the product $f·g$ up to homotopy (denoted $[f·g]$) depends only on $[f]$ and $[g]$ ($f$ and $g$ up to homotopy).
+
+	I.e. $f \sim f' \land g \sim g' \implies f·g \sim f'·g'$.
+\end{poznamka}
+
+\begin{definice}[Fundamental group]
+	Given a topological space $X$ with a fixed point $x_0 \in X$, the fundamental group $π_1(X, x_0)$ as a set is a set of homotopy classes of loops with endpoints at $x_0$ and the group structure is given by the product of equivalence classes of loops.
+\end{definice}
+
+\begin{definice}[Reparametrization of path]
+	A reparametrization of path $f$ is a composition $f ∘ φ$, where $φ: I \rightarrow I$ continuous, such that $φ(0) = 0$, $φ(1) = 1$.
+\end{definice}
+
+\begin{dusledek}
+	Reparametrization a path preserves its homotopy class since $f ∘ φ \simeq f$ via the homotopy $φ_t(s) = (1 - t)φ(s) + t·s$ so that $φ_0 = φ$ and $φ_1(s) = s$
+\end{dusledek}
+
+\begin{definice}[Inverse loop]
+	Given a loop $f: [0, 1] \rightarrow X$ with $f(0) = f(1) = x_0$, the inverse loop $f^{-1}$ (or $\overline{f}$) is $f^{-1}(s) = f(1 - s)$.
+\end{definice}
+
+\begin{tvrzeni}
+	$π_1(X, x_0)$ is a group.
+
+	\begin{dukazin}
+		So far we guaranteed that the product $[f·g]$ of two loops $[f]$ and $[g]$ is defined. ($[f·g] = [f]·[g]$.) In order to be a group $(π_1(X, x_0), ·)$ should satisfy group axioms.
+
+		„Constant“: Given a loop $f: I \rightarrow X$ with $f(0) = f(1) = x_0$ and a constant loop $c: I \rightarrow X$ with $c(s) = x_0$. We take $f·c$. $f·c$ is a reparametrization of $f$ via function $φ(s) = \min(2s, 1)$. For $c·f$ we see that $c·f = f ∘ φ$, where $φ(s) = \max(0, 2s - 1)$. So $c·f \simeq f$ and $f·c \simeq f$, so $[c·f] = [f] = [f·c]$.
+
+		„Associativity“: If we take three loops $f, g, h$, then take products $(f·g)·h$ and $f·(g·h)$. Observe that $f·(g·h)$ is a reparametrization of $[f·g]·h$ via the map $φ(s) = \max(s / 2, s - 1 / 2, 2s - 1)$. Hence $[f]·[g·h] = [f·g]·[h]$.
+
+		„Inverse“: Take $f·f^{-1}$ and construct a homotopy to a constant loop $c$ by taking $h_t = f_t · g_t$, where $f_t(s) = f(s)$ for $s \in [0, 1 - t]$, and $f_t(s) = f(1 - t)$ for $s \in [1 - t, 1]$. ($f_0 = f$, $f_1 = c$). $g_t = f_t^{-1}$ for all $t$. $h_0 = f_0·f_0^{-1} = f·f^{-1}$, $h_1 = c·c^{-1} = c$.
+
+		In the same construction we take $f^{-1}$ instead of $f$ and we get $f^{-1}·f \simeq c$. This way we checked $[f]·[f^{-1}] = [f^{-1}]·[f] = [c]$.
+	\end{dukazin}
+\end{tvrzeni}
+
+TODO? (Definition of category)
 
 % 23. 10. 2023
 
