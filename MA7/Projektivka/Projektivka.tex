@@ -83,17 +83,17 @@
 	$\vec{AS} = \frac{1}{2} \vec{AB} \Leftrightarrow \vec{SA} = -\vec{SB}$.
 \end{poznamka}
 
-\begin{definice}[Dělící poměr]
-	Dělící poměr 3 bodů $A, B, C$ na (jedné) přímce je číslo $λ = (ABC)$ splňující $C - A = λ(C - B)$.
+\begin{definice}[Dělicí poměr]
+	Dělicí poměr 3 bodů $A, B, C$ na (jedné) přímce je číslo $λ = (ABC)$ splňující $C - A = λ(C - B)$.
 
 	\begin{poznamkain}
-		Odsud lze odvodit Euklidovskou definici dělícího poměru: $|λ| = \frac{\|C - A\|}{\|C - B\|}$.
+		Odsud lze odvodit Euklidovskou definici dělicího poměru: $|λ| = \frac{\|C - A\|}{\|C - B\|}$.
 
 		$A, B, C$ různé, pak $λ$ nenabývá hodnot $0$ ($A = C$), $1$ ($A = B$) a $∞$ ($B = C$).
 
 		$C$ je středem úsečky $AB$, právě když $(ABC) = -1$.
 
-		Dělící poměr jako graf funkce ($A, B$ pevné, $C$ proměnné) je hyperbola.
+		Dělicí poměr jako graf funkce ($A, B$ pevné, $C$ proměnné) je hyperbola.
 
 		Pro každé dva body $A ≠ B$ a $\forall λ \in ®R \setminus \{0, 1\}$, existuje právě jedno $C$, že $(ABC) = λ$.
 
@@ -106,7 +106,7 @@
 \begin{poznamka}[Role zobrazení v jednotlivých geometriích]
 	V EG: posunutí, otáčení a osová souměrnost (tj. shodnosti) zachovávají délky a úhly (tj. (pro zajímavost) jsou to invarianty euklidovské grupy).
 
-	V AG: isomorfismy (lineární zobrazení na) zachovávají dělící poměr.
+	V AG: isomorfismy (lineární zobrazení na) zachovávají dělicí poměr.
 \end{poznamka}
 
 \subsection{Projektivní přímka}
@@ -170,12 +170,12 @@ TODO!!!
 \end{definice}
 
 \begin{definice}[Perspektiva]
-	Perspektiva nesoumístných sourodých soustav je zobrazení: pro bodové soustavy jde o středové promítání z bodu $O \notin p, p'$ (píšeme $p(A, B< C)::p'(A', B', C')$), pro přímkové soustavy duálně (přímka $o$ protne soustavu procházející $P$ v bodech, které spojíme s bodem $P'$ a dostaneme druhou soustavu).
+	Perspektiva nesoumístných sourodých soustav je zobrazení: pro bodové soustavy jde o středové promítání z bodu $O \notin p, p'$ (píšeme $p(A, B, C)::p'(A', B', C')$), pro přímkové soustavy duálně (přímka $o$ protne soustavu procházející $P$ v bodech, které spojíme s bodem $P'$ a dostaneme druhou soustavu).
 
 	Bod $O$ se nazývá bod perspektivity (střed promítání). Přímka $o$ je přímkou perspektivity.
 
 	\begin{poznamkain}
-		Bod $O$ nemusí být vlastni.
+		Bod $O$ nemusí být vlastní.
 	\end{poznamkain}
 
 	\begin{poznamkain}[Značení $::$]
@@ -204,7 +204,7 @@ TODO!!!
 \end{dusledek}
 
 \begin{upozorneni}
-	Perspektivita nezachovává dělící poměr 3 bodů.
+	Perspektivita nezachovává dělicí poměr 3 bodů.
 \end{upozorneni}
 
 \begin{tvrzeni}
@@ -300,7 +300,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \begin{definice}[Involuce]
 	Involuce je projektivita (soumístných soustav) splňující jednu z následujících ekvivalentních podmínek:
 	\begin{itemize}
-		\item $w = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
+		\item $ω = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
 		\item $\exists X ≠ S, T: X'' = X$;
 		\item $\forall X: X'' = X$.
 	\end{itemize}
@@ -339,7 +339,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \end{priklad}
 
 \begin{veta}[O bodu na direkční přímce]
-	Mějme projektivitu $p(A, B, C) ::: p'(A', B', C')$ (nesourodých soustav), $d$ nechť je direkční přímka, $H \in d$ libovolný bod na direkční přímce. Pak páry přímek $a = HA$, $A' = HA'$, $b = HB$, $b' = HB'$, atd. jsou páry téže involuce přímek ve svazku se středem $H$. Neboli $H(a, b, c) ::: H(a', b', c')$ je involuce.
+	Mějme projektivitu $p(A, B, C) ::: p'(A', B', C')$ (nesoumístných soustav), $d$ nechť je direkční přímka, $H \in d$ libovolný bod na direkční přímce. Pak páry přímek $a = HA$, $a' = HA'$, $b = HB$, $b' = HB'$, atd. jsou páry téže involuce přímek ve svazku se středem $H$. Neboli $H(a, b, c) ::: H(a', b', c')$ je involuce.
 
 	\begin{dukazin}
 		„1. Projektivita“:
@@ -402,7 +402,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \end{veta}
 
 \begin{veta}[O přímce a čtyřrohu]
-	Je dán úplný čtyřroh a libovolná přímka $h$ různá od jeho 9 stran. Pak protější strany 4 rohu vytínají na $h$ páry téže involuce.
+	Je dán úplný čtyřroh a libovolná přímka $h$ různá od jeho 9 stran. Pak protější strany čtyřrohu vytínají na $h$ páry téže involuce.
 
 	\begin{dukazin}
 		Nechť $P$ a $Q$ jsou středy svazků $a = PM$, $b = PN$ a $a' = QN$, $b' = QM$ ($a$ a $a'$ protější, $b$ a $b'$ taktéž). Páry $AA'$, $BB'$ zadávají involuci na $h$. Je pár $CC'$ také párem této involuce?
@@ -574,7 +574,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 \begin{definice}[Involuce (totéž, co výše)]
 	Involuce je projektivita (soumístných soustav) splňující jednu z následujících ekvivalentních podmínek:
 	\begin{itemize}
-		\item $w = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
+		\item $ω = (XX'ST) = -1$; (tzv. charakteristika projektivity, $X$ a $X'$ je libovolný pár, $S$ a $T$ jsou různé samodružné elementy)
 		\item $\exists X ≠ S, T: X'' = X$;
 		\item $\forall X: X'' = X$.
 	\end{itemize}
@@ -705,11 +705,11 @@ TODO!!! (charakteristika projektivity, involuce, …)
 	Takovýmto kuželosečkám budeme říkat singulární a dále budeme mluvit jen o těch, co to nesplňují, tedy regulárních kuželosečkách.
 \end{poznamkain}
 
-\begin{definice}[Vnější, ]
+\begin{definice}[Vnější bod, vnitřní bod, bod dotyku]
 	Bod v rovině se nazývá vnější bod / bod dotyku / vnitřní bod ©T, pokud jím procházejí 2 / 1 / 0 tečny z ©T
 \end{definice}
 
-\begin{dusledek}[Pozorovani, z definice]
+\begin{dusledek}[Pozorování, z definice]
 	$h, h' \in ©T$.
 
 	Na $h, h'$ leží jediný bod dotyku, a to odpovídající body průsečíku přímek. Navíc spojnice těchto bodů je direkční přímka zadané projektivity.
@@ -805,7 +805,7 @@ TODO!!! (charakteristika projektivity, involuce, …)
 	\begin{enumerate}
 		\item rozlišení vlastní/nevlastní;
 		\item rozlišení rovnoběžek a různoběžek;
-		\item dělící poměr 3 bodů (připomenutí: $(ABC) = (ABCD_∞)$, kde $D_∞$ je směr dané přímky);
+		\item dělicí poměr 3 bodů (připomenutí: $(ABC) = (ABCD_∞)$, kde $D_∞$ je směr dané přímky);
 		\item úsečky (neobsahuje nevlastní bod / množina bodů, že $ABX < 0$);
 		\item střed úsečky ($(ABSD_∞) = (ABS) = -1$);
 		\item rovnoběžný přenos délek (2 úsečky na rovnoběžkách jsou stejně dlouhé, když jsou to protější strany rovnoběžníku).
