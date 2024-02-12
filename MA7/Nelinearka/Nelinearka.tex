@@ -79,7 +79,7 @@
 
 \begin{definice}[Fréchet derivative]
 	Let $X, Y$ be Banach, $A \subset X$ open $f: A \rightarrow Y$. For any $x_0 \in A$ if there exists $Df(x_0) \in ©L(X, Y)$ such that
-	$$ \lim_{v \rightarrow ¦o} \frac{\|f(x_0 + v) - f(x_0)\|_Y}{\|v\|_X} = 0 $$
+	$$ \lim_{v \rightarrow ¦o} \frac{\|f(x_0 + v) - f(x_0) - Df(x_0)\<v\>\|_Y}{\|v\|_X} = 0 $$
 	then $Df(x_0)$  is called Fréchet derivative.
 \end{definice}
 
@@ -114,8 +114,7 @@
 	Let $X, Y, Z$ be Banach, $A \subset X$, $B \subset Y$ open, $f: B \rightarrow Z$, $g: A \rightarrow B$, $x_0 \in A$, $y_0 := g(x_0)$.
 
 	\begin{enumerate}
-		\item If $f$ is Fréchet differentiable at $y_0$ and $g$ is Gateaux differentiable at $x_0$, then $f ∘ g$ is Gateaux differentiable at $x_0$ with
-			$$ \partial(f ∘ g)(x_0)\<v\> = Df(x_0)\<\partial g(x_0)\<v\>\> \qquad \forall v \in X. $$
+		\item If $f$ is Fréchet differentiable at $y_0$ and $g$ is Gateaux differentiable at $x_0$, then $f ∘ g$ is Gateaux differentiable at $x_0$ with $\forall v \in X: \partial(f ∘ g)(x_0)\<v\> = Df(x_0)\<\partial g(x_0)\<v\>\>$.
 		\item If $g$ is additionally Fréchet differentiable, then so is $f ∘ g$.
 	\end{enumerate}
 
@@ -123,7 +122,8 @@
 		$$ \lim_{h \rightarrow 0} \left\|\frac{f(g(x_0 + hv)) - f(g(x_0))}{h} - Df(y_0)\<\partial g(x_0)\<v\>\>\right\|_Z ≤ $$
 		$$ ≤ \lim_{h \rightarrow 0} \left\|\frac{f(g(x_0 + hv) + y_0 - g(x_0)) - f(y_0) - Df(y_0)\<g(x_0 + hv) - g(x_0)\>}{h}\right\|_Z + $$
 		$$ + \lim_{h \rightarrow 0} \underbrace{\left\|D f(y_0) \<\partial g(x_0)\<v\> - \frac{g(x_0 + hv) - g(x_0)}{h}\>\right\|_Z}_{\rightarrow 0} = $$
-		$$ = \lim_{h \rightarrow 0} \frac{\|f(x_0 + g(x_0 + hv) - g(x_0)) - f(y_0) - Df(x_0)\<g(x_0 + hv) - g(x_0)\>\|_Z}{\|g(x_0 + hv) - g(x_0)\|_Y}·\frac{\|g(x_0 + hv) - g(x_0)\|_Y}{h} = 0·\|\partial g(x_0)\<v\>\|. $$
+		$$ = \lim_{h \rightarrow 0} \frac{\|f(x_0 + g(x_0 + hv) - g(x_0)) - f(y_0) - Df(x_0)\<g(x_0 + hv) - g(x_0)\>\|_Z}{\|g(x_0 + hv) - g(x_0)\|_Y} · $$
+		$$ · \frac{\|g(x_0 + hv) - g(x_0)\|_Y}{h} = 0·\|\partial g(x_0)\<v\>\|. $$
 	\end{dukazin}
 
 	\begin{dukazin}[2.]
@@ -139,7 +139,8 @@
 		By Hahn–Banach $\exists φ \in Y^*$ such that
 		$$ * := \left\|\frac{f(x) - f(y)}{x - y} - a\right\|_Y = φ\<\frac{f(x) - f(y)}{x - y} - a\> \land \|φ\|_{Y^*} = 1. $$
 		Define $Ψ: [y, x] \rightarrow ®R$, $s \mapsto φ\<f(s) - s·a\>$. Then
-		$$ * = \frac{φ\<f(x)\> - φ\<f(y)\>}{x - y} - \frac{x - y}{x - y}φ\<a\> = \frac{ψ(x) - ψ(y)}{x - y} \overset{\text{Mean value theorem}} ψ'(ξ) \overset{\text{Chain rule}} = φ\<f'(ξ) - a\> ≤ \|f'(ξ) - a\|_Y. $$
+		$$ * = \frac{φ\<f(x)\> - φ\<f(y)\>}{x - y} - \frac{x - y}{x - y}φ\<a\> = \frac{ψ(x) - ψ(y)}{x - y} \overset{\text{Mean value theorem}}= ψ'(ξ) \overset{\text{Chain rule}} = $$
+		$= φ\<f'(ξ) - a\> ≤ \|f'(ξ) - a\|_Y$.
 	\end{dukazin}
 \end{lemma}
 
@@ -181,11 +182,12 @@
 \begin{veta}[Inverse function theorem]
 	Let $X$, $Y$, $A \subset X$ open, $f: A \rightarrow Y$ continuously Fréchet differentiable. If $x_0 \in A$ such that $Df(x_0): X \rightarrow Y$ is an isomorphism then there exists $U \subset A$, $V \subset Y$ such that $f|_U: U \rightarrow V$ is bijection and $(f|_U)^{-1}$ is Fréchet differentiable with
 	$$ D(f^{-1})(y_0) = \(D f(x_0)\)^{-1}, \qquad y_0 := f(x_0). $$
+\end{veta}
 
-	\begin{dukazin}
+	\begin{dukaz}[Inverse function theorem]
 		Given $\hat{y}$ close to $f(x_0)$ find $\hat{x}$ such that $f(\hat{x}) = \hat{y}$. Idea: fix $\hat{y}$ try $x$: error in $y$ is $f(x) - y$ and error in x is $\(D f(x_0)\)^{-1}\<f(x) - y\>$. Therefore try iteration:
-		$$ F_{\hat{y}}(x) := x - (Df(x_0))<f(x) - y>. $$
-		If $F_{\hat{y}}$ has fix point $\hat{x}$ then $\hat{x} = F_{\hat{y}}(\hat{x}) = \hat{x} - (D f(x_0))\<f(\hat{x} - y)\>$ $\implies$ $f(\hat{x}) = \hat{y}$. So we use Banach fixed point theorem: „$F_{\hat{y}}$ is contraction“: ($x_1, x_2 \in B_δ(x_0)$)
+		$$ F_{\hat{y}}(x) := x - (Df(x_0))^{-1}<f(x) - y>. $$
+		If $F_{\hat{y}}$ has fix point $\hat{x}$ then $\hat{x} = F_{\hat{y}}(\hat{x}) = \hat{x} - (D f(x_0))^{-1}\<f(\hat{x} - y)\>$ $\implies$ $f(\hat{x}) = \hat{y}$. So we use Banach fixed point theorem: „$F_{\hat{y}}$ is contraction“: ($x_1, x_2 \in B_δ(x_0)$)
 		$$ \|F_{\hat{y}}(x_1) - F_{\hat{y}}(x_2)\|_X = \|x_1 - x_2 - (Df(x_0))^{-1}\<f(x_1) - f(x_2)\>\|_X = $$
 		$$ = \|(Df(x_0))^{-1}\<Df(x_0)\<x_1, x_2\> + f(x_1) - f(x_2)\>\|_X ≤ $$
 		$$ ≤ \|(Df(x_0))^{-1}\|_{©L(Y, X)}·\|Df(x_0) \<x_1 - x_2\> + f(x_1) - f(x_2)\|_Y = * $$
@@ -193,8 +195,7 @@
 		$$ * ≤ \|(D f(x_0))^{-1}\|_{©L(Y, X)}·\|Df(x_0)<x_1 - x_2> - Df((1 - ξ)x_1 + ξx_2)\<x_2 - x_1\>\|_Y ≤ $$
 		$$ ≤ \|(D f(x_0))^{-1}\|_{©L(Y, X)}·\sup_{x \in B_0(x_0)}\|Df(x_0) - Df(x)\|_{©L(X, Y)}·\|x_1 - x_2\|_X \ll 1 $$
 
-		$$ \|F_{\hat{y}}(x) - x_0\|_X = \|F_{\hat{y}}(x) - F_{\hat{y}}(x_j)\|_X + \|F_{\hat{y}}(x_0) - x_0\|_X ≤ $$
-		$$ ≤ \frac{1}{2}\|x - x_0\|_X + \|(D f(x_0))^{-1}\|·\|\hat{y} - x_0\| $$
+		$$ \|F_{\hat{y}}(x) - x_0\|_X = \|F_{\hat{y}}(x) - F_{\hat{y}}(x_j)\|_X + \|F_{\hat{y}}(x_0) - x_0\|_X ≤ \frac{1}{2}\|x - x_0\|_X + \|(D f(x_0))^{-1}\|·\|\hat{y} - x_0\| $$
 		$\|\hat{y} - x_0\|$ can chosen to be small $\implies$ $F_{\hat{y}}$ maps $\overline{B_δ(x_0)}$ to $\overline{B_δ(x_0)}$ $\implies$ $F_{\hat{y}}$ has unique fix point.
 
 		Next „regularity“: ($y_1 := f(x_1)$, $y_2 := f(x_2)$)
@@ -206,15 +207,14 @@
 		Pick $δ$ so small that
 		$$ \|Df(x) - Df(x_0)\| ≤ \frac{1}{2}·\frac{1}{\|(Df(x_0))^{-1}\|}\qquad \forall x \in B_δ(x_0). $$
 		$\implies$ $(Df(x))^{-1}$ exists and is uniformly bounded (from functional analysis).
-
 		$$ \|\underbrace{f^{-1}(y + w) - f^{-1}(y)}_{=: v} - (Df(x))^{-1}\<w\>\| $$
 		($f(x + v) + f(x) = f(f^{-1}(y + w)) - y = w$)
-		$$ \|v - (Df(x))\<f(x + v) - f(x)\>\| = \|(Df(x))^{-1}\<Df(x)\<v\> - f(x + v) + f(x)\> ≤ \|(Df(x))^{-1}\|·ς(\|v\|) ≤ ς(\|w\|) $$
+		$$ \|v - (Df(x))\<f(x + v) - f(x)\>\| = \|(Df(x))^{-1}\<Df(x)\<v\> - f(x + v) + f(x)\> ≤ $$
+		$$ ≤ \|(Df(x))^{-1}\|·ς(\|v\|) ≤ ς(\|w\|) $$
 		because $f^{-1}$ is Lipschitz.
 
 		„Continuity of $Df^{-1}$“ follows from continuity of $f^{-1}$, $Df(·)$ and $(·)^{-1}$.
-	\end{dukazin}
-\end{veta}
+	\end{dukaz}
 
 \begin{veta}[Global inverse function theorem]
 	Let $X, Y$ Banach, $f: X \rightarrow Y$ continuously Fréchet differentiable and $(D f(x))^{-1}$ exists, depends continuously on $X$ and $c > 0$ such that $\|(Df(x))^{-1}\| < c$ $\forall x \in X$. Then $f: X \rightarrow Y$ is a diffeomorphism.
@@ -230,30 +230,82 @@
 \end{veta}
 
 \begin{veta}[Implicit function theorem]
-	Let $X_1, X_2, Y$ Banach, $A_1 \subset X_1$, $A_2 \subset X_2$ open, $f: A_1 \times A_2 \rightarrow Y$ continuously Fréchet differentiable and exists $\hat{x}_1 \in A_1$ and $\hat{x}_2 A_2$ with $f(x_1, x_2) = 0$. If $D_2f(\hat{x}_1, \hat{x}_2)$ is an isomorphism (between $X_2$ and $Y$), then are neighbourhoods $U_1, U_2$ of $x_1, x_2$ such that $\forall \hat{x}_1 \in U_1\ \exists! \hat{x}_2 \in U_2$ with $f(\hat{x}_1, \hat{x}_2) = 0$.
+	Let $X_1, X_2, Y$ Banach, $A_1 \subset X_1$, $A_2 \subset X_2$ open, $f: A_1 \times A_2 \rightarrow Y$ continuously Fréchet differentiable and exists $\hat{x}_1 \in A_1$ and $\hat{x}_2 \in A_2$ with $f(x_1, x_2) = 0$. If $D_2f(\hat{x}_1, \hat{x}_2)$ is an isomorphism (between $X_2$ and $Y$), then are neighbourhoods $U_1, U_2$ of $x_1, x_2$ such that $\forall \hat{x}_1 \in U_1\ \exists! \hat{x}_2 \in U_2$ with $f(\hat{x}_1, \hat{x}_2) = 0$.
 
 	If we call $\hat{x}_2 = g(x_1)$, then $g$ is continuously Fréchet differentiable with $Dg(x) = - (D_2f(x, g(x)))^{-1} ∘ D_1f(x, g(x))$.
 
 	\begin{dukazin}
 		Apply the inverse function theorem to
-		$$ F(x_1, x_2) := (x_1, (D(f(\hat{x}_1, \hat{x}_2)))^{-1})\<f(x_1, x_2)\> $$
+		$$ F(x_1, x_2) := \(x_1, \(D\(f\(\hat{x}_1, \hat{x}_2\)\)\)^{-1}\<f(x_1, x_2)\>\). $$
 	\end{dukazin}
 \end{veta}
 
-% 18. 10. 2023
+% 18. 10. 2023 (From the notes of the lecturer)
 
-TODO!!!
+\section{Classical calculus of variations}
+\subsection{The first variation}
+\begin{definice}[Local minimum/maximum, critical point]
+	Let $X$ be a Banach space, $©A \subset X$ and $©F: ©A \rightarrow ®R$ a functional. We call a point $x_0 \in ©A$ a local minimum/maximum of ©F if there is a neighbourhood $U$ of $x_0$ in ©A such that $\inf_{x \in U} ©F = ©F(x_0)$ or $\sup_{x \in U}©F = ©F(x_0)$ respectively.
+
+	We call $x_0 \in \Int ©A$ a critical point of ©F if ©F is Gateaux differentiable at $x_0$ and $\partial ©F(x_0) = 0$.
+\end{definice}
+
+\begin{lemma}[Extremas are critical points]
+	Let $X$ be a Banach space, $©A \subset X$ open and $©F: ©A \rightarrow ©R$ a functional. Assume that $x_0 \in ©A$ is a local minimum or maximum of ©F at which ©F is Gateaux-differentiable. Then $x_0$ is also a critical point.
+
+	\begin{dukazin}
+		If we replace ©F with $-©F$, the roles of minimum and maximum switch, while the concept of a critical point stays the same. Thus WLOG we have local minima. Pick $v \in X$. Then the definition of local minimum $©F(x_0 + ε·v) ≥ ©F(x_0)$ for all $ε$ small enough ($|ε| < ε_0 > 0$). Thus the map $Ψ: [-ε_0, ε_0] \rightarrow ®R$, $ε \mapsto ©F(x_0 + ε·v)$ needs to have a local minimum at $0$. So by the definition of Gateaux differentiability of ©F we then have $0 = Ψ'(0) = δ©F(x_0)\<v\>$. Since $v$ was arbitrary, $δ©F(x_0) = 0$ and it is the definition of critical point.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Fundamental lemma of the calculus of variations]
+	Let $Ω \subset ®R^n$ be a domain and $g \in C^0(Ω)$. If $\int_Ω g(x)·φ(x) dx = 0$ for all $φ \in C_c^∞(Ω)$, then $g = 0$.
+
+	\begin{dukazin}
+		We proceed by contradiction. If $g ≠ 0$ we can without loss of generality assume that we have $g(x_0) > 0$ for some point $x_0 \in Ω$, otherwise we would just consider $-g$ in place of $g$. Since we assumed $g$ to be continuous, there exists a $δ > 0$ such that $g(x) > \frac{1}{2} g(x_0)$ for all $x \in B_δ(x_0) \subset Ω$.
+
+		Now pick $φ \in C_c^∞\(Ω; \[0, ∞\)\)$ with $\supp φ \subset B_δ(x_0)$ and $\int_{B_δ(x_0)} φ dx = 1$. Then
+		$$ 0 = \int_Ω g(x) φ(x) dx = \int_{B_δ(x_0)} g(x) φ(x) dx ≥ \int_{B_δ(x_0)} \frac{g(x_0)}{2} φ(x) dx = \frac{g(x_0)}{2} > 0.\quad \text{\lightning}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{tvrzeni}[Euler–Lagrange equation]
+	Let $Ω \subset ®R^n$ be a domain with Lipschitz boundary and $©F: C^1(Ω; ®R^m) \rightarrow ®R$, $u \mapsto \int_Ω f(x, u(x), Du(x))dx$ a functional such that $f$ is in $C^2(Ω \times ®R^m \times ®R^{m \times n})$. If $u \in C^2(Ω; ®R^m)$ is a critical point of ©F for fixed boundary data, then $u$ solves the following system of partial differential equations:
+	$$ 0 = \sum_{i=1}^n \frac{\partial}{\partial x_i}\(\frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x))\) - \frac{\partial f}{\partial z_j}(x, u(x), Du(x)) \qquad \forall j \in [m]. $$
+
+	\begin{dukazin}
+		Let $φ \in C^∞(Ω; ®R^m)$. From the definition of critical point and the chain rule, we know that
+		$$ 0 = δ©F(u) \<φ\> = \left.\frac{d}{dε}\right|_{ε = 0} \int_Ω f(x, u(x) + ε·φ, Du(x) + ε·Dφ) dx = $$
+		$$ = \int_Ω \left.\frac{d}{dε}\right|_{ε = 0} f(x, u(x) + ε·φ, Du(x) + ε·Dφ) dx = $$
+		$$ = \int_Ω \sum_{j=1}^m \frac{\partial f}{\partial z_j}(x, u(x), Du(x))φ_j(x) + \sum_{i=1}^n \sum_{j=1}^m \frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x)) \frac{\partial φ_j}{\partial x_i}(x) dx = *, $$
+		where we are allowed to exchange integration and differentiation by the dominated convergence theorem, as all partial derivatives of $f$ are bounded.
+
+		Now, since the functions are differentiable once more, we can perform a partial integration to get
+		$$ * = \int_Ω \sum_{j=1}^m \frac{\partial f}{\partial z_j}(x, u(x), Du(x))φ_j(x) - \sum_{i=1}^n \frac{\partial}{\partial x_i} \(\sum_{j=1}^m \frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x))\)φ_j(x) dx + $$
+		$$ + \int_{\partial Ω} \sum_{i=1}^n \sum_{j=1}^m \frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x)) φ_j(x) ν_i(x) dx. $$
+		But since $φ$ is compactly supported, that last boundary term vanishes and we are left with
+		$$ 0 = \int_Ω \sum_{j=1}^m \(\frac{\partial f}{\partial z_j}(x, u(x), Du(x)) - \sum_{i=1}^n \frac{\partial}{\partial x_i} \(\sum_{j=1}^m \frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x))\)\)φ_j(x) dx $$
+		to which we can apply the fundamental lemma (setting $φ_j = 0$ in all but one component each time).
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}[Weak solution to the Euler–Lagrange equation]
+	$$ 0 = \int_Ω \sum_{i=1}^n \sum_{j=1}^m \frac{\partial}{\partial x_i}\(\frac{\partial f}{\partial p_{ji}}(x, u(x), Du(x))\) + \sum_{j=1}^m\frac{\partial f}{\partial z_j}(x, u(x), Du(x)) dx \qquad \forall φ \text{ reasonable}. $$
+\end{poznamka}
+
+TODO? (Example: Brachistochrone problem)
 
 % 25. 10. 2023
 
+\subsection{Useful auxiliary results}
 \begin{tvrzeni}[Noether–type theorem]
 	Let $Ω \subset ®R^n$, $F(u) := \int_Ω f(x, u, Du)$ with $f \in C^2(Ω \times ®R^n \times ®R^{m \times n})$ and $(ψ_s)_{s \in ®R} \subset C^2(®R^n, ®R^n)$ is a smooth family with $ψ_0 = \id$, such that
 	$$ f(x, ψ_s ∘ u, D(ψ_s ∘ u)) = f(x, u, Du). $$
-	Then there exists a conservation ? $0 ≠ Q: Ω \times ®R^n \times ®R^{m \times n} \rightarrow ®R^n$ such that $\Div (Q (x, u, Du)) = 0$ $\forall$ critical points of $u$.
+	Then there exists a conservation $0 ≠ Q: Ω \times ®R^n \times ®R^{m \times n} \rightarrow ®R^n$ such that $\Div (Q (x, u, Du)) = 0$ $\forall$ critical points of $u$.
 
 	\begin{dukazin}
-		$$ 0 = \frac{d}{ds} |_{s = 0} f(x, ψ_s ∘ u, TODO!!! ∘ u) = $$
-		$$ \sum_i \frac{\partial ψ^i}{\partial s} |_{s = 0} \frac{\partial f}{\partial z^i}(x, u, D_u) + \sum_{ij} \frac{\partial^2 ψ_j}{\partial s \partial y^j}\frac{\partial u^i}{\partial x_j}\frac{\partial f}{\partial p^{ij}}(x, u, Du) = $$
+		$$ 0 = \left.\frac{d}{ds}\right|_{s = 0} f(x, ψ_s ∘ u, D(ψ_s ∘ u)) = $$
+		$$ = \sum_i \frac{\partial ψ_s^i}{\partial s} |_{s = 0} \frac{\partial f}{\partial z^i}(x, u, D_u) + \sum_{ij} \frac{\partial^2 ψ_s^j}{\partial s \partial y^j}\frac{\partial u^i}{\partial x_j}\frac{\partial f}{\partial p^{ij}}(x, u, Du) = $$
 		$$ = \sum_i \frac{\partial ψ^i}{\partial s} |_{s = 0} \sum_j \frac{\partial}{\partial x^j} \(\frac{\partial f}{\partial p_{ij}}(x, u, Du)\) + \sum_{ij} \frac{\partial^2 ψ_s}{\partial s \partial y^j} \frac{\partial u^j}{\partial x_i} \frac{\partial f}{\partial p_{ij}}(x, y, Du) = $$
 		$$ = \sum_j \frac{\partial}{\partial x^j}\(\sum_i \frac{\partial(ψ^i ∘ u)}{\partial s}\middle|_{s=0} \frac{\partial f}{\partial p^{ij}}(x, u, Du)\). $$
 	\end{dukazin}
@@ -268,13 +320,12 @@ TODO!!!
 	(Which is angular momentum.)
 \end{priklad}
 
+\break
+
 \begin{poznamka}[Conservation law in $n+1$ dimensions]
-	If we single out one direction as time, e.g.
-	$$ (t, x) = (t, x_1, …, x_n), $$
-	then the conservation law reads as
-	$$ \frac{\partial}{\partial t} Q_0 + \Div_x(\overline{Q}) = 0. $$
-	($Q_0$ – conserved quantity, $\overline{Q}$ – conservation current.) And
-	$$ \frac{d}{dt} \int_Ω Q_0 = \int_Ω \Div_x \overline{Q}. $$
+	If we single out one direction as time, e.g. $(t, x) = (t, x_1, …, x_n)$, then the conservation law reads as
+	($Q_0$ – conserved quantity, $\overline{Q}$ – conservation current.)
+	$$ \frac{\partial}{\partial t} Q_0 + \Div_x(\overline{Q}) = 0. \qquad \frac{d}{dt} \int_Ω Q_0 = \int_Ω \Div_x \overline{Q}. $$
 \end{poznamka}
 
 \begin{tvrzeni}[2nd Variation]
@@ -292,7 +343,7 @@ TODO!!!
 		$$ H(j) - H(0) = \int_0^1 1·H'(t) dt \overset{BP} H'(0) + \int_0^1 (1 - t) H''(t) dt = (*). $$
 		$$ H'(t) = DF(ψ(t))\<x - x_0\> \implies H'(0) = 0. $$
 		$$ H''(t) = D^2F(ψ(t))\<x - x_0, x - x_0\> ≥ 0. $$
-		$$ \implies (*) ≥ 0 \implies F(x) ≥ F(x_0) \forall x \in B_δ(x_0). $$
+		$$ \implies (*) ≥ 0 \implies F(x) ≥ F(x_0) \qquad \forall x \in B_δ(x_0). $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -300,7 +351,7 @@ TODO!!!
 	If $F(u) = \int_Ω f(x, u, Du)$, then $D^2 F(u) \<φ, φ\>$ includes
 	$$ \int_Ω \sum_{ijkl} \frac{\partial}{\partial p_{ij}}\frac{\partial f}{\partial p_{kl}}(x, u, Du) \frac{\partial φ_i}{\partial x_j} \frac{\partial φ_k}{\partial x_l} ds. $$
 	This is the dominant term. Even more, its enough:
-	$$ \sum_{ijkl} \frac{\partial}{\partial p_{ij}}\frac{\partial}{\partial p_{kl}} f(x, u, Du) ξ^iξ^j η^kη^l ≥ c·?. $$
+	$$ \sum_{ijkl} \frac{\partial}{\partial p_{ij}}\frac{\partial}{\partial p_{kl}} f(x, u, Du) ξ^iξ^j η^kη^l ≥ c·|ξ|^2·|η|^2. $$
 \end{poznamka}
 
 \subsection{Lagrange multipliers}
@@ -308,9 +359,21 @@ TODO!!!
 	Let $X$ Banach, $A \subset X$ open $F, G: A \rightarrow ®R$ continuous Fréchet differentiable. Let $x_0$ be a local minimizer of $F|_{\{G = 0\}}$ with $DG(x) ≠ 0$. Then $\exists λ \in ®R$ such that $DF(x_0) + λ DG(x_0) = 0$.
 
 	$λ$ is called the Lagrange multiplier, any $x_0$ that satisfies this equation is called critical point.
-\end{tvrzeni}
 
-TODO!!!
+% 01. 11. 2023
+
+	\begin{dukazin}
+		Pick $η \notin \Ker DG(x_0)$. Then any $x \in X$ can be decomposed into $x_0 + \tilde x + r·η$, where $\tilde x \in \Ker DG(x_0)$, $r \in ®R$. Then
+		$$ \left.\frac{\partial}{\partial r}\right|_{(\tilde x, r) = ¦o} G(x_0 + \tilde x + r·η) = DG(x_0)\<η\> ≠ 0 \implies $$
+		$\implies$ $\exists φ: U \rightarrow ®R$, where $U \subset \Ker DG(x_0)$, $¦o \in U$ and $G(x_0 + \tilde x + φ(\tilde x)·η) = 0$ $\forall \tilde x \in U$.
+
+		Now pick $v \in \Ker DG(x_0)$ and consider $ψ: [-ε_0, ε_0] \rightarrow ®R$, $ε \mapsto F(x_0 + ε·v + η·φ(ε·v)) \in \{G(·) = 0\}$. Then
+		$$ 0 = \left.\frac{d}{d ε}\right|_{ε = 0} ψ := DF(x_0)\<v\> + D F(x_0) \<η Dφ(0)\<v\>\> = $$
+		$$ = D F(x_0) \<v\> + DF(x_0)\<η\> Dφ(0)\<v\>. \qquad (*) $$
+		$$ 0 = \left.\frac{d}{dε}\right|_{ε = 0} G(x_0 + ε·v + η·φ(ε·v)) = DG(x_0)\<v\> + \underbrace{DG(x_0)\<η\>}_{≠ 0} Dφ(0)\<v\>. $$
+		$$ (*) = DF(x_0)\<v\> - \underbrace{\frac{DF(x_0)\<η\>}{DG(x_0)\<η\>}}_{= λ}·DG(x_0)\<v\>. $$
+	\end{dukazin}
+\end{tvrzeni}
 
 \begin{priklad}[Principal eigenvalue of $Δ$]
 	Consider $Ω \subset ®R^n$ domain, bounded. Minimize $F(u) := \int_Ω \frac{1}{2} |Du|^2$, $u \in W^{1, 2}_0(Ω)$, under constraint $\frac{1}{2} \int_Ω |u|^2 = 1$, i.e. $G(u) = \frac{1}{2} \int |u|^2 dx - 1 = 0$.
@@ -325,18 +388,38 @@ TODO!!!
 
 \begin{priklad}[Stokes problem]
 	Minimize $F(u) := \int_Ω \frac{1}{2} |\nabla u|^2 - fu dx$ in $W^{1, 2}_0(Ω, ®R^3)$ under the constant $\Div(u) = 0$.
+
+	\begin{poznamkain}
+		$X := \{u \in W_0^{1, 2}(Ω, ®R^3) | \Div u = 0\}$ is a closed subspace. Thus we can decompose space $W_0^{1, 2}(Ω, ®R^3) = X \oplus X^\perp$. If $u$ is a minimizer, then $\<P, \rot φ\> = \<-\rot P, φ\>$.
+	\end{poznamkain}
+
+	TODO!!! (half of board)
+
+	$P \in (W^{1, 2})^*$ try to identify $P$ with a function $\Div φ = 0 \implies P(φ) = 0$. Pick $φ := ?$. $P(\rot ψ) = 0 \implies \rot P$? dense of distribution.
+
+	$\implies$ (Poincaré lemma) $\exists p \in ?$ $P = \nabla p$. So $u$ is weak solution of
+	$$ -Δu + \nabla p = f \text{ in } Ω, \qquad \Div u = 0 \text{ in } Ω, \qquad u = 0 \text{ on } \partial Ω. $$
 \end{priklad}
 
-TODO!!!!
+\begin{poznamka}[One-sided problems]
+	If we instead consider $G(x) ≥ 0$ as a constraint, then let $x_0$ be local minimum:
+	\begin{align*}
+		i)\ G(x_0) &> 0 \implies 0 = δF(x_0) \\
+		ii)\ G(x_0) &= 0 \implies 0 = DF(x_0) + λ·DG(x_0) \qquad (*)
+	\end{align*}
+	?: Pick $v$ such that $DG(x_0)\<v\> > 0$. $ψ: [0, ε_0] \rightarrow ®R$, $ε \mapsto F(x_0 + ε·v) = G(x_0 + ε·v) ≥ 0$, then $ψ$ has a local minimum in 0.
+	$$ 0 ≤ \left.\frac{d}{dε}\right|_ε ψ(ε) = DF(x_0)\<v\> \overset{*}\implies λ = \frac{-DF(x_0)\<v\>}{DG(x_0)\<v\>} ≤ 0. $$
+\end{poznamka}
 
-\section{The direct method on convex integrands}
+\section{The direct method on convex integrands}\vspace{-1em}
 \subsection{Direct method}
 \begin{tvrzeni}[Direct method in the calculus of variations]
-	Let $X$ be topological space, $f: X \rightarrow ®R$ such that
+	Let $X$ be topological space, $F: X \rightarrow ®R$ such that \vspace{-1.2em}
 	\begin{enumerate}
-		\item All sublevel sets ($\{x \in X | F(x) ≤ c\}$) are sequentially precompact;
+		\item All sublevel sets $\(\{x \in X | F(x) ≤ c\}\)$ are sequentially precompact;\vspace{-0.5em}
 		\item $F$ is sequentially lower-semi-continuous ($x_k \rightarrow x_0 \implies \liminf_{k \rightarrow ∞} F(x_k) ≥ F(x_0)$.)
 	\end{enumerate}
+	\vspace{-1.2em}
 	Then $F$ has a minimizer in $X$.
 
 	\begin{dukazin}
@@ -350,36 +433,118 @@ TODO!!!!
 	Sometimes also Convexity (if $F$ is strictly convex, then the minimum is unique).
 \end{poznamka}
 
-% 08. 11. 2023
+% 08. 11. 2023 (From the notes of the lecturer)
 
-TODO!!!
+% TODO? (Example: Principal eigenvalue)
+
+% TODO? (Example: Infinite frequency oscillations)
+
+\subsection{Interlude: Nemytskii operators}
+\begin{definice}[Carathéodory function]
+	Let $Ω \subset ®R^n$ open. Then $f: Ω \times ®R^m \rightarrow ®R$ is called a Carathéodory function if $x \mapsto f(x, z)$ is measurable for all $z \in ®R^m$ and $z \mapsto f(x, z)$ is continuous for almost all $x \in Ω$.
+\end{definice}
+
+\begin{lemma}
+	Let $Ω \subset ®R^n$ open. If $f: Ω \times ®R^m \rightarrow ®R$ is Carathéodory function and $u: Ω \rightarrow ®R^m$ is measurable, then $Ω \rightarrow ®R; x \mapsto f(x, u(x))$ is a measurable function.
+
+	\begin{dukazin}
+		Since $u$ is measurable, there are functions $s_k: Ω \rightarrow ®R^m$ such that $s_k(x) = \sum_{i=1}^{N_k} α_{i, k} χ_{Ω_{i, k}}(x)$ where $α_{i, k} \in ®R^m$, $Ω_{i, k} \subset Ω$ for all $k \in ®N$, $i \in [N_k]$ with $Ω_{i, k} \cap Ω_{l, k} = \O$ if $i ≠ l$ and where $s_k \rightarrow u$ almost everywhere in $Ω$.
+
+		Then for all $n \in ®N$, the functions $x \mapsto f(x, s_k(x)) = \sum_{i = 1}^{N_k} f(x, α_{i, k}) χ_{Ω_{i, k}}(x)$ are finite sums of measurable functions (by the measurability of $f$ in its first argument) and thus themselves measurable. In addition by the continuity in the second argument, we have $f(x, s_k(x)) \rightarrow f(x, u(x))$ for almost all $x \in Ω$.
+
+		Thus $x \mapsto f(x, u(x))$ is measurable as a limit of measurable functions.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Nemytskii operators]
+	Let $Ω \subset ®R^n$ be open and $f: Ω \times ®R^m \rightarrow ®R$ a Carathéodory function satisfying $|f(x, z)| ≤ c·|z|^{p / q} + g(x)$ for almost all $x \in Ω$ and all $z \in ®R^m$, where $p, q \in [1, ∞)$ and $g \in L^q(Ω)$. Define the corresponding Nemytskii operator $F$  as the operator that maps $u: Ω \rightarrow ®R^m$ to $F(u) : Ω \rightarrow ®R$, $x \mapsto f(x, u(x))$. Then\vspace{-1.2em}
+	\begin{enumerate}
+		\item Whenever $u \in L^p(Ω; ®R^m)$, then $F(u) \in L^q(Ω)$.\vspace{-0.5em}
+		\item As an operator from $L^p(Ω; ®R^m)$ to $L^q(Ω)$, the operator $F$ is continuous with respect to strong convergence.
+	\end{enumerate}\vspace{-1.2em}
+
+	\begin{dukazin}[1.]
+		Measurability of $F(u)$ follows from the previous lemma. In addition, if $u \in L^p(Ω; ®R^m)$, then by Minkowski's inequality\vspace{-1em}
+		$$ \|F(u)\|_{L^q} = \(\int_Ω |f(x, u(x))|^q dx\)^{\!\frac{1}{q}} \!\! ≤ c·\(\int_Ω \left||u|^{\frac{p}{q}}\right|^q\)^{\!\frac{1}{q}} \!\! + \(\int_Ω |g(x)|^q dx\)^{\!\frac{1}{q}} \!\!= \|u\|_{L^p}^{\frac{p}{q}} + \|g\|_{L^q} \!<\! ∞. $$\vspace{-2em}
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		We use next theorem. Consider any fixed sequence $(u_k)_{k \in ®N} \subset L^p(Ω; ®R^m)$ with $u_k \rightarrow u$. Sketch (details are standard $ε$–$δ$ gymnastics):
+
+		First, we can pick a bounded set $Ω_0 \subset Ω$ such that $\int_{Ω \setminus Ω_0} |g|^q dx$, and $\int_{Ω \setminus Ω_0} |u|^p dx$ are small. Then using the strong convergence and the upper bound on $f$, also $\int_{Ω \setminus Ω_0} |F(u)|^q dx$ and all $\int_{Ω \setminus Ω_0} |F(u_k)|^q dx$ are small.
+
+		Next, we choose $S := B_R(0) \subset ®R^m$ such that $\int_{\{|u| > R / 2\}} |u|^q dx$, and $\int_{\{|u| > R / 2\}} |u|^p dx$ are small. Now we apply the next theorem to find a set $K_ε \subset Ω_0 \setminus \{|u| > R / 2\}$ so that $f|_{K_ε \times S}$ is continuous.
+
+		On that set, $\int_{K_ε \cap \{|u_k| > R\}} |u_k|^p dx$ converges to zero, as does $|K_ε \cap \{|u_k| > R\}|$. Thus also $\int_{K_ε \cap \{|u_k| > R\}} |F(u_k)|^q dx \rightarrow 0$. The uniform convergence finally implies $F(u_k) \rightarrow F(u)$ in $K_ε$, while the remaining set $Ω_0 \setminus K_ε$ can be chosen in such a way that the $L^q$-norms of $F(u_k)$ and $F(u)$ are arbitrarily small. Thus $F(u_k) \rightarrow F(u)$ in $L^q(Ω)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Version of Lusin's theorem for Carathéodory functions.]
+	If $Ω$ is bounded, then for every $ε > 0$ and any compact set $S \subset ®R^m$, there is a compact set $K_ε \subset Ω$ with $|Ω \setminus K_ε| < ε$ such that the restriction $f|_{K_ε \times S}$ is continuous.
+	
+	\begin{dukazin}
+		Consider $ω_k(x) := \sup\{|f(x, z) - f(x, \tilde z)|\middle| z, \tilde z \in S \land |z - \tilde z| < 1 / k\}$. Then, since $S$ is compact, $f(x, ·)$ is uniformly continuous for almost all $x \in Ω$ and thus $ω_k(x) \rightarrow 0$ point-wise almost everywhere. By Egorov's theorem we can then pick a subsequence (not relabeled) and a subset $K \subset Ω$ with $|Ω \setminus K| < ε / 2$ on which it converges uniformly.
+
+		Next we consider a dense subset $\{z_i\}_{i \in ®N} \subset S$ and apply Lusin's theorem to the functions $f_i := x \mapsto f(x, z_i)$, to find compact subsets $K_i \subset Ω$ with $|Ω \setminus K_i| < ε·2^{-i-1}$ so that $f_i|_{K_i}$ is uniformly continuous.
+
+		We can then set $K_ε := K \cap \bigcap_{i \in ®N} K_i$ and calculate the volume of the remainder as $|Ω \setminus K_ε| < \frac{1}{2}(ε + \sum_{i \in ®N} ε·2^{-i}) = ε$.
+
+		In addition, for any $η > 0$, we can now use the uniform convergence of the $ω_k$ to find a $k \in ®N$ such that $|f(x, z) - f(x, \tilde z)| < η_k / 4$ for all $x \in K_ε$ and all $z, \tilde z \in S$ with $|z - \tilde z| < 1 / k$. Now fix $(x, z) \in K_ε \times S$. Then we can pick $(\tilde x, \tilde z) \in K_ε \times S$ with $|z - \tilde z| < 1 / 2k$ and $|x - \tilde x| < δ$ small enough we have
+		$$ |f(x, z) - f(\tilde x, \tilde z)| ≤ |f(x, z) - f(x, z_i)| + |f(x, z_i) - f(\tilde x, z_i)| + |f(\tilde x, z_i) - f(\tilde x, \tilde z)| ≤ $$
+		$$ ≤ ω_k(x) + |f_i(x) - f_i(\tilde x)| + ω_k(\tilde x) ≤ \frac{η}{4} + \frac{η}{2} + \frac{η}{4}. $$
+	\end{dukazin}
+\end{veta}
 
 % 15. 11. 2023
 
-TODO!!!
+\subsection{Weak lower semi-continuity for convex integrands}
+\begin{veta}[Tonelli]
+	$Ω$ bounded domain, $f: Ω \times ®R^m \times ®R^{n \times m} \rightarrow ®R$, $f(·, z, p)$ measurable, $f(x, ·, ·)$ continuous, $f(x, z, ·)$ convex, $F(u) := \int_Ω f(x, u, Du)$.
 
-\begin{dukaz}[of tonelli, sketch]
+	$q \in [1, ∞)$, $f(x, z, p) ≥ a(x)p + b(x) + c·|z|^q$, $c \in ®R$. Then
+	$$ \liminf_{k \rightarrow ∞} F(u_k) ≥ F(u), \qquad \forall u_k \rightharpoonup u \text{ in } W^{1, q}(Ω; ®R^m). $$
+
+	\begin{dusledekin}
+		$q \in (1, ∞)$. $f(x, z, p) ≥ b(x) + c·(|p|^q + |z|^q)$, $c > 0$ $\implies$ $\exists$minimum.
+	\end{dusledekin}
+
+	\begin{dukazin}[Of corollary]
+		1. $c > 0$ guarantees coercivity.
+
+		2. Banach–Alaoglu gives weak$^*$-compactness.
+
+		3. Tonelli gives us weak $\overset{q > 1}=$ weak$^*$ lower semi-continuity $\implies$ (via direct method) $\exists$minimum.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		The corollary needs the stronger lower boundedness for coercivity. The case $q = 1$ fails because $W^{1, 1}$ is not reflexive. For $n = 1$ or $m = 1$ Tonelli: is a characterization.
+	\end{poznamkain}
+
+\begin{dukazin}[sketch]
 	Weak convergence "averages" functions, convex functions decrease when taking averages.
 
 	Reminder (Mazur's Lemma): If $u_k \rightharpoonup u$ then $\exists v_k \in \conv\{u_k, …, u_{N(k)}\}$ such that $v_k \rightarrow u$.
 
-	First step: If $f(x, z, p) = f(x, p)$ and $v_k = \sum_{i=k}^{N(k)} α_{i, k} u_k$ with $\sum_{i=k}^{N(k)} α_{i, k} = 1$. Then Nemitsky:
-	$$ F(u) = \lim_{k \rightarrow ∞} F(v_k) = \lim_{k \rightarrow ∞} \int_Ω f(x, \sum α_{i, k} Du_k) \overset{\text{Jensen}}≤ \lim_{k \rightarrow ∞} \sum α_{i, k} \int_Ω f(x, Du_k) = \lim_{k \rightarrow ∞} \sum_{i=k}^{N(k)} α_{i, k} F(u_i) ≤ \lim_{k \rightarrow ∞} \sup_{i ≥ k} F(u_i) = \lim_{k \rightarrow ∞} F(u_k). $$
+	First step: If $f(x, z, p) = f(x, p)$ and $v_k = \sum_{i=k}^{N(k)} α_{i, k} u_k$ with $\sum_{i=k}^{N(k)} α_{i, k} = 1$. Then Nemytskii:
+	$$ F(u) = \lim_{k \rightarrow ∞} F(v_k) = \lim_{k \rightarrow ∞} \int_Ω f(x, \sum α_{i, k} Du_k) \overset{\text{Jensen}}≤ \lim_{k \rightarrow ∞} \sum α_{i, k} \int_Ω f(x, Du_k) = $$
+	$$ = \lim_{k \rightarrow ∞} \sum_{i=k}^{N(k)} α_{i, k} F(u_i) ≤ \lim_{k \rightarrow ∞} \sup_{i ≥ k} F(u_i) = \lim_{k \rightarrow ∞} F(u_k). $$
 
 	Second step: Replace $f$ by $\tilde f(x, z, p) = f(x, z p) - a(x)·p - b(x) - c|z|^q$. Then $\tilde f$ has the same mean, continuous, and ? condition and
-	$$ u \mapsto \int \tilde f(x, u, Du) - f(x, u, Du) $$
+	$$ u \mapsto \int \tilde f(x, u, Du) - f(x, u, Du) dx $$
 	is weakly continuous. So we can assume $f(…) ≥ 0$.
 
 	TODO!!!
 	By first step:
 	$$ \liminf_{k \rightarrow ∞} \int f(x, u, Du_k) ≥ \int_Ω f(x, u, Du). $$
-	Now need to estimate $|f(x, u, Du_k) - f(x, u_k, Du_k)| =: *$. Similarly to the proof of Nemitzky:
+	Now need to estimate $|f(x, u, Du_k) - f(x, u_k, Du_k)| =: *$. Similarly to the proof of Nemytskii:
 	$$ \forall ε > 0\ \exists K_ε \subset Ω, |?_ε| < ε: f|_{Ω \setminus K_ε \times ®R^m \times ®R^{m·n}} \text{ is continuous and } \int_{K_ε} * \overset{ε \rightarrow 0}\longrightarrow 0. $$
 
 	As last time, $u_k = \overline u_k + \tilde u_k = $ uniformly convergent + small support.
 	$$ \int_{\supp \tilde u_k} * \rightarrow 0. $$
 	$$ \int_{Ω \setminus (K_ε \cup \supp \tilde u_k)} |f(x, u, Du_k) - f(x, u_k, Du_k)| \rightarrow 0. $$
-\end{dukaz}
+\end{dukazin}
+\end{veta}
+
 
 \begin{poznamka}[Convexity v.s. convexity]
 	$F(u)$ convex $\not\Leftrightarrow$ $f(x, z, p)$  convex. (For example $\int_Ω \det Du dx$ is convex for fixed boundary, but $\det p$ is not convex. For example $\int \frac{1}{4} (1 - u^2)^2 + \frac{1}{2} |u'|^2$ not convex, but $(1 - z^2) + p^2$ is convex in $p$.)
@@ -387,10 +552,10 @@ TODO!!!
 
 \section{The mapping degree in finite dimensions}
 \begin{definice}[Axioms of mapping degree]
-	The degree $\deg_{®R^n}(u, Ω, y_0)$ should be an integer defined for all continuous functions all domains $Ω$ and all $y_0 \notin u(\partial Ω)$ and it should satisfy
+	The degree $\deg_{®R^n}(u, Ω, y_0)$ should be an integer defined for all continuous functions, all bounded domains $Ω$ and all $y_0 \notin u(\partial Ω)$ and it should satisfy
 	\begin{itemize}
 		\item[D1] Unity of identity
-			$$ \deg(id, Ω, y_0) = \begin{cases}1, & \text{ if } y_0 \in Ω\\0, & \text{ if } y_0 \notin \overline{Ω}.\end{cases} $$
+			$$ \deg_{®R^n}(id, Ω, y_0) = \begin{cases}1, & \text{ if } y_0 \in Ω\\0, & \text{ if } y_0 \notin \overline{Ω}.\end{cases} $$
 		\item[D2] Additivity of domains: If $(Ω_i)_{i \in [k]}$ are disjoint domains such that $\overline{Ω} = \overline{\bigcup_{i=1}^k Ω_i}$, then $\forall y_0 \notin u(\partial Ω) \cup \bigcup_i u(\partial Ω_i)$, then
 			$$ \deg_{®R^n}(u, Ω, y_0) = \sum_{i=1}^k \deg(u, Ω_i, y_0). $$
 		\item[D3] Base point invariance: $y \mapsto \deg(u, Ω, y)$ is continuous in $®R^n \setminus u(\partial Ω)$ $\implies$ if $y_1$, $y_2$ are in the same connected component, then $\deg(u, Ω, y_1) = \deg(u, Ω, y_2)$.
@@ -398,7 +563,7 @@ TODO!!!
 	\end{itemize}
 \end{definice}
 
-\begin{veta}
+\begin{veta}[$C^0$-degree]
 	There exists a unique function $\deg_{®R^n}$ satisfying these axioms.
 
 	\begin{poznamkain}[Notation]
@@ -408,7 +573,7 @@ TODO!!!
 \end{veta}
 
 \begin{lemma}
-	TODO!!!
+	The degree $\deg_{®R^n}(u, Ω, y_0)$ depends only on the restriction $u|_{\overline{Ω}}$.
 
 	\begin{dukazin}
 		Assume $u_0, u_1: ®R^n \rightarrow ®R^n$ continuous such that $u_0|_{\overline{Ω}} = u_1|_{\overline{Ω}}$. Consider: $h_s(x) := (1 - s) u_0(x) + s u_1(x)$. $h_s(\partial Ω) = u_0(\partial Ω) = u_1(\partial Ω)$. $\implies$ $\deg(u_0, Ω, y_0) = \deg(h_0, Ω, y_0) = \deg(h_1, Ω, y_0) = \deg(u_1, Ω, y_0)$.
@@ -419,8 +584,8 @@ TODO!!!
 	Let $u: ®R^n \rightarrow ®R^n$ continuous, $Ω \subset ®R^n$ bounded domain, $y_0 \in ®R^n \setminus u(\partial Ω)$. If $y_0 \notin u(Ω)$, then $\deg(u, Ω, y_0) = 0$. Conversely if $\deg(u, Ω, y_0) ≠ 0$ then $\exists x_0 \in Ω$ such that $u(x_0) = y_0$.
 
 	\begin{dukazin}
-		Assume $y_0 \in u(Ω)$. Split $Ω$ into finitely many disjoint subdomains $Ω_i$ (with $\overline{Ω} = \overline{\bigcup Ω_i}$) such that $u(Ω_i) \subset B_ε(y_i)$, where $ε$ is such that $B_ε(y_0) \subset ®R^n \setminus u(Ω)$. Pick $\tilde y_0$ such that $|\tilde y_0| ≥ \sup_{x \in u(Ω)} |y| + \sup_{x \in Ω} |x|$.
-		$$ \deg(u, Ω, y_0) \overset{\text{D2}} = \sum_{i=1}^k \deg_{®R^n}(u, Ω_i, y_0) \overset{\text{D3}} \sum_{i=1}^k \deg_{®R^n} (u, Ω_i, \tilde y_0) =: *. $$
+		Assume $y_0 \notin u(Ω)$. Split $Ω$ into finitely many disjoint subdomains $Ω_i$ (with $\overline{Ω} = \overline{\bigcup Ω_i}$) such that $u(Ω_i) \subset B_ε(y_i)$, where $ε$ is such that $B_ε(y_0) \subset ®R^n \setminus u(Ω)$. Pick $\tilde y_0$ such that $|\tilde y_0| ≥ \sup_{x \in u(Ω)} |y| + \sup_{x \in Ω} |x|$.
+		$$ \deg(u, Ω, y_0) \overset{\text{D2}}= \sum_{i=1}^k \deg_{®R^n}(u, Ω_i, y_0) \overset{\text{D3}}= \sum_{i=1}^k \deg_{®R^n} (u, Ω_i, \tilde y_0) =: *. $$
 		$h_s(x) := (1 - s)u(x) + sx$.
 		$$ * = \sum_{i=1}^k \deg_{®R^n}(\id, Ω_i, \tilde y_0) = 0. $$
 	\end{dukazin}
@@ -428,13 +593,66 @@ TODO!!!
 
 % 22. 11. 2023
 
-TODO!!!
+\begin{lemma}[Shifting invariance]
+	Let $u: ®R^n \rightarrow ®R^n$ continuous, $Ω \subset ®R^n$ bounded domain $y_0 \in ®R^n \setminus u(\partial Ω)$. Then
+	\begin{enumerate}
+		\item $\forall b \in ®R^n: \deg_{®R^n}(u - b, Ω, y_0 - b) = \deg_{®R^n}(u, Ω, y_0)$;
+		\item $\forall a \in ®R^n: \deg_{®R^n}(u(· - a), Ω + a, y_0) = \deg_{®R^n}(u, Ω, y_0)$.
+	\end{enumerate}
 
-\begin{tvrzeni}
+	\begin{dukazin}[1.]
+		Since $u(\partial Ω)$ is compact, there is $δ > 0$ such that $B_δ(y_0) \subset ®R^n \setminus u(\partial Ω)$. Let $y_1 \in B_δ(y_0)$. Then $h_s(x) := u(x) + s(y_1 - y_0)$ is a homotopy between $u$ and $u + (y_1 - y_0)$ $\implies$
+		$$ \implies \deg(u - b, Ω, y_0 - b) = \deg(u - b, Ω, y_0) = \deg_{®R^n}(u, Ω, y_0), $$
+		first equation, because $y_0$ and $y_0 - b$ are in the same connected component. Iterate for general $b \in ®R^n$.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		$h_s(x) = u(x + s·a)$ for small $a$ $\implies$ proof is similar.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dusledek}
+	If $h: [0, 1] \times ®R^n \rightarrow ®R^n$ continuous homotopy and $γ: [0, 1] \rightarrow ®R^n$ is continuous. If $γ(s) \in h(s, \partial Ω)$ $\forall s \in [0, 1]$, then $s \mapsto \deg(h_s, Ω, γ(s))$ is constant.
+\end{dusledek}
+
+\begin{tvrzeni}[Degree for affine maps]
+	Let $u: ®R^n \rightarrow ®R^n$, $x \mapsto Ax + b$, $A \in ®R^{n \times n}$, $b \in ®R^n$, $Ω$ bounded domain, $y_0 \in ®R^n \setminus u(\partial Ω)$. Then
+	$$ \deg(u, Ω, y_0) = \begin{cases}\sign \det A,&\text{ if } y_0 \in u(Ω),\\0,& \text{ otherwise.}\end{cases} $$
+
+	\begin{dukazin}
+		$y_0 \notin u(Ω)$ clear. By shifting $y_0 = 0$, $b = 0$. Consider $\det A > 0$. From linear algebra $\exists Q \in SO(n)$ and $R$ upper triangle with positive diagonal, such that $A = QR$.
+
+		There exists (from connectedness of $SO(n)$) a continuous curve $Q_s: [0, 1] \rightarrow SO(n)$ such that $Q_0 = Q$, $Q_1 = I$. Similarly $R_s := (1 - s)·R + s·I$ has $\det R_s > 0$. Consider $h_s(x) = Q_sR_s x$. This is admissible homotopy $\implies$ $\deg(u, Ω, y_0) = \deg(\id, Ω, y_0) = 1$ or $0$ depending on whether $0 \in Ω$ or not.
+
+		If $\det A < 0$, we can reduce to
+		$$ v: x \mapsto \begin{pmatrix} -1 &&& \\ & 1 &&& \\ && 1 && \\ &&& 1 & \\ &&&& 1 \end{pmatrix} x =: A_0x. $$
+		Define $u_0(x) := (*, x_2, x_3, …, x_n)$, where $* = -x_1$ if $x_1 < 1$ and $* = -2+x_1$ if $x_1 ≥ 1$.
+		$$ \deg(v, Ω, 0) = \deg_{®R^n}(u_0, B_ε(0), 0) = \deg(u_0, B_4(0), 0) - \deg(u_0, B_ε(2e_1), 0) - $$
+		$$ - \deg\(u_0, B_4 \setminus \(B_ε(0) \cup B_ε(2e_1)\), 0\) = \deg(e_1, B_4(0), 0) - 1 - 0 = -1. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}["Domain $®R^n$" $≠$ "image $®R^n$"]
+	We could replace D1 with D1$^*$: if $u$ is an orientation preserving diffeomorphism, then $\deg(u, Ω, y_0) = 1$ if $y_0 \in u(Ω)$ and $0$ otherwise.
+\end{poznamka}
+
+\begin{definice}[Regular point, regular value]
+	Assume $u \in C^1$. Then $x_0$ is called regular point if $\det Du(x_0) ≠ 0$. $y_0$ is called regular value if $u^{-1}(y_0)$ consists of regular points.
+\end{definice}
+
+\begin{dusledek}
+	Let $Ω \subset ®R^n$ bounded domain, $u \in C^0(\overline{Ω}; ®R^n) \cap C^1(Ω, ®R^n)$. If $y_0$ is a regular value, then $Ω \cap u^{-1}(y_0)$ consists of finitely many points.
+
+	\begin{dukazin}
+		By inverse function theorem $u$ is differentiable around any $x_0 \in u^{-1}(y_0)$ $\implies$ points in $u^{-1}(y_0)$ are isolated. Assume $(x_k)_k \subset u^{-1}(y_0) \cap Ω$, all $x_k$ different. $\exists$subsequence $x_k$ $\rightarrow x \in \overline{Ω}$ $y = \lim u(x_k) = u(x)$ $\implies$ $x \notin \partial Ω$ and $x$ is net isolated.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}[$C^1$-degree]
 	Let $u: ®R^n \rightarrow ®R^n$ continuous, $Ω \subset ®R^n$ bounded domain $y_0 \in ®R \setminus u(\partial Ω)$. If $u|_Ω \in ©C^1$ and $y_0$ is a regular value of $u|_Ω$, then $\deg_{®R^n}(u, Ω, y_0) = \sum_{x \in u^{-1}(y_0)} \sgn \det Du(x)$.
 
 	\begin{dukazin}
-		Split $Ω$ into $Ω_0, Ω_1, …, Ω_k$, where $k = \# u^{-1}(y_0)$, such that $Ω_0 \cap u^{-1}(y_0) = \O$, $u|_{Ω_i}$ diffeomorphism? $Ω_i \cap u^{-1}(y_0) = \{x_i\}$. Then $\deg(u, Ω, y_0) = \sum_{i=1}^n \deg(u, Ω_i, y_0) + \deg(u, Ω_0, y_0) = \sum_{i=1}^n \sgn \det Du(x_i) + 0$.
+		Split $Ω$ into $Ω_0, Ω_1, …, Ω_k$, where $k = \# u^{-1}(y_0)$, such that $Ω_0 \cap u^{-1}(y_0) = \O$, $u|_{Ω_i}$ diffeomorphism $Ω_i \cap u^{-1}(y_0) = \{x_i\}$. Then $\deg(u, Ω, y_0) = \sum_{i=1}^n \deg(u, Ω_i, y_0) + \deg(u, Ω_0, y_0) = \sum_{i=1}^n \sgn \det Du(x_i) + 0$.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -449,11 +667,12 @@ TODO!!!
 \begin{tvrzeni}[Integral formula]
 	Let $u \in ©C^1(®R^n, ®R^n)$, $Ω$ bounded, $y_0 \in ®R^n \setminus u(\partial Ω)$. If $f \in ©C^1(®R^n, ®R^n)$ is any function such that $\supp f$ is in the connected component of $y_0$ in $®R^n \setminus u(\partial Ω)$, then
 	$$ \deg(u, Ω, y_0) \int_{®R^n} f dy = \int_Ω f(u(x)) \det Du dx. $$
+	\vspace{-1.6em}
 
 	\begin{dukazin}
-		By Sard and inverse of degree $y_0$ is regular. Pick $ε > 0$ such that $u^{-1}(B_ε(y_0))$ consists of neighbourhoods of $\{x_i\}_i = u^{-1}(y_0) \cap Ω$, where $u$ is a diffeomorphism. This means that $\sgn \det Du$ is constant in each connected component of $u^{-1}(B_ε(y_0))$. Assume $f$ such that $\supp f \subset B_ε(y_0)$.
-		$$ \deg(u, Ω, y_0) \int_{®R^n} f dy = \sum_{x_i \in u^{-1}(y_0)} \sgn \det Du(x_i) · \int_{®R^n} f dy = $$
-		$$ \overset{\text{Tento}}= \sum_{i=1}^k \sgn \det Du(x_i) \int_{U_i} f(u(x)) |\det Du| dx = \sum_{i=1}^k \int_{U_i} f(u(x)) \det Du dx = \int_Ω f(u) \det Du dx. $$
+		By Sard and invariance of degree $y_0$ is regular. Pick $ε > 0$ such that $u^{-1}(B_ε(y_0))$ consists of neighbourhoods of $\{x_i\}_i = u^{-1}(y_0) \cap Ω$, where $u$ is a diffeomorphism. This means that $\sgn \det Du$ is constant in each connected component of $u^{-1}(B_ε(y_0))$. Assume $f$ such that $\supp f \subset B_ε(y_0)$.
+		$$ \deg(u, Ω, y_0) \int_{®R^n} f dy = \sum_{x_i \in u^{-1}(y_0)} \sgn \det Du(x_i) · \int_{®R^n} f dy \overset{\text{Tonelli}}= $$
+		$$ = \sum_{i=1}^k \sgn \det Du(x_i) \!\int_{U_i}\! f(u(x)) |\det Du| dx = \sum_{i=1}^k \int_{U_i}\! f(u(x)) \det Du dx = \int_Ω f(u) \det Du dx. $$
 
 		Now let $\tilde f$ arbitrary, but $\int_{®R^n} \tilde f = 0$. Then $LHS = 0$, we need to prove
 		$$ \int_Ω \tilde f(u(x)) \det Du(x) dx = 0. \qquad (\text{Homework}.) $$
@@ -485,8 +704,8 @@ TODO!!!
 	\end{dukazin}
 \end{dusledek}
 
-\begin{dukaz}[Theorem above ($C^0$-degree?)]
-	If $u, \tilde u \in C^1(®R^n, ®R^n)$, $\|u - \tilde u\|_{C^0} < ε$, where $ε < \dist(y_0, u(\partial Ω))$. By homotopy invariance $\deg(u, Ω, y_0) = \deg(u, Ω, y_0)$. Let $u_0 \in C^0(®R^n, ®R^n)$ by convolution arg $\exists u \in C^∞$ such that $\|u_0 - u\|_{C^0} < \frac{ε}{2}$.
+\begin{dukaz}[$C^0$-degree]
+	If $u, \tilde u \in C^1(®R^n, ®R^n)$, $\|u - \tilde u\|_{C^0} < ε$, where $ε < \dist(y_0, u(\partial Ω))$. By homotopy invariance $\deg(u, Ω, y_0) = \deg(u, Ω, y_0)$. Let $u_0 \in C^0(®R^n, ®R^n)$ by convolution argument $\exists u \in C^∞$ such that $\|u_0 - u\|_{C^0} < \frac{ε}{2}$.
 
 	$\deg(u_0, Ω, y_0) := \deg(u, Ω, y_0)$. Well defined (independent of $u$). Axioms can be derived easily.
 \end{dukaz}
@@ -505,7 +724,7 @@ TODO!!!
 \end{poznamka}
 
 \begin{definice}[$C^1$ degree on manifolds]
-	Let $u \in C^1(M, N)$, $Ω \subset M$ open, such that $\overline{Ω}$ is compact and $y_0 \in N \setminus u(\partial Ω)$ be regular value (in the sense $Du(x): T_x M \rightarrow T_{u(x)} N$ is an isomorphism $\forall x \in u^{-1}(y_0)$). Then define $\deg_{M \rightarrow N} (u, Ω, y_0) := \sum_{x \in u^{-1} \cap Ω} ς(Du)$, where
+	Let $u \in C^1(M, N)$, $Ω \subset M$ open, such that $\overline{Ω}$ is compact and $y_0 \in N \setminus u(\partial Ω)$ be regular value (in the sense $Du(x): T_x M \rightarrow T_{u(x)} N$ is an isomorphism $\forall x \in u^{-1}(y_0)$). Then define $\deg_{M \rightarrow N} (u, Ω, y_0) := \sum_{x \in u^{-1}(y_0) \cap Ω} ς(Du)$, where
 	$$ ς(Du) := \begin{cases}+1, & \text{ if $Du$ is orientation preserving},\\-1, & \text{ if not}.\end{cases} $$
 \end{definice}
 
@@ -544,7 +763,8 @@ TODO!!!
 
 	\begin{dukazin}
 		Let $ρ: [0, ∞) \rightarrow [0, 1]$ smooth such that $ρ(0) = 0$, $ρ(s) = 1$ for $s > r$, and $φ: ®R^{n+1} \rightarrow ®R^{n+1}$, $y \mapsto ρ(|y|)·\frac{y}{|y|^{n+1}}$. Then
-		$$ \Div φ(y) = ρ'(|y|) \frac{y}{|y|}·\frac{y}{|y|^{n+1}} + ρ(|y|)\(\frac{y}{|y|^{n+1}} - n \frac{y}{|y|}·\frac{y}{|y|^{n+2}}\) = \frac{ρ'(|y|)}{|y|^n} \implies \supp \Div φ \subset B_r(¦o), \qquad r < 1. $$
+		$$ \Div φ(y) = ρ'(|y|) \frac{y}{|y|}·\frac{y}{|y|^{n+1}} + ρ(|y|)\(\frac{y}{|y|^{n+1}} - n \frac{y}{|y|}·\frac{y}{|y|^{n+2}}\) = \frac{ρ'(|y|)}{|y|^n} \implies $$
+		$$ \implies \supp \Div φ \subset B_r(¦o), \qquad r < 1. $$
 		$$ \implies \int_{B_1} \Div φ dy = \int_{\partial B_1} φ·νdy = \int_{\partial B_1} \frac{y·ν}{|y|^{n+1}}dy = |®S^n|. $$
 
 		$$ \deg_{®R^n}(u, B_1(¦o), ¦o) = \frac{1}{|®S^n|} \int_{B_1(¦o)} (\Div φ)∘u \det Du dx = $$
@@ -575,43 +795,100 @@ TODO!!!
 \end{veta}
 
 \begin{dusledek}
-	Let $Ω \subset ®R^n$ compact and convex, $u: Ω \rightarrow Ω$ continuous, then $u$ has a fixed point.
+	\ \vspace{-3.45em}
+
+	\indent\hspace{2.5em}: Let $Ω \subset ®R^n$ compact and convex, $u\!\!: Ω \rightarrow Ω$ continuous, then $u$ has a fixed point.
 
 	\begin{dukazin}
 		If $Ω$ has interior, then $Ω$ is homeomorphic to a ball, so apply the previous theorem. If not, restrict to lower dimenzional subspace.
 	\end{dukazin}
 \end{dusledek}
 
-\begin{veta}[Borsak–Ulam]
+\begin{veta}[Borsuk–Ulam]
 	If $u: ®S^n \rightarrow ®R^n$ is continuous, then there is a pair of antipodal points with the same value, i..e. $\exists x_0 \in ®S^n$ such that $u(x_0) = u(-x_0)$.
 
 	\begin{dukazin}
-		Assume the opposite. Define $v: ®S^n \rightarrow ®S^{n-1}$, $x \mapsto \frac{u(x) - u(-x)}{|u(x) - u(-x)|}$. Consider
-		$$ h_s: [0, 1] \times ®S^{n - 1} \rightarrow ®S^{n-1}, \qquad h_s(x) = v(sx, \sqrt{1 - s^2}), $$
-		then $h_0 = \const \implies \deg_{®S^{n-1}}(h_0) = 0$, $h_1$ is odd $\implies$ $\deg_{®S^{n-1}}(h_1) = odd$. \lightning.
+		Assume the opposite. Let $v\!\!: ®S^n \!\rightarrow ®S^{n-1}$, $x \mapsto \frac{u(x) - u(-x)}{|u(x) - u(-x)|}$. Consider $h_s\!\!: [0, 1] \times ®S^{n - 1} \!\rightarrow ®S^{n-1}$, $h_s(x) \!=\! v(sx, \sqrt{1 - s^2})$, then $h_0 \!=\! \const \!\!\implies\!\! \deg(h_0) \!=\! 0$, $h_1$ is odd $\!\!\implies\!\!$ $\deg(h_1) \!=\! \text{odd}$. \lightning.
 	\end{dukazin}
 \end{veta}
 
-\begin{dusledek}[?Lyusternik–Shnirelmann?]
+\begin{dusledek}[Lyusternik–Shnirelman]
 	Let $A_1, …, A_{n+1} \subset ®S^n$ open cover of $®S^n$. Then there is a set $A_i$ that contains an antipodal pair of points.
 
 	\begin{dukazin}
-		for $i \in [n]$ define $u_i := \dist(x, ®S^n \setminus A_i)$. Then $u: ®S^n \rightarrow ®R^n$ is continuous $\implies$ (by Borsak–Ulam) $\exists x_0 \in ®S^n$: $u(x_0) = u(-x_0)$. Either $u_i(x_0) > 0$ for some $i$ $\implies$ $x_0, -x_0 \in A_i$ or $u(x_0) = 0$ $\implies$ $x_0, -x_0 \in A_{n+1}$.
+		for $i \in [n]$ define $u_i := \dist(x, ®S^n \setminus A_i)$. Then $u: ®S^n \rightarrow ®R^n$ is continuous $\implies$ (by Borsuk–Ulam) $\exists x_0 \in ®S^n$: $u(x_0) = u(-x_0)$. Either $u_i(x_0) > 0$ for some $i$ $\implies$ $x_0, -x_0 \in A_i$ or $u(x_0) = 0$ $\implies$ $x_0, -x_0 \in A_{n+1}$.
 	\end{dukazin}
 \end{dusledek}
 
-TODO!!!
+\begin{veta}[Ham–Sandwitch theorem]
+	Let $n ≥ 1$, $A_1, …, A_n \subset ®R^n$ measurable bounded sets. Then there exists a hyperplane that splits all $A_i$ into two with equal measure.
+
+	\begin{dukazin}
+		For any $ν \in ®S^{n-1}$ there exists $c_ν \in ®R$ such that $H_j = \{x \in ®R^n | x·ν = c_ν\}$ splits $A_n$ into equal halves. We can do this such that $c_ν$ is continuous in $ν \in ®S^{n-1}$. For $i \in [n-1]$ define $u_i(ν) = |A_i \cap \{x \in ®R^n | x·ν ≥ c_ν\}|$. Then $u: ®S^{n-1} \rightarrow ®R^{n-1}$ is continuous and from Borsuk–Ulam $ν_0 \in ®S^{n-1}: u(ν_0) = u(-ν_0)$ $\implies$ $H_{ν_0}$ splits all $A_i$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Hairy ball theorem]
+	Let $n \in ®N$ be even. There is no continuous unit tangent vector field at $®S^n$. % ($u: ®S^n \rightarrow ®R^n$ such that $u(x)·x = 0$ and $|u(x)| = 1$.)
+
+	\begin{dukazin}
+		Assume $ν(x)$ is such a vector field. $n_s(x) := \sin(s) x + \cos(s) ν(x) \in ®S^n$ is an admissible homotopy $\forall s \in [-π/2, π/2]$. $h_{-π/2} = -\id$, $h_{π/2} = \id$ $\implies$ $1 = \deg_{©S^n}(\id) = \deg_{®S^n}(-\id) = (-1)^{n+1} = -1$. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\section{Fixpoints and degree for compact operators}
+\subsection{Schauder's fixpoint theorem}
+\begin{veta}[Schauder's fixpoint theorem I]
+	Let $X$ be Banach space, $Ω \subset X$ convex compact and nonempty. If $F: Ω \rightarrow Ω$ is continuous, then $F$ has a fixpoint.
+
+	\begin{dukazin}
+		Let $ε > 0$, consider a finite open cover $(B_ε(x_i))_{i \in [N_ε]}$ of $Ω$. Let $Ψ_i: Ω \rightarrow [0, 1]$ a subordinate partition of unity with $\supp Ψ_i \subset B_ε(x_i)$. Now $\LO \{x_1, …, x_{N_ε}\}$ is finite dimensional $\simeq ®R^{N_ε}$. $F_ε: x \mapsto \sum_{i=1}^{N_ε} x_i Ψ_i(F(x))$, $\co(\{x_i\}) \rightarrow \co(\{x_i\}) \subset Ω$, is continuous, thus from Brouwer $\exists$ fixpoint $x_ε \in Ω$ of $F_ε$.
+
+		Send $ε \rightarrow 0$. $Ω$ compact $\implies$ $\exists x_j \in Ω$ subsequence of $x_ε = F_ε(x_ε)$ converging to $x_0$.
+		$$ \|F(x) - F_ε(x)\| \!=\! \|\sum(F(x) - x_i) Ψ_i(F(x))\| ≤ ε \implies x_0 \!=\! \lim_{ε \rightarrow 0} F_ε(x_ε) \!=\! \lim_{ε \rightarrow 0} F(x_ε) \!=\! F(x_0). $$
+	\end{dukazin}
+\end{veta}
 
 % 13. 12. 2023
 
-TODO!!!
+\begin{definice}[Compact operator]
+	Let $X$, $Y$ be Banach spaces, $A \subset X$. Then $F: A \rightarrow X$ is called compact if it is continuous and maps bounded sets to precompact sets.
+\end{definice}
+
+\begin{tvrzeni}[Characterization of compact operators]
+	Let $X$, $Y$ be Banach spaces, $A \subset X$ bounded. Then $F: A \rightarrow Y$ is compact iff there is a sequence of continuous operators $P_n: A \rightarrow Y$ such that $P_n(A)$ is part of a finite dimensional subspace of $Y$and $\|F(x) - P_n(x)\|_Y < \frac{1}{n}$ for all $x \in A$, $n \in ®N$.
+
+	\begin{dukazin}
+		„$\impliedby$“: $F$ is uniform limit of continuous operators, so $F$ is continuous. Let $ε > 0$, $\frac{1}{n} < \frac{ε}{3}$ and have a finite $\frac{ε}{3}$-cover $(B_{ε / 3}(P_n(x_i)))_{i \in [N]}$ of $P_n(A)$.
+
+		Then for all $y = F(x) \in F(A)$ $\exists x_i$ such that $\|P_n(x) - P_n(x_i)\|_Y < \frac{ε}{3}$ $\implies$
+		$$ \implies \|F(x) - F(x_i)\| ≤ \|F(x) - P_n(x)\| + \|P_n(x) - P_n(x_i)\| + \|P_n(x_i) - F(x_i)\| < ε \implies $$
+		$\implies$ $(B_ε(F(x_i)))_{i \in [N]}$ is an $ε$-cover of $F(A)$.
+
+		„$\implies$“: As in previous proof, fix given $ε = \frac{1}{n}$ constant part of unity and set $P_n(x) := \sum_i x_i Ψ_i(F(x))$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}[Schauder's fixpoint theorem II]
+	Let $X$ be a Banach space, $A \subset X$ bounded, closed and convex. If $F: A \rightarrow A$ is compact, then it has a fixpoint.
+
+	\begin{dukazin}[Idea] % From the notes of the lecturer
+		We want to apply the first version to the restriction of $F$ to $\overline{\co F(A)}$ which is certainly a closed convex set. For this we need that precompactness of set $B$ (for us $B = F(A)$) also implies precompactness of its convex hull. This is a general statement which was first shown by Mazur:
+
+		Let $(B_{ε / 2}(x_i))_{i \in [N]}$ be finite $\frac{ε}{2}$-cover of $B$. Pick a finite $\frac{ε}{2 \diam B}$-cover $(B(α_j))_{j \in [M]}$ of the compact set $\{α \in [0, 1]^N | \sum_{i=1}^N α_i = 1\}$ in the $l^1$-norm. Then $(B_ε(\sum_{i=1}^N (α_j)_i x_i))_{j \in [M]}$ is $ε$-cover of $\conv(B)$:
+
+		To see this, let $x = \sum_{l=1}^L β_l \tilde x_l \in \conv(B)$ with $\tilde x_j \in B$ for all $j \in [L]$ and $\sum_{l=1}^L β_l = 1$. Then for every $j \in [L]$ there is an $I(j) \in [N]$ such that $\|\tilde x_j - x_{I(j)}\| < ε / 2$. With this we then define $\tilde α_i := \sum_{l \in I^{-1}(i)}β_l$ and finally find $α_j$ such that $\|α_j - \tilde α\| < \frac{ε}{2\diam B}$. Then
+		$$ \left\|x - \sum_{i=1}^N(α_j)_i x_i\right\| ≤ \left\|x - \sum_{i=1}^N\tilde α_i x_i\right\| + \left\|x - \sum_{i=1}^N(\tilde α - α_j)_i x_i\right\| ≤ $$
+		$$ ≤ \left\|\sum_{l=1}^Lβ_l·\(\tilde x_l - x_{I(l)}\)\right\| + \sum_{i=1}^N |α_i - \tilde α_i|·\|x_i\| < ε. $$
+	\end{dukazin}
+\end{dusledek}
 
 \begin{veta}[Peano]
 	Let $Q = [0, T] \times \overline{B_R(y_0)} \subset ®R \times ®R^n$, $f: Q \rightarrow ®R^n$ bounded and continuous. Then the ODE $\dot y(t) = f(t, y)$, $y(0) = y_0$ has a solution in the interval $\[0, \min(T, \frac{R}{\sup f})\] =: [0, T^*]$.
 
 	\begin{dukazin}
-		Consider
-		$$ y(t) = F(y)(t) := y_0 + \int_0^t f(s, y(s)) ds, $$
+		Consider $y(t) = F(y)(t) := y_0 + \int_0^t f(s, y(s)) ds$,
+
 		TODO!!!
 
 		„$F$ is continuous“: $\|y - \hat{y}\|_{\sup} < δ \implies \|F(y) - F(\hat{y})\|_{\sup} ≤ \sup_{t \in (0, T^*)} \int_0^t |f(s, y) - f(s, \hat{y})| < T^*ε$.
@@ -627,24 +904,17 @@ TODO!!!
 % 20. 12. 2023
 
 \section{The Leray–Schauder degree}
-\begin{definice}
-	$$ \deg_X(\id, Ω, y_0) = \begin{cases}0, \qquad \text{if } x \in Ω,\\ 1, \qquad \text{if } x \in X \setminus Ω.\end{cases} $$
-\end{definice}
-
 \begin{veta}[Leray–Schauder degree]
 	Let $X$ be Banach, $T: X \rightarrow X$ compact and $(P_n)_n$ be a finite dimension approximation with $X_n \subset X$ finite dimensional, such that $P_n(X) \subset X_n$. Let $Ω \subset X$ open, bounded, $0 \notin (\id - T)(\partial Ω)$ then $\deg_X(\id - T, Ω, 0) := \lim_{n \rightarrow ∞} \deg_{X_n}((\id - P_n)|_{X_n}, Ω \cap X_n, 0)$ is well defined (actually RHS is constant for $n$ large enough). We'll call this the Leray–Schauder degree.
 
 	\begin{dukazin}
-		1. Make sense of $\deg_{X_n}((\id - R)|_{X_n}, Ω \cap X_n, 0)$. Assume $\exists (x_n)_n$ such that $x_n \in \partial(X_n \cap Ω)$ such that $x_n - P_n x_n = 0$. $x_n$ bounded and $T$ compact $\implies$ $\exists$ subsequence $Tx_n \rightarrow x$:
-		$$ \|T x_n - P_n x_n \| < \frac{1}{n} \implies P_n x \rightarrow x. $$
-		$x_n \rightarrow x \implies Tx = x$. \lightning.
-		$$ \dist((\id - T)(\partial Ω), 0) =: r > 0. $$
+		1. Make sense of $\deg_{X_n}((\id - R)|_{X_n}, Ω \cap X_n, 0)$. Assume $\exists (x_n)_n$ such that $x_n \in \partial(X_n \cap Ω)$ such that $x_n - P_n x_n = 0$. $x_n$ bounded and $T$ compact $\implies$ $\exists$ subsequence $Tx_n \rightarrow x$:\vspace{-0.5em}
+		$$ \|T x_n - P_n x_n \| < \frac{1}{n} \implies P_n x \rightarrow x. \qquad x_n \rightarrow x \implies Tx = x. \text{ \lightning}. \vspace{-0.5em} $$
+		$\dist((\id - T)(\partial Ω), 0) =: r > 0$.\vspace{-0.5em}
 
 		2. Let $P_n, P_m$ be such that $\frac{1}{n} < \frac{r}{2}$, $\frac{1}{m} < \frac{r}{2}$. Denote by $\tilde X := X_n + X_m$ the smallest linear subspace of $X$ including $X_n$ and $X_m$.
 		$$ \deg_{X_n}((\id P_n)|_{X_n}, Ω \cap X_n, 0) = \deg_{\tilde X} ((\id - P_n)|_{\tilde X}, Ω \cap \tilde X, 0), $$
-		since $(\id - P_n)(x) = 0 \implies x - P_nx = 0 \implies x \in X_n$. WLOG for all such $x$ $\det((I - DP_n))(x) ≠ 0$. TODO!!!
-
-		3. TODO!!!
+		since $(\id - P_n)(x) = 0 \implies x - P_nx = 0 \implies x \in X_n$. WLOG for all such $x$ $\det((I - DP_n))(x) ≠ 0$. TODO!!! 3. TODO!!!
 	\end{dukazin}
 \end{veta}
 
@@ -658,44 +928,104 @@ TODO!!!
 
 \begin{veta}[Homotopies for the Leray-Schauder degree]
 	Let $X$ Banach, $T_s: X \rightarrow X$ for $s \in [0, 1]$ a family of compact operators, uniformly continuous in the sense
-	$$ \exists ε > 0, Ω \subset X \text{ bounded } \exists δ > 0\ \forall x \in Ω\ \forall |s_1 - s_2| < δ: \|T_{s_1}(x) - T_{s_2}(x)\| < ε. $$
+	$\exists ε > 0, Ω \subset X \text{ bounded } \exists δ > 0\ \forall x \in Ω\ \forall |s_1 - s_2| < δ: \|T_{s_1}(x) - T_{s_2}(x)\| < ε$.
 	If $Ω$ is open and bounded such that $0 \notin (\id - T_s)(\partial Ω)$ $\forall s \in [0, 1]$, then $s \mapsto \deg_X(\id - T_n, Ω, 0)$ is constant.
 
 	\begin{dukazin}
-		Similar to before we show $\dist((\id - T_s)(\partial Ω), 0) ≥ r > 0$ independently of $s$. Assume $\exists (s_n)_n \subset [0, 1], (x_n)_n \subset \partial Ω$ such that $\|x_n - T_{s_n} x_n\| \rightarrow 0$. By compactness $\exists$ subsequence $s_n \rightarrow s$ and $T_s x_n \rightarrow x$. Now
-		$$ \|x_n - T_s x_n\| ≤ \underbrace{\|x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by assumption }} + \underbrace{\|T_s x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by uniform continuity}} \implies $$
-		$\implies x_n \rightarrow x \in Ω \land x - Tx = 0$. \lightning.
-
-		TODO!!!
+		Similar to before we show $\dist((\id - T_s)(\partial Ω), 0) ≥ r > 0$ independently of $s$. Assume $\exists (s_n)_n \subset [0, 1], (x_n)_n \subset \partial Ω$ such that $\|x_n - T_{s_n} x_n\| \rightarrow 0$. By compactness $\exists$ subsequence $s_n \rightarrow s$ and $T_s x_n \rightarrow x$. Now $\|x_n - T_s x_n\| ≤ \underbrace{\|x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by assumption }} + \underbrace{\|T_s x_n - T_{s_n}x_n\|}_{\rightarrow 0 \text{ by uniform continuity}} \implies$
+		$\implies x_n \rightarrow x \in Ω \land x - Tx = 0$. \lightning. TODO!!!
 	\end{dukazin}
 \end{veta}
 
 % 03. 01. 2024
 
-TODO!!!
+\section{Monotone operators}
+\begin{definice}[Monotone operator]
+	Let $X$ reflexive Banach space. An operator $f: X \rightarrow X^*$ is called monotone if
+	$$ \<f[a] - f[b], a - b\>_{X^* \times X} ≥ 0, \qquad \forall a, b \in X. $$
+\end{definice}
+
+\begin{priklad}[Laplace operator]
+	TODO?
+\end{priklad}
+
+\begin{definice}[Hemi-continuity and demi-continuity]
+	Let $X$ be reflexive Banach space, $f: X \rightarrow X^*$. Then $f$ is called demi-continuous if $a_n \rightarrow a$ in $X$ $\implies$ $f[a_n] \rightharpoonup f[a]$ in $X^*$.
+
+	$f$ is called hemi-continuous if $[0, 1] \rightarrow ®R$, $t \mapsto \<f(a + t·b), c\>$ is continuous $\forall a,b,c \in X$.
+\end{definice}
+
+\begin{tvrzeni}[Maximal-monotone operator]
+	Let $X$ be a reflexive Banach space, $f: X \rightarrow X^*$, hemi-continuous and monotone. If $\<b - f[\tilde x], x - \tilde x\> ≥ 0$, $\forall \tilde x \in X$, then $f[x] = b$.
+
+	\begin{dukazin}
+		Pick $\tilde x = x - t·u$, $t \in [0, 1]$, $u \in X$. $\implies \<b - f[\tilde x], t·u\> ≥ 0$. Divide by $t$ and send $t \rightarrow 0$:
+		$$ \forall u \in X: \<b - f[x - t·u], u\> ≥ 0 \implies \forall u \in X: \<b - f[x], u\> ≥ 0 \implies b = f[x] $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{lemma}
+	Let $X$ be a reflexive Banach space, $f: X \rightarrow X^*$.
+	\begin{enumerate}
+		\item If $f$ is demi-continuous, then it is locally bounded.
+		\item If $f$ is monotone, then it is locally bounded.
+		\item If $f$ is monotone and hemi-continuous, then it is demi-continuous.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		Assume $x_0 \in X$ such that $f[x]$ is unbounded in any neighbourhood of $x_0$. Then there exists $x_i \rightarrow x_0$ such that $f[x_n]$ is unbounded, but $f[x_n] \rightharpoonup f[x_0]$ \lightning.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Assume that we have $x_n \rightarrow x$. From monotonicity we get
+		$$ 0 ≤ \<f[x_n] - f[\tilde x], x_n - \tilde x\> = \<f[x_n] - f[\tilde x], (x_n - x_0) + (x_0 - \tilde x)\> \implies $$
+		$$ \implies a_n \<f[x_n], \tilde x - x_0\> ≤ a_n·\(\<f[x_n], x_n - x_0\> - \<f[\tilde x], x_n - \tilde x\>\) ≤ $$
+		$$ ≤ a_n(\|f[x_n]\|·\|x_n - x\| + \|f(\tilde x)\|·(\|x_n\| + \|\tilde x\|)) ≤ c(x, \tilde x). $$
+
+		Replacing $\tilde x$ with $2x - \tilde x$ gives us a similar inequality with the opposite sign on the left hand side. But then $|\<a_n f[x_n], \tilde x - x\>| = |a_n f[x_n]\<\tilde x - x\>|$ is uniformly bounded and from Banach–Steinhaus $\|a_n f[x_n]\|$ is uniformly bounded.
+		$$ \implies \|f[x_n]\| ≤ ? = c·(1 + \|f[x_n]\|·\|x_1 - x_0\|) \rightarrow c \implies \|f[x_n]\| \text{ is bounded.} \vspace{-2.3em} $$
+	\end{dukazin}
+
+	\begin{dukazin}[3.]
+		Let $x_n \rightarrow x_0$. Then $f[x_n]$ is bounded $\implies$ $\exists$subsequence $f[x_n] \rightharpoonup b$ and
+		$$ \forall \tilde x: 0 ≤ \<f[x_n] - f[\tilde x], x_n - \tilde x\> \implies \forall \tilde x: 0 ≤ \<b - f[\tilde x], x_0 - \tilde x\> \implies b = f[x_0] \implies $$
+		$\implies$ every subsequence of $f[x_n]$ has a converging subsequence such that $f[x_{n_k}] \rightharpoonup f[x_0]$ $\implies$ $f[x_n] \rightharpoonup f[x_0]$.
+	\end{dukazin}
+\end{lemma}
+
+\vspace{-2.3em}
 
 \subsection{Existence theory}
 \begin{veta}[Minty and Browder]
-	Let $X$ be a reflective separable Banach space and $f: X \rightarrow X^*$ monotone, hemi-continuous and coercive in the sense that $\lim_{\|x\| \rightarrow ∞} \frac{\<f(x), x\>}{\|x\|} = ∞$. Then for all $b \in X^*$ the set $\{x \in X | f(x) = b\}$ is closed, bounded, convex and non-empty. If $f$ is strictly monotone, then it consist of one point.
+	Let $X$ be a reflective separable Banach space and $f: X \rightarrow X^*$ monotone, hemi-continuous and coercive in the sense that $\lim_{\|x\| \rightarrow ∞} \frac{\<f(x), x\>}{\|x\|} = ∞$. Then for all $b \in X^*$ the set $\{x \in X | f(x) = b\}$ is closed, bounded, convex and non-empty. If $f$ is strictly monotone, then it consist of one point.
 
-	\begin{dukazin}
-		Plan: 1. Solve approximation problem in $X_n$; 2. Show uniform estimate; 3. Converge to solution of the full problem.
-
+	\begin{dukazin}[1. Solve approximation problem in $X_n$; 2. Show uniform estimate; 3. Converge to solution of the full problem.]
 		„1.“: Define $g_n: ®R^n \rightarrow ®R^n$, $y \mapsto \(\<f\(\sum_{i=1}^n y_i e_i\)- b, e_k\>\)_{k \in [n]}$. Hemi-continuity $\implies$ $g_n$ is continuous in every compact. Finite dimension $\implies$ $g_n$ is continuous.
 		$$ \frac{g_n(y)·y}{|y|} = \frac{\<f\(\sum_{i=1}^n y_i e_i\), \sum_{i=1}^n y_i e_i\>}{|y|} - \frac{\<b, \sum_{i=1}^n y_i e_i\>}{|y|} \rightarrow ∞ + \const $$
-		Homework (sheet 8) $\implies$ $\exists y_n$ such that $g_n(y_n) = 0$ $\implies$
-		$$ x_n := \sum_{i=1}^n y_i e_i: \qquad \forall i \in [n]: \<f(x_n) - b, e_i\> = 0. $$
+		Homework (sheet 8) $\implies$ $\exists y_n$ such that $g_n(y_n) = 0$ $\implies$ $x_n := \sum_{i=1}^n y_i e_i: \forall i \in [n]: \<f(x_n) - b, e_i\> = 0$.
 
-		„2.“: TODO!!!
-
-		Using $0 ≤ \<f[x_1] - f[w], x_n - w\>:$
+		„2.“: TODO!!! Using $0 ≤ \<f[x_1] - f[w], x_n - w\>:$
 		$$ \|f[x_n]\| = \sup_{\|w\| ≤ δ} \frac{1}{b}\<f(x_n), w\> ≤ \sup_{\|w\| < δ} \frac{1}{b} \(\<f[x_n], x_n\> - \<f[w], x_1\> + \<f[w], w\>\) ≤ $$
-		$$ ≤ \frac{1}{b} \(\|b\|·\|x_n\| + R_1\|x_1\| + δ·R_1\) \implies f[x_n] \text{ is bounded}. $$
+		$$ ≤ \frac{1}{b} \(\|b\|·\|x_n\| + R_1\|x_1\| + δ·R_1\) \implies f[x_n] \text{ is bounded}. \vspace{-1.8em} $$
 	\end{dukazin}
 \end{veta}
 
 % 10. 01. 2024
 
-TODO!!!
+\begin{poznamka}[Minty's trick]
+	The same trick works in moch more general circumstances involving monotone operator. Here $\<f(x_0), x_n\> := \<b, x_n\>$ could also be $\<f(x_0), x_n\> := \<g(x_n), x_n\>$, where $g$ is compact.
+\end{poznamka}
+
+\subsection{Maximal monotone operators}
+\begin{definice}[Monotone operator and maximal monotone operator]
+	Let $X$ be a reflexive Banach space. $f: X \rightarrow 2^{X^*}$ is called monotone if
+	$$ \<y_1 - y_2, x_1 - x_2\> ≥ 0 \qquad \forall x_1, x_2 \in X, y_1 \in f(x_1), y_2 \in f(x_2). $$
+	It is called maximal monotone if $\forall x \in X$, $b \in X^*$
+	$$ \<b - \tilde y, x - \tilde x\> ≥ 0 \quad \forall \tilde x \in X, \tilde y \in f(\tilde x) \implies b \in f(x). $$
+\end{definice}
+
+\begin{priklady}
+	Sub-differential of convex functional is maximal monotone.
+\end{priklady}
 
 \end{document}

@@ -86,6 +86,8 @@
 \end{tvrzeni}
 
 \begin{definice}[Cell complex (CW complex)]
+	\ 
+
 	\begin{poznamkain}
 		Cell complex (CW complex) is a topological space with a nice decomposition into small pieces.
 	\end{poznamkain}
@@ -141,7 +143,7 @@
 \end{definice}
 
 \begin{definice}[Wedge sum]
-	Given spaces $X$ and $Y$ with chosen points $x_0 \in X$ and $y_0 \in Y$, the wedge sum $X \wedge Y$ is the quotient of the disjoint union $X \coprod Y$ obtained by identifying $x_0$ and $y_0$ to a single point.
+	Given spaces $X$ and $Y$ with chosen points $x_0 \in X$ and $y_0 \in Y$, the wedge sum $X \vee Y$ is the quotient of the disjoint union $X \coprod Y$ obtained by identifying $x_0$ and $y_0$ to a single point.
 \end{definice}
 
 \section{Fundamental group}
@@ -246,7 +248,7 @@ TODO? (Definition of category)
 
 		Fact 2: For each homotopy $f_x: I \rightarrow X$ of paths starting at $x_0$ and each $\tilde x_0 \in p^{-1}(x_0)$ $\exists$ unique lifted homotopy $\tilde f_t: I \rightarrow \tilde X$ of paths starting at $\tilde x_0$.
 
-		$p$ that we need: $p: ®R \rightarrow S^1$; $p(s) = (\cos 2π s, \sin 2π s)$. If we define $\tilde ω_n(s) = n·s$. We will apply Facts 1 and 2 to $p: ®R \rightarrow S^1$, $\tilde ω_n$: Given $f: [0, 1] \rightarrow S^1$ based at $(0, 1)$ representing some element of $π_1(S^1)$. We take $\tilde f$. Since $p \tilde f(1) = f(1) = (1, 0)$ (and $p^{-1}(1) \in ®Z$), we can argument that if $\tilde f$ ends at $u$ (i.e. $\tilde f(1) = f$), it is homotopoc to $\tilde ω_n$ by the homotopy $\tilde F = (1 - t)\tilde f + t\tilde ω_n$.
+		$p$ that we need: $p: ®R \rightarrow S^1$; $p(s) = (\cos 2π s, \sin 2π s)$. If we define $\tilde ω_n(s) = n·s$. We will apply Facts 1 and 2 to $p: ®R \rightarrow S^1$, $\tilde ω_n$: Given $f: [0, 1] \rightarrow S^1$ based at $(0, 1)$ representing some element of $π_1(S^1)$. We take $\tilde f$. Since $p \tilde f(1) = f(1) = (1, 0)$ (and $p^{-1}(1) \in ®Z$), we can argument that if $\tilde f$ ends at $u$ (i.e. $\tilde f(1) = f$), it is homotopic to $\tilde ω_n$ by the homotopy $\tilde F = (1 - t)\tilde f + t\tilde ω_n$.
 
 		From fact 1 exists $\tilde f$ starting at 0 and ending at $p^{-1}(1) \in ®Z$.
 
@@ -271,9 +273,9 @@ TODO? (Definition of category)
 \begin{tvrzeni}[*]
 	Given a map $F: Y \times [0, 1] \rightarrow X$ and a map $\tilde F: Y \times \{¦o\} \rightarrow \tilde X$, where $p: \tilde X \rightarrow X$ is a covering space, and $\tilde F$ lifts $F|_{Y \times \{¦o\}}$; there restricting to $\tilde F$ on $Y \times \{¦o\}$.
 
-	\begin{poznamka}[Corollary: Fact 1 and Fact 2 from the previous proof]
+	\begin{poznamkain}[Corollary: Fact 1 and Fact 2 from the previous proof]
 		Fact 1 is free, it comes when $Y = \{\text{point}\}$, Fact 2 also follows.
-	\end{poznamka}
+	\end{poznamkain}
 \end{tvrzeni}
 
 % 23. 10. 2023
@@ -297,7 +299,7 @@ TODO? (Definition of category)
 \end{dusledek}
 
 \begin{priklad}
-	Show that TODO!!! is a covering space for $S^1 V S^1$.
+	Show that TODO!!! is a covering space for $S^1 \vee S^1$.
 \end{priklad}
 
 TODO!!!
@@ -318,7 +320,7 @@ TODO!!!
 \end{dukaz}
 
 \begin{poznamka}
-	We would like to see $π$, as a functor $π_1: Top \rightarrow Grp$. In order for $π_1$ to be a functor, we want for $φ: (X, x_0) \overset{\text{cont.}}\rightarrow (Y, y_0)$ associate $φ_*: π_1(X, x_0) \rightarrow π_1(Y, y_0)$. How to get $φ_*$? Given a loop $γ$ on $X$ based at $x_0$. We have a loop $φ ∘ γ$ on $Y$ based at $y_0$. $φ_*([γ]) := [φ ∘ γ]$. Is $φ_*$ a homomorphism? $φ_*([γ; γ_2]) = [φ ∘ (γ_1·γ_2)] = [φ ∘ γ_1 · φ · γ_2] = [φ ∘ γ_1]·[φ ∘ γ_2]$. Hence $φ_*$ is a homomorphism.
+	We would like to see $π_1$ as a functor $π_1: Top \rightarrow Grp$. In order for $π_1$ to be a functor, we want for $φ: (X, x_0) \overset{\text{cont.}}\rightarrow (Y, y_0)$ associate $φ_*: π_1(X, x_0) \rightarrow π_1(Y, y_0)$. How to get $φ_*$? Given a loop $γ$ on $X$ based at $x_0$. We have a loop $φ ∘ γ$ on $Y$ based at $y_0$. $φ_*([γ]) := [φ ∘ γ]$. Is $φ_*$ a homomorphism? $φ_*([γ; γ_2]) = [φ ∘ (γ_1·γ_2)] = [φ ∘ γ_1 · φ · γ_2] = [φ ∘ γ_1]·[φ ∘ γ_2]$. Hence $φ_*$ is a homomorphism.
 
 	$$ \forall (X, x_0) \in Fb(Top) \exists φ=1 \in Hom((X, x_0), (X, x_0)). $$
 
@@ -430,7 +432,25 @@ TODO? (Problems)
 
 % 27. 11. 2023
 
-TODO!!!
+\begin{definice}
+	We say that a topological space is locally path connected if for each $x \in X$ and each $U$ neighbourhood of $X$ exists $V \subset U$ such that $V$ is path connected.
+\end{definice}
+
+\begin{tvrzeni}
+	Given a covering space $p: (\tilde X, \tilde x_0) \rightarrow (X, x_0)$ and a map $f: (Y, y_0) \rightarrow (X, x_0)$ with $Y$ path and locally path connected. Then a lift of $f$ that we denote by $\tilde f: (Y, y_0) \rightarrow (\tilde X, \tilde x_0)$ exists $\Leftrightarrow$ $f_*: π_1(Y, y_0) \rightarrow π_1(X, x_0)$ has a property that $f_*(π_1(Y, y_0)) \subset p_*\(π_1\(\tilde X, \tilde x_0\)\)$.
+
+	\begin{dukazin}
+		„$\implies$“: simply follows from the definition of lifting, i.e. $f_* = p_* \tilde f_*$.
+
+		„$\impliedby$“ Let $y \in Y$ and let $γ$ be a path in $U$ from $y_0$ to $y$. The path $f γ = f(γ)$ in $X$ starts at $x_0$ and has unique lift $\tilde{f γ}$ which is a path that starts at $\tilde x_0$. Define $\tilde f(y) = \tilde{f γ}(1)$. To show that this is well-defined and independent of the choice of $γ$, let $γ'$ be another path from $y_0$ to $y$ in $Y$.
+
+		Then $(f γ')·(f γ)$ is a loop that we call $h_0$ in $X$ with
+		$$ [h_0] \in f * \(π_1(Y, y_0)\) \subseteq p * \(π_1\(\tilde X, \tilde x_0\)\). $$
+		This means that there is a homotopy $h_t$ of $h_0$ to a loop $h_1$ that lifts to a loop $\tilde h_1$ in $\tilde X$ based at $\tilde x_0$. We apply the covering homotopy property (proposition above) to $h_t$ to get a lift $\tilde h_t$. Since $\tilde h_1$ is a loop at $\tilde x_t$, so is $\tilde h_0$. By the uniqueness of lifted paths, the first half of $\tilde h_0$ is $\tilde{f γ'}$ and the second half is $(\tilde{f γ})^{-1}$ with the common midpoint $\tilde{f γ}(1) = \tilde{f γ'}(1)$.
+
+		We still need to show that $\tilde f$ is continuous. To see this we take open neighbourhood $U \subset X$ of $f(y)$ having a lift $\tilde U \subset \tilde X$ containing $\tilde f(y)$ such that $p|_{\tilde U}: \tilde U \rightarrow U$ is a homomorphism. Choose a path connected open neighbourhood $V$ of $y$ with $f(V) \subset U$. For paths from $y_0$ to point $y'$ in $V$ we take a fixed path $γ$ from $y_0$ to $y$ followed by paths $η$ in $V$ from $y$ to the points $y'$. Then the paths $(f γ)·(f η)$ in $X$ have lifts $(\tilde{f γ})(\tilde{f η})$, where $\tilde{f η} = p^{-1} f η$ and $p^{-1}: U \rightarrow \tilde U$. Thus $\tilde f(V) \subset \tilde U$ and $\tilde f|_V = ?$, $p$ is homeomorphism $\implies$ $p^{-1}$ is continuous and $f$ is continuous $\implies$ $\tilde f|_V$ is continuous.
+	\end{dukazin}
+\end{tvrzeni}
 
 % 27. 11. 2023
 
@@ -536,7 +556,8 @@ TODO? (Problems)
 	We modify this complex, ? will be called the reduced complex (reduced from $C(X)$):
 	$$ \rightarrow C_3(X) \overset{\partial_3}\rightarrow C_2(X) \overset{\partial_2}\rightarrow C_1(X) \overset{\partial_1}\rightarrow C_0(X) \overset{ε}\rightarrow ®Z \rightarrow 0 \rightarrow …, $$
 	where $ε$ is called an augmentation map and it is defined by $ε(\sum_{i \text{ finite}} n·i·δ_i) = \sum_{i \text{ finite}} n·i$ $\implies$ $ε$ is well defined. (Exercise: check that $ε$ vanishes on $\partial_1$.) Denote the homology of the reduced complex by $\tilde H(X)$.
-	TODO!!! (Asi dva řádky rovnic.)
+	TODO!!! (Asi řádek rovnic.)
+	If $X ≠ \O$, then $H_{-1}(X) \simeq 0$ and $H_0(X) \simeq \tilde H_0(X) \oplus ®Z$.
 
 	2. Relative complex (complex of a pair): Given a space $X$ and a subspace $A \subset X$, we define $C_n(X, A) := C_n(X) / C_n(A)$ (the chains in $A$ will be trivial in $C_n(X, A)$). This way we get a complex
 	$$ … \rightarrow C_n(X, A) \overset{\partial_n(X, A)}\rightarrow C_{n-1}(X, A) \overset{\partial_{n-1}(X, A)}\rightarrow C_{n-2}(X, A) \rightarrow … \rightarrow 0, $$
