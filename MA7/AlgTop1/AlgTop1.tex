@@ -23,7 +23,7 @@
 \end{definice}
 
 \begin{definice}[Homotopy equivalent spaces]
-	Given two topological spaces $X$ and $Y$ we say that $X$ and $Y$ are homotopy equivalent if there is a pair of continuous maps $(f, g)$ such that $f: X \rightarrow Y$ and $g: Y \rightarrow X$ and $X \overset{f}\rightarrow Y$ and $Y \overset{g}\rightarrow X$, $g ∘ f \sim \id_X$, $f ∘ g \sim \id_Y$.
+	Given two topological spaces $X$ and $Y$ we say that $X$ and $Y$ are homotopy equivalent if there is a pair of continuous maps $(f, g)$ such that $f: X \rightarrow Y$ and $g: Y \rightarrow X$, $g ∘ f \sim \id_X$, $f ∘ g \sim \id_Y$.
 \end{definice}
 
 \begin{priklad}
@@ -72,7 +72,7 @@
 \end{tvrzeni}
 
 \begin{definice}
-	Given two topological spaces $X$ and $Y$ and a continuous map $f: X \rightarrow Y$, the mapping cylinder $M_f$ is defined to be the quotient space of $X \times [0, 1] \coprod Y$ and $\sim$: $(x, 1) \sim f(x)$. $M_f = X \times [0, 1]\coprod Y / \sim$.
+	Given two topological spaces $X$ and $Y$ and a continuous map $f: X \rightarrow Y$, the mapping cylinder $M_f$ is defined to be the quotient space of $(X \times [0, 1]) \coprod Y$ and $\sim$: $(x, 1) \sim f(x)$. $M_f = \(\(X \times [0, 1]\)\coprod Y\) / \sim$.
 \end{definice}
 
 \begin{tvrzeni}
@@ -271,7 +271,7 @@ TODO? (Definition of category)
 \end{definice}
 
 \begin{tvrzeni}[*]
-	Given a map $F: Y \times [0, 1] \rightarrow X$ and a map $\tilde F: Y \times \{¦o\} \rightarrow \tilde X$, where $p: \tilde X \rightarrow X$ is a covering space, and $\tilde F$ lifts $F|_{Y \times \{¦o\}}$; there restricting to $\tilde F$ on $Y \times \{¦o\}$.
+	Given a map $F: Y \times [0, 1] \rightarrow X$ and a map $\tilde F: Y \times \{¦o\} \rightarrow \tilde X$, where $p: \tilde X \rightarrow X$ is a covering space, and $\tilde F$ lifts $F|_{Y \times \{¦o\}}$; there is lift $\tilde F: Y \times [0, 1] \rightarrow \tilde X$ of $F$ restricting to $\tilde F$ on $Y \times \{¦o\}$.
 
 	\begin{poznamkain}[Corollary: Fact 1 and Fact 2 from the previous proof]
 		Fact 1 is free, it comes when $Y = \{\text{point}\}$, Fact 2 also follows.
@@ -351,10 +351,6 @@ TODO!!!
 
 % 13. 11. 2023
 
-\begin{tvrzeni}[*, should be somewhere above]
-	If $X = \bigcup_{α \in I} A_α$, $x_0 \in \bigcap_{α \in I} A_α$, $A_α \cap A_β$ is path connected for all $α$, $β$. Then for each loop $γ$ in $X$ based at $x_0$, there is a sequence of loops $γ_{α_1}, … γ_{α_k}: [γ] = [γ_{α_1}]·…·[γ_{α_k}]$, where $γ_{α_i}$ is a loop in $A_{α_i}$.
-\end{tvrzeni}
-
 \begin{veta}[Van Kampen]
 	Given a topological space $X$ such that $X = \bigcup A_α$, where $A_α$'s are path connected subspaces of $X$, $x_0 \in \bigcap A_α ≠ \O$. Besides that we assume $A_α \cap A_β$ is connected $\forall α, β$. Then $\exists Φ: *_{α \in I} π_1(A_α, x_0) \rightarrow π_1(X, x_0)$, which is a surjective homomorphism. If in addition $\forall α, β, γ: A_α \cap A_β \cap A_γ$ is path connected, then $\Ker Φ = \<i_{αβ}(ω) i_{βα}(ω)^{-1}\>$.
 	$$ *_{α \in I} π_1(A_α, x_0) / <i_{αβ}(ω)i_{βα}(ω)^{-1}> \simeq π_1(X, x_0). $$
@@ -393,7 +389,7 @@ TODO!!!
 TODO? (Examples of covering space)
 
 \begin{tvrzeni}
-	Given a covering space $p: \tilde X \rightarrow X$, a homotopy $f_t: Y \rightarrow X$ and a map $\tilde f_ς: Y \rightarrow \tilde X$ lifting $f_0$, then there is a unique homotopy $\tilde f_t: Y \rightarrow \tilde X$ of $\tilde f_0$ that lifts $f_t$.
+	Given a covering space $p: \tilde X \rightarrow X$, a homotopy $f_t: Y \rightarrow X$ and a map $\tilde f_0: Y \rightarrow \tilde X$ lifting $f_0$, then there is a unique homotopy $\tilde f_t: Y \rightarrow \tilde X$ of $\tilde f_0$ that lifts $f_t$.
 
 	\begin{poznamka}
 		This statement in a more general form has already appeared on practicals.
@@ -445,7 +441,7 @@ TODO? (Problems)
 		„$\impliedby$“ Let $y \in Y$ and let $γ$ be a path in $U$ from $y_0$ to $y$. The path $f γ = f(γ)$ in $X$ starts at $x_0$ and has unique lift $\tilde{f γ}$ which is a path that starts at $\tilde x_0$. Define $\tilde f(y) = \tilde{f γ}(1)$. To show that this is well-defined and independent of the choice of $γ$, let $γ'$ be another path from $y_0$ to $y$ in $Y$.
 
 		Then $(f γ')·(f γ)$ is a loop that we call $h_0$ in $X$ with
-		$$ [h_0] \in f * \(π_1(Y, y_0)\) \subseteq p * \(π_1\(\tilde X, \tilde x_0\)\). $$
+		$$ [h_0] \in f_* \(π_1(Y, y_0)\) \subseteq p_* \(π_1\(\tilde X, \tilde x_0\)\). $$
 		This means that there is a homotopy $h_t$ of $h_0$ to a loop $h_1$ that lifts to a loop $\tilde h_1$ in $\tilde X$ based at $\tilde x_0$. We apply the covering homotopy property (proposition above) to $h_t$ to get a lift $\tilde h_t$. Since $\tilde h_1$ is a loop at $\tilde x_t$, so is $\tilde h_0$. By the uniqueness of lifted paths, the first half of $\tilde h_0$ is $\tilde{f γ'}$ and the second half is $(\tilde{f γ})^{-1}$ with the common midpoint $\tilde{f γ}(1) = \tilde{f γ'}(1)$.
 
 		We still need to show that $\tilde f$ is continuous. To see this we take open neighbourhood $U \subset X$ of $f(y)$ having a lift $\tilde U \subset \tilde X$ containing $\tilde f(y)$ such that $p|_{\tilde U}: \tilde U \rightarrow U$ is a homomorphism. Choose a path connected open neighbourhood $V$ of $y$ with $f(V) \subset U$. For paths from $y_0$ to point $y'$ in $V$ we take a fixed path $γ$ from $y_0$ to $y$ followed by paths $η$ in $V$ from $y$ to the points $y'$. Then the paths $(f γ)·(f η)$ in $X$ have lifts $(\tilde{f γ})(\tilde{f η})$, where $\tilde{f η} = p^{-1} f η$ and $p^{-1}: U \rightarrow \tilde U$. Thus $\tilde f(V) \subset \tilde U$ and $\tilde f|_V = ?$, $p$ is homeomorphism $\implies$ $p^{-1}$ is continuous and $f$ is continuous $\implies$ $\tilde f|_V$ is continuous.
@@ -468,7 +464,7 @@ TODO? (Problems)
 	the smallest convex set in $®R^m$ containing $v_0, …, v_n$. We call $[v_0, v_1, …, v_n]$ a simplex defined by points $v_0, …, v_n$.
 
 	Standard simplex:
-	$$ Δ_n = \{(t_0, …, t_n) \in ®R^{n+1}\}: \sum_{i=0}^n t_i = 1 \land \forall i \in [0, n] t_i ≥ 0 $$
+	$$ Δ_n = \{(t_0, …, t_n) \in ®R^{n+1} \middle| \sum_{i=0}^n t_i = 1 \land \forall i \in [0, n]: t_i ≥ 0\} $$
 
 	The order we use for points in particular determines directions of 1-simplices. Specifying the direction in such a way we got a canonical homeomorphism $Δ^n \rightarrow [v_0, …, v_n]$ given by $(t_0, …, t_n) \rightarrow \sum_{i=1}^n t_i v_i$.
 \end{definice}
@@ -539,7 +535,7 @@ TODO? (Problems)
 		On the left side, a priori, we can't say that a certain level we start getting only zeroes. $(C_n = 0 ≡ C_n = \{0\}).$
 	\end{poznamkain}
 
-	$H^Δ(X) = $ simplicial homology. Then we define $H_n(X) = \Ker \partial_n / \Im \partial_{n+1}$. ($n$-th singular homology group.)
+	$H^Δ(X) = $ simplicial homology. Then we define $H_n(X) = \Ker \partial_n / \im \partial_{n+1}$. ($n$-th singular homology group.)
 \end{definice}
 
 \begin{poznamka}
@@ -563,7 +559,7 @@ TODO? (Problems)
 	$$ … \rightarrow C_n(X, A) \overset{\partial_n(X, A)}\rightarrow C_{n-1}(X, A) \overset{\partial_{n-1}(X, A)}\rightarrow C_{n-2}(X, A) \rightarrow … \rightarrow 0, $$
 	here $\partial_n(X, A): C_n(X, A) \rightarrow C_{n-1}(X, A)$ are quotient maps of $\partial_n$'s for $\partial_n: C_n(X) \rightarrow C_{n-1}(X)$.
 
-	Since we know that $\partial_{n-1}∘\partial_n = 0$, then for quotient maps the corresponding compositions $\partial_{n-1}(X, A)∘\partial_n(X, A) = 0$. Hence we really see that this is a complex. We can define the homology of it $H_n(X, A) := \Ker \partial_n(X, A) / \Im \partial_{n+1}(X, A)$.
+	Since we know that $\partial_{n-1}∘\partial_n = 0$, then for quotient maps the corresponding compositions $\partial_{n-1}(X, A)∘\partial_n(X, A) = 0$. Hence we really see that this is a complex. We can define the homology of it $H_n(X, A) := \Ker \partial_n(X, A) / \im \partial_{n+1}(X, A)$.
 \end{poznamka}
 
 \subsection{Homotopy equivalence of singular homology}
