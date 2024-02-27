@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+% 21. 02. 2024
+
+\section{Ohniska kuželoseček}
+\subsection{Konstrukce s imaginárními elementy}
+\begin{poznamka}
+	Všimněme si, že projektivita dvou soumístných soustav určuje jednoznačně pár samodružných elementů, ale opačně ne. Pokud však vezmeme involuci, tak ta už má jednoznačnou korespondenci involuce s párem samodružných elementů.
+\end{poznamka}
+
+\begin{priklad}[Konstrukce]
+	Je-li dána projektivita soumístných bodových soustav na přímce, určete involuci, která má tytéž samodružné body. (Totéž duálně.)
+
+	\begin{reseni}[Duální]
+		Zvolíme pomocnou kružnici procházející daným bodem. Převedeme soustavy na bodové soustavy na kružnici. Vezmeme direkční přímku za poláru a najdeme k ní (přes tečny) pól. Nyní uvažujme involuci se středem v tomto bodě. Obraz v hledané involuci najdeme tak, že vzor převedeme na kružnici, zobrazíme v této involuci, a vrátíme zpět.
+	\end{reseni}
+
+	\begin{poznamkain}
+		Pokud direkční přímka vyjde mimo kružnici, budou samodružné body komplexní a pól najdeme tak, že leží na polárách k bodům (pólům) ležícím na dané poláře.
+	\end{poznamkain}
+\end{priklad}
+
+\begin{veta}
+	Pro eliptickou involuci (bodových soustav na přímce) existují právě dva body v rovině, z nichž se tato involuce promítá absolutní involucí (to znamená involucí kolmic).
+	
+	\begin{dukazin}
+		Pro eliptickou involuci se její páry rozdělují. Tedy nad úsečkami vzor – obraz si uděláme Thaletovy kružnice a hledané body budou jejich průsečíky.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	Body z předchozí věty se nazývají pomocné body eliptické involuce.
+\end{definice}
+
+\begin{poznamka}[Platí]
+	Absolutní involuce je eliptická involuce, jejíž samodružné přímky jsou imaginární. Nazývají se izotropické přímky a jejich směry jsou $[0:1:i]$ a $[0:1:-1]$.
+\end{poznamka}
+
+\begin{poznamka}
+	Izotropické body leží na každé kružnici v rovině. Každé izotropická přímka je kolmá sama na sebe (v reálném skalárním součinu, z definice absolutní involuce)
+\end{poznamka}
+
+\subsection{Ohnisko středových kuželoseček}
+\begin{dusledek}
+	Pokud kuželosečka není kružnice, pak izotropické body na ní neleží, tedy z každého izotropického bodu k takové kuželosečce existují 2 tečny (? 4 imaginární přímky). Lze ukázat, že ze 6 průsečíků těchto 4 přímek jsou vždy dva reálné.
+\end{dusledek}
+
+\begin{definice}[Ohnisko]
+	Těmto dvěma bodům budeme říkat ohniska dané kuželosečky.
+\end{definice}
+
+\begin{veta}
+	Bod je ohniskem kuželosečky $\Leftrightarrow$ involuce sdružených polár indukovaná v tomto bodě kuželosečkou je involuce absolutní.
+
+	\begin{dukazin}
+		Samodružné přímky involuce sdružených polár jsou právě tečny z tohoto bodu.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	1. Kuželosečka má 2 ohniska ($E, F$) (pro kružnici splývající), jsou umístěna symetricky podle středu na jedné z os kuželosečky. Ohniska jsou samodružné body involuce bodů na této ose, jejíž páry jsou vyťaty sdruženými kolmými polárami. A tedy i páry tečna+jejich normála (kolmice v bodě dotyku = pól tečny).
+
+	2. Každé z ohnisek je pomocným bodem eliptické involuce, kterou na druhé ose vytínají sdružené kolmé poláry (a tedy i dvojice tečna+normála).
+
+	3. Každá kružnice opsaná trojúhelníku danému druhou osou a sdruženými kolmými polárami protíná původní osu v ohniscích. (Vyplývá z předchozí části.)
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Hlavní osa, vedlejší osa]
+	Ose z předchozí věty se říká hlavní osa, druhé pak vedlejší.
+\end{definice}
+
+\begin{priklad}[Konstrukce]
+	Dány osy elipsy s vrcholy, najděte ohniska.
+
+	\begin{reseni}[Podobné hledání hyperoskulační kružnice.]
+		K spojnici hlavního a vedlejšího vrcholu umíme najít pól (průsečík tečen = kolmic na osy). Z tohoto pólu vedeme kolmici, čímž jsme získali dvojici kolmých sdružených polár, tedy použijeme předchozí větu, bod 3.
+	\end{reseni}
+
+	Totéž pro hyperbolu: na hlavní ose máme zadané vrcholy, na vedlejší náhradní body.
+
+	\begin{reseni}
+		Polára bude tentokrát průsečík „těch druhých dvou kolmic v hlavním a vedlejším vrchole“, neboť pomocné body jsou takové, že přesně tento bod leží na asymptotě (tečně v nevlastním bodě).
+	\end{reseni}
+\end{priklad}
+
+\subsection{Ohnisko paraboly}
+\begin{definice}[Ohnisko]
+	(Stejná.) Ohnisko paraboly je reálný průsečík izotropických tečen.
+
+	\begin{poznamkain}
+		Tuto definici splňují 2 body: vlastní ohnisko $F$ a nevlastní ohnisko = střed = směr průměrů = směr osy.
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		Polára vlastního ohniska = řídící přímka.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	1. Bod je ohniskem paraboly $\Leftrightarrow$ involuce sdružených polár v tomto bodě je involuce absolutní. (Tj. sdružené poláry v $F$ jsou vzájemně kolmé.)
+
+	2. Spojnice vlastního a nevlastního ohniska = osa paraboly, vlastní ohnisko půlí každou úsečku vyťatou na ose sdruženými kolmými polárami (speciálně tečnou a její normálou).
+\end{veta}
+
+\begin{priklad}[Konstrukce]
+	Zkonstruujte ohnisko paraboly zadané 4 tečnami.
+
+	\begin{reseni}
+		Najdeme osu a bod dotyku na libovolné nevrcholové tečně. Z něj vedeme kolmici a použijeme předchozí větu bod 2.
+	\end{reseni}
+\end{priklad}
+
+\begin{veta}
+	Ohnisko jsou pro kuželosečku 2 podmínky.
+
+	\begin{dukazin}
+		Ohnisko zadává 2 izotropické tečny, tedy 2 podmínky.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		2 ohniska + 1 bod (mimo osu = jejich spojnice) nezadávají jednoznačně kuželosečku, zadávají však jednoznačně elipsu a hyperbolu. A tyto dvě kuželosečky se v daném bodu protínají kolmo (úhel mezi tečnami).
+	\end{poznamkain}
+\end{veta}
+
+
+\end{document}

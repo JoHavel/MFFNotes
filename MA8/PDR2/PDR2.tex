@@ -1,0 +1,52 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+
+% 20. 02. 2024
+
+\section*{Prerequisites}
+\subsection{Regularization}
+\begin{definice}[Regularization kernel]
+	$η \in C_0^∞(B_1(¦o))$, non-negative, radially symmetric, $\int_{B_1(¦o)} η(x) dx = 1$.
+\end{definice}
+
+\begin{definice}[Regularization of function]
+	Let $f \in L^p(Ω)$. We extend $f$ by zero to $®R^d \setminus Ω$ and define $f_ε := η_ε * f$, where $η_ε(x) := \frac{1}{ε^d} η(x / ε)$.
+
+	\begin{poznamkain}
+		$f_ε \in C^∞(®R^d)$, $f_ε \rightarrow f$ in $L^p(Ω)$ if $p \in [1, ∞)$ and $f_ε \rightharpoonup^* f$ in $L^∞$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{veta}
+	$L^p(Ω)$ is a Banach space, separable for $p \in [1, ∞)$, reflexive for $p \in (1, ∞)$.
+\end{veta}
+
+\begin{dusledek}
+	$f^n$ is a bounded sequence in $L^p(Ω)$, $Ω \subseteq ®R^d$ measurable bounded bounded. Then
+	\begin{enumerate}
+		\item $p \in (1, ∞)$: $\exists f^{n_k}, f$: $f^{n_k} \rightharpoonup f$ in $L^p(Ω)$. ($\Leftrightarrow \forall g \in L^{p'}(Ω): \lim_{k \rightarrow ∞} \int_Ω f^{n_k} g = \int_Ω f g$, where $\frac{1}{p} + \frac{1}{p'} = 1$).
+		\item $p = ∞$: $\exists f^{n_k}, f$: $f^{n_k} \rightharpoonup^* f$ in $L^∞(Ω)$. ($\Leftrightarrow g \in L^1(Ω): \lim \int_Ω f^{n^k} g = \int_Ω f g$).
+		\item $p = 1$: $\exists f^{n_k}, f$: $f^{n_k} \rightharpoonup^* f$ in $M(\overline{Ω})$ (Radon measures). ($\Leftrightarrow \forall g \in C(\overline{Ω}): \int_Ω f^{n_k} g \rightarrow \<f, g\>_M = \int_{\overline{Ω}} g df$.)
+		\item $p = 1$: $\exists f^{n_k}, \tilde f$ $\exists Ω_1 \subseteq Ω_2 \subseteq Ω_3 \subseteq …, |Ω \setminus Ω_l| \rightarrow 0$ as $l \rightarrow ∞$: $\forall l \in Ω: f^{n_k} \rightharpoonup \tilde f$ in $L^1(Ω)$. ($\tilde f$ is called biting limit.)
+	\end{enumerate}
+\end{dusledek}
+
+\subsection{Fixpoint theorems}
+\begin{veta}
+	$F: X \rightarrow X$, where $X$ is a Banach space, $F$ is continuous and compact. Let there exists closed convex non-empty set $U \subseteq X$ such that $F(U) \subset U$. Then $\exists x \in U: F(x) = x$.
+\end{veta}
+
+\begin{veta}
+	$F: ®R^d \rightarrow ®R^d$, $F$ is continuous. Let there exists closed, convex non-empty set $U \subseteq ®R^d$: $F(U) \subseteq U$. Then $\exists x \in U: F(x) = x$.
+\end{veta}
+
+\subsection{Nemytskii operator}
+\begin{veta}
+	Let $Ω \subseteq ®R^d$ be open and $f: Ω \times ®R^N \rightarrow ®R$ is Carathéodory (i.e. $\forall y \in ®R^N: f(·, y)$ is measurable and for almost all $x \in Ω$: $f(x, ·)$ is continuous). Assume that $|f(x, y) ≤ g(x) + c·\sum_{i=1}^N |y_i|^{p_i / p}$ for some $p_1 \in [1, ∞)$, $p \in [1, ∞)$ with $y \in L^p(Ω)$.
+
+	Then $\forall u_i \in L^{p_i}(Ω)$, the function $f(x, u_1(x), …, u_N(x))$ is measurable and the mapping (named Nemytskii operator) $(u_1, …, u_N) \mapsto f(·, u_1, u_2, …, u_N)$ is continuous from $L^{p_1}(Ω) \times … \times L^{p_N}(Ω)$ to $L^p(Ω)$.
+\end{veta}
+
+\end{document}

@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\newcommand{\str}{^\wedge}
+
+\begin{document}
+
+% 20. 02. 2024
+
+\section{$Σ_1^1$ sets and trees on $ω$}
+\begin{poznamka}[Notation]
+	\ 
+
+	\begin{itemize}
+		\item $®S := ω^{<ω}$;
+		\item $ν|_k = (ν(0), …, ν(k-1))$, $ν \in ®S \cup ω^ω$ ($ν|_0 = \O$, empty sequence);
+		\item $t \prec s ≡ \exists s' \in ®S \cup ©N: s = t\str s'$ ($t \in ®S, s \in ®S \cup ©N$);
+		\item $©N := ω^ω$;
+		\item $|s|$ is the length of $s$, $s \in ®S$ ($s = (s(0), …, s(k-1)) \implies |s| = k$);
+		\item $s \in ®S$, $ν \in ®S \cup ©N$: $s\str ν = (s(0), …, s(|s| - 1), ν(0), …)$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}[Souslin set (on TP space)]
+	$X$ topological space. We say $S \subset X$ be Souslin $\Leftrigtharrow$ $\exists (F_s)_{s \in S}$ Souslin scheme of closed subset of $X$ such that $S = ©A_s(F_s) = \bigcup_{ς \in ©N} \bigcap_{n \in ω} F_{ς|_n}$.
+\end{definice}
+
+\begin{poznamka}
+	a) $P$ Polish topological space, then $A \in Σ_1^1 \Leftrightarrow A$ Souslin in $P$. (We already know.)
+
+	b) $P$ topological space, then $A \subset P$ Souslin $\Leftrightarrow$ $\exists F \in ∏_1^0(©N \times P): A = ∏_P(F)$. (Difficult.)
+
+	c) We will assume only regular Souslin scheme (RSS): $F_{s\str t} \subset F_s$, $s, t \in ®S$ and $F_\O = P$.
+\end{poznamka}
+
+\subsection{Souslin operation and trees}
+\begin{definice}[Trees on $ω$, infinite branch, ill-founded trees, well-founded trees]
+	We define set of trees ©T by $©T := \{T \in ©P(®S) | \forall  s \in T, t \in T: t \prec s \implies t \in T\}$.
+
+	$T \in ©T$ has infinite branch $≡$ $\exists ς \in ©N \forall n \in ω: ς|_n \in T$ (i.e. $ς \in [T]$) (i.e. $[T] ≠ \O$).
+
+	Trees with infinite branches are called ill-founded (IF). The set of IF trees is denoted by $©T_I$. Trees without infinite branches are called well-founded (WF). The set of WF trees is denoted by $©T_W$.
+
+	$©T_s := \{T \in ©T | s \in T\}$ are all trees containing $s \in ®S$.
+
+	\begin{poznamkain}
+		$®T_I = \bigcup_{ς \in ©N} \bigcap_{n \in ω} ©T_{ς|_n}$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{lemma}
+	Let $X$ be a topological space, $(F_s)_{s \in ®S}$ RSS of closed subsets of $X$, $S := ©A_s(F_s)$. Define $f(x): X \rightarrow ®T$ by $f(x) := \{s \in ®S | x \in F_s\}$. Then $F_s = f^{-1}(®T_s)$ and $S = f^{-1}(©T_I)$.
+
+	\begin{dukazin}[?]
+		a) „$f: X \rightarrow ©T$“: $s \in f(x) \implies x \in F_s \implies F_s \subset F_t \implies x \in F_t \implies t \in f(x)$ ($t \prec s$).
+
+		b) $x \in F_s \Leftrightarrow s \in f(x) \Leftrightarrow f(x) \in ©T_s \Leftrightarrow x \in f^{-1}(®T_s)$
+
+		c) lemma $\impliedby$ b) and the next remark.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	TODO!!!
+
+	\begin{dukazin}
+		„$\implies$“: lemma?. „$\impliedby$“: $S = f^{-1}(®T_I) = f^{-1}\(\bigcup_{} \bigcap_{n \in ω} ©T_{ς|_n}\) = \bigcup_{ς \in ©N} \bigcap_{n \in ω} f^{-1}(®T_{ς|_n})$, where $f^{-1}(®T_{ς|_n}) \in ∏_1^0(X)$ $\implies$ Souslin.
+	\end{dukazin}
+\end{poznamka}
+
+\subsection{Trees as PTS (compact)}
+\begin{poznamka}[Topology on trees]
+	$©P(®S) = \{A \subset ®S\} = \{0, 1\}^{®S}$ (product topology of product of discrete topologies) which is compact and homeomorphic to $2^ω$. We assume on ®T subspace topology.
+\end{poznamka}
+
+\begin{tvrzeni}
+	$®T \in ∏_0^1(\{0, 1\}^®S)$, $\{®T_s, ®T \setminus ®T_s, s \in ©S\}$ form a subbase of topology in ®T.
+
+	\begin{poznamkain}
+		®T is compact metric space, so PTS.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		$S \in \{0, 1\} \setminus ®T$ $\Leftrightarrow$ $\exists s, t \in ®S, s \prec t:$ $t \in S \land s \notin s$ $\implies$ $\{0, 1\} \setminus ®T = \bigcup_{t \in ®S} \bigcup_{s \prec t} (\{T, χ_T(t) = 1\} \cap \{T; χ_T(s) = 1\})$.
+
+		$\{T | χ_T(t) = 1\}$, $\{T | χ_T(s) = 0\}$ is subbase of product topology.
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{Properties of $f$ from the lemma}
+\begin{definice}
+	$T \in ®T$, $ς \in ©N$. $h_ς(T) := \sup\{k \in ω | ς|_k \in T\} \in ω \cup \{∞\}$.
+\end{definice}
+
+\begin{poznmka}[Remind Lebesgue–H?–Banach characterization]
+	$X, Y$ metric spaces, $Y$ separable, $1 ≤ α < ω_1$, $f: X \rightarrow Y$. Then $f$ is Baire$_α$ $\Leftrightarrow$ $f$ is $Σ_{α + 1}^0(X)$-measurable.
+\end{poznmka}
+
+\begin{tvrzeni}
+	$X$ metrizable (we need only $Σ_1^0(X) \subset Σ_2^0(X)$), $S \subset X$ Souslin. Then there exists $f: X \rightarrow ®T$ such that:
+	\begin{enumerate}
+		\item $f^{-1}(®T_I) = S$;
+		\item $f^{-1}(®T_s) \in ∏_1^0(X)$, $s \in ®S$;
+		\item $h_ς ∘ f$ is upper semi-continuous ($h_ς ∘ f: X \rightarrow ®R^*$), $ς \in ©N$ (i.e $\{x \in X | h_ς(f(x)) < n\}$ is open $\forall ς \in ©N, n \in ®R^*$);
+		\item $f$ is Baire$_1$ (i.e. $Σ_2^0$-measurable).
+	\end{enumerate}
+
+	\begin{dukazin}
+		1. and 2. is from the lemma. „4.“: $®T$ separable metric space. So, it is enough to prove it for subbase. $f^{-1}(®T_s) \in ∏_1^0 \subset Σ_2^0$, $f^{-1}(®T \setminus ®T_s) \in Σ_1^0 \subset Σ_2^0(X)$. „3.“: $\{x \in X | h_ς(f(x)) < n\} = f^{-1}(\{T \in ®T | ς|_n \notin T\}) = f^{-1}(®T \setminus ®T_{ς|_n})$ is open (by the lemma). And $\{x \in X | h_ς(f(x)) < ∞\} = \bigcup_{n \in ω} \{x \in X | h_ς(f(x)) < n\}$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\subsection{Examples of $Σ_1^1$ non-$Δ_1^1$ sets}
+\begin{poznamka}
+	$$ Σ_1^1(X) \setminus ∏_1^1(X) = Σ_1^1(X) \setminus Δ_1^1(X) \overset{?} ≠ \O. $$
+\end{poznamka}
+
+\begin{lemma}
+	$©T_I \in Σ_1^1(©T) \setminus Δ_1^1(©T), ©T_W \in ∏_1^1(©T) \setminus Δ_1^1(©T)$.
+
+	\begin{dukazin}
+		1. $©T_I \in Σ_1^1(®T) \impliedby ®T_I = \bigcup \bigcap ©T_{ς|_n}$ souslin in PTS.
+
+		2. „$©T_I \notin Δ_1^1(®T)$“: By continuity $©T_I \in Δ_1^1 \implies ©T_W \in Δ_1^1 \implies ©T_W \in Σ_1^1 \implies ©T_W$ souslin. \lightning.
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznmka}
+	$f_I$, $f_W$ are mappings from the lemma for $S = ©T_I$ and $S = ©F_W$. Clearly $f_I = \id$.
+\end{poznmka}
+
+\begin{definice}
+	$f: ©T \rightarrow ©T$ by $f(T) := f_I(T) \cap f_W(T) = T \cap f_w(T)$. $f(T) \in ©T \impliedby (A, B \in ©T \implies A \cap B \in ©T)$.
+	$$ T \in ©T_W \implies f(T) = T \cap f_W(T) \subset T \implies f(T) \in ©T_W. $$
+	$$ T \in ©T_I \implies f(T) \subset f_w(T) \in ©T_W \impliedby (\text{the lemma } \implies f^{-1}(©T_I) = ©T_W \implies f^{-1}(©T_W) = ©T_I) \implies f(T) \in ©T_W. $$
+	$\implies f: ©T \rightarrow ©T_W \implies h_ς ∘ f: ©T \rightarrow ω$. From the previous proposition $h_ς ∘ f$ is usc, so $h_ς ∘ f$ is usc real function on compact set. Thus $m(ς) := \max_{T \in ®T} h_ς(f(T)) \in ω$.
+\end{definice}
+
+\end{document}
