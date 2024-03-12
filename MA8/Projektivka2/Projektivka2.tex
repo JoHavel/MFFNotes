@@ -129,5 +129,121 @@
 	\end{poznamkain}
 \end{veta}
 
+% 06. 03. 2024
+
+\section{Analytická geometrie}
+\begin{definice}[Projektivní prostor, geometrický bod, aritmetický zástupce]
+	(Reálný) projektivní prostor dimenze $n$ je množina
+	$$ ®RP^n = \{\<v\>, v \in ®R^{n+1} \setminus ¦o\} = \text{ množina všech přímek (procházejících počátkem) v } ®R^{n+1}. $$
+	Prvek $\<v\> \in ®RP^n$ se nazývá geometrický bod a $v$ jeho aritmetický zástupce
+
+	\begin{poznamkain}[Platí]
+		$\<v\> = \<w\>$ (tj. stejné geometrické body) $\Leftrightarrow$ $\exists α \in ®R \setminus \{0\}: w = α·v$ (tj. aritmetičtí zástupci se liší pouze násobkem $≠ 0$).
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Homogenní souřadnice]
+	Je-li $v = (x_0, …, x_n) \in ®R^{n+1} \setminus \{¦o\}$, pak homogenní souřadnice geometrického bodu $\<v\>$ jsou $[x_0:…:x_n]$.
+
+	\begin{poznamkain}
+		Jsou určeny až na násobek $≠0$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Projektivní přímka, projektivní rovina, projektivní prostor]
+	$®RP^1$ říkáme projektivní přímka.
+	$®RP^2$ říkáme projektivní rovina.
+	$®RP^3$ říkáme projektivní prostor.
+	%$®RP^{n-1}$ říkáme (v $®RP^n$) projektivní nadrovina.
+\end{definice}
+
+\begin{poznamka}[Značení]
+	Místo $\<a\>$ budeme psát $A$.
+\end{poznamka}
+
+\begin{poznamka}
+	$®RP^1$: Dva body $A, B$ jsou totožné $\Leftrightarrow$ vektory $a, b$ jsou lineárně závislé.
+
+	$®RP^2$: Tři body $A, B, C$ leží na jedné přímce (po dvou různé) $\Leftrightarrow$ $a, b, c$ jsou lineárně závislé (po dvou lineárně nezávislé), tj. leží v jedné rovině.
+
+	$®RP^3$: Čtyři body $A, B, C, D$ leží v rovině $\Leftrightarrow$ $a, b, c, d$ jsou lineárně závislé, tj. leží v jednom prostoru.
+
+	Obecně $®RP^n$: $n+1$ bodů $A_0, …, A_n$ leží v $n-1$-dimenzionálním projektivním prostoru $\Leftrightarrow$ vektory $a_0, …, a_n$ leží v nadrovině v $®R^{n+1}$ (jsou lineárně závislé).
+\end{poznamka}
+
+\begin{poznamka}
+	Procesu „zakážu ¦o a ztotožníme násobky“ říkáme projektivizace.
+\end{poznamka}
+
+\begin{definice}[Projektivní rozšíření afinního prostoru, vlastní bod, nevlastní bod]
+	Projektivní rozšíření afinního prostoru $®R^n$ na projektivní prostor $®RP^n$ (= kanonické vnoření $®R^n$ do $®RP^n$) je zobrazení, které bodu $[x_1, …, x_n]$ přiřadí $[1:x_1:…:x_n]$ a vektoru $(x_1, …, x_n)$ přiřadí $[0:x_1:…:x_n]$.
+
+	Prvním říkáme body vlastní, druhý nevlastní.
+\end{definice}
+
+TODO?
+
+\begin{definice}[Homogenní souřadnice přímky]
+	V $®RP^2$ zavádíme homogenní souřadnice přímky $a_0 x_0 + a_1 x_1 + a_2 x_2 = 0$ jako homogenní trojici $(a_0:a_1:a_2)$.
+
+	\begin{poznamkain}
+		Opět určeny až na násobek $≠ 0$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{priklady}
+	$(0:1:0)$ je osa $y$, $(0:0:1)$ je osa $x$, $(1:0:0)$ je nevlastní přímka.
+\end{priklady}
+
+\begin{priklad}[Hledání průsečíku dvou přímek]
+	TODO?
+\end{priklad}
+
+\begin{priklad}[Incidence bodů]
+	$X = [x_0:x_1:x_2]$, $a = (a_0:a_1:a_2)$. $X \in a$ $\Leftrightarrow$ $a_0 x_0 + a_1 x_1 + a_2 x_2 = 0$.
+
+	\begin{dusledekin}
+		Lze zaměnit bod za přímku $\implies$ dualita.
+
+		Tj. například spojnice bodů se počítá stejně jako průsečík přímek.
+	\end{dusledekin}
+\end{priklad}
+
+\begin{poznamka}[Trik na nalezení spojnice (/průsečíku)]
+	Dány body $Y = [y_0:y_1:y_2]$, $Z = [z_0:z_1:z_2]$. Chceme rovnici jejich spojnici: $X \in a = YZ \Leftrightarrow a_0x_0 + a_1x_1 + a_2x_2 = 0$ pro hledané souřadnice $(a_0:a_1:a_2)$ $\Leftrightarrow$ vektory $X$, $Y$ a $Z$ jsou závislé $\Leftrightarrow$ $\det\((X|Y|Z)^T\) = 0$ $\Leftrightarrow$
+	$$ \Leftrightarrow (y_1·z_2 - y_2·z_1)·x_0 + (-y_0·z_2 + y_2·z_0)·x_1 + (y_0·z_1 - y_1·z_0)·x_2 = 0. $$
+\end{poznamka}
+
+\subsection{Dvojpoměr}
+\begin{definice}[Dvojpoměr]
+	Dvojpoměr 4 vektorů v rovině $a, b, c, d$, po dvou lineárně nezávislých, ale po třech lineárně závislých (tj. BÚNO $c = α_1 a + β_1 b$, $d = α_2·a + β_2 b$) definujeme jako $(abcd) := \frac{α_2·β_1}{α_1·β_2} \in ®R$.
+
+	\begin{poznamkain}
+		Zřejmě tato hodnota nezávisí na volbě (nenulového) násobku každého vektoru.
+	\end{poznamkain}
+
+	Dvojpoměr 4 bodů $A, B, C, D \in ®RP^n$ ležících na jedné přímce definujeme jako $(ABCD) := (abcd)$.
+\end{definice}
+
+\begin{tvrzeni}[Už jsme si dokázali]
+	$A, B, C, D$ jsou čtyři různé $\implies$ $(ABCD) ≠ 0, 1, ∞$. (Např. $C = A \lor B = D \Leftrightarrow (A B C D) = 0$.)
+
+	$A, B, C, D$ vlastní $\implies$ $(ABCD) = \frac{(ABC)}{(ABD)}$. $A, B, C$ vlastní, $D$ nevlastní $\implies$ $(ABCD) = (ABC)$.
+
+	Věta o 4 determinantech (pro $A, B, C, D \in ®RP^1$):
+	$$ (ABCD) = \frac{(a_0·c_1 - a_1·c_0)·(b_0·d_1 - b_1·d_0)}{(a_0·d_1 - a_1·d_0)·(b_0·c_1 - b_1·c_0)}. $$
+\end{tvrzeni}
+
+\begin{definice}[Harmonická čtveřice]
+	$$ (ABCD) = -1 $$
+\end{definice}
+
+\begin{priklad}[Pak jsme počítali. V jednu chvíli nám vyšlo:]
+	Parametrizace přímky procházející $A, B$ je $t_1·A + t_2·B$, kde například $t_1 + t_2 = 1$; lépe $t·A + (1 - t)·B$.
+\end{priklad}
+
+\begin{definice}[Projektivní souřadný systém (PSS)]
+	Projektivní souřadný systém v $®RP^n$ je $(n+1)$-tice různých bodů $A_0, …, A_n \in ®RP^n$. Pak $\forall X \in ®RP^n$ definujeme souřadnice bodu $X$ vůči PSS $(A_0, …, A_n)$ jako homogenní $(n+1)$-tici $[x_0:…:x_n]$ takovou, že $x = \sum_{i=0}^n x_i·a_i$.
+\end{definice}
 
 \end{document}

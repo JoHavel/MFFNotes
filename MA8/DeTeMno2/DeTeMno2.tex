@@ -22,7 +22,7 @@
 \end{poznamka}
 
 \begin{definice}[Souslin set (on TP space)]
-	$X$ topological space. We say $S \subset X$ be Souslin $\Leftrigtharrow$ $\exists (F_s)_{s \in S}$ Souslin scheme of closed subset of $X$ such that $S = ©A_s(F_s) = \bigcup_{ς \in ©N} \bigcap_{n \in ω} F_{ς|_n}$.
+	$X$ topological space. We say $S \subset X$ be Souslin $\Leftrightarrow$ $\exists (F_s)_{s \in S}$ Souslin scheme of closed subset of $X$ such that $S = ©A_s(F_s) = \bigcup_{ς \in ©N} \bigcap_{n \in ω} F_{ς|_n}$.
 \end{definice}
 
 \begin{poznamka}
@@ -46,10 +46,12 @@
 	\begin{poznamkain}
 		$®T_I = \bigcup_{ς \in ©N} \bigcap_{n \in ω} ©T_{ς|_n}$.
 	\end{poznamkain}
+
+	$©T^* := ©T \setminus \{\O\}$, $©T_W^* = ©T_W \setminus \{\O\}$.
 \end{definice}
 
 \begin{lemma}
-	Let $X$ be a topological space, $(F_s)_{s \in ®S}$ RSS of closed subsets of $X$, $S := ©A_s(F_s)$. Define $f(x): X \rightarrow ®T$ by $f(x) := \{s \in ®S | x \in F_s\}$. Then $F_s = f^{-1}(®T_s)$ and $S = f^{-1}(©T_I)$.
+	Let $X$ be a topological space, $(F_s)_{s \in ®S}$ RSS of closed subsets of $X$, $S := ©A_s(F_s)$. Define $f(x): X \rightarrow ©T^*$ by $f(x) := \{s \in ®S | x \in F_s\}$. Then $F_s = f^{-1}(®T_s)$ and $S = f^{-1}(©T_I)$.
 
 	\begin{dukazin}[?]
 		a) „$f: X \rightarrow ©T$“: $s \in f(x) \implies x \in F_s \implies F_s \subset F_t \implies x \in F_t \implies t \in f(x)$ ($t \prec s$).
@@ -61,7 +63,7 @@
 \end{lemma}
 
 \begin{poznamka}
-	TODO!!!
+	TODO!!! $©T \rightarrow ©T^*$.
 
 	\begin{dukazin}
 		„$\implies$“: lemma?. „$\impliedby$“: $S = f^{-1}(®T_I) = f^{-1}\(\bigcup_{} \bigcap_{n \in ω} ©T_{ς|_n}\) = \bigcup_{ς \in ©N} \bigcap_{n \in ω} f^{-1}(®T_{ς|_n})$, where $f^{-1}(®T_{ς|_n}) \in ∏_1^0(X)$ $\implies$ Souslin.
@@ -74,16 +76,18 @@
 \end{poznamka}
 
 \begin{tvrzeni}
-	$®T \in ∏_0^1(\{0, 1\}^®S)$, $\{®T_s, ®T \setminus ®T_s, s \in ©S\}$ form a subbase of topology in ®T.
+	$®T, ©T^* \in ∏_0^1(\{0, 1\}^®S)$, $\{®T_s, ®T^* \setminus ®T_s, s \in ©S\}$ form a subbase of topology in ®T.
 
 	\begin{poznamkain}
-		®T is compact metric space, so PTS.
+		©T, $©T^*$ is compact metric space, so PTS.
 	\end{poznamkain}
 
 	\begin{dukazin}
 		$S \in \{0, 1\} \setminus ®T$ $\Leftrightarrow$ $\exists s, t \in ®S, s \prec t:$ $t \in S \land s \notin s$ $\implies$ $\{0, 1\} \setminus ®T = \bigcup_{t \in ®S} \bigcup_{s \prec t} (\{T, χ_T(t) = 1\} \cap \{T; χ_T(s) = 1\})$.
 
 		$\{T | χ_T(t) = 1\}$, $\{T | χ_T(s) = 0\}$ is subbase of product topology.
+
+		$$ ©T^* = ©T \cap \{A \in \{0, 1\} | χ_A(\O) = 1\} \implies ©T^* \in ∏_1^0(©T) \implies ©T^* \text{ is compact}. $$
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -92,9 +96,9 @@
 	$T \in ®T$, $ς \in ©N$. $h_ς(T) := \sup\{k \in ω | ς|_k \in T\} \in ω \cup \{∞\}$.
 \end{definice}
 
-\begin{poznmka}[Remind Lebesgue–H?–Banach characterization]
+\begin{poznamka}[Remind Lebesgue–H?–Banach characterization]
 	$X, Y$ metric spaces, $Y$ separable, $1 ≤ α < ω_1$, $f: X \rightarrow Y$. Then $f$ is Baire$_α$ $\Leftrightarrow$ $f$ is $Σ_{α + 1}^0(X)$-measurable.
-\end{poznmka}
+\end{poznamka}
 
 \begin{tvrzeni}
 	$X$ metrizable (we need only $Σ_1^0(X) \subset Σ_2^0(X)$), $S \subset X$ Souslin. Then there exists $f: X \rightarrow ®T$ such that:
@@ -106,7 +110,7 @@
 	\end{enumerate}
 
 	\begin{dukazin}
-		1. and 2. is from the lemma. „4.“: $®T$ separable metric space. So, it is enough to prove it for subbase. $f^{-1}(®T_s) \in ∏_1^0 \subset Σ_2^0$, $f^{-1}(®T \setminus ®T_s) \in Σ_1^0 \subset Σ_2^0(X)$. „3.“: $\{x \in X | h_ς(f(x)) < n\} = f^{-1}(\{T \in ®T | ς|_n \notin T\}) = f^{-1}(®T \setminus ®T_{ς|_n})$ is open (by the lemma). And $\{x \in X | h_ς(f(x)) < ∞\} = \bigcup_{n \in ω} \{x \in X | h_ς(f(x)) < n\}$.
+		1. and 2. is from the lemma. „4.“: $®T$ separable metric space. So, it is enough to prove it for subbase. $f^{-1}(®T_s) \in ∏_1^0 \subset Σ_2^0$, $f^{-1}(®T \setminus ®T_s) \in Σ_1^0 \subset Σ_2^0(X)$. „3.“: $\{x \in X | h_ς(f(x)) < n\} = f^{-1}(\{T \in ®T | ς|_n \notin T\}) = f^{-1}(®T \setminus ®T_{ς|_n})$ is open (by the lemma). And $\{x \in X | h_ς(f(x)) < ∞\} = \bigcup_{n \in ω} \{x \in X | h_ς(f(x)) < n\}$.
 	\end{dukazin}
 \end{tvrzeni}
 
@@ -125,9 +129,9 @@
 	\end{dukazin}
 \end{lemma}
 
-\begin{poznmka}
+\begin{poznamka}
 	$f_I$, $f_W$ are mappings from the lemma for $S = ©T_I$ and $S = ©F_W$. Clearly $f_I = \id$.
-\end{poznmka}
+\end{poznamka}
 
 \begin{definice}
 	$f: ©T \rightarrow ©T$ by $f(T) := f_I(T) \cap f_W(T) = T \cap f_w(T)$. $f(T) \in ©T \impliedby (A, B \in ©T \implies A \cap B \in ©T)$.
@@ -135,5 +139,192 @@
 	$$ T \in ©T_I \implies f(T) \subset f_w(T) \in ©T_W \impliedby (\text{the lemma } \implies f^{-1}(©T_I) = ©T_W \implies f^{-1}(©T_W) = ©T_I) \implies f(T) \in ©T_W. $$
 	$\implies f: ©T \rightarrow ©T_W \implies h_ς ∘ f: ©T \rightarrow ω$. From the previous proposition $h_ς ∘ f$ is usc, so $h_ς ∘ f$ is usc real function on compact set. Thus $m(ς) := \max_{T \in ®T} h_ς(f(T)) \in ω$.
 \end{definice}
+
+% 27. 02. 2024
+
+
+\begin{dukaz}[The previous lemma]
+	By contradiction $©T_I \in Δ_1^1(©T^*) \implies ©T_W^* \in Σ_1^1(©T^*)$. $f(T) = f_I(T) \cap f_W(T)$, $f: ©T^* \rightarrow ©T^*$, $f: ©T^* \rightarrow ©T_W^*$. $\exists m(ς) := \max_{T \in ©T^*} h_ς(f(T)) \in ω$.
+
+	Define $T_0 \in ©T^*: s \in T_0 \Leftrightarrow ς \in ©N: ς|_{m(ς) + 1} \succ s$. $T_0 \in ©T^*$, $\{\O\} \in T_0$, $T_0 \in ©T$ trivial. $T_0 \in ©T_W^*$. By contradiction $ς \in [T_0] \implies ς|_{m(ς) + 2} \in T_0 \implies \exists ν \in ©N: ς|_{m(ς) + 2} \prec ν|_{m(ν) + 1} \implies ν|_{m(ς) + 1} = ς|_{m(ς) + 1}$. Definition of $m(ν)$ gives $\exists T \in ©T^*: m(ν) = h_ν(f(T)) \implies ν|_{m(ν)} \in f(T) \implies ς|_{m(ς) + 1} \in f(T) \implies h_ς(f(T)) ≥ m(ς) + 1$. \lightning.
+
+	Clearly
+	$$ T_0 \supseteq \bigcup_{T \in ©T^*}(T). T_0 \in ©T_W^* \implies f_W(T_0) \in ©T_I \implies \exists ς_0 \in [f_W(T_0)] \implies $$
+	$$ \implies h_{ς_0}(f(T_0)) = \min \{k \in ω | ς_0|_k \in T_0 \cap f_W(T_0)\} = \min\{k \in ω | ς_0|_k \in T_0\} \supseteq m(ς_0) + 1. \text{\lightning}. $$
+\end{dukaz}
+
+\begin{veta}
+	$X$ PTS, $A \in Σ_1^1(X)$, $\card(A) > \card(ω)$. Then there exists $B \subset A$ such that $B \in Σ_1^1(X) \setminus Δ_1^1(X)$.
+
+	\begin{dukazin}
+		$\card(A) > ω \implies \exists C \subset A$ homeomorphic copy of $2^ω \sim 2^{®S}$. $2^{®S} \overset{h}\hookrightarrow A$ then  $h(©T_I) \in Σ_1^1(X) \setminus Δ_1^1(X)$. Homeomorphism of $Σ_1^1$, $Δ_1^1$ set is $Σ_1^1$, $Δ_1^1$ set.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	Let $Γ$ be class of subsets of PTS and $X$ be PTS. We say that $A$ is $Γ(X)$-hard $≡$ $\forall B \in Γ(©N)\ \exists f \in Δ_1^1, f: ©N \rightarrow X: f^{-1} = B$. $A$ is $Γ(X)$-complete $\Leftrightarrow A \in Γ$ and $A \in Γ$-hard.
+
+	From the previous theorem $A \in Σ_1^1$-complete $\implies$ $A \in Σ_1^1 \setminus Δ_1^1$ (same for $∏_1^1$). ($A \in Δ_1^1 \implies f^{-1}(A) \in Δ_1^1$, but there are $Σ_1^1 \setminus Δ_1^1$ subsets of ©N).
+\end{poznamka}
+
+\begin{poznamka}
+	$Σ_1^1$-complete $= Σ_1^1 \setminus Δ_1^1$ $\impliedby$ $Σ_1^1$-determinacy.
+\end{poznamka}
+
+\begin{poznamka}
+	$©T_I \in Σ_1^1$-complete, $©T_W^* \in ∏_1^1$-complete.
+\end{poznamka}
+
+\begin{definice}[Universal set]
+	$X$ PTS, $Γ$ class of subsets of PTS. We say that $A$ is $Γ(X)$-universal $≡$ $A \in Γ(X \times ©N) \land Γ(X) = \{A^s | s \in ©N\}$.
+\end{definice}
+
+\begin{poznamka}
+	$X$ PTS. Then
+	\begin{enumerate}
+		\item there exists $Σ_1^0(X)$-universal set;
+		\item there exists $∏_1^0(X)$-universal set;
+		\item there exists $Σ_1^1(X)$-universal set.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $\{B_n\}$ base of $X$. $G := \bigcup_{n \in ω, s \in ω} (B_{s(0)} \cup B_{s(1)} \cup … \cup B_{s(n-1)}) \times B(s)$ ($B(s) = \{ς \in ©N | s \prec ς\}$). $G \in Σ_1^0(X \times ©N)$ trivial. $ς \in ©N \implies G^{ς} \in Σ_1^0(X)$ trivial ($G^ς = \bigcup_{n \in ω} (B_{ς(0)} \cup B_{ς(1)} \cup … \cup B_{ς(n-1)})$ open). $U \in Σ_1^0(X) \implies \exists ς \in ©N: U = \bigcup_{n \in ω} B_{ς(n)} = G^ς$.
+
+		„2.“: G $Σ_1^0(X)$-universal $\implies$ $(X \times ©N) \setminus G$ is $∏_1^0(X)$-universal.
+
+		„3.“: $Y = ©N \times X$. Let $F \in ∏_0^1(Y \times ©N)$ be $∏_1^0(Y)$-universal. $∏: ©N \times X \times ©N \rightarrow X \times ©N$ be projections on 2nd and 3rd coordinate. $A := ∏(F)$. $A$ is $Σ1^1(X)$-universal. Clearly $A \in Σ_1^1(X \times ©N)$, $A^ς \in Σ_1^1(X)$ for $ς \in ©N$ trivial. Let $B \in Σ_1^1(X) \implies \exists C \in ∏_1^0(©N \times X): B = ∏_2(C) \implies \exists ς \in ©N: C = F^ς$.
+		$$ A^ς = (∏_{2, 3}(F))^ς = ∏_2(F^ς) = π_2(C) = B. $$
+	\end{dukazin}
+\end{poznamka}
+
+\begin{poznamka}
+	Let $A \in Σ_1^1(©N^2)$ be $Σ_1^1(©N)$ universal. Then
+	$$ M := \{x \in ©N | (x, x) \notin A\} \in Σ_1^1(©N) \impliedby (M \in Σ_1^1 \implies \exists ς \in ©N: M = A^ς.) (ς \in M?: ς \in M \implies (ς, ς) \in A \implies ς \notin M; ς \notin M \implies (ς, ς) \notin A \implies ς \in M). $$
+	$$ \{x \in ©N | (x, x) \in ©A\} \in Σ_1^1(©N) \impliedby \text{ diagonal is closed } \implies \{x \in ©N | (x, x) \in A\} \in Σ_1^1 \setminus Δ_1^1. $$
+\end{poznamka}
+
+\subsection{Derivative of trees}
+\begin{definice}[Derivative]
+	$T \in ©T$. $T' := \{s \in ®S | \exists n \in ω: s\str n \in T\}$. $T^{(0)} := T$. $ς < ω_1: T^{(α + 1)} = \(T^α\)'$, $λ$-limit ordinal: $T^{(λ)} := \bigcap_{α < λ} T^{(α)}$. $d_α(T) := T^{(α)}$, $α < ω_1$, $d_α: ©T \rightarrow ©T$.
+\end{definice}
+
+\begin{veta}
+	$\forall α < ω_1: d_α \in Δ_1^1(©T^2)$.
+
+	\begin{dukazin}
+		$d_α(T) \in ©T$ ($T \in ©T$) trivial.
+
+		a) $d_1^{-1}(©T_s) = \{T \in ©T| \exists n \in ω: s\str \in T\} = \bigcup_{n \in ω} ©T_{s\str n} \in \sum_1^0(©T)$.
+		$$ \implies d_1^{-1}(©T \setminus ©T_s) \in ∏_1^0(©T), \qquad d_1^{-1}(\O) = \{\O, \{\O\}\} \in ∏_1^0(©T) \implies $$
+		$$ \implies (G \in Σ_1^0(©T)) \implies d_1^{-1}(G) \in Σ_2^0(©T) \implies $$
+		$\implies$ $d_1$ is in the first Borel class.
+
+		b) $d_0$-id $\implies$ continuous.
+
+		Induction: c) $α = β + 1$, $d_β \in Δ_1^1 \implies d_α = d_1 ∘ d_β \in Δ_1^1$.
+
+		d) $λ$ limit ordinal, $λ < ω_1$, $\forall α < λ: d_α \in Δ_1^1$.
+		$$ d_λ^{-1}(©T_s) = \{T \in ©T | \bigcap_{α \in λ} d_α(T) \ni s\} = \bigcap_{α < λ} d_α^{-1}(©T_s) \in Δ_1^1 \implies $$
+		$$ \implies d_λ^{-1}(©T \setminus ©T_s) \in Δ_1^1, \qquad d_λ^{-1}(\O) = \{T \in ©T | \exists α < λ: d_α(T) = \O\} = \bigcup_{α < λ} d_α^{-1}(\O) \in Δ_1^1. $$
+	\end{dukazin}
+\end{veta}
+
+% 05. 03. 2024
+
+\subsection{Luzin–Sierpinski index (rank, norm)}
+\begin{definice}
+	$T \in ©T^*$, $i(T) := \min \{α < ω_1 | T^{(α)} = \{\O\}\}$, if exists, otherwise $ω_1$.
+\end{definice}
+
+\begin{poznamka}[Notation]
+	$T_s := \{t \in ®S | s\str t \in T\}, T \in ©T^*, s \in T$.
+\end{poznamka}
+
+\begin{poznamka}[Other indices]
+	$T_s \in ©T^*$, $T \in ©T^*$, $s \in T$ trivial.
+
+	Hausdorff index $:= \min \{α < ω_1 | d^{(α)}(T) = d^{(α + 1)}(T)\}$.
+
+	Derivation of sets: $X$ PTS, $K \in ©K(X)$, $K' := \{x \in K | x \text{ is not isolated point in } K\}$. $K^{(α + 1)} := (K^{(α)})'$, $K^{(0)} := K$, $K^{(λ)} := \bigcap_{α < λ} K^{(α)}$ ($λ$ limit ordinal).
+\end{poznamka}
+
+\begin{lemma}
+	$T_s \in ©T^*$, $i(T_s) = \sup \{\min \{ω_1, i(T_{s\str n}) 1\} | s\str n \in T\}$ ($\sup \O := 0$).
+
+	\begin{dukazin}
+		$s \in T \implies T_s ≠ \O$, $T \in T_s$, $l < t$: $s\str t \in T \implies s \str l < s\str t \implies s\str l \in T \implies l \in T_s$.
+		$$ i(T_s) = ω_1 \Leftrightarrow T_s \in ©T_I \Leftrightarrow \exists n \in ω: T_{s \str n} \in ©T_I \Leftrightarrow \exists n \in ω: i(T_{s\str n}) = ω_1. $$
+		„$i(T_s) < ω_1 \Leftrightarrow T_s \in ©T_W^*$“: $α := \sup_{n \in ω: s\str n \in T} i(T_{s\str n}) + 1$, clearly $\forall n \in ω: s\str T$, $i(T_{s\str n}) ≤ i(T_s) < ω_1 \implies 0 < α < ω_1$. „$α = i(T_s)$“:
+		$$ T_s^{(α)} = \bigcup_{s\str n \in T}(\{\O\} \cup n\str T_{s\str n})^{(α)} \subseteq \bigcup_{s\str n \in T}(\{\O\} \cup n\str T_{s\str n}) = \{\O\} \implies i(T_s) ≤ α. $$
+		Assume $β < α \implies \exists s\str n \in T: i(T_{s\str n}) + 1 > β \implies T_s^β \supset (\{\O\} \cup n\str T_{s\str n})^{(β)} \supsetneq \{\O\} \impliedby i(\{O\} \cup n\str T_{s\str n}) = i(T_{s \str n}) + 1$. $\implies β < i(T_s) \implies α ≤ i(T_s)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	a) $T \in ©T_W^* \Leftrightarrow i(T) < ω_1$. b) $i(©T_W^*) = ω_1$ (i.e. $\{i(T) | T \in ©T_W^*\} = \{α < ω_1\}$).
+
+	\begin{dukazin}
+		„a)“: $T \in ©T_W^*$. $T ≠ \{\O\} \implies \exists s \in T: |s| ≥ 1$, $\forall n \in ω: s\str n \notin T \implies s \notin T' \implies T' \subsetneq T$. And $\card(T) < ω_1$ $\implies$ $i(T) < ω_1$. $i(\{\O\}) = 0$. It can't happen:
+		$$ T ≠ \O, \quad \{\O\}, \quad T' = \O $$
+		$$ T \in ©T_I \implies \exists ς \in [T] \implies ς \in [T'] \implies T' \in ©T_I \implies \forall α < ω_1: ς \in [T^{(α)}] \implies T^{(α)} ≠ \{\O\} \implies i(T) = ω_1. $$
+
+		„b)“: $i(\{\O\}) = 0$. Induction $\forall α < ω_1\ \exists T_α \in ©T_W^*: i(T_α) = α$: First step is done; Second: $T_{α + 1} := 1\str T_α \cup \{\O\} \implies i(T_{α + 1}) = α + 1$; Assume $λ$ is limit ordinal, $α \nearrow λ$. $T_λ:=\{\O\} \cup \{n \str T_{α_n} | n \in ω\}$. ($i(T_λ) = \sup \{i(T_{α_n} + 1)\} = λ$.)
+	\end{dukazin}
+\end{veta}
+
+\subsection{Decomposition of $©T_W^*$ and cosouslin sets}
+\begin{definice}
+	$α < ω_1: ©T_W(α) := \{T \in ©T^* | i(T) = α\}$.
+\end{definice}
+
+\begin{veta}
+	$©T_W(α) \in Δ_1^1(©T)$, $α < ω_1$.
+
+	\begin{dukazin}
+		$©T_W(α) = d_α^{-1}(\{\O\})$, $d_α \in Δ_1^1$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$C$ cosouslin in $X$ ($X \setminus C = S$, which is souslin). $\exists Δ_1^1 f: X \rightarrow ©T^*$: $f^{-1}(©T_I) = S = f^{-1}(©T_W^*) = C$. Define $C_α = f^{-1}(©T_W(α))$, $α < ω_1$. It is called a decomposition of $C$ on $Δ_1^1$ subsets. If $\{α | C_α ≠ \O\}$ is countable $\implies$ $C \in Δ_1^1$. „Inverse implication“ is going to be in some weeks (Theorem 15).
+\end{poznamka}
+
+\begin{poznamka}
+	$$ A \in ∏_1^1(X) \setminus ∏_2^0(x) \implies ©K(A) \in ∏_1^1-\text{complete}. $$
+	$$ A \in ∏_2^0(X) \Leftrightarrow ©K(A) \in ∏_2^0(©K(X)). $$
+\end{poznamka}
+
+\subsection{Luzin–Sierpinski index as partial ordering}
+\begin{poznamka}[Goal]
+	Study $\{(T_1, T_2) \in (©T_W^*)^2 | i(T_1) ≤ i(T_2)\}$.
+\end{poznamka}
+
+\begin{definice}
+	$f: ®S \rightarrow ®S$ is strategy $≡$ $\forall s \in ®S: |f(s)| = |s|$ (respect length) and $\forall s, t \in ®S: s < t \implies f(s) < f(t)$ (monotone.)
+\end{definice}
+
+\begin{poznamka}
+	a) $f$ strategy. We define $\overline{f}: ω^ω \rightarrow ω^ω$ by $f(ς) = ®T \Leftrightarrow \forall n \in ω: T|_n = f(ς|_n)$.
+
+	b) For first $|s|$ steps of player I describes $f$ first $|s|$ steps of player II (strategy for II player).
+
+	c) $T \in ©T^*: f(T), f^{-1}(T) \in ©T^*$.
+
+	d) $α < ω_1: (f^{-1}(T))^{(α)} \subset f^{-1}(T^{(α)})$.
+
+	\begin{dukazin}
+		„a)“, „b)“ trivial. „c)“: $s \in f(T), t < s \implies \exists x \in T: f(x) = s \implies |x| = |s| ≥ |t| \implies x|_{|t|} \in T \implies f(x|_{|t|}) \in f(T), f(x|_{|t|}) < f(x) = s, |f(x|_{|t|})| = |t| \implies f(x|_{|t|}) = t \implies f(T) \in ©T^*$. $f^{-1}(T) \in ©T^*$ similar.
+
+		„d)“: By induction: First step ($α = 0$) is trivial. For $α = 1$: $s \in (f^{-1}(T))' \implies \exists n \in ω: s\str n \in f^{-1}(T) \implies f(s\str n) \subset f(s), f(s \str n) \in T \implies f(s) \in T \implies f(s) \in T'$ ($\exists m \in ω: f(s \str m) = f(s)\str m$). For successor ordinal: $(f^{-1})^{(β + 1)} = \((f^{-1}(T))^{(β)}\)' \subset (f^{-1}(T^{(β)})) \subset f^{-1}(T^{(β + 1)})$. For limit ordinal $λ < ω_1$: $(f^{-1}(T))^{(λ)} = \bigcap_{α < λ} (f^{-1}(T))^{(α)} \subseteq \bigcap_{α < λ} f^{-1}(T^{(α)}) = f^{-1}(\bigcap_{α < λ} T^{(α)}) = f^{-1}(T^{(λ)})$.
+	\end{dukazin}
+\end{poznamka}
+
+\begin{lemma}
+	$T_1, T_2 \in ©T_W^*$. $i(T_1) ≤ i(T_2) \Leftrightarrow \exists f: ®S \rightarrow ®S$ strategy such that $T_1 \subset f^{-1}(T_2)$ ($f(T_1) \subset T_2$).
+
+	\begin{dukazin}
+		„$\impliedby$“: $T_1 \subset f^{-1}(T_2) \implies i(T_1) ≤ i(f^{-1}(T_2)) ≤ i(T_2)$ (second equation holds, because: $(f^{-1}(T_2))^{(α)} \subset f^{-1}(T_2^{(α)})$, put $α = i(T_2) \implies (f^{-1}(T_2))^{(α)} \subseteq \{\O\} \implies i(f^{-1}(T_2)) ≤ α$).
+	\end{dukazin}
+\end{lemma}
 
 \end{document}

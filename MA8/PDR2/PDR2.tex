@@ -49,4 +49,258 @@
 	Then $\forall u_i \in L^{p_i}(Ω)$, the function $f(x, u_1(x), …, u_N(x))$ is measurable and the mapping (named Nemytskii operator) $(u_1, …, u_N) \mapsto f(·, u_1, u_2, …, u_N)$ is continuous from $L^{p_1}(Ω) \times … \times L^{p_N}(Ω)$ to $L^p(Ω)$.
 \end{veta}
 
+% 20. 02. 2024
+
+TODO!!!
+
+% 27. 02. 2024
+
+TODO!!!
+
+\begin{veta}
+	Let $Ω \subseteq ®R^d$ open bounded, $Ω_δ := \{x \in Ω | B_δ(x) \subseteq Ω\}$, $u_i^h(x) := \frac{u(x + h·e_i) - u(x)}{h}$, and $p \in [1, ∞]$. Then
+
+	\begin{enumerate}
+		\item if $u \in W^{1, p}(Ω)$ then $\forall δ > 0\ \forall h ≤ \frac{δ}{2}: \|u_i^h\|_{L^p(Ω_δ)} ≤ \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)}$;
+		\item if $p \in (1, ∞]$ and $\sup_{δ > 0} \sup_{h < δ / 2} \|u_i^h\|_{L^p(Ω_δ)} ≤ K$ then $\frac{\partial u}{\partial x_i}$ exists and $\left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)} ≤ K$;
+		\item if $p \in [1, ∞)$ and $u \in W^{1, p}(Ω)$ then $u_i^n \rightarrow \frac{\partial u}{\partial x_i}$ as $h \rightarrow 0_+$ in $L^p_{loc}(Ω)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„2.“: $p \in (1, ∞)$ then $L^p$ is reflexive. $p = ∞$ then $L^∞$ has separate procedure. Fix $Ω' \subseteq \overline{Ω'} \subseteq Ω$. $\|u_i^h\|_{L^p(Ω')} ≤ K$ $\implies$
+		$$ p \in (1, ∞): \exists h_n: u_i^{h_n} \rightharpoonup \overline{u_i} \text{ in } L^p(Ω'), $$
+		$$ p = ∞: \exists h_n: u_i^{h_n} \rightharpoonup^* \overline{u_i} in L^p(Ω'). $$
+		$$ \implies \|\overline{u_i}\|_{L^p(Ω')} ≤ \lim_{h_n \rightarrow 0} \|u_i^h\|_{L^p(Ω')} ≤ K. \qquad Ω' \nearrow Ω \implies \|\overline{u_i}\|_{L^p(Ω)} ≤ K. $$
+
+		Remain to show: $\overline{u_i} = \frac{\partial u}{\partial x_i}$.
+
+		TODO!!!
+
+		„1.“: $u \in W^{1, p}(Ω)$. Mollify to $u_ε$. $u_ε \rightarrow u$ in $W^{1, p}_{loc} (Ω)$, for $p ≠ 8$, and $u_ε \rightharpoonup^*$ in $W^{1, ∞}_{loc}(Ω)$ for $p = ∞$. $D^α u_ε = (D^α u)_ε$ in $Ω_ε$ for $p = ∞$, $D^α u_ε \rightarrow D^α u$ in $L^p_{loc}(Ω)$ for $p ≠ ∞$. $x \in Ω_ε, h ≤ δ/2$:
+		$$ \frac{u_ε(x + h·e_i) - u_ε(x)}{h} = \frac{1}{h} \int_0^1 \frac{d}{dt} u_ε(x + h·t·e_i)dt = \int_0^1 \frac{\partial u_ε}{\partial x_i}(x + h·t·e_i) dt. $$
+		$$ \int_{Ω_δ} \left| \frac{u_ε(x + h·e_i) - u_ε(x)}{h}\right|^p dx ≤ \int_{Ω_δ} \left| \int_0^1 \frac{u_ε}{\partial x_i}(x + h·t·e_i) dt \right|^p \overset{\text{Jensen}}≤ \int_{Ω_δ} \int_0^1 \left| \frac{\partial u_ε}{\partial x_i}(x + h·t·e_i)\right|^p dt dx ≤ $$
+		$$ ≤ \int_0^1 \int_{Ω_δ} \left| \frac{\partial u_ε}{\partial x_i}(x + h·t·e_i)\right|^p dx dt ≤ \int_0^1 \int_{Ω_{δ/2}} \left| \frac{\partial u_ε}{\partial x_i}(x)\right|^p dx dt ≤ \left\|\frac{\partial u}{\partial x}\right\|_{L^p(Ω)}. $$
+
+		„3.“: It is enough to show that $u_i^{h^n}$ is Cauchy in $L^p_{loc}(Ω)$:
+		$$ u_i^{h^m} - u_i^{h^m} = \int_0^1 \frac{\partial u}{\partial x_i}(x + h^m·t·e_i) - \frac{\partial u}{\partial x_i}(x + h^n·t·e_i) dt. $$
+		$$ \int_{Ω_δ} |u_i^{h^n} - u_i^{h^m}|^p ≤ \int_0^1 \int_Ω \left| \frac{\partial u}{\partial x_i}(x + h^m·t·e_i) - \frac{\partial u}{\partial x_i}(x + h^n·t·e_i)\right|^p dx dt ≤ ε \text{ provided } h^n, h^m \ll 1. $$
+		$\implies u_i^h$ is Cauchy.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Properties up to the boundary}
+\begin{veta}
+	Let $Ω \subseteq ®R^d$ be bounded and open and $p \in [1, ∞)$. Then $\forall u \in W^{1, p}(Ω)$:
+	\begin{enumerate}
+		\item $\exists \{u^n\}_{n=1}^∞ \subseteq C^∞(Ω)$ such that $u^n \rightarrow u$ in $W^{1, p}(Ω)$;
+		\item if $Ω \in C^0$ then $\exists \{u^n\}_{n=1}^∞ \subseteq C^∞(\overline{Ω})$ such that $u^n \rightarrow u$ in $W^{1, p}(Ω)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: Prose? covering of $Ω$: $Ω_i := \{x \in Ω | \dist(x, \partial Ω) > \frac{1}{i}\}$. $Ω_i \subseteq Ω_j$ for $i ≤ j$. $\bigcup_{i=1}^∞ Ω_i = Ω$. Define $V_i = Ω_{i+3} \setminus \overline{Ω_{i+1}} = \{x \in Ω | \frac{1}{i+1} > \dist(x, \partial Ω) > \frac{1}{i+3}\}$. Find $V_0 \Subset Ω$ such that $\bigcup_{i=0}^∞ V_i = Ω$.
+
+		$u_i = u φ_i$, where $φ_i$ is partition of unity (from next lemma). So $\forall i$ $\exists j$ such that $u_i \subset V_j$. $\forall ε$ find (by convolution) $u_i^n \in C^∞(®R^d): \|u_i - u_i^n\|_{W^{1, p}}(Ω) ≤ \frac{ε}{2^i}$. (Such that $u_i^n \subseteq Ω_{i + n} \setminus \overline{Ω_i}$)
+
+		Define $u^n := \sum_{i=0}^∞ u_i^n$. $K \subseteq Ω$ compact, then
+		$$ \|u - u^n\|_{W^{1, p}(Ω)} = \|\sum u φ_i - \sum u_i^n\|_{W^{1, p}(K)} = \|\sum(u_i - u_i^n)\|_{W^{1, p}(Ω)} ≤ \sum \|u_i - u_i^n\|_{W^{1, p}(Ω)} ≤ ε·\sum \frac{1}{2^i} ≤ 2ε. $$
+		$\implies \|u^n - u\|_{W^{1, p}(Ω)} ≤ 2ε$.
+
+		„2.“ TODO!!!?
+
+		Start with $u_{M+1}$. $u_{M+1} = u·φ_{M+1}$. $\supp φ_{M+1} \subset Ω \implies u_{M+1} \in W^{1, p}(®R^d)$. $u^ε_{M+1} := u_{M+1} * η_{ς(ε)}$, where $δ$ is taken such that $\|u_{M+1}^ε - u_{M+1}\|_{W^{1, p}(Ω)} ≤ \frac{ε}{M+1}$.
+
+		$u_1$: assume $T_r = \id$. $u_1 = u·φ_1$. $u_1^h(x; x_d) := u_1(x; x_d + h)$. $h ≤ h_0$:
+		$$ \|u_1^n - u_1\|_{W^{1, p}(Ω)} = \|u_1^n - u_1\|_{W^{1, p}(V^+)} ≤ \frac{ε}{2·(M + 1)}. $$
+
+		$u_1^ε = u_1^h * η_{δ(ε, h, φ_1, a_1)} \in C^∞(\overline{Ω})$. $\|u_1^ε - u^h\|_{W^{1, p}(V^+)} ≤ \frac{ε}{2(M+1)}.$
+		Find $δ$: $(x; x_d) \in Λ$, $y \in B_ς(x; x_d)$, $a(y') > y_d - h$.
+		$$ a(y') ≥ a(x') - |a(x') - a(y')| = x_d - |a(x') - a(y')| ≥ y_d - (|a(x') - a(y')| + |y_d - x_d|). $$
+		Find $δ_0 > 0$: $\forall x, y, |x - y| ≤ δ_0: |a(x') - a(y')| + |y_d - x_d| < h$.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[For the previous proof: Partition of unity I]
+	Let $Ω \subseteq ®R^d$ be open set. Assume that $\{V_i\}_{i \in I}$ be (uncountable) covering-?. Then there exists countable system $\{φ_j\}_{j=1}^∞$ such that $φ_j \in C_0^∞(®R^d)$, $\forall j \in ®N\ \exists i \in I: \supp φ_j \subset V_i$, $0 ≤ φ_j ≤ 1$, and $\forall x \in Ω: \sum_{j=1}^∞ φ_j(x) = 1$. Moreover, for any compact $K \subseteq Ω$, we have that $φ_j(x) ≠ 0$ for finitely many $j$'s.
+\end{lemma}
+
+\begin{lemma}[For the previous proof: Partition of unity II]
+	Let $\overline{Ω}$ be a compact set and $\{\tilde V_i\}_{i=1}^N$ be its open covering ($\overline{Ω} \subseteq \bigcup_{i=1}^N \tilde V_i$). Then $\exists φ_i \in C_0^∞(\tilde V_i)$, $0 ≤ φ_i ≤ 1$, such that $\forall x \in \overline{Ω}: \sum_{i=1}^N φ_i(x) = 1$.
+
+	TODO!!!?
+\end{lemma}
+
+\begin{veta}[Extension]
+	Let $Ω \in C^{0, 1}$ and $p \in [1, ∞]$. Then there exists continuous linear operator $E: W^{1, p}(Ω) \rightarrow W^{1, p}(®R^d)$ such that $\forall u \in W^{1, p}(Ω)$:
+	\begin{enumerate}
+		\item $Eu = u$ in $Ω$;
+		\item $\exists B_R \subseteq ®R^d: Eu = 0$ in $®R^d \setminus B_R$;
+		\item $\|E u\|_{W^{1, p}(®R^d)} ≤ c(Ω, p, d)·\|u\|_{W^{1, p}}(Ω)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“ By picture. „2.“: $u = \sum_{r=1}^{M+1} u_r$, where $u_r := u φ_r \in W^{1, p}(Ω)$. Step 0: extension of $u_{M+1}$ by zero is trivial. Step 1: $u_1$, $T_1 = \id$, $u_1 \in W^{1, p}(V_1^+)$. $F: V_1 \rightarrow \overline{V_1}, (x', x_d) \mapsto (y', y_d)$, $y' = x'$, $y_d = x_d - a_1(x')$. $F^{-1}: \overline{V_1} \rightarrow V_1$, $x' = y'$, $x_d = y_d + a(y')$.
+
+		TODO!!!
+
+		Proof of $(*)$: It is enough to show that $\frac{\partial E v(y)}{\partial y_1} = \frac{\partial v(y)}{\partial y_1}$ for $y_d > 0$ and $… = \frac{\partial v}{\partial y_i}(y', -y_d)$ for $y_d < 0$; and $\frac{\partial E(y)}{\partial d} = \frac{\partial v(y)}{\partial y_d}$ for $y_d > 0$ and $… = -\frac{\partial v}{\partial y_d}(y'; y_d)$ for $y_d < 0$.
+
+		We know $E v \in W^{1, p}(\overline{V_1^+})$ and $E v \in W^{1, p}(\overline{V_1^-})$. $\|E v\|_{W^{1, p}(V_1^-)} = \|E v\|_{W^{1, p}(V_1^+)}$.
+
+		TODO!!!???
+	\end{dukazin}
+\end{veta}
+
+% 05. 03. 2024
+
+\section{Embeddings}
+\begin{veta}
+	Let $Ω \in C^{0, 1}$ and $p \in [1, ∞]$. Then:
+	\begin{itemize}
+		\item $W^{1, p}(Ω) \hookrightarrow L^{\frac{dp}{d - p}}(Ω)$ if $p < d$;
+		\item $W^{1, p}(Ω) \hookrightarrow L^q(Ω)$ for all $q$ if $p = d$;
+		\item $W^{1, p}(Ω) \hookrightarrow L^∞(Ω)$ if $p > d$;
+		\item $W^{1, p}(Ω) \hookrightarrow C^{0, 1 - \frac{d}{p}}(\overline{Ω}) \hookrightarrow\hookrightarrow C^{0, β}(\overline{Ω})$ if $p > d$ (for $β < 1 - \frac{d}{p}$);
+		\item $W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^q(Ω)$ for $q < \frac{dp}{d - p}$ if $p < d$ (respectively $< ∞$ if $p = d$).
+	\end{itemize}
+
+	\begin{dukazin}[Case $p > d$]
+		Lemma (Marey): Let $u \in W^{1, 1}(B_R)$ and $¦o$ be the Lebesgue point of $u$. Then
+		$$ \left|\fint_{B_R} u dx - u(¦o) \right| ≤ c(d, A) R^A \sup_{ρ ≤ R} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx \qquad \forall A \in (0, 1). $$
+
+		Proof of lemma:
+		$$ \fint_{B_R} u dx - u(¦o) = \lim_{r \rightarrow 0_+} \(\fint_{B_R} u - \fint_{B_r} u\) = \lim_{r \rightarrow 0_+} \int_r^R \frac{d}{dρ} \fint_{B_ρ} u(x) dx dρ = $$
+		$$ = \lim_{r \rightarrow 0_+} \int_r^R \frac{d}{dρ} \fint_{B_1} u(ρx) dx = \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_1} \frac{\nabla u(ρ x)·x}{\sum_{i=1}^d \frac{\partial u}{\partial y_i}(ρx)·x_i} dx dρ ≤ $$
+		$$ ≤ \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_1} |\nabla u(ρ x)| dx dρ = \lim_{r \rightarrow 0_+} \int_r^R \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}} \frac{ρ^{d - 1 + A}}{ρ^d} dx dρ κ(ρ) dρ = $$
+		$$ = \lim_{r \rightarrow 0_+} \int_r^R ρ^{A - 1} \(\int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx\) dρ ≤ \(\sup_{0 ≤ ρ ≤ R} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}}\) κ(d) \int_0^R ρ^{A - 1} dρ = \frac{κ(d)}{A} R^A \sup_{r ≤ R} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}}. $$
+
+		Lemma (Marey II) Let $u \in W^{1, 1}_{loc}(®R^d)$ and $x, y$ be Lebesgue points. Then
+		$$ |u(x) - u(y)| ≤ c(d, A) |x - y|^A \sup_{ρ ≤ R, z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx. $$
+
+		Proof of lemma: ($R = |x - y|$)
+		$$ |u(x) - u(y)| ≤ \left|\fint_{B_R(x)} u(z) dz - u(x)\right| + \left|\fint_{B_R(y)} u(z) dz - u(y)\right| + \left|\fint_{B_R(x)} u(z) dz - \fint_{B_R(y)} u(z) dz\right| ≤ $$
+		$$ ≤ c(d, A) R^A\(\sup_{ρ ≤ R} \int_{B_ρ(x)} \frac{|\nabla u|}{ρ^{d - 1 + A}} + \sup_{ρ ≤ R} \int_{B_ρ(y)} \frac{|\nabla u|}{ρ^{d - 1 + A}}\) + \left| \int_0^1 \frac{d}{dt} \fint_{B_R(tx + (1 - t)y)} u(z) dz dt\right| = $$
+		$$ = … + \left| \int_0^1 \frac{d}{dt} \int_{B_R(¦o)} u(tx + (1 - t)y + z) dz\right| ≤ … + \left|\int_0^1\fint_{B_R(¦o)} \nabla u(tx + (1 - t)y + z)·(x - y) dz\right| ≤ $$
+		$$ ≤ … + \int R^A \int_0^1 κ^{-1}(ď) \int_{B_R(tx + (1 - t)y)} \frac{|\nabla u|}{R^{d - 1 + A}} dz dt ≤ $$
+		$$ ≤ \tilde c(d, A) R^A \sup_{ρ ≤ R} \sup_{z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}}. $$
+
+		Proof of theorem: We have $\|u\|_{C^{0, α}} ≤ c·\|u\|_{1, p}$ for $u \in C^1(\overline{Ω})$
+		$$ \|u\|_{C^{0, α}(\overline{Ω})} = \|E u\|_{C^{0, α}(\overline{Ω})} ≤ \|E u\|_{C^{0, α}(B_R)} \overset{1.}≤ c(\overline{B_R}, p, d)·\|Eu\|_{W^{1, p}(®R^d)} \overset{\text{Extension}}≤ C(\overline{B_R}, p, d, Ω) \|u\|_{W^{1, p}(Ω)}, $$
+		where $\overline{B_R}$ is support of $E$.
+
+		$u \in C_0^1(\overline{B_R})$
+		$$ \sup_{x ≠ y} \frac{u(x) - u(y)}{|x - y|^A} ≤ \sup_{x ≠ y} c(d, A) \sup_{ρ ≤ |x - y|, z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx ≤ $$
+		$$ ≤ c(d, A) \sup_{z \in B_z, ρ ≤ 2e} \int_{B_ρ(z)} \frac{|\nabla u|·1}{ρ^{d - 1 + A}} dx \overset{\text{Hölder}}≤ $$
+		$$ ≤ c(d, A) \sup \frac{1}{ρ^{d - 1 + A}} \(\int_{B_ρ(z)} |\nabla u|^p\)^{\frac{1}{p}} \(\int_{B_ρ} 1^{p'}\)^{\frac{1}{p'}} ≤ c(d, A)·\|\nabla u\|_{L^p}·\sup \frac{1}{ρ^{d - 1 + A}}·ρ^{\frac{d}{p'}}. $$
+		Setting $A := 1 - \frac{d}{p}$ $\implies$ $\frac{d}{p'} = d - 1 + A$.
+		$$ \implies \frac{|u(x) - u(y)|}{|x - y|^{1 - \frac{d}{p}}} ≤ c(d, p) \|\nabla u\|_{L^p(\overline{B_R})}. $$
+		$$ |u(x)| = \fint_{\overline{B_R}} |u(x)| dy ≤ \fint_{\overline{B_R}} |u(x) - u(y)| + |u(y)| dy ≤ $$
+		$$ ≤ c(d) (\|\nabla u\|_p + \|u\|_{L^1(\overline{B_R})}) ≤ C(\overline{B_r}, d, p) \|u\|_{W^{1, p}(\overline{B_R})}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Case $d > p$ ($d = p$), only for $u \in C_0^∞(®R^d)$]
+		$$ (*): \quad \|u\|_{L^{\frac{dp}{d - p}}(®R^d)} ≤ c(d, p) \|\nabla u\|_{L^p(®R^d)} \overset{\text{At home}} W^{1, p}(Ω) \hookrightarrow L^{\frac{dp}{d - p}}(Ω) \qquad p < d, Ω \in C^{0, 1}. $$
+
+		„Step 1: If $(*)$ is true for $p = 1$, then $(*)$ is true for $p \in [1, d)$“: (Set $v := |u|^q$)
+		$$ \(\int_{®R^d} |u|^{\frac{q·d}{d - 1}}\)^{\frac{d - 1}{d}} = \|v\|_{L^{\frac{d}{d - 1}}} ≤ c(d)·\|\nabla v\|_{L^1} ≤ c(d) \int_{®R^d} q·|u|^{q - 1}·|\nabla u| ≤ c(d, q) \|\nabla u\|_{L^p}·\|u\|_{L^{p'(q - 1)}}^{q - 1}. $$
+		Set $q := \frac{p·(d - 1)}{d - p}$:
+		$$ \(\int_{®R^d} |u|^{\frac{dp}{d - p}}\)^{\frac{d - 1}{d}} ≤ c(d, p) \|\nabla u\|_p·\|u\|_{\frac{dp}{d - p}}^{\frac{p·(d - 1)}{d - p} - 1}. $$
+		$$ \(\frac{p}{p - 1}·\(\frac{p·(d - 1)}{d - p} - 1\) = \frac{dp}{d - p}\). $$
+
+		Lemma (Gagliardo): Let $u_i \in C_0^∞(®R^{d - 1})$, $i \in [d]$. Define $v_i(x_1, …, x_d) := u_i(x_1, …, x_{i-1}, x_{i+1}, …, x_d)$. Then
+		$$ \int_{®R^d} \prod_{i=1}^d |v_i(x)| dx ≤ \prod_{i=1}^d \|u_i\|_{L^{d - 1}(®R^{d - 1})}. $$
+
+		Proof of lemma: By induction (with respect to $d$):
+		$$ d = 2: \qquad \int_{®R^d} |v_1(x)|·|v_2(x)| dx = \int_{®R^2}|u_1(x_2)|·|u_2(x_1)| dx_1 dx_2 = \|u_1\|_{L^1(®R)}·\|u_2\|_{L^1(®R)}. $$
+		$$ d \implies d+1: \qquad \int_{®R^{d + 1}} \prod_{i=1}^{d + 1}|v_i(x)| dx = \int_{®R^d} |v_{d+1}(x)| · \(\int_{®R} \prod_{i=1}^d |v_i(x)| dx_{d+1}\) dx_1…dx_d \overset{\text{Hölder}}≤ $$
+		$$ ≤ \(\int_{®R^d} |v_{d+1}(x)|^d dx_1…dx_d\)^{1 / d} \(\int_{®R^d} \(\int_{®R} \prod_{i=1}^d |v_i| dx_{d+1}\)^{d'} dx_1…dx_d\)^{1 / d'} \overset{\text{Hölder}}≤ $$
+		$$ ≤ \|u_{d+1}\|_{L^d(®R^d)} \(\int_{®R^d} \(\prod_{i=1}^d \(\int_{®R} |v_i|^d dx_{d + 1}\)^{1 / d}\)^{d'} dx_1…dx_d\)^{1 / d'} ≤ $$
+		$$ = \|u_{d+1}\|_{L^d(®R^d)}·\(\int_{®R^d} \prod_{i=1}^d \underbrace{\(\int_®R |v_i|^d dx_{d+1}\)^{\frac{1}{d - 1}}}_{=:z_i} dx_1…dx_d\)^{1 / d'} ≤ $$
+		$$ ≤ \|u_{d+1}\|_{L^d(®R^d)}·\(\int_{®R^d} \prod_{i=1}^d |z_i| dz\)^{1 / d'} \overset{\text{Induction hypothesis}}≤ \|u_{d + 1}\|_{L^d(®R^d)} \prod_{i=1}^d \|z_i\|_{L^{d - 1}}^{\frac{d - 1}{d}} = $$
+		$$ = \|u_{d+1}\|_{L^d(®R^d)} \prod_{i=1}^d TODO = \prod_{i=1}^{d+1} \|u_i\|_{L^d}. $$
+
+		Proof of theorem: We want $\|u\|_{L^{\frac{d}{d-1}}(®R^d)} \overset{\text{Gagliardo–Nirenberg inequality}}≤ c(d) \|\nabla u\|_{L^1(®R^d)}$ $\forall u \in C_0^∞(®R^d)$.
+		$$ |u(x)| = \left|\int_{-∞}^{x_i} \frac{\partial u}{\partial x_i}(x_1, …, x_{i - 1}, s, x_{i + 1}, …, x_n) ds\right| ≤ $$
+		$$ ≤ \int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_n)| ds. $$
+		$$ \|u\|_{L^{\frac{d}{d - 1}}}^{\frac{d}{d-1}} = \int_{®R^d} |u(x)|^{\frac{d}{d-1}} dx ≤ \int_{®R^d} \prod_{i=1}^d \underbrace{\(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)| ds\)^{1 / (d - 1)}}_{v_i} dx \overset{\text{Gagliardo}} ≤ $$
+		$$ ≤ \prod_{i=1}^d \(\int_{®R^{d - 1}}\(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)| ds\)^{\frac{1}{d - 1}·(d - 1)} dx_1…dx_{i - 1}dx_{i + 1}…dx_d\)^{\frac{1}{d - 1}} = $$
+		$$ = \prod_{i=1}^d \(\int_{®R^d} |\nabla u| dx\)^{\frac{1}{d - 1}} = \|\nabla u\|_{L^1(®R^d)}^{\frac{d}{d-1}}. $$
+
+		I.e. $W^{1, p}(Ω) \hookrightarrow L^{\frac{dp}{d - p}}(Ω), L^q(Ω), L^∞(Ω)$ for $p < d$, $p = d$, $p > d$.
+	\end{dukazin}
+
+	\begin{dukazin}[Compact embeddings]
+		Step 1: $W^{1, 1}(Ω) \hookrightarrow\hookrightarrow L^1(Ω)$. Step 2: $W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^q(Ω)$, $q < \frac{dp}{d - p}$.
+
+		„Step 1 $\implies$ Step 2“: $p ≤ q ≤ z$:
+		$$ \|u\|_{L^q} ≤ \|u\|_{L^p}^α·\|u\|_z^{1 - α}, \qquad \frac{1}{q} = \frac{α}{p} + \frac{1 - α}{z}. $$
+		$S$ bounded set in $W^{1, p}(Ω)$. Goal: $\forall ε > 0\ \exists \{u_i\}_{i=1}^N \subset L^q(Ω)\ \forall u \in S: \min_i \|u - u_i\| < ε$.
+		$W^{1, p}(Ω) \hookrightarrow W^{1, 1}(Ω) \overset{\text{Step 1}}\implies \forall \tilde ε > 0\ \exists \{u_i\}_{i=1}^{N(\tilde ε, S)}: \min_i \|u - u_i\|_{L^1(Ω)} ≤ \tilde ε$.
+		$$ \|u - u_i\|_{L^q(Ω)} ≤ \|u - u_i\|_{L^1(Ω)}^α·\|u - u_i\|_{\frac{dp}{d - p}}^{1 - α}, \qquad \frac{1}{q} = \frac{α}{1} + \frac{(1 - α)·(d - p)}{dp} ≤ $$
+		$$ ≤ c(Ω, p) \|u - u_i\|_{L^1(Ω)}^α·\|u - u_i\|_{W^{1, p}(Ω)}^{1 - α} ≤ c(Ω, p, S)·\|u - u_i\|_{L^1(Ω)}^α. $$
+		$$ \min\|u - u_i\|_{L^q(Ω)} ≤ c(Ω, p, S) \tilde ε^α. $$
+		Given $ε > 0$. $\tilde ε := \frac{ε^{1 / α}}{c(Ω, p, S)^{1 / α}}$, find $\{u_i\}$ from Step 1 $\implies$ $\min_i \|u - u_i\|_{L^q} ≤ ε$.
+
+		„Step 1“: Enough $W_0^{1, 1}(B_R) \hookrightarrow\hookrightarrow L^1(B_R)$. $u \in W_0^{1, 1}(B_R)$, $u_δ := u * η_δ$.
+		$$ \int_{®R^d} |u - u_δ| dx = \int_{®R^d} \left|\int_{®R^d}(u(y) - u(x)) η_δ(x - y) dx \right| dy = $$
+		$$ = \int_{®R^d} \int_{®R^d} \frac{|u(x + y) - u(x)|}{|y|} η_δ(y) |y| dx dy, $$
+		$$ ≤ \|\nabla u\|_{L^1(®R^d)} · \int_{®R^d} |y| η_δ(y) dy ≤ δ \|\nabla u\|_{L^1(®R^d)}. $$
+
+		Recall: $C^1(\overline{B_R}) \hookrightarrow\hookrightarrow C^0(\overline{B_R}) \hookrightarrow\hookrightarrow L^1(\overline{B_R})$ (Arzela–Ascoli + Hölder).
+
+		$S$ set bounded in $W^{1, 1}(\overline{B_R})$. $S_δ := \{u_δ, u \in S\}$. $\|u_δ\|_{C^1(\overline{\overline{B_R}})} ≤ \frac{C(B_R)·\|u\|_{W^{1, 1}(B_R)}}{δ}$ (for $δ$ small).
+
+		Given $ε > 0$ $\exists δ$: $\|u - u_δ\|_{L^1} ≤ \frac{ε}{2}$ $\forall u \in S$. $u_δ \in S_δ$ (bounded set in $C^1(\overline{B_R})$), $\|u_δ\|_{C^1} ≤ \frac{c}{δ} = c(ε)$. Find $\{u_δ^i\}_{i=1}^{N(ε)}$: $\min \|u_δ - u_δ^i\|_{L^1} ≤ \frac{ε}{2}$.
+		$$ \|u - u_δ^i\|_{L^1} ≤ \|u - u_δ\|_{L^1} + \|u_δ - u_δ^i\| ≤ ε. $$
+	\end{dukazin}
+\end{veta}
+
+\subsection{Traces}
+\begin{poznamka}[$C^1$ functions on cube]
+	$Ω = (-1, 1)^{d - 1} \times (0, 1)$, $x' = (x_1, …, x_{d - 1})$. $u \in C^1(\overline{Ω})$, $u(x', 1) = 0$.
+
+	Optimal $q$ such that $\int_{(-1, 1)^{d - 1}} |u(x', ¦o)|^q dx_1…dx_{d-1} ≤ c·\|\nabla u\|_{L^p(Ω)}^q$?
+
+	$$ \int_{(-1, 1)^{d - 1}} |u(x', 0)|^q dx' = \int_{(-1, 1)^{d - 1}} - \int_0^1 \frac{\partial}{\partial x_d} |u(x', x_d)|^q dx_d dx' ≤ q·\int_Ω |u|^{q - 1}·|\nabla u| dx ≤ $$
+	$$ ≤ q·\|\nabla u\|_{L^p(Ω)} · \| |u|^{q - 1} \|_{L^{p'}(Ω)} \overset{?}≤ q·\|\nabla u\|_{L^p(Ω)}·\|u\|_{L^{\frac{dp}{d - p}}(Ω)}^{q - 1}. $$
+	Set $q$: $(q - 1)p' = \frac{dp}{d - p}$ $\implies$ $q = \frac{d(p - 1)}{d - p} + 1 = \frac{dp - p}{d - p} = \frac{p·(d - 1)}{d - p}$.
+
+	$$ \|u\|_{L^{\frac{p(d - 1)}{d - p}}((-1, 1)^{d - 1})} ≤ C(Ω, p)·\|u\|_{W^{1, p}(Ω)}. $$
+\end{poznamka}
+
+\begin{poznamka}[Integral on boundary for $Ω \in C^{0, 1}$]
+	$$ \int_{\partial Ω} f ds := \int_{\partial Ω} \sum_{i=1}^N f φ_i = \sum_{i=1}^N \int_{(-1, 1)^{d - 1}} f(T_i(y)) φ_i(T_i(y)) \sqrt{1 + |\nabla y|^2} dy', $$
+	where $φ_i$ is partition of unity corresponding to $C^{0, 1}$ and $T_i$.
+
+	We should show independence on $φ_i$, $V_i$. Also we can show $\int_Ω \frac{\partial f}{\partial x_i} dx = \int_{\partial Ω} f n_i dS$. ($\forall f \in C^1(\overline{Ω})$.)
+\end{poznamka}
+
+TODO!!!
+
+\begin{poznamka}[On spaces with non-integer derivative]
+	$\tr$ is not onto $L^{\frac{(d - 1)p}{d - p}}(\partial Ω)$.
+\end{poznamka}
+
+\begin{veta}[Inverse trace theorem]
+	$Ω \in C^{0, 1}$, $p \in (1, ∞]$, $s \in (1 / p, 1]$. Then $\tr$ is bounded linear from $W^{s, p}(Ω)$ to $W^{s - \frac{1}{p}, p}(\partial Ω)$. Moreover $\exists \tr^{-1}: W^{s - \frac{1}{p}, p}(\partial Ω) \rightarrow W^{s, p}(Ω)$ linear bounded, such that $\tr (\tr^{-1}) = u$ on $\partial Ω$.
+\end{veta}
+
+\begin{definice}[Sobolev–Slobodeckij spaces]
+	We say that $u \in W^{s, p}(Ω)$, $s \in (0, 1)$, iff
+	$$ \int_Ω \int_Ω \frac{|u(x) - u(y)|^p}{|x - y|^{d + ps}} dx dy < ∞ \qquad \land u \in L^p(Ω). $$
+	$$ \|u\|_{W^{s, p}(Ω)} := \|u\|_{L^p(Ω)}. $$
+\end{definice}
+
+\begin{definice}[Nikólskii spaces]
+	We say that $u \in N^{s, p}(Ω)$, $p \in [1, ∞]$, $s \in (0, 1]$, iff
+	$$ \sup_{h, i} \int_{Ω_h} \frac{|u(x + h e_i) - u(x)|^p}{h^{p·s}} dx < ∞. $$
+\end{definice}
+
+\begin{lemma}
+	$$ W^{s, p}(Ω) \hookrightarrow N^{s, p}(Ω) \hookrightarrow W^{s - ε, p}(Ω), \qquad \forall 0 < ε < s. $$
+	
+	\begin{dukazin}
+		At home.
+	\end{dukazin}
+\end{lemma}
+
 \end{document}
