@@ -76,7 +76,7 @@
 \end{poznamka}
 
 \begin{tvrzeni}
-	$®T, ©T^* \in ∏_0^1(\{0, 1\}^®S)$, $\{®T_s, ®T^* \setminus ®T_s, s \in ©S\}$ form a subbase of topology in ®T.
+	$®T, ©T^* \in ∏_0^1(\{0, 1\}^®S)$, $\{®T_s, ®T^* \setminus ®T_s, s \in ®S\}$ form a subbase of topology in ®T.
 
 	\begin{poznamkain}
 		©T, $©T^*$ is compact metric space, so PTS.
@@ -324,6 +324,180 @@
 
 	\begin{dukazin}
 		„$\impliedby$“: $T_1 \subset f^{-1}(T_2) \implies i(T_1) ≤ i(f^{-1}(T_2)) ≤ i(T_2)$ (second equation holds, because: $(f^{-1}(T_2))^{(α)} \subset f^{-1}(T_2^{(α)})$, put $α = i(T_2) \implies (f^{-1}(T_2))^{(α)} \subseteq \{\O\} \implies i(f^{-1}(T_2)) ≤ α$).
+
+% 12. 03. 2024
+
+		„$\implies$“: a) $i(T_2) = ω_1 \implies T_2 \in ©T_I \implies ς \in [T_2]$. Define $f(s)$ by $f(s) = ς|_s$. Clearly $f$ is strategy and $f(T_1) \subset \{ς|_k, k \in ω\} \subset T_2$.
+
+		b) $i(T_2) < ω_1 \implies T_2 \in ©T^*_W$. We will construct $f$ by induction on $|s|$, $s \in ®S$, and we also want $(+_n): i_{T_1}(s) ≤ i_{T_2}(f(s))$, $s \in T_1$, $|s| ≤ n$ $\implies$ $f(s) \in T_2$, $s \in T_1$ (where $i_T(s) = i(T_s)$, $T \in ©T^*$, $s \in T$).
+
+		Firstly $f(\{\O\}) = \{\O\}$. $f$ monotone, respect length and $(+_0): i_{T_1}(\{\O\}) = i(T_1) ≤ i(T_2) = i_{T_2}(\{\O\})$. Let $f$ be defined for $s \in ®S$, $|s| ≤ n$, $n \in ω$, $f$ respect length and be monotone and satisfy $(+_n)$. Let $s \in ω^n$. i) $s_0 \notin T_1$ or $i_{T_1}(s_0) = 0$ TODO!!!
+
+		ii) $i_{T_1}(s_0) > 0$ TODO!!!
+
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\subsection{Luzin–Sierpinski index as $∏_1^1$ rank}
+\begin{veta}
+	$$ A := \{(T_1, T_2) \in (©T^*)^2 | i(T_1) ≤ i(T_2)\} \in Σ_1^1((©T^*)^2). $$
+	$$ C := \{(T_1, T_2) \in (©T^*)^2 | T_1 \in ©T^*_W, i(T_1) ≤ i(T_2)\} \in ∏_1^1((©T^*)^2). $$
+	$$ B := \{(T_1, T_2) \in (©T^*)^2 | i(T_1) < i(T_2)\} \in ∏_1^1((©T^*)^2). $$
+	$$ D := \{(T_1, T_2) \in (©T_W^*)^2 | i(T_1) ≤ i(T_2)\} \text{ bisouslin in } (©T_W^*)^2. $$
+
+	\begin{dukazin} % Obrázkem
+		„$A \implies C$“: Define $h: (©T^*)^2 \rightarrow (©T^*)^2$ homeomorphism by $h(T_1, T_2) = (T_2, T_1)$. Then $(©T^*)^2 \setminus A = h(B) \implies B \in ∏_1^1((©T^*)^2)$.
+
+		„$C \implies B$“: $E := \{(T, T) \in (©T^*)^2 | T \in ©T_W^*\} \simeq ©T_W^* \implies E \in ∏_1^1$. $C = B \cup E \in ∏_1^1((©T^*)^2)$.
+
+		„$D$“: $A \cap (©T_W^*)^2$ Souslin, $D = C \cap \(\(©T_W^*\)^2\) \in ∏_1^1\(\(©T^*\)^2\)$ cosouslin.
+
+		„$A$“: $i(T_1) ≤ i(T_2) \Leftrightarrow \exists f \text{ strategy}: f^{-1}(T_2) \supset T_1$. So $A = ∏(F)$, $F := \{(T_1, T_2, f) \in (©T^*)^2 \times ®S^{®S} | T_1 \subseteq f^{-1}(T_2), f \in ©S\}$, where ©S is set of strategies. We show $F \in ∏_1^0$. Clearly $®S^{®S}$ is PTS.
+
+		a) „$©S \subset ∏_1^0(®S^{®S})$“: $f_n \in ©S$, $f_n \rightarrow f$, $f \in ©S$? Set $s < t$, $s, t \in ®S$ $\implies$ $\forall n \in ω$: $f_n(s) < f_n(t)$ ($f_n \in ©S$). (Convergence in product space is point-wise) $\implies$ $\exists n_0 \in ω\ \forall n ≥ n_0: f_n(s) = f(s)$, $f_n(t) = f(t) \implies f(s) < f(t)$. Similarly $\exists n_1\ \forall n ≥ n_1: f_n(s) = f(s) \implies |f(s)| = |f_n(s)| = |s| \implies f \in ©S$.
+
+		b) $f^{-1}(T_2) \supset T_1$ is $∏_1^0$ cond? $T_1^n \rightarrow T_1$, $T_2^n \rightarrow T_2$, $f_n \rightarrow f$ such that $f_n^{-1}(T_2^n) \supset T_1^n$. By contradiction: $\exists v \in T_1 \setminus f^{-1}(T_2)$. $\exists n_0\ \forall n ≥ n_0: f_n(v) = f(v)$, $v \in T_1^n$, $f(v) \notin T_2^n$ $\implies$ $v \in T_1^n \setminus f_n^{-1}(T_2^n)$. \lightning.
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}
+	$©S: L \rightarrow ω_1$ is $∏_1^1$-rank $≡$ $L \in ∏_1^1(X)$, $X$ PTS and $\exists C \in ∏_1^1(X^2), A \in Σ_1^1(X^2)$: $\{(x, y) \in L^2 | S(x) \subseteq ©S(y)\} = C \cap (X \times L) = A \cap (X \times L)$.
+
+	\begin{poznamkain}
+		TODO!!!
+	\end{poznamkain}
+
+	\begin{dusledekin}
+		TODO!!!
+	\end{dusledekin}
+\end{definice}
+
+\subsection{Boundedness of $∏_1^1$-rank}
+\begin{lemma}
+	$X$ PTS, $L \subset X$. Let $©S: L \rightarrow ω_1$ be $∏_1^1$-rank, $L \notin Σ_1^1(X)$ and $B \subset L$, $B \in Σ_1^1(X)$. Then $\sup \{©S(x), x \in B\} < ω_1$.
+
+	\begin{dukazin}
+		Define $©S(x) = ω_1$, $x \in X \setminus L$. $A$ as in definition of $∏_1^1$-rank. By contradiction: $\sup ©S(B) = ω_1$. Then
+		$$ L = \{x \in X | \exists y \in B: ©S(x) ≤ ©S(y)\} = \{x \in X| \exists y \in X: (x, y) \in A \cap (X \times B)\} = ∏_1(A \cap (X \times B)) \in Σ_1^1. \text{\lightning}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	Let $B \subset ©T_W^*$, $B \in Σ_1^1(©T^*)$. Then $\sup\{i(T) | T \in B\} < ω_1$.
+
+	\begin{dukazin}
+		Trivial.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		$B \subset X$ PTS, $B \in Δ_1^1(X) \implies B \in ∏_1^1 \implies \exists f \in Δ_1^1, f: X \rightarrow ©T^*: f^{-1}(©T_W^*) B, f(B) \subset ©T_W^*, f(B) \in Σ_1^1 \implies \{α | f^{-1}(©T_W^*(α)) ≠ \O\}$ is countable.
+
+		$\implies \exists α < ω_1: B \subset f^{-1}(\bigcup_{β < α} ©T_W^*(β))$, $X \setminus B = f^{-1}(©T_I^*)$.
+	\end{poznamkain}
+\end{veta}
+
+\subsection{Luzin first separation principle}
+
+\begin{veta}
+	Assume $M$ is metric space, $S \subset M$ souslin, $A \in Σ_1^1(M)$, $A \cap S = \O$. Then there exists $B \in Δ_1^1(M)$ such that $A \subset B \subset M \setminus S$.
+
+	\begin{dukazin}
+		$S$ Souslin $\implies$ $S = f^{-1}(©T_I)$, $f \in Δ_1^1$, $f: M \rightarrow ©T^*$. Define $©S(x) := i(f(x))$.
+		$$ f(A) \in Σ_1^1(©T^*), f(A)  \subset ©T_W^* \impliedby A \cap S = \O \implies \sup ©S(A) = α < ω_1 \implies $$
+		$$ A \subset B = f^{-1}(\bigcup_{β ≤ α} ©T_W^*(β)) \in Δ_1^1, B \cap S = \O. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}
+	$\exists C_1, C_2 \in ∏_1^1(®R)$, $C_1 \cap C_2 = \O$, $C_1$ cannot be $Δ_1^1$-separated from $C_2$. ($C_1$, $C_2$ are bisouslin in $C_1 \cup C_2$ and cannot be separated by $Δ_1^1(C_1 \cup C_2)$ set.)
+
+% 19. 03. 2024
+
+	\begin{dukazin}
+		$C_1 = \{(S, T) \in (©T^*)^2 | i(s) < i(T)\} \in ∏_1^1 \impliedby$ the theorem above. $C_2 = \{(S, T) \in (©T^*)^2 | i(T) < i(S)\} \in ∏_1^1$. $C_1 \cap C_2 = \O$. $M := C_1 \cup C_2$ $\implies$ $C_1$ and $C_2$ are bisouslin in $M$.
+
+		For contradiction $\exists H \in Δ_1^1((©T^*)^2)$. $C_1 \subset H \subset (©T^*)^2 \setminus C_2 \implies \exists α < ω_1: H \in Σ_α^0((©T^*)^2)$. Find $B \in Δ_1^1 \setminus Σ_{α + 1}^0((©T^*)^2)$ $\impliedby$ use $Σ_j^0$ universal sets $\impliedby$ Kechris.
+
+		Find $f_{B^C}$ from the lemma, $f_{B^C}: (©T^*)^2 \rightarrow ©T^*$, $f_{B^C}^{-1}(©T_I) = (©T^*)^2 \setminus B$, $B = f_{B^C}^{-1}(©T_W^*)$ $\implies$ $Σ_1^1 \ni f_{B^C}(B) \subset ©T_W^*$, $f_{B^C} \in B_{ς_1}$ ($f_{B^C}^{-1}(Σ_1^0) \subset Σ_2^0$).
+
+		From the theorem above $\sup_{x \in B} i(f(x)) = α_B < ω_1$. From the other theorem $\exists T \in ©T_W^*: i(T) > α_B$. Define $F(x) = (f(x), T) \in (©T^*)^2$, $x \in (©T^*)^2$. $F \in B_{ς_1}$.
+
+		Then $F^{-1}(C_1) = B \impliedby x \in B \implies i(f(x)) ≤ α_B < i(T)$, $x \in B \implies f(x) \in ©T_I \implies (f(x), T) \notin C_1$, $\in C_2$.
+		$$ F^{-1}(C_1) = F^{-1}(H) \impliedby x \in (©T^*)^2 \implies F(x) \subset C_1 \cup C_2. H \in Σ_α^0, F \in B_{ς_1} \implies B = F^{-1}(H) \in Σ_{α + 1}^0 ((©F^*)^2). \text{\lightning.} $$
+	\end{dukazin}
+\end{priklad}
+
+\subsection{Luzin second separation principle and reduction theorem}
+\begin{veta}[Reduction theorem]
+	$C_1, C_2$ cosouslin in metric space $M$. Then there exists cosouslin $D_1, D_2 \subset M$ such that
+	$$ \forall i = 1, 2: \quad D_i \subset C_i, \qquad D_1 \cap D_2 = \O, \qquad D_1 \cup D_2 = C_1 \cup C_2. $$
+
+	\begin{dukazin}
+		From the lemma $\exists f_i: M \rightarrow ©T^*$, $f_i \in Δ_1^1$, $f_i^{-1}(©T_W^*) = C_i$.
+		$$ D_1 := \{x \in M | i(f_1(x)) < ω_1, i(f_1(x)) ≤ i(f_2(x))\} \implies D_1 \subset C_1 \quad (i(f_1(x)) ≤ ω_1). $$
+		$$ D_1 := \{x \in M | i(f_2(x)) < i(f_1(x))\} \implies D_2 \subset C_2 \quad (i(f_2(x)) ≤ ω_1). $$
+		$D_1 \cup D_2 = C_1 \cup C_2$ ($x \in C_1 \cup C_2 \implies i(f_1(x)) < ω_1 \lor i(f_2(x)) < ω$, if $i(f_1(x)) ≤ i(f_2(x))$ then $x \in D_1$ otherwise $x \in D_2$).
+
+		„$D_1 \cap D_2 = \O$“: Define $F = (f_1, f_2) \in Δ_1^1$, $F: M \rightarrow ((©T^*)^2)$ $\impliedby$ $F^{-1}(U_1 \times U_2) = f_1^{-1}(U_1) \cap f_2^{-1}(U_2)$. ($(©T^*)^2$ has countable base.)
+		$$ C = \{(T_1, T_2) \in (©T^*)^2 | i(T_1) < ω_1, i(T_1) ≤ i(T_2)\} \in ∏_1^1, $$
+		$$ B = \{(T_1, T_2) \in (©T^*)^2 | i(T_2) < i(T_1)\} \in ∏_1^1, $$
+		$$ F^{-1}(C) = D_1 \land F^{-1}(B) = D_2 \implies D_1, D_2 \in ∏_1^1 \implies \text{cosouslin}. $$
+
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}[Luzin second separation principle]
+	Let $M$ be metric space, $A_1, A_2$ Souslin in $M$. Then there exists cosouslin $B_1, B_2$ such that $A_2 \setminus A_1 \subset B_1$, $A_1 \setminus A_2 \subset B_2$, $B_1 \cap B_2 = \O$. Moreover, it is possible to manage $B_1 \cup B_2 = M \setminus (A_1 \cap A_2)$ $\implies$ if $A_1 \cap A_2 = \O$, then $B_i$ are bisouslin.
+
+	\begin{dukazin}
+		$C_i = M \setminus A_i$, $B_i$ reduction of $C_i$. $B_1 \cup B_2 = C_1 \cup C_2 = M \setminus (A_1 \cap A_2)$, $B_1 \cap B_2 = \O$, $B_i \supset C_i \setminus C_j = A_j \setminus A_i$ ($i ≠ j$). $A_1 \cap A_2 = \O \implies B_1 = M \setminus B_2$.
+	\end{dukazin}
+\end{dusledek}
+
+\section{Kuratowski–Ulam theorem}
+\begin{poznamka}[Notation]
+	$A \subset X \times Y$, $X, Y$ sets. $A_X := \{y \in Y | [x, y] \in A\}$. $A^y := \{x \in X | [x, y] \in A\}$.
+
+	$X$ topological space, $T(x)$ statement. $\forall^* x: T(x) \Leftrightarrow \{x \in X | T(x)\}$ is co-meager. $\exists^* x: T(x) \Leftrightarrow \{x \in X | T(x)\}$ is non-meager.
+\end{poznamka}
+
+\begin{veta}[Kuratowski–Ulam]
+	$X, Y$ be topological spaces with countable base, $A \subset X \times Y$ has Baire property in $X \times Y$. Then
+	\begin{enumerate}
+		\item $\forall^*x: A_x$ has Baire property in $Y$, $\forall^*y : A^y$ has Baire property in $X$;
+		\item $A$ is meager $\Leftrightarrow$ $\forall^* x: A_x$ is meager $\Leftrightarrow$ $\forall^* y: A^y$ is meager;
+		\item $A$ is co-meager $\Leftrightarrow$ $\forall^* x: A_x$ is co-meager $\Leftrightarrow$ $\forall^* y: A^y$ is co-meager.
+	\end{enumerate}
+\end{veta}
+
+\begin{lemma}
+	$X, Y$ topological spaces, $Y$ has countable base, $F \subset X \times Y$ nowhere dense. Then $\forall^* x: F_x$ is nowhere dense.
+
+	\begin{dukazin}
+		WLOG $Y ≠ \O$. $F \in ∏_1^0(X \times Y)$ (otherwise for $\overline{F}$). Let $U := (X \times Y) \setminus F$. It is open and dense. We want $\forall^* x: \overline{U_x} = Y$.
+
+		$\{V_n\}$ base of $Y$, $V_n ≠ \O$. $U_n := ∏_X(U \cap X \times V_n)$ dense open in $X$. (Open trivial. Dense $\impliedby$ $G \in Σ_1^0(X), G ≠ \O \implies (G \times V_n) \cap U ≠ \O \implies [x, y] \in U \cap (X \times V_n)$.)
+
+		$x \in \bigcap U_n \implies x \in U_n \implies U_x \cap V_n ≠ \O \implies U_x$ is dense in $Y$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukazin}[Kuratowski–Ulam]
+	$F \subset X \times Y$ meager $\implies$ $F \subset \bigcup F_n$, $F_n \in ∏_1^0$, nowhere dense. By the previous lemma $\exists M_n \subset X$ co-meager: $\forall x \in M_n$: $(F_n)_x$ is nowhere dense. $M := \bigcap M_n$ co-meager $\implies$ $\forall x \in M$ $\forall n \in ω$: $(F_n)_x$ is nowhere dense $\implies$ $F_x \subset \bigcup (F_n)_x$ is meager.
+
+	Let $A \subset X \times Y$ has Baire property $\implies$ $A = U \triangle M$, $U \in Σ_1^0$, $M$ meager. $A_x = U_x \triangle M_x$ (open $\triangle$ meager for co-meager many $x$) $\implies$ $\forall^* x: A_x$ has Baire property. This implies 1.
+
+	Clearly 2. $\Leftrightarrow$ 3. using complements. It remains to show 2. $\impliedby$.
+\end{dukazin}
+
+\begin{lemma}
+	$X, Y$ topological spaces with countable base, $A \subset X$, $B \subset Y$. Then $A \times B$ is meager $\Leftrightarrow$ $A$ or $B$ is meager.
+
+	\begin{dukazin}
+		„$\implies$“: $A \times B$ meager, $A$ non-meager. Then by the previous lemma $\exists x \in A: (A \times B)_x = B$ meager.
+
+		„$\impliedby$“: $A$ is meager, $A \subseteq \bigcup F_n$, $F_n \in ∏_1^0$, nowhere dense. Then $A \times B \subset \bigcup(F_n \times B)$. We need to show that $F_n \times B$ is nowhere dense. $X \setminus F_n$ open dense $\implies$ $(X \setminus F_n) \times Y$ open dense in $X \times Y$ $\implies F_n \times Y$ is nowhere dense $\implies$ $F_n \times B$ is nowhere dense.
 	\end{dukazin}
 \end{lemma}
 

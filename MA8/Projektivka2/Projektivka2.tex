@@ -246,4 +246,127 @@ TODO?
 	Projektivní souřadný systém v $®RP^n$ je $(n+1)$-tice různých bodů $A_0, …, A_n \in ®RP^n$. Pak $\forall X \in ®RP^n$ definujeme souřadnice bodu $X$ vůči PSS $(A_0, …, A_n)$ jako homogenní $(n+1)$-tici $[x_0:…:x_n]$ takovou, že $x = \sum_{i=0}^n x_i·a_i$.
 \end{definice}
 
+% 13. 03. 2024
+
+TODO!!! (Projektivita na $®RP^n$: je dána regulární maticí $(n + 1) \times (n + 1)$ určenou až na násobek $≠$ 0 (píšeme $A \sim k·A$, pro $k ≠ 0$).)
+
+TODO!!! (Ukázání si, že taková matice zachovává dvojpoměr.)
+
+TODO!!! (Projektivita je dána svými hodnotami na $n+2$ bodech.)
+
+TODO!!! (A mnoho dalšího.)
+
+% 20. 03. 2024
+
+\subsection{Samodružné body projektivit}
+\begin{definice}[Samodružný bod projektivity]
+	$\<¦v\> \in ®RP^n$ je samodružný bod projektivity dané maticí $A$ $≡$ $\<A·¦v\> = \<¦v\>$.
+	
+	\begin{poznamkain}
+		$$ \Leftrightarrow \ \exists λ \in ®R (®C) \setminus \{0\}: A·¦v = λ·¦v \qquad \(\Leftrightarrow (A - λE)·¦v = ¦o \Leftrightarrow p_A(λ) = \det(A - λE) = 0\) $$
+		$\Leftrightarrow$ $λ ≠ 0$ je vlastním číslem matice $A$ $¦o ≠ ¦v$ je vlastním vektorem matice $A$ příslušným vlastnímu číslu $λ$.
+	\end{poznamkain}
+
+	%\begin{poznamkain}
+		%?To znamená, že samodružných bodů (včetně násobnosti) je $n$.
+	%\end{poznamkain}
+
+	\begin{poznamka}
+		Matice projektivity je regulární, tedy nemá vlastní číslo nula.
+	\end{poznamka}
+\end{definice}
+
+TODO? (Hromada lineární algebry.)
+
+\subsection{Klasifikace projektivit na projektivní přímce}
+\begin{poznamka}
+	Klasifikace projektivit na projektivní přímce podle možných Jordanových tvarů:
+	\begin{itemize}
+		\item $J_A = \begin{pmatrix} λ_1 & 0 \\ 0 & λ_2 \end{pmatrix} \sim \begin{pmatrix} 1 & 0 \\ 0 & λ \end{pmatrix} \qquad \forall λ_1, λ_2, λ \in ®R \setminus \{0\}$. Pro $λ = 1$ je to identická projektivita. Pro $λ ≠ 1$ má dva reálné samodružné body;
+		\item $J_A = \begin{pmatrix} λ & 1 \\ 0 & λ \end{pmatrix} \qquad \forall λ \in ®R \setminus \{0\}$. Tehdy má jediný samodružný bod (a ten je reálný);
+		\item $J_A = \begin{pmatrix} λ & 0 \\ 0 & \overline{λ} \end{pmatrix} \qquad \forall λ \in ®C \setminus ®R$. Tehdy má dva komplexní samodružné body.
+	\end{itemize}
+\end{poznamka}
+
+\begin{dusledek}
+	To dokazuje větu ze zimního semestru ($\exists$ 2/1/0 samodružné body projektivity soustav).
+\end{dusledek}
+
+\subsection{Charakteristika projektivity}
+\begin{poznamka}[Opakování zimního semestru]
+	Jsou-li $S, T$ samodružné body projektivity na $®RP^1$, pak její charakteristika je číslo $w = (XX'ST)$ pro libovolný pár $X \mapsto X'$.
+
+	Věta: Hodnota $w$ nezávisí na volbě bodu $X$.
+\end{poznamka}
+
+\begin{veta}
+	Hodnota $w$ nezávisí na volbě bodu $X$, a je-li projektivita dána maticí $A$, platí
+	$$ w = \frac{\tr A + \sqrt{D}}{\tr A - \sqrt{D}}, \qquad D := (\tr A)^2 - 4 \det A. $$
+
+	\begin{dukazin}
+		Pro dvojpoměr platí (věta o čtyřech determinantech)
+		$$ (XX'ST) = \frac{[XS]·[X'T]}{[XT]·[X'S]}, \qquad [AB] = \begin{vmatrix} a_0 & b_0 \\ a_1 & a_2 \end{vmatrix}. $$
+		Pro danou $A$ spočítejme její vlastní čísla: $p_A(λ) = λ^2 - (\tr A)·λ + \det A$, tj. $λ_{1, 2} = \frac{\tr A ± \sqrt{D}}{2}$.
+
+		Pak pro samodružné body platí: $S' = S$, $T' = T$, tedy $¦s' = A·¦s = λ_1·¦s$, $¦t' = A·¦t = λ_2·¦t$. Pak
+		$$ [¦x'¦s] = [¦x' \frac{1}{λ_1}¦s'] = \frac{1}{λ_1}[¦x'¦s'] = \frac{1}{λ_1}·|A|·[¦x ¦s], \quad [¦x'¦t] = … = \frac{1}{λ_2}·|A|·[¦x¦t]. $$
+		Dosadíme: $w = \frac{[¦x¦s]·\frac{1}{λ_2}·|A|·[¦x¦t]}{[¦x¦t]·\frac{1}{λ_1}·|A|·[¦x¦s]} = \frac{λ_1}{λ_2} = \frac{\tr A + \sqrt{D}}{\tr A - \sqrt{D}}$.
+	\end{dukazin}
+\end{veta}
+
+\subsection{Involuce}
+\begin{poznamka}[Opakování zimního semestru]
+	Involuce je projektivita soumístných soustav splňující $w = -1$ $\Leftrightarrow$ $\forall X: X'' = X$ $\Leftrightarrow$ $\exists X: X'' = X$.
+\end{poznamka}
+
+\begin{definice}[Involuce]
+	Involuce je projektivita (na $®RP^n$) daná maticí $A$, která splňuje $A^2 \sim E$.
+\end{definice}
+
+\begin{veta}
+	Nechť matice $A \in ®R^{2 \times 2}$ zadává neidentickou projektivitu na $®RP^1$ ($A \nsim E$). Pak NáPoJE:
+	\begin{enumerate}
+		\item $A^2 \sim E$ (je to involuce);
+		\item $\tr A = 0$;
+		\item $w = -1$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Pišme $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$. Pak $A^2 = \begin{pmatrix} a^2 + bc & (a + d)·b \\ (a+d)·c & bc + d^2 \end{pmatrix}$.
+
+		„$1. \implies 2.$“: $A^2 \sim E$ máme, chceme $\tr A = a + d = 0$. Předpoklad nám dává $(a + d)·b = 0 = (a + d)·c$. Pro spor $(a + d) ≠ 0$. Pak $b = c = 0$ a $A = \diag(a, d)$, tedy $\diag(a^2, d^2) \sim \diag(1, 1)$, tedy $a^2 = d^2$, tj. $a = ±d$. Takže buď $a + d = 0$ nebo $A \sim E$. \lightning.
+
+		„$2. \implies 1.$“: předpokládáme $a + d = 0$. Pak ale $A^2 = \diag(a^2 + bc, bc + d^2) \overset{a = -d}= \diag{a^2+bc, a^2+bc} \sim E$.
+
+		„$2. \Leftrightarrow 3.$“: $w = \frac{\tr A + \sqrt{D}}{\tr A - \sqrt{D}}$, tedy pro $\tr A = 0$ je $w = -1$, a pokud $w = -1$, pak $\tr A + \sqrt{D} = -\tr A + \sqrt{D}$, tedy $\tr A = -1$. (Přitom $D = (\tr A)^2 - 4\det A = -4\det A ≠ 0$.)
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Stará definice involuce sedí s tou novou.
+\end{dusledek}
+
+\subsection{Parabolická involuce}
+\begin{poznamka}
+	Parabolická involuce odpovídá singulární matici $A$, která splňuje $\tr A = 0$.
+	
+	\begin{poznamkain}
+		$$ A = \begin{pmatrix} a & b \\ c & - a \end{pmatrix} \implies c = \frac{-a^2}{b}. $$
+		$$ \tilde A = \begin{pmatrix} a^2 & ba \\ -a^2 & -ab \end{pmatrix} \implies \begin{pmatrix} a^2 & ba \\ -a^2 & -ab \end{pmatrix}·\begin{pmatrix} x_0 \\ x_1 \end{pmatrix} = \begin{pmatrix} b·(ax_0 + bx_1) \\ -a·(ax_0 + bx_1) \end{pmatrix} \sim \begin{pmatrix} b \\ -a \end{pmatrix} $$
+	\end{poznamkain}
+
+	\begin{dusledekin}
+		Tedy parabolická involuce zobrazuje všechny body do jednoho bodu.
+	\end{dusledekin}
+\end{poznamka}
+
+\begin{poznamka}
+	Klasifikace involucí na $®RP^1$ podle Jordanova tvaru:
+	\begin{itemize}
+		\item $J_A \sim \diag(1, -1)$ $\implies$ $p_A(λ) = λ^2 + \det A = λ^2 - a^2$, tedy 2 reálné samodružné body, tj. hyperbolická involuce;
+		\item $J_A = \diag(λ, \overline{λ})$ $\implies$ $p_A(λ) = λ^2 + \det A = λ^2 + a^2$, tedy 2 imaginární body, tj. eliptická involuce.
+		\item $J_A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, tj. parabolická involuce.
+	\end{itemize}
+\end{poznamka}
+
 \end{document}

@@ -303,4 +303,61 @@ TODO!!!
 	\end{dukazin}
 \end{lemma}
 
+% 12. 03. 2024
+
+\section{Nonlinear elliptic equations as a „compact“ perturbation of linear PDE}
+\begin{poznamka}
+	$-Δu = f(x, u, \nabla u)$ in $Ω$, $u = 0$ on $\partial Ω$, $f: Ω \times ®R \times ®R^d$ is Caratheódory, $|f(x, u, ξ)| ≤ c$ ($\forall u \in ®R, ξ \in ®R^d$, and almost all $x \in Ω$).
+\end{poznamka}
+
+\begin{lemma}
+	$$ \exists u \in W^{1, 2}_0(Ω): \int_Ω \nabla u \nabla φ = \int_Ω f(·, u, \nabla u) φ \qquad \forall φ \in W^{1, 2}_0(Ω). $$
+
+	\begin{dukazin}
+		Consider $M: W_0^{1, 2}(Ω) \rightarrow W_0^{1, 2}(Ω), v \mapsto u$:
+		$$ \int_Ω \nabla u · \nabla φ = \int_Ω f(x, v, \nabla v) φ \qquad \forall φ \in W_0^{1, 2}(Ω). $$
+		Linear theory $\implies$ $\forall v \in W_0^{1, 2}(Ω)\ \exists! u \in W_0^{1, 2}(Ω)$ satisfying this equation.
+
+		Does $M$ have a fixpoint? Schauder fixpoint theorem assumptions: (A1) $\exists K$ convex set in $W_0^{1, 2}(Ω)$ such that $M(K) \subseteq K$, (A2) $M$ compact, continuous.
+
+		Ad (A1): Set $φ := u$. 	
+		$$ C_1 \|u\|_{1, 2}^2 ≤ \|\nabla u\|_2^2 = \int_Ω \nabla u \nabla u = \int_Ω f(x, v, \nabla v) u ≤ C \int_Ω |u| ≤ \tilde C(Ω) \|u\|_{1, 2} \implies \|u\|_{1, 2} ≤ \tilde{\tilde C}. $$
+		$K \subseteq W_0^{1, 2}(Ω)$, $K = \{u \in W_0^{1, 2}(Ω) \middle| \|u\|_{1, 2} ≤ \tilde{\tilde C}\}$.
+
+		Ad (A2): $v^n \rightharpoonup v$ in $W_0^{1, 2}(Ω)$, $u^n = M(v^n)$. $\exists u^{n_k} \rightarrow u$ strongly in $W_0^{1, 2}(Ω)$?
+		$$ \|u^n\|_{1, 2} ≤ \tilde{\tilde C}, u^{n_k} \rightharpoonup u \text{ in } W_0^{1, 2}(Ω), u^{n_k} \rightarrow u \text{ in } L^2(Ω). $$
+		Set $φ := u^n - u \in W_0^{1, 2}(Ω)$.
+		$$ \lim_{n_k \rightarrow 0} \|u^{n_k} - u\|_{1, 2}^2 ≤ C·\lim \|\nabla u^{n_k} - \nabla u\|_2^2 = C·\lim \int_Ω \nabla u^{n_k}·(\nabla u^{n_k}, \nabla u) - C·\lim \int_Ω \nabla u·(\nabla u^{n_k} - \nabla u) = $$
+		$$ = C·\lim \int_Ω f(·, v^n, \nabla v^n)(u^{n_k} - u) - C·\lim \int_Ω \nabla u·(\nabla u^{n_k} - \nabla u), $$
+		$$ TOOD!!! $$
+		$$ TODO!!! $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{poznamka}
+	Works also if $|f(x, u, ξ)| ≤ C(g(x) + |u|^α + |ξ|^α)$, where $0 ≤ α < 1$ and $g \in L^2(Ω)$.
+
+	No estimates available (in principle): $- Δ u = l |u|^{p - 2} u$ in $Ω$, $u = 0$ on $\partial Ω$. Does the problem have nontrivial solution?
+	TODO!!!
+	$$ -Δv = λA^{2 - p}·|v|^{p - 2} v $$
+	if $\exists λ > 0$ $u \not≡ 0$ solving $-Δu = λ|u|^{p - 2} u$, then $\forall B > 0\ \exists v: -Δv = B |v|^{p - 2} v$.
+\end{poznamka}
+
+\begin{lemma}
+	Let $p < \frac{2d}{d - 2}$. Then $\exists λ > 0$ $\exists u \in W^{1, 2}_0(Ω)$ such that $-Δ u = λ |u|^{p - 2} u$ in $Ω$.x
+	TODO!!!
+
+	\begin{dukazin}
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+TOOD!!!
+
+% 19. 03. 2024
+
+TODO!!!
+
+TODO!!!
+
 \end{document}
