@@ -501,4 +501,51 @@
 	\end{dukazin}
 \end{lemma}
 
+% 26. 03. 2024
+
+\begin{dukazin}[Kuratowski–Ulam remaining 2. $\impliedby$]
+	$A \subset X \times Y$ has Baire property, $\forall^* x: A_x$ is meager. $A = U \triangle M$ (open $\triangle$ meager). For contradiction we assume that $A$ is not meager ($U$ is not meager). $\implies$ $\exists G \in Σ_1^0(X), H \in Σ_1^0(Y): G \times H \subset U$, $G \times H$ is not meager ($\impliedby$ $X, Y$ have countable base).
+
+	$\overset{lemma}\implies$ $G, H$ non-meager $\implies$ $\exists x \in G: A_x$ is meager, $M_x$ is meager ($\impliedby \forall^* x : M_x$ is meager). Clearly non-meager $H \setminus M_x \subseteq U_x \setminus M_x \subset U_x \triangle M_x = A_x$ meager. \lightning.
+\end{dukazin}
+
+\begin{priklady}
+	$\exists A \subset [0, 1]^2$, $A$ non-meager and there are no three points in $A$ on a straight line.
+
+	\begin{dukazin}
+		$\{F_α, α < 2^ω\}$ meager $F_ς$ sets. We will construct $\{x_α, α < 2^ω\}$ such that $x_α \notin F_α$ and there are no 3 points on the same line. By induction: 1) $α = 0: x_0 \in [0, 1]^2 \setminus F_0$.
+
+		2) We already have $\{x_β, β < α\} \subset [0, 1]^2$, $α < 2^ω$ such that $\forall β < α: x_β \notin F_β$ and there are no 3 points on the same line. $©M := \{p \text{ line} | \exists β, γ < α: x_β ≠ x_γ \land x_β, x_γ \in p\}$. Clearly $\# < 2^ω$. From Kuratowski–Ulam: $\forall^* t \in [0, 1]$: $(F_α)_t$ is meager. We find $t \in [0, 1] \setminus ∏_1(\{x_β, β < α\})$ such that $(F_α)_t$ is meager.
+
+		$\implies$ line $\{[l, y], y \in ®R\} \notin ©M \implies \forall p \in ©M: \#\{y \in [0, 1] | [t, y] \in p\} ≤ 1$. So $\exists y \in [0, 1]: [t, y] \notin \bigcup ©M \cup F_α$. $(F_α)_t$ is meager and $\# (\bigcup ©M) \cap \{[t, y], y \in ®R\} ≤ \# ©M < 2^ω$. Put $x_α := [t, y]$.
+	\end{dukazin}
+\end{priklady}
+
+\section{Measurable selections}
+\begin{definice}[Uniformization, selection]
+	Let $X, Y$ sets, $C \subset X \times Y$ and $F: x \mapsto C_x$ is mapping from $X$ to $©P(Y)$. $U \subset C$ is uniformization of $C$ if $|U_x| = 1$ for $C_x ≠ \O$ ($x \in ∏_X(C)$), ($U$ is a graph of mapping $X \rightarrow Y$).
+
+	Mapping $f: D_f \rightarrow Y$ ($D_f = ∏_x(C) = \{x \in X | F(x) ≠ \O\}$) is selection of $F$, if $f(x) \in F(x)$, $x \in D_F$.
+\end{definice}
+
+\begin{poznamka}[Kondo–Norikov]
+	$X, Y$ Polish topological spaces, $C \in ∏_1^1(X \times Y)$. Then there exists $B \in ∏_1^1(X \times Y)$ unifomization of $C$.
+\end{poznamka}
+
+\begin{poznamka}
+	The theorem above implies if $A \subset M \times \{0, 1\}$ ($M$ metric space) is cosouslin then there exists cosouslin uniformization.
+
+	$A_i := ∏_x(A \cap M \times \{i\})$. $B_0 \cup B_1 = M \implies B_0 \times \{0\} \cup B_1 \{1\}$ is uniformization. $B_0 \subset A_0$, $B_1 \subset A_1$, $B_i \in ∏_1^1$, $B_0 \cap B_1 = \O$. Similarly, we can do reduction for countable collections.
+\end{poznamka}
+
+TODO!!! (Kondo–Norikov is not true in $Σ_1^1$.)
+
+\begin{priklad}
+	There exists $F \in ∏_1()$
+
+	TODO!!!
+\end{priklad}
+
+TODO!!!
+
 \end{document}

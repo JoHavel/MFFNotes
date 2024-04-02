@@ -7,14 +7,58 @@
 
 		GOAL 1: Show that there exists unique positive $u \in W^{1,2}(Ω)$ solving the problem.
 
-		\begin{dukazin}
-			
+		\begin{reseni}[Definice slabého řešení]
+			Slabé řešení bude taková funkce $u \in W^{1, 2}(Ω)$, že $u - u_d \in W_0^{1, 2}(Ω)$, $u > 0$ skoro všude, $\int_Ω \ln u > -∞$ a pro všechna $φ \in W_0^{1, 2}(Ω) \cap L^∞(Ω)$ platí
+			$$ \int \nabla u \nabla φ + \int_Ω φ \ln u = \int_Ω f φ. $$
+		\end{reseni}
+
+		\begin{dukazin}[Jednoznačnost]
+			Mějme dvě slabá řešení $u, v$ a definujme $w := u - v = (u - u_d) - (v - u_d) \in W_0^{1, 2}$. Z definice slabého řešení dosazením $φ = w·\min(K / |w|, 1)$ (tj. například z předmětu Derivace a integrál pro pokročilé 1 máme $\nabla φ = χ_{|u - v| ≤ K} \nabla (u - v)$) dostaneme
+			$$ \int_{|u - v| ≤ K} \nabla (u - v)·\nabla (u - v) + \int_Ω (u - v)·(\ln u - \ln v)·\min(K / |w|, 1) = \int_Ω f·… - f·… = 0. $$
+			Protože $\ln$ je rostoucí funkce, tak $u - v < 0 \Leftrightarrow \ln u - \ln v < 0$. Tedy druhý člen je kladný a tak $\|\nabla w\|_{L^2(|u - v| ≤ K)}^2 ≤ 0$. Limitním přechodem $\|\nabla w\|_2^2 ≤ 0$. Z Poincarého nerovnosti (jelikož $w = 0$ na $\partial Ω$) dostáváme, že $c·\|w\|_{1, 2}^2 ≤ \|\nabla w\|_2^2 ≤ 1$, tj. $w = 0$ a $u = v$.
 		\end{dukazin}
 
-		GOAL 2: Prove the same statement but assume only $f \in L^2(Ω)$, $u_d \in W^{1, 2}(Ω)$, $u_d > 0$ almost everywhere in $Ω$ and $\int_Ω | \ln u_d| < ∞$.
+		\begin{dukazin}[Existence řešení aproximace]
+			Problém budeme pro $n \in ®N$ (možná $\frac{1}{n} < ε$) aproximovat problémem
+			$$ -Δu + \ln \(\max\(\frac{1}{n}, u\)\) = f \text{ v } Ω, \qquad u = u_d \text{ na } \partial Ω. $$
 
-		\begin{dukazin}
-			
+			Definujeme operátor $M: L^2(Ω) \rightarrow L^2(Ω)$, který $v$ přiřadí (z minulého semestru víme, že existuje právě jedno) slabé řešení $u$ problému (upravíme předchozí rovnici a místo $u$ dosadíme $u' = u - u_d$)
+			$$ -Δu = f - \ln \(\max\(\frac{1}{n}, v + u_d\)\) + Δu_d \text{ v } Ω, \qquad u = 0 \text{ na } \partial Ω. $$
+
+			$M$ je kompaktní, neboť zobrazuje do $W^{1, 2}_0 \hookrightarrow W^{1, 2}_0 \hookrightarrow\hookrightarrow L^2$. Z předchozího semestru a spojitosti Nemytskiieho operátoru (*) je $M$ spojitý.
+			$$ *: \ln \frac{1}{n} ≤ \ln \(\max\(\frac{1}{n}, v + u_d\)\) \overset{\text{konvexita}}≤ \frac{\ln(2|v|) + \ln(2u_d)}{2} ≤ α·v^β + c(α, β) + \frac{\ln(2u_d)}{2}, $$
+			$$ \|\ln(\max(…))\|_2^2 ≤ \|\ln \frac{1}{n}\|_2^2 + \|α·v + c(α) + \frac{\ln 2u_d}{2}\|_2^2 ≤ α'·\|v\|_2^2 + \konst(α'). $$
+			Nyní potřebujeme, že $M$ zobrazuje nějakou konvexní omezenou (uzavřenou) množinu do ní samotné, nejjednodušeji kouli, tudíž budeme chtít odhadnout normu $u$. Jelikož $u \in W_0^{1, 2}(Ω)$, tak ho můžeme použít jako $φ$ ve slabé formulaci lineárního problému:
+			$$ \|\nabla u\|_2^2 = \int_Ω |\nabla u|^2 ≤ \int_Ω |f|·|u| + \int_Ω |\ln …|·|u| + \<Δu_d, u\>_{(W_0^{1, 2}(Ω))^*} \overset{\text{Young}}≤ $$
+			$$ ≤ ε·\|u\|_2^2 + c(ε)·(\|f\|_2^2 + \|\ln …\|_2^2 + \|Δu_d\|_{(W_0^{1, 2}(Ω))^*}) \implies $$
+			$$ \|u\|_{1, 2}^2 ≤ c·(\|f\|_2^2 + \|\ln …\|_2^2 + \|Δu_d\|_{(W_0^{1, 2}(Ω))^*}) ≤ c_2(δ)(\|f\|_2^2 + \|Δu_d\|_{(W_0^{1, 2}(Ω))^*} + 1) + δ·\|w\|_2^2. $$
+			Pro $δ = \frac{1}{2}$ a $\|w\|_2 ≤ R^2 := 2c_2(\frac{1}{2})(\|f\|_2^2 + \|Δu_d\|_{(W_0^{1, 2}(Ω))^*} + 1)$ je $\|u\|_2^2 ≤ \|u\|_{1, 2}^2 ≤ R^2$. Tedy $M(B_R) \subseteq B_R$, a tudíž podle Schauderovy věty o pevném bodu existuje $u_n'$ takové, že $M(u_n') = u_n'$, tedy že $u_n := u_n' + u_d$ řeší naši aproximaci problému.
 		\end{dukazin}
+
+		\begin{dukazin}[Existence]
+			Z předchozího důkazu (existence řešení aproximace) tedy máme existenci $u_n$. Potřebujeme uniformní odhad a pro něj nás zajímá, kdy je $(\ln …)·u_n'$ záporné. Pokud jsou oba členy nezáporné nebo oba nekladné, pak je vše v pořádku, označme tuto množinu $U$. Pokud $u_n'$ je záporné, pak $0 < \ln … ≤ u_d$. Pokud $\ln …$ je záporné, pak $|\ln …| ≤ |\ln(ε)|$ (protože $u_n' + u_d > ε$). Nyní už (dosadíme $u_n'$ do $n$-té lineární aproximace):
+			$$ \|\nabla u_n'\|_2^2 + \int_U \ln … · u_n' ≤ \int_Ω |f|·|u_n'| + \<Δu_d, u_n'\>_{(W_0^{1, 2}(Ω))^*} + $$
+			$$ + \int_{\{u_n' ≤ 0\} \setminus U} |u_d|·|u_n'| + \int_{\{u_n' > \} \setminus U} |\ln ε|·|u_n'| ≤ $$
+			$$ ≤ \|f\|_2^2 + \|u_d\|_2^2 + \|Δu_d\|_{(W_0^{1, 2}(Ω))^*} + \|\ln ε\|_2^2 + (1 + 1 + 1)·\|u_n'\|_2^2 \implies $$
+			$$ \implies \|u_n'\|_{1, 2}^2 ≤ c·(1 + \|f\|_2^2). $$
+			To znamená, že z kompaktnosti existuje konvergující podposloupnost $u_k' \rightharpoonup u'$ v $W_0^{1, 2}(Ω)$, a tedy i $u_k' \rightarrow u'$ v $L^2(Ω)$ a $u_k' \rightarrow u'$. Označme $u := u' + u_d$.
+
+			Nyní si můžeme uvědomit, že pokud $\ln …$ je kladné, pak ho lze odhadnout $u_n'$ a na to už máme uniformní odhad. Pokud je záporné, ale $u_n'$ je větší než $- ε/2$, pak $\ln …$ je stále větší než $\ln ε/2$ (protože $u_d$ je alespoň $ε$). Na zbylé množině $V$ už umíme odhadnout
+			$$ \left|\int_V \ln… · u_n'\right| ≤ \|\nabla u_n'\|_2^2 + \int_Ω |f|·|u_n'| + \<Δu_d, u_n'\>_{(W_0^{1, 2}(Ω))^*} + \int_{Ω \setminus V} \ln … ·u_n'. $$
+			A vše na pravé straně už máme uniformně odhadnuté. Tedy
+			$$ \int_Ω \ln u \overset{\text{Fatou}}= \liminf_{k \rightarrow ∞} \int_Ω \ln (\min (\frac{1}{k}, u_k)) = \liminf_{k \rightarrow ∞} \int_Ω \ln (\min (\frac{1}{k}, u_k' + u_d)) ≥ $$
+			$$ ≥ … + \int_V \ln… · u_n' · \frac{2}{ε} > -∞. $$
+			Tím máme splněnou první podmínku, aby $u$ bylo řešení ($u - u_d = u' \in W_0^{1, 2}(Ω)$ a $u \in W^{1, 2}(Ω)$ z definice). Druhá podmínka je, že musí pro všechna $φ \in W_0^{1, 2}(Ω) \cap L^∞(Ω)$ splňovat
+			$$ \int \nabla u \nabla φ + \int_Ω φ \ln u = \int_Ω f φ. $$
+
+			První člen je zřejmě limitou $\int \nabla u_n \nabla φ$. Pravá strana je pořád stejná. Jediné, co zbývá, je $\int_Ω φ \ln u \leftarrow \int_Ω φ \ln \max(\frac{1}{n}, u_n)$. K tomu použijeme Vitaliovu větu o konvergenci, která říká přesně tohle. Potřebujeme tedy ověřit, zda je $\ln …$ uniformě stejnoměrně integrovatelná:
+			$$ \int_S |\ln(\max(\frac{1}{n}, u_n))|·|φ| ≤ \|φ\|_∞ · \int_S |\ln(\max(\frac{1}{n}, u_n))| ≤ C·\int_S|\ln(\max(\frac{1}{n}, u_n)))| ≤ … $$
+		\end{dukazin}
+
+		%GOAL 2: Prove the same statement but assume only $f \in L^2(Ω)$, $u_d \in W^{1, 2}(Ω)$, $u_d > 0$ almost everywhere in $Ω$ and $\int_Ω | \ln u_d| < ∞$.
+
+		%\begin{dukazin}
+		%	Definice slabého řešení a důkaz jednoznačnosti jako v minulém případu. TODO!!!
+		%\end{dukazin}
 	\end{priklad}
 \end{document}

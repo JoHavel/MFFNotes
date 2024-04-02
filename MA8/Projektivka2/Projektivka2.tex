@@ -168,7 +168,7 @@
 
 	$®RP^3$: Čtyři body $A, B, C, D$ leží v rovině $\Leftrightarrow$ $a, b, c, d$ jsou lineárně závislé, tj. leží v jednom prostoru.
 
-	Obecně $®RP^n$: $n+1$ bodů $A_0, …, A_n$ leží v $n-1$-dimenzionálním projektivním prostoru $\Leftrightarrow$ vektory $a_0, …, a_n$ leží v nadrovině v $®R^{n+1}$ (jsou lineárně závislé).
+	Obecně $®RP^n$: $n+1$ bodů $A_0, …, A_n$ leží v $n-1$-dimenzionálním projektivním prostoru $\Leftrightarrow$ vektory $a_0, …, a_n$ leží v nadrovině v $®R^{n+1}$ (jsou lineárně závislé).
 \end{poznamka}
 
 \begin{poznamka}
@@ -210,7 +210,7 @@ TODO?
 \end{priklad}
 
 \begin{poznamka}[Trik na nalezení spojnice (/průsečíku)]
-	Dány body $Y = [y_0:y_1:y_2]$, $Z = [z_0:z_1:z_2]$. Chceme rovnici jejich spojnici: $X \in a = YZ \Leftrightarrow a_0x_0 + a_1x_1 + a_2x_2 = 0$ pro hledané souřadnice $(a_0:a_1:a_2)$ $\Leftrightarrow$ vektory $X$, $Y$ a $Z$ jsou závislé $\Leftrightarrow$ $\det\((X|Y|Z)^T\) = 0$ $\Leftrightarrow$
+	Dány body $Y = [y_0:y_1:y_2]$, $Z = [z_0:z_1:z_2]$. Chceme rovnici jejich spojnici: $X \in a = YZ \Leftrightarrow a_0x_0 + a_1x_1 + a_2x_2 = 0$ pro hledané souřadnice $(a_0:a_1:a_2)$ $\Leftrightarrow$ vektory $X$, $Y$ a $Z$ jsou závislé $\Leftrightarrow$ $\det\((X|Y|Z)^T\) = 0$ $\Leftrightarrow$
 	$$ \Leftrightarrow (y_1·z_2 - y_2·z_1)·x_0 + (-y_0·z_2 + y_2·z_0)·x_1 + (y_0·z_1 - y_1·z_0)·x_2 = 0. $$
 \end{poznamka}
 
@@ -248,7 +248,7 @@ TODO?
 
 % 13. 03. 2024
 
-TODO!!! (Projektivita na $®RP^n$: je dána regulární maticí $(n + 1) \times (n + 1)$ určenou až na násobek $≠$ 0 (píšeme $A \sim k·A$, pro $k ≠ 0$).)
+TODO!!! (Projektivita na $®RP^n$: je dána regulární maticí $(n + 1) \times (n + 1)$ určenou až na násobek $≠$ 0 (píšeme $A \sim k·A$, pro $k ≠ 0$).)
 
 TODO!!! (Ukázání si, že taková matice zachovává dvojpoměr.)
 
@@ -276,15 +276,15 @@ TODO!!! (A mnoho dalšího.)
 	\end{poznamka}
 \end{definice}
 
-TODO? (Hromada lineární algebry.)
+TODO? (Hromada lineární algebry.)
 
 \subsection{Klasifikace projektivit na projektivní přímce}
 \begin{poznamka}
 	Klasifikace projektivit na projektivní přímce podle možných Jordanových tvarů:
 	\begin{itemize}
-		\item $J_A = \begin{pmatrix} λ_1 & 0 \\ 0 & λ_2 \end{pmatrix} \sim \begin{pmatrix} 1 & 0 \\ 0 & λ \end{pmatrix} \qquad \forall λ_1, λ_2, λ \in ®R \setminus \{0\}$. Pro $λ = 1$ je to identická projektivita. Pro $λ ≠ 1$ má dva reálné samodružné body;
-		\item $J_A = \begin{pmatrix} λ & 1 \\ 0 & λ \end{pmatrix} \qquad \forall λ \in ®R \setminus \{0\}$. Tehdy má jediný samodružný bod (a ten je reálný);
-		\item $J_A = \begin{pmatrix} λ & 0 \\ 0 & \overline{λ} \end{pmatrix} \qquad \forall λ \in ®C \setminus ®R$. Tehdy má dva komplexní samodružné body.
+		\item $J_A = \begin{pmatrix} λ_1 & 0 \\ 0 & λ_2 \end{pmatrix} \sim \begin{pmatrix} 1 & 0 \\ 0 & λ \end{pmatrix} \qquad \forall λ_1, λ_2, λ \in ®R \setminus \{0\}$. Pro $λ = 1$ je to identická projektivita. Pro $λ ≠ 1$ má dva reálné samodružné body.
+		\item $J_A = \begin{pmatrix} λ & 1 \\ 0 & λ \end{pmatrix} \qquad \forall λ \in ®R \setminus \{0\}$. Tehdy má jediný samodružný bod (a ten je reálný). Navíc je podobná matici $\begin{pmatrix} λ & λ \\ 0 & λ \end{pmatrix}$, což je násobek $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$.
+		\item $J_A = \begin{pmatrix} λ & 0 \\ 0 & \overline{λ} \end{pmatrix} \qquad \forall λ \in ®C \setminus ®R$. Tehdy má dva komplexní samodružné body. 
 	\end{itemize}
 \end{poznamka}
 
@@ -366,6 +366,67 @@ TODO? (Hromada lineární algebry.)
 		\item $J_A \sim \diag(1, -1)$ $\implies$ $p_A(λ) = λ^2 + \det A = λ^2 - a^2$, tedy 2 reálné samodružné body, tj. hyperbolická involuce;
 		\item $J_A = \diag(λ, \overline{λ})$ $\implies$ $p_A(λ) = λ^2 + \det A = λ^2 + a^2$, tedy 2 imaginární body, tj. eliptická involuce.
 		\item $J_A = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$, tj. parabolická involuce.
+	\end{itemize}
+\end{poznamka}
+
+% 27. 03. 2024
+
+\section{Projektivity na $®RP^2$}
+\begin{priklady}[Známé projektivity]
+	Všechny eukleidovské shodnosti. Všechny afinity (násobení bodu v $®R^2$ regulární maticí). Tj. i stejnolehlosti.
+\end{priklady}
+
+\begin{poznamka}[Působení projektivity na přímku]
+	Nechť je dána projektivita dána maticí $A$ ($3 \times 3$ regulární). Na bodech $x \mapsto Ax$. Na přímkách tedy $p^T \mapsto p^T A^{-1}$, protože projektivita zachovává incidenci.
+\end{poznamka}
+
+\begin{dusledek}
+	Projektivita na $®RP^2$ má samodružné body a samodružné přímky. (A jsou to vlastní vektory matice $A^{-T}$.)
+\end{dusledek}
+
+\begin{veta}
+	Nechť $A$ má $n$ různých vlastních čísel. Označme $v_1, …, v_n$ vlastní vektory $A$ (odpovídající $λ_1, …, λ_n$) a $u_1, …, u_n$ vlastní vektory $A^T$ (odpovídající stejným $λ_1, …, λ_n$). Pak pro $i ≠ j: \<u_j, v_i\> = 0$.
+
+	\begin{dukazin}
+		$$ λ_j · \<u_j, v_i\> =  λ_j ¦u_j^T·¦v_i = (λ_j ¦u_j)^T·¦v_i = (A^T·¦u_j)^T·¦v_i = ¦u_j^T·A·¦v_i = ¦u_j^T ·(λ_i ¦v_i) = λ_i ¦u_j^T·¦v_i = λ_i · \<u_j, v_i\> \overset{i ≠ j}\implies \<u_j, v_i\> = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	Jsou-li $¦u_1, …, ¦u_n$ samodružné přímky a $¦V_1, …, ¦V_n$ samodružné body projektivity, pak $i ≠ j \implies ¦V_i \in ¦u_j$.
+\end{dusledek}
+
+\begin{definice}[Silně a slabě samodružná]
+	Samodružná přímka je silně samodružná, pokud se každý její bod zobrazí sám na sebe, a slabě samodružná v opačném případě.
+
+	Samodružný bod je silně samodružný, pokud se každá jím procházející přímka zobrazí sama na sebe, a slabě samodružný v opačném případě.
+\end{definice}
+
+\begin{poznamka}
+	Přímka/bod je silně samodružná/-ý právě tehdy, pokud příslušný vlastní podprostor má dimenzi $≥$ 2 (tj. existují 2 lineárně nezávislé vlastní vektory).
+\end{poznamka}
+
+\subsection{Klasifikace projektivit na $®RP^2$}
+\begin{poznamka}[Hrubá klasifikace]
+	Jordanovy buňky mohou být buď 3, 2 nebo 1.
+\end{poznamka}
+
+\begin{poznamka}[Podpřípady]
+	3 buňky:
+	\begin{itemize}
+		\item $J_{1a} = \diag (λ_1, λ_2, λ_3)$ (3 různá reálná vlastní čísla). $\implies$ 3 slabě samodružné body a 3 slabě samodružné přímky.
+		\item $J_{1b} = \diag (λ_1, \overline{λ_1}, λ_3)$, kde $λ_1$ je komplexní číslo, které není reálné, a $λ_2$ je reálné číslo. Je podobná s maticí $\diag (R_φ, λ_2)$, rotace + stejnolehlost (= spirální podobnost). 1 slabě samodružný bod a 1 slabě samodružná přímka.
+		\item $J_{1c} = \diag (λ_1, λ_2, λ_2) \sim \diag (λ_1', 1, 1)$. Jeden silně a jeden slabě samodružný bod, jedna silně a jedna slabě samodružná přímka. Toto zobrazení je perspektivní (nebo také středová) kolineace.
+		\item $J_{1d} = \diag (λ_1, λ_1, λ_1) \sim E$ je identita.
+	\end{itemize}
+	2 buňky:
+	\begin{itemize}
+		\item $J_{2a} = \diag \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, λ\)$, kde $λ ≠ 1$. 2 slabě samodružné přímky a 2 slabě samodružné body. Je to stejnolehlost složená s elací (tj. s osovou afinitou, kde směr je rovnoběžný s osou).
+		\item $J_{2b} = \diag \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, 1\)$. 1 silně samodružná přímka a jeden silně samodružný bod.
+	\end{itemize}
+	1 buňka:
+	\begin{itemize}
+		\item $J_3 = \begin{pmatrix} 1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}$ (to je jediná až na podobnost matice se 3 Jordanovy buňky). Jeden slabě samodružný bod a jedna slabě samodružná přímka.
 	\end{itemize}
 \end{poznamka}
 
