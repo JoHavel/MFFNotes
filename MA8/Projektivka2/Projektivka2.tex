@@ -430,4 +430,56 @@ TODO? (Hromada lineární algebry.)
 	\end{itemize}
 \end{poznamka}
 
+% 03. 04. 2024
+
+TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jednoznačný) rozklad na symetrickou a antisymetrickou část; kvadratická forma ($g_2$) určená BL formou $g$ neboli její symetrickou částí $g_s$; zpětná rekonstrukce $g_s$ z $g_2$; polární báze (to je ta, ve které je matice kvadratické formy diagonální); Sylvestrův zákon setrvačnosti; signatura; Sylvestrovo kritérium; regulární matice má počet nul v signatuře nulový a opačně)
+
+\begin{definice}[Vrchol symetrické bilineární formy]
+	Vrchol symetrické bilineární formy $g$ na $®R^n$ je množina $V(g) := \{¦u \in ®R^n | \forall ¦v \in ®R^n : g(¦u, ¦v) = 0\}$.
+
+	\begin{poznamkain}
+		Ekvivalentně $g(¦v, ¦u) = 0$. Maticově $\forall ¦v: ¦u^T G ¦v = 0 \Leftrightarrow ¦u^t·G = ¦o$ nebo $G·¦u = ¦o$.
+
+		Čili $V(g) = \Ker G$.
+	\end{poznamkain}
+\end{definice}
+
+\section{Kvadriky}
+\begin{definice}[Kvadrika]
+	Kvadrika v $®RP^n$ určená kvadratickou formou $g_2$ (na $®R^{n+1}$) je množina $Q_g := \{\<¦u\> \in ®RP^n | g_2(¦u) = 0\}$.
+\end{definice}
+
+\begin{priklady}
+	TODO?
+
+	$$ G = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
+	je formálně reálná kuželosečka (nemá reálné body).
+
+	TODO?
+\end{priklady}
+
+\begin{dusledek}
+	Kvadrika na $®RP^n$ je dána symetrickou maticí $(n+1) \times (n+1)$ určenou až na násobek $≠0$.
+\end{dusledek}
+
+\begin{dusledek}
+	Kvadrika v $®RP^n$ je určena symetrickou maticí $3\times 3$, tedy 6 čísly, až na násobek, tedy o jedno číslo méně, tj. 5 čísly.
+
+	\begin{dusledekin}
+		$X = \<¦x\> \in Q_g \Leftrightarrow x^T·G·x = 0$, tedy zadání 5 bodů je stejné jako zadání 5 lineárních rovnic (o 6 neznámých).
+	\end{dusledekin}
+\end{dusledek}
+
+\begin{definice}[Regulární kvadrika, singulární kvadrika]
+	Kvadrika je regulární/singulární, pokud její matice vůči libovolné bázi je regulární/singulární.
+
+	\begin{poznamkain}
+		To je ekvivalentní s nulou/nenulou v počtu nul v signatuře matice.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Vrchol kvadriky]
+	Vrchol kvadriky je množina $V(Q) := \{X | ¦x \in V(g) = \Ker G\}$.
+\end{definice}
+
 \end{document}
