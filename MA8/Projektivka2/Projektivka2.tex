@@ -416,12 +416,12 @@ TODO? (Hromada lineární algebry.)
 	\begin{itemize}
 		\item $J_{1a} = \diag (λ_1, λ_2, λ_3)$ (3 různá reálná vlastní čísla). $\implies$ 3 slabě samodružné body a 3 slabě samodružné přímky.
 		\item $J_{1b} = \diag (λ_1, \overline{λ_1}, λ_3)$, kde $λ_1$ je komplexní číslo, které není reálné, a $λ_2$ je reálné číslo. Je podobná s maticí $\diag (R_φ, λ_2)$, rotace + stejnolehlost (= spirální podobnost). 1 slabě samodružný bod a 1 slabě samodružná přímka.
-		\item $J_{1c} = \diag (λ_1, λ_2, λ_2) \sim \diag (λ_1', 1, 1)$. Jeden silně a jeden slabě samodružný bod, jedna silně a jedna slabě samodružná přímka. Toto zobrazení je perspektivní (nebo také středová) kolineace.
+		\item $J_{1c} = \diag (λ_1, λ_2, λ_2) \sim \diag (λ_1', 1, 1)$. Jeden silně a jeden slabě samodružný bod, jedna silně a jedna slabě samodružná přímka. Toto zobrazení je perspektivní (nebo také středová) kolineace.
 		\item $J_{1d} = \diag (λ_1, λ_1, λ_1) \sim E$ je identita.
 	\end{itemize}
 	2 buňky:
 	\begin{itemize}
-		\item $J_{2a} = \diag \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, λ\)$, kde $λ ≠ 1$. 2 slabě samodružné přímky a 2 slabě samodružné body. Je to stejnolehlost složená s elací (tj. s osovou afinitou, kde směr je rovnoběžný s osou).
+		\item $J_{2a} = \diag \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, λ\)$, kde $λ ≠ 1$. 2 slabě samodružné přímky a 2 slabě samodružné body. Je to stejnolehlost složená s elací (tj. s osovou afinitou, kde směr je rovnoběžný s osou).
 		\item $J_{2b} = \diag \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}, 1\)$. 1 silně samodružná přímka a jeden silně samodružný bod.
 	\end{itemize}
 	1 buňka:
@@ -432,7 +432,7 @@ TODO? (Hromada lineární algebry.)
 
 % 03. 04. 2024
 
-TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jednoznačný) rozklad na symetrickou a antisymetrickou část; kvadratická forma ($g_2$) určená BL formou $g$ neboli její symetrickou částí $g_s$; zpětná rekonstrukce $g_s$ z $g_2$; polární báze (to je ta, ve které je matice kvadratické formy diagonální); Sylvestrův zákon setrvačnosti; signatura; Sylvestrovo kritérium; regulární matice má počet nul v signatuře nulový a opačně)
+TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jednoznačný) rozklad na symetrickou a antisymetrickou část; kvadratická forma ($g_2$) určená BL formou $g$ neboli její symetrickou částí $g_s$; zpětná rekonstrukce $g_s$ z $g_2$; polární báze (to je ta, ve které je matice kvadratické formy diagonální); Sylvestrův zákon setrvačnosti; signatura; Sylvestrovo kritérium; regulární matice má počet nul v signatuře nulový a opačně)
 
 \begin{definice}[Vrchol symetrické bilineární formy]
 	Vrchol symetrické bilineární formy $g$ na $®R^n$ je množina $V(g) := \{¦u \in ®R^n | \forall ¦v \in ®R^n : g(¦u, ¦v) = 0\}$.
@@ -481,5 +481,138 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 \begin{definice}[Vrchol kvadriky]
 	Vrchol kvadriky je množina $V(Q) := \{X | ¦x \in V(g) = \Ker G\}$.
 \end{definice}
+
+% 10. 04. 2024
+
+\subsection{Polární vlastnosti kvadrik}
+\begin{definice}[Polárně sdružené body]
+	Body $X, Y \in ®RP^n$ jsou polárně sdružené vzhledem ke kvadrice $Q_F$ $≡$ $F(x, y) = 0$.
+
+	\begin{poznamkain}
+		Ekvivalentně $x^T·A·y = 0$.
+
+		Ze symetričnosti $F$ je symetrická i polární sdruženost.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Singulární a regulární bod kuželosečky]
+	Bod $Y \in ®RP^n$ je singulární bod kvadriky $Q_F$ $≡$ $Y$ je polárně sdružený se všemi body v $®RP^n$ (vůči $Q_F$). Ostatní body se nazývají regulární.
+
+	\begin{poznamkain}
+		Singulární bod musí být sdružený sám se sebou, tedy leží na příslušné kvadrice.
+
+		Množina všech singulárních bodů kvadriky $Q_F$ tvoří podprostor v $®RP^n$. (Lze jednoduše ověřit na aritmetických zástupcích.)
+
+		Singulární body existují $\Leftrightarrow$ kvadrika je singulární.
+
+		Množina singulárních bodů je vrchol kvadriky.
+	\end{poznamkain}
+	
+	\begin{dusledekin}
+		Pro regulární kvadriky (a právě pro ně) je $V(Q_F) = \O$.
+	\end{dusledekin}
+\end{definice}
+
+\begin{upozorneni}
+	Zde zadefinovaný vrchol nemá nic společného s vrcholem paraboly (či elipsy).
+
+	\begin{poznamkain}
+		Označení pochází z vrcholu kuželu / -ové plochy.
+	\end{poznamkain}
+\end{upozorneni}
+
+\begin{poznamka}[Definice]
+	Dimenze prázdné množiny je $-1$.
+\end{poznamka}
+
+\begin{tvrzeni}
+	Projektivní dimenze $V(Q_F)$ je rovna $(n+1) - h(A) - 1 = n - h(A)$.
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	Je-li $X \in V(Q_F)$ a $Y$ libovolný bod kvadriky $Q_F$. Pak celá přímka $XY \subset Q_F$.
+
+	\begin{dukazin}
+		$$ X \in V(Q_F) \Leftrightarrow \forall Z \in ®R^n: F(X, Z) = 0, $$
+		$$ Y \in Q_F \Leftrightarrow F(Y, Y) = 0. $$
+		Vezmeme libovolný bod na přímce $XY$: označme $aX + bY = \<ax + by\>$.
+		$$ F(aX + bY, aX + bY) = a^2 F(X, X) + 2ab F(X, Y) + b^2 F(Y, Y) = 0 + 0 + 0 = 0. $$
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$Q_F$ libovolná kvadrika v $®RP^n$, $S$ libovolný podprostor v $®RP^n$ $\implies$ $Q_F \cap S$ je také kvadrika (v $S$).
+
+	\begin{dukazin}
+		$F|_S$ je stále kvadratická forma.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$V(Q_F)$ je také kvadrika.
+\end{dusledek}
+
+\begin{definice}[Doplněk]
+	Je-li $S$ podprostor $®RP^n$, doplňkem prostoru $S$ v $®RP^n$ nazveme podprostor $T \subset ®RP^n$ splňující $S \cap T = \O \land S$ má maximální možnou dimenzi.
+
+	\begin{poznamkain}
+		Zase je to symetrická vlastnost dvou podprostorů.
+
+		Pro projektivní dimenzi platí $\dim_p S + \dim_p T = n - 1$.
+	\end{poznamkain}
+\end{definice}
+
+\begin{definice}[Podstava kvadriky]
+	Podstava kvadriky $Q_F$ je její průnik s libovolným podprostorem $T$, který je doplňkem $V(Q_F)$.
+\end{definice}
+
+\begin{dusledek}
+	Podstava je regulární kvadrika.
+
+	\begin{dukazin}
+		Je to průnik s podprostorem a neobsahuje singulární body.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{dusledek}[Strukturální věta pro kvadriky]
+	Každá kvadrika sestává z podprostorů, které spojují body podstavy s vrcholem.
+
+	\begin{poznamkain}
+		Speciálním případem je regulární kvadrika, která je celá svou podstavou.
+	\end{poznamkain}
+\end{dusledek}
+
+\begin{definice}[Polární nadrovina, pól]
+	Buď $P \in ®RP^n$ bod, který není singulárním bodem $Q_F$ (tj. buď $P$ je regulárním bodem $Q_F$ nebo $P \notin Q_F$). Pak polární nadrovina $ρ_P$ bodu $P$ je $ρ_P = \{X \in ®RP^n | F(P, X) = 0\}$. $P$ se pak nazývá pólem této nadroviny.
+
+	\begin{poznamkain}
+		$ρ_P$ je nadrovina, protože $X \in ρ_P$ $\Leftrightarrow$ $p^T·A·x = 0$ a $p^T·A$ je nenulový.
+	\end{poznamkain}
+\end{definice}
+
+\begin{poznamka}
+	Platí:
+
+	\begin{itemize}
+		\item $Q_F$ regulární $\implies$ $ρ_P$ je definována pro každý bod $P \in ®RP^n$;
+		\item $Q_F$ je singulární $\implies$ $ρ_P$ není definována pro $P \in V(Q_F)$, ale pro všechny ostatní body platí $V(Q_F) \subset ρ_P$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{definice}[Tečná nadrovina]
+	Tečná nadrovina je polární nadrovina pro případ, že $P \in Q_F$ (tj. že $P$ je regulárním bodem $Q_F$).
+\end{definice}
+
+\begin{definice}[Tečna]
+	Tečna ke kvadrice $Q_F$ je přímka, která buď leží celá na kvadrice (ale ne celá v $V(Q_F)$), anebo má s kvadrikou společný právě jeden (regulární) bod.
+\end{definice}
+
+\begin{poznamka}[Platí, ale těžké dokázat]
+	Všechny tečny v daném bodě leží v tečné nadrovině.
+\end{poznamka}
+
+\begin{poznamka}[Platí]
+	$P \in ρ_Q \Leftrightarrow Q \in ρ_P$. (Ze symetrie polární sdruženosti.)
+\end{poznamka}
 
 \end{document}
