@@ -1,0 +1,59 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+	\begin{priklad}
+		Consider the following problem:
+		$$ -Δ_p u + \sinh u = f \quad \text{in}\ Ω, \qquad u = 0 \quad \text{on}\ \partial Ω, $$
+		where $f \in L^∞(Ω)$ and $p \in (1, ∞)$.
+
+		Define a proper notion of a weak solution and prove the existence and the uniqueness.
+
+		\begin{reseni}[Slabé řešení]
+			Funkci $u \in W_0^{1, p}(Ω)$ nazveme slabým řešením tohoto problému, jestliže $\int_Ω |\sinh u| < ∞$ a pro každé $φ \in W_0^{1, p}(Ω) \cap L^∞(Ω)$:
+			$$ \int_Ω |\nabla u|^{p - 2} \nabla u · \nabla φ + \int_Ω \sinh(u) φ = \int_Ω f φ. $$
+
+			(Toto dává smysl, neboť $|\nabla u|^{p - 2} \nabla u \in L^{\frac{p}{p - 1}}$ a $\frac{p - 1}{p} + \frac{1}{p} = 1$, $\sinh u$ je podle předpokladu $L^1$ a $φ \in L^∞$, nakonec $f \in L^∞ \subset W_0^{1, cokoliv}$.)
+		\end{reseni}
+
+		\begin{dukazin}[Jednoznačnost]
+			$\sinh$ je monotónní (neboť to je rostoucí funkce). O $|\nabla u|^{p - 2} \nabla u$ víme, že je ostře monotónní (jako funkce $\nabla u$). Tedy když do formulace slabého řešení pro dvě řešení $u$ a $v$ dosadíme za testovací funkci $(u - v)·\min(K/|u - v|, 1)$ a odečteme, dostaneme
+			$$  \int_{|u - v| ≤ K} \(|\nabla u|^{p - 2} \nabla u - |\nabla v|^{p - 2} \nabla v\) · (\nabla u - \nabla v) + \int_{Ω} \underbrace{\sinh …}_{≥ 0} = 0. $$
+			a (z monotónnosti) $\nabla u - \nabla v = 0$ skoro všude na $\{|u - v| ≤ K\}$ a limitním přechodem skoro všude na $Ω$. Což spolu s Poincarého nerovností (pro nulovou stopu) dává $u = v$. (Pokud $\nabla u - \nabla v = 0$ skoro všude, pak $\|u - v\|_{1, p}^p ≤ C·\|\nabla (u - v)\|_p^p + \int \tr … = 0$.)
+		\end{dukazin}
+
+		\begin{dukazin}[Existence aproximace]
+			Mějme podobný problém, kde místo $\sinh u$ bude $\sinh_n u := \sinh \min(\max(u, -n) n)$. Tím pádem nepotřebujeme $φ \in L^∞(Ω)$. Tedy hledáme $u \in W_0^{1, p}(Ω)$ takové, že pro každé $φ \in W_0^{1, p}(Ω)$:
+			$$ \int_Ω |\nabla u|^{p - 2} \nabla u · \nabla φ + \int_Ω \sinh_n(u) φ = \int_Ω f φ. $$
+			
+			Nyní můžeme zvolit $A(x, u, ξ) = |ξ|^{p - 2}ξ$ a $B(x, u, ξ) = |\sinh_n u|$ a použít větu z přednášky:
+			\begin{itemize}
+				\item $A, B$ Caratheodorovy zřejmé.
+				\item $\exists c_1 \in ®R, 0 = c_1 \in L^{p'}(Ω)$, že $|A(x, u, ξ)| ≤ c_1(1 + |u|^{p-1} + |ξ|^{p-1}) + c_1(x)$ a $|B(x, u, ξ)| ≤ c_1(1 + |u|^{p-1} + |ξ|^{p-1}) + c_1(x)$, neboť pro první stačí volit $c_2 = 1$ a v druhém můžeme $c_2$ zvolit z vlastností $\sinh$ na omezené množině.
+				\item Koercivitu máme z $A(x, u, ξ)·ξ = |ξ|^p$ a $B(x, u, ξ)·u ≥ 0$ ($\sinh$ je lichá funkce).
+				\item Nakonec víme, že $A$ je striktně monotónní (vzhledem k $ξ$).
+					% https://math.stackexchange.com/questions/499503/how-to-show-that-p-laplacian-operator-is-monotone
+			\end{itemize}
+			Tedy (podle věty z přednášky) slabé řešení tohoto problému existuje. Označme ho $u_n$.
+		\end{dukazin}
+
+		\begin{dukazin}[Limita aproximací je vhodným kandidátem]
+			$u_n$ můžeme dosadit jako testovací funkci do našich aproximací (v aproximacích nemáme požadavek $φ \in L^∞$):
+			$$ \|\nabla u_n\|_p^p + \int_Ω \underbrace{\sinh_n(u_n)u_n}_{≥0} = \int_Ω f u_n ≤ c(ε)\|f\|_{p'}^{p'} + ε·\|u\|_p^p. $$
+			A vhodnou volbou $ε$ a Poincarého nerovností dosáhneme $\|u_n\|_{1, p}^p ≤ C · \|f\|_{p'}^{p'}$ pro $C$ nezávislé na $n$. Tedy z $u_n$ můžeme vybrat slabě konvergující (ve $W^{1, p}_0$) posloupnost, BÚNO je to samotná $(u_n)_{n \in ®N}$. Označme limitu $u$. Potom
+			$$ \int_Ω \sinh u = \int_{u > 0} \sinh u - \int_{u < 0} -\sinh u \overset{\text{Fatou}}= $$
+			$$ = \liminf \underbrace{\int_{u > 0} \sinh_n u_n}_{≤ \int_Ω 1 + \sinh_n(u_n) u_n} - \liminf \underbrace{\int_{u < 0} - \sinh_n u_n}_{≥ \int_Ω -1 - \sinh(u_n) u_n}. $$
+			My ale víme, že $\int_Ω 1$ je konečný a $\int_Ω ±\sinh_n(u_n) u_n$ jsou správně omezené (z nerovnice výše máme $\int_Ω \sinh_n(u_n) u_n ≤ c(ε) \|f\|_{p'}^{p'} + ε\|u\|_p^p$, ale $\|u\|_p^p ≤ C·\|u\|_{1, p}^p$ jsme už uniformě odhadli), tedy $\int_Ω \sinh u < ∞$ a první podmínku pro slabé řešení máme splněnou.
+		\end{dukazin}
+
+		\begin{dukazin}[Limita aproximací splňuje rovnici pro slabé řešení]
+			Pravá strana rovnicí pro slabé řešení ($\int f φ$) je všude stejná, tedy s tou není potřeba nic dělat. Limitu $\int_Ω \sinh_n(u_n)φ$ spočítáme přes Vitaliovu větu o konvergenci. K tomu stačí ověřit $\forall ε > 0\ \exists δ > 0\ \forall S \subset Ω, |S| < δ: \int_S |\sinh_n(u_n)·φ| < ε$:
+			$$ \int_S |\sinh_n(u_n)|·|φ| ≤ \|φ\|_∞ \int_S |\sinh_n(u_n)| ≤ $$
+			$$ ≤ C·\(\int_{\{u_n < K \land u_n > -K\} \cap S} |\sinh_n(u_n)| + \int_{\{u_n > K \lor u_n < -K\}\cap S} |\sinh_n u_n|·|u_n|·\frac{1}{|u_n|}\) ≤ $$
+			$$ ≤ C·\(|S|·\sinh(K) + \frac{C_2}{K}\) ≤ C·C_2·\(|S|·\sinh(K) + \frac{1}{K}\), $$
+			kde $C_2$ je uniformní omezení $\sinh_n (u_n)·u_n$, které jsme už viděli. Zvolením správného $K$ a $|S|$ dosáhneme, že toto bude $< ε$, čímž splníme předpoklady Vitaliovy věty, tedy $\int_Ω \sinh_n (u_n)·φ \rightarrow \int_Ω \sinh (u)·φ$.
+
+			Zbývá poslední, a to $\int_Ω A(x, u_n, \nabla u_n) \nabla u_n \rightarrow \int_Ω A(x, u, \nabla u)·\nabla u$, ale to se udělá stejně jako v důkazu věty použité k existenci aproximací, neboť $A$ je striktně monotónní (vzhledem k $ξ$) a všechny ostatní podmínky jsou také jako v dané větě (omezení na $B$ se v této části důkazu nepoužila).
+		\end{dukazin}
+	\end{priklad}
+\end{document}

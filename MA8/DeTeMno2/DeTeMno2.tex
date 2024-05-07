@@ -623,4 +623,148 @@ TODO!!!
 	TODO!!!
 \end{dusledek}
 
+% 16. 04. 2024
+
+\begin{lemma}[Approximation]
+	Let $X$ be like in the previous theorem, $Y$ normed linear space, $G: X \rightarrow ©F_c(Y)$ be lower semi-continuous, and $W$ be convex open neighbourhood of ¦o in $Y$. Then there exists continuous $g: X \rightarrow Y$ such that $g(x) \in G(x) + W$.
+
+	\begin{dukazin}
+		$\{y_α\}_{α \in I}$ dense in $Y$, $U_α := G^{-1}(y_α - W)$ is open cover of $X$. $x \in X$ be arbitrary. $\O ≠ G(x) \subset Y$, $\{y_α - W, α \in I\}$ covers $Y$ $\implies$ $\exists α \in I: G(x) \cap (y_α - W) ≠ \O \implies G^{-1}(y_α - W) \ni x$. Find $\{g_α, α \in I\}$ locally finite partition of unity subordinate to cover $\{U_α, α \in I\}$. Put $g(x) := \sum_{α \in I} g_α(x)·y_α$, it is clearly continuous ($\impliedby$ locally finiteness).
+		$$ g(x) \in G(x) + W \impliedby g_α(x) > 0 \implies x \in U_α = G^{-1}(y_α - W) \implies G(x) \cap y_α - W ≠ \O \implies y_α \in G(x) + W. $$
+		$\implies$ $g(x)$ is convex combination of elements of $G(x) + W$ $\implies$ $g(x) \in G(x) + W$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Lower semi-continuity and intersection]
+	$X$ topological space, $Y$ normed linear space, $F, G: X \rightarrow ©P(Y)$ lower semi-continuous and $W$ neighbourhood of ¦o in $Y$. Let $H(x) := F(x) \cap (G(x) + W) ≠ \O$, $x \in X$. Then $H$ is lower semi continuous.
+
+	\begin{dukazin}
+		$U \in Σ_1^0(Y)$:
+		$$ H^{-1}(U) = \{x \in X | H(x) \cap U ≠ \O\} = \{x \in X | G(x) \cap (G(x) + W) \cap U ≠ \O\} = \{TODO!!!\} = TODO!!! $$
+		TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[of the previous theorem]
+	$W_n := B(0, 2^{-n}) \subset Y$. We will inductively construct continuous $f_n$ such that $f_n(x) \in F(x) + W_n$ and $f_n(x) \in f_{n-1}(x) + 2W_{n-1}$. Then $f_n \rightrightarrows f$ $\impliedby$ completeness of $Y$ and second condition on $f_n$. First condition $\implies$ $f(x) \in F(x) \impliedby F(x) \in ∏_1^0$. $f$ continuous $\impliedby$ continuous convergence.
+
+	Take $f_0$ from approximation lemma for $W_0$. Assume we already have continuous $f_0, …, f_n$ satisfying those two conditions. Put $F_{n+1}(x) = F(x) \cap (f_n(x) + W_n) ≠ \O$ for $x \in X$ $\impliedby$ first condition for $n$. $F_{n+1}$ lower semi-continuous $\impliedby$ lower semi-continuity of $F$ and intersection lemma. Take continuous $f_{n+1}(x) \in F_{n+1}(x) + W_{n+1}$ from approximation lemma.
+
+	First condition $\impliedby$ $F_{n+1}(x) \subset F(x)$ and the definition of $f_{n+1}$. Second condition $\impliedby$ $f_{n+1}(x) \in F_{n+1} + W_{n+1} \subset (f_n(x) + W_n) + W_{n+1} \subset f_n(x) + 2W_n$.
+\end{dukaz}
+
+\section{Borel selections for sets with large sections}
+\begin{veta}
+	$(X, ©M)$-measurable space, $Y$ Polish topological space, $η$ $Δ_1^1$ probability on $Y$, $B \in ©M \otimes Δ_1^1(Y)$. Then $\{x \in X, η(B_x > 0)\} \in ©M$.
+
+	\begin{dukazin}
+		For $B \in ©M \otimes Δ_1^1(Y)$ we define $B(r) := \{x \in X, η(B_x) > r\}$, $r ≥ 0$. (Our set is $B(0)$.)
+		$$ ©A := \{A \in ©M \otimes Δ_1^1(Y) | \forall r > 0: A(r) \in ©M\}. $$
+		We want $©A = ©M \otimes Δ_1^1(Y)$ ($\forall B \in ©A: B(1 / n) \in ©M$, $B(0) = \bigcup_{n=1}^∞ B(1 / n) \in ©M$).
+		\begin{itemize}
+			\item $M \in ©M$, $W \in Δ_1^1(Y)$ $\implies$ $(M \times W)(i) = M$ if $η(W) > r$, else $= \O$. Both in ©M $\implies$ $M \times W \in ©A$.
+			\item „$B \in ©A \implies B^C := (X \times Y) \setminus B \in ©A$“:
+				$$ B^C(r) = \{x \in X, η(B_x) < 1 - r\} = \bigcup_{n=1}^∞ \{x \in X, η(B_x) ≤ 1 - r - \frac{1}{n}\} = \bigcup_{n=1}^∞ \(X \setminus \{x \in X | η(B_x) > 1 - r - \frac{1}{n}\}\) \in ©M. $$
+			\item „$B_n \in ©A \text{ disjoint } \implies \bigcup_{n=1}^∞ B_n \in ©A$“:
+				$$ \(\bigcup_{n=1}^∞ B_n\)(r) = \{x \in X | \sum_{n=1}^∞ μ((B_n)_x) > r\} = \bigcup_{n_0 = 1}^∞ \{x \in X | \sum_{n=1}^{n_0}μ((B_n)_x) > r\} = \bigcup_{n_0 = 1}^∞ \bigcup_{\{q_1, …, q_{n_0}\} \in ®Q^{n_0}, \sum q_i > r} \bigcap_{i=1}^{n_0} B_i(q_i) \in ©M. $$
+		\end{itemize}
+		We have $©M \times Δ_1^1(Y) \subset ©A$, ©A is closed under complements and continuous disjoint union $\implies$ $©A$ is $ς$-algebra $\implies$ $©A = ©M \otimes Δ_1^1(Y)$.
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$(X, ©M)$ measurable space, $Y$ Polish topological space, $B \in ©M \otimes Δ_1^1(Y)$.
+	\begin{itemize}
+		\item Mapping $(X, μ)$: $X \times $ prob.($Y$) $\mapsto μ(B_x)$ is $©M \otimes Δ_1^1(Y)$ measurable.
+		\item If $η_x$ is $Δ_1^1$ and $©M = Δ_1^1(X)$. Then $\{x \in X | η_x(B_x) > 0\} \in Δ_1^1$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{lemma}
+	$Y$ Polish topological space (it is sufficient Baire space), $B \in BP(T)$, $\{U_n\}$ base of $Y$ consisting of non-empty sets. Then $Y \setminus B$ is non-meager $\Leftrightarrow$ $\exists n \in ω: B \cap U_n$ is meager.
+
+	\begin{poznamkain}
+		$A \in BP \implies (A \text{ non-meager } \Leftrightarrow A \text{ is nowhere co-meager})$.
+	\end{poznamkain}
+
+	\begin{dukazin}
+		„$\impliedby$“ $B \cap U_n$ meager $\implies$ (nonempty subsets of PTS are non-meager) $U_n \setminus B$ is non-meager $\implies$ $Y \setminus B$ is non-meager.
+
+		„$\implies$“: $Y \setminus B = G \triangle E \implies (Y \setminus B) \triangle G = E, G ≠ \O \implies \exists n \in ω: U_n \subset G$. Then
+		$$ U_n \cap B \subset G \cap B = G \setminus (Y \setminus B) \subset (Y \setminus B) \triangle G = E \implies U_n \cap B \text{ is meager}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Montgomery, Novikov]
+	$(X, ©M)$ measurable space, $Y$ Polish topological space, $B \in ©M \otimes Δ_1^1(Y)$. Then $\{x \in X | B_x \text{ non-meager}\}, \{x \in X | B_x \text{ meager}\}, \{x \in X | B_x \text{ co-meager}\}, \{x \in X | B_x \text{ is not co-meager}\} \in ©M$.
+\end{veta}
+
+% 23. 04. 2024
+
+TODO!!!
+
+% 30. 04. 2024
+
+TODO!!!
+
+\begin{dusledek}
+	$X, Y$ Polish topological spaces, $B \in Δ_1^1(X \times Y)$, $B_x$ monmeager, $x \in ∏_X(B)$. Then there exists $Δ_1^1$ selection of $x \mapsto B_x$, $Δ_1^1$ unif. of $B$, $∏_X(B) \in Δ_1^1$.
+
+	\begin{dukazin}
+		Trivial.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{veta}[Srivastava]
+	$X, Y$ Polish topological spaces, $F: X \rightarrow ∏_0^2(Y)$, $\graph(f) \in Δ_1^1$, $F^{-1}(Σ_1^0(Y)) \in Δ_1^1(X)$. Then $F$ has $Δ_1^1$ selection.
+
+	\begin{dukazin}
+		$G(x): \overline{F(x)}$ is $Δ_1^1$ meager ($G^{-1}(U) = \{x \in X | G(x) \cap U ≠ \O\} = \{x \in X | F(x) \cap U ≠ \O\} = F^{-1}(U)$). $©I_x = \{E | E \text{ is meager in }G(x)\}$. By the previous theorem $x \mapsto ©I_x$ is (BB), $\graph(F) = B$, $B_x \notin ©I_x$, $x \in ∏(B) \impliedby B_x \in ∏_2^0(\overline{B_x})$, $B_x$ dense in $\overline{B_x}$.
+	\end{dukazin}
+\end{veta}
+
+\begin{priklad}
+	$\{f_x | x \in [0, 1]\}$ be set of $Δ_1^1$ functions $[0, 1] \rightarrow [0, 1]$. Put $G(x) := [0, 1] \setminus \{f_x(x)\} \in ∏_2^0$, $U ≠ \O$, $U \in Σ_1^0([0, 1]) \implies G^{-1}(U) = [0, 1] \in Δ_1^1$. $G$ is $Δ_1^1$, but there is no $Δ_1^1$ selection ($\graph(f) \in Δ_1^1$). (By diagonal argument.)
+\end{priklad}
+
+\begin{dusledek}
+	$X, Y$ Polish topological spaces, $B \in Δ_1^1(X \times Y)$, $\forall x \in ∏_X(B): μ(B_x) > 0$ ($μ$ is some $Δ_1^1$ probability measure). Then there exists $Δ_1^1$ selection of $x \mapsto B_x$.
+
+	We can also assume that there is $Δ_1^1$ map $x \mapsto μ_x$, $\forall x \in ∏_X(B): μ_x(B_x) > 0$ instead of $μ(B_x) > 0$.
+\end{dusledek}
+
+\section{Small sections}
+\subsection{Compact selections}
+\begin{veta}[Norikov separation principle]
+	$X$ Polish topological space, $A_n \in Σ_1^1(X), \bigcap A_n = \O$. Then there exists $B_n \supset A_n$, $B_n \in Δ_1^1(X)$ such that $\bigcap B_n = \O$.
+\end{veta}
+
+\begin{definice}
+	$(E_n)$ can't be approximated, if there does not exists $B_n \supset E_n$, $B_n \in Δ_1^1$, $\bigcap B_n = \O$.
+\end{definice}
+
+\begin{lemma}
+	$E_n \subset X$, $(E_n)$ can't be approximated, $k \in ω$, $E_n = \bigcup_i E_{n, i}$, $n ≤ k$. Then there exists $i_1, …, i_k$: $E_{1, i_1}, E_{2, i_2}, …, E_{k, i_k}, E_{k+1}, …$ can't be approximated.
+
+	\begin{dukazin}
+		We will find $i_1, i_2, …, i_k$ by induction on $k$. „$k = 0$“ is trivial. „$k > 0$ and we already found $E_{1, i_1}$, $E_{2, i_2}$, …, $E_{k-1, i_{k-1}}$ such that $E_{1, i_1}$, $E_{2, i_2}$, …, $E_{k-1, i_{k-1}}$ cannot be approximated“: By contradiction $\forall i \in: E_{i, i_1}, …, E_{k-1, i_{k-1}}, E_{k, i}, E_{k+1}, …$ can be approximated by $B_l^i$: $B_l^i \supset E_{l, i_l}$, $l < k$, $B_k^i \supset E_{k, i}$, $B_l^i \supset E_l$, $l > k$.
+
+		Put $B_l := \bigcap_{i \in ω} B_l^i$, $l ≠ k$. $B_k := \bigcup_{i \in ω} B_k^i \implies B_k \in Δ_1^1$, $B_l \supset E_{l, i_l}$, $l < k$, $B_l \supset E_l$, $l > k$. $\bigcap_{l \in ω} B_l = \O \impliedby (x \in B_k \implies \exists i: x \in B_k^i \implies x \notin \bigcap_{l ≠ k} B_l^i \implies x \in \bigcap_{l≠k} B_l)$ which is contradiction.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}[Norikov separation principle]
+	If $A_n = \O$ then put $B_n = \O$, $B_k = X$, $k ≠ n$. Se we can assume $A_n ≠ \O$. Set $f_n: ©N \rightarrow A_n$ continuous surjection. By contradiction, let $(A_n)$ can't be approximated. From the previous lemma $\exists n_1^1, n_2^1, n_3^1, n_1^2, n_2^2, n_1^3 \in ω$:
+	$$ f_1(©N(n_1^1, n_2^1, n_3^1)), f_2(©N(n_1^2, n_2^2)), f_3(©N(n_1^3)), A_4, A_5, … $$
+	can't be approximated.
+
+	By lemma it holds also for $ς_k = (n_1^k, n_2^k, …) \in ©N$:
+	$$ \forall k \in ω: f_1(©N(ς_1|_{k-1})), f_2(©N(ς_2|_{k-2})), …, f_k(©N(ς_k|_0)), A_{k+1}, … $$
+	can't be approximated.
+
+	$\bigcap A_n ≠ \O \implies \exists i < j: f_i(ς_i) ≠ f_j(ς_j)$ (otherwise $\forall k, l \in ω: f_k(ς_k) = f_l(ς_l) \implies f_k(ς_k) \in \bigcap A_l$). $\implies$ $U_i, U_j \in Σ_1^0(X)$: $U_i \cap U_j = \O$, $f_k(ς_k) \in U_k$, $k \in \{i, j\}$.
+
+	$f_i, f_j$ continuous $\exists k \in ω: f_i(©N_{ς_i|_{k-i}}) \subset U_i$, $f_j(©N_{ς_j|_{k - j}}) \subset U_j \implies f_1(©N_{ς_1 |_{k-1}}), …, f_k(©N_{ς_{k-1}|_1}), A_k, …$ can be approximated by $X, X, …, U_i, X, X, …, U_j, X, X, …$, which is contradiction.
+\end{dukaz}
+
 \end{document}

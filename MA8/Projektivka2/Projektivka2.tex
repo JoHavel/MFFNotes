@@ -615,4 +615,142 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 	$P \in ρ_Q \Leftrightarrow Q \in ρ_P$. (Ze symetrie polární sdruženosti.)
 \end{poznamka}
 
+% 17. 04. 2024
+
+\begin{priklad}
+	Určete tečný ke $Q_F$ z bodu $P$.
+
+	\begin{reseni}
+		Určíme $ρ_P$ a průsečíky $ρ_P \cap Q_F$ leží na hledaných tečnách.
+	\end{reseni}
+
+	Kuželosečka dána rovnicí $x^2 - y^2 + 4xy + 4x + 2y + 3 = 0$. Určete tečny z bodů $[-1, -1]$, $[-3, 0]$, $[0, -2]$.
+\end{priklad}
+
+\begin{definice}[Vnitřní bod, vnější bod]
+	Bod neležící na kuželosečce je vnitřní/vnější, pokud z něj nevedou/vedou tečny.
+\end{definice}
+
+\section{Klasifikace kvadrik}
+\subsection{Maximální podprostory na kvadrice}
+
+\begin{veta}[Bez důkazu]
+	Mějme kvadriku v $®RP^n$ se signaturou $(p, q, r)$. BÚNO $p ≥ q$. Potom
+	\begin{itemize}
+		\item maximální (projektivní) dimenze podprostoru neprotínajícího $Q_F$ je $p - 1$;
+		\item maximální (projektivní) dimenze podprostoru ležícího na $Q_F$ je $q + r - 1 = n - p$.
+	\end{itemize}
+\end{veta}
+
+\begin{definice}[Projektivní typ kvadriky]
+	Číslo $n - p$ nazýváme projektivní typ kvadriky.
+\end{definice}
+
+\begin{priklady}
+	Pro:
+	\begin{itemize}
+		\item[-1] $p = n+1$: projektivní typ je $n - (n+1) = -1$ $\implies$ $Q_F$ obsahuje jen $\O$, ale ne body, tedy $Q_F = \O$ (formálně reálná kvadrika);
+		\item[0] $p = n$: na $Q_F$ leží body, ale ne přímky;
+		\item[1] $p = n-1$: na $Q_F$ leží přímky, ale ne roviny;
+		\item[\ldots]
+	\end{itemize}
+\end{priklady}
+
+\subsection{Projektivní klasifikace kvadrik}
+\begin{poznamka}
+	První určujeme regulární/singulární. Pak (pokud je singulární) najdeme vrchol a podstavu (ta je regulární). Tedy nás zajímá hlavně klasifikace regulárních kvadrik.
+\end{poznamka}
+
+\begin{definice}[Oválná, přímková, (+ klasifikace)]
+	Pro regulární kvadriky máme tyto možnosti:
+	\begin{tabular}{cr|cl}
+		pro     & ($p$, $q$, $r$) & projektivní typ & název                                 \\ \hline
+        		& ($n+1$, 0, 0)   & $-1$            & formálně reálná                       \\
+		        & ($n$,1,0)       & 0               & oválná (body, ale ne přímky)          \\
+		$n ≥ 3$ & ($n-1$, 2, 0)   & 1               & přímková (občas také typ hyperboloid) \\
+		$n ≥ 5$ & ($n-2$, 3, 0)   & 2               &                                       \\
+		…       & …               & …               &
+	\end{tabular}
+\end{definice}
+
+\begin{poznamka}
+	Oválná v $®RP^2 = \{\text{elipsa}, \text{parabola}, \text{hyperbola}\}$.
+\end{poznamka}
+
+\subsection{Afinní klasifikace kvadrik}
+\begin{definice}[Středová kvadrika, nestředová kvadrika, střed kvadriky, směr osy]
+	Regulární kvadrika je
+	\begin{itemize}
+		\item středová, je-li pól nevlastní nadroviny vlastní bod; (Tomuto bodu říkáme střed kvadriky.) (To je právě tehdy, není-li nevlastní rovina tečná.)
+		\item nestředová (osová, paraboloid), je-li pól nevlastní nadroviny nevlastní bod. (Tomuto bodu říkáme směr osy.) (To je právě tehdy, je-li nevlastní rovina tečná.)
+	\end{itemize}
+\end{definice}
+
+\begin{definice}[Značení]
+	$$ A = [F]_K = \begin{pmatrix} a_{00} & a_{01} … a_{0n} \\ a_{01} … a_{0n} & B \end{pmatrix}. $$
+\end{definice}
+
+\begin{veta}
+	$Q_F$ je středová $\Leftrightarrow$ $B$ je regulární, pak $S = [1:s_1:…:s_n]$ je střed $\Leftrightarrow$
+	$$ \Leftrightarrow (a_{01} … a_{0n} | B)·(1, s_1, …, s_n)^T = ¦o. $$
+
+	($Q_F$ je nestředová $\Leftrightarrow$ $B$ je singulární), pak $S = [0:s_1:…:s_n]$ je směr osy $\Leftrightarrow$
+	$$ \Leftrightarrow B·(s_1, …, s_n)^T = ¦o. $$
+
+	\begin{dukazin}
+		„Pro nestředové“: $S = [0:s_1:…:s_n]$ je pólem nevlastní nadroviny $\Leftrightarrow$ $\forall [0:x_1:…:x_n]$ platí
+		$$ (0, x_1, …, x_n)·A·(0:s_1:…:s_n)^T = 0 \Leftrightarrow (x_1, …, x_n)·B·(s_1, …, s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow B·(s_1, …, s_n)^T = ¦o, $$
+		přičemž $(s_1, …, s_n) ≠ ¦o$, tedy $B$ je singulární. Opačně, pokud $B$ je singulární, pak existuje takové $(s_1, …, s_n) ≠ ¦o$, které to splňuje.
+
+		„Pro středové“: první část je jen negací již dokázaného. Pak $S = [1:s_1: …: s_n]$ je pólem nevlastní nadroviny $\Leftrightarrow$
+		$$ \forall (x_1, …, x_n): (0, x_1, …, x_n)·A·(1, s_1, …, s_n)^T \Leftrightarrow (x_1, …, x_n)·(a_{01} … a_{0n} | B) (1, s_1, … s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow (a_{01} … a_{0n} | B)·(1, s_1, …, s_n)^T = ¦o. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$$ (a_{01} … a_{0n} | B)·(1, s_1, …, s_n)^T = ¦o \Leftrightarrow S = -B^{-1}·(a_{01}, …, a_{0n})^T. $$
+\end{poznamka}
+
+\begin{poznamka}
+	$B$ je taktéž matice kvadriky (o dimenzi menší), která vznikne průnikem původní kvadriky s nevlastní nadrovinou ($n_∞$). A proto $Q_F$ je středová/nestředová $\Leftrightarrow$ $Q_F \cap n_∞$ je regulární/singulární.
+
+	Pro singulární kvadriky nelze definovat středová/nestředová, ale platí $V_Q$ je jeden bod („střed“) $\Leftrightarrow$ $B$ je regulární. (A naopak $V_Q$ je alespoň přímka $\Leftrightarrow$ $B$ je singulární.)
+\end{poznamka}
+
+\begin{poznamka}[Jemnější dělení]
+	Jak rozlišit hyperbolu ($|Q_F \cap n_∞| = 2$) od elipsy ($Q_F \cap n_∞ = \O$)?
+
+	Začneme v $®RP^1$ přehledem možných případů:
+	\begin{enumerate}
+		\item Regulární kvadriky:
+			\begin{itemize}
+				\item Signatura $(2, 0, 0)$: $x_0^2 + x_1^2 = 0$ nemá řešení, tedy je to formálně reálná kvadrika a je středová.
+				\item Signatura $(1, 1, 1)$: $x_0^2 = x_1^2$ má právě dvě řešení = naše kvadrika jsou dva body. V této podobě je středová, ale když máme $x_0^2 - 2x_0x_1 = 0$, pak je jedno z řešení nevlastní bod a kvadrika je nestředová.
+			\end{itemize}
+		\item Singulární kvadriky:
+			\begin{itemize}
+				\item Signatura $(1, 0, 1)$: buď $x_0^2 = 0$ nebo $x_1^2 = 0$, tedy buď 1 nevlastní nebo 1 vlastní bod.
+				\item Signatura $(0, 0, 2)$: celá přímka.
+			\end{itemize}
+	\end{enumerate}
+\end{poznamka}
+
+\begin{tvrzeni}
+	Přehled kvadrik v $®RP^2$:
+	\begin{enumerate}
+		\item Regulární:
+			\begin{itemize}
+				\item Signatura $(3, 0, 0)$: formálně reálná kvadrika.
+				\item Signatura $(2, 1, 0)$: oválná. Středové můžou být dvě $\sign B = (2, 0, 0)$, tj. $Q_F \cap n = \O$, je elipsa, $\sign B = (1, 1, 0)$ je pak hyperbola. Nestředová je pak parabola.
+			\end{itemize}
+		\item Singulární:
+			\begin{itemize}
+				\item Signatura $(2, 0, 1)$: Pokud je $B$ regulární, pak je to jeden vlastní bod. V opačném případě je to jeden vlastní bod.
+				\item Signatura $(1, 1, 1)$: Pokud je $B$ regulární, pak jsou to dvě různoběžky. V opačném případě jsou to dvě rovnoběžky.
+				\item Signatura $(1, 0, 2)$: Obsahuje-li $B$ něco, pak je to 1 vlastní přímka. V opačném případě je to nevlastní přímka
+				\item Signatura $(0, 0, 3)$: celý prostor.
+			\end{itemize}
+	\end{enumerate}
+\end{tvrzeni}
+
 \end{document}
