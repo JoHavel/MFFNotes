@@ -767,4 +767,66 @@ TODO!!!
 	$f_i, f_j$ continuous $\exists k \in ω: f_i(©N_{ς_i|_{k-i}}) \subset U_i$, $f_j(©N_{ς_j|_{k - j}}) \subset U_j \implies f_1(©N_{ς_1 |_{k-1}}), …, f_k(©N_{ς_{k-1}|_1}), A_k, …$ can be approximated by $X, X, …, U_i, X, X, …, U_j, X, X, …$, which is contradiction.
 \end{dukaz}
 
+% 07. 05. 2024
+
+\begin{veta}[Norikov]
+	$X, Y$ Polish topological spaces, $B \in Δ_1^1(X \times Y)$, $\forall x \in X: B_x \in ©K(Y)$. Then $∏_X(B) \in Δ_1^1$ and there is $Δ_1^1$ uniformization.
+
+	\begin{dukazin}
+		1) $Y \subset \hat{Y}$ compact metric (closure in $[0, 1]^ω$). $Y$ is Polish $\implies$ $Y \in ∏_2^0(\hat{Y})$ $\implies$ $B \in Δ_1^1(X \times \hat{Y})$, $B_x \in ©K(\hat{Y})$ $\implies$ $\exists Δ_1^1$ uniformization in $X \times \hat{Y}$ $\implies$ $Δ_1^1$ uniformization in $X \times Y$ and $∏_X(B) = ∏_X(\text{uniformization of } B)$, so $∏_X(B) \in Δ_1^1$. So we can assume that $Y = \hat{Y}$ is compact.
+
+		2) „$∏_X(B) \in Δ_1^1$“: $(X \times Y) \setminus B \overset{\text{K--N lemma}} \bigcup_{n \in ω}(B_n \times V_n)$, $B_n \in Δ_1^1$, $V_n \in Σ_1^0$.
+		$$ X \setminus ∏_X(B) \overset{?}= \bigcup_{\{F \subset ω, |F| < ω | \bigcup_{n \in F} V_n = Y\}} \bigcap_{n \in F} B_n \in Δ_1^1(Y) \implies \(x \notin ∏_X(B) \Leftrightarrow \{x\} \times Y \subset B^c \Leftrightarrow Y = \bigcup_{n \in A} V_n\), $$
+		where $A := \{n \in ω | x \in B_n\}$ $\overset{\text{Y compact}}\Leftrightarrow$ $\exists F \subset ω, |F| < ω, F \subset A, \bigcup_{n \in F} V_n = Y$ $\Leftrightarrow$ $\exists F \in \{F \subset ω, |F| < ω | \bigcup_{n \in F} V_n = Y\}$: $\forall n \in F: x \in B_n$.
+
+		3) We would like to use K--RN. ($X$ from K--RN be $∏_X(B)$, $©A = Δ_1^1$, $F(x) = B_x$. $F^{-1}(Σ_1^0) \subset Δ_1^1?$)
+		$$ U \in Σ_1^0(Y) \implies Y = \bigcup F_n, F_n \in ∏_1^0(Y). F^{-1}(U) = \bigcup_{n \in ω}F^{-1}(F_n) = \bigcup_{n \in ω} ∏_X(B \cap (X \times F_n)) \in Δ_1^1(X). $$
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$X, Y$ Polish topological spaces, $f: X \rightarrow Y$ be $Δ_1^1$, $\forall y \in Y: f^{-1}(y) \in ©K(X)$. Then $\forall B \in Δ_1^1: f(B) \in Δ_1^1$.
+
+	\begin{dukazin}
+		$$ f(B) = ∏_Y(\underbrace{\graph(f) \cap (B \times Y)}_{Δ_1^1 \text{ with compact sections}}) \in Δ_1^1 $$
+	\end{dukazin}
+\end{poznamka}
+
+\subsection{Countable sections}
+\begin{dusledek}[of 2. separation principle]
+	$M$ metric space, $(A_n)_{n \in ω}$ Souslin in $M$. Then there exists cosouslin sets $(C_n)_{n \in ω}$ mutually disjoint such that $\forall n \in ω: A_n \setminus \bigcup_{k ≠ n} A_k \subset C_n$.
+
+	\begin{dukazin}
+		$\forall n \in ω: A_n, \bigcup_{k ≠ n} A_k$ are souslin $\implies$ $\exists C_n^*, D_n^*$ cosouslin: $C_n^* \cap D_n^* = \O, C_n^* \supset A_n \setminus \bigcup_{k ≠ n} A_k, D_n^* \supset \bigcup_{k ≠ n} A_k \setminus A_n$. Put $C_n := C_n^* \cap \bigcap_{k ≠ n} D_k^*$ cosouslin, mutually disjoint. ($C_n \subset D_k^*, k ≠ n, D_k^* \cap C_k^* = \O, C_k \subset C_k^*$). $\forall k ≠ n: D_k^* \supset A_n \setminus A_k \implies \bigcap_{k≠n} D_k^* \supset A_n \setminus \bigcup_{k ≠ n} A_k, C_k^* \supset A_n \setminus \bigcup_{k ≠ n} A_k \implies C_n \supset A_n \setminus \bigcup_{k ≠ n} A_k$.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{poznamka}
+	$X, Y$ Polish topological spaces, $B \in Δ_1^1(X \times Y)$.
+
+	\begin{enumerate}
+		\item $\{x \in X | \exists y \in Y: [x, y] \in B\} \in Σ_1^1(X)$.
+		\item $\{x \in X | \forall y \in Y: [x, y] \in B\} \in ∏_1^1(X)$.
+		\item $\{x \in X | \exists! y \in Y: [x, y] \in B\} \in ?$.
+	\end{enumerate}
+\end{poznamka}
+
+\begin{poznamka}[Notation]
+	$X, Y$ sets, $f: X \rightarrow Y$. Define $S_f := \{y \in Y \middle| |f^{-1}(y)| = 1\}$.
+\end{poznamka}
+
+\begin{veta}[Luzin]
+	$X, Y$ Polish topological spaces.
+	
+	\begin{enumerate}
+		\item $F \in ∏_1^0(©N)$, $f: F \rightarrow Y$ continuous. Then $S_f \in ∏_1^1(Y)$.
+		\item $B \in Δ_1^1(X \times Y)$. Then $Z = \{x \in X \middle| |B_X| = 1\} = \{x \in X | \exists! y \in Y: [x, y] \in B\} \in ∏_1^1(X)$.
+		\item $B \in Δ_1^1(X)$, $F: B \rightarrow Y$ Borel. Then $S_f \in ∏_1^1(Y)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		TODO!!!	
+	\end{dukazin}
+\end{veta}
+
 \end{document}
