@@ -725,7 +725,7 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 		\item Regulární kvadriky:
 			\begin{itemize}
 				\item Signatura $(2, 0, 0)$: $x_0^2 + x_1^2 = 0$ nemá řešení, tedy je to formálně reálná kvadrika a je středová.
-				\item Signatura $(1, 1, 1)$: $x_0^2 = x_1^2$ má právě dvě řešení = naše kvadrika jsou dva body. V této podobě je středová, ale když máme $x_0^2 - 2x_0x_1 = 0$, pak je jedno z řešení nevlastní bod a kvadrika je nestředová.
+				\item Signatura $(1, 1, 1)$: $x_0^2 = x_1^2$ má právě dvě řešení = naše kvadrika jsou dva body. V této podobě je středová, ale když máme $x_0^2 - 2x_0x_1 = 0$, pak je jedno z řešení nevlastní bod a kvadrika je nestředová.
 			\end{itemize}
 		\item Singulární kvadriky:
 			\begin{itemize}
@@ -741,7 +741,7 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 		\item Regulární:
 			\begin{itemize}
 				\item Signatura $(3, 0, 0)$: formálně reálná kvadrika.
-				\item Signatura $(2, 1, 0)$: oválná. Středové můžou být dvě $\sign B = (2, 0, 0)$, tj. $Q_F \cap n = \O$, je elipsa, $\sign B = (1, 1, 0)$ je pak hyperbola. Nestředová je pak parabola.
+				\item Signatura $(2, 1, 0)$: oválná. Středové můžou být dvě $\sign B = (2, 0, 0)$, tj. $Q_F \cap n = \O$, je elipsa, $\sign B = (1, 1, 0)$ je pak hyperbola. Nestředová je pak parabola.
 			\end{itemize}
 		\item Singulární:
 			\begin{itemize}
@@ -752,5 +752,52 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 			\end{itemize}
 	\end{enumerate}
 \end{tvrzeni}
+
+% 24. 04. 2024
+
+TODO!!!?
+
+% 15. 05. 2024
+
+\subsection{Metrická klasifikace pro regulární kvadriky}
+\begin{poznamka}
+	Směry os jsou vlastní vektory matice $B$.
+
+	Navíc $B$ je symetrická, tj. $B$ má reálná vlastní čísla a reálné vlastní vektory a navíc $B$ je diagonalizovatelná $\implies$ existuje $n$ vlastních vektorů (tj. lze vždy najít bázi z vlastních vektorů); lze najít dokonce ortonormální bázi z vlastních vektorů.
+\end{poznamka}
+
+\begin{definice}[Délky poloos]
+	$$ a_i = \sqrt{\frac{-c'}{λ_i}}, $$
+	kde $c' = c - ¦b^T·B^{-1}·¦b$, $c$ je levý horní prvek $A$ a $¦b$ je zbytek prvního sloupce (řádku) $A$.
+
+	\begin{poznamkain}
+		U hyperboly jedna z délek os vyjde ryze komplexní.
+	\end{poznamkain}
+\end{definice}
+
+\begin{poznamka}
+	Když nalezneme vlastní čísla, tak jsme hned dostali signaturu (znamínka vlastních čísel).
+\end{poznamka}
+
+\begin{definice}[Kanonická rovnice kvadriky (středové)]
+	$$ \sum_1^n \frac{{¦x_i'}^2}{a_i^2} = 1, $$
+	kde $a_i$ jsou délky poloos a $¦x_i'$ jsou nové souřadnice.
+
+	\begin{dusledekin}
+		Odpovídá matici v diagonálním tvaru.
+	\end{dusledekin}
+\end{definice}
+
+\begin{tvrzeni}[Ohnisková vzdálenost]
+	$e^2 = a_1^2 - a_2^2$.
+
+	\begin{dusledek}
+		Umíme spočítat ohniska (jako $¦S + \frac{e}{2}·\frac{¦v_i}{|¦v_i|}$)
+	\end{dusledek}
+\end{tvrzeni}
+
+\begin{poznamka}[Nestředové]
+	Je-li $Q$ nestředová, pak $A$ je regulární, ale $B$ není. Tedy jedním z vlastních čísel $B$ je nula a jeho vlastní vektor je směr osy.
+\end{poznamka}
 
 \end{document}
