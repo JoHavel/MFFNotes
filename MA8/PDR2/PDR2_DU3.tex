@@ -1,0 +1,42 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+	\begin{priklad}
+		Let $Ω \subset ®R^d$ be Lipschitz. Consider the sequence $v^n$ and $u^n$ such that for some $p, q \in (1, ∞)$ there holds
+		%\begin{align*}
+			$u^n \rightharpoonup u \text{ weakly in } L^2(0, T; W^{1, p}(Ω)),$ %\\
+			$v^n \rightharpoonup v \text{ weakly in } L^q(0, T; L^q(Ω)).$
+		%\end{align*}
+		In addition, assume that for all $φ \in C_0^2((0, T) \times Ω)$ there holds
+		$ \int_0^T \int_Ω u^n \partial_t φ + v^n Δφ = 0. $
+
+		Show that there exists a subsequence $u^{n_k}$ such that $u^{n_k} \rightarrow u$ strongly in $L^1(0, T; L^p(Ω))$.
+
+		\begin{dukazin}[$q ≤ p$]
+			Chtěli bychom použít Aubinovo–Lionsovo lemma na $u^n$. K tomu potřebujeme vědět, že $\partial_t u^n$ existuje a je v nějakém prostoru $L^1(0, T; V_3)$. Navíc budeme chtít vědět, že posloupnosti $u^n$ a $\partial_t u^n$ jsou omezené. K tomu máme
+			$$ \int_0^T \int_Ω u^n \partial_t φ = - \int_0^T \int_Ω u^n v^n Δφ, \qquad \forall φ \in C_0^2((0, T) \times Ω). $$
+			To je skoro definice derivace, kdyby vpravo bylo $φ$ a ne $Δφ$. Tudíž si zadefinujeme $w^n: (0, T) \rightarrow W^{2, q'}(Ω)^*$, kde $1 = \frac{1}{q} + \frac{1}{q'}$ tak, že pro skoro všechna $t \in (0, T)$:
+			$$ \<w^n(t), ψ\>_{W^{2, q'}(Ω)^*} := \int_Ω v^n(t) Δ ψ, \qquad \forall ψ \in W^{2, q'}(Ω). $$
+			To znamená, že $|\<w^n(t), ψ\>_{W^{2, q'}(Ω)^*}| ≤ \int_Ω |v^n(t)|·|Δψ| ≤ \|v^n(t)\|_q·\|Δψ\|_{q'} ≤ \|v^n(t)\|_q·\|ψ\|_{2, q'}$. Tedy $\|w^n(t)\|_{W^{2, q'}(Ω)^*} ≤ \|v^n(t)\|_q$ a $w^n \in L^q(0, T; W^{2, q'}(Ω)^*) \subset L^1(0, T; W^{2, q'}(Ω)^*)$.
+
+			Navíc $u^n$ a $v^n$ slabě konvergují, tudíž jsou omezené. Z omezenosti $v^n$ vyplývá i omezenost $w^n$ ($\|w_n\| ≤ \|v_n\|$). Jediné, co zbývá z požadavků A–L, je $\partial_t u^n = w^n$. Pro libovolné $\tilde φ \in C_0^∞((0, T))$, tj. $ψ\tilde φ \in C_0^2((0, T) \times Ω)$, a pro $\tilde ψ \in C^2(Ω) \overset{\text{dense}} \subset W^{2, q'}(Ω)$:
+			$$ \int_0^T \<w^n, ψ\>_{W^{2, q'}(Ω)^*} \tilde φ = \int_0^T \<w^n ψ \tilde φ\> = \int_0^T \int_Ω v^n(t) Δ(ψ\tilde φ) = $$
+			$$ = - \int_0^T \int_Ω u^n \partial_t(ψ\tilde φ) = -\int_0^T (\partial_t \tilde φ) \int_Ω u^n ψ = -\int_0^T (\partial_t \tilde φ) \<u^n, ψ\>_{W^{2, q'}(Ω)^*}. $$
+
+			Nyní už použijeme Aubinovo–Lionsovo lemma na
+			$$ \{u^n \in L^1(0, T; W^{1, p}(Ω)), \partial_t u^n \in L^1(0, T; W^{2, q'}(Ω)^*)\} $$
+			(omezenost $u^n$ v $L^1$ vyplývá z omezenosti v $L^2$ a Hölderovy nerovnosti), čímž dostaneme, že $\{u^n\} \hookrightarrow\hookrightarrow L^1(0, T; L^p)$. ($W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^p$ víme ze Sobolevových vnoření, a oba tyto prostory jsou reflexivní, $L^p \hookrightarrow L^q \hookrightarrow W^{2, q'}(Ω)^*$ z předpokladu $q ≤ p$.)
+
+			Jelikož $\{u^n\}$ je omezená, tak vnořená bude prekompaktní, tudíž z ní lze vybrat (silně) konvergentní podposloupnost, která ale z $u^n \rightharpoonup u$ nemůže konvergovat jinam než k $u$.
+		\end{dukazin}
+
+		\begin{dukazin}[$p < q ≤ \frac{dp}{d - p}$ (ale to ani není potřeba)]
+			Postup bude totožný jako v předchozím případě, jen budeme posloupnost vnořovat do $L^q$ (proto $q ≤ \frac{dp}{d - p}$) a následně použijeme, že norma $L^q$ je až na násobek větší než $L^p$, tedy (silná) konvergence v $L^q$ implikuje (silnou) konvergenci v $L^p$
+		\end{dukazin}
+
+		\begin{dukazin}[$p < q$]
+			Je-li $p < q$, tak $L^q \hookrightarrow L^p$, tedy $v^n$ konvergují slabě i v $L^p$ a můžeme v zadání místo $q$ psát $p$ a máme $q = p$.
+		\end{dukazin}
+	\end{priklad}
+\end{document}

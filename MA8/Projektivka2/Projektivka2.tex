@@ -779,7 +779,7 @@ TODO!!!?
 	Když nalezneme vlastní čísla, tak jsme hned dostali signaturu (znamínka vlastních čísel).
 \end{poznamka}
 
-\begin{definice}[Kanonická rovnice kvadriky (středové)]
+\begin{definice}[Kanonická rovnice kvadriky středové]
 	$$ \sum_1^n \frac{{¦x_i'}^2}{a_i^2} = 1, $$
 	kde $a_i$ jsou délky poloos a $¦x_i'$ jsou nové souřadnice.
 
@@ -799,5 +799,12 @@ TODO!!!?
 \begin{poznamka}[Nestředové]
 	Je-li $Q$ nestředová, pak $A$ je regulární, ale $B$ není. Tedy jedním z vlastních čísel $B$ je nula a jeho vlastní vektor je směr osy.
 \end{poznamka}
+
+% 22. 05. 2024
+
+\begin{definice}[Kanonická rovnnice kvadriky nestředové]
+	$$ \sum_{i=1}^{n-1} λ_i·{x_i'}^2 + 2b_n''·x_n' = 0, $$
+	kde $b_n''$ je poslední složka vektoru $¦b'' = U^T·¦b$, přičemž ¦b je vektor z matice $A$ bez $B$ a rohového členu (stejně jako v délkách poloos) a $U = (¦v_1 | … | ¦v_n)$, kde $¦v_i$ jsou normované vlastní vektory a $¦v_n$ přísluší 0.
+\end{definice}
 
 \end{document}

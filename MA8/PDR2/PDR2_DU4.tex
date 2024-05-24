@@ -1,0 +1,70 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+\begin{priklad}[4.]
+	Consider the evolutionary parabolic problem
+	\begin{align*}
+		\partial_t u - Δu - α Δ_p u &= 0 && \text{in } (0, T) \times Ω,\\
+		(\nabla u + α |\nabla u|^{p - 2}\nabla u)·¦ν + β|u|^{q - 2} u &= 0 && \text{on } (0, T) \times \partial Ω,\\
+		u(0) &= u_0 && \text{in } Ω
+	\end{align*}
+	with $Ω \subset ®R^d$ Lipschitz, $α, b ≥ 0$ and $p, q \in (1, 2)$.
+
+	For any $u_0 \in L^2(Ω)$ show that there exists unique weak solution.
+
+	\begin{reseni}[Definice slabého řešení]
+		Jako rovnice slabého řešení nám vychází\\[-0.5em]
+		$$ \<\partial_t u, φ\>_{V^*} + \int_Ω (\nabla u + α·|\nabla u|^{p - 2} \nabla u) \nabla φ + \int_{\partial Ω}β |u|^{q - 2} u φ = 0, \qquad \forall φ \in V,\vspace{-0.1em} $$
+		neboť když budou funkce dostatečně hladké a použijeme per partes na prostřední člen a fundamentální větu na celou rovnici, na hranici získáme druhou rovnici problému a na vnitřku dostaneme první rovnici. Stačí správně zvolit $V$ a prostor řešení.
+
+		Aby byl dobře definován druhý integrál, potřebujeme, aby $u(t), φ \in W^{1, 2}(Ω) \cap W^{1, p}(Ω)$. Zároveň pro třetí integrál potřebujeme $u(t), φ \in L^q(\partial Ω)$. Můžeme si všimnout, že vzhledem k Trace theorem, Hölderově nerovnosti a Lipschitzovskosti $Ω$ nám pro toto stačí $u(t), φ \in W^{1, 2}(Ω) =: V$. Tudíž máme svou oblíbenou Gelfandovu trojici $V = W^{1, 2}(Ω)$ a $H = L^2(Ω)$ ($V \hookrightarrow\hookrightarrow H = H^* \hookrightarrow\hookrightarrow V^*$).
+
+		Tedy slabým řešením problému nazveme takové $u \in L^2(0, T; V) \cap W^{1, 2}(0, T; V^*)$ ($L^2$, neboť z $\nabla u\nabla φ$ nám padá druhá mocnina; druhá podmínka je kvůli prvnímu členu rovnice), že $u(0, ·) = u_0$ ($C([0, T]; V^*)$ z podmínky na $u$, tedy toto dává smysl) a $u$ splňuje pro skoro všechna $t \in (0, T)$ rovnici výše.
+	\end{reseni}
+
+	\begin{dukazin}[Jednoznačnost]
+		Jsou-li $u_1, u_2$ dvě slabá řešení, pak $v := u_1 - u_2 \in L^2(0, T; V)$ musí splňovat (dosadíme $φ = v(t) \in V$ do rovnice výše):
+		$$ \<\partial_t v, v\>_{V^*} + \int_Ω \nabla v \nabla v + \int_Ω \!\! α(|\nabla u_1|^{p - 2} \nabla u_1 - |\nabla u_2|^{p - 2} \nabla u_2)\nabla v + \int_{\partial Ω} \!\!\!\!β(|u_1|^{q - 2} u_1 - |u_2|^{q - 2} u_2) = 0, $$
+		ale my víme, že $|x|^{r - 2} x$ je (striktně) monotónní (a $α, β ≥ 0$), tedy
+		$$ \<\partial_t v, v\>_{V^*} ≤ \<\partial_t v, v\>_{V^*} + \|\nabla v\|_{L^2(Ω)}^2 ≤ 0. $$
+		Zintegrováním podle $t$ (od 0 do $τ$) a použitím per partes pro Gelfandovu trojici máme
+		$$ \frac{1}{2}\|v(τ)\|_{L^2(Ω)}^2 - \frac{1}{2} \|v(0)\|_{L^2(Ω)}^2 ≤ 0. $$
+		Ale $v(0) = u_1(0) - u_2(0) = u_0 - u_0 = 0$, tedy $\|v(τ)\|_2^2 ≤ 0$ pro skoro všechna $τ$, tudíž $v = 0$ a $u_1 = u_2$.
+	\end{dukazin}
+
+	\begin{dukazin}[Existence]
+		Označíme-li $A(u, ξ) = ξ + α·|ξ|^{p - 2} ξ$, $B(u, ξ) = 0$ a $f = 0$, pak máme rovnici přesně ve tvaru $\partial_t u - \Div(A(u, \nabla u)) + B(u, \nabla u) = f$. Navíc $A, B$ jsou Caratheodorovy a splňují
+		$$ |A(u, ξ)| + |B(u, ξ)| = |ξ| + α·|ξ|^{p - 1} ≤ |ξ| + α·(1 + |ξ|) ≤ (α + 1)·(1 + |ξ|), $$
+		$$ A(u, ξ)·ξ + B(u, ξ)·u = |ξ|^2 + α·|ξ|^p ≥ |ξ|^2. $$
+		Taktéž je očividné, že $ξ$ je strictly monotone a $α·|ξ|^{p - 2}$ je monotónní, tudíž $A$ je strictly monotone. Zároveň $β·|u|^{q - 2}·u ≤ β·(1 + |u|)$ je taktéž monotónní operátor.
+
+		Dále postupujeme jako na přednášce, jen místo $\int_Ω B(u, \nabla u) φ$ máme $\int_{\partial Ω} β·|u|^{q - 2}u φ$.
+	\end{dukazin}
+
+	In case that $α, β > 0$, show that there exists $t_0 \in (0, ∞)$ such that the weak solution satisfies $u(t) = 0$ for (almost) all $t ≥ t_0$. (In other words, prove the extinction in finite time).
+
+	\begin{dukazin}
+		Podobně jako v jednoznačnosti můžeme do rovnice dosadit přímo $u(t) \in V$ a použít integraci per partes pro Gelfandovu trojici:
+		$$ \|u(t_2)\|_2^2 - \|u(t_1)\|_2^2 + \int_{t_1}^{t_2} \int_Ω |\nabla u(t)|^2 + α·|\nabla u(t)|^p + \int_{\partial Ω} β·|u(t)|^q dt = 0. $$
+
+		\textbf{Je-li} $\mathbf{p ≤ q}$, potom můžeme prostřední člen odhadnout $\min(1, α)·|\nabla u|^q$, neboť pokud $|\nabla u| ≥ 1$, pak $|\nabla u|^q ≤ |\nabla u|^2$, a pokud $|\nabla u| ≤ 1$, pak $|\nabla u|^q ≤ |\nabla u|^p$. Následně z Poincarého nerovnosti $\int_Ω \min(1, α)·|\nabla u|^q + \int_{\partial Ω} β·|u|^q ≥ c_1·\|u\|_{W^{1, q}(Ω)}^q$. My ale víme, že $W^{1, q}(Ω)$ se hustě vnořuje do $L^2(Ω)$, je-li $d ≥ 2$, nebo do $C^{0, ·}(\overline{Ω})$, kteréžto funkce jsou na omezené množině omezené nějakým násobkem své normy, tudíž je normou omezena i jejich $L^2$ norma. Tedy $c_1·\|u\|_{W^{1, q}(Ω)}^q ≥ c_2·\|u\|_{L^2(Ω)}^2$ a
+		$$ \|u(t_2)\|_2^2 - \|u(t_1)\|_2^2 + \int_{t_1}^{t_2} c_2·\|u(t)\|_2^q \,dt ≤ 0. $$
+		Když si $\|u(t)\|_2^2$ označíme jako $g(t)$, nerovnost vydělíme $t$ a zlimitíme $t_2 \rightarrow t_1$ dostáváme (za předpokladu $g(t) ≠ 0$, protože jinak jsme hotovi, neboť pro $u_0 = 0$ je z jednoznačnosti $u = 0$)
+		$$ g'(t) + c_2·g^{q / 2}(t) ≤ 0, \qquad \frac{g'(t)}{g^{q / 2}(t)} ≤ -c_2, \qquad \(1 - \frac{q}{2}\) g^{1 - q / 2}(t) ≤ -c_2·t + C, $$
+		což znamená, že $g(t) < 0$ pro nějaké $t$, ale to je v rozporu s $g(t) ≥ 0$.
+
+		\textbf{Je-li} $\mathbf{p > q}$, pak se v rovnici výše zaměříme na $\int_Ω α·|\nabla u|^p = α·\|\nabla u\|_p^p ≥ c·\|\nabla u\|_q^p$ a $\int_{\partial Ω} β·|u|^q = β·\|u\|_{\partial q}^q$. Je-li $\|\nabla u\| ≥ 1$, pak můžeme rovnou odhadnout $\|\nabla u\|_q^p ≥ \|\nabla u\|_q^q$. Je-li $\|\nabla u\| < 1$, ale $\|u\|_{\partial q} > 1$, pak $β/2 · \|\nabla u\|_q^q + β/2 · \|u\|_{\partial q}^q ≤ β·\|u\|_{\partial q}^q$. Je-li obojí menší než 1, pak $\|u\|_{\partial q}^q ≥ \|u\|_{\partial q}^p$ a můžeme použít Jensenovu nerovnost:\\[-1em]
+		$$ c·\|\nabla u\|_q^p + β·\|u\|_{\partial q}^p ≥ 2·\min(c, β)·\(\frac{1}{2}\|\nabla u\|_q^p + \frac{1}{2}\|u\|_{\partial q}^p\) ≥ 2·\min(c, β)·\(\frac{1}{2}\|\nabla u\|_q^q + \frac{1}{2}\|u\|_{\partial q}^q\)^{\!\!\frac{p}{q}}\!\!\!. $$
+		Obdobným postupem jako pro $p ≤ q$ dostaneme v prvních dvou případech\\[-1em]
+		$$ \|u(t_2)\|_2^2 - \|u(t_1)\|_2^2 + \int_{t_1}^{t_2} c_2·\|u(t)\|_2^q \,dt ≤ 0,\vspace{-0.5em} $$
+		a ve třetím\\[-1.5em]
+		$$ \|u(t_2)\|_2^2 - \|u(t_1)\|_2^2 + \int_{t_1}^{t_2} c_2'·\|u(t)\|_2^p \,dt ≤ 0.\vspace{-0.9em} $$
+
+		Nyní můžeme postupovat jako u $p ≤ q$, jen se musíme vypořádat, že občas je tam na $q$ a občas na $p$. To vyřešíme tak, že pokud je $\|u(t)\|_2 ≥ 1$, pak můžeme zmenšit $p$-tou mocninu na $q$-tou, pokud naopak $\|u(t)\|_2 < 1$, pak zmenšíme $q$-tou mocninu na $p$-tou. Nejprve tedy předpokládejme $g(t) = \|u(t)\|_2^2 ≥ 1$, proveďme totéž co v $p ≤ q$ a vyvraťme tuto možnost.
+
+		Pak máme, že pro nějaké (esenciální) $t_0$ je $g(t_0) ≤ 1$. Ale z rovnice ze začátku důkazu je $g$ klesající, neboť $g(t_2) - g(t_1) ≤ 0$. Tedy od $t_0$ dál bude $g(t) ≤ 1$ a my znovu provedeme totéž, co v $p ≤ q$.
+	\end{dukazin}
+
+\end{priklad}
+\end{document}
