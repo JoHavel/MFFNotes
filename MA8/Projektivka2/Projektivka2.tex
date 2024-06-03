@@ -36,11 +36,11 @@
 \end{definice}
 
 \begin{poznamka}[Platí]
-	Absolutní involuce je eliptická involuce, jejíž samodružné přímky jsou imaginární. Nazývají se izotropické přímky a jejich směry jsou $[0:1:i]$ a $[0:1:-1]$.
+	Absolutní involuce je eliptická involuce, jejíž samodružné přímky jsou imaginární. Nazývají se izotropické přímky a jejich směry jsou $[0:1:i]$ a $[0:1:-i]$.
 \end{poznamka}
 
 \begin{poznamka}
-	Izotropické body leží na každé kružnici v rovině. Každé izotropická přímka je kolmá sama na sebe (v reálném skalárním součinu, z definice absolutní involuce)
+	Izotropické body leží na každé kružnici v rovině. Každá izotropická přímka je kolmá sama na sebe (v reálném skalárním součinu, z definice absolutní involuce)
 \end{poznamka}
 
 \subsection{Ohnisko středových kuželoseček}
@@ -172,13 +172,13 @@
 \end{poznamka}
 
 \begin{poznamka}
-	Procesu „zakážu ¦o a ztotožníme násobky“ říkáme projektivizace.
+	Procesu „zakážeme ¦o a ztotožníme násobky“ říkáme projektivizace.
 \end{poznamka}
 
 \begin{definice}[Projektivní rozšíření afinního prostoru, vlastní bod, nevlastní bod]
 	Projektivní rozšíření afinního prostoru $®R^n$ na projektivní prostor $®RP^n$ (= kanonické vnoření $®R^n$ do $®RP^n$) je zobrazení, které bodu $[x_1, …, x_n]$ přiřadí $[1:x_1:…:x_n]$ a vektoru $(x_1, …, x_n)$ přiřadí $[0:x_1:…:x_n]$.
 
-	Prvním říkáme body vlastní, druhý nevlastní.
+	Prvním říkáme body vlastní, druhým nevlastní.
 \end{definice}
 
 TODO?
@@ -222,13 +222,16 @@ TODO?
 		Zřejmě tato hodnota nezávisí na volbě (nenulového) násobku každého vektoru.
 	\end{poznamkain}
 
-	Dvojpoměr 4 bodů $A, B, C, D \in ®RP^n$ ležících na jedné přímce definujeme jako $(ABCD) := (abcd)$.
+	Dvojpoměr 4 bodů $A, B, C, D \in ®RP^n$ ležících na jedné přímce definujeme jako
+	$$ (ABCD) := (abcd). $$
 \end{definice}
 
 \begin{tvrzeni}[Už jsme si dokázali]
 	$A, B, C, D$ jsou čtyři různé $\implies$ $(ABCD) ≠ 0, 1, ∞$. (Např. $C = A \lor B = D \Leftrightarrow (A B C D) = 0$.)
 
-	$A, B, C, D$ vlastní $\implies$ $(ABCD) = \frac{(ABC)}{(ABD)}$. $A, B, C$ vlastní, $D$ nevlastní $\implies$ $(ABCD) = (ABC)$.
+	$A, B, C, D$ vlastní $\implies$ $(ABCD) = \frac{(ABC)}{(ABD)}$.
+
+	$A, B, C$ vlastní, $D$ nevlastní $\implies$ $(ABCD) = (ABC)$.
 
 	Věta o 4 determinantech (pro $A, B, C, D \in ®RP^1$):
 	$$ (ABCD) = \frac{(a_0·c_1 - a_1·c_0)·(b_0·d_1 - b_1·d_0)}{(a_0·d_1 - a_1·d_0)·(b_0·c_1 - b_1·c_0)}. $$
@@ -336,9 +339,9 @@ TODO? (Hromada lineární algebry.)
 
 		„$1. \implies 2.$“: $A^2 \sim E$ máme, chceme $\tr A = a + d = 0$. Předpoklad nám dává $(a + d)·b = 0 = (a + d)·c$. Pro spor $(a + d) ≠ 0$. Pak $b = c = 0$ a $A = \diag(a, d)$, tedy $\diag(a^2, d^2) \sim \diag(1, 1)$, tedy $a^2 = d^2$, tj. $a = ±d$. Takže buď $a + d = 0$ nebo $A \sim E$. \lightning.
 
-		„$2. \implies 1.$“: předpokládáme $a + d = 0$. Pak ale $A^2 = \diag(a^2 + bc, bc + d^2) \overset{a = -d}= \diag{a^2+bc, a^2+bc} \sim E$.
+		„$2. \implies 1.$“: předpokládáme $a + d = 0$. Pak ale $A^2 = \diag(a^2 + bc, bc + d^2) \overset{a = -d}= \diag(a^2+bc, a^2+bc) \sim E$.
 
-		„$2. \Leftrightarrow 3.$“: $w = \frac{\tr A + \sqrt{D}}{\tr A - \sqrt{D}}$, tedy pro $\tr A = 0$ je $w = -1$, a pokud $w = -1$, pak $\tr A + \sqrt{D} = -\tr A + \sqrt{D}$, tedy $\tr A = -1$. (Přitom $D = (\tr A)^2 - 4\det A = -4\det A ≠ 0$.)
+		„$2. \Leftrightarrow 3.$“: $w = \frac{\tr A + \sqrt{D}}{\tr A - \sqrt{D}}$, tedy pro $\tr A = 0$ je $w = -1$, a pokud $w = -1$, pak $\tr A + \sqrt{D} = -\tr A + \sqrt{D}$, tedy $\tr A = 0$. (Přitom $D = (\tr A)^2 - 4\det A = -4\det A ≠ 0$.)
 	\end{dukazin}
 \end{veta}
 
@@ -381,14 +384,15 @@ TODO? (Hromada lineární algebry.)
 \end{poznamka}
 
 \begin{dusledek}
-	Projektivita na $®RP^2$ má samodružné body a samodružné přímky. (A jsou to vlastní vektory matice $A^{-T}$.)
+	Projektivita na $®RP^2$ má samodružné body a samodružné přímky. (A jsou to vlastní vektory matice $A$ a $A^{-T}$.)
 \end{dusledek}
 
 \begin{veta}
 	Nechť $A$ má $n$ různých vlastních čísel. Označme $v_1, …, v_n$ vlastní vektory $A$ (odpovídající $λ_1, …, λ_n$) a $u_1, …, u_n$ vlastní vektory $A^T$ (odpovídající stejným $λ_1, …, λ_n$). Pak pro $i ≠ j: \<u_j, v_i\> = 0$.
 
 	\begin{dukazin}
-		$$ λ_j · \<u_j, v_i\> =  λ_j ¦u_j^T·¦v_i = (λ_j ¦u_j)^T·¦v_i = (A^T·¦u_j)^T·¦v_i = ¦u_j^T·A·¦v_i = ¦u_j^T ·(λ_i ¦v_i) = λ_i ¦u_j^T·¦v_i = λ_i · \<u_j, v_i\> \overset{i ≠ j}\implies \<u_j, v_i\> = 0. $$
+		$$ λ_j · \<u_j, v_i\> =  λ_j ¦u_j^T·¦v_i = (λ_j ¦u_j)^T·¦v_i = (A^T·¦u_j)^T·¦v_i = ¦u_j^T·A·¦v_i = ¦u_j^T ·(λ_i ¦v_i) = λ_i ¦u_j^T·¦v_i = $$
+		$$ = λ_i · \<u_j, v_i\> \overset{i ≠ j}\implies \<u_j, v_i\> = 0. $$
 	\end{dukazin}
 \end{veta}
 
@@ -415,7 +419,7 @@ TODO? (Hromada lineární algebry.)
 	3 buňky:
 	\begin{itemize}
 		\item $J_{1a} = \diag (λ_1, λ_2, λ_3)$ (3 různá reálná vlastní čísla). $\implies$ 3 slabě samodružné body a 3 slabě samodružné přímky.
-		\item $J_{1b} = \diag (λ_1, \overline{λ_1}, λ_3)$, kde $λ_1$ je komplexní číslo, které není reálné, a $λ_2$ je reálné číslo. Je podobná s maticí $\diag (R_φ, λ_2)$, rotace + stejnolehlost (= spirální podobnost). 1 slabě samodružný bod a 1 slabě samodružná přímka.
+		\item $J_{1b} = \diag (λ_1, \overline{λ_1}, λ_2)$, kde $λ_1$ je komplexní číslo, které není reálné, a $λ_2$ je reálné číslo. Je podobná s maticí $\diag (R_φ, λ_2)$, rotace + stejnolehlost (= spirální podobnost). 1~slabě samodružný bod a 1~slabě samodružná přímka.
 		\item $J_{1c} = \diag (λ_1, λ_2, λ_2) \sim \diag (λ_1', 1, 1)$. Jeden silně a jeden slabě samodružný bod, jedna silně a jedna slabě samodružná přímka. Toto zobrazení je perspektivní (nebo také středová) kolineace.
 		\item $J_{1d} = \diag (λ_1, λ_1, λ_1) \sim E$ je identita.
 	\end{itemize}
@@ -435,7 +439,8 @@ TODO? (Hromada lineární algebry.)
 TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jednoznačný) rozklad na symetrickou a antisymetrickou část; kvadratická forma ($g_2$) určená BL formou $g$ neboli její symetrickou částí $g_s$; zpětná rekonstrukce $g_s$ z $g_2$; polární báze (to je ta, ve které je matice kvadratické formy diagonální); Sylvestrův zákon setrvačnosti; signatura; Sylvestrovo kritérium; regulární matice má počet nul v signatuře nulový a opačně)
 
 \begin{definice}[Vrchol symetrické bilineární formy]
-	Vrchol symetrické bilineární formy $g$ na $®R^n$ je množina $V(g) := \{¦u \in ®R^n | \forall ¦v \in ®R^n : g(¦u, ¦v) = 0\}$.
+	Vrchol symetrické bilineární formy $g$ na $®R^n$ je množina
+	$$ V(g) := \{¦u \in ®R^n | \forall ¦v \in ®R^n : g(¦u, ¦v) = 0\}. $$
 
 	\begin{poznamkain}
 		Ekvivalentně $g(¦v, ¦u) = 0$. Maticově $\forall ¦v: ¦u^T G ¦v = 0 \Leftrightarrow ¦u^t·G = ¦o$ nebo $G·¦u = ¦o$.
@@ -446,7 +451,8 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 
 \section{Kvadriky}
 \begin{definice}[Kvadrika]
-	Kvadrika v $®RP^n$ určená kvadratickou formou $g_2$ (na $®R^{n+1}$) je množina $Q_g := \{\<¦u\> \in ®RP^n | g_2(¦u) = 0\}$.
+	Kvadrika v $®RP^n$ určená kvadratickou formou $g_2$ (na $®R^{n+1}$) je množina
+	$$ Q_g := \{\<¦u\> \in ®RP^n | g_2(¦u) = 0\}. $$
 \end{definice}
 
 \begin{priklady}
@@ -463,7 +469,7 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 \end{dusledek}
 
 \begin{dusledek}
-	Kvadrika v $®RP^n$ je určena symetrickou maticí $3\times 3$, tedy 6 čísly, až na násobek, tedy o jedno číslo méně, tj. 5 čísly.
+	Kvadrika v $®RP^2$ je určena symetrickou maticí $3\times 3$, tedy 6 čísly, až na násobek, tedy o jedno číslo méně, tj. 5 čísly.
 
 	\begin{dusledekin}
 		$X = \<¦x\> \in Q_g \Leftrightarrow x^T·G·x = 0$, tedy zadání 5 bodů je stejné jako zadání 5 lineárních rovnic (o 6 neznámých).
@@ -662,7 +668,8 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 \end{poznamka}
 
 \begin{definice}[Oválná, přímková, (+ klasifikace)]
-	Pro regulární kvadriky máme tyto možnosti:
+	Pro regulární kvadriky máme tyto možnosti:\\[-2em]
+	\begin{center}
 	\begin{tabular}{cr|cl}
 		pro     & ($p$, $q$, $r$) & projektivní typ & název                                 \\ \hline
         		& ($n+1$, 0, 0)   & $-1$            & formálně reálná                       \\
@@ -671,6 +678,7 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 		$n ≥ 5$ & ($n-2$, 3, 0)   & 2               &                                       \\
 		…       & …               & …               &
 	\end{tabular}
+	\end{center}
 \end{definice}
 
 \begin{poznamka}
@@ -687,7 +695,7 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 \end{definice}
 
 \begin{definice}[Značení]
-	$$ A = [F]_K = \begin{pmatrix} a_{00} & a_{01} … a_{0n} \\ a_{01} … a_{0n} & B \end{pmatrix}. $$
+	$$ A = [F]_K = \begin{pmatrix} a_{00} & a_{01} … a_{0n} \\ a_{01} … a_{0n} & B \end{pmatrix} = \begin{pmatrix} c & ¦b \\ ¦b & B \end{pmatrix}. $$
 \end{definice}
 
 \begin{veta}
@@ -699,11 +707,14 @@ TODO? (definice bilineární formy; antisymetrické a symetrické BL formy; (jed
 
 	\begin{dukazin}
 		„Pro nestředové“: $S = [0:s_1:…:s_n]$ je pólem nevlastní nadroviny $\Leftrightarrow$ $\forall [0:x_1:…:x_n]$ platí
-		$$ (0, x_1, …, x_n)·A·(0:s_1:…:s_n)^T = 0 \Leftrightarrow (x_1, …, x_n)·B·(s_1, …, s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow B·(s_1, …, s_n)^T = ¦o, $$
+		$$ (0, x_1, …, x_n)·A·(0:s_1:…:s_n)^T = 0 \Leftrightarrow $$
+		$$ \Leftrightarrow (x_1, …, x_n)·B·(s_1, …, s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow B·(s_1, …, s_n)^T = ¦o, $$
 		přičemž $(s_1, …, s_n) ≠ ¦o$, tedy $B$ je singulární. Opačně, pokud $B$ je singulární, pak existuje takové $(s_1, …, s_n) ≠ ¦o$, které to splňuje.
 
 		„Pro středové“: první část je jen negací již dokázaného. Pak $S = [1:s_1: …: s_n]$ je pólem nevlastní nadroviny $\Leftrightarrow$
-		$$ \forall (x_1, …, x_n): (0, x_1, …, x_n)·A·(1, s_1, …, s_n)^T \Leftrightarrow (x_1, …, x_n)·(a_{01} … a_{0n} | B) (1, s_1, … s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow (a_{01} … a_{0n} | B)·(1, s_1, …, s_n)^T = ¦o. $$
+		$$ \forall (x_1, …, x_n): (0, x_1, …, x_n)·A·(1, s_1, …, s_n)^T \Leftrightarrow $$
+		$$ \Leftrightarrow (x_1, …, x_n)·(a_{01} … a_{0n} | B) (1, s_1, … s_n)^T = 0 (\forall (x_1, …, x_n)) \Leftrightarrow $$
+		$$ \Leftrightarrow (a_{01} … a_{0n} | B)·(1, s_1, …, s_n)^T = ¦o. $$
 	\end{dukazin}
 \end{veta}
 
