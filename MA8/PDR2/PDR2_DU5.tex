@@ -1,0 +1,83 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+\begin{priklad}[5.]
+	Let $Ω$ be Lipschitz and $Γ_1 \subset \partial Ω$ be such that $|Γ_1| > 0$. Assume that $¦g \in L^3(\partial Ω; ®R^N)$, where $N \in ®N$ is given, and define the set $S$ as
+	$$ S \coloneq \{®A \in L^3(Ω; ®R^{d \times N})\ \middle|\ \forall ¦v \in V{:}\ \int_Ω ®A : \nabla ¦v = \int_{\partial Ω \setminus Γ_1} ¦g·¦v\} $$
+	and
+	$$ V \coloneq \{¦v \in W^{1, \frac{3}{2}}(Ω; ®R^N)\ \middle|\ ¦v = 0 \text{ on } Γ_1\}. $$
+	
+	Consider the problem: Find $®A \in S$ such that for all $®B \in S$ there holds
+	$$ \int_Ω \frac{|®A|^3}{3} + |®A - ®C|^2 ≤ \int_Ω \frac{|®B|^3}{3} + |®B - ®C|^2, $$
+	where $®C \in ®R^{d \times N}$ is given.
+
+	\paragraph{1)} Show that there exists unique ®A solving the problem.
+
+	\begin{dukazin}
+		Zřejmě je $S$ konvexní (rovnice v $S$ je lineární) a uzavřená (příslušný integrál zachovává limitu).
+		Označme si $G(ξ) = \frac{|ξ|^3}{3} + |ξ - ®C|^2$ pro $ξ \in S$. Stačí nám tedy ukázat, že $G$ je (ryze\footnote{Z toho plyne jednoznačnost, jak jsme ukázali na přednášce.}) konvexní, $|G(ξ)| ≥ c_1 |ξ|^3 - c_2$ a $|G(ξ)| ≤ \tilde c_1 (|ξ|^3 + 1)$.
+
+		$|®X|^2$ je zřejmě ryze konvexní, neboť se na to můžeme podívat po složkách a pak sečíst. Ryze konvexní je taktéž $x^{1.5}$ ($x ≥ 0$), tedy i $|®X|^3$. Navíc $|λ®X|^a = λ^a|®X|^a$. Tedy pro $λ \in (0, 1)$ (pro to $λ^b < λ$ a $(1 - λ)^b < (1 - λ)$ pro $b ≥ 1$) a $ξ_1 ≠ ξ_2 \in S$
+		$$ G(λξ_1 + (1 - λ)ξ_2) = \frac{|λξ_1 + (1 - λ)ξ_2|^3}{3} + |λξ_1 + (1 - λ)ξ_2 - \underbrace{®C}_{\!\!=λ®C + (1 - λ)®C\!\!}|^2 < \vspace{-1em} $$
+		$$ < λ^3 \frac{|ξ_1|^3}{3} + (1 - λ)^3 \frac{|ξ_2|^3}{3} + λ^2|ξ_1 - ®C|^2 + (1 - λ)^2|ξ_2 - ®C|^2 < $$
+		$$ < λ \frac{|ξ_1|^3}{3} + (1 - λ) \frac{|ξ_2|^3}{3} + λ|ξ_1 - ®C|^2 + (1 - λ)|ξ_2 - ®C|^2 = λ·G(ξ_1) + (1 - λ)G(ξ_2). $$
+		Tudíž $G$ je ryze konvexní.
+
+		$$ |G(ξ)| = \frac{|ξ|^3}{3} + |ξ - ®C|^2 ≤ \frac{|ξ|^3}{3} + |ξ|^2 + |®C|^2 ≤ \frac{|ξ|^3}{3} + (|ξ|^3 + 1) + C ≤ \underbrace{\max\(\frac{4}{3}, 1 + C\)}_{=\tilde c_1}(|ξ|^3 + 1),\vspace{-2em} $$
+		$$ |G(ξ)| = \frac{|ξ|^3}{3} + |ξ - ®C|^2 ≥ \frac{|ξ|^3}{3} = \underbrace{\frac{1}{3}}_{=c_1}|ξ|^3 - \underbrace{0}_{=c_2}. $$
+	\end{dukazin}
+
+	\paragraph{2)} Derive the Euler–Lagrange equations.
+
+	\begin{reseni}
+		Mějme množinu
+		$$ S_2 \coloneq \{ξ \in L^3(Ω; ®R^{d \times N})\ \middle|\ \forall ¦v \in V{:}\ \int_Ω ξ:\nabla ¦v = 0\}. $$
+		Potom $\forall ®A \in S\ \forall ξ \in S_2\ \forall ε \in ®R{:}\ ®A + ε·ξ \in S$. A jestliže ®A splňuje minimalizační podmínku ze zadání, pak:
+		$$ \left.\frac{d}{dε}\right|_{ε = 0} \quad \int_Ω \frac{|®A - ε·ξ|^3}{3} + |®A - ε·ξ - ®C|^2 = 0. $$
+		$$ \int_Ω \frac{1}{3}·\frac{3}{2}·|®A + 0·ξ|·(0·\sum_{ij} ξ_{ij} + 2®A:ξ) + 0·\sum_{ij}ξ_{ij} + 2(®A - ®C):ξ = 0. $$
+		$$ \int_Ω |®A|·®A:ξ + 2(®A - ®C):ξ = 0. $$
+		Což se za předpokladu dostatečně velké $S_2$ (což se mi nepodařilo dokázat) dá přepsat ze základní věty na
+		$$ |®A|·®A + 2(®A - ®C) = ®O. $$
+	\end{reseni}
+
+	\break
+
+	\paragraph{3)} Find the corresponding primary formulation – the corresponding system of PDE's and show the equivalence of primary and dual formulation.
+
+	\begin{reseni}
+		Minimalizace
+		$$ \int_Ω \frac{|®A|^3}{3} + |®A - ®C|^2 = \int_Ω \frac{|®A|^3}{3} + |®A|^2 - 2®A:®C + |®C|^2 $$
+		je totožná s minimalizací (neboť $|®C|$ je konstanta)
+		$$ \int_Ω \frac{|®A|^3}{3} + |®A|^2 - 2®A:®C = \int_Ω \(\frac{|®A|^3}{3} + |®A|^2\) - 2®A:\nabla u_0. $$
+
+		Označme $F^*(ξ) = \frac{|ξ|^3}{3} + |ξ|^2$. Jelikož $F^*$ je konvexní a platí $\frac{F^*(ξ)}{|ξ|} = \frac{|ξ|^2}{3} + |ξ| \rightarrow ∞$ pro $ξ \rightarrow ∞$ máme $((F^*)^*)^* = F^*$, tedy budeme hledat $F$, „konvexní předadjunkci“ $F^*$, jako konvexní adjunkci $F^*$. To je z definice:
+		$$ (F^*)^*(ξ) = \sup_{z \in ®R^{d \times N}} (ξ:z - F^*(z)). $$
+		Jelikož $F^*$ roste rychleji než $z$, tak je supremum nabyto a tehdy je derivace vnitřku podle $z$ libovolným směrem nulová. Tedy
+		$$ ®O = ξ - \frac{\partial F^*}{z}(z) = ξ - |z|·z - 2·z = ξ - (|z| + 2)·z \qquad \Leftrightarrow \qquad z = \frac{ξ}{2 + |z|} $$
+		Znormováním pravé rovnosti dostaneme $|z| = \frac{|ξ|}{2 + |z|}$, tedy $|z| = -1 + \sqrt{1 + |ξ|}$. Pronásobením ${:}z$ levé pak $ξ:z = |z|^3 + 2|z|^2$. To můžeme dosadit:
+		$$ F(ξ) = z:ξ - F(z) = |z|^3 + 2|z|^2 - \frac{|z|^3}{3} - |z|^2 = \frac{2}{3}|z|^3 + |z|^2. $$
+		Stejně jako na přednášce, pak můžeme najít
+		$$ A(ξ) \coloneq \frac{\partial F}{\partial ξ}(ξ) = (2|z|^2 + 2|z|) \frac{\partial |z|}{\partial ξ} = 2|z|·(|z| + 1)\frac{\partial \(-1 + \sqrt{1 + |ξ|}\)}{\partial ξ} = $$
+		$$ = 2|z|·\(\sqrt{1 + |ξ|}\)·\frac{1}{2}·\frac{1}{\sqrt{1 + |ξ|}}·\frac{2}{2}·\frac{ξ}{|ξ|} = |z|·\frac{ξ}{|ξ|} = \(-1 + \sqrt{1 + |ξ|}\)\frac{ξ}{|ξ|}. $$
+
+		Náš problém (původní formulaci) je tedy při označení $A(ξ) \coloneq \(-1 + \sqrt{1 + |ξ|}\)\frac{|ξ|}{|ξ|}$
+		$$ -\Div\(A(\nabla ¦u)\) = ¦o \text{ na } Ω, \qquad ¦u = ¦u_0 := ¦x^T·®C \text{ na } Γ_1, \qquad A(\nabla ¦u)·¦n = ¦g \text{ na } \partial Ω \setminus Γ_1. $$
+	\end{reseni}
+
+	\begin{dukazin}[Ekvivalence formulací]
+		Tomuto problému odpovídá slabá formulace $\exists ¦u \in W^{1, \frac{3}{2}}(Ω, ®R^N)$ takové, že $¦u - ¦u_0 = 0$ na~$Γ_1$ a že $\forall ¦v \in W^{1, \frac{3}{2}}(Ω, ®R^N)$, $¦v = ¦o$ na $Γ_1$:
+		$$ \int_Ω A(\nabla ¦u):\nabla ¦v - \int_{\partial Ω} ¦g·¦v = 0. $$
+
+		Má-li tento problém řešení $¦u$, pak definujme $®A = A(\nabla ¦u)$. Zřejmě $®A \in L^3(Ω, ®R^N)$ (tak jsme volili prostor pro ¦u) a ze slabé formulace $®A \in S$. Nyní chceme: $\int_Ω F^*(®B) + ®B:®C ≥ \int_Ω F^*(®A) + ®A:®C$, tedy ekvivalentně:
+		$$ 0 \overset{?}≤ \int_Ω F^*(®B) - F^*(®A) + (®B - ®A):®C \overset{\text{konvexita}}≥ \frac{\partial F^*(ξ)}{\partial ®ξ}(®A):(®B - ®A) + (®B - ®A):\nabla ¦u_0 \overset{\text{přednáška}}= $$
+		$$ = (®B - ®A):\nabla (\underbrace{¦u - ¦u_0}_{\in V}) \overset{S}= \int_{\partial Ω \setminus Γ_1} ¦g·(¦u - ¦u_0) - \int_{\partial Ω \setminus Γ_1} ¦g·(¦u - ¦u_0) = 0. $$
+
+		Naopak, pokud ®A splňuje minimalizační podmínku, pak definujeme\footnote{Konvexní adjunkce ryze konvexní funkce je ryze konvexní, tedy její derivace je ryze monotónní, tudíž můžeme definovat inverzi.} $\nabla ¦u = A^{-1}(®A)$. Potom $¦u$ splňuje slabou formulaci, protože $®A \in S$ a $A(\nabla ¦u) = A(A^{-1}(®A)) = ®A$. Také $¦u \in W^{1, \frac{3}{2}}(Ω, ®R^N)$. Tedy zbývá $¦u - ¦u_0 = 0$ na $Γ_1$.
+
+		Z Eulerových–Lagrangeových rovnic (ještě před odebráním integrálu) dostaneme dosazením (to je i hezká zkouška, že nám $A$ vyšlo správně)
+		$$ \forall ξ \in S_2: \int_Ω 2\nabla (¦u - ¦u_0):ξ = 0. $$
+		Vzhledem k obecnosti $S_2$ až na podmínku $\forall ¦v \in V: \int_Ω \nabla ¦v:ξ = 0$ musí být $¦u - ¦u_0 \in V$, což je přesně to, co jsme chtěli.
+	\end{dukazin}
+\end{priklad}
+\end{document}
