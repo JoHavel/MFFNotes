@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+	\begin{priklad}[4d]
+		Dokažte
+		$$ \exists F\ \forall X: FX = SFX. $$
+
+		\begin{dukazin}
+			Zvolme $F = (λy.(Syy))(λy.(Syy))$ (závorky jsou obdobou $(λy.yy)(λy.yy)$, které se samo „množí“, jen je tam ještě vloženo $S$, aby vypadlo ven). Potom
+			$$ FX = (λy.(Syy))(λy.(Syy))X \rightarrow_β S(λy.(Syy))(λy.(Syy))X = SFX. $$
+		\end{dukazin}
+
+		\begin{dukazin}[Kombinátor pevného bodu]
+			Napíšeme rovnici ve tvaru $F = C[f, x]F$: $F = (λfx.Sfx)F$. A nyní najdeme pevný bod $(λfx.Sfx)$:
+			$$ Y(λfx.Sfx) = (λf.(λx.f(xx))(λx.f(xx)))(λfx.Sfx) \overset{α}\rightarrow_β^* (λxy.Sxxy)(λxy.Sxxy). $$
+			Tedy získáváme $F = (λxy.Sxxy)(λxy.Sxxy)$ a opravdu,
+			$$ FX \rightarrow_β^2 S(λxy.Sxxy)(λxy.Sxxy)X = SFX. $$
+		\end{dukazin}
+	\end{priklad}
+
+	\begin{priklad}[5a $SIIx$]
+		Zjednodušte $SIIx$.
+
+		\begin{reseni}
+			$$ SIIx \rightarrow_β^3 Ix(Ix) \rightarrow_β^2 xx. $$
+		\end{reseni}
+	\end{priklad}
+
+	\begin{priklad}[6b]
+		Dokažte: Kombinátor $Z = V V V V$ , kde $V = λehlo.o(hello)$, je kombinátor pevného bodu.
+		
+		\begin{dukazin}
+			Mějme $ZF$, tedy $VVVVF$. Aplikujme (4krát) $β$ pravidlo na první výraz (první tři parametry jsou $V$, čtvrtý parametr je $F$). Dostaneme $F(VVVVF)$, což je $F(ZF)$.
+		\end{dukazin}
+	\end{priklad}
+\pagebreak
+	\begin{priklad}[6c2]
+		Platí $Y(SI) \rightarrow_β^* \Theta$ (pro $Y$ z přednášky).
+
+		\begin{dukazin}[Ano.]
+			$$ Y(S I) \rightarrow_β (λx.S I(xx))(λx.S I(xx)) \rightarrow_β^{2\cdot 2} (λx.(λy.(Iy)(xxy)))(λx.(λy.(Iy)(xxy))) \rightarrow_β^{2\cdot 1} $$
+			$$ \rightarrow_β^{2\cdot 1} (λxy.y(xxy))(λxy.y(xxy)) = AA = \Theta. $$
+		\end{dukazin}
+	\end{priklad}
+
+	\begin{priklad}[6.1]
+		Najděte příklady termů:
+		\begin{itemize}
+			\item dvojice termů, které ukazují, že relace $\rightarrow_β$, $\rightarrow_β^*$, $=_β$ jsou různé;
+			\item term v $β$-normálním tvaru;
+			\item silně normalizovatelné, ale ne v $β$-normálním tvaru;
+			\item normalizovatelné, ale ne silně normalizovatelné;
+			\item nejsou normalizovatelné.
+		\end{itemize}
+
+		\begin{reseni}
+			Například:
+			\begin{itemize}
+				\item $I(Ic) \rightarrow_β^* c$, ale ne $I(Ic) \rightarrow_β c$. Obdobně $c =_β I(Ic)$ (vyplývá z předchozího), ale ne $c \rightarrow_β^* I(Ic)$ ani $c \rightarrow_β I(Ic)$ (neboť konstanta je v normálním tvaru, tedy se redukuje pouze na sebe).
+				\item $c$ nebo $λx.x$.
+				\item $Ic$ lze redukovat pouze na $c$ (tedy každou redukční strategií se znormalizuje), ale není v $β$-normální formě.
+				\item $KIY$, neboť když budeme redukovat operátor pevného bodu, tak ten nám akorát bude vytvářet víc a víc $f$. Případně $KI((λx.xx)(λx.xx))$, kde se závorka redukuje sama na sebe.
+				\item $Y$ nebo $((λx.xx)(λx.xx))$.
+			\end{itemize}
+		\end{reseni}
+	\end{priklad}
+\pagebreak
+	\begin{priklad}[7a]
+		Ukažte, že v $λη$-kalkulu z $Fx = Gx$ plyne $F = G$.
+		
+		\begin{dukazin}
+			Použitím pravidla $ξ$ (6.~axiomu) dostaneme $λx.Fx = λx.Gx$. Na obě strany pak můžeme použít $η$, čímž dostaneme $F = λx.Fx = λx.Gx = G$ a z~tranzitivity (3.~axiomu) máme $F = G$.
+		\end{dukazin}
+	\end{priklad}
+
+	\begin{priklad}[7d.2]
+		Teorie $λη$ je extenzionální.
+
+		\begin{dukazin}
+			Mějme $M$ a $N$. Pokud pro každé $L$ je $λη \vdash ML = NL$, pak to platí i pro $L = x$, tedy podle předchozího příkladu je $F = G$.
+		\end{dukazin}
+	\end{priklad}
+
+	\begin{priklad}[8 $\implies$ 9c]
+		Převeďte do kombinatorické logiky $λxy.yx$.
+
+		\begin{poznamkain}[8]
+			\begin{itemize}
+				\item[a.1)] $λx.x = SKK$.
+				\item[a.2)] $λx.M = KM$ pro $x \notin \text{FV}(M)$.
+				\item[a.3)] $λx.MN = S(λx.M)(λx.N)$.
+			\end{itemize}
+		\end{poznamkain}
+
+		\begin{reseni}
+			Vnitřek je $λy.yx$, tedy 8a.3) (pro $x \coloneq y$, $M \coloneq y$ a $N \coloneq x$), tudíž $S(λy.y)(λy.x)$, což je $S$ následované 8a.1) (pro $x \coloneq y$) a 8a.2) (pro $x \coloneq y$ a $M \coloneq x$), tedy $S(SKK)(Kx)$.
+
+			Tedy máme $λx.S(SKK)(Kx)$, což je zase 8a.3) (pro $M \coloneq S(SKK)$ a $N \coloneq Kx$), tudíž $S(λx.S(SKK))(λx.Kx)$.
+
+			Druhá závorka ($λx.Kx$) je taktéž 8a.3) a potom 8a.2) a 8a.1), tedy $S(KK)(SKK)$. První závorka ($λx.S(SKK)$) je 8a.2), tudíž $K(S(SKK))$. Dohromady
+			$$ S(K(SKK))(S(KK)(SKK)). $$
+		\end{reseni}
+
+		\begin{dukazin}[Zkouška]
+			$$ S(K(S(SKK)))(S(KK)(SKK))xy =_{CL} K(S(SKK))x(S(KK)(SKK)x)y =_{CL} $$
+			$$ =_{CL} S(SKK)(KKx(SKKx))y =_{CL} SKKy(Kxy) =_{CL} yx. $$
+		\end{dukazin}
+
+		\begin{reseni}[Druhá možnost]
+			Přepíšeme $λxy.yx$ do tvaru $λx.(λfy.M)(N)$, kde $M$ neobsahuje $x$ (jinak bychom si přihoršili o $f$) a $N$ není $λy.yx$ (to bychom se zacyklili). Tedy řekněme $N=λy.x$ (někde $x$ vzít musíme) a $M=y(fy)$ (dostaneme to, co chceme). Tedy podle a.3) je to $S(λxfy.y(fy))(λxy.x)$. $S$ umíme, druhá závorka je $K$, což také umíme. První závorka je skoro $S$, jen se potřebujeme zbavit první proměnné. To uděláme tak, že se první proměnně zbavíme pomocí $K(…)$ a místo ní pak vložíme identitu ($SKK$), která zmizí. Tedy $K(S(SKK))$. Dohromady $S(K(SKK))K$
+		\end{reseni}
+
+		\begin{dukazin}[Zkouška]
+			$$ S(K(S(SKK)))Kxy =_{CL} K(S(SKK))x(Kx)y =_{CL} S(SKK)(Kx)y =_{CL} $$
+			$$ =_{CL} SKKy(Kxy) =_{CL} yx. $$
+		\end{dukazin}
+	\end{priklad}
+
+	\begin{priklad}[10b]
+		Dokažte:
+		$$ I \# K. $$
+
+		\begin{dukazin}
+			Kdyby $I = K$, pak pro všechna $s$, $t$ máme (ze 4.~axiomu) $Is=Ks$ a $It=Kt$ a (znovu ze 4.~axiomu) máme $Ist=Kst$ a $Its=Kts$, což se zredukuje na $st=s$ a $st=t$, tedy (3.~axiom) $s = t$.
+		\end{dukazin}
+	\end{priklad}
+	
+	\begin{priklad}[10e]
+		Dokažte:
+		$$ s \# t \leftrightarrow λ + (s=t) \vdash K = K_*. $$
+
+		\begin{dukazin}
+			„$\rightarrow$“: triviálně z definice $\#$. „$\leftarrow$“: Pokud $K = K_*$, pak pro libovolné termy $a$, $b$ je $Ka=K^*a$ a $Kab=K^*ab$ (z dvou aplikací axiomu 4), což se zredukuje na $a = b$, tedy přidáním $s=t$ (to implikuje podle předpokladu přidání $K = K_*$) dostaneme spornou teorii.
+		\end{dukazin}
+	\end{priklad}
+\pagebreak
+	\begin{priklad}[11a]
+		Převeďte na superkombinátor: $λ fgh.f\(λ y.g(hy)\)$.
+
+		\begin{reseni}
+			$$ λ fgh.f\(\(λ \tilde g \tilde h y . \tilde g (\tilde h y)\)gh\) $$
+			nebo
+			$$ \(λ xfgh.f(xgh)\)\(λ ghy . g(hy)\). $$
+
+			Z druhých tří axiomů víme, že můžeme $\beta$ aplikovat uvnitř, a aplikací $\beta$ na vlnkovaté věci dostaneme původní výraz.
+		\end{reseni}
+	\end{priklad}
+
+	\begin{priklad}[13d]
+		Najděte term $A_{\text{succ}}$, pro který platí: $A_{\text{succ}} c_n = c_{n+1}$.
+
+		\begin{reseni}
+			Pokud jsme dávali pozor na přednášce, pak je nejjednodušší řešení $A_{\text{succ}} = A_+c_1 \rightarrow_β^* λypq.p(ypq)$. (Pokud nyní za $y$ dosadíme $c_n$, pak uvnitř závorky bude $n$ aplikací $p$ na $q$ a zvenku jsme na to aplikovali ještě jednou $p$. Tedy jsme dostali $c_{n+1}$).
+
+			Obdobně můžeme $A_{\text{succ}}$ definovat jako $λypq.yp(pq)$, jelikož tady (po dosazení $y = c_n$) naopak $n$-krát aplikujeme $p$ na $px$, tedy máme také $c_{n+1}$.
+		\end{reseni}
+	\end{priklad}
+\pagebreak
+	\begin{priklad}[14a]
+		Zformulujte a dokažte analogickou větu k „Double Fixed Point Theorem“ pro $n$ termů v $n$ (vzájemně závislých) rovnicích.
+
+		\begin{reseni}[Pro zjednodušení výrazů v důkazu mám $n+1$ termů v $n+1$ rovnicích.]
+			$$ \forall A_0, …, A_n\ \exists X_0, …, X_n\ \forall i \in \{0, …, n\}: X_i = A_i X_0 X_1 … X_n. $$
+		\end{reseni}
+
+		\begin{dukazin}
+			Nechť
+			$$ F = λx.[$$
+			$$ A_0 (x \text{ true})(x \text{ false} \text{ true})…(c_n P^- x \text{ true}), [ $$
+			$$ … $$
+			$$ A_{n-1} (x \text{ true})(x \text{ false} \text{ true})…(c_n P^- x \text{ true}), [ $$
+			$$ A_n (x \text{ true})(x \text{ false} \text{ true})…(c_n P^- x \text{ true}), \text{cokoliv} $$
+			$$ ] $$
+			$$ … $$
+			$$ ] $$
+			$$ ]. $$
+			Z věty o pevném bodě máme $Z$ takové, že $FZ = Z$. Položme
+			$$ X_i = c_i P^- Z \text{ true} = Z \underbrace{\text{ false } … \text{ false}}_{i\text{-krát}} \text{ true}. $$
+			Potom
+			$$ X_i = c_i P^- Z \text{ true} = c_i P^- (FZ) \text{ true} = A_i (c_0 P^- Z \text{ true})…(c_n P^- Z \text{ true}) = A_i X_0 X_1 … X_n. $$
+		\end{dukazin}
+	\end{priklad}
+\end{document}
+

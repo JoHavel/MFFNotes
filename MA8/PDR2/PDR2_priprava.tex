@@ -1,0 +1,1171 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+\begin{document}
+Z poznámek spolužáků\vspace{-2em}
+\section*{Vstupní informace}
+\begin{veta}[Lebesgue]
+	TODO?
+\end{veta}
+
+\begin{veta}[Luzinova]
+	$Ω \subset ®R^d$ měřitelná, $f \in L^1_{loc}(Ω)$. Pak $\forall ε > 0\ \exists U \subseteq Ω, |U| ≤ ε: f \in C(Ω \setminus U)$.
+\end{veta}
+
+\begin{veta}[Egorova]
+	$Ω \subset ®R^d$ měřitelná, $f_n, f \in L^1_{loc}(Ω)$, $f_n \rightarrow f$ v $L^1_{loc}(Ω)$. Pak $\forall ε > 0\ \exists U \subseteq Ω, |U| < ε: f_n \rightarrow f$ v $C(Ω \setminus U)$.
+\end{veta}
+
+\begin{veta}[Lebesgueova o majorantě]
+	$Ω \subset ®R^d$ měřitelná, $f_n \rightarrow f$ skoro všude na $Ω$, $g \in L^1(Ω)$ taková, že $|f_n| ≤ g$ skoro všude na $Ω$. Pak $\lim_{n \rightarrow ∞} \int_Ω f_n = \int_Ω f$.
+\end{veta}
+
+\begin{veta}[Vitali]
+	$Ω \subseteq ®R^d$ měřitelná a omezená, $f_n \rightarrow f$ skoro všude na $Ω$, $\{f_n\}$ stejnoměrně equi-integrovatelná\footnote{$\forall ε > 0\ \exists δ > 0\ \forall n\ \forall U \subset Ω, |U| < δ: \int_U |f_n| ≤ ε$.}. Pak $\lim_{n \rightarrow ∞} \int_Ω f_n = \int_Ω f$.
+\end{veta}
+
+\begin{veta}[Fatou]
+	$Ω \subset ®R^d$ měřitelná a omezená, $f_n \rightarrow f$ skoro všude na $Ω$, $\{f_n\}$ stejnoměrně equi-integrovatelná, $f_n ≥ 0$. Pak $\liminf \int_Ω f_n ≥ \int_Ω f$.
+\end{veta}
+
+\begin{definice}[Regularizační jádro, regularizace funkce]
+	$μ \in C_0^∞(B_1(¦o))$ nezáporná, radiálně symetrická, $\int_{B_1(¦o)} μ(x) dx = 1$.
+
+	$μ_ε(x) \coloneq \frac{1}{ε^d} μ\(\frac{x}{ε}\)$.
+
+	$f \in L^p(Ω)$, $f$ rozšíříme hodnotou 0 na $®R^d \setminus Ω$. Pak definujeme $f_ε \coloneq μ_ε * f = \int_{®R^d} μ_ε(x - y) f(y) dy$.
+
+	\begin{dusledekin}
+		$f_ε \in C_0^∞(®R^d)$, $f_ε \rightarrow L^p(Ω)$ pro $p \in [1, ∞)$.
+
+		Pro $p = ∞$ je $f_ε \rightarrow f$ skoro všude a $f_ε \rightharpoonup^* f$ v $L^∞(Ω)$.
+	\end{dusledekin}
+\end{definice}
+
+\begin{veta}[Reflexivní, separabilní, slabá a slabá$^*$ konvergence]
+	$L^p(Ω)$ je Banachův, separabilní pro $p \in [1, ∞)$, reflexivní pro $p \in (1, ∞)$.
+
+	Pro $\{f_n\}$ omezenou v $L^p(Ω)$ a $Ω \subset ®R^d$ měřitelnou platí:
+	\begin{itemize}
+		\item $p \in (1, ∞)$: Pak $\exists$ podposloupnost $f_{n_k}$ a $f$ tak, že $f_{n_k} \rightharpoonup f$ v $L^p(Ω)$.
+		\item $p = ∞$: Pak $\exists$ podposloupnost a $f$ tak, že $f_{n_k} \rightharpoonup^* f$ v $L^∞(Ω)$.
+		\item $p = 1$: Pak $\exists$ podposloupnost a $f$ tak, že $f_{n_k} \rightharpoonup^* f$ v $©M(\overline{Ω})$.
+	\end{itemize}
+\end{veta}
+
+\begin{veta}[Shauderova o pevném bodu]
+	$F: X \rightarrow X$, kde $X$ je Banachův prostor a $F$ spojitá a kompaktní, $U$ konvexní, neprázdná a uzavřená v $X$ tak, že $F(U) \subset U$. Pak $\exists x \in U: F(x) = x$.
+\end{veta}
+
+\begin{veta}[Brouwerova o pevném bodu]
+	$F: ®R^d \rightarrow ®R^d$ spojitá, $U \subseteq ®R^d$ uzavřená konvexní neprázdná tak, že $F(U) \subseteq U$. Pak $\exists x \in U: F(x) = x$.
+\end{veta}
+
+\begin{veta}[Nemytskii]
+	$Ω \subset ®R^d$ otevřená, $N \in ®N$, $f: Ω \times ®R^N \rightarrow ®R$ Caratheodorova funkce\footnote{$f(·, y)$ měřitelná $\forall y \in ®R^N$, $f(x, ·)$ spojitá pro skoro všechna $x \in Ω$.} taková, že
+	$$ |f(x, y)| ≤ g(x) + c·\sum_{i=1}^N |y_i|^{p_i / p}, \qquad p_i, p \in [1, ∞), g \in L^p(Ω). $$
+	Pak $\forall ¦u: (u_1, …, u_N)$, $u_i \in L^{p_i}(Ω)$ je funkce $f(x, ¦u(x))$ měřitelná a $u \mapsto f(·, ¦u(·))$ je spojitá z $L^{p_1} \times … \times L^{p_N}(Ω)$ do $L^p(Ω)$.\footnote{Tj. pokud $\forall i: u_i^n \rightarrow u_i$ v $L^{p_i}$, pak $\lim_{n \rightarrow ∞} \int_Ω |f(·, u_1^n(·), …, u_N^n(·)) - f(·, u_1(·), …, u_N(·))|^p = 0$.}
+
+	\begin{dukazin}
+		TODO? (Nemusíme umět? Jen důkaz nějakého výsledku někde dále…)
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}
+	$f_n$ omezená posloupnost v $L^1(Ω)$, pak následující je ekvivalentní:
+	\begin{itemize}
+		\item $\exists n_k: f_{n_k} \rightharpoonup f$ v $L^1(Ω)$;
+		\item $\{f_n\}$ stejnoměrně equi-integrovatelná;
+		\item $\exists F: ®R \rightarrow ®R$ tak, že $\frac{F(s)}{s} \rightarrow ∞$ pro $s \rightarrow ∞$ a $\sup_n \int_Ω F(f_n(x)) dx < ∞$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{veta}[Rademacher]
+	Lipschitzovské funkce mají derivaci skoro všude.
+\end{veta}
+
+\section{Sobolevovy prostory}
+\begin{veta}[Lokální aproximace $W^{k, p}$ hladkými funkcemi]
+	$p \in [1, ∞)$, $Ω \subset ®R^d$ otevřená, $f \in W^{k, p}(Ω)$. Nechť $Ω_ε \coloneq \{x \in Ω: B(x, ε) \subseteq Ω\}$. Pak
+	\begin{enumerate}
+		\item $D^α(f_ε) = (D^α f)_ε$ v $Ω_ε$, $\forall |α| ≤ k$;
+		\item $\forall Ω' \subseteq \overline{Ω'} \subseteq Ω$ otevřenou: $f_ε \rightarrow f$ v $W^{k, p}(Ω')$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		$$ \frac{\partial}{\partial x_i}(f_ε(x)) \overset{\text{def}}= \frac{\partial}{\partial x_i} \(\int_Ω μ_ε(x - y) f(y) dy\) \overset{\text{Lebesgue major.}}= \int_{®R^d} \frac{\partial}{\partial x_i} (μ_ε(x - y) f(y)) dy = $$
+		$$ \int_{®R^d} f(y) \frac{\partial}{\partial x_i}(μ_ε(x - y)) dy = - \int_{®R^d} f(y) \frac{\partial}{\partial y_i}(μ_ε(x - y)) dy = $$
+		$$ = -\int_{B_ε(x)} f(y) \frac{\partial}{\partial y_i} (μ_ε(x - y)) dy = - \int_Ω f(y) \frac{\partial}{\partial y_i}(μ_ε(x - y)) dy \overset{\text{def}}= $$
+		$$ = \int_Ω μ_ε(x - y) \frac{\partial f}{\partial y_i}(y) dy = \(\frac{\partial f}{\partial y_i}\)_ε(x). $$
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		Nechť $ε_0 > 0$. $\forall ε < ε_0: Ω' \subseteq Ω_ε$. Pak $f_ε \rightarrow f$ v $L^p(Ω_{ε_0})$, tedy i v $L^p(Ω')$. Navíc $\(\frac{\partial f}{\partial x_i}\)_ε = \frac{\partial f_ε}{\partial x_i} \rightarrow \frac{\partial f}{\partial x_i}$ v $L^p(Ω_{ε_0})$, tedy i v $L^p(Ω')$.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		Pro $p = ∞$ v důkazu výše selhává argument $u_ε \rightarrow u$ v $L^∞(Ω)$. Neboť limita hladkých musí být hladká, ale $L^∞(Ω)$ obsahuje i nehladké funkce.
+	\end{poznamkain}
+\end{veta}
+
+\begin{veta}[Skládání lipschitzovské a sobolevovské funkce]
+	$Ω \subset ®R^d$ otevřená, omezená, $f: ®R \rightarrow ®R$ lipschitzovská, $u \in W^{1, p}(Ω)$, kde $p \in [1, ∞]$. Pak $(f(u) - f(0)) \in W^{1, p}(Ω)$ a $\frac{\partial f}{\partial x_i}(u) = f'(u)·\frac{\partial u}{\partial x_i}·χ_{\{x: u(x) \notin S_f\}}$, kde $S_f \coloneq \{t \in ®R | \nexists f'(t)\}$ jsou singulární body $f$.
+
+	\begin{poznamka}
+		Z PDR1 víme, že $f \circ u \in W^{1, 2}$, neboť $\frac{1}{h^2} |f(u(x + h·e_i)) - f(u(x))|^2 ≤ \frac{L^2}{h^2} | u(x + h·e_i) - u(x)|^2$, která je podle PDR1 integrovatelná.
+	\end{poznamka}
+
+	\begin{dukazin}[$f \in C^1$]
+		Definujme $f_{LIP} \coloneq \sup_{x≠y} \frac{|f(x) - f(y)|}{|x - y|} < ∞$. Platí $\sup|f'(x)| ≤ f_{LIP}$. Pak $|f(x) - f(0)| ≤ f_{LIP}·|u(x) - 0|$ a $\int_Ω |f(x) - f(0)|^p ≤ \int_Ω f_{LIP}^p |u - 0|^p < ∞$. Tedy $f(u) - f(0) \in L^p(Ω)$.
+
+		Ukážeme $\frac{\partial f(u)}{\partial x_i} = f'(u)·\frac{\partial u}{\partial x_i}$ (řetízkové pravidlo pro $C^1$, kde ale $u$ není nutně $C^1$). Z toho pak
+		$$ \int_Ω \left|\frac{\partial f(u)}{\partial x_i}\right|^p = \int_Ω|f'(u)|^p·\left|\frac{\partial u}{\partial x_i}\right|^p ≤ f_{LIP}^p \int_Ω |\nabla u|^p < ∞, $$
+		tedy $f(u) - f(0) \in W^{1, p}$.
+	\end{dukazin}
+
+	\begin{dukazin}[Řetízkové pravidlo]
+		$u_ε$ hladká, tedy $\frac{\partial f(u_ε)}{\partial x_i} = f'(u_ε)·\frac{\partial u_ε}{\partial x_i}$ v $Ω_ε$. $φ \in C_0^∞(Ω)$, $ε_0 > 0$ tak, že $\supp φ \subseteq Ω_{ε_0}$. Pak
+		$$ \int_Ω f(u) \frac{\partial φ}{\partial x_i} dx = \lim_{ε \rightarrow 0^+} \int_Ω f(u_ε) \frac{\partial φ}{\partial x_i} dx = $$
+		$$ = - \lim_{ε \rightarrow 0^+} \int_Ω f'(u_ε) \frac{\partial u_ε}{\partial x_i} φ dx \overset{\text{Vitali}}= $$
+		$$ = - \int_Ω f'(u) \frac{\partial u}{\partial x_i} φ dx. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$f(u) = u_+ \coloneq \max(0, u)$]
+		Definujme $f_ε(u) = \sqrt{u^2 + ε^2} - ε$ (pouze v tomto důkazu) pro $u ≥ 0$ a nula jinak. Pak $f_ε(u) \rightarrow f(u)$ v $L^p(Ω)$ a navíc $f'_ε(u) = \frac{u}{\sqrt{u^2 + ε^2}} \rightarrow 1$, je-li $u > 0$ a $0$ jinak. Dále
+		$$ \frac{\partial f_ε(u)}{\partial x_i} = f_ε'(u) \frac{\partial u}{\partial x_i} \rightarrow \frac{\partial u}{\partial x_i} χ_{\{u > 0\}} = \frac{\partial u_+}{\partial x_i}. $$
+		Platí $\int_Ω f_ε(u) \frac{\partial φ}{\partial x_i} = - \int_Ω f'_ε(u) \frac{\partial u}{\partial x_i} φ$.
+		$$ \int_Ω f(u) \frac{\partial φ}{\partial x_i} = \lim_{ε \rightarrow 0_+} \int_Ω f_ε(u) \frac{\partial φ}{\partial x_i} = - \lim_{ε \rightarrow 0_+} \int_Ω f'_ε(u) \frac{\partial u}{\partial x_i} φ = - \int_Ω \frac{\partial u}{\partial x_i} χ_{\{u > 0\}} φ \implies $$
+		$$ \implies \frac{\partial f}{\partial x_i} = \frac{\partial u}{\partial x_i}χ_{\{u > 0\}} \implies \nabla u_+ = \nabla u χ_{\{u > 0\}} $$
+		analogicky $\nabla u_- = \nabla u χ_{u < 0}$. $\nabla u = \nabla u_+ + \nabla u_- = \nabla χ_{u ≠ 0} \implies \nabla u = 0$ skoro všude na $\{u = 0\}$ $\implies$ $\nabla u = 0$ skoro všude na $\{u = c\}$ $\forall c \in ®R$.
+	\end{dukazin}
+
+	\begin{dukazin}[$f$ obecná]
+		$f_ε \in C^1$, $f_ε \rightarrow f$ v $C(®R)$, $f_ε'(s) \rightarrow f'(s)$ $\forall s \notin S_f$ a $\|f'_ε\|_∞ ≤ f_{LIP}$. Platí
+		$$ \int_Ω f(u) \frac{\partial φ}{\partial x_i} = \lim_{ε \rightarrow 0_+} f_ε(u) \frac{\partial φ}{\partial x_i} = -\lim_{ε \rightarrow 0_+} \int_Ω \underbrace{f'_ε(u)}_{\in L^∞} \underbrace{\frac{\partial u_i}{\partial x_i}φ}_{\in L^1} = -\int_Ω f'(u) \frac{\partial u}{\partial x_i} χ_{u \notin S_f}. $$
+		(Platí $f_ε'(u) \frac{\partial u}{\partial x_i} \rightarrow f'(u) \frac{\partial u}{\partial x_i} χ_{u \notin S_f}$, neboť pro $u \notin S_f$ je to jasné, pro $S_f$ spočetnou rozepsáním na sumu přes $u^{-1}(c)$ pro $c \in S_f$: $\int_Ω f'(u) \frac{\partial u}{\partial x_i} χ_{u \in S_f} = 0$ a pro $S_f$ nespočetnou neřešíme (viz další poznámku)).
+	\end{dukazin}
+
+	\begin{poznamkain}[$|\nabla u|·χ_{\{u \in S_f\}} = 0$ skoro všude]
+		Idea: v 1D cca:
+		$$ \int_0^x u'(t) χ_{\{u \in S_f\}} dt \eqcolon F(x) "=" \int χ_{u \in S_f} du = 0 \implies $$
+		$\implies$ $F(x) = 0$ $\implies$ $u'χ = 0$ skoro všude.
+
+		Obecný případ: $u \in W^{1, 1}(Ω) \implies u(x_1, …, x_{d-1}, s)$ je AC vzhledem k $s$ dle Bepa–Levi charakterizace.
+	\end{poznamkain}
+\end{veta}
+
+\begin{veta}[Charakterizace $W^{1, p}$ pomocí diferencí]
+	$Ω \subset ®R^d$ omezená a otevřená, $Ω_δ \coloneq \{x \in Ω | B(x, δ) \subset Ω\}$, $u_i^n(x) \coloneq \frac{1}{n}(u(x + h·e_i) - u(x))$, $p \in [1, ∞]$. Pak
+	\begin{enumerate}
+		\item $u \in W^{1, p}(Ω) \implies \forall δ\ \forall h < \frac{δ}{2}: \|u_i^h\|_{L^p(Ω_δ)} ≤ \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)} ≤ k$;
+		\item $p \in (1, ∞]$ a $\sup_{δ > 0} \sup_{h < \frac{δ}{2}} \|u_i^h\|_{L^p(Ω_δ)} ≤ K \implies \exists \frac{\partial u}{\partial x_i} \land \left\|\frac{\partial u}{\partial x_i}\right\|_{L^p(Ω)} ≤ K$;
+		\item $p \in [1, ∞)$, $u \in W^{1, p}(Ω)$. Pak $u_i^h \overset{h \rightarrow 0_+}\longrightarrow \frac{\partial u}{\partial x_i}$ v $L^1_{loc}(Ω)$.
+	\end{enumerate}
+
+	\begin{dukazin}[2.]
+		Fix $Ω' \subseteq \overline{Ω'} \subseteq Ω$ ($\exists_δ: Ω' \subset Ω_δ$). Dle předpokladu $\|u_i^n\|_{L^p(Ω')} ≤ K$. Pokud je $p \in (1, ∞)$, pak $L^p$ je reflexivní, tedy existuje $k_n$, že $u_i^{k_n} \rightharpoonup \overline{u_i}$ v $L^p(Ω')$. Jinak ($p = ∞$) má $L^∞$ separovatelný preduál $\implies$ $\exists k_n: u_i^{k_n} \rightharpoonup^* \overline{u_i}$ v $L^∞(Ω')$.
+
+		Norma v Banachově prostoru je lsc $\implies$ $\|\overline{u_i}\|_{L^p(Ω')} ≤ \liminf \|u_i^{k_n}\|_{L^p(Ω')} ≤ K$. Limitou $Ω' \nearrow Ω$ dostaneme $\|\overline{u_i}\|_{L^p(Ω)} ≤ K$ ($Ω'$ zmenšíme spočetněkrát a při každém zmenšení vybereme z $u_i^{k_n}$ konvergující podposloupnost, tedy stále $u_i^{k_n} \rightarrow \overline{u_i}$).
+
+		„$\overline{u_i} = \frac{\partial u}{\partial x_i}$“: zvolme $φ \in C_0^∞(Ω)$ a nalezněme $h_0$: $\supp φ \subset Ω_{h_0}$, že $h ≤ \frac{h_0}{2}$, pak
+		$$ \int_Ω \overline{u_i}(x) φ(x) dx \overset{\text{slabé limity}}= \lim_{h_n \rightarrow 0} \int_Ω \frac{u(x + h_n·e_i) - u(x)}{h_n} φ(x) dx = $$
+		$$ = - \lim \int_Ω \frac{φ(x) - φ(x - h_n·e_i)}{h_n} u(x) dx = -\int_Ω u \frac{\partial φ}{\partial x_i} dx. $$
+	\end{dukazin}
+
+	\begin{dukazin}[1]
+		Ať $u \in W^{1, p}(Ω)$. $u_ε \rightarrow u$ v $W^{1, p}_{loc}(Ω)$ pro $p ≠ ∞$ a $u_ε \rightharpoonup^* u$ v $W^{1, ∞}_{loc}(Ω)$ pro $p = ∞$. Dále platí $D^α u_ε = (D^α u)_ε$ v $Ω_ε$ a $D^α u_ε \rightarrow D^α u$ v $L^∞_{loc}(Ω)$ pro $p ≠ ∞$.
+
+		„$p ≠ ∞$“: pro $x \in Ω_ε$, $h ≤ \frac{δ}{2}$:
+		$$ \frac{u_ε(x + h·e_i) - u_ε(x)}{h} = \frac{1}{h} \int_0^1 \frac{d}{dt} u_ε(x + h·t·e_i)dt = $$
+		\begin{equation}\label{eqn:part1}
+			=\frac{1}{h} \int_0^1 \frac{\partial u_ε}{\partial x_i}(x + h·t·e_i)·\frac{\partial}{\partial t}(x_i + h t) = \int_0^1 \frac{\partial u_ε}{\partial x_i}(x + h·e_i·t) dt.\tag{\ensuremath{*}}
+		\end{equation}
+		Pak
+		$$ \int_{Ω_δ} \left| \frac{\partial u_ε(x + h·e_i) - u_ε(x)}{h}\right|^p dx ≤ \int_{Ω_δ} \left|\int_0^1 \frac{\partial u_ε}{\partial x_i}(x + h·e_i·t) dt\right|^p dx \overset{\text{Jensen}}≤ $$
+		$$ ≤ \int_{Ω_δ} \int_0^1 \left|\frac{\partial u_ε}{\partial x_i}(x + h·e_i·t)\right|^p dt dx \overset{\text{Fubini}} = \int_0^1 \int_{Ω_δ} \left|\frac{\partial u_ε}{\partial x_i}(x + h·e_i·t)\right|^p dx dt ≤ $$
+		$$ ≤ \int_0^1 \int_{Ω_{δ/2}} \left|\frac{\partial u_ε}{\partial x_i}(x)\right|^p dx dt. $$
+		$$ ε \rightarrow 0_+ \overset{\text{Lebesgue}}\implies \int_{Ω_δ} \left|\frac{u(x + h·e_i) - u(x)}{u}\right|^p ≤ \int_{Ω_{δ / 2}} \left|\frac{\partial u}{\partial x_i}\right|^p dx ≤ \int_Ω \left|\frac{\partial u}{\partial x_i}\right|^p dx. $$
+
+		„$p = ∞$“: $p$ výše pošleme do $∞$ $\implies$ $\|u_i^h\|_{L^∞(Ω_δ)} ≤ \left\|\frac{\partial u}{\partial x_i}\right\|_{L^∞(Ω)}$.
+	\end{dukazin}
+
+	\begin{dukazin}[3]
+		Stačí $u_i^h$ Cauchy v $L_{loc}^p(Ω)$.
+		$$ u_i^{h_m}(x) - u_i^{h_n}(x) \overset{\ref{eqn:part1}}= \int_0^1 \frac{\partial u}{\partial x_i}(x + h_m·t·e_i) - \frac{\partial u}{\partial x_i}(x + h_n·e_i·t) dt. $$
+		Pak
+		$$ \int_{Ω_δ} |u_i^{h_m}(x) - u_i^{h_n}(x)|^p dx \overset{\text{Jensen + Fubini}}≤ $$
+		$$ ≤ \int_0^1 \int_Ω \left|\frac{\partial u}{\partial x_i}(x + h_m·t·e_i) - \frac{\partial u}{\partial x_i}(x + h_n·t·e_i)\right|^p dx dt ≤ ε $$
+		pro dostatečně malá $h_m$ a $h_n$ (Lebesgueova o majorantě).
+	\end{dukazin}
+\end{veta}
+
+\subsection{Vlastnosti až k hranici}
+\begin{lemma}[Rozklad jednotky I]
+	$Ω \subset ®R^d$ otevřená, $\{V_i\}_{i \in I}$ ($I$ obecně nespočetná) otevřené pokrytí $Ω$. Pak $\exists$ spočetný systém funkcí $\{φ\}$ tak, že:
+	\begin{itemize}
+		\item $φ_j \in C_0^∞(®R^d)$;
+		\item $\forall j\ \exists i: \supp φ_j \subset V_i$;
+		\item $0 ≤ φ ≤ 1$;
+		\item $\forall x \in Ω: \sum_j φ_j(x) = 1$.
+	\end{itemize}
+\end{lemma}
+
+\begin{lemma}[Rozklad jednotky II]
+	$\overline{Ω}$ kompaktní $\{V_i\}_{i=1}^N$ otevřené pokrytí $\overline{Ω}$. Pak $\exists φ_i \in C_0^∞(V_i)$, $0 ≤ φ_i ≤ 1$ tak, že $\forall x \in Ω: \sum_1^N φ_i(x) = 1$.
+\end{lemma}
+
+\begin{veta}[Aproximace hladkými funkcemi]
+	$Ω \subset ®R^d$ otevřená a omezená, $p \in [1, ∞)$. Pak $\forall u \in W^{1, p}(Ω)$:
+	\begin{enumerate}
+		\item $\exists \{u_n\} \subset C^∞(Ω)$: $u_n \rightarrow u$ v $W^{1, p}(Ω)$;
+		\item pokud navíc $Ω \in C^0$, pak $\exists \{u_n\} \subset C^∞(\overline{Ω})$: $u_n \rightarrow u$ ve $W^{1, p}(Ω)$.
+	\end{enumerate}
+
+	\begin{dukazin}[1.]
+		Definujme $Ω_i \coloneq \{x \in Ω | \dist(x, \partial Ω) > \frac{1}{i}\}$, pak $Ω_i$ je otevřená, $\forall i ≤ j: Ω_i \subseteq Ω_j$, $\bigcup_{i=1}^∞ Ω_i = Ω$.
+
+		Definujme $V_i \coloneq Ω_{i+2} \setminus \overline{Ω_i} = \{x \in Ω | \dist(x, \partial Ω) \in (1 / (i + 2), 1 / i)\}$. A protože $Ω_1$ není pokryta, přidejme ještě otevřenou $V_0 \subset \overline{V_0} \subset Ω$ takovou, že $\bigcup_{i=0}^∞ V_i = Ω$.
+		
+		Ať $u_j = u·φ_j$, kde  $φ_j$ jsou z Rozkladu jednotky I. Pak $\exists i: \supp u_j \subset V_i$. Z lokální aproximace hladkými funkcemi existují $u_j^n \in C_0^∞(®R^d): \|u_j - u_j^n\|_{W^{1, p}(Ω)} ≤ \frac{1}{n·2^j}$.
+
+		Definujme $u_n = \sum_{j=0}^∞ u_j^n$. Nechť $K \subset Ω$ je kompaktní, pak
+		$$ \|u - u_n\|_{W^{1, p}(K)} = \left\|\sum_j u φ_j - \sum_j u_j^n\right\|_{W^{1, p}(K)} = \left\|\sum_j(u_j - u_j^n)\right\|_{W^{1, p}(K)} ≤ $$
+		$$ ≤ \sum_j \|u_j - u_j^n\|_{W^{1, p}(Ω)} ≤ \sum_j \frac{1}{n·2^j} ≤ \frac{2}{n}. $$
+		To nezávisí na $K$, tedy pro $K \nearrow Ω$ dostáváme $\|u - u_n\|_{W^{1, p}(Ω)} ≤ \frac{2}{n}$, tedy $u_n \rightarrow u$ v $W^{1, p}(Ω)$.
+	\end{dukazin}
+
+	\begin{dukazin}[2.]
+		$\tilde V_n = T_n(V_n^+ \cup Λ_n \cup V_n^-)$ dohromady pokrývají hranici a zbytek pokryjeme pomocí $\tilde V_{M+1} \subset \overline{\tilde V_{m+1}} \subset Ω$. Tedy $\overline{Ω} \subset \bigcup_{n=1}^{M+1} \tilde V_n$.
+
+		Definujme $u_i = u φ_i \in W^{1, p}(Ω)$, kde $φ_i$ jsou z Rozkladu jednotky II. Pak $u = \sum_1^{M+1} u_i$.
+
+		Nyní je cílem $\forall ε > 0$ najít $u_i^ε \in C^∞(\overline{Ω})$ takové, že $\|u_i - u_i^ε\|_{W^{1, p}(Ω)} ≤ \frac{ε}{M + 1}$. (Potom $u_ε = \sum_{i=1}^{M+1} u_i^ε \in C^∞(\overline{Ω})$ a $\|u - u_ε\|_{W^{1, p}(Ω)} ≤ \sum \|u_i - u_i^ε\| ≤ ε$.)
+
+		BÚNO $T_i = \id$.
+		\begin{itemize}
+			\item $u_{M+1} \coloneq u·φ_{M+1} \in W^{1, p}(Ω)$, neb $\supp φ_{M+1} \subset \tilde V_{M+1} \subset \overline{V_{M+1}} \subset Ω$ a $u \in W^{1, p}(Ω)$. Pak definujeme $u_{M+1}^ε = u_{M+1} * μ_δ$, kde $δ$ je z druhé části lokální aproximace hladkými funkcemi.
+			\item $u_i \coloneq u·φ_i$. Definujme $u_i^h(x', x_d) \coloneq u_i(x', x_d + h)$. Vezměme $h > 0$ tak malé, abychom se nedostali mimo $\supp φ_i$ a že $\|u_i^h - u_i\|_{W^{1, p}(Ω)} = \|u_i^n - u_i\|_{W^{1, p}(V_1^+)} ≤ \frac{ε}{2(M + 1)}$.
+
+				Definujme $u_i^ε \coloneq u_i^h * μ_δ$, kde $δ$ je takové, abychom nevyjeli mimo $\supp u_i^h$ a aby $\|u_i^ε - u_i^h\|_{W^{1, p}(V_1^+)} ≤ \frac{ε}{2(M + 1)}$. Pak $\|u_i^ε - u_i\| ≤ \|u_i^ε - u_i^h\| + \|u_i^h - u_i\| ≤ \frac{ε}{2(M + 1)}·2$.
+
+				(Volba $δ$: stačí, aby pro $(x', x_d) \in Λ_1$ platilo: $(y', y_d) \in B(x', x_d, δ) \implies a(y') > y_d - h$:
+				$$ a(y') ≥ a(x') - |a(x') - a(y')| = x_d - |a(x') - a(y')| ≥ y_d - (|a(x') - a(y')| + |y_d - x_d|) $$
+				$> y_d - h $
+				pro vhodné $δ$ tak, aby $|x - y| < δ$, které existuje, neboť $a$ a vzdálenost jsou spojité.)
+		\end{itemize}
+		\vspace{-3em}
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}[Extension theorem]
+	$Ω \in C^{0, 1}$, $p \in [1, ∞]$. Pak $\exists$ spojitý lineární operátor $E: W^{1, p}(Ω) \rightarrow W^{1, p}(®R^d)$ a $c > 0$ tak, že $\forall u \in W^{1, p}(Ω)$:
+	\begin{enumerate}
+		\item $E u = u$ skoro všude na $Ω$;
+		\item $\exists B_R \subset ®R^d: E u = 0$ na $®R^d \setminus B_R$, tedy $E u$ má kompaktní support;
+		\item $\|E u\|_{W^{1, p}(®R^d)} ≤ c·\|u\|_{W^{1, p}(Ω)}$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		Jako dříve $u = \sum_1^{M+1} u_n$, kde $u_n = u · φ_n \in W^{1, p}$. $u_{M+1}$ rozšíříme na $®R^d \setminus Ω$ hodnotou 0 ($u_{M+1}$ má kompaktní nosič v $Ω$, tedy $u = 0$ na $\partial Ω$).
+
+		Pro $u_i$: BÚNO $T_i = \id$. Máme $u_i \in W^{1, p}(V_i^+)$. Definujeme $F_i: V_i \rightarrow \tilde V_i$, $F_i(x', x_d) \coloneq (x', x_d - a_i(x')) = (y', y_d)$. Platí $F_i(Λ_i) = (x_d, 0)$. Navíc $\det F_i = 1 = \det F_i^{-1}$.
+
+		Definujme $v_i(y) = u(F_i^{-1}(y)) \in W^{1, p}(\tilde V_1^+)$ (neb $\nabla v_i(y)$ se chová stejně jako $\nabla u(F_i^{-1}(y))·\nabla F_i^{-1}(y)$), navíc $\|v_i\|_{W^{1, p}(\tilde V_i^+)} ≤ c_1·\|u\|_{W^{1, p}(V_i^+)}$.
+
+		Nyní mějme $E v_i(y) = v_i(y)$ pro $y_d > 0$ a $E v_i(y) = v_i(y', -y_d)$ pro $y_d < 0$. Ukážeme, že $E v_i \in W^{1, p}(\tilde V_i)$ a $\|E v_i\|_{W^{1, p}(\tilde V_i)} ≤ c_2·\|v\|_{W^{1, p}(\tilde V_i^+)}$. (Pak $E u_i(x) \coloneq E v_i(F_i(x))$ a $\|E u_i\| ≤ c_2·\|E v\| ≤ c·\|u\|$.)
+
+		Už víme, že platí $Ev_i \in W^{1, p}(\tilde V_i^+)$, $\|E v_i\|_{W^{1, p}(\tilde V_i^-)} = \|E v_i\|_{W^{1, p}(\tilde V_i^-)}$, tedy $\|E v_i\|_{W^{1, p}(\tilde V_i^)} = 2^{\frac{1}{p}} \|E v_i\|_{W^{1, p}(\tilde V_i^+)}$. Stačí ověřit:
+		$$ \frac{\partial E v_i}{\partial y_j}(y) = \begin{cases}\frac{\partial v_i(y)}{\partial y_j},& y_d > 0,\\ \frac{\partial v_i(y', -y_d)}{\partial y_j},& y_d < 0,\end{cases} \qquad \frac{\partial E v_i(y)}{\partial y_d} = \begin{cases}\frac{\partial v_i(y)}{\partial y_d}, & y_d > 0,\\ -\frac{\partial v(y', -y_d)}{\partial y_d}, & y_d < 0.\end{cases} $$
+		(To pak dává $E v_i \in W^{1, p}(\tilde V_i)$.)
+
+		Uvažujme sudou hladkou funkci $τ_ε(s)$, která je rovna $1$ pro $|s| ≥ 2ε$ a je nulová pro $|s| ≤ ε$ a $|τ_ε'| ≤ \frac{c}{ε}$. Platí $\supp τ_ε' \subset [-2ε, -ε] \cup [ε, 2ε]$.
+
+		Zvolme $φ \in C_0^∞(\tilde V_1)$. Pak $φ$ je lipschitzovská a
+		$$ \int_{\tilde V_1} \frac{\partial E v_i(y)}{\partial y_d} φ(y) = \lim_{ε \rightarrow 0_+}·\int_{\tilde V_i^+} \frac{\partial E v_i(y)}{\partial y_d} φ(y) τ_ε(y_d) + \int_{\tilde V_i^-} \frac{\partial E v_i(y)}{\partial y_d} φ(y) τ_ε(y_d) \overset{\text{definice derivace}}= $$
+		$$ = - \lim_{ε \rightarrow 0_+} \int_{\tilde V_i^+} Ev_i \frac{\partial φ}{\partial y_d} τ_ε - \int_{\tilde V_i^-} Ev_i \frac{\partial φ}{\partial y_d} τ_ε - \lim_{ε \rightarrow 0_+} \underbrace{\int_{\tilde V_i^+} E v_i φ φ τ_ε' + \int_{\tilde V_i^-} E v_i φ τ_ε'}_{\eqcolon I}. $$
+		Stačí $I \rightarrow 0$:
+		$$ I = \underbrace{\int_{\tilde V_i^+} v_i(y', y_d) \frac{φ(y', y_d) + φ(y', -y_d)}{2} τ_ε'(y_d) dy}_A + \underbrace{\int_{\tilde V_i^+} v_i(y', y_d) \frac{φ(y', y_d) - φ(y', -y_d)}{2} τ_ε'(y_d) dy}_B + $$
+		$$ + \int_{\tilde V_i^-} v_i(y', -y_d) \frac{φ(y', y_d) + φ(y', -y_d)}{2} τ_ε'(y_d) dy + \int_{\tilde V_i^-} v_i(y', -y_d) \frac{φ(y', y_d) - φ(y', -y_d)}{2}τ_ε'(y_d) dy = $$
+		$$ = A + B + TODO!!! $$
+		TODO!!! (str. 13).
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[Morey I]
+	$u \in W^{1, 1}(B_R)$, ¦o je Lebesgueův bod funkce $u$. Pak
+	$$ \forall A \in (0, 1): \left|\fint_{B_R} u(x) dx - u(¦o)\right| ≤ C(d, A)·R^A·\sup_{0 < ρ ≤ R} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx. $$
+
+	\begin{dukazin}
+		$$ \fint_{B_R} u dx - u(¦o) = \lim_{r \rightarrow 0_+} \(\fint_{B_R} u - \fint_{B_r} u\) = \lim_{r \rightarrow 0_+} \int_r^R \frac{d}{dρ} \fint_{B_ρ} u(x) dx dρ = $$
+		$$ = \lim_{r \rightarrow 0_+} \int_r^R \frac{d}{dρ} \fint_{B_1} u(ρ x) dx dρ = \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_1} \nabla u(ρ x)·x dx ≤ $$
+		$$ ≤ \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_1} |\nabla u(ρ x)| dx dρ = \lim_{r \rightarrow 0_+} \int_r^R \fint_{B_ρ} |\nabla u| dx dρ = $$
+		$$ = \lim_{r \rightarrow 0_+} \int_r^R \int_{B_ρ} \frac{|\nabla u(x)|}{ρ^{d - 1 + A}} ρ^{d - 1 + A} \frac{κ(d)^{-1}}{ρ^d} = \lim_{r \rightarrow 0_+} \underbrace{c(d)}_{κ(d)^{-1}} \int_r^R ρ^{A - 1} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}} dρ ≤ $$
+		$$ ≤ c(d) \(\sup_{ρ \in (0, R]} \int_{B_ρ} \frac{|\nabla u|}{ρ^{d - 1 + A}}\)·\underbrace{\int_0^R ρ^{A - 1} dρ}_{R^A}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Morey II]
+	$u \in W^{1, 1}_{loc}(®R^d)$, $x, y$ Lebesgueovy body $u$, $R \coloneq |x - y|$. Pak
+	$$ \forall A \in (0, 1): |u(x) - u(y)| ≤ \tilde c(d, A)·|x - y|^A·\sup_{ρ ≤ ®R, z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx. $$
+
+	\begin{dukazin}
+		$$ |u(x) - u(y)| ≤ $$
+		$$ ≤ \left|\fint_{B_R(x)} u(z) dz - u(x)\right| + \left|\fint_{B_R(y)} u(z) dz - u(y)\right| + \left|\fint_{B_R(x)}u(z) dz - \fint_{B_R(y)} u(z) dz\right| \overset{\text{Morey I}}≤ $$
+		$$ ≤ \underbrace{c(d, A) R^A\(\sup_{ρ ≤ R} \int_{B_ρ(x)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx + \sup_{ρ ≤ R} \int_{B_ρ(y)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx\)}_{B} + \left|\int_0^1 \frac{d}{dt} \fint_{B_R(tx + (1 - t)y)} \!\!\!\!\!\!\!\!\!\!\!u(z)dz dt\right| = $$
+		$$ = B + \left|\int_0^1 \frac{d}{dt} \fint_{B_R(¦o)} u(tx + (1 - t)y + z) dz dt\right| ≤ $$
+		$$ ≤ B + \left|\int_0^1 \fint_{B_R(¦o)} \nabla u (tx + (1 - t)y + z)·(x - y) dz dt\right| ≤ $$
+		$$ ≤ B + \int_0^1 \int_{B_R(tx + (1 - t)y)} κ(d)^{-1} R^{-d}·R·|\nabla u|·\frac{R^A}{R^A} dz dt ≤ \tilde c(d, A) R^A \sup_{ρ ≤ R, z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}} dx. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Gagliardo]
+	Mějme $u_i \in C_0^∞(®R^{d - 1})$ pro $i \in [d]$, kde $d ≥ 2$. Definujme
+	$$ v_i(x_1, …, x_d) = u_i(x_1, …, x_{i-1}, x_{i+1}, …, x_d). $$
+	Pak
+	$$ \int_{®R^d} \prod_{i=1}^d |v_i(x)| dx ≤ \prod_{i=1}^d \|u_i\|_{L^{d - 1}(®R^{d - 1})}. $$
+
+	\begin{dukazin}
+		Indukcí dle $d$. „$d = 2$“:
+		$$ \int_{®R^2} |v_1(x)|·|v_2(x)| dx = \int_{®R^2} |u_1(x_2)|·|u_2(x_1)| dx_1 dx_2 = \|u_1\|_1·\|u_2\|_1. $$
+		„$d \rightarrow d+1$“:
+		$$ \int_{®R^{d + 1}} \prod_{i=1}^{d + 1} |v_i(x)| dx \overset{\text{Fubini}} = \int_{®R^d} |v_{d+1}(x)|·\(\int_{®R} \prod_{i=1}^d |v_i(x)| dx_{d + 1}\) dx_1·…·dx_d \overset{\text{Hölder}}≤ $$
+		$$ ≤ \(\int_{®R^d} |v_{d+1}(x)|^d dx_1…dx_d\)^{\frac{1}{d}}·\(\int_{®R^d} \(\int_{®R} \prod_{i=1}^d |v_i(x)| dx_{d+1}\)^{d'} dx_1…dx_d\)^{\frac{1}{d'}} ≤ $$
+		$$ ≤ \|u_{d+1}\|_{L^d(®R^d)} \(\int_{®R^d} \(\(\prod_{i=1}^d \int_{®R} |v_i|^d dx_{d+1}\)^{\frac{1}{d}}\)^{d'} dx_1…dx_d\)^{\frac{1}{d'}} ≤ $$
+		$$ ≤ \|u_{d+1}\|_{L^d(®R^d)} \(\int_{®R^d} \prod_{i=1}^d \underbrace{\(\int_{®R} |v_i|^d dx_{d + 1}\)^{\frac{1}{d - 1}}}_{\eqcolon z_i} dx_1…dx_d\)^{\frac{1}{d'}} ≤ $$
+		$$ ≤ \|u_{d+1}\|\(\int_{®R^d} \prod_{i=1}^d |z_i| dx\)^{\frac{1}{d'}} \overset{\text{IP}}≤ \|u_{d+1}\|_d \(\prod_{i=1}^d \|z_i\|_{d+1}\)^{\frac{1}{d'}} = $$
+		$$ = \|u_{d+1}\|_d \prod_{i=1}^d \(\int_{®R^d} \left|\int_{®R} |v_i|^d dx_{d+1}\right|^{\frac{d - 1}{d - 1}} dx_1…dx_d\)^{\frac{1}{d}} = \prod_{i=1}^{d + 1} \|u_i\|_{L^d}. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}[Vnoření]
+	$Ω \in C^{0, 1}$, $p \in [1, ∞)$. Pak platí
+
+	$W^{1, p}(Ω) \hookrightarrow$
+	\begin{itemize}
+		\item $L^{\frac{dp}{d - p}}(Ω)$ pro $p < d$;
+		\item $L^q(Ω)$ pro $p = d$ a $\forall q$;
+		\item $C^{0, 1 - \frac{d}{p}}(\overline{Ω})$ pro $p > d$;
+		\item $L^∞(Ω)$ pro $p > d$ (vyplývá z předchozího).
+	\end{itemize}
+
+	$W^{1, p}(Ω) \hookrightarrow\hookrightarrow$
+	\begin{itemize}
+		\item $L^q(Ω)$ pro $p < d$ a $\forall q \in \[1, \frac{dp}{d - p}\), p < d$;
+		% \item $L^q(Ω)$ pro $p = d$ a $\forall q$;
+		\item $C^{0, β}(\overline{Ω})$ pro $p > d$ a $\forall β < 1 - \frac{d}{p}$;
+		\item $L^∞(Ω)$ pro $p > d$ (vyplývá z předchozího).
+	\end{itemize}
+
+	\begin{dukazin}[$W^{1, p} \hookrightarrow C^{0, 1 - \frac{d}{p}}$ pro $p > d$]
+		Chceme $\|u\|_{C^{0, α}(\overline{Ω})} ≤ C·\|u\|_{1, p}$ pro $u \in C^1(\overline{Ω})$. Pro $u \in W^{1, p}(Ω)$ plyne z aproximace hladkými funkcemi.
+
+		Extension theorem (pro $R$ z něho) $\implies$
+		$$ \|u\|_{C^{0, α}} = \|E u\|_{C^{0, α}(\overline{Ω})} ≤ \|E u\|_{C^{0, α}(\overline{B_R})} \overset{*}≤ C(\overline{B_R}, p, d) \|E u\|_{W^{1, p}(®R^d)} ≤ c(\overline{B_R}, p, d, Ω) \|u\|_{W^{1, p}(Ω)}. $$
+
+		„$*$“: Neboť $u \in C_0^1(\overline{B_R})$ (píšeme pro jednoduchost $u$ místo $E u$), pak
+		$$ \sup_{x≠y} \frac{|u(x) - u(y)|}{|x - y|^A} ≤ \sup_{x≠y} c(d, A) \sup_{ρ ≤ R, z \in [x, y]} \int_{B_ρ(z)} \frac{|\nabla u|}{ρ^{d - 1 + A}} ≤ $$
+		$$ ≤ c(d, A) \sup_{ρ≤R, z \in \overline{B_R}} \int_{B_ρ(z)} \frac{|\nabla u|·1}{ρ^{d - 1 + A}} \overset{\text{Hölder}}≤ $$
+		$$ ≤ c(d, A)·\sup_{z \in \overline{B_R}, ρ ≤ R} \frac{1}{ρ^{d - 1 + A}} \(\int_{B_ρ(z)} |\nabla u|^p\)^{\frac{1}{p}}\(\int_{B_ρ(z)} 1^{p'}\)^{\frac{1}{p'}} ≤ $$
+		$$ ≤ c_2(d, A) \|\nabla u\|_{L^p} \sup_{ρ ≤ R} ρ^{\frac{d}{p'}}·\frac{1}{ρ^{d - 1 + A}} \overset{A \coloneq 1 - \frac{d}{p}}= c_2(d, p) \|\nabla u\|_{L^p}, $$
+		tedy $\sup_{x ≠ y} \frac{|y(x) - y(y)|}{|x - y|^{1 - \frac{d}{p}}} ≤ \konst(d, p) \|\nabla u\|_{L^p(\overline{B_R})}$.
+		Pro $x \in \overline{B_R}$:
+		$$ |u(x)| = \fint_{\overline{B_R}} |u(x)| dy ≤ \int_{\overline{B_R}} |u(x) - u(y)| + |u(y)| dy ≤ c(d, p, R) (\|\nabla u\|_{L^p} + \|u\|_{L^1(\overline{B_R})}) ≤ $$
+		$$ ≤ c(R, d, p) \|u\|_{W^{1, p}(\overline{B_R})} \implies \sup_{x \in \overline{B_R}} |u| ≤ c(R, d, p) \|u\|_{W^{1, p}(\overline{B_R})}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$W^{1, p}(Ω) \hookrightarrow L^{\frac{dp}{d - p}}(Ω)$ pro $p < d$]
+		Chceme $\forall u \in C_0^∞(®R^d): \|u\|_{L^{\frac{dp}{d-p}}(Ω)} ≤ c(d, p) \|\nabla u\|_{L^p(®R^d)}$ (speciální případ Gagliardovy–Nirenbergovy nerovnosti) (z toho plyne vše potřebné).
+
+		„Stačí dokázat pro $p = 1$“: mějme $q > 1$, $v \coloneq |u|^q$. Případ pro $p = 1$ $\implies$
+		$$ \|v\|_{\frac{d}{d - 1}} ≤ c(d)·\|\nabla v\|_1 = c(d) \int_{®R^d} q|u|^{q - 1}·|\nabla u| \overset{\text{Hölder}}≤ c(d, q) \|\nabla u\|_{L^p}·\|u\|_{p'(q - 1)}^{q - 1}. $$
+		Hodilo by se $\frac{q·d}{d - p} = p'·(q - 1)$, nechť tedy $q = \frac{p·(d - 1)}{d - p}$. Pak
+		$$ \|v\|_{\frac{d}{d - 1}} = \(\int_{®R^d} |u|^{\frac{dp}{d - p}}\)^{\frac{d - 1}{d}} ≤ c(d, p) \|\nabla u\|_{L^p} \(\int_{®R^d} |u|^{\frac{dp}{d - p}}\)^{\frac{1}{p'}}. $$
+		Načež to vydělíme integrálem na pravé straně a platí $\frac{d - 1}{d} - \frac{1}{p'} = \frac{d - p}{dp}$, čímž jsme to dokázali pro $p ≠ 1$.
+
+		„$p = 1$“: chceme $\forall u \in C^∞_0(®R^d)$ $\|u\|_{L^{\frac{d}{d - 1}}(®R^d)} ≤ c(d) \|\nabla u\|_{L^1(®R^d)}$:
+		$$ \forall i \in [d]{:}\  |u(x)| \overset{u \in C_0^∞}= \left|\int_{-∞}^{x_i} \frac{\partial u}{\partial x_i}(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d) ds \right| ≤ $$
+		$$ ≤ \int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)| ds $$
+		$$ \implies |u(x)|^{\frac{d}{d - 1}} ≤ \prod_{i=1}^d \(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)|\)^{\frac{1}{d - 1}} \implies $$
+		$$ \implies \int_{®R^d} |u(x)|^{\frac{d}{d - 1}} dx ≤ \int_{®R^d} \prod_{i=1}^d \underbrace{\(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d) ds\)^{\frac{1}{d - 1}}}_{\eqcolon v_i \text{ nezávisí na $x_i$}} dx = $$
+		$$ = \int_{®R^d} \prod_{i=1}^d |v_i| ≤ \prod_{i=1}^d \|v_i\|_{L^{d - 1}} = $$
+		$$ = \prod_{i=1}^d \(\int_{®R^{d - 1}}\(\(\int_{-∞}^∞ |\nabla u(x_1, …, x_{i-1}, s, x_{i+1}, …, x_d)| ds\)^{\frac{1}{d - 1}}\)^{d - 1}\)^{\frac{1}{d - 1}} = $$
+		$$ = \prod_{i=1}^d \(\int_{®R^d} |\nabla u| dx\)^{\frac{1}{d - 1}} = \|\nabla u\|_{L^1(®R^d)}^{\frac{d}{d - 1}}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$W^{1, d}(Ω) \hookrightarrow L^q(Ω)$ pro $p = d$ a $\forall q ≥ 1$]
+		Pro $q < p$ plyne z $L^p \hookrightarrow L^q$ (Höldera) jinak
+		$$ \text{Hölder} \implies W^{1, p}(Ω) \hookrightarrow W^{1, p - ε}(Ω) \hookrightarrow L^{\frac{d·(p - ε)}{d - (p - ε)}}(Ω), \qquad ε{:}\ \frac{d(d - ε)}{d - (d - ε)} = q. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^q$ pro $p < d$ a $\forall q < \frac{dp}{d - p}$]
+		„Stačí ukázat $W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^1(Ω)$“: pak platí $W^{1, p}(Ω) \hookrightarrow\hookrightarrow L^q(Ω)$ $\forall q < \frac{dp}{d - p}$, neboť $\dagger$.
+
+		$\dagger$: „$\forall p ≤ q ≤ r\ \exists α: \|u\|_{L^q} ≤ \|u\|_{L^p}^α·\|u\|_{L^r}^{(1 - α)}$“: ať\footnote{To lze neboť $1 = α \frac{q}{p} - α\frac{q}{r} + \frac{q}{r} \Leftrightarrow α·\frac{q(r - p)}{pr} = 1 - \frac{q}{r} = \frac{r - q}{r} \Leftrightarrow α = \frac{pr}{q(r - p)}·\frac{r - q}{r} = \frac{p(r - q)}{q(r - p)} \in [0, 1]$.} $1 = \frac{α·q}{p} + \frac{(1 - α)·q}{z} = \(\frac{p}{α·q}\)^{-1} \!\! + \, \(\frac{z}{(1 - α)·q}\)^{-1}$ a $α \in [0, 1]$. Potom
+		$$ \int_Ω |u|^q = \int_Ω |u|^{α·q}·|u|^{(1 - α)·q} \overset{\text{Hölder}}≤ \(\int_Ω |u|^{αq·\frac{p}{αq}}\)^{\frac{αq}{p}}·\(\int_Ω |u|^{(1 - α)q·\frac{r}{(1 - α)q}}\)^{\frac{(1 - α)q}{r}} = $$
+		$$ = \|u\|_p^{αq}·\|u\|_r^{(1 - α)q} \qquad\implies\qquad \|u\|_q ≤ \|u\|_p^α·\|u\|_r^{(1 - α)}. $$
+		Nechť $S$ omezená v $W^{1, p}(Ω)$, chceme
+		$$ \forall ε > 0\ \exists \{u_i\}_{i=1}^N \subseteq W^{1, p}(Ω)\ \forall u \in S: \min_{i \in [N]} \|u - u_i\|_{L^q} < ε. $$
+		$\hookrightarrow\hookrightarrow L^1$ dává $\forall \tilde ε > 0\ \exists \{u_i\}_{i=1}^N \subset W^{1, p}: \min\|u - u_i\|_{L^1} ≤ \tilde ε$.
+		$$ 1 ≤ q < \frac{dp}{d - p} \implies \|u - u_i\|_{L^q} \overset{\dagger}≤ \|u - u_i\|_{L^1}^α·\|u - u_i\|_{L^{\frac{dp}{d - p}}}^{1 - α} \overset{W^{1, p} \hookrightarrow L^{\frac{dp}{d - p}}}≤ $$
+		$$ ≤ c·\|u - u_i\|_{L^1}^α \|u - u_i\|_{W^{1, p}(Ω)}^{1 - α} ≤ c(Ω, p, S) · \|u - u_i\|_{L^1(Ω)}^α ≤ c(Ω, p, S) \tilde ε^α ≤ ε. $$
+
+		„$W^{1, 1}(Ω) \hookrightarrow\hookrightarrow L^1(Ω)$“: TODO!!! (str 19).
+	\end{dukazin}
+
+	\begin{dukazin}[$W^{1, p}(\overline{Ω}) \hookrightarrow\hookrightarrow C^{0, β}, p > d, β < 1 - \frac{d}{p}$]
+		Analogicky pomocí interpolace (postup jako $\dagger$).
+	\end{dukazin}
+\end{veta}
+
+\begin{poznamka}[Trace theorem na krychli]
+	TODO!!! (str 20).
+\end{poznamka}
+
+\begin{veta}[Trace theorem]
+	$Ω \in C^{0, 1}$, $p \in [1, d)$. Pak $\exists \tr: W^{1, p}(Ω) \rightarrow L^{\frac{(d - 1)·p}{d - p}}(\partial Ω)$ lineární omezený operátor takový, že
+	$$ \forall u \in W^{1, p}(Ω) \cap C(\overline{Ω}){:}\ \tr u = u|_{\partial Ω} \land \int_Ω \frac{\partial u}{\partial x_i} dx = \int_{\partial Ω} \tr u · n_i ds $$
+	
+	\begin{poznamka}
+		Pro $p > d$ to víme, neboť $W^{1, p}(Ω) \hookrightarrow C(\overline{Ω})$.
+	\end{poznamka}
+
+	\begin{dukazin}[Komentář]
+		$C^1(\overline{Ω})$ hustá v $W^{1, p}(Ω)$. Nechť $u_n \in C^1$, $u_n \rightarrow u$ v $W^{1, p}(Ω)$.
+		$$ \|u_n - u_m\|_{L^q(\partial Ω)}^q = \int_{\partial Ω} |u_n - u_m|^q ≤ c(Ω) \int_{(-α, α)^{d - 1}} |u_n(T_i(y)) - u_m(T_i(y))|^q \overset{\text{krychle}}≤ $$
+		$$ ≤ c(Ω) \|u_n(T_i) - u_m(T_i)\|_{W^{1, p}((-α, α)^{d - 1} \times (0, 1))}^q ≤ c(Ω) \|u_n - u_m\|_{W^{1, p}(Ω)}^q. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{definice}[Sobolevův–Slobodeckijův prostor $W^{s, p}$]
+	Nechť $s \in (0, 1)$. Sobolevův–Slobodeckijův prostor $W^{s, p}$ obsahuje ty funkce $u \in L^p(Ω)$, že $\int_Ω \int_Ω \frac{|u(x) - u(y)|^p}{|x - y|^{d + s·p}} dx dy < ∞$.
+	$$ \|u\|_{W^{s, p}(Ω)} = \|u\|_{L^p(Ω)} + \(\int_Ω \int_Ω \frac{|u(x) - u(y)|^p}{|x - y|^{d + s·p}}\)^{\frac{1}{p}}. $$
+\end{definice}
+
+\begin{definice}[Nikolkiův prostor $N^{s, p}(Ω)$]
+	Nechť $s \in (0, 1]$, $p \in [1, ∞]$. Nikolkiův prostor $N^{s, p}(Ω)$ obsahuje ty $u$, pro které
+	$$ \forall φ \text{ s kompaktním supportem}: \sup_{h>0, i} \int_{Ω_h} \frac{|u(x + h·e_i) - u(x)|^p}{h^{p·s}} φ dx < ∞. $$
+\end{definice}
+
+\begin{veta}[Inverse trace theorem]
+	$Ω \in C^{0, 1}$, $p \in (1, ∞]$, $s \in \(\frac{1}{p}, 1\]$. Pak $\tr$ je omezený lineární operátor $W^{s, p}(Ω) \rightarrow W^{s - \frac{1}{p}, p}(\partial Ω)$.
+
+	Navíc $\exists \tr^{-1}: W^{s - \frac{1}{p}, p}(\partial Ω) \rightarrow W^{s, p}(Ω)$ takový, že $\tr(\tr^{-1}(u)) = u$ na $\partial Ω$.
+\end{veta}
+
+\begin{lemma}
+	$$ \forall ε > 0: W^{s, p}(Ω) \hookrightarrow N^{s, p}(Ω) \hookrightarrow W^{s - ε, p}(Ω). $$
+
+	\begin{dukazin}
+		Bez důkazu.
+	\end{dukazin}
+\end{lemma}
+
+\section{Nelineární eliptické rovnice jako kompaktní perturbace}
+
+\begin{lemma}
+	Je-li $Ω \in C^{0, 1}$, $f: Ω \times ®R \times ®R^d \rightarrow ®R$ Caratheodorova funkce a $|f(x, u, ξ)| ≤ C$ pro $\forall u \in ®R$, $\forall ξ \in ®R^d$ a skoro všechna $x \in Ω$, pak
+	$$ \exists u \in W_0^{1, 2}(Ω)\ \forall φ \in W_0^{1, 2}(Ω): \int_Ω \nabla u \nabla φ = \int_Ω f(·, u, \nabla u)·φ. $$
+
+	\begin{dukazin}
+		Definujme zobrazení $M: W_0^{1, 2}(Ω) \rightarrow W_0^{1, 2}(Ω)$, $v \mapsto u$, kde $u$ splňuje\footnote{Nemitskii říká, že pro každé $v$ existuje právě jedno $u$.}
+		$$ \forall φ \in W_0^{1, 2}(Ω): \int_Ω \nabla u \nabla φ = \int_Ω f(·, v, \nabla v)·φ. $$
+		Hledáme pevný bod $M$, tedy budeme ověřovat podmínky Schaudera:
+		\begin{itemize}
+			\item Nalezneme vhodnou $U ≠ \O$ konvexní množinu v $W_0^{1, 2}$, že $M(U) \subseteq U$: Volme $φ = u$. Pak
+				$$ c_1 \|u\|_{1, 2}^2 ≤ \|\nabla u\|_2^2 = \int_Ω \nabla u · \nabla u = \int_Ω f(·, v, \nabla v)·u ≤ C·\int_Ω |u|·1 ≤ \tilde C(Ω) \|u\|_{1, 2}. $$
+				Tedy $\|u\|_{1, 2} ≤ \frac{\tilde C(Ω)}{c_1} = \tilde{\tilde C}(Ω)$ nezávisle na $v$. Volme $U \coloneq \{u \in W_0^{1, 2}(Ω) \middle| \|u\|_{1, 2} ≤ \tilde{\tilde C}\}$.
+			\item $M$ je spojitý kompaktní operátor: dle FA stačí sekvenciální kompaktnost: Nechť $v_n \rightharpoonup v$ v $W_0^{1, 2}(Ω)$, $u_n \coloneq M(v_n)$. Chceme $\exists n_k: u_{n_k} \rightarrow u$ v $W_0^{1, 2}(Ω)$ a víme $\|u_n\|_{1, 2} ≤ \tilde{\tilde C}$. $W_0^{1, 2}$ je reflexivní, tedy $\exists n_k: u_{n_k} \rightharpoonup u$ v $W_0^{1, 2}(Ω)$. Navíc $W^{1, 2} \hookrightarrow\hookrightarrow L^2$ $\implies$ $\exists n_k: u_{n_k} \rightarrow u$ v $L^2(Ω)$.
+
+				Volme $φ \coloneq u_{n_k} - u \in W_0^{1, 2}(Ω)$. Pak
+				$$ \lim_{n_k \rightarrow ∞} \|u_{n_k} - u\|_{1, 2}^2 ≤ \lim c·\|\nabla u_{n_k} - \nabla u\|_2^2 = $$
+				$$ = c·\lim \int_Ω \nabla u_{n_k}(\nabla u_{n_k} - \nabla u) - c \lim \int_Ω \nabla u (\nabla u_{n_k} - \nabla u) = $$
+				$$ = c·\lim \int_Ω f(·, v_{n_k}, \nabla v_{n_k})·(u_{n_k} - u) ≤ c'·\lim \|u_{n_k} - u\|_1 \overset{\text{Hölder}}= 0. $$
+				Tedy $\lim_{n_k \rightarrow ∞} \|u_{n_k} - u\|_{1, 2} = 0$, což jsme chtěli.
+		\end{itemize}
+	\end{dukazin}
+
+	\begin{poznamkain}[$\dagger$]
+		Máme-li v předpokladech $|f(x, u, ξ|) ≤ c·(g(x) + |u|^α + |ξ|^α)$, pro $α \in [0, 1)$ a $g \in L^2$, pak lze postup výše upravit (konkrétně apriorní odhad) a dostaneme tentýž výsledek.
+	\end{poznamkain}
+
+	TODO? (příklad, když odhady selžou)
+\end{lemma}
+
+\begin{lemma}
+	$p < \frac{2d}{d - 2}$. Pak $\exists λ > 0\ \exists u \in W_0^{1, 2}(Ω)$ taková, že $-Δu = λ |u|^{p - 2}·u$ v $Ω$.
+
+	\begin{dukazin}
+		PDR1 $\implies$ minimalizujeme $\int_Ω \frac{|\nabla u|^2}{2}$ přes $S \coloneq \{u \in W_0^{1, 2}(Ω), \|u\|_p = 1\}$.
+		$$ λ \coloneq \inf_{u \in S} \int_Ω \frac{|\nabla u|^2}{2} = \lim_{n \rightarrow ∞} \int_Ω \frac{|\nabla u_n|^2}{2} \text{ pro vhodná $u_n \in S$}. $$
+
+		$\liminf \int_Ω \frac{|\nabla u_n|^2}{2} ≥ \int_Ω \frac{|\nabla u|^2}{2}$, neboť $u_n$ jsou v $W_0^{1, 2}$ $\implies$ $u_n \rightharpoonup u$ v $W_0^{1, 2}(Ω)$ a $\hookrightarrow\hookrightarrow \implies u_n \rightarrow u$ v $L^p(Ω)$, tedy $u \in S$.
+
+		Nalezli jsme minimizér $u$. Euler-Lagrangeovy rovnice:
+		$$ λ = \int_Ω \frac{|\nabla u|^2}{2} ≤ \int_Ω \frac{1}{2} \left|\frac{\nabla (u + ε φ)}{\|u + ε φ\|_p}\right|^2 \qquad \forall φ \in W_0^{1, 2}(Ω), ε > 0 $$
+		$$ \implies λ·\|u + ε φ\|_p^2 ≤ \int_Ω \frac{|\nabla u|^2}{2} + \nabla u ε \nabla φ + \frac{ε^2 |\nabla φ|^2}{2} = λ + ε \int_Ω(\nabla u \nabla φ + \frac{ε}{2} |\nabla φ|^2) \implies $$
+		$$ \implies λ \frac{\|u + ε φ\|_p^2 - 1}{ε} ≤ \int_Ω (\nabla u \nabla φ + \frac{ε}{2} |\nabla φ|^2) \implies $$
+		FIXME?
+		$$ \implies \lim_{ε \rightarrow 0_+} λ \frac{\|u + ε·φ\|_p^2 - \|u\|_p^2 + \|u\|_p^2 - 1}{ε} ≤ \int_Ω \nabla u \nabla φ \implies λ·\|u^{p - 2} φ\|_1 ≤ \int_Ω \nabla u\nabla φ. $$
+	\end{dukazin}
+\end{lemma}
+
+TODO? (Příklad $-Δ u + u^{35} = f$ v $Ω$ a $u = 0$ na $\partial Ω$.)
+
+TODO?
+
+TODO? (Treshold for $u$.)
+
+TODO? (Příklad $-Δ u + u = |\nabla u|^p + f$ na $Ω$, $u = 0$ na $\partial Ω$. $p < 1$ lze vymyslet tím, co známe, $p = 1$ bychom měli umět, $p \in (1, 2)$ je těžší, $p = 2$ kritický růst, $p > 2$ nelze obecně nic říct.)
+
+\section{Nelineární eliptické rovnice, teorie monotónních operátorů}
+\begin{poznamka}
+	Otec teorie: Minty.
+\end{poznamka}
+
+TODO? (Motivace.)
+
+\begin{definice}[Monotónní, ryze monotónní]
+	$E: ®R^n \rightarrow ®R^n$ je monotónní, pokud
+	$$ \forall x, y \in ®R^n: (E(x) - E(y))·(x - y) ≥ 0, $$
+	a ryze monotónní, pokud
+	$$ \forall x, y \in ®R^n, x ≠ y: (E(x) - E(y))·(x - y) > 0. $$
+\end{definice}
+
+\begin{veta}[$p$-laplacian jei ryze monotónní]
+	$E(x) = (δ + |x|^2)^{\frac{p - 2}{2}}·x$ je ryze monotónní operátor pro $δ ≥ 0$ a $p > 1$.
+
+	\begin{dukazin}
+		$$ (E(x) - E(y))·(x - y) = \((δ + |x|^2)^{p - 2} x - (δ + |y|^2)^{\frac{p - 2}{2}}y\)·(x - y) = $$
+		$$ \int_0^1 \frac{d}{dt} \((δ + |tx + (1 - t)y|^2)^{\frac{p - 2}{2}}(tx + (1 - t)y)·(x - y)\) dt = $$
+		$$ = \int_0^1 (δ + |tx + (1 - t)y|^2)^{\frac{p - 2}{2}}|x - y|^2 + \frac{p - 2}{2}(δ + |tx + (1 - t)y|^2)^{\frac{p - 4}{2}}·2|(tx + (1 - t)y)·(x - y)|^2 ≥ $$
+		$$ p ≥ 2: \qquad\qquad ≥ \int_0^1 (δ + |tx + (1 - t)y|^2)^{\frac{p - 2}{2}} dt |x - y|^2 > 0.\qquad\qquad $$
+		$$ p \in (1, 2): \overset{\text{Cauchy–Schwartz}}≥ \int_0^1 … + (p - 2)(δ + |tx + (1 - t)y|^2)^{\frac{p - 2}{2}} |x - y|^2 = $$
+		$$ = (p - 1)·\int_0^1 … > 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$E(x) = a(|x|)·x$, kde $a ≥ 0$. Pak $E$ monotónní $\Leftrightarrow$ $s \mapsto a(s)·s$ neklesající.
+
+	\begin{dukazin}
+		Zřejmě platí „$\implies$“. „$\impliedby$“:
+		$$ (a(|x|)x - a(|y|)y)(x - y) = a(|x|)|x|^2 + a(|y|)|y|^2 - (a(|x|) + a(|y|))·x·y ≥ $$
+		$$ ≥ a(|x|)·|x|^2 + a(|y|)·|y|^2 - (a(|x|) + a(|y|))·|x|·|y| = (a(|x|)·|x| - a(|y|)·|y|)(|x| - |y|). $$
+	\end{dukazin}
+\end{veta}
+
+
+\begin{definice}[Problém]
+	Data: $Ω \subset ®R^d$, $Ω \in C^{0, 1}$, $f: Ω \rightarrow ®R$, $A: Ω \times ®R \times ®R^d \rightarrow ®R^d$, $B: Ω \times ®R \times ®R^d \rightarrow ®R$, $Γ_D, Γ_N \subset \partial Ω$, $Γ_D \cap Γ_N = \O$, $\overline{Γ_D \cup Γ_N} = \partial Ω$, $u_0: Γ_D \rightarrow ®R$, $g: Γ_N \rightarrow ®R$.
+
+	Rovnice: Najít $u: Ω \rightarrow ®R$ takové, že $-\Div(A(x, u, \nabla u)) + B(x, u, \nabla u) = f(x)$ na $Ω$, $u = u_0$ na $Γ_D$, $A(x, u, \nabla u)·ν = g$ na $Γ_N$.
+
+	Slabá formulace: $A, B$ Caratheodorovy funkce,
+	$$ \exists c_2 \in ®R, c_1 \in L^{p'}: |A(x, u, ξ)| + |B(x, u, ξ)| ≤ c_2(|u|^{p - 1} + |ξ|^{p - 1} + c_1(x)), $$
+	$f \in L^{p'}(Ω)$ (nebo $\{W^{1, p}(Ω) | =0 \text{ na } Γ_D\}^*$), $u_0 \in W^{1, p}(Ω)$, $g \in L^{p'}(Γ_N)$.
+
+	Pak $u \in W^{1, p}(Ω)$ je slabé řešení problému, pokud $u = u_0$ na $Γ_D$ (ve smyslu stop) a $\forall φ \in W^{1, p}(Ω), φ = 0$ na $Γ_D$, platí:
+	$$ \int_Ω A(x, u, \nabla u)·\nabla φ + B(x, u, \nabla u)·φ = \int_Ω f φ + \int_{Γ_N} g φ. $$
+\end{definice}
+
+\begin{dusledek}
+	1. Slabá formulace je smysluplná (vše dobře definované). 2. Jsou-li data a funkce $u$ dostatečně hladké, pak $u$ je klasickým řešením.
+
+	\begin{dukazin}
+		Nemitskii + podobně jako v PDR1.
+	\end{dukazin}
+\end{dusledek}
+
+\subsection{Předpoklady}
+\begin{definice}[Koercivita]
+	$\exists α > 0, β \in L^1(Ω)$ $\forall u \in ®R$ $\forall ξ \in ®R^d$ a pro skoro všechna $x \in Ω$:
+	$$ A(x, u, ξ)·ξ + B(x, u, ξ)u ≥ α·|ξ|^p - β(x). $$
+\end{definice}
+
+\begin{definice}[Monotónnost vůdčího výrazu = $A$ monotónní vůči $ξ$]
+	Pro skoro všechna $x \in Ω$ a všechna $u \in ®R$ je $A(x, u, ·)$ monotónní.
+\end{definice}
+
+\begin{definice}[Ryzí monotónnost vůdčího výrazu \!=\! $A$ ryze monotónní vůči~$ξ$]
+	Pro skoro všechna $x \in Ω$ a všechna $u \in ®R$ je $A(x, u, ·)$ ryze monotónní.
+\end{definice}
+
+\begin{definice}[(Ryzí) monotónnost celého operátoru]
+	Pro skoro všechna $x \in Ω$, $\forall u_1, u_2 \in ®R$ $\forall ξ_1, ξ_2 \in ®R^d$:
+	$$ (A(x, u_1, ξ_1) - A(x, u_2, ξ_2))(ξ_1 - ξ_2) + (B(x, u_1, ξ_1) - B(x, u_2, ξ_2))(u_1 - u_2) ≥ 0 \qquad (> 0) $$
+\end{definice}
+
+\begin{lemma}
+	$F: ®R^n \rightarrow ®R^n$ spojitá, $R > 0$, $\forall x \in ®R^n, |x| ≥ R: F(x)·x ≥ 0$. Pak $\exists x \in \overline{B_R(¦o)}: F(x) = 0$.
+
+	\begin{dukazin}
+		Pro spor $\forall x \in \overline{B_R(¦o)}: F(x) ≠ ¦o$. Definujme $x \mapsto -\frac{R·F(x)}{|F(x)|}$ spojitá $\overline{B_R(¦o)} \rightarrow \overline{B_R(¦o)}$.
+
+		Brouwer $\implies$ $\exists x \in \overline{B_R(¦o)}: x = -\frac{R·F(x)}{|F(x)|}$ $\implies$ $|x| = R$. Vynásobíme obě strany $x$:
+		$$ 0 < |x|^2 = R^2 = -\frac{x·F(x)}{|F(x)|} ≤ 0. $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Galerkinova aproximace]
+	Ať $\exists c_2 \in ®R$ a $\exists c_1 \in L^{p'}(Ω)$, že:
+	$$ |A(x, u, ξ)| + |B(x, u, ξ)| ≤ c_2(|u|^{p - 1} + |ξ|^{p - 1} + c_1(x)), $$
+	a je splněna koercivita. Navíc nechť $p \in (1, ∞)$ (separabilita $W^{1, p}$).
+
+	Potom existují $\{ω_j\}_{j=1}^∞ \subset W_0^{1, p}(Ω)$ lineárně nezávislá hustá a $u_n \coloneq u_0 + \sum_{i=1}^n α_i^n ω_i(x)$ ($α_i^n \in ®R$) taková, že
+	\begin{equation}\label{eqn:GAn}
+		\forall j \in [n]: \int_Ω A(x, u_n, \nabla u_n)·\nabla ω_j + B(x, u_n, \nabla u_n)·ω_j = \<f, ω_j\>.\tag{\ensuremath{(GA)^n}}
+	\end{equation}
+	
+	\begin{dukazin}
+		$W_0^{1, p}(Ω)$ separabilní $\implies$ $\exists \{ω_j\}_{j=1}^∞ \subset W_0^{1, p}(Ω)$ lineárně nezávislá, hustá.
+
+		Definujme $F: ®R^n \rightarrow ®R^n$ jako
+		$$ [F(α^n)]_j \coloneq \int_Ω A(x, u_n, \nabla u_n)·\nabla ω_j + B(x, u_n, \nabla u_n) ω_j - \<f, ω_j\>. $$
+		Chceme nulový bod $F$, tedy ověříme předpoklady předchozího lemmatu: $F$ spojitá z prvního předpokladu a Lebesgueovy věty o majorantě. Nyní už zbývá jen „$\exists R > 0\ \forall α \in \overline{B_R(¦o)}: F(α)·α ≥ 0$“:
+		$$ F(α)·α = \sum_{i=1}^n (F(α))_i·α_i = \sum_{i=1}^n \int_Ω A(·, u_n, \nabla u_n)·\nabla (α_i ω_i) + B(·, u_n, \nabla u_n)α_i ω_i - \<f, α_iω_i\> = $$
+		$$ = \int_Ω A(·, u_n, \nabla u_n)\nabla (u_n - u_0) + B(·, u_n, \nabla u_n)(u_n - u_0) - \<f, u_n - u_0\> ≥ $$
+		$$ ≥ \int_Ω A(·, u_n, \nabla u_n)\nabla u_n + B(·, u_n, \nabla u_n)u_n - \int_Ω(|A(·, u_n, \nabla u_n)|·|\nabla u_0| + |B(·, u_n, \nabla u_n)|·|u_0|) - $$
+		$$ - \|f\|_{(W_0^{1, 2})^*}·\|u_n - u_0\|_{1, p} \overset{\text{koercivita, Hölder}}≥ $$
+		$$ ≥ c_1 \int_Ω |\nabla u_n|^p - β(x) dx - \|A\|_{p'}·\|\nabla u_0\|_p - \|B\|_{p'}·\|u_0\|_p - \|f\|·\|u_n - u_0\|_{1, p} ≥ $$
+		$$ ≥ \frac{c_1}{2} \int_Ω |\nabla u_n - \nabla u_0|^p - c·\int_Ω β + |\nabla u_0|^p - c·\|u_0\|_{1, p}·\(\int_Ω (1 + |u_n|^{p - 1} + |\nabla u_n|^{p - 1})^{p'}\)^{\frac{1}{p'}} - $$
+		$$ - \|f\|·\|u_n - u_0\|_{1, p} \overset{\text{Poincaré}}≥ $$
+		$$ ≥ \tilde c \|u_n - u_0\|_{1, p}^p - c(1 + \|u_0\|_{1, p})·(1 + \|u_n\|_p^{p - 1} + \|\nabla u_n\|_p^{p - 1}) - \|f\|·\|u_n - u_0\|_{1, p} ≥ $$
+		$$ ≥ \tilde c \|u_n - u_0\|_{1, p}^p - c·\|u_n - u_0\|_{1, p}^{p - 1} - c·\|u_n - u_0\|_{1, p}^{p - 1} - c·\|u_n - u_0\|_{1, p} - C. $$
+		Tento odhad nezávisí na $α$, tedy můžeme zvolit $R_0 > 0: \|u_n - u_0\|_{1, p} ≥ R_0 \implies F(α)·α ≥ 0$. Jelikož pracujeme v konečné dimenzi, jsou všechny normy ekvivalentní:
+		$$ \frac{1}{K_1(n)}·|α| ≤ \|u_n - u_0\|_{1, p} ≤ K_1(n)·|α|, $$
+		takže zvolíme $R \coloneq R_0 K_1(n)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Stejnoměrné odhady]
+	Nechť $u_n$ jsou jako v předchozím a $\exists c_2 \in ®R$ a $\exists c_1 \in L^{p'}(Ω)$, že:
+	$$ |A(x, u, ξ)| + |B(x, u, ξ)| ≤ c_2(|u|^{p - 1} + |ξ|^{p - 1} + c_1(x)), $$
+	a platí koercivita.
+
+	Pak $\|u_n\|_{1, p} ≤ K$.
+
+	\begin{dukazin}
+		$i$-tou rovnici v \ref{eqn:GAn} přenásobíme $α_i^n$ a rovnice sečteme (navíc platí $u_n - u_0 = \sum_{i=1}^n α_i^n ω_i$):
+		$$ \int_Ω A(·, u_n, \nabla u_n)·\nabla (u_n - u_0) + B(·, u_n, \nabla u_n)·(u_n - u_0) - \<f, u_n - u_0\> = 0 \overset{\text{předpoklady}}\implies $$
+		$$ \implies \|u_n - u_0\|_{1, p}^p ≤ C(1 + \|u_n - u_0\|_{1, p}^{p - 1} + \|u_n - u_0\|_{1, p}) \overset{*}≤ $$
+		$$ ≤ c·(C_1 + Q\|u_n - u_0\|_{1, p}^p). $$
+		$$ \implies \|u_n - u_0\|_{1, p} ≤ \frac{\tilde K(f, Ω, p)}{Q} \implies \|u_n\|_{1, p} ≤ K. $$
+
+		„$*$“: Young $\frac{\|u_n - u_0\|_{1, p}^{p - 1}}{z}·z ≤ \frac{\|u_n - u_0\|^p}{z} + c(z, p)$. Obdobně pro $\|u_n - u_0\|^1$. A najdeme $z$, respektive dohromady $Q$, tak, aby $1 - Q ≥ 0$.
+	\end{dukazin}
+
+	\begin{dusledekin}
+		$$ \|A(·, u_n, \nabla u_n)\|_{p'}, \|B(·, u_n, \nabla u_n)\|_{p'} ≤ \const $$
+	\end{dusledekin}
+\end{lemma}
+
+\begin{lemma}[Limitní přechod]
+	TODO!!!
+	
+	\begin{dukazin}
+		Víme $W^{1, p}$, $L^p$ reflexivní. V celém důkazu: BÚNO(podposloupnost). Stejnoměrné odhady dávají $u_n \rightharpoonup u$ v $W_0^{1, p}(Ω)$, tedy $u_n - u_0 \rightharpoonup u - u_0$ v $W_0^{1, p}(Ω)$, $A(·, u_n, \nabla u_n) \rightharpoonup \overline{A}$ v $L^{p'}(Ω, ®R^d)$ a $B(·, u_n, \nabla u_n) \rightharpoonup \overline{B}$ v $L^{p'}(Ω)$.
+
+		$i$-tá rovnice v \ref{eqn:GAn}:
+		$$ \int_Ω \underbrace{A(·, u_n, \nabla u_n)}_{\rightharpoonup \overline{A} \text{ v } L^{p'}}·\underbrace{\nabla ω_i}_{\in L^p} + \underbrace{B(·, u_n, \nabla u_n)}_{\rightharpoonup \overline{B} \text{ v } L^{p'}}·\underbrace{ω_i}_{\in L^p} = \<f, ω_i\> \implies $$
+		$$ \implies \forall i \in ®N: \int_Ω \overline{A}·\nabla ω_i + \overline{B} ω_i = \<f, ω_i\> \implies $$
+		\begin{equation}\label{eqn:GAlim}
+			\implies \forall ω \in W_0^{1, p} \int_Ω \overline{A} \nabla ω + \overline{B}ω = \<f, ω\>\tag{\ensuremath{**}}
+		\end{equation}
+
+		$\dagger$: „$\lim_{n \rightarrow ∞} \int_Ω A(·, u_n, \nabla u_n)\nabla u_n + B(·, u_n, \nabla u_n) u_n = \int_Ω \overline{A} \nabla u + \overline{B} u$“:
+		$$ \int_Ω A(·, u_n, \nabla u_n) \nabla u_n + B(·, u_n, \nabla u_n)·u_n = $$
+		$$ = \int_Ω A(·, u_n, \nabla u_n) \nabla (u_n - u_0) + B(·, u_n, \nabla u_n) (u_n - u_0) + {} $$
+		$$ {} + \int_Ω A(·, u_n, \nabla u_n)\nabla u_0 + B(·, u_n, \nabla u_n)u_0 = $$
+		$$ \overset{\ref{eqn:GAlim}}= \int_Ω \overline{A}\nabla (u - u_0) + \overline{B}(u - u_0) + \overline{A}\nabla u_0 + \overline{B}u_0 = \int_Ω \overline{A}\nabla u + \overline{B} u. $$
+
+		Nyní stačí ukázat $\overline{A} = A(·, u, \nabla u)$ skoro všude a $\overline{B} = B(·, u, \nabla u)$ skoro všude.
+	\end{dukazin}
+
+	\begin{dukazin}[Celý operátor je monotónní]
+		Nechť $v \in L^p(Ω)$, $¦v \in L^p(Ω, ®R^d)$. Pak
+				$$ 0 ≤ \int_Ω (A(·, u_n, \nabla u_n) - A(·, v, ¦v))(\nabla u_n - ¦v) + (B(·, u_n, \nabla u_n) - B(·, v, ¦v))(u_n - ¦v) = $$
+				$$ = \underbrace{\int_Ω A(·, u_n, \nabla u_n) \nabla u_n + B(·, u_n, \nabla u_n) u_n}_{\dagger} + $$
+				$$ \underbrace{\int_Ω -A(·, u_n, \nabla u_n)¦v - A(·, v, ¦v)(\nabla u_n - ¦v) - B(·, u_n, \nabla u_n)v - B(·, v, ¦v)(u_n - v)}_{\text{slabá konvergence}} \rightarrow $$
+				$$ \rightarrow \int_Ω \overline{A}\nabla u + \overline{B}u + \int_Ω -\overline{A}¦V - A(·, v, ¦v)(\nabla u - ¦v) - \overline{B}v - B(·, v, ¦v)(u - v) = $$
+				$$ = \int_Ω (\overline{A} - A(·, v, ¦v))(\nabla u - ¦v) + (\overline{B} - B(·, v, ¦v))(u - v) $$
+				Volme $v = u - ε w$, $¦v = \nabla u - ε ¦w$ a podělme $ε$:
+				$$ 0 ≤ \int_Ω (\overline{A} - A(·, u - εw, \nabla u - ε ¦w))¦w + (\overline{B} - B(·, u - εw, \nabla u - ε¦w))w. $$
+				$$ ε \rightarrow 0_+ \overset{\text{Nemytskii}}\implies 0 ≤ \int_Ω (\overline{A} - A(·, u, \nabla u))¦w + (\overline{B} - B(·, u, \nabla u))w \qquad \forall w, ¦w. $$
+				$$ ¦w = -\frac{\overline{A} - A(·, u, \nabla u)}{1 + |\overline{A} - A(·, u, \nabla u)|}, \qquad w = -\frac{\overline{B} - B(·, u, \nabla u)}{1 + |\overline{B} - B(·, u, \nabla u)|} \implies $$
+				$$ \implies \int_Ω \frac{|\overline{A} - A(·, u, \nabla u)|^2}{1 + |\overline{A} - A(·, u, \nabla u)|} + \frac{|\overline{B} - B(·, u, \nabla u)|^2}{1 + |\overline{B} - B(·, u, \nabla u)|} ≤ 0 \implies $$
+				$\implies$ $\overline{A} = A(·, u, \nabla u)$ skoro všude a $\overline{B} = B(·, u, \nabla u)$ skoro všude.
+	\end{dukazin}
+
+	\begin{poznamka}[Minty trick]
+		Odvodit podobnou nerovnost, přejít k limitě, šikovně zvolit $v, ¦v$ (obvykle $v = u - ε·w$, $¦v = \nabla u - ε¦w$ pro libovolné $w \in L^p(Ω)$, $¦w \in L^p(Ω, ®R^d)$, $ε > 0$). A nakonec zlimitit (podělit $ε$, $ε \rightarrow 0_+$ a šikovná volba $w, ¦w$).
+	\end{poznamka}
+
+	\begin{dukazin}[$A$ monotónní vzhledem k $ξ$, $B$ lineární vzhledem k $ξ$]
+		Tj. $B(·, u, ξ) = \sum_{i=1}^d b_i(·, u)·ξ_i$.
+		$$ u_n \rightharpoonup u \text{ v } W^{1, p} \implies u_n \overset{L^p}\rightarrow u \qquad \impliedby W^{1, p}\hookrightarrow\hookrightarrow L^p \quad (\forall d). $$
+		Tedy $B(·, u_n, \nabla u_n) \rightharpoonup B(·, u, \nabla u)$ a $\overline{B} = B(·, u, \nabla u)$. Zbývá $\overline{A} = A(·, u, \nabla u)$:
+		$$ \lim_{n \rightarrow ∞} \int_Ω A(·, u_n, \nabla u_n)\nabla u_n = \underbrace{\lim_{n \rightarrow ∞} \int_Ω A(·, u_n, \nabla u_n)\nabla u_n + B(·, u_n, \nabla u_n)u_n}_{\ref{eqn:GAlim}} - {} $$
+		$$ - \underbrace{\lim_{n \rightarrow ∞} \int_Ω \! B(·, u_n, \nabla u_n)(u_n - u)} - \underbrace{\lim_{n \rightarrow ∞} \int_Ω \! B(u_n, \nabla u_n)u}_{\rightarrow \int_Ω \overline{B}u} = \int_Ω \! \overline{A} \nabla u + \overline{B}u - \overline{B}u - 0 = \int_Ω \! \overline{A} \nabla u, $$
+		$$ \text{protože } \int_Ω B(·, u_n, \nabla u_n)(u_n - u) \overset{\text{Hölder}}≤ \|B(·, u_n, \nabla u_n)\|_p·\|u_n - u\|_p ≤ c·\|u_n - u\|_p \rightarrow 0. $$
+
+		Minty trick: $\forall ¦v \in L^p(Ω, ®R^d)$, $A$ monotónní v $ξ$:
+		$$ 0 ≤ \int_Ω(A(·, u_n, \nabla u_n) - A(·, u_n, ¦v))(\nabla u_n - ¦v) = $$
+		$$ = \int_Ω A(·, u_n, \nabla u_n)\nabla u_n - \int_Ω A(·, u_n, ¦v)(\nabla u_n - ¦v) + A(u_n, \nabla u_n)¦v \rightarrow $$
+		$$ \rightarrow \int_Ω \overline{A}\nabla u - \int_Ω \overline{A}¦v - \int_Ω A(·, u, ¦v)(\nabla u - ¦v) - 0, \text{ protože} $$
+		$$ \left|\int_Ω (A(·, u_n, ¦v) - A(·, u, ¦v))(\nabla u_n - ¦v)\right| \overset{\text{Hölder}}≤ \|\nabla u_n - ¦v\|_p·\|A(·, u_n, ¦v) - A(·, u, ¦v)\|_{p'} ≤ $$
+		$$ ≤ c·\|A(·, u_n, ¦v)\|_{p'} \overset{\text{Nemytskii}}\rightarrow 0. $$
+
+		Máme $0 ≤ \int_Ω (\overline{A} - A(·, u, ¦v))(\nabla u - ¦v)$. Minty trick: $¦v = \nabla u + ε ¦w$ a vydělit $ε$:
+		$$ 0 ≥ \int_Ω (\overline{A} - A(·, u, \nabla u + ε¦w))¦w \rightarrow \int_Ω(\overline{A} - A(·, u, \nabla u))·¦w, $$
+		$$ ¦w = - \frac{(\overline{A} - A(·, u, \nabla u))}{1 + |\overline{A} - A(·, u, \nabla u)|} \implies \overline{A} = A(u, \nabla u) \text{ skoro všude}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Ta limita s Nemytskiim]
+		Platí $|A(·, u_n, ¦v) - A(·, u, ¦v)|^{p'} \rightarrow 0$ skoro všude (neb $A$ je Caratheodorova funkce). Plyne z Vitaliho, ověříme předpoklady:
+		$$ \int_U |A(·, u_n, ¦v) - A(·, u, ¦v)|^{p'} ≤ c·\int_U |u_n|^p + |¦v|^p + |u|^p + g ≤ c·\int_U |¦v|^p _ |u|^p + g + c·\int_U |u_n|^p. $$
+		První člen nezávisí na $n$ a zřejmě je malý pro malé $U$. Víme $W^{1, p} \hookrightarrow L^{p + δ}$ pro $δ > 0$
+		$$ \implies \int_U |u_n|^p · 1 \overset{\text{Hölder}}≤ \(\int_U |u_n|^{p + δ}\)^{\frac{p}{p + δ}}·\(\int_U 1^{\frac{p + δ}{δ}}\)^{\frac{δ}{p + δ}} ≤ c·|U|^{\frac{δ}{p + δ}}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$A$ ryze monotónní vzhledem k $ξ$]
+		Ukážeme, že $u_n \rightarrow u$ skoro všude a že $\nabla u_n \rightarrow u$ skoro všude, z čehož pak budeme mít $\overline{B} = B(·, u, \nabla u)$ skoro všude (neboť $B(·, u_n, \nabla u_n) \rightharpoonup B(·, u, \nabla u)$ v $L^{p'}$ z Vitaliho a $B(·, u_n, \nabla u_n) \rightarrow B(·, u, \nabla u)$ v $L^q$ pro každé $q < p'$) a z toho i $\overline{A} = A(·, u, \nabla u)$ skoro všude (důkaz předchozí podmínky).
+
+		$u_n \rightarrow u$ skoro všude, neb $W^{1, p} \hookrightarrow\hookrightarrow L^p$ (BÚNO podposloupnost).
+
+		„$\nabla u_n \rightarrow \nabla u$ skoro všude“: Víme
+		$$ 0 ≤ \int_Ω (A(·, u_n, \nabla u_n) - A(·, u_n, ¦v))(\nabla u_n - ¦v) \rightarrow $$
+		$$ \rightarrow \int_Ω (\overline{A} - A(u, ¦v))(\nabla u - ¦v) = \int_Ω (A(u, \nabla u) - A(u, ¦v))(\nabla u - ¦v). $$
+		Volbou $¦v \coloneq \nabla u$ dostáváme
+		$$ 0 ≤ \lim_{n \rightarrow ∞} \int_Ω (A(·, u_n, \nabla u_n) - A(·, u_n, \nabla u))(\nabla u_n - \nabla u) = $$
+		$$ = \int_Ω (A(u, \nabla u) - A(u, \nabla u))(\nabla u - \nabla u) = 0, $$
+		tedy $(A(·, u_n, \nabla u_n) - A(·, u_n, \nabla u))(\nabla u_n - \nabla u) \rightarrow 0$ v $L^1$ silně.
+
+		Dále víme $u_n \rightarrow u$ silně v $L^1$. Egorov $\implies$ $\exists ε\ \exists Ω_ε: |Ω \setminus Ω_ε| < ε$, $u_n \rightarrow u$ v $C(Ω_ε)$ a $(A(·, u_n, \nabla u_n) - A(·, u_n, \nabla u))(\nabla u_n - \nabla u) \rightarrow 0$ v $C(Ω_ε)$, tedy „skoro všude na $Ω_ε$“:
+
+		Pro spor předpokládejme $\nabla u_n \nrightarrow \nabla u$. Z ryzí monotonie $A$ však plyne $(A(·, u, ¦v_1) - A(·, u, ¦v_2))(¦v_1 - ¦v_2) = 0 \Leftrightarrow ¦v_1 = ¦v_2$, tedy $\nabla u_n \rightarrow \nabla u$ skoro všude na $Ω_ε$, tedy i na $Ω$ (neboť $|Ω \setminus Ω_ε| ≤ ε \rightarrow 0$).
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$Ω \in ®R^d$, $Ω \in C^{0, 1}$, $u_0 \in W^{1, p}(Ω)$, $p(1, ∞)$, $A$ a $B$ Caratheodorovy funkce, které splňují předpoklady z definice slabého řešení, $Γ_D = \partial Ω$, $f \in (W_0^{1, p}(Ω))^*$, $A$ a $B$ jsou koercivní, $A$ monotónní vzhledem k $ξ$ a alespoň jedna z následujících podmínek je splněna:
+	\begin{itemize}
+		\item celý operátor je monotónní;
+		\item $B$ je lineární vzhledem k $ξ$;
+		\item $A$ je ryze monotónní vzhledem k $ξ$.
+	\end{itemize}
+	Pak $\exists u \in W^{1, p}(Ω)$ slabé řešení. Navíc pokud je celý operátor ryze monotónní, pak $u$ je jednoznačná.
+
+	\begin{dukazin}[Jednoznačnost]
+		Nechť jsou $u_1 ≠ u_2$ (na nenulové podmnožině $Ω$) slabá řešení, pak $φ = u_1 - u_2 \in W^{1, 2}(Ω)$, $φ = 0$ na $Γ_D$, a $0 =$
+		$$ \!\int_Ω\! (A(x, u_1, \nabla u_1) - A(x, u_2, \nabla u_2))(\nabla u_1 - \nabla u_2) + (B(x, u_1, \nabla u_1) - B(x, u_2, \nabla u_2))(u_1 - u_2) > 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Existence]
+		Předchozí lemmata.
+	\end{dukazin}
+\end{veta}
+
+TODO? (příklad $-\Div(\arctg(1 + |\nabla u|^2)\nabla u) + |u|^{98} u = f$ na $Ω$ a $…·ν = 0$ na $\partial Ω$.)
+
+TODO? (příklad ohledně reprezentace $(W_0^{1, p}(Ω))^*$.)
+
+\section{Minimum (konvexní) funkce vs. teorie monotónních operátorů}
+\begin{definice}[Předpoklady]
+	\ 
+	\begin{enumerate}
+		\item $F$ je Caratheodoryho funkce;
+		\item $F$ je koercivní (tj. $F(x, u, ξ) ≥ c_1·|ξ|^p - c_2(x)$, kde $c_2 \in L^1$, $p\in (1, ∞), c_1 > 0$);
+		\item $f \in (W_0^{1, p}(Ω))^*$.
+	\end{enumerate}
+\end{definice}
+
+\begin{definice}[Konvexní funkce]
+	$F$ je konvexní vzhledem k $ξ$, pokud
+	$$ \forall λ \in [0, 1], ξ_1, ξ_2 \in ®R^d{:}\ F(x, u, λξ_1 + (1 - λ)ξ_2) ≤ λ·F(x, u, ξ_1) + (1 - λ) F(x, u, ξ_2). $$
+\end{definice}
+
+\begin{veta}[Fundamental theorem of calculus of variations]
+	Nechť platí 1., 2. a 3. a $F$ je konvexní vzhledem k $ξ$. Pak $\exists u \in W_0^{1, p}(Ω)$ minimalizující výraz $\int_Ω F(·, v, \nabla v) - \<f, v\>$ přes $v \in W_0^{1, p}(Ω)$.
+
+	\begin{dukazin}
+		$I \coloneq \inf_{u \in W_0^{1, p}(Ω)} \(\int_Ω F(·, u, \nabla u) - \<f, u\>\)$. Z definice infima nalezneme $u_n \in W_0^{1, p}(Ω)$ taková, že $\int_Ω F(·, u_n, \nabla u_n) - \<f, u_n\> \rightarrow I$.
+
+		Navíc zvolme $n_0$ tak, aby $\forall n > n_0: \int_Ω F(u_n, \nabla u_n) - \<f, u_n\> ≤ I + 1$ ($≤ \int_Ω F(·, 0, ¦o) + 1 < ∞$). Pak
+		$$ c_1·\int_Ω |\nabla u_n|^p \overset{2.}≤ \int_Ω c_2(x) + I + 1 + \<f, u_1\> ≤ \tilde c(1 + \|f\|·\|u_n\|_{1, p}) \overset{\text{Young + Poincaré}}≤ $$
+		$$ ≤ \tilde c(1 + \|f\|^{p'}) + \frac{c_1}{2}·\|\nabla u_n\|_p^p \implies \|u_n\|_{1, p} \overset{\text{Poincaré}}≤ c·\|\nabla u_n\|_p^p ≤ \tilde{\tilde c}(1 + \|f\|^{p'}) \implies $$
+		$$ \implies u_{n_k} \rightharpoonup u \text{ v } W_0^{1, p}(Ω), \quad \hookrightarrow\hookrightarrow \implies u_{n_k} \rightarrow u \text{ v } L^p(Ω). $$
+		$$ I = \lim_{n \rightarrow ∞} \int_Ω F(·, u_n, \nabla u_n) - \<f, u_n\> \overset{\text{další lemma}}≥ \int_Ω F(·, u, \nabla u) - \<f, u\> ≥ I. $$
+		Tedy $u$ je minimizér.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}[Konvexní funkce je slabě lsc]
+	$z_n \rightarrow z$ v $L^1(Ω, ®R^M)$, $ξ_n \rightharpoonup ξ$ v $L^1(Ω, ®R^N)$. $F: Ω \times ®R^M \times ®R^N \rightarrow ®R$ Caratheodorova funkce konvexní vzhledem k $ξ \in ®R^N$. $F(x, z_n(x), ξ_n(x)) ≥ c(x)$, kde $c \in L^1(Ω)$.
+
+	Pak $\int_Ω F(x, z(x), ξ(x)) dx ≤ \liminf \int_Ω F(x, z_n(x), ξ_n(x)) dx$.
+
+	\begin{dukazin}
+		Nebudeme dělat v plné obecnosti, předpokládejme $A \coloneq \frac{\partial F}{\partial ξ}: Ω \times ®R^M \times ®R^N \rightarrow ®R^N$ je Caratheodorova funkce.
+
+		Egorov $\implies$ $\forall ε > 0\ \exists Ω_ε: |Ω \setminus Ω_ε| < ε \land z_n \rightarrow z$ v $C(Ω_ε)$, $|ξ| ≤ \frac{c}{ε}$ na $Ω_ε$.
+
+		$$ \int_Ω F(·, z_n, ξ_n) = \int_Ω F(·, z_n, ξ_n) - c(x) + \int_Ω c(x) ≥ \int_{Ω_ε} F(·, z_n, ξ_n) - c(x) + \int_Ω c(x) = $$
+		$$ = \int_{Ω_ε} F(·, z_n, ξ) + \int_{Ω_ε} F(·, z_n, ξ_n) - F(·, z_n, ξ) + \int_{Ω \setminus Ω_ε} c(x) \overset{\text{další lemma}}≥ $$
+		$$ ≥ \int_{Ω_ε} F(·, z_n, ξ) + \int_{Ω \setminus Ω_ε} c(x) + \int_{Ω_ε} A(·, z_n, ξ)(ξ_n - ξ). $$
+
+		% Zkoumáme $\liminf$:
+		Fatou + $z_n \rightarrow z$ v $C(Ω_ε)$ + $F$ Caratheodorova $\implies$ $\liminf \int_{Ω_ε} \! F(·, z_n, ξ) ≥ \int_{Ω_ε} \! F(·, z, ξ)$.
+
+		$\|A(·, z_n, ξ) - A(·, z, ξ)\|_∞ \rightarrow 0$, neboť $A$ je spojitá vzhledem k $z, ξ$ a $z_n \rightarrow z$ v $C(Ω_ε)$ a $ξ$ je omezená na $Ω_ε$. Pak
+		$$ \int_{Ω_ε} A(·, z_n, ξ)(ξ_n - ξ) = \int_{Ω_ε} A(·, z, ξ)(ξ_n - ξ) + \int_{Ω_ε}(A(·, z_n, ξ) - A(·, z, ξ))(ξ_n - ξ) ≤ $$
+		$$ ≤ c·\|A(·, z_n, ξ) - A(·, z, ξ)\|_∞ \rightarrow 0 $$
+		$$ \implies \liminf \int_Ω F(·, z_n, ξ_n) ≥ \int_{Ω_ε} F(·, z, ξ) + \int_{Ω \setminus Ω_ε} c(x) \rightarrow \int_Ω F(·, z, ξ). $$
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$F: ®R^N \rightarrow ®R$, $A: ®R^n \rightarrow ®R^n$ spojité funkce, $A(ξ) = \frac{\partial F}{\partial ξ}(ξ)$. Pak
+	\begin{enumerate}
+		\item $F$ (ryze) konvexní $\Leftrightarrow$ $A$ (ryze) monotónní;
+		\item pro $F$ konvexní $F(ξ_1) - F(ξ_2) ≥ A(ξ_2)·(ξ_1 - ξ_2)$ ($\forall ξ_1, ξ_2 \in ®R^N$).
+	\end{enumerate}
+
+	\begin{dukazin}
+		$φ_w(t) = F(u + t·w)$, kde $t \in ®R$, $w \in ®R^N$. Pak $φ_w'(t) = \frac{\partial F}{\partial ξ}(u + t·w)·w = A(u + t·w)·w$.
+
+		„1. $\implies$“: $F$ (ryze) konvexní $\implies$ $φ_w$ (ryze pro $w ≠ ¦o$) konvexní $\implies$ $φ_w'(1) - φ_w'(0) ≥ 0$ ($> 0$) $\implies$ $A(u + w)·w - A(u)·w ≥ 0$ ($> 0$).
+		$$ w \coloneq v - u \implies (A(v) - A(u))(v - u) ≥ 0 \quad (> 0) \qquad \forall u, v. $$
+
+		„1. $\impliedby$ + 2.“: Nechť $t_1 ≥ t_2$:
+		$$ φ_w'(t_1) - φ_w'(t_2) = A(u + t_1w)w - A(u + t_2w)w \overset{\text{nebo rovnou } ≥ 0}= $$
+		$$ = \frac{1}{t_1 + t_2}(A(u + t_1w) - A(u + t_2w))((u + t_1w) - (u + t_2w)) ≥ 0 \implies $$
+		$$ \implies F(u + w) - F(w) = φ_w(1) - φ_w(0) = \int_0^1 φ_w'(t) ≥ \int_0^1 φ_w'(0) = φ_w'(0) = A(u)·w. $$
+		$$ w \coloneq v - u \implies F(v) - F(u) ≥ A(u)·(v - u) \implies 2. $$
+
+		Nechť $ξ_1, ξ_2 \in ®R^N$, $λ \in (0, 1)$, $z = λ ξ_1 + (1 - λ)ξ_2$. Platí
+		$$ F(ξ_1) - F(z) ≥ A(z)(ξ_1 - z) \land F(ξ_2) - F(z) ≥ A(z)(ξ_2 - z) \implies $$
+		$$ λF(ξ_1) - λF(z) ≥ A(z)(λξ_1 - λz \land (1 - λ)F(ξ_2) - (1 - λ)F(z) ≥ A(z)((1 - λ)ξ_2 - (1 - λ)z)) $$
+		$$ \overset{+}\implies λ F(ξ_1) + (1 - λ)F(ξ_2) - F(z) ≥ A(z)(λξ_1 + (1 - λ)ξ_2 - z) = A(z)·0 = 0 \implies $$
+		$$ \implies F(z) ≤ λ F(ξ_1) + (1 - λ)F(ξ_2). $$
+	\end{dukazin}
+\end{lemma}
+
+TODO? (příklad $\min_{u \in W_0^{1, p}(Ω)} \int_Ω a(u) \frac{|\nabla u|^p}{p} - \<f, u\>$, kde $a \in C^1(®R)$, $0 < c_1 ≤ a(u) ≤ c_2$, $c_1, c_2 \in ®R$, $(f \in W_0^{1, p}(Ω))^*$.)
+
+TODO? (příklad $F(u, ξ) = \frac{|ξ|^p}{p} + \frac{|u|^q}{q}$.)
+
+TODO? $($příklad, stejný jako předpředchozí, jen minimalizujeme přes
+$$ V \coloneq \{v \in W^{1, p}(Ω) | v ≥ 0, v = 1 \text{ na } \partial Ω\}) $$
+
+TODO? (příklad TODO!)
+
+\begin{lemma}
+	Následující tvrzení jsou ekvivalentní:
+	\begin{enumerate}
+		\item $A, B$ Caratheodorovy funkce $\frac{\partial A_i}{\partial ξ_j} = \frac{\partial A_j}{\partial ξ_i}$ a $\frac{\partial B_i}{\partial ξ_i} = \frac{\partial A_i}{\partial u}$;
+		\item $\exists F$ Caratheodorova funkce taková, že $\frac{\partial F}{\partial ξ} = A$ a $\frac{\partial F}{\partial u} = B$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$2. \implies 1.$“: Jen $A$, pro $B$ analogicky:
+		$$ \frac{\partial A_i}{\partial ξ_j} = \frac{\partial}{\partial ξ_j}\(\frac{\partial F}{\partial ξ_i}\) = \frac{\partial}{\partial ξ_i}\(\frac{\partial F}{\partial ξ_j}\) = \frac{\partial A_j}{\partial ξ_i}. $$
+
+		„$1. \implies 2.$“:
+		$$ F(u, ξ) \coloneq \int_0^1 A(tu, tξ)·ξ dt + \int_0^1 B(tu, tξ) u dt. $$
+		Pak
+		$$ \frac{\partial F}{\partial u}(u, ξ) = \int_0^1 \frac{\partial A}{\partial (tu)}(tu, tξ)·tξ dt + \int_0^1 \frac{\partial B}{\partial (tu)}(tu, tξ)·tu dt + \int_0^1 B(tu, tξ) dt. $$
+		Platí
+		$$ \frac{d}{dt} B(tu, tξ) = \frac{\partial B}{\partial (tu)}(tu, tξ)·u + \frac{\partial B}{\partial (tξ)}(tu, tξ)ξ \overset{1.}= \frac{\partial B}{\partial (tu)}(tu, tξ)u + \frac{\partial A}{\partial (tu)}(tu, tξ)·ξ \implies $$
+		$$ \frac{\partial F}{\partial u}(u, ξ) = \int_0^1 t \frac{\partial A}{\partial (tu)} (tu, tξ)·ξ - \int_0^1 t \frac{\partial A}{\partial (tu)} (tu, tξ)·ξ + \int_0^1 t·\frac{d}{dt}(B(tu, tξ)) + \int_0^1 B(tu, tξ) = $$
+		$$ \overset{\text{PP}}= \[t B(tu, tξ)\]_0^1 = B(u, ξ). $$
+		Pro $\frac{\partial F}{\partial ξ}$ analogicky.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$A, B$ Caratheodorovy funkce, celý operátor je monotónní, $\frac{\partial A_i}{\partial ξ_j} = \frac{\partial A_j}{\partial ξ_i}$, $\frac{\partial B}{\partial ξ_i} = \frac{\partial A_i}{\partial u}$. Pak za vhodných growth assumptions\footnote{Zde předpokládejme $A(u, ξ)ξ ≥ c_1 |ξ|^p - c_2$, $|A(u, ξ)| ≤ c·(|ξ|^{p - 1} + 1)$, $|B(u, ξ)| ≤ c(|u|^p + |ξ|^p)$.} máme $u$ slabé řešení $- \Div A(u, \nabla u) + B(u, \nabla u) = f$ $\Leftrightarrow$ $u$ minimalizuje $\int_Ω F(u, \nabla u) - \<f, u\>$.
+
+	\begin{dukazin}
+		Nechť $u \in W_0^{1, p}(Ω)$, $\int_Ω A(u, \nabla u) \nabla v + B(u, \nabla u)v = \<f, v\>$ $\forall v \in W_0^{1, p}(Ω) \cap L^∞(Ω)$ ($*$).
+
+		„$u$ je minimizér“: chceme $\int_Ω F(v, \nabla v) - F(u, \nabla u) ≥ \<f, v - u\>$ $\forall v \in W_0^{1, p}(Ω)$. Z předchozího lemmatu máme $\exists F: A = \frac{\partial F}{\partial ξ}$, $B = \frac{\partial F}{\partial u}$.
+
+		Platí (z lemmatu před tím)
+		$$ \int_Ω F(v, \nabla v) - F(u, \nabla u) ≥ \int_Ω A(u, \nabla u)(\nabla v - \nabla u) + B(u, \nabla u)(v - u) \overset{*}= \<f, v - u\>. $$
+		Jen je problém, že $u$ nemusí být $L^∞$ (např. pro $F \sim |ξ|^p + |u|^p$ funguje). Obecně definujme $T_k(s) \coloneq \sign(s)·\min\{|s|, k\}$ a uvažujme $T_k(u)$ místo $u$. Pak $\int_Ω F(v, \nabla v) ≥$
+		$$ ≥ \int_Ω F(T_k(u), \nabla T_k(u)) + A(T_k(u), \nabla T_k(u))\nabla (v - T_k(u)) + B(T_k(u), \nabla T_k(u))(v - T_k(u)) = $$
+		$$ = \int_Ω F(T_k(u), \nabla T_k(u)) + \<f, v - T_k(u)\> + $$
+		$$ \underbrace{\int_Ω (A(T_k(u), \nabla T_k(u)) {-} A(u, \nabla u))\nabla (v {-} T_k(u)) + (B(T_k(u), \nabla T_k(u)) {-} B(u, \nabla u))(v {-} T_k(u)).}_{\overset{?}\rightarrow 0} $$
+		Nyní použijeme něco jako Fatou, Nemitskii, …
+	\end{dukazin}
+\end{lemma}
+
+\subsection{Duální přístup}
+\begin{veta}
+	$p \in (1, ∞)$, $F: ®R^d \rightarrow ®R$, $A: ®R^d \rightarrow ®R^d$, $\frac{\partial F}{\partial ξ}(ξ) = A(ξ)$, $F$ (ryze) konvexní, $A$ (ryze) monotónní,
+	$$ F(0) = 0, \qquad A(0) = 0, \qquad F(ξ) ≤ c·(1 + |ξ|^p), \qquad |A(ξ)| ≤ c·(1 + |ξ|^{p - 1}), $$
+	$$ F(ξ) ≥ c_1 |ξ|^p - c_2, \qquad A(ξ)·ξ ≥ c_1 |ξ|^p - c. $$
+	$$ u_0 \in W^{1, p}(Ω), \qquad g \in L^p(Γ_N), \qquad Γ_N \subset \partial Ω, \qquad |\partial Ω \setminus Γ_N| > 0, \qquad Γ_D = \partial Ω \setminus Γ_N. $$
+	Pak následující tvrzení jsou ekvivalentní
+	\begin{enumerate}
+		\item $u$ je slabé řešení problému $- \Div(A(\nabla u)) = f$ na $Ω$, $u - u_0$ na $Γ_D$ a $A(\nabla u)·ν = g$ na $Γ_N$;\footnote{Tzn.
+			$\forall v \in W^{1, p}(Ω), v = 0 \text{ na } Γ_D: \int_Ω A(\nabla u) \nabla v = \<f, v\> + \int_{Γ_N} g·v$, $u \in W^{1, p}(Ω)$, $u = u_0$ na $Γ_D$.}
+		\item $u$ minimalizuje
+			$$ \min_{v \in W^{1, p}(Ω), v = u_0 \text{ na } Γ_d} \(\int_Ω F(\nabla v) - \<f, v\> - \int_{Γ_N} g·v\); $$
+		\item $ξ \coloneq A(\nabla u)$, pak $ξ$ minimalizuje $\min_{μ \in K} \int_Ω F^*(μ) - \nabla u_0·μ$, kde
+			$$ K \coloneq \{μ \in L^{p'}(Ω, ®R^d)\ \middle|\ \forall v \in W^{1, p}(Ω), v = 0 \text{ na } Γ_D{:}\ \int_Ω μ \nabla v = \<f, v\> + \int_{Γ_N} g v\}, $$
+			$$ F^*(z) \coloneq \sup_{ξ \in ®R^d}(ξ·z - F(ξ)) \text{ je tzv. konvexně sdružené k $F$}. $$
+	\end{enumerate}
+
+	\begin{poznamkain}
+		Platí $ξ·z ≤ F(ξ) + F^*(z)$, další vlastnosti v následujícím lemmatu.
+	\end{poznamkain}
+
+	\begin{dukazin}[$2. \implies 1.$]
+		Odvodíme Eulerovy–Lagrangeovy rovnice. Vynecháno (umíme si to sami rozmyslet.)
+	\end{dukazin}
+
+	\begin{dukazin}[$1. \implies 2.$]
+		Máme
+		$$ \forall v \in W^{1, 2}(Ω), v = 0 \text{ na } Γ_D{:}\ \int_Ω A(\nabla u) \nabla v - \<f, v\> - \int_{Γ_N} g v = 0 \implies $$
+		$$ \implies \int_Ω F(\nabla v) - F(\nabla u) - \<f, v - u\> - \int_{Γ_N} g(v - u) \overset{\text{lemma výše}}≥ $$
+		$$ ≥ \int_Ω A(\nabla u)(\nabla v - \nabla u) - \<f, v - u\> - \int_{Γ_N} g(v - u) \overset{w = v - u}= 0. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$3 \Leftrightarrow 1$ (s pomocí dalšího lemmatu)]
+		První krok – jednoznačnost minimizátoru: pro spor $ξ_1, ξ_2 \in K$ jsou oba minimizéry, $ξ_1 ≠ ξ_2$ na množině kladné míry. Vezměme $ξ \coloneq \frac{ξ_1 + ξ_2}{2} \in K$:
+		$$ \int_Ω F^*(ξ) - \nabla u_0 ξ \overset{\text{(P1)}}< \int_Ω \frac{F^*(ξ_1)}{2} + \frac{F^*(ξ_2)}{2} - \nabla u_0 \frac{ξ_1 + ξ_2}{2} = $$
+		$$ = \frac{1}{2} \int_Ω F^*(ξ_1) - \nabla u_0 ξ_1 + \frac{1}{2} \int_Ω F^*(ξ_2) - \nabla u_0 ξ_2 = \min_{μ \in K} \int_Ω F^*(μ) - \nabla u_0 μ. $$
+
+		Druhý krok – existuje minimizér:
+		$$ I \coloneq \inf_{μ \in K} \int_Ω F^*(μ) - \nabla u_0 μ = \lim_{n \rightarrow ∞} \int_Ω F^*(ξ_n) - \nabla u_0 ξ_n. $$
+		$K ≠ \O$, neboť $\tilde ξ = A(\nabla u) \in K$. $\exists n_0\ \forall n ≥ n_0:$
+		$$ \int_Ω F^*(ξ_n) - \nabla u_0 ξ_n ≤ \int_Ω F^*(\tilde ξ) - \nabla u_0 \tilde ξ + 1 ≤ c·(\|u\|_{1, p} · \|u_0\|_{1, p}). $$
+
+		Navíc
+		$$ \int_Ω F^*(ξ_n) - \nabla u_0 ξ_n \overset{\text{Hölder + (P4)}}≥ c_1 \|ξ_n\|_{p'}^{p'} - c(Ω) - \|ξ_n\|_{p'}·\|\nabla u_0\|_p \overset{\text{Young}}≥ $$
+		$$ ≥ c_1 \|ξ_n\|_{p'}^{p'} - c(Ω) - \frac{c_1}{2} \|ξ_n\|_{p'}^{p'} - \tilde \|\nabla u_0\|_p^p \implies $$
+		$\implies$ $\|ξ_n\|_{p'}^{p'}$ omezená $\implies$ (BÚNO podposloupnost) $ξ_n \rightharpoonup ξ$ v $L^{p'}(Ω, ®R^d)$.
+		$$ I \leftarrow \int_Ω F^*(ξ_n) - \nabla u_0 ξ_n ≥ \int_Ω F^*(ξ) - \nabla u_0 ξ \implies ξ \text{ je minimizér}. $$
+
+		Třetí krok – $ξ = A(\nabla u)$ je minimizér: Nechť $\tilde ξ \in K$, potom
+		$$ \int_Ω (F^*(\tilde ξ) - \nabla u_0 \tilde ξ) - \int_Ω (F^*(ξ) - \nabla u_0 ξ) = \int_Ω F^*(\tilde ξ) - F^*(ξ) - \nabla u_0(\tilde ξ - ξ) \overset{\text{(P1) + lemma výše}}≥ $$
+		$$ ≥ \int_Ω \frac{\partial F^*}{\partial ξ}(ξ)(\tilde ξ - ξ) - \nabla u_0(\tilde ξ - ξ) \overset{\text{P3}}= \int_Ω (A^{-1}(ξ) - \nabla u_0)(\tilde ξ - ξ) = \int_Ω (\nabla u - \nabla u_0)(\tilde ξ - ξ) = $$
+		$$ = \<f, \nabla u - \nabla u_0\> + \int_{Γ_N} g(\nabla u - \nabla u_0) - \<f, \nabla u - \nabla u_0\> - \int_{Γ_N} g(\nabla u - \nabla u_0) = 0. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	Za předpokladů předchozí věty platí následující:
+	\begin{itemize}
+		\item[(P1):] $F^*(¦o) = 0$, $F^*$ je ryze konvexní;
+		\item[(P2):] $\exists A^{-1}$;
+		\item[(P3):] $\frac{\partial F^*}{\partial ξ}(ξ) = A^{-1}(ξ)$;
+		\item[(P4):] $|F^*(ξ)| ≤ \tilde c (1 + |ξ|^{p'})$, $|F^*(ξ)| ≥ \tilde c_1|ξ|^{p'} - c_2$;
+		\item[(P5):] $F^{**} ≤ F$ $\forall F: \frac{F(ξ)}{ξ} \overset{|ξ| \rightarrow ∞}\longrightarrow ∞$, $F^{**} = F \Leftrightarrow F$ konvexní.
+	\end{itemize}
+
+	\begin{dukazin}[P1]
+		$ξ_1, ξ_2 \in ®R^d$, $λ \in (0, 1)$, $z \coloneq λ ξ_1 + (1 - λ)ξ_2$. Pak
+		$$ F^*(z) = \sup_{w \in ®R^d}(w·z - F(w)) = \sup_{w \in ®R^d} (λ w ξ_1 - λF(w) + (1 - λ)wξ_2 - (1 - λ)F(ω)) ≤ $$
+		$$ ≤ λ\sup_{w \in ®R^d}(w ξ_1 - F(w)) + (1 - λ) \sup_{w \in ®R^d} (w ξ_2 - F(w)) = λ F^*(ξ_1) + (1 - λ) F^*(ξ_2). $$
+		($F^*(¦o) = 0$, neboť $F(¦o) = 0$.)
+	\end{dukazin}
+
+	\begin{dukazin}[P2]
+		Ukážeme $\forall z\ \exists! ξ: A(ξ) = z$: Definujme $M: ξ \mapsto A(ξ) - z$. Pak
+		$$ M(ξ)·ξ = A(ξ)·ξ - z·ξ ≥ c_1 |ξ|^p - c_2·z·ξ ≥ 0 \text{ pro $|ξ| > R$ a vhodné $R$}. $$
+		Z lemmatu výše tedy víme $\exists ξ: M(ξ) = 0 \implies A(ξ) = z$.
+
+		$A$ je ryze monotónní $\implies$ pro $ξ_1, ξ_2$ je $(A(ξ_1) - A(ξ_2))(ξ_1 - ξ_2) = 0 \Leftrightarrow ξ_1 = ξ_2$, tudíž $ξ$ je jednoznačné.
+	\end{dukazin}
+
+	\begin{dukazin}[P3]
+		$F^*(ξ) = \sup_{z \in ®R^d} (z·ξ - F(z)) = \max_{z \in ®R^d}(z·ξ - F(z))$. Nabývá-li se maxima v $z_0$, pak $\frac{\partial}{\partial z}(z·ξ - F(z))|_{z_0} = 0$ $\implies$
+		$$ ξ·\frac{\partial F}{\partial z}(z_0) = 0 \Leftrightarrow ξ = \frac{\partial F}{\partial z}(z_0) = A(z_0) \Leftrightarrow A^{-1}(ξ) = z_0 $$
+		$$ \implies F^*(ξ) = z_0·ξ - F(z_0) = A^{-1}(ξ)·ξ - F(A^{-1}(ξ)) \implies F^*(A(z_0)) = z_0·A(z) - F(z_0). $$
+		Z definice máme $F^*(ξ) + F(z) - z·ξ ≥ 0$. $φ: ξ \mapsto F^*(ξ) + F(z) - z·ξ$ je tedy nezáporné zobrazení a pokud $z = A^{-1}(ξ)$, pak $F^*(ξ) + F(z) - z·ξ = 0$.
+
+		Tedy $ξ$ je takové, že $z = A^{-1}(ξ)$ je minimizér zobrazení $φ$, tudíž pro $ξ = A(z): \frac{\partial φ}{\partial ξ}(ξ) = \frac{\partial F^*}{\partial ξ}(ξ) - z = 0$, tj. $\frac{\partial F^*}{\partial ξ}(ξ) = z = A^{-1}(ξ)$.
+	\end{dukazin}
+
+	\begin{dukazin}[P4]
+		$$ F^*(ξ) = \sup_{z \in ®R^d}(z·ξ - F(z)) \overset{z \coloneq ε·|ξ|^{p' - 2}ξ}≥ ε|ξ|^{p'} - F(ε·|ξ|^{p' - 2}ξ) ≥ ε |ξ|^{p'} - c·(1 + (ε|ξ|^{p' - 2})^p) = $$
+		$$ = |ξ|^{p'} (ε - c·|ξ|^p) - c = ε|ξ|^{p'} = ε|ξ|^{p'}(1 - c·ε^{p - 1}) - c ≥ \frac{ε}{2}|ξ|^{p'} - c. $$
+
+		$$ F^*(ξ) = \sup_z (z·ξ - F(z)) ≤ \sup_z (z·ξ - (c_1|z|^p - c_2)) = \sup_z \(c_1^{\frac{1}{p}}z·\frac{ξ}{c_1^{\frac{1}{p}}} - c_1|z|^p + c_2\) \overset{\text{Young}}≤ $$
+		$$ \sup_z(c_1|z|^p + \frac{|ξ|^{p'}}{c_1^{\frac{p'}{p}}} - c_2 |z|^p + c_2) ≤ \tilde c (|ξ|^{p'} + 1). $$
+	\end{dukazin}
+
+	\begin{dukazin}[P5]
+		$$ F^{**}(ξ) = \sup_z(z·ξ - F^*(z)) = \sup_z(z·ξ - \sup_a(a·z - F(a))) = $$
+		$$ = \sup_z\inf_a (z·ξ + a·z - F(a)) ≤ \sup_z F(ξ) = F(ξ). $$
+
+		Nechť $G \coloneq F^*$. Pak $G^* = F^{**}$. $B \coloneq \frac{\partial F^*}{\partial ξ} = \frac{\partial G}{\partial ξ}$. (P3) $\implies$ $B^{-1} = \frac{\partial G^*}{\partial ξ}$. Navíc:
+		$$ B = \frac{\partial F^*}{\partial ξ} = A^{-1} (ξ) \implies \frac{\partial F}{\partial ξ} = A = (A^{-1})^{-1} = B^{-1} = \frac{\partial G^*}{\partial ξ} $$
+		$\implies$ $F = F^{**}$ pro $F$ konvexní.
+	\end{dukazin}
+\end{lemma}
+
+TODO? (příklad $F(ξ) = |ξ|^p \ln(1 + |ξ|^2)$, $p > 1$.)
+
+TODO? (poznámky k DÚ1.)
+
+TODO? (regularita řešení, ke zkoušce ji není třeba umět.)
+
+\section{Nelineární parabolické rovnice}
+\begin{lemma}[Ehringovo lemma]
+	Nechť $V_1, V_2, V_3$ Banachovy prostory, $V_1$ a $V_2$ reflexivní, $V_1 \hookrightarrow\hookrightarrow V_2 \hookrightarrow V_3$.
+
+	Pak $\forall ε\ \exists c(ε)\ \forall u \in V_1: \|u\|_{V_2} ≤ ε\|u\|_{V_1} + c(ε)\|u\|_{V_3}$.
+
+	\begin{dukazin}
+		Pro spor:
+		$$ \forall n \in ®N\ \exists u_n \in V_1: \|u_n\|_{V_2} > ε\|u_n\|_{V_1} + n·\|u_n\|_{V_3}, \qquad \text{BÚNO: } \|u_n\|_{V_2} = 1. $$
+		Pak $u_n$ je omezená v $V_1$. $V_1$ a $V_2$ jsou reflexivní, tudíž $u_{n_k} \rightharpoonup u$ ve $V_1$. Navíc $V_1 \hookrightarrow\hookrightarrow V_2$, tedy $u_{n_k} \rightarrow u$ ve $V_2$. $\|u\|_{V_2} = 1 \implies u ≠ 0$. Z nerovnice pak máme $u_{n_k} \rightarrow 0$ v $V_3$, tedy $v = 0$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Aubinovo–Lionsovo lemma (zjednodušená verze)]
+	Nechť $p \in [1, ∞)$, $V_1, V_2, V_3$ Banachovy prostory, $V_1$ a $V_2$ reflexivní, $V_1 \hookrightarrow\hookrightarrow V_2 \hookrightarrow V_3$. Pak $U = \{u \in L^p(0, T; V_1)\ \middle|\ \partial_t u \in L^1(0, T; V_3)\} \hookrightarrow\hookrightarrow L^p(0, T; V_2)$.
+
+	\begin{dukazin}
+		Ukážeme způsobem: $M \subset U$ je omezená (tzn. $\exists c > 0 \forall u \in M: \int_0^T \|u\|_{V_1}^p + \|\partial_t u\|_{V_3} ≤ c$) a chceme $M$ prekompaktní v $L^p(0, T; V_2)$.
+	\end{dukazin}
+
+	\begin{dukazin}[Zhlazení vzhledem k času]
+		Rozšiřme $u \in M$ na $\tilde u(t) = u(2T - t)$ pro $t \in (T, 2T)$. Pak $\|\tilde u\|_{L^p(0, 2T; V_1)} ≤ c·\|u\|_{L^p(0, T; V_1)}$ a $\|\partial_t \tilde u\|_{L^1(0, 2T; V_3)} ≤ c·\|\partial_t u\|_{L^1(0, T; V_3)}$.
+
+		Pro $0 < δ < T$ definujme $u_δ(t) = \int_0^δ \tilde u(t + s) φ_δ(s) ds$, kde $φ_d(t) = \frac{1}{δ} φ\(\frac{t}{δ}\)$ a $φ ≥ 0$ je takové, že $φ \in C_0^∞((0, 1))$, $\int_0^1 φ(s) ds = 1$.
+
+		Zřejmě platí $u_δ(t) = \int_{®R} \tilde u(t + s) φ_δ(s) ds = \int_{®R} \tilde u(s) φ_δ(s - t) ds$. Platí
+		$$ \|u_δ(t)\|_{V_1}^p ≤ c·\int_{®R} \|\tilde u(s)\|_{V_1}^p φ_δ(s - t) ds ≤ $$
+		$$ ≤ \frac{c}{δ} \int_0^{2T} \|\tilde u\|_{V_1}^p dt ≤ \frac{\tilde c}{δ} \|u\|_{L^p(0, T; V_1)}. $$
+		$$ \implies \partial_t u_δ(t) = - \int_{®R} \tilde u(s) φ_δ'(s - t) ds, $$
+		pak
+		$$ \|\partial_t u_δ(t)\|_{V^1}^p = \|\int_{®R} \tilde u(s) φ_δ'(s - t) ds\|_{V_1}^p ≤ \|φ_δ'\|_{L^∞(0, t)} \int_0^{2T} \|\tilde u\|_{V_1}^p ≤ c(δ) \int_0^{2T} \|\tilde u\|_{V_1}^p \overset{\|\tilde u\| ≤ c·\|u\|}≤ $$
+		\begin{equation}\label{eqn:udOM}
+			≤ \tilde c(δ) \int_0^T \|u\|_{V_1}^p \implies \|u_δ\|_{C^1(0, T; V_1)} ≤ c(δ) \|u\|_{L^p(0, T; V_1)} \quad (\text{omezená, neboť $M$ je omezená})\tag{\ensuremath{*}}
+		\end{equation}
+		Arzela–Ascoli pro Banach valued funkce $\implies$ $C_1(0, T; V_1) \hookrightarrow\hookrightarrow C(0, T; V_2)$ ($\dagger$).
+	\end{dukazin}
+
+	\begin{dukazin}[Zkreslení je „blízko“ původní funkci]
+		$$ u(t) - u_δ(t) = u(t) - \int_0^δ \tilde u(t + s) φ_δ(s) ds = $$
+		$$ = - \int_0^δ (u(t) - \tilde u(t + s))\(\frac{d}{ds} \int_s^δ φ_δ(τ) dτ\)ds \overset{\text{PP}}= - \int_0^δ \partial_t \tilde u(t + s) \(\int_s^δ φ_δ(τ) dτ\)ds \overset{\text{Fubini}}= $$
+		$$ = -\int_0^δ \int_0^τ \partial_t \tilde u(t + s) φ_s(τ) ds dτ \implies $$
+		$$ \implies \|u(t) - u_0(t)\|_{V_3} ≤ \int_0^δ \int_0^τ \|\partial_t \tilde u(t + s)\|_{V_3} ds φ_δ(τ) dτ. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$L^∞$ odhad]
+		$$ \!\! \sup_{t \in (0, T)} \|u(t) - u_δ(t)\|_{V_3} ≤ \!\sup_{t \in (0, T)} \int_0^δ \!\! \int_0^τ \|\partial_t \tilde u(t + s)\|_{V_3} ds φ_δ(τ) dτ ≤ c·\|\partial_t u\|_{L^1(0, T; V_3)}·\int_0^δ φ_δ(τ) dτ ≤ $$
+		$$ ≤ c·\|\partial_t u\|_{L^1(0, T; V_3)} \qquad \text{omezená, neboť $M$ je omezená}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$L^1$ odhad]
+		$$ \int_0^T \|u(t) - u_δ(t)\|_{V_3} dt ≤ \int_0^T \int_0^δ \int_0^τ \|\partial_t \tilde u(t + s)\|_{V_3} ds φ_δ(τ) dτ dt \overset{\text{substituce: $z = t + s$}}≤ $$
+		$$ ≤ \int_0^{2T} \! \|\partial_t \tilde u(t)\|_{V_3} dt·\int_0^δ \!\! \int_0^δ \! φ_δ(τ) dτ ds ≤ c·\|\partial_t u\|_{L^1(0, T; V_3)} \int_0^δ \!\! \int_0^δ \! φ_δ(s) ds dt = c·δ \|\partial_t u\|_{L^1(0, T; V_3)}. $$
+	\end{dukazin}
+
+	\begin{dukazin}[$L^p$ odhad]
+		$$ \int_0^T \|u(t) - u_δ(t)\|_{V_3}^p dt ≤ \int_0^T \|u(t) - u_δ(t)\|_{V_3}·\|u(t) - u_δ(t)\|_{V_3}^{p - 1} dt ≤ $$
+		$$ ≤ c·\|\partial_t u\|_{L(0, T; V_3)}^{p - 1} \int_0^T \|u(t) - u_δ(t)\|_{V_3} ≤ c·δ \|\partial_t u\|_{L^1(0, T; V_3)}^p. $$
+	\end{dukazin}
+
+	\begin{dukazin}[Použití Ehringova lemmatu]
+		Chceme $M$ prekompaktní v $L^p(0, T; V_2)$, tzn. chceme $\forall ε\ \exists \{w_k\}_1^N \subset L^p(0, T; V_2)$: $\forall u \in M: \min_k \int_0^T \|w_k - u\|_{V_2}^p dt ≤ ε$.
+
+		Nechť $ε > 0$, $u \in M$ a $w \in U$, pak
+		$$ \int_0^T \|u - w\|_{V^2}^p dt \overset{\text{Ehring}}≤ ε_0 \int_0^T \|u - w\|_{V_1}^p dt + c(ε_0) \int_0^T \|u - w\|_{V_3}^p dt ≤ $$
+		$$ ≤ ε_0 \int_0^T \|u - w\|_{V_1}^p dt + c(ε_0) \int_0^T \|u - u_δ\|_{V_3}^p dt + c(ε_0) \int_0^T \|u_δ - w\|_{V_3}^p dt \overset{V_2 \hookrightarrow V_3}≤ $$
+		$$ ≤ ε_0 \int_0^T \|u - w\|_{V_1}^p dt + \tilde c(ε_0) δ \|\partial_t u\|_{L^1(0, T; V_3)}^p + \tilde{\tilde c}(ε_0) \int_0^T \|u_δ - w\|_{V_2}^p dt ≤ \frac{2ε}{3}. $$
+		Lze zvolit $δ$ a $ε_0$ tak, aby poslední nerovnost platila (u \ref{eqn:udOM} nevadí, že konstanta závisí na $δ$, neboť $δ$ je tu teď fixní.) Zbývá naleznout $\{w_k\}_1^N$ taková, že $\min_K \tilde{\tilde c}(ε_0) \int_0^T \|u_δ - w_k\|_{V_2}^p dt ≤ \frac{ε}{3}$. To uděláme pomocí ($\dagger$) a \ref{eqn:udOM}.
+	\end{dukazin}
+\end{lemma}
+
+\begin{definice}[Problém]
+	$\partial_t u - \Div A(u, \nabla u) + B(u, \nabla u) = f$ na $Ω \times (0, T)$, $u = u_D$ na $\partial Ω \times (0, T)$, $u(0) = u_0$ na $Ω$.
+
+	\begin{poznamkain}
+		Lze řešit i složitější okrajové podmínky než $u_D$.
+	\end{poznamkain}
+
+	Data/předpoklady: $A, B$ Caratheodorovy funkce, $p \in (1, ∞)$. Growth assumptions:
+	$$ |A(u, ξ)| + |B(u, ξ)| ≤ c(1 + |u|^{p - 1} + |ξ|^{p - 1}). $$
+	Koercivita: $A(u, ξ)ξ + B(u, ξ)u ≥ c_1 |ξ|^p - c_2 (|u|^q + 1)$, kde $q ≤ \max(2, p - ε)$.
+\end{definice}
+
+\begin{veta}
+	$Ω \in C^{0, 1}$, $f \in L^{p'}(0, T; (W_0^{1, p}(Ω))^*)$, $u_0 \in L^2(Ω)$, $u_D = 0$, předpokládejme problém výše a předpokládejme alespoň jednu z následujících podmínek:
+	\begin{enumerate}
+		\item celý operátor je monotónní;
+		\item $A$ je monotónní vzhledem k $ξ$, $B$ je lineární vzhledem k $ξ$;
+		\item $A$ ryze monotónní vzhledem k $ξ$.
+	\end{enumerate}
+	Pak $\exists$ slabé řešení problému.
+
+	\begin{poznamkain}
+		To znamená $\exists u\,{\in} L^∞(0, T; L^2(Ω)) {\cap} L^p(0, T; W_0^{1, p}(Ω))$ takové, že $\partial_t u \in L^{p'}(0, T; (W_0^{1, p}(Ω))^*)$, $u(0) = u_0$ na $Ω$ a
+		$$ \forall v \in V \text{ a skoro všechna } t \in (0, T): \<\partial_t u, v\>_V + \int_Ω A(u, \nabla u) \nabla v + B(u, \nabla u) v = \<f, v\>, $$
+		kde $V \coloneq W_0^{1, p}(Ω) \cap L^2(Ω)$.
+	\end{poznamkain}
+
+	\begin{poznamkain}
+		Platí $u \in L^p(0, T; V)$, $\partial_t u \in L^{p'}(0, T; V^*)$ a $V \overset{\text{hustě}} \hookrightarrow L^2 \hookrightarrow V^*$ Gelfandova trojice. Z PDR1 máme $u \in C([0, T], L^2(Ω))$ $\implies$ má smysl mluvit o $u(0)$.
+
+		V PDR1 jsme obdobnou větu dokazovali pomocí Galerkinovy aproximace. Ta by šla použít, ale bylo by třeba vyřešit několik problematických částí. Zde použijeme jinou metodu. (Obě metody mají svá úskalí. Někdy je lepší použít jednu, jindy druhou.)
+
+		Použijeme tedy Rothe metodu:
+	\end{poznamkain}
+
+	\begin{dukazin}[Definice $\{u_k\}_{k=1}^n$]
+		Pro $n \in ®N$ definujeme $τ = \frac{T}{n}$, $t_0 = 0$, $t_0 = 0$, $t_{n+1} = t_n + τ$ (rozřežeme $[0, T]$ na $n$ stejných intervalů).
+
+		Ať $f_k \coloneq \fint_{t_{k-1}}^{t_k} f(t) dt$. $u_0$ dáno daty úlohy. Induktivně tedy dodefinujeme další $u_k$ (pro $k \in [n]$).
+
+		Předpokládejme, že máme $u_k \in L^2(Ω) \cap W_0^{1, p}(Ω)$. Pak $u_{k+1} \in L^2(Ω) \cap W_0^{1, p}(Ω) \eqcolon V$ takové, že $\forall ω \in V$:
+		\begin{equation}\label{eqn:uk}
+			\int_Ω u_{k+1}ω + τ \int_Ω A(u_{k + 1}, \nabla u_{k+1}) \nabla ω + B(u_{k+1}, \nabla u_{k+1})ω = τ \<f_{k+1}, ω\> + \int_Ω u_k·ω\tag{\ensuremath{\dagger}}
+		\end{equation}
+		existuje, neboť je to eliptický případ.
+	\end{dukazin}
+
+	\begin{dukazin}[Odhady nezávislé na $n$, resp. $τ$]
+		\ref{eqn:uk} a $ω = u_{k+1}$ nám dává
+		$$ \int_Ω u_{k+1}^2 - u_{k+1} u_k + τ \int_Ω A(u_{k+1}, \nabla u_{k+1}) \nabla u_{k+1} + B(u_{k+1}, \nabla u_{k+1}) u_{k+1} = τ \<f_{k+1}, u_{k+1}\>. $$
+		+ koercivita:
+		$$ \int_Ω u_{k+1}^2 - u_{k+1}u_k + τ c_1·\underbrace{\|\nabla u_{k+1}\|_p^p}_{\text{Poincaré}} ≤ τ \underbrace{\|f_{k+1}\|_{V^*}·\|u_{k+1}\|_V}_{\text{Young + Poincaré}} + c_2 τ (\|u_{k+1}\|_2^2 + \underbrace{\|u_{k+1}\|_{p - ε}^{p - ε}}_{\text{Young + Hölder}} + 1) $$
+		$$ \implies \int_Ω \frac{(u_{k+1} - u_k)^2}{2} - \frac{u_{k+1}^2}{2} - \frac{u_k^2}{2} + τ·\tilde c_1 \|u_{k+1}\|_{1, p}^p ≤ c·τ(1 + \|f_{k+1}\|_{V^*}^{p'} + \|u_{k+1}\|_2^2). $$
+		Posčítáme od 0 do $n ≤ n-1$:
+		\begin{equation}\label{eqn:ukOM}
+			\sum_{k=0}^N \frac{\|u_{k+1} - u_k\|_2^2}{2} + \frac{\|u_{N+1}\|_2^2}{2} + c_1·τ\sum_{k=0}^N (1 + \|f_{k+1}\|_{V^*}^{p'} + \|u_{k+1\|_2^2})\tag{\ensuremath{\triangle}}
+		\end{equation}
+	\end{dukazin}
+
+	\begin{dukazin}[Definice časově závislé funkce]
+		$$ u_n(t) \coloneq u_k \text{ pro } t \in (t_{k-1}, t_k), \qquad \tilde u_n(t) \coloneq \frac{1}{τ}(t - t_{k-1}) u_k + \frac{1}{τ} (t_k - t) u_{k-1} \text{ pro } t \in (t_{k-1}, t_k). $$
+		$$ A_n(t) \coloneq A(u_n(t), \nabla u_n(t)), \quad B_n(t) \coloneq B(u_n(t), \nabla u_n(t)), \qquad f_n(t) \coloneq f_k \text{ pro } t \in (t_{k-1}, t_k). $$
+		Platí $\partial_t \tilde u_n(t) = \frac{u_k - u_{k-1}}{τ}$. S tímto značením \ref{eqn:uk} vypadá takto
+		\begin{equation}\label{eqn:uk2}
+			\forall ω \in V \text{ a skoro všechna } t \in (0, T): \int_Ω \partial_t \tilde u_n(t) ω + A_n(t) \nabla ω + B_n(t) ω = \<f_n(t), ω\>_V\tag{\ensuremath{\dagger\dagger}}
+		\end{equation}
+		$$ \ref{eqn:ukOM} \implies \underbrace{\frac{\|u_n(N·τ)\|_2^2}{2}}_{g'(N·τ)} + c_1 \int_0^{N·τ} \|u_n\|_{1, p}^p dt ≤ c·\(\int_0^{N·τ} \|f_n\|_{V^*}^{p'} + 1 + \|u_n(t)\|_2^2 dt\), $$
+		kde $\frac{\|u_0\|_2^2}{2}$ se schovalo do konstanty. Grönwallovo lemma nám dává
+		$$ \|u_n(t)\|_2^2 ≤ c·\(\|u_n(0)\|_2^2, \int_0^T \|f_n\|_{V^*}^{p'}\) ≤ c·(\text{data}). $$
+		Kromě Grönwalla dostáváme také
+		$$ \int_0^T \|u_n\|_{1, p}^p dt ≤ c·\(\int_0^T \|f_n\|_{V^*}^{p'} + 1 + \|u_n(t)\|_2^2 dt\) ≤ c·(\text{data}) $$
+		$$ + \text{ growth assumptions } \implies \int_0^T \int_Ω |A_n(t)|^{p'} + |B_n(t)|^{p'} ≤ c·(\text{data}). $$
+		$$ \|\partial_t \tilde u_n(t)\|_{V^*} = \sup_{ω \in \overline{B_V(1)}} \<\partial_t \tilde u_n(t), ω\> = \sup_{ω \in \overline{B_V(1)}} \int_Ω \partial_t \tilde u_n(t)ω \overset{\ref{eqn:uk2}}= $$
+		$$ = \sup_{ω \in \overline{B_V(1)}} \(\<f_n(t), ω\> - \int_Ω A_n(t) \nabla ω + B_n(t) ω\) \overset{\|ω\|_V ≤ 1, \text{ Hölder}}≤ $$
+		$$ ≤ \|f_n(t)\|_{V^*} + \|A_n(t)\|_{p'} + \|B_n(t)\|_{p'} \implies $$
+		$$ \implies \int_0^T \|\partial_t \tilde u_n\|_{V^*}^{p'} ≤ \int_0^T \(\|f_n(t)\|_{V^*} + \|A_n(t)\|_{p'} + \|B_n(t)\|_{p'}\)^{p'} ≤ c·(\text{data}). $$
+	\end{dukazin}
+
+	\begin{dukazin}[Limitní přechod]
+		TODO!!! (str. 66–68)
+	\end{dukazin}
+
+	TODO!!!
+\end{veta}
+
+\end{document}

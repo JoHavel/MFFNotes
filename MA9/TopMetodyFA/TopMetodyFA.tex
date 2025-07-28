@@ -1,0 +1,721 @@
+\documentclass[12pt]{article}					% Začátek dokumentu
+\usepackage{../../MFFStyle}					    % Import stylu
+
+
+
+\begin{document}
+
+% 03. 10. 2024 část z poznámek spolužáka
+
+TODO?
+
+\begin{veta}[Banach–Diedinone]
+	$X$ Banach space, $φ: X^* \rightarrow ®F$ linear, $φ|_{B_{X^*}}$ $w^*$-continuous. Then $φ \in κ(X)$.
+
+	\begin{dukazin}
+		Banach–Alaoglu $\implies$ $(B_{X^*}, w^*)$ compact $\implies$ $φ(B_{X^*})$ is compact in ®F. So boundedness $\implies$ $φ \in X^{**}$.
+
+		Assume $®F = ®R$. Fix $ε > 0$ and define $A_ε \coloneq \{x^* \in B_{X^*} | φ(X^*) ≤ - ε\}$ and $B_ε \coloneq \{x^* \in B_{X^*} | φ(x^*) ≥ ε\}$. Then $A_ε, B_ε$ are $w^*$-compact, convex and disjoint. And if $ε$ is small enough and $φ$ nonzero ($φ$ zero is trivially element of $κ(X)$). From the Hahn–Banach separation theorem applied to $(X^*, w^*)$: $\exists ψ \in (X^*, w^*)^*: \sup ψ(A_ε) < \inf ψ(B_ε)$. (Note: $A_ε = - B_ε$, so $ψ(A_ε) = - ψ(B_ε)$, thus $\sup ψ(A_ε) = - \inf ψ(B_ε)$, which (with previous) means $\sup ψ(A_ε) < 0 < \inf ψ(B_ε)$ and $\Ker ψ|_{B_{X^*}} \cap B_{X^*} \subset B_{X^*} (A_ε \cup B_ε)$.) So $\|φ|_{\Ker ψ}\| ≤ ε$. TODO!!!
+
+		TODO!!!
+	\end{dukazin}
+\end{veta}
+
+TODO!!!
+
+% 10. 10. 2024
+
+\section{Banach spaces and compact spaces}
+\begin{poznamka}
+	Compact := Compact Hausdorff.
+\end{poznamka}
+
+\begin{poznamka}[Připomenutí]
+	$X$ Banach space $\implies$ (Banach Alaoglu) $(B_{X^*}, w^*)$ is compact.
+
+	$K$ compact $\implies$ $(C(K), \|·\|_∞)$ is a Banach space.
+\end{poznamka}
+
+\begin{poznamka}[A kind of duality]
+	$J: X \rightarrow C(B_{X^*}, w^*)$, $J(x)(x^*) = x^*(x)$, $x^* \in B_{X^*}$, $x \in X$. ($J(x) = κ(x)|_{B_{X^*}}$)
+
+	It is well defined.
+	\begin{dukazin}
+		$J(x) \in C(B_{x^*}, w^*)$. $J(x): x^* \mapsto x^*(x)$ is $w^*$-continuous.
+	\end{dukazin}
+
+	$J$ is linear.
+	\begin{dukazin}
+		$$ J(αx + βy)(x^*) = x^*(αx + βy) = αx^*(x) + βx^*(x) = αJ(x)(x^*) + β J(y)(x^*) = (αJ(x) + βJ(x))(x^*). $$
+	\end{dukazin}
+
+	$J$ is isometry.
+	\begin{dukazin}
+		$$ \|J(x)\| = \sup_{x^* \in X^*} |J(x)(x^*)| = \sup_{x^* \in X^*} |x^*(x)| = \|x\|. $$
+	\end{dukazin}
+
+	(Previous holds also for non-Banach space. Here, we need completeness.) $J(X)$ is $\|·\|$-closed in $C(B_{X^*}, w^*)$.
+	\begin{dukazin}
+		$X$ is complete $\implies$ $J(X)$ is complete $\implies$ $J(X)$ is closed.
+	\end{dukazin}
+
+	$J$ is a homeomorphism $w \rightarrow τ_p$.
+	\begin{dukazin}
+		„Continuity“: Fix $x^* \in B_{X^*}$. Then $x \mapsto J(x)(x^*) = x^*(x)$ is $w$-continuous.
+
+		„$J^{-1}$ continuous“: Fix $x^* \in X^*$. $f(x) \ni F \mapsto x^*(J^{-1}(f))$ should be $τ_p$-continuous.
+
+		„$J^{-1}: J(X) \rightarrow X$“: $\exists y^* \in B_{X^*}$, $α > 0$: $x^* = αy^*$. Then $x^*(J^{-1}(x)) = αy^*(J^{-1}(f)) = αJ(J^{-1}(f))(y^*) = α·f(y^*)$. So, $f \mapsto x^*(J^{-1}(f)) = α f(y^*)$ is $τ_p$-continuous.
+	\end{dukazin}
+
+	$J(X)$ is $τ_p$-closed.
+	\begin{dukazin}
+		„Real case“: $J(X) = \{f \in C(B_{X^*}, w^*) | f(¦o) = 0\}$.
+
+		RHS -- set is $τ_p$ closed. $f$ is a $t$-fine (i.e. $\forall x^*, y^* \in R_{X^*}\ \forall t \in [0, 1]: f(tx^* + (1 - t)y^*) = t·f(x^*) + (1 - t)f(y^*)$).
+
+		?:?? ? $: f \in$ RHS-set. Then $\exists \tilde f: X^* \rightarrow ®R$ linear. $\tilde f|_{B_{X^*}} = f$. TODO?
+
+		„Complex case“:
+		$$ J(X) = \{f \in C(B_{X^*}, w^*) | f(¦o) = 0, f \text{ is a $t$-fine}, f(αx^*) = αf(x^*) \text{ for any complex } α\} = $$
+		$$ = \{f \in C(B_{X^*}, w^*) | \forall x^*, y^* \in B_{X^*}, \forall α, β \in ®C: αx^* + βy^* \in B_{X^*} \implies f(αx^* + βy^*) = αf(x^*) + βf(y^*)\}. $$
+	\end{dukazin}
+
+	$δ$ is a homeomorphism of $K$ into $(B_{C(K)^*}, w^*)$.
+	\begin{dukazin}
+		„$δ$ is one-to-one“: $t_1, t_2 \in K$, $t_1 ≠ t_2$. $\implies$ (Uryhson) $\exists f \in C(K): f(t_1) = 1 \land f(t_2) = 0$. It follows the $δ_{t_1} ≠ δ_{t_2}$.
+
+		„$δ$ is continuous“: Fix $f \in C(K)$. Then $t \mapsto δ_t (f) = f(t)$ is continuous.
+
+		„$δ$ is a homeomorphism“: $F \subset K$ closed $\implies$ $F$ is compact $\implies$ $δ(F)$ is compact $\implies$ $δ(F)$ is closed.
+	\end{dukazin}
+\end{poznamka}
+
+TODO(Examples)
+
+% 17. 10. 2024
+
+TODO!!!
+
+% 24. 10. 2024
+
+\begin{veta}
+	$X$ vector space, $M \subset X^{\#}$ separating points $\implies$ $(X, ς(X, M))$ has ccc.
+\end{veta}
+
+\begin{lemma}
+	Let $B \subset \spn(M)$ be an algebraic basis of $\spn(M)$. Consider $Φ: X \rightarrow ®F^B$ defined by $Φ(x)(b) = b(x)$, $b \in B$, $x \in X$. Then $Φ$ is a homeomorphism of $(X, ς(X, M))$ onto $Φ(X)$ and $Φ(X)$ is dense in $®F^B$.
+
+	\begin{dukazin}
+		„$Φ$ is one-to-one“: $x, y \in X$, $Φ(x) = Φ(y)$ $\implies$ $\forall b \in B: b(x) = b(y)$ $\implies$ $\forall m \in M: m(x) = m(y)$ $\implies$ $x = y$ ($M$ separates points).
+
+		„$Φ$ is homeomorphism“: observe $ς(X, M) = ς(X, B)$. ($b \in B: X \mapsto Φ(x)(b) = b(x)$ is $ς(X, B)$ continuous). $f \in Φ(x) \mapsto b(Φ^{-1}(f)) = f(b)$ is continuous.
+
+		„density“: $b_1, …, b_n \in B$ discrete $α_1, …, α_n \in ®F$ $\implies x \in X$ such that $Φ(x)(b_j) = α_j$, $j \in [n]$. $\exists x_1, …, x_n \in X$ such that $b_i(x_j) = 1$ if $i = j$ and $b_i(x_j) = 0$ if $i ≠ j$. (Assume not, WLOG $x_1$ does not exists $\implies$ $\bigcap_{j=2}^n \Ker b_j \subset \Ker b_1$ $\implies$ $b_1 \in \spn(b_2, …, b_n)$ \lightning.) $x \coloneq \sum α_j x_j$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$T$ topological space, $A \subset T$ dense. Then $T$ has ccc $\Leftrightarrow$ $A$ has ccc.
+
+	\begin{dukazin}
+		„$\impliedby$“ trivial. „$\implies$“: ©U a disjoint-family of open sets in $A$. $U \in ©U \implies \exists \tilde U$ open in $T$ such that $\tilde U \cap A = U$. $\tilde{©U} = \{\tilde U | U \in ©U\}$. $\tilde{©U}$ disjoint: $\tilde U \cap \tilde V ≠ \O$. $\tilde U \cap \tilde V$ open $\implies$ $\tilde U \cap \tilde V \cap A ≠ \O$ $\implies U \cap V ≠ \O$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}
+	$®F^Γ$ has ccc for each $Γ$.
+
+	\begin{dukazin}
+		Since $®C = ®R^2$ WLOG $®F = ®R$. $®R^{®R}$ is separable (has its own ccc). Assume $a_1 < b_1 < a_2 < b_2 < … < a_n < b_n$ are rational numbers, $r_1, …, r_n \in ®Q$. Define $f_{a_1, b_1, …, a_n, b_n, r_1, …, r_n}(x) = r_i$ if $x \in [a_i, b_i]$ and 0 elsewhere. There are countably such functions. They form a dense set ($f \in ®R^{®R}$, $x_1 < … < x_n$, $ε > 0$ $\implies$ find $a_1, b_1, …, a_n, b_n, r_1, …, r_n \in ®Q$). TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{veta}
+	$X$ vector space, $M \subset X^{\#}$ separating points, $f: X \rightarrow ®F$ $ς(X, M)$-continuous $\implies$ $\exists S \subset M$ countable, such that $p_S: X \rightarrow ®F^S$ is the evaluation mapping ($p_S(x)(m) = m(x), m \in S, x \in X$), then $\exists h: p_S(X) \rightarrow ®F$ continuous such that $f = h ∘ p_S$.
+\end{veta}
+
+\begin{tvrzeni}
+	Let $T$ be a $T_3$-topological space, $|T| ≥ 2$, $Γ$ countable set. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $T^Γ$ has ccc;
+		\item $\forall U \subset T^Γ$ open $\exists S \subset Γ$ countable such that $\overline{U} = π_S^{-1}(π_S(\overline{U}))$;
+		\item $\forall U \subset T^Γ$ open $\forall X \subset U$ dense $\forall f; X \rightarrow ®F$ continuous $\exists S \subset Γ$ countable $\exists h: π_S(X) \rightarrow ®F$ continuous such that $f = h ∘ π_S|_X$.
+	\end{enumerate}
+\end{tvrzeni}
+
+\begin{dukaz}[tvrzeni $\implies$ veta]
+	Take $B \subset M$, a basis of $\spn M$. Let $Φ$ be as in the lemma above $\implies$ $Φ$ is a homeomorphism $(X, ς(X, M))$ onto $Φ(X)$, $Φ(X)$ is dense in $®F^B$.
+
+	$f: X \rightarrow F$ $ς(X, M)$-continuous $\implies$ $\tilde f \coloneq f ∘ Φ^{-1}: Φ(X) \rightarrow ®F$ is continuous. From the previous lemma $\exists S \subset B$ countable, $h: π_S(Φ(X)) \rightarrow ®F$ continuous, $h ∘ π_S |_{Φ(X)} = \tilde f$ $\implies$ $h ∘ π_S ∘ Φ = \hat{f} ∘ φ = f$. $π_S ∘ Φ = p_S$. That's it.
+\end{dukaz}
+
+\begin{dukaz}[tvrzeni]
+	„$3 \implies 2$“: Let $U \subset T^Γ$ be open $\implies$ $X \coloneq U \cup (T^Γ \setminus \overline{U})$ $\implies$ $X$ is open, $\overline{X} = T^Γ$. $f \coloneq ψ_U$ continuous $X \rightarrow ®R$ $\overset{3}\implies$ $\exists S \subset P$ countable, $h: P_S(X) \rightarrow ®R$ continuous such that $f = h ∘ π_S |_X$.
+
+	Then $\overline{U} = π_S^{-1}(π_S(\overline{U}))$: „$\subset$“ always, „$\supset$“: $π_S(U) \cap π_S(T^Γ \setminus \overline{U}) = \O$ ($h|_{π_S(U)} = 1$, $h|_{π_S(T^Γ \setminus \overline{U})} = 0$). $π_S$ is an open mapping $\implies$ $\overline{π_S(U)} \cap π_S(T^Γ \setminus \overline{U}) = \O$ $\implies$ $π_S(\overline{U}) \cap π_S(T^Γ \setminus \overline{U}) = \O$ $\implies$ $π_S^{-1}(π_S(\overline{U})) \subset \overline{U}$.
+
+	„$2 \implies 1$“: Assume $T^Γ$ fails ccc. $\implies$ $\exists U_α, α < ω_1$ disjoin nonempty open sets. WLOG
+	$$ U_α = π_{F_α}^{-1}(\prod_{j \in F_a} O_j^α), \qquad F_α \subset Γ \text{ finite}, O_j^a \subset π \text{ open}. $$
+	$α < ω_1$ find $S_α \in Γ \setminus F_α$, $α ≠ β \implies S_α ≠ S_β$ ($S_α \in Γ \setminus (F_α \cup \{S_β | β < α\})$). $V_α \subset U_α$ open such that $\overline{π_{S_α}(V_α)} ≠ T$. $H \coloneq \overline{\bigcup_α V_α}$ $\implies$ $\exists S$ countable $H = π_s^{-1}(π_S(H))$. $\exists α: S_α \notin S$ $\implies$ $\exists x \in H: x \in U_α \setminus \overline{V_α}$ $\implies$ $x \notin \overline{\bigcup_{b ≠ α} V_b}$ \lightning.
+\end{dukaz}
+
+% 31. 11. 2024
+
+TODO!!!
+
+% 07. 11. 2024
+
+\begin{tvrzeni}
+	$X$ NLS then following assertions are equivalent:
+	\begin{enumerate}
+		\item $(X, w)$ has countable base;
+		\item $(X, w)$ is metrizable;
+		\item $(X, w)$ has countable character;
+		\item $\dim X < ∞$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$(4. \implies 1. \land 2.)$“: $\dim X < ∞ \implies w = \|·\|$ on $X$. ($X = ®F^n$.)
+
+		„$1. \implies 3.$“ and „$2. \implies 3.$“: obvious.
+
+		„$3. \implies 4.$“: Assume $(U_n)_{n \in ®N}$ is a base of neighbourhood of ¦o. WLOG $U_n = \{x \in X \middle| |f_1^n(x)| < ε_1^n, …, |f_{k_n}^n(x)| < ε_{k_n}^n\}$ for $ε_j^n > 0$, $f_j^n \in X^*$.
+
+		Claim: „$\spn \{f_j^n | 1 ≤ j ≤ k_n, n \in ®N\} = X^*$“. Let $f \in X^*$ be as the $V = \{x \in X | |f(x)| < 1\}$ is a weak neighbourhood of 0. $\implies$ $\exists n \in ®N: U_n \subset V \implies \bigcap_{j=1}^{k_n} \Ker f_j^n \subset \Ker f$. ($x \in \bigcap_{j=1}^{k_n} \Ker f_j^n \implies f_j^n(x) = 0$, for all $i \in [k_n]$ $\implies$ $\forall m \in ®N: m x \in U_n \subset V$ $\implies$ $|f(x)| < 1$ $\implies$ $|f(x)| < \frac{1}{m}$ $\implies$ $f(x) = 0$.) Hence $f \in \spn \{f_1^n, …, f_{k_n}^n\}$.
+
+		$\implies$ $\exists (y_n) \subset X^*$ such that $\spn\{g_n ; n \in ®N\} = X^*$. $F_n \coloneq \spn\{g_1, …, g_n\}$. Then $F_n \Subset X^*$, closed, $\bigcup_n F_n = X^*$. $X^*$ is complete $\implies$ (Baire) $\exists n: \Int F_n ≠ \O$. $\implies$ $F_n = X^*$ $\implies$ $\dim X^* < ∞$ $\implies$ $char X < ∞$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{veta}
+	$X$ measure space, $A \subset X$. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $(A, \|·\|)$ is separable;
+		\item $(A, w)$ is separable;
+		\item $(A, w)$ has countable network.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 3.$“: $(A, \|·\|)$ is separable $\implies$ $(A, \|·\|)$ has countable base and this base is a network for $(A, w)$.
+
+		„$3. \implies 2.$“: obvious.
+
+		„$2. \implies 1.$“: $C \subset (A, w)$ countable dense. $\tilde C \coloneq$ rational convex combinations of elements of $C$. $\implies \tilde C$ is countable, the $\overline{\tilde C}^{\|·\|}$ is a convex set, $\|·\|$-closed, hence w-closed $\implies$ $A \subset \overline{C}^w \subset \overline{\tilde C}^w \subset \overline{\tilde C}^{\|·\|}$ (from Mazur's theorem). $(\overline{\tilde C}^{\|·\|}, \|·\|)$ is separable $\implies$ $(A, \|·\|)$ is separable.
+	\end{dukazin}
+\end{veta}
+
+\begin{dusledek}
+	$X$ Banach space. Then $X$ is separable $\Leftrightarrow$ $(X, w)$ is separable $\Leftrightarrow$ $(X, w)$ has countable network.
+
+	\begin{prikladin}
+		$X, Y$ Banach spaces, $(X, w)$ and $(Y, w)$ are homeomorphic. Are $X, Y$ isomorphic?
+	\end{prikladin}
+\end{dusledek}
+
+\begin{veta}
+	$X$ Banach space. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $X$ is seprable;
+		\item $\exists T: X^* \rightarrow ®F^{®N}$ linear, one-to-one, $w^*$-continuous;
+		\item $\exists T: X^* \rightarrow c_0$ linear, one-to-one, $w^*-τ_p$ continuous, $\|T\| ≤ 1$;
+		\item $\exists T: X^* \rightarrow c_0$ linear, one-to-one, $w^*-w$ continuous, $\|T\| ≤ 1$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$4. \implies 3. \implies 2.$“: obvious.
+
+		„$2. \implies 1.$“: Let $T$ be as in 2. Define $φ_n: X^* \rightarrow ®F$ by $φ_n(x^*) \coloneq$ the $n$-th coordinate of $T(x^*)$. Then $φ_n$ is linear, $w^*$-continuous. $\implies$ $\exists x_n \in X$ such that $φ_n(x^*) = x^*(x_n)$, $x^* \in X^*$. Then $\{x_n; n \in ®N\}$ separates points of $X^*$. ($x^* \in X^* \setminus \{¦o\} \overset{\text{one-to-one}}\implies T x^* ≠ ¦o \implies \exists n \in ®N: x^*(x_n) = φ_n(x^*) = (T x^*)(n) ≠ 0$.)
+		$\implies \overline{\spn\{x_n n \in ®N\}}^{\|·\|} = X \implies X$ is separable.
+
+		„$1. \implies 4.$“: $X$ separable $\implies$ $B_X$ is separable. Let $\{x_n\}_{n=1}^∞$ be base in $B_X$. Define $T: X^* \rightarrow c_0$ by $Tx^* = \(\frac{1}{n} x^*(x_n)\)_{n=1}^∞$. Then $Tx^* \in c_0$. ($|\frac{1}{n}x^*(x_n)| ≤ \frac{1}{n} \|x^*\|·\|x_n\| ≤ \frac{1}{n \|x^*\| \rightarrow 0}$.)
+
+		„$T$ is linear, $\|T\| ≤ 1$“: $w^*-w$ continuity: Let $f \in c_0^*$, we will show that $f ∘ T$ is $w^*$-continuous. So, fix $f \in c_0^*$ $\implies$ $\exists (y_n)_{n=1}^∞ \in l_1$ representing $f$. Then
+		$$ (f ∘ T)(x^*) = f(T(x^*)) = f\(\(\frac{1}{n} x^*\(x_n\)\)_{n=1}^∞\) = \sum_{n=1}^∞ y_n · \frac{1}{n} x^*\(x_n\) = x^*\(\sum_{n=1}^∞ \frac{y_n}{n} x_n\), $$
+		so it is $w^*$-continuous.
+		$$ \sum_{n=1}^∞ \left\|\frac{y_n}{n} x_n\right\| = \sum_{n=1}^∞ \frac{|y_n|}{n} \|x_n\| ≤ \sum_{n=1}^∞ |y_n ≤ \|f\| < ∞. $$
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	$X$ separable Banach space.
+	\begin{enumerate}
+		\item Any $\|·\|$-open set is weakly $F_ς$. In particular non-Borel and weakly Borel sets coincide.
+		\item $X$ is $F_{ςδ}$ in $(X^{**}, w^*)$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1.$“: $U \subset X$ $\|·\|$-open $\implies$ $\forall x \in U\ \exists δ_x > 0: \overline{U(x, δ_x)} \subset U$ $\implies$ $\bigcup_{x \in U} U(x, δ_x) = U$ $\implies$ ($X$ separable) $\bigcup_{n=1}^∞ U(x_n, δ_{x_n}) = U$. Then $U = \bigcup_{n=1}^∞ \overline{U(x_n, δ_{x_n})}$ $\implies$ $U$ is weakly $F_ς$.
+
+		„$2.$“: Let $\{x_n\} \subset X$ be $\|·\|$-dense. Then
+		$$ X = \bigcap_{k=1}^∞ \bigcup_{n = 1}^∞ (x_n + \frac{1}{k} B_{X^{**}}). $$
+		RHS is $F_{ςδ}$ in $w^*$.
+
+		„$\subset$“: $x \in X$, $k \in ®N$ $\implies$ $\exists n \in ®N: \|x - x_n\| < \frac{1}{k}$ $\implies$ $x \in x_n + \frac{1}{k} B_X \subset x_n + \frac{1}{k} B_{X^{**}}$. So $x \in RHS$.
+
+		„$\supset$“: $x^{**} \in RHS$. Fix $k \in ®N$ $\implies$ $\exists n: x^{**} \in x_n + \frac{1}{k} B_{X^{**}}$. $\implies$ $\|x^{**} - x_n\| ≤ \frac{1}{k}$ $\implies$ $\dist(x^{**}, X) ≤ \frac{1}{k}$. This holds for each $k \in ®N$, hence $\dist(x^{**}, X) = 0$ and from $X$ is closed, we get $x^{**} \in X$.
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	1. $X$ Banach space. Then $X$ is separable $\Leftrightarrow$ $(B_{X^*}, w^*)$ is metrizable.
+
+	2. $K$ compact $T_2$. Then $K$ is metrizable $\Leftrightarrow$ $C(K)$ is separable.
+
+	\begin{dukazin}
+		„$1., \implies$“: $X$ separable $\implies$ (from the theorem above) $\exists T: X^* \rightarrow c_0$ linear, one-to-one, $\|T\| ≤ 1$, $w^*-τ_p$ continuous. Then $T|_{B_{X^*}}$ is a homeomorphism of $(B_{X^*}, w^*)$ into $(B_{c_0}, τ_p)$ (use compactness of $(B_{X^*}, w^*)$). $T(B_{X^*}) \subset B_{c_0} \subset \{t \in ®F \middle| |t| ≤ 1\}^{®N}$. The last one is metrizable compact, so $(B_{X^*}, w^*)$ is metrizable.
+
+		„$2., \impliedby$“: $C(K)$ is separable, so (from first part) $(B_{C(K)^*}, w^*)$ is metrizable. Sic $K \hookrightarrow (B_{C(K)^*}, w^*)$, $K$ is metrizable.
+
+% 14. 11. 2024
+
+		„$2., \implies$“: Let $K$ be metrizable. Then $\exists (f_n) \subset C(K, ®R)$ separating points of $K$ ($K$ metrizable compact $\implies$ it has countable base $(U_n)_{n \in ®N}$. Let $I \coloneq \{(m, n) \in ®N \times ®N \middle| \O ≠ \overline{U_m} \subset U_n\}$, then $I$ is a countable set. $(m, n) \in I \implies \exists f_{m, n}: K \rightarrow [0, 1]$ continuous,
+		$$ f_{m, n}(x) = \frac{\dist(x, K \setminus U_m)}{\dist(x, K \setminus U_n) + \dist(x, K \setminus U_m)}, \qquad f_{m, n} |_{U_m} = 1, \quad f_{m, n} |_{U_n} = 0. $$
+		$(f_{m, n})_{(m, n) \in I}$ separates points of $K$. $x ≠ y \in K$ $\implies$ $\exists n \in ®N: x \in U_n, y \notin U_n$ because $K \setminus \{y\}$ is open and $x \in K \setminus \{y\}$. $\implies$ $\exists V$ open: $x \in V \subset \overline{V} \subset U_n$ $\implies$ $\exists m \in ®N: x \in U_m \subset V$. Then $(n, m \in I), f_{m, n}(x) = 1, f_{m, n}(y) = 0$.)
+
+		Let $©A \coloneq \spn \{1, \text{ finite products of } (f_n)\}$. Then ©A is separable, separates points of $K$, contains constants, $f \in ©A \implies \overline{f} \in ©A$, so ©A is an algebra $\implies$ (Stone–Weierstrass) $\overline{©A}^{\|·\|} = C(K)$, so $C(K)$ is separable.
+
+		„$1., \impliedby$“: $(B_{X^*}, w^*)$ is metrizable, so (from the third part) $C(B_{X^*}, w^*)$ is separable and $X \subset C(B_{X^*}, w^*)$ is also separable.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		The first part of the proof provides a formula for a metric on $B_{X^*}$:
+		$$ (x_n) \subset B_X \text{ dense } \quad \implies \quad ρ(x^*, y^*) = \sum_{n=1}^∞ \frac{1}{2^n} |x^*(x_n) - y^*(x_n)|. $$
+
+		Kelloc's theorem $\implies$ ($X$ is separable, $\dim X = ∞$ $\implies$ $(B_{X^*}, w^*)$ is homeomorphic to $[0, 1]^{®N}$).
+
+		In particular, $X$ separable, reflexive, $\dim X = ∞$ $\implies$ $(B_X, w)$ is homeomorphic to $[0, 1]^{®N}$.
+	\end{poznamkain}
+
+	\begin{prikladin}
+		$T: l_p \rightarrow l_q$, $T((x_n)_n) = ((\sgn f_n) |f_n|^{\frac{p}{q}})_n$ $\implies$ $T$ is a bijection $l_p$ onto $l_q$. $\|T x\|_q^q = \|x\|_p^p$. In particular $T(B_{l_p}) = B_{l_q}$ and $T$ is $τ_p \rightarrow τ_q$ homeomorphism ($\implies$ $T$ is homeomorphism $(B_{l_p}, w) \rightarrow (B_{l_q}, w)$).
+	\end{prikladin}
+\end{veta}
+
+\begin{definice}
+	Let $X$ be a Banach space. A Markuševič basis of $X$ is a system $(x_α, x_α^*)_{α \in A} \subset X \times X^*$, such that:
+	\begin{itemize}
+		\item $x_α^*(x_β) = 1$ if $α = β$ and $0$ if $α ≠ β$;
+		\item $\overline{\spn}\{x_α, α \in A\} = X$;
+		\item $\forall x \in X \setminus \{¦o\}\ \exists α \in A: x_α^*(x) ≠ 0$ (i.e. $(x_α^*)_{α \in A}$ separate points of $X$ $\Leftrightarrow$ $\overline{\spn}^{w^*}\{x_α^*, α \in A = X^*\}$).
+	\end{itemize}
+\end{definice}
+
+\begin{poznamka}
+	$X$ separable Banach space, $(x_α, x_α^*)_{α \in A}$ is an Markuševič basis. Then $A$ is countable.
+
+	\begin{dukazin}
+		WLOG $\|x_α^*\| = 1$ for each $α$.
+		$$ α ≠ β \implies \|x_α - x_β\| ≥ |x_α^*(x_α - x_β)| = 1 \implies (x_α)_{α \in A} \text{ 1-discrete } \implies A \text{ is countable}. $$
+	\end{dukazin}
+\end{poznamka}
+
+\begin{veta}[Markuševič]
+	$X$ separable Banach space ($\dim X = ∞$), $(z_n) \subset X$ such that $\overline{\spn}\{z_n, n \in ®N\} = X$, $(z_n^*) \subset X^*$ separates points of $X$. Then $\exists$ an Markuševič basis $(x_n, x_n^*)_{n \in ®N}$ such that $\spn \{x_n, n \in ®N\} = \spn\{z_n, n \in ®N\}$ and $\spn \{x_n^*, n \in ®N\} = \spn \{z_n^*, n \in ®N\}$.
+
+	\begin{dukazin}
+		$k_1 \coloneq$ the first index such that $z_{k_1} ≠ 0$. $x_1 \coloneq z_{k_1}$. Find $l_1 \in ®N$ such that $z^*_{l_1}(x_1) ≠ 0$. $x_1^* \coloneq \frac{z_{l_1}^*}{z_{l_1}^*(x_1)}$.
+
+		Find the smallest $l_2$ such that $z_{l_2}^* \notin \spn \{x_1^*\}$. $x_2^* \coloneq z_{l_2}^* - z_{l^2}^*(x_1)·x_1^*$ ($\implies x_2^*(x_1) = 0, x_2^* ≠ 0$). Find $k_2$ such that $x_2^*(z_{k_2}) ≠ 0$. $x_2 \coloneq \frac{z_{k_2} - x_1^*(z_{k_2})·x_1}{x_2^*(z_{k_2})}$. ($\implies$ $x_1^*(x_2) = 0$, $x_2^*(x_2) = 0$.)
+
+		Find the smallest $k_3$ such that $z_{k_3} \notin \spn\{x_1, x_2\}$. $x_3 \coloneq z_{k_3} - x_1^*(z_{k_3})x_1 - x_2^*(z_{k_3})·x_2$. Find $l_3$ such that $z_{l_3}^*(x_3) ≠ 0$. $x_3^* \coloneq \frac{z_{l_3}^* - z_{l_3}^*(x_1)x_1^* - z_{l_3}^*(x_2)x_2^*}{z_{l_3}^*(x_3)}$.
+
+		Etc. Then $(x_n, x_n^*)_{n \in ®N}$ satisfies first. $\spn \{x_n, n \in ®N\} = \spn \{z_n, n \in ®N\}$ („$\subset$“ clear, „$\supset$“: $k_{2n - 1}$ is always the smallest such that $z_{k_{2n - 1}}$ is not covered by $\spn \{x_1, …, x_{2n-1}\}$ and $z_{k_{2n - 1}} \in \spn \{x_1, …, x_{2n - 1}\}$). $\spn \{x_n^*, n \in ®N\} = \spn \{z_n^*, n \in ®N\}$ (analogous).
+	\end{dukazin}
+\end{veta}
+
+\begin{veta}
+	Let $X$ be a Banach space. Then following assertions are equivalent:
+	\begin{enumerate}
+		\item $X^*$ is separable;
+		\item $(B_X, w)$ is metrizable;
+		\item $X = \bigcup_n F_n$ for $F_n$ weakly closed and $(F_n, w)$ metrizable;
+	\end{enumerate}
+	
+	\begin{dukazin}[1. $\implies$ 2.]
+		$X^*$ separable $\implies$ (by the theorem above) $(B_{X^{**}}, w^*)$ is metrizable. And note that $(B_X, w) \subset (B_{X^{**}}, w^*)$.
+	\end{dukazin}
+
+	\begin{dukazin}[2. $\implies$ 3.]
+		Take $F_n = n·B_X$.
+	\end{dukazin}
+
+	\begin{dukazin}[3. $\implies$ 2.]
+		$X = \bigcup_n F_n$ as in 3. $F_n$ is weakly closed $\implies$ $F_n$ are $\|·\|$ closed $\implies$ (Baire) $\exists n: \Int_{\|·\|} F_n ≠ \O$ $\implies$ $\exists x \in X\ \exists r > 0: x + r·B_X \in F_n$ $\implies$ $(x + r B_X, w)$ is metrizable (homeomorphic to $(B_x, w)$, so $(B_x, w)$ is metrizable).
+	\end{dukazin}
+
+% 21. 11. 2024
+
+	\begin{dukazin}[2. $\implies$ 1.]
+		Let $ρ$ be a metric on $B_X$ inducing $w$. Then $U_n = \{x \in B_x | ρ(0, x) < \frac{1}{n}\}$ is $w$-open $\implies$ $\exists x_{n, 1}^*, …, x_{n, k_n}^* \in X^*$ such that $\{x \in B_x \middle| |x_{n, j}^* (x)| < 1, j \in [k_n]\} \subset U_n$. Define $Y \coloneq \overline{\spn}\{x_{n, j}^*, j \in [k_n], n \in ®N\}$. We will show $Y = X^*$.
+
+		Assume $X^* \setminus Y ≠ \O$. Fix $x^* \in X^* \setminus Y$. Then $d \coloneq \dist(x^*, Y) > 0$. From Hahn-Banach theorem: $\exists x^{**} \in X^{**}: \|x^{**}\| = \frac{1}{d}$, $x^{**}|_Y = 0$, $x^{**}(x^*) = 1$. Define $V \coloneq \{x \in B_X \middle| |x^*(x)| < \frac{d}{2}\}$. Then $V$ is $w$-open neighbourhood of ¦o in $B_X$ $\implies$ $\exists n: U_n \subset V$.
+
+		Goldstine $\implies$ $\exists x_1 \in B_X$ such that
+		$$ |x^*(x_1) - d| = |x^*(x_1) - dx^{**}(x^*)| < \frac{d}{2} \land |x_{n,j}^*(x_1) - dx^{**}(x_{n,j})| = |x_{n,j}^*(x_1)| < 1, \quad \text{for } j \in [k_n]. $$
+		Then $x_1 \in U_n \subset V \implies |x^*(x_1)| < \frac{d}{2}$, $|x^*(x_1)| ≥ d - |x^*(x_1) - d| > \frac{d}{2}$. \lightning.
+	\end{dukazin}
+
+	\begin{poznamkain}
+		1. $\implies$ $X$ is separable. ($X^*$ separable $\implies$ $(B_{X^{**}}, w^*)$ is a metrizable compact, so, it is a separable metrizable space. So $(B_X, w) \subset (B_{X^{**}}, w^*)$ is also separable metrizable. Thus from the theorem above $(B_X, \|·\|)$ is separable $\implies$ $X$ is separable.)
+	\end{poznamkain}
+
+	If, moreover, $X$ is separable, also next ones are equivalent to 1.-3. (The remark means that 1. $\implies$ 4.~holds and that 4. $\implies$ 1.~needs separability of $X$.) (TODO count from 4.)
+
+	\begin{enumerate}
+		\item $X$ has a shrinking (i.e., $\overline{\spn\{x_β^*, β \in A\}}^{\|·\|} = X^*$) Markuševič basis.
+		\item $(X^*, w)$ is Lindelöf.
+		\item $Borel(X^*, \|·\|) = Borel(X^*, w^*)$.
+		\item $Borel(X^*, w) = Borel(X^*, w^*)$.
+	\end{enumerate}
+
+	\begin{dukazin}[1. $\implies$ 4.]
+		$X^*$ and $X$ are separable, so $\exists (z_n) \subset X$ and $\exists (z_n^*) \subset X^*$ $\|·\|$-dense. Apply the theorem above.
+	\end{dukazin}
+
+	\begin{dukazin}[4. $\implies$ 1.]
+		$X$ separable $\implies$ any Markuševič basis is countable. So, there is a shrinking Markuševič basis $(X_n, X_n^*)_{n \in ®N}$. Then $X^* = \overline{\spn}^{\|·\|}\{x_n^*, n \in ®N\} \implies X^*$ is separable.
+	\end{dukazin}
+
+	\begin{dukazin}[1. $\implies$ 5.]
+		Trivial. ($X^*$ separable $\implies$ $(X^*, \|·\|)$ is Lindelöf $\implies$ $(X^*, w)$ is Lindelöf.)
+	\end{dukazin}
+
+	\begin{dukazin}[1. $\implies$ 6.]
+		$X^*$ separable $\implies$ any $\|·\|$-open set in $X^*$ is $w^*$-$F_ς$. See the proof above. ($U$ is $\|·\|$-open. $x^* \in U\ \exists r_{x^*}: \overline{U(x^*, r_{x^*})} \subset U$. $U(x^*, r_{x^*}), x^* \in U$ is an open cover of $U$ $\implies$ $\exists (x_n^*): U = \bigcup_n U(x^*, r_{x^*}) = \bigcup_n \overline{U(x^*, r_{x^*})}$ which is $w^*$ compact.)
+	\end{dukazin}
+
+	\begin{dukazin}[6. $\implies$ 7.]
+		Clear, as $w^* \subset w \subset \|·\|$. Hence $Borel(X^*, w^*) \subset Borel(X^*, w) \subset Borel(X, \|·\|)$.
+	\end{dukazin}
+
+	\begin{dukazin}[5. $\implies$ 1. $\land$ 7. $\implies$ 1.]
+		Claim: $X$ separable, $X^*$ non-separable $\implies$ $\exists Δ \subset S_{X^*}$ such that $(Δ, w^*)$ is homeomorphic to $\{0, 1\}^{®N}$ (= Cantor set) and $(Δ, w)$ is discrete.
+
+		„If we prove this claim, we are done“: $Δ$ is $w^*$-closed (is homeomorphic to $\{0, 1\}^{®N}$), hence $w$-closed. $w$-closed and discrete $\implies$ $(Δ, w)$ is not Lindelöf, hence $(X^*, w)$ is not Lindelöf. \lightning{} with 5. $(Δ, w)$ is closed and discrete, hence each subset is $w$-closed. But $(Δ, w^*)$ is homeomorphic to $\{0, 1\}^{®N}$ and there are non-Borel sets in $\{0, 1\}^{®N}$. \lightning{} with 7.
+
+		„Claim“: Assume $X$ is separable, $X^*$ is non-separable.
+
+		Step 1: Given $ε > 0$ $\exists (x_α^*, x_α^{**})_{α < ω_1} \subset X^* \times X^{**}$ such that $\|x_α^*\| = 1$, $\|x_α^{**}\| < 1 + ε$ and $x_α^{**}(x_β^*) = 1$ if $β = α$ and $=0$ if $β < α$. In sketch: Fix $x_0^*$, $x_0^{**}$ such that $\|x_0^*\| = 1 = \|x_0^{**}\| = x_0^{**}(x_0^*)$. Now assume $1 ≤ α < ω_1$ and that we already have $(x_β^*, x_β^{**})$ for $β < α$. $Z \coloneq \overline{\spn}\{x_β^*, β < α\}$ $\implies$ $Z$ is separable, so $Z \subsetneq X^*$ $\implies$ $\exists x_α^{**} \in X^{**}$ such that $x_α^{**}|_Z = 0$, $\|x^{**}_α\| = 1 + \frac{ε}{2}$. Then find $x_α^* \in X^*$, $\|x_α^*\| = 1$ and $x_α^{**}(x_α^*) = 1$.
+
+		Step 2: WLOG $\{x_α^*, α < ω_1\}$ is locally uncountable in $(X^*, w^*)$. ($\{x_α^*, α < ω_1\} \eqcolon A$ is an uncountable subset of $(B_{X^*}, w^*)$. $(B_{X^*}, w^*)$ is a separable metrizable space. $©U = \{U \subset B_{X^*} | w^*\text{-open } \land U \cap A \text{ is countable}\}$. $\implies$ $\exists ©U' \subset ©U$ countable such that $\bigcup ©U = \bigcup U'$. Thus, $A \cap \bigcup ©U$ is countable. $A' \coloneq A \setminus \bigcup ©U$. Then $A'$ is uncountable (in fact $A \setminus A'$ is countable) and $\forall U \subset B_{X^*}$ $w^*$-open $U \cap A' ≠ \O$ $\implies$ $U \cap A'$ is uncountable.)
+
+		Step 3: Fix $ρ$ a metric generating $w^*$ on $B_{X^*}$. We will construct $w^*$-open sets $U_s \subset B_{X^*}$, $s \in \bigcup_{n=0}^∞ \{0, 1\}^n$ and $X_s \in X$, $\|x_s\| < 1 + ε$ such that:
+		\begin{itemize}
+			\item $U_{\O} = B_{X^*}$;
+			\item $\diam U_s < \frac{1}{|s| + 2}$ if $|s| ≥ 1$;
+			\item $\overline{U_s}^{w^*} \cap \(1 - \frac{1}{|s| + 2}\)·B_{X^*} = \O$, for $|s| ≥ 1$;
+			\item $\overline{U_{s^\wedge 0}}^{w^*} \cup \overline{U_{s^\wedge 1}}^{w^*} \subset U_s$, $\overline{U_{s^\wedge 0}}^{w^*} \cap \overline{U_{s^\wedge 1}}^{w^*} = \O$;
+			\item $U_s \cap A ≠ \O$;
+			\item $\forall x^* \in U_s: (x^*(x_s) - 1) < \frac{1}{|s| + 1}$, for $|s| ≥ 1$;
+			\item $\forall x^* \in \bigcup \{U_t \middle| |t| = |s|, t ≠ s\}: |x^*(x_s)| < \frac{1}{|s| + 1}$, for $|s| ≥ 1$.
+		\end{itemize}
+
+		Construction: Set $U_\O = B_{X^*}$. Assume that for $n \in ®N$, we have the construction for $|s| < n$. For $|s| = n-1$ we find $V_{s^\wedge 0}$ and $V_{s^\wedge 1}$ ($w^*$-open in $B_{X^*}$) such that „II to~V“ are satisfied.
+
+% 28. 11. 2024
+
+		We have $V_s$, $s \in \{0, 1\}^n$, order that by $V_0, V_1, …, V_{2^n - 1}$. Find $α_1, α_2, …, α_{2^n-1} < ω_1$ such that $x_{α_i}^* \in V_i$, $i \in [2^n - 1]$. Next find $α_0 > \max \{α_1, …, α_{2^n - 1}\}$ such that $x_{α_0}^* \in V_0$. Then $x_{α_0}^{**}(x_{α_0}^*) = 1$, $x_{α_0}^{**}(x_{α_i}^*) = 0$, $i \in [2^n - 1]$ $\implies$ (Goldstine) $\exists x_0 \in X$, $\|x_0\| < 1 + ε$, $|x_{α_0}^*(x_0) - 1| < \frac{1}{n + 1}$, $|x_{α_i}^*(x_0)| < \frac{1}{n + 1}$, $i \in [2^n - 1]$.
+		$$ V_{0, 0} \coloneq \{x^* \in V_0 \middle| |x^*(x_0) - 1| < \frac{1}{n+1}\}, $$
+		$$ V_{i, 0} \coloneq \{x^* \in V_i \middle| |x^*(x_0)| < \frac{1}{n+1}\}, \quad i \in [2^n - 1]. $$
+		Do the same for $l = [2^n - 1]$ instead of $0$. Assume, we have $V_{i, l - 1}$, $i \in [0, 2^n - 1]$. For $j ≠ l$ find $α_j < ω_1$ such that $x_{α_j}^* \in V_{j, l - 1}$ and $α_l > \max\{α_j \middle| j ≠ l\}$ such that $x_{α_l}^* \in V_{l, l - 1}$.
+
+		Then $x_{α_l}^{**}(x_{α_0}^*) = 1$, $x_{α_0}^{**}(x_{α_i}^*) = 0$ for $i ≠ l$. Find $x_l \in X$, $\|x_l\| < 1 + ε$ such that $|x_{α_l}^*(x_l) - 1| < \frac{1}{n + 1}$, $|x_{α_i}^*(x_l)| < \frac{1}{n + 1}$, $i ≠ l$.
+		$$ V_{i, l} \coloneq \{x^* \in V_{i, l-1} \middle| |x^*(x_l)| < \frac{1}{n + 1}\}, \qquad i ≠ l, $$
+		$$ V_{l, l} = \{x^* \in V_{l, l - 1} \middle| |x^*(x_l) - 1| < \frac{1}{n + 1}\}. $$
+		$U_j \coloneq V_{j, 2^n - 1}$ then satisfies VI and VII.
+
+		Step 4: $Δ \coloneq \bigcap_{n=1}^∞ \bigcup_{|s| = n} \overline{U_s}^{w^*}$. Then $Δ \subset S_{X^*}$ by III, $(Δ, w^*)$ is homeomorphic to $\{0, 1\}^{®N}$ ($α \in \{0, 1\}^{®N} \mapsto$ the unique point in $\bigcap_n \overline{U_{α_1, …, α_n}}^{w^*}$). Let $x^* \in Δ$, then $\exists! ν \in \{0, 1\}^{®N}$ such that $x^* \in \bigcap_n U_{ν_1, …, ν_n}$. Let $x^{**}_ν$ be a $w^*$-cluster point of $(x_{(ν_1, …, ν_n)_n})$. Then $x_ν^{**}(x^*) = 1$ by VI ($x^*(x_{ν_1, …, ν_n}) \rightarrow 1$). $y \in Δ \setminus \{x^*\}$, $\tilde ν ≠ ν$ $\implies$ $\exists n_0: \tilde V_{n_0} ≠ V_{n_0}$, hence $y^*(x_{ν_1, …, ν_n}) \rightarrow 0$ by VII for $n ≥ n_0$, so $x_ν^{**}(y^*) = 0$.
+
+		So we have a biorthogonal system $(x^*, x^{**})_{x^* \in Δ}$ ($\implies$ each $x^* \in Δ$ is $w$-isolated point of $Δ$) and we are done.
+	\end{dukazin}
+\end{veta}
+
+\section{Reflexive spaces}
+TODO?
+
+\begin{tvrzeni}
+	1. $X$ is reflexive $\Leftrightarrow$ $X^*$ is reflexive.
+
+	2. $X$ is reflexive and separable $\implies$ $X^*$ is separable.
+
+	\begin{dukazin}
+		„2.“: $X$ reflexive and separable $\implies$ $X^{**}$ separable $\implies$ $X^*$ separable. „1.“: Intro to FA.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$X$ Banach space, then following assertions are equivalent:
+	\begin{enumerate}
+		\item $X$ is reflexive;
+		\item $(B_X, w)$ is compact;
+		\item $(X, w)$ is $ς$-compact.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„$1. \implies 2.$“: $X$ reflexive $\implies$ $κ(X) = X^{**}$ $\implies$ $κ(B_X) = B_{X^{**}}$. $κ$ is $w$-$w^*$ homeomorphism and $B_{X^{**}}$ is $w^*$ compact, so $B_X$ is $w$-compact.
+
+		„$2. \implies 1.$“: Assume $B_X$ is $w$-compact, then $κ(B_X)$ is $w^*$-compact, hence $w^*$-closed and by Goldstine it is $w^*$-dense in $B_{X^{**}}$ $\implies$ $κ(B_X) = B_{X^{**}}$ $\implies$ $κ(X) = X^{**}$.
+
+		„$2. \implies 3.$“: $X = \bigcup_{n=1}^∞ n·B_X$. „$3. \implies 2.$“: $X = \bigcup_{n=1}^∞ K_n$, $(K_n, w)$ compact $\implies$ $K_n$ are $w$-closed, so $\|·\|$-closed. Baire $\implies$ $\exists n: \Int_{\|·\|} K_n ≠ \O$ $\implies$ $\exists x \in X\ \exists r > 0$ such that $x + r·B_X \subset K_n$ $\implies$ $x + r·B_X$ is $w$-compact $\implies$ $B_X$ is $w$-compact.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$X$ reflexive $\Leftrightarrow$ $(B_{X^*}, w)$ is compact.
+
+	\begin{dukazin}
+		„Method 1“: Use the previous propositions.
+
+		„Method 2“: „$\implies$“ $X$ reflexive $\implies$ on $X^*$ we have $w = w^*$. $(B_{X^*}, w^*)$ is compact (Banach-Alaoglu) $\implies$ $(B_{X^*}, w)$ is compact.
+
+		„$\impliedby$“ $(B_{X^*}, w)$ is compact $\implies$ $w = w^*$ on $B_{X^*}$. $x^{**} \in X^{**} \implies x^{**}$ is $w$-continuous $\implies$ $x^{**}|_{B_{X^*}}$ is $w^*$-continuous $\implies$ (Banach-Diledin) $x^{**}$ is $w^*$-continuous $\implies$ $x^{**} \in κ(X)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$C(K)$ is reflexive $\Leftrightarrow$ $K$ is finite.
+
+	\begin{dukazin}
+		„$\impliedby$“: $K$ finite $\implies$ $\dim C(K) < ∞$ $\implies$ $C(K)$ is reflexive.
+
+		„$\implies$“: $K$ is infinite $\implies$ $C(K)$ not reflexive:
+
+		„Method 1“: Using Riesz theorem: $C(K)^* \approx M(K)$, $μ \in M(K)$, $μ(f) = \int f dμ$. $K$ is infinite $\implies$ $\exists x_0 \in K$ non-isolated. Define $φ \in M(K)^*$ by $φ(μ) = μ(\{x_0\})$. Then $\|φ\| = 1$ and $φ \notin κ(C(K))$. (Assume $f \in C(K), φ = κ(f)$. Then for $x \in K: f(x) = δ_x(f) = κ(f)(Γ_x) = φ(δ_x) = φ_x(\{x_0\}) = 1$ if $x = x_0$ and $0$ for $x ≠ x_0$. So, $f = χ_{x_0}$, which is not a continuous function. \lightning.)
+
+		„Method 2“: $x \in ®K: δ_x(f) = f(x)$, $f \in C(K)$. Clearly $δ_x \in C(K)^*$, $\|δ_x\| = 1$. $x_1, …, x_n \in K$ distinct, $α_1, …, α_n \in ®F$ $\implies$ $\|α_1 δ_{x_1} + … + α_n δ_{x_n}\| = \sum_{j=1}^n |α_j|$ („$≤$“: $\triangle$-inequality + first step. „$≥$“: $®F = ®R$ by Urysohn lemma $\exists f: K \rightarrow [-1, 1]$ continuous, such that $f(\{x_j | α_j ≥ 0\}) = \{1\}$ and $f(\{x_j | α_j < 0\}) = \{-1\}$. Then $(α_1 δ_{x_1} + … + α_n δ_{x_n})(f) = \sum_{i=1}^n |α_j|$. $®F = ®C$: WLOG $α_j ≠ 0$ for all $j$. $\exists f_0 \in C(K, ®C): f_0(x_j) = \frac{|α_j|}{α_j}$. Define $f(x) = f_0(x)$ if $|f_0(x)| ≤ 1$ and $f(x) = \frac{f_0(x)}{|f_0(x)|}$ if $|f_0(x)| > 1$. $\implies$ $f \in C(K), \|f\| = 1, f(x_j) = \frac{|α_j|}{α_j}$ and $(α_1δ_{x_1} + … + α_n δ_{x_n})(f) = \sum |α_j|$.)
+
+		Hence $\{δ_x, x \in K\}$ is linearly independent. $K$ is finite $\implies$ $\exists x_0 \in K$ non-isolated. Define $φ_0: \spn \{δ_x, x \in K\} \rightarrow ®F$ linear such that $φ_0(δ_{x_0}) = 1$, $φ_0(δ_x) = 0, x ≠ x_0$. Then $\|φ_0\| = 1$ („$≥$“: $φ_0(δ_{x_0}) = 1$. „$≤$“: $|φ_0(\sum_{j=0}^n α_j δ_{x_j})| = |α_0| ≤ \sum_{j=0}^n |α_j| = \|\sum_{j=0}^n α_j δ_{x_j}\|$.) Then by Hahn-Banach $\exists φ \in C(K)^{**}$ such that $φ$ extends $φ_0$. Then $φ \notin κ(C(K))$ as in Method 1.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{tvrzeni}
+	$H$ Hilbert space $\implies$ any $\|·\|$-open set is weakly $(F \land G)_ς$. In particular $Borel(H, \|·\|) = Borel(H, w)$.
+
+	\begin{dukazin}
+		„Step 1: On $S_H$: $w = \|·\|$“: Clearly $w \subset \|·\|$. $x \in S_H$, $ε > 0$. Let $δ \coloneq \frac{ε^2}{2}$. Then $x \in \{y \in S_H | \Re \<y, x\> > 1 - δ\} \subset B(x, ε)$. $y \in S_H$: $\|y - x\|^2 = \<y - x, y - x\> = \|y\|^2 - 2 \Re\<y, x\> + \|x\|^2 = 2(1 - \Re\<u, x\>) < 2δ = ε^2$.
+
+		„Step 2“: If $p < q$ define $A(p, q) \coloneq \{x \in H \middle| p < |x| ≤ q\}$. Then „$©U \coloneq \{\{¦o\}\} \cup \{A(p, q) \cap W | W \text{ weakly open } \land 0 < p < q \land p, q \in ®Q\}$ is a network for the norm topology on $H$“: $U \subset H$ $\|·\|$-open, $x \in U$. If $x = 0$, then $x \in \{¦o\} \subset ©U$. Assume $x ≠ ¦o$. $a \coloneq \|x\| > 0$. Find $ε > 0: B(x, 2ε) \subset U$. From the Step 1 we have $\exists V$ weak neighbourhood of ¦o such that $(x + V \cap r·S_H \subset B(x, ε))$. Find $W$ a weak neighbourhood of ¦o such that $W + W \subset V$. Further, find $r > δ > 0$ such that $\overline{B(¦o, δ)} \subset W \cap B(¦o, ε)$.
+
+		Then $x \in (x + W) \cap A(r - d, r + δ) \subset B(x, 2ε) \subset U$.
+		$$ y \in (x + W) \cap A(r - δ, r + δ) \implies w_1 \coloneq y - x \in W. $$
+		$$ z \coloneq r·\frac{y}{\|y\|}, \qquad w_2 \coloneq y - z \in \overline{B(¦o, δ)} \subset W \cap B(0, ε). $$
+		$$ \implies z = x + w_1 - w_2 \in x + W + \overline{B(¦o, δ)} \subset x + W + W \subset x + V \implies $$
+		$$ \overset{\|z\| = r}\implies z \in B(x, ε) \implies y = z + w_2 \in z + B(¦o, ε) \subset B(x, 2ε). $$
+		Take $p, q \in ®Q$ such that $r - δ < p < r < q < r + δ$.
+
+		„Step 3: $U$ $\|·\|$-open“: From Step 2:
+		$$ U \setminus \{¦o\} = \bigcup \{W \cap A(p, q) | W \text{ weakly open } \land 0 < p < q \land p, q \in ®Q \land W \cap A(p, q) \subset U \} = $$
+		$$ = \bigcup_{0 < p < q \in ®Q} \bigcup \{W \cap A(p, q) | W \text{ weakly open } \land W \cap A(p, q) \subset U\} = $$
+		$$ = \bigcup_{0 < p < q \in ®Q} (A(p, q) \cap \underbrace{\bigcup \{W | W \text{ weakly open } \land W \cap A(p, q) \subset U\}}_{\text{weakly open}, ©G_{p, q} \coloneq}) = $$
+		$$ = \bigcup_{0 < p < q \in ®Q} (©G_{p, q} \cap TODO!!!) $$
+
+		TODO!!!
+
+		TODO!!!
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	\ 
+	\begin{itemize}
+		\item TODO? Such norms (i.e., satisfying $w = \|·\|$ on $S_X$) are called Kadec.
+		\item $X$ is uniformly convex $\implies$ its norm is Kadec ($\forall ε > 0\ \exists δ > 0\ \forall x, y \in S_X: \|\frac{x + y}{2}\| > 1 - δ \implies \|x - y\| < ε$.) For example, spaces $C^p$, $1 < p < ∞$ are uniformly convex.
+		\item $X$ is locally uniformly convex $\implies$ its norm is Kadec ($\forall x \in S_x\ \forall ε > 0\ \exists δ > 0\ \forall y \in S_X: \|\frac{x + y}{2}\| > 1 - δ \implies \|x - y\| < ε$.)
+		\item Fact: $X$ reflexive $\implies$ $X$ admits an equivalent L.U.C.~norm. Hence $Borel(X, \|·\|) = Borel(X, w)$.
+		\item Question: Is there an easy proof of $Borel(X, \|·\|) = Borel(X, w)$ for $X$ reflexive? (TODO? (Yes, but not shown?))
+	\end{itemize}
+\end{poznamka}
+
+\section{Weak compact sets and Eberlein compact spaces}
+\begin{definice}[Eberlein compact]
+	A topological space $K$ is called Eberlein compact if $\exists X$ Banach space, $L \subset X$ weakly compact such that $K$ is homeomorphic to $(L, w)$.
+\end{definice}
+
+\begin{veta}
+	Let $K$ be a topological space. Then following assertions are equal:
+	\begin{enumerate}
+		\item $K$ is compact and $\exists X$ Banach space such that $K$ is homeomorphic to a subset of $(X, w)$
+		\item $K$ is countably and $\exists X$ Banach space such that $K$ is homeomorphic to a subset of $(X, w)$
+		\item $K$ is sequentially compact and $\exists X$ Banach space such that $K$ is homeomorphic to a subset of $(X, w)$
+		
+		\item $K$ is compact and $\exists L$ compact such that $K$ is homeomorphic to a subset of $(C(L), τ_p)$
+		\item $K$ is countably and $\exists L$ compact such that $K$ is homeomorphic to a subset of $(C(L), τ_p)$
+		\item $K$ is sequentially compact and $\exists L$ compact such that $K$ is homeomorphic to a subset of $(C(L), τ_p)$
+	\end{enumerate}
+
+	\begin{dukazin}[Trivial parts]
+		„$1. \implies 4.$, $2. \implies 5.$ and $3. \implies 6.$“: because $(X, w) \subset (C(B_{X^*}, w^*), τ_p)$.
+
+		„$1. \implies 2.$ and $4. \implies 5.$“: because compact $\implies$ countably compact.
+		
+		„$3. \implies 2.$ and $6. \implies 5.$“: because sequentially compact $\implies$ countably compact.
+	\end{dukazin}
+\end{veta}
+
+\begin{lemma}
+	$L$ compact, $A \subset (C(L), τ_p)$ $τ_p$-separable, countable compact. Then $A$ is a metrizable compact.
+
+	\begin{dukazin}
+		Step 1: WLOG $L$ is metrizable. Let $S \subset A$ be countable dense. Define $φ: L \rightarrow ®F^S$ by $φ(x) = (f(x))_{f \in S}$. Then $φ$ is continuous. $M \coloneq φ(C)$ is a metrizable compact.
+
+% 12. 12. 2024
+
+		Define $φ^*: C(M) \rightarrow C(L)$, $φ^*(y) = g ∘ φ$ ($g \in C(M)$). Then $φ^*$ is linear isometric embedding ($\|φ^*(g)\|_∞ = \|g∘φ\|_∞ = \sup_{x \in L} |g(φ(x))| = \sup_{y \in M} |g(y)| = \|g\|_∞$).
+
+		„$φ^*$ is $τ_p-τ_p$ homeomorphism“: $x \in L$, then $g \mapsto φ^*(g)(xx) = g(φ(x))$ is $τ_p$-continuous. This proves continuity $τ_p \rightarrow τ_p$. Conversely $y \in M$, then $\exists x \in L: φ(x) = y$ and
+		$$ φ^*(C(M)) \ni f \mapsto (φ^*)^{-1} (f)(y) = (φ^*)^{-1}(f)(φ(x)) = f(x) $$
+		is $τ_p$-continuous.
+
+		„$φ^*(C(M)) = \{h \in C(L) | \forall l, l' \in L: φ(l) = φ(l') \implies h(l) = h(l')\}$“: „$\subset$“: clear: $h \in φ^*(C(M)) \implies h = f∘φ$ for some $f \in C(M)$. „$\supset$: $h \in RHS$“. Then $\exists g: L \rightarrow ®F$ such that $h = g ∘ φ$ and $g$ is continuous. $C \subset ®F$ closed $\implies$ $h^{-1}(C)$ is closed, so compact and $h^{-1}(C) = φ^{-1}(g^{-1}(C))$, hence $g^{-1}(C) = φ(h^{-1}(C))$ is compact, hence closed.
+
+		Hence, $φ^*(C(M))$ is $τ_p$-closed in $C(L)$ and $A \subset φ^*(C(M))$ ($f \in S \implies f = π_f ∘ φ \in φ^*(C(M))$, $S$ is dense in $A$). Hence we consider $(φ)$ TODO!!!
+
+		Step 2: TODO!!!
+	\end{dukazin}
+\end{lemma}
+
+\begin{lemma}[Smulyan]
+	$L$ compact, $K \subset (C(L), τ_p)$ countably compact $\implies$ $K$ is $τ_p$-sequentially compact.
+	
+	\begin{dukazin}
+		$(f_n) \subset K$, $K_0 \coloneq ?_1 \overline{f_n, n \in ®N}^{τ_p}$ $\implies$ $K_0$ is $τ_p$-countably compact and $τ_p$-separable $\implies$ $K_0$ is $τ_p$-metrizable compact $\implies$ $\exists (f_{n_k}): f_{n_k} \overset{τ_p}\rightarrow f \in K_0 \subset K$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}
+	Hence, in theorem, we have $5. \implies 6$, $2. \implies 3.$.
+\end{dukaz}
+
+\begin{lemma}[Ebörlen]
+	$X$ Banach space, $A \subset X$ relatively $w$-countably compact $\implies$ $A$ is relatively $w$-compact.
+	
+	\begin{dukazin}
+		„1. $A$ is bounded“: $A$ net bounded $\overset{UBP}\implies$ $\exists x^* \in X^*$ such that $x^*(A)$ is net bounded $\implies$ $\exists (x_n) \subset A: |x^*(x_n)| \rightarrow ∞$. $A$ relatively $w$-countable compact $\implies$ $\exists x \in X$ weak cluster point $\implies$ $x^*(x)$ is a cluster point of $(x^*(x_n))$ $\implies$ $|x^*(x)| = ∞$. \lightning.
+
+		„2. $\overline{A}^{ς(X^{**}, X^*)} \subset X$“: Let $x^{**} \in \overline{A}^{w^*} \setminus X$, $δ \coloneq \dist(x^{**}, x) > 0$ $\overset{HB}\implies$ $\exists x^{***} \in X^{***}: \|x^{***}\| = 1, x^{***}|_X = 0, x^{***}(x^{**}) = δ$. Fix $ε \in (0, 1 / 2)$. Then $\exists (x_n) \subset A$, $(x_n^*) \subset B_{X^*}$ such that
+		\begin{enumerate}
+			\item $\Re x^{**}(x_n^*) > δ(1 - ε)$;
+			\item $|x_n^*(x_k)| < δ·ε$ for $k < n$;
+			\item $\Re x_n^*(x_k) > δ(1 - ε)$ for $k > n$.
+		\end{enumerate}
+		Proof: Find $x_1^* \in B_{X^*}$ satisfying 1. by Goldstine (approximate $x^{***}$). Assume we have $x_1^*, …, x_n^*$, and $x_j$ for $j < n$, we find $x_n \in A$ such that 3. holds. We approximate $x^{**} \in \overline{A}^{w^*}$. Moreover, we find $x_{n+1}^* \in B_{X^*}$ such that 1. and 2. holds by Goldstine, approximate $x^{***}$ ($x^{***}(x^{**}) = δ, x^{***}(x_k) = 0$).
+
+		Let $x \in X$ be a weak cluster point of $(x_n)$ and $x^* \in B_{X^*}$ be a weak$^*$-cluster point of $(x_n^*)$. 3. $\implies$ $\Re x^*(x) ≥ δ(1 - ε)$. 2. $\implies$ $|x^*(x)| ≤ δε$. \lightning.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}
+	„Hence 2. $\implies$ 1. in Theorem“: $K \subset (X, w)$ countable compact $\overset{Lemma}\implies$ $\overline{K}^w$ is $w$-compact. Moreover, „$\overline{K}^w = K$“: $x \in \overline{K}^w \overset{Kaplasky}\implies \exists C \subset K$ countable such that $x \in \overline{C}^w$ $\overset{Lemma above}\implies$ $\overline{C}^w$ is metrizable compact (in $(X, w)$) $\implies$ $\exists (x_n) \subset C: x_n \overset{w}\rightarrow x \implies x \in K$. $K$ w-countably compact $x$ is the only w-cluster point of $(x_n)$.
+\end{dukaz}
+
+\begin{lemma}[Grothendric]
+	Let $K \subset C(L)$ be $\|·\|$-bounded for $L$ compact. $τ_p$-sequentially compact $\implies$ $K$ is w-sequentially compact.
+
+	\begin{dukazin}
+		$(f_n) \subset K \implies \exists (f_{n_k}): f_{n_k} \overset{τ_p}\rightarrow f \in K$. $φ \in C(L)^*$ $\overset{RIESZ}\implies$ $φ$ is represented by a (signed or complex) measure $μ$. $φ(f_{n_k}) = \int f_{n_k} dμ \overset{Lebesgue Dominated C. T.}\rightarrow \int f dμ = φ(f)$.
+	\end{dukazin}
+\end{lemma}
+
+\begin{dukaz}
+	„Hence we have $6. \implies 3.$ in Theorem.“: $K \subset (C(L), τ_p)$ sequentially compact. $K$ bounded $\overset{Lemma}\implies$ $K$ is $w$-sequentially compact. $K$ bounded $\implies$ take $φ: C(L) \rightarrow C(L), f \mapsto \arctg ∘ f$. $τ_p-τ_p$-homeomorphism, $φ(C(L))$ is $\|·\|$-bounded. $φ(K)$ is $τ_p$-sequentially compact, bounded $\overset{Lemma}\implies$ $φ(K)$ is $w$-sequentially compact.
+\end{dukaz}
+
+\begin{tvrzeni}
+	$L$ compact, $A \subset (C(L), τ_p)$ relatively countably compact. Then:
+	\begin{enumerate}
+		\item $\overline{A}^{τ_p}$ is $τ_p$-compact;
+		\item $\forall f \in \overline{A}^{τ_p}\ \exists (f_n) \subset A: f_n \overset{τ_p}\rightarrow f$.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„Step 1: We prove 2. and 1.': $A$ is relatively $τ_p$-sequentially compact.“: WLOG $A$ is countable (Kaplusky). WLOG $L$ is metrizable (as in the Lemma above).
+	\end{dukazin}
+\end{tvrzeni}
+
+% 09. 01. 2025
+
+\begin{tvrzeni}
+	$X$ is WCG $\implies$ $X$ is $F_{ςδ}$ in $(X^{**}, w^*)$.
+
+	\begin{dukazin}
+		$X$ is WCG $\overset{\text{the previous}}\implies$ $\exists (K_n)$ weakly compact such that $\overline{\bigcup_n K_n}^{\|·\|} = X$. Then
+		$$ X = \bigcap_{m=1}^∞ \bigcup_{n=1}^∞ \underbrace{\(K_n + \frac{1}{m} B_{X^{**}}\)}_{\text{$w^*$-compact, hence $w^*$-closed in $X^{**}$}}. $$
+		Hence RHS is $F_{ςδ}$. „$\subseteq$“: $x \in X$: Fix any $m \in ®N$. $\exists y \in \bigcup_n K_n: \|x - y\| < \frac{1}{m}$. Fix $n$ such that $y \in K_n$. Then $x \in K_n + \frac{1}{m} B_X \subset K_n + \frac{1}{m} B_{X^{**}}$.
+
+		„$\supseteq$“: $x^{**} \in RHS$: Then for each $m \in ®N$ exists $n \in ®N$: $x^{**} \in K_n + \frac{1}{m} B_{X^{**}}$. Hence $\dist(x^{**}, X) ≤ \dist(x^{**}, K_n) ≤ \frac{1}{m}$. $m \in ®N$ arb. $\implies$ $\dist(x^{**}, X) = 0$ hence $x^{**} \in X$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{dusledek}
+	$X$ is WCG $\implies$ $(X, w)$ is Lindelöf.
+
+	\begin{dukazin}
+		We know that an $F_{ςδ}$-subset of a compact space is Lindelöf. So, $(B_X, w)$ is Lindelöf, being $F_{ςδ}$ in $(B_{X^{**}}, w^*)$. $X = \bigcup_n n·B_X$ $\implies$ $(X, w)$ Lindelöf.
+	\end{dukazin}
+\end{dusledek}
+
+\begin{tvrzeni}
+	\ 
+	\begin{enumerate}
+		\item $X$ is WCG $\implies$ $(B_{X^*}, w^*)$ is Eberlein.
+		\item $K$ is Eberlein $\Leftrightarrow$ $C(K)$ is WCG.
+		\item $(B_{X^*}, w^*)$ is Eberlein $\implies$ $X$ is isomorphic to a subspace of a WCG space.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“ Assume $X$ is WCG. $\implies$ $\exists K \subset X$ weakly compact such that $\overline{\spn K} = X$. Define $Φ: X^* \rightarrow C(K, w)$, $Φ(x^*) = x^*|_K$. Then $Φ$ is linear $w^*\rightarrow τ_p$ continuous. $Φ$ is one-to-one: $Φ(x^*) = 0 \implies x^*|_K = 0 \implies x^*| X=\overline{\spn K} = 0 \implies x^* = 0$. $\implies$ $Φ|_{B_{X^*}}$ is a $w^*-τ_p$ homeomorphism. Hence, $(B_{X^*}, w^*)$ is Eberlein.
+
+		„2.: $\impliedby$“: $C(K)$ is WCG $\overset{1.}\implies$ $(B_{C(K)^*}, w^*)$ is Eberlein, hence $K \subset (B_{C(K)^*}, w^*)$ is Eberlein.
+
+		„2.: $\implies$“ $K$ is Eberlein $\implies$ $\exists L$ compact such that $K \subset (C(L), τ_p)$. Define $Φ: L \rightarrow C(K)$, $Φ(l)(k) = k(l)$, i.e. $φ(l)$ is $k \mapsto k(l)$. Then: $Φ(l)$ is continuous to $τ_p$ ($L \rightarrow (C(K), t_p)$). Fix $k \in K$. Then $l \mapsto Φ(l)(k) = k(l)$ is continuous on $L$ (as $k \in C(L)$). So, $Φ(L)$ is a compact subset of $(C(L), τ_p)$. $Φ(L)$ separates points of $K$: $k_1, k_2 \in K$, $k_1 ≠ k_2$ $\implies$ $\exists l \in L: Φ(l)(k_1) = k_1(l) ≠ k_2(l) = Φ(l)(k_2)$.
+
+		Stone-Weierstrass $\implies$ $\alg(\{1\} \cup Φ(L) \cup \{\overline{f} | f \in Φ(L)\})$ is $\|·\|$-closed in $C(K)$. $\{1\} \cup Φ(L) \cup \{\overline{f}|\}$ is $τ_p$-compact.
+
+		„$A \subset C(K)$ $τ_p$-compact $\implies$ $\alg(A)$ is $τ_p$-$ς$-compact“: $A_n \coloneq \{f_1 … f_n | f_i \in A\}$ is $τ_p$-compact as a continuous image of $A^n$ by $(f_1, …, f_n) \mapsto f_1·…·f_n$. $\alg A = \bigcup_{m, n, p \in ®N} \{λ_1f_1 + … + λ_m f_m | f_1, …, f_m \in A_1 \cup … \cup A_n, |λ_j| ≤ p\}$, which is union of $τ_p$-compact sets as a continuous images of $(A_1 \cup … \cup A_n)^m + \overline{U(¦o, p)}^m$ by $(f_1, …, f_m, λ_1, …, λ_n) \mapsto λ_1f_1 + … + λ_mf_m$ $\implies \alg(A)$ is $τ_p$-$ς$-compact.
+
+		So $C(K)$ has a $\|·\|$-dense subset which is $τ_p$-$ς$-compact. 
+
+		$B \subset C(K)$ $τ_p$-compact $\implies$ $B$ is $w$-$ς$-compact. ($B = \bigcup_{n \in ®N} (B \cap n·B_{C(K)})$, so union of $\|·\|$-bounded and $τ_p$-compact sets. $\implies$ $B$ is $w$-compact.) Hence $C(K)$ has a $\|·\|$-dense subset which is $w$-$ς$-compact, hence $C(K)$ is WCG by the proposition above.
+
+		„3.“ $(B_{X^*}, w^*)$ is Eberlein. $\overset{2.}\implies$ $C(B_{X^*}, w^*)$ is WCG and $X \subset C(B_{X^*}, w^*)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{poznamka}
+	\ 
+	\begin{itemize}
+		\item WCG spaces are not preserved by subspaces. (Example: Let $μ$ be the product measure on $[0, 1]^®R$, $X = L^1(μ)$. Then $X$ is WCG, $Y \coloneq \overline{\spn}\{π_x, x \in ®R\}$. Then $Y$ is not WCG.)
+		\item Eberlein compact spaces are preserved by continuous images.
+		\item $K$ Eberlein $\Leftrightarrow$ $K \subset (C_0(Γ), w)$ $\Leftrightarrow$ $K \subset (C_0(Γ), τ_p)$.
+	\end{itemize}
+\end{poznamka}
+
+\begin{tvrzeni}
+	\ 
+	\begin{enumerate}
+		\item $(B_{X^*}, w^*)$ is Eberlein $\Leftrightarrow$ $X \subset$ WCG $\impliedby$ $X$ is WCG. ($\nimplies$).
+		\item $K$ is Eberlein $\Leftrightarrow$ $C(K)$ is WCG $\Leftrightarrow$ $C(K) \subset$ WCG.
+	\end{enumerate}
+
+	\begin{dukazin}
+		„1.“: $X \subset Y$, $Y$ WCG $\overset{\text{the previous}}\implies$ $(B_{Y^*}, w^*)$ is Eberlein. $R: Y^* \rightarrow X^*$, $R(y^*) = y^*|_X$ $\implies$ $R(B_{Y^*}) = B_{X^*}$ by Hahn-Banach theorem, $R$ is $w^*$-$w^*$ continuous. Hence $(B_{X^*}, w^*)$ is Eberlein.
+
+		„2.“: $C(K) \subset$ WCG $\overset{1.}\implies$ $(B_{C(K)^*}, w^*)$ is Eberlein and $K \subset (B_{C(K)^*}, w^*)$.
+	\end{dukazin}
+\end{tvrzeni}
+
+\begin{definice}[Strongly weakly compactly generated (SWCG)]
+	$X$ is strongly weakly compactly generated if $\exists K \subset X$ $w$-compact such that $\forall L \subset X$ $w$-compact $\forall ε > 0$ $\exists r > 0$ such that $L \subset r·K + ε B_X$.
+
+	\begin{poznamkain}
+		\ 
+		\begin{itemize}
+			\item $X$ SWCG $\implies$ $X$ is WCG. ($\overline{\bigcup_{r > 0} r·K}^{\|·\|} = X$.)
+			\item $μ$ finite $\implies$ $L^1(μ)$ is SWCG. $K = B_{L^∞(μ)}$ (or $B_{L^2(μ)}$).
+			\item $X$ is SWCG $\implies$ $X$ is weakly sequentially complete (i.e. $(x_n) \subset X$ is $w$-cauchy $\implies$ $(x_n)$ is $w$-convergent). Hence $C_0$ is not SWCG. (Because in $C_0$: $x_n = e_1 + … + e_n = (1, …, 1, 0, …)$ is $w$-cauchy ($\forall x^* \in X^*: (x^*(x))$ is Cauchy) but not $w$-convergent, $c_0^* = l_1$, $y = (y_n) \in l_1$, $y(x_n) = y_1 + … + y_n \rightarrow \sum_{j=1}^∞ y_j$.)
+		\end{itemize}
+	\end{poznamkain}
+\end{definice}
+
+\end{document}
